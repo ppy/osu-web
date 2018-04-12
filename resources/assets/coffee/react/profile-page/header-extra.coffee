@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span} = ReactDOMFactories
+{a, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'profile-header-extra'
@@ -137,28 +137,29 @@ class ProfilePage.HeaderExtra extends React.Component
                 className: 'user-action-button user-action-button--message'
                 href: laroute.route 'messages.users.show', user: @props.user.id
                 title: osu.trans('users.card.send_message')
-                el Icon, name: 'envelope'
+                i className: 'fas fa-envelope'
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
             @fancyLink
               key: 'location'
-              icon: 'map-marker'
+              icon: 'fas fa-map-marker-alt'
               title: osu.trans 'users.show.info.location'
 
             @fancyLink
               key: 'interests'
-              icon: 'heart-o'
+              icon: 'far fa-heart'
               title: osu.trans 'users.show.info.interests'
 
             @fancyLink
               key: 'occupation'
-              icon: 'suitcase'
+              icon: 'fas fa-suitcase'
               title: osu.trans 'users.show.info.occupation'
 
           div className: "#{bn}__rows",
             @fancyLink
               key: 'twitter'
+              icon: 'fab fa-twitter'
               url: "https://twitter.com/#{@props.user.twitter}"
               title: osu.trans 'users.show.info.twitter'
               text:
@@ -170,17 +171,19 @@ class ProfilePage.HeaderExtra extends React.Component
 
             @fancyLink
               key: 'website'
-              icon: 'globe'
+              icon: 'fas fa-link'
               title: osu.trans 'users.show.info.website'
               url: @props.user.website
 
             @fancyLink
               key: 'skype'
+              icon: 'fab fa-skype'
               title: osu.trans 'users.show.info.skype'
               url: "skype:#{@props.user.skype}?chat"
 
             @fancyLink
               key: 'lastfm'
+              icon: 'fab fa-lastfm'
               title: osu.trans 'users.show.info.lastfm'
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
@@ -233,11 +236,10 @@ class ProfilePage.HeaderExtra extends React.Component
     div
       className: "#{bn}__row #{bn}__row--fancy-link"
 
-      el Icon,
-        name: icon ? key
-        modifiers: ['fw']
-        parentClass: "#{bn}__fancy-link-icon"
+      span
+        className: "#{bn}__fancy-link-icon"
         title: title
+        i className: "fa-fw #{icon}"
 
       component
         href: url

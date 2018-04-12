@@ -61,7 +61,7 @@
                                 data-method="POST"
                             >
                                 <span class="landing-nav__locale-link-pointer">
-                                    <span class="fa fa-chevron-right"></span>
+                                    <span class="fas fa-chevron-right"></span>
                                 </span>
 
                                 <img
@@ -160,7 +160,7 @@
                                 </span>
 
                                 <span class="btn-osu-big__icon">
-                                    <span class="fa fa-cloud-download"></span>
+                                    <span class="fas fa-cloud-download-alt"></span>
                                 </span>
                             </span>
                         </a>
@@ -215,13 +215,13 @@
 
         <div class="landing-footer-social">
             <a href="{{ route('support-the-game') }}" class="landing-footer-social__icon landing-footer-social__icon--support">
-                <span class="fa fa-heart"></span>
+                <span class="fas fa-heart"></span>
             </a>
             <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
-                <span class="fa fa-twitter"></span>
+                <span class="fab fa-twitter"></span>
             </a>
             <a href="{{ osu_url("social.facebook") }}" class="landing-footer-social__icon landing-footer-social__icon--facebook">
-                <span class="fa fa-facebook-official"></span>
+                <span class="fab fa-facebook"></span>
             </a>
         </div>
 

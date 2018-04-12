@@ -81,7 +81,7 @@ class ArtistsController extends Controller
                 $links[] = [
                     'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
+                    'icon' => $service,
                     'class' => $service,
                 ];
             }

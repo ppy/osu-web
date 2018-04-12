@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, label, p, span} = ReactDOMFactories
+{button, div, input, label, p, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -85,7 +85,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
               onClick: @toggleSticky
               span className: 'btn-circle__content',
-                el Icon, name: 'thumb-tack'
+                i className: 'fas fa-thumbtack'
 
         div className: "#{bn}__content",
           div
@@ -191,7 +191,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
                 span className: 'osu-checkbox__box'
                 span className: 'osu-checkbox__tick',
-                  el Icon, name: 'check'
+                  i className: 'fas fa-check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
@@ -312,7 +312,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
-        'ellipsis-h'
+        'fas fa-ellipsis-h'
       else
         BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
 

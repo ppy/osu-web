@@ -28,6 +28,7 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\News;
 use App\Models\User;
+use App\Models\UserDonation;
 use Auth;
 use Request;
 use View;
@@ -171,35 +172,80 @@ class HomeController extends Controller
 
     public function supportTheGame()
     {
-        return view('home.support-the-game')
-        ->with('data', [
-            // why support's blocks
-            'blocks' => [
-                // localization's name => icon
-                'dev' => 'user',
-                'time' => 'clock-o',
-                'ads' => 'thumbs-up',
-                'goodies' => 'star',
-            ],
+        if (Auth::check()) {
+            $user = Auth::user();
 
-            // supporter's perks
-            'perks' => [
-                // localization's name => icon
-                'osu_direct' => 'search',
-                'auto_downloads' => 'cloud-download',
-                'upload_more' => 'cloud-upload',
-                'early_access' => 'flask',
-                'customisation' => 'picture-o',
-                'beatmap_filters' => 'filter',
-                'yellow_fellow' => 'fire',
-                'speedy_downloads' => 'dashboard',
-                'change_username' => 'magic',
-                'skinnables' => 'paint-brush',
-                'feature_votes' => 'thumbs-up',
-                'sort_options' => 'trophy',
-                'feel_special' => 'heart',
-                'more_to_come' => 'gift',
-            ],
-        ]);
+            // current status
+            $expiration = $user->osu_subscriptionexpiry;
+            $current = $expiration !== null ? $expiration->isFuture() : false;
+
+            // purchased
+            $tagPurchases = $user->supporterTagPurchases;
+            $dollars = $tagPurchases->sum('amount');
+            $cancelledTags = $tagPurchases->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $tags = $tagPurchases->count() - $cancelledTags;
+
+            // gifted
+            $gifted = $tagPurchases->where('target_user_id', '<>', $user->user_id);
+            $giftedDollars = $gifted->sum('amount');
+            $canceledGifts = $gifted->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $giftedTags = $gifted->count() - $canceledGifts;
+
+            $supporterStatus = [
+                // current status
+                'current' => $current,
+                'expiration' => $expiration,
+                // purchased
+                'dollars' => currency($dollars, 2, false),
+                'tags' => number_format($tags),
+                // gifted
+                'giftedDollars' => currency($giftedDollars, 2, false),
+                'giftedTags' => number_format($giftedTags),
+            ];
+
+            if ($current) {
+                $lastTagPurchaseDate = UserDonation::where('target_user_id', $user->user_id)
+                    ->orderBy('timestamp', 'desc')
+                    ->pluck('timestamp')
+                    ->first();
+
+                $total = $expiration->diffInDays($lastTagPurchaseDate);
+                $used = $lastTagPurchaseDate->diffInDays();
+
+                $supporterStatus['usedRatio'] = 100 - round(($used / $total) * 100, 2);
+            }
+        }
+
+        return view('home.support-the-game')
+            ->with('supporterStatus', $supporterStatus ?? [])
+            ->with('data', [
+                // why support's blocks
+                'blocks' => [
+                    // localization's name => icon
+                    'dev' => 'fas fa-user',
+                    'time' => 'far fa-clock',
+                    'ads' => 'fas fa-thumbs-up',
+                    'goodies' => 'fas fa-star',
+                ],
+
+                // supporter's perks
+                'perks' => [
+                    // localization's name => icon
+                    'osu_direct' => 'fas fa-search',
+                    'auto_downloads' => 'fas fa-cloud-download-alt',
+                    'upload_more' => 'fas fa-cloud-upload-alt',
+                    'early_access' => 'fas fa-flask',
+                    'customisation' => 'far fa-image',
+                    'beatmap_filters' => 'fas fa-filter',
+                    'yellow_fellow' => 'fas fa-fire',
+                    'speedy_downloads' => 'fas fa-tachometer-alt',
+                    'change_username' => 'fas fa-magic',
+                    'skinnables' => 'fas fa-paint-brush',
+                    'feature_votes' => 'fas fa-thumbs-up',
+                    'sort_options' => 'fas fa-trophy',
+                    'feel_special' => 'fas fa-heart',
+                    'more_to_come' => 'fas fa-gift',
+                ],
+            ]);
     }
 }

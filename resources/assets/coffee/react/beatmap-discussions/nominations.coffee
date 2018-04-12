@@ -67,7 +67,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     el BigButton,
       modifiers: ['full']
       text: osu.trans 'beatmaps.nominations.nominate'
-      icon: 'thumbs-up'
+      icon: 'fas fa-thumbs-up'
       props:
         disabled: disabled
         onClick: @nominate
@@ -131,7 +131,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               el BigButton,
                 modifiers: ['full', 'wrap-text']
                 text: osu.trans 'beatmaps.feedback.button'
-                icon: 'bullhorn'
+                icon: 'fas fa-bullhorn'
                 props:
                   onClick: @focusNewDiscussion
 
@@ -165,7 +165,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 el BigButton,
                   modifiers: ['full', 'wrap-text']
                   text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
-                  icon: 'bullhorn'
+                  icon: 'fas fa-bullhorn'
                   props:
                     disabled: userAlreadyHyped
                     onClick: @focusHypeInput
@@ -189,7 +189,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     el BigButton,
                       modifiers: ['full']
                       text: osu.trans 'beatmaps.nominations.disqualify'
-                      icon: 'thumbs-down'
+                      icon: 'fas fa-thumbs-down'
                       props:
                         onClick: @disqualify
                   else if userCanNominate && mapCanBeNominated

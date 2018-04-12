@@ -42,7 +42,7 @@
             </p>
 
             <p class="livestream-featured__text livestream-featured__text--detail">
-                {{ $featuredStream['viewers'] }} <i class="fa fa-eye"></i>
+                {{ $featuredStream['viewers'] }} <i class="fas fa-eye"></i>
             </p>
         </div>
     </a>
@@ -57,7 +57,7 @@
                 data-url="{{ route('livestreams.promote') }}"
             >
                 <span class="btn-circle__content">
-                    <i class="fa fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-down"></i>
                 </span>
             </button>
         </div>

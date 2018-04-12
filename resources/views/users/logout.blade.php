@@ -28,13 +28,13 @@
             <div class="col-xs-1"></div>
             <div class="col-xs-4">
                 <div class="form-group">
-                    <button type="submit" class="form-control btn btn-info" id="nope" name="logout" value="no">Go Back <i class="fa fa-lg fa-undo"></i></button>
+                    <button type="submit" class="form-control btn btn-info" id="nope" name="logout" value="no">Go Back <i class="fas fa-lg fa-undo"></i></button>
                 </div>
             </div>
             <div class="col-xs-2"></div>
             <div class="col-xs-4">
                 <div class="form-group">
-                    <button type="submit" class="form-control btn btn-info" id="yes" name="logout" value="yes">Logout <i class="fa fa-lg fa-sign-out"></i></button>
+                    <button type="submit" class="form-control btn btn-info" id="yes" name="logout" value="yes">Logout <i class="fas fa-lg fa-sign-out-alt"></i></button>
                 </div>
             </div>
             <div class="col-xs-1"></div>

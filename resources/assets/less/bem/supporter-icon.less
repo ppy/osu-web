@@ -16,32 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.icon-fancy {
-  .btn-bg();
-  .default-box-shadow();
-  .center-content();
-  .circle(100px);
-  background-color: @pink;
-  padding: 8px 5px 5px; // manual alignment
-  border: 10px solid #fff;
-  color: #fff;
-  font-size: 40px; // icon size
-  transition: .25s all;
+.supporter-icon {
+  @top: supporter-icon;
+  font-size: 14px;
+  color: white;
 
-  .link-hover({
-    color: #fff;
-    text-decoration: none;
-  });
-
-  &:focus {
-    .thick-box-shadow();
+  &--smaller {
+    font-size: 10px;
   }
 
-  &:hover {
-    .thicker-box-shadow();
+  &__bg {
+    color: @pink;
+    .default-text-shadow();
   }
 
-  &:active {
-    .default-box-shadow();
+  &__heart {
+    font-size: 0.8em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+
+    .@{top}--smaller & {
+      font-size: 0.9em;
+    }
   }
 }

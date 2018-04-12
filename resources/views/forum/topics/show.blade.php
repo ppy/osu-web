@@ -77,14 +77,14 @@
 
     <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
-        <span><i class="fa fa-refresh fa-spin"></i></span>
+        <span><i class="fas fa-sync fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
     <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
-        <span><i class="fa fa-refresh fa-spin"></i></span>
+        <span><i class="fas fa-sync fa-spin"></i></span>
     </div>
 
     <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
@@ -154,7 +154,7 @@
                 <div class="osu-page osu-page--small">
                     <div class="warning-box">
                         <div class="warning-box__icon">
-                            <i class="fa fa-warning"></i>
+                            <i class="fas fa-exclamation-triangle"></i>
                         </div>
 
                         {{ priv_check('ForumTopicReply', $topic)->message() }}
@@ -224,7 +224,7 @@
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
                     <span class="forum-topic-nav__item-content">
-                        <i class="fa fa-angle-double-left"></i>
+                        <i class="fas fa-angle-double-left"></i>
                     </span>
                 </a>
 
@@ -239,7 +239,7 @@
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
                     <span class="forum-topic-nav__item-content">
-                        <i class="fa fa-angle-left"></i>
+                        <i class="fas fa-angle-left"></i>
                     </span>
                 </button>
 
@@ -295,7 +295,7 @@
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
                     <span class="forum-topic-nav__item-content">
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fas fa-angle-right"></i>
                     </span>
                 </button>
 
@@ -311,7 +311,7 @@
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
                     <span class="forum-topic-nav__item-content">
-                        <i class="fa fa-angle-double-right"></i>
+                        <i class="fas fa-angle-double-right"></i>
                     </span>
                 </a>
             </div>
@@ -324,7 +324,7 @@
                     title="{{ trans('forum.topics.actions.search') }}"
                 >
                     <span class="btn-circle__content">
-                        <i class="fa fa-search"></i>
+                        <i class="fas fa-search"></i>
                     </span>
                 </a>
 
@@ -334,7 +334,7 @@
                 >
                     <span class="btn-osu-big__content">
                         <span class="btn-osu-big__icon">
-                            <i class="fa fa-comment"></i>
+                            <i class="fas fa-comment"></i>
                         </span>
 
                         <span class="btn-osu-big__left">

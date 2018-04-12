@@ -56,19 +56,19 @@ class @BeatmapDiscussionHelper
 
   @messageType:
     icon:
-      hype: 'bullhorn'
-      mapperNote: 'sticky-note-o'
-      praise: 'heart'
-      problem: 'exclamation-circle'
-      suggestion: 'circle-o'
+      hype: 'fas fa-bullhorn'
+      mapperNote: 'far fa-sticky-note'
+      praise: 'fas fa-heart'
+      problem: 'fas fa-exclamation-circle'
+      suggestion: 'far fa-circle'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
     iconText:
-      mapperNote: '&#xf24a;'
-      praise: '&#xf004;'
-      problem: '&#xf06a;'
-      resolved: '&#xf05d;'
-      suggestion: '&#xf10c;'
+      mapperNote: ['far', '&#xf249;']
+      praise: ['fas', '&#xf004;']
+      problem: ['fas', '&#xf06a;']
+      resolved: ['far', '&#xf058;']
+      suggestion: ['far', '&#xf111;']
 
 
   @moderationGroup: (user) =>

@@ -53,7 +53,7 @@
                         "
                         href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
                     >
-                        <span class="fa fa-angle-right"></span>
+                        <span class="fas fa-angle-right"></span>
                     </a>
                 </div>
 
