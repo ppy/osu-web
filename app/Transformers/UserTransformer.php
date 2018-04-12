@@ -36,11 +36,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
+        'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
         'unranked_beatmapset_count',
         'user_achievements',
-        'username_history',
     ];
 
     public function transform(User $user)
@@ -235,7 +235,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeUsernameHistory(User $user)
+    public function includePreviousUsernames(User $user)
     {
         return $this->item($user, function ($user) {
             return $user
