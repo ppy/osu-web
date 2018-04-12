@@ -52,9 +52,7 @@
 
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
-                <div class="page-mode page-mode--search">
-                    @include('home._search_page_tabs', compact('allSearch'))
-                </div>
+                @include('home._search_page_tabs', compact('allSearch'))
 
                 @if ($allSearch->getMode() === 'forum_post')
                     @include('objects.search._forum_options')

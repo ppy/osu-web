@@ -15,31 +15,33 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@foreach ($allSearch->searches() as $mode => $search)
-    @php
-        $active = $mode === $allSearch->getMode();
-    @endphp
-    <div class="page-mode__item">
-        <a
-            href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
-            class="page-mode-link {{ isset($active) && $active ? 'page-mode-link--is-active' : '' }}"
-        >
-            <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
-                {{ trans("home.search.mode.{$mode}") }}
-            </span>
-
-            @if ($allSearch->hasQuery() && $search !== null)
-                <span class="page-mode-link__badge">
-                    @if ($search->count() < 100)
-                        {{ $search->count() }}
-                    @else
-                        99+
-                    @endif
+<div class="page-mode page-mode--search">
+    @foreach ($allSearch->searches() as $mode => $search)
+        @php
+            $active = $mode === $allSearch->getMode();
+        @endphp
+        <div class="page-mode__item">
+            <a
+                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+                class="page-mode-link {{ isset($active) && $active ? 'page-mode-link--is-active' : '' }}"
+            >
+                <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
+                    {{ trans("home.search.mode.{$mode}") }}
                 </span>
-            @endif
 
-            <span class="page-mode-link__stripe u-forum--bg">
-            </span>
-        </a>
-    </div>
-@endforeach
+                @if ($allSearch->hasQuery() && $search !== null)
+                    <span class="page-mode-link__badge">
+                        @if ($search->count() < 100)
+                            {{ $search->count() }}
+                        @else
+                            99+
+                        @endif
+                    </span>
+                @endif
+
+                <span class="page-mode-link__stripe u-forum--bg">
+                </span>
+            </a>
+        </div>
+    @endforeach
+</div>
