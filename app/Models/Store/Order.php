@@ -383,7 +383,7 @@ class Order extends Model
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         $this->getConnection()->transaction(function () {
-            $locked = $this->lockSelf();
+            $locked = $this->exists ? $this->lockSelf() : $this;
             if ($locked->isModifiable() === false) {
                 // FIXME: better handling.
                 return [false, 'Cart cannot be updated at this time.'];
