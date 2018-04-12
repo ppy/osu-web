@@ -21,7 +21,6 @@
 return [
     'page_description' => 'Udvalgte kunstnere på osu!',
     'title' => 'Udvalgte kunstnere',
-
     'admin' => [
         'hidden' => 'KUNSTNEREN ER I ØJEBLIKKET SKJULT',
     ],
