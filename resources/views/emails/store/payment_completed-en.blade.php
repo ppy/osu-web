@@ -24,6 +24,11 @@ Thanks for your osu!store order!
 {{ $item->quantity }} x {{ $item->getDisplayName() }} ({{ currency($item->subtotal()) }})
 @endforeach
 
+@if ($order->shipping)
+Shipping ({{ currency($order->shipping) }})
+@endif
+Total ({{ currency($order->getTotal()) }})
+
 @if ($order->requiresShipping())
 We have received your payment and are preparing your order for shipping. It may take a few days for us to send it out, depending on the quantity of orders. You can follow the progress of your order at {{ route('store.invoice.show', $order) }}, including tracking details where available.
 @else
