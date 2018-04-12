@@ -45,11 +45,10 @@
         href="{{ route("forum.topics.show", $topic->topic_id) }}"
     >
         <i class="
-            fa
-            fa-{{
+            {{
                 $topic->topic_type === 2 ?
-                    'exclamation-triangle' :
-                    ($isRead ? 'comment-o' : 'comment')
+                    'fas fa-exclamation-triangle' :
+                    ($isRead ? 'far fa-comment' : 'fas fa-comment')
             }}
         "></i>
     </a>
