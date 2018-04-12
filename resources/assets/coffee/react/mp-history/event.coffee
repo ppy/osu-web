@@ -16,17 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = ReactDOMFactories
+{div, span, a, i} = ReactDOMFactories
 el = React.createElement
 
 class MPHistory.Event extends React.Component
   icons:
-    'player-left': ['arrow-left', 'circle-o']
-    'player-joined': ['arrow-right', 'circle-o']
-    'player-kicked': ['arrow-left', 'ban']
-    'match-created': ['plus']
-    'match-disbanded': ['times']
-    'host-changed': ['exchange']
+    'player-left': ['fas fa-arrow-left', 'far fa-circle']
+    'player-joined': ['fas fa-arrow-right', 'far fa-circle']
+    'player-kicked': ['fas fa-arrow-left', 'fas fa-ban']
+    'match-created': ['fas fa-plus']
+    'match-disbanded': ['fas fa-times']
+    'host-changed': ['fas fa-exchange-alt']
 
   render: ->
     user = @props.lookupUser @props.event.user_id
@@ -43,7 +43,7 @@ class MPHistory.Event extends React.Component
         moment(@props.event.timestamp).format 'LT'
       div className: "mp-history-event__type mp-history-event__type--#{event_type}",
         @icons[event_type].map (m) ->
-          el Icon, name: m, key: m
+          i key: m, className: m
       div
         className: 'mp-history-event__text',
         dangerouslySetInnerHTML:

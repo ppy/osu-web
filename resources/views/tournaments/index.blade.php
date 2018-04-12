@@ -66,7 +66,7 @@
                         </div>
                         <div class='tournament-list-item__metadata-right'>
                             <div class='tournament-list-item__registrations'>
-                                {{number_format($t->registrations->count())}} <i class="fa fa-fw fa-users"></i>
+                                {{number_format($t->registrations->count())}} <i class="fas fa-fw fa-users"></i>
                             </div>
                         </div>
                     </div>

@@ -32,7 +32,7 @@
             <a class="stg-header__button" href="{{ route('store.products.show', 'supporter-tag') }}">
                 {!! trans('community.support.header.support_button') !!}
                 <span class="stg-header__button-icon">
-                    <span class="fa fa-heart"></span>
+                    <span class="fas fa-heart"></span>
                 </span>
             </a>
         </div>
@@ -43,7 +43,7 @@
         <!-- quote -->
         <div class="stg-quote">
             <span class="stg-quote__bg">
-                <span class="fa fa-quote-left"></span>
+                <span class="fas fa-quote-left"></span>
             </span>
             <blockquote class="stg-quote__content">
                 "{!! trans('community.support.dev_quote') !!}"
@@ -62,7 +62,7 @@
             </div>
             <div class="stg-status__flex-container">
                 <div class="stg-status__heart-container">
-                    <span class="fa fa-heart stg-status__heart"></span>
+                    <span class="fas fa-heart stg-status__heart"></span>
                 </div>
                 <div class="stg-status__flex-container-inner">
                     <div class="stg-status__progress-bar">
@@ -110,7 +110,7 @@
                 @foreach($data['blocks'] as $name => $icon)
                     <div class="stg-perk">
                         <div class="stg-perk__icon">
-                            <span class="fa fa-{{ $icon }}"></span>
+                            <span class="{{ $icon }}"></span>
                         </div>
 
                         <div class="stg-perk__text">
@@ -137,7 +137,7 @@
                     @if (strlen($name) > 0)
                         <div class="stg-perk stg-perk--feature">
                             <div class="stg-perk__icon">
-                                <span class="fa fa-{{ $icon }}"></span>
+                                <span class="{{ $icon }}"></span>
                             </div>
 
                             <div class="stg-perk__text">
@@ -163,7 +163,7 @@
             </h3>
 
             <a class="icon-fancy" href="{{ route('store.products.show', 'supporter-tag') }}">
-                <span class="fa fa-heart"></span>
+                <span class="fas fa-heart"></span>
             </a>
 
             <div class="stg-block__run stg-block__run--main">

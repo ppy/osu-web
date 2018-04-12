@@ -15,25 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-account-edit-playstyle" data-playstyle="{{ $field }}">
-    <div class="account-edit-entry__label">
-        @lang('accounts.playstyles.'.$field)
-    </div>
 
-    <div class="osu-checkbox">
-        <input
-            value="{{$field}}"
-            class="osu-checkbox__input"
-            type="checkbox"
-            @if (is_array(Auth::user()->osu_playstyle) && in_array($field, Auth::user()->osu_playstyle))
-                checked
-            @endif
-        >
-        <span class="osu-checkbox__box"></span>
-        <span class="osu-checkbox__tick">
-            <i class="fas fa-check"></i>
-        </span>
-    </div>
-    @include('accounts._edit_entry_status')
-
-</label>
+{{-- see also supporter-icon.coffee for react component --}}
+<span class="supporter-icon{{isset($smaller) && $smaller === true ? ' supporter-icon--smaller' : ''}} fa-stack" title="{{ trans('users.show.is_supporter') }}">
+    @if (isset($background) && $background === true) <i class="supporter-icon__bg fas fa-circle fa-stack-2x"></i> @endif
+    <i class="far fa-circle fa-stack-2x"></i>
+    <i class="supporter-icon__heart fas fa-heart fa-stack-1x"></i>
+</span>

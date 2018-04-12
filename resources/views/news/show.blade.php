@@ -30,7 +30,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-github"></i>
+                                <i class="fab fa-github"></i>
                             </span>
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-refresh"></i>
+                                <i class="fas fa-sync"></i>
                             </span>
                         </button>
                     </div>
@@ -70,7 +70,7 @@
                         class="news__nav-button"
                         title="{{ trans('news.show.nav.newer') }}"
                     >
-                        <span class="fa fa-chevron-circle-left"></span>
+                        <span class="fas fa-chevron-circle-left"></span>
                     </span>
                 @else
                     <a
@@ -78,7 +78,7 @@
                         href="{{ route('news.show', $post->navNewerId()) }}"
                         title="{{ trans('news.show.nav.newer') }}"
                     >
-                        <span class="fa fa-chevron-circle-left"></span>
+                        <span class="fas fa-chevron-circle-left"></span>
                     </a>
                 @endif
                 @if ($post->navOlderId() === null)
@@ -86,7 +86,7 @@
                         class="news__nav-button"
                         title="{{ trans('news.show.nav.older') }}"
                     >
-                        <span class="fa fa-chevron-circle-right"></span>
+                        <span class="fas fa-chevron-circle-right"></span>
                     </span>
                 @else
                     <a
@@ -94,7 +94,7 @@
                         class="news__nav-button news__nav-button--link"
                         title="{{ trans('news.show.nav.older') }}"
                     >
-                        <span class="fa fa-chevron-circle-right"></span>
+                        <span class="fas fa-chevron-circle-right"></span>
                     </a>
                 @endif
             </div>

@@ -57,7 +57,7 @@
         </div>
         <div class="search-forum-post__more">
             <div class="search-result__more-button">
-                <span class="fa fa-angle-right"></span>
+                <span class="fas fa-angle-right"></span>
             </div>
         </div>
     </div>

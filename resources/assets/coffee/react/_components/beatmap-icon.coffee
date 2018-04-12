@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+{div, i} = ReactDOMFactories
 el = React.createElement
 
 @BeatmapIcon = (props) ->
@@ -35,4 +35,4 @@ el = React.createElement
     'data-stars': _.round beatmap.difficulty_rating, 2
     'data-difficulty': difficultyRating
     div className: 'beatmap-icon__shadow'
-    el Icon, name: "extra-mode-#{mode}"
+    i className: "fal fa-extra-mode-#{mode}"

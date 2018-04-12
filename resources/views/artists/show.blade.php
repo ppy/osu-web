@@ -84,9 +84,13 @@
                     @foreach ($links as $link)
                         <a class='artist-link-button artist-link-button--{{$link['class']}}' href='{{$link['url']}}'>
                             <span class='artist-link-button__lightbar'></span>
-                            <i class='fa fa-fw fa-{{$link['icon']}}'></i>
+                            @if ($link['icon'] == 'globe')
+                                <i class='fas fa-fw fa-link'></i>
+                            @else
+                                <i class='fab fa-fw fa-{{$link['icon']}}'></i>
+                            @endif
                             <span class='artist-link-button__text'>{{$link['title']}}</span>
-                            <i class='fa fa-fw fa-chevron-right artist-link-button__chevron'></i>
+                            <i class='fas fa-fw fa-chevron-right artist-link-button__chevron'></i>
                         </a>
                     @endforeach
                 </div>
