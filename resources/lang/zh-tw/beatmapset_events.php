@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
         'discussion_post_restore' => '管理員在 :discussion 中恢復了這條回覆。',
         'discussion_restore' => '管理員恢復了 :discussion 。',
-        'disqualify' => '該譜面因為 :text 被 DQ',
+        'disqualify_legacy' => '該譜面因為 :text 被 DQ',
         'issue_reopen' => '問題 :discussion 被重新打開。',
         'issue_resolve' => '問題 :discussion 被標記為 “已解決”。',
         'kudosu_allow' => '討論 :discussion 的 kudosu 移除操作已被重置。',
