@@ -86,6 +86,8 @@
                             <span class='artist-link-button__lightbar'></span>
                             @if ($link['icon'] == 'globe')
                                 <i class='fas fa-fw fa-link'></i>
+                            @elseif ($link['icon'] == 'user')
+                                <i class='fas fa-fw fa-user'></i>
                             @else
                                 <i class='fab fa-fw fa-{{$link['icon']}}'></i>
                             @endif

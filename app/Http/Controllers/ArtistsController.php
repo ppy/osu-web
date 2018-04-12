@@ -67,6 +67,15 @@ class ArtistsController extends Controller
         // should probably move services to a separate model if the number increases further (HA HA HA)
         $links = [];
 
+        if ($artist->user_id) {
+            $links[] = [
+                'title' => trans('artist.links.osu'),
+                'url' => route('users.show', $artist->user_id),
+                'icon' => 'user',
+                'class' => 'osu',
+            ];
+        }
+
         if ($artist->website) {
             $links[] = [
                 'title' => trans('artist.links.site'),
@@ -76,7 +85,7 @@ class ArtistsController extends Controller
             ];
         }
 
-        foreach (['twitter', 'facebook', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
+        foreach (['twitter', 'facebook', 'spotify', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
             if ($artist->$service) {
                 $links[] = [
                     'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
