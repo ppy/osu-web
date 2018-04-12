@@ -95,28 +95,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function store()
     {
-        $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
-        $beatmapset = null;
-
-        if ($discussion->exists) {
-            $discussionFilters = ['resolved:bool'];
-        } else {
-            $beatmapset = Beatmapset
-                ::where('discussion_enabled', true)
-                ->findOrFail(Request::input('beatmapset_id'));
-
-            $discussion->beatmapset_id = $beatmapset->getKey();
-            $discussion->user_id = Auth::user()->user_id;
-            $discussion->resolved = false;
-            $discussionFilters = [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ];
-        }
-
-        $discussionParams = get_params(Request::all(), 'beatmap_discussion', $discussionFilters);
-        $discussion->fill($discussionParams);
+        $discussion = $this->prepareDiscussion(request());
 
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
@@ -125,14 +104,24 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($postParams)];
         $events = [];
 
-        $resetNominations = !$discussion->exists &&
-            $beatmapset->isPending() &&
-            $beatmapset->hasNominations() &&
-            $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetResetNominations', $beatmapset)->can();
+        $resetNominations = false;
+        $disqualify = false;
 
-        if ($resetNominations) {
-            $events[] = BeatmapsetEvent::NOMINATION_RESET;
+        if (!$discussion->exists && $discussion->message_type === 'problem') {
+            $resetNominations = $discussion->beatmapset->isPending() &&
+                $discussion->beatmapset->hasNominations() &&
+                priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
+
+            if ($resetNominations) {
+                $events[] = BeatmapsetEvent::NOMINATION_RESET;
+            } else {
+                $disqualify = $discussion->beatmapset->isQualified() &&
+                    priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
+
+                if ($disqualify) {
+                    $events[] = BeatmapsetEvent::DISQUALIFY;
+                }
+            }
         }
 
         if ($discussion->exists && $discussion->isDirty('resolved')) {
@@ -142,7 +131,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
+            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -155,8 +144,12 @@ class BeatmapDiscussionPostsController extends Controller
                     BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
+                if ($disqualify) {
+                    $discussion->beatmapset->setApproved('pending', Auth::user());
+                }
+
                 // feels like a controller shouldn't be calling refreshCache on a model?
-                if ($resetNominations) {
+                if ($resetNominations || $disqualify) {
                     $discussion->beatmapset->refreshCache();
                 }
             });
@@ -164,7 +157,6 @@ class BeatmapDiscussionPostsController extends Controller
             return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
 
-        $postIds = array_pluck($posts, 'id');
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -174,8 +166,8 @@ class BeatmapDiscussionPostsController extends Controller
         ]))->delayedDispatch();
 
         return [
-            'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
-            'beatmap_discussion_post_ids' => $postIds,
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
+            'beatmap_discussion_post_ids' => array_pluck($posts, 'id'),
             'beatmap_discussion_id' => $discussion->id,
         ];
     }
@@ -198,5 +190,36 @@ class BeatmapDiscussionPostsController extends Controller
 
             return error_popup(presence($message, trans('beatmaps.discussion-posts.store.error')));
         }
+    }
+
+    private function prepareDiscussion($request)
+    {
+        $discussionId = get_int($request['beatmap_discussion_id']);
+
+        if ($discussionId === null) {
+            $beatmapset = Beatmapset
+                ::where('discussion_enabled', true)
+                ->findOrFail($request['beatmapset_id']);
+
+            $discussion = new BeatmapDiscussion([
+                'beatmapset_id' => $beatmapset->getKey(),
+                'user_id' => Auth::user()->getKey(),
+                'resolved' => false,
+            ]);
+
+            $discussionFilters = [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ];
+        } else {
+            $discussion = BeatmapDiscussion::findOrFail($discussionId);
+            $discussionFilters = ['resolved:bool'];
+        }
+
+        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
+        $discussion->fill($discussionParams);
+
+        return $discussion;
     }
 }
