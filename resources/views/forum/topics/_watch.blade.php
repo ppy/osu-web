@@ -19,9 +19,9 @@
     $stateText = $state->stateText();
 
     $icons = [
-        'not_watching' => 'eye',
-        'watching' => 'eye',
-        'watching_mail' => 'envelope',
+        'not_watching' => 'far fa-bookmark',
+        'watching' => 'fas fa-bookmark',
+        'watching_mail' => 'fas fa-envelope',
     ];
 @endphp
 <div
@@ -40,7 +40,7 @@
         data-menu-target="topic-watch"
     >
         <span class="btn-circle__content">
-            <i class="fas fa-{{ $icons[$stateText] }}"></i>
+            <i class="{{ $icons[$stateText] }}"></i>
         </span>
     </button>
     <div

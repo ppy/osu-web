@@ -68,7 +68,7 @@
             data-tooltip-position="left center"
         >
             <span class="btn-circle__content">
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash"></i>
             </span>
         </button>
     </div>

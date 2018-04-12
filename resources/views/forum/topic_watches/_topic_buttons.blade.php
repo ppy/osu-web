@@ -64,6 +64,6 @@
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
     <span class="btn-circle__content">
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash"></i>
     </span>
 </button>

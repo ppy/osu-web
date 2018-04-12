@@ -85,7 +85,7 @@
                         <a class='artist-link-button artist-link-button--{{$link['class']}}' href='{{$link['url']}}'>
                             <span class='artist-link-button__lightbar'></span>
                             @if ($link['icon'] == 'globe')
-                                <i class='fas fa-fw fa-globe'></i>
+                                <i class='fas fa-fw fa-link'></i>
                             @else
                                 <i class='fab fa-fw fa-{{$link['icon']}}'></i>
                             @endif

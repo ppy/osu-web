@@ -85,7 +85,7 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-pencil-alt"></i>
                             </span>
                         </button>
                     </div>

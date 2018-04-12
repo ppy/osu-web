@@ -60,7 +60,7 @@
     </div>
 
     <div class="bottom_right show_on_hover">
-        <a href='#' class="object_link"><i class="fas fa-download"></i></a>
+        <a href='#' class="object_link"><i class="fas fa-cloud-download-alt"></i></a>
         <a href='#' class="object_link"><i class="far fa-comments"></i></a>
         <a href='#' class="object_link"><i class='fas fa-heart'></i></a>
     </div>

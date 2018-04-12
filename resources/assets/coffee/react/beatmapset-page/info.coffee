@@ -109,7 +109,7 @@ class BeatmapsetPage.Info extends React.Component
         className: 'btn-circle'
         onClick: @editStart
         span className: 'btn-circle__content',
-          i className: 'fas fa-edit'
+          i className: 'fas fa-pencil-alt'
 
 
   render: ->

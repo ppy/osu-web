@@ -22,7 +22,7 @@
         $method = 'post';
     } else {
         $deleteString = 'destroy';
-        $iconClass = 'fa-trash-alt';
+        $iconClass = 'fa-trash';
         $method = 'delete';
     }
 @endphp

@@ -78,7 +78,7 @@
                                 {{ trans('users.login._') }}
                             </span>
 
-                            <span class="fas fa-sign-in-alt"></span>
+                            <span class="fas fa-fw fa-sign-in-alt"></span>
                         </div>
                     </button>
                 </div>
@@ -103,7 +103,7 @@
                                     {{ trans('users.signup._') }}
                                 </span>
 
-                                <span class="fas fa-edit"></span>
+                                <span class="fas fa-fw fa-child"></span>
                             </div>
                         </a>
                     </div>

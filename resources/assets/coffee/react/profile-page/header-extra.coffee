@@ -171,7 +171,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
             @fancyLink
               key: 'website'
-              icon: 'fas fa-globe'
+              icon: 'fas fa-link'
               title: osu.trans 'users.show.info.website'
               url: @props.user.website
 

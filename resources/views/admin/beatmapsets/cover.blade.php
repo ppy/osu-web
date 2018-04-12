@@ -39,7 +39,7 @@
                 data-reload-on-success="1"
                 data-disable-with="{{ trans('admin.beatmapsets.covers.removing') }}"
             >
-                <i class="fas fa-fw fa-trash-alt"></i>
+                <i class="fas fa-fw fa-trash"></i>
                 {{trans('admin.beatmapsets.covers.remove')}}
             </button>
             @foreach (array_merge(['raw', 'fullsize'], $beatmapset->coverSizes()) as $size)
