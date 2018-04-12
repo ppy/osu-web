@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Không thể hoàn lại hype.',
+            'is_hype' => 'Không thể hủy bỏ hype.',
             'has_reply' => 'Không thể xóa cuộc thảo luận cùng trả lời',
         ],
         'nominate' => [
