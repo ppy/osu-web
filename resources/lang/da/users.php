@@ -19,7 +19,34 @@
  */
 
 return [
-    'deleted' => '[slette bruger]',
+    'deleted' => '[slettedet bruger]',
+
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Senest startede diskussioner',
+        ],
+
+        'events' => [
+            'title_recent' => 'Seneste aktiviteter',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Seneste opslag',
+        ],
+
+        'votes_received' => [
+            'title_most' => '>Mest stemt på af (last 3 months)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Mest stemt (last 3 months)',
+        ],
+    ],
+
+    'card' => [
+        'loading' => 'Loader...',
+        'send_message' => 'send besked',
+    ],
 
     'login' => [
         '_' => 'Log ind',
@@ -40,8 +67,13 @@ return [
 
         'here' => 'her', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s opslag',
+    ],
+
     'signup' => [
-        '_' => 'Registrér',
+        '_' => 'Registrer',
     ],
     'anonymous' => [
         'login_link' => 'klik for at logge ind', // Base text changed from "log" to "sign"
@@ -57,6 +89,7 @@ return [
     'show' => [
         '404' => 'Bruger ikke fundet! ;_;',
         'age' => ':age år gammel',
+        'change_avatar' => 'ændr din avatar!',
         'first_members' => 'Var her fra starten',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -92,7 +125,7 @@ return [
 
             'achievements' => [
                 'title' => 'Præstationer',
-                'achieved-on' => 'Opnået på :date',
+                'achieved-on' => 'Opnået den :date',
             ],
             'beatmaps' => [
                 'none' => 'Ingen... endnu.',
@@ -115,6 +148,9 @@ return [
                 'empty' => 'Ingen præstationsrekorder endnu. :(',
                 'title' => 'Historisk',
 
+                'monthly_playcounts' => [
+                    'title' => 'Spille Historik',
+                ],
                 'most_played' => [
                     'count' => 'gange spillet',
                     'title' => 'Mest Spillede Beatmaps',
@@ -123,10 +159,13 @@ return [
                     'accuracy' => 'præcision: :percentage',
                     'title' => 'Seneste spil (24 timer)',
                 ],
+                'replays_watched_counts' => [
+                    'title' => 'Replays Set Historik',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tilgængelig',
-                'available_info' => 'Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har omdannet endnu.',
+                'available_info' => 'Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har brugt endnu.',
                 'recent_entries' => 'Seneste Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Samlet Kudosu Optjent',
@@ -183,16 +222,47 @@ return [
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Bedste Præstation',
+                    'title' => 'Bedste Præstationer',
                 ],
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'first' => [
-                    'title' => 'Førerpositioner',
+                    'title' => 'Førstepladser',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'vejede: :pp (:percentage)',
             ],
+        ],
+            'account_standing' => [
+                'title' => 'Account Status',
+                'bad_standing' => "<strong>:username's</strong> account er ikke i en god position :(",
+                'remaining_silence' => '<strong>:username</strong> kan tale igen om :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Seneste Overtrædelser',
+                    'date' => 'dato',
+                    'action' => 'handling',
+                    'length' => 'længde',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'beskrivelse',
+                    'actor' => 'af :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Mute',
+                        'note' => 'Noter',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'interests' => 'Interesser',
+            'lastfm' => 'Last.fm',
+            'location' => 'Nuværende Position',
+            'occupation' => 'Stilling',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Hjemmeside',
         ],
         'page' => [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
@@ -208,7 +278,7 @@ return [
             'hit_accuracy' => 'Hit Præcision',
             'level' => 'Level :level',
             'maximum_combo' => 'Højeste Combo',
-            'play_count' => 'Spilantal',
+            'play_count' => 'Antal Spilforsøg',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Set af Andre',
             'score_ranks' => 'Score Ranks',

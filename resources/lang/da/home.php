@@ -26,8 +26,8 @@ return [
         'players' => '<strong>:count</strong> registrerede brugere',
 
         'slogan' => [
-            'main' => 'gratis rytmespil',
-            'sub' => 'rytmen er bare ét klik væk',
+            'main' => 'Det bedste gratis rytmespil',
+            'sub' => 'rytmen er bare et klik væk',
         ],
     ],
 
@@ -36,6 +36,8 @@ return [
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
         'missing_query' => 'Du skal søge efter nøgleord med mindst :n karakterer!',
+        'placeholder' => 'klik for at søge',
+        'title' => 'Søg',
 
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',
@@ -45,13 +47,13 @@ return [
 
         'forum_post' => [
             'all' => 'Alle forums',
-            'link' => 'Søg på forummet',
+            'link' => 'Søg i forummet',
             'more_simple' => 'Se flere forum-søgeresultater',
             'title' => 'Forum',
 
             'label' => [
                 'forum' => 'søg i forummerne',
-                'forum_children' => 'inkludér subforums',
+                'forum_children' => 'inkluder subforums',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],

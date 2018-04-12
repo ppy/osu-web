@@ -118,7 +118,7 @@ return [
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
         'new_time' => 'Du får en ny hype om :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
-        'section_title' => 'Hype Tog',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 

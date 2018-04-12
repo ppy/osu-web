@@ -64,7 +64,7 @@ return [
             '_' => 'rangering',
             'index' => 'præstation',
             'performance' => 'præstation',
-            'charts' => 'diagrammer',
+            'charts' => 'baner',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',
@@ -105,7 +105,7 @@ return [
             'disabled' => 'deaktiveret',
 
             'register' => 'registrer',
-            'reset' => 'genvind',
+            'reset' => 'gendan',
             'new' => 'ny',
 
             'messages' => 'Beskeder',
