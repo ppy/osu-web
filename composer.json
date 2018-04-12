@@ -37,7 +37,6 @@
     "paypal/rest-api-sdk-php": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "*",
-    "symfony/finder": "*",
     "symfony/yaml": "*",
     "webuni/commonmark-table-extension": "*",
     "xsolla/xsolla-sdk-php": "*"
