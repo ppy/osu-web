@@ -33,11 +33,10 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
     div className: 'profile-info__details',
       if user.is_supporter
         span
-          className: 'profile-info__supporter-icon'
+          className: 'profile-info__supporter-icon fa-stack'
           title: osu.trans('users.show.is_supporter')
-          div className: 'fa-stack',
-            i className: 'far fa-circle fa-stack-2x'
-            i className: 'fas fa-heart fa-stack-1x', style: { fontSize: '11px' }
+          i className: 'far fa-circle fa-stack-2x'
+          i className: 'fas fa-heart fa-stack-1x profile-info__supporter-heart'
 
       h1 className: 'profile-info__name', user.username
       # hard space if no title
