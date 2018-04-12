@@ -150,6 +150,7 @@ return [
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
         'required_text' => 'Nominations: :current/:required',
+        'reset_message_deleted' => 'supprimé',
         'title' => 'Statut de la nomination',
         'unresolved_issues' => 'Il reste encore des problèmes à résoudre.',
 
