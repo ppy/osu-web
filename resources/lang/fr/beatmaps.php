@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualifier',
             'hype' => 'Hype!',
             'mapper_note' => 'Note',
+            'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Hommage',
             'problem' => 'Problème',
             'suggestion' => 'Suggestion',
@@ -148,10 +150,17 @@ return [
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
         'required_text' => 'Nominations: :current/:required',
-        'reset_at' => 'Les nominations ont été réinitialisés :time_ago à cause du commentaire :discussion.',
-        'reset_confirm' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser la nomination.',
         'title' => 'Statut de la nomination',
         'unresolved_issues' => 'Il reste encore des problèmes à résoudre.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Le processus de nomination a été réinitialisée :time_ago par :user avec le nouveau problème :discussion (:message).',
+            'disqualify' => 'Disqualifié :time_ago par :user avec le nouveau problème :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser la nomination.',
+        ],
     ],
 
     'listing' => [

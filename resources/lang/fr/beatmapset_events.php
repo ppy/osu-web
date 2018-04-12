@@ -25,7 +25,8 @@ return [
         'discussion_post_delete' => 'Un modérateur a supprimé le post de la discussion :discussion.',
         'discussion_post_restore' => 'Un modérateur a restauré le post de la discussion :discussion.',
         'discussion_restore' => 'Un modérateur a restauré la discussion :discussion.',
-        'disqualify' => 'Disqualifié par :user. Raison: :text.',
+        'disqualify' => 'Disqualifié par :user. Raison: :discussion (:text).',
+        'disqualify_legacy' => 'Disqualifié par :user. Raison: :text.',
         'issue_reopen' => 'Le problème résolu :discussion a été rouvert.',
         'issue_resolve' => 'Le problème :discussion a été marqué comme résolu.',
         'kudosu_allow' => 'Le refus de Kudosu pour la discussion :discussion a été supprimé.',
@@ -45,6 +46,7 @@ return [
 
     'item' => [
         'content' => 'Contenu',
+        'discussion_deleted' => '[supprimé]',
         'type' => 'Type',
     ],
 ];
