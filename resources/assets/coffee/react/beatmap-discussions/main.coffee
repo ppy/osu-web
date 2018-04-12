@@ -344,7 +344,17 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @update e, playmode: mode
 
 
-  update: (_e, {mode, callback, beatmapId, playmode, beatmapset, watching, filter}) =>
+  update: (_e, options) =>
+    {
+      callback
+      mode
+      modeIf
+      beatmapId
+      playmode
+      beatmapset
+      watching
+      filter
+    } = options
     newState = {}
 
     if beatmapset?
@@ -369,7 +379,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
         newState.currentFilter = filter
 
     if mode? && mode != @state.currentMode
-      newState.currentMode = mode
+      if !modeIf? || modeIf == @state.currentMode
+        newState.currentMode = mode
 
       # switching to events:
       # - record last filter, to be restored when setMode is called

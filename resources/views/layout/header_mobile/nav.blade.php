@@ -23,11 +23,11 @@
             href="{{ $links['_'] ?? array_values($links)[0] }}"
         >
             <span class="navbar-mobile-item__icon navbar-mobile-item__icon--main navbar-mobile-item__icon--closed">
-                <i class="fa fa-chevron-right"></i>
+                <i class="fas fa-chevron-right"></i>
             </span>
 
             <span class="navbar-mobile-item__icon navbar-mobile-item__icon--main navbar-mobile-item__icon--opened">
-                <i class="fa fa-chevron-down"></i>
+                <i class="fas fa-chevron-down"></i>
             </span>
 
             {{ trans("layout.menu.{$section}._") }}
@@ -46,7 +46,7 @@
                         data-target=".js-navbar-mobile--menu"
                     >
                         <span class="navbar-mobile-item__icon">
-                            <i class="fa fa-chevron-right"></i>
+                            <i class="fas fa-chevron-right"></i>
                         </span>
 
                         {{ trans("layout.menu.$section.$action") }}

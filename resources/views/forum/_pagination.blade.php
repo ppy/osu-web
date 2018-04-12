@@ -59,12 +59,12 @@
             <li>
                 @if ($object->currentPage() === 1)
                     <span>
-                        <i class="fa fa-angle-left"></i>
+                        <i class="fas fa-angle-left"></i>
                         {{ trans("common.pagination.previous") }}
                     </span>
                 @else
                     <a class="u-forum--link" href="{{ $object->url($object->currentPage() - 1) }}">
-                        <i class="fa fa-angle-left"></i>
+                        <i class="fas fa-angle-left"></i>
                         {{ trans("common.pagination.previous") }}
                     </a>
                 @endif
@@ -73,12 +73,12 @@
                 @if ($object->currentPage() === $object->lastPage())
                     <span>
                         {{ trans("common.pagination.next") }}
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fas fa-angle-right"></i>
                     </span>
                 @else
                     <a class="u-forum--link" href="{{ $object->url($object->currentPage() + 1) }}">
                         {{ trans("common.pagination.next") }}
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fas fa-angle-right"></i>
                     </a>
                 @endif
             </li>

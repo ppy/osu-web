@@ -18,7 +18,7 @@
 @php
     $types = [
         'sticky' => [
-            'icon' => 'thumb-tack',
+            'icon' => 'thumbtack',
         ],
         'announcement' => [
             'icon' => 'bullhorn',
@@ -52,7 +52,7 @@
         title="{{ trans('forum.topics.moderate_pin.to_'.$actionInt) }}"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-{{ $attrs['icon'] }}"></i>
+            <i class="fas fa-{{ $attrs['icon'] }}"></i>
         </span>
     </button>
 @endforeach

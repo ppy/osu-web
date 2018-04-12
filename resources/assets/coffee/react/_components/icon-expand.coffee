@@ -16,20 +16,20 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span} = ReactDOMFactories
+{span, i} = ReactDOMFactories
 el = React.createElement
 
 elem = ({position, icon}) ->
   span
     key: position
     className: "icon-stack__icon icon-stack__icon--#{position}"
-    el Icon, name: icon, modifiers: ['fw']
+    i className: "fas fa-fw fa-#{icon}"
 
 @IconExpand = ({expand = true, parentClass = ''}) ->
   span
     className: "icon-stack #{parentClass}"
     span className: 'icon-stack__base',
-      el Icon, name: 'angle-down', modifiers: ['fw']
+      i className: 'fas fa-fw fa-angle-down'
     if expand
       [
         elem position: 'top', icon: 'angle-up'

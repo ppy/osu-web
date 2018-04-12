@@ -30,7 +30,7 @@
                         </span>
 
                         <span class="store-header__float-link-text store-header__float-link-text--icon">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart"></i>
                         </span>
                     </a>
                 </div>

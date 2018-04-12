@@ -29,7 +29,7 @@
                     title="{{ trans('forum.topics.edit_title.start') }}"
                 >
                     <span class="btn-circle__content">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fas fa-pencil-alt"></i>
                     </span>
                 </button>
             </div>
@@ -56,7 +56,7 @@
                         title="{{ trans('common.buttons.save') }}"
                     >
                         <span class="btn-circle__content">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </span>
                     </button>
                 </div>
@@ -68,7 +68,7 @@
                         title="{{ trans('common.buttons.cancel') }}"
                     >
                         <span class="btn-circle__content">
-                            <i class="fa fa-close"></i>
+                            <i class="fas fa-times"></i>
                         </span>
                     </button>
                 </div>

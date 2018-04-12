@@ -17,11 +17,11 @@
 --}}
 @php
     $postTypeToIcon = [
-      'hype' => 'bullhorn',
-      'mapper_note' => 'sticky-note-o',
-      'praise' => 'heart',
-      'problem' => 'exclamation-circle',
-      'suggestion' => 'circle-o',
+      'hype' => 'fas fa-bullhorn',
+      'mapper_note' => 'far fa-sticky-note',
+      'praise' => 'fas fa-heart',
+      'problem' => 'fas fa-exclamation-circle',
+      'suggestion' => 'far fa-circle',
     ];
 @endphp
 <div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
@@ -35,7 +35,7 @@
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{$discussion->message_type}}">
-                        <span class="fa fa-{{$postTypeToIcon[$discussion->message_type]}}"></span>
+                        <span class="{{$postTypeToIcon[$discussion->message_type]}}"></span>
                     </span>
                 </div>
             </div>

@@ -27,7 +27,7 @@
         "
         href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
     >
-        <i class="fa fa-plus"></i>
+        <i class="fas fa-plus"></i>
     </a>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--main">
@@ -57,6 +57,6 @@
         href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
         title="{{ trans('forum.topic.new_topic') }}"
     >
-        <i class="fa fa-chevron-right"></i>
+        <i class="fas fa-chevron-right"></i>
     </a>
 </li>

@@ -393,13 +393,14 @@ function countries_array_for_select()
     return $out;
 }
 
-function currency($price)
+function currency($price, $precision = 2, $zeroShowFree = true)
 {
-    if ($price === 0) {
+    $price = round($price, $precision);
+    if ($price === 0.00 && $zeroShowFree) {
         return 'free!';
     }
 
-    return sprintf('US$%.2f', $price);
+    return 'US$'.number_format($price, $precision);
 }
 
 /**
@@ -504,12 +505,12 @@ function link_to_user($user_id, $user_name = null, $user_color = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fa-cogs';
-        case 'assigned': return 'fa-user';
-        case 'confirmed': return 'fa-exclamation-triangle';
-        case 'resolved': return 'fa-check-circle';
-        case 'duplicate': return 'fa-copy';
-        case 'invalid': return 'fa-times-circle';
+        case 'added': return 'fas fa-cogs';
+        case 'assigned': return 'fas fa-user';
+        case 'confirmed': return 'fas fa-exclamation-triangle';
+        case 'resolved': return 'far fa-check-circle';
+        case 'duplicate': return 'fas fa-copy';
+        case 'invalid': return 'far fa-times-circle';
     }
 }
 

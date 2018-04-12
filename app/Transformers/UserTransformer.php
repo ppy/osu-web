@@ -36,6 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
+        'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
         'unranked_beatmapset_count',
@@ -231,6 +232,23 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'public_key' => config('services.disqus.public_key'),
                 'auth_data' => "$encodedData $hmac $timestamp",
             ];
+        });
+    }
+
+    public function includePreviousUsernames(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return $user
+                ->usernameChangeHistory()
+                ->visible()
+                ->select(['username_last', 'timestamp'])
+                ->whereNotNull('username_last')
+                ->where('username_last', '<>', $user->username)
+                ->orderBy('timestamp', 'ASC')
+                ->get()
+                ->pluck('username_last')
+                ->unique()
+                ->toArray();
         });
     }
 }

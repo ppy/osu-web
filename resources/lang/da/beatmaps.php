@@ -137,6 +137,10 @@ return [
                 'reset_at' => 'Nomineringer er blevet nullstillet :time_ago af et nyt problem :discussion.',
         'reset_confirm' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
         'title' => 'Nomineringsstatus',
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
+        ],
     ],
 
     'feedback' => [

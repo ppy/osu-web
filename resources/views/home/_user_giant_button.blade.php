@@ -19,6 +19,6 @@
 <a href="{{ $href }}" class="btn-home btn-home--{{ $colour ?? '' }}">
     <span class="btn-home__text">{{ $label }}</span>
     <span class="btn-home__icon">
-        <i class="fa fa-fw fa-{{$icon}}"></i>
+        <i class="fas fa-fw fa-{{$icon}}"></i>
     </span>
 </a>
