@@ -18,22 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\Model;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class TableTest extends TestCase
 {
+    private $modelsPath;
+
     public function testTableExistence()
     {
-        $this->modelsPath = app_path().'/Models';
-        $errors = $this->checkDir($this->modelsPath);
+        $errors = [];
+
+        $files = (new Finder)->in(app_path().'/Models')->files();
+        foreach ($files as $file) {
+            $error = $this->checkFile($file);
+            if ($error !== null) {
+                $errors[] = $error;
+            }
+        }
 
         // prints a diff with the classes that errored.
-        $this->assertEquals([], $errors);
+        $this->assertSame([], $errors);
     }
 
-    private function checkFile(string $path, string $namespace = '')
+    private function checkFile(SplFileInfo $file)
     {
-        $pathinfo = pathinfo($path);
-        $class = '\\App\\Models'.$namespace.'\\'.$pathinfo['filename'];
+        $class = $this->classFromFileInfo($file);
         $reflectionClass = new ReflectionClass($class);
         if ($reflectionClass->isAbstract() || !$reflectionClass->isSubclassOf(Model::class)) {
             return;
@@ -46,30 +56,14 @@ class TableTest extends TestCase
         }
     }
 
-    private function checkDir(string $basePath, string $namespace = '')
+    private function classFromFileInfo(SplFileInfo $fileInfo)
     {
-        $errors = [];
-        $entries = scandir($basePath);
-
-        foreach ($entries as $entry) {
-            $entryPath = $basePath.'/'.$entry;
-            if ($entry === '.' || $entry === '..') {
-                continue;
-            }
-
-            if (is_dir($entryPath)) {
-                $dirErrors = $this->checkDir($entryPath, $namespace.'\\'.$entry);
-                if ($dirErrors !== []) {
-                    $errors = array_merge($errors, $dirErrors);
-                }
-            } elseif (is_file($entryPath)) {
-                $fileError = $this->checkFile($entryPath, $namespace);
-                if ($fileError !== null) {
-                    $errors[] = $fileError;
-                }
-            }
+        $baseName = $fileInfo->getBasename(".{$fileInfo->getExtension()}");
+        $namespace = str_replace('/', '\\', $fileInfo->getRelativePath());
+        if (mb_strlen($fileInfo->getRelativePath()) !== 0) {
+            $namespace .= '\\';
         }
 
-        return $errors;
+        return "\\App\\Models\\{$namespace}{$baseName}";
     }
 }
