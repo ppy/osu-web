@@ -22,7 +22,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <strong>B</strong>
+            <i class="fas fa-bold"></i>
         </span>
     </button>
 
@@ -32,7 +32,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <em>I</em>
+            <i class="fas fa-italic"></i>
         </span>
     </button>
 
@@ -52,7 +52,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <span>H</span>
+            <i class="fas fa-heading"></i>
         </span>
     </button>
 
