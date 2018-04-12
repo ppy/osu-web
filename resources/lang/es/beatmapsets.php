@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Este beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos de autor.',
+        'parts-removed' => 'Partes de este beatmap han sido eliminadas por la solicitud de su creador o un titular de derechos de autor.',
         'more-info' => 'Más información.',
     ],
 
@@ -35,8 +35,8 @@ return [
 
         'details' => [
             'made-by' => 'creado por ',
-            'submitted' => 'enviado el ',
-            'updated' => 'última actualización el ',
+            'submitted' => 'publicado el ',
+            'updated' => 'actualizado el ',
             'ranked' => 'rankeado el ',
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
@@ -44,13 +44,13 @@ return [
             'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Descargar',
-                'video' => 'con Video',
-                'no-video' => 'sin Video',
+                'video' => 'con video',
+                'no-video' => 'sin video',
                 'direct' => 'osu!direct',
             ],
             'favourite' => 'Marcar como favorito',
             'unfavourite' => 'Desmarcar como favorito',
-            'favourited_count' => '+ ¡1 otro!|+ ¡:count otros!',
+            'favourited_count' => '+ ¡1 persona más!|+ ¡:count personas más!',
         ],
         'stats' => [
             'cs' => 'Tamaño de Círculo',
@@ -65,11 +65,14 @@ return [
             'count_sliders' => 'Número de Deslizadores',
             'user-rating' => 'Valoración de los Usuarios',
             'rating-spread' => 'Desglose de valoraciones',
+            'nominations' => 'Nominaciones',
+            'playcount' => 'Veces jugado',
         ],
         'info' => [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
+            'no_scores' => 'Los datos todavía están siendo calculados...',
             'points-of-failure' => 'Puntos de Fracaso',
             'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
@@ -81,7 +84,6 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
-            'miss_count' => ':count fallos',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
