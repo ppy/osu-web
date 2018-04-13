@@ -160,7 +160,7 @@
                                 </span>
 
                                 <span class="btn-osu-big__icon">
-                                    <span class="fas fa-cloud-download-alt"></span>
+                                    <span class="fas fa-download"></span>
                                 </span>
                             </span>
                         </a>

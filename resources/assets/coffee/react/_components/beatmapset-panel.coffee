@@ -145,7 +145,7 @@ class @BeatmapsetPanel extends React.PureComponent
                   href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
-                  i className: 'fas fa-cloud-download-alt'
+                  i className: 'fas fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
