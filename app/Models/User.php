@@ -83,6 +83,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_msnm' => 255,
         'user_twitter' => 255,
         'user_website' => 200,
+        'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
@@ -527,6 +528,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
+    public function getUserDiscordAttribute($value)
+    {
+        return presence($this->attributes['user_jabber']);
+    }
+
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
@@ -556,6 +562,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         if (present($value)) {
             return "#{$value}";
         }
+    }
+
+    public function setUserDiscordAttribute($value)
+    {
+        $this->attributes['user_jabber'] = $value;
     }
 
     public function setUserColourAttribute($value)
