@@ -21,6 +21,7 @@ el = React.createElement
 
 class @BBCodeEditor extends React.Component
   componentDidMount: =>
+    @sizeSelect.value = ''
     @body.focus()
 
 
@@ -61,7 +62,7 @@ class @BBCodeEditor extends React.Component
                 select
                   className: 'bbcode-size-select__select js-bbcode-btn--size'
                   disabled: @props.disabled
-                  defaultValue: '100'
+                  ref: @setSizeSelect
                   option value: '50', osu.trans('bbcode.size.tiny')
                   option value: '85', osu.trans('bbcode.size.small')
                   option value: '100', osu.trans('bbcode.size.normal')
@@ -94,6 +95,10 @@ class @BBCodeEditor extends React.Component
 
   setBody: (element) =>
     @body = element
+
+
+  setSizeSelect: (element) =>
+    @sizeSelect = element
 
 
   onKeyDown: (e) =>
