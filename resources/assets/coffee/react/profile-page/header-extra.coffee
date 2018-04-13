@@ -170,10 +170,10 @@ class ProfilePage.HeaderExtra extends React.Component
                   @props.user.twitter
 
             @fancyLink
-              key: 'website'
-              icon: 'fas fa-link'
-              title: osu.trans 'users.show.info.website'
-              url: @props.user.website
+              key: 'discord'
+              icon: 'fab fa-discord'
+              title: osu.trans 'users.show.info.discord'
+              text: el(ClickToCopy, value: @props.user.discord)
 
             @fancyLink
               key: 'skype'
@@ -186,6 +186,12 @@ class ProfilePage.HeaderExtra extends React.Component
               icon: 'fab fa-lastfm'
               title: osu.trans 'users.show.info.lastfm'
               url: "https://last.fm/user/#{@props.user.lastfm}"
+
+            @fancyLink
+              key: 'website'
+              icon: 'fas fa-link'
+              title: osu.trans 'users.show.info.website'
+              url: @props.user.website
 
         div
           className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.is_bot}"
