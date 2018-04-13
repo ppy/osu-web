@@ -26,7 +26,7 @@ return [
     ],
     'page_description' => 'Artisti in primo piano su osu!',
     'title' => 'Artisti in primo piano',
-    'songs' => '1 canzone|:count songs',
+    'songs' => ':count canzone|:count songs',
     'links' => [
         'site' => 'Sito Ufficiale',
     ],
