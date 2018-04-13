@@ -46,7 +46,7 @@ class Contest.Voting.Entry extends React.Component
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
             a className: 'tracklist__link', href: @props.entry.preview,
-              i className: 'fas fa-fw fa-lg fa-cloud-download-alt'
+              i className: 'fas fa-fw fa-lg fa-download'
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
