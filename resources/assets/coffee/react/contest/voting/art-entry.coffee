@@ -74,7 +74,7 @@ class Contest.Voting.ArtEntry extends React.Component
           div className: 'contest-art-entry__result-ranking',
             div className: 'contest-art-entry__result-place',
               if top3
-                i className: "fa fa-fw fa-trophy contest-art-entry__trophy--#{place}"
+                i className: "fas fa-fw fa-trophy contest-art-entry__trophy--#{place}"
               span {}, "##{place}"
             if @props.entry.results.user_id
               a

@@ -115,7 +115,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Привет, <strong>:username</strong>!',
-            'messages' => '{0} У Вас нет новых сообщений|{1} У Вас одно новое сообщение|{2} У Вас 2 новых сообщения|[3,*] У Вас :count новых сообщений',
+            'messages' => 'У Вас :count новое сообщение|У Вас :count новых сообщения|У Вас :count новых сообщений', // ends in 1 but not 11 | ends in 2~4 but not 12~14 | everything else
             'stats' => [
                 'friends' => 'Друзей в сети',
                 'games' => 'Всего игр',

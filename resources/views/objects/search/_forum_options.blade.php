@@ -90,7 +90,7 @@ if (isset($fields)) {
                 </select>
 
                 <div class="search-forum-options__dropdown-arrow">
-                    <span class="fa fa-chevron-down"></span>
+                    <span class="fas fa-chevron-down"></span>
                 </div>
             </div>
         </label>
@@ -105,7 +105,7 @@ if (isset($fields)) {
                 >
                 <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
-                    <span class="fa fa-check"></span>
+                    <span class="fas fa-check"></span>
                 </span>
 
             </div>
@@ -122,7 +122,7 @@ if (isset($fields)) {
                 </div>
 
                 <div class="btn-osu-big__icon">
-                    <span class="fa fa-search"></span>
+                    <span class="fas fa-search"></span>
                 </div>
             </div>
         </button>
@@ -134,7 +134,7 @@ if (isset($fields)) {
                 </div>
 
                 <div class="btn-osu-big__icon">
-                    <span class="fa fa-refresh"></span>
+                    <span class="fas fa-sync"></span>
                 </div>
             </div>
         </button>

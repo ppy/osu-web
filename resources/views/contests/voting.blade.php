@@ -31,7 +31,7 @@
                 <div class='panel contest__group'>
                     <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
                         <span>{!! $contest->name !!}</span>
-                        <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
+                        <i class="contest__section-toggle fas fa-fw fa-chevron-down"></i>
                     </a>
                     <div class='contest__multi-panel collapse' id="{{$contest->id}}">
                         @include('contests._voting-entrylist')

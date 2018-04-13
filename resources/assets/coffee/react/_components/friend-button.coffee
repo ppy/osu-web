@@ -17,7 +17,7 @@
 ###
 
 el = React.createElement
-{button, div, span} = ReactDOMFactories
+{button, div, i, span} = ReactDOMFactories
 
 bn = 'user-action-button'
 
@@ -100,28 +100,28 @@ class @FriendButton extends React.PureComponent
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
-        el Icon, name: 'refresh', modifiers: ['spin']
+        i className: 'fas fa-sync fa-spin'
       else
         if @state.friend
           [
             span
               key: 'hover'
               className: "#{bn}__icon #{bn}__icon--hover-visible"
-              el Icon, name: 'user-times'
+              i className: 'fas fa-user-times'
             if @state.friend.mutual
               span
                 key: 'normal-mutual'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                el Icon, name: 'user'
-                el Icon, name: 'user'
+                i className: 'fas fa-user'
+                i className: 'fas fa-user'
             else
               span
                 key: 'normal'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                el Icon, name: 'user'
+                i className: 'fas fa-user'
           ]
         else
-          el Icon, name: 'user-plus'
+          i className: 'fas fa-user-plus'
 
 
   isVisible: =>

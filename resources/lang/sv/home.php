@@ -116,7 +116,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Hej, <strong>:username</strong>!',
-            'messages' => 'Du har 1 nytt meddelande|Du har :count nya meddelanden',
+            'messages' => 'Du har :count nytt meddelande|Du har :count nya meddelanden',
             'stats' => [
                 'friends' => 'Vänner Online',
                 'games' => 'Spel',

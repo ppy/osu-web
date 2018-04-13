@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span} = ReactDOMFactories
+{div, a, i, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchSort extends React.PureComponent
@@ -35,7 +35,7 @@ class Beatmaps.SearchSort extends React.PureComponent
           span
             className: 'beatmapsets-sorting__item-arrow'
             'data-visibility': ('hidden' if !selected)
-            el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
+            i className: "fas fa-caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
 
 
   fields: =>

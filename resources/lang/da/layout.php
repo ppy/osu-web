@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen er kun et *klik* away!  Med Ouendan/EBA, Taiko og originale spiltilstande, såvel som en fuld funktionel beatmap-editor.',
+        'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spiltilstande, såvel som en fuld funktionel beatmap-editor.',
     ],
 
     'menu' => [
@@ -64,7 +64,7 @@ return [
             '_' => 'rangering',
             'index' => 'præstation',
             'performance' => 'præstation',
-            'charts' => 'diagrammer',
+            'charts' => 'baner',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',

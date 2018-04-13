@@ -209,10 +209,14 @@ class HomeController extends Controller
                     ->pluck('timestamp')
                     ->first();
 
+                if ($lastTagPurchaseDate === null) {
+                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
+                }
+
                 $total = $expiration->diffInDays($lastTagPurchaseDate);
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['usedRatio'] = 100 - round(($used / $total) * 100, 2);
+                $supporterStatus['remainingRatio'] = 100 - round(($used / $total) * 100, 2);
             }
         }
 
@@ -222,29 +226,29 @@ class HomeController extends Controller
                 // why support's blocks
                 'blocks' => [
                     // localization's name => icon
-                    'dev' => 'user',
-                    'time' => 'clock-o',
-                    'ads' => 'thumbs-up',
-                    'goodies' => 'star',
+                    'dev' => 'fas fa-user',
+                    'time' => 'far fa-clock',
+                    'ads' => 'fas fa-thumbs-up',
+                    'goodies' => 'fas fa-star',
                 ],
 
                 // supporter's perks
                 'perks' => [
                     // localization's name => icon
-                    'osu_direct' => 'search',
-                    'auto_downloads' => 'cloud-download',
-                    'upload_more' => 'cloud-upload',
-                    'early_access' => 'flask',
-                    'customisation' => 'picture-o',
-                    'beatmap_filters' => 'filter',
-                    'yellow_fellow' => 'fire',
-                    'speedy_downloads' => 'dashboard',
-                    'change_username' => 'magic',
-                    'skinnables' => 'paint-brush',
-                    'feature_votes' => 'thumbs-up',
-                    'sort_options' => 'trophy',
-                    'feel_special' => 'heart',
-                    'more_to_come' => 'gift',
+                    'osu_direct' => 'fas fa-search',
+                    'auto_downloads' => 'fas fa-download',
+                    'upload_more' => 'fas fa-cloud-upload-alt',
+                    'early_access' => 'fas fa-flask',
+                    'customisation' => 'far fa-image',
+                    'beatmap_filters' => 'fas fa-filter',
+                    'yellow_fellow' => 'fas fa-fire',
+                    'speedy_downloads' => 'fas fa-tachometer-alt',
+                    'change_username' => 'fas fa-magic',
+                    'skinnables' => 'fas fa-paint-brush',
+                    'feature_votes' => 'fas fa-thumbs-up',
+                    'sort_options' => 'fas fa-trophy',
+                    'feel_special' => 'fas fa-heart',
+                    'more_to_come' => 'fas fa-gift',
                 ],
             ]);
     }

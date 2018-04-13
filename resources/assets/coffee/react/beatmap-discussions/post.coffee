@@ -125,51 +125,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: true, =>
       @textarea.focus()
 
-  discussionLinkify: (text) =>
-    matches = text.match osu.urlRegex
-    currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
-
-    _.each matches, (url) ->
-      targetUrl = new URL(url)
-
-      if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?
-          if currentBeatmapsetDiscussions? &&
-              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
-            # same beatmapset, format: #123
-            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
-          else
-            # different beatmapset, format: 1234#567
-            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
-
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
-
-    return text
-
-  formattedMessage: =>
-    text = @props.post.message
-    text = _.escape text
-    text = text.trim()
-    text = @discussionLinkify text
-    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
-    # replace newlines with <br>
-    # - trim trailing spaces
-    # - then join with <br>
-    # - limit to 2 consecutive <br>s
-    text = text
-      .split '\n'
-      .map (x) -> x.trim()
-      .join '<br>'
-      .replace /(?:<br>){2,}/g, '<br><br>'
-    text
-
-
   handleEnter: (e) =>
     return if e.keyCode != 13 || e.shiftKey
 
@@ -227,7 +182,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: @formattedMessage()
+          __html: BeatmapDiscussionHelper.format @props.post.message
 
       div className: "#{bn}__info-container",
         span

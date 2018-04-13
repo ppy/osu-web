@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="btn-osu-big__icon">
-                                    <i class="fa fa-arrow-circle-o-up"></i>
+                                    <i class="far fa-arrow-alt-circle-up"></i>
                                 </div>
                             </div>
 

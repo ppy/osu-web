@@ -23,7 +23,7 @@
     title="{{ trans('forum.topics.moderate_move.title') }}"
 >
     <span class="btn-circle__content">
-        <i class="fa fa-arrows"></i>
+        <i class="fas fa-arrows-alt"></i>
     </span>
 </button>
 

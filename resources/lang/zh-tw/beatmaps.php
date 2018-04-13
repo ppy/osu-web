@@ -141,10 +141,16 @@ return [
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
-        'reset_at' => '提名於 :time_ago 被新問題 :discussion 重置。',
-        'reset_confirm' => '你確定嗎？提出新的問題會重置提名。',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
+
+        'reset_at' => [
+            'nomination_reset' => '提名於 :time_ago 被新問題 :discussion 重置。',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
+        ],
     ],
 
     'listing' => [
