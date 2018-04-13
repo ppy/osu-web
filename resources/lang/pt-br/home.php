@@ -117,7 +117,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
-            'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
+            'messages' => 'Você tem :count nova mensagem|Você tem :count novas mensagens',
             'stats' => [
                 'friends' => 'Amigos Online',
                 'games' => 'Partidas',

@@ -42,7 +42,7 @@ return [
 
     'songs' => [
         '_' => 'Sånger',
-        'count' => '1 sång|:count sånger',
+        'count' => ':count sång|:count sånger',
         'exclusive' => 'osu! exklusiv',
     ],
 ];
