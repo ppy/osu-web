@@ -45,7 +45,7 @@ return [
             'subject' => '¡Hemos recibido tu orden de osu!store!',
         ],
     ],
-    
+
     'order' => [
         'item' => [
             'display_name' => [
