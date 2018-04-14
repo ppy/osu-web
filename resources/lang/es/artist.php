@@ -37,7 +37,8 @@ return [
     ],
 
     'links' => [
-        'site' => 'Sitio Web Oficial',
+        'osu' => 'Perfil de osu!',
+        'site' => 'Sitio web oficial',
     ],
 
     'songs' => [
