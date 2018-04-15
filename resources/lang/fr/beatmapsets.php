@@ -73,7 +73,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
-            'points-of-failure' => 'Points de défaite',
+            'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',

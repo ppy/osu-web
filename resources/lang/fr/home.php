@@ -103,7 +103,7 @@ return [
             'beatmaps' => [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
-                    '_' => ':browse dans la vaste librairie des beatmaps créées par les utilisateurs et commencez à jouer !',
+                    '_' => ':browse dans la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
                     'browse' => 'Naviguez',
                 ],
             ],
@@ -140,11 +140,11 @@ return [
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => 'Wow !',
         'subtitle' => 'Vous semblez passer un bon moment ! :D',
         'body' => [
-            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses côuts ?',
-            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur?',
+            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses coûts ?',
+            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
         'download-starting' => 'Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)',

@@ -112,11 +112,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Cette beatmap a été approuvée le :date!',
+            'approved' => 'Cette beatmap a été approuvée le :date !',
             'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonée par son créateur...",
-            'loved' => 'Cette beatmap a été ajoutée pour être loved le :date!',
-            'ranked' => 'Cette beatmap a été clasée le :date!',
-            'wip' => 'Note: Cette beatmap a été marquée comme en création par son créateur.',
+            'loved' => 'Cette beatmap a été ajoutée pour être loved le :date !',
+            'ranked' => 'Cette beatmap a été clasée le :date !',
+            'wip' => 'Note: Cette beatmap a été marquée comme en cours de travail par son créateur.',
         ],
 
     ],
@@ -124,9 +124,9 @@ return [
     'hype' => [
         'button' => 'Hyper la Beatmap !',
         'button_done' => 'Déjà hypée !',
-        'confirm' => "Vous êtes sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
-        'explanation' => 'Hyper cette beatmap sert à la rendre plus visible pour sa nomination et son classement !',
-        'explanation_guest' => 'Connectez-vous et hypez cette beatmap pour la rendre plus visible pour sa nomination et son classement !',
+        'confirm' => "Êtes-vous sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
+        'explanation' => 'Hyper cette beatmap permet de la rendre plus visible pour sa nomination et son classement !',
+        'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
         'new_time' => 'Vous obtiendrez un point de hype :new_time.',
         'remaining' => 'Vous avez :remaining hypes restants.',
         'required_text' => 'Hype: :current/:required',
@@ -146,7 +146,7 @@ return [
         'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap?',
-        'nominated_by' => 'nominé par :users',
+        'nominated_by' => 'nominée par :users',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
         'required_text' => 'Nominations: :current/:required',
@@ -155,12 +155,12 @@ return [
         'unresolved_issues' => 'Il reste encore des problèmes à résoudre.',
 
         'reset_at' => [
-            'nomination_reset' => 'Le processus de nomination a été réinitialisée :time_ago par :user avec le nouveau problème :discussion (:message).',
-            'disqualify' => 'Disqualifié :time_ago par :user avec le nouveau problème :discussion (:message).',
+            'nomination_reset' => 'Le processus de nomination a été réinitialisé :time_ago par :user avec le nouveau problème :discussion (:message).',
+            'disqualify' => 'Disqualifiée :time_ago par :user avec le nouveau problème :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser la nomination.',
+            'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
         ],
     ],
 

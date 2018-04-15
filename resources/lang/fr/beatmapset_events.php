@@ -35,18 +35,18 @@ return [
         'kudosu_lost' => 'La discussion :discussion par :user a perdu ses votes et le kudosu accordé a été retiré.',
         'kudosu_recalculate' => 'La discussion :discussion a vu ses kudosu accordés recalculés.',
         'nominate' => 'Nominé par :user.',
-        'nomination_reset' => 'Le nouveau problème :discussion a déclenché une réinitialisation de la nomination.',
+        'nomination_reset' => 'Le nouveau problème :discussion a déclenché une réinitialisation du processus de nomination.',
         'qualify' => 'Qualifié.',
         'rank' => 'Classé.',
     ],
 
     'index' => [
-        'title' => 'Événements du set de beatmap',
+        'title' => 'Événements du beatmapset',
     ],
 
     'item' => [
         'content' => 'Contenu',
-        'discussion_deleted' => '[supprimé]',
+        'discussion_deleted' => '[supprimée]',
         'type' => 'Type',
     ],
 ];

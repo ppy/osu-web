@@ -45,7 +45,7 @@ return [
         ],
 
         'why_support' => [
-            'title' => 'Pourquoi je supporterais osu!?',
+            'title' => 'Pourquoi je supporterais osu! ?',
             'blocks' => [
                 'dev' => 'Développé et maitenu par une seule personne en Australie',
                 'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",

@@ -261,8 +261,8 @@ return [
         'watch' => [
             'to_not_watching' => 'Vous ne suivez pas ce sujet',
             'to_watching' => 'Suivre',
-            'to_watching_mail' => 'Suivre avec notification',
-            'mail_disable' => 'Désactiver la notification',
+            'to_watching_mail' => 'Suivre avec notifications',
+            'mail_disable' => 'Désactiver les notifications',
         ],
     ],
 ];
