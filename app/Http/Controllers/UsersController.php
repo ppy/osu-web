@@ -283,6 +283,7 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
+            "statistics:mode({$currentMode})",
             'account_history',
             'badges',
             'favourite_beatmapset_count',
@@ -293,6 +294,8 @@ class UsersController extends Controller
             'previous_usernames',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
+            'statistics.rank',
+            'statistics.scoreRanks',
             'unranked_beatmapset_count',
             'user_achievements',
         ];
@@ -307,12 +310,6 @@ class UsersController extends Controller
             $userIncludes
         );
 
-        $statistics = json_item(
-            $user->statistics($currentMode),
-            'UserStatistics',
-            ['rank', 'scoreRanks']
-        );
-
         $rankHistoryData = $user->rankHistories()
             ->where('mode', Beatmap::modeInt($currentMode))
             ->first();
@@ -320,7 +317,6 @@ class UsersController extends Controller
         $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
         if (Request::is('api/*')) {
-            $userArray['statistics'] = $statistics;
             $userArray['rankHistory'] = $rankHistory;
 
             return $userArray;
@@ -363,7 +359,6 @@ class UsersController extends Controller
                 'extras' => $extras,
                 'perPage' => $perPage,
                 'rankHistory' => $rankHistory,
-                'statistics' => $statistics,
                 'user' => $userArray,
             ];
 
