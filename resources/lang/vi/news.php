@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
+        'news-index' => 'danh sách',
+        'news-show' => 'bài đăng',
     ],
 
     'index' => [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
+            'newer' => 'Bài đăng mới hơn',
+            'older' => 'Bài đăng cũ hơn',
         ],
     ],
 
     'show' => [
-        'posted' => 'posted :time',
+        'posted' => 'đăng vào :time',
 
         'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
+            'newer' => 'Bài đăng mới hơn',
+            'older' => 'Bài đăng cũ hơn',
         ],
     ],
 
     'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
+        'button' => 'Cập nhật',
+        'ok' => 'Đã cập nhật danh sách.',
     ],
 
     'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
+        'button' => 'Cập nhật',
+        'ok' => 'Đã cập nhật bài đăng.',
     ],
 ];

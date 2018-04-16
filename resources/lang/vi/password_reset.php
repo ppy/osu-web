@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Reset Password',
+    'title' => 'Đặt Lại Mật Khẩu',
 
     'button' => [
-        'cancel' => 'Cancel',
-        'resend' => 'Resend verification email',
-        'set' => 'Set password',
-        'start' => 'Start',
+        'cancel' => 'Hủy',
+        'resend' => 'Gửi lại email xác thực',
+        'set' => 'Đặt mật khẩu',
+        'start' => 'Bắt đầu',
     ],
 
     'email' => [
-        'subject' => 'osu! account recover',
+        'subject' => 'khôi phục tài khoản osu!',
     ],
 
     'error' => [
-        'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
-        'missing_key' => 'Required.',
-        'too_many_tries' => 'Too many failed attempts.',
-        'user_not_found' => 'Requested user does not exist.',
-        'wrong_key' => 'Incorrect code.',
+        'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
+        'is_privileged' => 'Liên hệ peppy ấy lulz.',
+        'missing_key' => 'Cần thiết.',
+        'too_many_tries' => 'Quá nhiều nỗ lực không thành công.',
+        'user_not_found' => 'Người dùng đã yêu cầu không tồn tại.',
+        'wrong_key' => 'Mã không chính xác.',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code.',
-        'saved' => 'New password saved!',
+        'sent' => 'Kiểm tra email của bạn để biết mã xác thực.',
+        'saved' => 'Đã lưu mật khẩu mới!',
     ],
 
     'started' => [
-        'password' => 'New password',
-        'password_confirmation' => 'Password confirmation',
-        'title' => 'Resetting password for account <strong>:username</strong>.',
-        'verification_key' => 'Verification code',
+        'password' => 'Mật khẩu mới',
+        'password_confirmation' => 'Xác nhận mật khẩu mới',
+        'title' => 'Đang đặt lại mật khẩu cho tài khoản <strong>:username</strong>.',
+        'verification_key' => 'Mã xác thực',
     ],
 
     'starting' => [
-        'username' => 'Enter email address or username',
+        'username' => 'Nhập địa chỉ email hoặc username',
     ],
 ];

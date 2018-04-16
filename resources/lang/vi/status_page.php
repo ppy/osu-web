@@ -20,36 +20,36 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => 'trạng thái',
         'description' => 'whats going on mah dude?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => 'Sự Cố Đang Diễn Ra',
+        'automated' => 'tự động',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => 'Người Dùng Online trong 24 giờ qua',
+            'score' => 'Số Điểm Được Gửi trong 24 giờ qua',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => 'Người Dùng Online Hiện Tại',
+        'score' => 'Số Điểm Được Gửi trên Giây',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => 'Sự Cố Gần Đây',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => 'Đã giải quyết',
+                'resolving' => 'Đang giải quyết',
+                'unknown' => 'Không xác định',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'Thời Gian Hoạt Động',
             'graphs' => [
                 'server' => 'server',
                 'web' => 'web',
@@ -57,12 +57,12 @@ return [
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => 'hôm nay',
+            'week' => 'tuần',
+            'month' => 'tháng',
+            'all_time' => 'mọi lúc',
+            'last_week' => 'tuần trước',
+            'weeks_ago' => ':count tuần trước',
         ],
     ],
 ];
