@@ -218,7 +218,7 @@ class BeatmapsetPage.Header extends React.Component
             timeElapsed: @props.timeElapsed
 
 
-  downloadButton: ({key, href, icon = 'fas fa-cloud-download-alt', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
+  downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
       modifiers: ['beatmapset-header']

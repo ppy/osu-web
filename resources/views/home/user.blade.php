@@ -68,7 +68,7 @@
                         @include('home._user_giant_button', [
                             'href' => route('download'),
                             'label' => trans('home.user.buttons.download'),
-                            'icon' => 'cloud-download-alt',
+                            'icon' => 'download',
                         ])
                     </div>
 

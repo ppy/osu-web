@@ -62,8 +62,13 @@ insert = (event, tagOpen, tagClose = '') ->
     insert e, openTag, closeTag
 
 
+$(document).on 'turbolinks:load', ->
+  $('.js-bbcode-btn--size').val('')
+
+
 $(document).on 'change', '.js-bbcode-btn--size', (e) ->
   $select = $(e.target)
   val = parseInt $select.val(), 10
+  $select.val('')
 
   insert e, "[size=#{val}]", '[/size]'
