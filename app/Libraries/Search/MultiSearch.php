@@ -28,23 +28,23 @@ class MultiSearch
         'all' => null,
         'user' => [
             'type' => UserSearch::class,
-            'paramsType' => UserSearchParams::class,
+            'paramsType' => UserSearchRequestParams::class,
             'size' => 6,
         ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
-            'paramsType' => BeatmapsetSearchParams::class,
+            'paramsType' => BeatmapsetSearchRequestParams::class,
             'size' => 8,
             'options' => ['source' => 'id'],
         ],
         'wiki_page' => [
             'type' => WikiSearch::class,
-            'paramsType' => WikiSearchParams::class,
+            'paramsType' => WikiSearchRequestParams::class,
             'size' => 8,
         ],
         'forum_post' => [
             'type' => ForumSearch::class,
-            'paramsType' => ForumSearchParams::class,
+            'paramsType' => ForumSearchRequestParams::class,
             'size' => 8,
         ],
     ];
@@ -84,7 +84,7 @@ class MultiSearch
                 $class = $settings['type'];
                 $paramsClass = $settings['paramsType'];
 
-                $params = $paramsClass::fromRequest($this->request, $this->options['user']);
+                $params = new $paramsClass($this->request, $this->options['user']);
                 $params->applyParams($settings['options'] ?? []);
                 $search = new $class($params);
 

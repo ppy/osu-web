@@ -21,7 +21,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
-use Illuminate\Http\Request;
 
 class WikiSearchParams extends SearchParams
 {
@@ -62,14 +61,5 @@ class WikiSearchParams extends SearchParams
         $params->locale = $array['locale'] ?? null;
 
         return $params;
-    }
-
-    public static function fromRequest(Request $request)
-    {
-        return static::fromArray([
-            'query' => trim($request['query']),
-            'locale' => $request['locale'],
-            'page' => get_int($request['page']),
-        ]);
     }
 }

@@ -21,8 +21,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class PostSearchParams extends SearchParams
 {
@@ -74,16 +72,5 @@ class PostSearchParams extends SearchParams
         $params->forumId = get_int($array['forumId'] ?? null);
 
         return $params;
-    }
-
-    public static function fromRequest(Request $request, User $user)
-    {
-        return static::fromArray([
-            'query' => presence(trim($request['query'])),
-            'page' => get_int($request['page']),
-            'userId' => $user->getKey(),
-            'forumId' => get_int($request['forum_id']),
-            'includeSubforums' => get_bool($request['forum_children']),
-        ]);
     }
 }

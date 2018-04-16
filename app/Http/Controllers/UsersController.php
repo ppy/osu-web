@@ -21,7 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\Search\PostSearch;
-use App\Libraries\Search\PostSearchParams;
+use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -218,7 +218,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(PostSearchParams::fromRequest(request(), $user)))
+        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
             ->size(50)
             ->page(LengthAwarePaginator::resolveCurrentPage());
 

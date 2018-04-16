@@ -21,42 +21,14 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
+use Illuminate\Http\Request;
 
-class UserSearchParams extends SearchParams
+class WikiSearchRequestParams extends WikiSearchParams
 {
-    // all public because lazy.
-
-    public $queryString = null;
-    public $recentOnly = false;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey() : string
+    public function __construct(Request $request)
     {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'user-search:'.json_encode($vars);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isCacheable() : bool
-    {
-        return false;
-    }
-
-    public static function fromArray(array $array)
-    {
-        $params = new static;
-        $params->queryString = $array['query'] ?? null;
-        $params->page = $array['page'] ?? null;
-        $params->size = $array['size'] ?? null;
-        $params->sort = $array['sort'] ?? null;
-        $params->recentOnly = $array['recentOnly'] ?? false;
-
-        return $params;
+        $this->queryString = trim($request['query']);
+        $this->locale = $request['locale'];
+        $this->page = get_int($request['page']);
     }
 }

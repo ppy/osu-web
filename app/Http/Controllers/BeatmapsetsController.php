@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\Search\BeatmapsetSearch;
-use App\Libraries\Search\BeatmapsetSearchParams;
+use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -132,7 +132,7 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = BeatmapsetSearchParams::fromRequest(request(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
 
         $records = datadog_timing(function () use ($params) {
             $ids = $params->fetchCacheable(
