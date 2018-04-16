@@ -283,6 +283,7 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
+            "scores_first_count:mode({$currentMode})",
             "statistics:mode({$currentMode})",
             'account_history',
             'badges',

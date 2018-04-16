@@ -39,6 +39,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
+        'scores_first_count',
         'statistics',
         'unranked_beatmapset_count',
         'user_achievements',
@@ -183,6 +184,15 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsRankedAndApproved()->count(),
             ];
+        });
+    }
+
+    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
+
+        return $this->item($user, function ($user) use ($mode) {
+            return [$user->scoresFirst($mode)->count()];
         });
     }
 
