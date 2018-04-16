@@ -53,7 +53,6 @@ class Beatmaps.Main extends React.PureComponent
     @state = prevState.state if prevState.url == location.href
     @state ?= _.extend
       beatmaps: @props.beatmaps
-      columnCount: @columnCount()
       paging:
         page: 1
         url: laroute.route('beatmapsets.search')
@@ -63,6 +62,8 @@ class Beatmaps.Main extends React.PureComponent
       filters: null
       isExpanded: null
       @stateFromUrl()
+
+    @state.columnCount = @columnCount()
 
 
   columnCount: () ->
