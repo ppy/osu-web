@@ -34,7 +34,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 10;
+    const VERSION = 11;
 
     public $firstImage;
     public $title;
@@ -66,6 +66,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $processor = new static;
         $env->addDocumentProcessor($processor);
         $env->addExtension(new TableExtension\TableExtension);
+        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
 
         $converter = new CommonMarkConverter($config, $env);
 
@@ -75,11 +76,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $blockClass .= " {$config['block_name']}--{$blockModifier}";
         }
 
-        $output = sprintf(
-            '<div class="%s">%s</div>',
-            $blockClass,
-            $converter->convertToHtml($input['document'])
-        );
+        $converted = $converter->convertToHtml($input['document']);
+        $output = "<div class='{$blockClass}'>{$converted}</div>";
 
         if (!isset($header['title'])) {
             $header['title'] = $processor->title;
