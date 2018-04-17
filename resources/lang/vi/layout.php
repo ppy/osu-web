@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'cộng đồng',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'diễn đàn',
             'getChat' => 'chat',
             'getLive' => 'trực tiếp',
             'contests' => 'cuộc thi',
