@@ -21,134 +21,134 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Can not undo hyping.',
-            'has_reply' => 'Can not delete discussion with replies',
+            'is_hype' => 'Không thể hủy bỏ hype.',
+            'has_reply' => 'Không thể xóa cuộc thảo luận cùng trả lời',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hảy thử lại vào ngày mai.',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => "Can't vote on own discussion.",
-            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
+            'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
+            'owner' => 'Không thể bình chọn cuộc thảo luận của bạn.',
+            'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap đang chờ.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
+            'not_owner' => 'Chỉ người đăng mới có thể chỉnh sửa bài đăng.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => 'Không được phép truy cập vào kênh đã yêu cầu.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'no_access' => 'Bắt buộc truy cập vào kênh được chỉ định.',
+                    'moderated' => 'Kênh hiện đang được kiểm duyệt.',
+                    'not_lazer' => 'Bạn chỉ có thể nói trên #lazer tại thời điểm này.',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'Không thể gửi tin nhắn trong khi bị ban/hạn chế/im lặng.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
+                'locked' => 'Không thể xóa bài đăng của một topic bị khóa.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
+                'not_owner' => 'Chỉ người đăng mới có thể xóa bài đăng.',
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'deleted' => 'Không thể chỉnh sửa bài đăng đã bị khóa.',
+                'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
+                'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
+                'topic_locked' => 'Không thể chỉnh sửa bài đăng của một topic bị khóa.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => 'Bạn vừa đăng. Đợi một lát hoặc chỉnh sửa bài đăng cuối cùng của bạn.',
+                'locked' => 'Không thể trả lời một thread bị khóa.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
+                'no_permission' => 'Không cho phép trả lời.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => 'Vui lòng đăng nhập để trả lời.',
+                    'restricted' => 'Không thể trả lời trong khi bị hạn chế.',
+                    'silenced' => 'Không thể trả lời trong khi bị im lặng.',
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
+                'no_permission' => 'Không cho phép tạo topic mới.',
+                'forum_closed' => 'Diễn đàn này đã bị đóng và không thể đăng.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
+                'over' => 'Đã kết thúc bỏ phiếu và không thể bình chọn nữa.',
+                'voted' => 'Không cho phép đổi phiếu bầu.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => 'Vui lòng đăng nhập để bình chọn.',
+                    'restricted' => 'Không thể bình chọn trong khi bị hạn chế',
+                    'silenced' => 'Không thể bình chọn khi im lặng',
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Ảnh bìa đã chỉ định không hợp lệ.',
+                'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa ảnh bìa.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => 'Truy cập bị từ chối.',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => 'Không thể làm việc đó trong khi bị im lặng.',
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => 'Không thể làm việc đó trong khi bị hạn chế',
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => 'User page này đã bị khóa.',
+                'not_owner' => 'Chỉ có thể chỉnh sửa user page của bạn.',
+                'require_supporter_tag' => 'Yêu cầu supporter tag.',
             ],
         ],
     ],
