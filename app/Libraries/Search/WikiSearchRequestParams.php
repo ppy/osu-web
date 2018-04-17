@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\SearchParams;
 use Illuminate\Http\Request;
 
 class WikiSearchRequestParams extends WikiSearchParams
