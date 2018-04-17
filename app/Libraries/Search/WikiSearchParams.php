@@ -50,16 +50,4 @@ class WikiSearchParams extends SearchParams
     {
         return false;
     }
-
-    public static function fromArray(array $array)
-    {
-        $params = new static;
-        $params->queryString = $array['query'] ?? null;
-        $params->page = $array['page'] ?? null;
-        $params->size = $array['size'] ?? null;
-        $params->sort = $array['sort'] ?? null;
-        $params->locale = $array['locale'] ?? null;
-
-        return $params;
-    }
 }

@@ -80,15 +80,4 @@ class BeatmapsetSearchParams extends SearchParams
             || $this->showRecommended
         );
     }
-
-    public static function fromArray(array $array)
-    {
-        $params = new static;
-        $params->queryString = $array['query'] ?? null;
-        $params->page = $array['page'] ?? null;
-        $params->size = $array['size'] ?? null;
-        $params->sort = $array['sort'] ?? null;
-
-        return $params;
-    }
 }
