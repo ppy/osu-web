@@ -170,16 +170,17 @@ return [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Meilleures performances',
-                ],
                 'empty' => 'Pas de première place. :(',
-                'first' => [
-                    'title' => 'Premières places',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Meilleures performances',
+                ],
+                'first' => [
+                    'title' => 'Premières places',
+                ],
             ],
         ],
         'page' => [

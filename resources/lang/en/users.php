@@ -228,16 +228,18 @@ return [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Best Performance',
-                ],
                 'empty' => 'No awesome performance records yet. :(',
-                'first' => [
-                    'title' => 'First Place Ranks',
-                ],
+                'not_ranked' => 'Only ranked beatmaps give out pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Best Performance',
+                ],
+                'first' => [
+                    'title' => 'First Place Ranks',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Account Standing',

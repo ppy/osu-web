@@ -182,16 +182,17 @@ return [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Bedste Præstation',
-                ],
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
-                'first' => [
-                    'title' => 'Førerpositioner',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'vejede: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Bedste Præstation',
+                ],
+                'first' => [
+                    'title' => 'Førerpositioner',
+                ],
             ],
         ],
         'page' => [

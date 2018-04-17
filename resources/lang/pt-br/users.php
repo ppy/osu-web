@@ -226,16 +226,17 @@ return [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Melhor Performance',
-                ],
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'first' => [
-                    'title' => 'Primeiros Lugares',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Melhor Performance',
+                ],
+                'first' => [
+                    'title' => 'Primeiros Lugares',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
