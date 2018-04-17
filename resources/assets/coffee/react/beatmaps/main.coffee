@@ -67,8 +67,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   columnCount: () ->
-    # see @screen-sm-min
-    if window.innerWidth < 900 then 1 else 2
+    if osu.isDesktop() then 2 else 1
 
 
   updateColumnCount: () =>
