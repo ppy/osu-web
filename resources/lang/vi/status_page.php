@@ -35,7 +35,7 @@ return [
             'score' => 'Số Điểm Được Gửi trong 24 giờ qua',
         ],
         'current' => 'Người Dùng Online Hiện Tại',
-        'score' => 'Số Điểm Được Gửi trên Giây',
+        'score' => 'Số Điểm Được Gửi mỗi Giây',
     ],
 
     'recent' => [

@@ -35,9 +35,9 @@ return [
     'error' => [
         'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',
-        'missing_key' => 'Cần thiết.',
-        'too_many_tries' => 'Quá nhiều nỗ lực không thành công.',
-        'user_not_found' => 'Người dùng đã yêu cầu không tồn tại.',
+        'missing_key' => 'Bắt buộc.',
+        'too_many_tries' => 'Quá nhiều lần thử không thành công.',
+        'user_not_found' => 'Người dùng này không tồn tại.',
         'wrong_key' => 'Mã không chính xác.',
     ],
 
