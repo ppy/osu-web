@@ -28,7 +28,6 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
-use App\Libraries\Search\EmptySearchParams;
 use Carbon\Carbon;
 use Es;
 
@@ -85,7 +84,7 @@ class Page
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), new EmptySearchParams))
+        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
             ->source('path')
             ->query($query);
 
@@ -178,7 +177,7 @@ class Page
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), new EmptySearchParams))
+                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [

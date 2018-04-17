@@ -24,6 +24,11 @@ use App\Libraries\Elasticsearch\Search;
 
 class BasicSearch extends Search
 {
+    public function __construct(string $index)
+    {
+        parent::__construct($index, new EmptySearchParams);
+    }
+
     public function data()
     {
         return $this->response();
