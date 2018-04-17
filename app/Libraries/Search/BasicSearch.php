@@ -28,4 +28,9 @@ class BasicSearch extends Search
     {
         return $this->response();
     }
+
+    public function getQuery()
+    {
+        return $this->query;
+    }
 }
