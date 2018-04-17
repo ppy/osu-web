@@ -19,20 +19,11 @@
  */
 
 return [
-    'feed_title' => 'flux',
-    'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => ':users utilisateur en ligne|:users utilisateurs en ligne',
-
-    'prefixes' => [
-        'add' => 'ajout',
-        'fix' => 'correction',
-        'misc' => 'divers',
+    'index' => [
+        'title' => 'Discussions sur la beatmap',
     ],
 
-    'support' => [
-        'heading' => 'Vous aimez cette mise à jour ?',
-        'text_1' => 'Supportez le développement d\'osu! et :link dès maintenant.',
-        'text_1_link' => 'devenez un supporter',
-        'text_2' => 'En plus de contribuer à accélérer le développement, vous recevrez des fonctionnalités supplémentaires et des personnalisations diverses !',
+    'item' => [
+        'content' => 'Contenu',
     ],
 ];

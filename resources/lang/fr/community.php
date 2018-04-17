@@ -35,8 +35,17 @@ return [
                     J'aurais aimé d'offrir mes remerciments personnels pour ceux qui ont supporté osu! jusque là,
                     et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).",
 
+        'supporter_status' => [
+            'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
+            'gifted' => ':giftedTags de vos achats des tags étaient en cadeau (pour un total de :giftedDollars offert), quelle générosité !',
+            'not_yet' => "Vous n'avez pas de tag supporter :(",
+            'title' => 'Statut du supporter',
+            'valid_until' => 'Votre tag supporter expire :date!',
+            'was_valid_until' => 'Votre tag supporter a expiré :date.',
+        ],
+
         'why_support' => [
-            'title' => 'Pourquoi je supporterais osu!?',
+            'title' => 'Pourquoi je supporterais osu! ?',
             'blocks' => [
                 'dev' => 'Développé et maitenu par une seule personne en Australie',
                 'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",
@@ -110,7 +119,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Sentiment spécial',
-                'description' => "Le sentiment d'aider osu! à fonctionner!",
+                'description' => 'Le sentiment spécial de participer au fonctionnement d\'osu! !',
             ],
 
             'more_to_come' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,20 +19,12 @@
  */
 
 return [
-    'feed_title' => 'flux',
-    'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => ':users utilisateur en ligne|:users utilisateurs en ligne',
-
-    'prefixes' => [
-        'add' => 'ajout',
-        'fix' => 'correction',
-        'misc' => 'divers',
+    'username_change' => [
+        'only_one' => 'seulement 1 changement de nom d\'utilisateur par commande.',
+        'insufficient_paid' => 'Le prix du changement de nom d\'utilisateur a dépassé le prix payé (:expected > :actual)',
+        'reverting_username_mismatch' => 'Le nom d\'utilisateur actuel (:current) n\'est pas le même que le changement à révoquer (:username)',
     ],
-
-    'support' => [
-        'heading' => 'Vous aimez cette mise à jour ?',
-        'text_1' => 'Supportez le développement d\'osu! et :link dès maintenant.',
-        'text_1_link' => 'devenez un supporter',
-        'text_2' => 'En plus de contribuer à accélérer le développement, vous recevrez des fonctionnalités supplémentaires et des personnalisations diverses !',
+    'supporter_tag' => [
+        'insufficient_paid' => 'Le don est inférieur que ce qui est requis pour le cadeau du tag supporter (:actual > :expected)',
     ],
 ];
