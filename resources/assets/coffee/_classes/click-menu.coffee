@@ -67,5 +67,6 @@ class @ClickMenu
 
     target = menu.dataset.clickMenuTarget
     next = target if @current != target
+    e.preventDefault()
 
     @show next
