@@ -297,12 +297,15 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   problemType: =>
-    if currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
-      if @props.beatmapset.status == 'qualified'
-        return 'disqualify'
+    canDisqualify = currentUser.is_admin || currentUser.is_qat
+    willDisqualify = @props.beatmapset.status == 'qualified'
 
-      if @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
-        return 'nomination_reset'
+    return 'disqualify' if canDisqualify && willDisqualify
+
+    canReset = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
+    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+
+    return 'nomination_reset' if canReset && willReset
 
     'problem'
 

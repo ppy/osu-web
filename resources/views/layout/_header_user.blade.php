@@ -15,20 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<button
-    class="
-        avatar
+@php
+    $class = 'avatar
         avatar--nav2
-        {{ Auth::user() === null ? 'avatar--guest' : '' }}
         js-current-user-avatar
         js-click-menu
         js-user-login--menu
-        js-user-header
-    "
-    @if (Auth::user() === null)
+        js-user-header';
+@endphp
+@if (Auth::user() === null)
+    <button
+        class="{{ $class }} avatar--guest"
+        data-click-menu-target="nav2-login-box"
         title="{{ trans('users.anonymous.login_link') }}"
-    @else
+    ></button>
+@else
+    <a
+        class="{{ $class }}"
+        data-click-menu-target="nav2-user-popup"
+        href="{{ route('users.show', Auth::user()) }}"
         {!! background_image(Auth::user()->user_avatar, false) !!}
-    @endif
-    data-click-menu-target="{{ Auth::user() === null ? 'nav2-login-box' : 'nav2-user-popup' }}"
-></button>
+    ></a>
+@endif

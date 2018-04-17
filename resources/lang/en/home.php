@@ -119,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'messages' => 'You have :count new message|You have :count new messages',
             'stats' => [
                 'friends' => 'Online Friends',
                 'games' => 'Games',

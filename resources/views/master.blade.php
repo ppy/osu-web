@@ -92,6 +92,7 @@
 
         @include("layout._global_variables")
         @include('layout._loading_overlay')
+        @include('layout.popup-container')
 
         @yield("script")
     </body>

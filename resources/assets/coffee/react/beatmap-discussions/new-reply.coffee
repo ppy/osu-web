@@ -78,14 +78,14 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
-                icon: 'check'
+                icon: 'fas fa-check'
                 extraProps:
                   'data-action': 'resolve'
 
             if @canResolve() && @props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_reopen')
-                icon: 'exclamation'
+                icon: 'fas fa-exclamation-circle'
                 extraProps:
                   'data-action': 'reopen'
 

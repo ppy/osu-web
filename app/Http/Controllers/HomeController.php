@@ -186,10 +186,14 @@ class HomeController extends Controller
                     ->pluck('timestamp')
                     ->first();
 
+                if ($lastTagPurchaseDate === null) {
+                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
+                }
+
                 $total = $expiration->diffInDays($lastTagPurchaseDate);
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['usedRatio'] = 100 - round(($used / $total) * 100, 2);
+                $supporterStatus['remainingRatio'] = 100 - round(($used / $total) * 100, 2);
             }
         }
 
@@ -209,7 +213,7 @@ class HomeController extends Controller
                 'perks' => [
                     // localization's name => icon
                     'osu_direct' => 'fas fa-search',
-                    'auto_downloads' => 'fas fa-cloud-download-alt',
+                    'auto_downloads' => 'fas fa-download',
                     'upload_more' => 'fas fa-cloud-upload-alt',
                     'early_access' => 'fas fa-flask',
                     'customisation' => 'far fa-image',
