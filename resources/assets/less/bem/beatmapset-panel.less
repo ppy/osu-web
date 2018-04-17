@@ -160,7 +160,12 @@
     text-transform: uppercase;
 
     .fade-element(@hover-transition-duration);
+
     .@{top}:hover & {
+      opacity: 0;
+    }
+
+    .@{top}--previewing & {
       opacity: 0;
     }
   }
