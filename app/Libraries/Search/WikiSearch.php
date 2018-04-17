@@ -27,12 +27,12 @@ use App\Models\Wiki\Page;
 
 class WikiSearch extends RecordSearch
 {
-    public function __construct(WikiSearchParams $params)
+    public function __construct(?WikiSearchParams $params = null)
     {
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
             Page::class,
-            $params
+            $params ?? new WikiSearchParams
         );
     }
 

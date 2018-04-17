@@ -36,9 +36,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ForumSearch extends Search
 {
-    public function __construct(ForumSearchParams $params)
+    public function __construct(?ForumSearchParams $params = null)
     {
-        parent::__construct(Post::esIndexName(), $params);
+        parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams);
     }
 
     // TODO: maybe move to a response/view helper?
