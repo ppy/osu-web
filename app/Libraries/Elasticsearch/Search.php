@@ -127,7 +127,7 @@ abstract class Search implements Queryable
      */
     public function overLimit()
     {
-        return $this->response()->total() > static::MAX_RESULTS;
+        return $this->response()->total() > $this->maxResults();
     }
 
     /**
@@ -183,12 +183,17 @@ abstract class Search implements Queryable
      */
     public function total()
     {
-        return min($this->response()->total(), static::MAX_RESULTS);
+        return min($this->response()->total(), $this->maxResults());
     }
 
     protected function getDefaultSize() : int
     {
         return 50;
+    }
+
+    protected function maxResults() : int
+    {
+        return static::MAX_RESULTS;
     }
 
     private function fetch()
