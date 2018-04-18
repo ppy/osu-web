@@ -242,7 +242,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 ->usernameChangeHistory()
                 ->visible()
                 ->select(['username_last', 'timestamp'])
-                ->whereNotNull('username_last')
+                ->withPresent('username_last')
                 ->where('username_last', '<>', $user->username)
                 ->orderBy('timestamp', 'ASC')
                 ->get()
