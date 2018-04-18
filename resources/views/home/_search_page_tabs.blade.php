@@ -17,13 +17,10 @@
 --}}
 <div class="page-mode page-mode--search">
     @foreach ($allSearch->searches() as $mode => $search)
-        @php
-            $active = $mode === $allSearch->getMode();
-        @endphp
         <div class="page-mode__item">
             <a
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
-                class="page-mode-link {{ isset($active) && $active ? 'page-mode-link--is-active' : '' }}"
+                class="page-mode-link {{ $mode === $allSearch->getMode() ? 'page-mode-link--is-active' : '' }}"
             >
                 <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
                     {{ trans("home.search.mode.{$mode}") }}
