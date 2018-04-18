@@ -24,7 +24,7 @@ return [
         'title_compact' => 'настройки',
 
         'avatar' => [
-            'title' => 'Смена аватара',
+            'title' => 'Смена аватара', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация',
+            'title' => 'Дополнительная информация', // Base text changed, please check.
 
             'user' => [
                 'user_from' => 'проживание',
