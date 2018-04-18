@@ -603,6 +603,30 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumPostStore($user, $post)
+    {
+        $prefix = 'forum.post.store.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        $plays = $user->monthlyPlaycounts()->sum('playcount');
+        $posts = $user->user_posts;
+        $forInitialHelpForum = in_array($post->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+
+        if ($forInitialHelpForum) {
+            if ($plays < 10 && $posts > 10) {
+                return $prefix.'too_many_help_posts';
+            }
+        } else {
+            if ($plays < 200 && $plays < $posts + 1) {
+                return $prefix.'play_more';
+            }
+        }
+
+        return 'ok';
+    }
+
     public function checkForumTopicEdit($user, $topic)
     {
         return $this->checkForumPostEdit($user, $topic->posts()->first());
@@ -628,6 +652,12 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts()->create());
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_reply', $topic->forum)) {
@@ -658,6 +688,12 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->create()->posts()->create());
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
         }
 
         if (!$forum->isOpen()) {

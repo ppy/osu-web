@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_posts' => 'Please wait for responses of current posts.',
+            ],
         ],
 
         'topic' => [
