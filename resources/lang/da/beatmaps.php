@@ -134,8 +134,7 @@ return [
         'qualified' => 'Forventet at blive ranked den :date, hvis ingen problemer bliver fundet.',
         'qualified_soon' => 'Forventet at blive ranked snart, hvis ingen problemer bliver fundet.',
         'required_text' => 'Nomineringer: :current/:required',
-                'reset_at' => 'Nomineringer er blevet nullstillet :time_ago af et nyt problem :discussion.',
-        'reset_confirm' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
+        'reset_message_deleted' => 'slettet',
         'title' => 'Nomineringsstatus',
 
         'reset_confirm' => [
