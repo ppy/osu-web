@@ -36,7 +36,6 @@ return [
         'button' => '搜索',
         'empty_result' => '沒有結果！',
         'missing_query' => '搜索內容不少於 :n 個字符',
-        'title' => '搜索結果',
 
         'beatmapset' => [
             'more' => '搜索到 :count 張譜面',

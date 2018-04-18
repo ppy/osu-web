@@ -40,6 +40,7 @@ $(document).on 'turbolinks:load', ->
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
+@clickMenu ?= new ClickMenu
 @currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
@@ -55,8 +56,7 @@ $(document).on 'turbolinks:load', ->
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
-@nav ?= new Nav
-@navSearch ?= new NavSearch
+@nav2 ?= new Nav2
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
@@ -74,6 +74,8 @@ $(document).on 'turbolinks:load', ->
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @userCard ?= new UserCard
+@userLogin ?= new UserLogin
+@userVerification ?= new UserVerification
 @wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
@@ -83,8 +85,6 @@ $(document).on 'turbolinks:load', ->
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

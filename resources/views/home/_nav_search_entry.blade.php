@@ -22,7 +22,7 @@
     {{ $title }}
 
     <div class="nav-search-entry__bullet nav-search-entry__bullet--hover">
-        <span class="fa fa-angle-left"></span>
+        <span class="fas fa-angle-left"></span>
     </div>
     <div class="nav-search-entry__bullet nav-search-entry__bullet--normal"></div>
 </a>

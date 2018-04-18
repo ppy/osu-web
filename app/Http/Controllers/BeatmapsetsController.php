@@ -220,29 +220,10 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
+        (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
-        ]);
-
-        return $beatmapset->defaultDiscussionJson();
-    }
-
-    public function disqualify($id)
-    {
-        $beatmapset = Beatmapset::findOrFail($id);
-
-        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
-
-        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
-            return error_popup(trans('beatmaps.nominations.incorrect_state'));
-        }
-
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]);
+        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }

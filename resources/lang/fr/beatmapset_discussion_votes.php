@@ -18,25 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+return [
+    'index' => [
+        'title' => 'Discussions sur la beatmap',
+    ],
 
-use App\Events\Forum\TopicWasViewed;
-
-class MarkTopicRead
-{
-    public function markTopicRead($event)
-    {
-        $event->topic->markRead(
-            $event->user,
-            $event->post->post_time
-        );
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            TopicWasViewed::class,
-            static::class.'@markTopicRead'
-        );
-    }
-}
+    'item' => [
+        'score' => 'Score',
+    ],
+];

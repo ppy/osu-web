@@ -172,7 +172,6 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => '서버 상태 확인',
             'terms' => '서비스 이용약관',
         ],

@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
             'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
         ],
         'nominate' => [
@@ -33,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => "Veuillez attendre un peu avant d'envoyer votre vote",
             'owner' => 'Vous ne pouvez pas voter pour votre propre discussion!',
+            'wrong_beatmapset_state' => 'Vous ne pouvez voter que sur les discussions des beatmaps en attente.',
         ],
     ],
 
@@ -76,6 +78,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'Impossible de modifier un post supprimé',
                 'locked' => "Ce post est verouillé à l'édition.",
                 'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'not_owner' => 'Uniquement le posteur peut éditer le post.',

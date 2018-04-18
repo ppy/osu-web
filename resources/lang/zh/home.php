@@ -36,7 +36,6 @@ return [
         'button' => '搜索',
         'empty_result' => '没有结果！',
         'missing_query' => '搜索内容不少于 :n 个字符',
-        'title' => '搜索结果',
 
         'beatmapset' => [
             'more' => '搜索到 :count 张谱面',

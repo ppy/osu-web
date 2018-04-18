@@ -181,7 +181,6 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Server Status',
             'terms' => 'Terms of Service',
         ],

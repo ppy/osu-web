@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span} = ReactDOMFactories
+{button, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion'
@@ -79,7 +79,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
               onClick: @toggleExpand
               div
                 className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
-                el Icon, name: 'chevron-down'
+                i className: 'fas fa-chevron-down'
         div
           className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
@@ -124,7 +124,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       'data-score': score
       disabled: disabled
       onClick: @doVote
-      el Icon, name: icon
+      i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
 
@@ -217,11 +217,11 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
-              el Icon, name: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+              i className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
-              el Icon, name: 'check-circle-o'
+              i className: 'far fa-check-circle'
 
         div className: "#{tbn}__text",
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp

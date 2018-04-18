@@ -79,6 +79,11 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM",
+    "prop-types": "PropTypes",
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
@@ -194,7 +199,7 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'js/react/contest-entry.js')
-.copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
+.copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')

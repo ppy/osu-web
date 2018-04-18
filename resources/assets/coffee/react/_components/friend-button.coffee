@@ -17,9 +17,9 @@
 ###
 
 el = React.createElement
-{a,button,div,span} = ReactDOMFactories
+{button, div, i, span} = ReactDOMFactories
 
-bn = 'friend-button'
+bn = 'user-action-button'
 
 class @FriendButton extends React.PureComponent
   constructor: (props) ->
@@ -42,8 +42,6 @@ class @FriendButton extends React.PureComponent
 
 
   clicked: (e) =>
-    e.preventDefault()
-
     @setState loading: true
 
     if @state.friend
@@ -94,32 +92,36 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    a
+    button
+      type: 'button'
       className: blockClass
-      href: '#'
       onClick: @clicked
       ref: (el) => @button = el
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
-        el Icon, name: 'refresh', modifiers: ['spin']
+        i className: 'fas fa-sync fa-spin'
       else
         if @state.friend
-          div null,
+          [
             span
+              key: 'hover'
               className: "#{bn}__icon #{bn}__icon--hover-visible"
-              el Icon, name: 'user-times'
+              i className: 'fas fa-user-times'
             if @state.friend.mutual
               span
+                key: 'normal-mutual'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                el Icon, name: 'user'
-                el Icon, name: 'user'
+                i className: 'fas fa-user'
+                i className: 'fas fa-user'
             else
               span
+                key: 'normal'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                el Icon, name: 'user'
+                i className: 'fas fa-user'
+          ]
         else
-          el Icon, name: 'user-plus'
+          i className: 'fas fa-user-plus'
 
 
   isVisible: =>

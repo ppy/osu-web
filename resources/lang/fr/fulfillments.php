@@ -18,25 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Forum;
-
-use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
-use App\Models\User;
-use Illuminate\Queue\SerializesModels;
-
-abstract class TopicUpdate
-{
-    use SerializesModels;
-
-    public $topic;
-    public $post;
-    public $user;
-
-    public function __construct(Topic $topic, Post $post, User $user = null)
-    {
-        $this->topic = $topic;
-        $this->post = $post;
-        $this->user = $user;
-    }
-}
+return [
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => 'Merci, osu! vous <3',
+        ],
+        'supporter_gift' => [
+            'subject' => 'Vous avez un tag supporter osu! !',
+        ],
+    ],
+];

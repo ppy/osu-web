@@ -18,19 +18,25 @@
 
 .simple-menu {
   @_top: simple-menu;
-  @_item-padding-vertical: 6px;
+  @_item-padding-vertical: 5px;
+  @_item-padding-horizontal: 25px;
+  @_padding-vertical: 20px;
+  @_gutter: 5px;
+  @_border-radius: 20px;
 
+  .own-layer();
   .default-box-shadow();
-  border-radius: @border-radius-large;
+  border-radius: @_border-radius;
   background-color: #333;
   color: #999;
-  padding: 10px 5px;
+  padding: @_padding-vertical @_gutter;
   display: flex;
   flex-direction: column;
   min-width: 150px;
+  flex: none;
   font-size: @font-size--title-small;
-  white-space: nowrap;
-  z-index: @zindex-navbar;
+  overflow: hidden;
+  z-index: @z-index--simple-menu;
 
   &--beatmapset-watch {
     position: absolute;
@@ -56,6 +62,55 @@
     }
   }
 
+  &--login-box {
+    position: absolute;
+    border-radius: @border-radius-large;
+  }
+
+  &--nav2 {
+    .own-layer();
+    will-change: transform, opacity;
+    transition: none;
+    background-color: #222;
+    border-radius: @border-radius-large;
+  }
+
+  &--nav2-left-aligned {
+    left: (-@_gutter + -@_item-padding-horizontal);
+  }
+
+  &__form {
+    margin: -@_padding-vertical -@_gutter;
+  }
+
+  &__header {
+    min-height: 100px;
+    margin: -@_padding-vertical -@_gutter @_padding-vertical;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+
+    &::before {
+      .full-size();
+      content: '';
+      background-color: fade(#000, 50%);
+    }
+
+    &--link {
+      .link-plain();
+      .link-white();
+    }
+  }
+
+  &__header-icon {
+    width: 50px;
+    margin-bottom: 10px;
+  }
+
   &__item {
     .highlight-stripe() {
       &::before {
@@ -74,7 +129,9 @@
     .link-white();
     .link-plain();
     .default-border-radius();
-    padding: @_item-padding-vertical 10px @_item-padding-vertical 25px;
+    white-space: nowrap;
+    line-height: normal;
+    padding: @_item-padding-vertical @_item-padding-horizontal;
     color: #fff;
     cursor: pointer;
     text-align: left;

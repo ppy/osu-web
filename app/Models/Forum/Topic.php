@@ -21,7 +21,10 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\EsDeleteDocument;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Elasticsearch;
 use App\Models\Log;
@@ -32,7 +35,7 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
-class Topic extends Model
+class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
@@ -566,8 +569,12 @@ class Topic extends Model
 
         DB::beginTransaction();
 
-        $statusQuery = TopicTrack::where(['user_id' => $user->user_id, 'topic_id' => $this->topic_id]);
-        $status = $statusQuery->first();
+        $status = TopicTrack
+            ::where([
+                'user_id' => $user->user_id,
+                'topic_id' => $this->topic_id,
+            ])
+            ->first();
 
         if ($status === null) {
             // first time seeing the topic, create tracking entry
@@ -593,9 +600,7 @@ class Topic extends Model
 
             $this->increment('topic_views');
         } elseif ($status->mark_time < $markTime) {
-            // laravel doesn't like composite key ;_;
-            // and the setMarkTimeAttribute doesn't work here
-            $statusQuery->update(['mark_time' => $markTime->getTimeStamp()]);
+            $status->update(['mark_time' => $markTime]);
         }
 
         if ($this->topic_last_view_time < $markTime) {
@@ -801,5 +806,14 @@ class Topic extends Model
     public function toMetaDescription()
     {
         return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
+    }
+
+    public function afterCommit()
+    {
+        if ($this->trashed()) {
+            dispatch(new EsDeleteDocument($this));
+        } else {
+            dispatch(new EsIndexDocument($this));
+        }
     }
 }

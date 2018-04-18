@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, label, p, span} = ReactDOMFactories
+{button, div, input, label, p, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -85,7 +85,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
               onClick: @toggleSticky
               span className: 'btn-circle__content',
-                el Icon, name: 'thumb-tack'
+                i className: 'fas fa-thumbtack'
 
         div className: "#{bn}__content",
           div
@@ -191,7 +191,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
                 span className: 'osu-checkbox__box'
                 span className: 'osu-checkbox__tick',
-                  el Icon, name: 'check'
+                  i className: 'fas fa-check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
@@ -255,8 +255,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
 
-    if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
-      return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
+    if type == 'problem'
+      problemType = @problemType()
+
+      if problemType != 'problem'
+        return unless confirm(osu.trans("beatmaps.nominations.reset_confirm.#{problemType}"))
 
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
@@ -293,6 +296,20 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @setState posting: null
 
 
+  problemType: =>
+    canDisqualify = currentUser.is_admin || currentUser.is_qat
+    willDisqualify = @props.beatmapset.status == 'qualified'
+
+    return 'disqualify' if canDisqualify && willDisqualify
+
+    canReset = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
+    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+
+    return 'nomination_reset' if canReset && willReset
+
+    'problem'
+
+
   setMessage: (e) =>
     message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
@@ -312,14 +329,16 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
-        'ellipsis-h'
+        'fas fa-ellipsis-h'
       else
         BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
+
+    typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
       modifiers: ['beatmap-discussion']
       icon: icon
-      text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge
           disabled: !@validPost() || @state.posting?

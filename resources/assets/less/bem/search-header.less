@@ -17,6 +17,7 @@
  */
 
 .search-header {
+  @_top: search-header;
   @_search-icon-width: 40px;
 
   .default-header-overlay();
@@ -39,7 +40,7 @@
     .reset-input();
     .center-content();
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     height: 100%;
     width: @_search-icon-width;
@@ -48,13 +49,27 @@
     *:-webkit-autofill ~ & {
       color: #000;
     }
+
+    &--normal {
+      .@{_top}.js-search--searching & {
+        display: none;
+      }
+    }
+
+    &--searching {
+      display: none;
+
+      .@{_top}.js-search--searching & {
+        display: inline-flex;
+      }
+    }
   }
 
   &__input {
     .reset-input();
     width: 100%;
     font-size: @font-size--phone-input;
-    padding: 20px @_search-icon-width 20px 10px;
+    padding: 20px 10px 20px @_search-icon-width;
     font-weight: normal;
     min-width: 0;
     .default-border-radius();
