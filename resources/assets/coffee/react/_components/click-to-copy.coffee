@@ -21,49 +21,59 @@ el = React.createElement
 
 bn = 'click-to-copy'
 
-class @ClickToCopy extends React.Component
+class @ClickToCopy extends React.PureComponent
   constructor: (props) ->
     super props
-
-    @state =
-      timer: null
+    @state = {}
 
 
   componentWillUnmount: =>
-    clearTimeout @state.timer if @state.timer?
+    @restoreTooltipText()
 
 
-  clearLinkClicked: =>
-    @setState timer: null
+  restoreTooltipText: =>
+    if @state.title
+      @state.qtip.set({'content.text': @state.title})
+
+    if @state.timer?
+      Timeout.clear @state.timer
+      @setState timer: null
 
 
   click: (e) =>
     e.preventDefault()
+    el = e.currentTarget
+    api = @state.api || $(el).qtip('api')
 
     # copy url to clipboard
     clipboard.writeText @props.value
 
-    # show feedback
-    timer = Timeout.set 1000, @clearLinkClicked
+    # change tooltip text to provide feedback
+    api.set
+      'position.effect': false # prevents tooltip from sliding when text is changed
+      'content.text': osu.trans('common.buttons.click_to_copy_copied')
 
-    @setState timer: timer
+    # set timer to reset tooltip text
+    if @state.timer?
+      Timeout.clear @state.timer
+    timer = Timeout.set 1000, @restoreTooltipText
+
+    @setState
+      qtip: api
+      title: el.title || el.dataset.origTitle
+      timer: timer
 
 
   render: =>
     return span() if !@props.value
 
-    if @state.timer?
-      span
-        className: bn
-        osu.trans('common.buttons.click_to_copy_copied')
-    else
-      span
-        className: bn
-        onClick: @click
-        a
-          href: '#'
-          className: "#{bn}__link"
-          "#{@props.label ? @props.value}"
-        i
-          className: "fas fa-paste #{bn}__icon"
-          title: osu.trans('common.buttons.click_to_copy')
+    span
+      className: bn
+      onClick: @click
+      title: osu.trans('common.buttons.click_to_copy')
+      a
+        href: '#'
+        className: "#{bn}__link"
+        "#{@props.label ? @props.value}"
+      i
+        className: "fas fa-paste #{bn}__icon"
