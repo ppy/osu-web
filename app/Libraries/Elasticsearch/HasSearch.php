@@ -106,14 +106,18 @@ trait HasSearch
     }
 
     /**
-     * @param Sort $sort
+     * @param array|Sort $sort
      *
      * @return $this
      */
-    public function sort(Sort $sort)
+    public function sort($sort)
     {
-        if (!$sort->isBlank()) {
-            $this->sorts[] = $sort;
+        if (is_array($sort)) {
+            foreach ($sort as $s) {
+                $this->addSort($s);
+            }
+        } else {
+            $this->addSort($sort);
         }
 
         return $this;
@@ -163,5 +167,12 @@ trait HasSearch
     protected function getSize() : int
     {
         return $this->size ?? $this->getDefaultSize();
+    }
+
+    private function addSort(Sort $sort)
+    {
+        if (!$sort->isBlank()) {
+            $this->sorts[] = $sort;
+        }
     }
 }

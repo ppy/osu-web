@@ -55,13 +55,7 @@ abstract class Search implements Queryable
         }
 
         if ($this->params->sort !== null) {
-            if (is_array($this->params->sort)) {
-                foreach ($this->params->sort as $sort) {
-                    $this->sort($sort);
-                }
-            } else {
-                $this->sort($this->params->sort);
-            }
+            $this->sort($this->params->sort);
         }
 
         if ($this->params->source !== null) {
