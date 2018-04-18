@@ -100,7 +100,7 @@ return [
         'origin_country' => '出身地 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'plays_with' => '使用デバイス :devices',
-        'title' => ":usernameのプロフィール",
+        'title' => ':usernameのプロフィール',
 
         'edit' => [
             'cover' => [
