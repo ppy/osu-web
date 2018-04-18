@@ -77,6 +77,7 @@ class @TooltipDefault
           width: 10
           height: 8
 
+    # if enabled, prevents tooltip from changing position
     if el.dataset.tooltipPinPosition
       options.position.effect = false
 
