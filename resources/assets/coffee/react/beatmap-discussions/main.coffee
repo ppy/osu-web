@@ -58,6 +58,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
+    $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', (_e, { selectedUserId }) =>
+      @setState { selectedUserId }
+
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on 'turbolinks:before-cache.beatmapDiscussions', @saveStateToContainer
@@ -122,6 +125,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             mode: @state.currentMode
 
           el BeatmapDiscussions.Discussions,
+            selectedUserId: @state.selectedUserId
             beatmapset: @state.beatmapset
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
