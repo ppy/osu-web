@@ -1548,6 +1548,16 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
+        // user_discord is an accessor for user_jabber
+        if ($this->isDirty('user_jabber') && present($this->user_discord)) {
+            // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
+            // - is a 2-32 char username (excluding chars @#:)
+            // - ends with a # and 4-digit discriminator (number being greater than 0000)
+            if (!preg_match('/^[^@#:]{2,32}#\d{3}[1-9]$/i', $this->user_discord)) {
+                $this->validationErrors()->add('user_discord', '.invalid_discord');
+            }
+        }
+
         foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
             if ($this->isDirty($field)) {
                 $val = $this->$field;
