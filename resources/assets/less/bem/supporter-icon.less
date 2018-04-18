@@ -16,56 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.friend-button {
-  @_top: friend-button;
-
-  .center-content();
-  .link-plain();
-  .link-white();
-  border-radius: 10px;
-  width: 50px;
-  height: 20px;
-
+.supporter-icon {
+  @top: supporter-icon;
   font-size: 14px;
-  background: fade(black, 70%);
+  color: white;
 
-  &:hover {
-    background: fade(lighten(black, 5%), 70%);
+  &--smaller {
+    font-size: 10px;
   }
 
-  &--mutual {
-    background: fade(@pink, 70%);
-    &:hover {
-      background: fade(lighten(@pink, 5%), 70%);
-    }
+  &__bg {
+    color: @pink;
+    .default-text-shadow();
   }
 
-  &--friend {
-    background: fade(@green, 70%);
-    &:hover {
-      background: fade(lighten(@green, 5%), 70%);
-    }
-  }
+  &__heart {
+    font-size: 0.8em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 
-  &__icon {
-    .full-size();
-    .center-content();
-    will-change: opacity;
-
-    &--hover-hidden {
-      opacity: 1;
-
-      .@{_top}:hover & {
-        opacity: 0;
-      }
-    }
-
-    &--hover-visible {
-      opacity: 0;
-
-      .@{_top}:hover & {
-        opacity: 1;
-      }
+    .@{top}--smaller & {
+      font-size: 0.9em;
     }
   }
 }

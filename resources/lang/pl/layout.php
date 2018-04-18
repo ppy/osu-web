@@ -180,7 +180,6 @@ return [
         'legal' => [
             '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Status serwera',
             'terms' => 'Warunki świadczenia usług',
         ],
@@ -192,12 +191,12 @@ return [
             'link' => false,
         ],
         '403' => [
-            'error' => 'Nie powinieneś tu być.',
+            'error' => 'Nie powinno cię tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić.',
             'link' => false,
         ],
         '401' => [
-            'error' => 'Nie powinieneś tu być.',
+            'error' => 'Nie powinno cię tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
             'link' => false,
         ],
@@ -208,12 +207,12 @@ return [
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
+            'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'O nie! Coś się popsuło (bardzo)! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
+            'error' => 'O nie! Coś się (bardzo) popsuło! ;_;',
+            'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
             'link' => false,
         ],
         '503' => [

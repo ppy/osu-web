@@ -19,7 +19,7 @@
 class @UserLogin
 
 
-  constructor: (@nav) ->
+  constructor: ->
     # Used as callback on original action (where login was required)
     @clickAfterLogin = null
 
@@ -45,14 +45,14 @@ class @UserLogin
     @clickAfterLogin = null
 
     @refreshToken()
-    @nav.hidePopup()
 
     $.publish 'user:update', data.user
 
     # To allow other ajax:* events attached to header menu
     # to be triggered before the element is removed.
     Timeout.set 0, =>
-      $('.js-user-header').html data.header
+      $('.js-user-login--menu')[0].click()
+      $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
 
       osu.executeAction toClick
@@ -71,13 +71,12 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    @nav.setMode mode: 'user'
-    @nav.showPopup()
+    Timeout.set 0, -> $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>
-    e.currentTarget.dataset.navMode ?= 'user'
-    @nav.toggleMenu e
+    e.preventDefault()
+    @show()
 
 
   showOnError: (e, xhr) =>

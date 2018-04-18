@@ -45,6 +45,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
+        'send_message' => 'send message',
     ],
 
     'login' => [
@@ -99,6 +100,7 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 

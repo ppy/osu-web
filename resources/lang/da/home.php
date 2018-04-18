@@ -36,7 +36,6 @@ return [
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
         'missing_query' => 'Du skal søge efter nøgleord med mindst :n karakterer!',
-        'title' => 'Søgeresultater',
 
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',
@@ -117,7 +116,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Hejsa, <strong>:username</strong>!',
-            'messages' => 'Du har 1 ny besked|Du har :count nye beskeder',
+            'messages' => 'Du har :count ny besked|Du har :count nye beskeder',
             'stats' => [
                 'friends' => 'Online venner',
                 'games' => 'Spil',

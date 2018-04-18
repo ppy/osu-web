@@ -46,7 +46,10 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count insignia|:count insignias',
+        'days' => ':count día|:count días',
         'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hora|:count horas',
         'item' => ':count unidad|:count unidades',
         'minute_short_unit' => 'min|mins',
         'months' => ':count mes|:count meses',
@@ -93,7 +96,7 @@ return [
         'days_ago' => 'hace :count día|hace :count días',
         'hours_ago' => 'hace :count hora|hace :count horas',
         'now' => 'ahora',
-        'remaining' => 'Tiempo Restante',
+        'remaining' => 'Tiempo restante',
     ],
 
     'title' => [

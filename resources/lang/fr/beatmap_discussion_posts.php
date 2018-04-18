@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,37 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.nav-popup-box {
-  @_top: nav-popup-box;
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  pointer-events: none;
+return [
+    'index' => [
+        'title' => 'Discussions sur la beatmap',
+    ],
 
-  &__content {
-    pointer-events: auto;
-    will-change: transform;
-
-    .@{_top}.js-nav-switch--animated & {
-      transition-duration: 120ms;
-    }
-
-    .@{_top}--extra & {
-      transform: translateX(100%);
-    }
-
-    .@{_top}--extra.js-nav-switch--active & {
-      transform: translateX(0%);
-    }
-  }
-
-  &__slide-y {
-    transform: translateY(-100%);
-    transition-duration: 120ms;
-
-    .@{_top}:hover &,
-    .@{_top}.js-nav-switch--visible & {
-      transform: translateY(0%);
-    }
-  }
-}
+    'item' => [
+        'content' => 'Contenu',
+    ],
+];

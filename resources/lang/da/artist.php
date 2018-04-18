@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Udvalgte artister på osu!',
-    'title' => 'Udvalgte artister',
+    'page_description' => 'Fræmhævede artister på osu!',
+    'title' => 'Fræmhævede artister',
 
     'admin' => [
         'hidden' => 'ARTISTEN ER I ØJEBLIKKET SKJULT',
@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Udvalgte artister er artister, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse artiser og et udvalg af deres spor er blevet specielt udvalgt af osu! teamet for at være gode til at blive mappet. Nogle af de udvalgte artister har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle spor i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
+        'description' => 'Fræmhævede artister er artister, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse artister og et udvalg af deres sange er blevet specielt udvalgt af osu! teamet for at være gode og være egnet til at blive mappet. Nogle af de udvalgte artister har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle sange i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
     ],
 
     'links' => [
@@ -42,7 +42,7 @@ return [
 
     'songs' => [
         '_' => 'Sange',
-        'count' => '1 sang|:tæl sange',
+        'count' => ':count sang|:count sange',
         'exclusive' => 'osu! exklusive',
     ],
 ];

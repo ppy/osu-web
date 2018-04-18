@@ -35,7 +35,9 @@ return [
         'button' => 'Szukaj',
         'empty_result' => 'Nie znaleziono!',
         'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
-        'title' => 'Wyniki wyszukiwania',
+        'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
+        'title' => 'Wyszukiwarka',
+
         'beatmapset' => [
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
@@ -111,7 +113,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz 1 nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
+            'messages' => 'Masz :count nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',

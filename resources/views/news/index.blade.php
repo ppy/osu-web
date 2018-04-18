@@ -34,7 +34,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-refresh"></i>
+                                <i class="fas fa-sync"></i>
                             </span>
                         </button>
                     </div>

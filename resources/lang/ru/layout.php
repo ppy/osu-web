@@ -174,7 +174,6 @@ return [
         'legal' => [
             '_' => 'Права и статус',
             'copyright' => 'Авторские права (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Статус серверов',
             'terms' => 'Условия использования',
         ],

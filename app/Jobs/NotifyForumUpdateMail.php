@@ -18,41 +18,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+namespace App\Jobs;
 
-use App\Events\Forum\TopicWasReplied;
-use App\Events\Forum\TopicWasViewed;
 use App\Mail\ForumNewReply;
-use App\Models\Forum\TopicWatch;
 use App\Models\User;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 use Mail;
 
-class NotifyEmail implements ShouldQueue
+class NotifyForumUpdateMail implements ShouldQueue
 {
-    public function markViewed($event)
+    use Queueable, SerializesModels;
+
+    public $topic;
+    public $user;
+
+    public function __construct($data)
     {
-        if ($event->user === null) {
-            return;
-        }
-
-        $user = $event->user->fresh();
-        $topic = $event->topic->fresh();
-        $post = $event->post->fresh();
-
-        if ($topic->topic_last_post_time > $post->post_time) {
-            return;
-        }
-
-        // Immediately update the status without actually fetching it.
-        TopicWatch::lookupQuery($topic, $user)
-            ->update(['notify_status' => false]);
+        $this->topic = $data['topic'];
+        $this->user = $data['user'];
     }
 
-    public function notifyReply($event)
+    public function handle()
     {
-        $topic = $event->topic->fresh();
-        $watches = $topic->watches()
+        if ($this->topic === null) {
+            return;
+        }
+
+        $watches = $this->topic->watches()
             ->where('mail', '=', true)
             ->where('notify_status', '=', false)
             ->has('user')
@@ -66,35 +60,24 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if ($event->user !== null && $event->user->getKey() === $user->getKey()) {
+            if ($this->user !== null && $this->user->getKey() === $user->getKey()) {
                 continue;
             }
 
-            if ($user->getKey() === $topic->topic_last_poster_id) {
+            if ($user->getKey() === $this->topic->topic_last_poster_id) {
                 continue;
             }
 
-            if (!priv_check_user($user, 'ForumTopicWatch', $topic)->can()) {
+            if (!priv_check_user($user, 'ForumTopicWatch', $this->topic)->can()) {
                 continue;
             }
 
-            Mail::to($user->user_email)
-                ->queue(new ForumNewReply(compact('topic', 'user')));
+            Mail::to($user->user_email)->queue(new ForumNewReply([
+                'topic' => $this->topic,
+                'user' => $user,
+            ]));
 
             $watch->update(['notify_status' => true]);
         }
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            TopicWasViewed::class,
-            static::class.'@markViewed'
-        );
-
-        $events->listen(
-            TopicWasReplied::class,
-            static::class.'@notifyReply'
-        );
     }
 }

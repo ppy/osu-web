@@ -123,15 +123,15 @@ class TopicWatch extends Model
             $userId = $user->getKey();
         } elseif (is_string($user) || is_int($user)) {
             $userId = (int) $user;
+        } else {
+            return $query->none();
         }
 
         if ($topic instanceof Topic) {
             $topicId = $topic->getKey();
         } elseif (is_string($topic) || is_int($topic)) {
             $topicId = (int) $topic;
-        }
-
-        if (!isset($userId) || !isset($topicId)) {
+        } else {
             return $query->none();
         }
 

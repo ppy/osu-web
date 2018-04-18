@@ -22,16 +22,14 @@
   @_width: @_badge-width + ((@_padding + @_badge-margin) * 2);
   @_padding: 3px;
 
-  @_border-radius: @border-radius--extra;
-
   @_badge-margin: 3px;
   @_badge-width: 86px;
   @_badge-height: 40px;
 
   .own-layer();
+  .default-border-radius();
   background-color: #333;
   margin-bottom: 5px;
-  border-radius: @_border-radius;
   min-width: @_width;
   max-width: @_width;
   overflow: hidden;
@@ -55,7 +53,6 @@
     flex: none;
     width: @_badge-width;
     height: @_badge-height;
-    border-radius: (@_border-radius - @_padding - @_badge-margin);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

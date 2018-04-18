@@ -66,14 +66,8 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null) {
-            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
-                return 'ok';
-            }
-
-            if ($user->getKey() === $beatmap->beatmapset->user_id) {
-                return 'ok';
-            }
+        if ($this->doCheckUser($user, 'BeatmapsetShow', $beatmap->beatmapset)->can()) {
+            return 'ok';
         }
     }
 
@@ -339,6 +333,23 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetShow($user, $beatmapset)
+    {
+        if (!$beatmapset->trashed()) {
+            return 'ok';
+        }
+
+        if ($user !== null) {
+            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+                return 'ok';
+            }
+
+            if ($user->getKey() === $beatmapset->user_id) {
+                return 'ok';
+            }
+        }
+    }
+
     public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
@@ -374,6 +385,7 @@ class OsuAuthorize
         static $publicEvents = [
             BeatmapsetEvent::NOMINATE,
             BeatmapsetEvent::QUALIFY,
+            BeatmapsetEvent::NOMINATION_RESET,
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,

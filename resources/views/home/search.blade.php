@@ -18,20 +18,33 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}">
+    <form action="{{ route('search') }}" data-loading-overlay="0">
         <input type="hidden" name="mode" value="{{ $search->mode }}">
 
         <div class="osu-page">
-            <div class="search-header">
+            <div class="search-header js-search--header">
                 <div class="search-header__title">
                     {{ trans('home.search.title') }}
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ request('query') }}" />
+                    <input
+                        class="search-header__input js-search--input"
+                        name="query"
+                        value="{{ request('query') }}"
+                        placeholder="{{ trans('home.search.placeholder') }}"
+                        data-search-current="{{ request('query') }}"
+                        data-turbolinks-permanent
+                        id="search-input"
+                        autofocus
+                    />
 
-                    <button class="search-header__icon">
-                        <i class="fa fa-search"></i>
+                    <button class="search-header__icon search-header__icon--normal">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button class="search-header__icon search-header__icon--searching">
+                        <i class="fas fa-spinner fa-pulse"></i>
                     </button>
                 </div>
             </div>

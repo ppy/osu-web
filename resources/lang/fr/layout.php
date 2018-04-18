@@ -28,31 +28,39 @@ return [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
             'friends-index' => 'amis',
-            'getChangelog' => 'notes de MàJ',
+            'changelog-index' => 'notes de MàJ',
+            'changelog-show' => 'build',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
+            'index' => 'tableau de bord',
             'legal-show' => 'information',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
             'password-reset-index' => 'réinitialiser le mot de passe',
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
+            'team' => 'équipe',
         ],
         'help' => [
             '_' => 'aide',
             'getFaq' => 'faq',
-            'getSupport' => 'support', //obsolete
+            'getRules' => 'règles',
+            'getSupport' => 'non, vraiment, j\'ai besoin d\'aide !',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'liste',
             'artists' => 'artistes plébiscités',
+            'beatmap_discussion_posts-index' => 'posts de la discussion beatmap',
+            'beatmap_discussions-index' => 'discussions sur la beatmap',
+            'beatmapset-watches-index' => 'liste d\'abonnement des modifications',
+            'beatmapset_discussion_votes-index' => 'votes de la discussion beatmap',
+            'beatmapset_events-index' => 'évènements de la collection',
+            'index' => 'index',
             'packs' => 'collections',
-            // 'getCharts' => 'graphiques',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -62,7 +70,7 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'graphiques',
+            'charts' => 'classements',
             'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',
@@ -70,7 +78,7 @@ return [
         'community' => [
             '_' => 'communauté',
             'dev' => 'osu!dev',
-            'getForum' => 'forum', // Base text changed to plural, please check.
+            'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'direct',
             'contests' => 'concours',
@@ -78,11 +86,11 @@ return [
             'tournaments' => 'tournois',
             'tournaments-index' => 'tournois',
             'tournaments-show' => 'infos des tournois',
-            'forum-topic-watches-index' => 'Abonnements aux sujets',
-            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
+            'forum-topic-watches-index' => 'abonnements aux sujets',
+            'forum-topics-create' => 'forums',
+            'forum-topics-show' => 'forums',
+            'forum-forums-index' => 'forums',
+            'forum-forums-show' => 'forums',
         ],
         'multiplayer' => [
             '_' => 'multijoueur',
@@ -94,12 +102,12 @@ return [
             '403' => 'interdit',
             '401' => 'non autorisé',
             '405' => 'manquant',
-            '500' => 'quelquechose est cassé',
+            '500' => 'quelque chose est cassé',
             '503' => 'maintenance',
         ],
         'user' => [
             '_' => 'utilisateur',
-            'getLogin' => 'se connecter', // Base text changed from "log" to "sign"
+            'getLogin' => 'se connecter', // Base text changed from "log" to "sign" : OK
             'disabled' => 'désactivé',
 
             'register' => "s'inscrire",
@@ -108,11 +116,13 @@ return [
 
             'messages' => 'Messages',
             'settings' => 'Paramètres',
-            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check. : OK
             'help' => 'Aide',
+            'beatmapset_activities' => 'activités utilisateur du beatmapset',
         ],
         'store' => [
             '_' => 'magasin',
+            'checkout-show' => 'acheter',
             'getListing' => 'liste',
             'cart-show' => 'panier',
 
@@ -136,11 +146,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'couvertures des beatmapsets',
+            'logs-index' => 'journal',
             'root' => 'index',
-            'logs-index' => 'log',
+
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',
-                'covers' => 'bannières',
                 'show' => 'détail',
             ],
         ],
@@ -150,7 +161,7 @@ return [
         'general' => [
             '_' => 'Général',
             'home' => 'Accueil',
-            'changelog' => 'Notes de MàJ',
+            'changelog-index' => 'Notes de MàJ',
             'beatmaps' => 'Liste des beatmaps',
             'download' => 'Télécharger osu!',
             'wiki' => 'Wiki',
@@ -170,7 +181,6 @@ return [
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Statut du serveur',
             'terms' => 'Conditions du service',
         ],
