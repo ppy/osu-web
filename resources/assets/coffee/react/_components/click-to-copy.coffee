@@ -22,57 +22,43 @@ el = React.createElement
 bn = 'click-to-copy'
 
 class @ClickToCopy extends React.PureComponent
-  constructor: (props) ->
-    super props
-    @state = {}
-
-
   componentWillUnmount: =>
     @restoreTooltipText()
 
 
   restoreTooltipText: =>
-    if @state.title
-      @state.qtip.set({'content.text': @state.title})
-
-    if @state.timer?
-      Timeout.clear @state.timer
-      @setState timer: null
+    @api.set({'content.text': @title}) if @title
+    Timeout.clear @timer
+    @timer = null
 
 
   click: (e) =>
     e.preventDefault()
     el = e.currentTarget
-    api = @state.api || $(el).qtip('api')
+    @api ?= $(el).qtip('api')
 
     # copy url to clipboard
     clipboard.writeText @props.value
 
     # change tooltip text to provide feedback
-    api.set 'content.text', osu.trans('common.buttons.click_to_copy_copied')
+    @api.set 'content.text', osu.trans('common.buttons.click_to_copy_copied')
 
     # set timer to reset tooltip text
-    if @state.timer?
-      Timeout.clear @state.timer
-    timer = Timeout.set 1000, @restoreTooltipText
-
-    @setState
-      qtip: api
-      title: el.getAttribute('title') || el.dataset.origTitle
-      timer: timer
+    Timeout.clear @timer
+    @timer = Timeout.set 1000, @restoreTooltipText
+    @title ?= el.getAttribute('title') || el.dataset.origTitle
 
 
   render: =>
     return span() if !@props.value
 
-    span
+    a
       className: bn
+      'data-tooltip-pin-position': true
+      'data-tooltip-position': 'bottom center'
+      href: '#'
       onClick: @click
       title: osu.trans('common.buttons.click_to_copy')
-      'data-tooltip-pin-position': true
-      a
-        href: '#'
-        className: "#{bn}__link"
-        "#{@props.label ? @props.value}"
+      "#{@props.label ? @props.value}"
       i
         className: "fas fa-paste #{bn}__icon"
