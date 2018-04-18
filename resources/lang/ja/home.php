@@ -26,7 +26,7 @@ return [
         'players' => '累計登録者数<strong>:count</strong>人',
 
         'slogan' => [
-            'main' => '基本無料で最高のリズムゲーム',
+            'main' => '基本料無料で最高のリズムゲーム',
             'sub' => 'リズムはもう、その指先に',
         ],
     ],
@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'さぁ、<br>始めよう！',
+        'tagline' => "さぁ、<br>始めよう！",
         'action' => 'osu!をダウンロード',
         'os' => [
             'windows' => 'for Windows',
@@ -118,7 +118,7 @@ return [
         ],
         'header' => [
             'welcome' => 'こんにちは、<strong>:username</strong>さん！',
-            'messages' => '1件の未読メッセージがあります|:count件の未読メッセージがあります',
+            'messages' => ':count件の未読メッセージがあります',
             'stats' => [
                 'friends' => 'オンラインのフレンド',
                 'games' => '部屋数',
@@ -146,6 +146,6 @@ return [
             'part-2' => 'osu!を支援する事によってさまざまな機能が追加で利用できるようになります。　<strong>ゲーム内ダウンロード</strong>はその内のひとつで、プレイヤーのスペクト中やマルチプレイ中に簡単に譜面を入れられる様になります！',
         ],
         'find-out-more' => 'もっと知りたい人はクリック！',
-        'download-starting' => 'あ、君のダウンロードはもう始まってるよ！',
+        'download-starting' => "あ、君のダウンロードはもう始まってるよ！",
     ],
 ];

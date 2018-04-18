@@ -57,8 +57,8 @@ return [
         'remember' => 'ログイン状態を保存する',
         'title' => '続行するにはログインが必要です',
         'failed' => '認証に失敗しました',
-        'register' => 'osu!アカウントがない方はこちらから',
-        'forgot' => 'パスワードを紛失？',
+        'register' => "osu!アカウントがない方はこちらから",
+        'forgot' => 'パスワードを紛失した場合',
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
             'small' => '（サポーターのユーザーは近いうちに貰えます）',
@@ -89,8 +89,8 @@ return [
         '404' => 'ユーザーが見つかりませんでした。',
         'age' => ':age歳',
         'change_avatar' => 'アバター画像の変更',
-        'first_members' => '創設時からメンバー',
-        'is_developer' => 'osu!デベロッパー',
+        'first_members' => '創設時からのメンバー',
+        'is_developer' => 'osu!開発者',
         'is_supporter' => 'osu!サポーター',
         'joined_at' => '登録日時 :date',
         'lastvisit' => '最終ログイン :date',
@@ -100,7 +100,7 @@ return [
         'origin_country' => '出身地 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'plays_with' => '使用デバイス :devices',
-        'title' => ':usernameのプロフィール',
+        'title' => ":usernameのプロフィール",
 
         'edit' => [
             'cover' => [
@@ -125,7 +125,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 フォロワー|:count フォロワー',
+            'followers' => ':count フォロワー',
             'unranked' => '最近のスコアはありません',
 
             'achievements' => [
@@ -170,7 +170,7 @@ return [
             ],
             'kudosu' => [
                 'available' => '使用可能のKudosu',
-                'available_info' => 'Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。',
+                'available_info' => "Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。",
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
@@ -178,7 +178,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'このユーザーはまだkudosu!を取得していません。',
+                    'empty' => "このユーザーはまだkudosu!を取得していません。",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -219,7 +219,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => 'このユーザーはまだメダルを取得していません。',
+                'empty' => "このユーザーはまだメダルを取得していません。",
                 'title' => 'メダル',
             ],
             'recent_activity' => [
@@ -239,7 +239,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
-                'bad_standing' => '<strong>:username</strong>のアカウントはルール違反の記録があります。',
+                'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
                 'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
 
                 'recent_infringements' => [
@@ -276,7 +276,7 @@ return [
         ],
         'post_count' => [
             '_' => 'フォーラム投稿 :link',
-            'count' => ':count個|:count個',
+            'count' => ':count個',
         ],
         'rank' => [
             'country' => ':modeの国内ランク',

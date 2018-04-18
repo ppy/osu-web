@@ -70,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'アドミンのコンソールっぽいの',
+            'title' => '管理コンソール',
 
             'sections' => [
                 'forum' => 'フォーラム',
