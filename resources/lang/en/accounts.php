@@ -24,7 +24,7 @@ return [
         'title_compact' => 'settings',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Profile',
 
             'user' => [
                 'user_from' => 'current location',

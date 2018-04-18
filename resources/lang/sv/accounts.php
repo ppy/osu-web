@@ -24,7 +24,7 @@ return [
         'title_compact' => 'inställningar',
 
         'avatar' => [
-            'title' => 'Ändra Avatar',
+            'title' => 'Ändra Avatar', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ändra Profil',
+            'title' => 'Ändra Profil', // Base text changed, please check.
 
             'user' => [
                 'user_from' => 'nuvarande position',
