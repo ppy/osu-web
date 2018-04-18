@@ -22,12 +22,15 @@ namespace App\Libraries\Elasticsearch;
 
 abstract class RecordSearch extends Search
 {
+    protected $idField;
     protected $recordType;
 
-    public function __construct(string $index, SearchParams $params, $type)
+    public function __construct(string $index, SearchParams $params, $recordType, $idField = '_id')
     {
         parent::__construct($index, $params);
-        $this->recordType = $type;
+
+        $this->idField = $idField;
+        $this->recordType = $recordType;
     }
 
     public function data()
@@ -42,6 +45,6 @@ abstract class RecordSearch extends Search
 
     public function response() : SearchResponse
     {
-        return parent::response()->recordType($this->recordType);
+        return parent::response()->recordType($this->recordType)->idField($this->idField);
     }
 }
