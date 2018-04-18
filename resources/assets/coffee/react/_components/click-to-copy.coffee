@@ -27,7 +27,7 @@ class @ClickToCopy extends React.PureComponent
 
 
   restoreTooltipText: =>
-    @api.set({'content.text': @title}) if @title
+    @api.set('content.text', @title) if @title
     Timeout.clear @timer
     @timer = null
 
