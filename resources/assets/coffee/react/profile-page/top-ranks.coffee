@@ -44,7 +44,9 @@ class ProfilePage.TopRanks extends React.PureComponent
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
       div null,
-        h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.first.title')
+        h3
+          className: 'page-extra__title page-extra__title--small'
+          "#{osu.trans('users.show.extra.top_ranks.first.title')} (#{@props.user.scores_first_count[0]})"
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
             @props.scoresFirsts.map (score, i) =>
