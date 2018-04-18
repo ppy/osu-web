@@ -239,7 +239,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
-                'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
+                'bad_standing' => '<strong>:username</strong>のアカウントはルール違反の記録があります。',
                 'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
 
                 'recent_infringements' => [
