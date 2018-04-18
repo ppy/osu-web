@@ -37,8 +37,8 @@ class BeatmapsetSearch extends RecordSearch
     {
         parent::__construct(
             Beatmapset::esIndexName(),
-            Beatmapset::class,
-            $params ?? new BeatmapsetSearchParams
+            $params ?? new BeatmapsetSearchParams,
+            Beatmapset::class
         );
 
         if (empty($this->sorts)) {

@@ -24,7 +24,7 @@ abstract class RecordSearch extends Search
 {
     protected $recordType;
 
-    public function __construct(string $index, $type, SearchParams $params)
+    public function __construct(string $index, SearchParams $params, $type)
     {
         parent::__construct($index, $params);
         $this->recordType = $type;

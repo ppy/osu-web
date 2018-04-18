@@ -30,8 +30,8 @@ class UserSearch extends RecordSearch
     {
         parent::__construct(
             User::esIndexName(),
-            User::class,
-            $params ?? new UserSearchParams
+            $params ?? new UserSearchParams,
+            Beatmapset::class
         );
     }
 
