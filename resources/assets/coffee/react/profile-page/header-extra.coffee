@@ -192,6 +192,7 @@ class ProfilePage.HeaderExtra extends React.Component
               icon: 'fas fa-link'
               title: osu.trans 'users.show.info.website'
               url: @props.user.website
+              text: @props.user.website?.replace(/^https?:\/\//, '')
 
         div
           className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.is_bot}"
