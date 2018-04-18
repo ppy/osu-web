@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'さぁ、<br>始めよう！",
+        'tagline' => 'さぁ、<br>始めよう！',
         'action' => 'osu!をダウンロード',
         'os' => [
             'windows' => 'for Windows',

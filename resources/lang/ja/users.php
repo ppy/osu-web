@@ -83,7 +83,7 @@ return [
     'logout_confirm' => 'ログアウトしてもよろしいですか？',
     'restricted_banner' => [
         'title' => 'あなたのアカウントは制限されました。',
-        'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href='mailto:accounts@ppy.sh'>サポートにお問い合わせください</a>。',
+        'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
     ],
     'show' => [
         '404' => 'ユーザーが見つかりませんでした。',
@@ -100,7 +100,7 @@ return [
         'origin_country' => '出身地 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'plays_with' => '使用デバイス :devices',
-        'title' => ':usernameのプロフィール',
+        'title' => ":usernameのプロフィール",
 
         'edit' => [
             'cover' => [
@@ -111,7 +111,7 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップでアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'restriction_info' => '<a href=''.osu_url('support-the-game').'' target='_blank'>osu!サポーター</a>のみアップロードできます',
+                    'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2000x700です',
                     'too_large' => '画像ファイルの容量が大きすぎます。',
                     'unsupported_format' => '対応している画像形式ではありません。',
@@ -174,7 +174,7 @@ return [
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
-                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href=''.osu_url('user.kudosu').''>Kudosu!</a> wikiを参照。',
+                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">Kudosu!</a> wikiを参照。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -239,7 +239,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
-                'bad_standing' => '<strong>:username</strong>のアカウントはルール違反の記録があります。',
+                'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
                 'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
 
                 'recent_infringements' => [
@@ -272,7 +272,7 @@ return [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => '内容はここ',
-            'restriction_info' => '<a href=''.osu_url('support-the-game').'' target='_blank'>osu!サポーター</a>限定の機能です。',
+            'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>限定の機能です。",
         ],
         'post_count' => [
             '_' => 'フォーラム投稿 :link',
