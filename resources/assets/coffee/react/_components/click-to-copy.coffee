@@ -59,6 +59,6 @@ class @ClickToCopy extends React.PureComponent
       href: '#'
       onClick: @click
       title: osu.trans('common.buttons.click_to_copy')
-      "#{@props.label ? @props.value}"
+      @props.label ? @props.value
       i
         className: "fas fa-paste #{bn}__icon"
