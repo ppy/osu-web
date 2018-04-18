@@ -49,9 +49,7 @@ class @ClickToCopy extends React.PureComponent
     clipboard.writeText @props.value
 
     # change tooltip text to provide feedback
-    api.set
-      'position.effect': false # prevents tooltip from sliding when text is changed
-      'content.text': osu.trans('common.buttons.click_to_copy_copied')
+    api.set 'content.text', osu.trans('common.buttons.click_to_copy_copied')
 
     # set timer to reset tooltip text
     if @state.timer?
@@ -60,7 +58,7 @@ class @ClickToCopy extends React.PureComponent
 
     @setState
       qtip: api
-      title: el.title || el.dataset.origTitle
+      title: el.getAttribute('title') || el.dataset.origTitle
       timer: timer
 
 
@@ -71,6 +69,7 @@ class @ClickToCopy extends React.PureComponent
       className: bn
       onClick: @click
       title: osu.trans('common.buttons.click_to_copy')
+      'data-tooltip-pin-position': true
       a
         href: '#'
         className: "#{bn}__link"

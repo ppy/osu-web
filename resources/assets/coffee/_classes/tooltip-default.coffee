@@ -77,6 +77,9 @@ class @TooltipDefault
           width: 10
           height: 8
 
+    if el.dataset.tooltipPinPosition
+      options.position.effect = false
+
     el.dataset.origTitle = title
 
     $(el).qtip options, event
