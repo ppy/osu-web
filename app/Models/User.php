@@ -530,7 +530,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserDiscordAttribute($value)
     {
-        return presence($this->attributes['user_jabber']);
+        return presence($this->user_jabber);
     }
 
     public function getUserMsnmAttribute($value)
