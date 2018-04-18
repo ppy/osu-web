@@ -262,6 +262,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Interests',
             'lastfm' => 'Last.fm',
             'location' => 'Current Location',

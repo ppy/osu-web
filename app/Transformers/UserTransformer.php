@@ -73,6 +73,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'website' => $user->user_website,
+            'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'post_count' => $user->user_posts,
