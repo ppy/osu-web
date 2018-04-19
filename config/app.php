@@ -93,6 +93,7 @@ return [
         'es',
         'fr',
         'it',
+        'ja',
         'ko',
         'nl',
         'pl',
