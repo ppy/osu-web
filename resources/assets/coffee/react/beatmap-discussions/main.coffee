@@ -185,6 +185,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     countsByBeatmap = {}
     countsByPlaymode = {}
+    totalHype = _.filter(@state.beatmapset.discussions, message_type: 'hype', deleted_at: null).length
     unresolvedIssues = 0
     byMode =
       timeline: []
@@ -270,7 +271,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     general = byMode.general
     generalAll = byMode.generalAll
 
-    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, unresolvedIssues}
+    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
 
 
   discussions: =>
