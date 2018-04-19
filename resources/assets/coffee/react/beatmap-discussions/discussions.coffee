@@ -123,7 +123,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
-              @filterDiscussions(@sortedDiscussions()).map @discussionPage
+              @sortedDiscussions().map @discussionPage
 
             @timelineCircle()
 
@@ -168,12 +168,6 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
   expand: (e) =>
     e.preventDefault()
     $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
-
-
-  filterDiscussions: (discussions) =>
-    return discussions unless @props.selectedUserId?
-
-    _.filter(discussions, user_id: @props.selectedUserId)
 
 
   hidden: (discussion) =>

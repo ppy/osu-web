@@ -59,7 +59,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', (_e, { selectedUserId }) =>
-      @setState { selectedUserId }
+      @setState () ->
+        @cache = {}
+        { selectedUserId }
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
@@ -133,7 +135,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             mode: @state.currentMode
             readPostIds: @state.readPostIds
-            selectedUserId: @state.selectedUserId
             users: @users()
 
 
@@ -204,7 +205,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
         modes[mode] = {}
 
 
-    for d in @state.beatmapset.discussions
+    filterDiscussions = @filterDiscussions(@state.beatmapset.discussions)
+    for d in filterDiscussions
       # skipped discussion
       # - not privileged (deleted discussion)
       # - deleted beatmap
@@ -273,6 +275,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   discussions: =>
     @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
+
+
+  filterDiscussions: (discussions) =>
+    return discussions unless @state.selectedUserId?
+
+    _.filter(discussions, user_id: @state.selectedUserId)
 
 
   groupedBeatmaps: (discussionSet) =>
