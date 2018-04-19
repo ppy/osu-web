@@ -133,16 +133,17 @@ return [
                 'title' => 'Recenti',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Migliore Performance',
-                ],
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
-                'first' => [
-                    'title' => 'Rank Primo Posto',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Rank',
                 'weighted_pp' => 'valutata: :pp (:percentage)', // "ponderata" - "pesata" - "valutata", i think "valutata" as "evalutated" is better
+
+                'best' => [
+                    'title' => 'Migliore Performance',
+                ],
+                'first' => [
+                    'title' => 'Rank Primo Posto',
+                ],
             ],
         ],
         'page' => [

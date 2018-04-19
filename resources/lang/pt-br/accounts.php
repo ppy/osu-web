@@ -24,7 +24,7 @@ return [
         'title_compact' => 'configurações',
 
         'avatar' => [
-            'title' => 'Editar avatar',
+            'title' => 'Editar avatar', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar perfil',
+            'title' => 'Editar perfil', // Base text changed, please check.
 
             'user' => [
                 'user_from' => 'localização atual',
