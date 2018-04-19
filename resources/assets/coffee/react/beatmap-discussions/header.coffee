@@ -104,8 +104,9 @@ class BeatmapDiscussions.Header extends React.PureComponent
             label
               className: ''
               select
-                onChange: @onUserFilterChange
                 className: ''
+                defaultValue: @props.selectedUserId
+                onChange: @onUserFilterChange
                 option key: '-', value: null, 'all'
                 for own _, user of @props.users
                   option key: user.id, value: user.id, user.username if user.id?

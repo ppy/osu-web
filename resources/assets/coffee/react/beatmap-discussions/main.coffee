@@ -97,6 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         discussions: @discussions()
         events: @state.beatmapset.events
         mode: @state.currentMode
+        selectedUserId: @state.selectedUserId
         users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
@@ -125,7 +126,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
             mode: @state.currentMode
 
           el BeatmapDiscussions.Discussions,
-            selectedUserId: @state.selectedUserId
             beatmapset: @state.beatmapset
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
@@ -133,6 +133,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             mode: @state.currentMode
             readPostIds: @state.readPostIds
+            selectedUserId: @state.selectedUserId
             users: @users()
 
 
