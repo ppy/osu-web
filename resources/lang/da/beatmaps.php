@@ -36,20 +36,21 @@ return [
         'delete' => 'slet',
         'deleted' => 'Slettet af :editor :delete_time.',
         'deny_kudosu' => 'nægt kudosu',
-        'edit' => 'rediger',
+        'edit' => 'ændr',
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
-        'message_placeholder' => 'Skriv her for at slå op',
+        'message_placeholder' => 'Skriv here for at slå op',
+        'message_placeholder_deleted_beatmap' => 'Den her sværhedsgrad er blevet slettet så den må ikke blive diskuteret.',
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
-        'require-login' => 'Log ind for at lave et opslag eller svare', // Base text changed from "log" to "sign"
+        'require-login' => 'Log ind for at slå op eller svare', // Base text changed from "log" to "sign"
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'title' => 'Diskussioner',
 
         'collapse' => [
-            'all-collapse' => 'Skjul alle',
+            'all-collapse' => 'Kollaps alle',
             'all-expand' => 'Udvid alle',
         ],
 
@@ -60,12 +61,14 @@ return [
 
         'message_hint' => [
             'in_general' => 'Dette opslag vil lande i general beatmapset diskussionen. For at modde dette beatmap, start beskeden med et tidsstempel (f.eks. 00:12:345).',
-            'in_timeline' => 'For at modde flere tidsstempler, lav flere opslag (kun et opslag pr. tidsstempel).',
+            'in_timeline' => 'For at modde flere tidsstempler, slå flere tidsstempler op (kun et opslag pr. tidsstempel).',
         ],
 
         'message_type' => [
+            'disqualify' => 'Diskvalificer',
             'hype' => 'Hype!',
             'mapper_note' => 'Notat',
+            'nomination_reset' => 'nulstil Nominering',
             'praise' => 'Hyldest',
             'problem' => 'Problem',
             'suggestion' => 'Forslag',
@@ -73,6 +76,7 @@ return [
 
         'mode' => [
             'events' => 'Historie',
+            'general' => 'Generalt :scope',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Den her sværhedgrad',
@@ -90,6 +94,13 @@ return [
             'title' => ':title mappet af :mapper',
         ],
 
+        'sort' => [
+            '_' => 'Sorteret efter:',
+            'created_at' => 'Dato for upload',
+            'timeline' => 'tidslinje',
+            'updated_at' => 'sidst opdateret',
+        ],
+
         'stats' => [
             'deleted' => 'Slettet',
             'mapper_notes' => 'Notater',
@@ -101,10 +112,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Dette beatmap blev godkendt den :date!',
-            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden den :date og er højst sandsynligt blevet efterladt af skaberen...',
-            'loved' => 'Denne beatmap blev tilføjet til "Loved" den :date!',
-            'ranked' => 'Denne beatmap blev ranked den :date!',
+            'approved' => 'Dette beatmap blev godkendt på :date!',
+            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...',
+            'loved' => 'Dette beatmap blev tilføjet til "Loved" på :date!',
+            'ranked' => 'Dette beatmap blev ranked på :date!',
             'wip' => 'Notat: Dette beatmap er blevet markeret som "Under konstruktion" af skaberen.',
         ],
 
@@ -113,13 +124,18 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Allerede Hypet!',
-        'confirm' => 'Er du sikker? Dette vil bruge 1 af dine resterende :n hypes og kan ikke fortrydes.',
+        'confirm' => 'Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.',
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
-        'new_time' => 'Du får en ny hype om :new_time.',
+        'new_time' => 'Du får en ny hype ved :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
-        'section_title' => 'Hype Train',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Tog',
         'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Efterlad Feedback',
     ],
 
     'nominations' => [
@@ -131,19 +147,21 @@ return [
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
-        'qualified' => 'Forventet at blive ranked den :date, hvis ingen problemer bliver fundet.',
+        'qualified' => 'Forventet at blive ranked på :date, hvis ingen problemer bliver fundet.',
         'qualified_soon' => 'Forventet at blive ranked snart, hvis ingen problemer bliver fundet.',
         'required_text' => 'Nomineringer: :current/:required',
-        'reset_message_deleted' => 'slettet',
+        'reset_message_deleted' => 'sletted'
         'title' => 'Nomineringsstatus',
+        'unresolved_issues' => 'Der er stadig uløste problemer der skal tages af først.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nominerings processen nulstillet :time_ago af :user med et nyt problem :discussion (:message).',
+            'disqualify' => 'Diskvalificeret :time_ago af :user med et nyt problem :discussion (:message).',
+        ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
+            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations processen.',
         ],
-    ],
-
-    'feedback' => [
-        'button' => 'Efterlad Feedback',
     ],
 
     'listing' => [
@@ -155,7 +173,7 @@ return [
             'filters' => [
                 'general' => 'Generalt',
                 'mode' => 'Mode',
-                'status' => 'Ranked Status',
+                'status' => 'Rank Status',
                 'genre' => 'Genre',
                 'language' => 'Sprog',
                 'extra' => 'extra',
@@ -163,17 +181,15 @@ return [
             ],
         ],
         'mode' => 'Mode',
-        'status' => 'Ranked Status',
+        'status' => 'Rank Status',
         'mapped-by' => 'mappet af :mapper',
         'source' => 'fra :source',
         'load-more' => 'Indlæs mere...',
     ],
-
     'general' => [
-        'recommended' => 'Recommenderet sværhedgrad',
-        'converts' => 'Inkluder konverterede beatmaps',
+        'recommended' => 'Rekommenderat sværhedsgrad',
+        'converts' => 'Inkluder konvertert beatmeaps',
     ],
-
     'mode' => [
         'any' => 'Alle',
         'osu' => 'osu!',
@@ -182,7 +198,7 @@ return [
         'mania' => 'osu!mania',
     ],
     'status' => [
-        'any' => 'Alle',
+        'any' => 'Vilkårlig',
         'ranked-approved' => 'Ranked & Godkendt',
         'approved' => 'Godkendt',
         'qualified' => 'Kvalificeret',
@@ -193,7 +209,7 @@ return [
         'my-maps' => 'Mine Maps',
     ],
     'genre' => [
-        'any' => 'Alle',
+        'any' => 'Vilkårlig',
         'unspecified' => 'Uspecificeret',
         'video-game' => 'Computerspil',
         'anime' => 'Anime',
@@ -205,30 +221,31 @@ return [
         'electronic' => 'Electronisk',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
-        'any' => 'Alle',
+        'any' => 'Vilkårlig',
         'english' => 'Engelsk',
         'chinese' => 'Kinesisk',
         'french' => 'Fransk',
@@ -246,7 +263,7 @@ return [
         'storyboard' => 'Har Storyboard',
     ],
     'rank' => [
-        'any' => 'Alle',
+        'any' => 'Vilkårlig',
         'XH' => 'Silver SS',
         'X' => 'SS',
         'SH' => 'Silver S',
@@ -257,3 +274,4 @@ return [
         'D' => 'D',
     ],
 ];
+
