@@ -173,16 +173,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
   filterDiscussions: (discussions) =>
     return discussions unless @props.selectedUserId?
 
-    filtered = []
-    for discussion in discussions
-      posts = @filterPosts(discussion.posts, @props.selectedUserId)
-      filtered.push(discussion) if posts.length
-
-    filtered
-
-
-  filterPosts: (posts, userId) ->
-    _.filter(posts, user_id: userId)
+    _.filter(discussions, user_id: @props.selectedUserId)
 
 
   hidden: (discussion) =>
