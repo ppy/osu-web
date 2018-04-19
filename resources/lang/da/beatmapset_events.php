@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator slettede opslag fra diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator gendannede opslag fra diskussionen :discussion.',
         'discussion_restore' => 'Moderator gendannede diskussionen :discussion.',
-        'disqualify' => 'Diskvalificeret af :user. Årsag: :text.',
+        'disqualify_legacy' => 'Diskvalificeret af :user. Årsag: :text.',
         'issue_reopen' => 'Løste problem :discussion genåbnet.',
         'issue_resolve' => 'Problem :discussion markeret som løst.',
         'kudosu_allow' => 'Kudosu benægtelse for diskussionen :discussion er blevet fjernet.',

@@ -35,11 +35,11 @@
                             href="{{ route('changelog.show', ['build' => $activeBuild->versionPrevious()->version]) }}"
                             title="{{ $activeBuild->versionPrevious()->displayVersion() }}"
                         >
-                            <i class="fa fa-angle-double-left"></i>
+                            <i class="fas fa-angle-double-left"></i>
                         </a>
                     @else
                         <span class="changelog__build-link changelog__build-link--disabled">
-                            <i class="fa fa-angle-double-left"></i>
+                            <i class="fas fa-angle-double-left"></i>
                         </span>
                     @endif
 
@@ -51,11 +51,11 @@
                             href="{{ route('changelog.show', ['build' => $activeBuild->versionNext()->version]) }}"
                             title="{{ $activeBuild->versionNext()->displayVersion() }}"
                         >
-                            <i class="fa fa-angle-double-right"></i>
+                            <i class="fas fa-angle-double-right"></i>
                         </a>
                     @else
                         <span class="changelog__build-link changelog__build-link--disabled">
-                            <i class="fa fa-angle-double-right"></i>
+                            <i class="fas fa-angle-double-right"></i>
                         </span>
                     @endif
                 </p>

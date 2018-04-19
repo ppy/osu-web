@@ -41,7 +41,7 @@
             data-toggle="collapse"
             data-target=".js-navbar-mobile--menu"
         >
-            <i class="fa fa-sign-out"></i>
+            <i class="fas fa-sign-out-alt"></i>
         </a>
     @else
         <a

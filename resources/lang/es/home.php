@@ -36,6 +36,8 @@ return [
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
         'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
+        'placeholder' => 'escribe para buscar',
+        'title' => 'Buscar',
 
         'beatmapset' => [
             'more' => 'Hay :count beatmaps más en los resultados',
@@ -117,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => '¡Hola, <strong>:username</strong>!',
-            'messages' => 'Tienes 1 nuevo mensaje|Tienes :count nuevos mensajes',
+            'messages' => 'Tienes :count nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
                 'games' => 'Partidas',

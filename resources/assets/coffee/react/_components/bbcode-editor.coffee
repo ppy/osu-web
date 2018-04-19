@@ -21,6 +21,7 @@ el = React.createElement
 
 class @BBCodeEditor extends React.Component
   componentDidMount: =>
+    @sizeSelect.value = ''
     @body.focus()
 
 
@@ -42,26 +43,26 @@ class @BBCodeEditor extends React.Component
         div className: 'post-editor-footer',
           div className: 'post-editor-footer__col post-editor-footer__col--toolbar',
             div className: 'post-box-toolbar',
-              @toolbarButton 'bold', strong(null, 'B')
-              @toolbarButton 'italic', em(null, 'I')
-              @toolbarButton 'strikethrough', el(Icon, name: 'strikethrough')
-              @toolbarButton 'heading', span(null, 'H')
-              @toolbarButton 'link', el(Icon, name: 'link')
-              @toolbarButton 'spoilerbox', el(Icon, name: 'barcode')
-              @toolbarButton 'list-numbered', el(Icon, name: 'list-ol')
-              @toolbarButton 'list', el(Icon, name: 'list')
-              @toolbarButton 'image', el(Icon, name: 'image')
+              @toolbarButton 'bold', i(className: 'fas fa-bold')
+              @toolbarButton 'italic', i(className: 'fas fa-italic')
+              @toolbarButton 'strikethrough', i(className: 'fas fa-strikethrough')
+              @toolbarButton 'heading', i(className: 'fas fa-heading')
+              @toolbarButton 'link', i(className: 'fas fa-link')
+              @toolbarButton 'spoilerbox', i(className: 'fas fa-barcode')
+              @toolbarButton 'list-numbered', i(className: 'fas fa-list-ol')
+              @toolbarButton 'list', i(className: 'fas fa-list')
+              @toolbarButton 'image', i(className: 'fas fa-image')
 
               label
                 className: 'bbcode-size-select'
                 title: osu.trans('bbcode.size._')
 
                 span className: "bbcode-size-select__label", osu.trans('bbcode.size._')
-                i className: "fa fa-chevron-down"
+                i className: "fas fa-chevron-down"
                 select
                   className: 'bbcode-size-select__select js-bbcode-btn--size'
                   disabled: @props.disabled
-                  defaultValue: '100'
+                  ref: @setSizeSelect
                   option value: '50', osu.trans('bbcode.size.tiny')
                   option value: '85', osu.trans('bbcode.size.small')
                   option value: '100', osu.trans('bbcode.size.normal')
@@ -96,24 +97,33 @@ class @BBCodeEditor extends React.Component
     @body = element
 
 
+  setSizeSelect: (element) =>
+    @sizeSelect = element
+
+
   onKeyDown: (e) =>
     e.keyCode == 27 && @_cancel()
 
 
-  _cancel: =>
+  _cancel: (event) =>
     @body.value = @props.rawValue
-    @props.onChange?(type: 'cancel', value: @props.rawValue)
+    @sendOnChange(event: event, type: 'cancel')
 
 
-  _reset: =>
+  _reset: (event) =>
     @body.value = @props.rawValue
-    @props.onChange?(type: 'reset', value: @props.rawValue)
+    @sendOnChange(event: event, type: 'reset')
     @body.focus()
 
 
-  _save: =>
+  _save: (event) =>
+    @sendOnChange(event: event, type: 'save')
+
+
+  sendOnChange: ({event, type}) =>
     @props.onChange?(
-      type: 'save'
+      event: event
+      type: type
       value: @body.value
       hasChanged: @body.value != @props.rawValue
     )

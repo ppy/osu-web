@@ -44,7 +44,7 @@
             <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
-                        <i class="fa fa-fw fa-refresh fa-spin"></i>
+                        <i class="fas fa-fw fa-sync fa-spin"></i>
                     </div>
                     @if (!isset($loading))
                         <img class="usercard__avatar usercard__avatar--main" src="{{$user->user_avatar}}">
@@ -71,9 +71,10 @@
                             @if ($user->isSupporter())
                                 <div class="usercard__icon">
                                     <a class="usercard__link-wrapper" href="{{route('support-the-game')}}">
-                                        <span class="usercard__supporter" title="{{ trans('users.show.is_supporter') }}">
-                                            <span class="fa fa-fw fa-heart"></span>
-                                        </span>
+                                        @include('objects._supporter_icon', [
+                                            'background' => true,
+                                            'smaller' => true,
+                                        ])
                                     </a>
                                 </div>
                             @endif
@@ -85,7 +86,7 @@
                                     href="{{ route('messages.users.show', $user->getKey()) }}"
                                     title="{{ trans('users.card.send_message') }}"
                                 >
-                                    <i class="fa fa-envelope"></i>
+                                    <i class="fas fa-envelope"></i>
                                 </a>
                             </div>
                         @endif
@@ -93,7 +94,7 @@
                 </div>
             </div>
             <div class="usercard__status-bar usercard__status-bar--{{!isset($loading) && $user->isOnline() ? 'online' : 'offline'}}">
-                <span class="fa fa-fw fa-circle-o usercard__status-icon"></span>
+                <span class="far fa-fw fa-circle usercard__status-icon"></span>
                 <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : ($user->user_lastvisit ? trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) : '')}}">
                     {{!isset($loading) && $user->isOnline() ? trans('users.status.online') : trans('users.status.offline')}}
                 </span>

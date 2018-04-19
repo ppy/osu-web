@@ -23,7 +23,7 @@ return [
         'discussion_post_delete' => 'Un moderador eliminó un post en la discusión :discussion.',
         'discussion_post_restore' => 'Un moderador restauró un post de la discusión :discussion.',
         'discussion_restore' => 'Un moderador restauró la discusión :discussion.',
-        'disqualify' => 'Descalificado por :user. Razón: :text.',
+        'disqualify_legacy' => 'Descalificado por :user. Razón: :text.',
         'issue_reopen' => 'El problema resuelto :discussion ha sido reabierto.',
         'issue_resolve' => 'El problema :discussion ha sido marcado como resuelto.',
         'kudosu_allow' => 'La negación de kudosu para la discusión :discussion ha sido eliminada.',

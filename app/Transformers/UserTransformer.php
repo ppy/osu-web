@@ -36,8 +36,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
+        'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
+        'scores_first_count',
+        'statistics',
         'unranked_beatmapset_count',
         'user_achievements',
     ];
@@ -72,6 +75,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'website' => $user->user_website,
+            'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'post_count' => $user->user_posts,
@@ -184,6 +188,22 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
+
+        return $this->item($user, function ($user) use ($mode) {
+            return [$user->scoresFirst($mode)->count()];
+        });
+    }
+
+    public function includeStatistics(User $user, Fractal\ParamBag $params)
+    {
+        $stats = $user->statistics($params->get('mode')[0]);
+
+        return $this->item($stats, new UserStatisticsTransformer);
+    }
+
     public function includeUnrankedBeatmapsetCount(User $user)
     {
         return $this->item($user, function ($user) {
@@ -231,6 +251,23 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'public_key' => config('services.disqus.public_key'),
                 'auth_data' => "$encodedData $hmac $timestamp",
             ];
+        });
+    }
+
+    public function includePreviousUsernames(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return $user
+                ->usernameChangeHistory()
+                ->visible()
+                ->select(['username_last', 'timestamp'])
+                ->withPresent('username_last')
+                ->where('username_last', '<>', $user->username)
+                ->orderBy('timestamp', 'ASC')
+                ->get()
+                ->pluck('username_last')
+                ->unique()
+                ->toArray();
         });
     }
 }

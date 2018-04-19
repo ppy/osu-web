@@ -39,6 +39,7 @@ return [
     ],
     'card' => [
         'loading' => 'Cargando...',
+        'send_message' => 'enviar mensaje',
     ],
     'login' => [
         '_' => 'Iniciar sesión',
@@ -59,6 +60,9 @@ return [
 
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
     ],
+    'posts' => [
+        'title' => 'Posts de :username',
+    ],
     'signup' => [
         '_' => 'Registrarse',
     ],
@@ -71,7 +75,7 @@ return [
     'logout_confirm' => '¿Estás seguro que quieres salir? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => '¡Tu cuenta ha sido restringida!',
-        'message' => 'Mientras estás restringido, no podrás interactuar con otros juadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
+        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [
         '404' => '¡Usuario no encontrado! ;_;',
@@ -212,16 +216,36 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Mejor rendimiento',
-                ],
                 'empty' => 'No hay récords increíbles aún. :(',
-                'first' => [
-                    'title' => 'Primeros Lugares',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Mejor rendimiento',
+                ],
+                'first' => [
+                    'title' => 'Primeros Lugares',
+                ],
+            ],
+            'account_standing' => [
+                'title' => 'Estado de la cuenta',
+                'bad_standing' => 'La cuenta de <strong>:username</strong> no está en regla :(',
+                'remaining_silence' => '<strong>:username</strong> podrá hablar otra vez dentro de :duration.',
+                'recent_infringements' => [
+                    'title' => 'Infracciones recientes',
+                    'date' => 'fecha',
+                    'action' => 'acción',
+                    'length' => 'duración',
+                    'length_permanent' => 'Permanente',
+                    'description' => 'descripción',
+                    'actor' => 'por :username',
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silenciado',
+                        'note' => 'Nota',
+                    ],
+                ],
             ],
         ],
         'info' => [

@@ -33,7 +33,7 @@
                     <input class="search-header__input" name="query" value="{{ request('query') }}" />
 
                     <button class="search-header__icon">
-                        <i class="fa fa-search"></i>
+                        <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>

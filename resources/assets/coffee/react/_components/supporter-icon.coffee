@@ -16,20 +16,21 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span} = ReactDOMFactories
+el = React.createElement
+{span, i} = ReactDOMFactories
 
-@Icon = ({name, modifiers = [], parentClass, title}) ->
-  className = "fa fa-#{name}"
-  className += " fa-#{m}" for m in modifiers
+bn = 'supporter-icon'
 
+# see also _supporter_icon.blade.php for blade version
+@SupporterIcon = ({background = false, smaller = false}) ->
+  blockClass = bn
 
-  if parentClass?
-    span
-      className: parentClass
-      title: title
-      span
-        className: className
-  else
-    span
-      className: className
-      title: title
+  span
+    className: "#{bn}#{if smaller then " #{bn}--smaller" else ''} fa-stack"
+    title: osu.trans('users.show.is_supporter')
+
+    if background
+      i className: "#{bn}__bg fas fa-circle fa-stack-2x"
+
+    i className: "far fa-circle fa-stack-2x"
+    i className: "#{bn}__heart fas fa-heart fa-stack-1x"

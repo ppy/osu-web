@@ -83,6 +83,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_msnm' => 255,
         'user_twitter' => 255,
         'user_website' => 200,
+        'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
@@ -527,6 +528,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
+    public function getUserDiscordAttribute($value)
+    {
+        return presence($this->user_jabber);
+    }
+
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
@@ -556,6 +562,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         if (present($value)) {
             return "#{$value}";
         }
+    }
+
+    public function setUserDiscordAttribute($value)
+    {
+        $this->attributes['user_jabber'] = $value;
     }
 
     public function setUserColourAttribute($value)
@@ -1031,7 +1042,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function maxFriends()
     {
-        return $this->osu_subscriber ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+        return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
     public function uncachedFollowerCount()
@@ -1082,12 +1093,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(KudosuHistory::class, 'receiver_id');
     }
 
-    public function supports()
+    public function supporterTags()
     {
         return $this->hasMany(UserDonation::class, 'target_user_id');
     }
 
-    public function givenSupports()
+    public function supporterTagPurchases()
     {
         return $this->hasMany(UserDonation::class, 'user_id');
     }
@@ -1232,7 +1243,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supports as $support) {
+            foreach ($this->supporterTags as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
@@ -1534,6 +1545,16 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->country_acronym = $country->getKey();
             } else {
                 $this->validationErrors()->add('country', '.invalid_country');
+            }
+        }
+
+        // user_discord is an accessor for user_jabber
+        if ($this->isDirty('user_jabber') && present($this->user_discord)) {
+            // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
+            // - is a 2-32 char username (excluding chars @#:)
+            // - ends with a # and 4-digit discriminator
+            if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
+                $this->validationErrors()->add('user_discord', '.invalid_discord');
             }
         }
 

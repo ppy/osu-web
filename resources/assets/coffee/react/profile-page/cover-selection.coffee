@@ -51,4 +51,4 @@ class ProfilePage.CoverSelection extends React.Component
       onMouseLeave: @onMouseLeave
       if @props.isSelected
         el 'i',
-          className: 'fa fa-check-circle profile-cover-change-popup__selected-mark'
+          className: 'far fa-check-circle profile-cover-change-popup__selected-mark'

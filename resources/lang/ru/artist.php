@@ -42,7 +42,7 @@ return [
 
     'songs' => [
         '_' => 'Песни',
-        'count' => '1 песня|:count песен',
+        'count' => ':count песня|:count песен',
         'exclusive' => 'osu! эксклюзив',
     ],
 ];

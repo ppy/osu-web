@@ -205,16 +205,17 @@ return [
                 'title' => '最近活動',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => '最好成績',
-                ],
                 'empty' => '還沒有上傳過成績。 :(',
-                'first' => [
-                    'title' => '第一名',
-                ],
                 'pp' => ':amountpp',
                 'title' => '成績',
                 'weighted_pp' => '權重：:pp (:percentage)',
+
+                'best' => [
+                    'title' => '最好成績',
+                ],
+                'first' => [
+                    'title' => '第一名',
+                ],
             ],
         ],
         'page' => [

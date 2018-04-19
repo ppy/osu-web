@@ -32,14 +32,14 @@
                     <span title="{{{ $beatmap->play_count }}}">
                         {{{ $beatmap->play_count }}}
                     </span>
-                    <i class='fa fa-play-circle'></i>
+                    <i class='fas fa-play-circle'></i>
                 </div>
 
                 <div class='favourites'>
                     <span title="{{{ $beatmap->favourite_count }}}">
                         {{{ $beatmap->favourite_count }}}
                     </span>
-                    <i class='fa fa-heart'></i>
+                    <i class='fas fa-heart'></i>
                 </div>
             </div>
         </div>
@@ -60,9 +60,9 @@
     </div>
 
     <div class="bottom_right show_on_hover">
-        <a href='#' class="object_link"><i class="fa fa-download"></i></a>
-        <a href='#' class="object_link"><i class="fa fa-comments-o"></i></a>
-        <a href='#' class="object_link"><i class='fa fa-heart'></i></a>
+        <a href='#' class="object_link"><i class="fas fa-download"></i></a>
+        <a href='#' class="object_link"><i class="far fa-comments"></i></a>
+        <a href='#' class="object_link"><i class='fas fa-heart'></i></a>
     </div>
 
     <paper-shadow z="1" animated="true"></paper-shadow>

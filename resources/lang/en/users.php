@@ -100,6 +100,7 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
@@ -227,16 +228,18 @@ return [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Best Performance',
-                ],
                 'empty' => 'No awesome performance records yet. :(',
-                'first' => [
-                    'title' => 'First Place Ranks',
-                ],
+                'not_ranked' => 'Only ranked beatmaps give out pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Best Performance',
+                ],
+                'first' => [
+                    'title' => 'First Place Ranks',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
@@ -261,6 +264,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Interests',
             'lastfm' => 'Last.fm',
             'location' => 'Current Location',

@@ -45,6 +45,7 @@ return [
 
     'card' => [
         'loading' => 'Ładowanie...',
+        'send_message' => 'wyślij wiadomość',
     ],
 
     'login' => [
@@ -225,16 +226,17 @@ return [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Najlepsze wyniki',
-                ],
                 'empty' => 'Brak wyników. :(',
-                'first' => [
-                    'title' => 'Pierwsze miejsca',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Najlepsze wyniki',
+                ],
+                'first' => [
+                    'title' => 'Pierwsze miejsca',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
