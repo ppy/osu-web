@@ -93,23 +93,18 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
         div
           className: "#{bn}__filters"
+          el BeatmapDiscussions.UserFilter,
+            selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
+            users: _.pickBy(@props.users, (value) -> value.id?)
+
+        div
+          className: "#{bn}__filters"
 
           el BeatmapDiscussions.BeatmapList,
             beatmapset: @props.beatmapset
             currentBeatmap: @props.currentBeatmap
             currentDiscussions: @props.currentDiscussions
             beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
-
-          div null,
-            label
-              className: ''
-              select
-                className: ''
-                defaultValue: @props.selectedUserId
-                onChange: @onUserFilterChange
-                option key: '-', value: null, 'all'
-                for own _, user of @props.users
-                  option key: user.id, value: user.id, user.username if user.id?
 
           div
             className: "#{bn}__stats"
@@ -122,11 +117,6 @@ class BeatmapDiscussions.Header extends React.PureComponent
             el BeatmapBasicStats,
               beatmapset: @props.beatmapset
               beatmap: @props.currentBeatmap
-
-
-  onUserFilterChange: (event) ->
-    selectedUserId = +event.target.value if isFinite(event.target.value)
-    $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
 
 
   setFilter: (e) =>
