@@ -19,7 +19,7 @@
 {a, div} = ReactDOMFactories
 el = React.createElement
 
-bn = 'user-filter-item'
+bn = 'beatmap-discussions-user-filter-item'
 
 class BeatmapDiscussions.UserFilterItem extends React.PureComponent
   constructor: (props) ->
@@ -31,8 +31,7 @@ class BeatmapDiscussions.UserFilterItem extends React.PureComponent
       href: '#'
       className: "#{bn}"
       onClick: @onClick
-      div
-        className: "#{bn}"
+      div null
         @props.user.username
 
 

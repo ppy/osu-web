@@ -44,6 +44,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         disabled: disabled
         onClick: @nominate
 
+
   render: =>
     showHype = @props.beatmapset.can_be_hyped
 

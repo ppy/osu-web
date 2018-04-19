@@ -16,10 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div} = ReactDOMFactories
+{a, i, div} = ReactDOMFactories
 el = React.createElement
 
-bn = 'user-filter'
+bn = 'beatmap-discussions-user-filter'
+
+allUsers =
+  id: null,
+  username: 'Everyone'
+
 
 class BeatmapDiscussions.UserFilter extends React.PureComponent
   constructor: (props) ->
@@ -28,24 +33,43 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     @state =
       showingSelector: false
 
-
   render: =>
+    classNames = "#{bn}"
+    classNames += " #{bn}--selecting" if @state.showingSelector
+
     div
-      className: "#{bn}"
-      el BeatmapDiscussions.UserFilterItem,
-        user: @props.selectedUser ? { id: null, username: 'All' }
+      className: classNames
+      div
+        className: "#{bn}__select"
+        el BeatmapDiscussions.UserFilterItem,
+          onUserSelected: @toggleSelector
+          user: @selectedUser()
 
-      @listItem id: null, username: 'All'
+        div className: "#{bn}__decoration",
+          i className: "fas fa-chevron-down"
 
-      for own _, user of @props.users
-        @listItem user
+
+      div
+        className: "#{bn}__options"
+        @listItem allUsers
+        for own _, user of @props.users
+          @listItem user
 
 
   listItem: (user) ->
-    el BeatmapDiscussions.UserFilterItem,
+    classNames = "#{bn}__item"
+    classNames += " #{bn}__item--selected" if @selectedUser().id == user.id
+
+    div
       key: user.id
-      onUserSelected: @userSelected
-      user: user
+      className: classNames
+      el BeatmapDiscussions.UserFilterItem,
+        onUserSelected: @userSelected
+        user: user
+
+
+  selectedUser: () =>
+    @props.selectedUser ? allUsers
 
 
   userSelected: ({ user }) =>
@@ -54,10 +78,8 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
 
 
-  toggleSelector: (event) =>
-    return if event.button != 0
-    e.preventDefault()
-
+  toggleSelector: () =>
+    console.log 'toggle'
     @setState (prevState) ->
       Blackout.toggle(!prevState.showingSelector, 0.5)
       showingSelector: !prevState.showingSelector
