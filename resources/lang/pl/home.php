@@ -113,7 +113,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz 1 nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
+            'messages' => 'Masz :count nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',

@@ -25,11 +25,17 @@ return [
         'missing' => "La page demandée n'a pas pu être trouvée.",
         'missing_title' => 'Non Trouvée',
         'missing_translation' => "La page demandée n'a pas pu être trouvée pour la langue sélectionnée actuellement",
+        'search' => 'Rechercher des pages existantes pour :link.',
         'toc' => 'Contenu',
 
         'edit' => [
             'link' => 'Afficher sur GitHub',
             'refresh' => 'Actualiser',
+        ],
+
+        'outdated' => [
+            '_' => 'Cette page est une traduction ancienne de son contenu original. Merci de vérifier :default pour l\'information la plus à jour (vous pouvez aussi mettre à jour la traduction si vous souhaitez aider) !',
+            'default' => 'la version anglaise',
         ],
     ],
 ];

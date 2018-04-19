@@ -18,6 +18,28 @@
 
 {div} = ReactDOMFactories
 el = React.createElement
+VirtualList = window.VirtualList
+
+ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
+
+ListRender = ({ virtual, itemHeight }) ->
+  style = _.extend {}, virtual.style
+  div
+    style: style
+    div
+      className: 'beatmapsets__items'
+      virtual.items.map (row) ->
+        div
+          className: 'beatmapsets__items-row'
+          key: (beatmap.id for beatmap in row).join('-')
+          for beatmap in row
+            div
+              className: 'beatmapsets__item'
+              key: beatmap.id
+              el BeatmapsetPanel, beatmap: beatmap
+
+BeatmapList = VirtualList()(ListRender)
+
 
 class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
@@ -41,6 +63,21 @@ class Beatmaps.Main extends React.PureComponent
       isExpanded: null
       @stateFromUrl()
 
+    @state.columnCount = @columnCount()
+
+
+  columnCount: () ->
+    if osu.isDesktop() then 2 else 1
+
+
+  updateColumnCount: () =>
+    @setState (prevState) =>
+      count = @columnCount()
+      # The list component has to be recreated for correct sizing.
+      BeatmapList = VirtualList()(ListRender) if prevState.columnCount != count
+
+      columnCount: count
+
 
   componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
@@ -49,6 +86,7 @@ class Beatmaps.Main extends React.PureComponent
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'turbolinks:before-visit.beatmaps', @recordUrl
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
+    $(window).on 'resize.beatmaps', @updateColumnCount
 
 
   componentWillUnmount: =>
@@ -77,13 +115,10 @@ class Beatmaps.Main extends React.PureComponent
           div
             className: 'beatmapsets__content'
             if @state.beatmaps.length > 0
-              div
-                className: 'beatmapsets__items'
-                for beatmap in @state.beatmaps
-                  div
-                    className: 'beatmapsets__item'
-                    key: beatmap.id
-                    el BeatmapsetPanel, beatmap: beatmap
+              el BeatmapList,
+                items: _.chunk(@state.beatmaps, @state.columnCount)
+                itemBuffer: 5
+                itemHeight: ITEM_HEIGHT
 
             else
               div className: 'beatmapsets__empty',

@@ -21,7 +21,14 @@
 return [
 
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Restaurer',
+            'regenerating' => 'Restauration...',
+            'remove' => 'Supprimer',
+            'removing' => 'Suppression...',
+        ],
         'show' => [
+            'covers' => 'Gérer les couvertures de beatmapset',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activer',

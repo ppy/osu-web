@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => 'Sujets épinglés',
-    'slogan' => 'Il est dangereux de jouer seul.',
+    'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Sous-forums',
-    'title' => 'osu!community',
+    'title' => 'Communauté osu!',
 
     'covers' => [
         'create' => [
@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
         'latest_post' => ':when par :user',
         'latest_reply_by' => 'dernière réponse par :user',
@@ -99,11 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Annuler',
             'post' => 'Sauvegarder',
-
-            'zoom' => [
-                'start' => 'Plein écran',
-                'end' => 'Sortir du plein écran',
-            ],
         ],
     ],
 
@@ -117,6 +113,7 @@ return [
                 'total' => 'Sujets suivis',
                 'unread' => 'Sujets avec nouvelles réponses',
             ],
+
             'info' => [
                 'total' => 'Vous suivez un total de :total sujets.',
                 'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
@@ -135,7 +132,9 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
+            'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
+            'search' => 'Rechercher',
         ],
 
         'create' => [
@@ -159,6 +158,10 @@ return [
                 'vote_change' => 'Autoriser le changement de vote.',
                 'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Modifier le titre',
         ],
 
         'index' => [
@@ -225,6 +228,8 @@ return [
             'to_0_done' => 'Le sujet a été désépinglé',
             'to_1' => 'Épingler le sujet',
             'to_1_done' => 'Le sujet a été épinglé',
+            'to_2' => 'Épingler le sujet et marquer en tant qu\'annonce',
+            'to_2_done' => 'Le sujet a été épinglé et marqué en tant qu\'annonce',
         ],
 
         'show' => [
@@ -254,8 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Vous ne suivez pas ce sujet',
-            'to_watching_done' => 'Vous suivez ce sujet',
+            'to_not_watching' => 'Vous ne suivez pas ce sujet',
+            'to_watching' => 'Suivre',
+            'to_watching_mail' => 'Suivre avec notifications',
+            'mail_disable' => 'Désactiver les notifications',
         ],
     ],
 ];

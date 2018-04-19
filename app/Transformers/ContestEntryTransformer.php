@@ -61,10 +61,16 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
 
         return $this->item($entry, function ($entry) {
             $size = fast_imagesize($entry->entry_url);
+            $thumb = $entry->entry_url;
+
+            if (present(config('osu.assets.mini_url')) && present(config('osu.assets.mini_url'))) {
+                $thumb = str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $thumb);
+            }
 
             return [
                 'width' => $size[0],
                 'height' => $size[1],
+                'thumb' => $thumb,
             ];
         });
     }

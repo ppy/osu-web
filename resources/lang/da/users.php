@@ -221,16 +221,17 @@ return [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Bedste Præstationer',
-                ],
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
-                'first' => [
-                    'title' => 'Førstepladser',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'vejede: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Bedste Præstationer',
+                ],
+                'first' => [
+                    'title' => 'Førstepladser',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Account Status',

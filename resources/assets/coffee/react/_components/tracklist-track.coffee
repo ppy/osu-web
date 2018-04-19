@@ -35,7 +35,7 @@ class @TracklistTrack extends React.Component
       td className: 'tracklist__dl',
         if @props.track.osz
           a className: 'tracklist__link', href: @props.track.osz, title: osu.trans('artist.beatmaps.download'),
-            i className: 'fas fa-fw fa-cloud-download-alt'
+            i className: 'fas fa-fw fa-download'
         else
           span className: 'tracklist__link--disabled', title: osu.trans('artist.beatmaps.download-na'),
-            i className: 'fas fa-fw fa-cloud-download-alt'
+            i className: 'fas fa-fw fa-download'

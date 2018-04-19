@@ -24,7 +24,7 @@ return [
         'title_compact' => '設置',
 
         'avatar' => [
-            'title' => '編輯頭像',
+            'title' => '編輯頭像', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '編輯個人資料',
+            'title' => '編輯個人資料', // Base text changed, please check.
 
             'user' => [
                 'user_from' => '當前位置',
