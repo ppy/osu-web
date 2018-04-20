@@ -130,16 +130,17 @@ return [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Beste Prestatie',
-                ],
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
-                'first' => [
-                    'title' => 'Eerste Ranks',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Beste Prestatie',
+                ],
+                'first' => [
+                    'title' => 'Eerste Ranks',
+                ],
             ],
         ],
         'page' => [

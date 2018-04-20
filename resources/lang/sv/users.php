@@ -182,16 +182,17 @@ return [
                 'title' => 'Nyligen',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Bästa Prestanda',
-                ],
                 'empty' => 'Inga fantastiska precision uppgifter än. :(',
-                'first' => [
-                    'title' => 'Första Plats Ranker',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Bästa Prestanda',
+                ],
+                'first' => [
+                    'title' => 'Första Plats Ranker',
+                ],
             ],
         ],
         'page' => [

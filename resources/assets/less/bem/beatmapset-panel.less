@@ -160,6 +160,12 @@
     text-transform: uppercase;
 
     .fade-element(@hover-transition-duration);
+  }
+
+  &__status-container {
+    display: flex;
+    position: absolute;
+    margin: 5px;
 
     .@{top}:hover & {
       opacity: 0;
@@ -168,12 +174,6 @@
     .@{top}--previewing & {
       opacity: 0;
     }
-  }
-
-  &__status-container {
-    display: flex;
-    position: absolute;
-    margin: 5px;
   }
 
   &__shadow {
@@ -223,9 +223,5 @@
     border-radius: 14px;
 
     .fade-element(@hover-transition-duration);
-
-    .@{top}:hover & {
-      opacity: 0;
-    }
   }
 }

@@ -21,6 +21,33 @@
 return [
     'deleted' => '[utilisateur supprimé]',
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Discussions commencées récemment',
+        ],
+
+        'events' => [
+            'title_recent' => 'Évènements récents',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Posts récents',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Les mieux notés (de ces 3 mois)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Les mieux notés (de ces 3 mois)',
+        ],
+    ],
+
+    'card' => [
+        'loading' => 'Chargement...',
+        'send_message' => 'envoyer un message',
+    ],
+
     'login' => [
         '_' => 'Se connecter',
         'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
@@ -40,11 +67,17 @@ return [
 
         'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => 'Posts de :username',
+    ],
+
     'signup' => [
         '_' => "S'inscrire",
     ],
     'anonymous' => [
         'login_link' => 'Cliquez pour vous connecter', // Base text changed from "log" to "sign"
+        'login_text' => 'Se connecter',
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.', // Base text changed from "log" to "sign"
     ],
@@ -56,6 +89,7 @@ return [
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
+        'change_avatar' => 'changer votre avatar !',
         'first_members' => 'Ici depuis le début',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -66,6 +100,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
+        'previous_usernames' => 'Anciennemnt connu en tant que',
         'plays_with' => 'Joue avec :devices',
         'title' => 'Profil de :username',
 
@@ -84,7 +119,13 @@ return [
                     'unsupported_format' => 'Format non supporté.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'mode de jeu par défaut',
+                'set' => 'définir :mode comme mode de jeu par défaut',
+            ],
         ],
+
         'extra' => [
             'followers' => ':count abonné|:count abonnés',
             'unranked' => 'Aucune partie récente',
@@ -100,14 +141,23 @@ return [
                 'favourite' => [
                     'title' => 'Beatmaps favorites (:count)',
                 ],
+                'graveyard' => [
+                    'title' => 'Beatmaps dans le cimetière (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps classées et approuvées (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Beatmaps en attente (:count)',
                 ],
             ],
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
                 'title' => 'Historique',
 
+                'monthly_playcounts' => [
+                    'title' => 'Historique des parties',
+                ],
                 'most_played' => [
                     'count' => 'Nombre de fois jouée',
                     'title' => 'Beatmaps les plus jouées',
@@ -115,6 +165,9 @@ return [
                 'recent_plays' => [
                     'accuracy' => 'Précision: :percentage',
                     'title' => 'Parties récentes',
+                ],
+                'replays_watched_counts' => [
+                    'title' => 'Historique des parties regardées',
                 ],
             ],
             'kudosu' => [
@@ -150,6 +203,11 @@ return [
                             'give' => 'Réception de :amount kudosu suite aux votes reçus dans le post :post',
                             'reset' => 'Perte de :amount kudosu suite aux votes perdus dans le post :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => 'Réception de :amount du vote de recalcul du post :post',
+                            'reset' => 'Perte de :amount du vote de recalcul du post :post',
+                        ],
                     ],
 
                     'forum_post' => [
@@ -170,23 +228,58 @@ return [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Meilleures performances',
-                ],
                 'empty' => 'Pas de première place. :(',
-                'first' => [
-                    'title' => 'Premières places',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Meilleures performances',
+                ],
+                'first' => [
+                    'title' => 'Premières places',
+                ],
             ],
+            'account_standing' => [
+                'title' => 'Statut du compte',
+                'bad_standing' => "Le compte de <strong>:username</strong> n'est pas dans un bon statut :(",
+                'remaining_silence' => '<strong>:username</strong> pourra parler à nouveau dans :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Sanctions récentes',
+                    'date' => 'date',
+                    'action' => 'sanction',
+                    'length' => 'longeur',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'description',
+                    'actor' => 'par :username',
+
+                    'actions' => [
+                        'restriction' => 'Restriction',
+                        'silence' => 'Silence',
+                        'note' => 'Avertissement',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'interests' => 'Centres d\'intérêt',
+            'lastfm' => 'Last.fm',
+            'location' => 'Position actuelle',
+            'occupation' => 'Occupation',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Site Internet',
         ],
         'page' => [
             'description' => '<strong>Moi!</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
             'restriction_info' => "Vous devez être <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
+        ],
+        'post_count' => [
+            '_' => 'A contribué à :link',
+            'count' => ':count post du forum|:count posts du forum',
         ],
         'rank' => [
             'country' => 'Classement national en :mode',
@@ -197,6 +290,7 @@ return [
             'level' => 'Niveau :level',
             'maximum_combo' => 'Combo maximum',
             'play_count' => 'Nombres de parties',
+            'play_time' => 'Temps de jeu total',
             'ranked_score' => 'Score classé',
             'replays_watched_by_others' => 'Replays regardés par les autres',
             'score_ranks' => 'Classements de Scores',
@@ -207,6 +301,9 @@ return [
     'status' => [
         'online' => 'En ligne',
         'offline' => 'Hors-ligne',
+    ],
+    'store' => [
+        'saved' => 'Utilisateur créé',
     ],
     'verify' => [
         'title' => 'Vérification de compte',

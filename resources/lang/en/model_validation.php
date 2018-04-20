@@ -85,6 +85,7 @@ return [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
         'invalid_country' => 'Country not in database.',
+        'invalid_discord' => 'Discord username invalid.',
         'invalid_email' => "Doesn't seem to be a valid email address.",
         'too_short' => 'New password is too short.',
         'unknown_duplicate' => 'Username or email address already used.',
