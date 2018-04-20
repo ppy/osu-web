@@ -68,7 +68,7 @@ return [
             'disqualify' => 'Zdyskwalifikuj',
             'hype' => 'Priorytet',
             'mapper_note' => 'Adnotacja',
-            'nomination_reset' => 'Zresetuj nominacje',
+            'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
