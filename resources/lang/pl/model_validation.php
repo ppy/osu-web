@@ -83,10 +83,10 @@ return [
 
     'user' => [
         'contains_username' => 'Hasło nie może zawierać pseudonimu.',
-        'email_already_used' => 'Ten adres email jest już w użyciu.',
+        'email_already_used' => 'Ten adres e-mail jest już w użyciu.',
         'invalid_country' => 'Kraj nie występuje w bazie danych.',
         'invalid_discord' => 'Nieprawidłowa nazwa użytkownika na Discordzie.',
-        'invalid_email' => 'To nie wygląda na adres e-mail.',
+        'invalid_email' => 'To nie wygląda na poprawny adres e-mail.',
         'too_short' => 'Nowe hasło jest za krótkie.',
         'unknown_duplicate' => 'Nazwa użytkownika lub adres e-mail jest już w użyciu.',
         'username_available_in' => 'Ta nazwa użytkownika będzie dostępna za :duration.',

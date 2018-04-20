@@ -228,7 +228,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Brak wyników. :(',
-                'not_ranked' => 'Tylko rankingowe beatmapy dają pp.',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
