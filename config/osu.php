@@ -51,13 +51,15 @@ return [
     ],
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
+        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
+        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+
         'double_post_time' => [
-            'normal' => 72,
             'author' => 24,
+            'normal' => 72,
         ],
-        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
 
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),

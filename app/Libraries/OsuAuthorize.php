@@ -619,7 +619,7 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
-            if ($plays < 200 && $plays < $posts + 1) {
+            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
         }
