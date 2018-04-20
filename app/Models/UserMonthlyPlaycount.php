@@ -25,7 +25,6 @@ use Carbon\Carbon;
 class UserMonthlyPlaycount extends Model
 {
     protected $table = 'osu_user_month_playcount';
-    protected $primaryKey = false;
     protected $guarded = [];
     public $timestamps = false;
 
