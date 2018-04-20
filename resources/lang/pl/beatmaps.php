@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Zdyskwalifikuj',
             'hype' => 'Priorytet',
             'mapper_note' => 'Adnotacja',
+            'nomination_reset' => 'Zresetuj nominacje',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
@@ -149,6 +151,11 @@ return [
         'required_text' => 'Nominacje: :current/:required',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Proces nominacji został zresetowany :time_ago przez :user z powodu nowego problemu :discussion (:message).',
+            'disqualify' => 'Zdyskwalifikowane :time_ago przez :user z powodu nowego problemu :discussion (:message).',
+        ],
 
         'reset_confirm' => [
             'nomination_reset' => 'Na pewno? Utworzenie nowego problemu zresetuje liczbę nominacji.',

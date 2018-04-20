@@ -30,6 +30,8 @@ return [
 
     'buttons' => [
         'cancel' => 'Anuluj',
+        'click_to_copy' => 'kliknij, aby skopiować',
+        'click_to_copy_copied' => 'skopiowane do schowka!',
         'delete' => 'Usuń',
         'permalink' => 'odnośnik bezpośredni',
         'permalink_copied' => 'odnośnik skopiowany',

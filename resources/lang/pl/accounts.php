@@ -45,6 +45,7 @@ return [
                 'user_occ' => 'zajęcia',
                 'user_twitter' => 'twitter',
                 'user_website' => 'strona internetowa',
+                'user_discord' => 'discord',
             ],
         ],
         'signature' => [

@@ -25,7 +25,8 @@ return [
         'discussion_post_delete' => 'Moderator usunął odpowiedź z dyskusji :discussion.',
         'discussion_post_restore' => 'Moderator przywrócił odpowiedź z dyskusji :discussion.',
         'discussion_restore' => 'Moderator przywrócił dyskusję :discussion.',
-        'disqualify_legacy' => 'Zdyskwalifikowane. Powód: :text.',
+        'disqualify' => 'Zdyskwalifikowane przez :user. Powód: :discussion (:text).',
+        'disqualify_legacy' => 'Zdyskwalifikowane przez :user. Powód: :text.',
         'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',
         'issue_resolve' => 'Problem :discussion został oznaczony jako rozwiązany.',
         'kudosu_allow' => 'Odmowa otrzymania kudosu dla dyskusji :discussion została usunięta.',
@@ -44,7 +45,8 @@ return [
     ],
 
     'item' => [
-        'content' => 'Content',
-        'type' => 'Type',
+        'content' => 'Zawartość',
+        'discussion_deleted' => '[usunięte]',
+        'type' => 'Typ',
     ],
 ];
