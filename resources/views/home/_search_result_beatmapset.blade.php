@@ -15,7 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div
-    class="js-react--beatmapset-panel"
-    data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
-></div>
+@foreach ($search->data() as $entry)
+    <div class="search-result-entry">
+        <div
+            class="js-react--beatmapset-panel"
+            data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
+        ></div>
+    </div>
+@endforeach

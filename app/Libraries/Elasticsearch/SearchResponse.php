@@ -84,16 +84,6 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
-    public function innerHits($index, string $name)
-    {
-        $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$name];
-
-        if ($results) {
-            return new static($results, $name);
-        }
-    }
-
     public function innerHitsIds(string $name, string $field = null)
     {
         $ids = array_map(function ($hit) use ($name, $field) {
@@ -200,13 +190,14 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return $this->offsetExists($this->index);
     }
 
-    public static function failed()
+    public static function failed($exception)
     {
         return new static([
             'hits' => [
                 'hits' => [],
                 'total' => 0,
             ],
+            'exception' => $exception,
         ]);
     }
 }

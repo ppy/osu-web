@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search-entry-thread {
-  margin-bottom: 30px;
+namespace App\Libraries\Search;
 
-  &__sub-item {
-    margin: 5px 0 5px 20px;
-  }
+use Illuminate\Http\Request;
+
+class WikiSearchRequestParams extends WikiSearchParams
+{
+    public function __construct(Request $request)
+    {
+        $this->queryString = trim($request['query']);
+        $this->locale = $request['locale'];
+        $this->page = get_int($request['page']);
+    }
 }

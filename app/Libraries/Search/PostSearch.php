@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Highlight;
@@ -26,32 +26,27 @@ use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
-use App\Libraries\Search\HasCompatibility;
+use App\Libraries\Elasticsearch\Sort;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 // FIXME: remove ArrayAccess after refactored
-class PostSearch extends Search implements \ArrayAccess
+class PostSearch extends Search
 {
-    use HasCompatibility;
-
-    protected $forumId;
-    protected $topicId;
-    protected $includeSubforums;
-    protected $queryString;
-    protected $userId;
-
-    public function __construct(array $options = [])
+    public function __construct(?PostSearchParams $params = null)
     {
-        parent::__construct(Post::esIndexName(), $options);
+        parent::__construct(Post::esIndexName(), $params ?? new PostSearchParams);
 
-        $this->userId = get_int($options['userId'] ?? -1);
-        $this->queryString = presence($options['query'] ?? '');
+        $this->highlight(
+            (new Highlight)
+                ->field('search_content')
+                ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                ->numberOfFragments(3)
+        );
 
-        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
-        $this->forumId = get_int($options['forumId'] ?? null);
+        $this->sort(new Sort('post_time', 'desc'));
     }
 
     // TODO: maybe move to a response/view helper?
@@ -69,36 +64,25 @@ class PostSearch extends Search implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
         $query = (new BoolQuery())
-            ->must(['term' => ['poster_id' => $this->userId]])
+            ->filter(['term' => ['poster_id' => $this->params->userId]])
             ->filter(['term' => ['type' => 'posts']]);
 
-        if (isset($this->queryString)) {
-            $query->must(QueryHelper::queryString($this->queryString, ['search_content']));
-            $this->highlight(
-                (new Highlight)
-                    ->field('search_content')
-                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
-                    ->numberOfFragments(3)
-            );
+        if (isset($this->params->queryString)) {
+            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
         }
 
-        if (isset($this->forumId)) {
-            $forumIds = $this->includeSubforums
-                ? Forum::findOrFail($this->forumId)->allSubForums()
-                : [$this->forumId];
+        if (isset($this->params->forumId)) {
+            $forumIds = $this->params->includeSubforums
+                ? Forum::findOrFail($this->params->forumId)->allSubForums()
+                : [$this->params->forumId];
 
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
-        $this->query($query);
-
-        // default sort
-        $this->sort(['post_time' => 'desc']);
-
-        return parent::toArray();
+        return $query;
     }
 
     public function data()

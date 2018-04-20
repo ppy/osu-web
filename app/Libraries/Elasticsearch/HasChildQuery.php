@@ -57,7 +57,9 @@ class HasChildQuery implements Queryable
             'name' => $this->name,
             'from' => $pageParams['from'],
             'size' => $pageParams['size'],
-            'sort' => $this->sort,
+            'sort' => array_map(function ($sort) {
+                return $sort->toArray();
+            }, $this->sorts),
         ];
 
         if (isset($this->highlight)) {
