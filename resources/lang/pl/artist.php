@@ -39,6 +39,6 @@ return [
     'songs' => [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
-        'exclusive' => 'ekskluzywny dla osu!',
+        'exclusive' => 'wyłączny dla osu!',
     ],
 ];
