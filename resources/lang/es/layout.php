@@ -189,32 +189,26 @@ return [
         '404' => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => 'Hemos sido notificados del error.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
             'description' => 'Hemos sido notificados del error.',
-            'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
