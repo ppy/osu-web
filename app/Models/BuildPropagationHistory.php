@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use DateTimeInterface;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
