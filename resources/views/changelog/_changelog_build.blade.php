@@ -26,7 +26,9 @@
     <div class="changelog-build__content">
         <span class="changelog-build__name u-ellipsis-overflow">{{ $build->updateStream->pretty_name }}</span>
         <span class="changelog-build__build u-ellipsis-overflow">{{ $build->displayVersion() }}</span>
-        <span class="changelog-build__users">{{ trans_choice('changelog.users-online', $build->users, ['users' => $build->users]) }}</span>
+        @if ($build->users > 0)
+            <span class="changelog-build__users">{{ trans_choice('changelog.users-online', $build->users, ['users' => $build->users]) }}</span>
+        @endif
     </div>
     <div class="changelog-build__indicator"></div>
 </a>
