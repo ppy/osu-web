@@ -61,9 +61,4 @@ class BuildPropagationHistory extends Model
                 ->groupBy(['created_at', 'pretty_name']);
         }
     }
-
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->toIso8601String();
-    }
 }
