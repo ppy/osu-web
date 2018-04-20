@@ -20,14 +20,14 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Varedepot',
+        'warehouse' => 'Varehus',
     ],
 
     'checkout' => [
         'cart_problems' => 'Åh åh, der er problemer med din indkøbskurv!',
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
-        'error' => 'Der opstod et problem under betaling :(',
+        'error' => 'Der opstod et problem under betalingen :(',
         'pay' => 'Betal med PayPal',
         'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
     ],
@@ -47,11 +47,11 @@ return [
         'name' => 'Navn',
 
         'stock' => [
-            'out' => 'I øjeblikket udsolgt :(. Kig forbi senere.',
+            'out' => 'Dette produkt er i øjeblikket udsolgt :(. Kig forbi senere.',
             'out_with_alternative' => 'Denne type er i øjeblikket udsolgt :(. Prøv en anden, eller kig forbi senere.',
         ],
 
-        'add_to_cart' => 'Tilføj til Indkøbskurv',
+        'add_to_cart' => 'Lig i Indkøbskurven',
         'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
 
         'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
@@ -61,7 +61,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'giv gave',
+        'gift' => 'giv som gave',
         'require_login' => [
             '_' => 'Du skal være :link for at få et supporter tag!',
             'link_text' => 'logget ind', // Base text changed from "log" to "sign"
