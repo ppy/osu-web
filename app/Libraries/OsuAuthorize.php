@@ -610,7 +610,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = $user->monthlyPlaycounts()->sum('playcount');
+        $plays = (int) $user->monthlyPlaycounts()->sum('playcount');
         $posts = $user->user_posts;
         $forInitialHelpForum = in_array($post->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
