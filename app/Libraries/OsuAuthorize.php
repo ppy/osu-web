@@ -654,7 +654,7 @@ class OsuAuthorize
             return $prefix.'no_forum_access';
         }
 
-        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts()->create());
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts()->make());
 
         if (!$postStorePermission->can()) {
             return $postStorePermission->rawMessage();
@@ -690,7 +690,7 @@ class OsuAuthorize
             return $prefix.'no_forum_access';
         }
 
-        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->create()->posts()->create());
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->make()->posts()->make());
 
         if (!$postStorePermission->can()) {
             return $postStorePermission->rawMessage();
