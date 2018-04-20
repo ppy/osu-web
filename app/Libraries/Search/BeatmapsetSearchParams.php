@@ -24,10 +24,6 @@ use App\Libraries\Elasticsearch\SearchParams;
 
 class BeatmapsetSearchParams extends SearchParams
 {
-    const PLAYED_STATE_ALL = 0;
-    const PLAYED_STATE_UNPLAYED = 1;
-    const PLAYED_STATE_PLAYED = 2;
-
     /** @var array */
     public $extra = [];
 
@@ -86,6 +82,7 @@ class BeatmapsetSearchParams extends SearchParams
             || !empty($this->rank)
             || in_array($this->status, [2, 6], true) // favourites, my maps.
             || $this->showRecommended
+            || $this->playedState !== PlayedState::ALL
         );
     }
 }
