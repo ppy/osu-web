@@ -100,7 +100,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
-        'previous_usernames' => 'Anciennemnt connu sous les noms :',
+        'previous_usernames' => 'Anciennemnt connu comme',
         'plays_with' => 'Joue avec :devices',
         'title' => 'Profil de :username',
 
