@@ -22,6 +22,7 @@
   }
 
   &__decoration {
+    margin-left: 10px;
   }
 
   &__select {
@@ -41,6 +42,16 @@
   }
 
   &__item {
+    .reset-input();
+    .link-plain();
+    .link-white();
+
+    display: flex;
+    min-width: 0;
+    padding: 5px 10px;
+
+    white-space: nowrap;
+
     &:hover {
       background-color: #000;
     }

@@ -41,45 +41,66 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       className: classNames
       div
         className: "#{bn}__select"
-        el BeatmapDiscussions.UserFilterItem,
-          onUserSelected: @toggleSelector
-          user: @selectedUser()
+        @renderItem
+          children: [
+            div
+              key: 'selector'
+              @selectedUser().username,
 
-        div className: "#{bn}__decoration",
-          i className: "fas fa-chevron-down"
-
+            div
+              key: 'decoration'
+              className: "#{bn}__decoration",
+              i className: "fas fa-chevron-down"
+          ],
+          onClick: @toggleSelector
 
       div
         className: "#{bn}__options"
-        @listItem allUsers
+        @renderOption allUsers
         for own _, user of @props.users
-          @listItem user
+          @renderOption user
 
 
-  listItem: (user) ->
-    classNames = "#{bn}__item"
-    classNames += " #{bn}__item--selected" if @selectedUser().id == user.id
-
-    div
+  renderOption: (user) ->
+    @renderItem
+      children: [
+        div
+          key: user.id
+          user.username
+      ],
       key: user.id
+      selected: @selectedUser().id == user.id
+      onClick: (event) => @userSelected(event, user)
+
+
+  renderItem: ({ children, key, onClick, selected = false }) ->
+    classNames = "#{bn}__item"
+    classNames += " #{bn}__item--selected" if selected
+
+    a
+      children: children
       className: classNames
-      el BeatmapDiscussions.UserFilterItem,
-        onUserSelected: @userSelected
-        user: user
+      href: '#'
+      key: key
+      onClick: onClick
 
 
   selectedUser: () =>
     @props.selectedUser ? allUsers
 
 
-  userSelected: ({ user }) =>
-    console.log user
+  userSelected: (event, user) ->
+    return if event.button != 0
+    event.preventDefault()
+
     selectedUserId = user.id
     $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
 
 
-  toggleSelector: () =>
-    console.log 'toggle'
+  toggleSelector: (event) =>
+    return if event.button != 0
+    event.preventDefault()
+
     @setState (prevState) ->
       Blackout.toggle(!prevState.showingSelector, 0.5)
       showingSelector: !prevState.showingSelector
