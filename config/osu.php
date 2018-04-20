@@ -7,6 +7,11 @@ return [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
     ],
 
+    'assets' => [
+        'base_url' => env('ASSETS_URL'),
+        'mini_url' => env('MINI_ASSETS_URL'),
+    ],
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.

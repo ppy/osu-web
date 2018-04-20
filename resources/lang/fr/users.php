@@ -100,7 +100,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
-        'previous_usernames' => 'Anciennemnt connu sous les noms :names.',
+        'previous_usernames' => 'Anciennemnt connu en tant que',
         'plays_with' => 'Joue avec :devices',
         'title' => 'Profil de :username',
 
@@ -228,16 +228,17 @@ return [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Meilleures performances',
-                ],
                 'empty' => 'Pas de première place. :(',
-                'first' => [
-                    'title' => 'Premières places',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Meilleures performances',
+                ],
+                'first' => [
+                    'title' => 'Premières places',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',

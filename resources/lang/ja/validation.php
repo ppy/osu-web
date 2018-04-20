@@ -18,18 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class UsernameChangeHistory extends Model
-{
-    protected $table = 'osu_username_change_history';
-    protected $primaryKey = 'change_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
-    public function scopeVisible($query)
-    {
-        $query->whereIn('type', ['support', 'paid']);
-    }
-}
+return [
+    'mixture' => ':attributeは数字か文字が抜けています',
+    'required' => ':attributeは必須です',
+];

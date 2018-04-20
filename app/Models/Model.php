@@ -82,6 +82,11 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
+    public function scopeWithPresent($query, $column)
+    {
+        $query->whereNotNull($column)->where($column, '<>', '');
+    }
+
     public function delete()
     {
         return $this->runAfterCommitWrapper(function () {

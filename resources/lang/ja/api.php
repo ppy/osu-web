@@ -18,18 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class UsernameChangeHistory extends Model
-{
-    protected $table = 'osu_username_change_history';
-    protected $primaryKey = 'change_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
-    public function scopeVisible($query)
-    {
-        $query->whereIn('type', ['support', 'paid']);
-    }
-}
+return [
+    'error' => [
+        'chat' => [
+            'limit_exceeded' => 'メッセージを送信する頻度が高すぎます。時間を置いてもう一度試してください。',
+        ],
+    ],
+];

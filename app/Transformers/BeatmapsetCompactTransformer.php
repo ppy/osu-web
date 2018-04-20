@@ -43,6 +43,7 @@ class BeatmapsetCompactTransformer extends Fractal\TransformerAbstract
             'preview_url' => $beatmapset->previewURL(),
             'video' => $beatmapset->video,
             'source' => $beatmapset->source,
+            'status' => $beatmapset->status(),
         ];
     }
 

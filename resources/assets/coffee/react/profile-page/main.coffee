@@ -200,7 +200,7 @@ class ProfilePage.Main extends React.PureComponent
     div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
-        stats: @props.statistics
+        stats: @state.user.statistics
         currentMode: @state.currentMode
         withEdit: @props.withEdit
         rankHistory: @props.rankHistory

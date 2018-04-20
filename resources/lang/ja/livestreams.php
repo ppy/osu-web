@@ -18,18 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class UsernameChangeHistory extends Model
-{
-    protected $table = 'osu_username_change_history';
-    protected $primaryKey = 'change_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
-    public function scopeVisible($query)
-    {
-        $query->whereIn('type', ['support', 'paid']);
-    }
-}
+return [
+    'top-headers' => [
+        'headline' => 'ライブ配信',
+        'description' => '五分毎にtwitch.tvからデータを受信してリストを表示しています。osu!をプレイ中に設定して配信を始めるとリストに表示される様になります。配信方法についてはwikiを参照してください。',
+    ],
+    'headers' => [
+        'regular' => '配信中',
+    ],
+];
