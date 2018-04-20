@@ -20,7 +20,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\PostSearch;
+use App\Libraries\Search\PostSearch;
+use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -34,6 +35,7 @@ use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class UsersController extends Controller
@@ -216,17 +218,11 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $options = [
-            'query' => trim(request('query')),
-            'userId' => $user->getKey(),
-            'forumId' => request('forum_id'),
-            'includeSubforums' => get_bool(request('forum_children')),
-        ];
+        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
+            ->size(50)
+            ->page(LengthAwarePaginator::resolveCurrentPage());
 
-        $search = new PostSearch($options);
-        $page = $search->paginate(50)->appends(request()->query());
-
-        return view('users.posts', compact('search', 'page', 'user'));
+        return view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)

@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,47 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-success-rate {
-  height: 100%;
-  padding: 0 15px;
-  background-color: #eee;
-  font-size: @font-size--normal;
+namespace App\Libraries\Search;
 
-  display: flex;
-  flex-direction: column;
+use App\Models\User;
+use Illuminate\Http\Request;
 
-  &__chart {
-    flex: none;
-    height: 60px;
-    margin-top: 20px;
-    line-height: 0;
-
-    @media @desktop {
-      flex: 1;
-      min-height: 0;
-      height: auto;
+class PostSearchRequestParams extends PostSearchParams
+{
+    public function __construct(Request $request, User $user)
+    {
+        $this->queryString = presence(trim($request['query']));
+        $this->page = get_int($request['page']);
+        $this->userId = $user->getKey();
+        $this->forumId = get_int($request['forum_id']);
+        $this->includeSubforums = get_bool($request['forum_children']);
     }
-  }
-
-  &__empty {
-    .center-content();
-    flex: 1;
-    margin: 20px 0;
-  }
-
-  &__header {
-    color: inherit;
-    font-size: inherit;
-    font-weight: normal;
-    font-style: normal;
-    margin: 20px 0 0;
-    text-align: center;
-  }
-
-  &__percentage {
-    .default-bar-transition(@property: margin-left);
-    width: 0;
-    display: flex;
-    justify-content: center;
-  }
 }

@@ -66,7 +66,7 @@ class Hit implements \ArrayAccess
         }
 
         // highlights are stored in an array, so return an array as well.
-        return [html_excerpt($this['_source'][$field])];
+        return [html_excerpt($this['_source'][$field], $limit)];
     }
 
     public function innerHits(string $name)

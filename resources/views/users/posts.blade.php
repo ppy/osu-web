@@ -55,7 +55,7 @@
                                     $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
                                 @endphp
                                 @foreach ($search->response() as $hit)
-                                    <div class="search-result__entry">
+                                    <div class="search-result-entry">
                                         @include('objects.search._post_search', compact('hit', 'users'))
                                     </div>
                                 @endforeach
@@ -66,7 +66,10 @@
                         </div>
 
                         <div class="search-result__row search-result__row--paginator">
-                            @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
+                            @include('objects._pagination', [
+                                'object' => $search->getPaginator()->appends(request()->query()),
+                                'modifier' => 'search',
+                            ])
                         </div>
                     @endif
                 </div>

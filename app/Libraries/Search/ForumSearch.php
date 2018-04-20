@@ -18,85 +18,83 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
+use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
-use App\Libraries\Search\HasCompatibility;
+use App\Libraries\Elasticsearch\Sort;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
-// FIXME: remove ArrayAccess after refactored
-class ForumSearch extends Search implements \ArrayAccess
+class ForumSearch extends Search
 {
-    use HasCompatibility;
-
-    protected $includeSubforums;
-    protected $queryString;
-    protected $username;
-    protected $forumId;
-
-    public function __construct(array $options = [])
+    public function __construct(?ForumSearchParams $params = null)
     {
-        parent::__construct(Post::esIndexName(), $options);
+        parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams);
+    }
 
-        $this->queryString = $options['query'];
-        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
-        $this->username = presence($options['username'] ?? null);
-        $this->forumId = get_int($options['forumId'] ?? null);
-        $this->topicId = get_int($options['topicId'] ?? null);
+    // TODO: maybe move to a response/view helper?
+    public function highlightsForHit(Hit $hit)
+    {
+        return implode(
+            ' ... ',
+            $hit->highlights(
+                'search_content',
+                static::HIGHLIGHT_FRAGMENT_SIZE * 2
+            )
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
-        $match = QueryHelper::queryString($this->queryString, ['search_content']);
-
         $query = (new BoolQuery())
-            ->must(static::firstPostQuery()->toArray())
-            ->should($this->childQuery()->toArray())
+            ->must(static::firstPostQuery())
+            ->should($this->childQuery())
             ->shouldMatch(1)
             ->filter(['term' => ['type' => 'topics']]);
 
         // skip the topic search if doing a username; needs a more complicated
         // query to accurately filter the results which isn't implemented yet.
-        if (!isset($this->username)) {
-            $query->should($match);
+        if (!isset($this->params->username) && $this->params->queryString !== null) {
+            $query->should(QueryHelper::queryString($this->params->queryString, ['search_content']));
         }
 
-        if (isset($this->forumId)) {
-            $forumIds = $this->includeSubforums
-                ? Forum::findOrFail($this->forumId)->allSubForums()
-                : [$this->forumId];
+        if (isset($this->params->forumId)) {
+            $forumIds = $this->params->includeSubforums
+                ? Forum::findOrFail($this->params->forumId)->allSubForums()
+                : [$this->params->forumId];
 
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
-        if (isset($this->topicId)) {
-            $query->filter(['term' => ['topic_id' => $this->topicId]]);
+        if (isset($this->params->topicId)) {
+            $query->filter(['term' => ['topic_id' => $this->params->topicId]]);
         }
 
-        $this->query($query);
-
-        return parent::toArray();
+        return $query;
     }
 
     private function childQuery() : HasChildQuery
     {
-        $query = (new BoolQuery())
-            ->must(QueryHelper::queryString($this->queryString, ['search_content']));
+        $query = new BoolQuery();
 
-        if (isset($this->username)) {
-            $user = User::lookup($this->username);
+        if ($this->params->queryString !== null) {
+            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
+        }
+
+        if (isset($this->params->username)) {
+            $user = User::lookup($this->params->username);
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
@@ -116,24 +114,9 @@ class ForumSearch extends Search implements \ArrayAccess
     {
         return (new HasChildQuery('posts', 'first_post'))
             ->size(1)
-            ->sort(['post_id' => ['order' => 'asc']])
+            ->sort(new Sort('post_id', 'asc'))
             ->query(['match_all' => new \stdClass()])
             ->source('search_content');
-    }
-
-    public static function search(array $params)
-    {
-        $options = [
-            'query' => $params['query'],
-            'forumId' => $params['forum_id'] ?? null,
-            'topicId' => $params['topic_id'] ?? null,
-            'includeSubforums' => $params['forum_children'] ?? false,
-            'username' => $params['username'] ?? null,
-        ];
-
-        return (new static($options))
-            ->page($params['page'] ?? 1)
-            ->size($params['size'] ?? $params['limit'] ?? 50);
     }
 
     public function data()
@@ -159,5 +142,10 @@ class ForumSearch extends Search implements \ArrayAccess
         );
 
         return User::whereIn('user_id', $ids);
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 20;
     }
 }

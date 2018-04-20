@@ -25,8 +25,8 @@ trait HasSearch
     protected $from;
     protected $highlight;
     protected $query;
-    protected $size = 10;
-    protected $sort = [];
+    protected $size;
+    protected $sorts = [];
     protected $source;
     protected $type;
 
@@ -53,7 +53,7 @@ trait HasSearch
      */
     public function size(?int $size)
     {
-        $this->size = clamp($size ?? 50, 1, 50);
+        $this->size = $size;
 
         return $this;
     }
@@ -66,26 +66,6 @@ trait HasSearch
         $this->page = $page;
 
         return $this;
-    }
-
-    /**
-     * page is not returned if using offset query.
-     *
-     * @return array
-     */
-    protected function getPaginationParams()
-    {
-        $params = ['size' => $this->size, 'limit' => $this->size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page ?? 1);
-            $params['from'] = ($params['page'] - 1) * $this->size;
-        }
-
-        return $params;
     }
 
     /**
@@ -126,11 +106,19 @@ trait HasSearch
     }
 
     /**
+     * @param array|Sort $sort
+     *
      * @return $this
      */
-    public function sort(array $sort)
+    public function sort($sort)
     {
-        $this->sort[] = $sort;
+        if (is_array($sort)) {
+            foreach ($sort as $s) {
+                $this->addSort($s);
+            }
+        } else {
+            $this->addSort($sort);
+        }
 
         return $this;
     }
@@ -143,5 +131,48 @@ trait HasSearch
         $this->type = $type;
 
         return $this;
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 10;
+    }
+
+    /**
+     * page is not returned if using offset query.
+     *
+     * @return array
+     */
+    protected function getPaginationParams()
+    {
+        $size = $this->getSize();
+        $params = ['size' => $size];
+
+        // from overrides page.
+        if (isset($this->from)) {
+            $params['from'] = $this->from;
+        } else {
+            $params['page'] = max(1, $this->page ?? 1);
+            $params['from'] = ($params['page'] - 1) * $size;
+        }
+
+        return $params;
+    }
+
+    /**
+     *  Gets the actual size to use in queries.
+     *
+     * @return int actual size to use.
+     */
+    protected function getSize() : int
+    {
+        return $this->size ?? $this->getDefaultSize();
+    }
+
+    private function addSort(Sort $sort)
+    {
+        if (!$sort->isBlank()) {
+            $this->sorts[] = $sort;
+        }
     }
 }
