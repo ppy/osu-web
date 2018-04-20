@@ -38,6 +38,22 @@ class ForumTopicsControllerTest extends TestCase
         $initialPostCount = Forum\Post::count();
         $initialTopicCount = Forum\Topic::count();
 
+        // fail because no plays =)
+        $this
+            ->actingAs($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+        // reset auth
+        app()->make('OsuAuthorize')->cacheReset();
+
         $this
             ->actingAs($user)
             ->post(route('forum.topics.reply', $topic->topic_id), [
@@ -45,11 +61,8 @@ class ForumTopicsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $newPostCount = Forum\Post::count();
-        $newTopicCount = Forum\Topic::count();
-
-        $this->assertSame(1, $newPostCount - $initialPostCount);
-        $this->assertSame(0, $newTopicCount - $initialTopicCount);
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
     }
 
     public function testShow()
@@ -88,6 +101,23 @@ class ForumTopicsControllerTest extends TestCase
         $initialPostCount = Forum\Post::count();
         $initialTopicCount = Forum\Topic::count();
 
+        // fail because no plays =)
+        $this
+            ->actingAs($user)
+            ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
+                'title' => 'Test post',
+                'body' => 'This is test post',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+        // reset auth
+        app()->make('OsuAuthorize')->cacheReset();
+
         $this
             ->actingAs($user)
             ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
@@ -99,11 +129,8 @@ class ForumTopicsControllerTest extends TestCase
                 Forum\Topic::orderBy('topic_id', 'DESC')->first()->topic_id
             ));
 
-        $newPostCount = Forum\Post::count();
-        $newTopicCount = Forum\Topic::count();
-
-        $this->assertSame(1, $newPostCount - $initialPostCount);
-        $this->assertSame(1, $newTopicCount - $initialTopicCount);
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
     }
 
     private function defaultUserGroup($user)
@@ -124,5 +151,15 @@ class ForumTopicsControllerTest extends TestCase
         DB::table($table)->insert($conditions);
 
         return UserGroup::where($conditions)->first();
+    }
+
+    private function addPlaycount($user, $playcount = null)
+    {
+        $playcount ?? $playcount = config('osu.forum.minimum_plays');
+
+        $user->monthlyPlaycounts()->create([
+            'year_month' => '0111',
+            'playcount' => $playcount,
+        ]);
     }
 }

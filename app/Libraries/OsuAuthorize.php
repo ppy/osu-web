@@ -33,6 +33,11 @@ class OsuAuthorize
 {
     private $cache = [];
 
+    public function cacheReset()
+    {
+        $this->cache = [];
+    }
+
     public function doCheckUser($user, $ability, $object)
     {
         $cacheKey = serialize([
@@ -693,7 +698,7 @@ class OsuAuthorize
         }
 
         $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->make()->posts()->make([
-            'forum_id' => $topic->forum_id,
+            'forum_id' => $forum->getKey(),
         ]));
 
         if (!$postStorePermission->can()) {
