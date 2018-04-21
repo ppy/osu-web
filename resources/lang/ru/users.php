@@ -88,7 +88,7 @@ return [
     ],
     'show' => [
         '404' => 'Игрок не найден! ;_;',
-        'age' => ':age лет',
+        'age' => ':age год|:age года|:age лет',
         'change_avatar' => 'сменить аватар!',
         'first_members' => 'Здесь с самого начала',
         'is_developer' => 'osu!developer',
@@ -97,7 +97,7 @@ return [
         'lastvisit' => 'Заходил :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age лет, из :country',
+        'origin_country_age' => ':age, из :country',
         'origin_country' => 'Из :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
