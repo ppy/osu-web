@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'mixture' => ':attribute đang thiếu số hoặc chữ',
+    'required' => 'Yêu cầu :attribute',
 ];
