@@ -33,11 +33,12 @@ return [
         'description' => 'Wyróżnieni artyści to osoby z którymi współpracujemy, aby dostarczyć osu! oryginalnej muzyki. Artyści, jak i ich utwory, zostali własnoręcznie wybrani przez członków Zespołu osu! pod kryterium niesamowitości i nadawania się do mapowania. Część z tych artystów stworzyła utwory ekskluzywnie dla osu!.<br><br>Wszystkie utwory w tej sekcji są dostarczone jako pliki o rozszerzeniu .osz z odpowiednio ustawionym rytmem. Utwory są oficjalnie licencjonowane dla osu! i rzeczy z nim powiązanych.',
     ],
     'links' => [
+        'osu' => 'Konto osu!',
         'site' => 'Oficjalna strona internetowa',
     ],
     'songs' => [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
-        'exclusive' => 'ekskluzywny dla osu!',
+        'exclusive' => 'wyłączny dla osu!',
     ],
 ];
