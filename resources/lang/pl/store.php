@@ -40,6 +40,12 @@ return [
 
     'discount' => 'zaoszczędź :percent%',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Otrzymaliśmy twoje zamówienie!',
+        ],
+    ],
+
     'order' => [
         'item' => [
             'display_name' => [

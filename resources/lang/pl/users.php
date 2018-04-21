@@ -100,6 +100,7 @@ return [
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
+        'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
         'change_avatar' => 'zmień swój awatar!',
@@ -227,6 +228,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Brak wyników. :(',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
@@ -261,6 +263,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Zainteresowania',
             'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
