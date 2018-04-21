@@ -42,7 +42,6 @@ return [
             'valid_until' => 'Ваш osu!supporter активен до :date!',
             'was_valid_until' => 'Ваш osu!supporter был активен до :date.',
         ],
-    
 
         'why_support' => [
             'title' => 'Зачем мне поддерживать osu!?',
