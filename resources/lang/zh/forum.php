@@ -257,8 +257,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => '已取消订阅！',
-            'to_watching_done' => '订阅成功！',
+            'to_not_watching' => '未订阅',
+            'to_watching' => '订阅',
+            'to_watching_mail' => '订阅并启用邮件通知',
+            'mail_disable' => '禁用邮件通知',
         ],
     ],
 ];

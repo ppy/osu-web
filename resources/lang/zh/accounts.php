@@ -51,6 +51,7 @@ return [
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
+                'user_discord' => 'Discord',
             ],
         ],
 
