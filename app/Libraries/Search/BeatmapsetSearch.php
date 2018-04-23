@@ -114,10 +114,6 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addPlayedFilter($query)
     {
-        if ($this->params->user === null || !$this->params->user->isSupporter()) {
-            return;
-        }
-
         if ($this->params->playedState === PlayedState::PLAYED) {
             $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedState === PlayedState::UNPLAYED) {
@@ -131,14 +127,8 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        if ($this->params->mode !== null) {
-            $modes = [$this->params->mode];
-        } else {
-            $modes = array_values(Beatmap::MODES);
-        }
-
         $unionQuery = null;
-        foreach ($modes as $mode) {
+        foreach ($this->getSelectedModes() as $mode) {
             $newQuery =
                 Score\Best\Model::getClass($mode)
                 ->forUser($this->params->user)
