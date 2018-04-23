@@ -81,7 +81,13 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $played = [
+            ['id' => null, 'name' => trans('beatmaps.played.any')],
+            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
+            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
+        ];
+
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }

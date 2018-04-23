@@ -69,6 +69,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addExtraFilter($query);
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
+        $this->addPlayedFilter($query);
 
         return $query;
     }
@@ -111,20 +112,23 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addPlayedFilter($query)
+    {
+        if ($this->params->playedFilter === 'played') {
+            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+        } elseif ($this->params->playedFilter === 'unplayed') {
+            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+        }
+    }
+
     private function addRankFilter($query)
     {
         if (empty($this->params->rank)) {
             return;
         }
 
-        if ($this->params->mode !== null) {
-            $modes = [$this->params->mode];
-        } else {
-            $modes = array_values(Beatmap::MODES);
-        }
-
         $unionQuery = null;
-        foreach ($modes as $mode) {
+        foreach ($this->getSelectedModes() as $mode) {
             $newQuery =
                 Score\Best\Model::getClass($mode)
                 ->forUser($this->params->user)
@@ -221,5 +225,29 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         return [new Sort('approved_date', 'desc')];
+    }
+
+    private function getPlayedBeatmapIds()
+    {
+        $unionQuery = null;
+        foreach ($this->getSelectedModes() as $mode) {
+            $newQuery =
+                Score\Best\Model::getClass($mode)
+                ->forUser($this->params->user)
+                ->select('beatmap_id');
+
+            if ($unionQuery === null) {
+                $unionQuery = $newQuery;
+            } else {
+                $unionQuery->union($newQuery);
+            }
+        }
+
+        return model_pluck($unionQuery, 'beatmap_id');
+    }
+
+    private function getSelectedModes()
+    {
+        return $this->params->mode === null ? array_values(Beatmap::MODES) : [$this->params->mode];
     }
 }
