@@ -186,6 +186,14 @@ Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->na
 
 Route::get('users/{user}/modding-history', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+
+Route::group(['as' => 'users.', 'namespace' => 'Users'], function () {
+    Route::get('users/{user}/modding', 'ModdingHistoryController@index')->name('modding');
+    Route::get('users/{user}/modding/events', 'ModdingHistoryController@events')->name('modding.events');
+    Route::get('users/{user}/modding/discussions', 'ModdingHistoryController@discussions')->name('modding.discussions');
+    Route::get('users/{user}/modding/posts', 'ModdingHistoryController@posts')->name('modding.posts');
+});
+
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 
