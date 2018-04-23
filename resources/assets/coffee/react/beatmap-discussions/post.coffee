@@ -79,11 +79,15 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        a
+        div
           className: "#{bn}__user-container"
-          href: laroute.route('users.show', user: @props.user.id)
           style:
             color: userColor
+
+          a
+            className: "#{bn}__user-link"
+            href: laroute.route('users.show', user: @props.user.id)
+
           div className: "#{bn}__avatar",
             el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
@@ -96,8 +100,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   color: userColor
                 @props.user.username
 
-              # FIXME: a in a :D
-              span
+              a
                 className: "#{bn}__user-modding-history-link"
                 href: laroute.route('users.beatmapset-activities', user: @props.user.id)
                 i className: 'fas fa-align-left'
