@@ -68,8 +68,6 @@ class UsersController extends Controller
         // FIXME: camelCase
         $current_action = 'beatmapset_activities';
 
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
         $user = User::lookup($id, 'id', true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
