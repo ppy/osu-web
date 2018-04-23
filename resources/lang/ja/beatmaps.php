@@ -110,10 +110,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'この譜面は :date にApprovedになりました！',
-            'graveyard' => 'この譜面は :date から更新が止まっています・・・',
-            'loved' => 'この譜面は :date にLovedになりました！',
-            'ranked' => 'この譜面は :date　にRankedになりました！',
+            'approved' => 'この譜面は:dateにApprovedになりました！',
+            'graveyard' => 'この譜面は:dateから更新が止まっています・・・',
+            'loved' => 'この譜面は:dateにLovedになりました！',
+            'ranked' => 'この譜面は:dateにRankedになりました！',
             'wip' => '注：この譜面は作者に未完成だとマークされています',
         ],
 
