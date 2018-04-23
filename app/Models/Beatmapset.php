@@ -555,7 +555,9 @@ class Beatmapset extends Model implements AfterCommit
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $this->queued_at = $currentTime->copy()->subSeconds($this->previous_queue_duration);
+            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $adjustment = min($this->previous_queue_duration, $maxAdjustment);
+            $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
         $this->approved = static::STATES[$state];
