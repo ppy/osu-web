@@ -40,7 +40,7 @@ class BeatmapsetSearchParams extends SearchParams
      *
      * @var string
      */
-    public $playedState = null;
+    public $playedFilter = null;
 
     /** @var int|null */
     public $language = null;
@@ -85,7 +85,7 @@ class BeatmapsetSearchParams extends SearchParams
             || !empty($this->rank)
             || in_array($this->status, [2, 6], true) // favourites, my maps.
             || $this->showRecommended
-            || $this->playedState !== null
+            || $this->playedFilter !== null
         );
     }
 }
