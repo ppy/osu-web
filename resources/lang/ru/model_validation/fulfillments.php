@@ -19,10 +19,12 @@
  */
 
 return [
-    'months' => 'месяцев',
-
-    'user_search' => [
-        'searching' => 'поиск...',
-        'not_found' => 'Пользователь не найден',
+    'username_change' => [
+        'only_one' => 'разрешена только одна смена ника за оплату каждого заказа.',
+        'insufficient_paid' => 'Стоимость смены ника превышает оплаченную сумму (:expected > :actual)',
+        'reverting_username_mismatch' => 'Текущий ник (:current) не похож на предыдущий (:username) для восстановления',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'Сумма платежа недостаточна для покупки osu!supporter (:actual > :expected)',
     ],
 ];

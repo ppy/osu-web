@@ -151,7 +151,10 @@ class BeatmapsetsController extends Controller
                 }
             );
 
-            return Beatmapset::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids)->get();
+            return Beatmapset::whereIn('beatmapset_id', $ids)
+                ->orderByField('beatmapset_id', $ids)
+                ->with('beatmaps')
+                ->get();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
         return json_collection(
