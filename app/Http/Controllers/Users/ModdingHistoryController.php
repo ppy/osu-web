@@ -21,14 +21,66 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
+use App\Models\BeatmapDiscussionVote;
+use App\Models\BeatmapsetEvent;
+use App\Models\User;
 
 class ModdingHistoryController extends Controller
 {
     protected $section = 'user';
 
-    public function index()
+    public function index($id)
     {
+        // FIXME: camelCase
+        $current_action = 'beatmapset_activities';
 
+        $user = User::lookup($id, 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        $params = [
+            'limit' => 10,
+            'sort' => 'id-desc',
+            'user' => $user->getKey(),
+        ];
+
+        $discussions = BeatmapDiscussion::search($params);
+        $discussions['items'] = $discussions['query']->with([
+                'user',
+                'beatmapset',
+                'startingPost',
+            ])->get();
+
+        $posts = BeatmapDiscussionPost::search($params);
+        $posts['items'] = $posts['query']->with([
+                'user',
+                'beatmapset',
+                'beatmapDiscussion',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.startingPost',
+            ])->get();
+
+        $events = BeatmapsetEvent::search($params);
+        $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
+
+        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
+        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+
+        return view('users.beatmapset_activities', compact(
+            'current_action',
+            'discussions',
+            'events',
+            'posts',
+            'user',
+            'receivedVotes',
+            'votes'
+        ));
     }
 
     public function discussions()
