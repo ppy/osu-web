@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Descalificación',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
+            'nomination_reset' => 'Reinicio de nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugerencia',
@@ -116,7 +118,6 @@ return [
             'ranked' => '¡Este beatmap fue rankeado el :date!',
             'wip' => 'Nota: Este beatmap fue marcado como trabajo en proceso por el creador.',
         ],
-
     ],
 
    'hype' => [
@@ -141,11 +142,17 @@ return [
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este beatmap?',
         'nominated_by' => 'nominado por :users',
+        'reset_message_deleted' => 'eliminado',
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
         'required_text' => 'Nominaciones: :current/:required',
         'title' => 'Estado de Nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben ser resueltos primero.',
+
+        'reset_at' => [
+            'nomination_reset' => 'El proceso de nominación se ha reiniciado :time_ago por :user a causa del nuevo problema :discussion (:message).',
+            'disqualify' => 'Descalificado :time_ago por :user a causa del nuevo problema :discussion (:message).',
+        ],
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',

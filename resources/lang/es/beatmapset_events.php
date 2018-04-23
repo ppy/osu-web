@@ -23,6 +23,7 @@ return [
         'discussion_post_delete' => 'Un moderador eliminó un post en la discusión :discussion.',
         'discussion_post_restore' => 'Un moderador restauró un post de la discusión :discussion.',
         'discussion_restore' => 'Un moderador restauró la discusión :discussion.',
+        'disqualify' => 'Descalificado por :user. Razón: :discussion (:text).',
         'disqualify_legacy' => 'Descalificado por :user. Razón: :text.',
         'issue_reopen' => 'El problema resuelto :discussion ha sido reabierto.',
         'issue_resolve' => 'El problema :discussion ha sido marcado como resuelto.',
@@ -30,9 +31,9 @@ return [
         'kudosu_deny' => 'La discusión :discussion ha sido negada para kudosu.',
         'kudosu_gain' => 'La discusión :discussion por :user ha obtenido suficientes votos para kudosu.',
         'kudosu_lost' => 'La discusión :discussion por :user ha perdido votos y su kudosu ganado ha sido removido.',
-        'kudosu_recalculate' => 'La discusión :discussion se le ha recalculado los kudosu ganados.',
+        'kudosu_recalculate' => 'A la discusión :discussion se le han recalculado los kudosu ganados.',
         'nominate' => 'Nominado por :user.',
-        'nomination_reset' => 'Un nuevo problema :discussion ha reiniciado las nominaciones.',
+        'nomination_reset' => 'El nuevo problema :discussion ha reiniciado las nominaciones.',
         'qualify' => 'Calificado.',
         'rank' => 'Rankeado.',
     ],
@@ -41,6 +42,7 @@ return [
     ],
     'item' => [
         'content' => 'Contenido',
+        'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
     ],
 ];

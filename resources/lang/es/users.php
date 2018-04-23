@@ -90,6 +90,7 @@ return [
         'origin_country' => 'De :country',
         'origin_country_age' => ':age de :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
+        'previous_usernames' => 'Antes conocido como :names.',
         'plays_with' => 'Juega con :devices',
         'title' => 'Perfil de :username',
         'change_avatar' => '¡cambia tu avatar!',
@@ -130,7 +131,7 @@ return [
                     'title' => 'Beatmaps Favoritos (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Sepultados (:count)',
+                    'title' => 'Beatmaps Abandonados (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Rankeados & Aprobados (:count)',
@@ -142,7 +143,7 @@ return [
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
                 'monthly_playcounts' => [
-                    'title' => 'Historial de de juego',
+                    'title' => 'Historial de juego',
                 ],
 
                 'title' => 'Historial',
