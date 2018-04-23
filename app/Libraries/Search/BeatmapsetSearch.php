@@ -114,9 +114,9 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addPlayedFilter($query)
     {
-        if ($this->params->playedState === PlayedState::PLAYED) {
+        if ($this->params->playedState === 'played') {
             $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
-        } elseif ($this->params->playedState === PlayedState::UNPLAYED) {
+        } elseif ($this->params->playedState === 'unplayed') {
             $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         }
     }

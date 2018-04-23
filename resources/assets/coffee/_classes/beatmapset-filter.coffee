@@ -28,7 +28,7 @@ class @BeatmapsetFilter
     status: parseInt10
     genre: parseInt10
     language: parseInt10
-    played: parseInt10
+
 
   @charToKey:
     c: 'general'
@@ -49,7 +49,7 @@ class @BeatmapsetFilter
     genre: null
     language: null
     mode: null
-    played: 0
+    played: null
     query: ''
     rank: ''
     status: 0
