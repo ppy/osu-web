@@ -97,7 +97,7 @@ return [
         'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
         'origin_age' => ':age',
         'origin_country_age' => ':countryの:age歳',
-        'origin_country' => '出身地 :country',
+        'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'plays_with' => '使用デバイス :devices',
         'title' => ':usernameのプロフィール',
