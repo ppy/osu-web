@@ -32,5 +32,5 @@ return [
     'title' => 'Venner',
     'title_compact' => 'venner',
 
-    'too_many' => 'Maksimale antal venner nået.',
+    'too_many' => 'Det maksimale antal venner nået.',
 ];

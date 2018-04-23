@@ -60,7 +60,7 @@ return [
             'today' => 'i dag',
             'week' => 'uge',
             'month' => 'måned',
-            'all_time' => 'for altid',
+            'all_time' => 'altid',
             'last_week' => 'sidste uge',
             'weeks_ago' => ':count uge siden|:count uger siden',
         ],

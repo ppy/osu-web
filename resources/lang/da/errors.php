@@ -31,7 +31,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Ugyldig spiltilstand er specificeret.',
-        'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede spiltilstand på denne beatmaps sværhedsgrad.',
+        'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede spiltilstand på denne beatmap sværhedsgrad.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Du har for mange favoritter! Fjern venligst en favorit for at tilføje en ny.',

@@ -28,11 +28,25 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Intet er hændt...endnu.',
+        'empty' => 'Intet er sket...endnu.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'slettet',
+        'title' => 'Beatmap Diskussioner',
+
+        'form' => [
+            'deleted' => 'Inkluder slettede diskussioner',
+
+            'user' => [
+                'label' => 'Bruger',
+                'overview' => 'Aktivitets oversigt',
+            ],
+        ],
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Ingen af opslagene angår mig',
+        'confirm' => 'Ingen af opslagene angår mine bekymringer',
         'notice' => 'Der er opslag omkring :timestamp (:existing_timestamps). Vær venlig at tjekke dem inden du slår noget op.',
     ],
 

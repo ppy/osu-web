@@ -107,7 +107,9 @@
       false
 
 
-  isDesktop: -> window.matchMedia('(min-width: 840px)').matches
+  isDesktop: ->
+    # sync with boostrap-variables @screen-sm-min
+    window.matchMedia('(min-width: 900px)').matches
 
 
   isMobile: -> !osu.isDesktop()

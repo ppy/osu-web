@@ -20,43 +20,23 @@
 
 namespace App\Libraries\Search;
 
-use BadMethodCallException;
-use ReflectionObject;
+use App\Libraries\Elasticsearch\SearchParams;
 
-/**
- * Compatibility trait for Search classes during cleanup.
- */
-trait HasCompatibility
+class EmptySearchParams extends SearchParams
 {
-    public function params()
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey() : string
     {
-        return $this->getPaginationParams();
+        return '';
     }
 
-    // ArrayAccess
-
-    public function offsetExists($key)
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable() : bool
     {
-        return in_array($key, ['data', 'total', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return;
-        }
-
-        // reroute to method
-        return (new ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new BadMethodCallException('not supported');
+        return false;
     }
 }

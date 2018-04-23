@@ -22,6 +22,7 @@ el = React.createElement
 class @BBCodeEditor extends React.Component
   componentDidMount: =>
     @sizeSelect.value = ''
+    @body.selectionEnd = 0
     @body.focus()
 
 

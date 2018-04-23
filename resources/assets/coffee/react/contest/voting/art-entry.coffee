@@ -39,7 +39,7 @@ class Contest.Voting.ArtEntry extends React.Component
       "contest-art-entry--#{shape}" if shape
     ]
 
-    div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: _.compact(divClasses).join(' '),
+    div style: { backgroundImage: "url('#{@props.entry.artMeta.thumb}')" }, className: _.compact(divClasses).join(' '),
       a {
         className: _.compact([
           'js-gallery contest-art-entry__thumbnail',

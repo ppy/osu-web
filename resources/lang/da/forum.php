@@ -43,16 +43,16 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Fastgjorte Emner',
+    'pinned_topics' => 'Pinned Emner',
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
         'confirm_restore' => 'Gendag opslag?',
-        'edited' => 'Sidst redigeret af :user på :when, redigeret i alt :count gange.',
+        'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
         'actions' => [
             'destroy' => 'Slet opslag',
             'restore' => 'Gendan opslag',
-            'edit' => 'Redigér opslag',
+            'edit' => 'Rediger opslag',
         ],
     ],
     'search' => [
@@ -75,12 +75,12 @@ return [
             'preview_hide' => 'Skriv',
             'submit' => 'Slå op',
         ],
-        'go_to_latest' => 'vist seneste opslag',
+        'go_to_latest' => 'vis seneste opslag',
         'jump' => [
             'enter' => 'klik for at vælge et specifikt opslagsnummer',
-            'first' => 'gå til første opslag',
-            'last' => 'gå til sidste opslag',
-            'next' => 'spring over næste 10 opslag',
+            'first' => 'gå til det første opslag',
+            'last' => 'gå til det sidste opslag',
+            'next' => 'spring over de næste 10 opslag',
             'previous' => 'gå 10 opslag tilbage',
         ],
         'latest_post' => ':when af :user',
@@ -113,7 +113,7 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Opsig abonnement fra emne?',
+                'confirmation' => 'Opsig abonnement fra emnet?',
                 'title' => 'Opsig abonnement',
             ],
         ],
@@ -152,7 +152,7 @@ return [
         ],
 
         'edit_title' => [
-            'start' => 'Ændr titel',
+            'start' => 'Rediger titel',
         ],
 
         'index' => [
@@ -215,12 +215,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Fjern fastgørelse af emne',
-            'to_0_done' => 'Emnet er blevet løsgjort',
+            'to_0' => 'Fjern fra pins',
+            'to_0_done' => 'Emnet er blevet fjernet fra pins',
             'to_1' => 'Fastgør emne',
-            'to_1_done' => 'Emnet er blevet fastgjort',
-            'to_2' => 'Fastgør emne og marker som en meddelelse',
-            'to_2_done' => 'Emnet er blevet fastgjort og markeret som en meddelelse',
+            'to_1_done' => 'Emnet er blevet pinned',
+            'to_2' => 'pin emne og marker som en meddelelse',
+            'to_2_done' => 'Emnet er blevet pinned og markeret som en meddelelse',
         ],
 
         'show' => [

@@ -171,16 +171,17 @@ return [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => '최고 퍼포먼스 점수',
-                ],
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
-                'first' => [
-                    'title' => '1위 달성 맵',
-                ],
                 'pp' => ':amountpp',
                 'title' => '순위',
                 'weighted_pp' => '가중치 적용: :pp (:percentage)', // 높은 경쟁력을 가진 맵(구맵들)은 가중치가 줄어들고 본래 pp에서 가중치를 곱한 만큼의 실 pp를 받게됨
+
+                'best' => [
+                    'title' => '최고 퍼포먼스 점수',
+                ],
+                'first' => [
+                    'title' => '1위 달성 맵',
+                ],
             ],
         ],
         'page' => [

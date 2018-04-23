@@ -26,8 +26,8 @@ return [
     'beatmap_discussion' => [
         'hype' => [
             'guest' => 'Du skal være logget ind for at hype.', // Base text changed from "log" to "sign"
-            'hyped' => 'Du har allerede hypet dette beatmap.',
-            'limit_exceeded' => 'Du har opbrugt alt dit hype.',
+            'hyped' => 'Du har allerede hypet denne beatmap.',
+            'limit_exceeded' => 'Du har opbrugt alle dine hype.',
             'not_hypeable' => 'Dette beatmap kan ikke blive hypet',
             'owner' => 'Du kan ikke hype dit eget beatmap.',
         ],
@@ -50,7 +50,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
             'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
-            'minimum_one_selection' => 'Et minimum af én valgmulighed pr. bruger er nødvendig.',
+            'minimum_one_selection' => 'Et minimum af en valgmulighed pr. bruger er nødvendig.',
             'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
             'too_many_options' => 'Overskrider det maksimale antal tilladte valgmuligheder.',
         ],
@@ -66,9 +66,9 @@ return [
         'invalid_country' => 'Landet er ikke i databasen.',
         'invalid_email' => 'Dette ligner ikke en email-adresse...',
         'too_short' => 'Den nye adgangskode er for kort.',
-        'unknown_duplicate' => 'Brugernavn eller email-adresse er allerede i brug.',
+        'unknown_duplicate' => 'Brugernavnet eller email-adressen er allerede i brug.',
         'username_too_short' => 'Det anmodede brugernavn er for kort.',
-        'weak' => 'Sortlistet adgangskode.',
+        'weak' => 'Blacklistet adgangskode.',
         'wrong_current_password' => 'Den nuværende adgangskode er ugyldig.',
         'wrong_email_confirmation' => 'Emailbekræftelsen er forkert.',
         'wrong_password_confirmation' => 'Adgangskodebekræftelsen er forkert.',

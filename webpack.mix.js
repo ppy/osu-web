@@ -79,6 +79,11 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM",
+    "prop-types": "PropTypes",
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),

@@ -66,12 +66,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'touch' => 8,
     ];
 
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'limit' => 20,
-        'page' => 1,
-    ];
-
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
@@ -83,6 +77,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_msnm' => 255,
         'user_twitter' => 255,
         'user_website' => 200,
+        'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
@@ -319,42 +314,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return [];
     }
 
-    public static function search($rawParams)
-    {
-        $max = config('osu.search.max.user');
-
-        $params = [];
-        $params['query'] = presence($rawParams['query'] ?? null);
-        $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
-        $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
-        $size = $params['limit'];
-        $from = ($params['page'] - 1) * $size;
-
-        $results = static::searchUsername($params['query'], $from, $size);
-
-        $total = $results['hits']['total'];
-        $data = es_records($results, get_called_class());
-
-        return [
-            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
-            'over_limit' => $total > $max,
-            'data' => $data,
-            'params' => $params,
-        ];
-    }
-
-    public static function searchUsername(string $username, $from, $size)
-    {
-        return es_search([
-            'index' => static::esIndexName(),
-            'from' => $from,
-            'size' => $size,
-            'body' => [
-                'query' => static::usernameSearchQuery($username ?? ''),
-            ],
-        ]);
-    }
-
     public function validateUsernameChangeTo($username)
     {
         if (!$this->hasSupported()) {
@@ -527,6 +486,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
+    public function getUserDiscordAttribute($value)
+    {
+        return presence($this->user_jabber);
+    }
+
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
@@ -556,6 +520,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         if (present($value)) {
             return "#{$value}";
         }
+    }
+
+    public function setUserDiscordAttribute($value)
+    {
+        $this->attributes['user_jabber'] = $value;
     }
 
     public function setUserColourAttribute($value)
@@ -1534,6 +1503,16 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->country_acronym = $country->getKey();
             } else {
                 $this->validationErrors()->add('country', '.invalid_country');
+            }
+        }
+
+        // user_discord is an accessor for user_jabber
+        if ($this->isDirty('user_jabber') && present($this->user_discord)) {
+            // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
+            // - is a 2-32 char username (excluding chars @#:)
+            // - ends with a # and 4-digit discriminator
+            if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
+                $this->validationErrors()->add('user_discord', '.invalid_discord');
             }
         }
 

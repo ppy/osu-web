@@ -30,18 +30,15 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
-                </div>
-
-                <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_from'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
                 </div>
-
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
             </div>
         </div>

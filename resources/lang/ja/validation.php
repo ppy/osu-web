@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,10 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search-entry-thread {
-  margin-bottom: 30px;
-
-  &__sub-item {
-    margin: 5px 0 5px 20px;
-  }
-}
+return [
+    'mixture' => ':attributeは数字か文字が抜けています',
+    'required' => ':attributeは必須です',
+];

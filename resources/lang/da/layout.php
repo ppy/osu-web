@@ -51,7 +51,7 @@ return [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'liste',
-            'artists' => 'fremhævede artister',
+            'artists' => 'udvalgte kunstnere',
             'packs' => 'pakker',
             'beatmapset-watches-index' => 'modding watchlist',
             // 'getCharts' => 'charts',
@@ -105,7 +105,7 @@ return [
             'disabled' => 'deaktiveret',
 
             'register' => 'registrer',
-            'reset' => 'genvind',
+            'reset' => 'gendan',
             'new' => 'ny',
 
             'messages' => 'Beskeder',

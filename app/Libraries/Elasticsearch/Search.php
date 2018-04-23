@@ -24,31 +24,80 @@ use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class Search implements Queryable
 {
     use HasSearch;
 
-    const DEFAULT_PAGE_SIZE = 50;
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
     protected $index;
-    protected $options;
+    protected $params;
+    protected $queryString;
 
+    private $count;
     private $error;
     private $response;
 
-    public function __construct(string $index, array $options = [])
+    public function __construct(string $index, SearchParams $params)
     {
         $this->index = $index;
-        $this->options = $options;
+        $this->params = $params;
+
+        if ($this->params->page !== null) {
+            $this->page($this->params->page);
+        }
+
+        if ($this->params->size !== null) {
+            $this->size($this->params->size);
+        }
+
+        if ($this->params->sort !== null) {
+            $this->sort($this->params->sort);
+        }
+
+        if ($this->params->source !== null) {
+            $this->source($this->params->source);
+        }
     }
 
     // for paginator
     abstract public function data();
+
+    /**
+     * @return array|Queryable
+     */
+    abstract public function getQuery();
+
+    /**
+     * Gets the numner of matches for the query.
+     *
+     * @return int the number of matches.
+     */
+    public function count() : int
+    {
+        // use total from response if response was already fetched.
+        if (isset($this->response)) {
+            return $this->response->total();
+        }
+
+        if (!isset($this->count)) {
+            $query = $this->toArray();
+            // some arguments need to be stripped from the body as they're not supported by count.
+            $body = $query['body'];
+            foreach (['from', 'size', 'sort', '_source'] as $key) {
+                unset($body[$key]);
+            }
+
+            $query['body'] = $body;
+
+            $this->count = Es::count($query)['count'];
+        }
+
+        return $this->count;
+    }
 
     public function getError()
     {
@@ -63,9 +112,8 @@ abstract class Search implements Queryable
             return;
         }
 
-        return new LengthAwarePaginator(
-            $this->data(),
-            $this->total(),
+        return new SearchPaginator(
+            $this,
             $page['size'],
             $page['page'],
             $options
@@ -73,20 +121,13 @@ abstract class Search implements Queryable
     }
 
     /**
-     * Not the same as paginate on laravel's query builder; this one can actually pass options to
-     * the paginator.
+     * Returns if the total number of results found is greater than the allowed limit.
+     *
+     * @return bool
      */
-    public function paginate(?int $pageSize = null, ?int $page = null, ?array $options = null)
+    public function overLimit()
     {
-        // TODO: default should be based to search type.
-        $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
-            ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
-
-        if ($options === null) {
-            $options = ['path' => request()->url()];
-        }
-
-        return $this->getPaginator($options);
+        return $this->response()->total() > $this->maxResults();
     }
 
     /**
@@ -111,7 +152,9 @@ abstract class Search implements Queryable
         $body = [
             'from' => $pageParams['from'],
             'size' => $pageParams['size'],
-            'sort' => $this->sort,
+            'sort' => array_map(function ($sort) {
+                return $sort->toArray();
+            }, $this->sorts),
         ];
 
         if (isset($this->highlight)) {
@@ -122,7 +165,7 @@ abstract class Search implements Queryable
             $body['_source'] = $this->source;
         }
 
-        $body['query'] = QueryHelper::clauseToArray($this->query);
+        $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
 
         $json = ['body' => $body, 'index' => $this->index];
 
@@ -133,15 +176,36 @@ abstract class Search implements Queryable
         return $json;
     }
 
+    /**
+     * Returns the user-visible total which can be less than the total number of matching documents.
+     *
+     * @return int
+     */
     public function total()
     {
-        return min($this->response()->total(), static::MAX_RESULTS);
+        return min($this->response()->total(), $this->maxResults());
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 50;
+    }
+
+    protected function maxResults() : int
+    {
+        return static::MAX_RESULTS;
     }
 
     private function fetch()
     {
         try {
-            return new SearchResponse(Es::search($this->toArray()));
+            return datadog_timing(
+                function () {
+                    return new SearchResponse(Es::search($this->toArray()));
+                },
+                config('datadog-helper.prefix_web').'.search.fetch',
+                ['type' => get_called_class()]
+            );
         } catch (NoNodesAvailableException $e) {
             // all servers down
             $this->error = $e;
@@ -161,6 +225,6 @@ abstract class Search implements Queryable
             );
         }
 
-        return SearchResponse::failed();
+        return SearchResponse::failed($this->error);
     }
 }
