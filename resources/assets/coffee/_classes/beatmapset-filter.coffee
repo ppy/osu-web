@@ -38,7 +38,7 @@ class @BeatmapsetFilter
     l: 'language'
     e: 'extra'
     r: 'rank'
-    p: 'played'
+    played: 'played'
     q: 'query'
     sort: 'sort'
 

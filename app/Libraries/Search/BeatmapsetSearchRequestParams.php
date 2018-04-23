@@ -60,7 +60,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
                     $validRanks
                 );
 
-                $this->playedFilter = $request['p'];
+                $this->playedFilter = $request['played'];
                 if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
                     $this->playedFilter = null;
                 }
