@@ -355,7 +355,8 @@ class BBCodeFromDB
         $text = str_replace(":{$this->uid}]", ']', $text);
 
         // strip url
-        $text = preg_replace('#<!-- ([emw]) --><a.*?>(.*?)</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- ([mw]) --><a.*?href="([^"]+)".*?>.*?</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- e --><a.*?href="mailto:([^"]+)".*?>.*?</a><!-- e -->#', '\\1', $text);
 
         // strip relative url
         $text = preg_replace('#<!-- l --><a.*?href="(.*?)".*?>.*?</a><!-- l -->#', '\\1', $text);
