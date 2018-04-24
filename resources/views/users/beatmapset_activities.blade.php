@@ -59,7 +59,8 @@
                     <div class="beatmapset-activities__user-upvote-panel">
                         @component('beatmapset_activities._user', ['user' => $userVotes[0]->user])
                             <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
-                                <a href="{{ route('beatmapsets.discussions.votes.index', ['user' => $userVotes[0]->user->user_id]) }}">
+                                <a class="beatmapset-activities__vote-link"
+                                   href="{{ route('beatmapsets.discussions.votes.index', ['user' => $userVotes[0]->user->user_id]) }}">
                                     {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
                                 </a>
                             </span>
@@ -74,7 +75,8 @@
                     <div class="beatmapset-activities__user-upvote-panel">
                         @component('beatmapset_activities._user', ['user' => $userVotes[0]->beatmapDiscussion->user])
                             <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
-                                <a href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $userVotes[0]->beatmapDiscussion->user->user_id]) }}">
+                                <a class="beatmapset-activities__vote-link"
+                                   href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $userVotes[0]->beatmapDiscussion->user->user_id]) }}">
                                     {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
                                 </a>
                             </span>
