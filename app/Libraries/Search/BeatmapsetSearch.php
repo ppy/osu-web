@@ -115,9 +115,9 @@ class BeatmapsetSearch extends RecordSearch
     private function addPlayedFilter($query)
     {
         if ($this->params->playedFilter === 'played') {
-            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds()]]);
+            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
-            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds()]]);
+            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         }
     }
 
@@ -127,7 +127,7 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds($this->params->rank)]]);
+        $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
     }
 
     private function addRecommendedFilter($query)
@@ -209,7 +209,7 @@ class BeatmapsetSearch extends RecordSearch
         return [new Sort('approved_date', 'desc')];
     }
 
-    private function getRankedBeatmapIds(?array $rank = null)
+    private function getPlayedBeatmapIds(?array $rank = null)
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
