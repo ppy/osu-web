@@ -143,9 +143,8 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
-        $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
-        $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
+        $query->filter(['terms' => ['difficulties.beatmap_id' => $beatmapIds]]);
     }
 
     private function addRecommendedFilter($query)
