@@ -68,10 +68,6 @@ Route::group(['prefix' => 'beatmapsets'], function () {
 Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
     Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
-
-    Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
-        Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
-    });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
@@ -191,6 +187,8 @@ Route::group(['as' => 'users.'], function () {
     Route::get('users/{user}/modding/events', 'Users\ModdingHistoryController@events')->name('modding.events');
     Route::get('users/{user}/modding/discussions', 'Users\ModdingHistoryController@discussions')->name('modding.discussions');
     Route::get('users/{user}/modding/posts', 'Users\ModdingHistoryController@posts')->name('modding.posts');
+    Route::get('users/{user}/modding/votes-given', 'Users\ModdingHistoryController@votesGiven')->name('modding.votes-given');
+    Route::get('users/{user}/modding/votes-received', 'Users\ModdingHistoryController@votesReceived')->name('modding.votes-received');
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');

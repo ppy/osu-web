@@ -168,4 +168,58 @@ class ModdingHistoryController extends Controller
 
         return view('beatmap_discussion_posts.index', compact('posts', 'user'));
     }
+
+    public function votesGiven()
+    {
+        $user = $this->user;
+
+        $search = BeatmapDiscussionVote::search(request());
+        $votes = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapDiscussion',
+                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.beatmapset',
+                    'beatmapDiscussion.startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+    }
+
+    public function votesReceived()
+    {
+        $user = $this->user;
+        // quick workaround for existing call
+        $params = request();
+        $params['receiver'] = $user->getKey();
+        unset($params['user']);
+
+        $search = BeatmapDiscussionVote::search($params);
+        $votes = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapDiscussion',
+                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.beatmapset',
+                    'beatmapDiscussion.startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+    }
 }
