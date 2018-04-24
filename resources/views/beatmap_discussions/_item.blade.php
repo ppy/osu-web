@@ -46,7 +46,7 @@
                     <div class="beatmap-discussion-post__content">
                         <div class="beatmap-discussion-post__user-container">
                             <div class="beatmap-discussion-post__avatar">
-                                <a href="{{ route('users.beatmapset-activities', $discussion->user) }}">
+                                <a href="{{ route('users.modding.index', $discussion->user) }}">
                                     <div class="avatar avatar--full-rounded" style="background-image: url('{{$discussion->user->user_avatar}}');"></div>
                                 </a>
                             </div>

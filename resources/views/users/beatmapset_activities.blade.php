@@ -57,7 +57,7 @@
             @foreach ($receivedVotes['items'] as $userVotes)
                 <div class="beatmapset-activities__user-upvote-panel">
                     <div class="beatmap-discussion-post__avatar">
-                        <a href="{{route('users.beatmapset-activities', $userVotes[0]->user->user_id)}}">
+                        <a href="{{route('users.modding.index', $userVotes[0]->user->user_id)}}">
                             <div class="avatar avatar--full-rounded" style="background-image: url('{{$userVotes[0]->user->user_avatar}}');"></div>
                         </a>
                     </div>
@@ -78,7 +78,7 @@
             @foreach ($votes['items'] as $userVotes)
                 <div class="beatmapset-activities__user-upvote-panel">
                     <div class="beatmap-discussion-post__avatar">
-                        <a href="{{route('users.beatmapset-activities', $userVotes[0]->beatmapDiscussion->user->user_id)}}">
+                        <a href="{{route('users.modding.index', $userVotes[0]->beatmapDiscussion->user->user_id)}}">
                             <div class="avatar avatar--full-rounded" style="background-image: url('{{$userVotes[0]->beatmapDiscussion->user->user_avatar}}');"></div>
                         </a>
                     </div>

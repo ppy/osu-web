@@ -184,7 +184,6 @@ Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->na
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
-Route::get('users/{user}/modding-history', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 
 Route::group(['as' => 'users.'], function () {
