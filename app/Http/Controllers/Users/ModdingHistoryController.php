@@ -122,7 +122,27 @@ class ModdingHistoryController extends Controller
 
     public function events()
     {
+        $user = User::lookup(request('user'), 'id', true);
 
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapsetEvent::search(request());
+        $events = new LengthAwarePaginator(
+            $search['query']->with(['user', 'beatmapset'])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmapset_events.index', compact('events', 'user'));
     }
 
     public function posts()
