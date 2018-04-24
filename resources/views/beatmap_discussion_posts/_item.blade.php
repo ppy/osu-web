@@ -36,8 +36,8 @@
             <div class="beatmap-discussion__top">
                 <div class="beatmap-discussion-post beatmap-discussion-post--discussion">
                     <div class="beatmap-discussion-post__content">
-                        @include('beatmapset_activities._user', ['user' => $post->user])
-
+                        @component('beatmapset_activities._user', ['user' => $post->user])
+                        @endcomponent
                         <div class="beatmap-discussion-post__message-container">
                             <div class="beatmap-discussion-post__message">{{$post->message}}</div>
                             <div class="beatmap-discussion-post__info-container">
