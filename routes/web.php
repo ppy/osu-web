@@ -59,7 +59,7 @@ Route::group(['prefix' => 'beatmapsets'], function () {
     Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');
     Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('beatmap-discussions.deny-kudosu');
     Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('beatmap-discussions.allow-kudosu');
-    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
+    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'show']]);
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
@@ -190,7 +190,7 @@ Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::group(['as' => 'users.'], function () {
     Route::get('users/{user}/modding', 'Users\ModdingHistoryController@index')->name('modding.index');
     Route::get('users/{user}/modding/events', 'BeatmapsetEventsController@index')->name('modding.events');
-    Route::get('users/{user}/modding/discussions', 'BeatmapDiscussionsController@index')->name('modding.discussions');
+    Route::get('users/{user}/modding/discussions', 'Users\ModdingHistoryController@discussions')->name('modding.discussions');
     Route::get('users/{user}/modding/posts', 'BeatmapDiscussionPostsController@index')->name('modding.posts');
 });
 
