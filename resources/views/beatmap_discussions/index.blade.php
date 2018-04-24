@@ -23,19 +23,6 @@
 
         <form>
             <div>
-                <label>
-                    {{ trans('beatmap_discussions.index.form.user.label') }}
-                    <input name="user" value="{{ $search['params']['user'] }}">
-                </label>
-
-                @if (present($search['params']['user']))
-                    <a href="{{ route('users.beatmapset-activities', $search['params']['user']) }}">
-                        {{ trans('beatmap_discussions.index.form.user.overview') }}
-                    </a>
-                @endif
-            </div>
-
-            <div>
                 @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
                     <label>
                         <input
