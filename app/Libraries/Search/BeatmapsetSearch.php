@@ -115,9 +115,9 @@ class BeatmapsetSearch extends RecordSearch
     private function addPlayedFilter($query)
     {
         if ($this->params->playedFilter === 'played') {
-            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
-            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds()]]);
         }
     }
 
@@ -127,24 +127,7 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        $unionQuery = null;
-        foreach ($this->getSelectedModes() as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
-                ->whereIn('rank', $this->params->rank)
-                ->select('beatmap_id');
-
-            if ($unionQuery === null) {
-                $unionQuery = $newQuery;
-            } else {
-                $unionQuery->union($newQuery);
-            }
-        }
-
-        $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
-
-        $query->filter(['terms' => ['difficulties.beatmap_id' => $beatmapIds]]);
+        $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getRankedBeatmapIds($this->params->rank)]]);
     }
 
     private function addRecommendedFilter($query)
@@ -226,7 +209,7 @@ class BeatmapsetSearch extends RecordSearch
         return [new Sort('approved_date', 'desc')];
     }
 
-    private function getPlayedBeatmapIds()
+    private function getRankedBeatmapIds(?array $rank = null)
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
@@ -234,6 +217,10 @@ class BeatmapsetSearch extends RecordSearch
                 Score\Best\Model::getClass($mode)
                 ->forUser($this->params->user)
                 ->select('beatmap_id');
+
+            if ($rank !== null) {
+                $newQuery->whereIn('rank', $rank);
+            }
 
             if ($unionQuery === null) {
                 $unionQuery = $newQuery;
