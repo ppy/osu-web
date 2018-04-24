@@ -36,18 +36,20 @@
                 @endforeach
             </div>
 
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="with_deleted"
-                        value="1"
-                        {{ $search['params']['with_deleted'] ? 'checked' : '' }}
-                    >
+            @if (priv_check('BeatmapDiscussionModerate')->can())
+                <div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="with_deleted"
+                            value="1"
+                            {{ $search['params']['with_deleted'] ? 'checked' : '' }}
+                        >
 
-                    {{ trans('beatmap_discussions.index.form.deleted') }}
-                </label>
-            </div>
+                        {{ trans('beatmap_discussions.index.form.deleted') }}
+                    </label>
+                </div>
+            @endif
 
             <input type="submit">
         </form>
