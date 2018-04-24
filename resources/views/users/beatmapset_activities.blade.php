@@ -27,7 +27,7 @@
                 @include('beatmapset_events._item', compact('event'))
             @endforeach
 
-            <a href="{{ route('beatmapsets.events.index', ['user' => $user->getKey()]) }}">
+            <a href="{{ route('users.modding.events', ['user' => $user->getKey()]) }}">
                 {{ trans('common.buttons.show_more') }}
             </a>
         </div>
@@ -37,7 +37,7 @@
             @include('beatmap_discussions._item', compact('discussion'))
         @endforeach
 
-        <a href="{{ route('beatmap-discussions.index', ['user' => $user->getKey()]) }}">
+        <a href="{{ route('users.modding.discussions', ['user' => $user->getKey()]) }}">
             {{ trans('common.buttons.show_more') }}
         </a>
 
@@ -47,7 +47,7 @@
                 @include('beatmap_discussion_posts._item', compact('post'))
             @endforeach
 
-            <a href="{{ route('beatmap-discussion-posts.index', ['user' => $user->getKey()]) }}">
+            <a href="{{ route('users.modding.posts', ['user' => $user->getKey()]) }}">
                 {{ trans('common.buttons.show_more') }}
             </a>
         </div>

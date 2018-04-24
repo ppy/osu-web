@@ -188,10 +188,10 @@ Route::get('users/{user}/modding-history', 'UsersController@beatmapsetActivities
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 
 Route::group(['as' => 'users.'], function () {
-    Route::get('users/{user}/modding', 'Users\ModdingHistoryController@index');
-    Route::get('users/{user}/modding/events', 'BeatmapsetEventsController@index');
-    Route::get('users/{user}/modding/discussions', 'BeatmapDiscussionsController@index');
-    Route::get('users/{user}/modding/posts', 'BeatmapDiscussionPostsController@index');
+    Route::get('users/{user}/modding', 'Users\ModdingHistoryController@index')->name('modding.index');
+    Route::get('users/{user}/modding/events', 'BeatmapsetEventsController@index')->name('modding.events');
+    Route::get('users/{user}/modding/discussions', 'BeatmapDiscussionsController@index')->name('modding.discussions');
+    Route::get('users/{user}/modding/posts', 'BeatmapDiscussionPostsController@index')->name('modding.posts');
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');

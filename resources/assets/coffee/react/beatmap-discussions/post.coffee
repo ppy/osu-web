@@ -102,7 +102,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
               a
                 className: "#{bn}__user-modding-history-link"
-                href: laroute.route('users.beatmapset-activities', user: @props.user.id)
+                href: laroute.route('users.modding.index', user: @props.user.id)
                 i className: 'fas fa-align-left'
 
             div
