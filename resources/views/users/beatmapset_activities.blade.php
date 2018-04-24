@@ -72,9 +72,11 @@
             @foreach ($votes['items'] as $userVotes)
                 <div class="beatmapset-activities__user-upvote-panel">
                     @component('beatmapset_activities._user', ['user' => $userVotes[0]->beatmapDiscussion->user])
-                        <a href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $userVotes[0]->beatmapDiscussion->user->user_id]) }}">
-                            <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)</span>
-                        </a>
+                        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
+                            <a href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $userVotes[0]->beatmapDiscussion->user->user_id]) }}">
+                                {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
+                            </a>
+                        </span>
                     @endcomponent
                 </div>
             @endforeach
