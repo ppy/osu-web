@@ -17,13 +17,16 @@
 --}}
 @extends('master')
 
+{{-- FIXME: move to user modding history --}}
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h3>{{ trans('beatmapset_discussion_votes.index.title') }}</h3>
-        @foreach ($votes as $vote)
-            @include('beatmapset_discussion_votes._item', compact('vote'))
-        @endforeach
+        <div class="beatmapset-activities">
+            <h3>{{ trans('beatmapset_discussion_votes.index.title') }}</h3>
+            @foreach ($votes as $vote)
+                @include('beatmapset_discussion_votes._item', compact('vote'))
+            @endforeach
 
-        @include('forum._pagination', ['object' => $votes])
+            @include('forum._pagination', ['object' => $votes])
+        </div>
     </div>
 @endsection

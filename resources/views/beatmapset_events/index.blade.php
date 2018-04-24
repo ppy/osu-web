@@ -17,9 +17,10 @@
 --}}
 @extends('master')
 
+{{-- FIXME: move to user modding history --}}
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <div>
+        <div class="beatmapset-activities">
             <h3>{{ trans('beatmapset_events.index.title', ['user' => $user->username]) }}</h3>
             <div class='beatmapset-events'>
                 <div class='beatmapset-events__title'></div>
