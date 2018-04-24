@@ -32,17 +32,29 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ModdingHistoryController extends Controller
 {
     protected $section = 'user';
+    protected $user;
 
-    public function index($id)
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = User::lookup(request('user'), 'id', true);
+
+            if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
+                abort(404);
+            }
+
+            return $next($request);
+        });
+
+        parent::__construct();
+    }
+
+    public function index()
     {
         // FIXME: camelCase
         $current_action = 'beatmapset_activities';
 
-        $user = User::lookup($id, 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
+        $user = $this->user;
 
         $params = [
             'limit' => 10,
@@ -86,11 +98,7 @@ class ModdingHistoryController extends Controller
 
     public function discussions()
     {
-        $user = User::lookup(request('user'), 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
+        $user = $this->user;
 
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
@@ -122,11 +130,7 @@ class ModdingHistoryController extends Controller
 
     public function events()
     {
-        $user = User::lookup(request('user'), 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
+        $user = $this->user;
 
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
@@ -147,11 +151,7 @@ class ModdingHistoryController extends Controller
 
     public function posts()
     {
-        $user = User::lookup(request('user'), 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
+        $user = $this->user;
 
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
