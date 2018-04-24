@@ -99,12 +99,8 @@ class ModdingHistoryController extends Controller
     public function discussions()
     {
         $user = $this->user;
-
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
         $params = request();
 
-        // for when the priv_check lock above is removed
         if (!priv_check('BeatmapDiscussionModerate')->can()) {
             $params['with_deleted'] = false;
         }
@@ -132,8 +128,6 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
         $search = BeatmapsetEvent::search(request());
         $events = new LengthAwarePaginator(
             $search['query']->with(['user', 'beatmapset'])->get(),
@@ -152,8 +146,6 @@ class ModdingHistoryController extends Controller
     public function posts()
     {
         $user = $this->user;
-
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
 
         $search = BeatmapDiscussionPost::search(request());
         $posts = new LengthAwarePaginator(
