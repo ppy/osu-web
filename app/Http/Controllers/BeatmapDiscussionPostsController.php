@@ -58,38 +58,6 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
-    public function index()
-    {
-        $user = User::lookup(request('user'), 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
-
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
-        $search = BeatmapDiscussionPost::search(request());
-        $posts = new LengthAwarePaginator(
-            $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.user',
-                    'beatmapDiscussion.startingPost',
-                ])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
-
-        return view('beatmap_discussion_posts.index', compact('posts', 'user'));
-    }
-
     public function restore($id)
     {
         $post = BeatmapDiscussionPost::whereNotNull('deleted_at')->findOrFail($id);
