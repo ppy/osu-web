@@ -22,6 +22,8 @@ return [
     'deleted' => '[deleted user]',
 
     'beatmapset_activities' => [
+        'title' => ":user's Modding History",
+
         'discussions' => [
             'title_recent' => 'Recently started discussions',
         ],

@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h2>{{$user->username}}</h2>
+        <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
 
         <div>
             <h3>{{ trans('users.beatmapset_activities.events.title_recent') }}</h3>
