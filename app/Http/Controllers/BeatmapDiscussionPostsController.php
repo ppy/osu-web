@@ -27,6 +27,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
+use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -59,6 +60,12 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function index()
     {
+        $user = User::lookup(request('user'), 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
         $search = BeatmapDiscussionPost::search(request());
@@ -80,7 +87,7 @@ class BeatmapDiscussionPostsController extends Controller
             ]
         );
 
-        return view('beatmap_discussion_posts.index', compact('posts'));
+        return view('beatmap_discussion_posts.index', compact('posts', 'user'));
     }
 
     public function restore($id)

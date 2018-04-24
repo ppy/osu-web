@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
+        <h3>{{ trans('beatmap_discussions.index.title', ['user' => $user->username]) }}</h3>
 
         <form>
             <div>

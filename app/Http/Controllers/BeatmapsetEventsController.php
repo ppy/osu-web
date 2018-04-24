@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapsetEvent;
+use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapsetEventsController extends Controller
@@ -30,6 +31,12 @@ class BeatmapsetEventsController extends Controller
 
     public function index()
     {
+        $user = User::lookup(request('user'), 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
         $search = BeatmapsetEvent::search(request());
@@ -44,6 +51,6 @@ class BeatmapsetEventsController extends Controller
             ]
         );
 
-        return view('beatmapset_events.index', compact('events'));
+        return view('beatmapset_events.index', compact('events', 'user'));
     }
 }

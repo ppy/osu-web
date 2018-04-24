@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
+use App\Models\User;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
@@ -81,6 +82,12 @@ class BeatmapDiscussionsController extends Controller
 
     public function index()
     {
+        $user = User::lookup(request('user'), 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
         $params = request();
@@ -106,7 +113,7 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        return view('beatmap_discussions.index', compact('discussions', 'search'));
+        return view('beatmap_discussions.index', compact('discussions', 'search', 'user'));
     }
 
     public function restore($id)
