@@ -87,7 +87,7 @@ return [
     ],
     'show' => [
         '404' => 'ユーザーが見つかりませんでした。',
-        'age' => ':age歳',
+        'age' => ':age',
         'change_avatar' => 'アバター画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
