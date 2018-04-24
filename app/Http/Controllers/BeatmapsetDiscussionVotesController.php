@@ -45,7 +45,7 @@ class BeatmapsetDiscussionVotesController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmapsets.discussions.votes.index'),
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );
