@@ -103,7 +103,6 @@ class BeatmapDiscussionPost extends Model
             });
         }
 
-
         return ['query' => $query, 'params' => $params];
     }
 
