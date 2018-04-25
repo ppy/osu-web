@@ -33,6 +33,8 @@ class ModdingHistoryController extends Controller
 {
     protected $actionPrefix = 'modding-history-';
     protected $section = 'user';
+
+    protected $isModerator;
     protected $user;
 
     public function __construct()
@@ -43,6 +45,8 @@ class ModdingHistoryController extends Controller
             if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
                 abort(404);
             }
+
+            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
 
             return $next($request);
         });
@@ -98,8 +102,9 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
         $params = request();
+        $params['is_moderator'] = $this->isModerator;
 
-        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+        if (!$this->isModerator) {
             $params['with_deleted'] = false;
         }
 
@@ -125,8 +130,10 @@ class ModdingHistoryController extends Controller
     public function events()
     {
         $user = $this->user;
+        $params = request();
+        $params['is_moderator'] = $this->isModerator;
 
-        $search = BeatmapsetEvent::search(request());
+        $search = BeatmapsetEvent::search($params);
         $events = new LengthAwarePaginator(
             $search['query']->with(['user', 'beatmapset'])->get(),
             $search['query']->realCount(),
@@ -144,8 +151,10 @@ class ModdingHistoryController extends Controller
     public function posts()
     {
         $user = $this->user;
+        $params = request();
+        $params['is_moderator'] = $this->isModerator;
 
-        $search = BeatmapDiscussionPost::search(request());
+        $search = BeatmapDiscussionPost::search($params);
         $posts = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -170,8 +179,10 @@ class ModdingHistoryController extends Controller
     public function votesGiven()
     {
         $user = $this->user;
+        $params = request();
+        $params['is_moderator'] = $this->isModerator;
 
-        $search = BeatmapDiscussionVote::search(request());
+        $search = BeatmapDiscussionVote::search($params);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -197,6 +208,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
         // quick workaround for existing call
         $params = request();
+        $params['is_moderator'] = $this->isModerator;
         $params['receiver'] = $user->getKey();
         unset($params['user']);
 
