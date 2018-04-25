@@ -50,11 +50,7 @@ return [
         'beatmaps' => [
             '_' => '谱面',
             'artists' => '精选艺术家',
-            'beatmap_discussion_posts-index' => '谱面讨论帖',
-            'beatmap_discussions-index' => '谱面讨论',
             'beatmapset-watches-index' => '谱面关注列表',
-            'beatmapset_discussion_votes-index' => '谱面讨论投票',
-            'beatmapset_events-index' => '谱面事件',
             'index' => '列表',
             'packs' => '曲包',
             'show' => '信息',

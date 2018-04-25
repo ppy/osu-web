@@ -53,11 +53,7 @@ return [
         'beatmaps' => [
             '_' => 'карты',
             'artists' => 'избранные исполнители',
-            'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
-            'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset-watches-index' => 'подписки на карты',
-            'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
-            'beatmapset_events-index' => 'события карты',
             'index' => 'библиотека',
             'packs' => 'сборки',
             'show' => 'инфо',
