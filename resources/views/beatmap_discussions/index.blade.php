@@ -21,6 +21,10 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
+            @if (isset($user))
+                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
+            @endif
+
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form>

@@ -21,6 +21,10 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
+            @if (isset($user))
+                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
+            @endif
+
             <div>
                 <h3>{{ trans('beatmap_discussion_posts.index.title') }}</h3>
                 @foreach ($posts as $post)
