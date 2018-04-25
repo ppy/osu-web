@@ -27,7 +27,6 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
-use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;

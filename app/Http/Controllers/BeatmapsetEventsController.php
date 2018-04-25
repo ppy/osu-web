@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapsetEvent;
-use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapsetEventsController extends Controller
