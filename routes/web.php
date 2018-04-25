@@ -182,13 +182,13 @@ Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->na
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 
-Route::group(['as' => 'users.'], function () {
-    Route::get('users/{user}/modding', 'Users\ModdingHistoryController@index')->name('modding.index');
-    Route::get('users/{user}/modding/events', 'Users\ModdingHistoryController@events')->name('modding.events');
-    Route::get('users/{user}/modding/discussions', 'Users\ModdingHistoryController@discussions')->name('modding.discussions');
-    Route::get('users/{user}/modding/posts', 'Users\ModdingHistoryController@posts')->name('modding.posts');
-    Route::get('users/{user}/modding/votes-given', 'Users\ModdingHistoryController@votesGiven')->name('modding.votes-given');
-    Route::get('users/{user}/modding/votes-received', 'Users\ModdingHistoryController@votesReceived')->name('modding.votes-received');
+Route::group(['as' => 'users.modding.', 'namespace' => 'Users'], function () {
+    Route::get('users/{user}/modding', 'ModdingHistoryController@index')->name('index');
+    Route::get('users/{user}/modding/events', 'ModdingHistoryController@events')->name('events');
+    Route::get('users/{user}/modding/discussions', 'ModdingHistoryController@discussions')->name('discussions');
+    Route::get('users/{user}/modding/posts', 'ModdingHistoryController@posts')->name('posts');
+    Route::get('users/{user}/modding/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
+    Route::get('users/{user}/modding/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
