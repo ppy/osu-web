@@ -31,6 +31,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
+    protected $actionPrefix = 'modding-history-';
     protected $section = 'user';
     protected $user;
 
@@ -51,9 +52,6 @@ class ModdingHistoryController extends Controller
 
     public function index()
     {
-        // FIXME: camelCase
-        $current_action = 'beatmapset_activities';
-
         $user = $this->user;
 
         $params = [

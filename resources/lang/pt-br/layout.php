@@ -118,7 +118,7 @@ return [
             'settings' => 'Configurações',
             'logout' => 'Desconectar',
             'help' => 'Ajuda',
-            'beatmapset_activities' => 'atividades de beatmap de usuário',
+            'user-modding-history' => 'atividades de beatmap de usuário', // needs update
         ],
         'store' => [
             '_' => 'loja',

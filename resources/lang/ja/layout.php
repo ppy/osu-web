@@ -118,7 +118,7 @@ return [
             'settings' => '設定',
             'logout' => 'ログアウト',
             'help' => 'ヘルプ',
-            'beatmapset_activities' => 'ユーザーのビートマップセットのアクティビティ',
+            'user-modding-history' => 'ユーザーのビートマップセットのアクティビティ', // needs update
         ],
         'store' => [
             '_' => 'ストア',
