@@ -28,4 +28,23 @@ class BeatmapsetEventsController extends Controller
 {
     protected $section = 'beatmaps';
     protected $actionPrefix = 'beatmapset_events-';
+
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapsetEvent::search(request());
+        $events = new LengthAwarePaginator(
+            $search['query']->with(['user', 'beatmapset'])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmapset_events.index', compact('events'));
+    }
 }

@@ -27,4 +27,29 @@ class BeatmapsetDiscussionVotesController extends Controller
 {
     protected $section = 'beatmaps';
     protected $actionPrefix = 'beatmapset_discussion_votes-';
+
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapDiscussionVote::search(request());
+        $votes = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapDiscussion',
+                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.beatmapset',
+                    'beatmapDiscussion.startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmapset_discussion_votes.index', compact('votes'));
+    }
 }

@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -76,6 +77,36 @@ class BeatmapDiscussionsController extends Controller
         }
 
         return $discussion->beatmapset->defaultDiscussionJson();
+    }
+
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $params = request();
+
+        // for when the priv_check lock above is removed
+        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+            $params['with_deleted'] = false;
+        }
+
+        $search = BeatmapDiscussion::search($params);
+        $discussions = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapset',
+                    'startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussions.index', compact('discussions', 'search'));
     }
 
     public function restore($id)
