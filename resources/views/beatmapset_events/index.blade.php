@@ -21,7 +21,7 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
-            <h3>{{ trans('beatmapset_events.index.title', ['user' => $user->username]) }}</h3>
+            <h3>{{ trans('beatmapset_events.index.title') }}</h3>
             <div class='beatmapset-events'>
                 <div class='beatmapset-events__title'></div>
                 @foreach ($events as $event)

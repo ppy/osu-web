@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'deleted',
-        'title' => ":user's Beatmap Discussions",
+        'title' => 'Beatmap Discussions',
 
         'form' => [
             'deleted' => 'Include deleted discussions',

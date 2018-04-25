@@ -22,7 +22,7 @@
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
             <div>
-                <h3>{{ trans('beatmap_discussion_posts.index.title', ['user' => $user->username]) }}</h3>
+                <h3>{{ trans('beatmap_discussion_posts.index.title') }}</h3>
                 @foreach ($posts as $post)
                     @include('beatmap_discussion_posts._item', compact('post'))
                 @endforeach

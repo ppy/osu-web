@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => ":user's Beatmapset Events",
+        'title' => 'Beatmapset Events',
     ],
 
     'item' => [
