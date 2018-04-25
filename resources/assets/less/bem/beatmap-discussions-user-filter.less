@@ -17,6 +17,8 @@
  */
 
 .beatmap-discussions-user-filter {
+  @_top: beatmap-discussions-user-filter;
+
   &--selecting {
     z-index: @z-index--blackout-visible;
   }
@@ -31,7 +33,6 @@
 
     display: flex;
     flex-direction: row;
-    padding: 10px 0;
     font-size: 15px;
     background-color: @gray-blue;
     box-shadow: 0 0 0 2px fade(#000, 25%);
@@ -59,6 +60,10 @@
     &--selected {
       background-color: #111;
     }
+
+    .@{_top}__select & {
+      padding: 15px 10px;
+    }
   }
 
   &__options {
@@ -71,7 +76,7 @@
     font-size: 12px;
     background-color: @gray-blue;
 
-    .beatmap-discussions-user-filter--selecting & {
+    .@{_top}--selecting & {
       display: block;
     }
   }
