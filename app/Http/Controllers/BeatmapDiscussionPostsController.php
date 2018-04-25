@@ -59,9 +59,15 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
+        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
+        $params = request();
+        $params['is_moderator'] = $isModerator;
 
-        $search = BeatmapDiscussionPost::search(request());
+        if (!$isModerator) {
+            $params['with_deleted'] = false;
+        }
+
+        $search = BeatmapDiscussionPost::search($params);
         $posts = new LengthAwarePaginator(
             $search['query']->with([
                     'user',

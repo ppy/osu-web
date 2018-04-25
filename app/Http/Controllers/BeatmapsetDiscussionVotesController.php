@@ -30,9 +30,10 @@ class BeatmapsetDiscussionVotesController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
+        $params = request();
+        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
 
-        $search = BeatmapDiscussionVote::search(request());
+        $search = BeatmapDiscussionVote::search($params);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
