@@ -53,7 +53,11 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'artistes plébiscités',
+            'beatmap_discussion_posts-index' => 'posts de la discussion beatmap',
+            'beatmap_discussions-index' => 'discussions sur la beatmap',
             'beatmapset-watches-index' => 'liste d\'abonnement des modifications',
+            'beatmapset_discussion_votes-index' => 'votes de la discussion beatmap',
+            'beatmapset_events-index' => 'évènements de la collection',
             'index' => 'index',
             'packs' => 'collections',
             'show' => 'info',

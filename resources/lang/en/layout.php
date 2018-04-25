@@ -53,7 +53,11 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'featured artists',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset-watches-index' => 'modding watchlist',
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
             'index' => 'listing',
             'packs' => 'packs',
             'show' => 'info',

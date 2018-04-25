@@ -52,7 +52,11 @@ return [
         'beatmaps' => [
             '_' => '譜面',
             'artists' => '精選藝術家',
+            'beatmap_discussion_posts-index' => '譜面討論帖',
+            'beatmap_discussions-index' => '譜面討論',
             'beatmapset-watches-index' => '譜面關注列表',
+            'beatmapset_discussion_votes-index' => '譜面討論投票',
+            'beatmapset_events-index' => '譜面事件',
             'index' => '列表',
             'packs' => '曲包',
             'show' => '信息',

@@ -53,7 +53,11 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'artistas em destaque',
+            'beatmap_discussion_posts-index' => 'postagens de discussão de beatmaps',
+            'beatmap_discussions-index' => 'discussões de beatmaps',
             'beatmapset-watches-index' => 'supervisão de modding',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
+            'beatmapset_events-index' => 'eventos do beatmap',
             'index' => 'listagem',
             'packs' => 'pacotes',
             'show' => 'informação',
