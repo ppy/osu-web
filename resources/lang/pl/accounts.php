@@ -21,8 +21,10 @@ return [
     'edit' => [
         'title' => 'Ustawienia <strong>konta</strong>',
         'title_compact' => 'ustawienia',
+        'username' => 'nazwa użytkownika',
+
         'avatar' => [
-            'title' => 'Zmień avatar', // Base text changed, please check.
+            'title' => 'Avatar',
         ],
         'email' => [
             'current' => 'aktualny email',
@@ -37,7 +39,7 @@ return [
             'title' => 'Hasło',
         ],
         'profile' => [
-            'title' => 'Edytuj profil', // Base text changed, please check.
+            'title' => 'Profil',
             'user' => [
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',

@@ -30,6 +30,7 @@ return [
 
     'buttons' => [
         'cancel' => 'Anuluj',
+        'change' => 'zmień',
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
         'delete' => 'Usuń',

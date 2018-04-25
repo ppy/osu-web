@@ -26,14 +26,14 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Ustaw tło nagłówka',
+            '_' => 'Ustaw tło',
             'button' => 'Dodaj tło',
-            'info' => 'Nagłówek powinien mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
+            'info' => 'Tło powinno mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
         'destroy' => [
-            '_' => 'Usuń tło nagłówka',
-            'confirm' => 'Na pewno chcesz usunąć tło nagłówka?',
+            '_' => 'Usuń tło',
+            'confirm' => 'Na pewno chcesz usunąć tło?',
         ],
     ],
 
@@ -48,32 +48,32 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Na pewno usunąć odpowiedź?',
-        'confirm_restore' => 'Na pewno przywrócić odpowiedź?',
-        'edited' => 'Ostatnio edytowe przez :user :when, łącznie edytowane :count razy.',
+        'confirm_destroy' => 'Na pewno usunąć post?',
+        'confirm_restore' => 'Na pewno przywrócić post?',
+        'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count razy.',
         'posted_at' => 'opublikowane :when',
 
         'actions' => [
-            'destroy' => 'Usuń odpowiedź',
-            'restore' => 'Przywróć odpowiedź',
-            'edit' => 'Edytuj odpowiedź',
+            'destroy' => 'Usuń post',
+            'restore' => 'Przywróć post',
+            'edit' => 'Edytuj post',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Przejdź do odpowiedzi',
-        'post_number_input' => 'wprowadź numer odpowiedzi',
-        'total_posts' => 'łącznie :posts_count odpowiedzi',
+        'go_to_post' => 'Przejdź do postu',
+        'post_number_input' => 'wprowadź numer postu',
+        'total_posts' => 'łącznie :posts_count postów',
     ],
 
     'topic' => [
         'deleted' => 'usunięty wątek',
-        'go_to_latest' => 'pokaż najnowszą odpowiedź',
+        'go_to_latest' => 'pokaż najnowszy post',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Stwórz nowy wątek',
         'post_reply' => 'Opublikuj',
-        'reply_box_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'started_by' => 'przez :user',
 
         'create' => [
@@ -84,17 +84,17 @@ return [
             'submit' => 'Opublikuj',
 
             'placeholder' => [
-                'body' => 'Tutaj wpisz zawartość wątku',
+                'body' => 'Tutaj wpisz zawartość posta',
                 'title' => 'Kliknij, aby wprowadzić tytuł',
             ],
         ],
 
         'jump' => [
-            'enter' => 'kliknij, aby przejść do specyficznej odpowiedzi',
-            'first' => 'przejdź do pierwszej odpowiedzi',
-            'last' => 'przejdź do ostatniej odpowiedzi',
-            'next' => 'pomiń następne 10 odpowiedzi',
-            'previous' => 'cofnij się o 10 odpowiedzi',
+            'enter' => 'kliknij, aby przejść do specyficznego posta',
+            'first' => 'przejdź do pierwszego posta',
+            'last' => 'przejdź do ostatniego posta',
+            'next' => 'pomiń następne 10 postów',
+            'previous' => 'cofnij się o 10 postów',
         ],
 
         'post_edit' => [
@@ -211,11 +211,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Ten wątek jest został zablokowany nie można w nim odpowiadać',
-            'to_0' => 'Odblokuj wątek',
-            'to_0_done' => 'Wątek został odblokowany',
-            'to_1' => 'Zablokuj wątek',
-            'to_1_done' => 'Wątek został zablokowany',
+            'is_locked' => 'Ten wątek został zamknięty i nie możesz w nim odpowiadać',
+            'to_0' => 'Otwórz wątek',
+            'to_0_done' => 'Wątek został otworzony',
+            'to_1' => 'Zamknij wątek',
+            'to_1_done' => 'Wątek został zamknięty',
         ],
 
         'moderate_move' => [
@@ -232,12 +232,12 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Usunięte odpowiedzi',
-            'total_posts' => 'Wszystkie odpowiedzi',
+            'deleted-posts' => 'Usunięte posty',
+            'total_posts' => 'Wszystkie posty',
 
             'feature_vote' => [
                 'current' => 'Priorytet: +:count',
-                'do' => 'Wspomóż tę prośbę',
+                'do' => 'Nagłośnij tę prośbę',
 
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',

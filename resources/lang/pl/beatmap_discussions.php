@@ -22,8 +22,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Musisz się zalogować, aby zedytować post.',
-            'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
-            'wrong_user' => 'Tylko autor może edytować ten post.',
+            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanych postów.',
+            'wrong_user' => 'Tylko autor postu może go zedytować.',
         ],
     ],
 
@@ -53,8 +53,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Żadna z tych odpowiedzi nie jest istotna',
-        'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem.',
+        'confirm' => 'Żaden z tych postów nie jest istotny',
+        'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem postu.',
     ],
 
     'reply' => [
