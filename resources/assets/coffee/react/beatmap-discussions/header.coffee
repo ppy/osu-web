@@ -93,22 +93,24 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
         div
           className: "#{bn}__filters"
-          el BeatmapDiscussions.UserFilter,
-            selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
-            users: _.pickBy(@props.users, (value) -> value.id?)
-
-        div
-          className: "#{bn}__filters"
-
-          el BeatmapDiscussions.BeatmapList,
-            beatmapset: @props.beatmapset
-            currentBeatmap: @props.currentBeatmap
-            currentDiscussions: @props.currentDiscussions
-            beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
           div
-            className: "#{bn}__stats"
-            @stats()
+            className: "#{bn}__filter-group"
+            el BeatmapDiscussions.BeatmapList,
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              currentDiscussions: @props.currentDiscussions
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+
+          div
+            className: "#{bn}__filter-group #{bn}__filter-group--stats"
+            el BeatmapDiscussions.UserFilter,
+              selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
+              users: _.pickBy(@props.users, (value) -> value.id?)
+
+            div
+              className: "#{bn}__stats"
+              @stats()
 
         div null,
           div ref: 'chartArea', className: "#{bn}__chart"

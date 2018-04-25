@@ -56,6 +56,26 @@
     }
   }
 
+  &__filter-group {
+    & + & {
+      margin-top: 10px;
+    }
+
+    @media @desktop {
+      align-self: flex-end;
+
+      & + & {
+        margin-top: 0;
+      }
+
+      &--stats {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+
   &__filters {
     display: flex;
     margin: 10px 0;
@@ -74,7 +94,7 @@
     flex-wrap: wrap;
 
     @media @desktop {
-      margin: -5px;
+      margin-bottom: -5px;
       margin-left: 5px;
     }
   }
