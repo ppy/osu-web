@@ -20,7 +20,6 @@ desktop.ini
 
 # Bower and node directories
 /node_modules
-/npm-debug.log
 
 # Mix manifest
 /public/mix-manifest.json
@@ -36,6 +35,13 @@ desktop.ini
 
 # server logs
 /logs/osu/*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # dropbox linux/mac files
 .dropbox*
