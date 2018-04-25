@@ -33,17 +33,19 @@
                 </a>
             </div>
 
-            <h3>{{ trans('users.beatmapset_activities.discussions.title_recent') }}</h3>
-            @foreach ($discussions['items'] as $discussion)
-                @include('beatmap_discussions._item', compact('discussion'))
-            @endforeach
-
-            <a href="{{ route('users.modding.discussions', ['user' => $user->getKey()]) }}">
-                {{ trans('common.buttons.show_more') }}
-            </a>
-
-            <h3>{{ trans('users.beatmapset_activities.posts.title_recent') }}</h3>
             <div>
+                <h3>{{ trans('users.beatmapset_activities.discussions.title_recent') }}</h3>
+                @foreach ($discussions['items'] as $discussion)
+                    @include('beatmap_discussions._item', compact('discussion'))
+                @endforeach
+
+                <a href="{{ route('users.modding.discussions', ['user' => $user->getKey()]) }}">
+                    {{ trans('common.buttons.show_more') }}
+                </a>
+            </div>
+
+            <div>
+                <h3>{{ trans('users.beatmapset_activities.posts.title_recent') }}</h3>
                 @foreach ($posts['items'] as $post)
                     @include('beatmap_discussion_posts._item', compact('post'))
                 @endforeach
@@ -53,8 +55,8 @@
                 </a>
             </div>
 
-            <h3>{{ trans('users.beatmapset_activities.votes_received.title_most') }}</h3>
             <div class="beatmapset-activities__user-upvote-list">
+                <h3>{{ trans('users.beatmapset_activities.votes_received.title_most') }}</h3>
                 @foreach ($receivedVotes['items'] as $userVotes)
                     <div class="beatmapset-activities__user-upvote-panel">
                         @component('beatmapset_activities._user', ['user' => $userVotes[0]->user])
@@ -69,8 +71,8 @@
                 @endforeach
             </div>
 
-            <h3>{{ trans('users.beatmapset_activities.votes_made.title_most') }}</h3>
             <div class="beatmapset-activities__user-upvote-list">
+                <h3>{{ trans('users.beatmapset_activities.votes_made.title_most') }}</h3>
                 @foreach ($votes['items'] as $userVotes)
                     <div class="beatmapset-activities__user-upvote-panel">
                         @component('beatmapset_activities._user', ['user' => $userVotes[0]->beatmapDiscussion->user])
