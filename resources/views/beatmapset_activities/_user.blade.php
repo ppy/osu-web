@@ -15,22 +15,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+{{-- FIXME: THE STYLES --}}
+<div class="beatmap-discussion-post__user-container">
+    <a class="beatmap-discussion-post__user-link" href="{{ route('users.modding.index', $user) }}">
 
-{{-- FIXME: move to user modding history --}}
-@section('content')
-    <div class="osu-layout__row osu-layout__row--page">
-        <div class="beatmapset-activities">
-            @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
-            @endif
-
-            <h3>{{ trans('beatmapset_discussion_votes.index.title') }}</h3>
-            @foreach ($votes as $vote)
-                @include('beatmapset_discussion_votes._item', compact('vote'))
-            @endforeach
-
-            @include('forum._pagination', ['object' => $votes])
-        </div>
+    </a>
+    <div class="beatmap-discussion-post__avatar">
+        <div class="avatar avatar--full-rounded" style="background-image: url('{{$user->user_avatar}}');"></div>
     </div>
-@endsection
+    <div class="beatmap-discussion-post__user">
+        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($user) !!}</span>
+        {!! $slot ?? null !!}
+    </div>
+</div>

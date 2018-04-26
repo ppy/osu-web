@@ -29,7 +29,7 @@
         ></div>
     @endif
 
-    @include("forum.topics._post_info", ["user" => $post->user])
+    @include("forum.topics._post_info", ["user" => $post->userNormalized()])
 
     <div class="forum-post__body">
         <div class="forum-post__content">

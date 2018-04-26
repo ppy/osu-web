@@ -118,7 +118,12 @@ return [
             'settings' => 'Settings',
             'logout' => 'Sign Out',
             'help' => 'Help',
-            'beatmapset_activities' => 'user beatmapset activities',
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'user modding history',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'store',
@@ -190,32 +195,26 @@ return [
         '404' => [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
         ],
         '403' => [
             'error' => "You shouldn't be here.",
             'description' => 'You could try going back, though.',
-            'link' => false,
         ],
         '401' => [
             'error' => "You shouldn't be here.",
             'description' => 'You could try going back, though. Or maybe signing in.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => "We're automatically notified of every error.",
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Something broke (badly)! ;_;',
             'description' => "We're automatically notified of every error.",
-            'link' => false,
         ],
         '503' => [
             'error' => 'Down for maintenance!',

@@ -118,7 +118,7 @@ return [
             'settings' => '設定',
             'logout' => 'ログアウト',
             'help' => 'ヘルプ',
-            'beatmapset_activities' => 'ユーザーのビートマップセットのアクティビティ',
+            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ', // needs update
         ],
         'store' => [
             '_' => 'ストア',
@@ -191,32 +191,26 @@ return [
         '404' => [
             'error' => 'ページが見つかりません',
             'description' => 'ご希望のページはここにはない様です。',
-            'link' => false,
         ],
         '403' => [
             'error' => '何か手違いがあったみたいです。',
             'description' => '戻ってみることをおすすめします。',
-            'link' => false,
         ],
         '401' => [
             'error' => '何か手違いがあったみたいです。',
             'description' => '戻ってみるか、ログインしてみる事をおすすめします。',
-            'link' => false,
         ],
         '405' => [
             'error' => 'ページが見つかりません',
             'description' => 'ご希望のページはここにはない様です。',
-            'link' => false,
         ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
             'description' => '自動的にエラーは報告されます。',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '予期せぬエラーが発生しました（爆） ;_;',
             'description' => '自動的にエラーは報告されます。',
-            'link' => false,
         ],
         '503' => [
             'error' => 'メンテナンス中です！',

@@ -110,7 +110,7 @@ class Handler extends ExceptionHandler
             if ($request->ajax()) {
                 $response = response(['error' => $this->ajaxMessage($e)]);
             } else {
-                $response = response()->view('layout.error');
+                $response = response()->view('layout.error', ['exception' => $e]);
             }
         }
 

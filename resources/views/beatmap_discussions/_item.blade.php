@@ -44,16 +44,8 @@
             <div class="beatmap-discussion__top">
                 <div class="beatmap-discussion-post beatmap-discussion-post--discussion">
                     <div class="beatmap-discussion-post__content">
-                        <div class="beatmap-discussion-post__user-container">
-                            <div class="beatmap-discussion-post__avatar">
-                                <a href="{{ route('users.beatmapset-activities', $discussion->user) }}">
-                                    <div class="avatar avatar--full-rounded" style="background-image: url('{{$discussion->user->user_avatar}}');"></div>
-                                </a>
-                            </div>
-                            <div class="beatmap-discussion-post__user">
-                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($discussion->user) !!}</span>
-                            </div>
-                        </div>
+                        @include('beatmapset_activities._user', ['user' => $discussion->user])
+
                         <div class="beatmap-discussion-post__message-container">
                             <div class="beatmap-discussion-post__message">{{$discussion->startingPost->message}}</div>
                             <div class="beatmap-discussion-post__info-container">

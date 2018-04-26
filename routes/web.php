@@ -184,8 +184,17 @@ Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->na
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
-Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+
+Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
+    Route::get('/', 'ModdingHistoryController@index')->name('index');
+    Route::get('/events', 'ModdingHistoryController@events')->name('events');
+    Route::get('/discussions', 'ModdingHistoryController@discussions')->name('discussions');
+    Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
+    Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
+    Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
+});
+
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 
