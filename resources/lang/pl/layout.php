@@ -188,32 +188,26 @@ return [
         '404' => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Nie powinno cię tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Nie powinno cię tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'O nie! Coś się (bardzo) popsuło! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Konserwacja!',
