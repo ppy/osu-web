@@ -91,12 +91,10 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     @props.selectedUser ? allUsers
 
 
-  userSelected: (event, user) ->
-    return if event.button != 0
-    event.preventDefault()
+  showSelector: (flag) ->
+    Blackout.toggle(flag, 0.5)
 
-    selectedUserId = user.id
-    $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
+    showingSelector: flag
 
 
   toggleSelector: (event) =>
@@ -104,7 +102,14 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     event.preventDefault()
 
     @setState (prevState) ->
-      Blackout.toggle(!prevState.showingSelector, 0.5)
-      showingSelector: !prevState.showingSelector
+      @showSelector(!prevState.showingSelector)
 
 
+  userSelected: (event, user) ->
+    return if event.button != 0
+    event.preventDefault()
+
+    selectedUserId = user.id
+    $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
+    @setState () ->
+      @showSelector(false)
