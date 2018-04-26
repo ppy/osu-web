@@ -118,7 +118,7 @@ return [
             'settings' => 'Настройки',
             'logout' => 'Выход', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Помощь',
-            'user-modding-history' => 'активность карты пользователя', // needs update
+            'modding-history-index' => 'активность карты пользователя', // needs update
         ],
         'store' => [
             '_' => 'магазин',
