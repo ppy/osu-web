@@ -206,8 +206,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         modes[mode] = {}
 
 
-    filterDiscussions = @filterDiscussions(@state.beatmapset.discussions)
-    for d in filterDiscussions
+    for d in @filterDiscussions(@state.beatmapset.discussions)
       # skipped discussion
       # - not privileged (deleted discussion)
       # - deleted beatmap
