@@ -18,7 +18,10 @@
 
 .beatmap-discussions-user-filter {
   @_top: beatmap-discussions-user-filter;
-  display: flex;
+
+  @media @desktop {
+    display: flex;
+  }
 
   &--selecting {
     z-index: @z-index--blackout-visible;
@@ -32,8 +35,6 @@
     .default-box-shadow();
     .default-border-radius();
 
-    display: flex;
-    flex-direction: row;
     font-size: 15px;
     background-color: @gray-blue;
     box-shadow: 0 0 0 2px fade(#000, 25%);
@@ -49,9 +50,8 @@
     .link-white();
 
     display: flex;
-    min-width: 0;
+    justify-content: space-between;
     padding: 5px 10px;
-
     white-space: nowrap;
 
     &:hover {
@@ -71,9 +71,10 @@
     .default-box-shadow();
 
     position: absolute;
+    width: 100%;
     display: none;
-    left: 0;
     top: 100%;
+    left: 0;
     margin-top: 5px;
     font-size: 12px;
     background-color: @gray-blue;

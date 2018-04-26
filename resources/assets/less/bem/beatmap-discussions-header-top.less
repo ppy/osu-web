@@ -57,6 +57,9 @@
   }
 
   &__filter-group {
+    min-width: 0;
+    flex: 1 1 auto;
+
     & + & {
       margin-top: 10px;
     }
@@ -69,6 +72,7 @@
       }
 
       &--stats {
+        flex: none;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
