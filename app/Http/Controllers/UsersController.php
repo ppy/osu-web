@@ -295,6 +295,7 @@ class UsersController extends Controller
             'statistics.scoreRanks',
             'unranked_beatmapset_count',
             'user_achievements',
+            'visible_banner',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {

@@ -69,19 +69,21 @@
     &--info {
       flex: 1 0 auto;
       display: flex;
-      align-items: flex-start;
       flex-direction: column;
+      align-self: stretch;
       min-width: 0;
+
+      @media @desktop {
+        flex: 1;
+      }
     }
   }
 
   &__default-mode {
     .reset-input();
     background-color: #333;
-    position: absolute;
+    margin-bottom: 5px;
 
-    top: 20px;
-    left: 20px;
     border: 2px solid transparent;
 
     font-size: @font-size--normal;
@@ -102,11 +104,6 @@
       border-color: @yellow-dark;
     }
 
-    @media @desktop {
-      top: 10px;
-      left: 50px; // padding + content gutter
-    }
-
     &--disabled {
       &, &:focus, &:hover, &:active {
         border-color: transparent;
@@ -122,5 +119,38 @@
     font-size: 80px;
     color: #fff;
     background-color: fade(#000, 70%);
+  }
+
+  &__tournament-support {
+    .own-layer();
+    max-width: 100%;
+    border-radius: 1000px;
+    will-change: transform;
+    transition: transform 200ms cubic-bezier(.08,.82,.17,1);
+    z-index: @z-index--profile-tournament-support;
+    margin-bottom: 5px;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media @desktop {
+      align-items: flex-start;
+    }
+
+    &--bottom {
+      flex: 1 0 auto;
+      justify-content: flex-end;
+    }
+
+    &--top {
+      flex: none;
+    }
   }
 }

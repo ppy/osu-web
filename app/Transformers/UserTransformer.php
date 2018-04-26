@@ -43,6 +43,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'statistics',
         'unranked_beatmapset_count',
         'user_achievements',
+        'visible_banner',
     ];
 
     public function transform(User $user)
@@ -101,6 +102,11 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->badges()->orderBy('awarded', 'DESC')->get(),
             new UserBadgeTransformer
         );
+    }
+
+    public function includeVisibleBanner(User $user)
+    {
+        return $this->item($user->profileBanners()->visible(), new ProfileBannerTransformer);
     }
 
     public function includeDefaultStatistics(User $user)

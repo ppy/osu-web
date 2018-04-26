@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, i, img, span} = ReactDOMFactories
+{a, button, div, i, img, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.HeaderMain extends React.Component
@@ -73,22 +73,33 @@ class ProfilePage.HeaderMain extends React.Component
 
       div
         className: 'profile-header__column profile-header__column--info'
-        el ProfilePage.Badges, badges: @props.user.badges
-        el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
+
+        div
+          className: 'profile-header__info profile-header__info--top'
+          if @props.user.visible_banner.id?
+            a
+              href: laroute.route('tournaments.show', tournament: @props.user.visible_banner.tournament_id)
+              el Img2x,
+                src: @props.user.visible_banner.image
+                className: 'profile-header__tournament-support'
+          if @props.withEdit && @props.user.playmode != @props.currentMode
+            button
+              className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
+              type: 'button'
+              onClick: @setDefaultMode
+              dangerouslySetInnerHTML:
+                __html:
+                  osu.trans 'users.show.edit.default_playmode.set', mode: "<strong>#{osu.trans "beatmaps.mode.#{@props.currentMode}"}</strong>"
+
+        div
+          className: 'profile-header__info profile-header__info--bottom'
+          el ProfilePage.Badges, badges: @props.user.badges
+          el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
       if !@props.user.is_bot
         div
           className: 'profile-header__column'
           el ProfilePage.Stats, stats: @props.stats
-
-      if @props.withEdit && @props.user.playmode != @props.currentMode
-        button
-          className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
-          type: 'button'
-          onClick: @setDefaultMode
-          dangerouslySetInnerHTML:
-            __html:
-              osu.trans 'users.show.edit.default_playmode.set', mode: "<strong>#{osu.trans "beatmaps.mode.#{@props.currentMode}"}</strong>"
 
       div
         className: 'profile-header__actions',
