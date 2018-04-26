@@ -410,10 +410,27 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
-    public function setUserWebsiteAttribute($value)
+    public function getUserWebsiteAttribute($value)
     {
         $value = trim($value);
-        if ($value !== '' && !starts_with($value, ['http://', 'https://'])) {
+
+        if (present($value)) {
+            if (starts_with($value, ['http://', 'https://'])) {
+                return $value;
+            }
+
+            return "https://{$value}";
+        }
+    }
+
+    public function setUserWebsiteAttribute($value)
+    {
+        // doubles as casting to empty string for not null constraint
+        $value = trim($value);
+
+        // FIXME: this can probably be removed after old site is deactivated
+        //        as there's same check in getter function.
+        if (present($value) && !starts_with($value, ['http://', 'https://'])) {
             $value = "https://{$value}";
         }
 
@@ -477,11 +494,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     }
 
     public function getUserLastfmAttribute($value)
-    {
-        return presence($value);
-    }
-
-    public function getUserWebsiteAttribute($value)
     {
         return presence($value);
     }

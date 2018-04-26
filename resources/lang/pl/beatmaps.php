@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Zdyskwalifikuj',
             'hype' => 'Priorytet',
             'mapper_note' => 'Adnotacja',
+            'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
@@ -150,8 +152,13 @@ return [
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
 
+        'reset_at' => [
+            'nomination_reset' => ':user zresetował(a) proces nominacji :time_ago z powodu nowego problemu :discussion (:message).',
+            'disqualify' => ':user zdyskwalifikował(a) beatmapę :time_ago z powodu nowego problemu :discussion (:message).',
+        ],
+
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Utworzenie nowego problemu zresetuje liczbę nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
         ],
     ],
 

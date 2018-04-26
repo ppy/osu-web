@@ -19,6 +19,8 @@
  */
 
 return [
+    'months' => 'месяцев',
+
     'user_search' => [
         'searching' => 'поиск...',
         'not_found' => 'Пользователь не найден',

@@ -38,6 +38,7 @@ class @BeatmapsetFilter
     l: 'language'
     e: 'extra'
     r: 'rank'
+    played: 'played'
     q: 'query'
     sort: 'sort'
 
@@ -48,12 +49,13 @@ class @BeatmapsetFilter
     genre: null
     language: null
     mode: null
+    played: null
     query: ''
     rank: ''
     status: 0
 
 
-  @expand: ['genre', 'language', 'extra', 'rank']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played']
 
   @fillDefaults: (filters) =>
     ret = {}
@@ -92,6 +94,7 @@ class @BeatmapsetFilter
     'genre'
     'language'
     'mode'
+    'played'
     'query'
     'rank'
     'sort'
