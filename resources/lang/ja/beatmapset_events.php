@@ -26,7 +26,7 @@ return [
         'discussion_post_restore' => 'モデレーターがディスカッション:discussionから投稿を復元しました。',
         'discussion_restore' => 'モデレーターがディスカッション:discussionを復元しました。',
         'disqualify' => ':userがDisqualifyしました。理由：:discussion (:text).',
-		'disqualify_legacy' => ':userがDisqualifyしました。理由：:text.',
+        'disqualify_legacy' => ':userがDisqualifyしました。理由：:text.',
         'issue_reopen' => '解決済みの事項:discussionが未解決に戻りました。',
         'issue_resolve' => '事項:discussionが解決しました。',
         'kudosu_allow' => 'ディスカッション:discussionのkudosu拒否が取り消されました。',
