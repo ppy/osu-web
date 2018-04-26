@@ -66,7 +66,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
           children: [
             div
               className: 'u-ellipsis-overflow'
-              key: 'selector'
+              key: 'current'
               @selectedUser().username,
 
             div
@@ -77,7 +77,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
           onClick: @toggleSelector
 
       div
-        className: "#{bn}__options"
+        className: "#{bn}__selector"
         @renderOption allUsers
         for own _, user of @props.users
           @renderOption user

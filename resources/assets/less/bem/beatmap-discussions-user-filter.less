@@ -31,19 +31,6 @@
     margin-left: 10px;
   }
 
-  &__select {
-    .default-box-shadow();
-    .default-border-radius();
-
-    font-size: 15px;
-    background-color: @gray-blue;
-    box-shadow: 0 0 0 2px fade(#000, 25%);
-
-    &:hover {
-      background-color: #000;
-    }
-  }
-
   &__item {
     .reset-input();
     .link-plain();
@@ -67,7 +54,20 @@
     }
   }
 
-  &__options {
+  &__select {
+    .default-box-shadow();
+    .default-border-radius();
+
+    font-size: 15px;
+    background-color: @gray-blue;
+    box-shadow: 0 0 0 2px fade(#000, 25%);
+
+    &:hover {
+      background-color: #000;
+    }
+  }
+
+  &__selector {
     .default-box-shadow();
 
     position: absolute;
