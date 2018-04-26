@@ -55,36 +55,40 @@
                 </a>
             </div>
 
-            <div class="beatmapset-activities__user-upvote-list">
+            <div>
                 <h3>{{ trans('users.beatmapset_activities.votes_received.title_most') }}</h3>
-                @foreach ($receivedVotes['items'] as $userVotes)
-                    <div class="beatmapset-activities__user-upvote-panel">
-                        @component('beatmapset_activities._user', ['user' => $userVotes[0]->user])
-                            <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
-                                <a class="beatmapset-activities__vote-link"
-                                   href="{{ route('users.modding.votes-given', $userVotes[0]->user) }}">
-                                    {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
-                                </a>
-                            </span>
-                        @endcomponent
-                    </div>
-                @endforeach
+                <div class="beatmapset-activities__user-upvote-list">
+                    @foreach ($receivedVotes['items'] as $userVotes)
+                        <div class="beatmapset-activities__user-upvote-panel">
+                            @component('beatmapset_activities._user', ['user' => $userVotes[0]->user])
+                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
+                                    <a class="beatmapset-activities__vote-link"
+                                    href="{{ route('users.modding.votes-given', $userVotes[0]->user) }}">
+                                        {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
+                                    </a>
+                                </span>
+                            @endcomponent
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
-            <div class="beatmapset-activities__user-upvote-list">
+            <div>
                 <h3>{{ trans('users.beatmapset_activities.votes_made.title_most') }}</h3>
-                @foreach ($votes['items'] as $userVotes)
-                    <div class="beatmapset-activities__user-upvote-panel">
-                        @component('beatmapset_activities._user', ['user' => $userVotes[0]->beatmapDiscussion->user])
-                            <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
-                                <a class="beatmapset-activities__vote-link"
-                                   href="{{ route('users.modding.votes-received', $userVotes[0]->beatmapDiscussion->user) }}">
-                                    {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
-                                </a>
-                            </span>
-                        @endcomponent
-                    </div>
-                @endforeach
+                <div class="beatmapset-activities__user-upvote-list">
+                    @foreach ($votes['items'] as $userVotes)
+                        <div class="beatmapset-activities__user-upvote-panel">
+                            @component('beatmapset_activities._user', ['user' => $userVotes[0]->beatmapDiscussion->user])
+                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
+                                    <a class="beatmapset-activities__vote-link"
+                                    href="{{ route('users.modding.votes-received', $userVotes[0]->beatmapDiscussion->user) }}">
+                                        {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
+                                    </a>
+                                </span>
+                            @endcomponent
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
