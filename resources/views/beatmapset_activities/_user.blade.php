@@ -25,6 +25,6 @@
     </div>
     <div class="beatmap-discussion-post__user">
         <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($user) !!}</span>
-        {!! $slot !!}
+        {!! $slot ?? null !!}
     </div>
 </div>
