@@ -230,9 +230,9 @@ class BBCodeFromDB
 
     public function parseQuote($text)
     {
-        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]#", '<h4>\\1 wrote:</h4><blockquote>', $text);
-        $text = str_replace("[quote:{$this->uid}]", '<blockquote>', $text);
-        $text = str_replace("[/quote:{$this->uid}]", '</blockquote>', $text);
+        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<h4>\\1 wrote:</h4><blockquote>', $text);
+        $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\s*#", '</blockquote>', $text);
 
         return $text;
     }

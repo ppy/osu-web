@@ -80,4 +80,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $property->getValue($obj);
     }
+
+    protected function normalizeHTML($html)
+    {
+        return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
+    }
 }

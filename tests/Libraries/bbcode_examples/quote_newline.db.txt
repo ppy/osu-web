@@ -1,0 +1,11 @@
+[quote:1]
+Here is a quote.
+[/quote:1]
+
+Some text goes here.
+
+[quote=&quot;some poster&quot;:1]
+And another quote with title.
+[/quote:1]
+
+And here is some other text.
