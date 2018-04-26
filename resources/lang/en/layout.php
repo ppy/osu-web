@@ -118,7 +118,12 @@ return [
             'settings' => 'Settings',
             'logout' => 'Sign Out',
             'help' => 'Help',
-            'beatmapset_activities' => 'user beatmapset activities',
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'user modding history',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'store',

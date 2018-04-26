@@ -81,12 +81,11 @@ class BeatmapDiscussionsController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
+        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
         $params = request();
+        $params['is_moderator'] = $isModerator;
 
-        // for when the priv_check lock above is removed
-        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+        if (!$isModerator) {
             $params['with_deleted'] = false;
         }
 
@@ -101,7 +100,7 @@ class BeatmapDiscussionsController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmap-discussions.index'),
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );
