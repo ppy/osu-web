@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '自分の懸念点はまだ挙げられていません',
-        'notice' => ':timestamp (:existing_timestamps)付近に他の投稿があります。投稿する前に確認してください。',
+        'notice' => ':timestamp付近に他の投稿(:existing_timestamps)があります。投稿する前に確認してください。',
     ],
 
     'reply' => [

@@ -71,7 +71,7 @@ return [
             'duplicate_options' => '選択肢の重複があります。',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
-            'minimum_two_options' => '選択肢は最低2つ必要です。。',
+            'minimum_two_options' => '選択肢は最低2つ必要です。',
             'too_many_options' => '選択肢の数が多すぎます。',
         ],
 
@@ -101,7 +101,7 @@ return [
         'wrong_current_password' => '誤ったパスワードです。',
         'wrong_email_confirmation' => 'Eメールの確認が一致しません。',
         'wrong_password_confirmation' => 'パスワードの確認が一致しません。',
-        'too_long' => ' :limit文字です。',
+        'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
         'change_username' => [
             'supporter_required' => [

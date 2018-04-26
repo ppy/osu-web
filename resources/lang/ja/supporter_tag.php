@@ -19,7 +19,7 @@
  */
 
 return [
-    'months' => 'ヶ月',
+    'months' => '何ヶ月分',
 
     'user_search' => [
         'searching' => '検索中・・・',
