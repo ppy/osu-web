@@ -34,12 +34,29 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       showingSelector: false
 
 
+  componentDidMount: =>
+    $(document).on 'click.userFilter', @hideSelector
+
+
   componentDidUpdate: (_prevProps, prevState) =>
     Blackout.toggle(@state.showingSelector, 0.5) unless prevState.showingSelector == @state.showingSelector
 
 
+  componentWillUnmount: ->
+    $(document).off '.userFilter'
+
+
+  hideSelector: (e) =>
+    return if e.button != 0
+    return unless @state.showingSelector
+    return if $(e.target).closest(".js-#{bn}").length
+
+    @setState () ->
+      showingSelector: false
+
+
   render: =>
-    classNames = "#{bn}"
+    classNames = "#{bn} js-#{bn}"
     classNames += " #{bn}--selecting" if @state.showingSelector
 
     div
