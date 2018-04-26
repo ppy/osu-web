@@ -51,8 +51,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     return unless @state.showingSelector
     return if $(e.target).closest(".js-#{bn}").length
 
-    @setState () ->
-      showingSelector: false
+    @setState showingSelector: false
 
 
   render: =>
@@ -117,8 +116,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     return if event.button != 0
     event.preventDefault()
 
-    @setState (prevState) ->
-      showingSelector: !prevState.showingSelector
+    @setState showingSelector: !@state.showingSelector
 
 
   userSelected: (event, user) ->
@@ -127,5 +125,4 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
 
     selectedUserId = user.id
     $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
-    @setState () ->
-      showingSelector: false
+    @setState showingSelector: false
