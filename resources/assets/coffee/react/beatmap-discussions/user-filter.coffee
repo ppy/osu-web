@@ -44,6 +44,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
         @renderItem
           children: [
             div
+              className: 'u-ellipsis-overflow'
               key: 'selector'
               @selectedUser().username,
 
@@ -65,6 +66,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     @renderItem
       children: [
         div
+          className: 'u-ellipsis-overflow'
           key: user.id
           user.username
       ],
