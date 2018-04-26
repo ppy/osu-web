@@ -20,7 +20,10 @@
   @top: beatmap-list;
   color: #fff;
   min-width: 0;
-  display: flex;
+
+  @media @desktop {
+    display: flex;
+  }
 
   &--selecting {
     z-index: @z-index--blackout-visible;
@@ -30,6 +33,7 @@
     .default-box-shadow();
 
     position: absolute;
+    width: 100%;
     top: 100%;
     left: 0;
     margin-top: 5px;
