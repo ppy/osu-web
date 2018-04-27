@@ -43,7 +43,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
               for beatmapset in beatmapsets
                 div
                   key: beatmapset.id
-                  className: 'osu-layout__col osu-layout__col--sm-6'
+                  className: 'osu-layout__col osu-layout__col--sm-4'
                   el BeatmapsetPanel, beatmap: beatmapset
 
               div
