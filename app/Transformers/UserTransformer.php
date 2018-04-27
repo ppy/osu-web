@@ -96,17 +96,17 @@ class UserTransformer extends Fractal\TransformerAbstract
         ];
     }
 
+    public function includeActiveTournamentBanner(User $user)
+    {
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
+    }
+
     public function includeBadges(User $user)
     {
         return $this->collection(
             $user->badges()->orderBy('awarded', 'DESC')->get(),
             new UserBadgeTransformer
         );
-    }
-
-    public function includeActiveTournamentBanner(User $user)
-    {
-        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
     }
 
     public function includeDefaultStatistics(User $user)
