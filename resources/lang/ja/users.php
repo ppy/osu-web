@@ -86,7 +86,6 @@ return [
         'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
     ],
     'show' => [
-        '404' => 'ユーザーが見つかりませんでした。',
         'age' => ':age',
         'change_avatar' => 'アバター画像の変更',
         'first_members' => '創設時からのメンバー',
@@ -267,6 +266,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'サイト',
+        ],
+        'not_found' => [
+            'title' => 'ユーザーが見つかりませんでした。 ｡･ﾟ･(ﾉД` )･ﾟ･｡',
         ],
         'page' => [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',

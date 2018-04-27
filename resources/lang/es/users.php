@@ -78,7 +78,6 @@ return [
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [
-        '404' => '¡Usuario no encontrado! ;_;',
         'age' => ':age años',
         'first_members' => 'Aquí desde el comienzo',
         'is_developer' => 'osu!developer',
@@ -257,6 +256,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Sitio web',
+        ],
+        'not_found' => [
+            'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
             'description' => '<strong>¡sobre mi!</strong> es una área personalizable en tu perfil.',

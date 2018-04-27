@@ -87,7 +87,6 @@ return [
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
     ],
     'show' => [
-        '404' => 'Bruger ikke fundet! ;_;',
         'age' => ':age år gammel',
         'change_avatar' => 'ændr din avatar!',
         'first_members' => 'Var her fra starten',
@@ -263,6 +262,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Hjemmeside',
+        ],
+        'not_found' => [
+            'title' => 'Bruger ikke fundet! ;_;',
         ],
         'page' => [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
