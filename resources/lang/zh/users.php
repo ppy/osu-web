@@ -77,7 +77,6 @@ return [
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
     ],
     'show' => [
-        '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
@@ -217,6 +216,9 @@ return [
                     'title' => '第一名',
                 ],
             ],
+        ],
+        'not_found' => [
+            'title' => '找不到指定的用户',
         ],
         'page' => [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',

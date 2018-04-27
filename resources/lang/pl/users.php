@@ -272,6 +272,9 @@ return [
             'twitter' => 'Twitter',
             'website' => 'Strona internetowa',
         ],
+        'not_found' => [
+            '404' => 'Nie znaleziono gracza! ;_;',
+        ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',

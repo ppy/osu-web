@@ -20,11 +20,11 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'ご希望のページはまだ現在選択している言語に翻訳されていません。 (:language). 英語版を表示します。',
+        'fallback_translation' => 'ご希望のページはまだ現在選択している言語（:language）には翻訳されていません。英語版を表示します。',
         'languages' => '言語',
         'missing' => 'ご希望のページ":keyword"は見つかりませんでした。',
         'missing_title' => 'Not Found',
-        'missing_translation' => 'ご希望のページはまだ現在選択している言語に翻訳されていません。',
+        'missing_translation' => 'ご希望のページはまだ現在選択している言語には翻訳されていません。',
         'search' => ':linkの既存のページを検索する',
         'toc' => '目次',
 

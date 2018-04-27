@@ -54,6 +54,7 @@ class Beatmapset extends Model implements AfterCommit
     protected $dates = [
         'approved_date',
         'cover_updated_at',
+        'deleted_at',
         'last_update',
         'queued_at',
         'submit_date',

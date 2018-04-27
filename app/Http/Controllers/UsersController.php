@@ -208,7 +208,7 @@ class UsersController extends Controller
         $user = User::lookup($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
+            return response()->view('users.show_not_found')->setStatusCode(404);
         }
 
         if ((string) $user->user_id !== (string) $id) {

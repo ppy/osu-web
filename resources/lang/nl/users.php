@@ -43,7 +43,6 @@ return [
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(', // Base text changed from "log" to "sign"
     'show' => [
-        '404' => 'Gebruiker niet gevonden! ;_;',
         'age' => ':age jaar oud',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
@@ -142,6 +141,9 @@ return [
                     'title' => 'Eerste Ranks',
                 ],
             ],
+        ],
+        'not_found' => [
+            'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
