@@ -103,7 +103,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     a
       children: children
       className: classNames
-      href: '#'
+      href: "?user=#{key ? ''}"
       key: key
       onClick: onClick
 
