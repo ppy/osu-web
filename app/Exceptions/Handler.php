@@ -96,6 +96,8 @@ class Handler extends ExceptionHandler
             return $e->getResponse();
         }
 
+        $statusCode = $this->statusCode($e);
+
         if ($e instanceof AuthenticationException) {
             return $this->unauthenticated($request, $e);
         }
@@ -107,14 +109,16 @@ class Handler extends ExceptionHandler
                 $response = parent::render($request, $e);
             }
         } else {
+            $renderedException = $statusCode < 500 ? $e : null;
+
             if ($request->ajax()) {
-                $response = response(['error' => $this->ajaxMessage($e)]);
+                $response = response(['error' => $this->ajaxMessage($renderedException)]);
             } else {
-                $response = response()->view('layout.error', ['exception' => $e]);
+                $response = response()->view('layout.error', ['exception' => $renderedException]);
             }
         }
 
-        return $response->setStatusCode($this->statusCode($e));
+        return $response->setStatusCode($statusCode);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
