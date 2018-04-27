@@ -60,7 +60,7 @@ class ProfileBanner extends Model
         $period = $this->period();
 
         if ($period !== null) {
-            $prefix = config("osu.tournament_support.{$period}.prefix");
+            $prefix = config("osu.tournament_banner.{$period}.prefix");
 
             return "{$prefix}{$this->country_acronym}.jpg";
         }
@@ -71,15 +71,15 @@ class ProfileBanner extends Model
         $period = $this->period();
 
         return $period === 'current' ||
-            ($period === 'previous' && $this->country_acronym === config('osu.tournament_support.previous.winner_id'));
+            ($period === 'previous' && $this->country_acronym === config('osu.tournament_banner.previous.winner_id'));
     }
 
     public function period()
     {
         switch ($this->tournament_id) {
-            case config('osu.tournament_support.current.id'):
+            case config('osu.tournament_banner.current.id'):
                 return 'current';
-            case config('osu.tournament_support.previous.id'):
+            case config('osu.tournament_banner.previous.id'):
                 return 'previous';
         }
     }

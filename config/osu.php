@@ -93,15 +93,15 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
-    'tournament_support' => [
+    'tournament_banner' => [
         'current' => [
-            'id' => get_int(env('TOURNAMENT_SUPPORT_CURRENT_ID')),
-            'prefix' => env('TOURNAMENT_SUPPORT_CURRENT_PREFIX'),
+            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
         ],
         'previous' => [
-            'id' => get_int(env('TOURNAMENT_SUPPORT_PREVIOUS_ID')),
-            'prefix' => env('TOURNAMENT_SUPPORT_PREVIOUS_PREFIX'),
-            'winner_id' => env('TOURNAMENT_SUPPORT_PREVIOUS_WINNER_ID'),
+            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
+            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
         ],
     ],
     'urls' => [

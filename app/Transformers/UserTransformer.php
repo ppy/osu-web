@@ -43,7 +43,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'statistics',
         'unranked_beatmapset_count',
         'user_achievements',
-        'visible_banner',
+        'tournament_banner',
     ];
 
     public function transform(User $user)
@@ -104,7 +104,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeVisibleBanner(User $user)
+    public function includeTournamentBanner(User $user)
     {
         return $this->item($user->profileBanners()->visible(), new ProfileBannerTransformer);
     }

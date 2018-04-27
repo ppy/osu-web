@@ -76,12 +76,12 @@ class ProfilePage.HeaderMain extends React.Component
 
         div
           className: 'profile-header__info profile-header__info--top'
-          if @props.user.visible_banner.id?
+          if @props.user.tournament_banner.id?
             a
-              href: laroute.route('tournaments.show', tournament: @props.user.visible_banner.tournament_id)
+              href: laroute.route('tournaments.show', tournament: @props.user.tournament_banner.tournament_id)
               el Img2x,
-                src: @props.user.visible_banner.image
-                className: 'profile-header__tournament-support'
+                src: @props.user.tournament_banner.image
+                className: 'profile-header__tournament-banner'
           if @props.withEdit && @props.user.playmode != @props.currentMode
             button
               className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
