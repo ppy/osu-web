@@ -20,15 +20,11 @@
 
 return [
     'landing' => [
+        'download' => 'Pobierz teraz',
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-        'download' => [
-            '_' => 'Pobierz teraz',
-            'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
-            'for' => 'dla :os',
-            'other' => 'kliknij tutaj po :os1 lub :os2',
-        ],
+
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'rytm jest tylko o klik stąd!',
@@ -39,7 +35,9 @@ return [
         'button' => 'Szukaj',
         'empty_result' => 'Nie znaleziono!',
         'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
-        'title' => 'Wyniki wyszukiwania',
+        'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
+        'title' => 'Wyszukiwarka',
+
         'beatmapset' => [
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
@@ -53,6 +51,7 @@ return [
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij subfora',
+                'topic_id' => 'wątek #',
                 'username' => 'autor',
             ],
         ],
@@ -66,6 +65,7 @@ return [
         'user' => [
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
+            'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max graczy. Spróbuj zmienić wyszukiwaną frazę.',
             'title' => 'Użytkownicy',
         ],
         'wiki_page' => [
@@ -74,39 +74,46 @@ return [
             'title' => 'Wiki',
         ],
     ],
+
     'download' => [
-      'header' => [
-          '1' => 'a więc',
-          '2' => 'zapoznajmy się z',
-          '3' => 'pobieraniem osu! na system Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Krok 1',
-              'content' => 'Pobierz klienta gry osu!',
-          ],
-          '2' => [
-              'name' => 'Krok 2',
-              'content' => 'Załóż konto na osu!',
-          ],
-          '3' => [
-              'name' => 'Krok 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Dowiedz się więcej!',
-      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy</a> po poradniki i wskazówki dotyczące całego świata osu!',
+        'tagline' => 'rozpocznij swoją<br>przygodę z osu!',
+        'action' => 'Pobierz osu!',
+        'os' => [
+            'windows' => 'dla systemu Windows',
+            'macos' => 'dla systemu macOS',
+            'linux' => 'dla systemu Linux',
+        ],
+        'mirror' => 'serwer lustrzany',
+        'macos-fallback' => 'użytkownicy macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'utwórz konto',
+                'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować',
+            ],
+            'download' => [
+                'title' => 'pobierz grę',
+                'description' => 'kliknij przycisk powyżej, aby pobrać instalator, a następnie uruchom go!',
+            ],
+            'beatmaps' => [
+                'title' => 'pobierz beatmapy',
+                'description' => [
+                    '_' => ':browse ogromną bibliotekę utworzonych przez społeczność beatmap i rozpocznij grę!',
+                    'browse' => 'sprawdź',
+                ],
+            ],
+        ],
+        'video-guide' => 'poradnik',
     ],
 
     'user' => [
-        'title' => 'wiadomości',
+        'title' => 'przegląd',
         'news' => [
             'title' => 'Wiadomości',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz 1 nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
+            'messages' => 'Masz :count nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',
@@ -116,11 +123,24 @@ return [
         'beatmaps' => [
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
+            'by' => 'stworzona przez',
+            'plays' => ':count zagrań',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
-            'support' => 'Wesprzyj osu!',
+            'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
         ],
+    ],
+
+    'support-osu' => [
+        'title' => 'Wow!',
+        'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
+        'body' => [
+            'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
+            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych, oraz oglądania innych graczy?',
+        ],
+        'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
+        'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
     ],
 ];

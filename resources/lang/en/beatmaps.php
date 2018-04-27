@@ -40,10 +40,11 @@ return [
         'edited' => 'Last edited by :editor :update_time.',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
+        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
-        'require-login' => 'Please login to post or reply',
+        'require-login' => 'Please sign in to post or reply',
         'resolved' => 'Resolved',
         'restore' => 'restore',
         'title' => 'Discussions',
@@ -64,7 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualify',
+            'hype' => 'Hype!',
             'mapper_note' => 'Note',
+            'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -72,9 +76,12 @@ return [
 
         'mode' => [
             'events' => 'History',
-            'general' => 'General',
-            'general_all' => 'General (all difficulties)',
+            'general' => 'General :scope',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => 'This difficulty',
+                'generalAll' => 'All difficulties',
+            ],
         ],
 
         'new' => [
@@ -85,6 +92,13 @@ return [
 
         'show' => [
             'title' => ':title mapped by :mapper',
+        ],
+
+        'sort' => [
+            '_' => 'Sorted by:',
+            'created_at' => 'creation time',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
         ],
 
         'stats' => [
@@ -109,26 +123,45 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Already Hyped!',
-        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
-        'section-title' => 'Hype Train',
+        'button_done' => 'Already Hyped!',
+        'confirm' => "Are you sure? This will use one out of your remaining :n hype and can't be undone.",
+        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
+        'explanation_guest' => 'Sign in and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype :new_time.",
+        'remaining' => 'You have :remaining hype left.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Leave Feedback',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'no reason specified',
-        'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualification_prompt' => 'Reason for disqualification?',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_no_reason' => 'no reason specified',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominate',
-        'nominated-by' => 'nominated by :users',
-        'nominate-confirm' => 'Nominate this beatmap?',
+        'nominate_confirm' => 'Nominate this beatmap?',
+        'nominated_by' => 'nominated by :users',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
-        'required-text' => 'Nominations: :current/:required',
+        'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'required_text' => 'Nominations: :current/:required',
+        'reset_message_deleted' => 'deleted',
         'title' => 'Nomination Status',
+        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nomination process reset :time_ago by :user with new problem :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago by :user with new problem :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset nomination process.',
+        ],
     ],
 
     'listing' => [
@@ -138,12 +171,14 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
                 'rank' => 'Rank Achieved',
+                'played' => 'Played',
             ],
         ],
         'mode' => 'Mode',
@@ -151,6 +186,10 @@ return [
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
+    ],
+    'general' => [
+        'recommended' => 'Recommended difficulty',
+        'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
         'any' => 'Any',
@@ -183,27 +222,28 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Any',
@@ -218,6 +258,11 @@ return [
         'swedish' => 'Swedish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+    ],
+    'played' => [
+        'any' => 'Any',
+        'played' => 'Played',
+        'unplayed' => 'Unplayed',
     ],
     'extra' => [
         'video' => 'Has Video',

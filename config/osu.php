@@ -7,6 +7,11 @@ return [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
     ],
 
+    'assets' => [
+        'base_url' => env('ASSETS_URL'),
+        'mini_url' => env('MINI_ASSETS_URL'),
+    ],
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -22,7 +27,10 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
+        'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
         'key' => env('CAMO_KEY'),
@@ -32,19 +40,26 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'index' => env('ES_INDEX', 'osu'),
+        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
+        'prefix' => env('ES_INDEX_PREFIX'),
+        'index' => [
+            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
+        ],
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
     ],
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
-        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
-        'double_post_time' => [
-            'normal' => 72,
-            'author' => 24,
-        ],
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
+        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
+        'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
+        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+
+        'double_post_time' => [
+            'author' => 24,
+            'normal' => 72,
+        ],
 
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
@@ -68,6 +83,7 @@ return [
             'user' => 100,
         ],
     ],
+    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
@@ -81,6 +97,9 @@ return [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
+        'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'osx' => 'https://osx.ppy.sh',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
         'legacy-forum-thread-prefix' => '/forum/t/',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
@@ -89,10 +108,7 @@ return [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
         ],
-        'status' => [
-            'osustatus' => 'https://twitter.com/osustatus',
-            'server' => 'http://stat.ppy.sh/',
-        ],
+        'server_status' => 'https://twitter.com/osustatus',
         'user' => [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
@@ -125,6 +141,7 @@ return [
             'tries' => 8,
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
+        'ban_persist_days' => intval(env('BAN_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),

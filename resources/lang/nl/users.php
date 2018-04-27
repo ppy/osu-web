@@ -25,8 +25,8 @@ return [
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
         'remember' => 'Onthoud deze computer',
-        'title' => 'Log in om verder te gaan',
-        'failed' => 'Verkeerde login',
+        'title' => 'Log in om verder te gaan', // Base text changed from "log" to "sign"
+        'failed' => 'Verkeerde login', // Base text changed from "log" to "sign"
         'register' => 'Heb je geen osu! account? Maak een nieuwe',
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
@@ -37,15 +37,13 @@ return [
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'anonymous' => [
-        'login_link' => 'klik om in te loggen',
+        'login_link' => 'klik om in te loggen', // Base text changed from "log" to "sign"
         'username' => 'Gast',
-        'error' => 'Je moet ingelogd zijn om dit te doen.',
+        'error' => 'Je moet ingelogd zijn om dit te doen.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
+    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(', // Base text changed from "log" to "sign"
     'show' => [
-        '404' => 'Gebruiker niet gevonden! ;_;',
         'age' => ':age jaar oud',
-        'current_location' => 'Momenteel in :location',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -92,6 +90,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
+                'title' => 'Historisch',
+
                 'most_played' => [
                     'count' => 'keer gespeeld',
                     'title' => 'Meest Gespeelde Beatmaps',
@@ -100,7 +100,6 @@ return [
                     'accuracy' => 'precisie: :percentage',
                     'title' => 'Recent gespeeld',
                 ],
-                'title' => 'Historisch',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
@@ -126,21 +125,25 @@ return [
             'medals' => [
                 'title' => 'Medailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Beste Prestatie',
-                ],
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
-                'first' => [
-                    'title' => 'Eerste Ranks',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Beste Prestatie',
+                ],
+                'first' => [
+                    'title' => 'Eerste Ranks',
+                ],
             ],
+        ],
+        'not_found' => [
+            'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',

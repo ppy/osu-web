@@ -21,6 +21,8 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\Search\BeatmapsetSearch;
+use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -43,13 +45,15 @@ class BeatmapsetsController extends Controller
     {
         $languages = Language::listing();
         $genres = Genre::listing();
-        $beatmaps = json_collection(
-            Beatmapset::search($this->searchParams())['data'],
-            new BeatmapsetTransformer,
-            'beatmaps'
-        );
+
+        $beatmaps = $this->search();
 
         // temporarily put filters here
+        $general = [
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
+            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
+        ];
+
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
@@ -77,7 +81,13 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $played = [
+            ['id' => null, 'name' => trans('beatmaps.played.any')],
+            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
+            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
+        ];
+
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -85,7 +95,13 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('beatmaps.failtimes', 'user')
+            ::with([
+                'beatmaps.difficulty',
+                'beatmaps.failtimes',
+                'genre',
+                'language',
+                'user',
+            ])
             ->findOrFail($id);
 
         $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
@@ -98,11 +114,14 @@ class BeatmapsetsController extends Controller
                 'availability',
                 'beatmaps',
                 'beatmaps.failtimes',
+                'beatmaps.max_combo',
                 'converts',
                 'converts.failtimes',
                 $descriptionInclude,
+                'genre',
+                'language',
                 'ratings',
-                'recentFavourites',
+                'recent_favourites',
                 'user',
             ]
         );
@@ -113,21 +132,33 @@ class BeatmapsetsController extends Controller
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
-
-            return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset'));
         }
     }
 
     public function search()
     {
-        $user = Auth::user();
+        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
 
-        $params = $this->searchParams();
-        $beatmaps = Beatmapset::search($params)['data'];
+        $records = datadog_timing(function () use ($params) {
+            $ids = $params->fetchCacheable(
+                'search-cache:',
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($params) {
+                    $search = (new BeatmapsetSearch($params))->source('_id');
+
+                    return $search->response()->ids();
+                }
+            );
+
+            return Beatmapset::whereIn('beatmapset_id', $ids)
+                ->orderByField('beatmapset_id', $ids)
+                ->with('beatmaps')
+                ->get();
+        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
         return json_collection(
-            $beatmaps,
+            $records,
             new BeatmapsetTransformer,
             'beatmaps'
         );
@@ -156,8 +187,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -194,7 +224,7 @@ class BeatmapsetsController extends Controller
             'mirror_id' => $mirror->mirror_id,
         ]);
 
-        return redirect($mirror->generateUrl($beatmapset, $noVideo));
+        return redirect($mirror->generateURL($beatmapset, $noVideo));
     }
 
     public function nominate($id)
@@ -203,42 +233,18 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        if (!$beatmapset->nominate(Auth::user())) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        $nomination = $beatmapset->nominate(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
+        (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
-        ]);
+        ]))->delayedDispatch();
 
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
-    }
-
-    public function disqualify($id)
-    {
-        $beatmapset = Beatmapset::findOrFail($id);
-
-        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
-
-        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
-        }
-
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]);
-
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function update($id)
@@ -282,34 +288,5 @@ class BeatmapsetsController extends Controller
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
         ];
-    }
-
-    private function searchParams()
-    {
-        $user = Auth::user();
-
-        if ($user === null) {
-            $params = [
-                'page' => Request::input('page'),
-            ];
-        } else {
-            $params = [
-                'query' => Request::input('q'),
-                'mode' => Request::input('m'),
-                'status' => Request::input('s'),
-                'genre' => Request::input('g'),
-                'language' => Request::input('l'),
-                'extra' => Request::input('e'),
-                'page' => Request::input('page'),
-                'sort' => Request::input('sort'),
-                'user' => $user,
-            ];
-
-            if ($user->isSupporter()) {
-                $params['rank'] = Request::input('r');
-            }
-        }
-
-        return $params;
     }
 }

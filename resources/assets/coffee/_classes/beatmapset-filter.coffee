@@ -31,25 +31,72 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    c: 'general'
     m: 'mode'
     s: 'status'
     g: 'genre'
     l: 'language'
     e: 'extra'
     r: 'rank'
+    played: 'played'
     q: 'query'
     sort: 'sort'
 
 
   @defaults:
-    mode: null
-    status: 0
+    general: ''
+    extra: ''
     genre: null
     language: null
-    extra: ''
-    rank: ''
-    sort: 'ranked_desc'
+    mode: null
+    played: null
     query: ''
+    rank: ''
+    status: 0
 
 
-  @expand: ['genre', 'language', 'extra', 'rank']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played']
+
+  @fillDefaults: (filters) =>
+    ret = {}
+
+    for key in @keys
+      ret[key] = filters[key] ? @getDefault(filters, key)
+
+    ret
+
+
+  @getDefault: (filters, key) =>
+    return @defaults[key] if @defaults.hasOwnProperty(key)
+
+    if key == 'sort'
+      if filters.query?.trim().length > 0
+        'relevance_desc'
+      else
+        if filters.status in [4, 5, 6]
+          'updated_desc'
+        else
+          'ranked_desc'
+
+
+  @getDefaults: (filters) =>
+    ret = {}
+
+    for key in @keys
+      ret[key] = @getDefault(filters, key)
+
+    ret
+
+
+  @keys: [
+    'general'
+    'extra'
+    'genre'
+    'language'
+    'mode'
+    'played'
+    'query'
+    'rank'
+    'sort'
+    'status'
+  ]

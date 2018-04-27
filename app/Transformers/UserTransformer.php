@@ -26,17 +26,23 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'userAchievements',
+        'account_history',
+        'badges',
         'defaultStatistics',
-        'followerCount',
-        'friends',
-        'page',
-        'recentActivities',
-        'rankedAndApprovedBeatmapsetCount',
-        'unrankedBeatmapsetCount',
-        'graveyardBeatmapsetCount',
-        'favouriteBeatmapsetCount',
         'disqus_auth',
+        'favourite_beatmapset_count',
+        'follower_count',
+        'friends',
+        'graveyard_beatmapset_count',
+        'monthly_playcounts',
+        'page',
+        'previous_usernames',
+        'ranked_and_approved_beatmapset_count',
+        'replays_watched_counts',
+        'scores_first_count',
+        'statistics',
+        'unranked_beatmapset_count',
+        'user_achievements',
     ];
 
     public function transform(User $user)
@@ -53,11 +59,12 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'age' => $user->age(),
             'avatar_url' => $user->user_avatar,
-            'isAdmin' => $user->isAdmin(),
-            'isSupporter' => $user->osu_subscriber,
-            'isGMT' => $user->isGMT(),
-            'isQAT' => $user->isQAT(),
-            'isBNG' => $user->isBNG(),
+            'is_admin' => $user->isAdmin(),
+            'is_supporter' => $user->osu_subscriber,
+            'is_gmt' => $user->isGMT(),
+            'is_qat' => $user->isQAT(),
+            'is_bng' => $user->isBNG(),
+            'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
@@ -68,13 +75,15 @@ class UserTransformer extends Fractal\TransformerAbstract
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'website' => $user->user_website,
+            'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
+            'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->extras_order,
+            'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
-                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'custom_url' => $profileCustomization->cover()->fileUrl(),
                 'url' => $profileCustomization->cover()->url(),
                 'id' => $profileCustomization->cover()->id(),
             ],
@@ -84,6 +93,14 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'max_friends' => $user->maxFriends(),
         ];
+    }
+
+    public function includeBadges(User $user)
+    {
+        return $this->collection(
+            $user->badges()->orderBy('awarded', 'DESC')->get(),
+            new UserBadgeTransformer
+        );
     }
 
     public function includeDefaultStatistics(User $user)
@@ -108,6 +125,14 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
+    public function includeMonthlyPlaycounts(User $user)
+    {
+        return $this->collection(
+            $user->monthlyPlaycounts,
+            new UserMonthlyPlaycountTransformer
+        );
+    }
+
     public function includePage(User $user)
     {
         return $this->item($user, function ($user) {
@@ -122,6 +147,14 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeReplaysWatchedCounts(User $user)
+    {
+        return $this->collection(
+            $user->replaysWatchedCounts,
+            new UserReplaysWatchedCountTransformer
+        );
+    }
+
     public function includeUserAchievements(User $user)
     {
         return $this->collection(
@@ -130,11 +163,19 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeRecentActivities(User $user)
+    public function includeAccountHistory(User $user)
     {
+        $histories = $user->accountHistories()->recent();
+
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+            $histories->default();
+        } else {
+            $histories->with('actor');
+        }
+
         return $this->collection(
-            $user->events()->recent()->get(),
-            new EventTransformer()
+            $histories->get(),
+            new UserAccountHistoryTransformer()
         );
     }
 
@@ -145,6 +186,22 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $user->profileBeatmapsetsRankedAndApproved()->count(),
             ];
         });
+    }
+
+    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
+
+        return $this->item($user, function ($user) use ($mode) {
+            return [$user->scoresFirst($mode)->count()];
+        });
+    }
+
+    public function includeStatistics(User $user, Fractal\ParamBag $params)
+    {
+        $stats = $user->statistics($params->get('mode')[0]);
+
+        return $this->item($stats, new UserStatisticsTransformer);
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)
@@ -194,6 +251,23 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'public_key' => config('services.disqus.public_key'),
                 'auth_data' => "$encodedData $hmac $timestamp",
             ];
+        });
+    }
+
+    public function includePreviousUsernames(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return $user
+                ->usernameChangeHistory()
+                ->visible()
+                ->select(['username_last', 'timestamp'])
+                ->withPresent('username_last')
+                ->where('username_last', '<>', $user->username)
+                ->orderBy('timestamp', 'ASC')
+                ->get()
+                ->pluck('username_last')
+                ->unique()
+                ->toArray();
         });
     }
 }

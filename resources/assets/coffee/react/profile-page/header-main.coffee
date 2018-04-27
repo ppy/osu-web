@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span} = ReactDOMFactories
+{button, div, i, img, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.HeaderMain extends React.Component
@@ -27,6 +27,7 @@ class ProfilePage.HeaderMain extends React.Component
       editing: false
       coverUrl: props.user.cover_url
       isCoverUpdating: false
+      settingDefaultMode: false
 
     @debouncedCoverSet = _.debounce @coverSet, 300
 
@@ -50,6 +51,7 @@ class ProfilePage.HeaderMain extends React.Component
 
     @closeEdit()
     @debouncedCoverSet.cancel()
+    @xhr?.abort()
 
 
   render: =>
@@ -69,17 +71,24 @@ class ProfilePage.HeaderMain extends React.Component
           div className: 'spinner__cube'
           div className: 'spinner__cube spinner__cube--2'
 
-      # to allow space-between to work properly in firefox
-      # reference: https://github.com/philipwalton/flexbugs/issues/111
       div
-        className: 'profile-header__container'
-        div
-          className: 'profile-header__column'
-          el ProfilePage.HeaderInfo, user: @props.user
+        className: 'profile-header__column profile-header__column--info'
+        el ProfilePage.Badges, badges: @props.user.badges
+        el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
+      if !@props.user.is_bot
         div
           className: 'profile-header__column'
           el ProfilePage.Stats, stats: @props.stats
+
+      if @props.withEdit && @props.user.playmode != @props.currentMode
+        button
+          className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
+          type: 'button'
+          onClick: @setDefaultMode
+          dangerouslySetInnerHTML:
+            __html:
+              osu.trans 'users.show.edit.default_playmode.set', mode: "<strong>#{osu.trans "beatmaps.mode.#{@props.currentMode}"}</strong>"
 
       div
         className: 'profile-header__actions',
@@ -92,10 +101,10 @@ class ProfilePage.HeaderMain extends React.Component
               className: 'btn-circle'
               onClick: @toggleEdit
               span className: 'btn-circle__content',
-                el Icon, name: 'pencil'
+                i className: 'fas fa-pencil-alt'
             if @state.editing
               el ProfilePage.CoverSelector,
-                canUpload: @props.user.isSupporter
+                canUpload: @props.user.is_supporter
                 cover: @props.user.cover
 
 
@@ -103,6 +112,7 @@ class ProfilePage.HeaderMain extends React.Component
     return unless @state.editing
 
     if e?
+      return if e.button != 0
       return if $(e.target).closest(@coverSelector).length
 
     return if $('#overlay').is(':visible')
@@ -137,3 +147,21 @@ class ProfilePage.HeaderMain extends React.Component
       @closeEdit()
     else
       @openEdit()
+
+
+  setDefaultMode: =>
+    @setState settingDefaultMode: true
+
+    @xhr = $.ajax laroute.route('account.update'),
+      method: 'PUT'
+      data:
+        user:
+          playmode: @props.currentMode
+    .done (data) ->
+      $.publish 'user:update', data
+    .fail (xhr, status) ->
+      return if status == 'abort'
+
+      osu.emitAjaxError() xhr
+    .always =>
+      @setState settingDefaultMode: false

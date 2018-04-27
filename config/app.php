@@ -89,15 +89,19 @@ return [
         'en',
 
         // sort by name
+        'da',
         'es',
         'fr',
         'it',
+        'ja',
         'ko',
         'nl',
         'pl',
         'pt-br',
         'ru',
+        'sv',
         'zh',
+        'zh-tw',
     ],
 
     /*
@@ -192,7 +196,6 @@ return [
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
-        Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
@@ -203,7 +206,13 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\ElasticsearchServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * After DB transaction commit support
+         */
+        App\Providers\TransactionStateServiceProvider::class,
 
         /*
          * OAuth2 Setup

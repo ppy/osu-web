@@ -31,7 +31,14 @@
   padding: 0 (@mod-width-normal / 2);
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  &--scoreboard {
+    width: auto;
+    height: @mod-height-small;
+    padding: 0px;
+    justify-content: flex-start;
+  }
 
   &--small {
     width: (@mod-width-small * 3);
@@ -47,16 +54,33 @@
 
   &--reversed {
     flex-direction: row-reverse;
+
+    @media @mobile {
+      flex-direction: row;
+
+      &:empty {
+        display: none;
+      }
+    }
   }
 
   &__mod {
     width: 0;
     display: flex;
     justify-content: center;
+
+    .@{top}--scoreboard & {
+      width: auto;
+      margin-right: 1px;
+    }
   }
 
   &__mod-image {
     min-width: @mod-width-normal;
+
+    .@{top}--scoreboard & {
+      min-width: 25px;
+    }
 
     .@{top}--small & {
       min-width: @mod-width-small;

@@ -28,15 +28,24 @@ return [
             'support_button' => 'Je veux supporter osu!',
         ],
 
-        'dev_quote' => "osu! est un free-to-play complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
+        'dev_quote' => "osu! est un free-to-win complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
                     <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom \"peppy\".
                     J'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
                     et à certains moments je lutte pour garder mes standards.
                     J'aurais aimé d'offrir mes remerciments personnels pour ceux qui ont supporté osu! jusque là,
                     et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).",
 
+        'supporter_status' => [
+            'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
+            'gifted' => ':giftedTags de vos achats des tags étaient en cadeau (pour un total de :giftedDollars offert), quelle générosité !',
+            'not_yet' => "Vous n'avez pas de tag supporter :(",
+            'title' => 'Statut du supporter',
+            'valid_until' => 'Votre tag supporter expire :date!',
+            'was_valid_until' => 'Votre tag supporter a expiré :date.',
+        ],
+
         'why_support' => [
-            'title' => 'Pourquoi je supporterais osu!?',
+            'title' => 'Pourquoi je supporterais osu! ?',
             'blocks' => [
                 'dev' => 'Développé et maitenu par une seule personne en Australie',
                 'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",
@@ -105,12 +114,12 @@ return [
 
             'sort_options' => [
                 'title' => 'Options de filtrage',
-                'description' => 'NOUVEAU: La capacité de filtrer le classement par pays / amis / mods spécifiques.',
+                'description' => 'La capacité de filtrer le classement par pays / amis / mods spécifiques.',
             ],
 
             'feel_special' => [
                 'title' => 'Sentiment spécial',
-                'description' => "Le sentiment d'aider osu! à fonctionner!",
+                'description' => 'Le sentiment spécial de participer au fonctionnement d\'osu! !',
             ],
 
             'more_to_come' => [

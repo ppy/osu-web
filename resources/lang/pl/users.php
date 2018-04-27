@@ -21,9 +21,36 @@
 return [
     'deleted' => '[usunięty użytkownik]',
 
+        'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Ostatnio rozpoczęte dyskusje',
+        ],
+
+        'events' => [
+            'title_recent' => 'Najnowsze wydarzenia',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Najnowsze posty',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Najwięcej otrzymanych głosów (ostatnie 3 miesiące)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Najwięcej nadanych głosów (ostatnie 3 miesiące)',
+        ],
+    ],
+
+    'card' => [
+        'loading' => 'Ładowanie...',
+        'send_message' => 'wyślij wiadomość',
+    ],
+
     'login' => [
         '_' => 'Zaloguj się',
-        'locked_ip' => 'Twój adres IP jest zablokowany. Poczekaj kilka minut.',
+        'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'username' => 'Nazwa użytkownika',
         'password' => 'Hasło',
         'button' => 'Zaloguj się',
@@ -31,14 +58,18 @@ return [
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Niepoprawny login/hasło',
-        'register' => 'Nie posiadasz konta osu! ? Stwórz nowe',
-        'forgot' => 'Zapomniałeś hasła?',
+        'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
+        'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
-            'small' => '(supporterzy dostaną go wkrótce)',
+            'small' => '(donatorzy otrzymają go wkrótce)',
         ],
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+
+    'posts' => [
+        'title' => 'Posty użytkownika :username',
     ],
 
     'signup' => [
@@ -47,6 +78,7 @@ return [
 
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
+        'login_text' => 'zaloguj się',
         'username' => 'Gość',
         'error' => 'Musisz się zalogować.',
     ],
@@ -56,21 +88,21 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
-        'current_location' => 'Obecnie w :location',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
-        'joined_at' => 'Dołączono :date',
+        'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
         'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik jest zablokowany)',
         'origin_age' => ':age',
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
+        'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
+        'change_avatar' => 'zmień swój awatar!',
 
         'edit' => [
             'cover' => [
@@ -86,6 +118,11 @@ return [
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
+            ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'domyślny tryb gry',
+                'set' => 'ustaw :mode jako domyślny tryb gry',
             ],
         ],
         'extra' => [
@@ -103,21 +140,34 @@ return [
                 'favourite' => [
                     'title' => 'Ulubione beatmapy (:count)',
                 ],
+                'graveyard' => [
+                    'title' => 'Porzucone beatmapy (:count)',
+                ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Oczekujące beatmapy (:count)',
                 ],
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
+                'title' => 'Historia',
+
+                'monthly_playcounts' => [
+                    'title' => 'Wykres zagrań',
+                ],
                 'most_played' => [
                     'count' => 'ilość zagrań',
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'celność: :percentage',
+                    'accuracy' => 'precyzja: :percentage',
                     'title' => 'Ostatnie wyniki',
                 ],
-                'title' => 'Historia',
+                'replays_watched_counts' => [
+                    'title' => 'Wykres obejrzanych powtórek',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
@@ -141,7 +191,7 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'Stracono :amount za usunięcie wątku :post',
+                            'reset' => 'Utracono :amount za usunięcie wątku :post',
                         ],
 
                         'restore' => [
@@ -150,7 +200,11 @@ return [
 
                         'vote' => [
                             'give' => 'Otrzymano :amount za zdobycie głosów w wątku :post',
-                            'reset' => 'Stracono :amount za utratę głosów w wątku :post',
+                            'reset' => 'Utracono :amount za utratę głosów w wątku :post',
+                        ],
+                        'recalculate' => [
+                            'give' => 'Otrzymano :amount w wyniku przekalkulowania głosów w wątku :post',
+                            'reset' => 'Utracono :amount w wyniku przekalkulowania głosów w wątku :post',
                         ],
                     ],
 
@@ -168,37 +222,78 @@ return [
                 'empty' => 'Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;',
                 'title' => 'Medale',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Najlepsze wyniki',
-                ],
                 'empty' => 'Brak wyników. :(',
-                'first' => [
-                    'title' => 'Pierwsze miejsca',
-                ],
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Najlepsze wyniki',
+                ],
+                'first' => [
+                    'title' => 'Pierwsze miejsca',
+                ],
+            ],
+            'account_standing' => [
+                'title' => 'Stan konta',
+                'bad_standing' => 'Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(',
+                'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Ostatnie przewinienia',
+                    'date' => 'data',
+                    'action' => 'typ',
+                    'length' => 'długość',
+                    'length_permanent' => 'Na zawsze',
+                    'description' => 'opis',
+                    'actor' => 'przez :username',
+
+                    'actions' => [
+                        'restriction' => 'Blokada',
+                        'silence' => 'Uciszenie',
+                        'note' => 'Adnotacja',
+                    ],
+                ],
             ],
         ],
+        'info' => [
+            'discord' => 'Discord',
+            'interests' => 'Zainteresowania',
+            'lastfm' => 'Last.fm',
+            'location' => 'Obecna lokalizacja',
+            'occupation' => 'Zajęcia',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Strona internetowa',
+        ],
+        'not_found' => [
+            '404' => 'Nie znaleziono gracza! ;_;',
+        ],
         'page' => [
-            'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
+            'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
             'restriction_info' => "Musisz posiadać <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
+        ],
+        'post_count' => [
+            '_' => ':link',
+            'count' => ':count post na forum|:count posty na forum|:count postów na forum',
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
             'global' => 'Pozycja w rankingu światowym dla :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Celność',
+            'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
             'play_count' => 'Ilość zagrań',
+            'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
@@ -210,8 +305,11 @@ return [
         'online' => 'Online',
         'offline' => 'Offline',
     ],
+    'store' => [
+        'saved' => 'Użytkownik utworzony', //no context
+    ],
     'verify' => [
-        'title' => 'Weryfikacja Konta',
+        'title' => 'Weryfikacja konta',
     ],
 
 ];

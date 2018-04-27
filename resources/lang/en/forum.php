@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Pinned Topics',
+    'slogan' => "it's dangerous to play alone.",
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
+        'edited' => 'Last edited by :user :when, edited :count times in total.',
         'posted_at' => 'posted :when',
+
         'actions' => [
             'destroy' => 'Delete post',
             'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Go to post',
         'post_number_input' => 'enter post number',
         'total_posts' => ':posts_count posts total',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => "it's dangerous to play alone.",
+
     'topic' => [
+        'deleted' => 'deleted topic',
+        'go_to_latest' => 'view latest post',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => 'latest reply by :user',
+        'new_topic' => 'Post new topic',
+        'post_reply' => 'Post',
+        'reply_box_placeholder' => 'Type here to reply',
+        'started_by' => 'by :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
-            ],
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Write',
             'submit' => 'Post',
+
+            'placeholder' => [
+                'body' => 'Type post content here',
+                'title' => 'Click here to set title',
+            ],
         ],
-        'go_to_latest' => 'view latest post',
+
         'jump' => [
             'enter' => 'click to enter specific post number',
             'first' => 'go to first post',
@@ -83,16 +96,11 @@ return [
             'next' => 'skip next 10 posts',
             'previous' => 'go back 10 posts',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
     ],
 
     'topic_watches' => [
@@ -105,6 +113,7 @@ return [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
             ],
+
             'info' => [
                 'total' => 'You subscribed to :total topics.',
                 'unread' => 'You have :unread unread replies to subscribed topics.',
@@ -161,53 +170,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+            'to_0' => 'Remove "added" tag',
+            'to_0_done' => 'Removed "added" tag',
+            'to_1' => 'Add "added" tag',
+            'to_1_done' => 'Added "added" tag',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'to_0' => 'Remove "assigned" tag',
+            'to_0_done' => 'Removed "assigned" tag',
+            'to_1' => 'Add "assigned" tag',
+            'to_1_done' => 'Added "assigned" tag',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'to_0' => 'Remove "confirmed" tag',
+            'to_0_done' => 'Removed "confirmed" tag',
+            'to_1' => 'Add "confirmed" tag',
+            'to_1_done' => 'Added "confirmed" tag',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'to_0' => 'Remove "duplicate" tag',
+            'to_0_done' => 'Removed "duplicate" tag',
+            'to_1' => 'Add "duplicate" tag',
+            'to_1_done' => 'Added "duplicate" tag',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'to_0' => 'Remove "invalid" tag',
+            'to_0_done' => 'Removed "invalid" tag',
+            'to_1' => 'Add "invalid" tag',
+            'to_1_done' => 'Added "invalid" tag',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'to_0' => 'Remove "resolved" tag',
+            'to_0_done' => 'Removed "resolved" tag',
+            'to_1' => 'Add "resolved" tag',
+            'to_1_done' => 'Added "resolved" tag',
         ],
 
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'to_0' => 'Unlock topic',
+            'to_0_done' => 'Topic has been unlocked',
+            'to_1' => 'Lock topic',
+            'to_1_done' => 'Topic has been locked',
         ],
 
         'moderate_move' => [
@@ -215,25 +224,25 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'to_0' => 'Unpin topic',
+            'to_0_done' => 'Topic has been unpinned',
+            'to_1' => 'Pin topic',
+            'to_1_done' => 'Topic has been pinned',
+            'to_2' => 'Pin topic and mark as announcement',
+            'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
             'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Total Posts',
 
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
                     'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
             ],
@@ -242,19 +251,18 @@ return [
                 'vote' => 'Vote',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
                     'end_time' => 'Polling will end at :time',
+                    'ended' => 'Polling ended :time',
+                    'total' => 'Total votes: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'to_not_watching' => 'Not bookmarked',
+            'to_watching' => 'Bookmark',
+            'to_watching_mail' => 'Bookmark with notification',
+            'mail_disable' => 'Disable notification',
         ],
     ],
-
 ];

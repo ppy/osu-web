@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,7 @@ return [
         'title_compact' => 'ajustes',
 
         'avatar' => [
-            'title' => 'Editar Avatar',
+            'title' => 'Editar Avatar', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,12 +42,12 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil',
+            'title' => 'Editar Perfil', // Base text changed, please check.
 
             'user' => [
                 'user_from' => 'ubicación actual',
-                'user_interests' => 'intereses',
                 'user_msnm' => 'skype',
+                'user_interests' => 'intereses',
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
         'update' => 'actualizar',
-        'updated' => 'Correo electrónico actualizado',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! - Confirmación de cambio de contraseña',
         'update' => 'actualizar',
-        'updated' => 'Contraseña actualizada',
     ],
 
     'playstyles' => [

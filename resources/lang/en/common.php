@@ -30,8 +30,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancel',
+        'change' => 'change',
+        'click_to_copy' => 'click to copy to clipboard',
+        'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Delete',
         'permalink' => 'permalink',
+        'permalink_copied' => 'link copied',
         'post' => 'Post',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
@@ -39,18 +43,30 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'see_more' => 'see more',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
+        'days' => ':count day|:count days',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hour|:count hours',
         'item' => ':count unit|:count units',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count month|:count months',
+        'second_short_unit' => 'sec|secs',
+        'years' => ':count year|:count years',
     ],
 
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

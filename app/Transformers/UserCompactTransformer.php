@@ -54,10 +54,12 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     public function includeCover(User $user)
     {
         return $this->item($user, function ($user) {
+            $profileCustomization = $user->userProfileCustomization;
+
             return [
-                'customUrl' => $user->cover()->fileUrl(),
-                'url' => $user->cover()->url(),
-                'id' => $user->cover()->id(),
+                'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
+                'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
+                'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
             ];
         });
     }

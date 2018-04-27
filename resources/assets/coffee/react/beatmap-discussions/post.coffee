@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = ReactDOMFactories
+{a, button, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -49,6 +49,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
+    clearTimeout @state.permalinkTimer if @state.permalinkTimer?
 
     for own _id, xhr of @xhr
       xhr?.abort()
@@ -78,20 +79,31 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        a
+        div
           className: "#{bn}__user-container"
-          href: laroute.route('users.show', user: @props.user.id)
           style:
             color: userColor
+
+          a
+            className: "#{bn}__user-link"
+            href: laroute.route('users.show', user: @props.user.id)
+
           div className: "#{bn}__avatar",
             el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
             className: "#{bn}__user"
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              style:
-                color: userColor
-              @props.user.username
+            div
+              className: "#{bn}__user-row"
+              span
+                className: "#{bn}__user-text u-ellipsis-overflow"
+                style:
+                  color: userColor
+                @props.user.username
+
+              a
+                className: "#{bn}__user-modding-history-link"
+                href: laroute.route('users.modding.index', user: @props.user.id)
+                i className: 'fas fa-align-left'
 
             div
               className: "#{bn}__user-badge"
@@ -112,8 +124,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  editEnd: =>
-    @setState editing: false
+  editCancel: =>
+    @setState
+      editing: false
+      message: @props.post.message
 
 
   editStart: =>
@@ -121,25 +135,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @setState editing: true, =>
       @textarea.focus()
-
-
-  formattedMessage: =>
-    text = @props.post.message
-    text = _.escape text
-    text = text.trim()
-    text = osu.linkify text
-    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
-    # replace newlines with <br>
-    # - trim trailing spaces
-    # - then join with <br>
-    # - limit to 2 consecutive <br>s
-    text = text
-      .split '\n'
-      .map (x) -> x.trim()
-      .join '<br>'
-      .replace /(?:<br>){2,}/g, '<br><br>'
-    text
-
 
   handleEnter: (e) =>
     return if e.keyCode != 13 || e.shiftKey
@@ -159,13 +154,12 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
       el TextareaAutosize,
-        minRows: 3
         disabled: @state.posting
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
-        inputRef: (el) => @textarea = el
+        innerRef: (el) => @textarea = el
       el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div className: "#{bn}__actions",
@@ -176,8 +170,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
             el BigButton,
               text: osu.trans 'common.buttons.cancel'
               props:
-                onClick: @editEnd
-                disabled: !canPost
+                onClick: @editCancel
+                disabled: @state.posting
 
           div className: "#{bn}__action",
             el BigButton,
@@ -199,7 +193,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: @formattedMessage()
+          __html: BeatmapDiscussionHelper.format @props.post.message
 
       div className: "#{bn}__info-container",
         span
@@ -217,7 +211,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago @props.post.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.post.updated_at != @props.post.deleted_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
@@ -238,10 +232,14 @@ class BeatmapDiscussions.Post extends React.PureComponent
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
             a
-              href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+              href: BeatmapDiscussionHelper.url discussion: @props.discussion
               onClick: @permalink
               className: "#{bn}__action #{bn}__action--button"
-              osu.trans('common.buttons.permalink')
+
+              if @state.permalinkTimer?
+                osu.trans('common.buttons.permalink_copied')
+              else
+                osu.trans('common.buttons.permalink')
 
           if @props.canBeEdited
             button
@@ -285,9 +283,20 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+  clearPermalinkClicked: =>
+    @setState permalinkTimer: null
+
 
   permalink: (e) =>
     e.preventDefault()
+
+    # copy url to clipboard
+    clipboard.writeText e.currentTarget.href
+
+    # show feedback
+    permalinkTmer = Timeout.set 2000, @clearPermalinkClicked
+
+    @setState permalinkTimer: permalinkTmer
 
 
   setMessage: (e) =>
@@ -310,7 +319,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
     .fail osu.ajaxError
 

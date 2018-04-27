@@ -19,12 +19,10 @@
  */
 
 return [
+    'months' => 'месяцев',
+
     'user_search' => [
         'searching' => 'поиск...',
         'not_found' => 'Пользователь не найден',
-    ],
-    'duration' => [
-        'months' => ':length месяц|:length месяцев|:length месяцев|{0}',
-        'years' => ':length год|:length лет|:length лет|{0}',
     ],
 ];

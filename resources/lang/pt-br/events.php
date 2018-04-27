@@ -20,8 +20,10 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> alcançou a conquista "<strong>:achievement</strong>"!',
+    'beatmap_playcount' => ':beatmap foi jogado :count vezes!',
+    'beatmapset_approve' => ':beatmapset por <strong>:user</strong> foi :approval!',
     'beatmapset_delete' => ':beatmapset foi excluído.',
-    'beatmapset_revive' => ':beatmapset foi revivido do cemitério por <strong>:user</strong>.',
+    'beatmapset_revive' => ':beatmapset foi revivido do abandono por <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> atualizou o beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> publicou um novo beatmap ":beatmapset"',
     'empty' => 'Este usuário não fez nada notável recentemente!',
@@ -30,5 +32,5 @@ return [
     'user_support_again' => '<strong>:user</strong> escolheu mais uma vez ajudar o osu! — obrigado por sua generosidade!',
     'user_support_first' => '<strong>:user</strong> se tornou osu!supporter — obrigado por sua generosidade!',
     'user_support_gift' => '<strong>:user</strong> recebeu osu!supporter de presente!',
-    'username_change' => '<strong>:previousUsername</strong> alterou seu nome de usuário para <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> alterou seu username para <strong><em>:user</strong></em>!',
 ];

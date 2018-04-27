@@ -41,7 +41,7 @@
                             href="{{ osu_url('user.inbox') }}"
                             class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                         >
-                            <i class="fa fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
+                            <i class="fas fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
                             <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
                         </a>
 
@@ -67,7 +67,7 @@
                     >
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-mobile__toggle-icon">
-                            <i class="fa fa-bars"></i>
+                            <i class="fas fa-bars"></i>
                         </span>
                     </button>
                 </div>
@@ -82,4 +82,13 @@
             @include('layout.header_mobile.locale')
         </ul>
     </div>
+
+    @if (Auth::check() && !($current_section === 'home' && $current_action === 'search'))
+        <form action="{{ route('search') }}" class="navbar-mobile-search">
+            <input class="navbar-mobile-search__input" name="query" />
+            <button class="navbar-mobile-search__icon">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    @endif
 </div>

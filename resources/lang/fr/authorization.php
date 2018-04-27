@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
             'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
         ],
         'nominate' => [
@@ -33,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => "Veuillez attendre un peu avant d'envoyer votre vote",
             'owner' => 'Vous ne pouvez pas voter pour votre propre discussion!',
+            'wrong_beatmapset_state' => 'Vous ne pouvez voter que sur les discussions des beatmaps en attente.',
         ],
     ],
 
@@ -76,6 +78,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'Impossible de modifier un post supprimé',
                 'locked' => "Ce post est verouillé à l'édition.",
                 'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'not_owner' => 'Uniquement le posteur peut éditer le post.',
@@ -91,7 +94,7 @@ return [
                 'no_permission' => 'Pas de permission de répondre.',
 
                 'user' => [
-                    'require_login' => 'Merci de vous connecter pour répondre.',
+                    'require_login' => 'Merci de vous connecter pour répondre.', // Base text changed from "log" to "sign"
                     'restricted' => 'Impossible de répondre : Vous êtes restreint.',
                     'silenced' => 'Impossible de répondre : Vous êtes réduit au silence.',
                 ],
@@ -109,7 +112,7 @@ return [
                 'voted' => "Le changement de vote n'est pas permis.",
 
                 'user' => [
-                    'require_login' => 'Connectez-vous pour voter.',
+                    'require_login' => 'Connectez-vous pour voter.', // Base text changed from "log" to "sign"
                     'restricted' => 'Impossible de voter : vous êtes restreint.',
                     'silenced' => 'Impossible de voter : vous êtes réduit au silence.',
                 ],
@@ -132,7 +135,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Merci de vous connecter pour continuer.',
+    'require_login' => 'Merci de vous connecter pour continuer.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Accès refusé.',
 

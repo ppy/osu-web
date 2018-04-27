@@ -33,6 +33,11 @@ class OsuAuthorize
 {
     private $cache = [];
 
+    public function cacheReset()
+    {
+        $this->cache = [];
+    }
+
     public function doCheckUser($user, $ability, $object)
     {
         $cacheKey = serialize([
@@ -60,6 +65,17 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapShow($user, $beatmap)
+    {
+        if (!$beatmap->trashed()) {
+            return 'ok';
+        }
+
+        if ($this->doCheckUser($user, 'BeatmapsetShow', $beatmap->beatmapset)->can()) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
         if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
@@ -82,11 +98,36 @@ class OsuAuthorize
             return;
         }
 
-        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        if ($discussion->message_type === 'hype') {
+            return $prefix.'is_hype';
+        }
+
+        if ($discussion->relationLoaded('beatmapDiscussionPosts')) {
+            $visiblePosts = 0;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if ($post->deleted_at !== null || $post->system) {
+                    continue;
+                }
+
+                $visiblePosts++;
+
+                if ($visiblePosts > 1) {
+                    return $prefix.'has_reply';
+                }
+            }
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionModerate($user)
+    {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionResolve($user, $discussion)
@@ -121,7 +162,13 @@ class OsuAuthorize
     public function checkBeatmapDiscussionShow($user, $discussion)
     {
         if ($discussion->deleted_at === null) {
-            return 'ok';
+            if ($discussion->beatmap_id === null) {
+                return 'ok';
+            }
+
+            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+                return 'ok';
+            }
         }
 
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
@@ -135,6 +182,18 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        static $votableStates = [
+            Beatmapset::STATES['wip'],
+            Beatmapset::STATES['pending'],
+            Beatmapset::STATES['qualified'],
+        ];
+
+        if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
+            if (!$user->isBNG() && !$user->isGMT() && !$user->isQAT()) {
+                return $prefix.'wrong_beatmapset_state';
+            }
+        }
 
         if ($discussion->user_id === $user->user_id) {
             return $prefix.'owner';
@@ -257,11 +316,43 @@ class OsuAuthorize
             return 'beatmap_discussion.nominate.incorrect-state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
             return 'beatmap_discussion.nominate.exhausted';
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetResetNominations($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetShow($user, $beatmapset)
+    {
+        if (!$beatmapset->trashed()) {
+            return 'ok';
+        }
+
+        if ($user !== null) {
+            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+                return 'ok';
+            }
+
+            if ($user->getKey() === $beatmapset->user_id) {
+                return 'ok';
+            }
+        }
     }
 
     public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
@@ -299,6 +390,7 @@ class OsuAuthorize
         static $publicEvents = [
             BeatmapsetEvent::NOMINATE,
             BeatmapsetEvent::QUALIFY,
+            BeatmapsetEvent::NOMINATION_RESET,
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
@@ -516,6 +608,30 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumPostStore($user, $post)
+    {
+        $prefix = 'forum.post.store.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        $plays = (int) $user->monthlyPlaycounts()->sum('playcount');
+        $posts = $user->user_posts;
+        $forInitialHelpForum = in_array($post->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+
+        if ($forInitialHelpForum) {
+            if ($plays < 10 && $posts > 10) {
+                return $prefix.'too_many_help_posts';
+            }
+        } else {
+            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                return $prefix.'play_more';
+            }
+        }
+
+        return 'ok';
+    }
+
     public function checkForumTopicEdit($user, $topic)
     {
         return $this->checkForumPostEdit($user, $topic->posts()->first());
@@ -541,6 +657,14 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts([
+            'forum_id' => $topic->forum_id,
+        ])->make());
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_reply', $topic->forum)) {
@@ -573,6 +697,14 @@ class OsuAuthorize
             return $prefix.'no_forum_access';
         }
 
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->make()->posts()->make([
+            'forum_id' => $forum->getKey(),
+        ]));
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
+        }
+
         if (!$forum->isOpen()) {
             return $prefix.'forum_closed';
         }
@@ -584,7 +716,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumTopicWatchAdd($user, $topic)
+    public function checkForumTopicWatch($user, $topic)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -592,13 +724,6 @@ class OsuAuthorize
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return 'forum.topic.watch.no_forum_access';
         }
-
-        return 'ok';
-    }
-
-    public function checkForumTopicWatchRemove($user, $topic)
-    {
-        $this->ensureLoggedIn($user);
 
         return 'ok';
     }
@@ -731,6 +856,11 @@ class OsuAuthorize
         } else {
             return $prefix.'no_access';
         }
+    }
+
+    public function checkUserSilenceShowExtendedInfo($user)
+    {
+        // admin only, i guess =D
     }
 
     public function checkWikiPageRefresh($user)

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, li, ul} = ReactDOMFactories
+{a, div, h2, li, ul} = ReactDOMFactories
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -30,37 +30,46 @@ class ProfilePage.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    savedStateString = document.body.dataset.profilePageState
+    @state = JSON.parse(props.container.dataset.profilePageState ? null)
+    @restoredState = @state?
 
-    if savedStateString?
-      @state = JSON.parse(savedStateString)
-      delete document.body.dataset.profilePageState
-      return
+    if !@restoredState
+      page = location.hash.slice(1)
+      @initialPage = page if page?
 
-    page = location.hash.slice(1)
-    @initialPage = page if page?
+      @state =
+        currentMode: props.currentMode
+        user: props.user
+        userPage:
+          html: props.userPage.html
+          initialRaw: props.userPage.raw
+          raw: props.userPage.raw
+          editing: false
+          selection: [0, 0]
+        tabsSticky: false
+        profileOrder: props.user.profile_order[..]
+        recentActivity: @props.extras.recentActivity
+        scoresBest: @props.extras.scoresBest
+        scoresFirsts: @props.extras.scoresFirsts
+        scoresRecent: @props.extras.scoresRecent
+        beatmapPlaycounts: @props.extras.beatmapPlaycounts
+        favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
+        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
+        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
+        showMorePagination: {}
 
-    @state =
-      currentMode: props.currentMode
-      user: props.user
-      userPage:
-        html: props.userPage.html
-        initialRaw: props.userPage.raw
-        raw: props.userPage.raw
-        editing: false
-        selection: [0, 0]
-      tabsSticky: false
-      profileOrder: props.user.profileOrder[..]
-      scoresBest: @props.scores.best
-      scoresFirsts: @props.scores.firsts
-      scoresRecent: @props.scores.recent
-      beatmapPlaycounts: @props.beatmapsets.most_played
-      favouriteBeatmapsets: @props.beatmapsets.favourite
-      rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
-      unrankedBeatmapsets: @props.beatmapsets.unranked
-      graveyardBeatmapsets: @props.beatmapsets.graveyard
-      recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-      showMorePagination: {}
+      if @props.user.is_bot
+        @state.profileOrder = ['me']
+
+      for own elem, perPage of @props.perPage
+        @state.showMorePagination[elem] ?= {}
+        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+
+        if @state.showMorePagination[elem].hasMore
+          @state[elem].pop()
+
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -69,29 +78,38 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
+    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
     $(@pages).sortable
       cursor: 'move'
       handle: '.js-profile-page-extra--sortable-handle'
+      items: '.js-sortable--page'
       revert: 150
       scrollSpeed: 10
       update: @updateOrder
 
     $(@tabs).sortable
-      items: '[data-page-id]'
-      tolerance: 'pointer'
+      containment: 'parent'
       cursor: 'move'
       disabled: !@props.withEdit
+      items: '.js-sortable--tab'
       revert: 150
       scrollSpeed: 0
       update: @updateOrder
+      start: =>
+        # Somehow click event still goes through when dragging.
+        # This prevents triggering @tabClick.
+        Timeout.clear @draggingTabTimeout
+        @draggingTab = true
+      stop: =>
+        @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
     osu.pageChange()
 
     @modeScrollUrl = currentLocation()
 
-    Timeout.set 0, =>
-      @pageJump null, @initialPage
+    if !@restoredState
+      Timeout.set 0, => @pageJump null, @initialPage
 
 
   componentWillUnmount: =>
@@ -101,14 +119,15 @@ class ProfilePage.Main extends React.PureComponent
     for sortable in [@pages, @tabs]
       $(sortable).sortable 'destroy'
 
-    document.body.dataset.profilePageState = JSON.stringify(@state)
-
     $(window).stop()
     Timeout.clear @modeScrollTimeout
 
 
   render: =>
     withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
+
+    profileOrder = @state.profileOrder.slice()
+    profileOrder.push 'account_standing' if !_.isEmpty @state.user.account_history
 
     extraPageParams =
       me:
@@ -118,10 +137,12 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
         component: ProfilePage.UserPage
 
-      recent_activities:
+      recent_activity:
         props:
-          recentActivities: @props.recentActivities
-        component: ProfilePage.RecentActivities
+          pagination: @state.showMorePagination
+          recentActivity: @state.recentActivity
+          user: @state.user
+        component: ProfilePage.RecentActivity
 
       kudosu:
         props:
@@ -147,10 +168,10 @@ class ProfilePage.Main extends React.PureComponent
           unrankedBeatmapsets: @state.unrankedBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
-            favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
-            rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
-            unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
-            graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
+            favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
+            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
+            unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
+            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
           pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 
@@ -171,17 +192,21 @@ class ProfilePage.Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
+      account_standing:
+        props:
+          user: @state.user
+        component: ProfilePage.AccountStanding
+
     div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
-        stats: @props.statistics
+        stats: @state.user.statistics
         currentMode: @state.currentMode
         withEdit: @props.withEdit
         rankHistory: @props.rankHistory
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-        ref: (el) => @tabs = el
 
         div
           className: 'js-sticky-header'
@@ -195,14 +220,18 @@ class ProfilePage.Main extends React.PureComponent
           className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
           'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
-            ul
+            div
               className: 'page-mode page-mode--page-extra-tabs'
-              for m in @state.profileOrder
+              ref: (el) => @tabs = el
+              for m in profileOrder
                 continue if m == 'me' && !withMePage
 
-                li
-                  className: 'page-mode__item'
+                a
+                  className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
                   key: m
+                  'data-page-id': m
+                  onClick: @tabClick
+                  href: "##{m}"
                   el ProfilePage.ExtraTab,
                     page: m
                     currentPage: @state.currentPage
@@ -213,7 +242,7 @@ class ProfilePage.Main extends React.PureComponent
         div
           className: 'osu-layout__row'
           ref: (el) => @pages = el
-          for name in @state.profileOrder
+          for name in profileOrder
             @extraPage name, extraPageParams[name]
 
 
@@ -224,6 +253,7 @@ class ProfilePage.Main extends React.PureComponent
 
   extraPage: (name, {extraClass, props, component}) =>
     topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    topClassName += ' js-sortable--page' if @isSortablePage name
     props.withEdit = @props.withEdit
     props.name = name
 
@@ -249,12 +279,15 @@ class ProfilePage.Main extends React.PureComponent
     paginationState[propertyName].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString('offset', offset, url), (data) =>
+      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
+        hasMore = data.length > perPage
+
+        state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
+        paginationState[propertyName].hasMore = hasMore
 
         @setState
           "#{propertyName}": state
@@ -316,6 +349,9 @@ class ProfilePage.Main extends React.PureComponent
     @setCurrentPage null, page.dataset.pageId
 
 
+  saveStateToContainer: =>
+    @props.container.dataset.profilePageState = JSON.stringify(@state)
+
   setCurrentPage: (_e, page, extraCallback) =>
     callback = =>
       extraCallback?()
@@ -325,6 +361,15 @@ class ProfilePage.Main extends React.PureComponent
       return callback()
 
     @setState currentPage: page, callback
+
+
+  tabClick: (e) =>
+    e.preventDefault()
+
+    # See $(@tabs).sortable.
+    return if @draggingTab
+
+    @pageJump null, e.currentTarget.dataset.pageId
 
 
   updateOrder: (event) =>
@@ -350,7 +395,7 @@ class ProfilePage.Main extends React.PureComponent
       .fail (xhr) =>
         osu.emitAjaxError() xhr
 
-        @setState profileOrder: @state.user.profileOrder
+        @setState profileOrder: @state.user.profile_order
 
       .always LoadingOverlay.hide
 
@@ -373,3 +418,6 @@ class ProfilePage.Main extends React.PureComponent
       mode
     else
       modes[0]
+
+  isSortablePage: (page) ->
+    _.includes @state.profileOrder, page

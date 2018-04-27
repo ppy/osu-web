@@ -18,11 +18,12 @@
 
 <div class="store-payment-method">
     <div class="store-payment-method__cell">
-        <a href="{{ $checkout->getCentiliPaymentLink() }}"
-           class="js-store-checkout-button store-payment-button store-payment-button--centili"
-           data-provider="centili"
+        <button type="button"
+                class="js-store-checkout-button store-payment-button store-payment-button--centili"
+                data-provider="centili"
+                data-order-id="{{ $order->order_id }}"
+                data-url="{{ $checkout->getCentiliPaymentLink() }}"
         >
-        </a>
     </div>
 
     <div class="store-payment-method__cell">

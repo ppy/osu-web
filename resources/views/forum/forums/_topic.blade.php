@@ -15,6 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $isRead = $topicReadStatus[$topic->topic_id] ?? false;
+@endphp
 <li
     class="
         u-forum--hover-area
@@ -29,7 +32,7 @@
 
     @if ($topic->isLocked())
         <div class="forum-topic-entry__col forum-topic-entry__col--lock">
-            <i class="fa fa-lock"></i>
+            <i class="fas fa-lock"></i>
         </div>
     @endif
 
@@ -37,13 +40,16 @@
         class="
             forum-topic-entry__col
             forum-topic-entry__col--icon
-            {{ ($topicReadStatus[$topic->topic_id] ?? null) ? '' : 'u-forum--bg-link' }}
+            {{ $isRead ? '' : 'u-forum--bg-link' }}
         "
         href="{{ route("forum.topics.show", $topic->topic_id) }}"
     >
         <i class="
-            fa
-            fa-{{ $topic->topic_type === 2 ? 'exclamation-triangle' : 'comment-o' }}
+            {{
+                $topic->topic_type === 2 ?
+                    'fas fa-exclamation-triangle' :
+                    ($isRead ? 'far fa-comment' : 'fas fa-comment')
+            }}
         "></i>
     </a>
 
@@ -77,7 +83,7 @@
                     title="{{ $tag }}"
                     class="forum__issue-icon forum__issue-icon--{{ $tag }}"
                 >
-                    <i class="fa {{ issue_icon($tag) }}"></i>
+                    <i class="{{ issue_icon($tag) }}"></i>
                 </div>
             @endforeach
         </div>
@@ -92,7 +98,7 @@
                 data-tooltip-position="right center"
             >
                 {{ number_format($topic->topic_views) }}
-                <i class="fa fa-eye"></i>
+                <i class="fas fa-eye"></i>
             </div>
 
             <div
@@ -100,7 +106,7 @@
                 data-tooltip-position="right center"
             >
                 {{ number_format($topic->topic_replies) }}
-                <i class="fa fa-comment-o"></i>
+                <i class="far fa-comment"></i>
             </div>
         </div>
 
@@ -125,7 +131,7 @@
         href="{{ post_url($topic->topic_id, "unread", false) }}"
         title="{{ trans("forum.topic.go_to_latest") }}"
     >
-        <i class="fa fa-chevron-right"></i>
+        <i class="fas fa-chevron-right"></i>
     </a>
 
     @if (($buttons ?? null) !== null)

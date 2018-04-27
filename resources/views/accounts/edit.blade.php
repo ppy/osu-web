@@ -30,25 +30,46 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
-                </div>
+                    <div class="account-edit-entry account-edit-entry--read-only">
+                        <div class="account-edit-entry__label">
+                            {{ trans('accounts.edit.username') }}
+                        </div>
+                        <div class="account-edit-entry__input">
+                            {{ Auth::user()->username }}
+                        </div>
 
+                        <div class="account-edit-entry__button">
+                            <a class="btn-osu-big btn-osu-big--account-edit" href="{{route('store.products.show', 'username-change')}}">
+                                <div class="btn-osu-big__content">
+                                    <div class="btn-osu-big__left">
+                                        {{ trans('common.buttons.change') }}
+                                    </div>
+
+                                    <div class="btn-osu-big__icon">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_from'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
                 </div>
-
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
             </div>
         </div>
     </div>
 
     <div class="osu-page osu-page--small">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ trans('accounts.edit.avatar.title') }}
@@ -79,7 +100,7 @@
                                 </div>
 
                                 <div class="btn-osu-big__icon">
-                                    <i class="fa fa-arrow-circle-o-up"></i>
+                                    <i class="far fa-arrow-alt-circle-up"></i>
                                 </div>
                             </div>
 

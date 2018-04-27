@@ -28,12 +28,13 @@ use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as Inline;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
+use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 10;
+    const VERSION = 11;
 
     public $firstImage;
     public $title;
@@ -65,6 +66,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $processor = new static;
         $env->addDocumentProcessor($processor);
         $env->addExtension(new TableExtension\TableExtension);
+        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
 
         $converter = new CommonMarkConverter($config, $env);
 
@@ -74,11 +76,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $blockClass .= " {$config['block_name']}--{$blockModifier}";
         }
 
-        $output = sprintf(
-            '<div class="%s">%s</div>',
-            $blockClass,
-            $converter->convertToHtml($input['document'])
-        );
+        $converted = $converter->convertToHtml($input['document']);
+        $output = "<div class='{$blockClass}'>{$converted}</div>";
 
         if (!isset($header['title'])) {
             $header['title'] = $processor->title;
@@ -95,8 +94,14 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
 
         if ($hasMatch === 1) {
+            try {
+                $header = Yaml::parse($matches['header']);
+            } catch (YamlParseException $_e) {
+                $header = null;
+            }
+
             return [
-                'header' => Yaml::parse($matches['header']),
+                'header' => $header,
                 'document' => $matches['document'],
             ];
         }
@@ -192,7 +197,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         $src = $this->node->getUrl();
 
-        if (preg_match('#^(/|https?://|mailto:)#', $src) !== 1) {
+        if (preg_match(',^(#|/|https?://|mailto:),', $src) !== 1) {
             $this->node->setUrl($this->config->getConfig('path').'/'.$src);
         }
     }
@@ -220,13 +225,14 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            $this->title === null
+            $this->title === null ||
+            $this->node->getLevel() > 3
         ) {
             return;
         }
 
         $title = $this->getText($this->node);
-        $slug = presence(strtolower(str_replace(' ', '-', $title))) ?? 'page';
+        $slug = presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;

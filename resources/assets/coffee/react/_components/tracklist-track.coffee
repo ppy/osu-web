@@ -25,7 +25,7 @@ class @TracklistTrack extends React.Component
       td {},
         el TrackPreview, track: @props.track
       td className: "tracklist__title#{if @props.track.exclusive then ' tracklist__title--exclusive' else ''}",
-        i className: 'fa fa-fw fa-lg fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.exclusive') if @props.track.exclusive
+        i className: 'fal fa-fw fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.exclusive') if @props.track.exclusive
         span className: 'tracklist__name u-ellipsis-overflow',
           "#{@props.track.title} "
           span className: 'tracklist__version', @props.track.version
@@ -35,7 +35,7 @@ class @TracklistTrack extends React.Component
       td className: 'tracklist__dl',
         if @props.track.osz
           a className: 'tracklist__link', href: @props.track.osz, title: osu.trans('artist.beatmaps.download'),
-            i className: 'fa fa-fw fa-cloud-download'
+            i className: 'fas fa-fw fa-download'
         else
           span className: 'tracklist__link--disabled', title: osu.trans('artist.beatmaps.download-na'),
-            i className: 'fa fa-fw fa-cloud-download'
+            i className: 'fas fa-fw fa-download'

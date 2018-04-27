@@ -32,13 +32,18 @@ return [
     ],
 
     'discussions' => [
+        'edit' => 'modifica',
+        'edited' => 'Ultima modifica di :editor :update_time',
+        'message_placeholder' => 'Scrivi qui per postare',
+        'message_type_select' => 'Seleziona il tipo di commento',
+        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
+        'resolved' => 'Risolto',
+
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',
             'all-expand' => 'Espandi tutto',
         ],
 
-        'edit' => 'modifica',
-        'edited' => 'Ultima modifica di :editor :update_time',
         'empty' => [
             'empty' => 'Ancora nessuna discussione!',
             'filtered' => 'Nessuna discussione corrisponde ai filtri selezionati.',
@@ -49,23 +54,15 @@ return [
             'in_timeline' => 'per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
-        'message_placeholder' => 'Scrivi qui per postare',
-
         'message_type' => [
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
         ],
 
-        'message_type_select' => 'Seleziona il tipo di commento',
-
         'mode' => [
-            'general' => 'Generale',
             'timeline' => 'Linea Temporale',
         ],
-
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
-        'resolved' => 'Risolto',
 
         'show' => [
             'title' => 'Discussione Beatmap',
@@ -80,14 +77,14 @@ return [
     ],
 
     'nominations' => [
+        'disqualification_prompt' => 'Ragioni della squalifica?',
+        'disqualified_at' => 'squalificata :time_ago',
         'disqualify' => 'Squalifica',
+        'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'nominate' => 'Nomina',
-        'required-text' => 'Nominazioni: :current/:required',
-        'disqualifed-at' => 'squalificata :time_ago',
-        'disqualification-prompt' => 'Ragioni della squalifica?',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
-        'qualified-soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
-        'incorrect-state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
+        'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
+        'required_text' => 'Nominazioni: :current/:required',
     ],
 
     'listing' => [

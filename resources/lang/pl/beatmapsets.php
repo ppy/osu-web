@@ -48,15 +48,16 @@ return [
                 'no-video' => 'bez wideo',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'Dodaj tę beatmapę do ulubionych',
-            'unfavourite' => 'Usuń tę beatmapę z ulubionych',
+            'favourite' => 'Dodaj do ulubionych',
+            'unfavourite' => 'Usuń z ulubionych',
+            'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
         ],
         'stats' => [
             'cs' => 'Wielkość kółek',
             'cs-mania' => 'Ilość klawiszy',
             'drain' => 'Spadek HP',
-            'accuracy' => 'Celność',
-            'ar' => 'Approach Rate',
+            'accuracy' => 'Precyzja',
+            'ar' => 'Prędkość otoczki',
             'stars' => 'Trudność',
             'total_length' => 'Długość',
             'bpm' => 'BPM',
@@ -64,16 +65,19 @@ return [
             'count_sliders' => 'Ilość sliderów',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
+            'nominations' => 'Nominacje',
+            'playcount' => 'Ilość zagrań',
         ],
         'info' => [
-            'no_scores' => 'Nierankingowa beatmapa',
             'points-of-failure' => 'Wykres porażek',
             'success-rate' => 'Wskaźnik sukcesu',
-
+            'genre' => 'Gatunek',
+            'no_scores' => 'Dane są nadal ładowane...',
+            'language' => 'Język',
             'description' => 'Opis',
-
             'source' => 'Źródło',
             'tags' => 'Tagi',
+            'unranked' => 'Nierankingowa beatmapa',
         ],
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
@@ -84,12 +88,18 @@ return [
             'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
             'title' => 'Tabela wyników',
 
-            'list' => [
-                'accuracy' => 'Celność',
-                'player-header' => 'Gracz',
-                'rank-header' => 'Miejsce',
+            'headers' => [
+                'accuracy' => 'Precyzja',
+                'combo' => 'Combo',
+                'miss' => 'Pudła',
+                'mods' => 'Modyfikatory',
+                'player' => 'Gracz',
+                'pp' => 'pp',
+                'rank' => 'Pozycja',
+                'score_total' => 'Wynik',
                 'score' => 'Wynik',
             ],
+
             'no_scores' => [
                 'country' => 'Nikt z twojego kraju nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
@@ -100,10 +110,6 @@ return [
             'score' => [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
-            ],
-            'stats' => [
-                'accuracy' => 'Celność',
-                'score' => 'Wynik',
             ],
         ],
     ],

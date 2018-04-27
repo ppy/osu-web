@@ -60,7 +60,7 @@ class UserForumStatSyncCommand extends Command
 
         $this->progress = $this->output->createProgressBar(User::count());
 
-        User::chunk(1000, function ($users) {
+        User::chunkById(1000, function ($users) {
             foreach ($users as $u) {
                 $u->refreshForumCache();
                 $this->progress->advance();

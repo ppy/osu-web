@@ -36,7 +36,9 @@ class UpdateUserLastvisit
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            $this->auth->user()->update(['user_lastvisit' => Carbon::createFromTime(null, null, 0)]);
+            $this->auth->user()->update([
+                'user_lastvisit' => Carbon::createFromTime(null, null, 0),
+            ], ['skipValidations' => true]);
         }
 
         return $next($request);

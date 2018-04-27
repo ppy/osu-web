@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['titleAppend' => trans('news.index.title')])
+@extends('master', ['title' => trans('news.index.title')])
 
 @section('content')
     @component('news._header', ['title' => trans('news.index.title')])
@@ -34,7 +34,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-refresh"></i>
+                                <i class="fas fa-sync"></i>
                             </span>
                         </button>
                     </div>

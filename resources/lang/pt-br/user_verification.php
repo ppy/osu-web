@@ -21,7 +21,7 @@
 return [
     'box' => [
         'sent' => 'Um e-mail foi enviado para :mail com um código de verificação. Insira o código.',
-        'title' => 'Verificação de conta',
+        'title' => 'Verificação de Conta',
         'verifying' => 'Verificando...',
         'issuing' => 'Enviando novo código...',
 
@@ -31,12 +31,12 @@ return [
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',
-            'logout_link' => 'sair',
+            'logout_link' => 'sair', // Base text changed from "log" to "sign"
         ],
     ],
 
     'email' => [
-        'subject' => 'Verificação de conta osu!',
+        'subject' => 'Verificação de Conta osu!',
     ],
 
     'errors' => [

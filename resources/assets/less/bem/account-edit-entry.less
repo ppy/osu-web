@@ -55,6 +55,14 @@
     overflow: hidden;
   }
 
+  &__button {
+    margin-left: 10px;
+
+    @media @mobile {
+      margin-left: 5px;
+    }
+  }
+
   &__drop-overlay {
     .full-size();
     .center-content();
@@ -64,6 +72,7 @@
 
     &::before {
       .full-size();
+      content: ' ';
       background-color: #000;
       opacity: 0;
       transition: all 120ms;
@@ -115,7 +124,11 @@
       font-size: @font-size--phone-input;
     }
 
-    &:focus, .@{top}.js-parent-focus--focus & {
+    .@{top}--read-only & {
+      background: none;
+    }
+
+    &:focus {
       border-color: @yellow;
     }
 
@@ -132,6 +145,8 @@
     width: 100%;
     flex: none;
     padding-bottom: 5px;
+    order: -1;
+    font-weight: bold;
 
     @media @desktop {
       align-self: center;
@@ -141,7 +156,7 @@
       text-align: right;
     }
 
-    .@{top}.js-parent-focus--focus & {
+    *:focus ~ & {
       color: #fff;
     }
   }

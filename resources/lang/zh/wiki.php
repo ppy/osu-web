@@ -25,11 +25,17 @@ return [
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
+        'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目录',
 
         'edit' => [
             'link' => '在 GitHub 上显示',
             'refresh' => '刷新',
+        ],
+
+        'outdated' => [
+            '_' => '本文的内容与原文不同步，请查阅 :default 以获得最准确最新的信息！',
+            'default' => '英文版本',
         ],
     ],
 ];

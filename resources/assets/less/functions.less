@@ -44,6 +44,7 @@
 .default-header-overlay() {
   &::before {
     .full-size();
+    content: ' ';
     background-image: linear-gradient(fade(#000, 30%), fade(#000, 80%));
   }
 }
@@ -109,6 +110,14 @@
 
   .link-hover({
     color: @pink-light;
+  });
+}
+
+.link-pink-light() {
+  color: @pink-light;
+
+  .link-hover({
+    color: @pink-lighter;
   });
 }
 
@@ -188,7 +197,6 @@
   top: 0;
   height: 100%;
   width: 100%;
-  content: ' ';
 }
 
 .btn-bg() {

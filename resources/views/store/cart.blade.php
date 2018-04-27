@@ -48,7 +48,7 @@
                                 {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
                             @endif
                             <span class="subtotal">{{{currency($i->subtotal())}}}</span>
-                            <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fa fa-remove"></i></button>
+                            <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
                         {!! Form::close() !!}
                     </li>
                     @endforeach
@@ -77,7 +77,7 @@
 
             <div class="osu-layout__sub-row">
                 <div class="big-button">
-                    <a href="{{ route('store.checkout.index') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
+                    <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
                 </div>
             </div>
         </div>

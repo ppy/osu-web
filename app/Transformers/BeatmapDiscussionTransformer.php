@@ -27,7 +27,7 @@ use League\Fractal;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'beatmap_discussion_posts',
+        'posts',
         'current_user_attributes',
     ];
 
@@ -39,7 +39,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
         return [
             'id' => $discussion->id,
-            'beatmapset_discussion_id' => $discussion->beatmapset_discussion_id,
+            'beatmapset_id' => $discussion->beatmapset_id,
             'beatmap_id' => $discussion->beatmap_id,
             'user_id' => $discussion->user_id,
             'deleted_by_id' => $discussion->deleted_by_id,
@@ -58,7 +58,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
+    public function includePosts(BeatmapDiscussion $discussion)
     {
         if (!$this->isVisible($discussion)) {
             return;
@@ -93,22 +93,20 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             }
         }
 
-        $canModerateKudosu = priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can();
-        $canResolve = priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can();
+        $ret = [
+            'vote_score' => $score,
+            'can_moderate_kudosu' => priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can(),
+            'can_resolve' => priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can(),
+            'can_destroy' => priv_check_user($currentUser, 'BeatmapDiscussionDestroy', $discussion)->can(),
+        ];
 
-        return $this->item($discussion, function ($discussion) use ($score, $canModerateKudosu, $canResolve) {
-            return [
-                'vote_score' => $score,
-                'can_resolve' => $canResolve,
-                'can_moderate_kudosu' => $canModerateKudosu,
-            ];
+        return $this->item($discussion, function () use ($ret) {
+            return $ret;
         });
     }
 
     public function isVisible($discussion)
     {
-        return
-            ($discussion->beatmap_id === null || $discussion->beatmap !== null) &&
-            priv_check('BeatmapDiscussionShow', $discussion)->can();
+        return priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }

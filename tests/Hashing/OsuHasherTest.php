@@ -3,7 +3,7 @@
 use App\Hashing\OsuHasher;
 use Illuminate\Contracts\Hashing\Hasher;
 
-class OsuHasherTest extends PHPUnit_Framework_TestCase
+class OsuHasherTest extends PHPUnit\Framework\TestCase
 {
     public function testBasicHashing()
     {

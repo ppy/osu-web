@@ -16,44 +16,46 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, ol, li} = ReactDOMFactories
+{div, span, a, time} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmapset-mapping'
+dateFormat = 'LL'
 
-@BeatmapsetMapping = ({user, beatmapset}) ->
-  dateFormat = 'LL'
-  user ?= beatmapset.user
+class @BeatmapsetMapping extends React.PureComponent
+  render: =>
+    user = @props.user ? @props.beatmapset.user
+    userURL = laroute.route 'users.show', user: user.id
 
-  div className: bn,
-    div
-      className: 'avatar avatar--beatmapset'
-      style:
-        backgroundImage: "url(#{user.avatar_url})"
+    div className: bn,
+      a
+        href: userURL
+        className: 'avatar avatar--beatmapset'
+        style:
+          backgroundImage: "url(#{user.avatar_url})"
 
-    div className: "#{bn}__content",
-      div className: "#{bn}__mapper",
-        osu.trans 'beatmapsets.show.details.made-by'
-        a
-          className: "#{bn}__user"
-          href: laroute.route 'users.show', user: user.id
-          user.username
+      div className: "#{bn}__content",
+        div className: "#{bn}__mapper",
+          osu.trans 'beatmapsets.show.details.made-by'
+          a
+            className: "#{bn}__user js-usercard"
+            'data-user-id': user.id
+            href: userURL
+            user.username
 
-      div null,
-        osu.trans 'beatmapsets.show.details.submitted'
-        span
-          className: "#{bn}__date"
-          moment(beatmapset.submitted_date).format dateFormat
+        @renderDate 'submitted', 'submitted_date'
 
-      if beatmapset.ranked > 0
-        div null,
-          osu.trans "beatmapsets.show.details.#{beatmapset.status}"
-          span
-            className: "#{bn}__date"
-            moment(beatmapset.ranked_date).format dateFormat
-      else
-        div null,
-          osu.trans 'beatmapsets.show.details.updated'
-          span
-            className: "#{bn}__date"
-            moment(beatmapset.last_updated).format dateFormat
+        if @props.beatmapset.ranked > 0
+          @renderDate @props.beatmapset.status, 'ranked_date'
+        else
+          @renderDate 'updated', 'last_updated'
+
+
+  renderDate: (key, attribute) =>
+    div null,
+      osu.trans "beatmapsets.show.details.#{key}"
+      time
+        className: "#{bn}__date js-tooltip-time"
+        dateTime: @props.beatmapset[attribute]
+        title: @props.beatmapset[attribute]
+        moment(@props.beatmapset[attribute]).format dateFormat

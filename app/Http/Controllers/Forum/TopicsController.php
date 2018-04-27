@@ -20,9 +20,7 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Events\Forum\TopicWasCreated;
-use App\Events\Forum\TopicWasReplied;
-use App\Events\Forum\TopicWasViewed;
+use App\Libraries\ForumUpdateNotifier;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
@@ -30,7 +28,6 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
-use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
@@ -162,14 +159,18 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        $post = $topic->addPost(Auth::user(), Request::input('body'));
+        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
             $firstPostPosition = $topic->postPosition($post->post_id);
 
-            event(new TopicWasReplied($topic, $post, Auth::user()));
-            event(new TopicWasViewed($topic, $post, Auth::user()));
+            $post->markRead(Auth::user());
+            ForumUpdateNotifier::onReply([
+                'topic' => $topic,
+                'post' => $post,
+                'user' => Auth::user(),
+            ]);
 
             return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
@@ -246,7 +247,7 @@ class TopicsController extends Controller
             ->with('topic')
             ->with('user.rank')
             ->with('user.country')
-            ->with('user.supports')
+            ->with('user.supporterTags')
             ->get()
             ->sortBy('post_id');
 
@@ -256,7 +257,10 @@ class TopicsController extends Controller
 
         $firstPostId = $topic->posts()
             ->showDeleted($showDeleted)
-            ->min('post_id');
+            ->orderBy('post_id', 'asc')
+            ->select('post_id')
+            ->first()
+            ->post_id;
 
         $firstShownPostId = $posts->first()->post_id;
 
@@ -266,11 +270,7 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        event(new TopicWasViewed(
-            $topic,
-            $posts->last(),
-            Auth::user()
-        ));
+        $posts->last()->markRead(Auth::user());
 
         $template = $skipLayout ? '_posts' : 'show';
 
@@ -279,13 +279,13 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        $isWatching = TopicWatch::check($topic, Auth::user());
+        $watch = TopicWatch::lookup($topic, Auth::user());
 
         return view(
             "forum.topics.{$template}",
             compact(
                 'cover',
-                'isWatching',
+                'watch',
                 'jumpTo',
                 'pollSummary',
                 'posts',
@@ -319,7 +319,7 @@ class TopicsController extends Controller
             $poll = (new TopicPoll())->fill($pollParams);
 
             if (!$poll->isValid()) {
-                return error_popup(implode(' ', $poll->validationErrors()->allMessages()));
+                return error_popup($poll->validationErrors()->toSentence());
             }
         }
 
@@ -330,17 +330,19 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
-        $topic = Topic::createNew($forum, $params, $poll ?? null);
-
-        if ($topic->topic_id !== null) {
-            if (!app()->runningUnitTests()) {
-                event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-            }
-
-            return ujs_redirect(route('forum.topics.show', $topic));
-        } else {
-            abort(422);
+        try {
+            $topic = Topic::createNew($forum, $params, $poll ?? null);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        ForumUpdateNotifier::onNew([
+            'topic' => $topic,
+            'post' => $topic->posts->last(),
+            'user' => Auth::user(),
+        ]);
+
+        return ujs_redirect(route('forum.topics.show', $topic));
     }
 
     public function update($id)
@@ -381,7 +383,7 @@ class TopicsController extends Controller
         if ($topic->vote()->fill($params)->save()) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
-            return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
+            return error_popup($topic->vote()->validationErrors()->toSentence());
         }
     }
 
@@ -395,34 +397,7 @@ class TopicsController extends Controller
         if ($star->getKey() !== null) {
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
-            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
-        }
-    }
-
-    public function watch($id)
-    {
-        $topic = Topic::findOrFail($id);
-        $state = get_bool(Request::input('watch'));
-        $privName = 'ForumTopicWatch'.($state ? 'Add' : 'Remove');
-        $type = 'watch';
-
-        priv_check($privName, $topic)->ensureCan();
-
-        TopicWatch::toggle($topic, Auth::user(), $state);
-
-        switch (Request::input('return')) {
-            case 'index':
-                $topics = Topic::watchedByUser(Auth::user())->get();
-                $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
-
-                // there's currently only destroy action from watch index
-                return js_view(
-                    'forum.topic_watches.destroy',
-                    compact('topic', 'topics', 'topicReadStatus')
-                );
-            default:
-
-                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+            return error_popup($star->validationErrors()->toSentence());
         }
     }
 }

@@ -55,6 +55,6 @@ return [
 
     'require_login' => [
         '_' => 'You need to be :link to download',
-        'link_text' => 'logged in',
+        'link_text' => 'signed in',
     ],
 ];

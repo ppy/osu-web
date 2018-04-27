@@ -30,19 +30,21 @@ export class StoreCheckout
       provider = element.dataset.provider
       orderNumber = element.dataset.orderNumber
       switch provider
+        when 'centili' then init['centili'] = Promise.resolve()
         when 'free' then init['free'] = Promise.resolve()
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
+      orderId = event.target.dataset.orderId
       # sanity
       return unless provider?
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        $.post laroute.route('store.checkout.store')
+        $.post laroute.route('store.checkout.store'), { provider, orderId }
         .done =>
           @startPayment(event.target.dataset)
 
@@ -60,8 +62,11 @@ export class StoreCheckout
 
   @startPayment: (params) ->
     switch params.provider
+      when 'centili'
+        window.location = params.url
+
       when 'free'
-        $.post laroute.route('store.checkout.store', completed: '1')
+        $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->

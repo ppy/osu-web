@@ -41,7 +41,7 @@ return [
             'approved' => 'approved on ',
             'qualified' => 'qualified on ',
             'loved' => 'loved on ',
-            'logged-out' => 'You need to log in before downloading any beatmaps!',
+            'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'download' => [
                 '_' => 'Download',
                 'video' => 'with Video',
@@ -65,33 +65,41 @@ return [
             'count_sliders' => 'Slider Count',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
         'info' => [
-            'no_scores' => 'Unranked beatmap',
-            'points-of-failure' => 'Points of Failure',
-            'success-rate' => 'Success Rate',
-
             'description' => 'Description',
-
+            'genre' => 'Genre',
+            'language' => 'Language',
+            'no_scores' => 'Data still being calculated...',
+            'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
+            'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
-            'miss_count' => ':count miss',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
             'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Accuracy',
-                'player-header' => 'Player',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
                 'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'None of your friends has set a score on this map yet!',
@@ -102,12 +110,6 @@ return [
             'score' => [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
-            ],
-            'stats' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Combo',
-                'misses' => 'Miss',
-                'score' => 'Score',
             ],
         ],
     ],

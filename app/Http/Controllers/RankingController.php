@@ -98,11 +98,15 @@ class RankingController extends Controller
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
+        if (is_api_request()) {
+            $stats->with(['user.userProfileCustomization']);
+        }
+
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
-        if (Request::is('api/v2/*')) {
+        if (is_api_request()) {
             switch ($type) {
                 case 'country':
                     return json_collection($stats, 'CountryStatistics', ['country']);
@@ -110,7 +114,7 @@ class RankingController extends Controller
 
                 case 'performance':
                 case 'score':
-                    return json_collection($stats, 'UserStatistics', ['user', 'user.country']);
+                    return json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
                     break;
             }
         } else {

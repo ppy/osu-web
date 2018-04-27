@@ -26,7 +26,6 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Sentry;
@@ -107,17 +106,19 @@ class Handler extends ExceptionHandler
                 $response = parent::render($request, $e);
             }
         } else {
+            $message = $this->exceptionMessage($e);
+
             if ($request->ajax()) {
-                $response = response(['error' => $this->ajaxMessage($e)]);
+                $response = response(['error' => $message]);
             } else {
-                $response = response()->view('layout.error');
+                $response = response()->view('layout.error', ['exceptionMessage' => $message]);
             }
         }
 
         return $response->setStatusCode($this->statusCode($e));
     }
 
-    protected function unauthenticated($request, $exception)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
             return response(['authentication' => 'basic'], 401);
@@ -126,9 +127,9 @@ class Handler extends ExceptionHandler
         return response()->view('users.login');
     }
 
-    private function ajaxMessage($e)
+    private function exceptionMessage($e)
     {
-        if ($e instanceof QueryException) {
+        if ($this->statusCode($e) >= 500) {
             return;
         }
 

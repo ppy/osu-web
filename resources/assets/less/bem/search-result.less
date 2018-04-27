@@ -27,6 +27,7 @@
 
   &::before {
     .full-size();
+    content: ' ';
     width: 5px;
     border-top-left-radius: @border-radius-base;
     border-bottom-left-radius: @border-radius-base;
@@ -53,22 +54,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: -5px;
-  }
-
-  &__entry {
-    flex: none;
-    padding: 5px;
-    width: 100%;
-
-    .@{top}--beatmapset & {
-      @media @desktop {
-        width: 50%;
-      }
-    }
-
-    .@{top}--user & {
-      width: auto;
-    }
+    min-width: 0;
   }
 
   &__more-button {

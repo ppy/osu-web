@@ -35,6 +35,15 @@ return [
             I would like to offer my personal thanks to those who have supported osu! thus far,
             and just as much to those who continue to support this amazing game and community into the future :).',
 
+        'supporter_status' => [
+            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
+            'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
+            'not_yet' => "You don't have a supporter tag yet :(",
+            'title' => 'Current supporter status',
+            'valid_until' => 'Your current supporter tag is valid until :date!',
+            'was_valid_until' => 'Your supporter tag was valid until :date.',
+        ],
+
         'why_support' => [
             'title' => 'Why should I support osu!?',
             'blocks' => [
@@ -105,7 +114,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'description' => 'The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
             'feel_special' => [

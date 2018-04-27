@@ -21,7 +21,7 @@ return [
         'title' => '<strong>계정</strong> 설정',
         'title_compact' => '설정',
         'avatar' => [
-            'title' => '아바타 수정',
+            'title' => '아바타 수정', // Base text changed, please check.
         ],
         'email' => [
             'current' => '현재 이메일 주소',
@@ -36,10 +36,9 @@ return [
             'title' => '비밀번호',
         ],
         'profile' => [
-            'title' => '프로필 수정',
+            'title' => '프로필 수정', // Base text changed, please check.
             'user' => [
                 'user_from' => '지역',
-                'user_interests' => '취미',
                 'user_msnm' => '스카이프',
                 'user_occ' => '직업',
                 'user_twitter' => '트위터',
@@ -54,12 +53,10 @@ return [
     'update_email' => [
         'email_subject' => 'osu! 이메일 주소 변경 확인',
         'update' => '변경',
-        'updated' => '이메일 주소가 변경되었습니다.',
     ],
     'update_password' => [
         'email_subject' => 'osu! 비밀번호 변경 확인',
         'update' => '변경',
-        'updated' => '비밀번호가 변경되었습니다.',
     ],
     'playstyles' => [
         'title' => '플레이 방식', // 플

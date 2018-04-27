@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复。',
         'discussion_restore' => '管理员恢复了 :discussion 。',
-        'disqualify' => '该谱面因为 :text 被 DQ',
+        'disqualify_legacy' => '该谱面因为 :text 被 DQ',
         'issue_reopen' => '问题 :discussion 被重新打开。',
         'issue_resolve' => '问题 :discussion 被标记为 “已解决”。',
         'kudosu_allow' => '讨论 :discussion 的 kudosu 移除操作已被重置。',
@@ -34,7 +34,17 @@ return [
         'kudosu_lost' => '讨论 :discussion 失去了票数，并且所得 kudosu 已被移除。',
         'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
         'nominate' => 'Nominated.',
+        'nomination_reset' => '新问题 :discussion 导致提名被重置。',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
+    ],
+
+    'index' => [
+        'title' => '谱面事件',
+    ],
+
+    'item' => [ //上下文
+        'content' => '内容',
+        'type' => '类型',
     ],
 ];

@@ -24,7 +24,7 @@ return [
         'title_compact' => '设置',
 
         'avatar' => [
-            'title' => '编辑头像',
+            'title' => '编辑头像', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '编辑个人资料',
+            'title' => '编辑个人资料', // Base text changed, please check.
 
             'user' => [
                 'user_from' => '当前位置',
@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! 帐户邮箱更改',
         'update' => '更新',
-        'updated' => '邮箱已更改',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! 帐户密码更改',
         'update' => '更新',
-        'updated' => '密码已更改',
     ],
 
     'playstyles' => [

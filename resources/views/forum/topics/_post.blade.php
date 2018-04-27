@@ -18,7 +18,6 @@
 <?php
     if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
-    if (!isset($options['overlay'])) { $options['overlay'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
@@ -43,7 +42,7 @@
 
         <div class="forum-post__body">
             <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--gray" href="{{ route('forum.posts.show', $post->post_id) }}">
+                <a class="js-post-url link link--gray" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                     {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
                 </a>
             </div>
@@ -86,7 +85,7 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-edit"></i>
+                                <i class="fas fa-pencil-alt"></i>
                             </span>
                         </button>
                     </div>
@@ -109,16 +108,12 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-reply"></i>
+                                <i class="fas fa-reply"></i>
                             </span>
                         </button>
                     </div>
                 @endif
             </div>
         </div>
-
-        @if($options["overlay"] === true)
-            <div class="forum-post__overlay"></div>
-        @endif
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,12 +31,12 @@ return [
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puedes :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',
-            'logout_link' => 'cerrar sesión',
+            'logout_link' => 'cerrar sesión', // Base text changed from "log" to "sign"
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! - Verificación de cuenta',
+        'subject' => 'Verificación de la cuenta de osu!',
     ],
 
     'errors' => [

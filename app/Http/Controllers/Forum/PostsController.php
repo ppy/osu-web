@@ -20,9 +20,11 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use Auth;
+use DB;
 use Request;
 
 class PostsController extends Controller
@@ -48,15 +50,21 @@ class PostsController extends Controller
 
         $topic = $post->topic()->withTrashed()->first();
 
-        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-            $this->logModerate(
-                'LOG_DELETE_POST',
-                [$topic->topic_title],
-                $post
-            );
-        }
+        try {
+            DB::transaction(function () use ($post, $topic) {
+                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+                    $this->logModerate(
+                        'LOG_DELETE_POST',
+                        [$topic->topic_title],
+                        $post
+                    );
+                }
 
-        $topic->removePost($post, Auth::user());
+                $topic->removePostOrExplode($post);
+            });
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
 
         if ($topic->trashed()) {
             $redirect = route('forum.forums.show', $topic->forum);
@@ -80,7 +88,7 @@ class PostsController extends Controller
             $post
         );
 
-        $topic->restorePost($post, Auth::user());
+        $topic->restorePost($post);
 
         return js_view('forum.topics.restore', compact('post'));
     }
@@ -100,20 +108,30 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-            $this->logModerate(
-                'LOG_POST_EDITED',
-                [
-                    $post->topic->topic_title,
-                    $post->user->username,
-                ],
-                $post
-            );
-        }
+        try {
+            DB::transaction(function () use ($post) {
+                $userId = Auth::user() === null ? null : Auth::user()->getKey();
 
-        $body = Request::input('body');
-        if ($body !== '') {
-            $post->edit($body, Auth::user());
+                if ($userId !== $post->poster_id) {
+                    $this->logModerate(
+                        'LOG_POST_EDITED',
+                        [
+                            $post->topic->topic_title,
+                            $post->user->username,
+                        ],
+                        $post
+                    );
+                }
+
+                $post
+                    ->fill([
+                        'post_text' => request('body'),
+                        'post_edit_user' => $userId,
+                    ])
+                    ->saveOrExplode();
+            });
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         $posts = collect([$post->fresh()]);

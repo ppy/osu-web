@@ -28,7 +28,7 @@ return [
             'support_button' => 'Voglio sostenere osu!',
         ],
 
-        'dev_quote' => 'osu! è un gioco completamente free-to-play, ma farlo funzionare è sicuramente non gratis. Tra i costi di commissione dei server e la banda internazionale di alta qualità, il tempo speso a mantenere il server e la communità, fornendo premi per le competizioni, rispondendo alle domande di assistenza e generalmente mantenendo le persone felici, osu! consuma una notevole quantità di denaro! Oh, e non dimenticare il fatto che lo facciamo senza alcuna pubblicità o partner with silly con barre degli strumenti stupide e cose simili!
+        'dev_quote' => 'osu! è un gioco completamente free-to-win, ma farlo funzionare è sicuramente non gratis. Tra i costi di commissione dei server e la banda internazionale di alta qualità, il tempo speso a mantenere il server e la communità, fornendo premi per le competizioni, rispondendo alle domande di assistenza e generalmente mantenendo le persone felici, osu! consuma una notevole quantità di denaro! Oh, e non dimenticare il fatto che lo facciamo senza alcuna pubblicità o partner with silly con barre degli strumenti stupide e cose simili!
             <br/><br/>osu! alla fine della giornata è in gran parte gestita da me, che mi conosci meglio come "peppy".
             Ho dovuto lasciare il mio lavoro per mantenere osu!,
             e a volte fatico a mantenere gli standard per cui lotto.
@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opzioni di Ordinamento',
-                'description' => 'NUOVO: La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
+                'description' => 'La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
             ],
 
             'feel_special' => [

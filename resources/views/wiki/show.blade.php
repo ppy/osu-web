@@ -19,7 +19,7 @@
 @extends('master', [
     'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
-    'titleAppend' => $page->title(true),
+    'titlePrepend' => $page->title(true),
 ])
 
 @section('content')
@@ -47,7 +47,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-github"></i>
+                                <i class="fab fa-github"></i>
                             </span>
                         </a>
                     </div>
@@ -64,7 +64,7 @@
                                 data-tooltip-position="left center"
                             >
                                 <span class="btn-circle__content">
-                                    <i class="fa fa-refresh"></i>
+                                    <i class="fas fa-sync"></i>
                                 </span>
                             </button>
                         </div>
@@ -119,7 +119,15 @@
                     {!! $page->page()['output'] !!}
                 @else
                     <div class="wiki-content">
-                        {{ trans('wiki.show.missing') }}
+                        <p>
+                            {{ trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                        </p>
+
+                        <p>
+                            {!! trans('wiki.show.search', ['link' =>
+                                link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
+                            ]) !!}
+                        </p>
                     </div>
                 @endif
             </div>

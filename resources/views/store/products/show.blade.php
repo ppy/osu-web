@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends("master", ['titlePrepend' => $product->name])
 
 @section("content")
     @include("store.header")
@@ -41,7 +41,10 @@
 
                 <div class="grid">
                     <div class="grid-cell grid-cell--fill">
-                        {!! Markdown::convertToHtml($product->description) !!}
+                        {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
+                            'html_input' => 'allow',
+                            'block_modifiers' => ['store'],
+                        ])['output'] !!}
                     </div>
                 </div>
 
@@ -84,7 +87,10 @@
                 <div class="grid-cell grid-cell--1of2">
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {!! Markdown::convertToHtml($product->description) !!}
+                            {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
+                                'html_input' => 'allow',
+                                'block_modifiers' => ['store'],
+                            ])['output'] !!}
                         </div>
                     </div>
                     <div class="grid price-box">
@@ -166,7 +172,7 @@
 
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
-                    <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
+                    <span class="far fa-check-circle store-notification-requested-alert__icon"></span>
                     <p class="store-notification-requested-alert__text">
                         {!! trans('store.product.notification_success', [
                             'link' => link_to_route(

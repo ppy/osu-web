@@ -20,18 +20,18 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações da <strong>conta</strong>',
+        'title' => 'Configurações de <strong>conta</strong>',
         'title_compact' => 'configurações',
 
         'avatar' => [
-            'title' => 'Editar avatar',
+            'title' => 'Editar avatar', // Base text changed, please check.
         ],
 
         'email' => [
-            'current' => 'senha atual',
-            'new' => 'novo e-mail',
-            'new_confirmation' => 'confirmar e-mail',
-            'title' => 'E-mail',
+            'current' => 'email atual',
+            'new' => 'novo email',
+            'new_confirmation' => 'confirmar email',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -42,15 +42,14 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar perfil',
+            'title' => 'Editar perfil', // Base text changed, please check.
 
             'user' => [
                 'user_from' => 'localização atual',
-                'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
                 'user_twitter' => 'twitter',
-                'user_website' => 'site',
+                'user_website' => 'website',
             ],
         ],
 
@@ -61,14 +60,20 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmação de alteração de endereço de e-mail do osu!',
+        'email_subject' => 'Confirmação de mudança de email do osu!',
         'update' => 'atualizar',
-        'updated' => 'E-mail atualizado',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmação de alteração de senha do osu!',
+        'email_subject' => 'Confirmação de mudança de senha do osu!',
         'update' => 'atualizar',
-        'updated' => 'Senha atualizada',
+    ],
+
+    'playstyles' => [
+        'title' => 'Estilo de jogo',
+        'mouse' => 'mouse',
+        'keyboard' => 'teclado',
+        'tablet' => 'mesa digitalizadora',
+        'touch' => 'touch',
     ],
 ];

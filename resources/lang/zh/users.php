@@ -21,6 +21,28 @@
 return [
     'deleted' => '[被删除的用户]', //TODO 需要上下文
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => '最近打开的讨论', //上下文
+        ],
+
+        'events' => [
+            'title_recent' => '最近事件',
+        ],
+
+        'posts' => [
+            'title_recent' => '最近帖子',
+        ],
+
+        'votes_received' => [
+            'title_most' => '得赞最多（最近三个月）',
+        ],
+
+        'votes_made' => [
+            'title_most' => '赞数最多（最近三个月）',
+        ],
+    ],
+
     'login' => [
         '_' => '登录',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
@@ -55,9 +77,7 @@ return [
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
     ],
     'show' => [
-        '404' => '找不到指定的用户',
         'age' => ':age 岁',
-        'current_location' => '位于 :location',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
@@ -70,6 +90,7 @@ return [
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'plays_with' => '惯用 :devices',
         'title' => ':username 的个人资料',
+        'change_avatar' => '更换你的头像！',
 
         'edit' => [
             'cover' => [
@@ -114,6 +135,8 @@ return [
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
+                'title' => '历史记录',
+
                 'most_played' => [
                     'count' => '游玩次数',
                     'title' => '玩得最多的谱面',
@@ -122,7 +145,6 @@ return [
                     'accuracy' => '准确率：:percentage',
                     'title' => '最近24小时游玩',
                 ],
-                'title' => '历史记录',
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',
@@ -178,21 +200,25 @@ return [
                 'empty' => '该用户还没有获得成就。;_;',
                 'title' => '成就',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => '最近活动',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => '最好成绩',
-                ],
                 'empty' => '还没有上传过成绩。 :(',
-                'first' => [
-                    'title' => '第一名',
-                ],
                 'pp' => ':amountpp',
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
+
+                'best' => [
+                    'title' => '最好成绩',
+                ],
+                'first' => [
+                    'title' => '第一名',
+                ],
             ],
+        ],
+        'not_found' => [
+            'title' => '找不到指定的用户',
         ],
         'page' => [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
@@ -208,7 +234,8 @@ return [
             'hit_accuracy' => '准确率',
             'level' => '等级 :level',
             'maximum_combo' => '最大连击',
-            'play_count' => '游玩次数',
+            'play_count' => '游戏次数',
+            'play_time' => '游戏时间',
             'ranked_score' => 'Ranked 谱面总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',

@@ -55,6 +55,7 @@
   &--unread {
     &::before {
       .full-size();
+      content: ' ';
       background-color: @blue-darker;
       width: 5px;
     }
@@ -70,6 +71,15 @@
       // reset function above overrides margin
       margin: 0 5px;
       font-size: @font-size--small;
+    }
+
+    &--cancel {
+      .reset-input();
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: @beatmap-discussion--reply-padding;
+      height: @beatmap-discussion--reply-padding;
     }
   }
 
@@ -99,6 +109,7 @@
     width: @beatmap-discussion--avatar-size;
     height: @beatmap-discussion--avatar-size;
     flex: none;
+    pointer-events: none;
 
     .@{_top}--new-reply & {
       margin-bottom: 5px;
@@ -215,6 +226,7 @@
       .reset-input();
       width: 100%;
       resize: vertical;
+      min-height: 3em;
 
       // --reply part to override top modifier
       &, .@{_top}--reply & {
@@ -238,22 +250,6 @@
     }
   }
 
-  &__timestamp {
-    .link-plain();
-
-    border-radius: @border-radius-large;
-    padding: 1px 5px;
-    background-color: #eee;
-    font-weight: 600;
-    font-size: 85%;
-    color: #444;
-
-    .link-hover({
-      background-color: #ddd;
-      color: #444;
-    });
-  }
-
   &__user {
     flex: 1;
     display: flex;
@@ -262,6 +258,7 @@
     justify-content: center;
     margin: 0 5px;
     height: @beatmap-discussion--avatar-size;
+    pointer-events: none;
 
     @media @desktop {
       flex: none;
@@ -311,6 +308,21 @@
     .link-hover({
       color: @user-color-default;
     });
+  }
+
+  &__user-link {
+    .full-size();
+  }
+
+  &__user-modding-history-link {
+    font-size: 10px;
+    margin-left: 5px;
+    pointer-events: auto;
+  }
+
+  &__user-row {
+    display: flex;
+    align-items: center;
   }
 
   &__user-stripe {

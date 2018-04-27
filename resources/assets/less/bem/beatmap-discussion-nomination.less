@@ -31,7 +31,7 @@
     flex-direction: column;
 
     &--extended {
-      flex: 1;
+      flex: 1 0 auto;
     }
   }
 
@@ -61,6 +61,7 @@
     color: #eee;
     margin-right: 10px;
     margin-top: 5px;
+    word-wrap: break-word;
 
     .@{top}__footer--extended & {
       padding-top: 5px;
@@ -106,7 +107,7 @@
   }
 
   &__row-right {
-    width: 130px;
+    width: 150px;
 
     @media @mobile {
       align-self: center;

@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Account</strong> Settings',
         'title_compact' => 'settings',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Profile',
 
             'user' => [
                 'user_from' => 'current location',
-                'user_interests' => 'interest',
+                'user_interests' => 'interests',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -63,13 +65,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! email change confirmation',
         'update' => 'update',
-        'updated' => 'Email updated',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
-        'updated' => 'Password updated',
     ],
 
     'playstyles' => [

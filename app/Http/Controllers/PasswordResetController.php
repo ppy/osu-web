@@ -110,7 +110,7 @@ class PasswordResetController extends Controller
             return ['message' => trans('password_reset.notice.saved')];
         } else {
             return response(['form_error' => [
-                'user' => $userPassword->validationErrors()->all(),
+                'user' => $user->validationErrors()->all(),
             ]], 422);
         }
     }

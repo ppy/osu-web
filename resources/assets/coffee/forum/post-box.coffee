@@ -40,8 +40,10 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  $box.trigger 'input'
-  $box.focus()
+  $box
+    .trigger 'bbcode:inserted' # for react
+    .trigger 'input' # ignored by react
+    .focus()
 
 [
   ['bold', '[b]', '[/b]']
@@ -60,8 +62,13 @@ insert = (event, tagOpen, tagClose = '') ->
     insert e, openTag, closeTag
 
 
+$(document).on 'turbolinks:load', ->
+  $('.js-bbcode-btn--size').val('')
+
+
 $(document).on 'change', '.js-bbcode-btn--size', (e) ->
   $select = $(e.target)
   val = parseInt $select.val(), 10
+  $select.val('')
 
   insert e, "[size=#{val}]", '[/size]'

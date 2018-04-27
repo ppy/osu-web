@@ -49,9 +49,10 @@ class @PlaymodeTabs extends React.Component
 
   switchMode: (e) =>
     e.preventDefault()
-    mode = e.target.dataset.mode
+    target = e.currentTarget
+    mode = target.dataset.mode
 
     return if @props.currentMode == mode || !mode?
-    return if e.target.dataset.disabled == 'true'
+    return if target.dataset.disabled == 'true'
 
     $.publish 'playmode:set', mode: mode

@@ -47,6 +47,13 @@ class @BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
+    showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
+    if showHypeCounts
+      currentHype = beatmapset.hype.current.toLocaleString()
+      requiredHype = beatmapset.hype.required.toLocaleString()
+      currentNominations = beatmapset.nominations.current.toLocaleString()
+      requiredNominations = beatmapset.nominations.required.toLocaleString()
+
     # arbitrary number
     maxDisplayedDifficulty = 10
 
@@ -78,9 +85,11 @@ class @BeatmapsetPanel extends React.PureComponent
             style:
               backgroundImage: "url(#{beatmapset.covers.card})"
 
-            if beatmapset.video or beatmapset.storyboard
-              div className: 'beatmapset-panel__video-icon',
-                el Icon, name: 'film', modifiers: ['fw']
+            div className: 'beatmapset-panel__status-container',
+              if beatmapset.video or beatmapset.storyboard
+                div className: 'beatmapset-panel__video-icon',
+                  i className: 'fas fa-film fa-fw'
+              div className: 'beatmapset-panel__status', beatmapset.status
 
             div className: 'beatmapset-panel__title-artist-box',
               div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
@@ -89,13 +98,22 @@ class @BeatmapsetPanel extends React.PureComponent
                 beatmapset.artist
 
             div className: 'beatmapset-panel__counts-box',
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
-                el Icon, name: 'play-circle', modifiers: ['fw']
+              if showHypeCounts
+                div null,
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
+                    span className: 'beatmapset-panel__count-number', currentHype
+                    i className: 'fas fa-bullhorn fa-fw'
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
+                    span className: 'beatmapset-panel__count-number', currentNominations
+                    i className: 'fas fa-thumbs-up fa-fw'
+              else
+                div className: 'beatmapset-panel__count',
+                  span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+                  i className: 'fas fa-fw fa-play-circle'
 
               div className: 'beatmapset-panel__count',
                 span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
-                el Icon, name: 'heart', modifiers: ['fw']
+                i className: 'fas fa-fw fa-heart'
 
             div
               className: 'beatmapset-panel__preview-bar'
@@ -127,14 +145,14 @@ class @BeatmapsetPanel extends React.PureComponent
                   href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
-                  el Icon, name: 'download'
+                  i className: 'fas fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
         href: '#'
         className: 'beatmapset-panel__play js-audio--play'
         'data-audio-url': beatmapset.preview_url
-        el Icon, name: if @state.preview == 'ended' then 'play' else 'stop'
+        i className: "fas fa-#{if @state.preview == 'ended' then 'play' else 'stop'}"
       div className: 'beatmapset-panel__shadow'
 
 

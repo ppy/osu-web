@@ -31,16 +31,17 @@
             {{ Auth::user()->username }}
         </a>
 
-        <a
+        <button
             class="navbar-mobile-item__main navbar-mobile-item__main--logout js-logout-link"
-            href="{{ route('logout') }}"
+            type="button"
+            data-url="{{ route('logout') }}"
             data-method="DELETE"
             data-confirm="{{ trans('users.logout_confirm') }}"
             data-remote="1"
             data-toggle="collapse"
             data-target=".js-navbar-mobile--menu"
         >
-            <i class="fa fa-sign-out"></i>
+            <i class="fas fa-sign-out-alt"></i>
         </a>
     @else
         <a

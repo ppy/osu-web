@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, img, ol, li} = ReactDOMFactories
+{div, span, a, img, ol, li, i} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
@@ -54,10 +54,10 @@ class BeatmapsetPage.Header extends React.Component
     favouriteButton =
       if @props.hasFavourited
         action: 'unfavourite'
-        icon: 'heart'
+        icon: 'fas fa-heart'
       else
         action: 'favourite'
-        icon: 'heart-o'
+        icon: 'far fa-heart'
 
     div className: 'beatmapset-header',
       el PlaymodeTabs,
@@ -89,16 +89,21 @@ class BeatmapsetPage.Header extends React.Component
               "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
-              span className: 'beatmapset-header__value',
-                span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
+              span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
+                span className: 'beatmapset-header__value-icon', i className: 'fas fa-play-circle'
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
+
+              if @props.beatmapset.status == 'pending'
+                span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
+                  span className: 'beatmapset-header__value-icon', i className: 'fas fa-thumbs-up'
+                  span className: 'beatmapset-header__value-name', @props.beatmapset.nominations.current
 
               span
                 className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
                 onMouseOver: @showFavourites
                 onTouchStart: @showFavourites
                 span className: 'beatmapset-header__value-icon',
-                  el Icon, name: 'heart'
+                  i className: 'fas fa-heart'
                 span className: 'beatmapset-header__value-name',
                   @props.favcount.toLocaleString()
 
@@ -107,7 +112,7 @@ class BeatmapsetPage.Header extends React.Component
               className: 'beatmapset-favourites beatmapset-favourites__template'
               style:
                 display: 'none'
-              @props.beatmapset.recentFavourites.map (user) ->
+              @props.beatmapset.recent_favourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard beatmapset-favourites__user'
@@ -118,6 +123,7 @@ class BeatmapsetPage.Header extends React.Component
               if @props.favcount > @favouritesToShow
                 div className: 'beatmapset-favourites__remainder-count',
                   osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
+
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
             href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.title)
@@ -174,14 +180,14 @@ class BeatmapsetPage.Header extends React.Component
                 else
                   @downloadButton
                     key: 'default'
-                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
 
                 @downloadButton
                   key: 'direct'
                   topTextKey: 'direct'
                   osuDirect: true
                   href:
-                    if currentUser.isSupporter
+                    if currentUser.is_supporter
                       Url.beatmapDownloadDirect @props.beatmapset.id
                     else
                       laroute.route 'support-the-game'
@@ -192,7 +198,7 @@ class BeatmapsetPage.Header extends React.Component
                 modifiers: ['beatmapset-header']
                 text:
                   top: osu.trans 'beatmapsets.show.discussion'
-                icon: 'comments-o'
+                icon: 'far fa-comments'
                 props:
                   href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
             else if @props.beatmapset.legacy_thread_url
@@ -200,18 +206,19 @@ class BeatmapsetPage.Header extends React.Component
                 modifiers: ['beatmapset-header']
                 text:
                   top: osu.trans 'beatmapsets.show.discussion'
-                icon: 'comments-o'
+                icon: 'far fa-comments'
                 props:
                   href: @props.beatmapset.legacy_thread_url
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
+          div className: 'beatmapset-header__status', @props.beatmapset.status
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed
 
 
-  downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
+  downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
       modifiers: ['beatmapset-header']

@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Ты уверен?',
+    'confirmation' => 'Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -30,19 +30,43 @@ return [
 
     'buttons' => [
         'cancel' => 'Отмена',
+        'click_to_copy' => 'нажмите чтобы скопировать',
+        'click_to_copy_copied' => 'скопировано!',
         'delete' => 'Удалить',
         'permalink' => 'прямая ссылка',
+        'permalink_copied' => 'ссылка скопирована',
         'post' => 'Публикация',
         'reply' => 'Ответить',
+        'reply_reopen' => 'Ответить и возобновить',
+        'reply_resolve' => 'Ответить и разрешить',
         'reset' => 'Сбросить',
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
+        'see_more' => 'показать ещё',
         'show_more' => 'показать больше',
         'upload_image' => 'выбрать файл',
     ],
 
     'count' => [
-        'item' => ':count единица|:count единиц',
+        'badges' => ':count значок|:count значка|:count значков',
+        'days' => ':count день|:count дня|:count дней',
+        'hour_short_unit' => 'ч',
+        'hours' => ':count час|:count часа|:count часов',
+        'item' => ':count единица|:count единицы|:count единиц',
+        'minute_short_unit' => 'мин',
+        'months' => ':count месяц|:count месяца|:count месяцев',
+        'second_short_unit' => 'сек',
+        'years' => ':count год|:count года|:count лет',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
@@ -71,8 +95,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count день назад|:count дней назад',
-        'hours_ago' => ':count час назад|:count часов назад',
+        'days_ago' => ':count день назад|:count дня назад|:count дней назад',
+        'hours_ago' => ':count час назад|:count часа назад|:count часов назад',
         'now' => 'сейчас',
         'remaining' => 'Времени осталось',
     ],

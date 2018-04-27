@@ -31,7 +31,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) =>
               el PlayDetail, key: i, score: score
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+            li className: 'profile-extra-entries__item',
               el ProfilePage.ShowMoreLink,
                 collection: @props.scoresBest
                 propertyName: 'scoresBest'
@@ -44,12 +44,14 @@ class ProfilePage.TopRanks extends React.PureComponent
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
       div null,
-        h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.first.title')
+        h3
+          className: 'page-extra__title page-extra__title--small'
+          "#{osu.trans('users.show.extra.top_ranks.first.title')} (#{@props.user.scores_first_count[0]})"
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
             @props.scoresFirsts.map (score, i) =>
               el PlayDetail, key: i, score: score
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+            li className: 'profile-extra-entries__item',
               el ProfilePage.ShowMoreLink,
                 collection: @props.scoresFirsts
                 propertyName: 'scoresFirsts'

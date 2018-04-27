@@ -20,20 +20,33 @@
 
 return [
     'event' => [
-        'approve' => 'Zablokowane.',
+        'approve' => 'Zatwierdzona.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
         'discussion_post_delete' => 'Moderator usunął odpowiedź z dyskusji :discussion.',
         'discussion_post_restore' => 'Moderator przywrócił odpowiedź z dyskusji :discussion.',
         'discussion_restore' => 'Moderator przywrócił dyskusję :discussion.',
-        'disqualify' => 'Zdyskwalifikowane. Powód: :text.',
+        'disqualify' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :discussion (:text).',
+        'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
         'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',
         'issue_resolve' => 'Problem :discussion został oznaczony jako rozwiązany.',
-        'kudosu_allow' => 'Odmowa otrzymania kudosu dla dyskusji :discussion została usunięta.',
+        'kudosu_allow' => 'Anulowanie kudosu dla dyskusji :discussion zostało usunięte.',
         'kudosu_deny' => 'Dyskusja :discussion nie dostanie kudosu.',
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
-        'nominate' => 'Nominowane.',
-        'qualify' => 'Zakwalifikowane.',
-        'rank' => 'Rankingowe.',
+        'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
+        'nominate' => 'Nominowana przez :user.',
+        'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
+        'qualify' => 'Zakwalifikowana.',
+        'rank' => 'Rankingowa.',
+    ],
+
+    'index' => [
+        'title' => 'Historia zdarzeń beatmap',
+    ],
+
+    'item' => [
+        'content' => 'Zawartość',
+        'discussion_deleted' => '[usunięte]',
+        'type' => 'Typ',
     ],
 ];

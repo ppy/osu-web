@@ -18,12 +18,14 @@
 
 .profile-badge {
   height: @profile-badge-size;
+  width: @profile-badge-size;
   text-align: center;
-  background-position: 50%;
   background-repeat: no-repeat;
+  margin: 0 -3px;
 
   &--level {
     .at2x("/images/badges/levelbadge.png", @profile-badge-size, @profile-badge-size);
+    order: 1;
   }
 
   &--achievements {

@@ -66,8 +66,15 @@ class BeatmapsetWatch extends Model
     {
         $query->where(function ($query) {
             $query
-                ->whereColumn('last_read', '>', 'last_notified')
+                ->whereColumn('last_read', '>=', 'last_notified')
                 ->orWhereNull('last_notified');
+        });
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->whereHas('beatmapset', function ($q) {
+            $q->active();
         });
     }
 

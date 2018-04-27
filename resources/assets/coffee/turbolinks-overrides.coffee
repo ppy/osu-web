@@ -23,13 +23,14 @@ Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
-  targetId = e.currentTarget.getAttribute('href')[1..]
+  href = e.currentTarget.href
+  targetId = decodeURIComponent href[href.indexOf('#') + 1..]
   target = document.getElementById targetId
 
   return if !target?
 
   e.preventDefault()
-  $.scrollTo target
+  target.scrollIntoView()
 
 
 # Monkey patch Turbolinks to render 403, 404, and 500 normally
@@ -41,3 +42,17 @@ Turbolinks.HttpRequest.prototype.requestLoaded = ->
     else
       @failed = true
       @delegate.requestFailedWithStatusCode(@xhr.status, @xhr.responseText)
+
+
+# may or may not actually work
+Turbolinks.Controller.prototype.advanceHistory = (url) ->
+  return if url == document.location.href
+
+  @cacheSnapshot()
+  @lastRenderedLocation = Turbolinks.Location.wrap(url)
+  @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+
+
+# Ignore anchor check on loading snapshot to prevent repeating requesting page
+# when the target doesn't exist.
+Turbolinks.Snapshot.prototype.hasAnchor = -> true

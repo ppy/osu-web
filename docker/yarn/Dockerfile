@@ -1,4 +1,6 @@
-FROM node:latest
+FROM alpine:latest
+
+RUN apk add --update yarn bash shadow
 
 ARG _uid
 ARG _gid
@@ -6,6 +8,6 @@ ARG _gid
 ENV _uid ${_uid}
 ENV _gid ${_gid}
 
-COPY setup.sh /data/
+COPY setup.sh /
 
-RUN ./data/setup.sh
+RUN /setup.sh

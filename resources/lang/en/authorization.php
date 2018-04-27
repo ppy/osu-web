@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Can not undo hyping.',
             'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
@@ -32,7 +33,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'owner' => "Can't vote on own discussion.",
+            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
         ],
     ],
 
@@ -82,6 +84,11 @@ return [
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -92,7 +99,7 @@ return [
                 'no_permission' => 'No permission to reply.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
+                    'require_login' => 'Please sign in to reply.',
                     'restricted' => "Can't reply while restricted.",
                     'silenced' => "Can't reply while silenced.",
                 ],
@@ -110,7 +117,7 @@ return [
                 'voted' => 'Changing vote is not allowed.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
+                    'require_login' => 'Please sign in to vote.',
                     'restricted' => "Can't vote while restricted.",
                     'silenced' => "Can't vote while silenced.",
                 ],
@@ -133,7 +140,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Please sign in to proceed.',
 
     'unauthorized' => 'Access denied.',
 

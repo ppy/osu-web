@@ -29,14 +29,13 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
             'supportTheGame' => 'sostieni il gioco',
         ],
         'help' => [
             '_' => 'aiuto',
             'getWiki' => 'wiki',
             'getFaq' => 'domande comuni',
-            'getSupport' => 'supporto',
+            'getSupport' => 'supporto', //obsolete
         ],
         'beatmaps' => [
             '_' => 'beatmap',
@@ -56,9 +55,8 @@ return [
         ],
         'community' => [
             '_' => 'comunità',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'supporto',
             'getLive' => 'dirette',
             'contests' => 'concorsi',
             'profile' => 'profilo',
@@ -66,10 +64,10 @@ return [
             'tournaments-index' => 'tornei',
             'tournaments-show' => 'informazioni sul torneo',
             'forum-topic-watches-index' => 'Iscrizioni ai Topic',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multigiocatore',
@@ -86,7 +84,7 @@ return [
         ],
         'user' => [
             '_' => 'utente',
-            'getLogin' => 'login',
+            'getLogin' => 'login', // Base text changed from "log" to "sign"
             'disabled' => 'disabilitato',
 
             'register' => 'registra',
@@ -95,13 +93,13 @@ return [
 
             'messages' => 'Messaggi',
             'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Aiuto',
         ],
         'store' => [
             '_' => 'negozio',
             'getListing' => 'lista',
-            'getCart' => 'carrello',
+            'cart-show' => 'carrello',
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
@@ -156,7 +154,6 @@ return [
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Stato del Server',
             'terms' => 'Termini di Servizio',
         ],
@@ -166,32 +163,26 @@ return [
         '404' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Non dovresti essere qui.',
+            'error' => 'Non dovresti essere qui.', // Base text changed from "log" to "sign"
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
@@ -227,7 +218,7 @@ return [
     'popup_user' => [
         'links' => [
             'profile' => 'Mio Profilo',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
         ],
     ],
 ];

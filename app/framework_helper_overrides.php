@@ -9,3 +9,14 @@ function e($value)
 
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', true);
 }
+
+function trans_choice($key, $number, array $replace = [], $locale = null)
+{
+    $translator = app('translator');
+
+    if ($translator->hasForLocale($key, $locale)) {
+        return $translator->transChoice($key, $number, $replace, $locale);
+    } else {
+        return $translator->transChoice($key, $number, $replace, config('app.fallback_locale'));
+    }
+}

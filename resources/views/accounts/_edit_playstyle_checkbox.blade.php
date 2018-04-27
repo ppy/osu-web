@@ -31,7 +31,7 @@
         >
         <span class="osu-checkbox__box"></span>
         <span class="osu-checkbox__tick">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
         </span>
     </div>
     @include('accounts._edit_entry_status')

@@ -27,12 +27,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    height: @item-height;
-    white-space: nowrap;
-
-    &--show-more {
-      justify-content: center;
-    }
+    min-height: @item-height;
 
     &--top-ranks {
       height: auto;
@@ -42,6 +37,7 @@
 
       &::before {
         .full-size();
+        content: ' ';
         margin: 0 -10px;
         width: calc(100% ~'+' 20px);
         pointer-events: none;

@@ -24,7 +24,7 @@ return [
             'made-by' => 'gemaakt door ',
             'submitted' => 'ingezonden op ',
             'ranked' => 'gerankt op ',
-            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
+            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'downloaden',
                 'no-video' => 'zonder video',
@@ -71,10 +71,6 @@ return [
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
-            ],
-            'stats' => [
-                'accuracy' => 'Precisie',
-                'score' => 'Score',
             ],
         ],
     ],

@@ -32,14 +32,17 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'zezwól kudosu',
+        'allow_kudosu' => 'zezwól na kudosu',
         'delete' => 'usuń',
         'deleted' => 'Usunięte przez :editor :delete_time',
         'deny_kudosu' => 'zablokuj kudosu',
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
+        'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
         'message_placeholder' => 'Pisz tutaj',
+        'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
+        'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
         'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
@@ -62,6 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Zdyskwalifikuj',
+            'hype' => 'Priorytet',
+            'mapper_note' => 'Adnotacja',
+            'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
@@ -69,9 +76,12 @@ return [
 
         'mode' => [
             'events' => 'Historia',
-            'general' => 'Główne',
-            'general_all' => 'Główne (wszystkie poziomy trudności)',
+            'general' => 'Główne :scope',
             'timeline' => 'Oś czasu',
+            'scopes' => [
+                'general' => 'Ten poziom trudności',
+                'generalAll' => 'Wszystkie poziomy trudności',
+            ],
         ],
 
         'new' => [
@@ -81,40 +91,85 @@ return [
         ],
 
         'show' => [
-            'title' => ':title zmapowana przez :mapper',
+            'title' => ':title autorstwa :mapper',
+        ],
+
+        'sort' => [
+            '_' => 'Sortowane według:',
+            'created_at' => 'czas utworzenia',
+            'timeline' => 'oś czasu',
+            'updated_at' => 'ostatnie aktualizacje',
         ],
 
         'stats' => [
             'deleted' => 'Usunięte',
+            'mapper_notes' => 'Adnotacje',
             'mine' => 'Moje',
             'pending' => 'Oczekujące',
             'praises' => 'Pochwały',
             'resolved' => 'Rozwiązane',
             'total' => 'Wszystkie',
         ],
+
+        'status-messages' => [
+            'approved' => 'Ta beatmapa została zatwierdzona :date!',
+            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez twórcę...',
+            'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
+            'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
+            'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
+        ],
+    ],
+
+    'hype' => [
+        'button' => 'Nagłośnij beatmapę!',
+        'button_done' => 'Już nagłośniono!',
+        'confirm' => 'Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.',
+        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => 'Nagłośnienie kolejnej mapy będzie możliwe za :new_time.',
+        'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
+        'required_text' => 'Priorytet: :current/:required',
+        'section_title' => 'Priorytet',
+        'title' => 'Priorytet',
+    ],
+
+    'feedback' => [
+        'button' => 'Zostaw ocenę',
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'zdyskwalifkowane :time_ago (:reason).',
-        'disqualifed_no_reason' => 'brak określonego powodu',
-        'disqualification-prompt' => 'Powód dyskwalifikacji?',
+        'disqualification_prompt' => 'Powód dyskwalifikacji?',
+        'disqualified_at' => 'zdyskwalifkowane :time_ago (:reason).',
+        'disqualified_no_reason' => 'brak określonego powodu',
         'disqualify' => 'Zdyskwalifikuj',
-        'incorrect-state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
+        'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',
-        'nominate-confirm' => 'Nominować tę beatmapę?',
-        'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną odnalezione żadne błędy.',
-        'qualified-soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną odnalezione żadne błędy.',
-        'required-text' => 'Nominacjes: :current/:required',
+        'nominate_confirm' => 'Nominować tę beatmapę?',
+        'nominated_by' => 'nominowana przez :users',
+        'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
+        'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
+        'required_text' => 'Nominacje: :current/:required',
         'title' => 'Status nominacji',
+        'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
+
+        'reset_at' => [
+            'nomination_reset' => ':user zresetował(a) proces nominacji :time_ago z powodu nowego problemu :discussion (:message).',
+            'disqualify' => ':user zdyskwalifikował(a) beatmapę :time_ago z powodu nowego problemu :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
+        ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'wpisz poszukiwane wyrażenie...',
+            'prompt' => 'wpisz żądaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
             'not-found' => 'brak wyników',
-            'not-found-quote' => '... niczego nie znaleziono.',
+            'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
+                'general' => 'Główne',
                 'mode' => 'Tryb gry',
                 'status' => 'Status beatmapy',
                 'genre' => 'Gatunek',
@@ -125,9 +180,13 @@ return [
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status beatmapy',
-        'mapped-by' => 'zmapowana przez :mapper',
+        'mapped-by' => 'autorstwa :mapper',
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
+    ],
+    'general' => [
+        'recommended' => 'Polecany poziom trudności',
+        'converts' => 'Uwzględnij przekonwertowane beatmapy',
     ],
     'mode' => [
         'any' => 'Jakikolwiek',
@@ -138,8 +197,9 @@ return [
     ],
     'status' => [
         'any' => 'Jakikolwiek',
-        'ranked-approved' => 'Rankingowe & Zatwierdzone',
+        'ranked-approved' => 'Rankingowe i zatwierdzone',
         'approved' => 'Zatwierdzone',
+        'qualified' => 'Zakwalifikowane',
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
         'pending' => 'Oczekujące',
@@ -154,7 +214,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Inny',
-        'novelty' => 'Nowy',
+        'novelty' => 'Oryginalny',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Muzyka elektroniczna',
     ],
@@ -179,7 +239,8 @@ return [
         '8K' => '8K',
         'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'Brak modyfikacji',
+        'NM' => 'Brak modyfikatorów',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
@@ -193,11 +254,11 @@ return [
         'spanish' => 'Hiszpański',
         'swedish' => 'Szwedzki',
         'instrumental' => 'Instrumentalny',
-        'other' => 'Inne',
+        'other' => 'Inny',
     ],
     'extra' => [
         'video' => 'Posiada wideo',
-        'storyboard' => 'Posiada storyboard',
+        'storyboard' => 'Posiada scenorys',
     ],
     'rank' => [
         'any' => 'Jakakolwiek',

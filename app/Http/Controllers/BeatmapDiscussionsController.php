@@ -20,8 +20,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -40,13 +42,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->allowKudosu(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->allowKudosu(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function denyKudosu($id)
@@ -54,13 +56,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->denyKudosu(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->denyKudosu(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function destroy($id)
@@ -68,13 +70,42 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionDestroy', $discussion)->ensureCan();
 
-        $error = $discussion->softDelete(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->softDeleteOrExplode(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
+    }
+
+    public function index()
+    {
+        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
+        $params = request();
+        $params['is_moderator'] = $isModerator;
+
+        if (!$isModerator) {
+            $params['with_deleted'] = false;
+        }
+
+        $search = BeatmapDiscussion::search($params);
+        $discussions = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapset',
+                    'startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussions.index', compact('discussions', 'search'));
     }
 
     public function restore($id)

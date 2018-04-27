@@ -24,13 +24,13 @@
 
             @if(isset($cart) && $cart && $cart->items()->exists())
                 <div class="store-header__float store-header__float--right">
-                    <a href="/store/cart" class="store-header__float-link">
+                    <a href="{{ route('store.cart.show') }}" class="store-header__float-link">
                         <span class="store-header__float-link-text">
                             {{ $cart->getItemCount() }} item(s) in cart (${{ $cart->getSubtotal() }})
                         </span>
 
                         <span class="store-header__float-link-text store-header__float-link-text--icon">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart"></i>
                         </span>
                     </a>
                 </div>
