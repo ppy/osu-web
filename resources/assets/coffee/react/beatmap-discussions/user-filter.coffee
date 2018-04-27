@@ -23,7 +23,7 @@ bn = 'beatmap-discussions-user-filter'
 
 allUsers =
   id: null,
-  username: 'Everyone'
+  username: osu.trans('beatmap_discussions.user.everyone')
 
 
 class BeatmapDiscussions.UserFilter extends React.PureComponent
