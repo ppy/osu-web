@@ -40,13 +40,13 @@ class ModdingHistoryController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = User::lookup(request('user'), 'id', true);
+            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
+            $this->user = User::lookup(request('user'), 'id', $this->isModerator);
 
-            if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
+            if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
                 abort(404);
             }
 
-            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->searchParams = request();
             $this->searchParams['is_moderator'] = $this->isModerator;
 
