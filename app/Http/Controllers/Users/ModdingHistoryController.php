@@ -33,6 +33,7 @@ class ModdingHistoryController extends Controller
     protected $actionPrefix = 'modding-history-';
     protected $section = 'user';
 
+    protected $isModerator;
     protected $searchParams;
     protected $user;
 
@@ -45,11 +46,11 @@ class ModdingHistoryController extends Controller
                 abort(404);
             }
 
-            $isModerator = priv_check('BeatmapDiscussionModerate')->can();
+            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->searchParams = request();
-            $this->searchParams['is_moderator'] = $isModerator;
+            $this->searchParams['is_moderator'] = $this->isModerator;
 
-            if (!$isModerator) {
+            if (!$this->isModerator) {
                 $this->searchParams['with_deleted'] = false;
             }
 
@@ -84,7 +85,14 @@ class ModdingHistoryController extends Controller
             ])->get();
 
         $events = BeatmapsetEvent::search($this->searchParams);
-        $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
+        if ($this->isModerator) {
+            $events['items'] = $events['query']->with('user')->with(['beatmapset' => function ($query) {
+                $query->withTrashed();
+            }])->get();
+        } else {
+            $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
+        }
+
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
@@ -128,8 +136,16 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $search = BeatmapsetEvent::search($this->searchParams);
+        if ($this->isModerator) {
+            $items = $search['query']->with('user')->with(['beatmapset' => function ($query) {
+                $query->withTrashed();
+            }])->get();
+        } else {
+            $items = $search['query']->with(['user', 'beatmapset'])->get();
+        }
+
         $events = new LengthAwarePaginator(
-            $search['query']->with(['user', 'beatmapset'])->get(),
+            $items,
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
