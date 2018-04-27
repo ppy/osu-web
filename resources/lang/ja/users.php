@@ -87,7 +87,7 @@ return [
     ],
     'show' => [
         '404' => 'ユーザーが見つかりませんでした。',
-        'age' => ':age歳',
+        'age' => ':age',
         'change_avatar' => 'アバター画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
@@ -97,7 +97,7 @@ return [
         'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
         'origin_age' => ':age',
         'origin_country_age' => ':countryの:age歳',
-        'origin_country' => '出身地 :country',
+        'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'plays_with' => '使用デバイス :devices',
         'title' => ':usernameのプロフィール',
