@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'สร้างใหม่',
+            'regenerating' => 'กำลังสร้างใหม่...',
+            'remove' => 'นำออก',
+            'removing' => 'กำลังนำออก...',
+        ],
         'show' => [
+            'covers' => 'จัดการ Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'เปิดการใช้งาน',
