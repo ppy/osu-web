@@ -154,6 +154,7 @@ class @BeatmapDiscussionHelper
       discussionId
       discussions # for validating discussionId and getting relevant params
       discussion
+      user
     } = options
 
     params = {}
@@ -191,6 +192,11 @@ class @BeatmapDiscussionHelper
     url.pathname = laroute.route 'beatmapsets.discussion', params
     url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
 
+    if user?
+      url.searchParams.set('user', user)
+    else
+      url.searchParams.delete('user')
+
     url.toString()
 
 
@@ -213,6 +219,7 @@ class @BeatmapDiscussionHelper
       # empty path segments are ''
       mode: if _.includes(@MODES, mode) then mode else @DEFAULT_MODE
       filter: if _.includes(@FILTERS, filter) then filter else @DEFAULT_FILTER
+      user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)

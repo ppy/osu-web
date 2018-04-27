@@ -50,6 +50,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @state.currentMode = query.mode
     @state.currentFilter = query.filter
     @state.currentBeatmapId = query.beatmapId if query.beatmapId?
+    @state.selectedUserId = query.user
 
 
   componentDidMount: =>
@@ -416,6 +417,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       beatmap: @currentBeatmap()
       mode: @state.currentMode
       filter: @state.currentFilter
+      user: @state.selectedUserId
 
 
   users: =>
