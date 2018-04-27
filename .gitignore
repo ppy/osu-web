@@ -18,9 +18,9 @@ Thumbs.db
 Icon*
 desktop.ini
 
-# Bower and node directories
+# node directory and yarn log
 /node_modules
-/npm-debug.log
+/yarn-error.log
 
 # Mix manifest
 /public/mix-manifest.json

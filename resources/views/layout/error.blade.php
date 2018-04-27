@@ -19,19 +19,21 @@
 
 @section("content")
 
-<div class="osu-layout__row osu-layout__row--page">
-    <h1 class="text-center">{{{ trans("layout.errors.$current_action.error") }}}</h1>
+<div class="osu-page osu-page--generic text-center">
+    <h1>{{{ trans("layout.errors.$current_action.error") }}}</h1>
 
-    @if (Lang::get("layout.errors.$current_action.link") and Lang::get("layout.errors.$current_action.link.href") != "layout.errors.$current_action.link.href")
-        {!! trans("layout.errors.$current_action.description",
-                ["link" => '<a class="blue_normal" href="' . trans("layout.errors.$current_action.link.href") . '">' . trans("layout.errors.$current_action.link.text") . '</a>']
-            )!!}
-    @else
-        <div class="text-center">{{{ trans("layout.errors.$current_action.description") }}}</div>
+    @if (isset($exception))
+        <p>[{{ $exception->getMessage() }}]</p>
     @endif
 
+    <p>
+        {!! trans("layout.errors.$current_action.description", ['link' =>
+            '<a class="blue_normal" href="'.trans("layout.errors.$current_action.link.href").'">'.trans("layout.errors.$current_action.link.text").'</a>',
+        ]) !!}
+    </p>
+
     @if (isset($ref))
-        <h4 class="text-center">{{{ trans("layout.errors.reference") }}}<br><small>{{{ $ref }}}</small> </h4>
+        <h4>{{ trans('layout.errors.reference') }}<br><small>{{ $ref }}</small></h4>
     @endif
 </div>
 

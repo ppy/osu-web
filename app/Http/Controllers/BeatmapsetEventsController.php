@@ -30,8 +30,6 @@ class BeatmapsetEventsController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
         $search = BeatmapsetEvent::search(request());
         $events = new LengthAwarePaginator(
             $search['query']->with(['user', 'beatmapset'])->get(),
@@ -39,7 +37,7 @@ class BeatmapsetEventsController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmapsets.events.index'),
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );

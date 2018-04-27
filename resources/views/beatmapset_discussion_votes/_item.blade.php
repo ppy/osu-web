@@ -17,7 +17,7 @@
 --}}
 <div class="beatmap-discussion-post beatmapset-activities__discussion-post">
     <div class="beatmapset-activities__vote-user-panel">
-        <a href="{{route('users.beatmapset-activities', $vote->user->user_id)}}">
+        <a href="{{route('users.modding.index', $vote->user->user_id)}}">
             <div class="beatmap-discussion-post__avatar">
                 <div class="avatar avatar--full-rounded" style="background-image: url('{{$vote->user->user_avatar}}');"></div>
             </div>

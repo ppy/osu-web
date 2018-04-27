@@ -182,32 +182,26 @@ return [
         '404' => [
             'error' => 'Sida saknas',
             'description' => 'Förlåt, men sidan du frågade efter finns inte här!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Du bör inte vara här',
             'description' => 'Du kan däremot försöka gå tillbaka.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Du bör inte vara här',
             'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => 'Sida saknas',
             'description' => 'Förlåt, men sidan du frågade efter finns inte här!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh nej! Något gick isönder! ;_;',
             'description' => 'Vi blir automatiskt notifierade av varje fel',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh nej! Något gick verkligen isönder! ;_;',
             'description' => 'Vi blir automatiskt notifierade av varje fel',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Nere för underhåll!',
