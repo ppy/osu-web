@@ -118,7 +118,7 @@ return [
             'settings' => 'Настройки',
             'logout' => 'Выход', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Помощь',
-            'beatmapset_activities' => 'активность карты пользователя',
+            'modding-history-index' => 'активность карты пользователя', // needs update
         ],
         'store' => [
             '_' => 'магазин',

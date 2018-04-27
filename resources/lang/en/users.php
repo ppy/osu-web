@@ -22,6 +22,8 @@ return [
     'deleted' => '[deleted user]',
 
     'beatmapset_activities' => [
+        'title' => ":user's Modding History",
+
         'discussions' => [
             'title_recent' => 'Recently started discussions',
         ],
@@ -87,7 +89,6 @@ return [
         'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
         'age' => ':age years old',
         'change_avatar' => 'change your avatar!',
         'first_members' => 'Here since the beginning',
@@ -272,6 +273,13 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
+        ],
+        'not_found' => [
+            'reason_1' => 'They may have changed their username.',
+            'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',
+            'reason_3' => 'You may have made a typo!',
+            'reason_header' => 'There are a few possible reasons for this:',
+            'title' => 'User not found! ;_;',
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',

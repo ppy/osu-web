@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = ReactDOMFactories
+{a, button, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -79,20 +79,31 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        a
+        div
           className: "#{bn}__user-container"
-          href: laroute.route('users.show', user: @props.user.id)
           style:
             color: userColor
+
+          a
+            className: "#{bn}__user-link"
+            href: laroute.route('users.show', user: @props.user.id)
+
           div className: "#{bn}__avatar",
             el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
             className: "#{bn}__user"
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              style:
-                color: userColor
-              @props.user.username
+            div
+              className: "#{bn}__user-row"
+              span
+                className: "#{bn}__user-text u-ellipsis-overflow"
+                style:
+                  color: userColor
+                @props.user.username
+
+              a
+                className: "#{bn}__user-modding-history-link"
+                href: laroute.route('users.modding.index', user: @props.user.id)
+                i className: 'fas fa-align-left'
 
             div
               className: "#{bn}__user-badge"

@@ -46,7 +46,6 @@ return [
     ],
     'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(', // Base text changed from "log" to "sign"
     'show' => [
-        '404' => 'Utente non trovato! ;_;',
         'age' => ':age anni',
         'first_members' => "Qui dall'inizio",
         'is_developer' => 'sviluppatore di osu!',
@@ -145,6 +144,9 @@ return [
                     'title' => 'Rank Primo Posto',
                 ],
             ],
+        ],
+        'not_found' => [
+            'title' => 'Utente non trovato! ;_;',
         ],
         'page' => [
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',

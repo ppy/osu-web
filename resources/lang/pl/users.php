@@ -88,7 +88,6 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
@@ -271,6 +270,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Strona internetowa',
+        ],
+        'not_found' => [
+            '404' => 'Nie znaleziono gracza! ;_;',
         ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
