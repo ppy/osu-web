@@ -24,7 +24,7 @@ class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';
     protected $primaryKey = 'banner_id';
-    protected $macros = ['visible'];
+    protected $macros = ['active'];
     public $timestamps = false;
 
     protected $fillable = ['tournament_id', 'country_acronym'];
@@ -44,12 +44,12 @@ class ProfileBanner extends Model
         return $this->belongsTo(Country::class, 'country_acronym');
     }
 
-    public function macroVisible()
+    public function macroActive()
     {
         return function ($query) {
             $last = $query->orderBy('banner_id', 'DESC')->first();
 
-            if ($last !== null && $last->isVisible()) {
+            if ($last !== null && $last->isActive()) {
                 return $last;
             }
         };
@@ -66,7 +66,7 @@ class ProfileBanner extends Model
         }
     }
 
-    public function isVisible()
+    public function isActive()
     {
         $period = $this->period();
 

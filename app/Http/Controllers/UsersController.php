@@ -225,6 +225,7 @@ class UsersController extends Controller
             "scores_first_count:mode({$currentMode})",
             "statistics:mode({$currentMode})",
             'account_history',
+            'active_tournament_banner',
             'badges',
             'favourite_beatmapset_count',
             'follower_count',
@@ -238,7 +239,6 @@ class UsersController extends Controller
             'statistics.scoreRanks',
             'unranked_beatmapset_count',
             'user_achievements',
-            'tournament_banner',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {

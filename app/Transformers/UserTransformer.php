@@ -27,6 +27,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'account_history',
+        'active_tournament_banner',
         'badges',
         'defaultStatistics',
         'disqus_auth',
@@ -43,7 +44,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         'statistics',
         'unranked_beatmapset_count',
         'user_achievements',
-        'tournament_banner',
     ];
 
     public function transform(User $user)
@@ -104,9 +104,9 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeTournamentBanner(User $user)
+    public function includeActiveTournamentBanner(User $user)
     {
-        return $this->item($user->profileBanners()->visible(), new ProfileBannerTransformer);
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
     }
 
     public function includeDefaultStatistics(User $user)

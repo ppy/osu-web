@@ -76,11 +76,11 @@ class ProfilePage.HeaderMain extends React.Component
 
         div
           className: 'profile-header__info profile-header__info--top'
-          if @props.user.tournament_banner.id?
+          if @props.user.active_tournament_banner.id?
             a
-              href: laroute.route('tournaments.show', tournament: @props.user.tournament_banner.tournament_id)
+              href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
               el Img2x,
-                src: @props.user.tournament_banner.image
+                src: @props.user.active_tournament_banner.image
                 className: 'profile-header__tournament-banner'
           if @props.withEdit && @props.user.playmode != @props.currentMode
             button
