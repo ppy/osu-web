@@ -87,7 +87,6 @@ return [
         'message' => "Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueur et vos scores ne seront visibles qu'à vous. Cette restriction est souvent le résultat d'un processus automatique et sera levée en général dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href=\"mailto:accounts@ppy.sh\">contacter le support</a>.",
     ],
     'show' => [
-        '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
         'change_avatar' => 'changer votre avatar !',
         'first_members' => 'Ici depuis le début',
@@ -270,6 +269,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Site Internet',
+        ],
+        'not_found' => [
+            'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [
             'description' => '<strong>Moi!</strong> est une zone personnalisable du profil.',
