@@ -39,7 +39,7 @@ return [
         ],
 
         'votes_made' => [
-            'title_most' => 'Najwięcej nadanych głosów (ostatnie 3 miesiące)',
+            'title_most' => 'Najwięcej oddanych głosów (ostatnie 3 miesiące)',
         ],
     ],
 
@@ -57,11 +57,11 @@ return [
         'button_posting' => 'Logowanie...',
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
-        'failed' => 'Niepoprawny login/hasło',
+        'failed' => 'Nieprawidłowe dane logowania',
         'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
-            'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
+            'main' => 'Dostęp do bety jest obecnie dostępny tylko dla wybranych użytkowników.',
             'small' => '(donatorzy otrzymają go wkrótce)',
         ],
 
@@ -88,7 +88,7 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
+        '404' => 'Nie znaleziono użytkownika! ;_;',
         'age' => 'Ma :age lat',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
@@ -107,15 +107,15 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Zmień nagłówek profilu',
-                'defaults_info' => 'Więcej nagłówków pojawi się w przyszłości',
+                'button' => 'Zmień tło profilu',
+                'defaults_info' => 'Więcej teł pojawi się w przyszłości',
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>, aby odblokować tę funkcję.",
-                    'size_info' => 'Rozmiary nagłówka powinny wynosić przynajmniej 2000x700',
+                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
