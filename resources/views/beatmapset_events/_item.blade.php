@@ -45,6 +45,11 @@
                 ]) !!}
             </div>
             <div>{!! timeago($event->created_at) !!}</div>
+            @if (optional($event->beatmapset)->deleted_at !== null)
+                <span class="beatmap-discussion-post__info">
+                    {{ trans('beatmap_discussions.item.deleted_at') }}: {!! timeago($event->beatmapset->deleted_at) !!}
+                </span>
+            @endif
         </div>
     </div>
 </div>
