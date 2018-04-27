@@ -23,7 +23,7 @@
     <h1>{{{ trans("layout.errors.$current_action.error") }}}</h1>
 
     @if (isset($exceptionMessage))
-        <p>[{{ $exceptionMessage }}]</p>
+        <p>{{ $exceptionMessage }}</p>
     @endif
 
     <p>
