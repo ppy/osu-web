@@ -19,30 +19,31 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'ศิลปินที่โดดเด่นบน osu!',
+    'title' => 'ศิลปินโดดเด่น',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => 'ข้อมูลศิลปินคนนี้ถูกซ่อนอยู่',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        'download' => 'ดาวน์โหลดแม่พิมพ์ Beatmap',
+        'download-na' => 'แม่พิมพ์ Beatmap นี้ยังไม่สามารถให้ใช้งานได้',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => 'ศิลปินโดดเด่นจะเป็นศิลปินที่ทำงานร่วมกันกับเราเพื่อสร้างเพลงใหม่ และเพลงออริจินัลบน osu! ศิลปินและเพลงของเขาเหล่านี้ได้ถูกคัดเลือกมาอย่างดีจากทีมงาน osu! เพื่อความเจ๋งและความเหมาะสมต่อการ mapping ศิลปินที่โดเด่นบางคนในกลุ่มนี้ยังสร้างเพลงใหม่ไว้เฉพาะกับ osu! ด้วย<br><br>เพลงเหล่านี้ได้กำหนดจังหวะไว้แล้วในไฟล์ .osz และได้ถูกจดลิขลิทธิ์เพื่อใช้งานกับ osu! และเนื้อหาที่เกี่ยวกับ osu!',
     ],
 
     'links' => [
-        'site' => 'Official Website',
+        'osu' => 'โปรไฟล์ osu!',
+        'site' => 'เว็บไซต์ทางการ',
     ],
 
     'songs' => [
         '_' => 'Songs',
-        'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        'count' => ':count เพลง|:count เพลง',
+        'exclusive' => 'เฉพาะ osu!',
     ],
 ];
