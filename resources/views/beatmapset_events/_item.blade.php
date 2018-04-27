@@ -24,11 +24,17 @@
 @endphp
 <div class='beatmapset-events__event'>
     <div class="beatmapset-event">
-        <a href="{{$discussionLink}}">
-            <img class='beatmapset-activities__beatmapset-cover'
-                src="{{$event->beatmapset->coverURL('list')}}"
-                srcSet="{{$event->beatmapset->coverURL('list')}} 1x, {{$event->beatmapset->coverURL('list@2x')}} 2x">
-        </a>
+        @if ($event->beatmapset === null)
+            <span>deleted<br>beatmap</span>
+        @else
+            <a href="{{$discussionLink}}">
+                <img class='beatmapset-activities__beatmapset-cover'
+
+                        src="{{$event->beatmapset->coverURL('list')}}"
+                        srcSet="{{$event->beatmapset->coverURL('list')}} 1x, {{$event->beatmapset->coverURL('list@2x')}} 2x"
+                >
+            </a>
+        @endif
         <div class="beatmapset-event__icon beatmapset-event__icon--{{str_replace('_', '-', $event->type)}} beatmapset-activities__event-icon-spacer"></div>
         <div>
             <div class="beatmapset-event__content">
