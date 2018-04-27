@@ -22,8 +22,8 @@
 <div class="osu-page osu-page--generic text-center">
     <h1>{{{ trans("layout.errors.$current_action.error") }}}</h1>
 
-    @if (isset($exception))
-        <p>[{{ $exception->getMessage() }}]</p>
+    @if (isset($exceptionMessage))
+        <p>{{ $exceptionMessage }}</p>
     @endif
 
     <p>
