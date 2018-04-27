@@ -81,5 +81,5 @@ return [
     'user_filter' => [
         'everyone' => 'Everyone',
         'label' => 'Filter by user',
-    ]
+    ],
 ];
