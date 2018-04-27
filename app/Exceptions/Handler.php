@@ -26,7 +26,6 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Sentry;
@@ -130,10 +129,6 @@ class Handler extends ExceptionHandler
 
     private function exceptionMessage($e)
     {
-        if ($e instanceof QueryException) {
-            return;
-        }
-
         if ($this->statusCode($e) >= 500) {
             return;
         }
