@@ -66,6 +66,7 @@ class ModdingHistoryController extends Controller
 
         $this->searchParams['limit'] = 10;
         $this->searchParams['sort'] = 'id-desc';
+        $this->searchParams['with_deleted'] = $this->isModerator;
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
         $discussions['items'] = $discussions['query']->with([
