@@ -93,7 +93,6 @@ class ModdingHistoryController extends Controller
             $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
         }
 
-
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
