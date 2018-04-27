@@ -23,7 +23,7 @@ bn = 'beatmap-discussions-user-filter'
 
 allUsers =
   id: null,
-  username: osu.trans('beatmap_discussions.user.everyone')
+  username: osu.trans('beatmap_discussions.user_filter.everyone')
 
 
 class BeatmapDiscussions.UserFilter extends React.PureComponent
@@ -67,7 +67,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
             div
               className: 'u-ellipsis-overflow'
               key: 'current'
-              @selectedUser().username,
+              if @selectedUser().id? then @selectedUser().username else osu.trans('beatmap_discussions.user_filter.label'),
 
             div
               key: 'decoration'

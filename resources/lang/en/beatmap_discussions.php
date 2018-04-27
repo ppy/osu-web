@@ -74,8 +74,12 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'everyone' => 'Everyone',
         'owner' => 'mapper',
         'qat' => 'qat',
     ],
+
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by...',
+    ]
 ];
