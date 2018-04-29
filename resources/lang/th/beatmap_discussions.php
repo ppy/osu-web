@@ -21,10 +21,35 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => 'ต้องเข้าสู่ระบบก่อนที่จะแก้ไข',
+            'system_generated' => 'ไม่สามารถแก้โพสจากระบบได้',
+            'wrong_user' => 'เจ้าของโพสเท่านั้นที่จะสามารถแก้ไขได้',
         ],
+    ],
+
+    'events' => [
+        'empty' => 'ยังไม่มีอะไรเลย...ใช่ นั่นแหล่',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'ลบไปแล้ว',
+        'title' => 'Beatmap Discussions',
+
+        'form' => [
+            'deleted' => 'Include deleted discussions',
+
+            'user' => [
+                'label' => 'ผู้ใช้',
+                'overview' => 'Activities overview',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'โพสเมื่อวันที่',
+        'deleted_at' => 'ถูกลบเมื่อวันที่',
+        'message_type' => 'ประเภท',
+        'permalink' => 'ลิงค์',
     ],
 
     'nearby_posts' => [
@@ -34,15 +59,15 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+            'guest' => 'เข้าสู่ระบบเพื่อตอบกลับ',
+            'user' => 'ตอบกลับ',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'ตั้งสถานะได้รับการแก้ไขแล้วโดย :user',
+            'false' => 'ถูกเปิดใหม่โดย :user',
         ],
     ],
 
