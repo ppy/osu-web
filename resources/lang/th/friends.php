@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove friend',
+      'add' => 'เพิ่มเพื่อน',
+      'remove' => 'ลบเพื่อน',
     ],
 
     'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
+      'friends' => 'เพื่อน',
+      'mutual' => 'เกี่ยวข้องกัน',
     ],
 
-    'title' => 'Friends',
-    'title_compact' => 'friends',
+    'title' => 'เพื่อน',
+    'title_compact' => 'เพื่อน',
 
-    'too_many' => 'Friend limit reached.',
+    'too_many' => 'จำนวนเพิ่อนถึงขีดจำกัดแล้ว',
 ];
