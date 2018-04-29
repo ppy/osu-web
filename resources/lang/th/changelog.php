@@ -20,12 +20,19 @@
 
 return [
     'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'generic' => 'แก้ไขข้อผิดพลาด และเพิ่มประสิทธิภาพ',
+    'users-online' => '1 คนออนไลน์|:users คนออนไลน์',
 
     'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'add' => 'เพิ่ม',
+        'fix' => 'แก้ไข',
+        'misc' => 'อื่นๆ',
+    ],
+
+    'support' => [
+        'heading' => 'ชอบอัพเดตนี้?',
+        'text_1' => 'ช่วยสนับสนุนการพัฒนา osu! และ :link เลยวันนี้!',
+        'text_1_link' => 'มาเป็นผู้สนับสนุน',
+        'text_2' => 'ไม่เพียงแค่ช่วยเร่งการพัฒนาให้เร็วขึ้นเท่านั้น แต่คุณจะได้รับสิทธิพิเศษและการตกแต่งที่ไม่เหมือนใครด้วย!',
     ],
 ];
