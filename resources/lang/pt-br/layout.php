@@ -118,7 +118,7 @@ return [
             'settings' => 'Configurações',
             'logout' => 'Desconectar',
             'help' => 'Ajuda',
-            'beatmapset_activities' => 'atividades de beatmap de usuário',
+            'modding-history-index' => 'atividades de beatmap de usuário', // needs update
         ],
         'store' => [
             '_' => 'loja',
@@ -190,32 +190,26 @@ return [
         '404' => [
             'error' => 'Página Não Encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Você não deveria estar aqui.',
             'description' => 'Mas você poderia tentar voltar.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Você não deveria estar aqui.',
             'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => 'Página Não Encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Ah não! Algo quebrou! ;_;',
             'description' => 'Nós somos notificados automaticamente de todos os erros.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Ah não! Algo quebrou (bem sério)! ;_;',
             'description' => 'Nós somos notificados automaticamente de todos os erros.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Em manutenção!',

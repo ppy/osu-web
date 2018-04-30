@@ -34,13 +34,13 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'skabt af ',
-            'submitted' => 'indsendt på ',
-            'updated' => 'sidst opdateret på ',
-            'ranked' => 'ranked på ',
-            'approved' => 'godkendt på ',
-            'qualified' => 'kvalificeret på ',
-            'loved' => 'loved på ',
+            'made-by' => 'lavet af ',
+            'submitted' => 'indsendt den ',
+            'updated' => 'sidst opdateret den ',
+            'ranked' => 'ranked den ',
+            'approved' => 'godkendt den ',
+            'qualified' => 'kvalificeret den ',
+            'loved' => 'loved den ',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Download',
@@ -73,6 +73,9 @@ return [
             'source' => 'Kilde',
             'tags' => 'Tags',
             'unranked' => 'Ikke-ranked beatmap',
+            'genre' => 'Genre',
+            'language' => 'Sprog',
+            'no_scores' => 'Dataen er ved at blive beregnet...',
         ],
         'scoreboard' => [
             'achieved' => 'opnået :when',
@@ -86,17 +89,18 @@ return [
 
             'headers' => [
                 'accuracy' => 'Præcision',
-                'combo' => 'Combo',
+                'combo' => 'Max Combo',
                 'miss' => 'Miss',
                 'player' => 'Spiller',
                 'rank' => 'Rank',
+                'score_total' => 'Samlet Score',
                 'score' => 'Score',
             ],
 
             'no_scores' => [
                 'country' => 'Ingen fra dit land har sat en score på dette map endnu!',
                 'friend' => 'Ingen af dine venner har sat en score på dette map endnu!',
-                'global' => 'Ingen scores endnu. Måske skulle du prøve at lave én?',
+                'global' => 'Ingen scores endnu. Måske skulle du prøve at lave en?',
                 'loading' => 'Indlæser scores...',
                 'unranked' => 'Ikke-ranked beatmap.',
             ],

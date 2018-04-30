@@ -87,11 +87,11 @@ class @AccountEdit
 
     .done =>
       @saved form
+      $(form).trigger 'ajax:success'
 
     .fail (xhr, status) =>
       return if status == 'abort'
 
       form.lastValue = prevValue
       @clearState form
-
-      osu.ajaxError xhr
+      $(form).trigger 'ajax:error', [xhr, status]

@@ -37,11 +37,11 @@ return [
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
         'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
         'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
-        'drop_here' => 'Smid dit bidrag her',
+        'drop_here' => 'Aflever dit bidrag her',
         'wrong_type' => [
-            'art' => 'Kun .jpg og .png filer er accepteret for denne konkurrence.',
-            'beatmap' => 'Kun .osu filer er accepteret for denne konkurrence.',
-            'music' => 'Kun .mp3 filer er accepteret for denne konkurrence.',
+            'art' => 'Kun .jpg og .png filer er accepteret i denne konkurrence.',
+            'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
+            'music' => 'Kun .mp3 filer er accepteret i denne konkurrence.',
         ],
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
@@ -53,10 +53,10 @@ return [
         'count' => '1 stemme|:count stemmer',
     ],
     'dates' => [
-        'ended' => 'Sluttede :date',
+        'ended' => 'Sluttede den :date',
 
         'starts' => [
-            '_' => 'Starter :date',
+            '_' => 'Starter den :date',
             'soon' => 'snart™',
         ],
     ],

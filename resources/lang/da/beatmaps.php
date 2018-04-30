@@ -40,6 +40,7 @@ return [
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
         'message_placeholder' => 'Skriv here for at slå op',
+        'message_placeholder_deleted_beatmap' => 'Den her sværhedsgrad er blevet slettet så den må ikke blive diskuteret.',
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
@@ -64,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Diskvalificer',
             'hype' => 'Hype!',
             'mapper_note' => 'Notat',
+            'nomination_reset' => 'nulstil Nominering',
             'praise' => 'Hyldest',
             'problem' => 'Problem',
             'suggestion' => 'Forslag',
@@ -73,7 +76,12 @@ return [
 
         'mode' => [
             'events' => 'Historie',
+            'general' => 'Generalt :scope',
             'timeline' => 'Tidslinje',
+            'scopes' => [
+                'general' => 'Den her sværhedgrad',
+                'generalAll' => 'Alle sværhedgrader',
+            ],
         ],
 
         'new' => [
@@ -84,6 +92,13 @@ return [
 
         'show' => [
             'title' => ':title mappet af :mapper',
+        ],
+
+        'sort' => [
+            '_' => 'Sorteret efter:',
+            'created_at' => 'Dato for upload',
+            'timeline' => 'tidslinje',
+            'updated_at' => 'sidst opdateret',
         ],
 
         'stats' => [
@@ -114,8 +129,13 @@ return [
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
         'new_time' => 'Du får en ny hype ved :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
+        'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Tog',
         'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Efterlad Feedback',
     ],
 
     'nominations' => [
@@ -130,10 +150,17 @@ return [
         'qualified' => 'Forventet at blive ranked på :date, hvis ingen problemer bliver fundet.',
         'qualified_soon' => 'Forventet at blive ranked snart, hvis ingen problemer bliver fundet.',
         'required_text' => 'Nomineringer: :current/:required',
-        'title' => 'Nomineringsstatus',
+        'reset_message_deleted' => 'sletted',
+        'title' => 'Nomineringstatus',
+        'unresolved_issues' => 'Der er stadig uløste problemer der skal tages af først.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nominerings processen nulstillet :time_ago af :user med et nyt problem :discussion (:message).',
+            'disqualify' => 'Diskvalificeret :time_ago af :user med et nyt problem :discussion (:message).',
+        ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
+            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations processen.',
         ],
     ],
 
@@ -144,6 +171,7 @@ return [
             'not-found' => 'ingen resultater',
             'not-found-quote' => '... desværre, intet fundet.',
             'filters' => [
+                'general' => 'Generalt',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
@@ -158,8 +186,12 @@ return [
         'source' => 'fra :source',
         'load-more' => 'Indlæs mere...',
     ],
+    'general' => [
+        'recommended' => 'Rekommenderat sværhedsgrad',
+        'converts' => 'Inkluder konvertert beatmeaps',
+    ],
     'mode' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
@@ -189,27 +221,28 @@ return [
         'electronic' => 'Electronisk',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Vilkårlig',

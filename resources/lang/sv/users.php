@@ -55,7 +55,6 @@ return [
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
     ],
     'show' => [
-        '404' => 'Användare hittades inte! ;_;',
         'age' => ':age år gammal',
         'first_members' => 'Här sen början',
         'is_developer' => 'osu!developer',
@@ -182,17 +181,21 @@ return [
                 'title' => 'Nyligen',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Bästa Prestanda',
-                ],
                 'empty' => 'Inga fantastiska precision uppgifter än. :(',
-                'first' => [
-                    'title' => 'Första Plats Ranker',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Bästa Prestanda',
+                ],
+                'first' => [
+                    'title' => 'Första Plats Ranker',
+                ],
             ],
+        ],
+        'not_found' => [
+            'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',

@@ -78,7 +78,6 @@ return [
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [
-        '404' => '¡Usuario no encontrado! ;_;',
         'age' => ':age años',
         'first_members' => 'Aquí desde el comienzo',
         'is_developer' => 'osu!developer',
@@ -90,6 +89,7 @@ return [
         'origin_country' => 'De :country',
         'origin_country_age' => ':age de :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
+        'previous_usernames' => 'Antes conocido como :names.',
         'plays_with' => 'Juega con :devices',
         'title' => 'Perfil de :username',
         'change_avatar' => '¡cambia tu avatar!',
@@ -130,7 +130,7 @@ return [
                     'title' => 'Beatmaps Favoritos (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Sepultados (:count)',
+                    'title' => 'Beatmaps Abandonados (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Rankeados & Aprobados (:count)',
@@ -142,7 +142,7 @@ return [
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
                 'monthly_playcounts' => [
-                    'title' => 'Historial de de juego',
+                    'title' => 'Historial de juego',
                 ],
 
                 'title' => 'Historial',
@@ -216,16 +216,17 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Mejor rendimiento',
-                ],
                 'empty' => 'No hay récords increíbles aún. :(',
-                'first' => [
-                    'title' => 'Primeros Lugares',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Mejor rendimiento',
+                ],
+                'first' => [
+                    'title' => 'Primeros Lugares',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
@@ -255,6 +256,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Sitio web',
+        ],
+        'not_found' => [
+            'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
             'description' => '<strong>¡sobre mi!</strong> es una área personalizable en tu perfil.',

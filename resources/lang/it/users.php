@@ -46,7 +46,6 @@ return [
     ],
     'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(', // Base text changed from "log" to "sign"
     'show' => [
-        '404' => 'Utente non trovato! ;_;',
         'age' => ':age anni',
         'first_members' => "Qui dall'inizio",
         'is_developer' => 'sviluppatore di osu!',
@@ -133,17 +132,21 @@ return [
                 'title' => 'Recenti',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Migliore Performance',
-                ],
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
-                'first' => [
-                    'title' => 'Rank Primo Posto',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Rank',
                 'weighted_pp' => 'valutata: :pp (:percentage)', // "ponderata" - "pesata" - "valutata", i think "valutata" as "evalutated" is better
+
+                'best' => [
+                    'title' => 'Migliore Performance',
+                ],
+                'first' => [
+                    'title' => 'Rank Primo Posto',
+                ],
             ],
+        ],
+        'not_found' => [
+            'title' => 'Utente non trovato! ;_;',
         ],
         'page' => [
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',

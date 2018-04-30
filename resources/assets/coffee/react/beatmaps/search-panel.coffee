@@ -134,12 +134,23 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.extra
 
         if currentUser.is_supporter
-          el Beatmaps.SearchFilter,
-            name: 'rank'
-            title: osu.trans('beatmaps.listing.search.filters.rank')
-            options: filters.ranks
-            multiselect: true
-            selected: @props.filters.rank
+          [
+            el Beatmaps.SearchFilter,
+              key: 'rank'
+              name: 'rank'
+              title: osu.trans('beatmaps.listing.search.filters.rank')
+              options: filters.ranks
+              multiselect: true
+              selected: @props.filters.rank
+
+            el Beatmaps.SearchFilter,
+              key: 'played'
+              name: 'played'
+              title: osu.trans('beatmaps.listing.search.filters.played')
+              options: filters.played
+              default: @props.filterDefaults.played
+              selected: @props.filters.played
+          ]
 
 
   submit: (e) =>

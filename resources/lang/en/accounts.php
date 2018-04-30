@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Account</strong> Settings',
         'title_compact' => 'settings',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -42,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Profile',
 
             'user' => [
                 'user_from' => 'current location',
@@ -52,6 +53,7 @@ return [
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
                 'user_birthday' => 'birthday',
+                'user_discord' => 'discord',
             ],
         ],
 

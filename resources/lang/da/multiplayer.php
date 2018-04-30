@@ -22,7 +22,7 @@ return [
     'match' => [
         'header' => 'Multiplayer Matches',
         'team-types' => [
-            'head-to-head' => 'Direkte',
+            'head-to-head' => 'Alle mod alle',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
             'tag-team-vs' => 'Tag Team VS',

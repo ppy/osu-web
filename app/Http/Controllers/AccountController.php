@@ -104,8 +104,10 @@ class AccountController extends Controller
 
     public function update()
     {
+        $user = Auth::user();
+
         $customizationParams = get_params(
-            Request::all(),
+            request(),
             'user_profile_customization',
             [
                 'extras_order:string[]',
@@ -113,7 +115,7 @@ class AccountController extends Controller
         );
 
         $userParams = get_params(
-            Request::all(),
+            request(),
             'user',
             [
                 'osu_playstyle:string[]',
@@ -126,27 +128,28 @@ class AccountController extends Controller
                 'user_twitter:string',
                 'user_website:string',
                 'user_birthday:string',
+                'user_discord:string',
             ]
         );
 
         try {
-            DB::transaction(function () use ($customizationParams, $userParams) {
+            DB::transaction(function () use ($customizationParams, $user, $userParams) {
                 if (count($customizationParams) > 0) {
-                    Auth::user()
+                    $user
                         ->profileCustomization()
                         ->fill($customizationParams)
                         ->saveOrExplode();
                 }
 
                 if (count($userParams) > 0) {
-                    Auth::user()->fill($userParams)->saveOrExplode();
+                    $user->fill($userParams)->saveOrExplode();
                 }
             });
         } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
+            return $this->errorResponse($user, $e);
         }
 
-        return Auth::user()->defaultJson();
+        return $user->defaultJson();
     }
 
     public function updateEmail()
@@ -166,9 +169,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return response(['form_error' => [
-                'user' => $user->validationErrors()->all(),
-            ]], 422);
+            return $this->errorResponse($user);
         }
     }
 
@@ -195,9 +196,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return response(['form_error' => [
-                'user' => $user->validationErrors()->all(),
-            ]], 422);
+            return $this->errorResponse($user);
         }
     }
 
@@ -213,5 +212,13 @@ class AccountController extends Controller
         $verification = new UserVerification(Auth::user(), $request);
 
         return $verification->reissue();
+    }
+
+    private function errorResponse($user, $exception = null)
+    {
+        return response([
+            'form_error' => ['user' => $user->validationErrors()->all()],
+            'error' => optional($exception)->getMessage(),
+        ], 422);
     }
 }
