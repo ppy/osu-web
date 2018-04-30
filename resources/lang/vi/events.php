@@ -32,5 +32,5 @@ return [
     'user_support_again' => '<strong>:user</strong> đã chọn một lần nữa hỗ trợ osu! - cảm ơn vì sự rộng lượng của bạn!',
     'user_support_first' => '<strong>:user</strong> đã trở thành người hỗ trợ osu! - cảm ơn vì sự rộng lượng của bạn!',
     'user_support_gift' => '<strong>:user</strong> đã nhận được quà tặng osu! supporter!',
-    'username_change' => '<strong>:previousUsername</strong> đã đổi username của họ thành <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> đã đổi tên tài khoản của họ thành <strong><em>:user</strong></em>!',
 ];

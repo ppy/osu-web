@@ -54,6 +54,6 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Nhập địa chỉ email hoặc username',
+        'username' => 'Nhập địa chỉ email hoặc tên tài khoản',
     ],
 ];
