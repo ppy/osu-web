@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => 'ไลฟ์สด',
+        'description' => 'ข้อมูลจะรับมากจาก twitch.tv ทุกๆ 5 นาทีจากรายการเกม คุณสามารถเริ่มไลฟ์ของคุณเองเพื่อให้มาแสดงในนี้ได้! หากต้องการคำแนะนำในการติดตั้งไลฟ์ สามารถเช็คได้จาก wiki ของเราในหัวห้อ live streaming',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => 'กำลังไลฟ์สดอยู่ขณะนี้',
     ],
 ];
