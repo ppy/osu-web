@@ -20,22 +20,22 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page could not be found.',
-        'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'search' => 'Search existing pages for :link.',
-        'toc' => 'Contents',
+        'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
+        'languages' => 'Ngôn ngữ',
+        'missing' => 'Không thể tìm thấy trang ":keyword" đã yêu cầu.',
+        'missing_title' => 'Không Tìm Thấy',
+        'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ đã chọn.',
+        'search' => 'Tìm kiếm trang có sẵn cho :link.',
+        'toc' => 'Nội dung',
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => 'Hiển thị trên GitHub',
+            'refresh' => 'Làm mới',
         ],
 
         'outdated' => [
-            '_' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
-            'default' => 'English version',
+            '_' => 'Trang này chứa bản dịch cũ của nội dung gốc. Hãy kiểm tra :default để có thông tin chính xác nhất (và xem xét việc cập nhật bản dịch nếu bạn có thể giúp đỡ)!',
+            'default' => 'Phiên bản tiếng Anh',
         ],
     ],
 ];

@@ -24,7 +24,7 @@ return [
         'title_compact' => 'cài đặt',
 
         'avatar' => [
-            'title' => 'Sửa Ảnh Đại Diện',
+            'title' => 'Ảnh Đại Diện',
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Chỉnh Sửa Hồ Sơ',
+            'title' => 'Hồ Sơ',
 
             'user' => [
                 'user_from' => 'vị trí hiện tại',

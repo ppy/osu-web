@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => 'Một email đã được gửi đến :mail với mã xác thực. Hãy nhập mã.',
+        'title' => 'Xác Thực Tài Khoản',
+        'verifying' => 'Đang xác thực...',
+        'issuing' => 'Đang lấy mã mới...',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'check_spam' => 'Hãy kiểm tra thư mục spam nếu bạn không thể tìm thấy email.',
+            'recover' => 'Nếu bạn không thể truy cập vào email hoặc đã quên email bạn đã dùng, vui lòng làm theo :link.',
+            'recover_link' => 'phục hồi email tại đây',
+            'reissue' => 'Bạn cũng có thể :reissue_link hoặc :logout_link.',
+            'reissue_link' => 'yêu cầu mã mới',
+            'logout_link' => 'đăng xuất',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'Xác thực tài khoản osu!',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => 'Mã xác thực này đã hết hạn, email xác thực mới đã được gửi.',
+        'incorrect_key' => 'Mã xác thực không chính xác.',
+        'retries_exceeded' => 'Mã xác thực không chính xác. Vượt quá giới hạn lần thử lại, email xác thực mới đã được gửi.',
+        'reissued' => 'Mã xác thực đã được làm mới, email xác thực mới đã được gửi.',
+        'unknown' => 'Một lỗi không xác định đã xảy ra, email xác thực mới đã được gửi.',
     ],
 ];
