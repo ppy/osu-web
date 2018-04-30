@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Trang đã yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
+        'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
         'languages' => 'Ngôn ngữ',
         'missing' => 'Không thể tìm thấy trang ":keyword" đã yêu cầu.',
         'missing_title' => 'Không Tìm Thấy',

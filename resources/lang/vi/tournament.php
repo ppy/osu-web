@@ -21,8 +21,8 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Danh sách các giải đấu đang hoạt động, được công nhận chính thức',
-            'title' => 'Giải Đấu Của Cộng Đồng',
+            'subtitle' => 'Danh sách các giải đấu chính thức đang hoạt động',
+            'title' => 'Giải Đấu Cộng Đồng',
         ],
         'none_running' => 'Hiên tại không có giải đấu nào đang diễn ra, vui lòng kiểm tra lại sau!',
         'registration_period' => 'Đăng kí: :start đến :end',
@@ -35,7 +35,7 @@ return [
         'entered' => 'Bạn đã đăng kí cuộc thi này.<br><br>Lưu ý rằng điều này không có nghĩa là bạn đã được chia đội.<br><br>Hướng dẫn thêm sẽ được gửi cho bạn qua email vào khoảng thời gian gần ngày thi đấu, vì thế hãy chắc chắn rằng email của tài khoản osu! của bạn hợp lệ',
         'login_to_register' => 'Vui lòng :login để xem chi tiết đăng kí!',
         'not_yet_entered' => 'Bạn chưa đăng kí cuộc thi này.',
-        'rank_too_low' => 'Xin lỗi, bạn không đáp ứng yêu cầu về thứ hạng của giải đấu này!',
+        'rank_too_low' => 'Xin lỗi, bạn không đáp ứng yêu cầu về thứ hạng cho giải đấu này!',
         'registration_ends' => 'Đăng kí sẽ kết thúc vào :date',
     ],
     'tournament_period' => ':start đến :end',
