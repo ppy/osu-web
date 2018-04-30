@@ -19,30 +19,45 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => 'แน่ใจที่จะต่อหรือไม่?',
+    'saved' => 'บันทึกแล้ว',
 
     'array_and' => [
-        'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'words_connector' => ' ',
+        'two_words_connector' => ' และ',
+        'last_word_connector' => ' และ',
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'delete' => 'Delete',
-        'permalink' => 'permalink',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'cancel' => 'ยกเลิก',
+        'change' => 'เปลี่ยน',
+        'click_to_copy' => 'คลิกเพื่อคัดลอกไปยัง clipboard',
+        'click_to_copy_copied' => 'คัดลอกไปยัง clipboard แล้ว!',
+        'delete' => 'ลบ',
+        'permalink' => 'ลิงค์',
+        'permalink_copied' => 'คัดลอก link แล้ว',
+        'post' => 'โพส',
+        'reply' => 'ตอบกลับ',
+        'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
+        'reply_resolve' => 'ตอบกลับ และแก้ไขแล้ว',
+        'reset' => 'เริ่มใหม่',
+        'save' => 'บันทึก',
+        'saving' => 'กำลังบันทึก...',
+        'see_more' => 'ดูเพิ่ม',
+        'show_more' => 'แสดงเพิ่ม',
+        'upload_image' => 'อัพโหลดรูปภาพ',
     ],
 
     'count' => [
-        'item' => ':count unit|:count units',
+        'badges' => ':count เหรียญ|:count เหรียญ',
+        'days' => ':count วัน|:count วัน',
+        'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
+        'hours' => ':count ชั่วโมง|:count ชั่วโมง',
+        'item' => ':count อัน|:count อัน',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count เดือน|:count เดือน',
+        'second_short_unit' => 'วินาที|วินาที',
+        'years' => ':count ปี|:count ปี',
     ],
 
     'datetime' => [
@@ -50,22 +65,25 @@ return [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
         ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
-        'keyboard' => 'Keyboard',
-        'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'keyboard' => 'คีย์บอร์ด',
+        'mouse' => 'เมาส์',
+        'tablet' => 'แทบเล็ต',
+        'touch' => 'จอสัมผัส',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => 'วางที่นี่เพื่ออัพโหลด',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => 'หน้าก่อน',
+        'next' => 'หน้าถัดไป',
     ],
 
     'score_count' => [
@@ -78,13 +96,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count วันที่แล้ว|:count วันที่แล้ว',
+        'hours_ago' => ':count ชั่วโมงที่แล้ว|:count ชั่วโมงที่แล้ว',
+        'now' => 'ตอนนี้',
+        'remaining' => 'เหลือเวลาอีก',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => 'แจ้งให้ทราบ',
     ],
 ];
