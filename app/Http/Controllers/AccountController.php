@@ -31,6 +31,7 @@ use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
+use Validator;
 
 class AccountController extends Controller
 {
@@ -105,6 +106,15 @@ class AccountController extends Controller
     public function update()
     {
         $user = Auth::user();
+
+        $validator = Validator::make(Request::all(), [
+            'user.user_birthday' => 'date_format:Y-m-d',
+        ]);
+
+        if ($validator->fails()) {
+            return response()
+                ->json($this->formatValidationErrors($validator), 422);
+        }
 
         $customizationParams = get_params(
             request(),

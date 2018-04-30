@@ -482,15 +482,8 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         if (presence($value) === null) {
             $this->attributes['user_birthday'] = '';
-
-            return;
-        }
-
-        try {
-            $date = new Carbon($value);
-            $this->attributes['user_birthday'] = $date->format('d-m-Y');
-        } catch (Exception $e) {
-            throw new Exception(trans('errors.invalid-date-format'));
+        } else {
+            $this->attributes['user_birthday'] = (new Carbon($value))->format('d-m-Y');
         }
     }
 
