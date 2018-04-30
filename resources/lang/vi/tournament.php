@@ -21,22 +21,22 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
-            'title' => 'Community Tournaments',
+            'subtitle' => 'Danh sách các giải đấu chính thức đang hoạt động',
+            'title' => 'Giải Đấu Cộng Đồng',
         ],
-        'none_running' => 'There are no tournaments running at the moment, please check back later!',
-        'registration_period' => 'Registration: :start to :end',
+        'none_running' => 'Hiên tại không có giải đấu nào đang diễn ra, vui lòng kiểm tra lại sau!',
+        'registration_period' => 'Đăng kí: :start đến :end',
     ],
     'show' => [
         'button' => [
-            'register' => 'Sign me up!',
-            'cancel' => 'Cancel Registration',
+            'register' => 'Đăng kí!',
+            'cancel' => 'Hủy Đăng Kí',
         ],
-        'entered' => 'Your are registered for this tournament.<br><br>Note that this does not mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
-        'login_to_register' => 'Please :login to view registration details!',
-        'not_yet_entered' => 'You are not registered for this tournament.',
-        'rank_too_low' => 'Sorry, you do not meet the rank requirements for this tournament!',
-        'registration_ends' => 'Registrations close on :date',
+        'entered' => 'Bạn đã đăng kí cuộc thi này.<br><br>Lưu ý rằng điều này không có nghĩa là bạn đã được chia đội.<br><br>Hướng dẫn thêm sẽ được gửi cho bạn qua email vào khoảng thời gian gần ngày thi đấu, vì thế hãy chắc chắn rằng email của tài khoản osu! của bạn hợp lệ',
+        'login_to_register' => 'Vui lòng :login để xem chi tiết đăng kí!',
+        'not_yet_entered' => 'Bạn chưa đăng kí cuộc thi này.',
+        'rank_too_low' => 'Xin lỗi, bạn không đáp ứng yêu cầu về thứ hạng cho giải đấu này!',
+        'registration_ends' => 'Đăng kí sẽ kết thúc vào :date',
     ],
-    'tournament_period' => ':start to :end',
+    'tournament_period' => ':start đến :end',
 ];
