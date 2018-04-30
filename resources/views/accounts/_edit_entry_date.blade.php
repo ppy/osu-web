@@ -24,8 +24,8 @@
         name="user[{{ $field }}]"
         maxlength="10"
         placeholder="yyyy-mm-dd"
-        data-last-value="{{ Auth::user()->$field->toDateString() }}"
-        value="{{ Auth::user()->$field->toDateString() }}"
+        data-last-value="{{ Auth::user()->$field ? Auth::user()->$field->toDateString() : '' }}"
+        value="{{ Auth::user()->$field ? Auth::user()->$field->toDateString() : '' }}"
     >
 
     <div class="account-edit-entry__label">
