@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'mixture' => ':attribute ขาดตัวเลข หรือตัวอักษร',
+    'required' => 'ต้องการ :attribute',
 ];
