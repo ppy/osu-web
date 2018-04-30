@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
-    'invalid_resource_id' => 'No payment information was found.',
-    'unknown' => "The payment was rejected, but we're not sure why.",
+    'instrument_declined' => 'วิธีการชำระเงินที่เลือกถูกปฏิเสธโดย Paypal.',
+    'invalid_resource_id' => 'ไม่พบข้อมูลการชำระเงิน',
+    'unknown' => "การชำระเงินถูกปฏิเสธ แต่เราไม่รู้ว่าทำไม",
 ];
