@@ -19,80 +19,97 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => ':attribute không thể âm.',
+    'required' => 'Yêu cầu :attribute.',
+    'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',
+    'wrong_confirmation' => 'Xác nhận không phù hợp.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => 'Discussion is locked.',
-        'first_post' => 'Can not delete starting post.',
+        'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
+        'first_post' => 'Không thể xóa bài đăng mở đầu.',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
-        'beatmapset_no_hype' => "Beatmap can't be hyped.",
-        'hype_requires_null_beatmap' => 'Hype must be done in the General (all difficulties) section.',
-        'invalid_beatmap_id' => 'Invalid difficulty specified.',
-        'invalid_beatmapset_id' => 'Invalid beatmap specified.',
-        'locked' => 'Discussion is locked.',
-        'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
+        'beatmap_missing' => 'Mốc thời gian đã chỉ định nhưng không có beatmap.',
+        'beatmapset_no_hype' => 'Không thể hype beatmap này được.',
+        'hype_requires_null_beatmap' => 'Hype phải được thực hiện tại phần Chung (tất cả difficulties).',
+        'invalid_beatmap_id' => 'Difficulty đã chỉ định không hợp lệ.',
+        'invalid_beatmapset_id' => 'Beatmap đã chỉ định không hợp lệ.',
+        'locked' => 'Cuộc thảo luận đã bị khóa.',
+        'mapper_note_wrong_user' => 'Chỉ có chủ beatmap mới có thể đăng ghi chú.',
 
         'hype' => [
-            'guest' => 'Must be logged in to hype.',
-            'hyped' => 'You have already hyped this beatmap.',
-            'limit_exceeded' => 'You have used all your hype.',
-            'not_hypeable' => 'This beatmap can not be hyped',
-            'owner' => 'No hyping your own beatmap.',
+            'guest' => 'Cần phải đăng nhập để hype.',
+            'hyped' => 'Bạn đã hype beatmap này rồi.',
+            'limit_exceeded' => 'Bạn đã sử dụng hết số hype bạn có.',
+            'not_hypeable' => 'Beatmap này không thể được hype.',
+            'owner' => 'Không hype map của bạn.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
-            'negative' => "Timestamp can't be negative.",
+            'exceeds_beatmapset_length' => 'Mốc thời gian đã chỉ định vượt quá độ dài beatmap.',
+            'negative' => 'Mốc thời gian không thể âm.',
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => 'Chỉ có thể bầu chọn một feature request.',
+            'not_enough_feature_votes' => 'Không đủ phiếu bầu.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => 'Lựa chọn không hợp lệ.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
-            'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
+            'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
+            'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
+            'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
+            'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
+            'too_many_options' => 'Vượt quá số lượng lựa chọn tối đa.',
         ],
 
         'topic_vote' => [
-            'required' => 'Select an option when voting.',
-            'too_many' => 'Selected more options than allowed.',
+            'required' => 'Chọn một lựa chọn khi đang bỏ phiếu.',
+            'too_many' => 'Vượt quá mức cho phép chọn các lựa chọn.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_country' => 'Country not in database.',
-        'invalid_email' => "Doesn't seem to be a valid email address.",
-        'too_short' => 'New password is too short.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
-        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+        'contains_username' => 'Mật khẩu không thể chứa tên tài khoản.',
+        'email_already_used' => 'Địa chỉ email đã được sử dụng.',
+        'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
+        'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
+        'invalid_email' => 'Dường như đây không phải là địa chỉ email hợp lệ.',
+        'too_short' => 'Mật khẩu mới quá ngắn.',
+        'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
+        'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',
+        'username_available_soon' => 'Tên người dùng này sẽ có sẵn để sử dụng bất cứ lúc nào!',
+        'username_invalid_characters' => 'Tên người dùng đã yêu cầu chứa các ký tự không hợp lệ.',
+        'username_in_use' => 'Tên người dùng đã được sử dụng!',
+        'username_no_space_userscore_mix' => 'Vui lòng sử dụng dấu gạch dưới hoặc dấu cách, không phải cả hai!',
+        'username_no_spaces' => 'Tên người dùng không thể bắt đầu hoặc kết thúc bằng dấu cách!',
+        'username_not_allowed' => 'Không cho phép sử dụng tên người dùng đã chọn.',
+        'username_too_short' => 'Tên người dùng đã yêu cầu quá ngắn.',
+        'username_too_long' => 'Tên người dùng đã yêu cầu quá dài.',
+        'weak' => 'Mật khẩu có trong danh sách đen.', //???
+        'wrong_current_password' => 'Mật khẩu hiện tại không đúng.',
+        'wrong_email_confirmation' => 'Email xác nhận không phù hợp.',
+        'wrong_password_confirmation' => 'Mật khẩu xác nhận không phù hợp.',
+        'too_long' => 'Đã vượt quá độ dài tối đa - tối đa :limit kí tự.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => 'Bạn phải :link để đổi tên người dùng!',
+                'link_text' => 'hỗ trợ osu!',
+            ],
+            'username_is_same' => 'Đây là tên người dùng của bạn mà, đồ ngốc!',
+        ],
     ],
 ];
