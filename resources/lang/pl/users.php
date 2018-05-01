@@ -22,7 +22,7 @@ return [
     'deleted' => '[usunięty użytkownik]',
 
     'beatmapset_activities' => [
-        'title' => 'Historia użytkownika :user w modowaniu',
+        'title' => 'Historia modowania użytkownika :user',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -96,7 +96,7 @@ return [
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
-        'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik został zablokowany)',
+        'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_age' => ':age',
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
@@ -276,7 +276,7 @@ return [
         'not_found' => [
             'reason_1' => 'Użytkownik mógł zmienić swoją nazwę.',
             'reason_2' => 'Konto użytkownika mogło zostać zablokowane.',
-            'reason_3' => 'W nazwie użytkownika występuje literówka.',
+            'reason_3' => 'Wprowadzona nazwa użytkownika jest błędna.',
             'reason_header' => 'Jest kilka powodów dla których mogło się to zdarzyć:',
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],

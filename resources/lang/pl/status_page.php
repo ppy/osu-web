@@ -32,10 +32,10 @@ return [
     'online' => [
         'title' => [
             'users' => 'Ilość użytkoników online w ciągu ostatnich 24 godzin',
-            'score' => 'Ilość wysłanych wyników w ciągu ostatnich 24 godzin',
+            'score' => 'Liczba wysłanych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość wysyłanych wyników na sekundę',
+        'score' => 'Liczba wysyłanych wyników na sekundę',
     ],
 
     'recent' => [

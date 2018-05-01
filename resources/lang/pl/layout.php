@@ -103,7 +103,7 @@ return [
             '401' => 'brak dostępu',
             '405' => 'nie znaleziono strony',
             '500' => 'coś się popsuło',
-            '503' => 'konserwacja',
+            '503' => 'przerwa techniczna',
         ],
         'user' => [
             '_' => 'użytkownik',
@@ -118,12 +118,12 @@ return [
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się',
             'help' => 'Pomoc',
-            'modding-history-discussions' => 'dyskusje użytkownika',
-            'modding-history-events' => 'historia zdarzeń użytkownika w modowaniu',
-            'modding-history-index' => 'historia użytkownika w modowaniu',
-            'modding-history-posts' => 'historia postów użytkownika w modowaniu',
-            'modding-history-votesGiven' => 'oddane głosy użytkownika',
-            'modding-history-votesReceived' => 'otrzymane głosy użytkownika',
+            'modding-history-discussions' => 'dyskusje',
+            'modding-history-events' => 'historia zdarzeń',
+            'modding-history-index' => 'historia użytkownika',
+            'modding-history-posts' => 'historia postów',
+            'modding-history-votesGiven' => 'głosy oddane',
+            'modding-history-votesReceived' => 'głosy otrzymane',
         ],
         'store' => [
             '_' => 'sklep',
@@ -196,11 +196,11 @@ return [
         ],
         '403' => [
             'error' => 'Nie powinno cię tu być.',
-            'description' => 'Jednakże, możesz spróbować się wrócić.',
+            'description' => 'Jednakże możesz spróbować się wrócić.',
         ],
         '401' => [
             'error' => 'Nie powinno cię tu być.',
-            'description' => 'Jednakże, możesz spróbować się wrócić albo się zalogować',
+            'description' => 'Jednakże możesz spróbować się wrócić albo się zalogować',
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
@@ -215,8 +215,8 @@ return [
             'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
         ],
         '503' => [
-            'error' => 'Konserwacja!',
-            'description' => 'Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.',
+            'error' => 'Przerwa techniczna!',
+            'description' => 'Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',

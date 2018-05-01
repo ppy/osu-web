@@ -19,7 +19,7 @@
  */
 return [
     'show' => [
-        'fallback_translation' => 'Poszukiwana strona nie została jeszcze przetłumaczona na wybrany język (:language). Pokazuję w języku angielskim.',
+        'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
         'languages' => 'Języki',
         'missing' => 'Poszukiwana strona nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
