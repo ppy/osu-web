@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,6 +43,11 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Loading...',
+        'send_message' => 'send message',
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -51,8 +56,8 @@ return [
         'button' => 'Sign in',
         'button_posting' => 'Signing in...',
         'remember' => 'Remember this computer',
-        'title' => 'Please login to proceed',
-        'failed' => 'Incorrect login',
+        'title' => 'Please sign in to proceed',
+        'failed' => 'Incorrect sign in',
         'register' => "Don't have an osu! account? Make a new one",
         'forgot' => 'Forgotten your password?',
         'beta' => [
@@ -62,16 +67,21 @@ return [
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s posts',
+    ],
+
     'signup' => [
         '_' => 'Register',
     ],
     'anonymous' => [
-        'login_link' => 'click to login',
-        'login_text' => 'login',
+        'login_link' => 'click to sign in',
+        'login_text' => 'sign in',
         'username' => 'Guest',
-        'error' => 'You need to be logged in to do this.',
+        'error' => 'You need to be signed in to do this.',
     ],
-    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'logout_confirm' => 'Are you sure you want to sign out? :(',
     'restricted_banner' => [
         'title' => 'Your account has been restricted!',
         'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
@@ -90,6 +100,7 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
@@ -142,6 +153,11 @@ return [
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
+                'title' => 'Historical',
+
+                'monthly_playcounts' => [
+                    'title' => 'Play History',
+                ],
                 'most_played' => [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
@@ -150,7 +166,9 @@ return [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays (24h)',
                 ],
-                'title' => 'Historical',
+                'replays_watched_counts' => [
+                    'title' => 'Replays Watched History',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
@@ -210,19 +228,43 @@ return [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Best Performance',
-                ],
                 'empty' => 'No awesome performance records yet. :(',
-                'first' => [
-                    'title' => 'First Place Ranks',
-                ],
+                'not_ranked' => 'Only ranked beatmaps give out pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Best Performance',
+                ],
+                'first' => [
+                    'title' => 'First Place Ranks',
+                ],
+            ],
+            'account_standing' => [
+                'title' => 'Account Standing',
+                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
+                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Recent Infringements',
+                    'date' => 'date',
+                    'action' => 'action',
+                    'length' => 'length',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'description',
+                    'actor' => 'by :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silence',
+                        'note' => 'Note',
+                    ],
+                ],
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Interests',
             'lastfm' => 'Last.fm',
             'location' => 'Current Location',
@@ -236,6 +278,10 @@ return [
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+        ],
+        'post_count' => [
+            '_' => 'Contributed :link',
+            'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
