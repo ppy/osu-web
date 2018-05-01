@@ -22,7 +22,7 @@ return [
     'deleted' => '[usunięty użytkownik]',
 
     'beatmapset_activities' => [
-        'title' => "Historia użytkownika :user w modowaniu",
+        'title' => 'Historia użytkownika :user w modowaniu',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
