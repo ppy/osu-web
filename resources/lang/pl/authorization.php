@@ -40,8 +40,8 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Nie możesz edytować automatycznie generowanego postu.',
-            'not_owner' => 'Tylko autor postu może go edytować.',
+            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
+            'not_owner' => 'Tylko autor posta może go edytować.',
         ],
     ],
 
@@ -74,14 +74,14 @@ return [
                 'only_last_post' => 'Tylko ostatni post może zostać usunięty.',
                 'locked' => 'Nie możesz usuwać postów w zamkniętym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'not_owner' => 'Tylko autor postu może go usunąć.',
+                'not_owner' => 'Tylko autor posta może go usunąć.',
             ],
 
             'edit' => [
                 'deleted' => 'Nie możesz edytować usuniętego posta.',
                 'locked' => 'Ten post jest chroniony przed edycją.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'not_owner' => 'Tylko autor postu może go edytować.',
+                'not_owner' => 'Tylko autor posta może go edytować.',
                 'topic_locked' => 'Nie możesz edytować postów w zamkniętym wątku.',
             ],
         ],
@@ -103,7 +103,7 @@ return [
             'store' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do utworzenia nowego wątku.',
-                'forum_closed' => 'Forum zostało zamknięte i nie możesz w nim tworzyć postów.',
+                'forum_closed' => 'Forum zostało zamknięte i nie możesz w nim pisać.',
             ],
 
             'vote' => [

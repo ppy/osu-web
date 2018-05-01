@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'Musisz się zalogować, aby zedytować post.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanych postów.',
-            'wrong_user' => 'Tylko autor postu może go zedytować.',
+            'wrong_user' => 'Tylko autor posta może go zedytować.',
         ],
     ],
 
@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
-        'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem postu.',
+        'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
     ],
 
     'reply' => [

@@ -24,12 +24,12 @@ return [
         'username' => 'nazwa użytkownika',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => 'Awatar',
         ],
         'email' => [
-            'current' => 'aktualny email',
-            'new' => 'nowy email',
-            'new_confirmation' => 'potwierdź email',
+            'current' => 'obecny e-mail',
+            'new' => 'nowy e-mail',
+            'new_confirmation' => 'potwierdź e-mail',
             'title' => 'Email',
         ],
         'password' => [

@@ -33,7 +33,7 @@ return [
 
         'destroy' => [
             '_' => 'Usuń tło',
-            'confirm' => 'Na pewno chcesz usunąć tło?',
+            'confirm' => 'Czy na pewno chcesz usunąć tło?',
         ],
     ],
 
@@ -48,8 +48,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Na pewno usunąć post?',
-        'confirm_restore' => 'Na pewno przywrócić post?',
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count razy.',
         'posted_at' => 'opublikowane :when',
 
@@ -61,8 +61,8 @@ return [
     ],
 
     'search' => [
-        'go_to_post' => 'Przejdź do postu',
-        'post_number_input' => 'wprowadź numer postu',
+        'go_to_post' => 'Przejdź do posta',
+        'post_number_input' => 'wprowadź numer posta',
         'total_posts' => 'łącznie :posts_count postów',
     ],
 

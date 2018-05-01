@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie postu nie powiodło się',
+            'error' => 'Zapisywanie posta nie powiodło się',
         ],
     ],
 
@@ -60,7 +60,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego beatmapsetu. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
+            'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
             'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne komentarze (po jednym dla każdego znacznika czasu).',
         ],
 

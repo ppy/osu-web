@@ -61,7 +61,7 @@ return [
         'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
-            'main' => 'Dostęp do bety jest obecnie dostępny tylko dla wybranych użytkowników.',
+            'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
             'small' => '(donatorzy otrzymają go wkrótce)',
         ],
 

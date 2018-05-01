@@ -20,7 +20,7 @@
 return [
     'header' => [
         'small' => 'Rywalizacja na więcej sposobów niż tylko klikanie w kółka.',
-        'large' => 'Konkursy społecznościowe',
+        'large' => 'Konkursy społeczności',
     ],
     'voting' => [
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
