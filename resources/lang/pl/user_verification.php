@@ -19,7 +19,7 @@
  */
 return [
     'box' => [
-        'sent' => 'Mail z kodem weryfikacyjnym został wysłany na email :mail Wpisz kod.',
+        'sent' => 'Mail z kodem weryfikacyjnym został wysłany na e-mail :mail. Wprowadź kod.',
         'title' => 'Weryfikacja konta',
         'verifying' => 'Weryfikowanie...',
         'issuing' => 'Tworzenie nowego kodu...',

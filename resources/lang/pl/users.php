@@ -21,7 +21,9 @@
 return [
     'deleted' => '[usunięty użytkownik]',
 
-        'beatmapset_activities' => [
+    'beatmapset_activities' => [
+        'title' => "Historia użytkownika :user w modowaniu",
+
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
         ],
@@ -58,7 +60,7 @@ return [
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Nieprawidłowe dane logowania',
-        'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
+        'register' => 'Nie posiadasz konta osu!? Utwórz nowe.',
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
@@ -80,7 +82,7 @@ return [
         'login_link' => 'kliknij, aby się zalogować',
         'login_text' => 'zaloguj się',
         'username' => 'Gość',
-        'error' => 'Musisz się zalogować.',
+        'error' => 'Musisz się zalogować, aby to zrobić.',
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'restricted_banner' => [
@@ -95,7 +97,7 @@ return [
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
-        'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik jest zablokowany)',
+        'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik został zablokowany)',
         'origin_age' => ':age',
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',

@@ -36,7 +36,7 @@ return [
             'player-left-no-user' => 'gracz wyszedł z gry',
             'player-joined-no-user' => 'gracz dołączył do gry',
             'player-kicked-no-user' => 'gracz został wyrzucony z meczu',
-            'match-created-no-user' => 'Mecz został stworzona',
+            'match-created-no-user' => 'Mecz został stworzony',
             'match-disbanded-no-user' => 'Mecz został zakończony',
             'host-changed-no-user' => 'host został zmieniony',
         ],
@@ -56,7 +56,7 @@ return [
         'winner' => ':team wygrywa',
         'difference' => 'różnicą :difference punktów',
         'loading-events' => 'Ładowanie zdarzeń...',
-        'more-events' => 'Wyświetl wszystkie...',
+        'more-events' => 'wyświetl wszystkie...',
         'beatmap-deleted' => 'usunięto beatmapę',
     ],
     'game' => [
