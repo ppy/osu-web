@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Tylko autor posta może go edytować.',
                 'topic_locked' => 'Nie możesz edytować postów w zamkniętym wątku.',
             ],
+
+            'store' => [
+                'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
+                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh",
+            ],
         ],
 
         'topic' => [

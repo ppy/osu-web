@@ -165,7 +165,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'wpisz żądaną frazę...',
+            'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
@@ -177,6 +177,7 @@ return [
                 'language' => 'Język',
                 'extra' => 'Dodatkowe',
                 'rank' => 'Uzyskana ocena',
+                'played' => 'Ukończenie',
             ],
         ],
         'mode' => 'Tryb gry',

@@ -90,7 +90,6 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono użytkownika! ;_;',
         'age' => 'Ma :age lat',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
@@ -275,7 +274,11 @@ return [
             'website' => 'Strona internetowa',
         ],
         'not_found' => [
-            '404' => 'Nie znaleziono gracza! ;_;',
+            'reason_1' => 'Użytkownik mógł zmienić swoją nazwę.',
+            'reason_2' => 'Konto użytkownika mogło zostać zablokowane.',
+            'reason_3' => 'W nazwie użytkownika występuje literówka.',
+            'reason_header' => 'Jest kilka powodów dla których mogło się to zdarzyć:',
+            'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
