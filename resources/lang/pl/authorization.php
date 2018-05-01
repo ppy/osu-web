@@ -87,7 +87,7 @@ return [
 
             'store' => [
                 'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
-                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh",
+                'too_many_help_posts' => 'Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh',
             ],
         ],
 
