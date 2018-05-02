@@ -19,12 +19,10 @@
  */
 
 return [
+    'months' => 'เดือน',
+
     'user_search' => [
-        'searching' => 'searching...',
-        'not_found' => "This user doesn't exist",
-    ],
-    'duration' => [
-        'months' => ':length month|:length months|{0}',
-        'years' => ':length year|:length years|{0}',
+        'searching' => 'กำลังค้นหา...',
+        'not_found' => "ไม่พบชื่อผู้ใช้คนนี้",
     ],
 ];
