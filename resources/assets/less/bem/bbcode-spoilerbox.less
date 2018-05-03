@@ -23,27 +23,32 @@
     display: inline-block;
     color: @gray;
     margin-right: 10px;
-
+    
     .@{top}.js-spoilerbox--open & {
       transform: rotate(90deg);
     }
   }
-
+  
   &__body {
     display: none;
-
+    
     .@{top}.js-spoilerbox--open & {
       display: block;
+      background: #DDD;
+      border-radius: 4px;
+      padding: 20px;
+      margin-top: 4px;
     }
   }
-
+  
   &__link {
-    color: @yellow-darker;
-
+    color: #333;
+    font-weight: bold;
+    
     &:focus,
     &:hover,
     &:active {
-      color: @yellow-dark;
+      color: #111;
     }
   }
 }
