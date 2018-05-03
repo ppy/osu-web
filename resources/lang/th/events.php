@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset ได้มีการนำกลับมาเล่นใหม่อีกครั้งหลังจากเวลาอันยาวนาน โดย <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ได้อัพเดต beatmap ที่มีชื่อว่า "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> ได้ทำการเพิ่ม beatmap ใหม่ ":beatmapset"',
-    'empty' => "ผู้ใช้บัญชีรายนี้ไม่ได้มีการทำสิ่งที่น่าสนใจในช่วงนี้",
+    'empty' => 'ผู้ใช้บัญชีรายนี้ไม่ได้มีการทำสิ่งที่น่าสนใจในช่วงนี้',
     'rank' => '<strong><em>:user</em></strong> ได้อันดับที่ #:rank ในเพลง <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ได้เสียอันดับที่ 1 ของเพลง <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ได้ทำการสนับสนุน osu! อีกครั้ง - ขอขอบคุณน้ำใจงามๆของท่าน',
