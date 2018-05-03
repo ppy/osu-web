@@ -20,8 +20,8 @@
 
 return [
     'codes' => [
-        'http-401' => 'Please login to proceed.',
-        'http-403' => 'Access denied.',
+        'http-401' => 'กรุณาล็อกอินเข้าสู่ระบบเพื่อดำเนินการต่อไป',
+        'http-403' => 'ไม่มีสิทธิ์การเข้าถึง',
         'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
