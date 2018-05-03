@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [    
+return [
     'codes' => [
         'http-401' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
         'http-403' => 'ไม่มีสิทธิ์การเข้าถึง',
