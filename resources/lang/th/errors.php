@@ -18,26 +18,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
+return [    
     'codes' => [
-        'http-401' => 'กรุณาล็อกอินเข้าสู่ระบบเพื่อดำเนินการต่อไป',
+        'http-401' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
         'http-403' => 'ไม่มีสิทธิ์การเข้าถึง',
-        'http-429' => 'Too many attempts. Try again later.',
+        'http-429' => 'คุณพยายามเข้าถี่เกินไป กรุณารออีกสักพักแล้วเข้าใหม่',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'An error occured. Try refreshing the page.',
+            'generic' => 'ระบบมีข้อผิดพลาด กรุณารีเฟรชหน้านี้ใหม่',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Invalid mode specified.',
-        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
+        'invalid_mode' => 'โหมดที่ระบุไม่ถูกต้อง',
+        'standard_converts_only' => 'ไม่พบคะแนนสำหรับโหมดและระดับความยากที่เลือกไว้',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
+        'too-many-favourites' => 'คุณมีแมปที่ถูกใจมากเกินไป กรุณาเอาบางรายการออกแล้วลองใหม่อีกครั้ง',
     ],
-    'logged_out' => 'You have been logged out. Please login and retry.',
-    'supporter_only' => 'You must be a supporter to use this feature.',
-    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
-    'unknown' => 'Unknown error occurred.',
+    'logged_out' => 'คุณได้ออกจากระบบแล้ว ลองเข้าใหม่แล้วลองอีกครั้ง',
+    'supporter_only' => 'คุณต้องเป็นผู้สนับสนุนถึงจะเข้าใช้งานได้',
+    'no_restricted_access' => 'คุณไม่สามารถทำสิ่งนี้ได้ระหว่างที่บัญชีคุณกำลังอยู่ในสถานะจำกัดสิทธิ์',
+    'unknown' => 'พบเจอปัญหาไม่สามารถระบุได้',
 ];
