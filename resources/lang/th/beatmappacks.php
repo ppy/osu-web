@@ -21,40 +21,39 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'READ THIS BEFORE DOWNLOADING',
+            'important' => 'กรุณาอ่านก่อนทำการติดตั้ง',
             'instruction' => [
-                '_' => "Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
-                    All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
-                    :scary extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.",
-                'scary' => 'Do NOT',
+                '_' => "การติดตั้ง : หลังจากคุณดาวน์โหลดไฟล์แล้ว, ให้แตกไฟล์นามสกุล .rar ลงไปในไฟล์ osu!\Songs 
+                    ไฟล์เพลงในแพ็คที่คุณโหลดมาจะติดนามสกุล .zip'd หรือ .osz'd ดังนั้น osu! จะทำการแตกไฟล์ beatmap เองครั้งต่อไปที่คุณเข้าไปเล่น
+                    :scary ทำการแตกไฟล์ zip's/osz's ด้วยตัวคุณเอง ไม่เช่นนั้น beatmap ที่คุณติดตั้งมาจะไม่สามารถเข้าเล่นได้",
+                'scary' => 'อย่า',
             ],
             'note' => [
-                '_' => 'Also note that it is highly recommended to :scary, since the oldest maps are of much lower quality than most recent maps.',
-                'scary' => 'download the packs from latest to earliest',
+                '_' => 'ทางเราแนะนำให้คุณ :scary, เนื่องจากคุณภาพของ beatmap สมัยก่อนนั้น ต่ำกว่าในสมัยนี้',
+                'scary' => 'ทำการดาวน์โหลดไฟล์แพ็คล่าสุดก่อน',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'title' => 'แพ็คเกจ Beatmap',
+        'description' => 'แพ็คของคอลเล็คชั่นเพลงที่อยู่ในประเภทเดียวกัน',
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => 'ดาวน์โหลด',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => 'ผ่านแล้ว',
+            'not_cleared' => 'ยังไม่ผ่าน',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Artist/Album',
-        'chart' => 'Chart',
-        'standard' => 'Standard',
-        'theme' => 'Theme',
+        'artist' => 'ศิลปิน/ผู้แต่ง',
+        'chart' => 'ชาร์ท',
+        'standard' => 'แบบพื้นฐาน',
+        'theme' => 'ธีม',
     ],
 
     'require_login' => [
-        '_' => 'You need to be :link to download',
-        'link_text' => 'logged in',
+        '_' => 'คุณต้องทำการ :link เพื่อดาวน์โหลด',
+        'link_text' => 'เข้าสู่ระบบ',
     ],
 ];
