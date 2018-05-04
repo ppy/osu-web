@@ -20,16 +20,16 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page could not be found.',
-        'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'toc' => 'Contents',
+        'fallback_translation' => 'หน้าที่คุณเรียกยังไม่ถูกแปลในภาษาที่เลือกอยู่ (:language) กำลังแสดงเนื้อหาเป็นภาษาอังกฤษ',
+        'languages' => 'ภาษา',
+        'missing' => 'ไม่พบหน้าที่คุณเรียก',
+        'missing_title' => 'ไม่พบ',
+        'missing_translation' => 'หน้าที่คุณเรียกไม่สามารถหาพบเจอได้ในภาษาที่คุณเรียกอยู่ในขณะนี้',
+        'toc' => 'เนื้อหา',
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => 'เปิดบน GitHub',
+            'refresh' => 'รีเฟรช',
         ],
     ],
 ];
