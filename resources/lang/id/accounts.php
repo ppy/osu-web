@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Cara Bermain',
+        'title' => 'Gaya Bermain',
         'mouse' => 'mouse',
         'keyboard' => 'keyboard',
         'tablet' => 'tablet',

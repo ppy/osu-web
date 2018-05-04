@@ -96,7 +96,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
-        'missingtext' => 'Mungkin anda salah ketik! (atau pengguna mungkin telah dibann)',
+        'missingtext' => 'Mungkin anda salah ketik! (atau pengguna mungkin telah diblokir)',
         'origin_age' => ':age',
         'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
