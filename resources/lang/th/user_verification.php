@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => 'อีเมลได้ถูกส่งไปที่ :mail พร้อมรหัสยืนยันตัวตนแล้ว กรุณาป้อนรหัส',
+        'title' => 'ยืนยันตัวตนบัญชี',
+        'verifying' => 'กำลังยืนยันตัวตน...',
+        'issuing' => 'กำลังส่งรหัสชุดใหม่...',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'check_spam' => "หากไม่พบอีเมล ให้ลองค้นหาที่โฟลเดอร์แสปมของท่านดู",
+            'recover' => "หากคุณไม่สามารถเข้าถึงอีเมลของคุณ หรือลืมอีเมลที่ผูกกับบัญชีผู้ใช้ของคุณ กรุณาคู please follow the :link.",
+            'recover_link' => 'ขั้นตอนการกู้อีเมลได้ที่นี่',
+            'reissue' => 'คุณสามารถ :reissue_link หรือ :logout_link.',
+            'reissue_link' => 'ขอรับรหัสใหม่',
+            'logout_link' => 'ออกจากระบบ',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'ยืนยันตัวตนบัญชี osu!',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => 'รหัสยืนยันตัวตนนี้หมดอายุแล้ว ได้ทำการส่งรหัสยืนยันตัวตนใหม่ไปทางอีเมลแล้ว',
+        'incorrect_key' => 'รหัสยืนยันตัวตนไม่ถูกต้อง',
+        'retries_exceeded' => 'รหัสยืนยันตัวตนไม่ถูกต้อง จำนวนการลองใหม่เกินกว่าที่กำหนด ได้ทำการส่งรหัสยืนยันตัวตนใหม่ไปทางอีเมลแล้ว',
+        'reissued' => 'รหัสยืนยันตัวตนถูกเปลี่ยน ได้ทำการส่งรหัสยืนยันตัวตนใหม่ไปทางอีเมลแล้ว',
+        'unknown' => 'พบข้อผิดพลาดเกิดขึ้น ได้ทำการส่งรหัสยืนยันตัวตนใหม่ไปทางอีเมลแล้ว',
     ],
 ];
