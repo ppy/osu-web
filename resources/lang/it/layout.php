@@ -43,7 +43,7 @@ return [
             'index' => 'lista',
             'artists' => 'artisti in primo piano',
             // 'getPacks' => 'pacchi',
-            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart
+            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
