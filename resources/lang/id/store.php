@@ -1,0 +1,91 @@
+<?php
+
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+return [
+    'admin' => [
+        'warehouse' => 'Gudang',
+    ],
+
+    'checkout' => [
+        'cart_problems' => 'Aduh, ada masalah dengan keranjang anda!',
+        'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
+        'declined' => 'Pembayaran dibatalkan.',
+        'error' => 'Terjadi masalah saat menyelesaikan pembayaran :(',
+        'old_cart' => 'Keranjang anda nampaknya sudah kadaluwarsa dan telah dimuat ulang, silakan coba lagi.',
+        'pay' => 'Bayar via Paypal',
+        'pending_checkout' => [
+            'line_1' => 'Pembayaran sebelumnya telah dimulai tetapi tidak tuntas.',
+            'line_2' => 'Lanjutkan pembayaran anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
+            'link_text' => 'klik disini',
+        ],
+        'delayed_shipping' => 'Kami saat ini kewalahan dengan pesanan! Anda dipersilakan untuk melakukan pemesanan, tetapi harap menunggu **penundaan 1-2 minggu** tambahan sementara kami menyelesaikan pesanan yang ada.',
+    ],
+
+    'discount' => 'hemat :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Kami menerima pesanan osu!store anda!',
+        ],
+    ],
+
+    'order' => [
+        'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name untuk :username (:duration)',
+            ],
+            'quantity' => 'Jumlah',
+        ],
+    ],
+
+    'product' => [
+        'name' => 'Nama',
+
+        'stock' => [
+            'out' => 'Barang saat ini kehabisan stok. Periksa kembali nanti!',
+            'out_with_alternative' => 'Sayangnya barang ini kehabisan stok. Gunakan dropdown untuk memilih jenis yang lain atau periksa kembali nanti!',
+        ],
+
+        'add_to_cart' => 'Tambahkan ke Keranjang',
+        'notify' => 'Beri tahu saya bila tersedia!',
+
+        'notification_success' => 'anda akan diberitahu saat kami punya stok baru. klik :link untuk membatalkan',
+        'notification_remove_text' => 'di sini',
+
+        'notification_in_stock' => 'Produk ini telah tersedia!',
+    ],
+
+    'supporter_tag' => [
+        'gift' => 'hadiahkan ke pemain',
+        'require_login' => [
+            '_' => 'Anda harus :link untuk mendapatkan supporter tag!',
+            'link_text' => 'masuk',
+        ],
+    ],
+
+    'username_change' => [
+        'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaan!',
+        'checking' => 'Memerika ketersediaan :username...',
+        'require_login' => [
+            '_' => 'Anda harus :link untuk mengubah nama anda!',
+            'link_text' => 'masuk',
+        ],
+    ],
+];
