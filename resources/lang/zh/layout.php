@@ -67,7 +67,7 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => '月赛',
+            'charts' => '月赛', // Base text has changed, please check.
             'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu',

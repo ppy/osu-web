@@ -51,7 +51,7 @@ return [
         ],
         'rankings' => [
             '_' => 'rank',
-            'charts' => 'charts',
+            'charts' => 'charts', // Base text has changed, please check.
         ],
         'community' => [
             '_' => 'comunità',
