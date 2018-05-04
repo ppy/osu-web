@@ -22,7 +22,7 @@ return [
     'deleted' => '[deleted user]',
 
     'beatmapset_activities' => [
-        'title' => "Riwayat Modding :user",
+        'title' => 'Riwayat Modding :user',
 
         'discussions' => [
             'title_recent' => 'Recently started discussions',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Ingat komputer ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'failed' => 'Incorrect sign in',
-        'register' => "Belum memiliki akun osu!? Buat sekarang",
+        'register' => 'Belum memiliki akun osu!? Buat sekarang',
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
@@ -103,7 +103,7 @@ return [
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => "profil :username",
+        'title' => 'profil :username',
 
         'edit' => [
             'cover' => [
@@ -181,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum menerima kudosu!",
+                    'empty' => 'Pengguna ini belum menerima kudosu!',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum mendapatkannya. ;_;",
+                'empty' => 'Pengguna ini belum mendapatkannya. ;_;',
                 'title' => 'Medali',
             ],
             'recent_activity' => [

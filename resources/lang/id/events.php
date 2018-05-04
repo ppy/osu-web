@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset telah dihidupkan kembali dari tidur abadi oleh <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> telah memperbarui beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> telah mengunggah beatmap baru ":beatmapset"',
-    'empty' => "Pengguna ini belum melakukan sesuatu yang penting baru-baru ini!",
+    'empty' => 'Pengguna ini belum melakukan sesuatu yang penting baru-baru ini!',
     'rank' => '<strong><em>:user</em></strong> mendapat peringkat #:rank di <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> telah kehilangan peringkat pertama di <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> sekali lagi memilih untuk mendukung osu! - terima kasih atas kebaikanmu!',

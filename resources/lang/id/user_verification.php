@@ -26,8 +26,8 @@ return [
         'issuing' => 'Meminta kode baru...',
 
         'info' => [
-            'check_spam' => "Pastikan untuk memeriksa folder spam anda jika anda tidak dapat menemukan emailnya.",
-            'recover' => "Jika anda tidak dapat mengakses email anda atau lupa apa yang anda gunakan, silahkan ikuti :link.",
+            'check_spam' => 'Pastikan untuk memeriksa folder spam anda jika anda tidak dapat menemukan emailnya.',
+            'recover' => 'Jika anda tidak dapat mengakses email anda atau lupa apa yang anda gunakan, silahkan ikuti :link.',
             'recover_link' => 'proses pemulihan email di sini',
             'reissue' => 'Anda juga dapat :reissue_link atau :logout_link.',
             'reissue_link' => 'meminta kode baru',

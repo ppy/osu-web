@@ -27,7 +27,7 @@ return [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memilih.',
         'best_of' => [
-            'none_played' => "Anda tidak terlihat memainkan beatmaps yang memenuhi syarat kontes ini!",
+            'none_played' => 'Anda tidak terlihat memainkan beatmaps yang memenuhi syarat kontes ini!',
         ],
     ],
     'entry' => [
