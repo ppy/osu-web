@@ -21,10 +21,10 @@
 return [
     'username_change' => [
         'only_one' => 'perubahan nama pengguna yang diperbolehkan hanya 1 kali per pesanan.',
-        'insufficient_paid' => 'Biaya penggantian nama pengguna melebihi jumlah yang telah dibayar (:expected > :actual)',
-        'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk dicabut (:username)',
+        'insufficient_paid' => 'Biaya yang Anda bayarkan tidak mencukupi untuk menutupi biaya penggantian username anda (:expected > :actual)',
+        'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk diganti (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donasi kurang dari yang dibutuhkan untuk menghadiahkan supporter tag (:actual > :expected)',
+        'insufficient_paid' => 'Donasi kurang dari yang diperlukan untuk menghadiahkan supporter tag (:actual > :expected)',
     ],
 ];
