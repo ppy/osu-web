@@ -24,7 +24,7 @@ return [
         'title_compact' => 'cài đặt',
 
         'avatar' => [
-            'title' => 'Sửa Ảnh Đại Diện',
+            'title' => 'Ảnh Đại Diện',
         ],
 
         'email' => [

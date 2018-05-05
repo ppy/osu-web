@@ -27,7 +27,7 @@ return [
             'removing' => 'Đang gỡ bỏ...',
         ],
         'show' => [
-            'covers' => 'Quản lý Các ảnh cover của Beatmapset',
+            'covers' => 'Quản lý Các ảnh bìa của Beatmapset',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'kích hoạt',
