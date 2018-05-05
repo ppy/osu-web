@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Chỉnh Sửa Trang Cá Nhân',
+            'title' => 'Trang Cá Nhân',
 
             'user' => [
                 'user_from' => 'vị trí hiện tại',
