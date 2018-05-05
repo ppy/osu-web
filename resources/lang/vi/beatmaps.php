@@ -79,6 +79,7 @@ return [
             'scopes' => [
                 'general' => 'Difficulty này',
                 'generalAll' => 'Tất cả difficulties',
+            ],
         ],
 
         'new' => [
