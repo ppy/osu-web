@@ -21,139 +21,139 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Can not undo hyping.',
-            'has_reply' => 'Can not delete discussion with replies',
+            'is_hype' => 'Tidak dapat membatalkan hyping.',
+            'has_reply' => 'Tidak dapat menghapus diskusi dengan balasan',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'Anda telah mencapai batas nominasi anda untuk hari ini, silakan coba lagi besok.',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => 'Hanya pemilik thread dan beatmap yang dapat menyelesaikan diskusi.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => "Can't vote on own discussion.",
-            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
+            'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
+            'owner' => 'Tidak dapat memilih di diskusi sendiri.',
+            'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => 'Posting yang dihasilkan secara otomatis tidak dapat disunting.',
+            'not_owner' => 'Hanya pemilik thread yang dapat menyunting posting.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => 'Akses ke kanal yang diminta tidak diizinkan',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'no_access' => 'Akses ke kanal yang dituju diperlukan',
+                    'moderated' => 'Channel saat ini dimoderasi.',
+                    'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'Tidak dapat mengirim pesan saat diblokir/dibatasi/dibungkam.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'Anda tidak dapat mengubah suara Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
+                'locked' => 'Tidak dapat menghapus postingan di thread yang telah dikunci.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan',
+                'not_owner' => 'Hanya pemilik thread yang dapat menghapus posting.',
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
+                'locked' => 'Thread telah dikunci untuk melakukan penyuntingan.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'not_owner' => 'Hanya pemilik thread yang dapat menyunting posting.',
+                'topic_locked' => 'Tidak dapat menyunting postingan di thread yang telah dikunci.',
             ],
 
             'store' => [
-                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
-                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
+                'too_many_help_posts' => 'Anda harus memainkan game-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan game-nya, kirim email ke support@ppy.sh ', // FIXME: alamat email unhardcode
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
+                'locked' => 'Tidak bisa membalas di thread yang telah dikunci.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
-                    'require_login' => 'Please sign in to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => 'Silakan masuk untuk membalas.',
+                    'restricted' => 'Tidak dapat membalas saat dibatasi.',
+                    'silenced' => 'Tidak dapat membalas saat dibungkam.',
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_permission' => 'Tidak memiliki izin untuk membuat thread baru.',
+                'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
+                'voted' => 'Mengubah suara tidak diizinkan.',
 
                 'user' => [
-                    'require_login' => 'Please sign in to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => 'Silakan masuk untuk memilih.',
+                    'restricted' => 'Tidak dapat membalas saat dibatasi.',
+                    'silenced' => 'Tidak dapat membalas saat dibungkam.',
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Sampul tidak valid ditentukan.',
+                'not_owner' => 'Hanya pemilik thread yang dapat menyunting sampul.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
         ],
     ],
 
-    'require_login' => 'Please sign in to proceed.',
+    'require_login' => 'Silakan masuk untuk melanjutkan.',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => 'Akses ditolak.',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => 'Tidak dapat melakukan hal itu saat dibungkam.',
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => 'Tidak dapat melakukan hal itu saat dibatasi.',
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => 'Halaman pengguna terkunci.',
+                'not_owner' => 'Hanya dapat menyunting halaman pengguna sendiri.',
+                'require_supporter_tag' => 'Supporter tag diperlukan.',
             ],
         ],
     ],
