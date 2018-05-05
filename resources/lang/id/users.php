@@ -19,17 +19,17 @@
  */
 
 return [
-    'deleted' => '[deleted user]',
+    'deleted' => '[pengguna yang dihapus]',
 
     'beatmapset_activities' => [
         'title' => 'Riwayat Modding :user',
 
         'discussions' => [
-            'title_recent' => 'Recently started discussions',
+            'title_recent' => 'Diskusi terbaru yang baru dimulai',
         ],
 
         'events' => [
-            'title_recent' => 'Recent events',
+            'title_recent' => 'Peristiwa terbaru',
         ],
 
         'posts' => [
@@ -37,11 +37,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Most upvoted by (last 3 months)',
+            'title_most' => 'Paling banyak divote oleh (3 bulan terakhir)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Most upvoted (last 3 months)',
+            'title_most' => 'Paling banyak divote (3 bulan terakhir)',
         ],
     ],
 
@@ -57,9 +57,9 @@ return [
         'password' => 'Kata Sandi',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'remember' => 'Ingat komputer ini',
+        'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
-        'failed' => 'Incorrect sign in',
+        'failed' => 'Gagal masuk',
         'register' => 'Belum memiliki akun osu!? Buat sekarang',
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
@@ -100,21 +100,21 @@ return [
         'origin_age' => ':age',
         'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'page_description' => 'osu! - Segala sesuatu yang ingin anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => 'profil :username',
 
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
-                'defaults_info' => 'More cover options will be available in the future',
+                'button' => 'Ganti Sampul Profil',
+                'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'upload' => [
-                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
+                    'broken_file' => 'Gagal memproses gambar. Verifikasi gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar anda di sini untuk mengunggah.',
-                    'restriction_info' => "Unggah hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Unggah hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
                     'size_info' => 'Ukuran sampul seharusnya 2000x700',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -129,7 +129,7 @@ return [
 
         'extra' => [
             'followers' => '1 pengikut|:count pengikut',
-            'unranked' => 'Tidak ada permainan terakhir',
+            'unranked' => 'Tidak ada permainan akhir-akhir ini',
 
             'achievements' => [
                 'title' => 'Pencapaian',
@@ -143,18 +143,18 @@ return [
                     'title' => 'Beatmaps Favorit (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Beatmaps Graveyarded (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Beatmaps Ranked & Approved (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Beatmaps Pending (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
-                'title' => 'Historical',
+                'empty' => 'Tidak ada catatan performa. :(',
+                'title' => 'Historis',
 
                 'monthly_playcounts' => [
                     'title' => 'Riwayat Main',
@@ -173,11 +173,11 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tersedia',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available_info' => "Kudosu dapat ditukarkan menjadi kudosu stars, yang akan membantu beatmap anda mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum anda tukarkan.",
+                'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang diperoleh',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -185,41 +185,41 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => 'Menerima :amount atas penolakan pencabutan kudosu di post modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => 'Menolak :amount di post modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => 'Kehilangan :amount atas penghapusan post di post modding :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => 'Menerima :amount atas restorasi post di post modding :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => 'Menerima :amount atas pemungutan suara di post modding :post',
+                            'reset' => 'Kehilangan :amount atas pemungutan suara di post modding :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Received :amount from votes recalculation in modding post of :post',
-                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                            'give' => 'Menerima :amount atas penilaian ulang suara di post modding :post',
+                            'reset' => 'Kehilangan :amount atas penilaian ulang suara di post modding :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => 'Menerima :amount dari :giver untuk posting di :post',
+                        'reset' => 'Kudosu disetel ulang oleh :giver untuk posting di :post',
+                        'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'saya!',
             ],
             'medals' => [
                 'empty' => 'Pengguna ini belum mendapatkannya. ;_;',
@@ -229,8 +229,8 @@ return [
                 'title' => 'Terbaru',
             ],
             'top_ranks' => [
-                'empty' => 'No awesome performance records yet. :(',
-                'not_ranked' => 'Only ranked beatmaps give out pp.',
+                'empty' => 'Belum ada catatan performa yang luar biasa. :(',
+                'not_ranked' => 'Hanya beatmap ranked yang dapat memberikan pp.',
                 'pp' => ':amountpp',
                 'title' => 'Peringkat',
                 'weighted_pp' => 'Terhitung: :pp (:percentage)',
@@ -243,12 +243,12 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => 'Account Standing',
-                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+                'title' => 'Kondisi Akun',
+                'bad_standing' => "Akun <strong>:username</strong> tidak dalam posisi baik :(",
+                'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Recent Infringements',
+                    'title' => 'Pelanggaran Terbaru',
                     'date' => 'tanggal',
                     'action' => 'aksi',
                     'length' => 'durasi',
@@ -257,8 +257,8 @@ return [
                     'actor' => 'oleh :username',
 
                     'actions' => [
-                        'restriction' => 'Ban',
-                        'silence' => 'Silence',
+                        'restriction' => 'Blokir',
+                        'silence' => 'Bungkam',
                         'note' => 'Catatan',
                     ],
                 ],
@@ -266,7 +266,7 @@ return [
         ],
         'info' => [
             'discord' => 'Discord',
-            'interests' => 'Interests',
+            'interests' => 'Minat',
             'lastfm' => 'Last.fm',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
@@ -275,17 +275,17 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'They may have changed their username.',
-            'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',
-            'reason_3' => 'You may have made a typo!',
-            'reason_header' => 'There are a few possible reasons for this:',
-            'title' => 'User not found! ;_;',
+            'reason_1' => 'Pengguna mungkin telah mengubah nama penggunanya.',
+            'reason_2' => 'Akun tersebut mungkin tidak tersedia untuk sementara karena masalah keamanan atau penyalahgunaan.',
+            'reason_3' => 'Mungkin anda salah ketik!',
+            'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
+            'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di halaman profil anda.',
+            'edit_big' => 'Sunting saya!',
+            'placeholder' => 'Ketik konten halaman di sini',
+            'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
         ],
         'post_count' => [
             '_' => 'Berkontribusi :link',
