@@ -26,7 +26,7 @@ return [
     'order' => [
         'invalid' => 'Pesanan tidak valid',
         'items' => [
-            'virtual_only' => 'Metode pembayaran ini tidak bisa dipakai untuk barang ini',
+            'virtual_only' => 'Metode pembayaran `:provider` tidak bisa dipakai untuk barang ini.',
         ],
         'status' => [
             'not_checkout' => 'Mencoba menerima pembayaran untuk pesanan yang salah `:state`.',
