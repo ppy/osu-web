@@ -21,53 +21,53 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be signed in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => 'Silakan masuk untuk menyunting.',
+            'system_generated' => 'Posting yang dihasilkan secara otomatis tidak dapat disunting.',
+            'wrong_user' => 'Hanya pengirim postingan yang dapat menyunting posting.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Nothing has happened... yet.',
+        'empty' => 'Belum ada yang terjadi ... belum..',
     ],
 
     'index' => [
-        'deleted_beatmap' => 'deleted',
-        'title' => 'Beatmap Discussions',
+        'deleted_beatmap' => 'terhapus',
+        'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
-            'deleted' => 'Include deleted discussions',
+            'deleted' => 'Masukkan diskusi yang dihapus',
 
             'user' => [
-                'label' => 'User',
-                'overview' => 'Activities overview',
+                'label' => 'Pengguna',
+                'overview' => 'Ringkasan aktivitas',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'Post date',
-        'deleted_at' => 'Deletion date',
-        'message_type' => 'Type',
+        'created_at' => 'Tanggal post',
+        'deleted_at' => 'Tanggal penghapusan',
+        'message_type' => 'Jenis',
         'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'Tidak ada postingan yang menarik perhatian saya',
+        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Sign in to Respond',
-            'user' => 'Respond',
+            'guest' => 'Masuk untuk menanggapi',
+            'user' => 'Tanggapi',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'Ditandai selesai oleh :user',
+            'false' => 'Dibuka ulang oleh :user',
         ],
     ],
 
