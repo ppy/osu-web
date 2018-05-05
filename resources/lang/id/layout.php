@@ -43,7 +43,7 @@ return [
             'team' => 'tim',
         ],
         'help' => [
-            '_' => 'dukungan',
+            '_' => 'bantuan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'tidak, um, saya butuh bantuan!',
@@ -56,7 +56,7 @@ return [
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
             'beatmapset-watches-index' => 'daftar pantauan modding',
-            'beatmapset_discussion_votes-index' => 'laman diskusi pemungutan suara beatmap',
+            'beatmapset_discussion_votes-index' => 'laman diskusi voting beatmap',
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
             'packs' => 'paket',
@@ -117,7 +117,7 @@ return [
             'messages' => 'Pesan',
             'settings' => 'Pengaturan',
             'logout' => 'Keluar',
-            'help' => 'dukungan',
+            'help' => 'bantuan',
             'modding-history-discussions' => 'diskusi modding pengguna',
             'modding-history-events' => 'peristiwa modding pengguna',
             'modding-history-index' => 'riwayat modding pengguna',
@@ -172,7 +172,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Dukungan & Komunitas',
+            '_' => 'Bantuan & Komunitas',
             'faq' => 'Pertanyaan yang Sering Ditanyakan',
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
@@ -225,7 +225,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Untuk jaga-jaga, ini kode yang dapat anda berikan saat menghubungi dukungan!',
+        'reference' => 'Untuk jaga-jaga, ini kode yang dapat anda berikan saat menghubungi layanan dukungan!',
     ],
 
     'popup_login' => [
@@ -242,7 +242,7 @@ return [
         ],
 
         'register' => [
-            'info' => 'Anda butuh akun, Pak. Mengapa anda belum memilikinya?',
+            'info' => 'Anda butuh akun. Mengapa anda belum memilikinya?',
             'title' => 'Belum memiliki akun?',
         ],
     ],

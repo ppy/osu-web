@@ -86,7 +86,7 @@ return [
     'logout_confirm' => 'Apa anda yakin akan keluar? :(',
     'restricted_banner' => [
         'title' => 'Akun anda telah dibatasi!',
-        'message' => 'Selama dibatasi, anda tidak dapat berinteraksi dengan pengguna lain dan skor hanya akan terlihat oleh anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika anda ingin mengajukan banding atas pembatasan anda, mohon<a href="mailto:accounts@ppy.sh">hubungi dukungan</a>.',
+        'message' => 'Selama dibatasi, anda tidak dapat berinteraksi dengan pengguna lain dan skor hanya akan terlihat oleh anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika anda ingin mengajukan banding atas pembatasan anda, mohon<a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
