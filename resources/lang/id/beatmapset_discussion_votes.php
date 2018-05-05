@@ -20,10 +20,10 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap Discussion Votes',
+        'title' => 'Laman Diskusi Voting Beatmap',
     ],
 
     'item' => [
-        'score' => 'Score',
+        'score' => 'Skor',
     ],
 ];
