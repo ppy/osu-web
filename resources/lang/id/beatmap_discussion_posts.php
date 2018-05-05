@@ -20,10 +20,10 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap Discussion Posts',
+        'title' => 'Postingan Diskusi Beatmap',
     ],
 
     'item' => [
-        'content' => 'Content',
+        'content' => 'Isi',
     ],
 ];
