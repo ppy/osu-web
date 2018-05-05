@@ -173,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tersedia',
-                'available_info' => "Kudosu dapat ditukarkan menjadi kudosu stars, yang akan membantu beatmap anda mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum anda tukarkan.",
+                'available_info' => 'Kudosu dapat ditukarkan menjadi kudosu stars, yang akan membantu beatmap anda mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum anda tukarkan.',
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang diperoleh',
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
-                'bad_standing' => "Akun <strong>:username</strong> tidak dalam posisi baik :(",
+                'bad_standing' => 'Akun <strong>:username</strong> tidak dalam posisi baik :(',
                 'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
 
                 'recent_infringements' => [

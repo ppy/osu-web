@@ -21,35 +21,35 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'description' => 'apa yang terjadi bung?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => 'Insiden Aktif',
+        'automated' => 'otomatis',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => 'Pengguna yang Daring dalam 24 Jam Terakhir',
+            'score' => 'Pengiriman Skor dalam 24 Jam Terakhir',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => 'Pengguna yang Daring Saat Ini',
+        'score' => 'Pengiriman Skor per Detik',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => 'Insiden Terbaru',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => 'Terselesaikan',
+                'resolving' => 'Sedang Menyelesaikan',
+                'unknown' => 'Tidak Diketahui',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'Waktu Aktif',
             'graphs' => [
                 'server' => 'server',
                 'web' => 'web',
@@ -57,12 +57,12 @@ return [
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => 'hari ini',
+            'week' => 'minggu',
+            'month' => 'bulan',
+            'all_time' => 'sepanjang waktu',
+            'last_week' => 'minggu lalu',
+            'weeks_ago' => ':count minggu lalu|:count minggu lalu',
         ],
     ],
 ];
