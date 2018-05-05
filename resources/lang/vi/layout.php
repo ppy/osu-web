@@ -82,7 +82,7 @@ return [
             'getChat' => 'chat',
             'getLive' => 'trực tiếp',
             'contests' => 'cuộc thi',
-            'profile' => 'hồ sơ',
+            'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
             'tournaments-index' => 'giải đấu',
             'tournaments-show' => 'thông tin giải đấu',
@@ -254,7 +254,7 @@ return [
             'account-edit' => 'Cài Đặt',
             'friends' => 'Bạn Bè',
             'logout' => 'Đăng Xuất',
-            'profile' => 'Hồ Sơ Của Tôi',
+            'profile' => 'Trang Cá Nhân',
         ],
     ],
 
