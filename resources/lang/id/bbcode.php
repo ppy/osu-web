@@ -19,20 +19,20 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
+    'bold' => 'Cetak Tebal',
+    'heading' => 'Tajuk',
+    'image' => 'Gambar',
+    'italic' => 'Cetak Miring',
+    'link' => 'Tautan',
+    'list' => 'Daftar',
+    'list_numbered' => 'Daftar Berurutan Angka',
     'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
+        '_' => 'Ukuran Huruf',
+        'tiny' => 'Mungil',
+        'small' => 'Kecil',
         'normal' => 'Normal',
-        'large' => 'Large',
+        'large' => 'Besar',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'spoilerbox' => 'Kotak Spoiler',
+    'strikethrough' => 'Coret',
 ];
