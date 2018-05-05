@@ -20,7 +20,7 @@
 
 return [
     'not_negative' => ':attribute tidak bisa negatif.',
-    'required' => ':attribute wajib.',
+    'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
