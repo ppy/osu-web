@@ -22,31 +22,31 @@ return [
     'signature' => [
         'not_match' => 'Tanda tangan tidak cocok',
     ],
-    'notification_type' => 'notification_type is not valid :type',
+    'notification_type' => 'notification_type tidak valid :type',
     'order' => [
         'invalid' => 'Pesanan tidak valid',
         'items' => [
-            'virtual_only' => 'pembayaran via `:provider` tidak berlaku untuk barang fisik.',
+            'virtual_only' => 'Metode pembayaran ini tidak bisa dipakai untuk barang ini',
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
+            'not_checkout' => 'Mencoba menerima pembayaran untuk pesanan yang salah `:state`.',
+            'not_paid' => 'Mencoba melakukan pengembalian pembayaran untuk pesanan yang salah `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param does not match',
+        'invalid' => '`:param` parameter tidak cocok',
     ],
     'paypal' => [
-        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+        'not_echeck' => 'Pembayaran yang tertunda bukan pembayaran echeck. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment amount does not match: :actual != :expected',
-            'currency' => 'Payment is not in USD. (:type)',
+            'amount' => 'Jumlah pembayaran tidak sesuai: :actual != :expected',
+            'currency' => 'Pembayaran tidak dalam USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Received order transaction id is malformed',
-        'user_id_mismatch' => 'external_id contains wrong user id',
+        'malformed' => 'ID transaksi pesanan yang diterima cacat',
+        'user_id_mismatch' => 'external_id mengandung id pengguna yang salah',
     ],
 ];
