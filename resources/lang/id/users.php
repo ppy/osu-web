@@ -137,19 +137,19 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Saat ini tidak ada...',
-                'title' => 'Beatmaps',
+                'title' => 'Beatmap',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favorit (:count)',
+                    'title' => 'Beatmap Favorit (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Graveyarded (:count)',
+                    'title' => 'Beatmap Graveyarded (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranked & Approved (:count)',
+                    'title' => 'Beatmap Ranked & Approved (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pending (:count)',
+                    'title' => 'Beatmap Pending (:count)',
                 ],
             ],
             'historical' => [
@@ -161,7 +161,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'kali dimainkan',
-                    'title' => 'Beatmaps yang Paling Banyak Dimainkan',
+                    'title' => 'Beatmap yang Paling Banyak Dimainkan',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',

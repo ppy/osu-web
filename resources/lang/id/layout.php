@@ -70,7 +70,7 @@ return [
             '_' => 'peringkat',
             'index' => 'performa',
             'performance' => 'performa',
-            'charts' => 'charts',
+            'charts' => 'spotlights',
             'score' => 'skor',
             'country' => 'negara',
             'kudosu' => 'kudosu',

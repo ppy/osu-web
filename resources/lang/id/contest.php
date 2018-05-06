@@ -33,9 +33,9 @@ return [
     'entry' => [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
-        'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes saat sedang dibatasi atau dibungkam.',
+        'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes saat akun sedang dibatasi atau dibungkam.',
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
-        'over' => 'Terima kasih telah mengirimkan entri anda! Namun pengiriman untuk kontes ini telah ditutup and pemungutan suara akan segera dibuka.',
+        'over' => 'Terima kasih telah mengirimkan entri anda! Namun penyerahan entri untuk kontes ini telah ditutup and pemungutan suara akan segera dibuka.',
         'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
         'drop_here' => 'Letakkan entri anda disini',
         'wrong_type' => [

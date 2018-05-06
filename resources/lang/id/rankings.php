@@ -22,7 +22,7 @@ return [
     'header' => 'Peringkat :type',
     'type' => [
         'performance' => 'Performa',
-        'charts' => 'Charts',
+        'charts' => 'Spotlights',
         'score' => 'Skor',
         'country' => 'Negara',
     ],
