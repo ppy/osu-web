@@ -22,7 +22,7 @@ return [
     'header' => ':type Rankning',
     'type' => [
         'performance' => 'Prestanda',
-        'charts' => 'Diagram',
+        'charts' => 'Diagram', // Base text has changed, please check.
         'score' => 'Poäng',
         'country' => 'Land',
     ],
