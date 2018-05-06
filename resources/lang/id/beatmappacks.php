@@ -21,40 +21,40 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'READ THIS BEFORE DOWNLOADING',
+            'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
-                '_' => "Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
-                    All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
-                    :scary extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.",
-                'scary' => 'Do NOT',
+                '_' => 'Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
+                    Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat anda masuk ke mode Play.
+                    :scary ekstrak zip/osz sendiri,
+                    atau beatmap akan ditampilkan salah dalam osu dan tidak akan berfungsi dengan baik.',
+                'scary' => 'JANGAN',
             ],
             'note' => [
-                '_' => 'Also note that it is highly recommended to :scary, since the oldest maps are of much lower quality than most recent maps.',
-                'scary' => 'download the packs from latest to earliest',
+                '_' => 'Juga perhatikan bahwa sangat disarankan untuk :scary, karena map paling lama memiliki kualitas yang jauh lebih rendah daripada map terbaru.',
+                'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'title' => 'Paket Beatmap',
+        'description' => 'Koleksi beatmap yang sebelumnya sudah dipaket telah disusun berdasarkan tema map.',
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => 'Unduh',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => 'telah diselesaikan',
+            'not_cleared' => 'belum diselesaikan',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Artist/Album',
+        'artist' => 'Artis/Album',
         'chart' => 'Chart',
-        'standard' => 'Standard',
-        'theme' => 'Theme',
+        'standard' => 'Standar',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [
-        '_' => 'You need to be :link to download',
-        'link_text' => 'signed in',
+        '_' => 'Anda harus :link untuk mengunduh',
+        'link_text' => 'masuk',
     ],
 ];
