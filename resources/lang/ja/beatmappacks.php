@@ -47,7 +47,7 @@ return [
 
     'mode' => [
         'artist' => 'アーティスト/アルバム',
-        'chart' => 'チャート',
+        'chart' => 'チャート', // Base text has changed, please check.
         'standard' => '基本パック',
         'theme' => 'テーマ',
     ],

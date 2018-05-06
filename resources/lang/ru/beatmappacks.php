@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Артисты/Альбомы',
-        'chart' => 'Чарты',
+        'chart' => 'Чарты', // Base text has changed, please check.
         'standard' => 'Стандартные',
         'theme' => 'Темы',
     ],

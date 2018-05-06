@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Chart',
+        'chart' => 'Spotlights',
         'standard' => 'Standard',
         'theme' => 'Theme',
     ],
