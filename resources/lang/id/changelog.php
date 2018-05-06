@@ -19,20 +19,20 @@
  */
 
 return [
-    'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'feed_title' => 'umpan',
+    'generic' => 'Perbaikan bug dan perkembangan kecil',
+    'users-online' => '1 pengguna daring|:users pengguna daring',
 
     'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'add' => 'tambahan',
+        'fix' => 'perbaikan',
+        'misc' => 'lainnya',
     ],
 
     'support' => [
-        'heading' => 'Love this update?',
-        'text_1' => 'Support further development of osu! and :link today!',
-        'text_1_link' => 'become a supporter',
-        'text_2' => 'Not only will you help speed development, but you will also get some extra features and customisations!',
+        'heading' => 'Menyukai pembaruan ini?',
+        'text_1' => 'Dukung pengembangan osu! lebih lanjut dan :link hari ini!',
+        'text_1_link' => 'jadilah supporter',
+        'text_2' => 'Anda tidak hanya membantu mempercepat waktu pengembangan, tetapi anda juga akan mendapatkan beberapa fitur tambahan dan kustomisasi!',
     ],
 ];
