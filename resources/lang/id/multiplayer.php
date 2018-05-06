@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Matches',
+        'header' => 'Pertandingan Multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -35,9 +35,9 @@ return [
             'match-disbanded' => 'pertandingan dibubarkan',
             'host-changed' => ':user menjadi host',
 
-            'player-left-no-user' => 'seorang pemain meninggalkan pertandingan',
-            'player-joined-no-user' => 'seorang pemain bergabung dalam pertandingan',
-            'player-kicked-no-user' => 'seorang pemain telah dikeluarkan dari pertandingan',
+            'player-left-no-user' => 'seorang pengguna meninggalkan pertandingan',
+            'player-joined-no-user' => 'seorang pengguna bergabung dalam pertandingan',
+            'player-kicked-no-user' => 'seorang pengguna telah dikeluarkan dari pertandingan',
             'match-created-no-user' => 'pertandingan telah dibuat',
             'match-disbanded-no-user' => 'pertandingan telah dibubarkan',
             'host-changed-no-user' => 'host diubah',

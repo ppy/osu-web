@@ -28,7 +28,7 @@ return [
             'exhausted' => 'Anda telah mencapai batas nominasi anda untuk hari ini, silakan coba lagi besok.',
         ],
         'resolve' => [
-            'not_owner' => 'Hanya pemilik thread dan beatmap yang dapat menyelesaikan diskusi.',
+            'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
         ],
 
         'vote' => [
@@ -41,7 +41,7 @@ return [
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Posting yang dihasilkan secara otomatis tidak dapat disunting.',
-            'not_owner' => 'Hanya pemilik thread yang dapat menyunting posting.',
+            'not_owner' => 'Hanya pemilik topik yang dapat menyunting posting.',
         ],
     ],
 
@@ -72,29 +72,29 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
-                'locked' => 'Tidak dapat menghapus postingan di thread yang telah dikunci.',
+                'locked' => 'Tidak dapat menghapus postingan di topik yang telah dikunci.',
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan',
-                'not_owner' => 'Hanya pemilik thread yang dapat menghapus posting.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menghapus posting.',
             ],
 
             'edit' => [
                 'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
-                'locked' => 'Thread telah dikunci untuk melakukan penyuntingan.',
+                'locked' => 'Topik telah dikunci untuk melakukan penyuntingan.',
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
-                'not_owner' => 'Hanya pemilik thread yang dapat menyunting posting.',
-                'topic_locked' => 'Tidak dapat menyunting postingan di thread yang telah dikunci.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menyunting posting.',
+                'topic_locked' => 'Tidak dapat menyunting postingan di topik yang telah dikunci.',
             ],
 
             'store' => [
                 'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
-                'too_many_help_posts' => 'Anda harus memainkan game-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan game-nya, kirim email ke support@ppy.sh ', // FIXME: alamat email unhardcode
+                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh ', // FIXME: alamat email unhardcode
             ],
         ],
 
         'topic' => [
             'reply' => [
                 'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
-                'locked' => 'Tidak bisa membalas di thread yang telah dikunci.',
+                'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
@@ -107,7 +107,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
-                'no_permission' => 'Tidak memiliki izin untuk membuat thread baru.',
+                'no_permission' => 'Tidak memiliki izin untuk membuat topik baru.',
                 'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
             ],
 
@@ -131,7 +131,7 @@ return [
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Sampul tidak valid ditentukan.',
-                'not_owner' => 'Hanya pemilik thread yang dapat menyunting sampul.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
         ],
 
