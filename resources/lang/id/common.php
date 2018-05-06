@@ -19,45 +19,45 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => 'Apa anda yakin?',
+    'saved' => 'Tersimpan',
 
     'array_and' => [
         'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'two_words_connector' => ' dan ',
+        'last_word_connector' => ', dan ',
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'change' => 'change',
-        'click_to_copy' => 'click to copy to clipboard',
-        'click_to_copy_copied' => 'copied to clipboard!',
-        'delete' => 'Delete',
-        'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reply_reopen' => 'Reply and Reopen',
-        'reply_resolve' => 'Reply and Resolve',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'see_more' => 'see more',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'cancel' => 'Batal',
+        'change' => 'ubah',
+        'click_to_copy' => 'klik untuk menyalin',
+        'click_to_copy_copied' => 'tersalin!',
+        'delete' => 'Hapus',
+        'permalink' => 'tautan',
+        'permalink_copied' => 'tautan tersalin',
+        'post' => 'Posting',
+        'reply' => 'Balas',
+        'reply_reopen' => 'Balas dan Buka Kembali',
+        'reply_resolve' => 'Balas dan Tandai Selesai',
+        'reset' => 'Atur Ulang',
+        'save' => 'Simpan',
+        'saving' => 'Menyimpan...',
+        'see_more' => 'perlihatkan lebih banyak',
+        'show_more' => 'tampilkan lebih banyak',
+        'upload_image' => 'unggah gambar',
     ],
 
     'count' => [
-        'badges' => ':count badge|:count badges',
-        'days' => ':count day|:count days',
-        'hour_short_unit' => 'hr|hrs',
-        'hours' => ':count hour|:count hours',
-        'item' => ':count unit|:count units',
-        'minute_short_unit' => 'min|mins',
-        'months' => ':count month|:count months',
-        'second_short_unit' => 'sec|secs',
-        'years' => ':count year|:count years',
+        'badges' => ':count lencana|:count lencana',
+        'days' => ':count hari|:count hari',
+        'hour_short_unit' => 'jam|jam',
+        'hours' => ':count jam|:count jam',
+        'item' => ':count unit|:count unit',
+        'minute_short_unit' => 'menit|menit',
+        'months' => ':count bulan|:count bulan',
+        'second_short_unit' => 'detik|detik',
+        'years' => ':count tahun|:count tahun',
     ],
 
     'datetime' => [
@@ -74,16 +74,16 @@ return [
         'keyboard' => 'Keyboard',
         'mouse' => 'Mouse',
         'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'touch' => 'Layar Sentuh',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => 'letakkan di sini mengunggah',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => 'sebelumnya',
+        'next' => 'selanjutnya',
     ],
 
     'score_count' => [
@@ -96,13 +96,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count hari yang lalu|:count hari yang lalu',
+        'hours_ago' => ':count jam yang lalu|:count jam yang lalu',
+        'now' => 'sekarang',
+        'remaining' => 'Waktu Tersisa',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => 'Pemberitahuan',
     ],
 ];
