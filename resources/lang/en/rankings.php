@@ -22,7 +22,7 @@ return [
     'header' => ':type Ranking',
     'type' => [
         'performance' => 'Performance',
-        'charts' => 'Charts',
+        'charts' => 'Spotlights',
         'score' => 'Score',
         'country' => 'Country',
     ],

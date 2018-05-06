@@ -70,7 +70,7 @@ return [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'tabelas',
+            'charts' => 'tabelas', // Base text has changed, please check.
             'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',

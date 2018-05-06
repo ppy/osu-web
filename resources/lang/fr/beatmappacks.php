@@ -48,7 +48,7 @@ return [
     'mode' => [
         'artist' => 'Artiste/Album',
         // unsure for this
-        'chart' => 'Classement',
+        'chart' => 'Classement', // Base text has changed, please check.
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],

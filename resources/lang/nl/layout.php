@@ -43,7 +43,7 @@ return [
             'show' => 'info',
             'index' => 'index',
             // 'getPacks' => 'pakketten',
-            // 'getCharts' => 'grafieken',
+            // 'getCharts' => 'grafieken', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -51,7 +51,7 @@ return [
         ],
         'rankings' => [
             '_' => 'rankings',
-            'charts' => 'grafieken',
+            'charts' => 'grafieken', // Base text has changed, please check.
         ],
         'community' => [
             '_' => 'community',

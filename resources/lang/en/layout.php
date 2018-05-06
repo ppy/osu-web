@@ -70,7 +70,7 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'charts',
+            'charts' => 'spotlights',
             'score' => 'score',
             'country' => 'country',
             'kudosu' => 'kudosu',
