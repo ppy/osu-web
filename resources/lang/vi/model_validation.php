@@ -33,8 +33,8 @@ return [
         'beatmap_missing' => 'Mốc thời gian đã chỉ định nhưng không có beatmap.',
         'beatmapset_no_hype' => 'Không thể hype beatmap này được.',
         'hype_requires_null_beatmap' => 'Hype phải được thực hiện tại phần Chung (tất cả difficulties).',
-        'invalid_beatmap_id' => 'Difficulty đã chỉ định không hợp lệ.',
-        'invalid_beatmapset_id' => 'Beatmap đã chỉ định không hợp lệ.',
+        'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
+        'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
         'locked' => 'Cuộc thảo luận đã bị khóa.',
         'mapper_note_wrong_user' => 'Chỉ có chủ beatmap mới có thể đăng ghi chú.',
 
@@ -43,11 +43,11 @@ return [
             'hyped' => 'Bạn đã hype beatmap này rồi.',
             'limit_exceeded' => 'Bạn đã sử dụng hết số hype bạn có.',
             'not_hypeable' => 'Beatmap này không thể được hype.',
-            'owner' => 'Không hype map của bạn.',
+            'owner' => 'Không thể hype map của bạn.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Mốc thời gian đã chỉ định vượt quá độ dài beatmap.',
+            'exceeds_beatmapset_length' => 'Mốc thời gian đã chọn vượt quá độ dài beatmap.',
             'negative' => 'Mốc thời gian không thể âm.',
         ],
     ],
@@ -98,7 +98,7 @@ return [
         'username_not_allowed' => 'Không cho phép sử dụng tên người dùng đã chọn.',
         'username_too_short' => 'Tên người dùng đã yêu cầu quá ngắn.',
         'username_too_long' => 'Tên người dùng đã yêu cầu quá dài.',
-        'weak' => 'Mật khẩu có trong danh sách đen.', //???
+        'weak' => 'Mật khẩu quá yếu.',
         'wrong_current_password' => 'Mật khẩu hiện tại không đúng.',
         'wrong_email_confirmation' => 'Email xác nhận không phù hợp.',
         'wrong_password_confirmation' => 'Mật khẩu xác nhận không phù hợp.',
