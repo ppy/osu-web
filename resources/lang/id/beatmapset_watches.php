@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => 'Batal Amati',
+            'to_1' => 'Amati',
         ],
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'description' => 'Berikut adalah diskusi beatmap yang anda amati. Anda akan diberitahu jika ada pembaruan atau postingan terbaru.',
+        'title_compact' => 'daftar pengamatan modding',
+        'title_main' => 'Daftar Pengamatan Modding',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => 'Tidak ada diskusi beatmap yang diamati.',
+            'open_issues' => 'Masalah yang ditemukan',
+            'state' => 'Penjelasan',
+            'title' => 'Judul',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => 'Pembaruan baru untuk beatmap ":title"',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => 'Dibaca',
+        'unread' => 'Belum Dibaca',
     ],
 ];

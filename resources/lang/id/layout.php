@@ -55,7 +55,7 @@ return [
             'artists' => 'artis unggulan',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
-            'beatmapset-watches-index' => 'daftar pantauan modding',
+            'beatmapset-watches-index' => 'daftar pengamatan modding',
             'beatmapset_discussion_votes-index' => 'laman diskusi voting beatmap',
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
