@@ -61,7 +61,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', (_e, { selectedUserId }) =>
       @setState () ->
-        @cache = {}
         { selectedUserId }
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
