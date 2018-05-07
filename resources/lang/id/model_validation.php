@@ -30,7 +30,7 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Timestamp ditentukan tetapi beatmap tidak ada.',
+        'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => 'Beatmap tidak dapat dihype.',
         'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian Umum (semua tingkat kesulitan).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
@@ -47,8 +47,8 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Timestamp yang ditentukan melebihi panjang beatmap.',
-            'negative' => 'Timestamp tidak bisa negatif.',
+            'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
+            'negative' => 'Keterangan waktu tidak bisa bernilai negatif.',
         ],
     ],
 
