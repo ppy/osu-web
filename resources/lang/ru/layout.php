@@ -70,7 +70,7 @@ return [
             '_' => 'рейтинг',
             'index' => 'производительности',
             'performance' => 'performance',
-            'charts' => 'по графикам',
+            'charts' => 'по графикам', // Base text has changed, please check.
             'score' => 'по очкам',
             'country' => 'по странам',
             'kudosu' => 'кудосу',

@@ -89,7 +89,7 @@ return [
         'origin_country' => 'De :country',
         'origin_country_age' => ':age de :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
-        'previous_usernames' => 'Antes conocido como :names.',
+        'previous_usernames' => 'Antes conocido como',
         'plays_with' => 'Juega con :devices',
         'title' => 'Perfil de :username',
         'change_avatar' => '¡cambia tu avatar!',
