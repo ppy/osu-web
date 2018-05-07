@@ -233,7 +233,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
       @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        discussions: discussions
+        discussions: _.sortBy discussions, 'timestamp'
 
     @cache.nearbyDiscussions.discussions
 
