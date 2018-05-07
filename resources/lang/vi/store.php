@@ -34,7 +34,7 @@ return [
             'line_2' => 'Tiếp tục thanh toán bằng cách chọn một phương thức thanh toán, hoặc :link để hủy.',
             'link_text' => 'bấm vào đây',
         ],
-        'delayed_shipping' => 'Chúng tôi hiện đang bị choáng ngợp bởi các đơn hàng! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
+        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
     ],
 
     'discount' => 'tiết kiệm :percent%',
