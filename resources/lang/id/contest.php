@@ -20,14 +20,14 @@
 
 return [
     'header' => [
-        'small' => 'Bersaing dengan cara lain selain hanya mengklik lingkaran.',
-        'large' => 'osu! Community Contests',
+        'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam lapangan permainan.',
+        'large' => 'Kompetisi Komunitas osu!',
     ],
     'voting' => [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memilih.',
         'best_of' => [
-            'none_played' => 'Anda tidak terlihat memainkan beatmaps yang memenuhi syarat kontes ini!',
+            'none_played' => 'Anda tidak tercatat pernah memainkan map-map yang disyaratkan dalam kontes ini!',
         ],
     ],
     'entry' => [
@@ -35,13 +35,13 @@ return [
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
         'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes saat akun sedang dibatasi atau dibungkam.',
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
-        'over' => 'Terima kasih telah mengirimkan entri anda! Namun penyerahan entri untuk kontes ini telah ditutup and pemungutan suara akan segera dibuka.',
+        'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
         'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
         'drop_here' => 'Letakkan entri anda disini',
         'wrong_type' => [
-            'art' => 'Hanya format file .jpg dan .png yang diterima di kontes ini',
-            'beatmap' => 'Hanya format file .osu files yang diterima di kontes ini',
-            'music' => 'Hanya format file .mp3 files yang diterima di kontes ini',
+            'art' => 'Hanya file-file dengan format .jpg dan .png yang diterima di kontes ini',
+            'beatmap' => 'Hanya file-file dengan format .osu yang diterima di kontes ini',
+            'music' => 'Hanya file-file dengan format .mp3 yang diterima di kontes ini',
         ],
         'too_big' => 'Entri untuk kontes ini hanya dapat menampung sebanyak :limit.',
     ],
@@ -61,8 +61,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Pendaftaran Dibuka',
-        'voting' => 'Pemungutan Suara Dimulai',
-        'results' => 'Hasil',
+        'entry' => 'Menerima Entri',
+        'voting' => 'Dalam Tahapan Pemungutan Suara',
+        'results' => 'Selesai Dilaksanakan',
     ],
 ];

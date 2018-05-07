@@ -22,8 +22,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Silakan masuk untuk menyunting.',
-            'system_generated' => 'Posting yang dihasilkan secara otomatis tidak dapat disunting.',
-            'wrong_user' => 'Hanya pengirim postingan yang dapat menyunting posting.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
 

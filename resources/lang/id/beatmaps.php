@@ -124,7 +124,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah anda yakin? Dengan ini anda akan menggunakan :n hype anda yang tersisa, aksi ini tidak dapat diurungkan.",
+        'confirm' => 'Apakah anda yakin? Dengan ini anda akan menggunakan :n hype anda yang tersisa, aksi ini tidak dapat diurungkan.',
         'explanation' => 'Hype beatmap ini supaya layak dinominasi dan segera ranked!',
         'explanation_guest' => 'Masuk dan hype beatmap ini supaya layak dinominasi dan segera ranked!',
         'new_time' => 'Anda akan mendapatkan hype lain dalam :new_time.',

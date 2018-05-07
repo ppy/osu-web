@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Artis unggulan adalah para artis yang berkolaborasi dengan kami dalam rangka membawa musik yang baru dan original ke osu!. Artis-artis ini dan beberapa lagu mereka yang telah dipilih sendiri oleh tim osu! dengan karyanya yang menakjubkan dan cocok untuk dipakai mapping. Beberapa artis unggulan ini juga telah membuat lagu baru eksklusif untuk digunakan di osu! <br><br>Semua lagu di bagian ini disediakan dalam format .osz yang telah diatur dan telah secara resmi dilisensikan untuk digunakan dalam osu! dan konten yang terkait dengan osu!',
+        'description' => 'Artis Unggulan (Featured Artist) merupakan para artis yang berkolaborasi dengan kami dalam rangka membawa musik yang baru dan original ke osu!. Artis-artis berikut beserta lagu-lagu di bawah ini telah secara khusus diseleksi oleh tim osu! agar sekiranya cocok untuk dapat di-map dengan kesan yang mewah. Beberapa dari mereka bahkan telah membuat lagu-lagu baru yang secara eksklusif dibuat untuk osu!.<br><br>Semua lagu yang disediakan di bawah ini tersedia untuk diunduh dalam format .osz dengan timing yang sudah disediakan sebelumnya dan telah secara resmi dilisensikan untuk penggunaan di dalam osu! dan konten-konten lainnya yang terkait dengan osu!',
     ],
 
     'links' => [
@@ -44,6 +44,6 @@ return [
     'songs' => [
         '_' => 'Lagu',
         'count' => ':count lagu|:count lagu',
-        'exclusive' => 'osu! exclusive',
+        'exclusive' => 'eksklusif osu!',
     ],
 ];

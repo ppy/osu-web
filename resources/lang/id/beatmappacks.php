@@ -30,7 +30,7 @@ return [
                 'scary' => 'JANGAN',
             ],
             'note' => [
-                '_' => 'Juga perhatikan bahwa sangat disarankan untuk :scary, karena map paling lama memiliki kualitas yang jauh lebih rendah daripada map terbaru.',
+                '_' => 'Mohon diingat bahwa sangat disarankan bagi Anda untuk :scary, mengingat map-map yang berasal dari era yang lebih lama pada umumnya cenderung memiliki kualitas yang jauh lebih rendah daripada map-map yang berasal dari era yang lebih modern.',
                 'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
             ],
         ],
@@ -50,7 +50,7 @@ return [
         'artist' => 'Artis/Album',
         'chart' => 'Spotlights',
         'standard' => 'Standar',
-        'theme' => 'Tema',
+        'theme' => 'Tematik',
     ],
 
     'require_login' => [

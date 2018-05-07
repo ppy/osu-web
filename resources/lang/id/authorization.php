@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Tidak dapat membatalkan hyping.',
+            'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
             'has_reply' => 'Tidak dapat menghapus diskusi dengan balasan',
         ],
         'nominate' => [
@@ -34,29 +34,29 @@ return [
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
             'owner' => 'Tidak dapat memilih di diskusi sendiri.',
-            'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending',
+            'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Posting yang dihasilkan secara otomatis tidak dapat disunting.',
-            'not_owner' => 'Hanya pemilik topik yang dapat menyunting posting.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting post.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Akses ke kanal yang diminta tidak diizinkan',
+                'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Akses ke kanal yang dituju diperlukan',
-                    'moderated' => 'Channel saat ini dimoderasi.',
-                    'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini',
+                    'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
+                    'moderated' => 'Kanal ini sedang berada dalam moderasi admin.',
+                    'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini.',
                 ],
 
                 'not_allowed' => 'Tidak dapat mengirim pesan saat diblokir/dibatasi/dibungkam.',
@@ -65,7 +65,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Anda tidak dapat mengubah suara Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
+        'voting_over' => 'Anda tidak dapat mengubah pilihan anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
     ],
 
     'forum' => [
@@ -73,21 +73,21 @@ return [
             'delete' => [
                 'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
                 'locked' => 'Tidak dapat menghapus postingan di topik yang telah dikunci.',
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menghapus posting.',
             ],
 
             'edit' => [
                 'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
-                'locked' => 'Topik telah dikunci untuk melakukan penyuntingan.',
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menyunting posting.',
+                'locked' => 'Topik telah dikunci, sehingga penyuntingan post tidak lagi dapat dilakukan.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menyunting post.',
                 'topic_locked' => 'Tidak dapat menyunting postingan di topik yang telah dikunci.',
             ],
 
             'store' => [
                 'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
-                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh ', // FIXME: alamat email unhardcode
+                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh', // FIXME: alamat email unhardcode
             ],
         ],
 
@@ -95,7 +95,7 @@ return [
             'reply' => [
                 'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
@@ -106,7 +106,7 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membuat topik baru.',
                 'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
             ],
@@ -124,13 +124,13 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Sampul tidak valid ditentukan.',
+                'uneditable' => 'Gambar sampul yang anda ingin terapkan tidak valid.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
         ],
