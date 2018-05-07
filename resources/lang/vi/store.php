@@ -20,63 +20,63 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => 'Kho hàng',
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, there are problems with your cart!',
-        'cart_problems_edit' => 'Click here to go edit it.',
-        'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
-        'pay' => 'Checkout with Paypal',
+        'cart_problems' => 'Uh oh, có vấn đề với giỏ hàng của bạn!',
+        'cart_problems_edit' => 'Bấm vào đây để chỉnh sửa nó.',
+        'declined' => 'Thanh toán đã bị hủy.',
+        'error' => 'Đã xảy ra sự cố khi hoàn thành thanh toán của bạn  :(',
+        'pay' => 'Thanh toán với Paypal',
         'pending_checkout' => [
-            'line_1' => 'A previous checkout was started but did not finish.',
-            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
-            'link_text' => 'click here',
+            'line_1' => 'Lần thanh toán trước đã bắt đầu nhưng chưa kết thúc.',
+            'line_2' => 'Tiếp tục thanh toán bằng cách chọn một phương thức thanh toán, hoặc :link để hủy.',
+            'link_text' => 'bấm vào đây',
         ],
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
     ],
 
-    'discount' => 'save :percent%',
+    'discount' => 'tiết kiệm :percent%',
 
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => ':name cho :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+            'quantity' => 'Số lượng',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => 'Tên',
 
         'stock' => [
-            'out' => 'This item is currently out of stock. Check back later!',
-            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the dropdown to choose a different type or check back later!',
+            'out' => 'Mặt hàng này hiện đang hết hàng. Kiểm tra lại sau!',
+            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng dropdown menu để chọn loại khác hoặc kiểm tra lại sau!',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => 'Thêm Vào Giỏ Hàng',
+        'notify' => 'Thông báo cho tôi khi có hàng!',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
-        'notification_remove_text' => 'here',
+        'notification_success' => 'bạn sẽ được thông báo khi chúng tôi có hàng mới. bấm vào :link để hủy',
+        'notification_remove_text' => 'đây',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => 'Sản phẩm này đã có trong kho!',
     ],
 
     'supporter_tag' => [
-        'gift' => 'gift to player',
+        'gift' => 'tặng người chơi khác',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => 'Bạn cần phải :link để lấy một supporter tag!',
+            'link_text' => 'đăng nhập',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => 'Bạn cần phải :link để đổi tên!',
+            'link_text' => 'đăng nhập',
         ],
     ],
 ];

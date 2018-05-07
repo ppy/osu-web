@@ -153,7 +153,7 @@ return [
                 'max_options' => 'Số lựa chọn cho một người',
                 'max_options_info' => 'Đây là số lượng các lựa chọn mà người dùng được chọn trong khi thăm dò.',
                 'options' => 'Các lựa chọn',
-                'options_info' => 'Đặt mỗi lựa chọn trên một dòng. Bạn có thể nhập cao nhất 10 lựa chọn.',
+                'options_info' => 'Đặt mỗi lựa chọn trên một dòng. Bạn có thể nhập tối đa 10 lựa chọn.',
                 'title' => 'Câu hỏi',
                 'vote_change' => 'Cho phép bỏ phiếu lại.',
                 'vote_change_info' => 'Nếu được cho phép, người dùng có thể đổi phiếu của họ.',

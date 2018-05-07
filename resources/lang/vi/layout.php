@@ -82,7 +82,7 @@ return [
             'getChat' => 'chat',
             'getLive' => 'trực tiếp',
             'contests' => 'cuộc thi',
-            'profile' => 'hồ sơ',
+            'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
             'tournaments-index' => 'giải đấu',
             'tournaments-show' => 'thông tin giải đấu',
@@ -238,7 +238,7 @@ return [
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
-                'email' => 'Không tồn tại username hoặc địa chỉ email',
+                'email' => 'Không tồn tại tên tài khoản hoặc địa chỉ email',
                 'password' => 'Sai mật khẩu',
             ],
         ],
@@ -254,7 +254,7 @@ return [
             'account-edit' => 'Cài Đặt',
             'friends' => 'Bạn Bè',
             'logout' => 'Đăng Xuất',
-            'profile' => 'Hồ Sơ Của Tôi',
+            'profile' => 'Trang Cá Nhân',
         ],
     ],
 

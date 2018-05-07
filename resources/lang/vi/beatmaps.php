@@ -74,9 +74,12 @@ return [
 
         'mode' => [
             'events' => 'Lịch sử',
-            'general' => 'Chung',
-            'general_all' => 'Chung (tất cả difficulties)',
+            'general' => 'Chung :scope',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => 'Difficulty này',
+                'generalAll' => 'Tất cả difficulties',
+            ],
         ],
 
         'new' => [

@@ -19,239 +19,286 @@
  */
 
 return [
-    'deleted' => '[deleted user]',
+    'deleted' => '[người dùng đã bị xóa]',
 
     'beatmapset_activities' => [
         'discussions' => [
-            'title_recent' => 'Recently started discussions',
+            'title_recent' => 'Cuộc thảo luận gần đây',
         ],
 
         'events' => [
-            'title_recent' => 'Recent events',
+            'title_recent' => 'Sự kiện gần đây',
+
         ],
 
         'posts' => [
-            'title_recent' => 'Recent posts',
+            'title_recent' => 'Bài đăng gần đây',
         ],
 
         'votes_received' => [
-            'title_most' => 'Most upvoted by (last 3 months)',
+            'title_most' => 'Được upvote nhiều nhất bởi (3 tháng qua)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Most upvoted (last 3 months)',
+            'title_most' => 'Upvote nhiều nhất (3 tháng qua)',
         ],
+    ],
+
+    'card' => [
+        'loading' => 'Đang tải...',
+        'send_message' => 'gửi tin nhắn',
     ],
 
     'login' => [
         '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
-        'button' => 'Sign in',
-        'button_posting' => 'Signing in...',
-        'remember' => 'Remember this computer',
-        'title' => 'Please login to proceed',
-        'failed' => 'Incorrect login',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
+        'username' => 'Tên tài khoản',
+        'password' => 'Mật khẩu',
+        'button' => 'Đăng nhập',
+        'button_posting' => 'Đang đăng nhập...',
+        'remember' => 'Nhớ máy tính này',
+        'title' => 'Vui lòng đăng nhập để tiếp tục',
+        'failed' => 'Đăng nhập không chính xác',
+        'register' => 'Không có tài khoản osu!? Tạo một tài khoản mới',
+        'forgot' => 'Quên mật khẩu?',
         'beta' => [
-            'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
+            'small' => '(người ủng hộ sẽ sớm được tham gia)',
         ],
 
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'tại đây', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => 'Bài đăng của :username',
+    ],
+
     'signup' => [
-        '_' => 'Register',
+        '_' => 'Đăng kí',
     ],
     'anonymous' => [
-        'login_link' => 'click to login',
-        'login_text' => 'login',
-        'username' => 'Guest',
-        'error' => 'You need to be logged in to do this.',
+        'login_link' => 'bấm để đăng nhập',
+        'login_text' => 'đăng nhập',
+        'username' => 'Khách',
+        'error' => 'Bạn cần phải đăng nhập để làm việc này.',
     ],
-    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
     'restricted_banner' => [
-        'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'title' => 'Tài khoản của bạn đã bị hạn chế!',
+        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
-        'age' => ':age years old',
-        'change_avatar' => 'change your avatar!',
-        'first_members' => 'Here since the beginning',
+        '404' => 'Không tìm thấy người dùng! ;_;',
+        'age' => ':age tuổi',
+        'change_avatar' => 'đổi ảnh đại diện!',
+        'first_members' => 'Tại đây từ thuở xa xưa',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Joined :date',
-        'lastvisit' => 'Last seen :date',
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        'joined_at' => 'Đã tham gia :date',
+        'lastvisit' => 'Lần cuối hoạt động :date',
+        'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age from :country',
-        'origin_country' => 'From :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
+        'origin_country_age' => ':age từ :country',
+        'origin_country' => 'Từ :country',
+        'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
+        'previous_usernames' => 'được biết đến trước đây với',
+        'plays_with' => 'Chơi với :devices',
+        'title' => 'Trang cá nhân của :username',
 
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
-                'defaults_info' => 'More cover options will be available in the future',
+                'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
+                'defaults_info' => 'Sẽ có thêm lựa chọn ảnh bìa trong tương lai',
                 'upload' => [
-                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
-                    'button' => 'Upload image',
-                    'dropzone' => 'Drop here to upload',
-                    'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be 2000x700',
-                    'too_large' => 'Uploaded file is too large.',
-                    'unsupported_format' => 'Unsupported format.',
+                    'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
+                    'button' => 'Tải ảnh lên',
+                    'dropzone' => 'Thả vào đây để tải lên',
+                    'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
+                    'restriction_info' => "Tải lên chỉ có sẵn cho <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a>",
+                    'size_info' => 'Kích cỡ ảnh bìa nên là 2000x700',
+                    'too_large' => 'Tệp đã tải lên quá lơn.',
+                    'unsupported_format' => 'Định dạng không được hỗ trợ.',
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'default game mode',
-                'set' => 'set :mode as profile default game mode',
+                'is_default_tooltip' => 'chế độ chơi mặc định',
+                'set' => 'đặt :mode làm chế độ chơi mặc định của trang cá nhân',
             ],
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
-            'unranked' => 'No recent plays',
+            'followers' => ':count người theo dõi',
+            'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
-                'title' => 'Achievements',
-                'achieved-on' => 'Achieved on :date',
+                'title' => 'Huy hiệu',
+                'achieved-on' => 'Đạt được vào :date',
             ],
             'beatmaps' => [
-                'none' => 'None... yet.',
+                'none' => 'Chưa có... gì cả.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'Beatmap Yêu Thích (:count)',
                 ],
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Beatmap Đang Chờ (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
+                'empty' => 'Chưa ghi nhận điểm. :(',
+                'title' => 'Lịch Sử',
+
+                'monthly_playcounts' => [
+                    'title' => 'Lịch Sử Chơi',
+                ],
                 'most_played' => [
-                    'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'count' => 'số lần chơi',
+                    'title' => 'Beatmap được chơi nhiều nhất',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'accuracy' => 'độ chính xác: :percentage',
+                    'title' => 'Những Lần Chơi Gần Đây (24h)',
                 ],
-                'title' => 'Historical',
+                'replays_watched_counts' => [
+                    'title' => 'Lịch Sử Replay Được Xem',
+                ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available' => 'Kudosu Có Sẵn',
+                'available_info' => 'Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.',
+                'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total' => 'Tông Số Kudosu Nhận Được',
+                'total_info' => 'Dựa vào số lượng đóng góp mà người dùng này đã thực hiện để điều chỉnh beatmap. Xem <a href="'.osu_url('user.kudosu').'">trang này</a> để biết thêm thông tin.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => 'Người dùng này chưa nhận kudosu nào!',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => 'Đã nhận :amount từ bãi bỏ sự từ chối kudosu của bài đăng modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => 'Từ chối :amount từ bài đăng modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => 'Mất :amount từ bài đăng modding :post bị xóa',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => 'Nhận được :amount từ bài đăng modding được phục hồi :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => 'Nhận được :amount từ bài đăng modding :post được nhận upvote',
+                            'reset' => 'Mất :amount từ bài đăng modding :post mất vote',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Received :amount from votes recalculation in modding post of :post',
-                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                            'give' => 'Nhận được :amount từ bài đăng modding :post được tính lại vote',
+                            'reset' => 'Mất :amount từ bài đăng modding :post được tính lại vote',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => 'Nhận được :amount từ :giver cho một bài đăng tại :post',
+                        'reset' => 'Kudosu reset bởi :giver cho bài đăng :post',
+                        'revoke' => 'Từ chối kudosu kudosu :giver cho bài đăng :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'tôi!',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => 'Người dùng này chưa có huy chương nào cả. ;_;',
+                'title' => 'Huy Chương',
             ],
             'recent_activity' => [
-                'title' => 'Recent',
+                'title' => 'Gần Đây',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Best Performance',
-                ],
-                'empty' => 'No awesome performance records yet. :(',
-                'first' => [
-                    'title' => 'First Place Ranks',
-                ],
+                'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
+                'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'title' => 'Xếp Hạng',
+                'weighted_pp' => 'trọng số: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Thực Hiện Tốt Nhất',
+                ],
+                'first' => [
+                    'title' => 'Xếp Hạng Nhất',
+                ],
+            ],
+            'account_standing' => [
+                'title' => 'Trạng Thái Tài Khoản',
+                'bad_standing' => 'Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(',
+                'remaining_silence' => '<strong>:username</strong> sẽ được nói trở lại vào :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Vi Phạm Gần Đây',
+                    'date' => 'ngày',
+                    'action' => 'hành động',
+                    'length' => 'chiều dài',
+                    'length_permanent' => 'vĩnh viễn',
+                    'description' => 'mô tả',
+                    'actor' => 'bởi :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Im lặng',
+                        'note' => 'Ghi chú',
+                    ],
+                ],
             ],
         ],
         'info' => [
-            'interests' => 'Interests',
+            'discord' => 'Discord',
+            'interests' => 'Sở Thích',
             'lastfm' => 'Last.fm',
-            'location' => 'Current Location',
-            'occupation' => 'Occupation',
+            'location' => 'Vị Trí Hiện Tại',
+            'occupation' => 'Nghề Nghiệp',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
+            'edit_big' => 'Chỉnh sửa tôi!',
+            'placeholder' => 'Nhập nội dung trang vào đây',
+            'restriction_info' => "Bạn cần phải là <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a> để mở khóa tính năng này.",
+        ],
+        'post_count' => [
+            '_' => 'Đã đóng góp :link',
+            'count' => ':count bài đăng forum',
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => 'Hạng quốc gia cho :mode',
+            'global' => 'Hạng quốc tế cho :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
+            'hit_accuracy' => 'Độ Chính Xác',
             'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
-            'play_time' => 'Total Play Time',
-            'ranked_score' => 'Ranked Score',
-            'replays_watched_by_others' => 'Replays Watched by Others',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'maximum_combo' => 'Combo Cao Nhất',
+            'play_count' => 'Số Lần Chơi',
+            'play_time' => 'Tổng Thời Gian Chơi',
+            'ranked_score' => 'Điểm Được Xếp Hạng',
+            'replays_watched_by_others' => 'Replay Được Xem',
+            'score_ranks' => 'Điểm Số',
+            'total_hits' => 'Tổng Lần Bấm',
+            'total_score' => 'Tổng Điểm',
         ],
     ],
     'status' => [
@@ -259,9 +306,9 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => 'Xác Thực Tài Khoản',
     ],
 ];
