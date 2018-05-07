@@ -219,23 +219,24 @@ class ProfilePage.Main extends React.PureComponent
         div
           className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
           'data-sync-height-target': 'page-extra-tabs'
-          div className: 'osu-page',
-            div
-              className: 'page-mode page-mode--page-extra-tabs'
-              ref: (el) => @tabs = el
-              for m in profileOrder
-                continue if m == 'me' && !withMePage
+          if profileOrder.length > 1
+            div className: 'osu-page',
+              div
+                className: 'page-mode page-mode--page-extra-tabs'
+                ref: (el) => @tabs = el
+                for m in profileOrder
+                  continue if m == 'me' && !withMePage
 
-                a
-                  className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                  key: m
-                  'data-page-id': m
-                  onClick: @tabClick
-                  href: "##{m}"
-                  el ProfilePage.ExtraTab,
-                    page: m
-                    currentPage: @state.currentPage
-                    currentMode: @state.currentMode
+                  a
+                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                    key: m
+                    'data-page-id': m
+                    onClick: @tabClick
+                    href: "##{m}"
+                    el ProfilePage.ExtraTab,
+                      page: m
+                      currentPage: @state.currentPage
+                      currentMode: @state.currentMode
 
       div
         className: 'osu-layout__section osu-layout__section--extra'
