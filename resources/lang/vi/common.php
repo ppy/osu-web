@@ -30,6 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Hủy',
+        'change' => 'đổi',
+        'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
+        'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
         'delete' => 'Xóa',
         'permalink' => 'permalink',
         'permalink_copied' => 'đã sao chép link',
@@ -46,11 +49,14 @@ return [
     ],
 
     'count' => [
-        'hour_short_unit' => 'giờ',
+        'badges' => ':count huy hiệu',
+        'days' => ':count ngày',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count giờ',
         'item' => ':count đơn vị',
-        'minute_short_unit' => 'phút',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count tháng',
-        'second_short_unit' => 'giây',
+        'second_short_unit' => 'sec|secs',
         'years' => ':count năm',
     ],
 
@@ -58,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

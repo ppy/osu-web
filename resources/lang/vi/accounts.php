@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => 'Cài Đặt <strong>Tài Khoản</strong>',
         'title_compact' => 'cài đặt',
+        'username' => 'tên tài khoản',
 
         'avatar' => [
             'title' => 'Ảnh Đại Diện',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => 'twitter',
                 'user_website' => 'trang web',
+                'user_discord' => 'discord',
             ],
         ],
 

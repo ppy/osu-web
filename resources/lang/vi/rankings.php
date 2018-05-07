@@ -22,7 +22,7 @@ return [
     'header' => 'Xếp hạng theo :type',
     'type' => [
         'performance' => 'Performance',
-        'charts' => 'Biểu đồ',
+        'charts' => 'Spotlights',
         'score' => 'Điểm',
         'country' => 'Quốc gia',
     ],

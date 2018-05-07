@@ -70,7 +70,7 @@ return [
             '_' => 'xếp hạng',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'charts',
+            'charts' => 'spotlights',
             'score' => 'điểm',
             'country' => 'quốc gia',
             'kudosu' => 'kudosu',

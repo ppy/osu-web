@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Bấm vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
         'error' => 'Đã xảy ra sự cố khi hoàn thành thanh toán của bạn  :(',
+        'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
         'pending_checkout' => [
             'line_1' => 'Lần thanh toán trước đã bắt đầu nhưng chưa kết thúc.',
@@ -39,6 +40,12 @@ return [
 
     'discount' => 'tiết kiệm :percent%',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Chúng tôi đã nhận được đơn hàng osu!store của bạn!',
+        ],
+    ],
+    
     'order' => [
         'item' => [
             'display_name' => [

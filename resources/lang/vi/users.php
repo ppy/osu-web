@@ -22,13 +22,14 @@ return [
     'deleted' => '[người dùng đã bị xóa]',
 
     'beatmapset_activities' => [
+        'title' => 'Lịch Sử Modding Của :user',
+
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
         ],
 
         'events' => [
             'title_recent' => 'Sự kiện gần đây',
-
         ],
 
         'posts' => [
@@ -88,7 +89,6 @@ return [
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
     ],
     'show' => [
-        '404' => 'Không tìm thấy người dùng! ;_;',
         'age' => ':age tuổi',
         'change_avatar' => 'đổi ảnh đại diện!',
         'first_members' => 'Tại đây từ thuở xa xưa',
@@ -273,6 +273,13 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
+        ],
+        'not_found' => [
+            'reason_1' => 'Có thể họ đã đổi tên tài khoản.',
+            'reason_2' => 'Tài khoản của họ có thể tạm thời không khả dụng vì vấn đề an ninh hoặc lạm dụng.',
+            'reason_3' => 'Có thể bạn đã thực hiện một lỗi đánh máy!',
+            'reason_header' => 'Có một vài lí do cho vấn đề này:',
+            'title' => 'Không tìm thấy người dùng! ;_;',
         ],
         'page' => [
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',

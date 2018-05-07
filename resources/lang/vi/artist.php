@@ -37,6 +37,7 @@ return [
     ],
 
     'links' => [
+        'osu' => 'trang cá nhân osu!',
         'site' => 'Trang Web Chính Thức',
     ],
 

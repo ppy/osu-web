@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một topic bị khóa.',
             ],
+
+            'store' => [
+                'play_more' => 'Vui lòng thử chơi game này trước khi đăng bài lên diễn đàn! Nếu bạn gặp vấn đề khi chơi, Vui lòng đăng bài lên diễn đàn Trợ Giúp và Hỗ Trợ (Help and Support).',
+                'too_many_help_posts' => 'Bạn cần phải chơi game này nhiều hơn trước khi bạn tạo thêm bài đăng. Nếu bạn vẫn còn gặp vấn đề khi chơi game, email support@ppy.sh', // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
