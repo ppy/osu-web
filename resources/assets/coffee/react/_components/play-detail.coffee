@@ -68,11 +68,13 @@ el = React.createElement
                   osu.trans 'users.show.extra.top_ranks.weighted_pp',
                     percentage: "#{Math.round(score.weight.percentage)}%"
                     pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
-              if score.beatmapset.status == 'ranked'
+              if score.pp > 0
                 osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp).toLocaleString())
               else
                 span
-                  title: osu.trans('users.show.extra.top_ranks.not_ranked')
+                  title:
+                    if score.beatmapset.status not in ['ranked', 'approved']
+                      osu.trans('users.show.extra.top_ranks.not_ranked')
                   '-'
           div
             className: 'detail-row__score-details'

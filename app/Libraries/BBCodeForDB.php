@@ -169,8 +169,8 @@ class BBCodeForDB
     public function parseLinks($text)
     {
         $spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
-        // plain http/https/ftp
 
+        // plain http/https/ftp
         $text = preg_replace(
             "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
             "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",

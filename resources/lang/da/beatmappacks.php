@@ -30,12 +30,12 @@ return [
                 'scary' => 'ALDRIG',
             ],
             'note' => [
-                '_' => 'Vær opmærksom på, at det er stærkt anbefalet at :scary, eftersom, at de ældre baner er meget ringere kvalitet i forhold til de nyere beatmaps.',
+                '_' => 'Vær opmærksom på, at det er stærkt anbefalet at :scary, eftersom, at de ældre beatmaps er meget ringere kvalitet i forhold til de nyere beatmaps.',
                 'scary' => 'downloade pakkerne fra nyeste til ældste',
             ],
         ],
         'title' => 'Beatmap Packs',
-        'description' => 'Forhåndslavede samlinger af beatmaps med nogenlunde samme tema.',
+        'description' => 'Forhåndslavede samlinger af beatmaps baseret på det samme tema.',
     ],
 
     'show' => [
@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Chart',
+        'chart' => 'Chart', // Base text has changed, please check.
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

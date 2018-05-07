@@ -43,7 +43,7 @@ return [
             'index' => 'lista',
             'artists' => 'artisti in primo piano',
             // 'getPacks' => 'pacchi',
-            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart
+            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -51,7 +51,7 @@ return [
         ],
         'rankings' => [
             '_' => 'rank',
-            'charts' => 'charts',
+            'charts' => 'charts', // Base text has changed, please check.
         ],
         'community' => [
             '_' => 'comunità',
@@ -163,32 +163,26 @@ return [
         '404' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Non dovresti essere qui.', // Base text changed from "log" to "sign"
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',

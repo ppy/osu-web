@@ -30,6 +30,6 @@ class UsernameChangeHistory extends Model
 
     public function scopeVisible($query)
     {
-        $query->whereNotIn('type', ['admin', 'revert']);
+        $query->whereIn('type', ['support', 'paid']);
     }
 }

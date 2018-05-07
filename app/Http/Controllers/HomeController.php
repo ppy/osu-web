@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
-use App\Libraries\Search;
+use App\Libraries\Search\AllSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
@@ -43,7 +43,6 @@ class HomeController extends Controller
             'only' => [
                 'downloadQuotaCheck',
                 'search',
-                'quickSearch',
             ],
         ]);
 
@@ -121,38 +120,16 @@ class HomeController extends Controller
         return view('objects._popup_support_osu');
     }
 
-    public function quickSearch()
-    {
-        $search = new Search([
-            'query' => Request::input('query'),
-            'limit' => 5,
-        ]);
-
-        if (!$search->hasQuery()) {
-            return response([], 204);
-        }
-
-        return view('home.nav_search_result', compact('search'));
-    }
-
     public function search()
     {
         if (request('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
+            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
         }
 
-        $params = array_merge(Request::all(), [
-            'user' => Auth::user(),
-        ]);
-
-        $search = new Search($params);
+        $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
 
-        if ($search->mode === Search::DEFAULT_MODE) {
-            $search->params['limit'] = 8;
-        }
-
-        return view('home.search', compact('search', 'isSearchPage'));
+        return view('home.search', compact('allSearch', 'isSearchPage'));
     }
 
     public function setLocale()

@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use DateTimeInterface;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -60,10 +59,5 @@ class BuildPropagationHistory extends Model
                 ->whereIn("{$buildsTable}.stream_id", config('osu.changelog.update_streams'))
                 ->groupBy(['created_at', 'pretty_name']);
         }
-    }
-
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->toIso8601String();
     }
 }

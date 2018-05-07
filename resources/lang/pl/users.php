@@ -88,7 +88,6 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
@@ -100,6 +99,7 @@ return [
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
+        'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
         'change_avatar' => 'zmień swój awatar!',
@@ -227,6 +227,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Brak wyników. :(',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
@@ -261,6 +262,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Zainteresowania',
             'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
@@ -268,6 +270,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Strona internetowa',
+        ],
+        'not_found' => [
+            '404' => 'Nie znaleziono gracza! ;_;',
         ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',

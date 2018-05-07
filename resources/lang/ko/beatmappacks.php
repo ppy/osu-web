@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => '가수/앨범별',
-        'chart' => '차트별',
+        'chart' => '차트별', // Base text has changed, please check.
         'standard' => '표준',
         'theme' => '테마별',
     ],

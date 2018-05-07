@@ -20,20 +20,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\PostSearch;
+use App\Libraries\Search\PostSearch;
+use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
-use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapDiscussionPost;
-use App\Models\BeatmapDiscussionVote;
-use App\Models\BeatmapsetEvent;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class UsersController extends Controller
@@ -59,59 +57,6 @@ class UsersController extends Controller
         ]);
 
         return parent::__construct();
-    }
-
-    public function beatmapsetActivities($id)
-    {
-        // FIXME: camelCase
-        $current_action = 'beatmapset_activities';
-
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
-        $user = User::lookup($id, 'id', true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
-        }
-
-        $params = [
-            'limit' => 10,
-            'sort' => 'id-desc',
-            'user' => $user->getKey(),
-        ];
-
-        $discussions = BeatmapDiscussion::search($params);
-        $discussions['items'] = $discussions['query']->with([
-                'user',
-                'beatmapset',
-                'startingPost',
-            ])->get();
-
-        $posts = BeatmapDiscussionPost::search($params);
-        $posts['items'] = $posts['query']->with([
-                'user',
-                'beatmapset',
-                'beatmapDiscussion',
-                'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.user',
-                'beatmapDiscussion.startingPost',
-            ])->get();
-
-        $events = BeatmapsetEvent::search($params);
-        $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
-
-        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
-        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
-
-        return view('users.beatmapset_activities', compact(
-            'current_action',
-            'discussions',
-            'events',
-            'posts',
-            'user',
-            'receivedVotes',
-            'votes'
-        ));
     }
 
     public function card($id)
@@ -216,17 +161,11 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $options = [
-            'query' => trim(request('query')),
-            'userId' => $user->getKey(),
-            'forumId' => request('forum_id'),
-            'includeSubforums' => get_bool(request('forum_children')),
-        ];
+        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
+            ->size(50)
+            ->page(LengthAwarePaginator::resolveCurrentPage());
 
-        $search = new PostSearch($options);
-        $page = $search->paginate(50)->appends(request()->query());
-
-        return view('users.posts', compact('search', 'page', 'user'));
+        return view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)
@@ -269,7 +208,7 @@ class UsersController extends Controller
         $user = User::lookup($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
-            abort(404);
+            return response()->view('users.show_not_found')->setStatusCode(404);
         }
 
         if ((string) $user->user_id !== (string) $id) {

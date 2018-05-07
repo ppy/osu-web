@@ -42,14 +42,14 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ændr Profil', // Base text changed, please check.
-
+            'title' => 'Rediger Profil',
             'user' => [
                 'user_from' => 'nuværende placering',
                 'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
+                'user_interests' => 'interesse',
             ],
         ],
 

@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => '藝術家/專輯',
-        'chart' => '月賽',
+        'chart' => '月賽', // Base text has changed, please check.
         'standard' => '標準',
         'theme' => '主題',
     ],
