@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Álbum',
-        'chart' => 'Tabela',
+        'chart' => 'Tabela', // Base text has changed, please check.
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
