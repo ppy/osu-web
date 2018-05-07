@@ -123,6 +123,5 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     return if event.button != 0
     event.preventDefault()
 
-    selectedUserId = user.id
-    $.publish 'beatmapsetDiscussions:userFilterChanged', { selectedUserId }
+    $.publish 'beatmapsetDiscussions:userFilterChanged', selectedUserId: user.id
     @setState showingSelector: false
