@@ -129,6 +129,10 @@ class Handler extends ExceptionHandler
 
     private function exceptionMessage($e)
     {
+        if ($e instanceof ModelNotFoundException) {
+            return;
+        }
+
         if ($this->statusCode($e) >= 500) {
             return;
         }
