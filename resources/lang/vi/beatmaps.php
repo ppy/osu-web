@@ -114,7 +114,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
             'graveyard' => 'Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...',
-            'loved' => 'Beatmap này đã được loved vào :date!',
+            'loved' => 'Beatmap này đã được love vào :date!',
             'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
         ],
@@ -165,7 +165,7 @@ return [
     *   Nominate = đề cử
     *   Love = <giữ nguyên>
     *   Qualify = <giữ nguyên>
-    *   Disqualified = <giữ nguyên>
+    *   Disqualify = <giữ nguyên>
     *   Approved = được chấp nhận
     */
     'listing' => [

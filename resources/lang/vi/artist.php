@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Nghệ sĩ tiêu biểu là những nghệ sĩ mà chúng tôi đang hợp tác để đem lại những bản nhạc mới và nguyên gốc cho osu!. Những nghệ sĩ này và một phần sáng tác của họ đã được lựa chọn cẩn thận bởi đội ngũ osu! để phù hợp cho việc mapping. Một vài nghệ sĩ còn tạo những bản nhạc độc quyền để sử dụng trong osu!. <br><br>Tất cả những bản nhạc trong mục này là những file .osz đã được time sẵn và được cấp phép chính thức để sử dụng trong osu! và những nội dung liên quan.',
+        'description' => 'Nghệ sĩ tiêu biểu là những nghệ sĩ mà chúng tôi đang hợp tác để đem lại những bản nhạc mới và nguyên gốc cho osu!. Những nghệ sĩ này và một phần sáng tác của họ đã được lựa chọn cẩn thận bởi đội ngũ osu! để phù hợp cho mapping. Một vài nghệ sĩ còn tạo những bản nhạc độc quyền để sử dụng trong osu!. <br><br>Tất cả những bản nhạc trong mục này là những file .osz đã được time sẵn và được cấp phép chính thức để sử dụng trong osu! và những nội dung liên quan.',
     ],
 
     'links' => [
