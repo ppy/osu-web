@@ -60,9 +60,6 @@ class ProfilePage.Main extends React.PureComponent
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
 
-      if @props.user.is_bot
-        @state.profileOrder = ['me']
-
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
         @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
@@ -126,7 +123,11 @@ class ProfilePage.Main extends React.PureComponent
   render: =>
     withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
 
-    profileOrder = @state.profileOrder.slice()
+    if @props.user.is_bot
+      profileOrder = ['me']
+    else
+      profileOrder = @state.profileOrder.slice()
+
     profileOrder.push 'account_standing' if !_.isEmpty @state.user.account_history
 
     extraPageParams =
