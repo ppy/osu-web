@@ -51,12 +51,12 @@ class CartController extends Controller
 
     public function store()
     {
-        $result = $this->userCart()->updateItem(Request::input('item', []));
+        $errors = $this->userCart()->updateItem(Request::input('item', []));
 
-        if ($result[0]) {
+        if ($errors->isEmpty()) {
             return js_view('layout.ujs-reload');
         } else {
-            return error_popup($result[1]);
+            return error_popup($errors->toSentence());
         }
     }
 }

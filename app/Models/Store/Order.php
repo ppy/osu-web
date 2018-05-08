@@ -20,6 +20,7 @@
 
 namespace App\Models\Store;
 
+use App\Libraries\ValidationErrors;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -378,17 +379,22 @@ class Order extends Model
      *
      * @param array $itemForm form parameters.
      * @param bool $addToExisting whether the quantity should be added or replaced.
-     * @return array [success, message]
+     * @return ValidationErrors
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        $this->getConnection()->transaction(function () {
+        $errors = new ValidationErrors('order');
+
+        $this->getConnection()->transaction(function () use ($errors) {
             $locked = $this->exists ? $this->lockSelf() : $this;
             if ($locked->isModifiable() === false) {
-                // FIXME: better handling.
-                return [false, 'Cart cannot be updated at this time.'];
+                $errors->addTranslated('self', 'Cart cannot be updated at this time.');
             }
         });
+
+        if ($errors->isAny()) {
+            return $errors;
+        }
 
         $params = [
             'id' => array_get($itemForm, 'id'),
@@ -400,10 +406,10 @@ class Order extends Model
         ];
 
         if ($params['product'] === null) {
-            return [false, 'no product'];
-        }
+            $errors->addTranslated('product', 'no product');
 
-        $result = [true, ''];
+            return $errors;
+        }
 
         if ($params['quantity'] <= 0) {
             $this->removeOrderItem($params);
@@ -414,14 +420,16 @@ class Order extends Model
                 $item = $this->updateOrderItem($params, $addToExisting);
             }
 
-            $result = $this->validateBeforeSave($params['product'], $item);
-            if ($result[0]) {
-                $this->saveOrExplode();
-                $this->items()->save($item);
+            $message = $this->validateBeforeSave($params['product'], $item);
+            if ($message !== null) {
+                $errors->addTranslated('product', $message);
             }
+
+            $this->saveOrExplode();
+            $this->items()->save($item);
         }
 
-        return $result;
+        return $errors;
     }
 
     public function releaseItems()
@@ -616,15 +624,13 @@ class Order extends Model
     private function validateBeforeSave(Product $product, $item)
     {
         if (!$product->inStock($item->quantity)) {
-            return [false, 'not enough stock'];
+            return 'not enough stock';
         } elseif (!$product->enabled) {
-            return [false, 'invalid item'];
+            return 'invalid item';
         } elseif ($item->quantity > $product->max_quantity) {
             $route = route('store.cart.show');
 
-            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
+            return "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order";
         }
-
-        return [true, ''];
     }
 }
