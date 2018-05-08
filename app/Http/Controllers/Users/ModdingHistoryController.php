@@ -47,6 +47,13 @@ class ModdingHistoryController extends Controller
                 abort(404);
             }
 
+            if ((string) $this->user->user_id !== (string) request('user')) {
+                return ujs_redirect(route(
+                    $request->route()->getName(),
+                    array_merge(['user' => $this->user->user_id], $request->query())
+                ));
+            }
+
             $this->searchParams = request()->all();
             $this->searchParams['is_moderator'] = $this->isModerator;
 
