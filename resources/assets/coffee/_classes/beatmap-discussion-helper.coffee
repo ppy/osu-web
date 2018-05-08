@@ -144,7 +144,7 @@ class @BeatmapDiscussionHelper
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: (options = {}) =>
+  @url: (options = {}, useCurrent = false) =>
     {
       beatmapsetId
       beatmapId
@@ -155,7 +155,7 @@ class @BeatmapDiscussionHelper
       discussions # for validating discussionId and getting relevant params
       discussion
       user
-    } = options
+    } = if useCurrent then _.assign(@urlParse(), options) else options
 
     params = {}
 
