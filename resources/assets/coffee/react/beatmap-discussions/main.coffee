@@ -59,9 +59,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', (_e, { selectedUserId }) =>
-      @setState () ->
-        { selectedUserId }
+    $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', @update
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
@@ -367,6 +365,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       beatmapset
       watching
       filter
+      selectedUserId
     } = options
     newState = {}
 
@@ -407,6 +406,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
       # - restore whatever last filter set or default to total
       else if @state.currentMode == 'events'
         newState.currentFilter = @lastFilter ? 'total'
+
+    if selectedUserId?
+      newState.selectedUserId = selectedUserId
 
     @setState newState, callback
 
