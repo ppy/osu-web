@@ -22,117 +22,117 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the osu! dev :D',
+            'big_description' => 'Suka osu!?<br/>
+                                Dukung perkembangannya! :D',
             'small_description' => '',
-            'support_button' => 'I want to support osu!',
+            'support_button' => 'Saya ingin mendukung osu!',
         ],
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
+        'dev_quote' => "osu! merupakan permainan yang benar-benar free-to-play, namun untuk mengoperasikannya tentu tidak gratis. Dengan biaya penyewaan server yang memiliki bandwidth kualitas tinggi berskala internasional, waktu yang digunakan untuk memelihara sistem dan komunitas, menyediakan hadiah untuk kompetisi, menjawab pertanyaan layanan dukungan dan membuat semua orang senang secara umum, mengoperasikan osu! menggunakan biaya yang tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa iklan maupun bermitra dengan penyedia perangkat lunak tidak jelas manapun sama sekali!
+            <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai 'peppy'.
+            Saya harus keluar dari pekerjaan saya untuk terus mengembangkan osu!,
+            dan terkadang harus bersusah payah demi mempertahankan standar yang telah saya tetapkan.
+            Saya ingin mengucapkan terima kasih secara pribadi kepada mereka yang telah mendukung osu! sampai saat ini,
+            dan juga bagi mereka yang terus mendukung permainan hebat ini dan komunitasnya sampai ke masa yang akan datang:).",
 
         'supporter_status' => [
-            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
-            'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
-            'not_yet' => "You don't have a supporter tag yet :(",
-            'title' => 'Current supporter status',
-            'valid_until' => 'Your current supporter tag is valid until :date!',
-            'was_valid_until' => 'Your supporter tag was valid until :date.',
+            'contribution' => 'Terima kasih atas dukungan anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'gifted' => ':giftedTags dari pembelian tag anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan), sangat murah hati!',
+            'not_yet' => 'Anda belum pernah memiliki supporter tag :(',
+            'title' => 'Status supporter saat ini',
+            'valid_until' => 'Supporter Tag anda saat ini berlaku hingga :date!',
+            'was_valid_until' => 'Supporter Tag anda berlaku hingga :date.',
         ],
 
         'why_support' => [
-            'title' => 'Why should I support osu!?',
+            'title' => 'Mengapa saya harus mendukung osu!?',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => 'Dikembangkan dan dipelihara oleh satu orang di Australia',
+                'time' => "Memerlukan begitu banyak waktu untuk menjalankannya sehingga tidak mungkin lagi menyebutnya sebagai 'hobi'.",
+                'ads' => 'Tidak ada iklan di mana pun. <br/><br/>
+                        Tidak seperti 99,95% dari web, kami tidak mengambil untung dan menunjukkan barang-barang tawarannya di depan wajah Anda. ',
+                'goodies' => 'Anda akan mendapatkan beberapa fitur ekstra!',
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'akses cepat dan mudah untuk mencari beatmap tanpa meninggalkan permainan.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => 'Unduh Otomatis',
+                'description' => 'Unduhan otomatis saat bermain multiplayer, menonton orang lain, atau mengklik tautan dalam obrolan!.',
             ],
 
             'upload_more' => [
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => 'Unggah Lebih Banyak',
+                'description' => 'Slot tambahan untuk beatmap yang berstatus pending (per beatmap yang ranked) maksimum hingga 10.',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'title' => 'Pra-rilis',
+                'description' => 'Akses ke rilisan terbaru lebih awal, di mana anda dapat mencoba fitur yang baru ditambahkan sebelum dirilis secara publik!.',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => 'Kustomisasi',
+                'description' => 'Kustomisasi profil anda dengan menambahkan halaman pengguna yang dapat anda hias sepenuhnya.',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => 'Filter Beatmap',
+                'description' => 'Filter pencarian beatmap berdasarkan map yang belum dan sudah dimainkan juga peringkat yang dicapai (jika ada).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'title' => 'Rekan Kuning',
+                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna berwarna kuning terang di obrolan.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => 'Unduh Lebih Cepat',
+                'description' => 'Pembatasan pengunduhan yang lebih toleran, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => 'Ganti Nama Pengguna',
+                'description' => 'Kemampuan untuk mengubah nama pengguna anda tanpa biaya tambahan. (maksimum sekali).',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => 'Elemen Skinning',
+                'description' => 'Tambahan elemen yang bisa anda skin. Seperti latar belakang menu utama.',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => 'Pemilihan Fitur',
+                'description' => 'Votes for feature requests. (2 per bulan).',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
-                'description' => 'The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'title' => 'Opsi Untuk Menyortir',
+                'description' => 'Akses untuk melihat peringkat beatmap berdasarkan negara/teman/mod secara spesifik dalam game.',
             ],
 
             'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => 'Merasa Spesial',
+                'description' => 'Perasaan hangat karena anda telah melakukan bagian anda untuk memastikan osu! berjalan lancar!.',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => 'Masih banyak lagi',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => 'Saya yakin! :D',
+            'support' => 'dukung osu!',
+            'gift' => 'atau hadiahkan support kepada pemain lain',
+            'instructions' => 'klik tombol hati untuk diarahkan menuju osu!store',
         ],
     ],
 ];
