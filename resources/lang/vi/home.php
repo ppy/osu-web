@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
 
         'slogan' => [
-            'main' => 'game nhịp điệu miễn phí',
+            'main' => 'game nhịp điệu free-to-win hay nhất',
             'sub' => 'chỉ bắt đầu bằng một cái click chuột',
         ],
     ],
@@ -36,6 +36,7 @@ return [
         'button' => 'Tìm kiếm ',
         'empty_result' => 'Không có kết quả!',
         'missing_query' => 'Từ khóa tìm kiếm tối thiểu :n kí tự',
+        'placeholder' => 'nhập để tìm kiếm',
         'title' => 'Kết Quả Tìm Kiếm',
 
         'beatmapset' => [
@@ -97,7 +98,7 @@ return [
             ],
             'download' => [
                 'title' => 'tải xuống trò chơi',
-                'description' => 'bấm vào nút phía trên để tải xuống bộ cài đặt, sau đó mở nó!',
+                'description' => 'nhấp vào nút phía trên để tải xuống bộ cài đặt, sau đó mở nó!',
             ],
             'beatmaps' => [
                 'title' => 'tải beatmaps',
@@ -145,7 +146,7 @@ return [
             'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
             'part-2' => 'Và bạn có biết rằng bằng cách hỗ trợ osu! bạn nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tự động tải xuống trong game</strong> khi bạn trong chế độ theo dõi người chơi và trong chế độ multiplayer?',
         ],
-        'find-out-more' => 'Bấm vào đây để tìm hiểu thêm!',
+        'find-out-more' => 'Nhấp vào đây để tìm hiểu thêm!',
         'download-starting' => 'Ồ, và đừng lo lăng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)',
     ],
 ];
