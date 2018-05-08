@@ -183,7 +183,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
-  sortedDiscussions: (discussions) ->
+  sortedDiscussions: () ->
     @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
       mapperNoteCompare =
         # no sticky for timeline sort
