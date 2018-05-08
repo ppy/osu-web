@@ -38,7 +38,7 @@ return [
         'deny_kudosu' => 'tolak kudosu',
         'edit' => 'sunting',
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
-        'kudosu_denied' => 'Perolehan kudosu dibatalkan.',
+        'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder' => 'Ketik di sini untuk posting',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga tidak dapat dibahas lagi.',
         'message_type_select' => 'Pilih Jenis Komentar',

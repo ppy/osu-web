@@ -165,7 +165,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
-                    'title' => 'Recent Plays (24j)',
+                    'title' => 'Permainan Terbaru (24j)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Tayangan Ulang yang Ditonton',
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
-                'bad_standing' => 'Akun <strong>:username</strong> tidak dalam posisi baik :(',
+                'bad_standing' => 'Akun <strong>:username</strong> tidak dalam kondisi baik :(',
                 'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
 
                 'recent_infringements' => [
