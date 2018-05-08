@@ -200,7 +200,7 @@ class @BeatmapDiscussionHelper
 
     url = new URL(urlString ? document.location.href)
     params = url.searchParams
-    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split '/'
+    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
 
