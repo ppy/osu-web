@@ -406,8 +406,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else if @state.currentMode == 'events'
         newState.currentFilter = @lastFilter ? 'total'
 
-    if selectedUserId?
-      newState.selectedUserId = selectedUserId
+    newState.selectedUserId = selectedUserId if selectedUserId != undefined # need to setState if null
 
     @setState newState, callback
 
