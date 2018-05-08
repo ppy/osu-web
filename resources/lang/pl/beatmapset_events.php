@@ -29,8 +29,8 @@ return [
         'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
         'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',
         'issue_resolve' => 'Problem :discussion został oznaczony jako rozwiązany.',
-        'kudosu_allow' => 'Anulowanie kudosu dla dyskusji :discussion zostało usunięte.',
-        'kudosu_deny' => 'Dyskusja :discussion nie dostanie kudosu.',
+        'kudosu_allow' => 'Odrzucenie kudosu dla dyskusji :discussion zostało usunięte.',
+        'kudosu_deny' => 'Dyskusja :discussion nie otrzyma kudosu.',
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
         'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń beatmap',
+        'title' => 'Historia zdarzeń beatmapy',
     ],
 
     'item' => [
