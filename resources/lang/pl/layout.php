@@ -118,7 +118,7 @@ return [
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
-            'beatmapset_activities' => 'aktualizacje na beatmapach użytkownika',
+            'modding-history-index' => 'aktualizacje na beatmapach użytkownika', // needs update
         ],
         'store' => [
             '_' => 'sklep',

@@ -67,7 +67,7 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => '月赛',
+            'charts' => '月赛', // Base text has changed, please check.
             'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu',
@@ -115,7 +115,7 @@ return [
             'settings' => '设置',
             'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => '帮助',
-            'beatmapset_activities' => '玩家谱面活动', //需要上下文
+            'modding-history-index' => '玩家谱面活动', //需要上下文 // needs update
         ],
         'store' => [
             '_' => '商店',

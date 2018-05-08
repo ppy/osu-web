@@ -70,7 +70,7 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'classements',
+            'charts' => 'classements', // Base text has changed, please check.
             'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',
@@ -118,7 +118,7 @@ return [
             'settings' => 'Paramètres',
             'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check. : OK
             'help' => 'Aide',
-            'beatmapset_activities' => 'activités utilisateur du beatmapset',
+            'modding-history-index' => 'activités utilisateur du beatmapset', // needs update
         ],
         'store' => [
             '_' => 'magasin',

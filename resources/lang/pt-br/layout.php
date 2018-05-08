@@ -70,7 +70,7 @@ return [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'tabelas',
+            'charts' => 'tabelas', // Base text has changed, please check.
             'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',
@@ -118,7 +118,7 @@ return [
             'settings' => 'Configurações',
             'logout' => 'Desconectar',
             'help' => 'Ajuda',
-            'beatmapset_activities' => 'atividades de beatmap de usuário',
+            'modding-history-index' => 'atividades de beatmap de usuário', // needs update
         ],
         'store' => [
             '_' => 'loja',
