@@ -22,7 +22,7 @@ return [
     'header' => ':type 排名',
     'type' => [
         'performance' => '表现',
-        'charts' => '月赛',
+        'charts' => '月赛', // Base text has changed, please check.
         'score' => '总分',
         'country' => '国家',
     ],

@@ -343,7 +343,7 @@ class UsersController extends Controller
             $this->perPage = 0;
         } else {
             $perPage = $this->sanitizedLimitParam();
-            $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
+            $this->perPage = min($perPage, $this->maxResults - $this->offset);
         }
     }
 

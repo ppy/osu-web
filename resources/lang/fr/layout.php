@@ -70,7 +70,7 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'classements',
+            'charts' => 'classements', // Base text has changed, please check.
             'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',

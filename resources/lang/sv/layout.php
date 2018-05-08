@@ -54,7 +54,7 @@ return [
             'artists' => 'framhävda artister',
             'packs' => 'samling',
             'beatmapset-watches-index' => 'modding övervakningslista',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'charts', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',

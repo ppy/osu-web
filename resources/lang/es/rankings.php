@@ -22,7 +22,7 @@ return [
     'header' => 'Clasificación por :type',
     'type' => [
         'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
+        'charts' => 'Gráficos', // Base text has changed, please check.
         'score' => 'Puntuación',
         'country' => 'País',
     ],
