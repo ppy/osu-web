@@ -47,7 +47,7 @@ class ModdingHistoryController extends Controller
                 abort(404);
             }
 
-            $this->searchParams = request()->all();
+            $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
             $this->searchParams['is_moderator'] = $this->isModerator;
 
             if (!$this->isModerator) {
