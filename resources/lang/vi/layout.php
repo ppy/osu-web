@@ -46,7 +46,7 @@ return [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
             'getRules' => 'rules',
-            'getSupport' => 'không, thật sự, tôi cần giúp đỡ!',
+            'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -80,7 +80,7 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'diễn đàn',
             'getChat' => 'chat',
-            'getLive' => 'trực tiếp',
+            'getLive' => 'live stream',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
@@ -244,7 +244,7 @@ return [
         ],
 
         'register' => [
-            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có một cái chứ?',
+            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
             'title' => 'Chưa có tài khoản?',
         ],
     ],
@@ -260,6 +260,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Nhập để tìm kiếm!',
-        'retry' => 'Tìm kiếm thất bại. Bấm vào đây để thử lại.',
+        'retry' => 'Tìm kiếm thất bại. Nhấp vào đây để thử lại.',
     ],
 ];

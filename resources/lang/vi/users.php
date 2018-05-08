@@ -78,7 +78,7 @@ return [
         '_' => 'Đăng kí',
     ],
     'anonymous' => [
-        'login_link' => 'bấm để đăng nhập',
+        'login_link' => 'nhấp để đăng nhập',
         'login_text' => 'đăng nhập',
         'username' => 'Khách',
         'error' => 'Bạn cần phải đăng nhập để làm việc này.',

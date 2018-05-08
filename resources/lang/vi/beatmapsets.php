@@ -22,7 +22,7 @@ return [
     'availability' => [
         'disabled' => 'Hiện tại beatmap này không có sẵn để tải xuống.',
         'parts-removed' => 'Một phần của beatmap này đã bị xóa bỏ theo yêu cầu của người tạo lập hoặc bên người có quyền bên thứ ba.',
-        'more-info' => 'Bấm vào đây để biết thêm thông tin.',
+        'more-info' => 'Nhấp vào đây để biết thêm thông tin.',
     ],
 
     'index' => [
@@ -82,7 +82,7 @@ return [
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
             'miss_count' => ':count miss',
-            'supporter-link' => 'Bấm vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
+            'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
             'supporter-only' => 'Bạn cần là người ủng hộ để truy cập xếp hạng bạn bè và quốc gia!',
             'title' => 'Bảng Xếp hạng',
 

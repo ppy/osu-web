@@ -42,7 +42,7 @@ return [
         'message_placeholder' => 'Nhập vào đây để đăng',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
-        'reply_notice' => 'Bấm enter để trả lời.',
+        'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
