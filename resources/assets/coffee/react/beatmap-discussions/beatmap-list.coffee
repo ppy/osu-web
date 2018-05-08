@@ -40,15 +40,17 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
   render: =>
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
-      a
-        href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
-        className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
-        onClick: @toggleSelector
-        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
-
       div
-        className: "#{bn}__selector"
-        @props.beatmaps.map @beatmapListItem
+        className: "#{bn}__body"
+        a
+          href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
+          className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
+          onClick: @toggleSelector
+          el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
+
+        div
+          className: "#{bn}__selector"
+          @props.beatmaps.map @beatmapListItem
 
 
   beatmapListItem: (beatmap) =>
