@@ -46,18 +46,18 @@ return [
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'Nie ustawiono nagłówka',
+                'no-cover' => 'Nie ustawiono tła',
 
                 'submit' => [
                     'save' => 'Zapisz',
                     'update' => 'Zaktualizuj',
                 ],
 
-                'title' => 'Lista nagłówków forum',
+                'title' => 'Lista teł forum',
 
                 'type-title' => [
-                    'default-topic' => 'Domyślny nagłówek wątku',
-                    'main' => 'Nagłówek forum',
+                    'default-topic' => 'Domyślne tło wątku',
+                    'main' => 'Tło forum',
                 ],
             ],
         ],

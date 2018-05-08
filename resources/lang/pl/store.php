@@ -59,12 +59,12 @@ return [
         'name' => 'Nazwa',
 
         'stock' => [
-            'out' => 'Obecnie brak :(. Sprawdź poźniej.',
-            'out_with_alternative' => 'Obecnie brak :(. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
+            'out' => 'Ten przedmiot jest obecnie niedostępny. Sprawdź poźniej.',
+            'out_with_alternative' => 'Niestety ten przedmiot jest obecnie niedostępny. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
         ],
 
         'add_to_cart' => 'Dodaj do koszyka',
-        'notify' => 'Powiadom mnie, kiedy będzie dostępne!',
+        'notify' => 'Powiadom mnie, kiedy będzie dostępny!',
 
         'notification_success' => 'dostaniesz powiadomienie, kiedy produkt będzie dostępny. kliknij :link aby anulować.',
         'notification_remove_text' => 'tutaj',
@@ -75,7 +75,7 @@ return [
     'supporter_tag' => [
         'gift' => 'podaruj innemu użytkownikowi',
         'require_login' => [
-            '_' => 'Aby zdobyć status donatora, musisz się :link!',
+            '_' => 'Aby uzyskać status donatora, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],

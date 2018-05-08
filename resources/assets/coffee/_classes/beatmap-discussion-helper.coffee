@@ -144,7 +144,7 @@ class @BeatmapDiscussionHelper
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: (options = {}) =>
+  @url: (options = {}, useCurrent = false) =>
     {
       beatmapsetId
       beatmapId
@@ -154,7 +154,8 @@ class @BeatmapDiscussionHelper
       discussionId
       discussions # for validating discussionId and getting relevant params
       discussion
-    } = options
+      user
+    } = if useCurrent then _.assign(@urlParse(), options) else options
 
     params = {}
 
@@ -191,6 +192,11 @@ class @BeatmapDiscussionHelper
     url.pathname = laroute.route 'beatmapsets.discussion', params
     url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
 
+    if user?
+      url.searchParams.set('user', user)
+    else
+      url.searchParams.delete('user')
+
     url.toString()
 
 
@@ -199,7 +205,6 @@ class @BeatmapDiscussionHelper
     options.forceDiscussionId ?= false
 
     url = new URL(urlString ? document.location.href)
-    params = url.searchParams
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
@@ -213,6 +218,7 @@ class @BeatmapDiscussionHelper
       # empty path segments are ''
       mode: if _.includes(@MODES, mode) then mode else @DEFAULT_MODE
       filter: if _.includes(@FILTERS, filter) then filter else @DEFAULT_FILTER
+      user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)
