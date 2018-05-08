@@ -56,6 +56,30 @@
     }
   }
 
+  &__filter-group {
+    min-width: 0;
+    flex: 1 1 auto;
+
+    & + & {
+      margin-top: 10px;
+    }
+
+    @media @desktop {
+      align-self: flex-end;
+
+      & + & {
+        margin-top: 0;
+      }
+
+      &--stats {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+
   &__filters {
     display: flex;
     margin: 10px 0;
@@ -72,9 +96,10 @@
     margin: 5px -5px;
     display: flex;
     flex-wrap: wrap;
+    height: 60px; // 50 + margins; 50 is just what beatmap-list__item happens to end up at.
 
     @media @desktop {
-      margin: -5px;
+      margin-bottom: -5px;
       margin-left: 5px;
     }
   }
