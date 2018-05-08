@@ -182,7 +182,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     countsByBeatmap = {}
     countsByPlaymode = {}
-    totalHype = _.filter(@state.beatmapset.discussions, message_type: 'hype', deleted_at: null).length
+    totalHype = 0
     unresolvedIssues = 0
     byMode =
       timeline: []
@@ -202,27 +202,31 @@ class BeatmapDiscussions.Main extends React.PureComponent
       for own _filter, modes of byFilter
         modes[mode] = {}
 
-
-    for d in @filterDiscussions(@state.beatmapset.discussions)
+    for d in @state.beatmapset.discussions
       # skipped discussion
       # - not privileged (deleted discussion)
       # - deleted beatmap
       continue if _.isEmpty(d)
 
-      if !d.deleted_at? && d.can_be_resolved && !d.resolved
-        beatmap = @beatmaps()[d.beatmap_id]
+      if !d.deleted_at?
+        totalHype++ if d.message_type == 'hype'
 
-        if !d.beatmap_id? || (beatmap? && !beatmap.deleted_at?)
-          unresolvedIssues++
+        if d.can_be_resolved && !d.resolved
+          beatmap = @beatmaps()[d.beatmap_id]
 
-        if beatmap?
-          countsByBeatmap[beatmap.id] ?= 0
-          countsByBeatmap[beatmap.id]++
+          if !d.beatmap_id? || (beatmap? && !beatmap.deleted_at?)
+            unresolvedIssues++
 
-          if !beatmap.deleted_at?
-            countsByPlaymode[beatmap.mode] ?= 0
-            countsByPlaymode[beatmap.mode]++
+          if beatmap?
+            countsByBeatmap[beatmap.id] ?= 0
+            countsByBeatmap[beatmap.id]++
 
+            if !beatmap.deleted_at?
+              countsByPlaymode[beatmap.mode] ?= 0
+              countsByPlaymode[beatmap.mode]++
+
+      # skip if filtering users
+      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
       mode =
         if d.beatmap_id?
@@ -272,12 +276,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   discussions: =>
     @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
-
-
-  filterDiscussions: (discussions) =>
-    return discussions unless @state.selectedUserId?
-
-    _.filter(discussions, user_id: @state.selectedUserId)
 
 
   groupedBeatmaps: (discussionSet) =>
