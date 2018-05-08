@@ -41,10 +41,17 @@ class ModdingHistoryController extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-            $this->user = User::lookup(request('user'), 'id', $this->isModerator);
+            $this->user = User::lookup(request('user'), null, $this->isModerator);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
                 abort(404);
+            }
+
+            if ((string) $this->user->user_id !== (string) request('user')) {
+                return ujs_redirect(route(
+                    $request->route()->getName(),
+                    array_merge(['user' => $this->user->user_id], $request->query())
+                ));
             }
 
             $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
