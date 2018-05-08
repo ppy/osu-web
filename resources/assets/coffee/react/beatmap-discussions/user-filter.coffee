@@ -108,7 +108,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       onClick: onClick
 
 
-  selectedUser: () =>
+  selectedUser: =>
     @props.selectedUser ? allUsers
 
 
@@ -123,5 +123,5 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     return if event.button != 0
     event.preventDefault()
 
-    $.publish 'beatmapsetDiscussions:userFilterChanged', selectedUserId: user.id
+    $.publish 'beatmapsetDiscussions:update', selectedUserId: user.id
     @setState showingSelector: false

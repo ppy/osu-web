@@ -59,7 +59,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapsetDiscussions:userFilterChanged.beatmapDiscussions', @update
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
