@@ -180,7 +180,7 @@ return [
         ],
         'support' => [
             '_' => 'Dukung osu!',
-            'tags' => 'Supporter Tags',
+            'tags' => 'Supporter Tag',
             'merchandise' => 'Merchandise',
         ],
         'legal' => [

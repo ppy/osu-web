@@ -26,7 +26,7 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
+            '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar',
             'info' => 'Ukuran gambar harus :dimensions. Anda juga dapat meletakkan gambar disini untuk mengunggah.',
         ],
@@ -50,219 +50,219 @@ return [
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
-        'edited' => 'Last edited by :user :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'edited' => 'Terakhir disunting oleh :user :when, total disunting sebanyak :count kali.',
+        'posted_at' => 'Diposting pada :when',
 
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => 'Hapu post',
+            'restore' => 'Kembalikan post',
+            'edit' => 'Sunting post',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'Pergi ke post',
+        'post_number_input' => 'masukkan nomor post',
+        'total_posts' => ':posts_count post total',
     ],
 
     'topic' => [
-        'deleted' => 'deleted topic',
-        'go_to_latest' => 'view latest post',
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+        'deleted' => 'topik dihapus',
+        'go_to_latest' => 'lihat posting terbaru',
+        'latest_post' => ':when oleh :user',
+        'latest_reply_by' => 'balasan terbaru oleh :user',
+        'new_topic' => 'Post topik baru',
         'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'reply_box_placeholder' => 'Ketik di sini untuk membalas',
+        'started_by' => 'oleh :user',
 
         'create' => [
-            'preview' => 'Preview',
+            'preview' => 'Pratinjau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
+            'preview_hide' => 'Ketik',
             'submit' => 'Post',
 
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'Ketik konten post di sini',
+                'title' => 'Klik di sini untuk mengatur judul',
             ],
         ],
 
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => 'klik untuk memasukkan nomor tertentu',
+            'first' => 'pergi ke kiriman pertama',
+            'last' => 'pergi ke kiriman terakhir',
+            'next' => 'lewati 10 pos berikutnya',
+            'previous' => 'kembali 10 posting',
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'Batal',
+            'post' => 'Simpan',
         ],
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
+            'title' => 'Langganan Forum',
+            'title_compact' => 'langganan forum',
+            'title_main' => '<strong>Langganan</strong> Forum',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'Topik yang berlangganan',
+                'unread' => 'Topik dengan balasan terbaru',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
+                'total' => 'Anda berlangganan :total topik.',
                 'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik langganan Anda.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'Berhenti berlangganan dari topik?',
+                'title' => 'Berhenti Berlangganan',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Topik',
 
         'actions' => [
-            'reply' => 'Reply',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply' => 'Balas',
+            'reply_with_quote' => 'Kutip posting untuk balasan',
+            'search' => 'Cari',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'Pembuatan Jajak Pendapat',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'Buat jajak pendapat',
+                'remove' => 'Batal membuat jajak pendapat',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Jalankan jajak pendapat selama',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => 'hari',
+                'length_info' => 'Biarkan kosong untuk jajak pendapat yang tidak pernah berakhir',
+                'max_options' => 'Pilihan per pengguna',
+                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
+                'options' => 'Pilihan',
+                'options_info' => 'Tempatkan setiap opsi pada baris baru. Anda dapat memasukkan hingga 10 opsi.',
+                'title' => 'Pertanyaan',
+                'vote_change' => 'Izinkan pemilihan ulang.',
+                'vote_change_info' => 'Jika diaktifkan, pengguna dapat mengubah pilihan mereka.',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => 'Sunting judul',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => 'kali dilihat',
+            'replies' => 'balasan',
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Remove "added" tag',
-            'to_0_done' => 'Removed "added" tag',
-            'to_1' => 'Add "added" tag',
-            'to_1_done' => 'Added "added" tag',
+            'to_0' => 'Hapus tanda "tertambahkan"',
+            'to_0_done' => 'Tanda "tertambahkan" telah dihapus',
+            'to_1' => 'Tambahkan tanda "tertambahkan"',
+            'to_1_done' => 'Tanda "tertambahkan" telah ditambahkan',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Remove "assigned" tag',
-            'to_0_done' => 'Removed "assigned" tag',
-            'to_1' => 'Add "assigned" tag',
-            'to_1_done' => 'Added "assigned" tag',
+            'to_0' => 'Hapus tanda "tertentukan"',
+            'to_0_done' => 'Tanda "tertentukan" telah dihapus',
+            'to_1' => 'Tambahkan tanda "tertentukan"',
+            'to_1_done' => 'Tanda "tertentukan" telah ditambahkan',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Remove "confirmed" tag',
-            'to_0_done' => 'Removed "confirmed" tag',
-            'to_1' => 'Add "confirmed" tag',
-            'to_1_done' => 'Added "confirmed" tag',
+            'to_0' => 'Hapus tanda "terkonfirmasi"',
+            'to_0_done' => 'Tanda "terkonfirmasi" telah dihapus',
+            'to_1' => 'Tambahkan tanda "terkonfirmasi"',
+            'to_1_done' => 'Tanda "terkonfirmasi" telah ditambahkan',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Remove "duplicate" tag',
-            'to_0_done' => 'Removed "duplicate" tag',
-            'to_1' => 'Add "duplicate" tag',
-            'to_1_done' => 'Added "duplicate" tag',
+            'to_0' => 'Hapus tanda "terselesaikan"',
+            'to_0_done' => 'Tanda "terselesaikan" telah dihapus',
+            'to_1' => 'Tambahkan tanda "terselesaikan"',
+            'to_1_done' => 'Tanda "terselesaikan" telah ditambahkan',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Remove "invalid" tag',
-            'to_0_done' => 'Removed "invalid" tag',
-            'to_1' => 'Add "invalid" tag',
-            'to_1_done' => 'Added "invalid" tag',
+            'to_0' => 'Hapus tanda "tidak valid"',
+            'to_0_done' => 'Tanda "tidak valid" telah dihapus',
+            'to_1' => 'Tambahkan tanda "tidak valid"',
+            'to_1_done' => 'Tanda "tidak valid" telah ditambahkan',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Remove "resolved" tag',
-            'to_0_done' => 'Removed "resolved" tag',
-            'to_1' => 'Add "resolved" tag',
-            'to_1_done' => 'Added "resolved" tag',
+            'to_0' => 'Hapus tanda "terselesaikan"',
+            'to_0_done' => 'Tanda "terselesaikan" telah dihapus',
+            'to_1' => 'Tambahkan tanda "terselesaikan"',
+            'to_1_done' => 'Tanda "terselesaikan" telah ditambahkan',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'to_0' => 'Unlock topic',
-            'to_0_done' => 'Topic has been unlocked',
-            'to_1' => 'Lock topic',
-            'to_1_done' => 'Topic has been locked',
+            'is_locked' => 'Topik ini telah dikunci dan tidak dapat dibalas',
+            'to_0' => 'Buka topik',
+            'to_0_done' => 'Topik telah dibuka',
+            'to_1' => 'Kunci topik',
+            'to_1_done' => 'Topik telah dikunci',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'Pindahkan ke forum lain',
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Unpin topic',
-            'to_0_done' => 'Topic has been unpinned',
-            'to_1' => 'Pin topic',
-            'to_1_done' => 'Topic has been pinned',
-            'to_2' => 'Pin topic and mark as announcement',
-            'to_2_done' => 'Topic has been pinned and marked as announcement',
+            'to_0' => 'Lepas sematan topik',
+            'to_0_done' => 'Sematan topik telah dilepaskan',
+            'to_1' => 'Sematkan topik',
+            'to_1_done' => 'Topik telah disematkan',
+            'to_2' => 'Sematkan topik dan tandai sebagai pengumuman',
+            'to_2_done' => 'Topik telah disematkan dan ditandai sebagai pengumuman',
         ],
 
         'show' => [
-            'deleted-posts' => 'Deleted Posts',
-            'total_posts' => 'Total Posts',
+            'deleted-posts' => 'Post yang Dihapus',
+            'total_posts' => 'Jumlah Post',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'Prioritas saat ini: +:count',
+                'do' => 'Promosikan permintaan ini',
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'current' => 'You have :votes remaining.',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
+                    'current' => 'Anda memiliki :votes tersisa.',
+                    'not_enough' => 'Anda tidak memiliki sisa pilihan lagi',
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => 'Pemilihan',
 
                 'detail' => [
-                    'end_time' => 'Polling will end at :time',
-                    'ended' => 'Polling ended :time',
-                    'total' => 'Total votes: :count',
+                    'end_time' => 'Pemilihan akan berakhir pada :time',
+                    'ended' => 'Polling telah berakhir :time',
+                    'total' => 'Jumlah suara: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'to_not_watching' => 'Not bookmarked',
-            'to_watching' => 'Bookmark',
-            'to_watching_mail' => 'Bookmark with notification',
-            'mail_disable' => 'Disable notification',
+            'to_not_watching' => 'Tidak dimarkahi',
+            'to_watching' => 'Markah',
+            'to_watching_mail' => 'Markah dengan notifikasi',
+            'mail_disable' => 'Nonaktifkan notifikasi',
         ],
     ],
 ];
