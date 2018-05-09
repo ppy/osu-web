@@ -225,6 +225,7 @@ class UsersController extends Controller
             "scores_first_count:mode({$currentMode})",
             "statistics:mode({$currentMode})",
             'account_history',
+            'active_tournament_banner',
             'badges',
             'favourite_beatmapset_count',
             'follower_count',
