@@ -25,22 +25,22 @@
   transition: background-image 120ms;
 
   min-height: @profile-header-height;
-  padding: 70px 40px 0; // padding-top also avoids collision with default mode button
+  padding: 80px 40px 0; // additional spacing for tournament banner
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
 
   @media @desktop {
-    padding-top: 30px;
     flex-direction: row;
+    padding-top: 30px;
     align-items: flex-end;
   }
 
   &__actions {
     position: absolute;
     right: 20px;
-    top: 20px;
+    bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,10 +48,9 @@
 
     @media @desktop {
       opacity: 0;
-      right: 0;
       width: 0;
+      right: 0;
       bottom: 20px;
-      top: auto;
     }
 
     .@{top}:hover & {
@@ -69,19 +68,21 @@
     &--info {
       flex: 1 0 auto;
       display: flex;
-      align-items: flex-start;
       flex-direction: column;
+      align-self: stretch;
       min-width: 0;
+
+      @media @desktop {
+        flex: 1;
+      }
     }
   }
 
   &__default-mode {
     .reset-input();
     background-color: #333;
-    position: absolute;
+    margin-bottom: 10px;
 
-    top: 20px;
-    left: 20px;
     border: 2px solid transparent;
 
     font-size: @font-size--normal;
@@ -102,11 +103,6 @@
       border-color: @yellow-dark;
     }
 
-    @media @desktop {
-      top: 10px;
-      left: 50px; // padding + content gutter
-    }
-
     &--disabled {
       &, &:focus, &:hover, &:active {
         border-color: transparent;
@@ -122,5 +118,65 @@
     font-size: 80px;
     color: #fff;
     background-color: fade(#000, 70%);
+  }
+
+  &__tournament-banner {
+    width: 100%;
+
+    &--float {
+      .own-layer();
+      display: none;
+      will-change: transform;
+      transition: transform 200ms cubic-bezier(.08,.82,.17,1);
+      margin-bottom: 10px;
+      z-index: @z-index--profile-tournament-banner;
+
+      @media @desktop {
+        display: block;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    &--top {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__tournament-banner-image {
+    .@{top}__tournament-banner--float & {
+      .default-border-radius();
+      max-width: 100%;
+    }
+    .@{top}__tournament-banner--top & {
+      width: 100%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media @desktop {
+      align-items: flex-start;
+    }
+
+    &--bottom {
+      flex: 1 0 auto;
+      justify-content: flex-end;
+    }
+
+    &--top {
+      flex: none;
+    }
   }
 }

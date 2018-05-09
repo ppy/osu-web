@@ -27,6 +27,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'account_history',
+        'active_tournament_banner',
         'badges',
         'defaultStatistics',
         'disqus_auth',
@@ -93,6 +94,11 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'max_friends' => $user->maxFriends(),
         ];
+    }
+
+    public function includeActiveTournamentBanner(User $user)
+    {
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
     }
 
     public function includeBadges(User $user)
