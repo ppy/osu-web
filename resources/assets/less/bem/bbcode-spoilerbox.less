@@ -23,15 +23,15 @@
     display: inline-block;
     color: @gray;
     margin-right: 10px;
-    
+
     .@{top}.js-spoilerbox--open & {
       transform: rotate(90deg);
     }
   }
-  
+
   &__body {
     display: none;
-    
+
     .@{top}.js-spoilerbox--open & {
       display: block;
       background: #DDD;
@@ -40,11 +40,11 @@
       margin-top: 4px;
     }
   }
-  
+
   &__link {
     color: #333;
     font-weight: bold;
-    
+
     &:focus,
     &:hover,
     &:active {
