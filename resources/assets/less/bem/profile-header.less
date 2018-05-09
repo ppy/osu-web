@@ -124,7 +124,6 @@
     width: 100%;
 
     &--float {
-      .default-border-radius();
       .own-layer();
       display: none;
       will-change: transform;
@@ -154,6 +153,7 @@
 
   &__tournament-banner-image {
     width: 100%;
+    .default-border-radius();
 
     @media @desktop {
       width: auto;
