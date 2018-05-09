@@ -31,7 +31,10 @@
 
   classWithModifiers: (className, modifiers) ->
     ret = className
-    ret += " #{className}--#{modifier}" for modifier in modifiers
+
+    if modifiers?
+      ret += " #{className}--#{modifier}" for modifier in modifiers
+
     ret
 
 
