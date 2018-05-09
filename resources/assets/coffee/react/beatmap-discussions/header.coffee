@@ -106,7 +106,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
             el BeatmapDiscussions.UserFilter,
               selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
-              users: _.sortBy(@discussionStarters(), 'username')
+              users: @discussionStarters()
 
             div
               className: "#{bn}__stats"
@@ -122,8 +122,13 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
 
   discussionStarters: =>
-    userIds = _.uniq(_.map(_.values(@props.discussions), 'user_id'))
-    _.pickBy(@props.users, (value) -> _.includes(userIds, value.id))
+    _ @props.discussions
+      .map 'user_id'
+      .uniq()
+      .map (user_id) =>
+        @props.users[user_id]
+      .sortBy 'username'
+      .value()
 
 
   setFilter: (e) =>
