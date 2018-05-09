@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'co się dzieje, ziomek?',
+        'description' => 'co się właśnie dzieje?',
     ],
 
     'incidents' => [
@@ -32,10 +32,10 @@ return [
     'online' => [
         'title' => [
             'users' => 'Ilość użytkoników online w ciągu ostatnich 24 godzin',
-            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
+            'score' => 'Liczba wysłanych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanawianych wyników na sekundę',
+        'score' => 'Liczba wysyłanych wyników na sekundę',
     ],
 
     'recent' => [
