@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,25 +19,20 @@
  */
 
 return [
-    'header' => ':type 순위',
-    'type' => [
-        'performance' => '퍼포먼스',
-        'charts' => '스포트라이트',
-        'score' => '점수',
-        'country' => '국가별',
+    'feed_title' => 'feed',
+    'generic' => 'Sửa lỗi và một số cải tiến',
+    'users-online' => ':users người dùng online',
+
+    'prefixes' => [
+        'add' => 'thêm',
+        'fix' => 'sửa',
+        'misc' => 'misc',
     ],
-    'stat' => [
-        'accuracy' => '정확도',
-        'active_users' => '유저 수',
-        'country' => '국가',
-        'play_count' => '플레이 횟수',
-        'performance' => '퍼포먼스 점수',
-        'total_score' => '총 점수',
-        'ranked_score' => '기록된 점수',
-        'average_score' => '평균 점수',
-        'average_performance' => '평균 퍼포먼스 ',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'support' => [
+        'heading' => 'Thích bản cập nhật này?',
+        'text_1' => 'Hỗ trợ phát triển hơn nữa của osu! và :link từ hôm nay!',
+        'text_1_link' => 'trở thành người ủng hộ',
+        'text_2' => 'Bạn không chỉ giúp đỡ đẩy nhanh quá trình phát triển, mà bạn còn được nhận thêm một số tính năng bổ sung và khả năng tùy biến!',
     ],
 ];

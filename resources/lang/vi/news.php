@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,25 +19,36 @@
  */
 
 return [
-    'header' => ':type 순위',
-    'type' => [
-        'performance' => '퍼포먼스',
-        'charts' => '스포트라이트',
-        'score' => '점수',
-        'country' => '국가별',
+    'breadcrumbs' => [
+        'news-index' => 'danh sách',
+        'news-show' => 'bài đăng',
     ],
-    'stat' => [
-        'accuracy' => '정확도',
-        'active_users' => '유저 수',
-        'country' => '국가',
-        'play_count' => '플레이 횟수',
-        'performance' => '퍼포먼스 점수',
-        'total_score' => '총 점수',
-        'ranked_score' => '기록된 점수',
-        'average_score' => '평균 점수',
-        'average_performance' => '평균 퍼포먼스 ',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Bài đăng mới hơn',
+            'older' => 'Bài đăng cũ hơn',
+        ],
+    ],
+
+    'show' => [
+        'posted' => 'đăng vào :time',
+
+        'nav' => [
+            'newer' => 'Bài đăng mới hơn',
+            'older' => 'Bài đăng cũ hơn',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Cập nhật',
+        'ok' => 'Đã cập nhật danh sách.',
+    ],
+
+    'update' => [
+        'button' => 'Cập nhật',
+        'ok' => 'Đã cập nhật bài đăng.',
     ],
 ];

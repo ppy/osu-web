@@ -48,13 +48,13 @@ return [
 
     'mode' => [
         'artist' => '가수/앨범별',
-        'chart' => '차트별', // Base text has changed, please check.
+        'chart' => '스포트라이트',
         'standard' => '표준',
         'theme' => '테마별',
     ],
 
     'require_login' => [
         '_' => '다운로드하려면 :link하셔야 합니다',
-        'link_text' => '로그인', // Base text changed from "log" to "sign"
+        'link_text' => '로그인',
     ],
 ];
