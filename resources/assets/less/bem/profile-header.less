@@ -152,12 +152,12 @@
   }
 
   &__tournament-banner-image {
-    width: 100%;
-    .default-border-radius();
-
-    @media @desktop {
-      width: auto;
+    .@{top}__tournament-banner--float & {
+      .default-border-radius();
       max-width: 100%;
+    }
+    .@{top}__tournament-banner--top & {
+      width: 100%;
     }
   }
 
