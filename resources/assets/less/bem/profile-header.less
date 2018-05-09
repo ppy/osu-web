@@ -25,22 +25,22 @@
   transition: background-image 120ms;
 
   min-height: @profile-header-height;
-  padding: 70px 40px 0; // padding-top also avoids collision with default mode button
+  padding: 70px 40px 0; // additional spacing for tournament banner
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
 
   @media @desktop {
-    padding-top: 30px;
     flex-direction: row;
+    padding-top: 30px;
     align-items: flex-end;
   }
 
   &__actions {
     position: absolute;
     right: 20px;
-    top: 20px;
+    bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,10 +48,9 @@
 
     @media @desktop {
       opacity: 0;
-      right: 0;
       width: 0;
+      right: 0;
       bottom: 20px;
-      top: auto;
     }
 
     .@{top}:hover & {
@@ -122,16 +121,43 @@
   }
 
   &__tournament-banner {
-    .own-layer();
-    .default-border-radius();
-    max-width: 100%;
-    will-change: transform;
-    transition: transform 200ms cubic-bezier(.08,.82,.17,1);
-    z-index: @z-index--profile-tournament-banner;
-    margin-bottom: 10px;
+    width: 100%;
 
-    &:hover {
-      transform: scale(1.2);
+    &--float {
+      .default-border-radius();
+      .own-layer();
+      display: none;
+      will-change: transform;
+      transition: transform 200ms cubic-bezier(.08,.82,.17,1);
+      margin-bottom: 10px;
+      z-index: @z-index--profile-tournament-banner;
+
+      @media @desktop {
+        display: block;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    &--top {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__tournament-banner-image {
+    width: 100%;
+
+    @media @desktop {
+      width: auto;
+      max-width: 100%;
     }
   }
 

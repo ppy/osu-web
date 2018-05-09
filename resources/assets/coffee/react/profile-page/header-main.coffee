@@ -63,6 +63,8 @@ class ProfilePage.HeaderMain extends React.Component
       style:
         backgroundImage: "url('#{@state.coverUrl}')"
 
+      @renderTournamentBanner modifiers: ['top']
+
       div
         className: 'profile-header__spinner'
         'data-visibility': 'hidden' if !@state.isCoverUpdating
@@ -76,12 +78,8 @@ class ProfilePage.HeaderMain extends React.Component
 
         div
           className: 'profile-header__info profile-header__info--top'
-          if @props.user.active_tournament_banner.id?
-            a
-              href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
-              el Img2x,
-                src: @props.user.active_tournament_banner.image
-                className: 'profile-header__tournament-banner'
+          @renderTournamentBanner modifiers: ['float']
+
           if @props.withEdit && @props.user.playmode != @props.currentMode
             button
               className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
@@ -121,6 +119,17 @@ class ProfilePage.HeaderMain extends React.Component
               el ProfilePage.CoverSelector,
                 canUpload: @props.user.is_supporter
                 cover: @props.user.cover
+
+
+  renderTournamentBanner: ({modifiers} = {}) =>
+    return if !@props.user.active_tournament_banner.id?
+
+    a
+      href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
+      className: osu.classWithModifiers 'profile-header__tournament-banner', modifiers
+      el Img2x,
+        src: @props.user.active_tournament_banner.image
+        className: 'profile-header__tournament-banner-image'
 
 
   closeEdit: (e) =>
