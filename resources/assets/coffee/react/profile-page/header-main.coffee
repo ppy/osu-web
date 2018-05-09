@@ -91,12 +91,8 @@ class ProfilePage.HeaderMain extends React.Component
 
         div
           className: 'profile-header__info profile-header__info--bottom'
-          div
-            className: 'profile-header__user profile-header__user--badges'
-            el ProfilePage.Badges, badges: @props.user.badges
-          div
-            className: 'profile-header__user profile-header__user--user'
-            el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
+          el ProfilePage.Badges, badges: @props.user.badges
+          el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
       if !@props.user.is_bot
         div
