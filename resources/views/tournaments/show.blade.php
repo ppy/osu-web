@@ -55,9 +55,19 @@
                 @endif
 
                 <div class="tournament__description">
-                    {!! Markdown::convertToHtml($tournament->description) !!}
+                    @if ($tournament->signup_open->isFuture())
+                        {{ trans('tournament.show.state.before_registration') }}
+                    @elseif ($tournament->isRegistrationOpen())
+                        {!! Markdown::convertToHtml($tournament->description) !!}
 
-                    {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                        {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                    @elseif ($tournament->start_date->isFuture())
+                        {{ trans('tournament.show.state.registration_closed') }}
+                    @elseif ($tournament->isTournamentRunning())
+                        {{ trans('tournament.show.state.running') }}
+                    @else
+                        {{ trans('tournament.show.state.ended') }}
+                    @endif
                 </div>
             </div>
 

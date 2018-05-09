@@ -39,6 +39,13 @@ return [
         'rank_too_low' => 'Sorry, you do not meet the rank requirements for this tournament!',
         'registration_ends' => 'Registrations close on :date',
         'wiki' => 'Information Page',
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => ':start to :end',
 ];
