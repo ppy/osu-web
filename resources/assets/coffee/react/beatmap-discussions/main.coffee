@@ -94,6 +94,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         currentFilter: @state.currentFilter
         currentUser: @state.currentUser
         discussions: @discussions()
+        discussionStarters: @discussionStarters()
         events: @state.beatmapset.events
         mode: @state.currentMode
         selectedUserId: @state.selectedUserId
@@ -276,6 +277,16 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   discussions: =>
     @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
+
+
+  discussionStarters: =>
+    _ @discussions()
+      .map 'user_id'
+      .uniq()
+      .map (user_id) =>
+        @users()[user_id]
+      .sortBy 'username'
+      .value()
 
 
   groupedBeatmaps: (discussionSet) =>

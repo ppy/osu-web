@@ -230,7 +230,6 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $payment->cancel();
                 $order->cancel();
-                $order->releaseItems();
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
             } catch (Exception $exception) {

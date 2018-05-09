@@ -24,6 +24,7 @@ class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';
     protected $primaryKey = 'banner_id';
+    protected $macros = ['active'];
     public $timestamps = false;
 
     protected $fillable = ['tournament_id', 'country_acronym'];
@@ -41,5 +42,45 @@ class ProfileBanner extends Model
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_acronym');
+    }
+
+    public function macroActive()
+    {
+        return function ($query) {
+            $last = $query->orderBy('banner_id', 'DESC')->first();
+
+            if ($last !== null && $last->isActive()) {
+                return $last;
+            }
+        };
+    }
+
+    public function image()
+    {
+        $period = $this->period();
+
+        if ($period !== null) {
+            $prefix = config("osu.tournament_banner.{$period}.prefix");
+
+            return "{$prefix}{$this->country_acronym}.jpg";
+        }
+    }
+
+    public function isActive()
+    {
+        $period = $this->period();
+
+        return $period === 'current' ||
+            ($period === 'previous' && $this->country_acronym === config('osu.tournament_banner.previous.winner_id'));
+    }
+
+    public function period()
+    {
+        switch ($this->tournament_id) {
+            case config('osu.tournament_banner.current.id'):
+                return 'current';
+            case config('osu.tournament_banner.previous.id'):
+                return 'previous';
+        }
     }
 }
