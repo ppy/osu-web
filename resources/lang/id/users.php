@@ -114,8 +114,8 @@ return [
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar anda di sini untuk mengunggah.',
-                    'restriction_info' => "Unggah hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'Ukuran sampul seharusnya 2000x700',
+                    'restriction_info' => "Layanan untuk mengunggah gambar sampul hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
+                    'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2000x700',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
                 ],
@@ -129,7 +129,7 @@ return [
 
         'extra' => [
             'followers' => '1 pengikut|:count pengikut',
-            'unranked' => 'Tidak ada permainan akhir-akhir ini',
+            'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
                 'title' => 'Pencapaian',
@@ -173,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tersedia',
-                'available_info' => 'Kudosu dapat ditukarkan menjadi kudosu stars, yang akan membantu beatmap anda mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum anda tukarkan.',
+                'available_info' => 'Kudosu yang anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum anda tukarkan.',
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang diperoleh',
@@ -201,8 +201,8 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => 'Menerima :amount atas pemungutan suara di post modding :post',
-                            'reset' => 'Kehilangan :amount atas pemungutan suara di post modding :post',
+                            'give' => 'Menerima :amount atas dasar mendapatkan vote positif di post modding :post',
+                            'reset' => 'Kehilangan :amount atas dasar kehilangan vote positif di post modding :post',
                         ],
 
                         'recalculate' => [

@@ -77,18 +77,18 @@ return [
 
         'topic_vote' => [
             'required' => 'Pilih opsi saat memilih.',
-            'too_many' => 'Pilihan terlalu banyak dari yang diizinkan.',
+            'too_many' => 'Jumlah pilihan anda lebih banyak dari yang diizinkan.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Kata sandi mungkin tidak mengandung nama pengguna.',
+        'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
         'email_already_used' => 'Alamat email sudah digunakan',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => 'Tampaknya bukan alamat email yang valid.',
         'too_short' => 'Kata sandi baru terlalu pendek.',
-        'unknown_duplicate' => 'Nama pengguna atau alamt email sudah digunakan.',
+        'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
@@ -98,7 +98,7 @@ return [
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
         'username_too_short' => 'Nama pengguna yang diminta terlalu pendek.',
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',
-        'weak' => 'Kata sandi diblacklist.',
+        'weak' => 'Kata sandi ini berada dalam daftar hitam.',
         'wrong_current_password' => 'Kata sandi saat ini salah.',
         'wrong_email_confirmation' => 'Konfirmasi email tidak cocok.',
         'wrong_password_confirmation' => 'Konfirmasi kata sandi tidak cocok.',

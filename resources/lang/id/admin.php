@@ -45,7 +45,7 @@ return [
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'Sampul tidak diatur',
+                'no-cover' => 'Sampul belum diatur',
 
                 'submit' => [
                     'save' => 'Simpan',

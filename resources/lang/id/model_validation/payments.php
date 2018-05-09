@@ -46,7 +46,7 @@ return [
         ],
     ],
     'order_number' => [
-        'malformed' => 'ID transaksi pesanan yang diterima cacat',
+        'malformed' => 'ID transaksi pesanan yang diterima tidak valid',
         'user_id_mismatch' => 'external_id mengandung id pengguna yang salah',
     ],
 ];

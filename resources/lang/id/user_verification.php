@@ -44,6 +44,6 @@ return [
         'incorrect_key' => 'Kode verifikasi salah.',
         'retries_exceeded' => 'Kode verifikasi salah. Batas percobaan terlampaui, email verifikasi baru telah dikirim.',
         'reissued' => 'Kode verifikasi diperbarui, email verifikasi baru telah dikirim.',
-        'unknown' => 'Terjadi masalah tidak dikenal, email verifikasi baru telah dikirim.',
+        'unknown' => 'Terjadi masalah yang tidak diketahui, email verifikasi baru telah dikirim.',
     ],
 ];

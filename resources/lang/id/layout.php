@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan Ouendan/EBA, Taiko dan mode permainan original, serta level editor yang berfungsi.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang berfungsi.',
     ],
 
     'menu' => [

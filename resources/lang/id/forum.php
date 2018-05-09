@@ -19,37 +19,37 @@
  */
 
 return [
-    'pinned_topics' => 'Pinned Topics',
-    'slogan' => "it's dangerous to play alone.",
-    'subforums' => 'Subforums',
+    'pinned_topics' => 'Topik yang Disematkan',
+    'slogan' => 'Bermain sendiri itu berbahaya.',
+    'subforums' => 'Subforum',
     'title' => 'osu!community',
 
     'covers' => [
         'create' => [
             '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            'button' => 'Unggah gambar',
+            'info' => 'Ukuran gambar harus :dimensions. Anda juga dapat meletakkan gambar disini untuk mengunggah.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => 'Hapus gambar sampul',
+            'confirm' => 'Apakah anda yakin akan menghapus gambar sampul ini?',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '[osu!] Balasan baru dari topik ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => 'Topik tidak ditemukan!',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
+        'confirm_destroy' => 'Yakin menghapus post?',
+        'confirm_restore' => 'Yakin mengembalikan post?',
         'edited' => 'Last edited by :user :when, edited :count times in total.',
         'posted_at' => 'posted :when',
 
@@ -116,7 +116,7 @@ return [
 
             'info' => [
                 'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik langganan anda.',
             ],
         ],
 

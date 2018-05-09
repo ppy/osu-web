@@ -35,7 +35,7 @@ return [
             'line_2' => 'Lanjutkan pembayaran anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
             'link_text' => 'klik disini',
         ],
-        'delayed_shipping' => 'Kami saat ini kewalahan dengan pesanan! Anda dipersilakan untuk melakukan pemesanan, tetapi harap menunggu **penundaan 1-2 minggu** tambahan sementara kami menyelesaikan pesanan yang ada.',
+        'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
     ],
 
     'discount' => 'hemat :percent%',
