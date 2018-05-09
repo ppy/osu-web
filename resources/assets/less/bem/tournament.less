@@ -37,12 +37,9 @@
   &__description {
     .content-font();
 
-    background-color: @gray-blue-dark;
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 20px;
-    .default-box-shadow();
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
@@ -56,5 +53,41 @@
     height: 450px;
     background-size: cover;
     background-position: center center;
+  }
+
+  &__link {
+    .link-plain();
+    .link-white();
+    .default-border-radius();
+    font-size: @font-size--normal;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 0 5px;
+    display: inline-block;
+    background-color: #444;
+    border: 2px solid #666;
+
+    &:focus {
+      border-color: @pink-light;
+    }
+
+    &:hover {
+      border-color: @pink;
+    }
+
+    &:active {
+      border-color: @pink-darker;
+    }
+  }
+
+  &__links {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__page {
+    background-color: @gray-blue-dark;
+    .default-box-shadow();
+    padding: 20px;
   }
 }

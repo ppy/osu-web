@@ -42,17 +42,30 @@
         <div class="tournament">
             <div class='tournament__banner'></div>
 
-            <div class='tournament__description'>
-                {!! Markdown::convertToHtml($tournament->description) !!}
-                {{trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)])}}.
+            <div class="tournament__page">
+                @if (count($links = $tournament->pageLinks()) > 0)
+                    <div class="tournament__links">
+                        @foreach ($links as $link)
+                            <a
+                                href="{{ $link['url'] }}"
+                                class="tournament__link"
+                            >{{ $link['title'] }}</a>
+                        @endforeach
+                    </div>
+                @endif
+
+                <div class="tournament__description">
+                    {!! Markdown::convertToHtml($tournament->description) !!}
+
+                    {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                </div>
             </div>
+
             @if($tournament->isRegistrationOpen())
                 <div class='tournament__countdown-timer'>
                     <div class='js-react--countdownTimer' data-deadline='{{json_time($tournament->signup_close)}}'></div>
                 </div>
-            @endif
 
-            @if($tournament->isRegistrationOpen())
                 <div class="tournament__body">
                     @if (!Auth::user())
                         <div>{!!
