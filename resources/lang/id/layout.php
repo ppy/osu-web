@@ -194,7 +194,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang anda minta tidak ada di sini!',
+            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
         ],
         '403' => [
             'error' => 'Anda seharusnya tidak di sini.',
@@ -206,7 +206,7 @@ return [
         ],
         '405' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang anda minta tidak ada di sini!',
+            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
         ],
         '500' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
@@ -225,7 +225,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Untuk jaga-jaga, ini kode yang dapat anda berikan saat menghubungi layanan dukungan!',
+        'reference' => 'Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!',
     ],
 
     'popup_login' => [
@@ -242,7 +242,7 @@ return [
         ],
 
         'register' => [
-            'info' => 'Anda butuh akun. Mengapa anda belum memilikinya?',
+            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
             'title' => 'Belum memiliki akun?',
         ],
     ],

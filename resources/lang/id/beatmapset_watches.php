@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Berikut adalah diskusi beatmap yang anda amati. Anda akan diberitahu jika ada pembaruan atau postingan terbaru.',
+        'description' => 'Berikut adalah diskusi beatmap yang Anda amati. Anda akan diberitahu jika ada pembaruan atau postingan terbaru.',
         'title_compact' => 'daftar pengamatan modding',
         'title_main' => 'Daftar Pengamatan Modding',
 

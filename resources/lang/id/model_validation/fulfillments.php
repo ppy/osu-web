@@ -21,7 +21,7 @@
 return [
     'username_change' => [
         'only_one' => 'perubahan nama pengguna yang diperbolehkan hanya 1 kali per pesanan.',
-        'insufficient_paid' => 'Biaya yang Anda bayarkan tidak mencukupi untuk menutupi biaya penggantian username anda (:expected > :actual)',
+        'insufficient_paid' => 'Biaya yang Anda bayarkan tidak mencukupi untuk menutupi biaya penggantian username Anda (:expected > :actual)',
         'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk diganti (:username)',
     ],
     'supporter_tag' => [

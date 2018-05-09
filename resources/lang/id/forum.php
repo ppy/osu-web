@@ -33,7 +33,7 @@ return [
 
         'destroy' => [
             '_' => 'Hapus gambar sampul',
-            'confirm' => 'Apakah anda yakin akan menghapus gambar sampul ini?',
+            'confirm' => 'Apakah Anda yakin akan menghapus gambar sampul ini?',
         ],
     ],
 
@@ -116,7 +116,7 @@ return [
 
             'info' => [
                 'total' => 'You subscribed to :total topics.',
-                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik langganan anda.',
+                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik langganan Anda.',
             ],
         ],
 

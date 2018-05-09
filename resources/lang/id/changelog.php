@@ -33,6 +33,6 @@ return [
         'heading' => 'Menyukai pembaruan ini?',
         'text_1' => 'Dukung pengembangan osu! lebih lanjut dan :link hari ini!',
         'text_1_link' => 'jadilah supporter',
-        'text_2' => 'Anda tidak hanya membantu mempercepat waktu pengembangan, tetapi anda juga akan mendapatkan beberapa fitur tambahan dan kustomisasi!',
+        'text_2' => 'Anda tidak hanya membantu mempercepat waktu pengembangan, tetapi Anda juga akan mendapatkan beberapa fitur tambahan dan kustomisasi!',
     ],
 ];

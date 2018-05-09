@@ -25,7 +25,7 @@ return [
             'has_reply' => 'Tidak dapat menghapus diskusi dengan balasan',
         ],
         'nominate' => [
-            'exhausted' => 'Anda telah mencapai batas nominasi anda untuk hari ini, silakan coba lagi besok.',
+            'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -65,7 +65,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Anda tidak dapat mengubah pilihan anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
+        'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
     ],
 
     'forum' => [
@@ -73,21 +73,21 @@ return [
             'delete' => [
                 'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
                 'locked' => 'Tidak dapat menghapus postingan di topik yang telah dikunci.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menghapus posting.',
             ],
 
             'edit' => [
                 'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
                 'locked' => 'Topik telah dikunci, sehingga penyuntingan post tidak lagi dapat dilakukan.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting post.',
                 'topic_locked' => 'Tidak dapat menyunting postingan di topik yang telah dikunci.',
             ],
 
             'store' => [
-                'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
-                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh', // FIXME: alamat email unhardcode
+                'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika Anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
+                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika Anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh', // FIXME: alamat email unhardcode
             ],
         ],
 
@@ -95,7 +95,7 @@ return [
             'reply' => [
                 'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
@@ -106,7 +106,7 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membuat topik baru.',
                 'forum_closed' => 'Forum ditutup sehingga tidak dapat membuat postingan.',
             ],
@@ -124,13 +124,13 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Gambar sampul yang anda ingin terapkan tidak valid.',
+                'uneditable' => 'Gambar sampul yang Anda ingin terapkan tidak valid.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
         ],

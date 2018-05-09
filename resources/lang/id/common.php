@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Apa anda yakin?',
+    'confirmation' => 'Apa Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [

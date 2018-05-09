@@ -42,7 +42,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Periksa email anda untuk kode verifikasi.',
+        'sent' => 'Periksa email Anda untuk kode verifikasi.',
         'saved' => 'Kata sandi baru disimpan',
     ],
 

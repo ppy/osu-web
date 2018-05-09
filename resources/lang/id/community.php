@@ -36,12 +36,12 @@ return [
             dan juga bagi mereka yang terus mendukung permainan hebat ini dan komunitasnya sampai ke masa yang akan datang:).",
 
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
-            'gifted' => ':giftedTags dari pembelian tag anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan), sangat murah hati!',
+            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'gifted' => ':giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan), sangat murah hati!',
             'not_yet' => 'Anda belum pernah memiliki supporter tag :(',
             'title' => 'Status supporter saat ini',
-            'valid_until' => 'Supporter Tag anda saat ini berlaku hingga :date!',
-            'was_valid_until' => 'Supporter Tag anda berlaku hingga :date.',
+            'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',
+            'was_valid_until' => 'Supporter Tag Anda berlaku hingga :date.',
         ],
 
         'why_support' => [
@@ -74,12 +74,12 @@ return [
 
             'early_access' => [
                 'title' => 'Pra-rilis',
-                'description' => 'Akses ke rilisan terbaru lebih awal, di mana anda dapat mencoba fitur yang baru ditambahkan sebelum dirilis secara publik!.',
+                'description' => 'Akses ke rilisan terbaru lebih awal, di mana Anda dapat mencoba fitur yang baru ditambahkan sebelum dirilis secara publik!.',
             ],
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => 'Kustomisasi profil anda dengan menambahkan halaman pengguna yang dapat anda hias sepenuhnya.',
+                'description' => 'Kustomisasi profil Anda dengan menambahkan halaman pengguna yang dapat Anda hias sepenuhnya.',
             ],
 
             'beatmap_filters' => [
@@ -99,12 +99,12 @@ return [
 
             'change_username' => [
                 'title' => 'Ganti Nama Pengguna',
-                'description' => 'Kemampuan untuk mengubah nama pengguna anda tanpa biaya tambahan. (maksimum sekali).',
+                'description' => 'Kemampuan untuk mengubah nama pengguna Anda tanpa biaya tambahan. (maksimum sekali).',
             ],
 
             'skinnables' => [
                 'title' => 'Elemen Skinning',
-                'description' => 'Tambahan elemen yang bisa anda skin. Seperti latar belakang menu utama.',
+                'description' => 'Tambahan elemen yang bisa Anda skin. Seperti latar belakang menu utama.',
             ],
 
             'feature_votes' => [
@@ -119,7 +119,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Merasa Spesial',
-                'description' => 'Perasaan hangat karena anda telah melakukan bagian anda untuk memastikan osu! berjalan lancar!.',
+                'description' => 'Perasaan hangat karena Anda telah melakukan bagian Anda untuk memastikan osu! berjalan lancar!.',
             ],
 
             'more_to_come' => [

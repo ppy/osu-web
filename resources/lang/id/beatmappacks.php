@@ -24,7 +24,7 @@ return [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
                 '_' => 'Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
-                    Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat anda masuk ke mode Play.
+                    Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat Anda masuk ke mode Play.
                     :scary ekstrak zip/osz sendiri,
                     atau beatmap akan ditampilkan salah dalam osu dan tidak akan berfungsi dengan baik.',
                 'scary' => 'JANGAN',

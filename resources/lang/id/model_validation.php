@@ -41,9 +41,9 @@ return [
         'hype' => [
             'guest' => 'Silakan masuk untuk hype.',
             'hyped' => 'Anda telah melakukan hype untuk beatmap ini.',
-            'limit_exceeded' => 'Anda telah menggunakan semua hype anda.',
+            'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
             'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
-            'owner' => 'Tidak terdapat hype di beatmap anda.',
+            'owner' => 'Tidak terdapat hype di beatmap Anda.',
         ],
 
         'timestamp' => [
@@ -77,7 +77,7 @@ return [
 
         'topic_vote' => [
             'required' => 'Pilih opsi saat memilih.',
-            'too_many' => 'Jumlah pilihan anda lebih banyak dari yang diizinkan.',
+            'too_many' => 'Jumlah pilihan Anda lebih banyak dari yang diizinkan.',
         ],
     ],
 
@@ -106,7 +106,7 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Anda harus menjadi :link untuk mengubah nama anda!',
+                '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
                 'link_text' => 'osu!supporter',
             ],
             'username_is_same' => 'Ini nama penggunamu yang sekarang, bodoh!',

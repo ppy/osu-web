@@ -43,7 +43,7 @@ return [
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga tidak dapat dibahas lagi.',
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas',
-        'reply_placeholder' => 'Ketik balasan anda di sini',
+        'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
         'resolved' => 'Terselesaikan',
         'restore' => 'pulihkan',
@@ -60,7 +60,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Postingan ini akan ditampilan di diskusi beatmapset umum. Untuk melakukan mod di beatmap ini, mulai pesan anda dengan keterangan waktu (mis. 00:12:345).',
+            'in_general' => 'Postingan ini akan ditampilan di diskusi beatmapset umum. Untuk melakukan mod di beatmap ini, mulai pesan Anda dengan keterangan waktu (mis. 00:12:345).',
             'in_timeline' => 'Untuk mod beberapa keterangan waktu, posting komentar berkali-kali (satu postingan tiap keterangan waktu).',
         ],
 
@@ -86,7 +86,7 @@ return [
 
         'new' => [
             'timestamp' => 'Keterangan Waktu',
-            'timestamp_missing' => 'ctrl-c dalam mode edit dan tempelkan pesan anda untuk menambahkan keterangan waktu!',
+            'timestamp_missing' => 'ctrl-c dalam mode edit dan tempelkan pesan Anda untuk menambahkan keterangan waktu!',
             'title' => 'Diskusi Baru',
         ],
 
@@ -124,7 +124,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => 'Apakah anda yakin? Dengan ini anda akan menggunakan :n hype anda yang tersisa, aksi ini tidak dapat diurungkan.',
+        'confirm' => 'Apakah Anda yakin? Dengan ini Anda akan menggunakan :n hype Anda yang tersisa, aksi ini tidak dapat diurungkan.',
         'explanation' => 'Hype beatmap ini supaya layak dinominasi dan segera ranked!',
         'explanation_guest' => 'Masuk dan hype beatmap ini supaya layak dinominasi dan segera ranked!',
         'new_time' => 'Anda akan mendapatkan hype lain dalam :new_time.',

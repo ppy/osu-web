@@ -70,7 +70,7 @@ return [
         'user' => [
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian anda',
+            'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda',
             'title' => 'Pengguna',
         ],
 
@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'mari persiapkan<br>diri anda!',
+        'tagline' => 'mari persiapkan<br>diri Anda!',
         'action' => 'Unduh osu!',
         'os' => [
             'windows' => 'untuk Windows',
@@ -144,9 +144,9 @@ return [
         'subtitle' => 'Anda tampaknya bersenang-senang! :D',
         'body' => [
             'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, pengembangan dan biaya operasionalnya bergantung pada dukungan pengguna ?',
-            'part-2' => 'Apakah anda juga tahu bahwa dengan mendukung osu! anda juga akan mendapatkan fitur-fitur eksklusif, seperti <strong>pengunduh dalam game</strong> yang secara otomatis mengunduh saat menyorot pemain lain dan dalam pertandingan multiplayer?',
+            'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan fitur-fitur eksklusif, seperti <strong>pengunduh dalam game</strong> yang secara otomatis mengunduh saat menyorot pemain lain dan dalam pertandingan multiplayer?',
         ],
         'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',
-        'download-starting' => 'Oh, dan jangan khawatir - unduhan anda sudah dimulai ;)',
+        'download-starting' => 'Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)',
     ],
 ];

@@ -84,7 +84,7 @@ return [
             'country' => 'Peringkat Negara',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
-            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat semua fitur eksklusif yang anda dapatkan!',
+            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat semua fitur eksklusif yang Anda dapatkan!',
             'supporter-only' => 'Anda harus menjadi supporter untuk mengakses fitur peringkat teman dan negara!',
             'title' => 'Papan Skor',
 
@@ -101,9 +101,9 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Tidak seorang pun dari negara anda yang memiliki skor di map ini!',
-                'friend' => 'Tidak seorang pun dari daftar teman anda yang memiliki skor di map ini!',
-                'global' => 'Belum ada skor yang dicetak. Mungkin anda harus coba mencetak satu?',
+                'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
+                'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
+                'global' => 'Belum ada skor yang dicetak. Mungkin Anda harus coba mencetak satu?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap non-ranked.',
             ],
