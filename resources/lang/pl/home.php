@@ -34,7 +34,7 @@ return [
         'advanced_link' => 'Zaawansowane wyszukiwanie',
         'button' => 'Szukaj',
         'empty_result' => 'Nie znaleziono!',
-        'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
+        'missing_query' => 'Wyszukiwane hasło musi składać się z minimalnie :n znaków',
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
         'title' => 'Wyszukiwarka',
 
@@ -50,7 +50,7 @@ return [
             'title' => 'Forum',
             'label' => [
                 'forum' => 'przeszukaj fora',
-                'forum_children' => 'uwzględnij subfora',
+                'forum_children' => 'uwzględnij podfora',
                 'topic_id' => 'wątek #',
                 'username' => 'autor',
             ],
@@ -65,7 +65,7 @@ return [
         'user' => [
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
-            'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max graczy. Spróbuj zmienić wyszukiwaną frazę.',
+            'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max użytkowników. Spróbuj zmienić wyszukiwaną frazę.',
             'title' => 'Użytkownicy',
         ],
         'wiki_page' => [
@@ -123,7 +123,7 @@ return [
         'beatmaps' => [
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
-            'by' => 'stworzona przez',
+            'by' => 'autorstwa',
             'plays' => ':count zagrań',
         ],
         'buttons' => [
@@ -138,7 +138,7 @@ return [
         'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
         'body' => [
             'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
-            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych, oraz oglądania innych graczy?',
+            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych czy oglądania innych graczy?',
         ],
         'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
         'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',

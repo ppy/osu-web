@@ -29,7 +29,7 @@ return [
         'subject' => 'odzyskiwanie konta osu!',
     ],
     'error' => [
-        'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odsyskać konto.',
+        'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odzyskać konto.',
         'is_privileged' => 'Skontaktuj się z peppym.',
         'missing_key' => 'Wymagane.',
         'too_many_tries' => 'Za dużo błędnych prób.',
@@ -37,16 +37,16 @@ return [
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
     'notice' => [
-        'sent' => 'Sprawdź email, aby uzyskać kod.',
+        'sent' => 'Sprawdź e-mail, aby uzyskać kod.',
         'saved' => 'Nowe hasło zostało zapisane!',
     ],
     'started' => [
         'password' => 'Nowe hasło',
-        'password_confirmation' => 'Potwierdź hasło',
+        'password_confirmation' => 'Potwierdzenie hasła',
         'title' => 'Resetowanie hasła dla konta <strong>:username</strong>.',
         'verification_key' => 'Kod weryfikacyjny',
     ],
     'starting' => [
-        'username' => 'Wprowadź email lub nazwę użytkownika',
+        'username' => 'Wprowadź e-mail lub nazwę użytkownika',
     ],
 ];

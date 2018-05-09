@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Powiadomimy cię, kiedy pojawią się nowe posty bądź aktualizacje.',
+        'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Otrzymasz powiadomienie, kiedy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',
         'title_main' => 'Obserwowane dyskusje',
 

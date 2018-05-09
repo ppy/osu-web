@@ -22,8 +22,8 @@ return [
     'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
     'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
     'prefixes' => [
-        'add' => 'dodano',
-        'fix' => 'naprawiono',
+        'add' => 'nowość',
+        'fix' => 'poprawka',
         'misc' => 'różne',
     ],
 
