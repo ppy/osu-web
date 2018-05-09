@@ -100,6 +100,7 @@ return [
         'pt-br',
         'ru',
         'sv',
+        'vi',
         'zh',
         'zh-tw',
     ],
