@@ -147,9 +147,9 @@ return [
     'mode' => [
         'any' => '모두',
         'osu' => 'osu!',
-        'taiko' => 'osu!태고',
-        'fruits' => 'osu!캐치 더 비트',
-        'mania' => 'osu!매니아',
+        'taiko' => 'osu!taiko',
+        'fruits' => 'osu!catch',
+        'mania' => 'osu!mania',
     ],
     'status' => [
         'any' => '모두',
