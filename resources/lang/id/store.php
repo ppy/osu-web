@@ -31,7 +31,7 @@ return [
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Bayar via Paypal',
         'pending_checkout' => [
-            'line_1' => 'Pembayaran sebelumnya telah dimulai tetapi tidak tuntas.',
+            'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
             'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
             'link_text' => 'klik disini',
         ],

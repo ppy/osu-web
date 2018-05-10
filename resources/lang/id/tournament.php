@@ -21,7 +21,7 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Daftar turnamen yang aktif dan diakui secara resmi.',
+            'subtitle' => 'Daftar turnamen-turnamen resmi yang kini tengah berlangsung.',
             'title' => 'Turnamen Komunitas',
         ],
         'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
@@ -32,7 +32,7 @@ return [
             'register' => 'Daftarkan saya!',
             'cancel' => 'Batalkan Pendaftaran',
         ],
-        'entered' => 'Anda terdaftar di turnamen ini.<br><br>Perhatikan hal ini bukan berarti Anda telah dimasukkan ke dalam tim.<br><br>Instruksi lebih lanjut akan dikirimkan melalui email saat turnamen akan dimulai, jadi tolong pastikan alamat email akun osu! Anda valid!',
+        'entered' => 'Anda telah berhasil mendaftarkan diri Anda pada turnamen ini. <br><br>Mohon diperhatikan bahwa hal ini bukan berarti Anda telah secara otomatis telah diikutsertakan ke dalam salah satu tim yang bertanding. <br><br>Instruksi lebih lanjut akan dikirimkan melalui email saat turnamen akan dimulai, jadi mohon pastikan alamat email akun osu! Anda valid!',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
         'not_yet_entered' => 'Anda tidak terdaftar di turnamen ini.',
         'rank_too_low' => 'Maaf, Anda tidak memenuhi persyaratan peringkat untuk mengikuti turnamen ini!',
