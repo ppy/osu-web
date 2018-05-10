@@ -27,6 +27,9 @@
                     {{ trans('rankings.stat.accuracy') }}
                 </th>
                 <th class="ranking-page-table__heading">
+                    {{ trans('rankings.stat.unweighted_accuracy') }}
+                </th>
+                <th class="ranking-page-table__heading">
                     {{ trans('rankings.stat.play_count') }}
                 </th>
                 <th class="ranking-page-table__heading">
@@ -69,6 +72,9 @@
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ format_percentage($score->accuracy_new) }}
+                    </td>
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                        {{ format_percentage($score->accuracy, 4) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score->playcount) }}

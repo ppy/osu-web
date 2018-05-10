@@ -28,6 +28,7 @@ return [
     ],
     'stat' => [
         'accuracy' => 'Accuracy',
+        'unweighted_accuracy' => 'Unweighted Acc.',
         'active_users' => 'Active Users',
         'country' => 'Country',
         'play_count' => 'Play Count',
