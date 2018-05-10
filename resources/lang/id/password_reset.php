@@ -23,7 +23,7 @@ return [
 
     'button' => [
         'cancel' => 'Batal',
-        'resend' => 'Kirim ulang verifikasi email',
+        'resend' => 'Kirim ulang email verifikasi',
         'set' => 'Atur Kata Sandi',
         'start' => 'Mulai',
     ],
@@ -37,7 +37,7 @@ return [
         'is_privileged' => 'Hubungi peppy lul.',
         'missing_key' => 'Wajib.',
         'too_many_tries' => 'Terlalu banyak percobaan gagal.',
-        'user_not_found' => 'Pengguna yang diminta tidak ada.',
+        'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
         'wrong_key' => 'Kode salah.',
     ],
 

@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'Diposting :time',
+        'posted' => 'Diposting pada :time',
 
         'nav' => [
             'newer' => 'Postingan baru',

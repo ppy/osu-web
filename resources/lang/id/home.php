@@ -98,12 +98,12 @@ return [
             ],
             'download' => [
                 'title' => 'unduh permainannya',
-                'description' => 'klik tombol di atas untuk mengunduh penginstal, lalu jalankan!',
+                'description' => 'klik tombol di atas untuk mengunduh file installer, lalu jalankan!',
             ],
             'beatmaps' => [
-                'title' => 'dapatkan beatmaps',
+                'title' => 'dapatkan beatmap',
                 'description' => [
-                    '_' => ':browse koleksi beatmap yang luas buatan pengguna dan mulai bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna dari katalog beatmap kami yang luas dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],
@@ -112,10 +112,10 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashbor',
+        'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Kesalahan memuat berita, coba muat ulang halaman?...',
+            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang halaman?...',
         ],
         'header' => [
             'welcome' => 'Halo, <strong>:username</strong>!',
@@ -141,10 +141,10 @@ return [
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'Anda tampaknya bersenang-senang! :D',
+        'subtitle' => 'Anda tampaknya sedang bersenang-senang! :D',
         'body' => [
-            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, pengembangan dan biaya operasionalnya bergantung pada dukungan pengguna ?',
-            'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan fitur-fitur eksklusif, seperti <strong>pengunduh dalam game</strong> yang secara otomatis mengunduh saat menyorot pemain lain dan dalam pertandingan multiplayer?',
+            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan biaya operasionalnya sepenuhnya bergantung pada donasi sukarela dari penggunanya?',
+            'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan berbagai fitur eksklusif seperti <strong>pengunduh beatmap otomatis di dalam aplikasi osu!</strong> yang akan secara otomatis mengunduh beatmap yang Anda belum miliki di saat sedang menonton pemain lain dan di dalam pertandingan multiplayer?',
         ],
         'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',
         'download-starting' => 'Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)',

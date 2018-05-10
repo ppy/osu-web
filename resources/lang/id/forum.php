@@ -54,7 +54,7 @@ return [
         'posted_at' => 'Diposting pada :when',
 
         'actions' => [
-            'destroy' => 'Hapu post',
+            'destroy' => 'Hapus post',
             'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
         ],
@@ -93,8 +93,8 @@ return [
             'enter' => 'klik untuk memasukkan nomor tertentu',
             'first' => 'pergi ke kiriman pertama',
             'last' => 'pergi ke kiriman terakhir',
-            'next' => 'lewati 10 pos berikutnya',
-            'previous' => 'kembali 10 posting',
+            'next' => 'lewati 10 post berikutnya',
+            'previous' => 'tuju 10 post terdahulu',
         ],
 
         'post_edit' => [
@@ -110,13 +110,13 @@ return [
             'title_main' => '<strong>Langganan</strong> Forum',
 
             'box' => [
-                'total' => 'Topik yang berlangganan',
+                'total' => 'Topik yang dilanggan',
                 'unread' => 'Topik dengan balasan terbaru',
             ],
 
             'info' => [
                 'total' => 'Anda berlangganan :total topik.',
-                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik langganan Anda.',
+                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik yang Anda langgan.',
             ],
         ],
 
@@ -149,7 +149,7 @@ return [
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_prefix' => '',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Biarkan kosong untuk jajak pendapat yang tidak pernah berakhir',
+                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jejak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
                 'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
                 'options' => 'Pilihan',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
                     'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => 'Anda tidak memiliki sisa pilihan lagi',
+                    'not_enough' => 'Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.',
                 ],
             ],
 

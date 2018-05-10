@@ -32,15 +32,15 @@ return [
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => 'Beatmap tidak dapat dihype.',
-        'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian Umum (semua tingkat kesulitan).',
+        'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian General (All difficulties).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
         'locked' => 'Diskusi dikunci',
-        'mapper_note_wrong_user' => 'Hanya pemilik beatmap yang dapat mengirim catatan mapper.',
+        'mapper_note_wrong_user' => 'Hanya pemilik beatmap yang dapat mengirim catatan.',
 
         'hype' => [
-            'guest' => 'Silakan masuk untuk hype.',
-            'hyped' => 'Anda telah melakukan hype untuk beatmap ini.',
+            'guest' => 'Silakan masuk untuk dapat memberikan hype.',
+            'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
             'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
             'owner' => 'Tidak terdapat hype di beatmap Anda.',

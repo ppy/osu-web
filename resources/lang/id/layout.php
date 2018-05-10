@@ -132,7 +132,7 @@ return [
             'cart-show' => 'keranjang',
 
             'getCheckout' => 'periksa',
-            'getInvoice' => 'fakture',
+            'getInvoice' => 'faktur',
             'products-show' => 'produk',
 
             'new' => 'baru',
@@ -156,7 +156,7 @@ return [
             'root' => 'indeks',
 
             'beatmapsets' => [
-                '_' => 'beatmapsets',
+                '_' => 'beatmapset',
                 'show' => 'rincian',
             ],
         ],
@@ -166,7 +166,7 @@ return [
         'general' => [
             '_' => 'Umum',
             'home' => 'Beranda',
-            'changelog-index' => 'Riwayat Log',
+            'changelog-index' => 'Riwayat Perubahan',
             'beatmaps' => 'Daftar Beatmap',
             'download' => 'Unduh osu!',
             'wiki' => 'Wiki',
@@ -217,8 +217,8 @@ return [
             'description' => 'Kami diberitahu secara otomatis setiap ada kesalahan.',
         ],
         '503' => [
-            'error' => 'Tidak berjalan karena sedang dalam pemeliharaan!',
-            'description' => 'Pemeliharaan biasanya berlangsung selama 5 detik hingga 10 menit. Jika perawatan lebih lama dari yang ditentukan, kunjungi :link untuk informasi lebih lanjut.',
+            'error' => 'Sedang dalam pemeliharaan!',
+            'description' => 'Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
