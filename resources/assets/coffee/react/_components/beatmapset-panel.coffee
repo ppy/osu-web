@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,span} = ReactDOMFactories
+{div,a,i,img,span} = ReactDOMFactories
 el = React.createElement
 
 class @BeatmapsetPanel extends React.PureComponent
@@ -41,6 +41,11 @@ class @BeatmapsetPanel extends React.PureComponent
     @previewStop()
     $.unsubscribe ".#{@eventId}"
     $(document).off ".#{@eventId}"
+
+
+  hideImage: (e) ->
+    # hides img elements that have errored (hides native browser broken-image icons)
+    e.currentTarget.style.display = 'none';
 
 
   render: =>
@@ -78,48 +83,49 @@ class @BeatmapsetPanel extends React.PureComponent
     div
       className: "beatmapset-panel#{if @state.preview != 'ended' then ' beatmapset-panel--previewing' else ''}"
       div className: 'beatmapset-panel__panel',
-        div className: 'beatmapset-panel__header',
-          a
-            href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
-            className: 'beatmapset-panel__thumb'
-            style:
-              backgroundImage: "url(#{beatmapset.covers.card})"
+        a
+          href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
+          className: 'beatmapset-panel__header',
+          el Img2x,
+            className: 'beatmapset-panel__image'
+            onError: @hideImage
+            src: beatmapset.covers.card
+          div className: 'beatmapset-panel__image-overlay'
+          div className: 'beatmapset-panel__status-container',
+            if beatmapset.video or beatmapset.storyboard
+              div className: 'beatmapset-panel__video-icon',
+                i className: 'fas fa-film fa-fw'
+            div className: 'beatmapset-panel__status', beatmapset.status
 
-            div className: 'beatmapset-panel__status-container',
-              if beatmapset.video or beatmapset.storyboard
-                div className: 'beatmapset-panel__video-icon',
-                  i className: 'fas fa-film fa-fw'
-              div className: 'beatmapset-panel__status', beatmapset.status
+          div className: 'beatmapset-panel__title-artist-box',
+            div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
+              beatmapset.title
+            div className: 'beatmapset-panel__header-text',
+              beatmapset.artist
 
-            div className: 'beatmapset-panel__title-artist-box',
-              div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
-                beatmapset.title
-              div className: 'beatmapset-panel__header-text',
-                beatmapset.artist
-
-            div className: 'beatmapset-panel__counts-box',
-              if showHypeCounts
-                div null,
-                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
-                    span className: 'beatmapset-panel__count-number', currentHype
-                    i className: 'fas fa-bullhorn fa-fw'
-                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
-                    span className: 'beatmapset-panel__count-number', currentNominations
-                    i className: 'fas fa-thumbs-up fa-fw'
-              else
-                div className: 'beatmapset-panel__count',
-                  span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
-                  i className: 'fas fa-fw fa-play-circle'
-
+          div className: 'beatmapset-panel__counts-box',
+            if showHypeCounts
+              div null,
+                div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
+                  span className: 'beatmapset-panel__count-number', currentHype
+                  i className: 'fas fa-bullhorn fa-fw'
+                div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
+                  span className: 'beatmapset-panel__count-number', currentNominations
+                  i className: 'fas fa-thumbs-up fa-fw'
+            else
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
-                i className: 'fas fa-fw fa-heart'
+                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+                i className: 'fas fa-fw fa-play-circle'
 
-            div
-              className: 'beatmapset-panel__preview-bar'
-              style:
-                transitionDuration: "#{@state.previewDuration}s"
-                width: "#{if @state.preview == 'playing' then '100%' else 0}"
+            div className: 'beatmapset-panel__count',
+              span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
+              i className: 'fas fa-fw fa-heart'
+
+          div
+            className: 'beatmapset-panel__preview-bar'
+            style:
+              transitionDuration: "#{@state.previewDuration}s"
+              width: "#{if @state.preview == 'playing' then '100%' else 0}"
 
         div className: 'beatmapset-panel__content',
           div className: 'beatmapset-panel__row',
