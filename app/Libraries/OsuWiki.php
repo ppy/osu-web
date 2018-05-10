@@ -36,6 +36,17 @@ class OsuWiki
         return preg_replace('|//+|', '/', trim($path, '/'));
     }
 
+    public static function getPageClass($path)
+    {
+        $path = static::cleanPath($path);
+
+        if (array_key_exists($path, config('osu.wiki.custom_pages'))) {
+            return config('osu.wiki.custom_pages')[$path];
+        }
+
+        return \App\Models\Wiki\Pages\NormalPage::class;
+    }
+
     public static function fetch($path)
     {
         try {

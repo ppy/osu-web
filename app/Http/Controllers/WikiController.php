@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
+use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
@@ -44,7 +45,8 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        $page = new Wiki\Page($path, $this->locale());
+        $pageClass = OsuWiki::getPageClass($path);
+        $page = new $pageClass($path, $this->locale());
 
         if ($page->page() === null) {
             $redirectTarget = (new WikiRedirect())->resolve($path);
@@ -60,14 +62,15 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return response()->view('wiki.show', compact('page'), $status ?? 200);
+        return response()->view($page->pageTemplate(), compact('page'), $status ?? 200);
     }
 
     public function update($path)
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->refresh();
+        $pageClass = OsuWiki::getPageClass($path);
+        (new $pageClass($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());
     }

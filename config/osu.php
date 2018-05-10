@@ -162,4 +162,9 @@ return [
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
     ],
+    'wiki' => [
+        'custom_pages' => [
+            // 'Main_Page' => App\Models\Wiki\Pages\MainPage::class,
+        ],
+    ]
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+namespace App\Models\Wiki\Pages;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
@@ -31,7 +31,7 @@ use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Es;
 
-class Page
+abstract class BasePage
 {
     // in minutes
     const REINDEX_AFTER = 300;
@@ -41,8 +41,6 @@ class Page
     public $requestedLocale;
 
     private $cache = [];
-    private $defaultTitle;
-    private $defaultSubtitle;
 
     public static function cleanupPath($path)
     {
@@ -114,12 +112,7 @@ class Page
         $this->path = OsuWiki::cleanPath($path);
         $this->requestedLocale = $locale;
         $this->locale = $locale;
-
-        $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
-        $this->defaultTitle = array_pop($defaultTitles);
-        $this->defaultSubtitle = array_pop($defaultTitles);
     }
-
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
@@ -205,17 +198,7 @@ class Page
                 }
 
                 if ($fetch) {
-                    try {
-                        $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-                    } catch (GitHubNotFoundException $_e) {
-                        $body = null;
-                    }
-
-                    if (present($body)) {
-                        $page = OsuMarkdownProcessor::process($body, [
-                            'path' => route('wiki.show', $this->path),
-                        ]);
-                    }
+                    $page = $this->pageContent();
                 }
 
                 $this->cache['page'] = $page;
@@ -233,42 +216,21 @@ class Page
         return $this->cache['page'];
     }
 
-    public function pagePath()
-    {
-        return $this->path.'/'.$this->locale.'.md';
-    }
-
     public function refresh()
     {
         dispatch(new EsDeleteDocument($this));
     }
 
+    public abstract function pageContent();
+
+    public abstract function pageTemplate();
+
+    public abstract function pagePath();
+
+    public abstract function title();
+
     public function tags()
     {
         return $this->page()['header']['tags'] ?? [];
-    }
-
-    public function title($withSubtitle = false)
-    {
-        if ($this->page() === null) {
-            return trans('wiki.show.missing_title');
-        }
-
-        $title = presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
-
-        if ($withSubtitle && present($this->subtitle())) {
-            $title = $this->subtitle().' / '.$title;
-        }
-
-        return $title;
-    }
-
-    public function subtitle()
-    {
-        if ($this->page() === null) {
-            return;
-        }
-
-        return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 }
