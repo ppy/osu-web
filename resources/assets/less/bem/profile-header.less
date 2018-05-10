@@ -124,19 +124,12 @@
     width: 100%;
 
     &--float {
-      .own-layer();
       display: none;
-      will-change: transform;
-      transition: transform 200ms cubic-bezier(.08,.82,.17,1);
       margin-bottom: 10px;
       z-index: @z-index--profile-tournament-banner;
 
       @media @desktop {
         display: block;
-      }
-
-      &:hover {
-        transform: scale(1.2);
       }
     }
 
@@ -154,8 +147,16 @@
   &__tournament-banner-image {
     .@{top}__tournament-banner--float & {
       .default-border-radius();
+      .own-layer();
       max-width: 100%;
+      transition: transform 200ms cubic-bezier(.08,.82,.17,1);
+      will-change: transform;
     }
+
+    .@{top}__tournament-banner--float:hover & {
+        transform: scale(1.2);
+    }
+
     .@{top}__tournament-banner--top & {
       width: 100%;
     }
