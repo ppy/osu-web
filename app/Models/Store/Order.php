@@ -396,14 +396,7 @@ class Order extends Model
             return $errors;
         }
 
-        $params = [
-            'id' => array_get($itemForm, 'id'),
-            'quantity' => array_get($itemForm, 'quantity'),
-            'product' => Product::enabled()->find(array_get($itemForm, 'product_id')),
-            'cost' => intval(array_get($itemForm, 'cost')),
-            'extraInfo' => array_get($itemForm, 'extra_info'),
-            'extraData' => array_get($itemForm, 'extra_data'),
-        ];
+        $params = static::orderItemParams($itemForm);
 
         if ($params['product'] === null) {
             $errors->addTranslated('product', 'no product');
@@ -632,5 +625,17 @@ class Order extends Model
 
             return "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order";
         }
+    }
+
+    private static function orderItemParams(array $form)
+    {
+        return [
+            'id' => array_get($form, 'id'),
+            'quantity' => array_get($form, 'quantity'),
+            'product' => Product::enabled()->find(array_get($form, 'product_id')),
+            'cost' => intval(array_get($form, 'cost')),
+            'extraInfo' => array_get($form, 'extra_info'),
+            'extraData' => array_get($form, 'extra_data'),
+        ];
     }
 }
