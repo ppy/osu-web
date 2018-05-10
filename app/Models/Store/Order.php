@@ -20,6 +20,7 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\OrderNotModifiableException;
 use App\Libraries\ValidationErrors;
 use App\Models\Country;
 use App\Models\SupporterTag;
@@ -242,6 +243,18 @@ class Order extends Model
     public function getTotal()
     {
         return $this->getSubtotal() + $this->shipping;
+    }
+
+    public function guardNotModifiable(callable $callable)
+    {
+        return $this->getConnection()->transaction(function () use ($callable) {
+            $locked = $this->exists ? $this->lockSelf() : $this;
+            if ($locked->isModifiable() === false) {
+                throw new OrderNotModifiableException($locked);
+            }
+
+            return $callable();
+        });
     }
 
     public function canCheckout()
