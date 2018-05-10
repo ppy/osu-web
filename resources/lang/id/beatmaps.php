@@ -248,7 +248,7 @@ return [
     'language' => [
         'any' => 'Semua',
         'english' => 'Inggris',
-        'chinese' => 'Cina',
+        'chinese' => 'Mandarin',
         'french' => 'Prancis',
         'german' => 'Jerman',
         'italian' => 'Italia',
