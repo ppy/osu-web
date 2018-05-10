@@ -35,7 +35,7 @@ return [
         'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian General (All difficulties).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
-        'locked' => 'Diskusi dikunci',
+        'locked' => 'Diskusi dikunci.',
         'mapper_note_wrong_user' => 'Hanya pemilik beatmap yang dapat mengirim catatan.',
 
         'hype' => [
@@ -59,7 +59,7 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opsi tidak valid ditentukan.',
+            'invalid' => 'Opsi yang ditentukan tidak valid.',
         ],
 
         'post' => [
@@ -69,7 +69,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Opsi ganda tidak diizinkan.',
-            'invalid_max_options' => 'Opsi per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
+            'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
             'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
             'too_many_options' => 'Jumlah maksimum opsi melebihi yang diizinkan.',

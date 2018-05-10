@@ -35,7 +35,7 @@ return [
             ],
         ],
         'title' => 'Paket Beatmap',
-        'description' => 'Koleksi beatmap yang sebelumnya sudah dipaket telah disusun berdasarkan tema map.',
+        'description' => 'Paket beatmap yang telah disusun atas satu tema tertentu.',
     ],
 
     'show' => [

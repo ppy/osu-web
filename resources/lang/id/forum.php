@@ -28,7 +28,7 @@ return [
         'create' => [
             '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar',
-            'info' => 'Ukuran gambar harus :dimensions. Anda juga dapat meletakkan gambar disini untuk mengunggah.',
+            'info' => 'Ukuran gambar yang optimal adalah :dimensions. Anda juga dapat meletakkan gambar di sini untuk mengunggah.',
         ],
 
         'destroy' => [
@@ -91,8 +91,8 @@ return [
 
         'jump' => [
             'enter' => 'klik untuk memasukkan nomor tertentu',
-            'first' => 'pergi ke kiriman pertama',
-            'last' => 'pergi ke kiriman terakhir',
+            'first' => 'pergi ke post pertama',
+            'last' => 'pergi ke post terakhir',
             'next' => 'lewati 10 post berikutnya',
             'previous' => 'tuju 10 post terdahulu',
         ],
@@ -248,11 +248,11 @@ return [
             ],
 
             'poll' => [
-                'vote' => 'Pemilihan',
+                'vote' => 'Pilih',
 
                 'detail' => [
                     'end_time' => 'Pemilihan akan berakhir pada :time',
-                    'ended' => 'Polling telah berakhir :time',
+                    'ended' => 'Pemilihan telah berakhir :time',
                     'total' => 'Jumlah suara: :count',
                 ],
             ],

@@ -22,7 +22,7 @@ return [
     'show' => [
         'fallback_translation' => 'Halaman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
         'languages' => 'Bahasa',
-        'missing' => 'Halaman yang diminta ":keyword" tidak dapat ditemukan.',
+        'missing' => 'Halaman ":keyword" yang diminta tidak dapat ditemukan.',
         'missing_title' => 'Tidak Ditemukan',
         'missing_translation' => 'Halaman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
         'search' => 'Cari halaman yang ada untuk :link.',
@@ -35,7 +35,7 @@ return [
 
         'outdated' => [
             '_' => 'Halaman ini berisi terjemahan konten yang menggunakan versi lama. Silakan periksa :default untuk informasi paling akurat (dan pertimbangkan memperbarui terjemahan jika Anda dapat membantu)!',
-            'default' => 'Versi Inggris',
+            'default' => 'Versi Bahasa Inggris',
         ],
     ],
 ];

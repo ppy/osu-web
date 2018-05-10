@@ -33,7 +33,7 @@ return [
         'pending_checkout' => [
             'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
             'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
-            'link_text' => 'klik disini',
+            'link_text' => 'klik di sini',
         ],
         'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
     ],
@@ -82,7 +82,7 @@ return [
 
     'username_change' => [
         'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaan!',
-        'checking' => 'Memerika ketersediaan :username...',
+        'checking' => 'Memeriksa ketersediaan :username...',
         'require_login' => [
             '_' => 'Anda harus :link untuk mengubah nama Anda!',
             'link_text' => 'masuk',

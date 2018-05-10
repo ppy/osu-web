@@ -40,7 +40,7 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Kode verifikasi telah kadaluwarsa, email verifikasi baru telah dikirim.',
+        'expired' => 'Kode verifikasi telah kedaluwarsa, email verifikasi baru telah dikirim.',
         'incorrect_key' => 'Kode verifikasi salah.',
         'retries_exceeded' => 'Kode verifikasi salah. Batas percobaan terlampaui, email verifikasi baru telah dikirim.',
         'reissued' => 'Kode verifikasi diperbarui, email verifikasi baru telah dikirim.',

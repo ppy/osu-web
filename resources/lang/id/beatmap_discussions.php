@@ -28,7 +28,7 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi ... belum..',
+        'empty' => 'Belum ada yang terjadi ... belum...',
     ],
 
     'index' => [

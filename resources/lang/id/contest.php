@@ -27,7 +27,7 @@ return [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memilih.',
         'best_of' => [
-            'none_played' => 'Anda tidak tercatat pernah memainkan map-map yang disyaratkan dalam kontes ini!',
+            'none_played' => 'Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!',
         ],
     ],
     'entry' => [
@@ -37,7 +37,7 @@ return [
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
         'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
         'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
-        'drop_here' => 'Letakkan entri Anda disini',
+        'drop_here' => 'Letakkan entri Anda di sini',
         'wrong_type' => [
             'art' => 'Hanya file-file dengan format .jpg dan .png yang diterima di kontes ini',
             'beatmap' => 'Hanya file-file dengan format .osu yang diterima di kontes ini',
@@ -50,7 +50,7 @@ return [
     ],
     'vote' => [
         'list' => 'suara',
-        'count' => '1 suara|:count suara',
+        'count' => ':count suara|:count suara',
     ],
     'dates' => [
         'ended' => 'Selesai :date',

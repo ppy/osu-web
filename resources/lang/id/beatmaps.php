@@ -46,7 +46,7 @@ return [
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
         'resolved' => 'Terselesaikan',
-        'restore' => 'pulihkan',
+        'restore' => 'kembalikan',
         'title' => 'Diskusi',
 
         'collapse' => [
@@ -112,10 +112,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Beatmap ini telah di-approve pada :date!',
+            'approved' => 'Beatmap ini telah di-Approve pada :date!',
             'graveyard' => 'Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...',
             'loved' => "Beatmap ini telah ditambahkan pada kategori 'Loved' pada :date!",
-            'ranked' => 'Beatmap ini telah di-rank pada :date!',
+            'ranked' => 'Beatmap ini telah di-Rank pada :date!',
             'wip' => "Catatan: Beatmap ini ditandai sebagai 'dalam pengerjaan' oleh pembuat beatmap.",
         ],
 
@@ -126,8 +126,8 @@ return [
         'button_done' => 'Telah di-Hype!',
         'confirm' => 'Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.',
         'explanation' => 'Berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
-        'explanation_guest' => 'Masuk dan hype beatmap ini supaya layak dinominasi dan segera ranked!',
-        'new_time' => 'Anda akan mendapatkan hype lain dalam :new_time.',
+        'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
+        'new_time' => 'Anda akan mendapatkan hype tambahan dalam :new_time.',
         'remaining' => 'Anda memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -147,7 +147,7 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasi beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
-        'qualified' => 'Diperkirakan akan segera berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
+        'qualified' => 'Diperkirakan akan berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
         'qualified_soon' => 'Diperkirakan akan segera berstatus Ranked jika tidak ada masalah yang ditemukan.',
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
@@ -156,7 +156,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user akibat ditemukannya masalah baru berupa :discussion (:message).',
-            'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru berupa :discussion (:message).',
+            'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -192,14 +192,14 @@ return [
         'converts' => 'Sertakan beatmap konversi',
     ],
     'mode' => [
-        'any' => 'Apa saja',
+        'any' => 'Semua',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [
-        'any' => 'Apa saja',
+        'any' => 'Semua',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'qualified' => 'Qualified',
@@ -210,7 +210,7 @@ return [
         'my-maps' => 'Map Saya',
     ],
     'genre' => [
-        'any' => 'Apa saja',
+        'any' => 'Semua',
         'unspecified' => 'Tidak Terdefinisi',
         'video-game' => 'Video Game',
         'anime' => 'Anime',
@@ -246,21 +246,21 @@ return [
         'TD' => 'Touch Device',
     ],
     'language' => [
-        'any' => 'Apa saja',
-        'english' => 'English',
-        'chinese' => 'Chinese',
-        'french' => 'French',
-        'german' => 'German',
-        'italian' => 'Italian',
-        'japanese' => 'Japanese',
-        'korean' => 'Korean',
-        'spanish' => 'Spanish',
-        'swedish' => 'Swedish',
+        'any' => 'Semua',
+        'english' => 'Inggris',
+        'chinese' => 'Cina',
+        'french' => 'Prancis',
+        'german' => 'Jerman',
+        'italian' => 'Italia',
+        'japanese' => 'Jepang',
+        'korean' => 'Korea',
+        'spanish' => 'Spanyol',
+        'swedish' => 'Swedia',
         'instrumental' => 'Instrumental',
         'other' => 'Lainnya',
     ],
     'played' => [
-        'any' => 'Apa saja',
+        'any' => 'Semua',
         'played' => 'Telah Dimainkan',
         'unplayed' => 'Belum Dimainkan',
     ],
@@ -269,7 +269,7 @@ return [
         'storyboard' => 'Memiliki Storyboard',
     ],
     'rank' => [
-        'any' => 'Apa saja',
+        'any' => 'Semua',
         'XH' => 'Silver SS',
         'X' => 'SS',
         'SH' => 'Silver S',

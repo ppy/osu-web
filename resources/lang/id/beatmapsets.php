@@ -50,7 +50,7 @@ return [
             ],
             'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
             'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
-            'favourited_count' => '+ 1 lagi!|+ :count lagi!',
+            'favourited_count' => '+ :count lagi!|+ :count lagi!',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -105,7 +105,7 @@ return [
                 'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
                 'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
                 'loading' => 'Memuat skor...',
-                'unranked' => 'Beatmap non-ranked.',
+                'unranked' => 'Beatmap ini tidak berstatus Ranked.',
             ],
             'score' => [
                 'first' => 'Di Posisi Pertama',

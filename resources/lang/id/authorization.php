@@ -118,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memilih.',
-                    'restricted' => 'Tidak dapat membalas saat dibatasi.',
-                    'silenced' => 'Tidak dapat membalas saat dibungkam.',
+                    'restricted' => 'Tidak dapat memilih saat dibatasi.',
+                    'silenced' => 'Tidak dapat memilih saat dibungkam.',
                 ],
             ],
 

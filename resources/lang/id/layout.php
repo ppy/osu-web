@@ -46,7 +46,7 @@ return [
             '_' => 'bantuan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
-            'getSupport' => 'tidak, um, saya butuh bantuan!',
+            'getSupport' => 'beneran, saya butuh bantuan!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -233,7 +233,7 @@ return [
             'email' => 'alamat email',
             'forgot' => 'Saya lupa identitas saya',
             'password' => 'kata sandi',
-            'title' => 'Masuk Untuk Melanjutkan',
+            'title' => 'Masuk untuk Melanjutkan',
 
             'error' => [
                 'email' => 'Nama pengguna atau alamat email tidak ada',

@@ -128,7 +128,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 pengikut|:count pengikut',
+            'followers' => ':count pengikut|:count pengikut',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
@@ -165,7 +165,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
-                    'title' => 'Permainan Terbaru (24j)',
+                    'title' => 'Permainan Terbaru (24 jam)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Tayangan Ulang yang Ditonton',
@@ -185,7 +185,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Menerima :amount atas penolakan pencabutan kudosu di post modding :post',
+                            'give' => 'Menerima :amount atas pembatalan penolakan kudosu di post modding :post',
                         ],
 
                         'deny_kudosu' => [
@@ -197,7 +197,7 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => 'Menerima :amount atas restorasi post di post modding :post',
+                            'give' => 'Menerima :amount atas pengembalian post di post modding :post',
                         ],
 
                         'vote' => [
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Belum ada catatan performa yang luar biasa. :(',
-                'not_ranked' => 'Hanya beatmap ranked yang dapat memberikan pp.',
+                'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp' => ':amountpp',
                 'title' => 'Peringkat',
                 'weighted_pp' => 'Terhitung: :pp (:percentage)',

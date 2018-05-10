@@ -92,6 +92,7 @@ return [
         'da',
         'es',
         'fr',
+        'id',
         'it',
         'ja',
         'ko',

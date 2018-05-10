@@ -21,7 +21,7 @@
 return [
     'landing' => [
         'download' => 'Unduh sekarang',
-        'online' => '<strong>:players</strong> saat ini daring dalam <strong>:games</strong> permainan',
+        'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
         'peak' => 'Terbanyak, :count pengguna daring',
         'players' => '<strong>:count</strong> pengguna terdaftar',
 
@@ -98,7 +98,7 @@ return [
             ],
             'download' => [
                 'title' => 'unduh permainannya',
-                'description' => 'klik tombol di atas untuk mengunduh file installer, lalu jalankan!',
+                'description' => 'klik tombol di atas untuk mengunduh file instalasi, lalu jalankan!',
             ],
             'beatmaps' => [
                 'title' => 'dapatkan beatmap',
