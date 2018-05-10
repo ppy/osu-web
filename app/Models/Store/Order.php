@@ -293,6 +293,17 @@ class Order extends Model
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
+    public function isValidForCheckout()
+    {
+        $valid = true;
+
+        foreach ($this->items as $item) {
+            $valid &= $item->isValidForCheckout();
+        }
+
+        return $valid;
+    }
+
     public function removeInvalidItems()
     {
         $modified = false;
@@ -480,12 +491,6 @@ class Order extends Model
             $cart->user_id = $user->user_id;
 
             return $cart;
-        }
-
-        // TODO: maybe should show a notification and only remove
-        // when beginning the checkout process?
-        if ($cart->removeInvalidItems()) {
-            $cart = $cart->fresh();
         }
 
         return $cart;

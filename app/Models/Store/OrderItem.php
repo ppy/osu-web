@@ -64,6 +64,14 @@ class OrderItem extends Model
         return $this->validationErrors()->isEmpty();
     }
 
+    // TODO: check for issues combining with isValid()
+    public function isValidForCheckout()
+    {
+        return $this->product !== null
+            && $this->product->enabled
+            && $this->product->inStock($this->quantity);
+    }
+
     public function delete()
     {
         if ($this->order->status !== 'incart') {
