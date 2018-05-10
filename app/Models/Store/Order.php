@@ -396,46 +396,36 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        $errors = new ValidationErrors('order');
+        return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
+            $errors = new ValidationErrors('order');
+            $params = static::orderItemParams($itemForm);
 
-        $this->getConnection()->transaction(function () use ($errors) {
-            $locked = $this->exists ? $this->lockSelf() : $this;
-            if ($locked->isModifiable() === false) {
-                $errors->addTranslated('self', 'Cart cannot be updated at this time.');
+            if ($params['product'] === null) {
+                $errors->addTranslated('product', 'no product');
+
+                return $errors;
             }
-        });
 
-        if ($errors->isAny()) {
-            return $errors;
-        }
-
-        $params = static::orderItemParams($itemForm);
-
-        if ($params['product'] === null) {
-            $errors->addTranslated('product', 'no product');
-
-            return $errors;
-        }
-
-        if ($params['quantity'] <= 0) {
-            $this->removeOrderItem($params);
-        } else {
-            if ($params['product']->allow_multiple) {
-                $item = $this->newOrderItem($params);
+            if ($params['quantity'] <= 0) {
+                $this->removeOrderItem($params);
             } else {
-                $item = $this->updateOrderItem($params, $addToExisting);
+                if ($params['product']->allow_multiple) {
+                    $item = $this->newOrderItem($params);
+                } else {
+                    $item = $this->updateOrderItem($params, $addToExisting);
+                }
+
+                $message = $this->validateBeforeSave($params['product'], $item);
+                if ($message !== null) {
+                    $errors->addTranslated('product', $message);
+                }
+
+                $this->saveOrExplode();
+                $this->items()->save($item);
             }
 
-            $message = $this->validateBeforeSave($params['product'], $item);
-            if ($message !== null) {
-                $errors->addTranslated('product', $message);
-            }
-
-            $this->saveOrExplode();
-            $this->items()->save($item);
-        }
-
-        return $errors;
+            return $errors;
+        });
     }
 
     public function releaseItems()
