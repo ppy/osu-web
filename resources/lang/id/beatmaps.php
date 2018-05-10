@@ -155,7 +155,7 @@ return [
         'unresolved_issues' => 'Masih ada masalah yang belum terselesaikan yang harus ditangani terlebih dahulu.',
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user akibat ditemukannya masalah baru berupa :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
             'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
         ],
 
