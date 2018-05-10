@@ -48,7 +48,7 @@
                         @foreach ($links as $link)
                             <a
                                 href="{{ $link['url'] }}"
-                                class="tournament__link"
+                                class="btn-osu btn-osu-default btn-osu--tournament"
                             >{{ $link['title'] }}</a>
                         @endforeach
                     </div>
