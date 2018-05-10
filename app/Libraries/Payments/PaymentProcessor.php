@@ -217,22 +217,22 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $order = $this->getOrder();
                 $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($payment === null && $order->status === 'cancelled') {
-                    // payment not processed, manually cancelled - don't explode
-                    // notify and bail out.
-                    $this->dispatchErrorEvent(
-                        new Exception('Order already cancelled with no existing payment found.'),
-                        $order
-                    );
-
-                    return;
-                }
-
                 if ($order->status === 'cancelled') {
+                    if ($payment === null) {
+                        // payment not processed, manually cancelled - don't explode
+                        // notify and bail out.
+                        $this->dispatchErrorEvent(
+                            new Exception('Order already cancelled with no existing payment found.'),
+                            $order
+                        );
+
+                        return;
+                    }
+
                     // check for pre-existing cancelled payment.
                     // Paypal sends multiple notifications that we treat as a cancellation.
-                    $cancelled = $order->payments->where('cancelled', true)->first();
-                    if ($cancelled !== null) {
+                    // If the order is already cancelled and the payment cancelled, skip the rest.
+                    if ($order->payments->where('cancelled', true)->first() !== null) {
                         $this->dispatchErrorEvent(
                             new Exception('Order already cancelled.'),
                             $order
