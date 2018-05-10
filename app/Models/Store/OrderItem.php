@@ -61,15 +61,15 @@ class OrderItem extends Model
             $this->validationErrors()->add('cost', 'not_negative');
         }
 
-        return $this->validationErrors()->isEmpty();
-    }
+        if ($this->product === null || !$this->product->enabled) {
+            $this->validationErrors()->add('product', 'not_available');
+        }
 
-    // TODO: check for issues combining with isValid()
-    public function isValidForCheckout()
-    {
-        return $this->product !== null
-            && $this->product->enabled
-            && $this->product->inStock($this->quantity);
+        if (!$this->product->inStock($this->quantity)) {
+            $this->validationErrors()->add('product', 'insufficient_stock');
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function delete()

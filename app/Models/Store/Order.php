@@ -298,7 +298,7 @@ class Order extends Model
         $valid = true;
 
         foreach ($this->items as $item) {
-            $valid &= $item->isValidForCheckout();
+            $valid &= $item->isValid();
         }
 
         return $valid;
