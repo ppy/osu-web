@@ -28,6 +28,26 @@ class Tournament extends Model
 
     protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
 
+    public static function getRegistrationStage()
+    {
+        return self::query()
+            ->where('signup_open', '<', Carbon::now())
+            ->where('signup_close', '>', Carbon::now())
+            ->orderBy('play_mode', 'desc')
+            ->orderBy('tournament_id', 'desc')
+            ->get();
+    }
+
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'tournament_id');
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(TournamentRegistration::class, 'tournament_id');
+    }
+
     public function isRegistrationOpen()
     {
         $now = Carbon::now();
@@ -42,14 +62,10 @@ class Tournament extends Model
         return $this->start_date < $now && $this->end_date > $now;
     }
 
-    public function profileBanners()
+    public function isStoreBannerAvailable()
     {
-        return $this->hasMany(ProfileBanner::class, 'tournament_id');
-    }
-
-    public function registrations()
-    {
-        return $this->hasMany('App\Models\TournamentRegistration', 'tournament_id');
+        return $this->tournament_banner_product_id !== null &&
+            optional($this->end_date)->isFuture() ?? true;
     }
 
     public function isSignedUp($user)
@@ -107,18 +123,29 @@ class Tournament extends Model
         $this->registrations()->save($reg);
     }
 
-    public static function getRegistrationStage()
-    {
-        return self::query()
-            ->where('signup_open', '<', Carbon::now())
-            ->where('signup_close', '>', Carbon::now())
-            ->orderBy('play_mode', 'desc')
-            ->orderBy('tournament_id', 'desc')
-            ->get();
-    }
-
     public function playModeStr()
     {
         return Beatmap::modeStr($this->play_mode);
+    }
+
+    public function pageLinks()
+    {
+        $links = [];
+
+        if ($this->info_url !== null) {
+            $links[] = [
+                'url' => $this->info_url,
+                'title' => trans('tournament.show.info_page'),
+            ];
+        }
+
+        if ($this->isStoreBannerAvailable()) {
+            $links[] = [
+                'url' => route('store.products.show', $this->tournament_banner_product_id),
+                'title' => trans('tournament.show.banner'),
+            ];
+        }
+
+        return $links;
     }
 }

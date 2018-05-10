@@ -42,17 +42,40 @@
         <div class="tournament">
             <div class='tournament__banner'></div>
 
-            <div class='tournament__description'>
-                {!! Markdown::convertToHtml($tournament->description) !!}
-                {{trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)])}}.
+            <div class="tournament__page">
+                @if (count($links = $tournament->pageLinks()) > 0)
+                    <div class="tournament__links">
+                        @foreach ($links as $link)
+                            <a
+                                href="{{ $link['url'] }}"
+                                class="btn-osu btn-osu-default btn-osu--tournament"
+                            >{{ $link['title'] }}</a>
+                        @endforeach
+                    </div>
+                @endif
+
+                <div class="tournament__description">
+                    @if ($tournament->signup_open->isFuture())
+                        {{ trans('tournament.show.state.before_registration') }}
+                    @elseif ($tournament->isRegistrationOpen())
+                        {!! Markdown::convertToHtml($tournament->description) !!}
+
+                        {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                    @elseif ($tournament->start_date->isFuture())
+                        {{ trans('tournament.show.state.registration_closed') }}
+                    @elseif ($tournament->isTournamentRunning())
+                        {{ trans('tournament.show.state.running') }}
+                    @else
+                        {{ trans('tournament.show.state.ended') }}
+                    @endif
+                </div>
             </div>
+
             @if($tournament->isRegistrationOpen())
                 <div class='tournament__countdown-timer'>
                     <div class='js-react--countdownTimer' data-deadline='{{json_time($tournament->signup_close)}}'></div>
                 </div>
-            @endif
 
-            @if($tournament->isRegistrationOpen())
                 <div class="tournament__body">
                     @if (!Auth::user())
                         <div>{!!
