@@ -83,7 +83,8 @@ class OrderItem extends Model
 
     public function save(array $options = [])
     {
-        if (!$this->isValid()) {
+        $skipValidations = $options['skipValidations'] ?? false;
+        if (!$skipValidations && !$this->isValid()) {
             // FIXME: Simpler to just throw instead of fixing all the save() calls right now.
             throw new ValidationException($this->validationErrors());
         }

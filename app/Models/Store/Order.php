@@ -345,7 +345,7 @@ class Order extends Model
     {
         foreach ($this->items as $i) {
             $i->refreshCost();
-            $i->saveOrExplode();
+            $i->saveOrExplode(['skipValidations' => true]);
         }
 
         if ($this->requiresShipping()) {
