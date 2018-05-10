@@ -28,7 +28,7 @@ return [
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
         'error' => 'Terjadi masalah saat menyelesaikan pembayaran :(',
-        'old_cart' => 'Keranjang Anda nampaknya sudah kadaluwarsa dan telah dimuat ulang, silakan coba lagi.',
+        'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Bayar via Paypal',
         'pending_checkout' => [
             'line_1' => 'Pembayaran sebelumnya telah dimulai tetapi tidak tuntas.',
