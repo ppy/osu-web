@@ -22,7 +22,7 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
-            'has_reply' => 'Tidak dapat menghapus diskusi dengan balasan',
+            'has_reply' => 'Tidak dapat menghapus topik diskusi yang mempunyai balasan',
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
-            'owner' => 'Tidak dapat memilih di diskusi sendiri.',
+            'owner' => 'Anda tidak dapat memberikan suara pada topik diskusi milik Anda sendiri.',
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
     ],
@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Cobalah bermain sebelum memposting di forum! Jika Anda memiliki masalah tentang permainan, silakan posting ke Forum Bantuan dan Layanan Dukungan.',
-                'too_many_help_posts' => 'Anda harus memainkan permainan-nya lebih banyak sebelum dapat membuat postingan tambahan. Jika Anda masih kesulitan memainkan permainan-nya, kirim email ke support@ppy.sh', // FIXME: alamat email unhardcode
+                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan untuk langsung menuju forum Help & Support.',
+                'too_many_help_posts' => 'Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan untuk mengirimkan email ke support@ppy.sh', // FIXME: alamat email unhardcode
             ],
         ],
 

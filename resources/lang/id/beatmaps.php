@@ -40,7 +40,7 @@ return [
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder' => 'Ketik di sini untuk posting',
-        'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga tidak dapat dibahas lagi.',
+        'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
@@ -60,15 +60,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Postingan ini akan ditampilan di diskusi beatmapset umum. Untuk melakukan mod di beatmap ini, mulai pesan Anda dengan keterangan waktu (mis. 00:12:345).',
-            'in_timeline' => 'Untuk mod beberapa keterangan waktu, posting komentar berkali-kali (satu postingan tiap keterangan waktu).',
+            'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, mulai pesan Anda dengan keterangan waktu (cth : 00:12:345).',
+            'in_timeline' => 'Topik-topik diskusi ini berlaku untuk masing-masing tingkat kesulitan secara spesifik. Untuk memulai topik diskusi baru, salin keterangan waktu dari editor disertai dengan komentar Anda (satu topik per keterangan waktu).',
         ],
 
         'message_type' => [
             'disqualify' => 'Diskualifikasi',
             'hype' => 'Hype!',
             'mapper_note' => 'Catatan',
-            'nomination_reset' => 'Ulang Nominasi',
+            'nomination_reset' => 'Hilangkan Status Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
             'suggestion' => 'Saran',
@@ -86,7 +86,7 @@ return [
 
         'new' => [
             'timestamp' => 'Keterangan Waktu',
-            'timestamp_missing' => 'ctrl-c dalam mode edit dan tempelkan pesan Anda untuk menambahkan keterangan waktu!',
+            'timestamp_missing' => 'Salin (ctrl+c) keterangan waktu yang spesifik dari editor dan tempelkan (ctrl+v) pada boks yang tersedia untuk menambahkan keterangan waktu!',
             'title' => 'Diskusi Baru',
         ],
 
@@ -115,7 +115,7 @@ return [
             'approved' => 'Beatmap ini telah di-approve pada :date!',
             'graveyard' => 'Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...',
             'loved' => "Beatmap ini telah ditambahkan pada kategori 'Loved' pada :date!",
-            'ranked' => 'Beatmap ini telah ranked pada :date!',
+            'ranked' => 'Beatmap ini telah di-rank pada :date!',
             'wip' => "Catatan: Beatmap ini ditandai sebagai 'dalam pengerjaan' oleh pembuat beatmap.",
         ],
 
@@ -124,8 +124,8 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => 'Apakah Anda yakin? Dengan ini Anda akan menggunakan :n hype Anda yang tersisa, aksi ini tidak dapat diurungkan.',
-        'explanation' => 'Hype beatmap ini supaya layak dinominasi dan segera ranked!',
+        'confirm' => 'Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.',
+        'explanation' => 'Berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
         'explanation_guest' => 'Masuk dan hype beatmap ini supaya layak dinominasi dan segera ranked!',
         'new_time' => 'Anda akan mendapatkan hype lain dalam :new_time.',
         'remaining' => 'Anda memiliki :remaining hype tersisa.',
@@ -147,16 +147,16 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasi beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
-        'qualified' => 'Diperkirakan akan ranked pada :date, jika tidak ada masalah yang ditemukan.',
-        'qualified_soon' => 'Diperkirakan akan segera ranked, jika tidak ada masalah yang ditemukan.',
+        'qualified' => 'Diperkirakan akan segera berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
+        'qualified_soon' => 'Diperkirakan akan segera berstatus Ranked jika tidak ada masalah yang ditemukan.',
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
         'title' => 'Status Nominasi',
         'unresolved_issues' => 'Masih ada masalah yang belum terselesaikan yang harus ditangani terlebih dahulu.',
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
-            'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user akibat ditemukannya masalah baru berupa :discussion (:message).',
+            'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru berupa :discussion (:message).',
         ],
 
         'reset_confirm' => [

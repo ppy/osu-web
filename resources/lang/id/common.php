@@ -78,7 +78,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'letakkan di sini mengunggah',
+        'target' => 'letakkan di sini untuk mengunggah',
     ],
 
     'pagination' => [

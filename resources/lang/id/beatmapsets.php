@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
-        'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pemegang hak pihak ketiga.',
+        'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
     ],
 
@@ -48,8 +48,8 @@ return [
                 'no-video' => 'tanpa Video',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'Favoritkan beatmapset ini',
-            'unfavourite' => 'Batal Favoritkan beatmapset ini',
+            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
+            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
             'favourited_count' => '+ 1 lagi!|+ :count lagi!',
         ],
         'stats' => [
@@ -64,7 +64,7 @@ return [
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',
             'user-rating' => 'Nilai Pengguna',
-            'rating-spread' => 'Nilai Spread',
+            'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
             'playcount' => 'Jumlah Dimainkan',
         ],
@@ -73,11 +73,11 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
-            'points-of-failure' => 'Titik Kegagalan',
+            'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
-            'unranked' => 'Beatmap non-ranked',
+            'unranked' => 'Beatmap ini tidak berstatus Ranked.',
         ],
         'scoreboard' => [
             'achieved' => 'dicapai pada :when',
@@ -103,7 +103,7 @@ return [
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
                 'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
-                'global' => 'Belum ada skor yang dicetak. Mungkin Anda harus coba mencetak satu?',
+                'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap non-ranked.',
             ],
