@@ -14,7 +14,7 @@ class AddWikiAndStoreLinkToTournaments extends Migration
     {
         Schema::table('tournaments', function ($table) {
             $table->unsignedInteger('tournament_banner_product_id')->nullable()->default(null);
-            $table->string('wiki_page')->nullable()->default(null);
+            $table->string('info_url')->nullable()->default(null);
         });
     }
 
@@ -27,7 +27,7 @@ class AddWikiAndStoreLinkToTournaments extends Migration
     {
         Schema::table('tournaments', function ($table) {
             $table->dropColumn('tournament_banner_product_id');
-            $table->dropColumn('wiki_page');
+            $table->dropColumn('info_url');
         });
     }
 }

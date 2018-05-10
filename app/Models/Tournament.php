@@ -132,10 +132,10 @@ class Tournament extends Model
     {
         $links = [];
 
-        if ($this->wiki_page !== null) {
+        if ($this->info_url !== null) {
             $links[] = [
-                'url' => wiki_url($this->wiki_page),
-                'title' => trans('tournament.show.wiki'),
+                'url' => $this->info_url,
+                'title' => trans('tournament.show.info_page'),
             ];
         }
 
