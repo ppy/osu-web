@@ -23,13 +23,17 @@ namespace App\Exceptions;
 use App\Models\Store\Order;
 use Exception;
 
+/**
+ * Exception for when the order is not modifiable.
+ * The exception message should be safe to display to the user.
+ */
 class OrderNotModifiableException extends Exception
 {
     private $order;
 
     public function __construct(Order $order)
     {
-        parent::__construct('Order is not modifiable');
+        parent::__construct(static::buildMessage($order));
 
         $this->order = $order;
     }
@@ -37,5 +41,24 @@ class OrderNotModifiableException extends Exception
     public function getOrder()
     {
         return $this->order;
+    }
+
+    private static function buildMessage(Order $order)
+    {
+        switch ($order->status) {
+            case 'checkout':
+            case 'processing':
+                return 'You cannot modify your order while it is being processed.';
+
+            case 'paid':
+            case 'shipped':
+            case 'delivered':
+                return 'You cannot modify your order as it has already been paid for.';
+
+            case 'cancelled':
+                return 'You cannot modify your order as it has been cancelled.';
+        }
+
+        return 'Order is not modifiable';
     }
 }
