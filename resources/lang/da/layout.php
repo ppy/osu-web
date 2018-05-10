@@ -54,7 +54,7 @@ return [
             'artists' => 'udvalgte kunstnere',
             'packs' => 'pakker',
             'beatmapset-watches-index' => 'modding watchlist',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'charts', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',

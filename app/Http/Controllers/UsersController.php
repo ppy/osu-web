@@ -225,6 +225,7 @@ class UsersController extends Controller
             "scores_first_count:mode({$currentMode})",
             "statistics:mode({$currentMode})",
             'account_history',
+            'active_tournament_banner',
             'badges',
             'favourite_beatmapset_count',
             'follower_count',
@@ -343,7 +344,7 @@ class UsersController extends Controller
             $this->perPage = 0;
         } else {
             $perPage = $this->sanitizedLimitParam();
-            $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
+            $this->perPage = min($perPage, $this->maxResults - $this->offset);
         }
     }
 

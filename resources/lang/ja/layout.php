@@ -70,7 +70,7 @@ return [
             '_' => 'ランキング',
             'index' => 'パフォーマンス',
             'performance' => 'パフォーマンス',
-            'charts' => 'チャート',
+            'charts' => 'チャート', // Base text has changed, please check.
             'score' => 'スコア',
             'country' => '国別',
             'kudosu' => 'kudosu',

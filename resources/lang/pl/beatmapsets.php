@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => 'Nie można pobrać tej beatmapy.',
+        'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
     ],
@@ -41,7 +41,7 @@ return [
             'approved' => 'zatwierdzona od ',
             'qualified' => 'zakwalifikowana od ',
             'loved' => 'ulubiona społeczności od ',
-            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!',
+            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'download' => [
                 '_' => 'Pobierz',
                 'video' => 'z wideo',
@@ -84,7 +84,7 @@ return [
             'country' => 'Ranking krajowy',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
-            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za posiadanie statusu donatora!',
+            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
             'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
             'title' => 'Tabela wyników',
 

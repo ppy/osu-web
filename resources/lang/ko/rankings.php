@@ -22,7 +22,7 @@ return [
     'header' => ':type 순위',
     'type' => [
         'performance' => '퍼포먼스',
-        'charts' => '차트별',
+        'charts' => '스포트라이트',
         'score' => '점수',
         'country' => '국가별',
     ],
