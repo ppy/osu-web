@@ -354,7 +354,7 @@ route_redirect('s/{beatmapset}', 'beatmapsets.show');
 route_redirect('u/{user}', 'users.show');
 route_redirect('forum', 'forum.forums.index');
 route_redirect('mp/{match}', 'matches.show');
-route_redirect('wiki/{page?}', 'wiki.show');
+route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
 if (Config::get('app.debug')) {

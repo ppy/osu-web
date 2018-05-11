@@ -44,12 +44,13 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         disabled: disabled
         onClick: @nominate
 
+
   render: =>
     showHype = @props.beatmapset.can_be_hyped
 
     if showHype
       requiredHype = @props.beatmapset.nominations.required_hype
-      hypeRaw = _.size @props.currentDiscussions.byFilter.hype.generalAll
+      hypeRaw = @props.currentDiscussions.totalHype
       hype = _.min([requiredHype, hypeRaw])
       userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 

@@ -22,7 +22,7 @@ return [
     'index' => [
         'header' => [
             'subtitle' => 'Lista aktywnych, oficjalnych turniejów',
-            'title' => 'Turnieje',
+            'title' => 'Turnieje społeczności',
         ],
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
         'registration_period' => 'Rejestracja: od :start do :end',

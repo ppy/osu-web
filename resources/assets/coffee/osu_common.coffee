@@ -29,6 +29,15 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
+  classWithModifiers: (className, modifiers) ->
+    ret = className
+
+    if modifiers?
+      ret += " #{className}--#{modifier}" for modifier in modifiers
+
+    ret
+
+
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
 

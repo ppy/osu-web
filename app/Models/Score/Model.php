@@ -68,6 +68,7 @@ abstract class Model extends BaseModel
     {
         return $query
             ->where('rank', '<>', 'F')
+            ->whereHas('beatmap')
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
