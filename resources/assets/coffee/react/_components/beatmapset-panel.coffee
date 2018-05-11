@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,img,span} = ReactDOMFactories
+{div,a,i,span} = ReactDOMFactories
 el = React.createElement
 
 class @BeatmapsetPanel extends React.PureComponent
@@ -45,7 +45,7 @@ class @BeatmapsetPanel extends React.PureComponent
 
   hideImage: (e) ->
     # hides img elements that have errored (hides native browser broken-image icons)
-    e.currentTarget.style.display = 'none';
+    e.currentTarget.style.display = 'none'
 
 
   render: =>
