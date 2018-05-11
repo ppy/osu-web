@@ -62,7 +62,7 @@ return [
             'month' => 'bulan',
             'all_time' => 'sepanjang waktu',
             'last_week' => 'minggu lalu',
-            'weeks_ago' => ':count minggu lalu|:count minggu lalu',
+            'weeks_ago' => ':count minggu lalu',
         ],
     ],
 ];

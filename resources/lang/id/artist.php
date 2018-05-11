@@ -43,7 +43,7 @@ return [
 
     'songs' => [
         '_' => 'Lagu',
-        'count' => ':count lagu|:count lagu',
+        'count' => ':count lagu',
         'exclusive' => 'eksklusif osu!',
     ],
 ];

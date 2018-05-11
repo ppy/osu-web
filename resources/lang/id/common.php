@@ -49,15 +49,15 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count lencana|:count lencana',
-        'days' => ':count hari|:count hari',
+        'badges' => ':count lencana',
+        'days' => ':count hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count jam|:count jam',
-        'item' => ':count unit|:count unit',
+        'hours' => ':count jam',
+        'item' => ':count unit',
         'minute_short_unit' => 'menit|menit',
-        'months' => ':count bulan|:count bulan',
+        'months' => ':count bulan',
         'second_short_unit' => 'detik|detik',
-        'years' => ':count tahun|:count tahun',
+        'years' => ':count tahun',
     ],
 
     'datetime' => [
@@ -96,8 +96,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count hari yang lalu|:count hari yang lalu',
-        'hours_ago' => ':count jam yang lalu|:count jam yang lalu',
+        'days_ago' => ':count hari yang lalu',
+        'hours_ago' => ':count jam yang lalu',
         'now' => 'sekarang',
         'remaining' => 'Waktu Tersisa',
     ],

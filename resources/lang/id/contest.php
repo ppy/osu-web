@@ -50,7 +50,7 @@ return [
     ],
     'vote' => [
         'list' => 'suara',
-        'count' => ':count suara|:count suara',
+        'count' => ':count suara',
     ],
     'dates' => [
         'ended' => 'Selesai :date',

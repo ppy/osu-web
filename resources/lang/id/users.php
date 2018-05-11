@@ -128,7 +128,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count pengikut|:count pengikut',
+            'followers' => ':count pengikut',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
@@ -289,7 +289,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Berkontribusi :link',
-            'count' => ':count postingan forum|:count postingan forum',
+            'count' => ':count postingan forum',
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',

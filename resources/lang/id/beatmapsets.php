@@ -50,7 +50,7 @@ return [
             ],
             'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
             'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
-            'favourited_count' => '+ :count lagi!|+ :count lagi!',
+            'favourited_count' => '+ :count lagi!',
         ],
         'stats' => [
             'cs' => 'Circle Size',

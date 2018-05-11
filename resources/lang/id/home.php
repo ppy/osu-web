@@ -119,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Halo, <strong>:username</strong>!',
-            'messages' => 'Anda memiliki :count pesan baru|Anda memiliki :count pesan baru',
+            'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
                 'friends' => 'Teman yang Daring',
                 'games' => 'Permainan',
