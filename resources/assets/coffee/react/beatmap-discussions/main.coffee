@@ -279,6 +279,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.discussions ?= _ @state.beatmapset.discussions
                             .filter (d) -> !_.isEmpty(d)
                             .keyBy 'id'
+                            .value()
 
 
   discussionStarters: =>
