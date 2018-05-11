@@ -203,12 +203,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       for own _filter, modes of byFilter
         modes[mode] = {}
 
-    for d in @state.beatmapset.discussions
-      # skipped discussion
-      # - not privileged (deleted discussion)
-      # - deleted beatmap
-      continue if _.isEmpty(d)
-
+    for own _id, d of @discussions()
       if !d.deleted_at?
         totalHype++ if d.message_type == 'hype'
 
@@ -276,6 +271,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   discussions: =>
+    # skipped discussions
+    # - not privileged (deleted discussion)
+    # - deleted beatmap
     @cache.discussions ?= _ @state.beatmapset.discussions
                             .filter (d) -> !_.isEmpty(d)
                             .keyBy 'id'
