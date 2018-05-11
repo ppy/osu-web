@@ -51,6 +51,8 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
+    protected $fillable = ['user_id'];
+
     protected $primaryKey = 'order_id';
 
     protected $casts = [
