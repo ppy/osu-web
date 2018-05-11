@@ -432,11 +432,6 @@ class Order extends Model
                 $item = $this->updateOrderItem($params, $addToExisting);
             }
 
-            $message = $this->validateBeforeSave($params['product'], $item);
-            if ($message !== null) {
-                $errors->addTranslated('product', $message);
-            }
-
             $this->saveOrExplode();
             $this->items()->save($item);
 
@@ -615,19 +610,6 @@ class Order extends Model
         }
 
         return $item;
-    }
-
-    private function validateBeforeSave(Product $product, $item)
-    {
-        if (!$product->inStock($item->quantity)) {
-            return 'not enough stock';
-        } elseif (!$product->enabled) {
-            return 'invalid item';
-        } elseif ($item->quantity > $product->max_quantity) {
-            $route = route('store.cart.show');
-
-            return "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order";
-        }
     }
 
     private static function orderItemParams(array $form)

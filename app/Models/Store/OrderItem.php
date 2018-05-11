@@ -69,6 +69,13 @@ class OrderItem extends Model
             $this->validationErrors()->add('product', 'insufficient_stock');
         }
 
+        if ($this->quantity > $this->product->max_quantity) {
+            $route = route('store.cart.show');
+
+            // FIXME: old message; seems silly
+            $this->validationErrors()->addTranslated('product', "you can only order {$this->product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order");
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
