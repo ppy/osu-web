@@ -285,9 +285,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
     _ @discussions()
       .map 'user_id'
       .uniq()
-      .map (user_id) =>
-        @users()[user_id]
-      .sortBy 'username'
+      .map (user_id) => @users()[user_id]
+      .orderBy (user) -> user.username.toLocaleLowerCase()
       .value()
 
 
