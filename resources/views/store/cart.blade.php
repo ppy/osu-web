@@ -38,35 +38,37 @@
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Shopping Cart</h1>
 
-                <ul class='table cart-items'>
+                <ul class="table cart-items">
                     @foreach($order->items as $i)
-                    <li>
-                        <div>
-                            <span class="product-name">
-                                {{{$i->getDisplayName()}}}
-                            </span>
+                        <li class="store-order-item">
+                            <div class="store-order-item__line">
+                                <span class="store-order-item__name">
+                                    {{{$i->getDisplayName()}}}
+                                </span>
 
-                            {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
-                                <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
-                                <input type="hidden" name="item[id]" value="{{ $i->id }}">
-                                @if($i->product->allow_multiple)
-                                    <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
-                                @else
-                                    {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
-                                @endif
-                                <span class="subtotal">{{{currency($i->subtotal())}}}</span>
-                                <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
-                            {!! Form::close() !!}
-                        </div>
+                                {!! Form::open(['class' => 'store-order-item__options', "url" => "store/update-cart", "data-remote" => true]) !!}
+                                    <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
+                                    <input type="hidden" name="item[id]" value="{{ $i->id }}">
+                                    @if($i->product->allow_multiple)
+                                        <span class="store-order-item__quantity">{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
+                                    @else
+                                        {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'store-order-item__quantity form-control js-auto-submit']) !!}
+                                    @endif
+                                    <span class="store-order-item__subtotal">{{{currency($i->subtotal())}}}</span>
+                                    <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
+                                {!! Form::close() !!}
+                            </div>
 
-                        @if (isset($itemErrors[$i->id]))
-                            <ul class="store-order-item__errors">
-                                @foreach ($itemErrors[$i->id] as $message)
-                                    <li class="store-order-item__error">{!! $message !!}
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
+                            @if (isset($itemErrors[$i->id]))
+                                <div class="store-order-item__line">
+                                    <ul class="store-order-item__errors">
+                                        @foreach ($itemErrors[$i->id] as $message)
+                                            <li class="store-order-item__error">{!! $message !!}
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </li>
                     @endforeach
                 </ul>
 

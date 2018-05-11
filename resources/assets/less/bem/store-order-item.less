@@ -17,11 +17,49 @@
  */
 
 .store-order-item {
+  .default-border-radius();
+  .default-box-shadow();
+  list-style: none;
+  padding: 10px;
+  margin: 0 0 5px;
+
+  // flex-wrap: wrap;
+  @media @desktop {
+    flex-wrap: nowrap;
+  }
+
+
   &__error {
     list-style: none;
   }
 
   &__errors {
     color: @red;
+  }
+
+  &__line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+  }
+
+  &__options {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__quantity {
+    flex: 0 0 100px;
+  }
+
+  &__name {
+    flex: 0 1 auto;
+  }
+
+  &__subtotal {
+    flex: 0 0 150px;
+    padding: 0 20px;
   }
 }
