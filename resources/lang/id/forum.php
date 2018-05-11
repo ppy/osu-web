@@ -51,7 +51,7 @@ return [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
         'edited' => 'Terakhir disunting oleh :user :when, total disunting sebanyak :count kali.',
-        'posted_at' => 'Diposting pada :when',
+        'posted_at' => 'Diposting :when',
 
         'actions' => [
             'destroy' => 'Hapus post',
@@ -251,7 +251,7 @@ return [
                 'vote' => 'Pilih',
 
                 'detail' => [
-                    'end_time' => 'Pemilihan akan berakhir pada :time',
+                    'end_time' => 'Pemilihan akan berakhir :time',
                     'ended' => 'Pemilihan telah berakhir :time',
                     'total' => 'Jumlah suara: :count',
                 ],

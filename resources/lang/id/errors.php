@@ -31,7 +31,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mode tidak valid.',
-        'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang dimnta pada beatmap dengan tingkat kesulitan ini.',
+        'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Anda memiliki terlalu banyak beatmap favorit! Mohon hapus satu sebelum melanjutkan.',
