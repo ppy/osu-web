@@ -479,21 +479,11 @@ class Order extends Model
 
     public static function cart($user)
     {
-        $cart = static::query()
+        return static::query()
             ->where('user_id', $user->user_id)
             ->inCart()
             ->with('items.product')
             ->first();
-
-        if (!$cart) {
-            // still stuff that relies on cart not returning null.
-            $cart = new static();
-            $cart->user_id = $user->user_id;
-
-            return $cart;
-        }
-
-        return $cart;
     }
 
     public function macroItemsQuantities()
