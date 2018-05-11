@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,39 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
-
-  &__arrow {
-    display: inline-block;
-    color: @gray;
-    margin-right: 10px;
-
-    .@{top}.js-spoilerbox--open & {
-      transform: rotate(90deg);
-    }
-  }
-
-  &__body {
-    display: none;
-
-    .@{top}.js-spoilerbox--open & {
-      .default-border-radius();
-      display: block;
-      background: #ddd;
-      padding: 20px;
-      margin-top: 4px;
-    }
-  }
-
-  &__link {
-    color: #333;
-    font-weight: bold;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #111;
-    }
-  }
-}
+return [
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => 'Terima kasih, osu! mencintaimu',
+        ],
+        'supporter_gift' => [
+            'subject' => 'Anda memiliki osu! supporter tag!',
+        ],
+    ],
+];

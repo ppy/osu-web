@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,39 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
+return [
+    'feed_title' => 'umpan',
+    'generic' => 'Perbaikan bug dan perkembangan kecil',
+    'users-online' => '1 pengguna daring|:users pengguna daring',
 
-  &__arrow {
-    display: inline-block;
-    color: @gray;
-    margin-right: 10px;
+    'prefixes' => [
+        'add' => 'tambahan',
+        'fix' => 'perbaikan',
+        'misc' => 'lainnya',
+    ],
 
-    .@{top}.js-spoilerbox--open & {
-      transform: rotate(90deg);
-    }
-  }
-
-  &__body {
-    display: none;
-
-    .@{top}.js-spoilerbox--open & {
-      .default-border-radius();
-      display: block;
-      background: #ddd;
-      padding: 20px;
-      margin-top: 4px;
-    }
-  }
-
-  &__link {
-    color: #333;
-    font-weight: bold;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #111;
-    }
-  }
-}
+    'support' => [
+        'heading' => 'Menyukai pembaruan ini?',
+        'text_1' => 'Dukung pengembangan osu! lebih lanjut dan :link hari ini!',
+        'text_1_link' => 'jadilah supporter',
+        'text_2' => 'Anda tidak hanya membantu mempercepat waktu pengembangan, tetapi Anda juga akan mendapatkan beberapa fitur tambahan dan kustomisasi!',
+    ],
+];

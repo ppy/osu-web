@@ -3,8 +3,9 @@
 // osu config~
 return [
     'avatar' => [
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
     'assets' => [
