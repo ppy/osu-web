@@ -17,6 +17,12 @@
 --}}
 @extends("master")
 
+@php
+    // always ignore empty keys.
+    $hasErrors = count(array_flatten($validationErrors)) > 0;
+    $itemErrors = $validationErrors['orderItems'] ?? [];
+@endphp
+
 @section("content")
     @include("store.header")
 
@@ -35,21 +41,31 @@
                 <ul class='table cart-items'>
                     @foreach($order->items as $i)
                     <li>
-                        <span class="product-name">
-                            {{{$i->getDisplayName()}}}
-                        </span>
+                        <div>
+                            <span class="product-name">
+                                {{{$i->getDisplayName()}}}
+                            </span>
 
-                        {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
-                            <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
-                            <input type="hidden" name="item[id]" value="{{ $i->id }}">
-                            @if($i->product->allow_multiple)
-                                <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
-                            @else
-                                {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
-                            @endif
-                            <span class="subtotal">{{{currency($i->subtotal())}}}</span>
-                            <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
-                        {!! Form::close() !!}
+                            {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
+                                <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
+                                <input type="hidden" name="item[id]" value="{{ $i->id }}">
+                                @if($i->product->allow_multiple)
+                                    <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
+                                @else
+                                    {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
+                                @endif
+                                <span class="subtotal">{{{currency($i->subtotal())}}}</span>
+                                <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
+                            {!! Form::close() !!}
+                        </div>
+
+                        @if (isset($itemErrors[$i->id]))
+                            <ul class="store-order-item__errors">
+                                @foreach ($itemErrors[$i->id] as $message)
+                                    <li class="store-order-item__error">{!! $message !!}
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
                     @endforeach
                 </ul>
@@ -76,9 +92,13 @@
             </div>
 
             <div class="osu-layout__sub-row">
-                <div class="big-button">
-                    <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
-                </div>
+                @if ($hasErrors)
+                    Cannot checkout out while cart has errors
+                @else
+                    <div class="big-button">
+                        <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
+                    </div>
+                @endif
             </div>
         </div>
     @endif

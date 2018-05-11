@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Libraries\OrderCheckout;
 use Request;
 
 class CartController extends Controller
@@ -46,7 +47,11 @@ class CartController extends Controller
             return ujs_redirect(route('store.checkout.show'));
         }
 
-        return view('store.cart')->with('order', $this->userCart());
+        $order = $this->userCart();
+        $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
+
+        return view('store.cart', compact('order', 'validationErrors'));
     }
 
     public function store()
