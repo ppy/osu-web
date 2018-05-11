@@ -37,12 +37,9 @@
   &__description {
     .content-font();
 
-    background-color: @gray-blue-dark;
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 20px;
-    .default-box-shadow();
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
@@ -56,5 +53,16 @@
     height: 450px;
     background-size: cover;
     background-position: center center;
+  }
+
+  &__links {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__page {
+    background-color: @gray-blue-dark;
+    .default-box-shadow();
+    padding: 20px;
   }
 }

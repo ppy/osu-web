@@ -40,7 +40,7 @@ return [
             'not_yet' => 'Nie posiadasz jeszcze statusu donatora :(',
             'title' => 'Status donatora',
             'valid_until' => 'Twój status donatora jest aktywny do :date!',
-            'was_valid_until' => 'Twój status donatora był aktywny do :date.',
+            'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],
 
         'why_support' => [

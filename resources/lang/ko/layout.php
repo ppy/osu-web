@@ -54,7 +54,7 @@ return [
             'artists' => '주요 아티스트',
             'packs' => '모음집',
             'beatmapset-watches-index' => '모딩 확인 목록',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'charts', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => '비트맵',

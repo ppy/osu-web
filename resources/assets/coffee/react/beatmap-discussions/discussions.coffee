@@ -123,7 +123,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
-              @sortedDisussions().map @discussionPage
+              @sortedDiscussions().map @discussionPage
 
             @timelineCircle()
 
@@ -183,7 +183,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
-  sortedDisussions: ->
+  sortedDiscussions: ->
     @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
       mapperNoteCompare =
         # no sticky for timeline sort
