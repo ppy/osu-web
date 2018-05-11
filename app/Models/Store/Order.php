@@ -413,29 +413,32 @@ class Order extends Model
             $errors = new ValidationErrors('order');
             $params = static::orderItemParams($itemForm);
 
+            // done first to allow removing of disabled products from cart.
+            if ($params['quantity'] <= 0) {
+                $this->removeOrderItem($params);
+
+                return $errors;
+            }
+
             if ($params['product'] === null) {
                 $errors->addTranslated('product', 'no product');
 
                 return $errors;
             }
 
-            if ($params['quantity'] <= 0) {
-                $this->removeOrderItem($params);
+            if ($params['product']->allow_multiple) {
+                $item = $this->newOrderItem($params);
             } else {
-                if ($params['product']->allow_multiple) {
-                    $item = $this->newOrderItem($params);
-                } else {
-                    $item = $this->updateOrderItem($params, $addToExisting);
-                }
-
-                $message = $this->validateBeforeSave($params['product'], $item);
-                if ($message !== null) {
-                    $errors->addTranslated('product', $message);
-                }
-
-                $this->saveOrExplode();
-                $this->items()->save($item);
+                $item = $this->updateOrderItem($params, $addToExisting);
             }
+
+            $message = $this->validateBeforeSave($params['product'], $item);
+            if ($message !== null) {
+                $errors->addTranslated('product', $message);
+            }
+
+            $this->saveOrExplode();
+            $this->items()->save($item);
 
             return $errors;
         });
