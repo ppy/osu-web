@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,39 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
-
-  &__arrow {
-    display: inline-block;
-    color: @gray;
-    margin-right: 10px;
-
-    .@{top}.js-spoilerbox--open & {
-      transform: rotate(90deg);
-    }
-  }
-
-  &__body {
-    display: none;
-
-    .@{top}.js-spoilerbox--open & {
-      .default-border-radius();
-      display: block;
-      background: #ddd;
-      padding: 20px;
-      margin-top: 4px;
-    }
-  }
-
-  &__link {
-    color: #333;
-    font-weight: bold;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #111;
-    }
-  }
-}
+return [
+    'username_change' => [
+        'only_one' => 'perubahan nama pengguna yang diperbolehkan hanya 1 kali per pesanan.',
+        'insufficient_paid' => 'Biaya yang Anda bayarkan tidak mencukupi untuk menutupi biaya penggantian nama pengguna Anda (:expected > :actual)',
+        'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk diganti (:username)',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'Donasi Anda tidak mencukupi untuk dapat menghadiahkan supporter tag ke pengguna lain (:actual > :expected)',
+    ],
+];

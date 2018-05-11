@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,39 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
+return [
+    'breadcrumbs' => [
+        'news-index' => 'daftar',
+        'news-show' => 'postingan',
+    ],
 
-  &__arrow {
-    display: inline-block;
-    color: @gray;
-    margin-right: 10px;
+    'index' => [
+        'title' => 'osu!news',
 
-    .@{top}.js-spoilerbox--open & {
-      transform: rotate(90deg);
-    }
-  }
+        'nav' => [
+            'newer' => 'Postingan baru',
+            'older' => 'Postingan lama',
+        ],
+    ],
 
-  &__body {
-    display: none;
+    'show' => [
+        'posted' => 'Diposting :time',
 
-    .@{top}.js-spoilerbox--open & {
-      .default-border-radius();
-      display: block;
-      background: #ddd;
-      padding: 20px;
-      margin-top: 4px;
-    }
-  }
+        'nav' => [
+            'newer' => 'Postingan baru',
+            'older' => 'Postingan lama',
+        ],
+    ],
 
-  &__link {
-    color: #333;
-    font-weight: bold;
+    'store' => [
+        'button' => 'Perbarui',
+        'ok' => 'Daftar diperbarui.',
+    ],
 
-    &:focus,
-    &:hover,
-    &:active {
-      color: #111;
-    }
-  }
-}
+    'update' => [
+        'button' => 'Perbarui',
+        'ok' => 'Postingan diperbarui.',
+    ],
+];
