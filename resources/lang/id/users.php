@@ -298,7 +298,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'maximum_combo' => 'Combo Maksimum',
+            'maximum_combo' => 'Kombo Maksimum',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
