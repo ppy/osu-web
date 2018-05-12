@@ -167,7 +167,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'ketik kata kunci...',
-            'options' => 'More Search Options',
+            'options' => 'Perbanyak Opsi Pencarian',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
             'filters' => [
