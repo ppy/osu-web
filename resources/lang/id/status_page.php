@@ -31,10 +31,10 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Pengguna yang Daring dalam 24 Jam Terakhir',
+            'users' => 'Pengguna yang Online dalam 24 Jam Terakhir',
             'score' => 'Pengiriman Skor dalam 24 Jam Terakhir',
         ],
-        'current' => 'Pengguna yang Daring Saat Ini',
+        'current' => 'Pengguna sedang Online Saat Ini',
         'score' => 'Pengiriman Skor per Detik',
     ],
 
