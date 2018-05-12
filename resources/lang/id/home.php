@@ -22,7 +22,7 @@ return [
     'landing' => [
         'download' => 'Unduh sekarang',
         'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
-        'peak' => 'Tercatat, :count pengguna sedang online',
+        'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
 
         'slogan' => [
