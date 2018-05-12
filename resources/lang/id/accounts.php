@@ -51,7 +51,7 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'pekerjaan',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'situs web',
                 'user_discord' => 'discord',
             ],
         ],
