@@ -239,8 +239,8 @@ return [
                 'do' => '提升这个请求',
 
                 'user' => [
-                    'count' => '{0} 没有票|[1,*] :count 票',
-                    'current' => '还有 :votes 票.',
+                    'count' => ':count 票',
+                    'current' => '还有 :votes 。',
                     'not_enough' => '没有票了',
                 ],
             ],
