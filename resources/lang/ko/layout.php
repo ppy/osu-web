@@ -54,7 +54,7 @@ return [
             'artists' => '주요 아티스트',
             'packs' => '모음집',
             'beatmapset-watches-index' => '모딩 확인 목록',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'charts', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => '비트맵',
@@ -181,32 +181,26 @@ return [
         '404' => [
             'error' => '페이지를 찾을 수 없음',
             'description' => '죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!',
-            'link' => false,
         ],
         '403' => [
             'error' => '여기 계시면 안됩니다.',
             'description' => '다시 돌아가보세요.',
-            'link' => false,
         ],
         '401' => [
             'error' => '여기 계시면 안됩니다.',
             'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => '페이지를 찾을 수 없음',
             'description' => '죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!',
-            'link' => false,
         ],
         '500' => [
             'error' => '이런! 뭔가 잘못 되었네요! ;_;',
             'description' => '저희는 모든 에러를 자동으로 보고받고 있습니다.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '이런! 뭔가 잘못 되었네요! (심각한데요...) ;_;',
             'description' => '저희는 모든 에러를 자동으로 보고받고 있습니다.',
-            'link' => false,
         ],
         '503' => [
             'error' => '서비스 점검중입니다!',

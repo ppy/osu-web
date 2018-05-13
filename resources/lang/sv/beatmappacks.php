@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Diagram',
+        'chart' => 'Diagram', // Base text has changed, please check.
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

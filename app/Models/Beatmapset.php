@@ -53,10 +53,12 @@ class Beatmapset extends Model implements AfterCommit
 
     protected $dates = [
         'approved_date',
+        'cover_updated_at',
+        'deleted_at',
         'last_update',
+        'queued_at',
         'submit_date',
         'thread_icon_date',
-        'cover_updated_at',
     ];
 
     public $timestamps = false;
@@ -548,10 +550,21 @@ class Beatmapset extends Model implements AfterCommit
 
     public function setApproved($state, $user)
     {
+        $currentTime = Carbon::now();
+
+        if ($this->isQualified() && $state === 'pending') {
+            $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
+            $this->queued_at = null;
+        } elseif ($this->isPending() && $state === 'qualified') {
+            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $adjustment = min($this->previous_queue_duration, $maxAdjustment);
+            $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
+        }
+
         $this->approved = static::STATES[$state];
 
         if ($this->approved > 0) {
-            $this->approved_date = Carbon::now();
+            $this->approved_date = $currentTime;
             $this->approvedby_id = $user->user_id;
         } else {
             $this->approved_date = null;
@@ -765,11 +778,11 @@ class Beatmapset extends Model implements AfterCommit
             ->whereDoesntHave('beatmaps', function ($query) use ($modes) {
                 $query->where('playmode', '<', min($modes));
             })
-            ->where('approved_date', '<', $this->approved_date)
+            ->where('queued_at', '<', $this->queued_at)
             ->count();
         $days = ceil($queueSize / static::RANKED_PER_DAY);
 
-        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days) : null;

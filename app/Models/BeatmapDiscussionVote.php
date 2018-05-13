@@ -115,10 +115,11 @@ class BeatmapDiscussionVote extends Model
             }
         }
 
-        // TODO: readd this when content becomes public
-        // $query->whereHas('user', function ($userQuery) {
-        //     $userQuery->default();
-        // });
+        if (!($rawParams['is_moderator'] ?? false)) {
+            $query->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+        }
 
         return ['query' => $query, 'params' => $params];
     }

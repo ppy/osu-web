@@ -21,7 +21,9 @@
 return [
     'deleted' => '[usunięty użytkownik]',
 
-        'beatmapset_activities' => [
+    'beatmapset_activities' => [
+        'title' => 'Historia modowania użytkownika :user',
+
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
         ],
@@ -39,7 +41,7 @@ return [
         ],
 
         'votes_made' => [
-            'title_most' => 'Najwięcej nadanych głosów (ostatnie 3 miesiące)',
+            'title_most' => 'Najwięcej oddanych głosów (ostatnie 3 miesiące)',
         ],
     ],
 
@@ -57,11 +59,11 @@ return [
         'button_posting' => 'Logowanie...',
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
-        'failed' => 'Niepoprawny login/hasło',
-        'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
+        'failed' => 'Nieprawidłowe dane logowania',
+        'register' => 'Nie posiadasz konta osu!? Utwórz nowe.',
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
-            'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
+            'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
             'small' => '(donatorzy otrzymają go wkrótce)',
         ],
 
@@ -80,7 +82,7 @@ return [
         'login_link' => 'kliknij, aby się zalogować',
         'login_text' => 'zaloguj się',
         'username' => 'Gość',
-        'error' => 'Musisz się zalogować.',
+        'error' => 'Musisz się zalogować, aby to zrobić.',
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'restricted_banner' => [
@@ -88,14 +90,13 @@ return [
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
-        'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik jest zablokowany)',
+        'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_age' => ':age',
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
@@ -107,15 +108,15 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Zmień nagłówek profilu',
-                'defaults_info' => 'Więcej nagłówków pojawi się w przyszłości',
+                'button' => 'Zmień tło profilu',
+                'defaults_info' => 'Więcej teł pojawi się w przyszłości',
                 'upload' => [
                     'broken_file' => 'Nie udało się przetworzyć pliku. Zweryfikuj plik i spróbuj ponownie.',
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>, aby odblokować tę funkcję.",
-                    'size_info' => 'Rozmiary nagłówka powinny wynosić przynajmniej 2000x700',
+                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
@@ -271,6 +272,13 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Strona internetowa',
+        ],
+        'not_found' => [
+            'reason_1' => 'Użytkownik mógł zmienić swoją nazwę.',
+            'reason_2' => 'Konto użytkownika mogło zostać zablokowane.',
+            'reason_3' => 'Wprowadzona nazwa użytkownika jest błędna.',
+            'reason_header' => 'Jest kilka powodów dla których mogło się to zdarzyć:',
+            'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',

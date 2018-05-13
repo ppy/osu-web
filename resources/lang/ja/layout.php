@@ -40,7 +40,7 @@ return [
             'password-reset-index' => 'パスワードのリセット',
             'search' => '検索',
             'supportTheGame' => '支援する',
-            'team' => 'チーム',
+            'team' => 'osu!チーム',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -51,14 +51,14 @@ return [
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => '譜面',
             'artists' => '推奨アーティスト',
             'beatmap_discussion_posts-index' => 'ディスカッション投稿',
             'beatmap_discussions-index' => 'ディスカッション',
             'beatmapset-watches-index' => 'moddingウォッチリスト',
             'beatmapset_discussion_votes-index' => 'ディスカッション評価',
             'beatmapset_events-index' => 'ビートマップセットイベント',
-            'index' => 'リスト',
+            'index' => '譜面リスト',
             'packs' => 'パック',
             'show' => '詳細',
         ],
@@ -70,9 +70,9 @@ return [
             '_' => 'ランキング',
             'index' => 'パフォーマンス',
             'performance' => 'パフォーマンス',
-            'charts' => 'チャート',
+            'charts' => 'チャート', // Base text has changed, please check.
             'score' => 'スコア',
-            'country' => '所在国',
+            'country' => '国別',
             'kudosu' => 'kudosu',
         ],
         'community' => [
@@ -118,12 +118,12 @@ return [
             'settings' => '設定',
             'logout' => 'ログアウト',
             'help' => 'ヘルプ',
-            'beatmapset_activities' => 'ユーザーのビートマップセットのアクティビティ',
+            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ', // needs update
         ],
         'store' => [
             '_' => 'ストア',
             'checkout-show' => '精算',
-            'getListing' => 'リスト',
+            'getListing' => '製品一覧',
             'cart-show' => 'カート',
 
             'getCheckout' => '精算',
@@ -191,32 +191,26 @@ return [
         '404' => [
             'error' => 'ページが見つかりません',
             'description' => 'ご希望のページはここにはない様です。',
-            'link' => false,
         ],
         '403' => [
             'error' => '何か手違いがあったみたいです。',
             'description' => '戻ってみることをおすすめします。',
-            'link' => false,
         ],
         '401' => [
             'error' => '何か手違いがあったみたいです。',
             'description' => '戻ってみるか、ログインしてみる事をおすすめします。',
-            'link' => false,
         ],
         '405' => [
             'error' => 'ページが見つかりません',
             'description' => 'ご希望のページはここにはない様です。',
-            'link' => false,
         ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
             'description' => '自動的にエラーは報告されます。',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '予期せぬエラーが発生しました（爆） ;_;',
             'description' => '自動的にエラーは報告されます。',
-            'link' => false,
         ],
         '503' => [
             'error' => 'メンテナンス中です！',

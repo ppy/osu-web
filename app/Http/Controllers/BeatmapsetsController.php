@@ -81,7 +81,13 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $played = [
+            ['id' => null, 'name' => trans('beatmaps.played.any')],
+            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
+            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
+        ];
+
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -145,7 +151,10 @@ class BeatmapsetsController extends Controller
                 }
             );
 
-            return Beatmapset::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids)->get();
+            return Beatmapset::whereIn('beatmapset_id', $ids)
+                ->orderByField('beatmapset_id', $ids)
+                ->with('beatmaps')
+                ->get();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
         return json_collection(

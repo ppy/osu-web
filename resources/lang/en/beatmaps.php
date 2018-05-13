@@ -178,6 +178,7 @@ return [
                 'language' => 'Language',
                 'extra' => 'extra',
                 'rank' => 'Rank Achieved',
+                'played' => 'Played',
             ],
         ],
         'mode' => 'Mode',
@@ -257,6 +258,11 @@ return [
         'swedish' => 'Swedish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+    ],
+    'played' => [
+        'any' => 'Any',
+        'played' => 'Played',
+        'unplayed' => 'Unplayed',
     ],
     'extra' => [
         'video' => 'Has Video',

@@ -69,6 +69,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addExtraFilter($query);
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
+        $this->addPlayedFilter($query);
 
         return $query;
     }
@@ -111,37 +112,22 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addPlayedFilter($query)
+    {
+        if ($this->params->playedFilter === 'played') {
+            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+        } elseif ($this->params->playedFilter === 'unplayed') {
+            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+        }
+    }
+
     private function addRankFilter($query)
     {
         if (empty($this->params->rank)) {
             return;
         }
 
-        if ($this->params->mode !== null) {
-            $modes = [$this->params->mode];
-        } else {
-            $modes = array_values(Beatmap::MODES);
-        }
-
-        $unionQuery = null;
-        foreach ($modes as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
-                ->whereIn('rank', $this->params->rank)
-                ->select('beatmap_id');
-
-            if ($unionQuery === null) {
-                $unionQuery = $newQuery;
-            } else {
-                $unionQuery->union($newQuery);
-            }
-        }
-
-        $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
-        $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
-
-        $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
+        $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
     }
 
     private function addRecommendedFilter($query)
@@ -221,5 +207,33 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         return [new Sort('approved_date', 'desc')];
+    }
+
+    private function getPlayedBeatmapIds(?array $rank = null)
+    {
+        $unionQuery = null;
+        foreach ($this->getSelectedModes() as $mode) {
+            $newQuery =
+                Score\Best\Model::getClass($mode)
+                ->forUser($this->params->user)
+                ->select('beatmap_id');
+
+            if ($rank !== null) {
+                $newQuery->whereIn('rank', $rank);
+            }
+
+            if ($unionQuery === null) {
+                $unionQuery = $newQuery;
+            } else {
+                $unionQuery->union($newQuery);
+            }
+        }
+
+        return model_pluck($unionQuery, 'beatmap_id');
+    }
+
+    private function getSelectedModes()
+    {
+        return $this->params->mode === null ? array_values(Beatmap::MODES) : [$this->params->mode];
     }
 }

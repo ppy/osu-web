@@ -64,15 +64,21 @@
   }
 
   &__header {
+    display: block;
+    .link-white();
+    .link-plain();
     .default-text-shadow();
-    border-radius: @border-radius-base @border-radius-base 0 0;
+
     .at2x('/images/layout/beatmaps/default-bg.png');
     background-position: center;
     background-size: cover;
 
-    color: #fff;
     font-weight: 400;
     font-style: italic;
+    height: 120px;
+
+    border-radius: @border-radius-base @border-radius-base 0 0;
+    overflow: hidden;
   }
 
   &__header-text {
@@ -91,6 +97,17 @@
 
   &__icons-box {
     flex: none;
+  }
+
+  &__image {
+    .full-size();
+    object-fit: cover;
+  }
+
+  &__image-overlay {
+    .full-size();
+    content: ' ';
+    background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
   }
 
   &__mapper-source-box {
@@ -188,22 +205,6 @@
 
     .@{top}:hover & {
       opacity: 1;
-    }
-  }
-
-  &__thumb {
-    .link-white();
-    .link-plain();
-    display: block;
-    border-radius: @border-radius-base @border-radius-base 0 0;
-    background-position: center;
-    background-size: cover;
-    height: 120px;
-
-    &::before {
-      .full-size();
-      content: ' ';
-      background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
     }
   }
 

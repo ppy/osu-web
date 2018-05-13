@@ -3,8 +3,9 @@
 // osu config~
 return [
     'avatar' => [
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
     'assets' => [
@@ -51,12 +52,15 @@ return [
     ],
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
-        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
-        'double_post_time' => [
-            'normal' => 72,
-            'author' => 24,
-        ],
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
+        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
+        'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
+        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+
+        'double_post_time' => [
+            'author' => 24,
+            'normal' => 72,
+        ],
 
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
@@ -90,6 +94,17 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
+    'tournament_banner' => [
+        'current' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
+        ],
+        'previous' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
+            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
+        ],
+    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
