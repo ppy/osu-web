@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => '账户设置',
         'title_compact' => '设置',
+        'username' => '用户名',
 
         'avatar' => [
             'title' => '编辑头像', // Base text changed, please check.

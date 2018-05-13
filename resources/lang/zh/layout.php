@@ -118,7 +118,12 @@ return [
             'settings' => '设置',
             'logout' => '退出',
             'help' => '帮助',
-            'modding-history-index' => '玩家谱面活动', //需要上下文 // needs update
+            'modding-history-discussions' => '用户摸图讨论', //↓上下文
+            'modding-history-events' => '用户摸图事件,
+            'modding-history-index' => '用户摸图历史',
+            'modding-history-posts' => '用户摸图帖',
+            'modding-history-votesGiven' => '用户摸图投票数',
+            'modding-history-votesReceived' => '用户摸图获得票数', //↑
         ],
         'store' => [
             '_' => '商店',

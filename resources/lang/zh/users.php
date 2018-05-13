@@ -22,6 +22,8 @@ return [
     'deleted' => '[被删除的用户]', //TODO 需要上下文
 
     'beatmapset_activities' => [
+        'title' => ":user 的摸图历史",
+
         'discussions' => [
             'title_recent' => '最近打开的讨论', //上下文
         ],
@@ -113,7 +115,7 @@ return [
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
                     'restriction_info' => "自定义皮肤只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
-                    'size_info' => '图片尺寸应为2000x500',
+                    'size_info' => '图片尺寸应为2000x700',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',
                 ],
@@ -243,7 +245,7 @@ return [
             'account_standing' => [ //原文见ppy/osu-web#2384
                 'title' => '帐号状态',
                 'bad_standing' => '<strong>:username</strong> 的帐号存在不良记录 :(',
-                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 后解除',
+                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
                     'title' => '最近记录',
@@ -273,6 +275,10 @@ return [
             'website' => '网站',
         ],
         'not_found' => [
+            'reason_1' => '他可能换了用户名。',
+            'reason_2' => '该帐号由于安全或滥用问题暂时不可用。',
+            'reason_3' => '你可能输错用户名了！',
+            'reason_header' => '可能是由于以下原因：',
             'title' => '找不到指定的用户',
         ],
         'page' => [

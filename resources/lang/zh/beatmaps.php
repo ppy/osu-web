@@ -178,6 +178,7 @@ return [
                 'language' => '语言',
                 'extra' => '额外',
                 'rank' => '有成绩',
+                'played' => '玩过',
             ],
         ],
         'mode' => '模式',
@@ -257,6 +258,11 @@ return [
         'swedish' => '瑞典语',
         'instrumental' => '器乐',
         'other' => '其他',
+    ],
+    'played' => [
+        'any' => '任意',
+        'played' => '玩过',
+        'unplayed' => '没玩过',
     ],
     'extra' => [
         'video' => '有视频',

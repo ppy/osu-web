@@ -30,6 +30,7 @@ return [
 
     'buttons' => [
         'cancel' => '取消',
+        'change' => '更改',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
         'delete' => '删除',

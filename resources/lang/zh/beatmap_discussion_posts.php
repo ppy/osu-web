@@ -25,5 +25,6 @@ return [
 
     'item' => [
         'content' => '正文', //需要上下文
+        'modding_history_link' => '查看摸图历史',
     ],
 ];

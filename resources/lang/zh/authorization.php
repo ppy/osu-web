@@ -84,6 +84,11 @@ return [
                 'not_owner' => '只有作者能编辑此回复。',
                 'topic_locked' => '无法编辑被锁定主题的回复。',
             ],
+
+            'store' => [
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'too_many_help_posts' => '如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh', // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
