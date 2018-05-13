@@ -107,14 +107,14 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料皮肤',
-                'defaults_info' => '在将来会有更多皮肤可用',
+                'button' => '更换个人资料头图',
+                'defaults_info' => '在将来会有更多头图可用',
                 'upload' => [
                     'broken_file' => '上传失败.请检查上传的图片然后重试.',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
+                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
                     'size_info' => '图片尺寸应为2000x700',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',

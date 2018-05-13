@@ -119,7 +119,7 @@ return [
             'logout' => '退出',
             'help' => '帮助',
             'modding-history-discussions' => '用户摸图讨论', //↓上下文
-            'modding-history-events' => '用户摸图事件,
+            'modding-history-events' => '用户摸图事件',
             'modding-history-index' => '用户摸图历史',
             'modding-history-posts' => '用户摸图帖',
             'modding-history-votesGiven' => '用户摸图投票数',
