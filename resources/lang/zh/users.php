@@ -22,7 +22,7 @@ return [
     'deleted' => '[被删除的用户]', //TODO 需要上下文
 
     'beatmapset_activities' => [
-        'title' => ":user 的摸图历史",
+        'title' => ':user 的摸图历史',
 
         'discussions' => [
             'title_recent' => '最近打开的讨论', //上下文
