@@ -23,6 +23,6 @@ return [
 
     'user_search' => [
         'searching' => '搜索中..',
-        'not_found' => '该用户不存在',
+        'not_found' => "该用户不存在",
     ],
 ];
