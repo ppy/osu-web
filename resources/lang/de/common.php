@@ -30,7 +30,7 @@ return [
 
     'buttons' => [
         'cancel' => 'Abbrechen',
-        'change' => '',
+        'change' => 'ändern',
         'click_to_copy' => '',
         'click_to_copy_copied' => '',
         'delete' => 'Löschen',
