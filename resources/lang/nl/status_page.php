@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => '',
+        'title' => 'status',
         'description' => 'jo man, wat is er allemaal aan de hand?',
     ],
 
@@ -49,16 +49,16 @@ return [
         ],
 
         'uptime' => [
-            'title' => '',
+            'title' => 'Uptime',
             'graphs' => [
-                'server' => '',
-                'web' => '',
+                'server' => 'server',
+                'web' => 'web',
             ],
         ],
 
         'when' => [
             'today' => 'vandaag',
-            'week' => '',
+            'week' => 'week',
             'month' => 'maand',
             'all_time' => 'altijd',
             'last_week' => 'afgelopen week',
