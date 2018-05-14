@@ -23,7 +23,7 @@ return [
     'heading' => 'Kop',
     'image' => 'Afbeelding',
     'italic' => 'Cursief',
-    'link' => 'Link',
+    'link' => '',
     'list' => 'Lijst',
     'list_numbered' => 'Genummerde Lijst',
     'size' => [
