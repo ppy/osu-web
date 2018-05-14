@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => '',
         'description' => 'hvad sker der min ven?',
     ],
 
@@ -51,8 +51,8 @@ return [
         'uptime' => [
             'title' => 'Oppetid',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '',
+                'web' => '',
             ],
         ],
 
