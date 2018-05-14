@@ -19,40 +19,68 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => '',
+        'parts-removed' => '',
+        'more-info' => '',
+    ],
+
+    'index' => [
+        'title' => '',
+        'guest_title' => '',
+    ],
+
     'show' => [
+        'discussion' => '',
+
         'details' => [
             'made-by' => 'gemaakt door ',
             'submitted' => 'ingezonden op ',
+            'updated' => '',
             'ranked' => 'gerankt op ',
-            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!', // Base text changed from "log" to "sign"
+            'approved' => '',
+            'qualified' => '',
+            'loved' => '',
+            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'download' => [
                 '_' => 'downloaden',
+                'video' => '',
                 'no-video' => 'zonder video',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
+            'favourite' => '',
+            'unfavourite' => '',
+            'favourited_count' => '',
         ],
         'stats' => [
             'cs' => 'Cirkelgrootte',
-            'drain' => 'HP Drain',
+            'cs-mania' => '',
+            'drain' => '',
             'accuracy' => 'Precisie',
             'ar' => 'Benaderingssnelheid',
             'stars' => 'Sterrenmoeilijkheid',
             'total_length' => 'Lengte',
-            'bpm' => 'BPM',
-
-            'source' => 'Bron',
-            'tags' => 'Labels',
+            'bpm' => '',
+            'count_circles' => '',
+            'count_sliders' => '',
+            'user-rating' => '',
+            'rating-spread' => '',
+            'nominations' => '',
+            'playcount' => '',
         ],
         'info' => [
-            'success-rate' => 'Slagingspercentage',
-            'points-of-failure' => 'Faalpunten',
-
             'description' => 'Beschrijving',
-
+            'genre' => '',
+            'language' => '',
+            'no_scores' => '',
+            'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
+            'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
+            'unranked' => '',
         ],
         'scoreboard' => [
+            'achieved' => '',
             'country' => 'Landranking',
             'friend' => 'Vriendenranking',
             'global' => 'Globale Ranking',
@@ -60,17 +88,28 @@ return [
             'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
             'title' => 'Scorebord',
 
-            'list' => [
-                'accuracy' => 'Precisie',
-                'player-header' => 'Speler',
-                'rank-header' => 'Rank',
-                'score' => 'Score',
+            'headers' => [
+                'accuracy' => '',
+                'combo' => '',
+                'miss' => '',
+                'mods' => '',
+                'player' => '',
+                'pp' => '',
+                'rank' => '',
+                'score_total' => '',
+                'score' => '',
             ],
+
             'no_scores' => [
                 'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
+                'unranked' => '',
+            ],
+            'score' => [
+                'first' => '',
+                'own' => '',
             ],
         ],
     ],
