@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Trận Đấu Multiplayer',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user đã rời khỏi trận đấu',
@@ -46,7 +46,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Độ chính xác',
-                'combo' => '',
+                'combo' => 'Combo',
                 'score' => 'Điểm',
             ],
         ],
@@ -66,7 +66,7 @@ return [
             'score' => 'Điểm Cao Nhất',
             'accuracy' => 'Độ Chính Xác Cao Nhất',
             'combo' => 'Combo Cao Nhất',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
