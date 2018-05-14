@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
-            'owner' => '¡No puedes votar discusiones propias!',
+            'owner' => "¡No puedes votar discusiones propias!",
             'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de beatmaps pendientes.',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Solo el creador del post puede editarlo.',
                 'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,9 +99,9 @@ return [
                 'no_permission' => 'No tienes permisos para responder.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para responder.', // Base text changed from "log" to "sign"
-                    'restricted' => 'No puedes responder mientras estés restringido.',
-                    'silenced' => 'No puedes responder mientras estés silenciado.',
+                    'require_login' => 'Inicia sesión para responder.',
+                    'restricted' => "No puedes responder mientras estés restringido.",
+                    'silenced' => "No puedes responder mientras estés silenciado.",
                 ],
             ],
 
@@ -112,9 +117,9 @@ return [
                 'voted' => 'No se puede cambiar tu voto.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para votar.', // Base text changed from "log" to "sign"
-                    'restricted' => 'No puedes votar mientras estés restringido.',
-                    'silenced' => 'No puedes votar mientras estés silenciado.',
+                    'require_login' => 'Inicia sesión para votar.',
+                    'restricted' => "No puedes votar mientras estés restringido.",
+                    'silenced' => "No puedes votar mientras estés silenciado.",
                 ],
             ],
 
@@ -135,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
+    'require_login' => 'Inicia sesión para continuar.',
 
     'unauthorized' => 'Acceso denegado.',
 
-    'silenced' => 'No puedes hacer eso mientras estés silenciado.',
+    'silenced' => "No puedes hacer eso mientras estés silenciado.",
 
-    'restricted' => 'No puedes hacer eso mientras estés restringido.',
+    'restricted' => "No puedes hacer eso mientras estés restringido.",
 
     'user' => [
         'page' => [
