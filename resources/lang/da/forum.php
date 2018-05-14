@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Kør afstemning i',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dage',
                 'length_info' => 'Efterlad blank for at køre afstemning på ubestemt tid',
                 'max_options' => 'Muligheder pr. bruger',
