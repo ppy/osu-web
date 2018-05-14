@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'Postingan Diskusi Beatmap',
+        'title' => 'Kiriman Tentang Diskusi Beatmap',
     ],
 
     'item' => [
         'content' => 'Isi',
-        'modding_history_link' => '',
+        'modding_history_link' => 'Lihat riwayat modding',
     ],
 ];
