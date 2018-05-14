@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => '',
     'invalid_resource_id' => '',
-    'unknown' => "",
+    'unknown' => "Unbekannter Fehler aufgetreten.",
 ];
