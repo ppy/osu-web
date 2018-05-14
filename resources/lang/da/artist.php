@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => '',
+        '_' => 'Beatmaps',
         'download' => 'Download Beatmap Skabelon',
         'download-na' => 'Beatmap Skabelon er ikke tilgængelig endnu',
     ],
