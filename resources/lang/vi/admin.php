@@ -29,11 +29,11 @@ return [
         'show' => [
             'covers' => 'Quản lý Các ảnh bìa của Beatmapset',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'kích hoạt',
                 'activate_confirm' => 'kích hoạt modding v2 cho beatmap này?',
-                'active' => '',
-                'inactive' => '',
+                'active' => 'active',
+                'inactive' => 'inactive',
             ],
         ],
     ],
