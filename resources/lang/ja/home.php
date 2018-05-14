@@ -36,6 +36,7 @@ return [
         'button' => '検索',
         'empty_result' => '何も見つかりませんでした！',
         'missing_query' => '検索には最低:n文字必要です',
+        'placeholder' => '',
         'title' => '検索結果',
 
         'beatmapset' => [
@@ -63,7 +64,7 @@ return [
             'beatmapset' => '譜面',
             'forum_post' => 'フォーラム',
             'user' => 'プレイヤー',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -76,17 +77,17 @@ return [
         'wiki_page' => [
             'link' => 'wikiを検索',
             'more_simple' => '他のwiki検索結果を見る',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'さぁ、<br>始めよう！',
+        'tagline' => "さぁ、<br>始めよう！",
         'action' => 'osu!をダウンロード',
         'os' => [
-            'windows' => 'for Windows',
-            'macos' => 'for macOS',
-            'linux' => 'for Linux',
+            'windows' => '',
+            'macos' => '',
+            'linux' => '',
         ],
         'mirror' => 'ミラー',
         'macos-fallback' => 'macOSユーザー',
@@ -128,8 +129,8 @@ return [
         'beatmaps' => [
             'new' => '最新の公認譜面',
             'popular' => '人気の譜面',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'by' => '',
+            'plays' => '',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',
@@ -146,6 +147,6 @@ return [
             'part-2' => 'osu!を支援する事によってさまざまな機能が追加で利用できるようになります。　<strong>ゲーム内ダウンロード</strong>はその内のひとつで、プレイヤーのスペクト中やマルチプレイ中に簡単に譜面を入れられる様になります！',
         ],
         'find-out-more' => 'もっと知りたい人はクリック！',
-        'download-starting' => 'あ、君のダウンロードはもう始まってるよ！',
+        'download-starting' => "あ、君のダウンロードはもう始まってるよ！",
     ],
 ];
