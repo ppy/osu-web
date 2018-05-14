@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => '请先登录。',
-        'http-403' => '拒绝访问。',
-        'http-429' => '请求过多，请稍后再试。',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => '发生未知错误，请尝试刷新页面。',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => '指定的游戏模式无效。',
-        'standard_converts_only' => '此谱面难度在请求的游戏模式下分数不可用。',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => '谱面收藏数超出限制，请删除一个后再试。',
-    ],
-    'logged_out' => '你已退出，请登录后再试。',
-    'supporter_only' => '要使用此功能，请先成为 osu!支持者 。',
-    'no_restricted_access' => '账户处于限制模式，无法执行该操作。',
-    'unknown' => '发生了未知的错误。',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "发生了未知的错误。",
 ];
