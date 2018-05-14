@@ -49,10 +49,10 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Uptime', //There's no direct translation but it could be "Tempo Online"
+            'title' => '',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '',
+                'web' => '',
             ],
         ],
 
