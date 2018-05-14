@@ -19,15 +19,31 @@
  */
 
 return [
+    'page_description' => 'Artisti in primo piano su osu!',
+    'title' => 'Artisti in primo piano',
+
+    'admin' => [
+        'hidden' => '',
+    ],
+
     'beatmaps' => [
         '_' => 'Mappe',
         'download' => 'Scarica Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],
-    'page_description' => 'Artisti in primo piano su osu!',
-    'title' => 'Artisti in primo piano',
-    'songs' => ':count canzone|:count songs',
+
+    'index' => [
+        'description' => '',
+    ],
+
     'links' => [
+        'osu' => '',
         'site' => 'Sito Ufficiale',
+    ],
+
+    'songs' => [
+        '_' => '',
+        'count' => '',
+        'exclusive' => '',
     ],
 ];
