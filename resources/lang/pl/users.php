@@ -97,7 +97,7 @@ return [
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age i pochodzi z :country',
         'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Dostępne kudosu',
                 'available_info' => "Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.",
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
                 'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Ten gracz nie otrzymał żadnego kudosu!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
 
@@ -265,13 +265,13 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Zainteresowania',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
-            'skype' => '',
-            'twitter' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'Strona internetowa',
         ],
         'not_found' => [
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Użytkownik utworzony',
