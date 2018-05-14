@@ -92,12 +92,12 @@ return [
         'age' => ':age anos',
         'change_avatar' => 'mude seu avatar!',
         'first_members' => 'Aqui desde o começo',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Entrou em :date',
         'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Nenhum... ainda.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Beatmaps favoritos (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Disponível',
                 'available_info' => "Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.",
                 'recent_entries' => 'Histórico de kudosu recente',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Adquirido',
                 'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um beatmap. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Esse usuário ainda não tem nenhum kudosu!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
 
@@ -267,12 +267,12 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Lugar Atual',
             'occupation' => 'Ocupação',
-            'skype' => '',
-            'twitter' => '',
-            'website' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Website',
         ],
         'not_found' => [
             'reason_1' => '',
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Usuário criado',
