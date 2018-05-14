@@ -425,7 +425,7 @@ class Order extends Model
             }
 
             $this->saveOrExplode();
-            $this->items()->save($item);
+            $item->saveOrExplode();
 
             return $errors;
         });
@@ -578,6 +578,7 @@ class Order extends Model
         }
 
         $item = new OrderItem();
+        $item->order_id = $this->order_id;
         $item->quantity = $params['quantity'];
         $item->extra_info = $params['extraInfo'];
         $item->extra_data = $params['extraData'];
