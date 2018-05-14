@@ -37,7 +37,7 @@ return [
         'nominate' => 'Nomineret af :user.',
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
         'qualify' => 'Kvalificeret.',
-        'rank' => '',
+        'rank' => 'Ranked.',
     ],
 
     'index' => [
