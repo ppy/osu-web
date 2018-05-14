@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',
             'more_simple' => 'Se flere beatmap søgeresultater',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Alle forums',
             'link' => 'Søg i forummet',
             'more_simple' => 'Se flere forum-søgeresultater',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'søg i forummerne',
@@ -60,11 +60,11 @@ return [
         ],
 
         'mode' => [
-            'all' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'all' => 'all',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
             'user' => 'bruger',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,19 +77,19 @@ return [
         'wiki_page' => [
             'link' => 'Søg på wiki´et',
             'more_simple' => 'Se flere wiki-søgeresultater',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
     'download' => [
         'tagline' => "lad os få<br>dig i gang!",
-        'action' => '',
+        'action' => 'Download osu!',
         'os' => [
             'windows' => 'til Windows',
             'macos' => 'til macOS',
             'linux' => 'til Linux',
         ],
-        'mirror' => '',
+        'mirror' => 'mirror',
         'macos-fallback' => 'macOS brugere',
         'steps' => [
             'register' => [
@@ -135,12 +135,12 @@ return [
         'buttons' => [
             'download' => 'Hent osu!',
             'support' => 'Støt osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Du ser ud til at have det sjovt! :D',
         'body' => [
             'part-1' => 'Vidste du, at osu! kører helt uden reklamer og er stærkt afhængigt af, at spillerne støtter spillets udvikling og omkostninger?',
