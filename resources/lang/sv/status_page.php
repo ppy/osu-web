@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => '',
         'description' => 'vad händer mah dude?',
     ],
 
@@ -51,8 +51,8 @@ return [
         'uptime' => [
             'title' => 'Upptid',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '',
+                'web' => '',
             ],
         ],
 
