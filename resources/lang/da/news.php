@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'liste',
-        'news-show' => 'opslag',
+        'news-index' => 'listing',
+        'news-show' => 'post',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Nyere indlæg',
-            'older' => 'Ældre indlæg',
+            'newer' => 'Newer posts',
+            'older' => 'Older posts',
         ],
     ],
 
     'show' => [
-        'posted' => 'slået op :time',
+        'posted' => 'posted :time',
 
         'nav' => [
-            'newer' => 'Nyere indlæg',
-            'older' => 'Ældre indlæg',
+            'newer' => 'Newer post',
+            'older' => 'Older post',
         ],
     ],
 
     'store' => [
-        'button' => 'Opdater',
-        'ok' => 'Liste opdateret.',
+        'button' => 'Update',
+        'ok' => 'Listing updated.',
     ],
 
     'update' => [
-        'button' => 'Opdater',
-        'ok' => 'Opslag opdateret.',
+        'button' => 'Update',
+        'ok' => 'Post updated.',
     ],
 ];
