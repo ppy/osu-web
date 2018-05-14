@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
         'error' => 'Houve um problema com a sua compra :(',
+        'old_cart' => '',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
             'line_1' => 'Uma compra antiga foi atualizada mas não foi finalizada.',
@@ -38,6 +39,12 @@ return [
     ],
 
     'discount' => 'economize :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -69,7 +76,7 @@ return [
         'gift' => 'dar de presente',
         'require_login' => [
             '_' => 'Você precisa estar :link para comprar uma supporter tag!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 
@@ -78,7 +85,7 @@ return [
         'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 ];
