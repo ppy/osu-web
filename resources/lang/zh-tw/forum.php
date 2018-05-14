@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => '投票持續',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '天',
                 'length_info' => '如果無期限則留空',
                 'max_options' => '最大可選數',
