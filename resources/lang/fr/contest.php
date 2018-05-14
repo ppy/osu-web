@@ -49,7 +49,7 @@ return [
         'download' => 'Télécharger l\'entrée',
     ],
     'vote' => [
-        'list' => '',
+        'list' => 'votes',
         'count' => ':count vote|:count votes',
     ],
     'dates' => [
