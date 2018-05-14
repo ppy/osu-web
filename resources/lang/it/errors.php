@@ -20,19 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => 'Per favore effettua il login per poter continuare.', // Base text changed from "log" to "sign"
-        'http-403' => 'Accesso Negato.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Si è verificato un errore. Prova a ricaricare la pagina.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
-    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
-    'unknown' => 'Si è verificato un errore sconosciuto.',
+    'beatmapsets' => [
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
+    ],
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
