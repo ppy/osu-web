@@ -21,8 +21,8 @@
 return [
     'pinned_topics' => 'Nålade Ämnen',
     'slogan' => "det är farligt att spela ensam.",
-    'subforums' => '',
-    'title' => '',
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
