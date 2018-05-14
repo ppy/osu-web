@@ -33,6 +33,15 @@ return [
 Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
 
+        'supporter_status' => [
+            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
+            'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
+            'not_yet' => "You don't have a supporter tag yet :(",
+            'title' => 'Current supporter status',
+            'valid_until' => 'Your current supporter tag is valid until :date!',
+            'was_valid_until' => 'Your supporter tag was valid until :date.',
+        ],
+
         'why_support' => [
             'title' => 'Waarom zou ik osu! supporten?',
             'blocks' => [
