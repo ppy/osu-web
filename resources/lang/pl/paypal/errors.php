@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Wybrana płatność została odrzucona przez Paypal.',
     'invalid_resource_id' => 'Nie znaleziono informacji o płatności.',
-    'unknown' => 'Płatność została odrzucona, ale nie jesteśmy pewni dlaczego.',
+    'unknown' => "Płatność została odrzucona, ale nie jesteśmy pewni dlaczego.",
 ];
