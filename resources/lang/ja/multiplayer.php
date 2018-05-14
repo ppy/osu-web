@@ -24,6 +24,7 @@ return [
         'team-types' => [
             'head-to-head' => '個人戦',
             'tag-coop' => 'チームVS',
+            'team-vs' => '',
             'tag-team-vs' => 'タッグチームVS',
         ],
         'events' => [
@@ -49,7 +50,7 @@ return [
                 'score' => 'スコア',
             ],
         ],
-        'failed' => 'FAILED',
+        'failed' => '',
         'teams' => [
             'blue' => 'Blueチーム',
             'red' => 'Redチーム',
