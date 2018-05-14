@@ -30,6 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => '取消',
+        'change' => '更改',
+        'click_to_copy' => '点击以复制到剪贴板',
+        'click_to_copy_copied' => '已经复制到剪贴板！',
         'delete' => '刪除',
         'permalink' => '靜態鏈接',
         'permalink_copied' => '鏈接已複製',
@@ -40,12 +43,16 @@ return [
         'reset' => '重置',
         'save' => '保存',
         'saving' => '保存中...',
+        'see_more' => '查看更多',
         'show_more' => '顯示更多',
         'upload_image' => '上傳圖片',
     ],
 
     'count' => [
+        'badges' => ':count 枚徽章',
+        'days' => ':count 天',
         'hour_short_unit' => '小時',
+        'hours' => ':count 小时',
         'item' => ':count 個',
         'minute_short_unit' => '分鐘',
         'months' => ':count 個月',
@@ -57,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',
+        ],
+        'year_month_short' => [
+            'moment' => 'YYYY年 MMM',
         ],
     ],
 
@@ -77,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => '',
     ],
 
     'time' => [
