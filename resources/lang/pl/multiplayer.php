@@ -59,7 +59,7 @@ return [
         'difference' => 'różnicą :difference punktów',
         'loading-events' => 'Ładowanie zdarzeń...',
         'more-events' => 'wyświetl wszystkie...',
-        'beatmap-deleted' => 'usunięto beatmapę',
+        'beatmap-deleted' => 'usunięta beatmapa',
     ],
     'game' => [
         'scoring-type' => [
