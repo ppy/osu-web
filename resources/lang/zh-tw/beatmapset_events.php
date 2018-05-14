@@ -20,11 +20,12 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.',
+        'approve' => '',
         'discussion_delete' => '管理員刪除了 :discussion 。',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
         'discussion_post_restore' => '管理員在 :discussion 中恢復了這條回覆。',
         'discussion_restore' => '管理員恢復了 :discussion 。',
+        'disqualify' => '由于 :discussion (:text) 被 :user DQ。',
         'disqualify_legacy' => '該譜面因為 :text 被 DQ',
         'issue_reopen' => '問題 :discussion 被重新打開。',
         'issue_resolve' => '問題 :discussion 被標記為 “已解決”。',
@@ -35,16 +36,17 @@ return [
         'kudosu_recalculate' => '討論 :discussion 所得的 kudosu 已經重新計算。',
         'nominate' => 'Nominated.',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
-        'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'qualify' => '',
+        'rank' => '',
     ],
 
     'index' => [
         'title' => '譜面事件',
     ],
 
-    'item' => [ //上下文
+    'item' => [
         'content' => '內容',
+        'discussion_deleted' => '[已删除]',
         'type' => '類型',
     ],
 ];
