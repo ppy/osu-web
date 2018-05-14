@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => 'Não é possível votar na própria discussão!',
+            'owner' => "Não é possível votar na própria discussão!",
             'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
                 'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
             ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,9 +99,9 @@ return [
                 'no_permission' => 'Sem permissão para responder.',
 
                 'user' => [
-                    'require_login' => 'Por favor, inicie a sessão para responder.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Não é possível responder enquanto restrito.',
-                    'silenced' => 'Não é possível responder enquanto silenciado.',
+                    'require_login' => 'Por favor, inicie a sessão para responder.',
+                    'restricted' => "Não é possível responder enquanto restrito.",
+                    'silenced' => "Não é possível responder enquanto silenciado.",
                 ],
             ],
 
@@ -112,9 +117,9 @@ return [
                 'voted' => 'Não é permitido alterar o voto.',
 
                 'user' => [
-                    'require_login' => 'Por favor, inicie a sessão para votar.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Não é possível votar enquanto restrito.',
-                    'silenced' => 'Não é possível votar enquanto silenciado.',
+                    'require_login' => 'Por favor, inicie a sessão para votar.',
+                    'restricted' => "Não é possível votar enquanto restrito.",
+                    'silenced' => "Não é possível votar enquanto silenciado.",
                 ],
             ],
 
@@ -135,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Por favor, inicie a sessão para continuar.', // Base text changed from "log" to "sign"
+    'require_login' => 'Por favor, inicie a sessão para continuar.',
 
     'unauthorized' => 'Acesso negado.',
 
-    'silenced' => 'Não é possível fazer isso enquanto silenciado.',
+    'silenced' => "Não é possível fazer isso enquanto silenciado.",
 
-    'restricted' => 'Não é possível fazer isso enquanto restrito.',
+    'restricted' => "Não é possível fazer isso enquanto restrito.",
 
     'user' => [
         'page' => [
