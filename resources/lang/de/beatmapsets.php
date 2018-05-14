@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Beatmaps: Liste',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => '',
     ],
 
     'show' => [
@@ -43,41 +43,41 @@ return [
             'loved' => '<loved> on ',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'download' => [
-                '_' => 'Download',
+                '_' => '',
                 'video' => 'mit Video',
                 'no-video' => 'ohne Video',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
-            'favourited_count' => '+ 1 other!|+ :count others!',
+            'favourited_count' => '',
         ],
         'stats' => [
-            'cs' => 'Circle Size',
+            'cs' => '',
             'cs-mania' => 'Tastenanzahl',
-            'drain' => 'HP Drain',
+            'drain' => '',
             'accuracy' => 'Genauigkeit',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'ar' => '',
+            'stars' => '',
             'total_length' => 'Länge',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => 'Circle-Anzahl',
             'count_sliders' => 'Slider-Anzahl',
             'user-rating' => 'Benutzerbewertungen',
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
-            'playcount' => 'Playcount',
+            'playcount' => '',
         ],
         'info' => [
             'description' => 'Beschreibung',
-            'genre' => 'Genre',
+            'genre' => '',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
             'success-rate' => 'Erfolgsrate',
-            'tags' => 'Tags',
-            'unranked' => 'Unranked beatmap',
+            'tags' => '',
+            'unranked' => '',
         ],
         'scoreboard' => [
             'achieved' => 'erreicht am :when',
@@ -91,14 +91,15 @@ return [
             'headers' => [
                 'accuracy' => 'Genauigkeit',
                 'combo' => 'Combo',
-                'miss' => 'Miss',
-                'mods' => 'Mods',
+                'miss' => '',
+                'mods' => '',
                 'player' => 'Spieler',
                 'pp' => 'PP',
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
             ],
+
             'no_scores' => [
                 'country' => 'Niemand in deinem Land hat einen Rang auf dieser Beatmap!',
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
