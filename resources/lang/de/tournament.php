@@ -43,7 +43,7 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
+            'before_registration' => 'Die Anmeldung für dieses Turnier hat noch nicht begonnen.',
             'ended' => '',
             'registration_closed' => '',
             'running' => '',
