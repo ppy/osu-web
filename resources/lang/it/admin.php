@@ -19,11 +19,17 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'attivare',
                 'activate_confirm' => 'attivare il modding v2 per questa mappa?',
                 'active' => 'attivo',
@@ -37,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Elimina',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Nessuna cover impostata',
 
@@ -67,7 +73,7 @@ return [
             'title' => 'Console degli Amministratori',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Generale',
                 'store' => 'Negozio',
             ],
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Elenco degli Ordini',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => '',
+            'message' => '',
         ],
     ],
 
