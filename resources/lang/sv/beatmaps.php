@@ -40,10 +40,11 @@ return [
         'edited' => 'Senast redigerad av :editor :update_time.',
         'kudosu_denied' => 'Nekad från att skaffa kudosu.',
         'message_placeholder' => 'Skriv här för att lägga upp inlägg',
+        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
         'reply_placeholder' => 'Skriv ditt svar här',
-        'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara', // Base text changed from "log" to "sign"
+        'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
         'title' => 'Diskussioner',
@@ -64,7 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualify',
+            'hype' => 'Hype!',
             'mapper_note' => 'Anteckning',
+            'nomination_reset' => 'Reset Nomination',
             'praise' => 'Beröm',
             'problem' => 'Problem',
             'suggestion' => 'Förslag',
@@ -72,7 +76,12 @@ return [
 
         'mode' => [
             'events' => 'Historia',
+            'general' => 'General :scope',
             'timeline' => 'Tidslinje',
+            'scopes' => [
+                'general' => 'This difficulty',
+                'generalAll' => 'All difficulties',
+            ],
         ],
 
         'new' => [
@@ -83,6 +92,13 @@ return [
 
         'show' => [
             'title' => ':title mappad av :mapper',
+        ],
+
+        'sort' => [
+            '_' => 'Sorted by:',
+            'created_at' => 'creation time',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
         ],
 
         'stats' => [
@@ -97,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'This beatmap was approved on :date!',
-            'graveyard' => 'Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...',
+            'graveyard' => "Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...",
             'loved' => 'Denna beatmap blev tillagd i älskad :date!',
             'ranked' => 'Denna beatmap blev rankad :date!',
             'wip' => 'Notera: Denna beatmap är markerad som pågående arbete av skaparen.',
@@ -107,10 +123,19 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Redan Hyped!',
+        'button_done' => 'Already Hyped!',
+        'confirm' => "Are you sure? This will use one out of your remaining :n hype and can't be undone.",
         'explanation' => 'Att lägga till beröm ❤ kommer höja denna beatmaps hype, vilket gör den mer synlig för nominering och rankning!',
-        'section-title' => 'Hype Tåg',
+        'explanation_guest' => 'Sign in and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype :new_time.",
+        'remaining' => 'You have :remaining hype left.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Leave Feedback',
     ],
 
     'nominations' => [
@@ -118,14 +143,21 @@ return [
         'disqualified_at' => 'Diskvalificerad :time_ago (:reason).',
         'disqualified_no_reason' => 'inget anledning specificerad',
         'disqualify' => 'Diskvalificera',
-        'incorrect-state' => 'Fel uppstod när återgärden skulle utföras, försök ladda om sidan.',
+        'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
         'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
         'qualified_soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
         'required_text' => 'Nomineringar: :current/:required',
+        'reset_message_deleted' => 'deleted',
         'title' => 'Nominering Status',
+        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nomination process reset :time_ago by :user with new problem :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago by :user with new problem :discussion (:message).',
+        ],
 
         'reset_confirm' => [
             'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
@@ -139,12 +171,14 @@ return [
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Läge',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'extra' => 'extra',
                 'rank' => 'Rank Uppnådd',
+                'played' => 'Played',
             ],
         ],
         'mode' => 'Läge',
@@ -152,6 +186,10 @@ return [
         'mapped-by' => 'mappad av :mapper',
         'source' => 'från :source',
         'load-more' => 'Ladda mer...',
+    ],
+    'general' => [
+        'recommended' => 'Recommended difficulty',
+        'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
         'any' => 'Alla',
@@ -184,27 +222,28 @@ return [
         'electronic' => 'Elektronisk',
     ],
     'mods' => [
-        'NF' => 'Ingen Fail',
-        'EZ' => 'Enkelt Läge',
-        'HD' => 'Gömd',
-        'HR' => 'Hård Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Dubbel Tid',
-        'Relax' => 'Lugn',
-        'HT' => 'Halv Tid',
-        'NC' => 'Nightcore',
-        'FL' => 'Ficklampa',
-        'SO' => 'Spinnat Ut',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfekt',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Tona In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Dubbel Tid',
+        'EZ' => 'Enkelt Läge',
+        'FI' => 'Tona In',
+        'FL' => 'Ficklampa',
+        'HD' => 'Gömd',
+        'HR' => 'Hård Rock',
+        'HT' => 'Halv Tid',
+        'NC' => 'Nightcore',
+        'NF' => 'Ingen Fail',
         'NM' => 'Inga mods',
+        'PF' => 'Perfekt',
+        'Relax' => 'Lugn',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spinnat Ut',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Alla',
@@ -219,6 +258,11 @@ return [
         'swedish' => 'Svenska',
         'instrumental' => 'Instrumental',
         'other' => 'Annat',
+    ],
+    'played' => [
+        'any' => 'Any',
+        'played' => 'Played',
+        'unplayed' => 'Unplayed',
     ],
     'extra' => [
         'video' => 'Har Video',
