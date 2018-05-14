@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Usuń',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Nie ustawiono tła',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Konsola administratora',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Ogólne',
                 'store' => 'Sklep',
             ],
