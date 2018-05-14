@@ -27,16 +27,27 @@ return [
         'none_running' => 'Det finns inga turneringar igång just nu, var vänlig kolla igen senare!',
         'registration_period' => 'Registrering: :start till :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Skriv upp mig!',
-            'cancel' => 'Avbryt Registrering',
-        ],
+        'banner' => '',
         'entered' => 'Du är registrerad för denna turnering.<br><br>Notera att detta betyder inte att du har blivit tilldelad ett lag.<br><br>Yttligare instruktioner kommer att skickas till dig via email närmare datumet för turneringen, så var vänlig att kontrollera att ditt osu! kontos email adress är korrekt!',
+        'info_page' => '',
         'login_to_register' => 'Var vänlig :login för att visa registrerings detaljer!',
         'not_yet_entered' => 'Du är inte registrerad för denna turnering.',
         'rank_too_low' => 'Tyvärr, men du möter inte kraven på rank för denna turnering!',
         'registration_ends' => 'Registreringar stänger :date',
+
+        'button' => [
+            'cancel' => 'Avbryt Registrering',
+            'register' => 'Skriv upp mig!',
+        ],
+
+        'state' => [
+            'before_registration' => '',
+            'ended' => '',
+            'registration_closed' => '',
+            'running' => '',
+        ],
     ],
     'tournament_period' => ':start till :end',
 ];
