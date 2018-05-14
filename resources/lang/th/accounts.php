@@ -48,9 +48,9 @@ return [
             'user' => [
                 'user_from' => 'ตำแหน่งปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'อาชีพ',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'เว็บไซต์',
                 'user_discord' => '',
             ],
