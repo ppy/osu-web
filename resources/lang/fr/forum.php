@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Sujets épinglés',
-    'slogan' => "",
+    'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Sous-forums',
     'title' => 'Communauté osu!',
 
@@ -154,7 +154,7 @@ return [
                 'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
                 'options' => 'Réponses',
                 'options_info' => 'Placez chaque réponse sur une ligne.',
-                'title' => '',
+                'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
                 'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
             ],
