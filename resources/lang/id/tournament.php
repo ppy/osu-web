@@ -21,7 +21,7 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Daftar turnamen-turnamen resmi yang kini tengah berlangsung.',
+            'subtitle' => 'Daftar turnamen resmi yang sedang berlangsung',
             'title' => 'Turnamen Komunitas',
         ],
         'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
@@ -44,7 +44,7 @@ return [
 
         'state' => [
             'before_registration' => 'Pendaftaran untuk turnamen ini masih belum dibuka.',
-            'ended' => '',
+            'ended' => 'Turnamen ini telah berakhir. Periksa Laman Informasi Untuk Hasil Turnamen.',
             'registration_closed' => 'Pendaftaran untuk turnamen ini telah ditutup. Mohon periksa laman informasi untuk info lebih lanjut.',
             'running' => 'Turnamen ini sedang berlangsung. Mohon periksa laman informasi untuk info lebih lanjut.',
         ],
