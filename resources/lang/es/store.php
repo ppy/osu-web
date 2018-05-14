@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -76,7 +76,7 @@ return [
         'gift' => 'regalar al jugador',
         'require_login' => [
             '_' => '¡Tienes que :link para obtener un título de supporter!',
-            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'link_text' => 'iniciar sesión',
         ],
     ],
 
@@ -85,7 +85,7 @@ return [
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
-            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'link_text' => 'iniciar sesión',
         ],
     ],
 ];
