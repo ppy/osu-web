@@ -32,11 +32,11 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'terhapus',
+        'deleted_beatmap' => 'telah dihapus',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
-            'deleted' => 'Masukkan diskusi yang dihapus',
+            'deleted' => 'Sertakan diskusi yang telah dihapus',
 
             'user' => [
                 'label' => 'Pengguna',
@@ -49,12 +49,12 @@ return [
         'created_at' => 'Tanggal post',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
-        'permalink' => 'Permalink',
+        'permalink' => 'Tautan',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang menarik perhatian saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Tidak ada kiriman yang menarik perhatian saya',
+        'notice' => 'Terdapat kiriman pada :timestamp (:existing_timestamps). Silakan periksa kembali sebelum memposting.',
     ],
 
     'reply' => [
