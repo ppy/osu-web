@@ -52,8 +52,8 @@ return [
         ],
         'failed' => 'PRZEGRANA',
         'teams' => [
-            'blue' => 'Drużyna Niebieska',
-            'red' => 'Drużyna Czerwona',
+            'blue' => 'Drużyna niebieska',
+            'red' => 'Drużyna czerwona',
         ],
         'winner' => ':team wygrywa',
         'difference' => 'różnicą :difference punktów',
