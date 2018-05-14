@@ -19,24 +19,62 @@
  */
 
 return [
+    'confirmation' => '',
+    'saved' => '',
+
+    'array_and' => [
+        'words_connector' => '',
+        'two_words_connector' => '',
+        'last_word_connector' => '',
+    ],
+
     'buttons' => [
         'cancel' => 'Annuleer',
-        'post' => 'Post',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
+        'delete' => '',
+        'permalink' => '',
+        'permalink_copied' => '',
+        'post' => '',
         'reply' => 'Beantwoord',
+        'reply_reopen' => '',
+        'reply_resolve' => '',
         'reset' => 'Herstel',
         'save' => 'Opslaan',
+        'saving' => '',
+        'see_more' => '',
         'show_more' => 'toon meer',
+        'upload_image' => '',
     ],
 
     'count' => [
+        'badges' => '',
+        'days' => '',
+        'hour_short_unit' => '',
+        'hours' => '',
         'item' => ':count stuk|:count stuks',
+        'minute_short_unit' => '',
+        'months' => '',
+        'second_short_unit' => '',
+        'years' => '',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => '',
+            'php' => '',
+        ],
+        'year_month_short' => [
+            'moment' => '',
+        ],
     ],
 
     'device' => [
         'keyboard' => 'Toetsenbord',
         'mouse' => 'Muis',
-        'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'tablet' => '',
+        'touch' => '',
     ],
 
     'dropzone' => [
@@ -48,10 +86,20 @@ return [
         'next' => 'volgende',
     ],
 
+    'score_count' => [
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count dag geleden|:count dagen geleden',
         'hours_ago' => ':count uur geleden|:count uur geleden',
         'now' => 'nu',
+        'remaining' => '',
     ],
 
     'title' => [
