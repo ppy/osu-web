@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,11 +27,11 @@ return [
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
         'login_required' => 'Zum Abstimmen bitte einloggen.',
         'best_of' => [
-            'none_played' => 'Es scheint, als hättest du keine der Beatmaps gespielt, die dich für den Wettbewerb qualifiziert hätten!',
+            'none_played' => "Es scheint, als hättest du keine der Beatmaps gespielt, die dich für den Wettbewerb qualifiziert hätten!",
         ],
     ],
     'entry' => [
-        '_' => 'entry',
+        '_' => '',
         'login_required' => 'Zum Beitreten bitte einloggen.',
         'silenced_or_restricted' => 'Man kann <restricted> oder stummgeschaltet nicht an Wettbewerben teilnehmen.',
         'preparation' => 'Wir bereiten diesen Wettbewerb gerade vor. Bitte habe Geduld!',
@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => 'Startet am :date',
-            'soon' => 'soon™',
+            'soon' => '',
         ],
     ],
     'states' => [
