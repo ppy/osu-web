@@ -35,6 +35,15 @@ return [
             Vorrei offrire i miei personali ringraziamenti a chi ha sostenuto osu! fino ad ora,
             e fare altrettanto a chi continuerà a sostenere questo fantastico gioco e la comunità nel futuro :).',
 
+        'supporter_status' => [
+            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
+            'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
+            'not_yet' => "You don't have a supporter tag yet :(",
+            'title' => 'Current supporter status',
+            'valid_until' => 'Your current supporter tag is valid until :date!',
+            'was_valid_until' => 'Your supporter tag was valid until :date.',
+        ],
+
         'why_support' => [
             'title' => 'Perchè dovrei sostenere osu!?',
             'blocks' => [
