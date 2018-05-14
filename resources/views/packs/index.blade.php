@@ -37,9 +37,9 @@
                             '<span class="beatmap-packs__scary">' . trans('beatmappacks.index.blurb.note.scary') . '</span>',
                         ];
                     @endphp
-                    <p class="beatmap-packs__important">@lang('beatmappacks.index.blurb.important')</p>
-                    <p>@lang('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]])</p>
-                    <p>@lang('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]])</p>
+                    <p class="beatmap-packs__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
+                    <p>{{ trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) }}</p>
+                    <p>{{ trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) }}</p>
                 </div>
             </div>
             <ul class="page-mode">

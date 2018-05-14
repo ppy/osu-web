@@ -17,7 +17,7 @@
 --}}
 <label class="account-edit-entry js-account-edit js-account-edit-playstyle" data-playstyle="{{ $field }}">
     <div class="account-edit-entry__label">
-        @lang('accounts.playstyles.'.$field)
+        {{ trans('accounts.playstyles.'.$field) }}
     </div>
 
     <div class="osu-checkbox">

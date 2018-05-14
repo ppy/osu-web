@@ -18,7 +18,6 @@
 
 @polyfills ?= new Polyfills
 Lang.setLocale(currentLocale)
-Lang.setFallback(fallbackLocale)
 jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay

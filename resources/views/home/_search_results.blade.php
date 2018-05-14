@@ -18,7 +18,7 @@
 <div class="search-result search-result--{{ $mode }}">
     @if ($search->total() === 0)
         <div class="search-result__row search-result__row--notice">
-            @lang('home.search.empty_result')
+            {{ trans('home.search.empty_result') }}
         </div>
     @else
         <div class="search-result__row search-result__row--entries-container">
@@ -39,7 +39,7 @@
                 class="search-result__row search-result__row--more"
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
             >
-                @lang("home.search.{$mode}.more_simple")
+                {{ trans("home.search.{$mode}.more_simple") }}
             </a>
         @else
             @if (request('mode') === 'user' && $search->overLimit())
