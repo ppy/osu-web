@@ -35,6 +35,15 @@ return [
             Gostaria de agradecer pessoalmente a todos que ajudaram o osu! até agora,
             e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
             'title' => 'Por que devo ajudar o osu!?',
             'blocks' => [
@@ -49,7 +58,7 @@ return [
         'perks' => [
             'title' => 'Hã? O que eu ganho?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
+                'title' => '',
                 'description' => 'acesso fácil e rápido a beatmaps sem sair do jogo.',
             ],
 
@@ -94,7 +103,7 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
+                'title' => '',
                 'description' => 'Maior função para skins, como a habilidade de alterar o fundo do menu principal.',
             ],
 
