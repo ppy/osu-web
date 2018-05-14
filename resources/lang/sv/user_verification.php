@@ -26,12 +26,12 @@ return [
         'issuing' => 'Utfärdar ny kod...',
 
         'info' => [
-            'check_spam' => 'Dubbelkolla din skräpkorg ifall du inte kan hitta emailet.',
-            'recover' => 'Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.',
+            'check_spam' => "Dubbelkolla din skräpkorg ifall du inte kan hitta emailet.",
+            'recover' => "Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.",
             'recover_link' => 'email återställning processen här',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
             'reissue_link' => 'begära annan kod',
-            'logout_link' => 'logga ut', // Base text changed from "log" to "sign"
+            'logout_link' => 'logga ut',
         ],
     ],
 
