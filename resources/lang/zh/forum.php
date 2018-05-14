@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => '置顶主题',
-    'slogan' => '独乐乐不如众乐乐~',
+    'slogan' => "独乐乐不如众乐乐~",
     'subforums' => '子版块',
     'title' => 'osu! 社区',
 
@@ -78,6 +78,8 @@ return [
 
         'create' => [
             'preview' => '预览',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => '编辑',
             'submit' => '发表',
 
@@ -167,7 +169,7 @@ return [
             'replies' => '回复数',
         ],
 
-        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
+        'issue_tag_added' => [
             'to_0' => '移除 "added" 标签',
             'to_0_done' => '已移除 "added" 标签',
             'to_1' => '添加 "added" 标签',
@@ -241,7 +243,7 @@ return [
                 'user' => [
                     'count' => ':count 票',
                     'current' => '还有 :votes 。',
-                    'not_enough' => '没有票了',
+                    'not_enough' => "没有票了",
                 ],
             ],
 
