@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
-        'http-403' => 'Acceso denegado.',
-        'http-429' => 'Demasiados intentos. Inténtalo de nuevo más tarde.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Se ha especificado un modo inválido.',
-        'standard_converts_only' => 'Solo el modo osu!standard puede tener puntuaciones en otros modos.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Debes ser supporter para usar esta característica.',
-    'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
-    'unknown' => 'Ha ocurrido un error desconocido.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
