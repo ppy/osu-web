@@ -29,9 +29,9 @@ return [
     ],
 
     'show' => [
-        'banner' => '',
+        'banner' => 'Unterstütze dein Team',
         'entered' => 'Du bist für dieses Turnier angemeldet',
-        'info_page' => '',
+        'info_page' => 'Übersicht',
         'login_to_register' => 'Um die Details zur Anmeldung sehen, :login!',
         'not_yet_entered' => 'Du bist nicht für dieses Turnier angemeldet.',
         'rank_too_low' => 'Sorry, aber dein Rang entspricht nicht den Anforderungen für dieses Turnier!',
@@ -44,9 +44,9 @@ return [
 
         'state' => [
             'before_registration' => 'Die Anmeldung für dieses Turnier hat noch nicht begonnen.',
-            'ended' => '',
-            'registration_closed' => '',
-            'running' => '',
+            'ended' => 'Das Turnier ist zu Ende. Die Ergebnisse kannst du in der Übersicht finden.',
+            'registration_closed' => 'Anmeldungen für dieses Turnier sind geschlossen. Mehr Details und Neuigkeiten sind in der Übersicht zu finden.',
+            'running' => 'Das Turnier ist derzeit im Gange. Mehr Details hierzu sind in der Übersicht zu finden.',
         ],
     ],
     'tournament_period' => ':start bis :end',
