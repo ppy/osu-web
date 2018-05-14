@@ -32,7 +32,7 @@ return [
             'current' => 'email actuel',
             'new' => 'nouvel email',
             'new_confirmation' => 'confirmation de l\'email',
-            'title' => '',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -48,16 +48,16 @@ return [
             'user' => [
                 'user_from' => 'localisation actuelle',
                 'user_interests' => 'centres d\'intérêt',
-                'user_msnm' => '',
-                'user_occ' => '',
-                'user_twitter' => '',
+                'user_msnm' => 'skype',
+                'user_occ' => 'occupation',
+                'user_twitter' => 'twitter',
                 'user_website' => 'site web',
                 'user_discord' => '',
             ],
         ],
 
         'signature' => [
-            'title' => '',
+            'title' => 'Signature',
             'update' => 'mettre à jour',
         ],
     ],
