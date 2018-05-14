@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Ajustes</strong> de la Cuenta',
         'title_compact' => 'ajustes',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Editar Avatar', // Base text changed, please check.
+            'title' => 'Editar Avatar',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil', // Base text changed, please check.
+            'title' => 'Editar Perfil',
 
             'user' => [
                 'user_from' => 'ubicación actual',
-                'user_msnm' => 'skype',
                 'user_interests' => 'intereses',
+                'user_msnm' => '',
                 'user_occ' => 'ocupación',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'sitio web',
+                'user_discord' => '',
             ],
         ],
 
