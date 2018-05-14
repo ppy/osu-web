@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
 
     'menu' => [
@@ -47,8 +47,8 @@ return [
             'getFaq' => '常見問題',
             'getRules' => '规章制度',
             'getSupport' => '獲取幫助',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '譜面',
@@ -73,7 +73,7 @@ return [
             'charts' => '月賽',
             'score' => '得分',
             'country' => '國家',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => '社區',
@@ -112,7 +112,7 @@ return [
 
             'register' => '註冊',
             'reset' => '重置',
-            'new' => '',
+            'new' => 'new',
 
             'messages' => '信息',
             'settings' => '設置',
@@ -135,17 +135,17 @@ return [
             'getInvoice' => '發票',
             'products-show' => '商品',
 
-            'new' => '',
-            'home' => '',
-            'index' => '',
+            'new' => 'new',
+            'home' => 'home',
+            'index' => 'home',
             'thanks' => '感謝',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => '論壇封面',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => '訂單',
             'orders-show' => '訂單',
         ],
@@ -169,7 +169,7 @@ return [
             'changelog-index' => '更新日誌',
             'beatmaps' => '譜面列表',
             'download' => '下載 osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => '幫助 & 社區',
@@ -220,8 +220,8 @@ return [
             'error' => '啊哦...服務器正在維護中',
             'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
