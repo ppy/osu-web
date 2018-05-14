@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => '続行するにはログインが必要です。',
-        'http-403' => 'アクセスが拒否されました。',
-        'http-429' => '試行回数が上限に達しました。しばらく時間をおいて再度お試しください。',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '指定のモードは無効です。',
-        'standard_converts_only' => 'この難易度の指定のモードのスコアは見つかりませんでした。',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'お気に入りの数の上限に達しています。お気に入り譜面の数を減らしましょう。',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
-    'supporter_only' => 'サポーター限定の機能です。',
-    'no_restricted_access' => 'アカウントが制限中は無効です。',
-    'unknown' => '不明のエラーが発生しました。',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
