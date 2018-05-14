@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,10 +37,10 @@ return [
             'made-by' => 'dibuat oleh ',
             'submitted' => 'diunggah pada ',
             'updated' => 'terakhir diperbarui pada ',
-            'ranked' => 'berstatus Ranked terhitung dari',
-            'approved' => 'berstatus Approved terhitung dari',
-            'qualified' => 'berstatus Qualified terhitung dari',
-            'loved' => 'berstatus Loved terhitung dari',
+            'ranked' => 'berstatus Ranked sejak ',
+            'approved' => 'berstatus Approved sejak ',
+            'qualified' => 'berstatus Qualified sejak ',
+            'loved' => 'berstatus Loved sejak ',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'download' => [
                 '_' => 'Unduh',
