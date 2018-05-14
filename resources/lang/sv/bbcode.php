@@ -30,7 +30,7 @@ return [
         '_' => 'Teckenstorlek',
         'tiny' => 'Mycket liten',
         'small' => 'Liten',
-        'normal' => 'Normal',
+        'normal' => '',
         'large' => 'Stor',
     ],
     'spoilerbox' => 'Spoiler Låda',
