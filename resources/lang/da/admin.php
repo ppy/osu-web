@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Administrer Beatmapset Covers',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'aktiver',
                 'activate_confirm' => 'aktiver modding v2 for denne beatmap?',
                 'active' => 'aktiv',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Fjern',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Intet cover set',
 
@@ -56,7 +56,7 @@ return [
 
                 'type-title' => [
                     'default-topic' => 'Standard Topic Cover',
-                    'main' => '',
+                    'main' => 'Forum Cover',
                 ],
             ],
         ],
@@ -73,7 +73,7 @@ return [
             'title' => 'Administrator Konsol Tingest',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Generelt',
                 'store' => 'Butik',
             ],
