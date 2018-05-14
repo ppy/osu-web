@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => '在投更多票之前請稍等一會',
-            'owner' => '不能為自己的討論投票。',
+            'owner' => "不能為自己的討論投票。",
             'wrong_beatmapset_state' => '只能對等待中的譜面討論進行投票。',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => '只有作者能編輯此回覆。',
                 'topic_locked' => '無法編輯被鎖定主題的回覆。',
             ],
+
+            'store' => [
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'too_many_help_posts' => "如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -95,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => '回覆前請先登錄。',
-                    'restricted' => '帳戶處於限制模式，無法回覆。',
-                    'silenced' => '帳戶被禁言，無法回覆。',
+                    'restricted' => "帳戶處於限制模式，無法回覆。",
+                    'silenced' => "帳戶被禁言，無法回覆。",
                 ],
             ],
 
@@ -113,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票前請先登錄。',
-                    'restricted' => '帳戶處於限制模式，無法投票。',
-                    'silenced' => '帳戶被禁言，無法投票。',
+                    'restricted' => "帳戶處於限制模式，無法投票。",
+                    'silenced' => "帳戶被禁言，無法投票。",
                 ],
             ],
 
@@ -139,9 +144,9 @@ return [
 
     'unauthorized' => '沒有權限。',
 
-    'silenced' => '帳戶被禁言，無法進行該操作。',
+    'silenced' => "帳戶被禁言，無法進行該操作。",
 
-    'restricted' => '帳戶處於限制模式，無法進行該操作。',
+    'restricted' => "帳戶處於限制模式，無法進行該操作。",
 
     'user' => [
         'page' => [
