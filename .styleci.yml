@@ -13,6 +13,7 @@ disabled:
 finder:
   not-path:
     - resources/lang/da
+    - resources/lang/de
     - resources/lang/es
     - resources/lang/fr
     - resources/lang/id
