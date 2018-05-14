@@ -23,7 +23,7 @@ return [
     'saved' => 'Gespeichert',
 
     'array_and' => [
-        'words_connector' => '',
+        'words_connector' => ', ',
         'two_words_connector' => ' und ',
         'last_word_connector' => ', und ',
     ],
@@ -34,7 +34,7 @@ return [
         'click_to_copy' => '',
         'click_to_copy_copied' => '',
         'delete' => 'Löschen',
-        'permalink' => '',
+        'permalink' => 'permalink',
         'permalink_copied' => 'link kopiert',
         'post' => 'Senden',
         'reply' => 'Antworten',
@@ -62,18 +62,18 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => '',
-            'php' => '',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Tastatur',
         'mouse' => 'Maus',
-        'tablet' => '',
+        'tablet' => 'Tablet',
         'touch' => 'Touchscreen',
     ],
 
@@ -87,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
-        'count_geki' => '',
-        'count_katu' => '',
-        'count_miss' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [
