@@ -48,10 +48,10 @@ return [
             'user' => [
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => '職業',
-                'user_twitter' => '',
-                'user_website' => '',
+                'user_twitter' => 'twitter',
+                'user_website' => 'website',
                 'user_discord' => '',
             ],
         ],
