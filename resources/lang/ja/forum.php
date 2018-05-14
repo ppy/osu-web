@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'ポールの期限を設定する',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '日間',
                 'length_info' => '空白で無期限に設定されます',
                 'max_options' => '選択数',
