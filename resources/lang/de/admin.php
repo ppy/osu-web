@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Beatmapset-Banner bearbeiten',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'aktivieren',
                 'activate_confirm' => 'modding v2 für diese beatmap aktivieren?',
                 'active' => 'aktiv',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Löschen',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Kein Banner ausgewählt',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Adminkonsole',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Allgemein',
                 'store' => 'Shop',
             ],
