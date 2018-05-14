@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => 'Nålade Ämnen',
-    'slogan' => 'det är farligt att spela ensam.',
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'slogan' => "det är farligt att spela ensam.",
+    'subforums' => '',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => '',
         'go_to_latest' => 'visa senaste inlägg',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
@@ -164,8 +165,8 @@ return [
         ],
 
         'index' => [
-            'replies' => 'svar',
             'views' => 'visningar',
+            'replies' => 'svar',
         ],
 
         'issue_tag_added' => [
@@ -242,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
                     'current' => 'Du har :votes kvar.',
-                    'not_enough' => 'Du har inga röster kvar',
+                    'not_enough' => "Du har inga röster kvar",
                 ],
             ],
 
@@ -258,8 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Prenumeration sades upp från ämne',
-            'to_watching_done' => 'Prenumererade på ämne',
+            'to_not_watching' => '',
+            'to_watching' => '',
+            'to_watching_mail' => '',
+            'mail_disable' => '',
         ],
     ],
 ];
