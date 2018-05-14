@@ -21,7 +21,7 @@
 return [
     'bold' => 'Gras',
     'heading' => 'Titre',
-    'image' => '',
+    'image' => 'Image',
     'italic' => 'Italique',
     'link' => 'Lien',
     'list' => 'Liste',
@@ -31,7 +31,7 @@ return [
         'tiny' => 'Très petite',
         'small' => 'Petite',
         'normal' => 'Normale',
-        'large' => '',
+        'large' => 'Large',
     ],
     'spoilerbox' => 'Spoiler déroulant',
     'strikethrough' => 'Barré',
