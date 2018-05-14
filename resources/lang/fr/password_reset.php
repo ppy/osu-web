@@ -23,7 +23,7 @@ return [
 
     'button' => [
         'cancel' => 'Annuler',
-        'resend' => "Renvoyer l'email de vérification",
+        'resend' => 'Renvoyer l\'email de vérification',
         'set' => 'Définit le mot de passe',
         'start' => 'Démarrer',
     ],
@@ -37,7 +37,7 @@ return [
         'is_privileged' => 'Contacter peppy lulz.',
         'missing_key' => 'Requis.',
         'too_many_tries' => 'Trop de tentatives ratées.',
-        'user_not_found' => "L'utilisateur demandé n'existe pas.",
+        'user_not_found' => 'L\'utilisateur demandé n\'existe pas.',
         'wrong_key' => 'Code incorrect.',
     ],
 
@@ -54,6 +54,6 @@ return [
     ],
 
     'starting' => [
-        'username' => "Entrez une adresse email ou un nom d'utilisateur",
+        'username' => 'Entrez une adresse email ou un nom d\'utilisateur',
     ],
 ];
