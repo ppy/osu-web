@@ -35,6 +35,15 @@ return [
             Jag skulle vilja ge ett personligt tack till dem som har stöttat osu! än så länge,
             och lika mycket till dem som fortsätter att stötta detta fantastiska spel och gemenskapen in i framtiden :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
             'title' => 'Varför ska jag stötta osu!?',
             'blocks' => [
@@ -49,7 +58,7 @@ return [
         'perks' => [
             'title' => 'Oh? Vad får jag?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
+                'title' => '',
                 'description' => 'snabb och enkel tillgång till att söka beatmaps utan att lämna spelet.',
             ],
 
@@ -74,7 +83,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
+                'title' => '',
                 'description' => 'Filtrera beatmap sökningar på spelade och ej spelade maps och rank uppnåd (om det finns).',
             ],
 
