@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -54,7 +54,7 @@ return [
         'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
-        'minute_short_unit' => 'min|mins',
+        'minute_short_unit' => '',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',
@@ -62,11 +62,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => '',
+            'php' => '',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => '',
         ],
     ],
 
@@ -87,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => '',
     ],
 
     'time' => [
