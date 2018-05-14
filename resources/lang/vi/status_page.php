@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'trạng thái',
-        'description' => '',
+        'description' => 'whats going on mah dude?',
     ],
 
     'incidents' => [
@@ -51,8 +51,8 @@ return [
         'uptime' => [
             'title' => 'Thời Gian Hoạt Động',
             'graphs' => [
-                'server' => '',
-                'web' => '',
+                'server' => 'server',
+                'web' => 'web',
             ],
         ],
 
