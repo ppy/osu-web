@@ -17,17 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'title' => 'Zresetuj hasło',
+
     'button' => [
         'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie email weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',
     ],
+
     'email' => [
         'subject' => 'odzyskiwanie konta osu!',
     ],
+
     'error' => [
         'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odzyskać konto.',
         'is_privileged' => 'Skontaktuj się z peppym.',
@@ -36,16 +40,19 @@ return [
         'user_not_found' => 'Ten użytkownik nie istnieje.',
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
+
     'notice' => [
         'sent' => 'Sprawdź e-mail, aby uzyskać kod.',
         'saved' => 'Nowe hasło zostało zapisane!',
     ],
+
     'started' => [
         'password' => 'Nowe hasło',
         'password_confirmation' => 'Potwierdzenie hasła',
         'title' => 'Resetowanie hasła dla konta <strong>:username</strong>.',
         'verification_key' => 'Kod weryfikacyjny',
     ],
+
     'starting' => [
         'username' => 'Wprowadź e-mail lub nazwę użytkownika',
     ],
