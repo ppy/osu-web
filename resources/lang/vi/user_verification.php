@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,8 @@ return [
         'issuing' => 'Đang lấy mã mới...',
 
         'info' => [
-            'check_spam' => 'Hãy kiểm tra thư mục spam nếu bạn không thể tìm thấy email.',
-            'recover' => 'Nếu bạn không thể truy cập vào email hoặc đã quên email bạn đã dùng, vui lòng làm theo :link.',
+            'check_spam' => "Hãy kiểm tra thư mục spam nếu bạn không thể tìm thấy email.",
+            'recover' => "Nếu bạn không thể truy cập vào email hoặc đã quên email bạn đã dùng, vui lòng làm theo :link.",
             'recover_link' => 'phục hồi email tại đây',
             'reissue' => 'Bạn cũng có thể :reissue_link hoặc :logout_link.',
             'reissue_link' => 'yêu cầu mã mới',
