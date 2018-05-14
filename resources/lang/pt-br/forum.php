@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Manter enquete aberta por',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixe em branco para uma votação sem fim',
                 'max_options' => 'Opções por usuário',
