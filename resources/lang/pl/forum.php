@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Przeprowadź ankietę przez',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dni',
                 'length_info' => 'Zostaw puste dla niekończącej się ankiety',
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
