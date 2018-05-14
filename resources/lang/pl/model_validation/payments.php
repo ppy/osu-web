@@ -22,7 +22,7 @@ return [
     'signature' => [
         'not_match' => 'Sygnatury nie są jednakowe',
     ],
-    'notification_type' => 'notification_type nie jest poprawnym :type', //need context
+    'notification_type' => 'notification_type nie jest poprawnym :type',
     'order' => [
         'invalid' => 'Zamówienie nie jest prawidłowe',
         'items' => [
