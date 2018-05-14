@@ -19,26 +19,61 @@
  */
 
 return [
-    'buttons' => [
-        'cancel' => 'Cancella',
-        'post' => 'Posta',
-        'reply' => 'Rispondi',
-        'reset' => 'Resetta',
-        'save' => 'Salva',
-        'show_more' => 'mostra altro',
-        'delete' => 'Elimina',
+    'confirmation' => 'Sei sicuro?',
+    'saved' => '',
+
+    'array_and' => [
+        'words_connector' => '',
+        'two_words_connector' => '',
+        'last_word_connector' => '',
     ],
 
-    'confirmation' => 'Sei sicuro?',
+    'buttons' => [
+        'cancel' => 'Cancella',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
+        'delete' => 'Elimina',
+        'permalink' => '',
+        'permalink_copied' => '',
+        'post' => 'Posta',
+        'reply' => 'Rispondi',
+        'reply_reopen' => '',
+        'reply_resolve' => '',
+        'reset' => 'Resetta',
+        'save' => 'Salva',
+        'saving' => '',
+        'see_more' => '',
+        'show_more' => 'mostra altro',
+        'upload_image' => '',
+    ],
 
     'count' => [
+        'badges' => '',
+        'days' => '',
+        'hour_short_unit' => '',
+        'hours' => '',
         'item' => ':count unità|:count unità',
+        'minute_short_unit' => '',
+        'months' => '',
+        'second_short_unit' => '',
+        'years' => '',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => '',
+            'php' => '',
+        ],
+        'year_month_short' => [
+            'moment' => '',
+        ],
     ],
 
     'device' => [
         'keyboard' => 'Tastiera',
-        'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
+        'mouse' => '',
+        'tablet' => '',
         'touch' => 'Schermo Touch',
     ],
 
@@ -46,24 +81,25 @@ return [
         'target' => 'trascina qui per caricare',
     ],
 
-    'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
-        'count_miss' => 'Errori',
-    ],
-
     'pagination' => [
         'previous' => 'prec',
         'next' => 'succ',
+    ],
+
+    'score_count' => [
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => 'Errori',
     ],
 
     'time' => [
         'days_ago' => ':count giorni fa|:count giorni fa',
         'hours_ago' => ':count ore fa|:count ore fa',
         'now' => 'ora',
+        'remaining' => '',
     ],
 
     'title' => [
