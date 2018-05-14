@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>Account</strong>einstellungen',
         'title_compact' => 'einstellungen',
+        'username' => '',
 
         'avatar' => [
             'title' => 'Avatar bearbeiten',
@@ -47,10 +48,11 @@ return [
             'user' => [
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'webseite',
+                'user_discord' => '',
             ],
         ],
 
@@ -74,7 +76,7 @@ return [
         'title' => 'Spielstil',
         'mouse' => 'maus',
         'keyboard' => 'tastatur',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
+        'tablet' => '',
+        'touch' => '',
     ],
 ];
