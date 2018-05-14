@@ -52,7 +52,7 @@ return [
             'title' => 'Tiempo de actividad',
             'graphs' => [
                 'server' => 'servidor',
-                'web' => 'web',
+                'web' => '',
             ],
         ],
 
