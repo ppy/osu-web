@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => 'Hãy đăng nhập để tiếp tục.',
-        'http-403' => 'Truy cập bị từ chối.',
-        'http-429' => 'Quá nhiều lần thử. Thử lại sau.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Đã xảy ra lỗi. Thử tải lại trang.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Chế độ đã chỉ định không hợp lệ.',
-        'standard_converts_only' => 'Không có điểm số cho chế độ được yêu cầu trong độ khó của beatmap này.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Bạn có quá nhiều beatmap yêu thích! Hãy bỏ yêu thích một beatmap trước khi tiếp tục.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'Bạn đã đăng xuất. Hãy đăng nhập và thử lại.',
-    'supporter_only' => 'Bạn phải là người hỗ trợ để sử dụng tính năng này.',
-    'no_restricted_access' => 'Bạn không được cho phép thực hiện hành động này trong khi tài khoản của bạn đang trong trạng thái hạn chế.',
-    'unknown' => 'Đã xảy ra lỗi không xác định.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
