@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => '',
         'description' => 'co się właśnie dzieje?',
     ],
 
