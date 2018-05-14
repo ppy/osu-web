@@ -21,9 +21,46 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Moet ingelogd zijn om te bewerken.', // Base text changed from "log" to "sign"
+            'null_user' => 'Moet ingelogd zijn om te bewerken.',
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
             'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => '',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => '',
+        'title' => '',
+
+        'form' => [
+            'deleted' => '',
+
+            'user' => [
+                'label' => '',
+                'overview' => '',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => '',
+        'deleted_at' => '',
+        'message_type' => '',
+        'permalink' => '',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => '',
+        'notice' => '',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => '',
+            'user' => '',
         ],
     ],
 
@@ -32,5 +69,17 @@ return [
             'true' => 'Gemarkeerd als opgelost door :user',
             'false' => 'Heropend door :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => '',
+        'bng' => '',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
