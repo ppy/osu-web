@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => 'Topik yang Disematkan',
-    'slogan' => 'Bermain sendiri itu berbahaya.',
+    'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -72,7 +72,7 @@ return [
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
         'new_topic' => 'Post topik baru',
-        'post_reply' => 'Post',
+        'post_reply' => '',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
         'started_by' => 'oleh :user',
 
@@ -81,7 +81,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Ketik',
-            'submit' => 'Post',
+            'submit' => '',
 
             'placeholder' => [
                 'body' => 'Ketik konten post di sini',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
                     'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => 'Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.',
+                    'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
                 ],
             ],
 
