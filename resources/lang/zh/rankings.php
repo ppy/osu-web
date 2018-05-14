@@ -22,7 +22,7 @@ return [
     'header' => ':type 排名',
     'type' => [
         'performance' => '表现',
-        'charts' => '月赛', // Base text has changed, please check.
+        'charts' => '月赛',
         'score' => '总分',
         'country' => '国家',
     ],
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Ranked 总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];
