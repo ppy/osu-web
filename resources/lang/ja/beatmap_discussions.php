@@ -75,7 +75,7 @@ return [
         'admin' => '管理人',
         'bng' => 'ノミネーター',
         'owner' => '譜面作者',
-        'qat' => '',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
