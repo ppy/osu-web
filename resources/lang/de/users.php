@@ -275,7 +275,7 @@ return [
             'website' => 'Webseite',
         ],
         'not_found' => [
-            'reason_1' => '',
+            'reason_1' => 'Der gesuchte Benutzer hat seinen Namen geändert.',
             'reason_2' => '',
             'reason_3' => 'Du hast dich vielleicht verschrieben!',
             'reason_header' => 'Es gibt ein paar mögliche Gründe dafür:',
@@ -300,7 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Höchste Combo',
             'play_count' => '<Play>anzahl',
-            'play_time' => '',
+            'play_time' => 'Gesamte Spielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
             'score_ranks' => 'Ränge durch Punkte',
