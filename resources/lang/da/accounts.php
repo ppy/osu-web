@@ -22,16 +22,17 @@ return [
     'edit' => [
         'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Ændr Avatar', // Base text changed, please check.
+            'title' => 'Ændr Avatar',
         ],
 
         'email' => [
             'current' => 'nuværende email-adresse',
             'new' => 'ny email-adresse',
             'new_confirmation' => 'bekræftelse af email-adresse',
-            'title' => 'Email',
+            'title' => '',
         ],
 
         'password' => [
@@ -43,13 +44,15 @@ return [
 
         'profile' => [
             'title' => 'Rediger Profil',
+
             'user' => [
                 'user_from' => 'nuværende placering',
-                'user_msnm' => 'skype',
-                'user_occ' => 'stilling',
-                'user_twitter' => 'twitter',
-                'user_website' => 'hjemmeside',
                 'user_interests' => 'interesse',
+                'user_msnm' => '',
+                'user_occ' => 'stilling',
+                'user_twitter' => '',
+                'user_website' => 'hjemmeside',
+                'user_discord' => '',
             ],
         ],
 
@@ -73,7 +76,7 @@ return [
         'title' => 'Spillestile',
         'mouse' => 'mus',
         'keyboard' => 'tastatur',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
+        'tablet' => '',
+        'touch' => '',
     ],
 ];
