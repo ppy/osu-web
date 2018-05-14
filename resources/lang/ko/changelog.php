@@ -28,4 +28,11 @@ return [
         'fix' => '수정 사항',
         'misc' => '기타 ',
     ],
+
+    'support' => [
+        'heading' => '',
+        'text_1' => '',
+        'text_1_link' => '',
+        'text_2' => '',
+    ],
 ];
