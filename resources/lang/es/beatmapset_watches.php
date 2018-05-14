@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'button' => [
         'action' => [
@@ -23,10 +25,12 @@ return [
             'to_1' => 'Mirar',
         ],
     ],
+
     'index' => [
         'description' => 'Estos son las discusiones de beatmaps que estás siguiendo. Serás notificado cuando se realize un nuevo post o actualización.',
         'title_compact' => 'seguimientos de modding',
         'title_main' => 'Lista de seguimientos de modding',
+
         'table' => [
             'empty' => 'No estás viendo ninguna discusión de un mapa.',
             'open_issues' => 'Problemas abiertos',
@@ -34,9 +38,11 @@ return [
             'title' => 'Título',
         ],
     ],
+
     'mail' => [
         'update' => 'Nueva actualización para el mapa ":title"',
     ],
+
     'status' => [
         'read' => 'Leer',
         'unread' => 'No leer',
