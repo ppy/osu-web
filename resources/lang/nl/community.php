@@ -33,6 +33,15 @@ return [
 Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
             'title' => 'Waarom zou ik osu! supporten?',
             'blocks' => [
@@ -47,12 +56,12 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
         'perks' => [
             'title' => 'Oh? Wat krijg ik dan?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
+                'title' => '',
                 'description' => 'snel en makkelijk beatmaps zoeken zonder het spel te verlaten.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
+                'title' => '',
                 'description' => 'Automatische downloads terwijl je multiplayer speelt, anderen aan het toeschouwen bent, of op links in de chat klikt!',
             ],
 
@@ -72,7 +81,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
+                'title' => '',
                 'description' => 'Filter beatmap zoekopdrachten met gespeelde en ongespeelde maps en ranks behaald (als die er zijn).',
             ],
 
@@ -92,7 +101,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
+                'title' => '',
                 'description' => 'Extra in-game skinnables, zoals de achtergrond van het hoofdmenu.',
             ],
 
@@ -119,7 +128,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
         'convinced' => [
             'title' => 'Ik ben overgehaald! :D',
-            'support' => 'support osu!',
+            'support' => '',
             'gift' => 'of gun het iemand anders',
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
