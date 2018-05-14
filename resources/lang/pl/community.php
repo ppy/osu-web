@@ -37,7 +37,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
             'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
-            'not_yet' => 'Nie posiadasz jeszcze statusu donatora :(',
+            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
             'title' => 'Status donatora',
             'valid_until' => 'Twój status donatora jest aktywny do :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
@@ -57,7 +57,7 @@ return [
         'perks' => [
             'title' => 'Tak? Co dostaję?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
+                'title' => '',
                 'description' => 'szybki i łatwy dostęp do beatmap bez opuszczania gry.',
             ],
 
