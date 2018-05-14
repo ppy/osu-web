@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => '置頂主題',
-    'slogan' => '獨樂樂不如眾樂樂~',
+    'slogan' => "獨樂樂不如眾樂樂~",
     'subforums' => '子版塊',
     'title' => 'osu! 社區',
 
@@ -78,6 +78,8 @@ return [
 
         'create' => [
             'preview' => '預覽',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => '編輯',
             'submit' => '發表',
 
@@ -167,54 +169,54 @@ return [
             'replies' => '回覆數',
         ],
 
-        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
-            'action-0' => '移除 "added" 標籤',
-            'action-1' => '添加 "added" 標籤',
-            'state-0' => '已移除 "added" 標籤',
-            'state-1' => '已添加 "added" 標籤',
+        'issue_tag_added' => [
+            'to_0' => '移除 "added" 标签',
+            'to_0_done' => '已移除 "added" 标签',
+            'to_1' => '添加 "added" 标签',
+            'to_1_done' => '已添加 "added" 标签',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => '移除 "assigned" 標籤',
-            'action-1' => '添加 "assigned" 標籤',
-            'state-0' => '已移除 "assigned" 標籤',
-            'state-1' => '已添加 "assigned" 標籤',
+            'to_0' => '移除 "assigned" 标签',
+            'to_0_done' => '已移除 "assigned" 标签',
+            'to_1' => '添加 "assigned" 标签',
+            'to_1_done' => '已添加 "assigned" 标签',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => '移除 "confirmed" 標籤',
-            'action-1' => '添加 "confirmed" 標籤',
-            'state-0' => '已移除 "confirmed" 標籤',
-            'state-1' => '已添加 "confirmed" 標籤',
+            'to_0' => '移除 "confirmed" 标签',
+            'to_0_done' => '已移除 "confirmed" 标签',
+            'to_1' => '添加 "confirmed" 标签',
+            'to_1_done' => '已添加 "confirmed" 标签',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => '移除 "duplicate" 標籤',
-            'action-1' => '添加 "duplicate" 標籤',
-            'state-0' => '已移除 "duplicate" 標籤',
-            'state-1' => '已添加 "duplicate" 標籤',
+            'to_0' => '移除 "duplicate" 标签',
+            'to_0_done' => '已移除 "duplicate" 标签',
+            'to_1' => '添加 "duplicate" 标签',
+            'to_1_done' => '已添加 "duplicate" 标签',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => '移除 "invalid" 標籤',
-            'action-1' => '添加 "invalid" 標籤',
-            'state-0' => '已移除 "invalid" 標籤',
-            'state-1' => '已添加 "invalid" 標籤',
+            'to_0' => '移除 "invalid" 标签',
+            'to_0_done' => '已移除 "invalid" 标签',
+            'to_1' => '添加 "invalid" 标签',
+            'to_1_done' => '已添加 "invalid" 标签',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => '移除 "resolved" 標籤',
-            'action-1' => '添加 "resolved" 標籤',
-            'state-0' => '已移除 "resolved" 標籤',
-            'state-1' => '已添加 "resolved" 標籤',
+            'to_0' => '移除 "resolved" 标签',
+            'to_0_done' => '已移除 "resolved" 标签',
+            'to_1' => '添加 "resolved" 标签',
+            'to_1_done' => '已添加 "resolved" 标签',
         ],
 
         'lock' => [
             'is_locked' => '主題已被鎖定，不能回覆',
-            'lock-0' => '解鎖主題',
-            'lock-1' => '鎖定主題',
-            'state-0' => '主題已經解鎖',
-            'state-1' => '主題已被鎖定',
+            'to_0' => '解锁主题',
+            'to_0_done' => '主题已经解锁',
+            'to_1' => '锁定主题',
+            'to_1_done' => '主题已被锁定',
         ],
 
         'moderate_move' => [
@@ -222,12 +224,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => '取消置頂',
-            'pin-1' => '置頂',
-            'pin-2' => '置頂並標記為公告',
-            'state-0' => '該主題已取消置頂',
-            'state-1' => '該主題已置頂',
-            'state-2' => '該主題已置頂並標記為公告',
+            'to_0' => '取消置顶',
+            'to_0_done' => '该主题已取消置顶',
+            'to_1' => '置顶',
+            'to_1_done' => '该主题已置顶',
+            'to_2' => '置顶并标记为公告',
+            'to_2_done' => '该主题已置顶并标记为公告',
         ],
 
         'show' => [
@@ -241,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',
                     'current' => '還有 :votes 票.',
-                    'not_enough' => '沒有票了',
+                    'not_enough' => "沒有票了",
                 ],
             ],
 
@@ -257,10 +259,10 @@ return [
         ],
 
         'watch' => [
-            'state-0' => '已取消訂閱！',
-            'state-1' => '訂閱成功！',
-            'watch-0' => '取消訂閱',
-            'watch-1' => '訂閱',
+            'to_not_watching' => '未订阅',
+            'to_watching' => '订阅',
+            'to_watching_mail' => '订阅并启用邮件通知',
+            'mail_disable' => '禁用邮件通知',
         ],
     ],
 ];
