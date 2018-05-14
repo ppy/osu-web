@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => '',
+        '_' => 'Beatmaps',
         'download' => 'Ladda ner Beatmap Mall',
         'download-na' => 'Beatmap Mall är inte tillgänglig',
     ],
