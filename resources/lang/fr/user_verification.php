@@ -23,15 +23,15 @@ return [
         'sent' => 'Un mail a été envoyé à :mail avec un code de vérification. Entrez le code.',
         'title' => 'Vérification de compte',
         'verifying' => 'Vérification...',
-        'issuing' => "Envoi d'un nouveau code...",
+        'issuing' => 'Envoi d\'un nouveau code...',
 
         'info' => [
-            'check_spam' => 'Merci de vérifier votre dossier spam si vous ne voyez pas le mail.',
-            'recover' => 'Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.',
+            'check_spam' => "Merci de vérifier votre dossier spam si vous ne voyez pas le mail.",
+            'recover' => "Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.",
             'recover_link' => 'processus de récupération de mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
             'reissue_link' => 'demander un autre code',
-            'logout_link' => 'vous déconnecter', // Base text changed from "log" to "sign"
+            'logout_link' => 'vous déconnecter',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
     'errors' => [
         'expired' => 'Le code de vérification a expiré, un nouvel email de vérification a été envoyé.',
         'incorrect_key' => 'Code de vérification incorrect.',
-        'retries_exceeded' => "Code de vérification incorrect. Limite de tentatives dépassées, envoi d'un nouvel email de vérification.",
+        'retries_exceeded' => 'Code de vérification incorrect. Limite de tentatives dépassées, envoi d\'un nouvel email de vérification.',
         'reissued' => 'Code de vérification regénéré, nouvel email de vérification envoyé.',
         'unknown' => 'Un problème inconnu est survenu, nouvel email de vérification envoyé.',
     ],
