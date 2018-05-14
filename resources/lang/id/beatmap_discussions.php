@@ -49,7 +49,7 @@ return [
         'created_at' => 'Tanggal post',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
-        'permalink' => 'Permalink',
+        'permalink' => '',
     ],
 
     'nearby_posts' => [
@@ -72,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'admin' => '',
+        'bng' => '',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
