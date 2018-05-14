@@ -36,7 +36,7 @@ return [
         'delete' => '',
         'permalink' => '',
         'permalink_copied' => '',
-        'post' => '',
+        'post' => 'Post',
         'reply' => 'Beantwoord',
         'reply_reopen' => '',
         'reply_resolve' => '',
@@ -73,8 +73,8 @@ return [
     'device' => [
         'keyboard' => 'Toetsenbord',
         'mouse' => 'Muis',
-        'tablet' => '',
-        'touch' => '',
+        'tablet' => 'Tablet',
+        'touch' => 'Touch Screen',
     ],
 
     'dropzone' => [
