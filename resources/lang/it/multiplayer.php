@@ -46,7 +46,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Precisione',
-                'combo' => 'Combo',
+                'combo' => '',
                 'score' => 'Punteggio',
             ],
         ],
