@@ -27,16 +27,27 @@ return [
         'none_running' => '지금 당장 진행중인 토너먼트가 없군요, 나중에 다시 확인해주세요!',
         'registration_period' => '참가: :start부터 :end까지',
     ],
+
     'show' => [
-        'button' => [
-            'register' => '참가시켜 주세요!', // Sign me up!
-            'cancel' => '참가 신청 취소',
-        ],
+        'banner' => '',
         'entered' => '이 토너먼트에 참가하셨습니다.<br><br>이는 참가 \'팀\'을 등록했다는 뜻이 아닙니다.<br><br>토너먼트 진행일자가 가까워지면, 이메일을 통해 지침이 보내질 것이므로 osu! 계정의 이메일 주소가 사용가능한지 반드시 확인해주시기 바랍니다!',
+        'info_page' => '',
         'login_to_register' => '토너먼트 참가에 관한 자세한 사항을 보려면 :login해주세요!',
         'not_yet_entered' => '아직 이 토너먼트에 참가하지 않았습니다.',
         'rank_too_low' => '죄송하지만, 토너먼트에 참가하는데 필요한 순위를 충족하지 못했습니다!',
         'registration_ends' => '참가 신청이 :date에 종료됩니다.',
+
+        'button' => [
+            'cancel' => '참가 신청 취소',
+            'register' => '참가시켜 주세요!',
+        ],
+
+        'state' => [
+            'before_registration' => '',
+            'ended' => '',
+            'registration_closed' => '',
+            'running' => '',
+        ],
     ],
     'tournament_period' => ':start부터 :end까지',
 ];
