@@ -23,7 +23,7 @@ return [
     'heading' => 'Tiêu Đề',
     'image' => 'Hình Ảnh',
     'italic' => 'Nghiêng',
-    'link' => '',
+    'link' => 'Link',
     'list' => 'Danh Sách',
     'list_numbered' => 'Danh Sách Đánh Số',
     'size' => [
