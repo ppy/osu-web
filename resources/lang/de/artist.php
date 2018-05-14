@@ -20,14 +20,14 @@
 
 return [
     'page_description' => 'Featured Artists in osu!',
-    'title' => '',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'FEATURED ARTIST IST AKTUELL VERSTECKT',
     ],
 
     'beatmaps' => [
-        '_' => '',
+        '_' => 'Beatmaps',
         'download' => 'Beatmapvorlage herunterladen',
         'download-na' => 'Beatmapvorlage noch nicht verfügbar',
     ],
