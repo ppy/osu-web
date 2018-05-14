@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => '再度評価するには少し間を置いてください。',
-            'owner' => '自分のディスカッションは評価できません。',
+            'owner' => "自分のディスカッションは評価できません。",
             'wrong_beatmapset_state' => 'pending譜面のディスカッションにのみ評価できます。',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => '投稿者にのみ投稿が編集できます。',
                 'topic_locked' => 'ロックされたトピックの投稿は編集できません。',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -95,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => '返信するにはログインが必要です。',
-                    'restricted' => '制限中は返信できません。',
-                    'silenced' => 'サイレンス中は返信できません。',
+                    'restricted' => "制限中は返信できません。",
+                    'silenced' => "サイレンス中は返信できません。",
                 ],
             ],
 
@@ -113,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票するにはログインが必要です。',
-                    'restricted' => '制限中は投票できません。',
-                    'silenced' => 'サイレンス中は投票できません。',
+                    'restricted' => "制限中は投票できません。",
+                    'silenced' => "サイレンス中は投票できません。",
                 ],
             ],
 
@@ -139,9 +144,9 @@ return [
 
     'unauthorized' => 'アクセスが拒否されました。',
 
-    'silenced' => 'サイレンス中には不可能です。',
+    'silenced' => "サイレンス中には不可能です。",
 
-    'restricted' => '制限中には不可能です。',
+    'restricted' => "制限中には不可能です。",
 
     'user' => [
         'page' => [
