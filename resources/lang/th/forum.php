@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,84 +19,88 @@
  */
 
 return [
+    'pinned_topics' => '',
+    'slogan' => "",
+    'subforums' => '',
+    'title' => '',
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => '',
+            'button' => '',
+            'info' => '',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => '',
+            'confirm' => '',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => '',
         ],
     ],
 
-    'pinned_topics' => 'Pinned Topics',
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'posted_at' => '',
+
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => '',
+            'restore' => '',
+            'edit' => '',
         ],
     ],
+
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => '',
+        'post_number_input' => '',
+        'total_posts' => '',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => "it's dangerous to play alone.",
+
     'topic' => [
+        'deleted' => '',
+        'go_to_latest' => '',
+        'latest_post' => '',
+        'latest_reply_by' => '',
+        'new_topic' => '',
+        'post_reply' => '',
+        'reply_box_placeholder' => '',
+        'started_by' => '',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
-            ],
-            'preview' => 'Preview',
+            'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
-        ],
-        'go_to_latest' => 'view latest post',
-        'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
-        ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
-        'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
-            'zoom' => [
-                'start' => 'Full Screen',
-                'end' => 'Exit Full Screen',
+            'preview_hide' => '',
+            'submit' => '',
+
+            'placeholder' => [
+                'body' => '',
+                'title' => '',
             ],
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+
+        'jump' => [
+            'enter' => '',
+            'first' => '',
+            'last' => '',
+            'next' => '',
+            'previous' => '',
+        ],
+
+        'post_edit' => [
+            'cancel' => '',
+            'post' => '',
+        ],
     ],
 
     'topic_watches' => [
@@ -106,159 +110,159 @@ return [
             'title_main' => 'Topic <strong>Subscriptions</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '',
+                'unread' => '',
             ],
+
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '',
+                'unread' => '',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => '',
+                'title' => '',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => '',
 
         'actions' => [
             'reply' => 'Show reply box',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply_with_quote' => '',
+            'search' => '',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => '',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => '',
+                'remove' => '',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => '',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => '',
+                'length_info' => '',
+                'max_options' => '',
+                'max_options_info' => '',
+                'options' => '',
+                'options_info' => '',
+                'title' => '',
+                'vote_change' => '',
+                'vote_change_info' => '',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => '',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => '',
+            'replies' => '',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => '',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => '',
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+            'to_2' => '',
+            'to_2_done' => '',
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
-            'deleted-posts' => 'Deleted Posts',
+            'deleted-posts' => '',
+            'total_posts' => '',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => '',
+                'do' => '',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'count' => '',
+                    'current' => '',
+                    'not_enough' => "",
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => '',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
-                    'end_time' => 'Polling will end at :time',
+                    'end_time' => '',
+                    'ended' => '',
+                    'total' => '',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'to_not_watching' => '',
+            'to_watching' => '',
+            'to_watching_mail' => '',
+            'mail_disable' => '',
         ],
     ],
-
 ];
