@@ -26,8 +26,8 @@ return [
         'issuing' => '正在生成新的驗證碼',
 
         'info' => [
-            'check_spam' => '如果找不到這封郵件，請檢查垃圾箱。',
-            'recover' => '無法登錄郵箱或者忘記了所使用的郵箱？:link.',
+            'check_spam' => "如果找不到這封郵件，請檢查垃圾箱。",
+            'recover' => "無法登錄郵箱或者忘記了所使用的郵箱？:link.",
             'recover_link' => '點擊此處',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重發驗證碼',
