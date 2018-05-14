@@ -27,7 +27,7 @@ return [
         'over' => '這場評選的投票已經結束',
         'login_required' => '請登錄後再投票.',
         'best_of' => [
-            'none_played' => '沒有符合此次評選條件的譜面！',
+            'none_played' => "沒有符合此次評選條件的譜面！",
         ],
     ],
     'entry' => [
@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => '開始於 :date',
-            'soon' => 'soon™',
+            'soon' => '',
         ],
     ],
     'states' => [
