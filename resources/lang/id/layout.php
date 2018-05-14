@@ -44,14 +44,14 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
-            'getFaq' => '',
+            'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmaps',
             'artists' => 'artis unggulan',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
@@ -60,24 +60,24 @@ return [
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
             'packs' => 'paket',
-            'show' => '',
+            'show' => 'info',
         ],
         'beatmapsets' => [
-            '_' => '',
-            'discussion' => '',
+            '_' => 'beatmaps',
+            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'peringkat',
             'index' => 'performa',
             'performance' => 'performa',
-            'charts' => '',
+            'charts' => 'spotlights',
             'score' => 'skor',
             'country' => 'negara',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'komunitas',
-            'dev' => '',
+            'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',
@@ -93,7 +93,7 @@ return [
             'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
-            '_' => '',
+            '_' => 'multiplayer',
             'show' => 'pertandingan',
         ],
         'error' => [
@@ -141,18 +141,18 @@ return [
             'thanks' => 'terima kasih',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'sampul forum',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => 'pesanan',
             'orders-show' => 'pesanan',
         ],
         'admin' => [
-            '_' => '',
+            '_' => 'admin',
             'beatmapsets-covers' => 'sampul beatmapset',
-            'logs-index' => '',
+            'logs-index' => 'log',
             'root' => 'indeks',
 
             'beatmapsets' => [
@@ -169,7 +169,7 @@ return [
             'changelog-index' => 'Riwayat Perubahan',
             'beatmaps' => 'Daftar Beatmap',
             'download' => 'Unduh osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
@@ -181,7 +181,7 @@ return [
         'support' => [
             '_' => 'Dukung osu!',
             'tags' => 'Supporter Tag',
-            'merchandise' => '',
+            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Status Resmi',
@@ -220,8 +220,8 @@ return [
             'error' => 'Sedang dalam pemeliharaan!',
             'description' => "Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
