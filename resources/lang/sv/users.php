@@ -92,12 +92,12 @@ return [
         'age' => ':age år gammal',
         'change_avatar' => '',
         'first_members' => 'Här sen början',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age från :country',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Inga... än.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Favoriserade Beatmaps (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Tillängligt',
                 'available_info' => "Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.",
                 'recent_entries' => 'Nyligen Kudosu Historia',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Intjänad',
                 'total_info' => 'Baserad på hur mycket bidrag användaren har gjort till beatmap moderation. Se <a href="'.osu_url('user.kudosu').'">denna sida</a> för mer information.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Denna användare har inte fått någon kudosu!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Inga fantastiska precision uppgifter än. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
 
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Användare skapad',
