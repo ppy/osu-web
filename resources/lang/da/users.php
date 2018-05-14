@@ -92,12 +92,12 @@ return [
         'age' => ':age år gammel',
         'change_avatar' => 'ændr din avatar!',
         'first_members' => 'Var her fra starten',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Deltog på :date',
         'lastvisit' => 'Sidste set på :date',
         'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age fra :country',
         'origin_country' => 'Fra :country',
         'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Ingen... endnu.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Favorit Beatmaps (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Tilgængelig',
                 'available_info' => "Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har brugt endnu.",
                 'recent_entries' => 'Seneste Kudosu Historie',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Samlet Kudosu Optjent',
                 'total_info' => 'Baseret på hvor stort et bidrag brugeren har givet til beatmaps. Se <a href="'.osu_url('user.kudosu').'">denne side</a> for mere information.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Denne bruger har ikke modtages nogen kudosu!",
 
                     'beatmap_discussion' => [
@@ -219,7 +219,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'me!',
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
@@ -231,8 +231,8 @@ return [
             'top_ranks' => [
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => '',
-                'pp' => '',
-                'title' => '',
+                'pp' => ':amountpp',
+                'title' => 'Ranks',
                 'weighted_pp' => 'vejede: :pp (:percentage)',
 
                 'best' => [
@@ -252,12 +252,12 @@ return [
                     'date' => 'dato',
                     'action' => 'handling',
                     'length' => 'længde',
-                    'length_permanent' => '',
+                    'length_permanent' => 'Permanent',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',
 
                     'actions' => [
-                        'restriction' => '',
+                        'restriction' => 'Ban',
                         'silence' => 'Mute',
                         'note' => 'Noter',
                     ],
@@ -267,11 +267,11 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesser',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
-            'skype' => '',
-            'twitter' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'Hjemmeside',
         ],
         'not_found' => [
@@ -297,20 +297,20 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Præcision',
-            'level' => '',
+            'level' => 'Level :level',
             'maximum_combo' => 'Højeste Combo',
             'play_count' => 'Antal Spilforsøg',
             'play_time' => '',
-            'ranked_score' => '',
+            'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Set af Andre',
-            'score_ranks' => '',
+            'score_ranks' => 'Score Ranks',
             'total_hits' => 'Hits i Alt',
             'total_score' => 'Samlet Score',
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Bruger Oprettet',
