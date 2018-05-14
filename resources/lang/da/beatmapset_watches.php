@@ -21,15 +21,15 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => '',
+            'to_1' => '',
         ],
     ],
 
     'index' => [
         'description' => 'Dette er de beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'title_compact' => '',
+        'title_main' => '',
 
         'table' => [
             'empty' => 'Ingen beatmap diskussioner watched.',
