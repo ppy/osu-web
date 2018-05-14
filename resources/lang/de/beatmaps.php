@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -65,18 +65,19 @@ return [
         ],
 
         'message_type' => [
-            'hype' => 'Hype!',
+            'disqualify' => '',
+            'hype' => '',
             'mapper_note' => 'Anmerkung',
+            'nomination_reset' => '',
             'praise' => 'Loben',
-            'problem' => 'Problem',
+            'problem' => '',
             'suggestion' => 'Vorschlag',
         ],
 
         'mode' => [
             'events' => 'Geschichte',
             'general' => 'Allgemein',
-            'general_all' => 'Allgemein (alle Schwierigkeitsstufen)',
-            'timeline' => 'Timeline',
+            'timeline' => '',
             'scopes' => [
                 'general' => 'Diese Schwierigkeitsstufe',
                 'generalAll' => 'Alle Schwierigkeitsstufen',
@@ -84,7 +85,7 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'Timestamp',
+            'timestamp' => '',
             'timestamp_missing' => 'Strg-C im Editor und in deine Nachricht einfügen, um eine Timestamp hinzuzufügen!',
             'title' => 'Neue Diskussion',
         ],
@@ -96,7 +97,7 @@ return [
         'sort' => [
             '_' => 'Sortiert nach:',
             'created_at' => 'erstellungsdatum',
-            'timeline' => 'timeline',
+            'timeline' => '',
             'updated_at' => 'letzter aktualisierung',
         ],
 
@@ -112,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date <approved>!',
-            'graveyard' => 'Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...',
+            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...",
             'loved' => 'Diese Beatmap wurde am :date zu <loved> hinzugefügt!',
             'ranked' => 'Diese Beatmap wurde am :date zu <ranked> hinzugefügt!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
@@ -123,14 +124,14 @@ return [
     'hype' => [
         'button' => 'Beatmap hypen!',
         'button_done' => 'Schon gehypt!',
-        'confirm' => 'Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.',
+        'confirm' => "Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.",
         'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
         'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
-        'new_time' => 'Um :new_time wirst du deinen nächsten Hype erhalten.',
+        'new_time' => "Um :new_time wirst du deinen nächsten Hype erhalten.",
         'remaining' => 'Du hast noch :remaining Hypes übrig.',
-        'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Hype Train',
-        'title' => 'Hype',
+        'required_text' => '',
+        'section_title' => '',
+        'title' => '',
     ],
 
     'feedback' => [
@@ -139,8 +140,8 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
-        'disqualifed_at' => 'Disqualifiziert vor :time_ago (:reason).',
-        'disqualifed_no_reason' => 'kein grund angegeben',
+        'disqualified_at' => '',
+        'disqualified_no_reason' => '',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'nominate' => 'Nominieren',
@@ -149,10 +150,18 @@ return [
         'qualified' => 'Die Beatmap wird voraussichtlich am :date <ranked>, wenn keine <issues> gefunden werden.',
         'qualified_soon' => 'Die Beatmap wird bald <ranked>, wenn keine <issues> gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',
-        'reset_at' => 'Nominierungen vor :time_ago von :discussion zurückgesetzt.',
-        'reset_confirm' => 'Sicher? Alle Nominierungen werden zurückgesetzt, wenn ein neues <issue> angemerkt wird.',
+        'reset_message_deleted' => '',
         'title' => 'Nominierungsstatus',
         'unresolved_issues' => 'Es existieren noch <issues>, die gelöst werden müssen.',
+
+        'reset_at' => [
+            'nomination_reset' => '',
+            'disqualify' => '',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '',
+        ],
     ],
 
     'listing' => [
@@ -164,15 +173,16 @@ return [
             'filters' => [
                 'general' => 'Generell',
                 'mode' => 'Modus',
-                'status' => 'Rank Status',
-                'genre' => 'Genre',
+                'status' => '',
+                'genre' => '',
                 'language' => 'Sprache',
-                'extra' => 'extra',
+                'extra' => '',
                 'rank' => 'Erreichter Rang',
+                'played' => '',
             ],
         ],
         'mode' => 'Modus',
-        'status' => 'Rank Status',
+        'status' => '',
         'mapped-by' => 'Von :mapper erstellt',
         'source' => 'von/aus :source',
         'load-more' => 'Mehr laden...',
@@ -183,10 +193,10 @@ return [
     ],
     'mode' => [
         'any' => 'Alle',
-        'osu' => 'osu!',
-        'taiko' => 'osu!taiko',
-        'fruits' => 'osu!catch',
-        'mania' => 'osu!mania',
+        'osu' => '',
+        'taiko' => '',
+        'fruits' => '',
+        'mania' => '',
     ],
     'status' => [
         'any' => 'Alle',
@@ -203,36 +213,37 @@ return [
         'any' => 'Alle',
         'unspecified' => 'Nicht angegeben',
         'video-game' => 'Videospiel',
-        'anime' => 'Anime',
-        'rock' => 'Rock',
-        'pop' => 'Pop',
+        'anime' => '',
+        'rock' => '',
+        'pop' => '',
         'other' => 'Andere',
-        'novelty' => 'Novelty',
+        'novelty' => '',
         'hip-hop' => 'Hip-Hop',
-        'electronic' => 'Electronic',
+        'electronic' => '',
     ],
     'mods' => [
-        'NF' => 'No Fail',
+        '4K' => '',
+        '5K' => '',
+        '6K' => '',
+        '7K' => '',
+        '8K' => '',
+        '9K' => '',
+        'AP' => '',
+        'DT' => '',
         'EZ' => 'Easy',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
-        '4K' => '4K',
-        '5K' => '5K',
-        '6K' => '6K',
-        '7K' => '7K',
-        '8K' => '8K',
-        'FI' => 'Fade In',
-        '9K' => '9K',
-        'NM' => 'No mods',
+        'FI' => '',
+        'FL' => '',
+        'HD' => '',
+        'HR' => '',
+        'HT' => '',
+        'NC' => '',
+        'NF' => '',
+        'NM' => '',
+        'PF' => '',
+        'Relax' => '',
+        'SD' => '',
+        'SO' => '',
+        'TD' => '',
     ],
     'language' => [
         'any' => 'Alle',
@@ -245,8 +256,13 @@ return [
         'korean' => 'Koreanisch',
         'spanish' => 'Spanisch',
         'swedish' => 'Schwedisch',
-        'instrumental' => 'Instrumental',
+        'instrumental' => '',
         'other' => 'Andere',
+    ],
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
     ],
     'extra' => [
         'video' => 'Hat Video',
@@ -255,12 +271,12 @@ return [
     'rank' => [
         'any' => 'Alle',
         'XH' => 'Silber-SS',
-        'X' => 'SS',
+        'X' => '',
         'SH' => 'Silber-S',
-        'S' => 'S',
-        'A' => 'A',
-        'B' => 'B',
-        'C' => 'C',
-        'D' => 'D',
+        'S' => '',
+        'A' => '',
+        'B' => '',
+        'C' => '',
+        'D' => '',
     ],
 ];
