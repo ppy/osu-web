@@ -22,7 +22,7 @@ return [
     'deleted' => '[pengguna yang dihapus]',
 
     'beatmapset_activities' => [
-        'title' => 'Riwayat Modding :user',
+        'title' => "Riwayat Modding :user",
 
         'discussions' => [
             'title_recent' => 'Diskusi terbaru yang baru dimulai',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'failed' => 'Gagal masuk',
-        'register' => 'Belum memiliki akun osu!? Buat sekarang',
+        'register' => "Belum memiliki akun osu!? Buat sekarang",
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
@@ -92,18 +92,18 @@ return [
         'age' => ':age tahun',
         'change_avatar' => 'ganti avatar Anda!',
         'first_members' => 'Di sini dari awal',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
-        'origin_age' => ':age',
+        'origin_age' => '',
         'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => 'profil :username',
+        'title' => "profil :username",
 
         'edit' => [
             'cover' => [
@@ -173,15 +173,15 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tersedia',
-                'available_info' => 'Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.',
+                'available_info' => "Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.",
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => 'Jumlah Kudosu yang diperoleh',
                 'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => 'Pengguna ini belum menerima kudosu!',
+                    'amount' => '',
+                    'empty' => "Pengguna ini belum menerima kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => 'Pengguna ini belum mendapatkannya. ;_;',
+                'empty' => "Pengguna ini belum mendapatkannya. ;_;",
                 'title' => 'Medali',
             ],
             'recent_activity' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
-                'pp' => ':amountpp',
+                'pp' => '',
                 'title' => 'Peringkat',
                 'weighted_pp' => 'Terhitung: :pp (:percentage)',
 
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
-                'bad_standing' => 'Akun <strong>:username</strong> tidak dalam kondisi baik :(',
+                'bad_standing' => "Akun <strong>:username</strong> tidak dalam kondisi baik :(",
                 'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
 
                 'recent_infringements' => [
@@ -265,14 +265,14 @@ return [
             ],
         ],
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Minat',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
-            'website' => 'Website',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
         ],
         'not_found' => [
             'reason_1' => 'Pengguna mungkin telah mengubah nama penggunanya.',
@@ -297,7 +297,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
-            'level' => 'Level :level',
+            'level' => '',
             'maximum_combo' => 'Kombo Maksimum',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => 'Daring',
+        'offline' => 'Luring',
     ],
     'store' => [
         'saved' => 'Pengguna dibuat',
