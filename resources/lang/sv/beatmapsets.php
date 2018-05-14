@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Beatmaps Listning',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
@@ -46,7 +46,7 @@ return [
                 '_' => 'Ladda Ner',
                 'video' => 'med Video',
                 'no-video' => 'utan Video',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Favorisera denna beatmapset',
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Approach Hastighet',
             'stars' => 'Stjärn Svårighetsgrad',
             'total_length' => 'Längd',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Antal Cirklar',
             'count_sliders' => 'Antal Sliders',
             'user-rating' => 'Användar Betyg',
@@ -83,7 +83,7 @@ return [
             'achieved' => 'uppnått :when',
             'country' => 'Land Ranking',
             'friend' => 'Vän Ranking',
-            'global' => '',
+            'global' => 'Global Ranking',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
             'title' => 'Resultattavla',
