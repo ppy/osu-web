@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => '¿Oh? ¡¿Qué obtengo?!',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'Acceso rápido y sencillo para buscar beatmaps sin salir del juego.',
             ],
 
@@ -103,7 +103,7 @@ return [
             ],
 
             'skinnables' => [
-                'title' => '',
+                'title' => 'Skinnables',
                 'description' => 'Más posibilidades para las skins, como cambiar el fondo del menú.',
             ],
 
