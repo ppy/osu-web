@@ -52,7 +52,7 @@ return [
             'title' => 'Temps de fonctionnement',
             'graphs' => [
                 'server' => 'serveur',
-                'web' => '',
+                'web' => 'web',
             ],
         ],
 
