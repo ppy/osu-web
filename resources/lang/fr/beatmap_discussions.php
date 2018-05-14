@@ -21,9 +21,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Vous devez être connecté pour éditer.', // Base text changed from "log" to "sign"
+            'null_user' => 'Vous devez être connecté pour éditer.',
             'system_generated' => 'Un post système ne peut être édité.',
-            'wrong_user' => "Vous devez être le créateur du post pour l'éditer.",
+            'wrong_user' => 'Vous devez être le créateur du post pour l\'éditer.',
         ],
     ],
 
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominateur',
         'owner' => 'mappeur',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by user',
     ],
 ];
