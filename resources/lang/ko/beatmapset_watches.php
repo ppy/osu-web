@@ -33,7 +33,7 @@ return [
 
         'table' => [
             'empty' => '주시하고있는 비트맵 토론이 없습니다.',
-            'open_issues' => '열린 이슈', // Open issues
+            'open_issues' => '열린 이슈',
             'state' => '상태',
             'title' => '제목',
         ],
