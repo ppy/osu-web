@@ -21,14 +21,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Silakan masuk untuk menyunting.',
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'null_user' => 'Anda Harus Masuk Telebih Dahulu Untuk Menyunting.',
+            'system_generated' => 'Kiriman yang dibuat oleh sistem tidak dapat disuting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi ... belum...',
+        'empty' => 'Belum ada yang terjadi.',
     ],
 
     'index' => [
@@ -79,7 +79,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Semua orang',
+        'label' => 'Di Saring berdasarkan pengguna',
     ],
 ];
