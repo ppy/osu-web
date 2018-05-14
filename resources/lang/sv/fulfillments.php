@@ -19,12 +19,12 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Tack, osu! <3 dig',
-        ],
-        'supporter_gift' => [
-            'subject' => 'Du har en osu! supporter tagg!',
-        ],
+    'username_change' => [
+        'only_one' => 'only 1 username change allowed per order fulfillment.',
+        'insufficient_paid' => 'Username change cost exceeds amount paid (:expected > :actual)',
+        'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
     ],
 ];
