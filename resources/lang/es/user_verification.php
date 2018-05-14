@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,12 +26,12 @@ return [
         'issuing' => 'Emitiendo nuevo código...',
 
         'info' => [
-            'check_spam' => 'Asegúrate de revisar la carpeta de correos no deseados si no logras encontrar el correo.',
-            'recover' => 'Si no puedes entrar a tu correo o has olvidado cuál usaste, sigue este :link.',
+            'check_spam' => "Asegúrate de revisar la carpeta de correos no deseados si no logras encontrar el correo.",
+            'recover' => "Si no puedes entrar a tu correo o has olvidado cuál usaste, sigue este :link.",
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puedes :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',
-            'logout_link' => 'cerrar sesión', // Base text changed from "log" to "sign"
+            'logout_link' => 'cerrar sesión',
         ],
     ],
 
