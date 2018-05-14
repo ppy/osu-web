@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Многопользовательские игры',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user покинул игру',
@@ -66,7 +66,7 @@ return [
             'score' => 'Лучшие очки',
             'accuracy' => 'Лучшая точность',
             'combo' => 'Лучшее комбо',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
