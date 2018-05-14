@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Mehrspieler-Matches',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => ':user hat das match verlassen',
@@ -46,11 +46,11 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Genauigkeit',
-                'combo' => 'Combo',
+                'combo' => '',
                 'score' => 'Punktzahl',
             ],
         ],
-        'failed' => 'FAILED',
+        'failed' => '',
         'teams' => [
             'blue' => 'Blaues Team',
             'red' => 'Rotes Team',
@@ -66,7 +66,7 @@ return [
             'score' => 'Höchste Punktzahl',
             'accuracy' => 'Höchste Genauigkeit',
             'combo' => 'Höchste Combo',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];
