@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',
             'more_simple' => 'Se flere beatmap søgeresultater',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
             'all' => 'Alle forums',
             'link' => 'Søg i forummet',
             'more_simple' => 'Se flere forum-søgeresultater',
-            'title' => 'Forum',
+            'title' => '',
 
             'label' => [
                 'forum' => 'søg i forummerne',
@@ -60,11 +60,11 @@ return [
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
+            'all' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
             'user' => 'bruger',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -77,24 +77,24 @@ return [
         'wiki_page' => [
             'link' => 'Søg på wiki´et',
             'more_simple' => 'Se flere wiki-søgeresultater',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'lad os få<br>dig i gang!',
-        'action' => 'Download osu!',
+        'tagline' => "lad os få<br>dig i gang!",
+        'action' => '',
         'os' => [
             'windows' => 'til Windows',
             'macos' => 'til macOS',
             'linux' => 'til Linux',
         ],
-        'mirror' => 'mirror',
+        'mirror' => '',
         'macos-fallback' => 'macOS brugere',
         'steps' => [
             'register' => [
                 'title' => 'opret en bruger',
-                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto', // Base text changed from "log" to "sign"
+                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto',
             ],
             'download' => [
                 'title' => 'hent spillet',
@@ -112,6 +112,7 @@ return [
     ],
 
     'user' => [
+        'title' => '',
         'news' => [
             'title' => 'Nyheder',
             'error' => 'Fejl ved indlæsning af nyheder, prøv at genindlæse siden?...',
@@ -134,18 +135,18 @@ return [
         'buttons' => [
             'download' => 'Hent osu!',
             'support' => 'Støt osu!',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => '',
         'subtitle' => 'Du ser ud til at have det sjovt! :D',
         'body' => [
             'part-1' => 'Vidste du, at osu! kører helt uden reklamer og er stærkt afhængigt af, at spillerne støtter spillets udvikling og omkostninger?',
             'part-2' => 'Vidste du også, at du ved at støtte osu! får en stor håndfuld ekstra brugbare funktioner, såsom <strong>in-game downloading</strong> som kan udnyttes i multiplayer- og tilskuertilstand?',
         ],
         'find-out-more' => 'Klik her for at læse mere!',
-        'download-starting' => 'Hov, og bare rolig - din download er allerede startet for dig ;)',
+        'download-starting' => "Hov, og bare rolig - din download er allerede startet for dig ;)",
     ],
 ];
