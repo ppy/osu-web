@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => 'ピン付けされたトピック',
-    'slogan' => 'ひとりで遊ぶにはキケンじゃ',
+    'slogan' => "ひとりで遊ぶにはキケンじゃ",
     'subforums' => 'サブフォーラム',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -69,12 +69,12 @@ return [
     'topic' => [
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
-        'latest_post' => ':when by :user',
+        'latest_post' => '',
         'latest_reply_by' => '最新の投稿 by :user',
         'new_topic' => 'トピックを新規で作成する',
         'post_reply' => '投稿',
         'reply_box_placeholder' => '返信をここに入力',
-        'started_by' => 'by :user',
+        'started_by' => '',
 
         'create' => [
             'preview' => 'プレビュー',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} 投票なし|[1,*] :count票',
                     'current' => '自分の持ち票数は:votes回です。',
-                    'not_enough' => '票が足りません。',
+                    'not_enough' => "票が足りません。",
                 ],
             ],
 
