@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'lista',
     'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
-    'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
+    'users-online' => '1 użytkownik online|:users użytkownicy online|:users użytkowników online',
 
     'prefixes' => [
         'add' => 'nowość',
