@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,9 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the osu! dev :D',
+            'big_description' => '',
             'small_description' => '',
-            'support_button' => 'I want to support osu!',
+            'support_button' => '',
         ],
 
         'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
@@ -35,95 +34,103 @@ return [
             I would like to offer my personal thanks to those who have supported osu! thus far,
             and just as much to those who continue to support this amazing game and community into the future :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
-            'title' => 'Why should I support osu!?',
+            'title' => '',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => '',
+                'time' => '',
+                'ads' => '',
+                'goodies' => '',
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => '',
             'osu_direct' => [
-                'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => '',
+                'description' => '',
             ],
 
             'upload_more' => [
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => '',
+                'description' => '',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'title' => '',
+                'description' => '',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => '',
+                'description' => '',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => '',
+                'description' => '',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'title' => '',
+                'description' => '',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => '',
+                'description' => '',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => '',
+                'description' => '',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => '',
+                'description' => '',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => '',
+                'description' => '',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
+                'title' => '',
                 'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
             'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => '',
+                'description' => '',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => '',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => '',
+            'support' => '',
+            'gift' => '',
+            'instructions' => '',
         ],
     ],
 ];
