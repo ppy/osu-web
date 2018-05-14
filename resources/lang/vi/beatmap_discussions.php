@@ -49,7 +49,7 @@ return [
         'created_at' => 'Ngày đăng',
         'deleted_at' => 'Ngày xóa',
         'message_type' => 'Loại',
-        'permalink' => 'Permalink',
+        'permalink' => '',
     ],
 
     'nearby_posts' => [
@@ -72,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
+        'admin' => '',
         'bng' => 'người đề cử',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
