@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => '',
         'description' => 'apa yang terjadi bung?',
     ],
 
@@ -51,8 +51,8 @@ return [
         'uptime' => [
             'title' => 'Waktu Aktif',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '',
+                'web' => '',
             ],
         ],
 
