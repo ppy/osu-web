@@ -23,17 +23,17 @@ return [
     'title' => 'Artistes plébiscités',
 
     'admin' => [
-        'hidden' => "L'ARTISTE EST ACTUELLEMENT MASQUÉ",
+        'hidden' => 'L\'ARTISTE EST ACTUELLEMENT MASQUÉ',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => '',
         'download' => 'Télécharger une beatmap type',
         'download-na' => 'Beatmap type non disponible',
     ],
 
     'index' => [
-        'description' => "Les artistes plébiscités sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes et une sélection de leurs pistes ont été sélectionné à la main par l'équipe d'osu puisqu'elles ont été considérées comme extraordinaires et appropriées pour le mapping. Quelques un de ces artistes ont également créé des pistes exclusivement pour osu!.<br><br>Toutes les pistes de cette section ont des fichiers .osz pré-timé fournis et sont oficiellement autorisés à l'usage pour osu! ainsi que tout contenu relatif à osu!.",
+        'description' => 'Les artistes plébiscités sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes et une sélection de leurs pistes ont été sélectionné à la main par l\'équipe d\'osu puisqu\'elles ont été considérées comme extraordinaires et appropriées pour le mapping. Quelques un de ces artistes ont également créé des pistes exclusivement pour osu!.<br><br>Toutes les pistes de cette section ont des fichiers .osz pré-timé fournis et sont oficiellement autorisés à l\'usage pour osu! ainsi que tout contenu relatif à osu!.',
     ],
 
     'links' => [
