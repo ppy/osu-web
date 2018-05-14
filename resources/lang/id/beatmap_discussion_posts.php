@@ -25,5 +25,6 @@ return [
 
     'item' => [
         'content' => 'Isi',
+        'modding_history_link' => 'View modding history',
     ],
 ];
