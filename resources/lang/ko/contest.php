@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => '현재 콘테스트의 투표가 종료되었습니다.',
-        'login_required' => '투표하려면 로그인해주세요.', // Base text changed from "log" to "sign"
+        'login_required' => '투표하려면 로그인해주세요.',
         'best_of' => [
-            'none_played' => '이 콘테스트에서 평가할 어떤 맵도 플레이하지 않으신 것 같네요.',
+            'none_played' => "이 콘테스트에서 평가할 어떤 맵도 플레이하지 않으신 것 같네요.",
         ],
     ],
     'entry' => [
         '_' => '참가',
-        'login_required' => '콘테스트에 참가하려면 로그인해주세요.', // Base text changed from "log" to "sign"
+        'login_required' => '콘테스트에 참가하려면 로그인해주세요.',
         'silenced_or_restricted' => '제한 또는 침묵상태에서는 콘테스트에 참가할 수 없습니다.',
         'preparation' => '현재 콘테스트가 준비중에 있습니다. 인내를 갖고 조금만 더 기다려주세요!',
         'over' => '콘테스트에 참가해주셔서 감사합니다! 작품 제출이 마감되었고, 곧 투표가 시작됩니다.',
@@ -63,6 +63,6 @@ return [
     'states' => [
         'entry' => '참가 작품 모집중',
         'voting' => '투표 시작됨',
-        'results' => '종료됨', // Results Out
+        'results' => '종료됨',
     ],
 ];
