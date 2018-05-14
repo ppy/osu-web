@@ -47,7 +47,7 @@ return [
 
     'mode' => [
         'artist' => 'Nghệ Sĩ/Album',
-        'chart' => '',
+        'chart' => 'Spotlights',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
     ],
