@@ -47,6 +47,6 @@ return [
     'item' => [
         'content' => 'Contenu',
         'discussion_deleted' => '[supprimée]',
-        'type' => '',
+        'type' => 'Type',
     ],
 ];
