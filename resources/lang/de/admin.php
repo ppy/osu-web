@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Beatmapset-Banner bearbeiten',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'aktivieren',
                 'activate_confirm' => 'modding v2 für diese beatmap aktivieren?',
                 'active' => 'aktiv',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Löschen',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Kein Banner ausgewählt',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Adminkonsole',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Allgemein',
                 'store' => 'Shop',
             ],
