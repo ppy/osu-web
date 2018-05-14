@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count résultats de recherche de beatmap en plus',
             'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
-            'title' => 'Forum',
+            'title' => '',
 
             'label' => [
                 'forum' => 'Rechercher dans les forums',
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'tout',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
+            'beatmapset' => '',
+            'forum_post' => '',
             'user' => 'joueur',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Rechercher sur le wiki',
             'more_simple' => 'Voir plus de résultats de la recherche sur le wiki',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
@@ -135,7 +135,7 @@ return [
         'buttons' => [
             'download' => 'Télécharger osu!',
             'support' => 'Supporter osu!',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => 'Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)',
+        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];
