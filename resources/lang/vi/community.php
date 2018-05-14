@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,10 +35,10 @@ return [
             Tôi muốn biếu tặng trực tiếp sự cảm tạ của tôi đối những người đã ủng hộ osu!,
             và cũng như những người đang hỗ trợ trò chơi tuyệt với này cùng với cộng đồng của nó trong tương lai :).',
 
-            'supporter_status' => [
+        'supporter_status' => [
             'contribution' => 'Cảm ơn về sự hỗ trợ của bạn! Bạn đã đóng góp tổng cộng :dollars với :tags tag đã mua!',
             'gifted' => ':giftedTags tag đã mua của bạn đã được tặng (với tổng cộng :giftedDollars được tặng), thật hào phóng!',
-            'not_yet' => 'Bạn chưa có supporter tag nào hết :(',
+            'not_yet' => "Bạn chưa có supporter tag nào hết :(",
             'title' => 'Trạng thái hỗ trợ',
             'valid_until' => 'Supporter tag hiện tại của bạn có giá trị đến :date!',
             'was_valid_until' => 'Supporter tag của bạn đã hết hạn vào :date.',
