@@ -21,9 +21,9 @@
 return [
     'header' => 'Classement par :type',
     'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts', // Base text has changed, please check.
-        'score' => 'Score',
+        'performance' => '',
+        'charts' => 'Charts',
+        'score' => '',
         'country' => 'Pays',
     ],
     'stat' => [
@@ -31,13 +31,13 @@ return [
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
         'play_count' => 'Nombre de Fois Jouées',
-        'performance' => 'Performance',
+        'performance' => '',
         'total_score' => 'Score Total',
         'ranked_score' => 'Score Classé',
         'average_score' => 'Score Moyen',
         'average_performance' => 'Perf. Moyenne',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];
