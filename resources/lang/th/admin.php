@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'จัดการ Beatmapset Covers',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'เปิดการใช้งาน',
                 'activate_confirm' => 'เปิดการใช้งาน modding v2 สำหรับ beatmap นี้หรือไม่?',
                 'active' => 'เปิดการใช้งาน',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'ลบ',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'ไม่มี cover',
 
