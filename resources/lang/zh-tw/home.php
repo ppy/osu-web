@@ -64,7 +64,7 @@ return [
             'beatmapset' => '譜面',
             'forum_post' => '論壇',
             'user' => '玩家',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => '在 Wiki 中搜索',
             'more_simple' => '查看更多搜索結果',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
