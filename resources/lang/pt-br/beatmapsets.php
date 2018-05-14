@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Lista de Beatmaps',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => '',
     ],
 
     'show' => [
@@ -41,12 +41,12 @@ return [
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
             'loved' => 'loved em ',
-            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'download' => [
                 '_' => 'Baixar',
                 'video' => 'com Vídeo',
                 'no-video' => 'sem Vídeo',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => 'Favoritar este beatmap',
             'unfavourite' => 'Remover dos favoritos',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Velocidade de Aproximação',
             'stars' => 'Dificuldade',
             'total_length' => 'Duração',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
             'user-rating' => 'Avaliação',
@@ -76,7 +76,7 @@ return [
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Origem',
             'success-rate' => 'Taxa de Sucesso',
-            'tags' => 'Tags',
+            'tags' => '',
             'unranked' => 'Beatmap não ranqueado',
         ],
         'scoreboard' => [
@@ -84,7 +84,6 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
-            'miss_count' => ':count erros',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
             'title' => 'Placar',
@@ -93,9 +92,9 @@ return [
                 'accuracy' => 'Precisão',
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erro',
-                'mods' => 'Mods',
+                'mods' => '',
                 'player' => 'Jogador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Colocação',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
