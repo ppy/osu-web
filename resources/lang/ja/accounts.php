@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>アカウント</strong>設定',
         'title_compact' => '設定',
+        'username' => '',
 
         'avatar' => [
             'title' => 'アバターの変更',
@@ -47,10 +48,11 @@ return [
             'user' => [
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => '職業',
-                'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_twitter' => '',
+                'user_website' => '',
+                'user_discord' => '',
             ],
         ],
 
