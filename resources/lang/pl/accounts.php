@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'edit' => [
         'title' => 'Ustawienia <strong>konta</strong>',
@@ -26,20 +27,24 @@ return [
         'avatar' => [
             'title' => 'Awatar',
         ],
+
         'email' => [
             'current' => 'obecny e-mail',
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'Email',
         ],
+
         'password' => [
             'current' => 'aktualne hasło',
             'new' => 'nowe hasło',
             'new_confirmation' => 'potwierdź hasło',
             'title' => 'Hasło',
         ],
+
         'profile' => [
             'title' => 'Profil',
+
             'user' => [
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
@@ -50,19 +55,23 @@ return [
                 'user_discord' => 'discord',
             ],
         ],
+
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
         ],
     ],
+
     'update_email' => [
         'email_subject' => 'potwierdź zmianę maila',
         'update' => 'zaktualizuj',
     ],
+
     'update_password' => [
         'email_subject' => 'potwierdź zmianę hasła',
         'update' => 'zaktualizuj',
     ],
+
     'playstyles' => [
         'title' => 'Style gry',
         'mouse' => 'myszka',
