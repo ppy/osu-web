@@ -19,13 +19,20 @@
  */
 
 return [
-    'feed_title' => 'feed',
+    'feed_title' => '',
     'generic' => 'Fejlrettelser og små forbedringer.',
     'users-online' => '1 bruger online|:users brugere online',
 
     'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
+        'add' => '',
+        'fix' => '',
         'misc' => 'diverse',
+    ],
+
+    'support' => [
+        'heading' => '',
+        'text_1' => '',
+        'text_1_link' => '',
+        'text_2' => '',
     ],
 ];
