@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
         'error' => '精算中に問題が発生しました。',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Paypalで支払う',
         'pending_checkout' => [
             'line_1' => '前回の精算が完了していません。',
@@ -38,6 +39,12 @@ return [
     ],
 
     'discount' => ':percent%の割引',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
+    ],
 
     'order' => [
         'item' => [
