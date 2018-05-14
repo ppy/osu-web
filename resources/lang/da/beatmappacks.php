@@ -21,7 +21,7 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => '',
+            'important' => 'READ THIS BEFORE DOWNLOADING',
             'instruction' => [
                 '_' => "Installation: Så snart at en pakke er blevet hentet, skal du udpakke .rar-filen i dit osu! sangbibliotek.
                     Alle sangene er stadig i .zip og/eller .osz format indeni pakken, så osu! bliver nødt til at udpakke beatmaps'ne selv næste gang du går ind i Play mode.
@@ -34,22 +34,22 @@ return [
                 'scary' => 'downloade pakkerne fra nyeste til ældste',
             ],
         ],
-        'title' => '',
+        'title' => 'Beatmap Packs',
         'description' => 'Forhåndslavede samlinger af beatmaps baseret på det samme tema.',
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Download',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'cleared',
+            'not_cleared' => 'not cleared',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
+        'artist' => 'Artist/Album',
         'chart' => 'Chart',
-        'standard' => '',
+        'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
