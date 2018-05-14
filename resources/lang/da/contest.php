@@ -31,7 +31,7 @@ return [
         ],
     ],
     'entry' => [
-        '_' => '',
+        '_' => 'entry',
         'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
