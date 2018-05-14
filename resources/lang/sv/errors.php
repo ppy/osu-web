@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Var vänlig logga in för att fortsätta.', // Base text changed from "log" to "sign"
+        'http-401' => 'Var vänlig logga in för att fortsätta.',
         'http-403' => 'Åtkomst nekad.',
         'http-429' => 'För många försök. Försök igen senare.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'Du har för många favoriserade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
     ],
-    'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .', // Base text changed from "log" to "sign"
+    'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .',
     'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
     'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
     'unknown' => 'Okänt fel uppstod.',
