@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Lista de Beatmaps',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
@@ -46,7 +46,7 @@ return [
                 '_' => 'Baixar',
                 'video' => 'com Vídeo',
                 'no-video' => 'sem Vídeo',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Favoritar este beatmap',
             'unfavourite' => 'Remover dos favoritos',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Velocidade de Aproximação',
             'stars' => 'Dificuldade',
             'total_length' => 'Duração',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
             'user-rating' => 'Avaliação',
@@ -76,7 +76,7 @@ return [
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Origem',
             'success-rate' => 'Taxa de Sucesso',
-            'tags' => '',
+            'tags' => 'Tags',
             'unranked' => 'Beatmap não ranqueado',
         ],
         'scoreboard' => [
@@ -92,9 +92,9 @@ return [
                 'accuracy' => 'Precisão',
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erro',
-                'mods' => '',
+                'mods' => 'Mods',
                 'player' => 'Jogador',
-                'pp' => '',
+                'pp' => 'pp',
                 'rank' => 'Colocação',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
