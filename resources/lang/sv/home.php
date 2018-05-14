@@ -36,18 +36,20 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
+        'placeholder' => '',
+        'title' => '',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
             'more_simple' => 'Se fler sök resultat på beatmaps',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
             'all' => 'Alla forum',
             'link' => 'Sök på forumet',
             'more_simple' => 'Se fler sök resultat på forum',
-            'title' => 'Forum',
+            'title' => '',
 
             'label' => [
                 'forum' => 'sök i forum',
@@ -59,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'alla',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
+            'beatmapset' => '',
+            'forum_post' => '',
             'user' => 'spelare',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -75,12 +77,12 @@ return [
         'wiki_page' => [
             'link' => 'Sök på wiki',
             'more_simple' => 'Se fler sök resultat på wiki',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'låt oss<br>få dig igång!',
+        'tagline' => "låt oss<br>få dig igång!",
         'action' => 'Ladda ner osu!',
         'os' => [
             'windows' => 'för Windows',
@@ -92,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto', // Base text changed from "log" to "sign"
+                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
             ],
             'download' => [
                 'title' => 'ladda ner spelet',
@@ -106,10 +108,11 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video guide',
+        'video-guide' => '',
     ],
 
     'user' => [
+        'title' => '',
         'news' => [
             'title' => 'Nyheter',
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
@@ -132,18 +135,18 @@ return [
         'buttons' => [
             'download' => 'Ladda ner osu!',
             'support' => 'Stötta osu!',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => '',
         'subtitle' => 'Det ser ut som att du har det bra! :D',
         'body' => [
             'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som söttar utvecklingen och och kostnader för underhåll?',
             'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
         ],
         'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => 'Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)',
+        'download-starting' => "Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
     ],
 ];
