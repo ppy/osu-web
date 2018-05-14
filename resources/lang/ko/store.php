@@ -24,11 +24,27 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => 'Uh oh, there are problems with your cart!',
+        'cart_problems_edit' => 'Click here to go edit it.',
+        'declined' => 'The payment was cancelled.',
+        'error' => 'There was a problem completing your checkout :(',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Paypal로 결제',
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
+            'link_text' => 'click here',
+        ],
         'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
     ],
 
     'discount' => ':percent% 절약 가능',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -57,16 +73,19 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => 'gift to player',
         'require_login' => [
             '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
-            'link_text' => '로그인', // Base text changed from "log" to "sign"
+            'link_text' => '로그인',
         ],
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
-            'link_text' => '로그인', // Base text changed from "log" to "sign"
+            'link_text' => '로그인',
         ],
     ],
 ];
