@@ -25,7 +25,7 @@ return [
         'cancel' => 'Annuller',
         'resend' => 'Gensend Bekræftelsesemail',
         'set' => 'Indstil adgangskode',
-        'start' => '',
+        'start' => 'Start',
     ],
 
     'email' => [
