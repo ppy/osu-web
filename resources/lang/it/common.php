@@ -19,20 +19,55 @@
  */
 
 return [
-    'buttons' => [
-        'cancel' => 'Cancella',
-        'post' => 'Posta',
-        'reply' => 'Rispondi',
-        'reset' => 'Resetta',
-        'save' => 'Salva',
-        'show_more' => 'mostra altro',
-        'delete' => 'Elimina',
+    'confirmation' => 'Sei sicuro?',
+    'saved' => 'Saved',
+
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' and ',
+        'last_word_connector' => ', and ',
     ],
 
-    'confirmation' => 'Sei sicuro?',
+    'buttons' => [
+        'cancel' => 'Cancella',
+        'change' => 'change',
+        'click_to_copy' => 'click to copy to clipboard',
+        'click_to_copy_copied' => 'copied to clipboard!',
+        'delete' => 'Elimina',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link copied',
+        'post' => 'Posta',
+        'reply' => 'Rispondi',
+        'reply_reopen' => 'Reply and Reopen',
+        'reply_resolve' => 'Reply and Resolve',
+        'reset' => 'Resetta',
+        'save' => 'Salva',
+        'saving' => 'Saving...',
+        'see_more' => 'see more',
+        'show_more' => 'mostra altro',
+        'upload_image' => 'upload image',
+    ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
+        'days' => ':count day|:count days',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hour|:count hours',
         'item' => ':count unità|:count unità',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count month|:count months',
+        'second_short_unit' => 'sec|secs',
+        'years' => ':count year|:count years',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
@@ -46,6 +81,11 @@ return [
         'target' => 'trascina qui per caricare',
     ],
 
+    'pagination' => [
+        'previous' => 'prec',
+        'next' => 'succ',
+    ],
+
     'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
@@ -55,15 +95,11 @@ return [
         'count_miss' => 'Errori',
     ],
 
-    'pagination' => [
-        'previous' => 'prec',
-        'next' => 'succ',
-    ],
-
     'time' => [
         'days_ago' => ':count giorni fa|:count giorni fa',
         'hours_ago' => ':count ore fa|:count ore fa',
         'now' => 'ora',
+        'remaining' => 'Time Remaining',
     ],
 
     'title' => [
