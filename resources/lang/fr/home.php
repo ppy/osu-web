@@ -147,6 +147,6 @@ return [
             'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => 'Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)',
+        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];

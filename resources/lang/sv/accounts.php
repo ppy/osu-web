@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Användar</strong> Inställningar',
         'title_compact' => 'inställningar',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Ändra Avatar', // Base text changed, please check.
+            'title' => 'Ändra Avatar',
         ],
 
         'email' => [
@@ -42,14 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ändra Profil', // Base text changed, please check.
+            'title' => 'Ändra Profil',
 
             'user' => [
                 'user_from' => 'nuvarande position',
+                'user_interests' => 'interests',
                 'user_msnm' => 'skype',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hemsida',
+                'user_discord' => 'discord',
             ],
         ],
 

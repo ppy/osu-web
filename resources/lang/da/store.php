@@ -28,11 +28,23 @@ return [
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
         'error' => 'Der opstod et problem under betalingen :(',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Betal med PayPal',
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
+            'link_text' => 'click here',
+        ],
         'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
     ],
 
     'discount' => 'spar :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -64,14 +76,16 @@ return [
         'gift' => 'giv som gave',
         'require_login' => [
             '_' => 'Du skal være :link for at få et supporter tag!',
-            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+            'link_text' => 'logget ind',
         ],
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
-            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+            'link_text' => 'logget ind',
         ],
     ],
 ];

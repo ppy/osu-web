@@ -27,16 +27,27 @@ return [
         'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
         'registration_period' => 'Tilmelding: :start til :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Tilmeld mig!',
-            'cancel' => 'Annullér tilmelding',
-        ],
+        'banner' => 'Support Your Team',
         'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
+        'info_page' => 'Information Page',
         'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
         'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
         'rank_too_low' => 'Beklager, du opfylder ikke rang kravene til denne turnering!',
         'registration_ends' => 'Tilmelding lukker på :date',
+
+        'button' => [
+            'cancel' => 'Annullér tilmelding',
+            'register' => 'Tilmeld mig!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => ':start til :end',
 ];

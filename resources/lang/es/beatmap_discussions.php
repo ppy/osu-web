@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Debes iniciar sesión para editar.', // Base text changed from "log" to "sign"
+            'null_user' => 'Debes iniciar sesión para editar.',
             'system_generated' => 'No se puede editar una publicación generada por el sistema.',
             'wrong_user' => 'Debes ser dueño del post para editarlo.',
         ],
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Inicia sesión para responder', // Base text changed from "log" to "sign"
+            'guest' => 'Inicia sesión para responder',
             'user' => 'Responder',
         ],
     ],
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominador',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by user',
     ],
 ];

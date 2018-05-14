@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => '¡vamos a<br>empezar!',
+        'tagline' => "¡vamos a<br>empezar!",
         'action' => 'Descargar osu!',
         'os' => [
             'windows' => 'para Windows',
@@ -94,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crea una cuenta',
-                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta', // Base text changed from "log" to "sign"
+                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta',
             ],
             'download' => [
                 'title' => 'descarga el juego',
@@ -147,6 +147,6 @@ return [
             'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic para más información!',
-        'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)',
+        'download-starting' => "Oh, y no te preocupes - la descarga ya comenzó por ti ;)",
     ],
 ];

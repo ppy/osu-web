@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -81,6 +81,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',
             'link_text' => 'đăng nhập',

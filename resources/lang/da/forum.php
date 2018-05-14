@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Pinned Emner',
+    'slogan' => "det er farlig at spille alene.",
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Pinned Emner',
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
         'confirm_restore' => 'Gendag opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
+
         'actions' => [
             'destroy' => 'Slet opslag',
             'restore' => 'Gendan opslag',
             'edit' => 'Rediger opslag',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Gå til opslag',
         'post_number_input' => 'indtast opslagsnummer',
         'total_posts' => ':posts_count opslag i alt',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => 'det er farlig at spille alene.',
+
     'topic' => [
+        'deleted' => 'deleted topic',
+        'go_to_latest' => 'vis seneste opslag',
+        'latest_post' => ':when af :user',
+        'latest_reply_by' => 'seneste svar af :user',
+        'new_topic' => 'Slå nyt emne op',
+        'post_reply' => 'Slå op',
+        'reply_box_placeholder' => 'Skriv her for at svare',
+        'started_by' => 'af :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Skriv opslagets indhold her',
-                'title' => 'Klik her for at lave en overskrift',
-            ],
             'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
             'submit' => 'Slå op',
+
+            'placeholder' => [
+                'body' => 'Skriv opslagets indhold her',
+                'title' => 'Klik her for at lave en overskrift',
+            ],
         ],
-        'go_to_latest' => 'vis seneste opslag',
+
         'jump' => [
             'enter' => 'klik for at vælge et specifikt opslagsnummer',
             'first' => 'gå til det første opslag',
@@ -83,16 +96,11 @@ return [
             'next' => 'spring over de næste 10 opslag',
             'previous' => 'gå 10 opslag tilbage',
         ],
-        'latest_post' => ':when af :user',
-        'latest_reply_by' => 'seneste svar af :user',
-        'new_topic' => 'Slå nyt emne op',
+
         'post_edit' => [
             'cancel' => 'Annullér',
             'post' => 'Gem',
         ],
-        'post_reply' => 'Slå op',
-        'reply_box_placeholder' => 'Skriv her for at svare',
-        'started_by' => 'af :user',
     ],
 
     'topic_watches' => [
@@ -105,6 +113,7 @@ return [
                 'total' => 'Emner Abonneret',
                 'unread' => 'Emner med nye svar',
             ],
+
             'info' => [
                 'total' => 'Du abonnerer i alt på :total emner.',
                 'unread' => 'Du har :unread ulæste svar til abonnerede emner.',
@@ -224,17 +233,17 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Opslag i alt',
             'deleted-posts' => 'Slettede opslag',
+            'total_posts' => 'Opslag i alt',
 
             'feature_vote' => [
                 'current' => 'Nuværende prioritet: +:count',
                 'do' => 'Promovér denne anmodning',
 
                 'user' => [
-                    'current' => 'Du har :votes stemmer tilbage.',
                     'count' => '{0} ingen stemmer|{1} :count stemme|[2,*] :count stemmer',
-                    'not_enough' => 'Du har ikke flere stemmer tilbage',
+                    'current' => 'Du har :votes stemmer tilbage.',
+                    'not_enough' => "Du har ikke flere stemmer tilbage",
                 ],
             ],
 
@@ -242,17 +251,18 @@ return [
                 'vote' => 'Stem',
 
                 'detail' => [
-                    'total' => 'Stemmer i alt: :count',
-                    'ended' => 'Afstemning sluttede :time',
                     'end_time' => 'Afstemning slutter :time',
+                    'ended' => 'Afstemning sluttede :time',
+                    'total' => 'Stemmer i alt: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Opsagde abonnement for emnet',
-            'to_watching_done' => 'Abonnerede på emnet',
+            'to_not_watching' => 'Not bookmarked',
+            'to_watching' => 'Bookmark',
+            'to_watching_mail' => 'Bookmark with notification',
+            'mail_disable' => 'Disable notification',
         ],
     ],
-
 ];

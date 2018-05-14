@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Temas Fijados',
-    'slogan' => 'es peligroso jugar solo.',
+    'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
     'title' => 'osu!community',
 
@@ -224,7 +224,7 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
+            'to_0' => 'No fijar tema',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
             'to_1_done' => 'El tema ya ha sido fijado',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Tienes :votes restantes.',
-                    'not_enough' => 'No te quedan más votos',
+                    'not_enough' => "No te quedan más votos",
                 ],
             ],
 

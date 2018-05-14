@@ -22,7 +22,7 @@ return [
     'header' => ':type Rangering',
     'type' => [
         'performance' => 'Præstation',
-        'charts' => 'Baner', // Base text has changed, please check.
+        'charts' => 'Baner',
         'score' => 'Score',
         'country' => 'Land',
     ],

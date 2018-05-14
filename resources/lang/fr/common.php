@@ -30,6 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Annuler',
+        'change' => 'change',
+        'click_to_copy' => 'click to copy to clipboard',
+        'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Supprimer',
         'permalink' => 'permalien',
         'permalink_copied' => 'lien copié',

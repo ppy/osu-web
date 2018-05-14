@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
-    'slogan' => 'Chơi một mình khá là nguy hiểm đấy.',
+    'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Subforums',
     'title' => 'Cộng Đồng osu!',
 
@@ -170,53 +170,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Loại bỏ tag "added"',
-            'action-1' => 'Thêm tag "added"',
-            'state-0' => 'Đã loại bỏ tag "added"',
-            'state-1' => 'Đã thêm tag "added"',
+            'to_0' => 'Remove "added" tag',
+            'to_0_done' => 'Removed "added" tag',
+            'to_1' => 'Add "added" tag',
+            'to_1_done' => 'Added "added" tag',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Loại bỏ tag "assigned"',
-            'action-1' => 'Thêm tag "assigned"',
-            'state-0' => 'Đã loại bỏ tag "assigned"',
-            'state-1' => 'Đã thêm tag "assigned"',
+            'to_0' => 'Remove "assigned" tag',
+            'to_0_done' => 'Removed "assigned" tag',
+            'to_1' => 'Add "assigned" tag',
+            'to_1_done' => 'Added "assigned" tag',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Loại bỏ tag "confirmed"',
-            'action-1' => 'Thêm tag "confirmed"',
-            'state-0' => 'Đã loại bỏ tag "confirmed"',
-            'state-1' => 'Đã thêm tag "confirmed"',
+            'to_0' => 'Remove "confirmed" tag',
+            'to_0_done' => 'Removed "confirmed" tag',
+            'to_1' => 'Add "confirmed" tag',
+            'to_1_done' => 'Added "confirmed" tag',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Loại bỏ tag "duplicate"',
-            'action-1' => 'Thêm tag "duplicate"',
-            'state-0' => 'Đã loại bỏ tag "duplicate"',
-            'state-1' => 'Đã thêm tag "duplicate"',
+            'to_0' => 'Remove "duplicate" tag',
+            'to_0_done' => 'Removed "duplicate" tag',
+            'to_1' => 'Add "duplicate" tag',
+            'to_1_done' => 'Added "duplicate" tag',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Loại bỏ tag "invalid"',
-            'action-1' => 'Thêm tag "invalid"',
-            'state-0' => 'Đã loại bỏ tag "invalid"',
-            'state-1' => 'Đã thêm tag "invalid"',
+            'to_0' => 'Remove "invalid" tag',
+            'to_0_done' => 'Removed "invalid" tag',
+            'to_1' => 'Add "invalid" tag',
+            'to_1_done' => 'Added "invalid" tag',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Loại bỏ tag "resolved"',
-            'action-1' => 'Thêm tag "resolved"',
-            'state-0' => 'Đã loại bỏ tag "resolved"',
-            'state-1' => 'Đã thêm tag "resolved"',
+            'to_0' => 'Remove "resolved" tag',
+            'to_0_done' => 'Removed "resolved" tag',
+            'to_1' => 'Add "resolved" tag',
+            'to_1_done' => 'Added "resolved" tag',
         ],
 
         'lock' => [
             'is_locked' => 'Chủ đề này đã bị khóa và không thể trả lời',
-            'lock-0' => 'Mở khóa chủ đề',
-            'lock-1' => 'Khóa chủ đề',
-            'state-0' => 'Đã mở khóa chủ đề',
-            'state-1' => 'Đã khóa chủ đề',
+            'to_0' => 'Unlock topic',
+            'to_0_done' => 'Topic has been unlocked',
+            'to_1' => 'Lock topic',
+            'to_1_done' => 'Topic has been locked',
         ],
 
         'moderate_move' => [
@@ -224,12 +224,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Bỏ ghim chủ đề',
-            'pin-1' => 'Ghim chủ đề',
-            'pin-2' => 'Ghim chủ đề và đánh dấu là thông báo',
-            'state-0' => 'Đã bỏ ghim chủ đề',
-            'state-1' => 'Đã ghim chủ đề',
-            'state-2' => 'Đã ghim và đánh dấu chủ đề là thông báo',
+            'to_0' => 'Unpin topic',
+            'to_0_done' => 'Topic has been unpinned',
+            'to_1' => 'Pin topic',
+            'to_1_done' => 'Topic has been pinned',
+            'to_2' => 'Pin topic and mark as announcement',
+            'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
         'show' => [
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} không có bình chọn|[1,*] :count phiếu',
                     'current' => 'Bạn còn :votes.',
-                    'not_enough' => 'Bạn không còn lượt bình chọn nào hết',
+                    'not_enough' => "Bạn không còn lượt bình chọn nào hết",
                 ],
             ],
 
@@ -259,10 +259,10 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Đã hủy đăng kí chủ đề',
-            'state-1' => 'Đã đăng khỉ chủ đề',
-            'watch-0' => 'Hủy đăng kí chủ đề',
-            'watch-1' => 'Đăng kí chủ đề',
+            'to_not_watching' => 'Not bookmarked',
+            'to_watching' => 'Bookmark',
+            'to_watching_mail' => 'Bookmark with notification',
+            'mail_disable' => 'Disable notification',
         ],
     ],
 ];

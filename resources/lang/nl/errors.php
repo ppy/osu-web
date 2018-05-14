@@ -19,17 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
-        'http-403' => 'Toegang geweigerd.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
-        ],
-    ],
-    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
-    'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
-    'unknown' => 'Een onbekende fout trad op.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Een onbekende fout trad op.",
 ];

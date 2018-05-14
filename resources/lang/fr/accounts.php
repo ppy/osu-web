@@ -22,15 +22,16 @@ return [
     'edit' => [
         'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => "Éditer l'Avatar", // Base text changed, please check.
+            'title' => 'Éditer l\'Avatar',
         ],
 
         'email' => [
             'current' => 'email actuel',
             'new' => 'nouvel email',
-            'new_confirmation' => "confirmation de l'email",
+            'new_confirmation' => 'confirmation de l\'email',
             'title' => 'Email',
         ],
 
@@ -42,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Éditer le Profil', // Base text changed, please check.
+            'title' => 'Éditer le Profil',
 
             'user' => [
                 'user_from' => 'localisation actuelle',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -61,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => "Confirmation du changement d'email d'osu!",
+        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
         'update' => 'mettre à jour',
     ],
 
     'update_password' => [
-        'email_subject' => "Confirmation du changement de mot de passe d'osu!",
+        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
         'update' => 'mettre à jour',
     ],
 

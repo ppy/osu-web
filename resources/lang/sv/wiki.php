@@ -25,6 +25,7 @@ return [
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Ej Hittad',
         'missing_translation' => 'Begärd sida kunde ej hittas för nuvarande valt språk.',
+        'search' => 'Search existing pages for :link.',
         'toc' => 'Innehåll',
 
         'edit' => [

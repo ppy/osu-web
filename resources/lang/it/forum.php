@@ -20,6 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
+    'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 
@@ -47,12 +48,14 @@ return [
     ],
 
     'post' => [
-        'confirm_delete' => 'Vuoi veramente eliminare il post?',
+        'confirm_destroy' => 'Really delete post?',
+        'confirm_restore' => 'Really restore post?',
         'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
-            'delete' => 'Elimina post',
+            'destroy' => 'Delete post',
+            'restore' => 'Restore post',
             'edit' => 'Modifica post',
         ],
     ],
@@ -64,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'deleted topic',
         'go_to_latest' => 'guarda gli ultimi post',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
@@ -74,6 +78,9 @@ return [
 
         'create' => [
             'preview' => 'Anteprima',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Write',
             'submit' => 'Invia',
 
             'placeholder' => [
@@ -93,11 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
-
-            'zoom' => [
-                'start' => 'Schermo intero',
-                'end' => 'Esci da Schermo Intero',
-            ],
         ],
     ],
 
@@ -105,6 +107,7 @@ return [
         'index' => [
             'title' => 'Iscrizioni ai Topic',
             'title_compact' => 'iscrizioni',
+            'title_main' => 'Forum <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -129,7 +132,9 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'reply' => 'Reply',
             'reply_with_quote' => 'Quota il post per rispondere',
+            'search' => 'Search',
         ],
 
         'create' => [
@@ -155,9 +160,55 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Edit title',
+        ],
+
         'index' => [
             'views' => 'visualizzazioni',
             'replies' => 'risposte',
+        ],
+
+        'issue_tag_added' => [
+            'to_0' => 'Remove "added" tag',
+            'to_0_done' => 'Removed "added" tag',
+            'to_1' => 'Add "added" tag',
+            'to_1_done' => 'Added "added" tag',
+        ],
+
+        'issue_tag_assigned' => [
+            'to_0' => 'Remove "assigned" tag',
+            'to_0_done' => 'Removed "assigned" tag',
+            'to_1' => 'Add "assigned" tag',
+            'to_1_done' => 'Added "assigned" tag',
+        ],
+
+        'issue_tag_confirmed' => [
+            'to_0' => 'Remove "confirmed" tag',
+            'to_0_done' => 'Removed "confirmed" tag',
+            'to_1' => 'Add "confirmed" tag',
+            'to_1_done' => 'Added "confirmed" tag',
+        ],
+
+        'issue_tag_duplicate' => [
+            'to_0' => 'Remove "duplicate" tag',
+            'to_0_done' => 'Removed "duplicate" tag',
+            'to_1' => 'Add "duplicate" tag',
+            'to_1_done' => 'Added "duplicate" tag',
+        ],
+
+        'issue_tag_invalid' => [
+            'to_0' => 'Remove "invalid" tag',
+            'to_0_done' => 'Removed "invalid" tag',
+            'to_1' => 'Add "invalid" tag',
+            'to_1_done' => 'Added "invalid" tag',
+        ],
+
+        'issue_tag_resolved' => [
+            'to_0' => 'Remove "resolved" tag',
+            'to_0_done' => 'Removed "resolved" tag',
+            'to_1' => 'Add "resolved" tag',
+            'to_1_done' => 'Added "resolved" tag',
         ],
 
         'lock' => [
@@ -177,9 +228,14 @@ return [
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
             'to_1' => 'Fissa topic',
             'to_1_done' => 'Il topic è stato fissato',
+            'to_2' => 'Pin topic and mark as announcement',
+            'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
         'show' => [
+            'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Total Posts',
+
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
@@ -187,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'current' => 'Hai :votes rimanenti.',
-                    'not_enough' => 'Non hai altri voti rimanenti',
+                    'not_enough' => "Non hai altri voti rimanenti",
                 ],
             ],
 
@@ -203,8 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Disiscritto dal topic',
-            'to_watching_done' => 'Iscritto al topic',
+            'to_not_watching' => 'Not bookmarked',
+            'to_watching' => 'Bookmark',
+            'to_watching_mail' => 'Bookmark with notification',
+            'mail_disable' => 'Disable notification',
         ],
     ],
 ];

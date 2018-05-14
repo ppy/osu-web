@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerate',
+            'regenerating' => 'Regenerating...',
+            'remove' => 'Remove',
+            'removing' => 'Removing...',
+        ],
         'show' => [
+            'covers' => 'Manage Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activeer',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Lijst van Bestellingen',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'This user is currently restricted.',
+            'message' => '(only admins can see this)',
         ],
     ],
 

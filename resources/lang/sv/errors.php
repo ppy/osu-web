@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => 'Var vänlig logga in för att fortsätta.', // Base text changed from "log" to "sign"
-        'http-403' => 'Åtkomst nekad.',
-        'http-429' => 'För många försök. Försök igen senare.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ett fel uppstod. Försök att ladda om sidan.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Ogiltigt läge specificerat.',
-        'standard_converts_only' => 'Inga poäng är tillgängliga enligt begärt läge på denna beatmap svårighetsgrad.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Du har för många favoriserade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
-    'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
-    'unknown' => 'Okänt fel uppstod.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];

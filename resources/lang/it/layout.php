@@ -26,24 +26,41 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'getChangelog' => 'changelog',
+            'account-edit' => 'settings',
+            'friends-index' => 'friends',
+            'changelog-index' => 'changelog',
+            'changelog-show' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'icone',
+            'groups-show' => 'groups',
+            'index' => 'dashboard',
+            'legal-show' => 'information',
+            'news-index' => 'news',
+            'news-show' => 'news',
+            'password-reset-index' => 'reset password',
+            'search' => 'search',
             'supportTheGame' => 'sostieni il gioco',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'aiuto',
-            'getWiki' => 'wiki',
             'getFaq' => 'domande comuni',
-            'getSupport' => 'supporto', //obsolete
+            'getRules' => 'rules',
+            'getSupport' => 'supporto',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmap',
-            'show' => 'informazioni',
-            'index' => 'lista',
             'artists' => 'artisti in primo piano',
-            // 'getPacks' => 'pacchi',
-            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart // Base text has changed, please check.
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
+            'beatmapset-watches-index' => 'modding watchlist',
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'lista',
+            'packs' => 'packs',
+            'show' => 'informazioni',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -51,11 +68,17 @@ return [
         ],
         'rankings' => [
             '_' => 'rank',
-            'charts' => 'charts', // Base text has changed, please check.
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'charts',
+            'score' => 'score',
+            'country' => 'country',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunità',
-            'getForum' => 'forum', // Base text changed to plural, please check.
+            'dev' => 'osu!dev',
+            'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'dirette',
             'contests' => 'concorsi',
@@ -64,10 +87,10 @@ return [
             'tournaments-index' => 'tornei',
             'tournaments-show' => 'informazioni sul torneo',
             'forum-topic-watches-index' => 'Iscrizioni ai Topic',
-            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-create' => 'forum',
+            'forum-topics-show' => 'forum',
+            'forum-forums-index' => 'forum',
+            'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
             '_' => 'multigiocatore',
@@ -84,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'utente',
-            'getLogin' => 'login', // Base text changed from "log" to "sign"
+            'getLogin' => 'login',
             'disabled' => 'disabilitato',
 
             'register' => 'registra',
@@ -93,11 +116,18 @@ return [
 
             'messages' => 'Messaggi',
             'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Disconnettiti',
             'help' => 'Aiuto',
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'user modding history',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'negozio',
+            'checkout-show' => 'checkout',
             'getListing' => 'lista',
             'cart-show' => 'carrello',
 
@@ -121,10 +151,12 @@ return [
         ],
         'admin' => [
             '_' => 'admministratori',
+            'beatmapsets-covers' => 'beatmapset covers',
             'logs-index' => 'log',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'copertine',
                 'show' => 'dettagli',
             ],
         ],
@@ -134,7 +166,7 @@ return [
         'general' => [
             '_' => 'Generale',
             'home' => 'Home',
-            'changelog' => 'Changelog',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Lista Beatmap',
             'download' => 'Scarica osu!',
             'wiki' => 'Wiki',
@@ -149,7 +181,7 @@ return [
         'support' => [
             '_' => 'Sostieni osu!',
             'tags' => 'Tag Supporter',
-            'merchandise' => 'Merchandise', // ?
+            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Legale e Status',
@@ -162,44 +194,44 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
+            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
         ],
         '403' => [
-            'error' => 'Non dovresti essere qui.',
+            'error' => "Non dovresti essere qui.",
             'description' => 'Potresti comunque provare tornando indietro.',
         ],
         '401' => [
-            'error' => 'Non dovresti essere qui.', // Base text changed from "log" to "sign"
+            'error' => "Non dovresti essere qui.",
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
         ],
         '405' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
+            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
-            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
+            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
-            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
+            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
-            'description' => 'La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.',
+            'description' => "La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Nel caso, ecco un codice che puoi dare al supporto!',
+        'reference' => "Nel caso, ecco un codice che puoi dare al supporto!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'indirizzo email',
-            'forgot' => 'Ho dimenticato i miei dati',
+            'forgot' => "Ho dimenticato i miei dati",
             'password' => 'password',
             'title' => 'Accedi per procedere',
 
@@ -210,15 +242,22 @@ return [
         ],
 
         'register' => [
-            'info' => 'Ha bisogno di un account, signore. Perchè non ne ha ancora uno?',
-            'title' => 'Non hai un account?',
+            'info' => "Ha bisogno di un account, signore. Perchè non ne ha ancora uno?",
+            'title' => "Non hai un account?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
+            'account-edit' => 'Settings',
+            'friends' => 'Friends',
+            'logout' => 'Disconnettiti',
             'profile' => 'Mio Profilo',
-            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Type to search!',
+        'retry' => 'Search failed. Click to retry.',
     ],
 ];

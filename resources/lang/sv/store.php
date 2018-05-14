@@ -28,11 +28,23 @@ return [
         'cart_problems_edit' => 'Klicka här för att redigera det.',
         'declined' => 'Betalningen blev avbruten.',
         'error' => 'Det var ett problem med att slutföra din betalning :(',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Betala med Paypal',
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
+            'link_text' => 'click here',
+        ],
         'delayed_shipping' => 'Vi är för nuvarande överväldigad med orders! Du får gärna placera din order, men du kanske kommer få en **extra 1-2 veckors försening** medans vi kommer ikapp alla ordrar.',
     ],
 
     'discount' => 'spara :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -64,14 +76,16 @@ return [
         'gift' => 'present till spelare',
         'require_login' => [
             '_' => 'Du behöver vara :link för att få en supporter tagg!',
-            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
+            'link_text' => 'inloggad',
         ],
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
-            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
+            'link_text' => 'inloggad',
         ],
     ],
 ];

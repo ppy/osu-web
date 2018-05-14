@@ -22,7 +22,7 @@ return [
     'months' => 'måneder',
 
     'user_search' => [
-        'not_found' => 'Denne bruger eksisterer ikke',
         'searching' => 'søger...',
+        'not_found' => "Denne bruger eksisterer ikke",
     ],
 ];
