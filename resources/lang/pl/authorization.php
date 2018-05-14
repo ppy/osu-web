@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => 'Nie możesz głosować we własnej dyskusji!',
+            'owner' => "Nie możesz głosować we własnej dyskusji!",
             'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
         ],
     ],
@@ -87,7 +87,7 @@ return [
 
             'store' => [
                 'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
-                'too_many_help_posts' => 'Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh',
+                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -100,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
-                    'restricted' => 'Nie możesz odpowiadać podczas blokady konta.',
-                    'silenced' => 'Nie możesz odpowiadać podczas uciszenia.',
+                    'restricted' => "Nie możesz odpowiadać podczas blokady konta.",
+                    'silenced' => "Nie możesz odpowiadać podczas uciszenia.",
                 ],
             ],
 
@@ -118,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
-                    'restricted' => 'Nie możesz głosować podczas blokady konta.',
-                    'silenced' => 'Nie możesz głosować podczas uciszenia.',
+                    'restricted' => "Nie możesz głosować podczas blokady konta.",
+                    'silenced' => "Nie możesz głosować podczas uciszenia.",
                 ],
             ],
 
@@ -144,9 +144,9 @@ return [
 
     'unauthorized' => 'Odmowa dostępu.',
 
-    'silenced' => 'Nie możesz tego zrobić podczas uciszenia.',
+    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
 
-    'restricted' => 'Nie możesz tego zrobić podczas blokady konta.',
+    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
 
     'user' => [
         'page' => [
