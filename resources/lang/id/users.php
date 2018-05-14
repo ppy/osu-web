@@ -92,12 +92,12 @@ return [
         'age' => ':age tahun',
         'change_avatar' => 'ganti avatar Anda!',
         'first_members' => 'Di sini dari awal',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Tersedia',
                 'available_info' => "Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.",
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang diperoleh',
                 'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Pengguna ini belum menerima kudosu!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Peringkat',
                 'weighted_pp' => 'Terhitung: :pp (:percentage)',
 
@@ -265,14 +265,14 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Minat',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => '',
-            'twitter' => '',
-            'website' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Website',
         ],
         'not_found' => [
             'reason_1' => 'Pengguna mungkin telah mengubah nama penggunanya.',
@@ -297,7 +297,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
-            'level' => '',
+            'level' => 'Level :level',
             'maximum_combo' => 'Kombo Maksimum',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Daring',
-        'offline' => 'Luring',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Pengguna dibuat',
