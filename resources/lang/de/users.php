@@ -97,7 +97,7 @@ return [
         'joined_at' => ':date beigetreten',
         'lastvisit' => 'Zuletzt gesehen :date',
         'missingtext' => 'Vielleicht hast du dich verschrieben (oder der Benutzer wurde gebannt)!',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => '(Noch) keine.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Lieblings-Beatmaps (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Verfügbares Kudosu',
                 'available_info' => "Kudosu kann gegen Kudosu-Sterne eingetauscht werden, die deiner Beatmap mehr Aufmerksamkeit bringen. Dies ist die Menge an Kudosu, die du noch nicht eingetauscht hast.",
                 'recent_entries' => 'Kudosu-Geschichte',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
                 'total_info' => 'Basierend auf dem Beitrag zur Beatmapmoderation. Siehe <a href="'.osu_url('user.kudosu').'">diese Seite</a> für weitere Informationen.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Noch keine Performance-Rekorde. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Ränge',
                 'weighted_pp' => 'gewichtet: :pp (:percentage)',
 
@@ -252,7 +252,7 @@ return [
                     'date' => 'datum',
                     'action' => 'verstoß',
                     'length' => 'länge',
-                    'length_permanent' => '',
+                    'length_permanent' => 'Permanent',
                     'description' => 'beschreibung',
                     'actor' => 'von :username',
 
@@ -267,11 +267,11 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interessen',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Aktueller Standort',
             'occupation' => 'Beschäftigung',
-            'skype' => '',
-            'twitter' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'Webseite',
         ],
         'not_found' => [
@@ -297,20 +297,20 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
-            'level' => '',
+            'level' => 'Level :level',
             'maximum_combo' => 'Höchste Combo',
             'play_count' => '<Play>anzahl',
             'play_time' => '',
             'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
             'score_ranks' => 'Ränge durch Punkte',
-            'total_hits' => '',
+            'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'User erstellt',
