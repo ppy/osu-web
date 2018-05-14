@@ -48,7 +48,7 @@ return [
             'user' => [
                 'user_from' => '當前位置',
                 'user_interests' => '興趣愛好',
-                'user_msnm' => 'Skype',
+                'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => '推特',
                 'user_website' => '個人主頁',
