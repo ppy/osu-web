@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Mohon masuk untuk melanjutkan.',
-        'http-403' => 'Akses ditolak.',
-        'http-429' => 'Terlalu banyak percobaan. Coba lagi nanti.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Terjadi masalah. Coba muat ulang halaman.',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => 'Mode tidak valid.',
-        'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Anda memiliki terlalu banyak beatmap favorit! Mohon hapus satu sebelum melanjutkan.',
-    ],
-    'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
-    'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',
-    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini saat akun Anda sedang dibatasi.',
-    'unknown' => 'Terjadi masalah yang tidak diketahui.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Terjadi masalah yang tidak diketahui.",
 ];
