@@ -81,6 +81,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => '',
+        'checking' => '',
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',
             'link_text' => 'đăng nhập',
