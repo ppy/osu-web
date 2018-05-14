@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '帳戶設置',
         'title_compact' => '設置',
+        'username' => '用户名',
 
         'avatar' => [
-            'title' => '編輯頭像', // Base text changed, please check.
+            'title' => '編輯頭像',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => '編輯個人資料', // Base text changed, please check.
+            'title' => '編輯個人資料',
 
             'user' => [
                 'user_from' => '當前位置',
                 'user_interests' => '興趣愛好',
-                'user_msnm' => 'skype',
+                'user_msnm' => 'Skype',
                 'user_occ' => '職業',
                 'user_twitter' => '推特',
                 'user_website' => '個人主頁',
+                'user_discord' => 'Discord',
             ],
         ],
 
