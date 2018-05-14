@@ -48,7 +48,7 @@ return [
     'item' => [
         'created_at' => 'Date du post',
         'deleted_at' => 'Date de suppression',
-        'message_type' => '',
+        'message_type' => 'Type',
         'permalink' => 'Permalien',
     ],
 
@@ -75,7 +75,7 @@ return [
         'admin' => 'administrateur',
         'bng' => 'nominateur',
         'owner' => 'mappeur',
-        'qat' => '',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
