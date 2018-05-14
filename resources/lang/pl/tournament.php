@@ -35,7 +35,7 @@ return [
         'login_to_register' => 'Prosimy, :login, aby poznać szczegóły rejestracji!',
         'not_yet_entered' => 'Twoje konto nie jest zarejestrowane na ten turniej.',
         'rank_too_low' => 'Przepraszamy, ale twoja pozycja w rankingu nie spełnia wymagań turnieju!',
-        'registration_ends' => 'Rejestracja kończy się :date',
+        'registration_ends' => 'Rejestracja zakończy się :date',
 
         'button' => [
             'cancel' => 'Anuluj rejestrację',
