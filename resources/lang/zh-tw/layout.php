@@ -19,15 +19,14 @@
  */
 
 return [
-    'defaults' => [ //TODO 好長,之後再翻譯吧
-        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
+    'defaults' => [
+        'page_description' => '',
     ],
 
     'menu' => [
         'home' => [
             '_' => '主頁',
             'account-edit' => '設置',
-            'friends' => '好友',
             'friends-index' => '好友',
             'changelog-index' => '更新日誌',
             'changelog-show' => '版本',
@@ -41,13 +40,15 @@ return [
             'password-reset-index' => '重置密碼',
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
+            'team' => '团队',
         ],
         'help' => [
             '_' => '幫助',
             'getFaq' => '常見問題',
+            'getRules' => '规章制度',
             'getSupport' => '獲取幫助',
-            'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
+            'getWiki' => '',
+            'wiki-show' => '',
         ],
         'beatmaps' => [
             '_' => '譜面',
@@ -69,17 +70,16 @@ return [
             '_' => '排名',
             'index' => '表現',
             'performance' => '表現',
-            'charts' => '月賽', // Base text has changed, please check.
+            'charts' => '月賽',
             'score' => '得分',
             'country' => '國家',
-            'kudosu' => 'kudosu',
+            'kudosu' => '',
         ],
         'community' => [
             '_' => '社區',
             'dev' => 'osu! 開發',
             'getForum' => '論壇',
             'getChat' => '聊天',
-            'getSupport' => '獲取幫助',
             'getLive' => '直播',
             'contests' => '評選',
             'profile' => '個人資料',
@@ -112,13 +112,18 @@ return [
 
             'register' => '註冊',
             'reset' => '重置',
-            'new' => 'new', //TODO 需要上下文
+            'new' => '',
 
             'messages' => '信息',
             'settings' => '設置',
             'logout' => '退出',
             'help' => '幫助',
-            'modding-history-index' => '玩家譜面活動', //需要上下文 // needs update
+            'modding-history-discussions' => '用户摸图讨论',
+            'modding-history-events' => '用户摸图事件',
+            'modding-history-index' => '玩家譜面活動',
+            'modding-history-posts' => '用户摸图帖',
+            'modding-history-votesGiven' => '用户摸图投票数',
+            'modding-history-votesReceived' => '用户摸图获得票数',
         ],
         'store' => [
             '_' => '商店',
@@ -130,17 +135,17 @@ return [
             'getInvoice' => '發票',
             'products-show' => '商品',
 
-            'new' => 'new', //TODO 需要上下文
-            'home' => 'home', //TODO 需要上下文
-            'index' => 'home', //TODO 需要上下文
+            'new' => '',
+            'home' => '',
+            'index' => '',
             'thanks' => '感謝',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum', //TODO 需要上下文
+            '_' => '',
             'forum-covers-index' => '論壇封面',
         ],
         'admin-store' => [
-            '_' => 'admin::store', //TODO 需要上下文
+            '_' => '',
             'orders-index' => '訂單',
             'orders-show' => '訂單',
         ],
@@ -164,7 +169,7 @@ return [
             'changelog-index' => '更新日誌',
             'beatmaps' => '譜面列表',
             'download' => '下載 osu!',
-            'wiki' => 'Wiki',
+            'wiki' => '',
         ],
         'help' => [
             '_' => '幫助 & 社區',
@@ -189,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => '無法找到網頁',
-            'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
+            'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '403' => [
-            'error' => '沒有權限',
+            'error' => "沒有權限",
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面',
         ],
         '401' => [
-            'error' => '沒有權限',
+            'error' => "沒有權限",
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
         ],
         '405' => [
             'error' => '無法找到網頁',
-            'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
+            'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '500' => [
             'error' => '哎呀，服務器崩潰了',
-            'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
+            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
         ],
         'fatal' => [
             'error' => '哎呀，服務器被外星人帶走了',
-            'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
+            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
         ],
         '503' => [
             'error' => '啊哦...服務器正在維護中',
-            'description' => '每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。',
+            'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防萬一，你可以將這裡的代碼發給我們！',
+        'reference' => "以防萬一，你可以將這裡的代碼發給我們！",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => '用戶名/郵箱',
-            'forgot' => '我忘記了我的登錄信息',
+            'forgot' => "我忘記了我的登錄信息",
             'password' => '密碼',
             'title' => '登錄以繼續',
 
             'error' => [
-                'email' => '用戶名或郵箱不存在',
+                'email' => "用戶名或郵箱不存在",
                 'password' => '密碼錯誤',
             ],
         ],
 
         'register' => [
-            'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
-            'title' => '沒有帳號？',
+            'info' => "點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！",
+            'title' => "沒有帳號？",
         ],
     ],
 
