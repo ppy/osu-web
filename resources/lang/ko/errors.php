@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-401' => '계속하려면 로그인해주세요.', // Base text changed from "log" to "sign"
-        'http-403' => '접근이 거부됨.',
-        'http-429' => '시도 횟수가 너무 많습니다. 나중에 다시 시도해주세요.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => '문제가 발생했습니다. 페이지를 새로고침 해보세요.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '잘못된 모드 종류입니다.',
-        'standard_converts_only' => '선택하신 모드로는 현재 난이도에서 점수를 사용할 수 없습니다.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => '즐겨찾기한 비트맵이 너무 많습니다! 계속하려면 즐겨찾기를 하나 해제해주세요.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => '로그아웃 되었습니다. 로그인하시고 다시 시도해보세요.', // Base text changed from "log" to "sign"
-    'supporter_only' => '서포터가 아니면 이 기능을 사용할 수 없습니다.',
-    'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.', // 딱딱한 번역 (not able to perform this action -> 작업을 수행할 수 없습니다)
-    'unknown' => '알 수 없는 문제가 발생했습니다.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
