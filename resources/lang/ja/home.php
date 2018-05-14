@@ -64,7 +64,7 @@ return [
             'beatmapset' => '譜面',
             'forum_post' => 'フォーラム',
             'user' => 'プレイヤー',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'wikiを検索',
             'more_simple' => '他のwiki検索結果を見る',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -85,9 +85,9 @@ return [
         'tagline' => "さぁ、<br>始めよう！",
         'action' => 'osu!をダウンロード',
         'os' => [
-            'windows' => '',
-            'macos' => '',
-            'linux' => '',
+            'windows' => 'for Windows',
+            'macos' => 'for macOS',
+            'linux' => 'for Linux',
         ],
         'mirror' => 'ミラー',
         'macos-fallback' => 'macOSユーザー',
@@ -129,8 +129,8 @@ return [
         'beatmaps' => [
             'new' => '最新の公認譜面',
             'popular' => '人気の譜面',
-            'by' => '',
-            'plays' => '',
+            'by' => 'by',
+            'plays' => ':count plays',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',
