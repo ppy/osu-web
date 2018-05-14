@@ -32,7 +32,7 @@ return [
             'current' => 'nuværende email-adresse',
             'new' => 'ny email-adresse',
             'new_confirmation' => 'bekræftelse af email-adresse',
-            'title' => '',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -48,9 +48,9 @@ return [
             'user' => [
                 'user_from' => 'nuværende placering',
                 'user_interests' => 'interesse',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
                 'user_discord' => '',
             ],
@@ -76,7 +76,7 @@ return [
         'title' => 'Spillestile',
         'mouse' => 'mus',
         'keyboard' => 'tastatur',
-        'tablet' => '',
-        'touch' => '',
+        'tablet' => 'tablet',
+        'touch' => 'touch',
     ],
 ];
