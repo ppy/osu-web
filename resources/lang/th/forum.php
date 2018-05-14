@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Run poll for',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',
                 'max_options' => 'Options per user',
