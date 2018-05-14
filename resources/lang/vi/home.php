@@ -42,7 +42,7 @@ return [
         'beatmapset' => [
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'tất cả',
-            'beatmapset' => '',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'diễn đàn',
             'user' => 'người chơi',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Tìm trong wiki',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong wiki',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -135,12 +135,12 @@ return [
         'buttons' => [
             'download' => 'Tải Xuống osu!',
             'support' => 'Ủng Hộ osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
         'body' => [
             'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
