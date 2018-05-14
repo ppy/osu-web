@@ -49,7 +49,7 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Tabela',
-        'standard' => '',
+        'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
