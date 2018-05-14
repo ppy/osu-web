@@ -64,7 +64,7 @@ return [
         ],
 
         'add_to_cart' => 'Ajouter au panier',
-        'notify' => "Notifiez-moi quand c'est disponible !",
+        'notify' => 'Notifiez-moi quand c\'est disponible !',
 
         'notification_success' => 'vous serez notifié quand nous aurons du stock. cliquez :link pour annuler',
         'notification_remove_text' => 'ici',
@@ -76,7 +76,7 @@ return [
         'gift' => 'offrir à un joueur',
         'require_login' => [
             '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
-            'link_text' => 'connecté', // Base text changed from "log" to "sign"
+            'link_text' => 'connecté',
         ],
     ],
 
@@ -85,7 +85,7 @@ return [
         'checking' => 'Vérification de la disponibilité de :username...',
         'require_login' => [
             '_' => 'Vous devez être :link pour changer votre nom !',
-            'link_text' => 'connecté', // Base text changed from "log" to "sign"
+            'link_text' => 'connecté',
         ],
     ],
 ];
