@@ -33,14 +33,14 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ลบไปแล้ว',
-        'title' => '',
+        'title' => 'Beatmap Discussions',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => 'Include deleted discussions',
 
             'user' => [
                 'label' => 'ผู้ใช้',
-                'overview' => '',
+                'overview' => 'Activities overview',
             ],
         ],
     ],
@@ -53,8 +53,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
+        'confirm' => 'None of the posts address my concern',
+        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
     ],
 
     'reply' => [
@@ -72,10 +72,10 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
-        'bng' => '',
-        'owner' => '',
-        'qat' => '',
+        'admin' => 'admin',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
