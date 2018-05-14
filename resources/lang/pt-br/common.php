@@ -30,6 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancelar',
+        'change' => 'change',
+        'click_to_copy' => 'click to copy to clipboard',
+        'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Excluir',
         'permalink' => 'copiar link da postagem',
         'permalink_copied' => 'link copiado',
@@ -46,6 +49,7 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
         'days' => ':count dia|:count dias',
         'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hora|:count horas',
