@@ -25,14 +25,14 @@ return [
         'username' => 'nama pengguna',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => '',
         ],
 
         'email' => [
             'current' => 'email saat ini',
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
-            'title' => 'Email',
+            'title' => '',
         ],
 
         'password' => [
@@ -48,11 +48,11 @@ return [
             'user' => [
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'pekerjaan',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'situs web',
-                'user_discord' => 'discord',
+                'user_discord' => '',
             ],
         ],
 
@@ -74,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Gaya Bermain',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
+        'mouse' => '',
+        'keyboard' => '',
+        'tablet' => '',
         'touch' => 'layar sentuh',
     ],
 ];
