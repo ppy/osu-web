@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Partidas Multiplayer',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => ':user saiu da partida',
@@ -46,7 +46,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Precisão',
-                'combo' => 'Combo',
+                'combo' => '',
                 'score' => 'Pontuação',
             ],
         ],
