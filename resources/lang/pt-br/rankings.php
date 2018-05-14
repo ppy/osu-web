@@ -22,7 +22,7 @@ return [
     'header' => 'Classificação de :type',
     'type' => [
         'performance' => 'Desempenho',
-        'charts' => 'Gráficos', // Base text has changed, please check.
+        'charts' => 'Gráficos',
         'score' => 'Pontuação',
         'country' => 'País',
     ],
@@ -31,13 +31,13 @@ return [
         'active_users' => 'Usuários Ativos',
         'country' => 'País',
         'play_count' => 'Vezes Jogadas',
-        'performance' => 'Performance',
+        'performance' => '',
         'total_score' => 'Pontuação Total',
         'ranked_score' => 'Pontuação Ranqueada',
         'average_score' => 'Pont. Média',
         'average_performance' => 'Perf. Média',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];
