@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => '下载前必读',
             'instruction' => [
-                '_' => '安装：下载好曲包之后,直接解压 .rar 文件到你的 osu! 的 Songs 文件夹下。
+                '_' => "安装：下载好曲包之后,直接解压 .rar 文件到你的 osu! 的 Songs 文件夹下。
                     所有的谱面此时都是 .zip 或 .osz 文件, osu! 会在你下一次启动时自动载入这些谱面，
                     因此 :scary 自己解压这些谱面。
-                    否则这些谱面可能无法正常游玩。',
+                    否则这些谱面可能无法正常游玩。",
                 'scary' => '不要',
             ],
             'note' => [
@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => '艺术家/专辑',
-        'chart' => '月赛', // Base text has changed, please check.
+        'chart' => '月赛',
         'standard' => '标准',
         'theme' => '主题',
     ],
