@@ -49,7 +49,7 @@ return [
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => '수량',
         ],
