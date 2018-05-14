@@ -23,6 +23,6 @@ return [
 
     'user_search' => [
         'searching' => 'đang tìm...',
-        'not_found' => 'Không tồn tại người dùng này',
+        'not_found' => "Không tồn tại người dùng này",
     ],
 ];
