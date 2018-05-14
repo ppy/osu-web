@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title' => '',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
