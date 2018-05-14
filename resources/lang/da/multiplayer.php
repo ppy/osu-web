@@ -20,12 +20,12 @@
 
 return [
     'match' => [
-        'header' => '',
+        'header' => 'Multiplayer Matches',
         'team-types' => [
             'head-to-head' => 'Alle mod alle',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user forlod matchen',
@@ -46,11 +46,11 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Præcision',
-                'combo' => '',
-                'score' => '',
+                'combo' => 'Combo',
+                'score' => 'Score',
             ],
         ],
-        'failed' => '',
+        'failed' => 'FAILED',
         'teams' => [
             'blue' => 'Blåt Hold',
             'red' => 'Rødt Hold',
@@ -66,7 +66,7 @@ return [
             'score' => 'Højeste Score',
             'accuracy' => 'Højeste Præcision',
             'combo' => 'Højeste Combo',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
