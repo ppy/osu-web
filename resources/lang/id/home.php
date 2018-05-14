@@ -22,7 +22,7 @@ return [
     'landing' => [
         'download' => 'Unduh sekarang',
         'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
-        'peak' => 'Terbanyak, :count pengguna daring',
+        'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
 
         'slogan' => [
@@ -121,9 +121,9 @@ return [
             'welcome' => 'Halo, <strong>:username</strong>!',
             'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
-                'friends' => 'Teman yang Daring',
+                'friends' => 'Teman yang Online',
                 'games' => 'Permainan',
-                'online' => 'Pemain yang Daring',
+                'online' => 'Pemain yang Online',
             ],
         ],
         'beatmaps' => [

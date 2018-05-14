@@ -153,14 +153,14 @@ return [
                 ],
             ],
             'historical' => [
-                'empty' => 'Tidak ada catatan performa. :(',
+                'empty' => 'Tidak ada catatan performa terbaru. :(',
                 'title' => 'Historis',
 
                 'monthly_playcounts' => [
                     'title' => 'Riwayat Main',
                 ],
                 'most_played' => [
-                    'count' => 'kali dimainkan',
+                    'count' => 'jumlah dimainkan',
                     'title' => 'Beatmap yang Paling Banyak Dimainkan',
                 ],
                 'recent_plays' => [
@@ -229,7 +229,7 @@ return [
                 'title' => 'Terbaru',
             ],
             'top_ranks' => [
-                'empty' => 'Belum ada catatan performa yang luar biasa. :(',
+                'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp' => ':amountpp',
                 'title' => 'Peringkat',
@@ -239,7 +239,7 @@ return [
                     'title' => 'Performa Terbaik',
                 ],
                 'first' => [
-                    'title' => 'Peringkat Tempat Pertama',
+                    'title' => 'Peringkat Pertama',
                 ],
             ],
             'account_standing' => [
@@ -288,7 +288,7 @@ return [
             'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
         ],
         'post_count' => [
-            '_' => 'Berkontribusi :link',
+            '_' => 'Berkontribusi sebanyak :link',
             'count' => ':count postingan forum',
         ],
         'rank' => [
@@ -298,7 +298,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'maximum_combo' => 'Combo Maksimum',
+            'maximum_combo' => 'Kombo Maksimum',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Daring',
-        'offline' => 'Luring',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => 'Pengguna dibuat',

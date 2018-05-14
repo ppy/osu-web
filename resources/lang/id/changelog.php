@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'umpan',
     'generic' => 'Perbaikan bug dan perkembangan kecil',
-    'users-online' => '1 pengguna daring|:users pengguna daring',
+    'users-online' => ':users pengguna online',
 
     'prefixes' => [
         'add' => 'tambahan',
