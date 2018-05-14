@@ -42,7 +42,7 @@ return [
         'beatmapset' => [
             'more' => ':count mais resultados de beatmaps',
             'more_simple' => 'Veja mais resultados de busca de beatmaps',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => '',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
             'user' => 'jogador',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Procurar na wiki',
             'more_simple' => 'Veja mais resultados de busca na wiki',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'Notícias',
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
@@ -135,7 +135,7 @@ return [
         'buttons' => [
             'download' => 'Baixar osu!',
             'support' => 'Apoie o osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
