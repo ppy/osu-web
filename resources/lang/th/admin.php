@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'จัดการ Beatmapset Covers',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'เปิดการใช้งาน',
                 'activate_confirm' => 'เปิดการใช้งาน modding v2 สำหรับ beatmap นี้หรือไม่?',
                 'active' => 'เปิดการใช้งาน',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'ลบ',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'ไม่มี cover',
 
