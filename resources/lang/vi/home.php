@@ -42,7 +42,7 @@ return [
         'beatmapset' => [
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'tất cả',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => '',
             'forum_post' => 'diễn đàn',
             'user' => 'người chơi',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -77,12 +77,12 @@ return [
         'wiki_page' => [
             'link' => 'Tìm trong wiki',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong wiki',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
-'download' => [
-        'tagline' => 'hãy<br>bắt đầu!',
+    'download' => [
+        'tagline' => "hãy<br>bắt đầu!",
         'action' => 'Tải xuống osu!',
         'os' => [
             'windows' => 'cho Windows',
@@ -135,18 +135,18 @@ return [
         'buttons' => [
             'download' => 'Tải Xuống osu!',
             'support' => 'Ủng Hộ osu!',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => '',
         'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
         'body' => [
             'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
             'part-2' => 'Và bạn có biết rằng bằng cách hỗ trợ osu! bạn nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tự động tải xuống trong game</strong> khi bạn trong chế độ theo dõi người chơi và trong chế độ multiplayer?',
         ],
         'find-out-more' => 'Nhấp vào đây để tìm hiểu thêm!',
-        'download-starting' => 'Ồ, và đừng lo lăng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)',
+        'download-starting' => "Ồ, và đừng lo lăng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
     ],
 ];
