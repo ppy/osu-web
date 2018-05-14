@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.',
+        'approve' => '',
         'discussion_delete' => 'Moderator menghapus diskusi :discussion.',
         'discussion_post_delete' => 'Moderator menghapus posting dari diskusi :discussion.',
         'discussion_post_restore' => 'Moderator mengembalikan pos dari diskusi :discussion.',
@@ -36,8 +36,8 @@ return [
         'kudosu_recalculate' => 'Jumlah perolehan kudosu untuk diskusi :discussion telah dihitung ulang.',
         'nominate' => 'Dinominasi oleh :user.',
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
-        'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'qualify' => '',
+        'rank' => '',
     ],
 
     'index' => [
