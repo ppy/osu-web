@@ -19,11 +19,17 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'aktivera',
                 'activate_confirm' => 'aktivera modding v2 på denna beatmap?',
                 'active' => 'aktiv',
@@ -37,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Radera',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Inget omslag satt',
 
@@ -67,7 +73,7 @@ return [
             'title' => 'Admin Konsol Sak',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Allmänt',
                 'store' => 'Affär',
             ],
