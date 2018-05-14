@@ -77,4 +77,9 @@ return [
         'owner' => '谱面作者',
         'qat' => '质量保证团队',
     ],
+
+    'user_filter' => [
+        'everyone' => '所有人',
+        'label' => '按用户筛选',
+    ],
 ];

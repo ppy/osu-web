@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualify',
             'hype' => '推荐！',
             'mapper_note' => '备注',
+            'nomination_reset' => '重置提名',
             'praise' => '赞',
             'problem' => '问题',
             'suggestion' => '建议',
@@ -74,7 +76,12 @@ return [
 
         'mode' => [
             'events' => '历史',
+            'general' => '常规 :scope',
             'timeline' => '时间线',
+            'scopes' => [
+                'general' => '当前难度',
+                'generalAll' => '全难度',
+            ],
         ],
 
         'new' => [
@@ -127,6 +134,10 @@ return [
         'title' => '推荐',
     ],
 
+    'feedback' => [
+        'button' => '留下建议',
+    ],
+
     'nominations' => [
         'disqualification_prompt' => 'DQ 的理由？',
         'disqualified_at' => '于 :time_ago 被 DQ （:reason）。', //disqualified现在好像没有很合适的翻译，姑且先写作DQ了
@@ -139,11 +150,13 @@ return [
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
         'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required_text' => '提名数: :current/:required',
+        'reset_message_deleted' => '已删除', //上下文？
         'title' => '提名状态',
         'unresolved_issues' => '仍然有需解决的问题 。',
 
         'reset_at' => [
             'nomination_reset' => '提名于 :time_ago 被新问题 :discussion 重置。',
+            'disqualify' => ':time_ago 被 :user 因为新问题 :discussion (:message) 而 DQ.',
         ],
 
         'reset_confirm' => [
@@ -158,12 +171,14 @@ return [
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',
             'filters' => [
+                'general' => '常规', //需要更好的翻译
                 'mode' => '模式',
                 'status' => 'Rank 状态',
                 'genre' => '流派',
                 'language' => '语言',
                 'extra' => '额外',
-                'rank' => '已 Rank',
+                'rank' => '有成绩',
+                'played' => '玩过',
             ],
         ],
         'mode' => '模式',
@@ -171,6 +186,10 @@ return [
         'mapped-by' => '作者: :mapper',
         'source' => '来自 :source',
         'load-more' => '加载更多...',
+    ],
+    'general' => [
+        'recommended' => '推荐难度',
+        'converts' => '包括转谱',
     ],
     'mode' => [ //不翻译
         'any' => '所有',
@@ -202,28 +221,29 @@ return [
         'hip-hop' => '嘻哈',
         'electronic' => '电子',
     ],
-    'mods' => [ //不翻译
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
+    'mods' => [
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => '所有',
@@ -238,6 +258,11 @@ return [
         'swedish' => '瑞典语',
         'instrumental' => '器乐',
         'other' => '其他',
+    ],
+    'played' => [
+        'any' => '任意',
+        'played' => '玩过',
+        'unplayed' => '没玩过',
     ],
     'extra' => [
         'video' => '有视频',

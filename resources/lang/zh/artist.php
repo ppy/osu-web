@@ -37,11 +37,12 @@ return [
     ],
 
     'links' => [
+        'osu' => 'osu! 个人资料',
         'site' => '官方网站',
     ],
 
     'songs' => [
-        '_' => '音乐',
+        '_' => '单曲',
         'count' => ':count 首音乐',
         'exclusive' => 'osu! 独享',
     ],
