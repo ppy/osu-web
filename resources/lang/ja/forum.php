@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'ピン付けされたトピック',
-    'slogan' => 'ひとりで遊ぶにはキケンじゃ',
+    'slogan' => "ひとりで遊ぶにはキケンじゃ",
     'subforums' => 'サブフォーラム',
     'title' => 'osu!community',
 
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} 投票なし|[1,*] :count票',
                     'current' => '自分の持ち票数は:votes回です。',
-                    'not_enough' => '票が足りません。',
+                    'not_enough' => "票が足りません。",
                 ],
             ],
 
