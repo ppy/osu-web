@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'ランクドスコア',
         'average_score' => '平均スコア',
         'average_performance' => '平均Perf.',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];
