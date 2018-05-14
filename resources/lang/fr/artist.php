@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => '',
+        '_' => 'Beatmaps',
         'download' => 'Télécharger une beatmap type',
         'download-na' => 'Beatmap type non disponible',
     ],
