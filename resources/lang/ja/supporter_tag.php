@@ -23,6 +23,6 @@ return [
 
     'user_search' => [
         'searching' => '検索中・・・',
-        'not_found' => 'このユーザーは存在しません',
+        'not_found' => "このユーザーは存在しません",
     ],
 ];
