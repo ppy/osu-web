@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'aktivera',
                 'activate_confirm' => 'aktivera modding v2 på denna beatmap?',
                 'active' => 'aktiv',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Radera',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Inget omslag satt',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Admin Konsol Sak',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Allmänt',
                 'store' => 'Affär',
             ],
