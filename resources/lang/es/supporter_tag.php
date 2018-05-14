@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'months' => 'meses',
+
     'user_search' => [
         'searching' => 'buscando...',
-        'not_found' => 'Este usuario no existe',
+        'not_found' => "Este usuario no existe",
     ],
 ];
