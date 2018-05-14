@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => '',
         'download' => 'Ladda ner Beatmap Mall',
         'download-na' => 'Beatmap Mall är inte tillgänglig',
     ],
@@ -37,6 +37,7 @@ return [
     ],
 
     'links' => [
+        'osu' => '',
         'site' => 'Officiell Hemsida',
     ],
 
