@@ -276,7 +276,7 @@ return [
         ],
         'not_found' => [
             'reason_1' => 'Der gesuchte Benutzer hat seinen Namen geändert.',
-            'reason_2' => '',
+            'reason_2' => 'Der Account ist aus Sicherheitsgründen temporär nicht verfügbar.',
             'reason_3' => 'Du hast dich vielleicht verschrieben!',
             'reason_header' => 'Es gibt ein paar mögliche Gründe dafür:',
             'title' => 'Benutzer nicht gefunden! ;_;',
