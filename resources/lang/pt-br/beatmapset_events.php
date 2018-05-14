@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderador excluiu postagem da discussão :discussion.',
         'discussion_post_restore' => 'Moderador restaurou postagem da discussão :discussion.',
         'discussion_restore' => 'Moderador restaurou discussão :discussion.',
+        'disqualify' => '',
         'disqualify_legacy' => 'Desqualificado por :user. Motivo: :text.',
         'issue_reopen' => 'Reaberto problema :discussion já resolvido.',
         'issue_resolve' => 'Problema :discussion marcado como resolvido.',
@@ -45,6 +46,7 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
+        'discussion_deleted' => '',
         'type' => 'Tipo',
     ],
 ];
