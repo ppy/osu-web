@@ -54,7 +54,7 @@ return [
         '_' => 'Accedi',
         'locked_ip' => '',
         'username' => 'Nome Utente',
-        'password' => '',
+        'password' => 'Password',
         'button' => 'Accedi',
         'button_posting' => '',
         'remember' => 'Ricorda questo computer',
@@ -97,7 +97,7 @@ return [
         'joined_at' => 'Registrato :date',
         'lastvisit' => 'Ultima volta visto :date',
         'missingtext' => 'Potresti aver fatto un\'errore di battitura! (o l\'utente potrebbe essere stato bannato)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age fa da :country',
         'origin_country' => 'da :country',
         'page_description' => 'osu! - Tutto ciò che vuoi sapere su :username!',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Disponibili',
                 'available_info' => "I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.",
                 'recent_entries' => 'Storico dei recenti kudosu',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Totale Kudosu Guadagnati',
                 'total_info' => 'Basandosi su quando ha contribuito l\'utente alla moderazione delle beatmap. Vedi <a href="'.osu_url('user.kudosu').'">questa pagina</a> per ulteriori informazioni.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Questo utente non ha ricevuto alcun kudosu!",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Rank',
                 'weighted_pp' => 'valutata: :pp (:percentage)',
 
