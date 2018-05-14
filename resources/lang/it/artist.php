@@ -19,15 +19,31 @@
  */
 
 return [
+    'page_description' => 'Artisti in primo piano su osu!',
+    'title' => 'Artisti in primo piano',
+
+    'admin' => [
+        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+    ],
+
     'beatmaps' => [
         '_' => 'Mappe',
         'download' => 'Scarica Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],
-    'page_description' => 'Artisti in primo piano su osu!',
-    'title' => 'Artisti in primo piano',
-    'songs' => ':count canzone|:count songs',
+
+    'index' => [
+        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+    ],
+
     'links' => [
+        'osu' => 'osu! profile',
         'site' => 'Sito Ufficiale',
+    ],
+
+    'songs' => [
+        '_' => 'Songs',
+        'count' => ':count song|:count songs',
+        'exclusive' => 'osu! exclusive',
     ],
 ];
