@@ -22,7 +22,7 @@ return [
     'header' => 'Peringkat :type',
     'type' => [
         'performance' => 'Performa',
-        'charts' => '',
+        'charts' => 'Spotlights',
         'score' => 'Skor',
         'country' => 'Negara',
     ],
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Skor Ranked',
         'average_score' => 'Skor Rata-Rata',
         'average_performance' => 'pp Rata-Rata',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];
