@@ -44,11 +44,11 @@ return [
         ],
         'help' => [
             '_' => 'pomoc',
-            'getFaq' => '',
+            'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
@@ -73,11 +73,11 @@ return [
             'charts' => 'wyróżnionych',
             'score' => 'punktowy',
             'country' => 'krajowy',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'społeczność',
-            'dev' => '',
+            'dev' => 'osu!dev',
             'getForum' => 'fora',
             'getChat' => 'czat',
             'getLive' => 'na żywo',
@@ -141,16 +141,16 @@ return [
             'thanks' => 'dzięki',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'tła forum',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => 'zamówienia',
             'orders-show' => 'zamówienie',
         ],
         'admin' => [
-            '_' => '',
+            '_' => 'admin',
             'beatmapsets-covers' => 'tła zestawu beatmap',
             'logs-index' => 'logi',
             'root' => 'strona główna',
@@ -169,7 +169,7 @@ return [
             'changelog-index' => 'Zmiany',
             'beatmaps' => 'Beatmapy',
             'download' => 'Pobierz osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Pomoc i Społeczność',
@@ -220,8 +220,8 @@ return [
             'error' => 'Przerwa techniczna!',
             'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
