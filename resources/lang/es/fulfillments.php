@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,12 +19,12 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Gracias, osu! te <3',
-        ],
-        'supporter_gift' => [
-            'subject' => '¡Ya tienes un tag de osu! supporter!',
-        ],
+    'username_change' => [
+        'only_one' => 'only 1 username change allowed per order fulfillment.',
+        'insufficient_paid' => 'Username change cost exceeds amount paid (:expected > :actual)',
+        'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
     ],
 ];
