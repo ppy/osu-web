@@ -23,7 +23,7 @@ return [
     'saved' => 'Zapisane',
 
     'array_and' => [
-        'words_connector' => ', ',
+        'words_connector' => '',
         'two_words_connector' => ' i ',
         'last_word_connector' => ' oraz ',
     ],
@@ -62,11 +62,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => '',
+            'php' => '',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => '',
         ],
     ],
 
@@ -87,11 +87,11 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
         'count_miss' => 'Pudło',
     ],
 
