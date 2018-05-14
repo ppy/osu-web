@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'activeer',
                 'activate_confirm' => 'modding v2 activeren voor deze beatmap?',
                 'active' => 'actief',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Verwijder',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Geen cover ingesteld',
 
@@ -56,7 +56,7 @@ return [
 
                 'type-title' => [
                     'default-topic' => 'Standaardonderwerp Cover',
-                    'main' => '',
+                    'main' => 'Forum Cover',
                 ],
             ],
         ],
@@ -64,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => '',
+            'title' => 'Log Viewer',
         ],
     ],
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Adminpaneel Geval',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Algemeen',
                 'store' => 'Winkel',
             ],
