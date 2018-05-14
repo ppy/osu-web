@@ -22,17 +22,17 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '',
-            'has_reply' => '',
+            'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
-            'exhausted' => '',
+            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
         ],
         'resolve' => [
-            'not_owner' => '',
+            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
 
         'vote' => [
-            'limit_exceeded' => '',
+            'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => "Can not vote own discussion!",
             'wrong_beatmapset_state' => '',
         ],
@@ -40,49 +40,49 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => '',
-            'not_owner' => '',
+            'system_generated' => 'Automatically generated post can not be edited.',
+            'not_owner' => 'Only the poster can edit post.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => '',
+                'no_access' => 'Access to requested channel is not permitted.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => '',
-                    'moderated' => '',
-                    'not_lazer' => '',
+                    'no_access' => 'Access to target channel is required.',
+                    'moderated' => 'Channel is currently moderated.',
+                    'not_lazer' => 'You can only speak in #lazer at this time.',
                 ],
 
-                'not_allowed' => '',
+                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => '',
+        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'not_owner' => '',
+                'only_last_post' => 'Only last post can be deleted.',
+                'locked' => 'Can not delete post of a locked topic.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'not_owner' => 'Only poster can delete the post.',
             ],
 
             'edit' => [
-                'deleted' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'not_owner' => '',
-                'topic_locked' => '',
+                'deleted' => 'Can not edit deleted post.',
+                'locked' => 'The post is locked from editing.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'not_owner' => 'Only poster can edit the post.',
+                'topic_locked' => 'Can not edit post of a locked topic.',
             ],
 
             'store' => [
@@ -93,67 +93,67 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
-                'locked' => '',
-                'no_forum_access' => '',
-                'no_permission' => '',
+                'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'locked' => 'Can not reply to a locked thread.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to reply.',
 
                 'user' => [
                     'require_login' => 'Please login to reply.',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'restricted' => "Can't reply while restricted.",
+                    'silenced' => "Can't reply while silenced.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => '',
-                'no_permission' => '',
-                'forum_closed' => '',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to create new topic.',
+                'forum_closed' => 'Forum is closed and can not be posted to.',
             ],
 
             'vote' => [
-                'no_forum_access' => '',
-                'over' => '',
-                'voted' => '',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
 
                 'user' => [
                     'require_login' => 'Please login to vote.',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => '',
+                'no_forum_access' => 'Access to requested forum is required.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => '',
-                'not_owner' => '',
+                'uneditable' => 'Invalid cover specified.',
+                'not_owner' => 'Only owner can edit cover.',
             ],
         ],
 
         'view' => [
-            'admin_only' => '',
+            'admin_only' => 'Only admin can view this forum.',
         ],
     ],
 
     'require_login' => 'Please login to proceed.',
 
-    'unauthorized' => '',
+    'unauthorized' => 'Access denied.',
 
-    'silenced' => "",
+    'silenced' => "Can't do that while silenced.",
 
-    'restricted' => "",
+    'restricted' => "Can't do that while restricted.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => '',
-                'not_owner' => '',
-                'require_supporter_tag' => '',
+                'locked' => 'User page is locked.',
+                'not_owner' => 'Can only edit own user page.',
+                'require_supporter_tag' => 'Supporter tag is required.',
             ],
         ],
     ],
