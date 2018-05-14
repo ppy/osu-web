@@ -101,6 +101,7 @@ return [
         'pt-br',
         'ru',
         'sv',
+        'th',
         'vi',
         'zh',
         'zh-tw',

@@ -24,6 +24,7 @@ finder:
     - resources/lang/pt-br
     - resources/lang/ru
     - resources/lang/sv
+    - resources/lang/th
     - resources/lang/vi
     - resources/lang/zh
     - resources/lang/zh-tw
