@@ -70,7 +70,7 @@ return [
             '_' => 'ランキング',
             'index' => 'パフォーマンス',
             'performance' => 'パフォーマンス',
-            'charts' => 'チャート', // Base text has changed, please check.
+            'charts' => 'チャート',
             'score' => 'スコア',
             'country' => '国別',
             'kudosu' => 'kudosu',
@@ -118,7 +118,12 @@ return [
             'settings' => '設定',
             'logout' => 'ログアウト',
             'help' => 'ヘルプ',
-            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ', // needs update
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'ストア',
@@ -181,7 +186,6 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'サーバー状態',
             'terms' => '利用規約',
         ],
@@ -190,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'ページが見つかりません',
-            'description' => 'ご希望のページはここにはない様です。',
+            'description' => "ご希望のページはここにはない様です。",
         ],
         '403' => [
-            'error' => '何か手違いがあったみたいです。',
+            'error' => "何か手違いがあったみたいです。",
             'description' => '戻ってみることをおすすめします。',
         ],
         '401' => [
-            'error' => '何か手違いがあったみたいです。',
+            'error' => "何か手違いがあったみたいです。",
             'description' => '戻ってみるか、ログインしてみる事をおすすめします。',
         ],
         '405' => [
             'error' => 'ページが見つかりません',
-            'description' => 'ご希望のページはここにはない様です。',
+            'description' => "ご希望のページはここにはない様です。",
         ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
-            'description' => '自動的にエラーは報告されます。',
+            'description' => "自動的にエラーは報告されます。",
         ],
         'fatal' => [
             'error' => '予期せぬエラーが発生しました（爆） ;_;',
-            'description' => '自動的にエラーは報告されます。',
+            'description' => "自動的にエラーは報告されます。",
         ],
         '503' => [
             'error' => 'メンテナンス中です！',
-            'description' => 'メンテナンスは大体5秒から10分の間で完了します。もし10分以上サーバーに接続できない場合は:linkを参照してください。',
+            'description' => "メンテナンスは大体5秒から10分の間で完了します。もし10分以上サーバーに接続できない場合は:linkを参照してください。",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '念の為に、サポートに提示できるコードが表示されます。',
+        'reference' => "念の為に、サポートに提示できるコードが表示されます。",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'Eメールアドレス',
-            'forgot' => 'ログイン情報を忘れた',
+            'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
 
             'error' => [
-                'email' => 'ユーザー名かEメールか存在しません',
+                'email' => "ユーザー名かEメールか存在しません",
                 'password' => 'パスワードが一致しませんでした。',
             ],
         ],
 
         'register' => [
-            'info' => 'アカウントが必要です。作ってみませんか？',
-            'title' => 'アカウントが必要です',
+            'info' => "アカウントが必要です。作ってみませんか？",
+            'title' => "アカウントが必要です",
         ],
     ],
 
