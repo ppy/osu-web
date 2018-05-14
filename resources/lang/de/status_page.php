@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => '',
+        'title' => 'status',
         'description' => 'was geht ab?',
     ],
 
@@ -51,7 +51,7 @@ return [
         'uptime' => [
             'title' => 'Verfügbarkeit',
             'graphs' => [
-                'server' => '',
+                'server' => 'server',
                 'web' => 'webseite',
             ],
         ],
