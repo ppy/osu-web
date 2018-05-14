@@ -27,16 +27,27 @@ return [
         'none_running' => 'Não há nenhum torneio acontecendo no momento, volte mais tarde!',
         'registration_period' => 'Período de inscrições: :start até :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Inscreva-me!',
-            'cancel' => 'Cancelar Inscrição',
-        ],
+        'banner' => '',
         'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email mais próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email e conta do osu! são válidos!',
+        'info_page' => '',
         'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!',
         'not_yet_entered' => 'Você não está registrado nesse torneio.',
         'rank_too_low' => 'Desculpa, você não tem os requisitos mínimos necessários para esse torneio!',
         'registration_ends' => 'Período de inscrição será finalizado em :date',
+
+        'button' => [
+            'cancel' => 'Cancelar Inscrição',
+            'register' => 'Inscreva-me!',
+        ],
+
+        'state' => [
+            'before_registration' => '',
+            'ended' => '',
+            'registration_closed' => '',
+            'running' => '',
+        ],
     ],
     'tournament_period' => ':start até :end',
 ];
