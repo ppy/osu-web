@@ -26,7 +26,7 @@ return [
 
     'state' => [
       'friends' => 'bạn bè',
-      'mutual' => '',
+      'mutual' => 'mutual',
     ],
 
     'title' => 'Bạn Bè',
