@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => '멀티플레이 게임',
         'team-types' => [
-            'head-to-head' => '개인전', // Head-to-Head
-            'tag-coop' => '태그 협동전', // Tag Co-op
-            'team-vs' => '팀 대전', // Team Vs
-            'tag-team-vs' => '팀 태그 대전', // Tag Team Vs
+            'head-to-head' => '개인전',
+            'tag-coop' => '태그 협동전',
+            'team-vs' => '팀 대전',
+            'tag-team-vs' => '팀 태그 대전',
         ],
         'events' => [
             'player-left' => ':user님이 게임을 떠났습니다.',
@@ -50,15 +50,15 @@ return [
                 'score' => '점수',
             ],
         ],
-        'failed' => 'FAILED',
+        'failed' => '',
         'teams' => [
             'blue' => 'Blue 팀',
             'red' => 'Red 팀',
         ],
         'winner' => ':team 승리',
         'difference' => '(점수 차: :difference)',
-        'loading-events' => '기록 불러오는 중...', // Loading events
-        'more-events' => '모두 보기...', // view all
+        'loading-events' => '기록 불러오는 중...',
+        'more-events' => '모두 보기...',
         'beatmap-deleted' => '삭제된 비트맵',
     ],
     'game' => [
@@ -66,7 +66,7 @@ return [
             'score' => '최고 점수',
             'accuracy' => '최고 정확도',
             'combo' => '최다 콤보',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];
