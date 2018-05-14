@@ -31,7 +31,7 @@ return [
         ],
     ],
     'entry' => [
-        '_' => '',
+        '_' => 'entry',
         'login_required' => 'Zum Beitreten bitte einloggen.',
         'silenced_or_restricted' => 'Man kann <restricted> oder stummgeschaltet nicht an Wettbewerben teilnehmen.',
         'preparation' => 'Wir bereiten diesen Wettbewerb gerade vor. Bitte habe Geduld!',
@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => 'Startet am :date',
-            'soon' => '',
+            'soon' => 'soon™',
         ],
     ],
     'states' => [
