@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Kör enkät i',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dagar',
                 'length_info' => 'Lämna tom för inget avslut av enkät',
                 'max_options' => 'Val per användare',
