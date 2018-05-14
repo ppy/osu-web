@@ -27,16 +27,27 @@ return [
         'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
         'registration_period' => 'Inscriptions : :start à :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Inscription!',
-            'cancel' => 'Annuler l\'inscription',
-        ],
+        'banner' => '',
         'entered' => 'Vous êtes inscrit à ce tournoi.<br><br>Cela ne signifie pas que vous avez été assigné à une équipe.<br><br>Des instructions vous seront envoyées proche de la date du tournoi, merci de vérifier que l\'e-mail sur votre compte osu! est toujours valide.',
+        'info_page' => '',
         'login_to_register' => 'Merci de :login pour voir les détails d\'inscription !',
         'not_yet_entered' => 'Vous n\'êtes pas inscrit à ce tournoi.',
         'rank_too_low' => 'Désolé, vous ne respectez pas les critères de rang pour ce tournoi!',
         'registration_ends' => 'Les inscriptions ferment le :date',
+
+        'button' => [
+            'cancel' => 'Annuler l\'inscription',
+            'register' => 'Inscription!',
+        ],
+
+        'state' => [
+            'before_registration' => '',
+            'ended' => '',
+            'registration_closed' => '',
+            'running' => '',
+        ],
     ],
     'tournament_period' => ':start à :end',
 ];
