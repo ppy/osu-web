@@ -30,7 +30,7 @@ return [
 
     'show' => [
         'banner' => 'Wspomóż swoją drużynę',
-        'entered' => 'Twoje konto jest zarejestrowane na ten turniej.<br><br>Miej na uwadze, że nie oznacza to, iż zostało ono dołączone do danej drużyny.<br><br>Dalsze informacje zostaną przesłane drogą mailową później, dlatego upewnij się, że twoje konto osu! używa prawidłowego adresu e-mail!',
+        'entered' => 'Twoje konto zostało zarejestrowane na ten turniej.<br><br>Miej na uwadze, że nie oznacza to, iż zostało ono dołączone do danej drużyny.<br><br>Dalsze informacje zostaną przesłane później drogą mailową, dlatego upewnij się, że twoje konto osu! używa prawidłowego adresu e-mail!',
         'info_page' => 'Strona informacyjna',
         'login_to_register' => 'Aby poznać szczegóły rejestracji, :login!',
         'not_yet_entered' => 'Twoje konto nie jest zarejestrowane na ten turniej.',
