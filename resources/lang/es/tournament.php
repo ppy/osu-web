@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'header' => [
@@ -25,16 +27,27 @@ return [
         'none_running' => 'No hay torneos activos por ahora, ¡revisa más tarde!',
         'registration_period' => 'Inscripción: :start to :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => '¡Inscribirme!',
-            'cancel' => 'Cancelar inscripción',
-        ],
+        'banner' => 'Support Your Team',
         'entered' => 'Estás inscrito en este torneo.<br><br>Ten en cuenta que esto no significa que hayas sido asignado a un equipo.<br><br>Instrucciones posteriores serán enviadas a tu correo electrónico antes de la fecha del torneo, así que ¡por favor asegúrate que tu correo electrónico sea válido!',
+        'info_page' => 'Information Page',
         'login_to_register' => '¡Por favor :login para ver los detalles de inscripción!',
         'not_yet_entered' => 'No estás inscrito en este torneo.',
         'rank_too_low' => '¡Lo sentimos, no cumples con los requisitos de rank para este torneo!',
         'registration_ends' => 'Las inscripciones se cierran en :date',
+
+        'button' => [
+            'cancel' => 'Cancelar inscripción',
+            'register' => '¡Inscribirme!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => 'Desde el :start al :end',
 ];
