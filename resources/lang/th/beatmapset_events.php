@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,20 +20,33 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.',
-        'discussion_delete' => 'Moderator deleted discussion :discussion.',
-        'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
-        'discussion_post_restore' => 'Moderator restored post from discussion :discussion.',
-        'discussion_restore' => 'Moderator restored discussion :discussion.',
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
         'disqualify' => 'Disqualified. Reason: :text.',
-        'issue_reopen' => 'Resolved issue :discussion reopened.',
-        'issue_resolve' => 'Issue :discussion marked as resolved.',
-        'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
-        'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
+        'disqualify_legacy' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
         'kudosu_gain' => 'Discussion :discussion obtained enough votes for kudosu.',
         'kudosu_lost' => 'Discussion :discussion lost votes and granted kudosu has been removed.',
+        'kudosu_recalculate' => '',
         'nominate' => 'Nominated.',
-        'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
+    ],
+
+    'index' => [
+        'title' => '',
+    ],
+
+    'item' => [
+        'content' => '',
+        'discussion_deleted' => '',
+        'type' => '',
     ],
 ];
