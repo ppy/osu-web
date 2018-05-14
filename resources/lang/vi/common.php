@@ -23,7 +23,7 @@ return [
     'saved' => 'Đã lưu',
 
     'array_and' => [
-        'words_connector' => '',
+        'words_connector' => ', ',
         'two_words_connector' => ' và ',
         'last_word_connector' => ', và ',
     ],
@@ -34,13 +34,13 @@ return [
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
         'delete' => 'Xóa',
-        'permalink' => '',
+        'permalink' => 'permalink',
         'permalink_copied' => 'đã sao chép link',
         'post' => 'Bài đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',
-        'reset' => '',
+        'reset' => 'Reset',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
         'see_more' => 'xem thêm',
@@ -51,29 +51,29 @@ return [
     'count' => [
         'badges' => ':count huy hiệu',
         'days' => ':count ngày',
-        'hour_short_unit' => '',
+        'hour_short_unit' => 'hr|hrs',
         'hours' => ':count giờ',
         'item' => ':count đơn vị',
-        'minute_short_unit' => '',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count tháng',
-        'second_short_unit' => '',
+        'second_short_unit' => 'sec|secs',
         'years' => ':count năm',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => '',
-            'php' => '',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Bàn Phím',
         'mouse' => 'Chuột',
-        'tablet' => '',
+        'tablet' => 'Tablet',
         'touch' => 'Cảm Ứng',
     ],
 
@@ -87,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
-        'count_geki' => '',
-        'count_katu' => '',
-        'count_miss' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [
@@ -103,6 +103,6 @@ return [
     ],
 
     'title' => [
-        'notice' => '',
+        'notice' => 'Notice',
     ],
 ];
