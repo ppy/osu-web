@@ -69,8 +69,8 @@ return [
     'topic' => [
         'deleted' => '',
         'go_to_latest' => '최근에 올라온 글 보기',
-        'latest_post' => '',
-        'latest_reply_by' => '',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => 'latest reply by :user',
         'new_topic' => '새 주제글 작성',
         'post_reply' => '게시하기',
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
@@ -110,13 +110,13 @@ return [
             'title_main' => '<strong>구독</strong>한 주제글',
 
             'box' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Topics subscribed',
+                'unread' => 'Topics with new replies',
             ],
 
             'info' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
             ],
         ],
 
