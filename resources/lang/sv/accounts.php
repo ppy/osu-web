@@ -22,16 +22,17 @@ return [
     'edit' => [
         'title' => '<strong>Användar</strong> Inställningar',
         'title_compact' => 'inställningar',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Ändra Avatar', // Base text changed, please check.
+            'title' => 'Ändra Avatar',
         ],
 
         'email' => [
             'current' => 'nuvarande email',
             'new' => 'ny email',
             'new_confirmation' => 'email bekräftelse',
-            'title' => 'Email',
+            'title' => '',
         ],
 
         'password' => [
@@ -42,14 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ändra Profil', // Base text changed, please check.
+            'title' => 'Ändra Profil',
 
             'user' => [
                 'user_from' => 'nuvarande position',
-                'user_msnm' => 'skype',
+                'user_interests' => '',
+                'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'hemsida',
+                'user_discord' => '',
             ],
         ],
 
@@ -74,6 +77,6 @@ return [
         'mouse' => 'mus',
         'keyboard' => 'tangentbord',
         'tablet' => 'platta',
-        'touch' => 'touch',
+        'touch' => '',
     ],
 ];
