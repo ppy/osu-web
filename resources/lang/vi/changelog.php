@@ -19,7 +19,7 @@
  */
 
 return [
-    'feed_title' => '',
+    'feed_title' => 'feed',
     'generic' => 'Sửa lỗi và một số cải tiến',
     'users-online' => ':users người dùng online',
 
