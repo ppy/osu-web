@@ -20,7 +20,7 @@
 
 return [
     'landing' => [
-        'download' => 'Download now',
+        'download' => 'ดาวน์โหลดเลย',
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
@@ -33,7 +33,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Advanced search',
-        'button' => 'Search',
+        'button' => 'ค้นหา',
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
         'placeholder' => 'type to search',
