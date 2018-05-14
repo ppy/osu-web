@@ -24,16 +24,32 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => '',
+        'cart_problems_edit' => '',
+        'declined' => '',
+        'error' => '',
+        'old_cart' => '',
         'pay' => 'Paypal로 결제',
+        'pending_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+            'link_text' => '',
+        ],
         'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
     ],
 
     'discount' => ':percent% 절약 가능',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
+    ],
+
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => '',
             ],
             'quantity' => '수량',
         ],
@@ -57,16 +73,19 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => '',
         'require_login' => [
             '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
-            'link_text' => '로그인', // Base text changed from "log" to "sign"
+            'link_text' => '로그인',
         ],
     ],
 
     'username_change' => [
+        'check' => '',
+        'checking' => '',
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
-            'link_text' => '로그인', // Base text changed from "log" to "sign"
+            'link_text' => '로그인',
         ],
     ],
 ];
