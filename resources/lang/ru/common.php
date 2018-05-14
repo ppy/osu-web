@@ -23,13 +23,14 @@ return [
     'saved' => 'Сохранено',
 
     'array_and' => [
-        'words_connector' => ', ',
+        'words_connector' => '',
         'two_words_connector' => ' и ',
         'last_word_connector' => ', и ',
     ],
 
     'buttons' => [
         'cancel' => 'Отмена',
+        'change' => '',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
         'delete' => 'Удалить',
@@ -61,11 +62,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => '',
+            'php' => '',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => '',
         ],
     ],
 
@@ -86,11 +87,11 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
         'count_geki' => 'МАКС',
-        'count_katu' => '200',
+        'count_katu' => '',
         'count_miss' => 'Промах',
     ],
 
