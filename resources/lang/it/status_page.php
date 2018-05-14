@@ -49,10 +49,10 @@ return [
         ],
 
         'uptime' => [
-            'title' => '',
+            'title' => 'Uptime',
             'graphs' => [
-                'server' => '',
-                'web' => '',
+                'server' => 'server',
+                'web' => 'web',
             ],
         ],
 
