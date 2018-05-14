@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => 'Afstemning for denne konkurrence er sluit',
-        'login_required' => 'Log venligst ind for at stemme.', // Base text changed from "log" to "sign"
+        'login_required' => 'Log venligst ind for at stemme.',
         'best_of' => [
-            'none_played' => 'Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!',
+            'none_played' => "Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!",
         ],
     ],
     'entry' => [
-        '_' => 'entry',
-        'login_required' => 'Log venligst ind for at deltage i denne konkurrence.', // Base text changed from "log" to "sign"
+        '_' => '',
+        'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
         'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
