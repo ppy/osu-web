@@ -36,7 +36,7 @@ return [
         'kudosu_recalculate' => 'Kudosu của cuộc thảo luận :discussion đã được tính lại.',
         'nominate' => 'Được đề cử (nominated) bởi :user.',
         'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
-        'qualify' => '',
+        'qualify' => 'Qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
     ],
 
