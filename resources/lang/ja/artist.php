@@ -23,7 +23,7 @@ return [
     'title' => '推奨アーティスト',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => '',
     ],
 
     'beatmaps' => [
@@ -37,6 +37,7 @@ return [
     ],
 
     'links' => [
+        'osu' => '',
         'site' => '公式サイト',
     ],
 
