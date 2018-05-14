@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Angepinnte Threads',
     'slogan' => "es ist gefährlich, alleine zu gehen.",
     'subforums' => 'Subforen',
-    'title' => '',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -154,7 +154,7 @@ return [
                 'max_options_info' => 'Dies ist die Anzahl an Antworten, die jeder maximal Benutzer wählen kann.',
                 'options' => 'Antworten',
                 'options_info' => 'Platziere jede Antwort in einer neuen Zeile. Du kannst maximal 10 Antworten eingeben.',
-                'title' => '',
+                'title' => 'Question',
                 'vote_change' => 'Erlaube Antwortänderungen.',
                 'vote_change_info' => 'Wenn aktiv, können Benutzer ihre Antworten ändern.',
             ],
