@@ -21,11 +21,11 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'liste',
-        'news-show' => 'post',
+        'news-show' => '',
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title' => '',
 
         'nav' => [
             'newer' => 'Nouveaux posts',
