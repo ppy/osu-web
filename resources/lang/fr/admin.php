@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Gérer les couvertures de beatmapset',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'activer',
                 'activate_confirm' => 'activer le modding v2 pour cette beatmap?',
                 'active' => 'actif',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Supprimer',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Pas de bannière définie',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Trucs de console Admin',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Général',
                 'store' => 'Magasin',
             ],
