@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'deleted' => '[người dùng đã bị xóa]',
 
     'beatmapset_activities' => [
-        'title' => 'Lịch Sử Modding Của :user',
+        'title' => "Lịch Sử Modding Của :user",
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Nhớ máy tính này',
         'title' => 'Vui lòng đăng nhập để tiếp tục',
         'failed' => 'Đăng nhập không chính xác',
-        'register' => 'Không có tài khoản osu!? Tạo một tài khoản mới',
+        'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
         'forgot' => 'Quên mật khẩu?',
         'beta' => [
             'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
@@ -103,7 +103,7 @@ return [
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi với :devices',
-        'title' => 'Trang cá nhân của :username',
+        'title' => "Trang cá nhân của :username",
 
         'edit' => [
             'cover' => [
@@ -173,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Có Sẵn',
-                'available_info' => 'Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.',
+                'available_info' => "Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.",
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
                 'total' => 'Tông Số Kudosu Nhận Được',
@@ -181,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Người dùng này chưa nhận kudosu nào!',
+                    'empty' => "Người dùng này chưa nhận kudosu nào!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'tôi!',
             ],
             'medals' => [
-                'empty' => 'Người dùng này chưa có huy chương nào cả. ;_;',
+                'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
-                'bad_standing' => 'Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(',
+                'bad_standing' => "Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(",
                 'remaining_silence' => '<strong>:username</strong> sẽ được nói trở lại vào :duration.',
 
                 'recent_infringements' => [
