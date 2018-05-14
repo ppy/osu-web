@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count résultats de recherche de beatmap en plus',
             'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'Rechercher dans les forums',
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'tout',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
             'user' => 'joueur',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Rechercher sur le wiki',
             'more_simple' => 'Voir plus de résultats de la recherche sur le wiki',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -135,7 +135,7 @@ return [
         'buttons' => [
             'download' => 'Télécharger osu!',
             'support' => 'Supporter osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
