@@ -19,8 +19,9 @@
  */
 
 return [
-    'errors' => [
-        'csrf' => 'Toegang Geweigerd',
-        'missing' => 'Niet Gevonden',
+    'error' => [
+        'chat' => [
+            'limit_exceeded' => '',
+        ],
     ],
 ];
