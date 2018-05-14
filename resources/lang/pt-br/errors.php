@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Por favor, inicie a sessão para continuar.', // Base text changed from "log" to "sign"
-        'http-403' => 'Acesso negado.',
-        'http-429' => 'Muitas tentativas. Tente novamente mais tarde.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Ocorreu um erro. Tente atualizar a página.',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => 'Modo inválido especificado.',
-        'standard_converts_only' => 'Não há pontuações disponíveis para o modo escolhido nesta dificuldade.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Há muitos beatmaps nos seus favoritos! Por favor, remova um antes de continuar.',
-    ],
-    'logged_out' => 'Você foi desconectado. Conecte-se e tente novamente.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
-    'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
-    'unknown' => 'Ocorreu um erro desconhecido.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Ocorreu um erro desconhecido.",
 ];
