@@ -19,13 +19,13 @@
  */
 
 return [
-    'deleted' => '[被删除的用户]', //TODO 需要上下文
+    'deleted' => '[被删除的用户]',
 
     'beatmapset_activities' => [
-        'title' => ':user 的摸图历史',
+        'title' => ":user 的摸图历史",
 
         'discussions' => [
-            'title_recent' => '最近打开的讨论', //上下文
+            'title_recent' => '最近打开的讨论',
         ],
 
         'events' => [
@@ -60,14 +60,14 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => '没有 osu! 账户？现在就注册一个！',
+        'register' => "没有 osu! 账户？现在就注册一个！",
         'forgot' => '忘记密码？',
-        'beta' => [ //已弃用(?)
+        'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
             'small' => '（捐赠玩家将在不久开放）',
         ],
 
-        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
+        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -98,12 +98,12 @@ return [
         'lastvisit' => '上次登录：:date',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_age' => ':age 岁',
-        'origin_country' => '来自 :country',
         'origin_country_age' => ':age，来自 :country',
+        'origin_country' => '来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
-        'title' => ':username 的个人资料',
+        'title' => ":username 的个人资料",
 
         'edit' => [
             'cover' => [
@@ -149,7 +149,7 @@ return [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => '',
                 ],
             ],
             'historical' => [
@@ -173,17 +173,17 @@ return [
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',
-                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。',
+                'available_info' => "kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。",
                 'recent_entries' => '最近 Kudosu 记录',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => '总共获得 kudosu',
                 'total_info' => '取决于你对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => '该用户还没有收到过 kudosu ！',
+                    'amount' => '',
+                    'empty' => "该用户还没有收到过 kudosu ！",
 
-                    'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
+                    'beatmap_discussion' => [
                         'allow_kudosu' => [
                             'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
                         ],
@@ -222,7 +222,7 @@ return [
                 'title' => '个人介绍',
             ],
             'medals' => [
-                'empty' => '该用户还没有获得成就。;_;',
+                'empty' => "该用户还没有获得成就。;_;",
                 'title' => '成就',
             ],
             'recent_activity' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
-                'pp' => ':amountpp',
+                'pp' => '',
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
 
@@ -242,9 +242,9 @@ return [
                     'title' => '第一名',
                 ],
             ],
-            'account_standing' => [ //原文见ppy/osu-web#2384
+            'account_standing' => [
                 'title' => '帐号状态',
-                'bad_standing' => '<strong>:username</strong> 的帐号存在不良记录 :(',
+                'bad_standing' => "<strong>:username</strong> 的帐号存在不良记录 :(",
                 'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
@@ -254,7 +254,7 @@ return [
                     'length' => '时长',
                     'length_permanent' => '永久',
                     'description' => '原因',
-                    'actor' => '裁决者： :username', //意译
+                    'actor' => '裁决者： :username',
 
                     'actions' => [
                         'restriction' => '封禁',
@@ -265,12 +265,12 @@ return [
             ],
         ],
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '兴趣爱好',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => 'Skype',
+            'skype' => '',
             'twitter' => '推特',
             'website' => '网站',
         ],

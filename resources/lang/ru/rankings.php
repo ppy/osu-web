@@ -22,7 +22,7 @@ return [
     'header' => 'Рейтинг по :type',
     'type' => [
         'performance' => 'производительности',
-        'charts' => 'чартам', // Base text has changed, please check.
+        'charts' => 'чартам',
         'score' => 'очкам',
         'country' => 'странам',
     ],

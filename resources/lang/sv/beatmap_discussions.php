@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Måste vara inloggad för att redigera.', // Base text changed from "log" to "sign"
+            'null_user' => 'Måste vara inloggad för att redigera.',
             'system_generated' => 'System-genererade inlägg kan inte redigeras.',
             'wrong_user' => 'Måste vara ägare av inlägget för att redigera.',
         ],
@@ -31,6 +31,27 @@ return [
         'empty' => 'Inget har hänt... än.',
     ],
 
+    'index' => [
+        'deleted_beatmap' => '',
+        'title' => '',
+
+        'form' => [
+            'deleted' => '',
+
+            'user' => [
+                'label' => '',
+                'overview' => '',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => '',
+        'deleted_at' => '',
+        'message_type' => '',
+        'permalink' => '',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Inga av dessa inlägg har med mig att göra',
         'notice' => 'Dessa är inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera innan du lägger upp ett inlägg.',
@@ -38,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Logga in för att svara', // Base text changed from "log" to "sign"
+            'guest' => 'Logga in för att svara',
             'user' => 'Svara',
         ],
     ],
@@ -51,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
+        'admin' => '',
         'bng' => 'nominerade',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,35 @@
 
 return [
     'deleted' => '[deleted user]',
+
+    'beatmapset_activities' => [
+        'title' => "",
+
+        'discussions' => [
+            'title_recent' => '',
+        ],
+
+        'events' => [
+            'title_recent' => '',
+        ],
+
+        'posts' => [
+            'title_recent' => '',
+        ],
+
+        'votes_received' => [
+            'title_most' => '',
+        ],
+
+        'votes_made' => [
+            'title_most' => '',
+        ],
+    ],
+
+    'card' => [
+        'loading' => '',
+        'send_message' => '',
+    ],
 
     'login' => [
         '_' => 'Sign in',
@@ -40,11 +69,17 @@ return [
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => '',
+    ],
+
     'signup' => [
         '_' => 'Register',
     ],
     'anonymous' => [
         'login_link' => 'click to login',
+        'login_text' => '',
         'username' => 'Guest',
         'error' => 'You need to be logged in to do this.',
     ],
@@ -54,9 +89,8 @@ return [
         'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
         'age' => ':age years old',
-        'current_location' => 'Currently in :location',
+        'change_avatar' => '',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -64,9 +98,10 @@ return [
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_age' => ':age',
-        'origin_country' => 'From :country',
         'origin_country_age' => ':age from :country',
+        'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'previous_usernames' => '',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
@@ -79,13 +114,19 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
                     'size_info' => 'Cover size should be 2000x700',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => '',
+                'set' => '',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 follower|:count followers',
             'unranked' => 'No recent plays',
@@ -95,10 +136,29 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
+                'none' => 'None... yet.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => '',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'unranked' => [
+                    'title' => '',
+                ],
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
+                'title' => 'Historical',
+
+                'monthly_playcounts' => [
+                    'title' => '',
+                ],
                 'most_played' => [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
@@ -107,7 +167,9 @@ return [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays (24h)',
                 ],
-                'title' => 'Historical',
+                'replays_watched_counts' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
@@ -142,6 +204,11 @@ return [
                             'give' => 'Received :amount from obtaining votes in modding post of :post',
                             'reset' => 'Lost :amount from losing votes in modding post of :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => '',
+                            'reset' => '',
+                        ],
                     ],
 
                     'forum_post' => [
@@ -158,37 +225,71 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
-            'recent_activities' => [
-                'title' => 'Recent',
+            'recent_activity' => [
+                'title' => '',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Best Performance',
-                ],
                 'empty' => 'No awesome performance records yet. :(',
-                'first' => [
-                    'title' => 'First Place Ranks',
-                ],
+                'not_ranked' => '',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+
+                'best' => [
+                    'title' => 'Best Performance',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                'first' => [
+                    'title' => 'First Place Ranks',
                 ],
-                'none' => 'None... yet.',
             ],
+            'account_standing' => [
+                'title' => '',
+                'bad_standing' => "",
+                'remaining_silence' => '',
+
+                'recent_infringements' => [
+                    'title' => '',
+                    'date' => '',
+                    'action' => '',
+                    'length' => '',
+                    'length_permanent' => '',
+                    'description' => '',
+                    'actor' => '',
+
+                    'actions' => [
+                        'restriction' => '',
+                        'silence' => '',
+                        'note' => '',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'discord' => '',
+            'interests' => '',
+            'lastfm' => '',
+            'location' => '',
+            'occupation' => '',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
+        ],
+        'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
+            'title' => '',
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+        ],
+        'post_count' => [
+            '_' => '',
+            'count' => '',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
@@ -199,6 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
+            'play_time' => '',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',

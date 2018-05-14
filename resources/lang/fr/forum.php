@@ -28,7 +28,7 @@ return [
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
-            'info' => "La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi \"dropper\" l'image ici.",
+            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.',
         ],
 
         'destroy' => [
@@ -147,16 +147,15 @@ return [
 
             'poll' => [
                 'length' => 'Lancer le sujet pour',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez blanc pour un sondage sans fin',
                 'max_options' => 'Réponses par utlisateur',
-                'max_options_info' => "C'est le nombre de réponses qu'un utilisateur peut choisir.",
+                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
                 'options' => 'Réponses',
                 'options_info' => 'Placez chaque réponse sur une ligne.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
-                'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
+                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
             ],
         ],
 

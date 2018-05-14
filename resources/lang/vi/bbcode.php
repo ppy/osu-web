@@ -33,6 +33,6 @@ return [
         'normal' => 'Bình Thường',
         'large' => 'Lớn',
     ],
-    'spoilerbox' => 'Hộp Spoiler', //?
+    'spoilerbox' => 'Hộp Spoiler',
     'strikethrough' => 'Gạch Ngang',
 ];

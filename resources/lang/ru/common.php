@@ -30,6 +30,7 @@ return [
 
     'buttons' => [
         'cancel' => 'Отмена',
+        'change' => '',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
         'delete' => 'Удалить',

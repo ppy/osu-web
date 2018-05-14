@@ -77,4 +77,9 @@ return [
         'owner' => '譜面作者',
         'qat' => 'qat',
     ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
+    ],
 ];

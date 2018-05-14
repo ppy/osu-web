@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => 'ตั้งค่า <strong>ผู้ใช้</strong>',
         'title_compact' => 'ตั้งค่า',
+        'username' => '',
 
         'avatar' => [
             'title' => 'แก้ไข Avatar',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => 'อาชีพ',
                 'user_twitter' => 'twitter',
                 'user_website' => 'เว็บไซต์',
+                'user_discord' => '',
             ],
         ],
 
@@ -63,13 +65,11 @@ return [
     'update_email' => [
         'email_subject' => 'ยืนยันการเปลี่ยนอีเมล osu!',
         'update' => 'อัพเดต',
-        'updated' => 'อัพเดตอีเมลแล้ว',
     ],
 
     'update_password' => [
         'email_subject' => 'ยืนยันการเปลี่ยนรหัสผ่าน osu!',
         'update' => 'อัพเดต',
-        'updated' => 'อัพเดตรหัสผ่านแล้ว',
     ],
 
     'playstyles' => [

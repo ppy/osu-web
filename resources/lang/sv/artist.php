@@ -37,6 +37,7 @@ return [
     ],
 
     'links' => [
+        'osu' => '',
         'site' => 'Officiell Hemsida',
     ],
 

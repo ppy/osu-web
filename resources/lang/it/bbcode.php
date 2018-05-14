@@ -34,5 +34,5 @@ return [
         'large' => 'Grande',
     ],
     'spoilerbox' => 'Box Spoiler',
-    'strikethrough' => 'Strike', // "Cancellare" would look like delete text instead of strikethrough so i need help on this
+    'strikethrough' => 'Strike',
 ];

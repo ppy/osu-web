@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Log venligst ind for at fortsætte.', // Base text changed from "log" to "sign"
+        'http-401' => 'Log venligst ind for at fortsætte.',
         'http-403' => 'Adgang nægtet.',
         'http-429' => 'For mange forsøg. Prøv igen senere.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'Du har for mange favoritter! Fjern venligst en favorit for at tilføje en ny.',
     ],
-    'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.', // Base text changed from "log" to "sign"
+    'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
     'supporter_only' => 'Du skal være supporter for at udføre denne handling.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling eftersom, at din konto er begrænset.',
     'unknown' => 'En ukendt fejl er opstået.',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Favourite this beatmapset',
             'unfavourite' => 'Unfavourite this beatmapset',
+            'favourited_count' => '',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -64,16 +65,19 @@ return [
             'count_sliders' => 'Slider Count',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
+            'nominations' => '',
+            'playcount' => '',
         ],
         'info' => [
+            'description' => 'Description',
+            'genre' => '',
+            'language' => '',
             'no_scores' => 'Unranked beatmap',
             'points-of-failure' => 'Points of Failure',
-            'success-rate' => 'Success Rate',
-
-            'description' => 'Description',
-
             'source' => 'Source',
+            'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'unranked' => '',
         ],
         'scoreboard' => [
             'achieved' => 'achieved :when',
@@ -84,12 +88,18 @@ return [
             'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
-            'list' => [
-                'accuracy' => 'Accuracy',
-                'player-header' => 'Player',
-                'rank-header' => 'Rank',
-                'score' => 'Score',
+            'headers' => [
+                'accuracy' => '',
+                'combo' => '',
+                'miss' => '',
+                'mods' => '',
+                'player' => '',
+                'pp' => '',
+                'rank' => '',
+                'score_total' => '',
+                'score' => '',
             ],
+
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'None of your friends has set a score on this map yet!',
@@ -100,10 +110,6 @@ return [
             'score' => [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
-            ],
-            'stats' => [
-                'accuracy' => 'Accuracy',
-                'score' => 'Score',
             ],
         ],
     ],

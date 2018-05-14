@@ -19,15 +19,48 @@
  */
 
 return [
+    'deleted' => '',
+
+    'beatmapset_activities' => [
+        'title' => "",
+
+        'discussions' => [
+            'title_recent' => '',
+        ],
+
+        'events' => [
+            'title_recent' => '',
+        ],
+
+        'posts' => [
+            'title_recent' => '',
+        ],
+
+        'votes_received' => [
+            'title_most' => '',
+        ],
+
+        'votes_made' => [
+            'title_most' => '',
+        ],
+    ],
+
+    'card' => [
+        'loading' => '',
+        'send_message' => '',
+    ],
+
     'login' => [
         '_' => 'Inloggen',
+        'locked_ip' => '',
         'username' => 'Gebruikernaam',
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
+        'button_posting' => '',
         'remember' => 'Onthoud deze computer',
-        'title' => 'Log in om verder te gaan', // Base text changed from "log" to "sign"
-        'failed' => 'Verkeerde login', // Base text changed from "log" to "sign"
-        'register' => 'Heb je geen osu! account? Maak een nieuwe',
+        'title' => 'Log in om verder te gaan',
+        'failed' => 'Verkeerde login',
+        'register' => "Heb je geen osu! account? Maak een nieuwe",
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
             'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
@@ -36,14 +69,28 @@ return [
 
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
-    'anonymous' => [
-        'login_link' => 'klik om in te loggen', // Base text changed from "log" to "sign"
-        'username' => 'Gast',
-        'error' => 'Je moet ingelogd zijn om dit te doen.', // Base text changed from "log" to "sign"
+
+    'posts' => [
+        'title' => '',
     ],
-    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(', // Base text changed from "log" to "sign"
+
+    'signup' => [
+        '_' => '',
+    ],
+    'anonymous' => [
+        'login_link' => 'klik om in te loggen',
+        'login_text' => '',
+        'username' => 'Gast',
+        'error' => 'Je moet ingelogd zijn om dit te doen.',
+    ],
+    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
+    'restricted_banner' => [
+        'title' => '',
+        'message' => '',
+    ],
     'show' => [
         'age' => ':age jaar oud',
+        'change_avatar' => '',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -51,10 +98,12 @@ return [
         'lastvisit' => 'Laatst gezien op :date',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_age' => ':age',
-        'origin_country' => 'Uit :country',
         'origin_country_age' => ':age uit :country',
+        'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
-        'title' => 'Profiel van :username',
+        'previous_usernames' => '',
+        'plays_with' => '',
+        'title' => "Profiel van :username",
 
         'edit' => [
             'cover' => [
@@ -71,8 +120,17 @@ return [
                     'unsupported_format' => 'Niet ondersteund formaat.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => '',
+                'set' => '',
+            ],
         ],
+
         'extra' => [
+            'followers' => '',
+            'unranked' => '',
+
             'achievements' => [
                 'title' => 'Prestaties',
                 'achieved-on' => 'Behaald op :date',
@@ -84,14 +142,23 @@ return [
                 'favourite' => [
                     'title' => 'Favoriete Beatmaps (:count)',
                 ],
+                'graveyard' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                ],
+                'unranked' => [
+                    'title' => '',
                 ],
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
                 'title' => 'Historisch',
 
+                'monthly_playcounts' => [
+                    'title' => '',
+                ],
                 'most_played' => [
                     'count' => 'keer gespeeld',
                     'title' => 'Meest Gespeelde Beatmaps',
@@ -100,10 +167,13 @@ return [
                     'accuracy' => 'precisie: :percentage',
                     'title' => 'Recent gespeeld',
                 ],
+                'replays_watched_counts' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
-                'available_info' => 'Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.',
+                'available_info' => "Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.",
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
@@ -111,10 +181,39 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
+                    'empty' => "Deze gebruiker heeft nog geen kudosu ontvangen!",
+
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => '',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => '',
+                        ],
+
+                        'delete' => [
+                            'reset' => '',
+                        ],
+
+                        'restore' => [
+                            'give' => '',
+                        ],
+
+                        'vote' => [
+                            'give' => '',
+                            'reset' => '',
+                        ],
+
+                        'recalculate' => [
+                            'give' => '',
+                            'reset' => '',
+                        ],
+                    ],
 
                     'forum_post' => [
                         'give' => ':amount ontvangen van :giver voor :post',
+                        'reset' => '',
                         'revoke' => 'Kudosu geweigerd door :giver voor :post',
                     ],
                 ],
@@ -123,6 +222,7 @@ return [
                 'title' => 'ik!',
             ],
             'medals' => [
+                'empty' => "",
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
@@ -130,6 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
+                'not_ranked' => '',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
@@ -141,8 +242,43 @@ return [
                     'title' => 'Eerste Ranks',
                 ],
             ],
+            'account_standing' => [
+                'title' => '',
+                'bad_standing' => "",
+                'remaining_silence' => '',
+
+                'recent_infringements' => [
+                    'title' => '',
+                    'date' => '',
+                    'action' => '',
+                    'length' => '',
+                    'length_permanent' => '',
+                    'description' => '',
+                    'actor' => '',
+
+                    'actions' => [
+                        'restriction' => '',
+                        'silence' => '',
+                        'note' => '',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'discord' => '',
+            'interests' => '',
+            'lastfm' => '',
+            'location' => '',
+            'occupation' => '',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
@@ -150,6 +286,10 @@ return [
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
             'restriction_info' => "Je moet een <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+        ],
+        'post_count' => [
+            '_' => '',
+            'count' => '',
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
@@ -160,6 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
+            'play_time' => '',
             'ranked_score' => 'Gerankte Score',
             'replays_watched_by_others' => 'Replays Gekeken door Anderen',
             'score_ranks' => 'Score Ranks',
@@ -167,5 +308,14 @@ return [
             'total_score' => 'Totaal Aantal Score',
         ],
     ],
-
+    'status' => [
+        'online' => '',
+        'offline' => '',
+    ],
+    'store' => [
+        'saved' => '',
+    ],
+    'verify' => [
+        'title' => '',
+    ],
 ];

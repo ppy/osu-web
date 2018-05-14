@@ -27,7 +27,7 @@ return [
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'best_of' => [
-            'none_played' => 'Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!',
+            'none_played' => "Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!",
         ],
     ],
     'entry' => [

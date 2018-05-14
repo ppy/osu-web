@@ -22,6 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>アカウント</strong>設定',
         'title_compact' => '設定',
+        'username' => '',
 
         'avatar' => [
             'title' => 'アバターの変更',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
+                'user_discord' => '',
             ],
         ],
 

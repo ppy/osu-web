@@ -19,9 +19,6 @@
  */
 
 return [
-    'news' => [
-        'slogan' => 'Il ritmo è solo ad un *click* di distanza!',
-    ],
     'landing' => [
         'download' => 'Scarica ora',
         'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
@@ -29,9 +26,127 @@ return [
         'players' => '<strong>:count</strong> utenti registrati',
 
         'slogan' => [
-            // free to win => vinci gratuitamente, but maybe there's a better way to translate that
             'main' => 'simulatore di cerchi dove vinci gratuitamente',
             'sub' => 'il ritmo è solo ad un click di distanza',
         ],
+    ],
+
+    'search' => [
+        'advanced_link' => '',
+        'button' => '',
+        'empty_result' => '',
+        'missing_query' => '',
+        'placeholder' => '',
+        'title' => '',
+
+        'beatmapset' => [
+            'more' => '',
+            'more_simple' => '',
+            'title' => '',
+        ],
+
+        'forum_post' => [
+            'all' => '',
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
+
+            'label' => [
+                'forum' => '',
+                'forum_children' => '',
+                'topic_id' => '',
+                'username' => '',
+            ],
+        ],
+
+        'mode' => [
+            'all' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
+
+        'user' => [
+            'more' => '',
+            'more_simple' => '',
+            'more_hidden' => '',
+            'title' => '',
+        ],
+
+        'wiki_page' => [
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
+        ],
+    ],
+
+    'download' => [
+        'tagline' => "",
+        'action' => '',
+        'os' => [
+            'windows' => '',
+            'macos' => '',
+            'linux' => '',
+        ],
+        'mirror' => '',
+        'macos-fallback' => '',
+        'steps' => [
+            'register' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'download' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'beatmaps' => [
+                'title' => '',
+                'description' => [
+                    '_' => '',
+                    'browse' => '',
+                ],
+            ],
+        ],
+        'video-guide' => '',
+    ],
+
+    'user' => [
+        'title' => '',
+        'news' => [
+            'title' => '',
+            'error' => '',
+        ],
+        'header' => [
+            'welcome' => '',
+            'messages' => '',
+            'stats' => [
+                'friends' => '',
+                'games' => '',
+                'online' => '',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => '',
+            'popular' => '',
+            'by' => '',
+            'plays' => '',
+        ],
+        'buttons' => [
+            'download' => '',
+            'support' => '',
+            'store' => '',
+        ],
+    ],
+
+    'support-osu' => [
+        'title' => '',
+        'subtitle' => '',
+        'body' => [
+            'part-1' => '',
+            'part-2' => '',
+        ],
+        'find-out-more' => '',
+        'download-starting' => "",
     ],
 ];

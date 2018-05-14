@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'home',
             'account-edit' => 'settings',
-            'friends' => 'friends',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
             'changelog-show' => 'build',
@@ -41,21 +40,27 @@ return [
             'password-reset-index' => 'reset password',
             'search' => 'search',
             'supportTheGame' => 'support the game',
+            'team' => '',
         ],
         'help' => [
             '_' => 'help',
             'getFaq' => 'faq',
+            'getRules' => '',
             'getSupport' => 'support',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'listing',
             'artists' => 'featured artists',
+            'beatmap_discussion_posts-index' => '',
+            'beatmap_discussions-index' => '',
+            'beatmapset-watches-index' => '',
+            'beatmapset_discussion_votes-index' => '',
+            'beatmapset_events-index' => '',
+            'index' => 'listing',
             'packs' => 'packs',
-            // 'getCharts' => 'charts',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -75,7 +80,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getSupport' => 'support',
             'getLive' => 'live',
             'contests' => 'contests',
             'profile' => 'profile',
@@ -114,15 +118,22 @@ return [
             'settings' => 'Settings',
             'logout' => 'Log Out',
             'help' => 'Help',
+            'modding-history-discussions' => '',
+            'modding-history-events' => '',
+            'modding-history-index' => '',
+            'modding-history-posts' => '',
+            'modding-history-votesGiven' => '',
+            'modding-history-votesReceived' => '',
         ],
         'store' => [
             '_' => 'store',
+            'checkout-show' => '',
             'getListing' => 'listing',
-            'getCart' => 'cart',
+            'cart-show' => '',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
-            'getProduct' => 'product',
+            'products-show' => '',
 
             'new' => 'new',
             'home' => 'home',
@@ -140,11 +151,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'index',
+            'beatmapsets-covers' => '',
             'logs-index' => 'log',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'covers',
                 'show' => 'detail',
             ],
         ],
@@ -174,7 +186,6 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Server Status',
             'terms' => 'Terms of Service',
         ],
@@ -184,32 +195,26 @@ return [
         '404' => [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
         ],
         '403' => [
             'error' => "You shouldn't be here.",
             'description' => 'You could try going back, though.',
-            'link' => false,
         ],
         '401' => [
             'error' => "You shouldn't be here.",
             'description' => 'You could try going back, though. Or maybe logging in.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => "We're automatically notified of every error.",
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Something broke (badly)! ;_;',
             'description' => "We're automatically notified of every error.",
-            'link' => false,
         ],
         '503' => [
             'error' => 'Down for maintenance!',

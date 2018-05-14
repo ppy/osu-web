@@ -30,8 +30,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Avbryt',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
         'delete' => 'Radera',
         'permalink' => 'permalänk',
+        'permalink_copied' => '',
         'post' => 'Lägg upp',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och Öppna Igen',
@@ -39,13 +43,20 @@ return [
         'reset' => 'Återställ',
         'save' => 'Spara',
         'saving' => 'Sparar...',
+        'see_more' => '',
         'show_more' => 'visa mer',
         'upload_image' => 'ladda upp bild',
     ],
 
     'count' => [
+        'badges' => '',
+        'days' => '',
+        'hour_short_unit' => '',
+        'hours' => '',
         'item' => ':count enhet|:count enheter',
+        'minute_short_unit' => '',
         'months' => ':count månad|:count månader',
+        'second_short_unit' => '',
         'years' => ':count år|:count år',
     ],
 
@@ -53,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => '',
         ],
     ],
 

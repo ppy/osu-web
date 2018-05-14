@@ -65,6 +65,8 @@ return [
             'count_sliders' => 'Số Nốt Trượt',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
+            'nominations' => '',
+            'playcount' => '',
         ],
         'info' => [
             'description' => 'Mô Tả',
@@ -75,13 +77,13 @@ return [
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
+            'unranked' => '',
         ],
         'scoreboard' => [
             'achieved' => 'đạt được :when',
             'country' => 'Hạng Quốc Gia',
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
-            'miss_count' => ':count miss',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
             'supporter-only' => 'Bạn cần là người ủng hộ để truy cập xếp hạng bạn bè và quốc gia!',
             'title' => 'Bảng Xếp hạng',

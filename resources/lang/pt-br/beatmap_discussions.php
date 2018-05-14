@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Precisa estar conectado para editar.', // Base text changed from "log" to "sign"
+            'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
             'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
         ],
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conecte-se para Responder', // Base text changed from "log" to "sign"
+            'guest' => 'Conecte-se para Responder',
             'user' => 'Responder',
         ],
     ],
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];

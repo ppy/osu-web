@@ -22,7 +22,7 @@ return [
     'header' => 'Clasificación por :type',
     'type' => [
         'performance' => 'Rendimiento',
-        'charts' => 'Gráficos', // Base text has changed, please check.
+        'charts' => 'Gráficos',
         'score' => 'Puntuación',
         'country' => 'País',
     ],
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Puntuación rankeada',
         'average_score' => 'Puntuación promedio',
         'average_performance' => 'Rendimiento promedio',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

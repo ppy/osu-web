@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,7 @@
 
 return [
     'pinned_topics' => 'Angepinnte Threads',
-    // sorry for butchering this, but the first zelda doesn't exist in german
-    'slogan' => 'es ist gefährlich, alleine zu gehen.',
+    'slogan' => "es ist gefährlich, alleine zu gehen.",
     'subforums' => 'Subforen',
     'title' => 'osu!community',
 
@@ -148,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Abstimmung offen für',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'Tage',
                 'length_info' => 'Nichts eingeben für eine nie endende Abstimmung',
                 'max_options' => 'Antworten pro Benutzer',
@@ -244,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
                     'current' => 'Du hast noch :votes.',
-                    'not_enough' => 'Du hast keine Stimmen mehr',
+                    'not_enough' => "Du hast keine Stimmen mehr",
                 ],
             ],
 
@@ -262,7 +260,7 @@ return [
         'watch' => [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
-            'to_warning_mail' => 'Lesezeichen setzen und Benachrichtigungen aktivieren',
+            'to_watching_mail' => '',
             'mail_disable' => 'Benachrichtigungen deaktivieren',
         ],
     ],

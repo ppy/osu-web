@@ -35,6 +35,15 @@ return [
             Jag skulle vilja ge ett personligt tack till dem som har stöttat osu! än så länge,
             och lika mycket till dem som fortsätter att stötta detta fantastiska spel och gemenskapen in i framtiden :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
             'title' => 'Varför ska jag stötta osu!?',
             'blocks' => [

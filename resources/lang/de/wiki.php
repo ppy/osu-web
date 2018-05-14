@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'show' => [
         'fallback_translation' => 'Die angeforderte Seite wurde noch nicht in die ausgewählte Sprache übersetzt (:language). Die englische Version wird angezeigt.',
@@ -25,9 +27,15 @@ return [
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
         'search' => 'Existierende Seiten nach :link durchsuchen.',
         'toc' => 'Inhalt',
+
         'edit' => [
             'link' => 'Auf GitHub zeigen',
             'refresh' => 'Aktualisieren',
+        ],
+
+        'outdated' => [
+            '_' => 'Diese Seite zeigt eine veraltete Übersetzung. Siehe :default für den neuesten Stand (und ziehe in Erwägung bei der Übersetzung zu helfen, wenn du kannst)!',
+            'default' => 'Englische Version',
         ],
     ],
 ];

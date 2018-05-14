@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activeer',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Lijst van Bestellingen',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => '',
+            'message' => '',
         ],
     ],
 

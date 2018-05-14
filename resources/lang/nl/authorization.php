@@ -20,8 +20,21 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'is_hype' => '',
+            'has_reply' => '',
+        ],
+        'nominate' => [
+            'exhausted' => '',
+        ],
         'resolve' => [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => '',
+            'owner' => "",
+            'wrong_beatmapset_state' => '',
         ],
     ],
 
@@ -43,11 +56,16 @@ return [
                 'channel' => [
                     'no_access' => 'Toegang tot dit kanaal is vereist.',
                     'moderated' => 'Kanaal wordt op het moment gemodereerd.',
+                    'not_lazer' => '',
                 ],
 
                 'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
             ],
         ],
+    ],
+
+    'contest' => [
+        'voting_over' => '',
     ],
 
     'forum' => [
@@ -60,10 +78,16 @@ return [
             ],
 
             'edit' => [
+                'deleted' => '',
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
                 'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
+            ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -73,12 +97,34 @@ return [
                 'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om te antwoorden.',
+
+                'user' => [
+                    'require_login' => '',
+                    'restricted' => "",
+                    'silenced' => "",
+                ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om een onderwerp te starten.',
                 'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => '',
+                'over' => '',
+                'voted' => '',
+
+                'user' => [
+                    'require_login' => '',
+                    'restricted' => "",
+                    'silenced' => "",
+                ],
+            ],
+
+            'watch' => [
+                'no_forum_access' => '',
             ],
         ],
 
@@ -94,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
+    'require_login' => 'Log in om verder te gaan.',
 
     'unauthorized' => 'Toegang geweigerd.',
 
-    'silenced' => 'Je kunt dit niet doen terwijl je silenced bent.',
+    'silenced' => "Je kunt dit niet doen terwijl je silenced bent.",
 
-    'restricted' => 'Je kunt dit niet doen terwijl je restricted bent.',
+    'restricted' => "Je kunt dit niet doen terwijl je restricted bent.",
 
     'user' => [
         'page' => [

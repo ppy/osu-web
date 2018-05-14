@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'lad os få<br>dig i gang!',
+        'tagline' => "lad os få<br>dig i gang!",
         'action' => 'Download osu!',
         'os' => [
             'windows' => 'til Windows',
@@ -94,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'opret en bruger',
-                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto', // Base text changed from "log" to "sign"
+                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto',
             ],
             'download' => [
                 'title' => 'hent spillet',
@@ -112,6 +112,7 @@ return [
     ],
 
     'user' => [
+        'title' => '',
         'news' => [
             'title' => 'Nyheder',
             'error' => 'Fejl ved indlæsning af nyheder, prøv at genindlæse siden?...',
@@ -146,6 +147,6 @@ return [
             'part-2' => 'Vidste du også, at du ved at støtte osu! får en stor håndfuld ekstra brugbare funktioner, såsom <strong>in-game downloading</strong> som kan udnyttes i multiplayer- og tilskuertilstand?',
         ],
         'find-out-more' => 'Klik her for at læse mere!',
-        'download-starting' => 'Hov, og bare rolig - din download er allerede startet for dig ;)',
+        'download-starting' => "Hov, og bare rolig - din download er allerede startet for dig ;)",
     ],
 ];

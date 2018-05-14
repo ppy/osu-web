@@ -30,8 +30,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Annullér',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
         'delete' => 'Slet',
         'permalink' => 'permalink',
+        'permalink_copied' => '',
         'post' => 'Slå op',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
@@ -39,13 +43,20 @@ return [
         'reset' => 'Nulstil',
         'save' => 'Gem',
         'saving' => 'Gemmer...',
+        'see_more' => '',
         'show_more' => 'vis mere',
         'upload_image' => 'upload billede',
     ],
 
     'count' => [
+        'badges' => '',
+        'days' => '',
+        'hour_short_unit' => '',
+        'hours' => '',
         'item' => ':count unit|:count units',
+        'minute_short_unit' => '',
         'months' => ':count måned|:count måneder',
+        'second_short_unit' => '',
         'years' => ':count år|:count år',
     ],
 
@@ -53,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => '',
         ],
     ],
 

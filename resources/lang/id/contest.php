@@ -27,7 +27,7 @@ return [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memilih.',
         'best_of' => [
-            'none_played' => 'Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!',
+            'none_played' => "Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!",
         ],
     ],
     'entry' => [

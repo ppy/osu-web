@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,9 @@ return [
         'deny_kudosu' => 'deny kudosu',
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
+        'kudosu_denied' => '',
         'message_placeholder' => 'Type here to post',
+        'message_placeholder_deleted_beatmap' => '',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to submit.',
         'reply_placeholder' => 'Type your response here',
@@ -63,6 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -71,8 +77,11 @@ return [
         'mode' => [
             'events' => 'History',
             'general' => 'General',
-            'general_all' => 'General (all difficulties)',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => '',
+                'generalAll' => '',
+            ],
         ],
 
         'new' => [
@@ -85,28 +94,74 @@ return [
             'title' => ':title mapped by :mapper',
         ],
 
+        'sort' => [
+            '_' => '',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
+        ],
+
         'stats' => [
             'deleted' => 'Deleted',
+            'mapper_notes' => '',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => 'All',
         ],
+
+        'status-messages' => [
+            'approved' => '',
+            'graveyard' => "",
+            'loved' => '',
+            'ranked' => '',
+            'wip' => '',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => '',
+        'button_done' => '',
+        'confirm' => "",
+        'explanation' => '',
+        'explanation_guest' => '',
+        'new_time' => "",
+        'remaining' => '',
+        'required_text' => '',
+        'section_title' => '',
+        'title' => '',
+    ],
+
+    'feedback' => [
+        'button' => '',
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'no reason specified',
-        'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualification_prompt' => '',
+        'disqualified_at' => '',
+        'disqualified_no_reason' => '',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'incorrect_state' => '',
         'nominate' => 'Nominate',
-        'nominate-confirm' => 'Nominate this beatmap?',
+        'nominate_confirm' => '',
+        'nominated_by' => '',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'required-text' => 'Nominations: :current/:required',
+        'qualified_soon' => '',
+        'required_text' => '',
+        'reset_message_deleted' => '',
         'title' => 'Nomination Status',
+        'unresolved_issues' => '',
+
+        'reset_at' => [
+            'nomination_reset' => '',
+            'disqualify' => '',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '',
+        ],
     ],
 
     'listing' => [
@@ -116,12 +171,14 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'general' => '',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
                 'rank' => 'Rank Achieved',
+                'played' => '',
             ],
         ],
         'mode' => 'Mode',
@@ -129,6 +186,10 @@ return [
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
+    ],
+    'general' => [
+        'recommended' => '',
+        'converts' => '',
     ],
     'mode' => [
         'any' => 'Any',
@@ -141,9 +202,9 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'qualified' => '',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
@@ -161,27 +222,28 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => '',
     ],
     'language' => [
         'any' => 'Any',
@@ -196,6 +258,11 @@ return [
         'swedish' => 'Swedish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+    ],
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
     ],
     'extra' => [
         'video' => 'Has Video',

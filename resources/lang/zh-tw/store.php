@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '支付被取消。',
         'error' => '結帳時出現錯誤 :(',
+        'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
             'line_1' => '先前的訂單未完成',
@@ -38,6 +39,12 @@ return [
     ],
 
     'discount' => '節省 :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '我们已收到你的 osu!商店 订单！',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -74,6 +81,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => '输入用户名并检查是否可用',
+        'checking' => '正在检查 :username 是否可用。。。',
         'require_login' => [
             '_' => '需要 :link 才能改變用戶名！',
             'link_text' => '登錄',

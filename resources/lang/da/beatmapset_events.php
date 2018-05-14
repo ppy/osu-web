@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator slettede et opslag fra diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator gendannede et opslag fra diskussionen :discussion.',
         'discussion_restore' => 'Moderator gendannede diskussionen :discussion.',
+        'disqualify' => '',
         'disqualify_legacy' => 'Diskvalificeret af :user. Årsag: :text.',
         'issue_reopen' => 'Løste problem :discussion genåbnet.',
         'issue_resolve' => 'Problem :discussion markeret som løst.',
@@ -37,5 +38,15 @@ return [
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
         'qualify' => 'Kvalificeret.',
         'rank' => 'Ranked.',
+    ],
+
+    'index' => [
+        'title' => '',
+    ],
+
+    'item' => [
+        'content' => '',
+        'discussion_deleted' => '',
+        'type' => '',
     ],
 ];

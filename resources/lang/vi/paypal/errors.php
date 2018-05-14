@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Không thể sử dụng phương thức thanh toán này trong Paypal.',
     'invalid_resource_id' => 'Không tìm thấy thông tin thanh toán.',
-    'unknown' => 'Thanh toán đã bị từ chối, nhưng chúng tôi không biết tại sao.',  // ngân hàng nó block chứ còn gì nữa...
+    'unknown' => "Thanh toán đã bị từ chối, nhưng chúng tôi không biết tại sao.",
 ];

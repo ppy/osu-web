@@ -20,23 +20,23 @@
 
 return [
     'header' => [
-        'small' => "Rivalisez avec d'autres moyens que juste cliquer sur des cercles",
+        'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles',
         'large' => 'Concours communautaires osu!',
     ],
     'voting' => [
         'over' => 'Le vote pour ce concours est terminé',
-        'login_required' => 'Veuillez vous connecter pour voter.', // Base text changed from "log" to "sign"
+        'login_required' => 'Veuillez vous connecter pour voter.',
         'best_of' => [
             'none_played' => "Il semble que vous n'ayez joué aucune beatmap qualifiée pour ce concours !",
         ],
     ],
     'entry' => [
         '_' => 'inscription',
-        'login_required' => 'Merci de vous connecter pour participer.', // Base text changed from "log" to "sign"
+        'login_required' => 'Merci de vous connecter pour participer.',
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
         'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
-        'limit_reached' => "Vous avez atteint la limite d'entrée pour ce concours",
+        'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
         'drop_here' => '"Droppez" votre entrée ici',
         'wrong_type' => [
             'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
@@ -46,7 +46,7 @@ return [
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
-        'download' => "Télécharger l'entrée",
+        'download' => 'Télécharger l\'entrée',
     ],
     'vote' => [
         'list' => 'votes',

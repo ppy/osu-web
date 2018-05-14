@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,10 +21,35 @@
 return [
     'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
+    'too_long' => '',
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmap_discussion_post' => [
+        'discussion_locked' => '',
         'first_post' => 'Can not delete starting post.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '',
+        'beatmapset_no_hype' => "",
+        'hype_requires_null_beatmap' => '',
+        'invalid_beatmap_id' => '',
+        'invalid_beatmapset_id' => '',
+        'locked' => '',
+        'mapper_note_wrong_user' => '',
+
+        'hype' => [
+            'guest' => '',
+            'hyped' => '',
+            'limit_exceeded' => '',
+            'not_hypeable' => '',
+            'owner' => '',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '',
+            'negative' => "",
+        ],
     ],
 
     'forum' => [
@@ -37,6 +62,11 @@ return [
             'invalid' => 'Invalid option specified.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => '',
+            'beatmapset_post_no_edit' => '',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
@@ -46,6 +76,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '',
             'too_many' => 'Selected more options than allowed.',
         ],
     ],
@@ -54,13 +85,31 @@ return [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
         'invalid_country' => 'Country not in database.',
+        'invalid_discord' => '',
         'invalid_email' => "Doesn't seem to be an email address.",
         'too_short' => 'New password is too short.',
         'unknown_duplicate' => 'Username or email address already used.',
+        'username_available_in' => '',
+        'username_available_soon' => '',
+        'username_invalid_characters' => '',
+        'username_in_use' => '',
+        'username_no_space_userscore_mix' => '',
+        'username_no_spaces' => "",
+        'username_not_allowed' => '',
         'username_too_short' => 'The requested username is too short.',
+        'username_too_long' => '',
         'weak' => 'Blacklisted password.',
         'wrong_current_password' => 'Current password is incorrect.',
         'wrong_email_confirmation' => 'Email confirmation does not match.',
         'wrong_password_confirmation' => 'Password confirmation does not match.',
+        'too_long' => '',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+            'username_is_same' => '',
+        ],
     ],
 ];

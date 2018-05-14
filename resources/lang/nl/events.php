@@ -20,11 +20,13 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> presteerde "<strong>:achievement</strong>"!',
+    'beatmap_playcount' => '',
+    'beatmapset_approve' => '',
     'beatmapset_delete' => ':beatmapset is verwijderd.',
     'beatmapset_revive' => ':beatmapset is ontwaakt uit zijn eeuwige slaap door <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> heeft de beatmap "<em>:beatmapset</em>" bijgewerkt.',
     'beatmapset_upload' => '<strong><em>:user</em></strong> heeft een nieuwe beatmap ingezonden ":beatmapset"',
-    'empty' => 'Deze gebruiker heeft in de afgelopen tijd niets bijzonders gedaan!',
+    'empty' => "Deze gebruiker heeft in de afgelopen tijd niets bijzonders gedaan!",
     'rank' => '<strong><em>:user</em></strong> behaalde #:rank voor <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> verloor de eerste plaats op <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> is opnieuw osu! supporter - bedankt voor je vrijgevigheid!',

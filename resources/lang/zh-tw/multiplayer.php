@@ -21,7 +21,7 @@
 return [
     'match' => [
         'header' => '多人遊戲',
-        'team-types' => [ //TODO 待翻譯
+        'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',

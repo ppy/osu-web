@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
         'best_of' => [
-            'none_played' => 'ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ',
+            'none_played' => "ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ",
         ],
     ],
     'entry' => [

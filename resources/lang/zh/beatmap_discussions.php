@@ -38,7 +38,7 @@ return [
         'form' => [
             'deleted' => '包含已经删除的讨论',
 
-            'user' => [ //上下文
+            'user' => [
                 'label' => '用户',
                 'overview' => '活动总览',
             ],

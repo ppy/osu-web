@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,11 +25,11 @@ return [
 
     'checkout' => [
         'cart_problems' => 'ตายแล้ว มีปัญหาบางอย่างกับตะกร้าสินค้าของคุณ!',
-        'pay' => 'จ่ายด้วย PayPal',
         'cart_problems_edit' => 'กดที่นี่เพื่อแก้ไข',
         'declined' => 'การชำระเงินถูกยกเลิก',
         'error' => 'มีปัญหาระหว่างเช็คเอาท์ :(',
         'old_cart' => 'เหมือนว่าตะกร้าสินค้าของคุณจะเก่ากว่าหน่อย และทำการอัพเดตให้แล้ว กรุณาลองใหม่อีกครั้ง',
+        'pay' => 'จ่ายด้วย PayPal',
         'pending_checkout' => [
             'line_1' => 'การชำระเงินก่อนหน้านี้ได้เริ่มแล้ว แต่ยังไม่เสร็จ',
             'line_2' => 'โปรดเลือกวิธีชำระเงินเพื่อดำเนินการสั่งซื้อต่อหรือ :link เพื่อยกเลิก',

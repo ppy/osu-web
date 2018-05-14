@@ -38,7 +38,7 @@ return [
         'form' => [
             'deleted' => '包含已經刪除的討論',
 
-            'user' => [ //上下文
+            'user' => [
                 'label' => '用戶',
                 'overview' => '活動總覽',
             ],
@@ -76,5 +76,10 @@ return [
         'bng' => '譜面管理團隊',
         'owner' => '譜面作者',
         'qat' => '質量保證團隊',
+    ],
+
+    'user_filter' => [
+        'everyone' => '所有人',
+        'label' => '按用户筛选',
     ],
 ];

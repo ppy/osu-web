@@ -25,7 +25,14 @@ return [
 
     'prefixes' => [
         'add' => 'tillägg',
-        'fix' => 'fix',
+        'fix' => '',
         'misc' => 'diverse',
+    ],
+
+    'support' => [
+        'heading' => '',
+        'text_1' => '',
+        'text_1_link' => '',
+        'text_2' => '',
     ],
 ];

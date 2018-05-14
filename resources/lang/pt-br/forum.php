@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Tópicos Fixados',
-    'slogan' => 'é perigoso jogar sozinho.',
+    'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
 
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Manter enquete aberta por',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixe em branco para uma votação sem fim',
                 'max_options' => 'Opções por usuário',
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Você tem :votes restantes.',
-                    'not_enough' => 'Você não tem mais votos restantes',
+                    'not_enough' => "Você não tem mais votos restantes",
                 ],
             ],
 

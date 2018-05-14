@@ -33,28 +33,34 @@ return [
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
+            'index' => 'dashboard',
             'legal-show' => 'information',
             'news-index' => 'nyheder',
             'news-show' => 'nyheder',
             'password-reset-index' => 'nulstil adgangskode',
             'search' => 'søg',
             'supportTheGame' => 'støt spillet',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'hjælp',
             'getFaq' => 'faq',
-            'getSupport' => 'support', //obsolete
+            'getRules' => 'rules',
+            'getSupport' => 'support',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'liste',
             'artists' => 'udvalgte kunstnere',
-            'packs' => 'pakker',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset-watches-index' => 'modding watchlist',
-            // 'getCharts' => 'charts', // Base text has changed, please check.
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'liste',
+            'packs' => 'pakker',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -72,7 +78,7 @@ return [
         'community' => [
             '_' => 'fællesskab',
             'dev' => 'osu!dev',
-            'getForum' => 'forum', // Base text changed to plural, please check.
+            'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
             'contests' => 'konkurrencer',
@@ -81,10 +87,10 @@ return [
             'tournaments-index' => 'turneringer',
             'tournaments-show' => 'turneringsinfo',
             'forum-topic-watches-index' => 'abonnementer',
-            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-create' => 'forum',
+            'forum-topics-show' => 'forum',
+            'forum-forums-index' => 'forum',
+            'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
@@ -101,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'bruger',
-            'getLogin' => 'log ind', // Base text changed from "log" to "sign"
+            'getLogin' => 'log ind',
             'disabled' => 'deaktiveret',
 
             'register' => 'registrer',
@@ -110,8 +116,14 @@ return [
 
             'messages' => 'Beskeder',
             'settings' => 'Indstillinger',
-            'logout' => 'Log Ud', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Log Ud',
             'help' => 'Hjælp',
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'user modding history',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'butik',
@@ -140,8 +152,9 @@ return [
         'admin' => [
             '_' => 'admin',
             'beatmapsets-covers' => 'beatmapset covers',
-            'root' => 'index',
             'logs-index' => 'log',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'show' => 'detalje',
@@ -181,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Siden findes ikke',
-            'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!',
+            'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!",
         ],
         '403' => [
-            'error' => 'Du burde ikke være her.',
+            'error' => "Du burde ikke være her.",
             'description' => 'Du kunne prøve at gå tilbage igen, okay?',
         ],
         '401' => [
-            'error' => 'Du burde ikke være her.',
-            'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.', // Base text changed from "log" to "sign"
+            'error' => "Du burde ikke være her.",
+            'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.',
         ],
         '405' => [
             'error' => 'Siden findes ikke',
-            'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!!',
+            'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!!",
         ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
-            'description' => 'Vi er blevet informeret om fejlen.',
+            'description' => "Vi er blevet informeret om fejlen.",
         ],
         'fatal' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
-            'description' => 'Vi er blevet informeret om fejlen.',
+            'description' => "Vi er blevet informeret om fejlen.",
         ],
         '503' => [
             'error' => 'Under Vedligeholdelse!',
-            'description' => 'Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.',
+            'description' => "Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Her er en kode, som du kan sige videre til support, hvis du vil!',
+        'reference' => "Her er en kode, som du kan sige videre til support, hvis du vil!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'email-adresse',
-            'forgot' => 'Jeg har glemt min login-info',
+            'forgot' => "Jeg har glemt min login-info",
             'password' => 'adgangskode',
             'title' => 'Log ind for at fortsætte',
 
             'error' => [
-                'email' => 'Brugernavn eller adgangskode eksisterer ikke',
+                'email' => "Brugernavn eller adgangskode eksisterer ikke",
                 'password' => 'Forkert adgangskode',
             ],
         ],
 
         'register' => [
-            'info' => 'Du skal have en konto, min gode mand! Hvor har du ikke én endnu?',
-            'title' => 'Har du ikke en konto?',
+            'info' => "Du skal have en konto, min gode mand! Hvor har du ikke én endnu?",
+            'title' => "Har du ikke en konto?",
         ],
     ],
 
@@ -238,7 +251,7 @@ return [
         'links' => [
             'account-edit' => 'Indstillinger',
             'friends' => 'Venner',
-            'logout' => 'Log ud', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Log ud',
             'profile' => 'Min Profil',
         ],
     ],

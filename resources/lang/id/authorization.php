@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
-            'owner' => 'Anda tidak dapat memberikan suara pada topik diskusi milik Anda sendiri.',
+            'owner' => "Anda tidak dapat memberikan suara pada topik diskusi milik Anda sendiri.",
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
     ],
@@ -87,7 +87,7 @@ return [
 
             'store' => [
                 'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan untuk langsung menuju forum Help & Support.',
-                'too_many_help_posts' => 'Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan untuk mengirimkan email ke support@ppy.sh', // FIXME: alamat email unhardcode
+                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan untuk mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -100,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => 'Tidak dapat membalas saat dibatasi.',
-                    'silenced' => 'Tidak dapat membalas saat dibungkam.',
+                    'restricted' => "Tidak dapat membalas saat dibatasi.",
+                    'silenced' => "Tidak dapat membalas saat dibungkam.",
                 ],
             ],
 
@@ -118,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memilih.',
-                    'restricted' => 'Tidak dapat memilih saat dibatasi.',
-                    'silenced' => 'Tidak dapat memilih saat dibungkam.',
+                    'restricted' => "Tidak dapat memilih saat dibatasi.",
+                    'silenced' => "Tidak dapat memilih saat dibungkam.",
                 ],
             ],
 
@@ -144,9 +144,9 @@ return [
 
     'unauthorized' => 'Akses ditolak.',
 
-    'silenced' => 'Tidak dapat melakukan hal itu saat dibungkam.',
+    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
 
-    'restricted' => 'Tidak dapat melakukan hal itu saat dibatasi.',
+    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
 
     'user' => [
         'page' => [

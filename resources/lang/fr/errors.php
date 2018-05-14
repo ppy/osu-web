@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Veuillez vous connecter pour continuer.', // Base text changed from "log" to "sign"
+        'http-401' => 'Veuillez vous connecter pour continuer.',
         'http-403' => 'Accès refusé.',
         'http-429' => 'Trop de tentatives! Réessayez plus tard',
     ],
@@ -31,12 +31,12 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mode spécifié invalide.',
-        'standard_converts_only' => "Seulement le mode osu! peut avoir des scores dans d'autres modes.",
+        'standard_converts_only' => 'Seulement le mode osu! peut avoir des scores dans d\'autres modes.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Vous avez trop de beatmaps favorites ! Merci de supprimer une beatmap de vos favoris.',
     ],
-    'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.', // Base text changed from "log" to "sign"
+    'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
     'supporter_only' => 'Vous devez être un osu!supporter pour accéder à cela.',
     'no_restricted_access' => 'Vous ne pouvez pas faire ça avec un compte avec un accès restreint.',
     'unknown' => 'Erreur inconnue survenue.',

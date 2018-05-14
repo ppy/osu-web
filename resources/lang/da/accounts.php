@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Ændr Avatar', // Base text changed, please check.
+            'title' => 'Ændr Avatar',
         ],
 
         'email' => [
@@ -43,13 +44,15 @@ return [
 
         'profile' => [
             'title' => 'Rediger Profil',
+
             'user' => [
                 'user_from' => 'nuværende placering',
+                'user_interests' => 'interesse',
                 'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
-                'user_interests' => 'interesse',
+                'user_discord' => '',
             ],
         ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,12 +26,12 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion ist <locked>.',
-        'first_post' => 'Der erste Post kann nicht gelöscht werden.',
+        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
     ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Ein Zeitpunkt ist angegeben, aber die Beatmap fehlt.',
-        'beatmapset_no_hype' => 'Diese Beatmap kann nicht gehypt werden.',
+        'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.",
         'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.',
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
@@ -48,12 +48,8 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Der gewählte Zeitpunkt ist nach dem Ende der Beatmap.',
-            'negative' => 'Der Zeitpunkt muss positiv sein.',
+            'negative' => "Der Zeitpunkt muss positiv sein.",
         ],
-    ],
-
-    'beatmap_discussion_post' => [
-        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
     ],
 
     'forum' => [
@@ -89,7 +85,8 @@ return [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
-        'invalid_email' => 'Scheint keine gültige E-Mail-Adresse zu sein.',
+        'invalid_discord' => '',
+        'invalid_email' => "Scheint keine gültige E-Mail-Adresse zu sein.",
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',
         'username_available_in' => 'Dieser Nutzername wird in :duration verfügbar sein.',
@@ -97,7 +94,7 @@ return [
         'username_invalid_characters' => 'Der angeforderte Nutzername enthält ungültige Zeichen.',
         'username_in_use' => 'Dieser Nutzername wird bereits verwendet!',
         'username_no_space_userscore_mix' => 'Bitte verwende nur Unterstricht ODER Leerzeichen, und nicht beides zusammen!',
-        'username_no_spaces' => 'Nutzernamen können nicht mit Leerzeichen beginnen oder enden.',
+        'username_no_spaces' => "Nutzernamen können nicht mit Leerzeichen beginnen oder enden.",
         'username_not_allowed' => 'Dieser Nutzername ist nicht erlaubt.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',
         'username_too_long' => 'Der angeforderte Nutzername ist zu lang.',

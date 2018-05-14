@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Seleccionar Tipo de Comentario',
         'reply_notice' => 'Presiona Enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
-        'require-login' => 'Inicia sesión para publicar o responder', // Base text changed from "log" to "sign"
+        'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
         'title' => 'Discusiones',
@@ -76,7 +76,7 @@ return [
 
         'mode' => [
             'events' => 'Historial',
-            'general' => 'General :scope',
+            'general' => '',
             'timeline' => 'Línea de tiempo',
             'scopes' => [
                 'general' => 'Esta dificultad',
@@ -104,7 +104,7 @@ return [
         'stats' => [
             'deleted' => 'Eliminado',
             'mapper_notes' => 'Notas',
-            'mine' => 'Mi autoría', //This will display in discussion for the posts you made in that discussion. Using "mío" or "míos" will not work in this case
+            'mine' => 'Mi autoría',
             'pending' => 'Pendiente',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
@@ -113,24 +113,29 @@ return [
 
         'status-messages' => [
             'approved' => '¡Este beatmap fue aprobado el :date!',
-            'graveyard' => 'Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...',
+            'graveyard' => "Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...",
             'loved' => '¡Este beatmap fue marcado como amado el :date!',
             'ranked' => '¡Este beatmap fue rankeado el :date!',
             'wip' => 'Nota: Este beatmap fue marcado como trabajo en proceso por el creador.',
         ],
+
     ],
 
-   'hype' => [
+    'hype' => [
         'button' => '¡Hypear este beatmap!',
         'button_done' => '¡Hypeado!',
-        'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacer esta acción.',
+        'confirm' => "¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacer esta acción.",
         'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
-        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!', // Base text changed from "log" to "sign"
-        'new_time' => 'Obtendrás otro hype :new_time.',
+        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
+        'new_time' => "Obtendrás otro hype :new_time.",
         'remaining' => 'Te quedan :remaining hypes.',
-        'required_text' => 'Hype: :current/:required',
+        'required_text' => '',
         'section_title' => 'Tren del hype',
-        'title' => 'Hype',
+        'title' => '',
+    ],
+
+    'feedback' => [
+        'button' => 'Dejar comentarios',
     ],
 
     'nominations' => [
@@ -142,10 +147,10 @@ return [
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este beatmap?',
         'nominated_by' => 'nominado por :users',
-        'reset_message_deleted' => 'eliminado',
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
         'required_text' => 'Nominaciones: :current/:required',
+        'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de Nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben ser resueltos primero.',
 
@@ -159,10 +164,6 @@ return [
         ],
     ],
 
-    'feedback' => [
-        'button' => 'Dejar comentarios',
-    ],
-
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
@@ -170,13 +171,14 @@ return [
             'not-found' => 'no hay resultados',
             'not-found-quote' => '...nop, nada encontrado.',
             'filters' => [
-                'general' => 'General',
+                'general' => '',
                 'mode' => 'Modo',
                 'status' => 'Estado de aprobación',
                 'genre' => 'Género',
                 'language' => 'Lenguaje',
                 'extra' => 'Adicional',
                 'rank' => 'Rango conseguido',
+                'played' => '',
             ],
         ],
         'mode' => 'Modo',
@@ -191,10 +193,10 @@ return [
     ],
     'mode' => [
         'any' => 'Cualquiera',
-        'osu' => 'osu!',
-        'taiko' => 'osu!taiko',
-        'fruits' => 'osu!catch',
-        'mania' => 'osu!mania',
+        'osu' => '',
+        'taiko' => '',
+        'fruits' => '',
+        'mania' => '',
     ],
     'status' => [
         'any' => 'Cualquiera',
@@ -211,36 +213,36 @@ return [
         'any' => 'Cualquiera',
         'unspecified' => 'No especificado',
         'video-game' => 'Videojuego',
-        'anime' => 'Anime',
-        'rock' => 'Rock',
-        'pop' => 'Pop',
+        'anime' => '',
+        'rock' => '',
+        'pop' => '',
         'other' => 'Otro',
         'novelty' => 'Novedad',
-        'hip-hop' => 'Hip Hop',
+        'hip-hop' => '',
         'electronic' => 'Electrónica',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
-        '4K' => '4K',
-        '5K' => '5K',
-        '6K' => '6K',
-        '7K' => '7K',
-        '8K' => '8K',
-        'FI' => 'Fade In',
-        '9K' => '9K',
+        '4K' => '',
+        '5K' => '',
+        '6K' => '',
+        '7K' => '',
+        '8K' => '',
+        '9K' => '',
+        'AP' => '',
+        'DT' => '',
+        'EZ' => '',
+        'FI' => '',
+        'FL' => '',
+        'HD' => '',
+        'HR' => '',
+        'HT' => '',
+        'NC' => '',
+        'NF' => '',
         'NM' => 'Sin mods',
+        'PF' => '',
+        'Relax' => '',
+        'SD' => '',
+        'SO' => '',
         'TD' => 'Dispositivo touch',
     ],
     'language' => [
@@ -254,8 +256,13 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Español',
         'swedish' => 'Sueco',
-        'instrumental' => 'Instrumental',
+        'instrumental' => '',
         'other' => 'Otro',
+    ],
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
     ],
     'extra' => [
         'video' => 'Contiene video',
@@ -264,12 +271,12 @@ return [
     'rank' => [
         'any' => 'Cualquiera',
         'XH' => 'SS Plateada',
-        'X' => 'SS',
+        'X' => '',
         'SH' => 'S Plateada',
-        'S' => 'S',
-        'A' => 'A',
-        'B' => 'B',
-        'C' => 'C',
-        'D' => 'D',
+        'S' => '',
+        'A' => '',
+        'B' => '',
+        'C' => '',
+        'D' => '',
     ],
 ];

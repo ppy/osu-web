@@ -194,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
+            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
-            'error' => 'Anda seharusnya tidak di sini.',
+            'error' => "Anda seharusnya tidak di sini.",
             'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
         ],
         '401' => [
-            'error' => 'Anda seharusnya tidak di sini.',
+            'error' => "Anda seharusnya tidak di sini.",
             'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
         ],
         '405' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
+            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
         ],
         '500' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => 'Kami diberitahu secara otomatis setiap ada kesalahan.',
+            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
         ],
         'fatal' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => 'Kami diberitahu secara otomatis setiap ada kesalahan.',
+            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => 'Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.',
+            'description' => "Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!',
+        'reference' => "Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'alamat email',
-            'forgot' => 'Saya lupa identitas saya',
+            'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
             'title' => 'Masuk untuk Melanjutkan',
 
             'error' => [
-                'email' => 'Nama pengguna atau alamat email tidak ada',
+                'email' => "Nama pengguna atau alamat email tidak ada",
                 'password' => 'Kata sandi salah',
             ],
         ],
 
         'register' => [
-            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
-            'title' => 'Belum memiliki akun?',
+            'info' => "Anda butuh akun. Mengapa Anda belum memilikinya?",
+            'title' => "Belum memiliki akun?",
         ],
     ],
 

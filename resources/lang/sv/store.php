@@ -28,11 +28,23 @@ return [
         'cart_problems_edit' => 'Klicka här för att redigera det.',
         'declined' => 'Betalningen blev avbruten.',
         'error' => 'Det var ett problem med att slutföra din betalning :(',
+        'old_cart' => '',
         'pay' => 'Betala med Paypal',
+        'pending_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+            'link_text' => '',
+        ],
         'delayed_shipping' => 'Vi är för nuvarande överväldigad med orders! Du får gärna placera din order, men du kanske kommer få en **extra 1-2 veckors försening** medans vi kommer ikapp alla ordrar.',
     ],
 
     'discount' => 'spara :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -64,14 +76,16 @@ return [
         'gift' => 'present till spelare',
         'require_login' => [
             '_' => 'Du behöver vara :link för att få en supporter tagg!',
-            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
+            'link_text' => 'inloggad',
         ],
     ],
 
     'username_change' => [
+        'check' => '',
+        'checking' => '',
         'require_login' => [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
-            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
+            'link_text' => 'inloggad',
         ],
     ],
 ];

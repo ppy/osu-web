@@ -88,5 +88,4 @@ return [
             'link_text' => 'zalogować',
         ],
     ],
-
 ];

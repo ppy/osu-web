@@ -21,10 +21,10 @@
 return [
     'header' => 'Ranking :type',
     'type' => [
-        'performance' => 'globalny',
-        'charts' => 'wyróżnionych',
-        'score' => 'punktowy',
-        'country' => 'krajowy',
+        'performance' => 'Globalny',
+        'charts' => 'Wyróżnionych',
+        'score' => 'Punktowy',
+        'country' => 'Krajowy',
     ],
     'stat' => [
         'accuracy' => 'Precyzja',

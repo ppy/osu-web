@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => '',
             'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
@@ -32,7 +33,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'owner' => "Can not vote own discussion!",
+            'wrong_beatmapset_state' => '',
         ],
     ],
 
@@ -81,6 +83,11 @@ return [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
+            ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
             ],
         ],
 

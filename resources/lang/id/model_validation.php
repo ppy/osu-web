@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
-        'beatmapset_no_hype' => 'Beatmap tidak dapat dihype.',
+        'beatmapset_no_hype' => "Beatmap tidak dapat dihype.",
         'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian General (All difficulties).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
-            'negative' => 'Keterangan waktu tidak bisa bernilai negatif.',
+            'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'Alamat email sudah digunakan',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
-        'invalid_email' => 'Tampaknya bukan alamat email yang valid.',
+        'invalid_email' => "Tampaknya bukan alamat email yang valid.",
         'too_short' => 'Kata sandi baru terlalu pendek.',
         'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
@@ -94,7 +94,7 @@ return [
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
-        'username_no_spaces' => 'Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!',
+        'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
         'username_too_short' => 'Nama pengguna yang diminta terlalu pendek.',
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',

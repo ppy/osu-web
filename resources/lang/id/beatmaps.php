@@ -113,10 +113,10 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-Approve pada :date!',
-            'graveyard' => 'Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...',
-            'loved' => "Beatmap ini telah ditambahkan pada kategori 'Loved' pada :date!",
+            'graveyard' => "Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...",
+            'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
             'ranked' => 'Beatmap ini telah di-Rank pada :date!',
-            'wip' => "Catatan: Beatmap ini ditandai sebagai 'dalam pengerjaan' oleh pembuat beatmap.",
+            'wip' => 'Catatan: Beatmap ini ditandai sebagai \'dalam pengerjaan\' oleh pembuat beatmap.',
         ],
 
     ],
@@ -124,10 +124,10 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => 'Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.',
+        'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.",
         'explanation' => 'Berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
-        'new_time' => 'Anda akan mendapatkan hype tambahan dalam :new_time.',
+        'new_time' => "Anda akan mendapatkan hype tambahan dalam :new_time.",
         'remaining' => 'Anda memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',

@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [ //上下文
+return [
     'index' => [
         'title' => '譜面討論投票',
     ],

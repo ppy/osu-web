@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '활성화 하기',
@@ -64,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '관리자 콘솔 같은거', // Admin Console Thingy
+            'title' => '관리자 콘솔 같은거',
 
             'sections' => [
                 'forum' => '포럼',

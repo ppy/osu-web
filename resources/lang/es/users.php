@@ -20,27 +20,36 @@
 
 return [
     'deleted' => '[usuario eliminado]',
+
     'beatmapset_activities' => [
+        'title' => "",
+
         'discussions' => [
             'title_recent' => 'Discusiones recientemente empezadas',
         ],
+
         'events' => [
             'title_recent' => 'Eventos recientes',
         ],
+
         'posts' => [
             'title_recent' => 'Posts recientes',
         ],
+
         'votes_received' => [
             'title_most' => 'Más votados por (últimos 3 meses)',
         ],
+
         'votes_made' => [
             'title_most' => 'Más votados (últimos 3 meses)',
         ],
     ],
+
     'card' => [
         'loading' => 'Cargando...',
         'send_message' => 'enviar mensaje',
     ],
+
     'login' => [
         '_' => 'Iniciar sesión',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
@@ -49,9 +58,9 @@ return [
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
         'remember' => 'Recordarme',
-        'title' => 'Inicia sesión para continuar', // Base text changed from "log" to "sign"
-        'failed' => 'Nombre de usuario o contraseña incorrectos', // Base text changed from "log" to "sign"
-        'register' => '¿No tienes una cuenta de osu!? Crea una',
+        'title' => 'Inicia sesión para continuar',
+        'failed' => 'Nombre de usuario o contraseña incorrectos',
+        'register' => "¿No tienes una cuenta de osu!? Crea una",
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
@@ -60,39 +69,42 @@ return [
 
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
     'posts' => [
         'title' => 'Posts de :username',
     ],
+
     'signup' => [
         '_' => 'Registrarse',
     ],
     'anonymous' => [
-        'login_link' => 'clic para iniciar sesión', // Base text changed from "log" to "sign"
-        'login_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+        'login_link' => 'clic para iniciar sesión',
+        'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
-        'error' => 'Necesitas haber iniciado sesión para hacer esto.', // Base text changed from "log" to "sign"
+        'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
-    'logout_confirm' => '¿Estás seguro que quieres salir? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => '¿Estás seguro que quieres salir? :(',
     'restricted_banner' => [
         'title' => '¡Tu cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [
         'age' => ':age años',
+        'change_avatar' => '¡cambia tu avatar!',
         'first_members' => 'Aquí desde el comienzo',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
         'missingtext' => '¡Has cometido un error de ortografía! (o el usuario pudo haber sido baneado)',
-        'origin_age' => ':age',
-        'origin_country' => 'De :country',
+        'origin_age' => '',
         'origin_country_age' => ':age de :country',
+        'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
         'previous_usernames' => 'Antes conocido como',
         'plays_with' => 'Juega con :devices',
-        'title' => 'Perfil de :username',
-        'change_avatar' => '¡cambia tu avatar!',
+        'title' => "Perfil de :username",
+
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
@@ -118,13 +130,14 @@ return [
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
             'unranked' => 'No hay partidas recientes',
+
             'achievements' => [
                 'title' => 'Logros',
                 'achieved-on' => 'Obtenido el :date',
             ],
             'beatmaps' => [
                 'none' => 'Ninguno... aún.',
-                'title' => 'Beatmaps',
+                'title' => '',
 
                 'favourite' => [
                     'title' => 'Beatmaps Favoritos (:count)',
@@ -141,12 +154,11 @@ return [
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
+                'title' => 'Historial',
+
                 'monthly_playcounts' => [
                     'title' => 'Historial de juego',
                 ],
-
-                'title' => 'Historial',
-
                 'most_played' => [
                     'count' => 'veces jugado',
                     'title' => 'Beatmaps Más Jugados',
@@ -155,23 +167,22 @@ return [
                     'accuracy' => 'precisión: :percentage',
                     'title' => 'Jugadas Recientes (24h)',
                 ],
-
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
                 ],
-                'title' => 'Historial',
-
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => 'Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
+                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => 'Kudosu Total Obtenido',
                 'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => '¡Este usuario no ha recibido ningún kudosu!',
+                    'amount' => '',
+                    'empty' => "¡Este usuario no ha recibido ningún kudosu!",
+
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
                             'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding de :post',
@@ -193,11 +204,13 @@ return [
                             'give' => 'Recibido :amount por obtención de votos en la publicación de modding de :post',
                             'reset' => 'Perdido :amount por perder votos en la publicación de modding de :post',
                         ],
+
                         'recalculate' => [
                             'give' => 'Recibido :amount por recálculo de votos en la publicación de modding de :post',
                             'reset' => 'Perdido :amount por recálculo de votos en la publicación de modding de :post',
                         ],
                     ],
+
                     'forum_post' => [
                         'give' => 'Recibido :amount de :giver por una publicación en :post',
                         'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
@@ -209,7 +222,7 @@ return [
                 'title' => '¡sobre mi!',
             ],
             'medals' => [
-                'empty' => 'Este usuario aún no ha conseguido ninguna. ;_;',
+                'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
                 'title' => 'Medallas',
             ],
             'recent_activity' => [
@@ -217,7 +230,8 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'No hay récords increíbles aún. :(',
-                'pp' => ':amountpp',
+                'not_ranked' => '',
+                'pp' => '',
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
 
@@ -230,8 +244,9 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
-                'bad_standing' => 'La cuenta de <strong>:username</strong> no está en regla :(',
+                'bad_standing' => "La cuenta de <strong>:username</strong> no está en regla :(",
                 'remaining_silence' => '<strong>:username</strong> podrá hablar otra vez dentro de :duration.',
+
                 'recent_infringements' => [
                     'title' => 'Infracciones recientes',
                     'date' => 'fecha',
@@ -240,8 +255,9 @@ return [
                     'length_permanent' => 'Permanente',
                     'description' => 'descripción',
                     'actor' => 'por :username',
+
                     'actions' => [
-                        'restriction' => 'Ban',
+                        'restriction' => '',
                         'silence' => 'Silenciado',
                         'note' => 'Nota',
                     ],
@@ -249,15 +265,20 @@ return [
             ],
         ],
         'info' => [
+            'discord' => '',
             'interests' => 'Intereses',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Sitio web',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [

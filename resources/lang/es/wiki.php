@@ -27,10 +27,12 @@ return [
         'missing_translation' => 'La página solicitada no se encontró en el idioma actualmente seleccionado.',
         'search' => 'Buscar páginas existentes para :link.',
         'toc' => 'Contenidos',
+
         'edit' => [
             'link' => 'Mostrar en GitHub',
             'refresh' => 'Refrescar',
         ],
+
         'outdated' => [
             '_' => 'Esta página contiene una traducción desactualizada del contenido original. ¡Por favor revisa la :default para la información más precisa (considera actualizar la traducción si puedes ayudar)!',
             'default' => 'versión en Inglés',

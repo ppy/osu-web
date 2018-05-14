@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -118,7 +118,12 @@ return [
             'settings' => 'Einstellungen',
             'logout' => 'Ausloggen',
             'help' => 'Hilfe',
-            'beatmapset_activities' => 'user beatmapset activities',
+            'modding-history-discussions' => '',
+            'modding-history-events' => '',
+            'modding-history-index' => '',
+            'modding-history-posts' => '',
+            'modding-history-votesGiven' => '',
+            'modding-history-votesReceived' => '',
         ],
         'store' => [
             '_' => 'shop',
@@ -181,7 +186,6 @@ return [
         'legal' => [
             '_' => 'Rechtliches & Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Serverstatus',
             'terms' => 'Nutzungsbedingungen',
         ],
@@ -190,62 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Seite fehlt',
-            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
-            'link' => false,
+            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
         ],
         '403' => [
-            'error' => 'Du solltest nicht hier sein.',
+            'error' => "Du solltest nicht hier sein.",
             'description' => 'Du könntest versuchen, zurückzugehen.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Du solltest nicht hier sein.',
+            'error' => "Du solltest nicht hier sein.",
             'description' => 'Du könntest versuchen, zurückzugehen. Oder dich einloggen.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Seite fehlt',
-            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
-            'link' => false,
+            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
         ],
         '500' => [
             'error' => 'Oh nein! Irgendwas ist schief gelaufen! ;_;',
-            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
-            'link' => false,
+            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         'fatal' => [
             'error' => 'Oh nein! Irgendwas ist extrem schief gelaufen! ;_;',
-            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
-            'link' => false,
+            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         '503' => [
             'error' => 'Wegen Wartung nicht erreichbar!',
-            'description' => 'Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.',
+            'description' => "Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!',
+        'reference' => "Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'e-mail-adresse',
-            'forgot' => 'Passwort vergessen',
+            'forgot' => "Passwort vergessen",
             'password' => 'passwort',
             'title' => 'Zum Fortfahren einloggen',
 
             'error' => [
-                'email' => 'Nutzername oder E-Mail-Adresse existiert nicht',
+                'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
                 'password' => 'Falsches Passwort',
             ],
         ],
 
         'register' => [
-            'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
-            'title' => 'Kein Account?',
+            'info' => "Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?",
+            'title' => "Kein Account?",
         ],
     ],
 

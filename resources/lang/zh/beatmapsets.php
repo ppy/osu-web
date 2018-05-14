@@ -26,9 +26,9 @@ return [
     ],
 
     'index' => [
-         'title' => '谱面列表',
-         'guest_title' => '谱面',
-     ],
+        'title' => '谱面列表',
+        'guest_title' => '谱面',
+    ],
 
     'show' => [
         'discussion' => '讨论',
@@ -46,7 +46,7 @@ return [
                 '_' => '下载',
                 'video' => '带视频',
                 'no-video' => '不带视频',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => '收藏这张谱面',
             'unfavourite' => '取消收藏',
@@ -60,12 +60,12 @@ return [
             'ar' => '缩圈速度',
             'stars' => '难度星级',
             'total_length' => '长度',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => '圆圈总数',
             'count_sliders' => '滑条总数',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
-            'nominations' => 'Nominations',
+            'nominations' => '',
             'playcount' => '游玩次数',
         ],
         'info' => [
@@ -91,10 +91,10 @@ return [
             'headers' => [
                 'accuracy' => '准确率',
                 'combo' => '最大连击',
-                'miss' => 'Miss',
-                'mods' => 'Mods',
+                'miss' => '',
+                'mods' => '',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',

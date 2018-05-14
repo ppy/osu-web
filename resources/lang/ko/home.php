@@ -36,6 +36,8 @@ return [
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
         'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
+        'placeholder' => '',
+        'title' => '',
 
         'beatmapset' => [
             'more' => ':count개의 비트맵 검색 결과 더 보기',
@@ -79,6 +81,36 @@ return [
         ],
     ],
 
+    'download' => [
+        'tagline' => "",
+        'action' => '',
+        'os' => [
+            'windows' => '',
+            'macos' => '',
+            'linux' => '',
+        ],
+        'mirror' => '',
+        'macos-fallback' => '',
+        'steps' => [
+            'register' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'download' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'beatmaps' => [
+                'title' => '',
+                'description' => [
+                    '_' => '',
+                    'browse' => '',
+                ],
+            ],
+        ],
+        'video-guide' => '',
+    ],
+
     'user' => [
         'title' => 'dashboard',
         'news' => [
@@ -95,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Approved된 비트맵', // 비트맵 상태에 대한 적절한 번역을 결정하면 수정
+            'new' => '새로 Approved된 비트맵',
             'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',
@@ -115,6 +147,6 @@ return [
             'part-2' => '그리고 또, osu!를 지원하면 게임 내 자동 다운로드 같은 다양한 유용한 기능들을 이용할 수 있다는 점도 알고 계세요?',
         ],
         'find-out-more' => '더 알아보려면 여기를 눌러주세요!',
-        'download-starting' => '아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)',
+        'download-starting' => "아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)",
     ],
 ];

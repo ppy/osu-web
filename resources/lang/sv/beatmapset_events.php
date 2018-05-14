@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator återställde inlägg från diskussionen :discussion.',
         'discussion_restore' => 'Moderator återställde diskussionen :discussion.',
+        'disqualify' => '',
         'disqualify_legacy' => 'Diskvalificerad av :user. Anledning: :text.',
         'issue_reopen' => 'Löst problem :discussion öppnat igen.',
         'issue_resolve' => 'Problem :discussion markerat som löst.',
@@ -37,5 +38,15 @@ return [
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Kvalificerad.',
         'rank' => 'Rankad.',
+    ],
+
+    'index' => [
+        'title' => '',
+    ],
+
+    'item' => [
+        'content' => '',
+        'discussion_deleted' => '',
+        'type' => '',
     ],
 ];

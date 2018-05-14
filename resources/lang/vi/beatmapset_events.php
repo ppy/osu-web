@@ -26,6 +26,7 @@ return [
         'discussion_post_restore' => 'Moderator đã phục hồi bài viết từ cuộc thảo luận :discussion.',
         'discussion_restore' => 'Moderator đã phục hồi cuộc thảo luận :discussion.',
         'disqualify' => 'Disqualified bởi :user. Reason: :text.',
+        'disqualify_legacy' => '',
         'issue_reopen' => 'Vấn đề đã giải quyết :discussion được mở lại.',
         'issue_resolve' => 'Vấn đề :discussion đã được giải quyết.',
         'kudosu_allow' => 'Kudosu của cuộc thảo luận :discussion đã không còn bị từ chối nữa.',
@@ -39,12 +40,13 @@ return [
         'rank' => 'Đã được xếp hạng (Ranked).',
     ],
 
-        'index' => [
+    'index' => [
         'title' => 'Những Sự Kiện Của Beatmapset',
     ],
 
     'item' => [
         'content' => 'Nội dung',
+        'discussion_deleted' => '',
         'type' => 'Loại',
     ],
 ];

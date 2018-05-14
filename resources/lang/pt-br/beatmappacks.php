@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'LEIA ISSO ANTES DE BAIXAR',
             'instruction' => [
-                '_' => 'Instalação: Assim que terminar de baixar um pacote, extraia o .rar na pasta Songs, no seu diretório do osu!.
+                '_' => "Instalação: Assim que terminar de baixar um pacote, extraia o .rar na pasta Songs, no seu diretório do osu!.
                     Todos os arquivos estão compactados dentro do pacote, então o osu! precisará extrair os beatmaps por sí só na próxima vez que você entrar no jogo.
                     :scary tente descompactar os arquivos sozinho,
-                    ou os beatmaps não funcionarão corretamente quando tentar abrí-los.',
+                    ou os beatmaps não funcionarão corretamente quando tentar abrí-los.",
                 'scary' => 'NÃO',
             ],
             'note' => [
@@ -48,13 +48,13 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Álbum',
-        'chart' => 'Tabela', // Base text has changed, please check.
+        'chart' => 'Tabela',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
     'require_login' => [
         '_' => 'Você precisa estar :link para baixar',
-        'link_text' => 'conectado', // Base text changed from "log" to "sign"
+        'link_text' => 'conectado',
     ],
 ];

@@ -21,22 +21,22 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Silakan masuk untuk menyunting.',
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'null_user' => 'Anda Harus Masuk Telebih Dahulu Untuk Menyunting.',
+            'system_generated' => 'Kiriman yang dibuat oleh sistem tidak dapat disuting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi ... belum...',
+        'empty' => 'Belum ada yang terjadi.',
     ],
 
     'index' => [
-        'deleted_beatmap' => 'terhapus',
+        'deleted_beatmap' => 'telah dihapus',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
-            'deleted' => 'Masukkan diskusi yang dihapus',
+            'deleted' => 'Sertakan diskusi yang telah dihapus',
 
             'user' => [
                 'label' => 'Pengguna',
@@ -49,12 +49,12 @@ return [
         'created_at' => 'Tanggal post',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
-        'permalink' => 'Permalink',
+        'permalink' => 'Tautan',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang menarik perhatian saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Tidak ada kiriman yang menarik perhatian saya',
+        'notice' => 'Terdapat kiriman pada :timestamp (:existing_timestamps). Silakan periksa kembali sebelum memposting.',
     ],
 
     'reply' => [
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Semua orang',
+        'label' => 'Di Saring berdasarkan pengguna',
     ],
 ];

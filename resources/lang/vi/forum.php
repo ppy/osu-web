@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
-    'slogan' => 'Chơi một mình khá là nguy hiểm đấy.',
+    'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Subforums',
     'title' => 'Cộng Đồng osu!',
 
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Thời gian thăm dò',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'ngày',
                 'length_info' => 'Để trống nếu nó không bao giờ kết thúc',
                 'max_options' => 'Số lựa chọn cho một người',
@@ -170,53 +169,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Loại bỏ tag "added"',
-            'action-1' => 'Thêm tag "added"',
-            'state-0' => 'Đã loại bỏ tag "added"',
-            'state-1' => 'Đã thêm tag "added"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Loại bỏ tag "assigned"',
-            'action-1' => 'Thêm tag "assigned"',
-            'state-0' => 'Đã loại bỏ tag "assigned"',
-            'state-1' => 'Đã thêm tag "assigned"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Loại bỏ tag "confirmed"',
-            'action-1' => 'Thêm tag "confirmed"',
-            'state-0' => 'Đã loại bỏ tag "confirmed"',
-            'state-1' => 'Đã thêm tag "confirmed"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Loại bỏ tag "duplicate"',
-            'action-1' => 'Thêm tag "duplicate"',
-            'state-0' => 'Đã loại bỏ tag "duplicate"',
-            'state-1' => 'Đã thêm tag "duplicate"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Loại bỏ tag "invalid"',
-            'action-1' => 'Thêm tag "invalid"',
-            'state-0' => 'Đã loại bỏ tag "invalid"',
-            'state-1' => 'Đã thêm tag "invalid"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Loại bỏ tag "resolved"',
-            'action-1' => 'Thêm tag "resolved"',
-            'state-0' => 'Đã loại bỏ tag "resolved"',
-            'state-1' => 'Đã thêm tag "resolved"',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [
             'is_locked' => 'Chủ đề này đã bị khóa và không thể trả lời',
-            'lock-0' => 'Mở khóa chủ đề',
-            'lock-1' => 'Khóa chủ đề',
-            'state-0' => 'Đã mở khóa chủ đề',
-            'state-1' => 'Đã khóa chủ đề',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'moderate_move' => [
@@ -224,12 +223,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Bỏ ghim chủ đề',
-            'pin-1' => 'Ghim chủ đề',
-            'pin-2' => 'Ghim chủ đề và đánh dấu là thông báo',
-            'state-0' => 'Đã bỏ ghim chủ đề',
-            'state-1' => 'Đã ghim chủ đề',
-            'state-2' => 'Đã ghim và đánh dấu chủ đề là thông báo',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+            'to_2' => '',
+            'to_2_done' => '',
         ],
 
         'show' => [
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} không có bình chọn|[1,*] :count phiếu',
                     'current' => 'Bạn còn :votes.',
-                    'not_enough' => 'Bạn không còn lượt bình chọn nào hết',
+                    'not_enough' => "Bạn không còn lượt bình chọn nào hết",
                 ],
             ],
 
@@ -259,10 +258,10 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Đã hủy đăng kí chủ đề',
-            'state-1' => 'Đã đăng khỉ chủ đề',
-            'watch-0' => 'Hủy đăng kí chủ đề',
-            'watch-1' => 'Đăng kí chủ đề',
+            'to_not_watching' => '',
+            'to_watching' => '',
+            'to_watching_mail' => '',
+            'mail_disable' => '',
         ],
     ],
 ];

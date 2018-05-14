@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,6 +36,7 @@ return [
         'button' => 'Suchen',
         'empty_result' => 'Nichts gefunden!',
         'missing_query' => 'Die Sucheingabe muss mindestens :n Buchstaben lang sein',
+        'placeholder' => '',
         'title' => 'Suchergebnisse',
 
         'beatmapset' => [
@@ -81,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'lass uns<br>loslegen!',
+        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
         'os' => [
             'windows' => 'für Windows',
@@ -146,6 +147,6 @@ return [
             'part-2' => 'Wusstest du auch, dass du fürs Unterstützen eine Menge nützlicher Features wie <strong>Beatmapdownloads innerhalb des Spiels</strong> (die im Mehrspieler oder beim Zuschauen automatisch starten) erhältst?',
         ],
         'find-out-more' => 'Hier klicken, um mehr herauszufinden!',
-        'download-starting' => 'Oh, und keine Sorge - dein Download wurde schon für dich gestartet ;)',
+        'download-starting' => "Oh, und keine Sorge - dein Download wurde schon für dich gestartet ;)",
     ],
 ];

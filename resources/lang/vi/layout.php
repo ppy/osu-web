@@ -101,7 +101,7 @@ return [
             '404' => 'không tìm thấy',
             '403' => 'cấm',
             '401' => 'trái phép',
-            '405' => 'không tìm thấy', //giống 404?
+            '405' => 'không tìm thấy',
             '500' => 'có gì đó bị hỏng',
             '503' => 'bảo trì',
         ],
@@ -118,11 +118,16 @@ return [
             'settings' => 'Cài Đặt',
             'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
-            'beatmapset_activities' => 'hoạt động beatmapset của người dùng',
+            'modding-history-discussions' => '',
+            'modding-history-events' => '',
+            'modding-history-index' => '',
+            'modding-history-posts' => '',
+            'modding-history-votesGiven' => '',
+            'modding-history-votesReceived' => '',
         ],
         'store' => [
             '_' => 'store',
-            'checkout-index' => 'thanh toán',
+            'checkout-show' => '',
             'getListing' => 'danh sách',
             'cart-show' => 'giỏ hàng',
 
@@ -181,7 +186,6 @@ return [
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Trạng Thái Server',
             'terms' => 'Điều Khoản Và Điều Kiện',
         ],
@@ -190,62 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Không Tìm Thấy Trang',
-            'description' => 'Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!',
-            'link' => false,
+            'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '403' => [
-            'error' => 'Bạn không nên ở đây.',
+            'error' => "Bạn không nên ở đây.",
             'description' => 'Nhưng bạn vẫn có thể thử quay trở lại mà.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Bạn không nên ở đây.',
+            'error' => "Bạn không nên ở đây.",
             'description' => 'Nhưng bạn vẫn có thể thử quay trở lại mà. Hoặc có thể đăng nhập vào.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Không Tìm Thấy Trang',
-            'description' => 'Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!',
-            'link' => false,
+            'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '500' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng! ;_;',
-            'description' => 'Chúng tôi sẽ được tự động thông báo về mọi lỗi.',
-            'link' => false,
+            'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
         ],
         'fatal' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng (rất tệ)! ;_;',
-            'description' => 'Chúng tôi sẽ được tự động thông báo về mọi lỗi.',
-            'link' => false,
+            'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
         ],
         '503' => [
             'error' => 'Đang bảo trì!',
-            'description' => 'Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.',
+            'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Khi cần thiết, đây là một đoạn code bạn có thể cung cấp để được hỗ trợ!',
+        'reference' => "Khi cần thiết, đây là một đoạn code bạn có thể cung cấp để được hỗ trợ!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'địa chỉ email',
-            'forgot' => 'Quên mật khẩu',
+            'forgot' => "Quên mật khẩu",
             'password' => 'password',
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
-                'email' => 'Không tồn tại tên tài khoản hoặc địa chỉ email',
+                'email' => "Không tồn tại tên tài khoản hoặc địa chỉ email",
                 'password' => 'Sai mật khẩu',
             ],
         ],
 
         'register' => [
-            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
-            'title' => 'Chưa có tài khoản?',
+            'info' => "Bạn cần một tài khoản. Tại sao bạn lại không có chứ?",
+            'title' => "Chưa có tài khoản?",
         ],
     ],
 

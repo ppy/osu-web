@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Topik yang Disematkan',
-    'slogan' => 'Bermain sendiri itu berbahaya.',
+    'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
     'title' => 'osu!community',
 
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Jalankan jajak pendapat selama',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jejak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
                     'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => 'Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.',
+                    'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
                 ],
             ],
 

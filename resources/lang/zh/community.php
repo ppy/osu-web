@@ -38,7 +38,7 @@ return [
         'supporter_status' => [
             'contribution' => '感谢你一直以来的支持！你已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
             'gifted' => '你已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！',
-            'not_yet' => '你还没有支持者标签 :(',
+            'not_yet' => "你还没有支持者标签 :(",
             'title' => '当前支持者状态',
             'valid_until' => '你的支持者标签将在 :date 到期',
             'was_valid_until' => '你的支持者标签已于 :date 到期',
@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => '我能得到什么？',
             'osu_direct' => [
-                'title' => 'osu!direct', //不翻译
+                'title' => '',
                 'description' => '在游戏客户端内搜索和下载谱面。',
             ],
 

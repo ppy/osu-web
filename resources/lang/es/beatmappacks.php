@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'blurb' => [
@@ -35,6 +37,7 @@ return [
         'title' => 'Paquetes de beatmap',
         'description' => 'Colecciones pre-empaquetadas de beatmaps basadas en un tema común.',
     ],
+
     'show' => [
         'download' => 'Descargar',
         'item' => [
@@ -42,14 +45,16 @@ return [
             'not_cleared' => 'no pasado',
         ],
     ],
+
     'mode' => [
         'artist' => 'Artista/Álbum',
-        'chart' => 'Listado', // Base text has changed, please check.
+        'chart' => 'Listado',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
+
     'require_login' => [
         '_' => 'Necesitas :link para descargar',
-        'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+        'link_text' => 'iniciar sesión',
     ],
 ];

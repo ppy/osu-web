@@ -22,7 +22,7 @@ return [
     'header' => ':typeランキング',
     'type' => [
         'performance' => 'パフォーマンス',
-        'charts' => 'チャート', // Base text has changed, please check.
+        'charts' => 'チャート',
         'score' => 'スコア',
         'country' => '国別',
     ],

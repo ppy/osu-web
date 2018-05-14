@@ -48,13 +48,13 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Chart', // Base text has changed, please check.
+        'chart' => 'Chart',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
     'require_login' => [
         '_' => 'Du skal være :link for at kunne downloade',
-        'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+        'link_text' => 'logget ind',
     ],
 ];

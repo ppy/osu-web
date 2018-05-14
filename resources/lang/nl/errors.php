@@ -20,15 +20,23 @@
 
 return [
     'codes' => [
-        'http-401' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
+        'http-401' => 'Log in om verder te gaan.',
         'http-403' => 'Toegang geweigerd.',
+        'http-429' => '',
     ],
     'account' => [
         'profile-order' => [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
         ],
     ],
-    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.', // Base text changed from "log" to "sign"
+    'beatmaps' => [
+        'invalid_mode' => '',
+        'standard_converts_only' => '',
+    ],
+    'beatmapsets' => [
+        'too-many-favourites' => '',
+    ],
+    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
     'unknown' => 'Een onbekende fout trad op.',

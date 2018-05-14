@@ -19,7 +19,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'covers' => [
             'regenerate' => 'Regenerar',
@@ -30,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Administrar Portadas de los Beatmap',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'activar',
                 'activate_confirm' => '¿activar modding v2 para este beatmap?',
                 'active' => 'activo',
@@ -75,7 +74,7 @@ return [
 
             'sections' => [
                 'forum' => 'Foro',
-                'general' => 'General',
+                'general' => '',
                 'store' => 'Tienda',
             ],
         ],

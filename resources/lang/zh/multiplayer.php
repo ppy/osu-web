@@ -21,11 +21,11 @@
 return [
     'match' => [
         'header' => '多人游戏',
-        'team-types' => [ //TODO 待翻译
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team-types' => [
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => ':user 离开了房间',
@@ -66,7 +66,7 @@ return [
             'score' => '最高分',
             'accuracy' => '最高准确率',
             'combo' => '最高连击',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];

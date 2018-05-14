@@ -56,7 +56,7 @@ return [
             'red' => 'Красная команда',
         ],
         'winner' => ':team победила',
-        'difference' => 'по :difference', // ?
+        'difference' => 'по :difference',
         'loading-events' => 'Загрузка событий...',
         'more-events' => 'посмотреть все...',
         'beatmap-deleted' => 'удалённая карта',

@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => '',
             'hype' => '推薦！',
             'mapper_note' => '備註',
+            'nomination_reset' => '重置提名',
             'praise' => '讚',
             'problem' => '問題',
             'suggestion' => '建議',
@@ -75,8 +77,11 @@ return [
         'mode' => [
             'events' => '歷史',
             'general' => '一般',
-            'general_all' => '一般（全難度）',
             'timeline' => '時間線',
+            'scopes' => [
+                'general' => '当前难度',
+                'generalAll' => '全难度',
+            ],
         ],
 
         'new' => [
@@ -108,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => '這張譜面於 :date 被 Approved !',
-            'graveyard' => '這張譜面自 :date 就未更新了，或許它已經被作者拋棄了 ;w;',
+            'graveyard' => "這張譜面自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
             'loved' => '這張譜面於 :date 被 Loved !',
             'ranked' => '這張譜面於 :date 被 Ranked !',
             'wip' => '注意：這張譜面被作者標記為 WIP（work-in-progress）',
@@ -119,14 +124,18 @@ return [
     'hype' => [
         'button' => '推薦譜面！',
         'button_done' => '已經推薦！',
-        'confirm' => '你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。',
+        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。",
         'explanation' => '推薦這張譜面讓它更容易被提名然後 ranked ！',
         'explanation_guest' => '登錄並推薦這張譜面讓它更容易被提名然後 ranked ！',
-        'new_time' => '你將在 :new_time 後獲得新的推薦次數。',
+        'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
         'required_text' => '推薦進度： :current/:required',
         'section_title' => '推薦進度',
         'title' => '推薦',
+    ],
+
+    'feedback' => [
+        'button' => '留下建议',
     ],
 
     'nominations' => [
@@ -141,11 +150,13 @@ return [
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
+        'reset_message_deleted' => '已删除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
         'reset_at' => [
             'nomination_reset' => '提名於 :time_ago 被新問題 :discussion 重置。',
+            'disqualify' => ':time_ago 被 :user 因为新问题 :discussion (:message) 而 DQ.',
         ],
 
         'reset_confirm' => [
@@ -160,12 +171,14 @@ return [
             'not-found' => '沒有結果',
             'not-found-quote' => '呃，什麼也沒有...',
             'filters' => [
+                'general' => '常规',
                 'mode' => '模式',
                 'status' => 'Rank 狀態',
                 'genre' => '流派',
                 'language' => '語言',
                 'extra' => '額外',
                 'rank' => '已 Rank',
+                'played' => '玩过',
             ],
         ],
         'mode' => '模式',
@@ -174,14 +187,18 @@ return [
         'source' => '來自 :source',
         'load-more' => '加載更多...',
     ],
-    'mode' => [ //不翻譯
+    'general' => [
+        'recommended' => '推荐难度',
+        'converts' => '包括转谱',
+    ],
+    'mode' => [
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
-    'status' => [ //需要幫助
+    'status' => [
         'any' => '所有',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
@@ -204,28 +221,29 @@ return [
         'hip-hop' => '嘻哈',
         'electronic' => '電子',
     ],
-    'mods' => [ //不翻譯
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
+    'mods' => [
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => '',
     ],
     'language' => [
         'any' => '所有',
@@ -240,6 +258,11 @@ return [
         'swedish' => '瑞典語',
         'instrumental' => '器樂',
         'other' => '其他',
+    ],
+    'played' => [
+        'any' => '任意',
+        'played' => '玩过',
+        'unplayed' => '没玩过',
     ],
     'extra' => [
         'video' => '有視頻',

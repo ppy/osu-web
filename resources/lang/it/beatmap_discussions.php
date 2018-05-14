@@ -21,9 +21,46 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Devi avere effettuato il login per modificare.', // Base text changed from "log" to "sign"
+            'null_user' => 'Devi avere effettuato il login per modificare.',
             'system_generated' => 'I post generati dal sistema non possono essere modificati.',
             'wrong_user' => 'Devi essere l\'autore del post per modificarlo.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => '',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => '',
+        'title' => '',
+
+        'form' => [
+            'deleted' => '',
+
+            'user' => [
+                'label' => '',
+                'overview' => '',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => '',
+        'deleted_at' => '',
+        'message_type' => '',
+        'permalink' => '',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => '',
+        'notice' => '',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => '',
+            'user' => '',
         ],
     ],
 
@@ -32,5 +69,17 @@ return [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => '',
+        'bng' => '',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];

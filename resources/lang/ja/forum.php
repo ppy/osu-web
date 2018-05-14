@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'ピン付けされたトピック',
-    'slogan' => 'ひとりで遊ぶにはキケンじゃ',
+    'slogan' => "ひとりで遊ぶにはキケンじゃ",
     'subforums' => 'サブフォーラム',
     'title' => 'osu!community',
 
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'ポールの期限を設定する',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '日間',
                 'length_info' => '空白で無期限に設定されます',
                 'max_options' => '選択数',
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} 投票なし|[1,*] :count票',
                     'current' => '自分の持ち票数は:votes回です。',
-                    'not_enough' => '票が足りません。',
+                    'not_enough' => "票が足りません。",
                 ],
             ],
 

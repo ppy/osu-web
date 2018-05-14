@@ -22,7 +22,7 @@ return [
     'header' => ':type Rankning',
     'type' => [
         'performance' => 'Prestanda',
-        'charts' => 'Diagram', // Base text has changed, please check.
+        'charts' => 'Diagram',
         'score' => 'Poäng',
         'country' => 'Land',
     ],
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Rankad Poäng',
         'average_score' => 'Genoms. Poäng',
         'average_performance' => 'Genoms. Prestanda',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

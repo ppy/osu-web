@@ -41,7 +41,7 @@ return [
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
             'loved' => 'loved em ',
-            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'download' => [
                 '_' => 'Baixar',
                 'video' => 'com Vídeo',
@@ -84,7 +84,6 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
-            'miss_count' => ':count erros',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
             'title' => 'Placar',

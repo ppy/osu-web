@@ -77,4 +77,9 @@ return [
         'owner' => 'mapper',
         'qat' => 'qat',
     ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
+    ],
 ];

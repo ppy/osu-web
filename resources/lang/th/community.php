@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,15 @@ return [
             and do at times struggle to maintain the standards I strive for.
             I would like to offer my personal thanks to those who have supported osu! thus far,
             and just as much to those who continue to support this amazing game and community into the future :).',
+
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
 
         'why_support' => [
             'title' => 'Why should I support osu!?',

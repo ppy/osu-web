@@ -21,10 +21,35 @@
 return [
     'not_negative' => ':attribute kan inte vara negativt.',
     'required' => ':attribute behövs.',
+    'too_long' => '',
     'wrong_confirmation' => 'Bekräftelse matchar inte.',
 
     'beatmap_discussion_post' => [
+        'discussion_locked' => '',
         'first_post' => 'Kan inte radera ursprungs inlägg.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '',
+        'beatmapset_no_hype' => "",
+        'hype_requires_null_beatmap' => '',
+        'invalid_beatmap_id' => '',
+        'invalid_beatmapset_id' => '',
+        'locked' => '',
+        'mapper_note_wrong_user' => '',
+
+        'hype' => [
+            'guest' => '',
+            'hyped' => '',
+            'limit_exceeded' => '',
+            'not_hypeable' => '',
+            'owner' => '',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '',
+            'negative' => "",
+        ],
     ],
 
     'forum' => [
@@ -37,6 +62,11 @@ return [
             'invalid' => 'Ogiltligt val specificerat.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => '',
+            'beatmapset_post_no_edit' => '',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => 'Duplicerad val är ej tillåtet.',
             'invalid_max_options' => 'Val per användare för inte överskrida antalet tillgängliga val.',
@@ -46,6 +76,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '',
             'too_many' => 'Valde mer val än tillåtet.',
         ],
     ],
@@ -54,14 +85,31 @@ return [
         'contains_username' => 'Lösenord får inte innehålla användarnamn.',
         'email_already_used' => 'Email adress används redan.',
         'invalid_country' => 'Land är inte i databasen.',
-        'invalid_email' => 'Verkar inte som att det är en email adress.',
+        'invalid_discord' => '',
+        'invalid_email' => "Verkar inte som att det är en email adress.",
         'too_short' => 'Nytt lösenord är för kort.',
         'unknown_duplicate' => 'Användarnamn eller email adress används redan.',
+        'username_available_in' => '',
+        'username_available_soon' => '',
+        'username_invalid_characters' => '',
+        'username_in_use' => '',
+        'username_no_space_userscore_mix' => '',
+        'username_no_spaces' => "",
+        'username_not_allowed' => '',
         'username_too_short' => 'Begärt användarnamn är för kort.',
+        'username_too_long' => '',
         'weak' => 'Svartlistad lösenord.',
         'wrong_current_password' => 'Nuvarande lösenord är inkorrekt.',
         'wrong_email_confirmation' => 'Email bekräftelse matchar inte.',
         'wrong_password_confirmation' => 'Lösenord bekräftelse matchar inte.',
         'too_long' => 'Överskred max längd - kan endast vara upp till :limit karaktärer.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+            'username_is_same' => '',
+        ],
     ],
 ];

@@ -35,6 +35,15 @@ return [
             지금까지 osu!를 지원해주신 분들께 개인적인 감사를 표하고 싶습니다.
             앞으로 이 멋진 게임과 커뮤니티에 계속해서 지원해주실 분들도 마찬가지로 말이죠 :).',
 
+        'supporter_status' => [
+            'contribution' => '',
+            'gifted' => '',
+            'not_yet' => "",
+            'title' => '',
+            'valid_until' => '',
+            'was_valid_until' => '',
+        ],
+
         'why_support' => [
             'title' => '왜 osu!를 지원해야 하나요?',
             'blocks' => [

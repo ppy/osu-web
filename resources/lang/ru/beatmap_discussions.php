@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Вы должны войти для редактирования.', // Base text changed from "log" to "sign"
+            'null_user' => 'Вы должны войти для редактирования.',
             'system_generated' => 'Системное сообщение не может быть отредактировано.',
             'wrong_user' => 'Вы должны быть автором данной публикации для редактирования.',
         ],
@@ -76,5 +76,10 @@ return [
         'bng' => 'номинатор',
         'owner' => 'маппер',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];

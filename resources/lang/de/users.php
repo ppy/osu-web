@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'deleted' => '[gelöschter benutzer]',
 
     'beatmapset_activities' => [
+        'title' => "",
+
         'discussions' => [
             'title_recent' => 'Letztens gestartete Diskussionen',
         ],
@@ -45,6 +47,7 @@ return [
 
     'card' => [
         'loading' => 'Lädt...',
+        'send_message' => '',
     ],
 
     'login' => [
@@ -57,7 +60,7 @@ return [
         'remember' => 'Diesen Computer merken',
         'title' => 'Zum Fortfahren bitte einloggen',
         'failed' => 'Falscher Login',
-        'register' => 'Noch keinen osu!-Account? Erstell\' einen',
+        'register' => "Noch keinen osu!-Account? Erstell' einen",
         'forgot' => 'Passwort vergessen?',
         'beta' => [
             'main' => 'Beta-Zugang ist momentan privilegierten Benutzern vorbehalten.',
@@ -68,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s Posts',
+        'title' => ':username\'s Beiträge',
     ],
 
     'signup' => [
@@ -86,7 +89,6 @@ return [
         'message' => 'Während du <restricted> bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglisten<scores> sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine <Restriction> erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
     ],
     'show' => [
-        '404' => 'Benutzer nicht gefunden! ;_;',
         'age' => ':age Jahre alt',
         'change_avatar' => 'ändere deinen avatar!',
         'first_members' => 'Seit dem Anfang hier',
@@ -99,8 +101,9 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
+        'previous_usernames' => 'ehemals bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => ':usernames Profil',
+        'title' => ":usernames Profil",
 
         'edit' => [
             'cover' => [
@@ -170,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Verfügbares Kudosu',
-                'available_info' => 'Kudosu kann gegen Kudosu-Sterne eingetauscht werden, die deiner Beatmap mehr Aufmerksamkeit bringen. Dies ist die Menge an Kudosu, die du noch nicht eingetauscht hast.',
+                'available_info' => "Kudosu kann gegen Kudosu-Sterne eingetauscht werden, die deiner Beatmap mehr Aufmerksamkeit bringen. Dies ist die Menge an Kudosu, die du noch nicht eingetauscht hast.",
                 'recent_entries' => 'Kudosu-Geschichte',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
@@ -178,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Dieser Benutzer hat kein Kudosu erhalten!',
+                    'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -219,27 +222,29 @@ return [
                 'title' => 'ich!',
             ],
             'medals' => [
-                'empty' => 'Dieser Nutzer hat noch keine erhalten. ;_;',
+                'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'title' => 'Medaillen',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Beste Performance',
-                ],
                 'empty' => 'Noch keine Performance-Rekorde. :(',
-                'first' => [
-                    'title' => 'Erster Platz',
-                ],
+                'not_ranked' => '',
                 'pp' => ':amountpp',
                 'title' => 'Ränge',
                 'weighted_pp' => 'gewichtet: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Beste Performance',
+                ],
+                'first' => [
+                    'title' => 'Erster Platz',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => '<strong>:usernames</strong> Account ist zurzeit',
+                'bad_standing' => "<strong>:usernames</strong> Account ist zurzeit",
                 'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen',
 
                 'recent_infringements' => [
@@ -254,12 +259,13 @@ return [
                     'actions' => [
                         'restriction' => 'Bann',
                         'silence' => 'Stummschaltung',
-                        'note' => 'Warnung', //?
+                        'note' => 'Warnung',
                     ],
                 ],
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Interessen',
             'lastfm' => 'Last.fm',
             'location' => 'Aktueller Standort',
@@ -267,6 +273,13 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Webseite',
+        ],
+        'not_found' => [
+            'reason_1' => 'Der gesuchte Benutzer hat seinen Namen geändert.',
+            'reason_2' => 'Der Account ist aus Sicherheitsgründen temporär nicht verfügbar.',
+            'reason_3' => 'Du hast dich vielleicht verschrieben!',
+            'reason_header' => 'Es gibt ein paar mögliche Gründe dafür:',
+            'title' => 'Benutzer nicht gefunden! ;_;',
         ],
         'page' => [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
@@ -287,6 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Höchste Combo',
             'play_count' => '<Play>anzahl',
+            'play_time' => 'Gesamte Spielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
             'score_ranks' => 'Ränge durch Punkte',

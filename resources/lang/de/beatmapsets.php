@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -99,6 +99,7 @@ return [
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
             ],
+
             'no_scores' => [
                 'country' => 'Niemand in deinem Land hat einen Rang auf dieser Beatmap!',
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',

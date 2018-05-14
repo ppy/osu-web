@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => '¡vamos a<br>empezar!',
+        'tagline' => "¡vamos a<br>empezar!",
         'action' => 'Descargar osu!',
         'os' => [
             'windows' => 'para Windows',
@@ -94,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crea una cuenta',
-                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta', // Base text changed from "log" to "sign"
+                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta',
             ],
             'download' => [
                 'title' => 'descarga el juego',
@@ -147,6 +147,6 @@ return [
             'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic para más información!',
-        'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)',
+        'download-starting' => "Oh, y no te preocupes - la descarga ya comenzó por ti ;)",
     ],
 ];

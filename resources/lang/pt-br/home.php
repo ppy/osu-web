@@ -36,6 +36,8 @@ return [
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
+        'placeholder' => '',
+        'title' => '',
 
         'beatmapset' => [
             'more' => ':count mais resultados de beatmaps',
@@ -80,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'vamos<br>começar!',
+        'tagline' => "vamos<br>começar!",
         'action' => 'Baixar osu!',
         'os' => [
             'windows' => 'para Windows',
@@ -92,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
-                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta', // Base text changed from "log" to "sign"
+                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta',
             ],
             'download' => [
                 'title' => 'baixar o jogo',
@@ -145,6 +147,6 @@ return [
             'part-2' => 'Você também sabia que apoiar o osu! te dá um monte de coisas úteis, como <strong>download dentro do jogo</strong> que é automaticamente ativado no modo espectador ou em partidas multijogadores?',
         ],
         'find-out-more' => 'Clique aqui para saber mais!',
-        'download-starting' => 'Ah, e não se preocupe - seu download já começou ;)',
+        'download-starting' => "Ah, e não se preocupe - seu download já começou ;)",
     ],
 ];

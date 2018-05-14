@@ -152,8 +152,9 @@ return [
         'admin' => [
             '_' => 'admin',
             'beatmapsets-covers' => 'tła zestawu beatmap',
-            'root' => 'strona główna',
             'logs-index' => 'logi',
+            'root' => 'strona główna',
+
             'beatmapsets' => [
                 '_' => 'beatmapy',
                 'show' => 'szczegóły',
@@ -189,59 +190,60 @@ return [
             'terms' => 'Warunki świadczenia usług',
         ],
     ],
+
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale poszukiwana strona nie istnieje!',
+            'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '403' => [
-            'error' => 'Nie powinno cię tu być.',
+            'error' => "Nie powinno cię tu być.",
             'description' => 'Jednakże możesz spróbować się wrócić.',
         ],
         '401' => [
-            'error' => 'Nie powinno cię tu być.',
+            'error' => "Nie powinno cię tu być.",
             'description' => 'Jednakże możesz spróbować się wrócić albo się zalogować',
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale poszukiwana strona nie istnieje!',
+            'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
+            'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
         ],
         'fatal' => [
             'error' => 'O nie! Coś się (bardzo) popsuło! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamiani o każdym problemie.',
+            'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
         ],
         '503' => [
             'error' => 'Przerwa techniczna!',
-            'description' => 'Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.',
+            'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Na wszelki wypadek, tutaj jest kod, który możesz przekazać osobom z pomocy technicznej!',
+        'reference' => "Na wszelki wypadek, tutaj jest kod, który możesz przekazać osobom z pomocy technicznej!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'adres e-mail',
-            'forgot' => 'Nie pamiętam moich danych logowania!',
+            'forgot' => "Nie pamiętam moich danych logowania!",
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby przejść dalej',
 
             'error' => [
-                'email' => 'Nazwa użytkownika bądź adres e-mail nie istnieją',
+                'email' => "Nazwa użytkownika bądź adres e-mail nie istnieją",
                 'password' => 'Nieprawidłowe hasło',
             ],
         ],
 
         'register' => [
-            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
-            'title' => 'Nie posiadasz konta?',
+            'info' => "Potrzebujesz konta. Dlaczego by takiego nie stworzyć?",
+            'title' => "Nie posiadasz konta?",
         ],
     ],
 

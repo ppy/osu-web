@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'attivare',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Elenco degli Ordini',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => '',
+            'message' => '',
         ],
     ],
 

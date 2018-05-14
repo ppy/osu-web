@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
-            'owner' => 'Du kan ikke stemme på din egen diskussion!',
+            'owner' => "Du kan ikke stemme på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner hvis beatmappen er i Afventende.',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Kun ejeren af dette opslaget kan redigere opslaget.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,9 +99,9 @@ return [
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at svare.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Du kan ikke svare, når du er begrænset.',
-                    'silenced' => 'Du kan ikke svare, når du er mutet.',
+                    'require_login' => 'Log venligst ind for at svare.',
+                    'restricted' => "Du kan ikke svare, når du er begrænset.",
+                    'silenced' => "Du kan ikke svare, når du er mutet.",
                 ],
             ],
 
@@ -112,9 +117,9 @@ return [
                 'voted' => 'Det er ikke tilladt at ændre stemme.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at stemme.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Du kan ikke stemme, når du er begrænset.',
-                    'silenced' => 'Du kan ikke stemme, når du er mutet.',
+                    'require_login' => 'Log venligst ind for at stemme.',
+                    'restricted' => "Du kan ikke stemme, når du er begrænset.",
+                    'silenced' => "Du kan ikke stemme, når du er mutet.",
                 ],
             ],
 
@@ -135,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Log venligst ind for at fortsætte.', // Base text changed from "log" to "sign"
+    'require_login' => 'Log venligst ind for at fortsætte.',
 
     'unauthorized' => 'Adgang nægtet.',
 
-    'silenced' => 'Det kan du ikke gøre, når du er mutet.',
+    'silenced' => "Det kan du ikke gøre, når du er mutet.",
 
-    'restricted' => 'Det kan du ikke gøre, når du er begrænset.',
+    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
 
     'user' => [
         'page' => [

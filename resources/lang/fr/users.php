@@ -22,6 +22,8 @@ return [
     'deleted' => '[utilisateur supprimé]',
 
     'beatmapset_activities' => [
+        'title' => "",
+
         'discussions' => [
             'title_recent' => 'Discussions commencées récemment',
         ],
@@ -51,18 +53,18 @@ return [
     'login' => [
         '_' => 'Se connecter',
         'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
-        'username' => "Nom d'utilisateur",
+        'username' => 'Nom d\'utilisateur',
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
         'button_posting' => 'Connexion...',
         'remember' => 'Se souvenir de moi sur cet ordinateur',
-        'title' => 'Merci de vous connecter pour continuer', // Base text changed from "log" to "sign"
-        'failed' => 'Identifiants incorrects', // Base text changed from "log" to "sign"
+        'title' => 'Merci de vous connecter pour continuer',
+        'failed' => 'Identifiants incorrects',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
         'forgot' => 'Mot de passe oublié?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utlisateurs privilégiés.',
-            'small' => "(les supporteurs l'obtiendront bientôt)",
+            'small' => '(les supporteurs l\'obtiendront bientôt)',
         ],
 
         'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
@@ -73,18 +75,18 @@ return [
     ],
 
     'signup' => [
-        '_' => "S'inscrire",
+        '_' => 'S\'inscrire',
     ],
     'anonymous' => [
-        'login_link' => 'Cliquez pour vous connecter', // Base text changed from "log" to "sign"
+        'login_link' => 'Cliquez pour vous connecter',
         'login_text' => 'Se connecter',
         'username' => 'Invité',
-        'error' => 'Vous devez être connecté pour faire ça.', // Base text changed from "log" to "sign"
+        'error' => 'Vous devez être connecté pour faire ça.',
     ],
-    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(',
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
-        'message' => "Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueur et vos scores ne seront visibles qu'à vous. Cette restriction est souvent le résultat d'un processus automatique et sera levée en général dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href=\"mailto:accounts@ppy.sh\">contacter le support</a>.",
+        'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueur et vos scores ne seront visibles qu\'à vous. Cette restriction est souvent le résultat d\'un processus automatique et sera levée en général dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
     ],
     'show' => [
         'age' => 'Âgé de :age',
@@ -94,24 +96,24 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu la dernière fois :date',
-        'missingtext' => "Vous avez fait une faute de frappe, je crois ! (ou l'utilisateur est banni)",
+        'missingtext' => 'Vous avez fait une faute de frappe, je crois ! (ou l\'utilisateur est banni)',
         'origin_age' => ':age',
-        'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
+        'origin_country' => 'Depuis :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'previous_usernames' => 'Anciennemnt connu en tant que',
         'plays_with' => 'Joue avec :devices',
-        'title' => 'Profil de :username',
+        'title' => "Profil de :username",
 
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
-                'defaults_info' => "Plus d'options seront disponibles bientôt",
+                'defaults_info' => 'Plus d\'options seront disponibles bientôt',
                 'upload' => [
-                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mise en ligne et réessayez.",
-                    'button' => "Mettre en ligne l'image",
+                    'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
+                    'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
-                    'dropzone_info' => "Vous pouvez aussi déplacer l'image ici pour la mettre en ligne",
+                    'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> uniquement",
                     'size_info' => 'La taille de la bannière devrait être 2000x700',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
@@ -228,6 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Pas de première place. :(',
+                'not_ranked' => '',
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
@@ -262,6 +265,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => '',
             'interests' => 'Centres d\'intérêt',
             'lastfm' => 'Last.fm',
             'location' => 'Position actuelle',
@@ -271,6 +275,10 @@ return [
             'website' => 'Site Internet',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [

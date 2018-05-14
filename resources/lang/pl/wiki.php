@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'show' => [
         'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
@@ -26,6 +27,7 @@ return [
         'missing_translation' => 'Poszukiwana strona nie została odnaleziona dla obecnie ustawionego języka.',
         'search' => 'Przeszukaj istniejące strony używając frazy :link.',
         'toc' => 'Spis treści',
+
         'edit' => [
             'link' => 'Pokaż na GitHubie',
             'refresh' => 'Odśwież',
