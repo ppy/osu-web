@@ -25,5 +25,6 @@ return [
 
     'item' => [
         'content' => 'Nội dung',
+        'modding_history_link' => '',
     ],
 ];
