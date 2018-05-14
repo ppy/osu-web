@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Tryb wieloosobowy',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => 'gracz :user wyszedł z gry',
@@ -46,7 +46,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Precyzja',
-                'combo' => '',
+                'combo' => 'Combo',
                 'score' => 'Wynik',
             ],
         ],
@@ -66,7 +66,7 @@ return [
             'score' => 'Najlepszy wynik',
             'accuracy' => 'Najwyższa precyzja',
             'combo' => 'Największe combo',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
