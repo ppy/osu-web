@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Смена аватара', // Base text changed, please check.
+            'title' => 'Смена аватара',
         ],
 
         'email' => [
@@ -42,16 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация', // Base text changed, please check.
+            'title' => 'Дополнительная информация',
 
             'user' => [
                 'user_from' => 'проживание',
                 'user_interests' => 'интересы',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'профессия',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'веб-сайт',
-                'user_discord' => 'discord',
+                'user_discord' => '',
             ],
         ],
 
