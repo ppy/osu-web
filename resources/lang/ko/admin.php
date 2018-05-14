@@ -19,11 +19,17 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => '활성화 하기',
                 'activate_confirm' => '이 비트맵에 modding v2을 활성화할까요?',
                 'active' => '활성',
@@ -64,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '관리자 콘솔 같은거', // Admin Console Thingy
+            'title' => '관리자 콘솔 같은거',
 
             'sections' => [
                 'forum' => '포럼',
