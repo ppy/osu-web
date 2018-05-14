@@ -41,7 +41,7 @@ return [
             'approved' => 'godkänd den ',
             'qualified' => 'kvalificerad den ',
             'loved' => 'älskad den ',
-            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'download' => [
                 '_' => 'Ladda Ner',
                 'video' => 'med Video',
@@ -65,12 +65,17 @@ return [
             'count_sliders' => 'Antal Sliders',
             'user-rating' => 'Användar Betyg',
             'rating-spread' => 'Betyg Spridning',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
         'info' => [
-            'points-of-failure' => 'Punkter av Misslyckande',
-            'success-rate' => 'Genomsnittig Succe',
             'description' => 'Beskrivning',
+            'genre' => 'Genre',
+            'language' => 'Language',
+            'no_scores' => 'Data still being calculated...',
+            'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
+            'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
             'unranked' => 'Ej rankad beatmap',
         ],
@@ -83,12 +88,18 @@ return [
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
             'title' => 'Resultattavla',
 
-            'list' => [
-                'accuracy' => 'Precision',
-                'player-header' => 'Spelare',
-                'rank-header' => 'Rank',
-                'score' => 'Poäng',
+            'headers' => [
+                'accuracy' => 'Accuracy',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
+                'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'Ingen från ditt land har satt ett poäng på denna map än!',
                 'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',
