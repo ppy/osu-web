@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset đã được hồi sinh từ giấc ngủ vĩnh cửu bởi <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> đã cập nhật beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> đã đăng lên một beatmap mới ":beatmapset"',
-    'empty' => 'Người dùng này chưa làm gì nổi bật gần đây!',
+    'empty' => "Người dùng này chưa làm gì nổi bật gần đây!",
     'rank' => '<strong><em>:user</em></strong> đạt được thứ hạng #:rank trên <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> đã không còn dẫn đầu trên <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> đã chọn một lần nữa hỗ trợ osu! - cảm ơn vì sự rộng lượng của bạn!',
