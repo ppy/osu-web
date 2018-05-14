@@ -19,11 +19,17 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+        ],
         'show' => [
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'activeer',
                 'activate_confirm' => 'modding v2 activeren voor deze beatmap?',
                 'active' => 'actief',
@@ -37,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Verwijder',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Geen cover ingesteld',
 
@@ -50,7 +56,7 @@ return [
 
                 'type-title' => [
                     'default-topic' => 'Standaardonderwerp Cover',
-                    'main' => 'Forum Cover',
+                    'main' => '',
                 ],
             ],
         ],
@@ -58,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => '',
         ],
     ],
 
@@ -67,7 +73,7 @@ return [
             'title' => 'Adminpaneel Geval',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Algemeen',
                 'store' => 'Winkel',
             ],
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Lijst van Bestellingen',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => '',
+            'message' => '',
         ],
     ],
 
