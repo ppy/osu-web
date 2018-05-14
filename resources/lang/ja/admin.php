@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '譜面のカバーを管理する',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => '適用',
                 'activate_confirm' => 'modding v2をこの譜面に適用しますか？',
                 'active' => '適用済',
