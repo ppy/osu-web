@@ -21,9 +21,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Vous devez être connecté pour éditer.', // Base text changed from "log" to "sign"
+            'null_user' => 'Vous devez être connecté pour éditer.',
             'system_generated' => 'Un post système ne peut être édité.',
-            'wrong_user' => "Vous devez être le créateur du post pour l'éditer.",
+            'wrong_user' => 'Vous devez être le créateur du post pour l\'éditer.',
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
     'item' => [
         'created_at' => 'Date du post',
         'deleted_at' => 'Date de suppression',
-        'message_type' => 'Type',
+        'message_type' => '',
         'permalink' => 'Permalien',
     ],
 
@@ -75,6 +75,11 @@ return [
         'admin' => 'administrateur',
         'bng' => 'nominateur',
         'owner' => 'mappeur',
-        'qat' => 'qat',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
