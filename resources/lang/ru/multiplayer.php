@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Многопользовательские игры',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => ':user покинул игру',
@@ -56,7 +56,7 @@ return [
             'red' => 'Красная команда',
         ],
         'winner' => ':team победила',
-        'difference' => 'по :difference', // ?
+        'difference' => 'по :difference',
         'loading-events' => 'Загрузка событий...',
         'more-events' => 'посмотреть все...',
         'beatmap-deleted' => 'удалённая карта',
@@ -66,7 +66,7 @@ return [
             'score' => 'Лучшие очки',
             'accuracy' => 'Лучшая точность',
             'combo' => 'Лучшее комбо',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];
