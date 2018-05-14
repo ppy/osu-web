@@ -20,8 +20,9 @@
 
 return [
     'pinned_topics' => 'Gepinde Onderwerpen',
+    'slogan' => "",
     'subforums' => 'Subfora',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -36,13 +37,25 @@ return [
         ],
     ],
 
+    'email' => [
+        'new_reply' => '',
+    ],
+
+    'forums' => [
+        'topics' => [
+            'empty' => '',
+        ],
+    ],
+
     'post' => [
-        'confirm_delete' => 'Echt deze post verwijderen?',
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt.',
         'posted_at' => 'gepost op :when',
 
         'actions' => [
-            'delete' => 'Verwijder post',
+            'destroy' => '',
+            'restore' => '',
             'edit' => 'Bewerk post',
         ],
     ],
@@ -54,17 +67,21 @@ return [
     ],
 
     'topic' => [
+        'deleted' => '',
         'go_to_latest' => 'bekijk nieuwste post',
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Maak nieuw onderwerp',
-        'post_reply' => 'Post',
+        'post_reply' => '',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
         'started_by' => 'door :user',
 
         'create' => [
             'preview' => 'Voorbeeld',
-            'submit' => 'Post',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => '',
+            'submit' => '',
 
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
@@ -83,9 +100,30 @@ return [
         'post_edit' => [
             'cancel' => 'Annuleren',
             'post' => 'Opslaan',
-            'zoom' => [
-                'start' => 'Volledig Scherm',
-                'end' => 'Volledig Scherm Afsluiten',
+        ],
+    ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => '',
+            'title_compact' => '',
+            'title_main' => '',
+
+            'box' => [
+                'total' => '',
+                'unread' => '',
+            ],
+
+            'info' => [
+                'total' => '',
+                'unread' => '',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => '',
+                'title' => '',
             ],
         ],
     ],
@@ -94,7 +132,36 @@ return [
         '_' => 'Onderwerpen',
 
         'actions' => [
+            'reply' => '',
             'reply_with_quote' => 'Citeer post voor antwoord',
+            'search' => '',
+        ],
+
+        'create' => [
+            'create_poll' => '',
+
+            'create_poll_button' => [
+                'add' => '',
+                'remove' => '',
+            ],
+
+            'poll' => [
+                'length' => '',
+                'length_days_prefix' => '',
+                'length_days_suffix' => '',
+                'length_info' => '',
+                'max_options' => '',
+                'max_options_info' => '',
+                'options' => '',
+                'options_info' => '',
+                'title' => '',
+                'vote_change' => '',
+                'vote_change_info' => '',
+            ],
+        ],
+
+        'edit_title' => [
+            'start' => '',
         ],
 
         'index' => [
@@ -102,17 +169,73 @@ return [
             'replies' => 'keer beantwoordt',
         ],
 
+        'issue_tag_added' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_assigned' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_confirmed' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_duplicate' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_invalid' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_resolved' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
         'lock' => [
-            'locked-0' => 'Onderwerp is ontgrendeld',
-            'locked-1' => 'Onderwerp is gesloten',
             'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden',
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'moderate_move' => [
             'title' => 'Verplaats naar een ander forum',
         ],
 
+        'moderate_pin' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+            'to_2' => '',
+            'to_2_done' => '',
+        ],
+
         'show' => [
+            'deleted-posts' => '',
+            'total_posts' => '',
+
             'feature_vote' => [
                 'current' => 'Prioriteit: +:count',
                 'do' => 'Promoot dit verzoek',
@@ -120,9 +243,26 @@ return [
                 'user' => [
                     'count' => '{0} geen stemmen|{1} :count stem|[2,*] :count stemmen',
                     'current' => 'Je hebt :votes stemmen over.',
-                    'not_enough' => 'Je hebt geen stemmen meer over',
+                    'not_enough' => "Je hebt geen stemmen meer over",
                 ],
             ],
+
+            'poll' => [
+                'vote' => '',
+
+                'detail' => [
+                    'end_time' => '',
+                    'ended' => '',
+                    'total' => '',
+                ],
+            ],
+        ],
+
+        'watch' => [
+            'to_not_watching' => '',
+            'to_watching' => '',
+            'to_watching_mail' => '',
+            'mail_disable' => '',
         ],
     ],
 ];
