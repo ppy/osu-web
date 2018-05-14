@@ -36,6 +36,8 @@ return [
         'button' => '搜索',
         'empty_result' => '沒有結果！',
         'missing_query' => '搜索內容不少於 :n 個字符',
+        'placeholder' => '输入以搜索',
+        'title' => '搜索',
 
         'beatmapset' => [
             'more' => '搜索到 :count 張譜面',
@@ -62,7 +64,7 @@ return [
             'beatmapset' => '譜面',
             'forum_post' => '論壇',
             'user' => '玩家',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -75,12 +77,12 @@ return [
         'wiki_page' => [
             'link' => '在 Wiki 中搜索',
             'more_simple' => '查看更多搜索結果',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => '讓我們<br>開始吧！',
+        'tagline' => "讓我們<br>開始吧！",
         'action' => '下載 osu!',
         'os' => [
             'windows' => 'Windows 版',
@@ -145,6 +147,6 @@ return [
             'part-2' => '如果你選擇給 osu! 捐贈，就可以解鎖額外的功能，例如<strong>遊戲內自動下載</strong>。',
         ],
         'find-out-more' => '點擊這裡以瞭解更多',
-        'download-starting' => '對了，別擔心 - 下載已經開始了 ;)',
+        'download-starting' => "對了，別擔心 - 下載已經開始了 ;)",
     ],
 ];
