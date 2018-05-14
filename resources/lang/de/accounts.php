@@ -48,9 +48,9 @@ return [
             'user' => [
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'webseite',
                 'user_discord' => '',
             ],
@@ -76,7 +76,7 @@ return [
         'title' => 'Spielstil',
         'mouse' => 'maus',
         'keyboard' => 'tastatur',
-        'tablet' => '',
-        'touch' => '',
+        'tablet' => 'tablet',
+        'touch' => 'touch',
     ],
 ];
