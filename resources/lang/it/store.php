@@ -24,12 +24,33 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => 'Uh oh, there are problems with your cart!',
+        'cart_problems_edit' => 'Click here to go edit it.',
+        'declined' => 'The payment was cancelled.',
+        'error' => 'There was a problem completing your checkout :(',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Acquista con Paypal',
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
+            'link_text' => 'click here',
+        ],
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+    ],
+
+    'discount' => 'save :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
     ],
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name for :username (:duration)',
+            ],
             'quantity' => 'Quantità',
         ],
     ],
@@ -49,5 +70,22 @@ return [
         'notification_remove_text' => 'qui',
 
         'notification_in_stock' => 'Questo prodotto è già disponibile!',
+    ],
+
+    'supporter_tag' => [
+        'gift' => 'gift to player',
+        'require_login' => [
+            '_' => 'You need to be :link to get a supporter tag!',
+            'link_text' => 'signed in',
+        ],
+    ],
+
+    'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
+        'require_login' => [
+            '_' => 'You need to be :link to change your name!',
+            'link_text' => 'signed in',
+        ],
     ],
 ];
