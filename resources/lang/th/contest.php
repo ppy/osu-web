@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,17 +21,17 @@
 return [
     'header' => [
         'small' => 'แข่งขันกันได้มากกว่าแค่คลิ๊กเจ้าวงกลม',
-        'large' => 'osu! Community Contests',
+        'large' => '',
     ],
     'voting' => [
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
         'best_of' => [
-            'none_played' => 'ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ',
+            'none_played' => "ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ",
         ],
     ],
     'entry' => [
-        '_' => 'entry',
+        '_' => '',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำร่วมการประกวด',
         'silenced_or_restricted' => 'คุณไม่สามารถเข้าประกวดได้ระหว่างที่บัญชีของคุณโดนระงับสิทธิ์อยุ่',
         'preparation' => 'ทางเรากำลังเตรียมงานประกวดอยู่ กรุณารออีกสักพัก',
