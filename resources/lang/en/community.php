@@ -28,7 +28,10 @@ return [
             'support_button' => 'I want to support osu!',
         ],
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
+        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. 
+        Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, 
+        providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money!
+        Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
             <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
             I have had to quit my day job in order to keep up with osu!,
             and do at times struggle to maintain the standards I strive for.
