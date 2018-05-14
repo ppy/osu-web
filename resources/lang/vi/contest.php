@@ -27,11 +27,11 @@ return [
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'best_of' => [
-            'none_played' => 'Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!',
+            'none_played' => "Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!",
         ],
     ],
     'entry' => [
-        '_' => 'entry',
+        '_' => '',
         'login_required' => 'Hãy đăng nhập để tham gia cuộc thi.',
         'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => 'Bắt đầu :date',
-            'soon' => 'soon™',
+            'soon' => '',
         ],
     ],
     'states' => [
