@@ -21,7 +21,7 @@
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
     'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
-    'subforums' => '',
+    'subforums' => 'Subforums',
     'title' => 'Cộng Đồng osu!',
 
     'covers' => [
