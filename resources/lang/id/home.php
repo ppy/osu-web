@@ -27,7 +27,7 @@ return [
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',
-            'sub' => '',
+            'sub' => 'rhythm is just a click away',
         ],
     ],
 
@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count hasil pencarian beatmap lainnya',
             'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Semua forum',
             'link' => 'Cari di forum',
             'more_simple' => 'Lihat hasil pencarian forum lainnya',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'cari di forum',
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'semua',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
             'user' => 'pemain',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Cari di wiki',
             'more_simple' => 'Lihat hasil pencarian wiki lainnya',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -135,12 +135,12 @@ return [
         'buttons' => [
             'download' => 'Unduh osu!',
             'support' => 'Dukung osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Anda tampaknya sedang bersenang-senang! :D',
         'body' => [
             'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan biaya operasionalnya sepenuhnya bergantung pada donasi sukarela dari penggunanya?',
