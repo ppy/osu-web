@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => 'Oh? Vad får jag?!',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'snabb och enkel tillgång till att söka beatmaps utan att lämna spelet.',
             ],
 
@@ -83,7 +83,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '',
+                'title' => 'Beatmap Filters',
                 'description' => 'Filtrera beatmap sökningar på spelade och ej spelade maps och rank uppnåd (om det finns).',
             ],
 
