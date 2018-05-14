@@ -23,7 +23,7 @@ return [
     'title' => '推奨アーティスト',
 
     'admin' => [
-        'hidden' => '',
+        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
     ],
 
     'beatmaps' => [
