@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
             'instruction' => [
-                '_' => 'Installation: Sobald das Paket heruntergeladen wurde, entpacke das .rar-Archiv in dein osu! "Songs"-Verzeichnis.
+                '_' => "Installation: Sobald das Paket heruntergeladen wurde, entpacke das .rar-Archiv in dein osu! \"Songs\"-Verzeichnis.
                     Alle Lieder sind innerhalb des Pakets noch einmal als .zip oder .osz-Archiv verpackt, deshalb muss osu! die Beatmaps beim nächsten Start noch einmal entpacken.
                     Entpacke die .zip/.osz-Dateien :scary selbst,
-                    oder die Beatmaps werden in osu! nicht richtig funktionieren.',
+                    oder die Beatmaps werden in osu! nicht richtig funktionieren.",
                 'scary' => 'NICHT',
             ],
             'note' => [
@@ -39,17 +39,17 @@ return [
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => '',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => '',
+            'not_cleared' => '',
         ],
     ],
 
     'mode' => [
         'artist' => 'Künstler/Album',
         'chart' => 'Chart',
-        'standard' => 'Standard',
+        'standard' => '',
         'theme' => 'Thema',
     ],
 
