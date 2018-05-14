@@ -19,87 +19,87 @@
  */
 
 return [
-    'pinned_topics' => '',
-    'slogan' => "",
-    'subforums' => '',
-    'title' => '',
+    'pinned_topics' => 'Pinned Topics',
+    'slogan' => "it's dangerous to play alone.",
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
-            '_' => '',
-            'button' => '',
-            'info' => '',
+            '_' => 'Set cover image',
+            'button' => 'Upload image',
+            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
         ],
 
         'destroy' => [
-            '_' => '',
-            'confirm' => '',
+            '_' => 'Remove cover image',
+            'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
 
     'email' => [
-        'new_reply' => '',
+        'new_reply' => '[osu!] New reply for topic ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => '',
+            'empty' => 'No topics!',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Really delete post?',
+        'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => '',
+        'posted_at' => 'posted :when',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
-            'edit' => '',
+            'destroy' => 'Delete post',
+            'restore' => 'Restore post',
+            'edit' => 'Edit post',
         ],
     ],
 
     'search' => [
-        'go_to_post' => '',
-        'post_number_input' => '',
-        'total_posts' => '',
+        'go_to_post' => 'Go to post',
+        'post_number_input' => 'enter post number',
+        'total_posts' => ':posts_count posts total',
     ],
 
     'topic' => [
         'deleted' => '',
-        'go_to_latest' => '',
-        'latest_post' => '',
-        'latest_reply_by' => '',
-        'new_topic' => '',
-        'post_reply' => '',
-        'reply_box_placeholder' => '',
-        'started_by' => '',
+        'go_to_latest' => 'view latest post',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => 'latest reply by :user',
+        'new_topic' => 'Post new topic',
+        'post_reply' => 'Post',
+        'reply_box_placeholder' => 'Type here to reply',
+        'started_by' => 'by :user',
 
         'create' => [
-            'preview' => '',
+            'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
-            'submit' => '',
+            'preview_hide' => 'Write',
+            'submit' => 'Post',
 
             'placeholder' => [
-                'body' => '',
-                'title' => '',
+                'body' => 'Type post content here',
+                'title' => 'Click here to set title',
             ],
         ],
 
         'jump' => [
-            'enter' => '',
-            'first' => '',
-            'last' => '',
-            'next' => '',
-            'previous' => '',
+            'enter' => 'click to enter specific post number',
+            'first' => 'go to first post',
+            'last' => 'go to last post',
+            'next' => 'skip next 10 posts',
+            'previous' => 'go back 10 posts',
         ],
 
         'post_edit' => [
-            'cancel' => '',
-            'post' => '',
+            'cancel' => 'Cancel',
+            'post' => 'Save',
         ],
     ],
 
@@ -110,63 +110,63 @@ return [
             'title_main' => 'Topic <strong>Subscriptions</strong>',
 
             'box' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Topics subscribed',
+                'unread' => 'Topics with new replies',
             ],
 
             'info' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '',
-                'title' => '',
+                'confirmation' => 'Unsubscribe from topic?',
+                'title' => 'Unsubscribe',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => '',
+        '_' => 'Topics',
 
         'actions' => [
             'reply' => 'Show reply box',
-            'reply_with_quote' => '',
-            'search' => '',
+            'reply_with_quote' => 'Quote post for reply',
+            'search' => 'Search',
         ],
 
         'create' => [
-            'create_poll' => '',
+            'create_poll' => 'Poll Creation',
 
             'create_poll_button' => [
-                'add' => '',
-                'remove' => '',
+                'add' => 'Create a poll',
+                'remove' => 'Cancel creating a poll',
             ],
 
             'poll' => [
-                'length' => '',
+                'length' => 'Run poll for',
                 'length_days_prefix' => '',
-                'length_days_suffix' => '',
-                'length_info' => '',
-                'max_options' => '',
-                'max_options_info' => '',
-                'options' => '',
-                'options_info' => '',
-                'title' => '',
-                'vote_change' => '',
-                'vote_change_info' => '',
+                'length_days_suffix' => 'days',
+                'length_info' => 'Leave blank for a never ending poll',
+                'max_options' => 'Options per user',
+                'max_options_info' => 'This is the number of options each user may select when voting.',
+                'options' => 'Options',
+                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
+                'title' => 'Question',
+                'vote_change' => 'Allow re-voting.',
+                'vote_change_info' => 'If enabled, users are able to change their vote.',
             ],
         ],
 
         'edit_title' => [
-            'start' => '',
+            'start' => 'Edit title',
         ],
 
         'index' => [
-            'views' => '',
-            'replies' => '',
+            'views' => 'views',
+            'replies' => 'replies',
         ],
 
         'issue_tag_added' => [
@@ -212,7 +212,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => '',
+            'is_locked' => 'This topic is locked and can not be replied to',
             'to_0' => '',
             'to_0_done' => '',
             'to_1' => '',
@@ -220,7 +220,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => '',
+            'title' => 'Move to another forum',
         ],
 
         'moderate_pin' => [
@@ -233,27 +233,27 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => '',
-            'total_posts' => '',
+            'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Total Posts',
 
             'feature_vote' => [
-                'current' => '',
-                'do' => '',
+                'current' => 'Current Priority: +:count',
+                'do' => 'Promote this request',
 
                 'user' => [
-                    'count' => '',
-                    'current' => '',
-                    'not_enough' => "",
+                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'current' => 'You have :votes remaining.',
+                    'not_enough' => "You don't have any more votes remaining",
                 ],
             ],
 
             'poll' => [
-                'vote' => '',
+                'vote' => 'Vote',
 
                 'detail' => [
-                    'end_time' => '',
-                    'ended' => '',
-                    'total' => '',
+                    'end_time' => 'Polling will end at :time',
+                    'ended' => 'Polling ended :time',
+                    'total' => 'Total votes: :count',
                 ],
             ],
         ],
