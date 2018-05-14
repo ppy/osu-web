@@ -48,11 +48,11 @@ return [
             'user' => [
                 'user_from' => 'проживание',
                 'user_interests' => 'интересы',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'профессия',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'веб-сайт',
-                'user_discord' => '',
+                'user_discord' => 'discord',
             ],
         ],
 
