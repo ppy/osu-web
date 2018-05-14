@@ -49,7 +49,7 @@ return [
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => 'Kvantitet',
         ],
@@ -67,7 +67,7 @@ return [
         'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
 
         'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
-        'notification_remove_text' => '',
+        'notification_remove_text' => 'here',
 
         'notification_in_stock' => 'Dette produkt er allerede på lager!',
     ],
