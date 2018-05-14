@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerate',
+            'regenerating' => 'Regenerating...',
+            'remove' => 'Remove',
+            'removing' => 'Removing...',
+        ],
         'show' => [
+            'covers' => 'Manage Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'attivare',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Elenco degli Ordini',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'This user is currently restricted.',
+            'message' => '(only admins can see this)',
         ],
     ],
 
