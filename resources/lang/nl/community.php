@@ -56,12 +56,12 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
         'perks' => [
             'title' => 'Oh? Wat krijg ik dan?!',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'snel en makkelijk beatmaps zoeken zonder het spel te verlaten.',
             ],
 
             'auto_downloads' => [
-                'title' => '',
+                'title' => 'Auto Downloads',
                 'description' => 'Automatische downloads terwijl je multiplayer speelt, anderen aan het toeschouwen bent, of op links in de chat klikt!',
             ],
 
@@ -81,7 +81,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'beatmap_filters' => [
-                'title' => '',
+                'title' => 'Beatmap Filters',
                 'description' => 'Filter beatmap zoekopdrachten met gespeelde en ongespeelde maps en ranks behaald (als die er zijn).',
             ],
 
@@ -101,7 +101,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'skinnables' => [
-                'title' => '',
+                'title' => 'Skinnables',
                 'description' => 'Extra in-game skinnables, zoals de achtergrond van het hoofdmenu.',
             ],
 
@@ -128,7 +128,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
         'convinced' => [
             'title' => 'Ik ben overgehaald! :D',
-            'support' => '',
+            'support' => 'support osu!',
             'gift' => 'of gun het iemand anders',
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
