@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Gerenciar capas',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'ativar',
                 'activate_confirm' => 'deseja ativar o modding v2 neste beatmap?',
                 'active' => 'ativo',
