@@ -69,7 +69,7 @@ return [
         'rankings' => [
             '_' => 'рейтинг',
             'index' => 'производительности',
-            'performance' => '',
+            'performance' => 'performance',
             'charts' => 'по графикам',
             'score' => 'по очкам',
             'country' => 'по странам',
@@ -77,9 +77,9 @@ return [
         ],
         'community' => [
             '_' => 'сообщество',
-            'dev' => '',
+            'dev' => 'osu!dev',
             'getForum' => 'форумы',
-            'getChat' => '',
+            'getChat' => 'chat',
             'getLive' => 'прямые трансляции',
             'contests' => 'конкурсы',
             'profile' => 'профиль',
@@ -141,11 +141,11 @@ return [
             'thanks' => 'благодарности',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'обложка форума',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => 'заказы',
             'orders-show' => 'заказ',
         ],
@@ -220,8 +220,8 @@ return [
             'error' => 'Закрыты на обслуживание!',
             'description' => "Техническое обслуживание обычно занимает от 5 секунд до 10 минут. Если оно затягивается, смотри :link для получения дополнительной информации.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
