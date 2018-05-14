@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -29,7 +30,7 @@ return [
                 'scary' => 'Ne PAS',
             ],
             'note' => [
-                '_' => "Notez aussi qu'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps.",
+                '_' => 'Notez aussi qu\'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps.',
                 'scary' => 'télécharger les collections de la plus récente à la plus ancienne',
             ],
         ],
@@ -47,14 +48,13 @@ return [
 
     'mode' => [
         'artist' => 'Artiste/Album',
-        // unsure for this
-        'chart' => 'Classement', // Base text has changed, please check.
-        'standard' => 'Standard',
+        'chart' => 'Classement',
+        'standard' => '',
         'theme' => 'Thème',
     ],
 
     'require_login' => [
         '_' => 'Vous devez être :link pour télécharger',
-        'link_text' => 'connecté', // Base text changed from "log" to "sign"
+        'link_text' => 'connecté',
     ],
 ];
