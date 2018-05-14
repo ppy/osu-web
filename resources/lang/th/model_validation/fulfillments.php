@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => '',
-        'insufficient_paid' => '',
-        'reverting_username_mismatch' => '',
+        'only_one' => 'only 1 username change allowed per order fulfillment.',
+        'insufficient_paid' => 'Username change cost exceeds amount paid (:expected > :actual)',
+        'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
     ],
 ];
