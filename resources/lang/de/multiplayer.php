@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Mehrspieler-Matches',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user hat das match verlassen',
@@ -46,11 +46,11 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Genauigkeit',
-                'combo' => '',
+                'combo' => 'Combo',
                 'score' => 'Punktzahl',
             ],
         ],
-        'failed' => '',
+        'failed' => 'FAILED',
         'teams' => [
             'blue' => 'Blaues Team',
             'red' => 'Rotes Team',
@@ -66,7 +66,7 @@ return [
             'score' => 'Höchste Punktzahl',
             'accuracy' => 'Höchste Genauigkeit',
             'combo' => 'Höchste Combo',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
