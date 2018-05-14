@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Смена аватара', // Base text changed, please check.
+            'title' => 'Смена аватара',
         ],
 
         'email' => [
@@ -42,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация', // Base text changed, please check.
+            'title' => 'Дополнительная информация',
 
             'user' => [
                 'user_from' => 'проживание',
