@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => '',
         'download' => 'Unduh Template Beatmap',
         'download-na' => 'Template Beatmap belum tersedia',
     ],
