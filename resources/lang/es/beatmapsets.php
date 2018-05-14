@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Listado de Beatmaps',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => '',
     ],
 
     'show' => [
@@ -41,12 +41,12 @@ return [
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
             'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con video',
                 'no-video' => 'sin video',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => 'Marcar como favorito',
             'unfavourite' => 'Desmarcar como favorito',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
             'total_length' => 'Duración',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => 'Número de Círculos',
             'count_sliders' => 'Número de Deslizadores',
             'user-rating' => 'Valoración de los Usuarios',
@@ -74,8 +74,8 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'points-of-failure' => 'Puntos de Fracaso',
-            'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
+            'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap no rankeado',
         ],
@@ -87,17 +87,19 @@ return [
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
+
             'headers' => [
                 'accuracy' => 'Precisión',
                 'combo' => 'Combo máx.',
                 'miss' => 'Fallos',
-                'mods' => 'Mods',
+                'mods' => '',
                 'player' => 'Jugador',
-                'pp' => 'pp',
-                'rank' => 'Rank',
+                'pp' => '',
+                'rank' => '',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
+
             'no_scores' => [
                 'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
