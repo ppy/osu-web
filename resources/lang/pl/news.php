@@ -17,29 +17,36 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'breadcrumbs' => [
         'news-index' => 'lista',
         'news-show' => 'wiadomość',
     ],
+
     'index' => [
         'title' => 'Wiadomości ze świata osu!',
+
         'nav' => [
             'newer' => 'Nowsze wiadomości',
             'older' => 'Starsze wiadomości',
         ],
     ],
+
     'show' => [
         'posted' => 'opublikowane :time',
+
         'nav' => [
             'newer' => 'Nowsza wiadomość',
             'older' => 'Starsza wiadomość',
         ],
     ],
+
     'store' => [
         'button' => 'Zaktualizuj',
         'ok' => 'Lista zaktualizowana.',
     ],
+
     'update' => [
         'button' => 'Zaktualizuj',
         'ok' => 'Wiadomość zaktualizowana.',
