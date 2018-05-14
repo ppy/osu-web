@@ -32,8 +32,8 @@ return [
         ],
 
         'vote' => [
-            'limit_exceeded' => "Veuillez attendre un peu avant d'envoyer votre vote",
-            'owner' => 'Vous ne pouvez pas voter pour votre propre discussion!',
+            'limit_exceeded' => 'Veuillez attendre un peu avant d\'envoyer votre vote',
+            'owner' => "Vous ne pouvez pas voter pour votre propre discussion!",
             'wrong_beatmapset_state' => 'Vous ne pouvez voter que sur les discussions des beatmaps en attente.',
         ],
     ],
@@ -54,7 +54,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => "L'accès au canal cible est requis.",
+                    'no_access' => 'L\'accès au canal cible est requis.',
                     'moderated' => 'Ce canal est modéré.',
                     'not_lazer' => 'Vous ne pouvez parler que dans #lazer pour le moment.',
                 ],
@@ -73,16 +73,21 @@ return [
             'delete' => [
                 'only_last_post' => 'Uniquement le dernier post peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verouillé.',
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Uniquement le posteur peut supprimer.',
             ],
 
             'edit' => [
                 'deleted' => 'Impossible de modifier un post supprimé',
-                'locked' => "Ce post est verouillé à l'édition.",
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'locked' => 'Ce post est verouillé à l\'édition.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Uniquement le posteur peut éditer le post.',
-                'topic_locked' => "Impossible d'éditer un post sur un sujet verouillé.",
+                'topic_locked' => 'Impossible d\'éditer un post sur un sujet verouillé.',
+            ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -90,36 +95,36 @@ return [
             'reply' => [
                 'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
                 'locked' => 'Impossible de répondre à un sujet verouillé.',
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'no_permission' => 'Pas de permission de répondre.',
 
                 'user' => [
-                    'require_login' => 'Merci de vous connecter pour répondre.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Impossible de répondre : Vous êtes restreint.',
-                    'silenced' => 'Impossible de répondre : Vous êtes réduit au silence.',
+                    'require_login' => 'Merci de vous connecter pour répondre.',
+                    'restricted' => "Impossible de répondre : Vous êtes restreint.",
+                    'silenced' => "Impossible de répondre : Vous êtes réduit au silence.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'no_permission' => 'Vous ne pouvez pas créer un sujet.',
                 'forum_closed' => 'Ce forum est fermé et vous ne pouvez pas poster.',
             ],
 
             'vote' => [
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'over' => 'Le vote est fini et vous ne pouvez pas voter',
-                'voted' => "Le changement de vote n'est pas permis.",
+                'voted' => 'Le changement de vote n\'est pas permis.',
 
                 'user' => [
-                    'require_login' => 'Connectez-vous pour voter.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Impossible de voter : vous êtes restreint.',
-                    'silenced' => 'Impossible de voter : vous êtes réduit au silence.',
+                    'require_login' => 'Connectez-vous pour voter.',
+                    'restricted' => "Impossible de voter : vous êtes restreint.",
+                    'silenced' => "Impossible de voter : vous êtes réduit au silence.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
             ],
         ],
 
@@ -135,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Merci de vous connecter pour continuer.', // Base text changed from "log" to "sign"
+    'require_login' => 'Merci de vous connecter pour continuer.',
 
     'unauthorized' => 'Accès refusé.',
 
-    'silenced' => 'Impossible : vous êtes restreint.',
+    'silenced' => "Impossible : vous êtes restreint.",
 
-    'restricted' => 'Impossible : vous êtes réduit au silence.',
+    'restricted' => "Impossible : vous êtes réduit au silence.",
 
     'user' => [
         'page' => [
