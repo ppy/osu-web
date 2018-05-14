@@ -36,11 +36,13 @@ return [
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
+        'placeholder' => '',
+        'title' => '',
 
         'beatmapset' => [
             'more' => ':count mais resultados de beatmaps',
             'more_simple' => 'Veja mais resultados de busca de beatmaps',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
@@ -59,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => '',
             'forum_post' => 'fórum',
             'user' => 'jogador',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -75,12 +77,12 @@ return [
         'wiki_page' => [
             'link' => 'Procurar na wiki',
             'more_simple' => 'Veja mais resultados de busca na wiki',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'vamos<br>começar!',
+        'tagline' => "vamos<br>começar!",
         'action' => 'Baixar osu!',
         'os' => [
             'windows' => 'para Windows',
@@ -92,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
-                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta', // Base text changed from "log" to "sign"
+                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta',
             ],
             'download' => [
                 'title' => 'baixar o jogo',
@@ -110,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => '',
         'news' => [
             'title' => 'Notícias',
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
@@ -133,7 +135,7 @@ return [
         'buttons' => [
             'download' => 'Baixar osu!',
             'support' => 'Apoie o osu!',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
@@ -145,6 +147,6 @@ return [
             'part-2' => 'Você também sabia que apoiar o osu! te dá um monte de coisas úteis, como <strong>download dentro do jogo</strong> que é automaticamente ativado no modo espectador ou em partidas multijogadores?',
         ],
         'find-out-more' => 'Clique aqui para saber mais!',
-        'download-starting' => 'Ah, e não se preocupe - seu download já começou ;)',
+        'download-starting' => "Ah, e não se preocupe - seu download já começou ;)",
     ],
 ];
