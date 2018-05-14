@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'อันดับที่',
         'average_score' => 'คะแนนเฉลี่ย',
         'average_performance' => 'ค่าศักยภาพเฉลี่ย',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];
