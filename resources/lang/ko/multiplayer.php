@@ -50,7 +50,7 @@ return [
                 'score' => '점수',
             ],
         ],
-        'failed' => '',
+        'failed' => 'FAILED',
         'teams' => [
             'blue' => 'Blue 팀',
             'red' => 'Red 팀',
@@ -66,7 +66,7 @@ return [
             'score' => '최고 점수',
             'accuracy' => '최고 정확도',
             'combo' => '최다 콤보',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
