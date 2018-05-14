@@ -44,14 +44,14 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
-            'getFaq' => 'faq',
+            'getFaq' => '',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
-            'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
+            'getWiki' => '',
+            'wiki-show' => '',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => '',
             'artists' => 'artis unggulan',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
@@ -60,24 +60,24 @@ return [
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
             'packs' => 'paket',
-            'show' => 'info',
+            'show' => '',
         ],
         'beatmapsets' => [
-            '_' => 'beatmaps',
-            'discussion' => 'modding',
+            '_' => '',
+            'discussion' => '',
         ],
         'rankings' => [
             '_' => 'peringkat',
             'index' => 'performa',
             'performance' => 'performa',
-            'charts' => 'spotlights',
+            'charts' => '',
             'score' => 'skor',
             'country' => 'negara',
-            'kudosu' => 'kudosu',
+            'kudosu' => '',
         ],
         'community' => [
             '_' => 'komunitas',
-            'dev' => 'osu!dev',
+            'dev' => '',
             'getForum' => 'forum',
             'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',
@@ -93,7 +93,7 @@ return [
             'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
+            '_' => '',
             'show' => 'pertandingan',
         ],
         'error' => [
@@ -141,18 +141,18 @@ return [
             'thanks' => 'terima kasih',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => '',
             'forum-covers-index' => 'sampul forum',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => '',
             'orders-index' => 'pesanan',
             'orders-show' => 'pesanan',
         ],
         'admin' => [
-            '_' => 'admin',
+            '_' => '',
             'beatmapsets-covers' => 'sampul beatmapset',
-            'logs-index' => 'log',
+            'logs-index' => '',
             'root' => 'indeks',
 
             'beatmapsets' => [
@@ -169,7 +169,7 @@ return [
             'changelog-index' => 'Riwayat Perubahan',
             'beatmaps' => 'Daftar Beatmap',
             'download' => 'Unduh osu!',
-            'wiki' => 'Wiki',
+            'wiki' => '',
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
@@ -181,7 +181,7 @@ return [
         'support' => [
             '_' => 'Dukung osu!',
             'tags' => 'Supporter Tag',
-            'merchandise' => 'Merchandise',
+            'merchandise' => '',
         ],
         'legal' => [
             '_' => 'Status Resmi',
@@ -194,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
+            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
-            'error' => 'Anda seharusnya tidak di sini.',
+            'error' => "Anda seharusnya tidak di sini.",
             'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
         ],
         '401' => [
-            'error' => 'Anda seharusnya tidak di sini.',
+            'error' => "Anda seharusnya tidak di sini.",
             'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
         ],
         '405' => [
             'error' => 'Halaman Hilang',
-            'description' => 'Maaf, tapi halaman yang Anda minta tidak ada di sini!',
+            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
         ],
         '500' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => 'Kami diberitahu secara otomatis setiap ada kesalahan.',
+            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
         ],
         'fatal' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => 'Kami diberitahu secara otomatis setiap ada kesalahan.',
+            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => 'Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.',
+            'description' => "Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!',
+        'reference' => "Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'alamat email',
-            'forgot' => 'Saya lupa identitas saya',
+            'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
             'title' => 'Masuk untuk Melanjutkan',
 
             'error' => [
-                'email' => 'Nama pengguna atau alamat email tidak ada',
+                'email' => "Nama pengguna atau alamat email tidak ada",
                 'password' => 'Kata sandi salah',
             ],
         ],
 
         'register' => [
-            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
-            'title' => 'Belum memiliki akun?',
+            'info' => "Anda butuh akun. Mengapa Anda belum memilikinya?",
+            'title' => "Belum memiliki akun?",
         ],
     ],
 
