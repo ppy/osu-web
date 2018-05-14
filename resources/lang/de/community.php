@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => 'Oh? Was gibt\'s denn?!',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'Schneller und einfacher Zugriff auf die Beatmapsuche, sogar innerhalb des Spiels.',
             ],
 
