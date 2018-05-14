@@ -50,7 +50,7 @@ return [
                 'score' => 'スコア',
             ],
         ],
-        'failed' => '',
+        'failed' => 'FAILED',
         'teams' => [
             'blue' => 'Blueチーム',
             'red' => 'Redチーム',
