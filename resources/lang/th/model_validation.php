@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,48 +19,97 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => '',
+    'required' => '',
+    'too_long' => '',
+    'wrong_confirmation' => '',
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Can not delete starting post.',
+        'discussion_locked' => '',
+        'first_post' => '',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '',
+        'beatmapset_no_hype' => "",
+        'hype_requires_null_beatmap' => '',
+        'invalid_beatmap_id' => '',
+        'invalid_beatmapset_id' => '',
+        'locked' => '',
+        'mapper_note_wrong_user' => '',
+
+        'hype' => [
+            'guest' => '',
+            'hyped' => '',
+            'limit_exceeded' => '',
+            'not_hypeable' => '',
+            'owner' => '',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '',
+            'negative' => "",
+        ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => '',
+            'not_enough_feature_votes' => '',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => '',
+        ],
+
+        'post' => [
+            'beatmapset_post_no_delete' => '',
+            'beatmapset_post_no_edit' => '',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => '',
+            'invalid_max_options' => '',
+            'minimum_one_selection' => '',
+            'minimum_two_options' => '',
+            'too_many_options' => '',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'required' => '',
+            'too_many' => '',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_country' => 'Country not in database.',
+        'contains_username' => '',
+        'email_already_used' => '',
+        'invalid_country' => '',
+        'invalid_discord' => '',
         'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => 'New password is too short.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
+        'too_short' => '',
+        'unknown_duplicate' => '',
+        'username_available_in' => '',
+        'username_available_soon' => '',
+        'username_invalid_characters' => '',
+        'username_in_use' => '',
+        'username_no_space_userscore_mix' => '',
+        'username_no_spaces' => "",
+        'username_not_allowed' => '',
+        'username_too_short' => '',
+        'username_too_long' => '',
+        'weak' => '',
+        'wrong_current_password' => '',
+        'wrong_email_confirmation' => '',
+        'wrong_password_confirmation' => '',
+        'too_long' => '',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+            'username_is_same' => '',
+        ],
     ],
 ];
