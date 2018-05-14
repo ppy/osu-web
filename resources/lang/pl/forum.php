@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Przypięte wątki',
-    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
+    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
 
@@ -113,6 +113,7 @@ return [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
+
             'info' => [
                 'total' => 'Liczba zasubskrybowanych wątków: :total.',
                 'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
@@ -242,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
                     'current' => 'Pozostało ci :votes głosów.',
-                    'not_enough' => 'Nie posiadasz żadnych głosów',
+                    'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
             ],
 
