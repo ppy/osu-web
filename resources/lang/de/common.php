@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,15 +23,18 @@ return [
     'saved' => 'Gespeichert',
 
     'array_and' => [
-        'words_connector' => ', ',
+        'words_connector' => '',
         'two_words_connector' => ' und ',
         'last_word_connector' => ', und ',
     ],
 
     'buttons' => [
         'cancel' => 'Abbrechen',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
         'delete' => 'Löschen',
-        'permalink' => 'permalink',
+        'permalink' => '',
         'permalink_copied' => 'link kopiert',
         'post' => 'Senden',
         'reply' => 'Antworten',
@@ -59,18 +62,18 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => '',
+            'php' => '',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => '',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Tastatur',
         'mouse' => 'Maus',
-        'tablet' => 'Tablet',
+        'tablet' => '',
         'touch' => 'Touchscreen',
     ],
 
@@ -84,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => '',
     ],
 
     'time' => [
