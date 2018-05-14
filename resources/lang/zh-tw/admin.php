@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '管理譜面封面',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => '啟用',
                 'activate_confirm' => '確認要為這個譜面啟用 Modding v2 嗎?',
                 'active' => '已啟用',
