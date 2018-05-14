@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => '',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '',
                 'length_info' => '',
                 'max_options' => '',
