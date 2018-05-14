@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,8 +28,8 @@ return [
 
     'index' => [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'title_compact' => '',
+        'title_main' => '',
 
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
