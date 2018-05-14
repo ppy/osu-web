@@ -17,14 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'match' => [
         'header' => 'Tryb wieloosobowy',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => 'gracz :user wyszedł z gry',
@@ -33,6 +34,7 @@ return [
             'match-created' => 'gracz :user stworzył grę',
             'match-disbanded' => 'gra została rozwiązana',
             'host-changed' => 'gracz :user został hostem',
+
             'player-left-no-user' => 'gracz wyszedł z gry',
             'player-joined-no-user' => 'gracz dołączył do gry',
             'player-kicked-no-user' => 'gracz został wyrzucony z meczu',
@@ -44,7 +46,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Precyzja',
-                'combo' => 'Combo',
+                'combo' => '',
                 'score' => 'Wynik',
             ],
         ],
@@ -64,7 +66,7 @@ return [
             'score' => 'Najlepszy wynik',
             'accuracy' => 'Najwyższa precyzja',
             'combo' => 'Największe combo',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];
