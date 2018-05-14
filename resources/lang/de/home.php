@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count weitere gefundenen Beatmaps',
             'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Alle Foren',
             'link' => 'Das Forum durchsuchen',
             'more_simple' => 'Mehr gefundene Forenbeiträge anzeigen',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'in foren suchen',
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
             'user' => 'spieler',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Das Wiki durchsuchen',
             'more_simple' => 'Mehr gefundene Wikieinträge anzeigen',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -89,7 +89,7 @@ return [
             'macos' => 'für macOS',
             'linux' => 'für Linux',
         ],
-        'mirror' => '',
+        'mirror' => 'mirror',
         'macos-fallback' => 'macOS benutzer',
         'steps' => [
             'register' => [
@@ -112,9 +112,9 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'dashboard',
         'news' => [
-            'title' => '',
+            'title' => 'News',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
         ],
         'header' => [
@@ -130,17 +130,17 @@ return [
             'new' => 'Neue <Approved> Beatmaps',
             'popular' => 'Beliebte Beatmaps',
             'by' => 'von',
-            'plays' => '',
+            'plays' => ':count plays',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',
             'support' => 'osu! unterstützen',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Dir scheint es ja richtig Spaß zu machen! :D',
         'body' => [
             'part-1' => 'Wusstest du, dass osu! ohne Werbung läuft und sich für seine Entwicklungs- und andere laufende Kosten auf die Unterstützung durch seine Spieler verlässt?',
