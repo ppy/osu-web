@@ -20,8 +20,133 @@
 
 return [
     'landing' => [
+        'download' => '',
+        'online' => '',
+        'peak' => '',
+        'players' => '',
+
         'slogan' => [
+            'main' => '',
             'sub' => 'Ritme is slechts een *klik* verwijderd!',
         ],
+    ],
+
+    'search' => [
+        'advanced_link' => '',
+        'button' => '',
+        'empty_result' => '',
+        'missing_query' => '',
+        'placeholder' => '',
+        'title' => '',
+
+        'beatmapset' => [
+            'more' => '',
+            'more_simple' => '',
+            'title' => '',
+        ],
+
+        'forum_post' => [
+            'all' => '',
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
+
+            'label' => [
+                'forum' => '',
+                'forum_children' => '',
+                'topic_id' => '',
+                'username' => '',
+            ],
+        ],
+
+        'mode' => [
+            'all' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
+
+        'user' => [
+            'more' => '',
+            'more_simple' => '',
+            'more_hidden' => '',
+            'title' => '',
+        ],
+
+        'wiki_page' => [
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
+        ],
+    ],
+
+    'download' => [
+        'tagline' => "",
+        'action' => '',
+        'os' => [
+            'windows' => '',
+            'macos' => '',
+            'linux' => '',
+        ],
+        'mirror' => '',
+        'macos-fallback' => '',
+        'steps' => [
+            'register' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'download' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'beatmaps' => [
+                'title' => '',
+                'description' => [
+                    '_' => '',
+                    'browse' => '',
+                ],
+            ],
+        ],
+        'video-guide' => '',
+    ],
+
+    'user' => [
+        'title' => '',
+        'news' => [
+            'title' => '',
+            'error' => '',
+        ],
+        'header' => [
+            'welcome' => '',
+            'messages' => '',
+            'stats' => [
+                'friends' => '',
+                'games' => '',
+                'online' => '',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => '',
+            'popular' => '',
+            'by' => '',
+            'plays' => '',
+        ],
+        'buttons' => [
+            'download' => '',
+            'support' => '',
+            'store' => '',
+        ],
+    ],
+
+    'support-osu' => [
+        'title' => '',
+        'subtitle' => '',
+        'body' => [
+            'part-1' => '',
+            'part-2' => '',
+        ],
+        'find-out-more' => '',
+        'download-starting' => "",
     ],
 ];
