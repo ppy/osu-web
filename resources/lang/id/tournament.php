@@ -43,10 +43,10 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
+            'before_registration' => 'Pendaftaran untuk turnamen ini masih belum dibuka.',
             'ended' => '',
-            'registration_closed' => '',
-            'running' => '',
+            'registration_closed' => 'Pendaftaran untuk turnamen ini telah ditutup. Mohon periksa laman informasi untuk info lebih lanjut.',
+            'running' => 'Turnamen ini sedang berlangsung. Mohon periksa laman informasi untuk info lebih lanjut.',
         ],
     ],
     'tournament_period' => ':start sampai :end',
