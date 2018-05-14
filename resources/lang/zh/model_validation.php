@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => '指定了时间戳但是谱面不存在。',
-        'beatmapset_no_hype' => '无法推荐谱面。',
+        'beatmapset_no_hype' => "无法推荐谱面。",
         'hype_requires_null_beatmap' => '只能在 常规（全难度） 中推荐。',
         'invalid_beatmap_id' => '指定的难度无效。',
         'invalid_beatmapset_id' => '指定的谱面无效。',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
-            'negative' => '无法定位时间戳。',
+            'negative' => "无法定位时间戳。",
         ],
     ],
 
@@ -76,7 +76,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => '至少选择一项以投票', //可能有误
+            'required' => '至少选择一项以投票',
             'too_many' => '选项数量超出限制。',
         ],
     ],
@@ -86,7 +86,7 @@ return [
         'email_already_used' => '邮箱已被使用。',
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
-        'invalid_email' => '无效的邮箱地址。',
+        'invalid_email' => "无效的邮箱地址。",
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
         'username_available_in' => '该用户名将在 :duration 后可用。',
@@ -94,8 +94,8 @@ return [
         'username_invalid_characters' => '用户名中包含非法字符。',
         'username_in_use' => '用户名已经被使用！',
         'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
-        'username_no_spaces' => '用户名不能以空格开头或结束。',
-        'username_not_allowed' => '不允许使用该用户名。', //上下文？
+        'username_no_spaces' => "用户名不能以空格开头或结束。",
+        'username_not_allowed' => '不允许使用该用户名。',
         'username_too_short' => '用户名太短。',
         'username_too_long' => '用户名太长。',
         'weak' => '弱密码。',
