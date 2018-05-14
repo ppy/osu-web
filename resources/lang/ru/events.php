@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset был восстановлен <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> обновил карту "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал карту ":beatmapset"',
-    'empty' => 'Этот пользователь не делал ничего заметного в последнее время!',
+    'empty' => "Этот пользователь не делал ничего заметного в последнее время!",
     'rank' => '<strong><em>:user</em></strong> получил #:rank место на карте <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> потерял лидерство на карте <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> приобрёл тег osu!саппортера ещё раз - благодарим за Вашу поддержку!',
