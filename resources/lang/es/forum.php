@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Duración de la encuesta',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'días',
                 'length_info' => 'Deja en blanco para una encuesta sin fin',
                 'max_options' => 'Opciones por usuario',
