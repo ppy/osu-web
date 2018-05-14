@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -85,14 +85,31 @@ return [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
         'invalid_country' => '国家未被数据库收录。',
+        'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => '无效的邮箱地址。',
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
+        'username_available_in' => '该用户名将在 :duration 后可用。',
+        'username_available_soon' => '该用户名即将可用！',
+        'username_invalid_characters' => '用户名中包含非法字符。',
+        'username_in_use' => '用户名已经被使用！',
+        'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
+        'username_no_spaces' => '用户名不能以空格开头或结束。',
+        'username_not_allowed' => '不允许使用该用户名。', //上下文？
         'username_too_short' => '用户名太短。',
+        'username_too_long' => '用户名太长。',
         'weak' => '弱密码。',
         'wrong_current_password' => '当前密码错误。',
         'wrong_email_confirmation' => '重复新邮箱与新邮箱不一致。',
         'wrong_password_confirmation' => '重复新密码与新密码不一致。',
         'too_long' => '超出长度限制——最多为 :limit 个字符。',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '你必须 :link 才能更改用户名！',
+                'link_text' => '支持 osu!',
+            ],
+            'username_is_same' => '这就是你的用户名，Baka！',
+        ],
     ],
 ];

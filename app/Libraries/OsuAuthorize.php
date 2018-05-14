@@ -815,7 +815,8 @@ class OsuAuthorize
                 return $prefix.'not_owner';
             }
 
-            if ($page->post_edit_locked || $page->topic->isLocked()) {
+            // Some user pages (posts) are orphaned and don't have parent topic.
+            if ($page->post_edit_locked || optional($page->topic)->isLocked() ?? false) {
                 return $prefix.'locked';
             }
         }

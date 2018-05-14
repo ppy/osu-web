@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,6 +36,8 @@ return [
         'button' => '搜索',
         'empty_result' => '没有结果！',
         'missing_query' => '搜索内容不少于 :n 个字符',
+        'placeholder' => '输入以搜索',
+        'title' => '搜索',
 
         'beatmapset' => [
             'more' => '搜索到 :count 张谱面',
@@ -110,6 +112,7 @@ return [
     ],
 
     'user' => [
+        'title' => '总览',
         'news' => [
             'title' => '新闻',
             'error' => '载入新闻失败，刷新页面试试看？...',

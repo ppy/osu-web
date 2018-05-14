@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,11 +37,12 @@ return [
     ],
 
     'links' => [
+        'osu' => 'osu! 个人资料',
         'site' => '官方网站',
     ],
 
     'songs' => [
-        '_' => '音乐',
+        '_' => '单曲',
         'count' => ':count 首音乐',
         'exclusive' => 'osu! 独享',
     ],

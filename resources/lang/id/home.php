@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'landing' => [
         'download' => 'Unduh sekarang',
         'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
-        'peak' => 'Terbanyak, :count pengguna daring',
+        'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
 
         'slogan' => [
@@ -121,9 +121,9 @@ return [
             'welcome' => 'Halo, <strong>:username</strong>!',
             'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
-                'friends' => 'Teman yang Daring',
+                'friends' => 'Teman yang Online',
                 'games' => 'Permainan',
-                'online' => 'Pemain yang Daring',
+                'online' => 'Pemain yang Online',
             ],
         ],
         'beatmaps' => [

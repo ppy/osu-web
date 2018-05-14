@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,8 @@ return [
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复。',
         'discussion_restore' => '管理员恢复了 :discussion 。',
-        'disqualify_legacy' => '该谱面因为 :text 被 DQ',
+        'disqualify' => '由于 :discussion (:text) 被 :user DQ。',
+        'disqualify_legacy' => '该谱面因为 :text 被 DQ。',
         'issue_reopen' => '问题 :discussion 被重新打开。',
         'issue_resolve' => '问题 :discussion 被标记为 “已解决”。',
         'kudosu_allow' => '讨论 :discussion 的 kudosu 移除操作已被重置。',
@@ -43,8 +44,9 @@ return [
         'title' => '谱面事件',
     ],
 
-    'item' => [ //上下文
+    'item' => [ //上下文？
         'content' => '内容',
+        'discussion_deleted' => '[已删除]',
         'type' => '类型',
     ],
 ];

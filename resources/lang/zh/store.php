@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => '点击此处以编辑。',
         'declined' => '支付被取消。',
         'error' => '结账时出现错误 :(',
+        'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
             'line_1' => '先前的订单未完成',
@@ -38,6 +39,12 @@ return [
     ],
 
     'discount' => '节省 :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '我们已收到你的 osu!商店 订单！',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -74,6 +81,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => '输入用户名并检查是否可用',
+        'checking' => '正在检查 :username 是否可用。。。',
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',

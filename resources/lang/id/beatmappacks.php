@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
                 '_' => 'Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
                     Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat Anda masuk ke mode Play.
                     :scary ekstrak zip/osz sendiri,
-                    atau beatmap akan ditampilkan salah dalam osu! dan tidak akan berfungsi dengan baik.',
+                    atau beatmap akan ditampilkan secara tidak benar di dalam osu! dan tidak akan berfungsi dengan baik.',
                 'scary' => 'JANGAN',
             ],
             'note' => [

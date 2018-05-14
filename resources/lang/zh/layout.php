@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,17 +33,20 @@ return [
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
+            'index' => '看板',
             'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
+            'team' => '团队',
         ],
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
-            'getSupport' => '获取帮助', //obsolete
+            'getRules' => '规章制度', //使用文章标题
+            'getSupport' => '帮助中心', //使用文章标题
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -84,10 +87,10 @@ return [
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
-            'forum-topics-create' => '论坛', // Base text changed to plural, please check.
-            'forum-topics-show' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-index' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-show' => '论坛', // Base text changed to plural, please check.
+            'forum-topics-create' => '论坛',
+            'forum-topics-show' => '论坛',
+            'forum-forums-index' => '论坛',
+            'forum-forums-show' => '论坛',
         ],
         'multiplayer' => [
             '_' => '多人游戏',
@@ -113,9 +116,14 @@ return [
 
             'messages' => '信息',
             'settings' => '设置',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'help' => '帮助',
-            'modding-history-index' => '玩家谱面活动', //需要上下文 // needs update
+            'modding-history-discussions' => '用户摸图讨论', //↓上下文
+            'modding-history-events' => '用户摸图事件',
+            'modding-history-index' => '用户摸图历史',
+            'modding-history-posts' => '用户摸图帖',
+            'modding-history-votesGiven' => '用户摸图投票数',
+            'modding-history-votesReceived' => '用户摸图获得票数', //↑
         ],
         'store' => [
             '_' => '商店',
@@ -243,7 +251,7 @@ return [
         'links' => [
             'account-edit' => '设置',
             'friends' => '好友',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'profile' => '我的资料',
         ],
     ],

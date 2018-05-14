@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -239,8 +239,8 @@ return [
                 'do' => '提升这个请求',
 
                 'user' => [
-                    'count' => '{0} 没有票|[1,*] :count 票',
-                    'current' => '还有 :votes 票.',
+                    'count' => ':count 票',
+                    'current' => '还有 :votes 。',
                     'not_enough' => '没有票了',
                 ],
             ],
@@ -257,8 +257,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => '已取消订阅！',
-            'to_watching_done' => '订阅成功！',
+            'to_not_watching' => '未订阅',
+            'to_watching' => '订阅',
+            'to_watching_mail' => '订阅并启用邮件通知',
+            'mail_disable' => '禁用邮件通知',
         ],
     ],
 ];
