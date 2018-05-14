@@ -26,9 +26,9 @@ return [
     ],
 
     'index' => [
-         'title' => '譜面列表',
-         'guest_title' => '譜面',
-     ],
+        'title' => '譜面列表',
+        'guest_title' => '譜面',
+    ],
 
     'show' => [
         'discussion' => '討論',
@@ -46,7 +46,7 @@ return [
                 '_' => '下載',
                 'video' => '帶視頻',
                 'no-video' => '不帶視頻',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => '收藏這張譜面',
             'unfavourite' => '取消收藏',
@@ -60,11 +60,13 @@ return [
             'ar' => '縮圈速度',
             'stars' => '難度星級',
             'total_length' => '長度',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => '圓圈總數',
             'count_sliders' => '滑條總數',
             'user-rating' => '玩家評價',
             'rating-spread' => '評分情況',
+            'nominations' => '',
+            'playcount' => '游玩次数',
         ],
         'info' => [
             'description' => '介紹',
@@ -75,13 +77,13 @@ return [
             'source' => '來源',
             'success-rate' => '成功率',
             'tags' => '標籤',
+            'unranked' => 'Unranked 谱面',
         ],
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排名',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'miss_count' => ':count miss', //上下文
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為支持者才能查看國內/好友排名！',
             'title' => '排行榜',
@@ -89,10 +91,10 @@ return [
             'headers' => [
                 'accuracy' => '準確率',
                 'combo' => '最大連擊',
-                'miss' => 'Miss',
-                'mods' => 'Mods',
+                'miss' => '',
+                'mods' => '',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',
