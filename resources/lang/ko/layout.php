@@ -64,7 +64,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '비트맵',
-            'discussion' => '',
+            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => '순위',
@@ -73,7 +73,7 @@ return [
             'charts' => '차트',
             'score' => '점수',
             'country' => '국가',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => '커뮤니티',
@@ -220,8 +220,8 @@ return [
             'error' => '서비스 점검중입니다!',
             'description' => "점검은 보통 5분 내지 10분 동안 이루어집니다. 만약 더 오래 걸린다면, :link에서 더 많은 정보를 확인하실 수 있습니다.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
