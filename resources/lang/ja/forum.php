@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'ピン付けされたトピック',
     'slogan' => "ひとりで遊ぶにはキケンじゃ",
     'subforums' => 'サブフォーラム',
-    'title' => '',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -69,12 +69,12 @@ return [
     'topic' => [
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
-        'latest_post' => '',
+        'latest_post' => ':when by :user',
         'latest_reply_by' => '最新の投稿 by :user',
         'new_topic' => 'トピックを新規で作成する',
         'post_reply' => '投稿',
         'reply_box_placeholder' => '返信をここに入力',
-        'started_by' => '',
+        'started_by' => 'by :user',
 
         'create' => [
             'preview' => 'プレビュー',
