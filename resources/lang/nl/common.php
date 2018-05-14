@@ -19,17 +19,55 @@
  */
 
 return [
+    'confirmation' => 'Are you sure?',
+    'saved' => 'Saved',
+
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' and ',
+        'last_word_connector' => ', and ',
+    ],
+
     'buttons' => [
         'cancel' => 'Annuleer',
+        'change' => 'change',
+        'click_to_copy' => 'click to copy to clipboard',
+        'click_to_copy_copied' => 'copied to clipboard!',
+        'delete' => 'Delete',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link copied',
         'post' => 'Post',
         'reply' => 'Beantwoord',
+        'reply_reopen' => 'Reply and Reopen',
+        'reply_resolve' => 'Reply and Resolve',
         'reset' => 'Herstel',
         'save' => 'Opslaan',
+        'saving' => 'Saving...',
+        'see_more' => 'see more',
         'show_more' => 'toon meer',
+        'upload_image' => 'upload image',
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
+        'days' => ':count day|:count days',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hour|:count hours',
         'item' => ':count stuk|:count stuks',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count month|:count months',
+        'second_short_unit' => 'sec|secs',
+        'years' => ':count year|:count years',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
@@ -48,10 +86,20 @@ return [
         'next' => 'volgende',
     ],
 
+    'score_count' => [
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Miss',
+    ],
+
     'time' => [
         'days_ago' => ':count dag geleden|:count dagen geleden',
         'hours_ago' => ':count uur geleden|:count uur geleden',
         'now' => 'nu',
+        'remaining' => 'Time Remaining',
     ],
 
     'title' => [
