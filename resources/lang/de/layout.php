@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,62 +25,62 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => 'home',
+            '_' => '',
             'account-edit' => 'einstellungen',
             'friends-index' => 'freunde',
-            'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
-            'getDownload' => 'download',
-            'getIcons' => 'icons',
+            'changelog-index' => '',
+            'changelog-show' => '',
+            'getDownload' => '',
+            'getIcons' => '',
             'groups-show' => 'gruppen',
-            'index' => 'dashboard',
+            'index' => '',
             'legal-show' => 'informationen',
-            'news-index' => 'news',
-            'news-show' => 'news',
+            'news-index' => '',
+            'news-show' => '',
             'password-reset-index' => 'passwort zurücksetzen',
             'search' => 'suche',
             'supportTheGame' => 'das spiel unterstützen',
-            'team' => 'team',
+            'team' => '',
         ],
         'help' => [
             '_' => 'hilfe',
-            'getFaq' => 'faq',
+            'getFaq' => '',
             'getRules' => 'regeln',
             'getSupport' => 'ich brauche wirklich hilfe!',
-            'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
+            'getWiki' => '',
+            'wiki-show' => '',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            '_' => '',
+            'artists' => '',
             'beatmap_discussion_posts-index' => 'beatmapdiskussion: beiträge',
             'beatmap_discussions-index' => 'beatmapdiskussion',
-            'beatmapset-watches-index' => 'modding watchlist',
+            'beatmapset-watches-index' => '',
             'beatmapset_discussion_votes-index' => 'beatmapdiskussion: abstimmungen',
             'beatmapset_events-index' => 'beatmapset-events',
             'index' => 'auflistung',
             'packs' => 'pakete',
-            'show' => 'info',
+            'show' => '',
         ],
         'beatmapsets' => [
-            '_' => 'beatmaps',
-            'discussion' => 'modding',
+            '_' => '',
+            'discussion' => '',
         ],
         'rankings' => [
             '_' => 'ranglisten',
-            'index' => 'performance',
-            'performance' => 'performance',
+            'index' => '',
+            'performance' => '',
             'charts' => 'charts',
             'score' => 'punkte',
             'country' => 'länder',
-            'kudosu' => 'kudosu',
+            'kudosu' => '',
         ],
         'community' => [
-            '_' => 'community',
-            'dev' => 'osu!dev',
+            '_' => '',
+            'dev' => '',
             'getForum' => 'forum',
-            'getChat' => 'chat',
-            'getLive' => 'live',
+            'getChat' => '',
+            'getLive' => '',
             'contests' => 'wettbewerbe',
             'profile' => 'profil',
             'tournaments' => 'turniere',
@@ -94,10 +94,10 @@ return [
         ],
         'multiplayer' => [
             '_' => 'mehrspieler',
-            'show' => 'match',
+            'show' => '',
         ],
         'error' => [
-            '_' => 'error',
+            '_' => '',
             '404' => 'nicht gefunden',
             '403' => 'fehlende berechtigung',
             '401' => 'nicht authorisiert',
@@ -118,7 +118,12 @@ return [
             'settings' => 'Einstellungen',
             'logout' => 'Ausloggen',
             'help' => 'Hilfe',
-            'beatmapset_activities' => 'user beatmapset activities',
+            'modding-history-discussions' => '',
+            'modding-history-events' => '',
+            'modding-history-index' => '',
+            'modding-history-posts' => '',
+            'modding-history-votesGiven' => '',
+            'modding-history-votesReceived' => '',
         ],
         'store' => [
             '_' => 'shop',
@@ -131,28 +136,28 @@ return [
             'products-show' => 'produkt',
 
             'new' => 'neu',
-            'home' => 'home',
-            'index' => 'home',
+            'home' => '',
+            'index' => '',
             'thanks' => 'danke',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => '',
             'forum-covers-index' => 'forenbanner',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => '',
             'orders-index' => 'bestellungen',
             'orders-show' => 'bestellung',
         ],
         'admin' => [
-            '_' => 'admin',
+            '_' => '',
             'beatmapsets-covers' => 'beatmapset-banner',
-            'logs-index' => 'log',
-            'root' => 'index',
+            'logs-index' => '',
+            'root' => '',
 
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'show' => 'detail',
+                '_' => '',
+                'show' => '',
             ],
         ],
     ],
@@ -160,11 +165,11 @@ return [
     'footer' => [
         'general' => [
             '_' => 'Allgemein',
-            'home' => 'Home',
-            'changelog-index' => 'Changelog',
+            'home' => '',
+            'changelog-index' => '',
             'beatmaps' => 'Beatmap-Auflistung',
             'download' => 'osu! herunterladen',
-            'wiki' => 'Wiki',
+            'wiki' => '',
         ],
         'help' => [
             '_' => 'Hilfe & Community',
@@ -176,12 +181,11 @@ return [
         'support' => [
             '_' => 'osu! unterstützen',
             'tags' => 'Supporter-Tags',
-            'merchandise' => 'Merchandise',
+            'merchandise' => '',
         ],
         'legal' => [
             '_' => 'Rechtliches & Status',
-            'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
+            'copyright' => '',
             'server_status' => 'Serverstatus',
             'terms' => 'Nutzungsbedingungen',
         ],
@@ -190,62 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Seite fehlt',
-            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
-            'link' => false,
+            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
         ],
         '403' => [
-            'error' => 'Du solltest nicht hier sein.',
+            'error' => "Du solltest nicht hier sein.",
             'description' => 'Du könntest versuchen, zurückzugehen.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Du solltest nicht hier sein.',
+            'error' => "Du solltest nicht hier sein.",
             'description' => 'Du könntest versuchen, zurückzugehen. Oder dich einloggen.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Seite fehlt',
-            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
-            'link' => false,
+            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
         ],
         '500' => [
             'error' => 'Oh nein! Irgendwas ist schief gelaufen! ;_;',
-            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
-            'link' => false,
+            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         'fatal' => [
             'error' => 'Oh nein! Irgendwas ist extrem schief gelaufen! ;_;',
-            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
-            'link' => false,
+            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         '503' => [
             'error' => 'Wegen Wartung nicht erreichbar!',
-            'description' => 'Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.',
+            'description' => "Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!',
+        'reference' => "Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'e-mail-adresse',
-            'forgot' => 'Passwort vergessen',
+            'forgot' => "Passwort vergessen",
             'password' => 'passwort',
             'title' => 'Zum Fortfahren einloggen',
 
             'error' => [
-                'email' => 'Nutzername oder E-Mail-Adresse existiert nicht',
+                'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
                 'password' => 'Falsches Passwort',
             ],
         ],
 
         'register' => [
-            'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
-            'title' => 'Kein Account?',
+            'info' => "Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?",
+            'title' => "Kein Account?",
         ],
     ],
 
