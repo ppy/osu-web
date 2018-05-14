@@ -30,6 +30,7 @@ return [
             'sub' => 'rytm jest tylko o klik stąd!',
         ],
     ],
+
     'search' => [
         'advanced_link' => 'Zaawansowane wyszukiwanie',
         'button' => 'Szukaj',
@@ -43,11 +44,13 @@ return [
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
             'title' => 'Beatmapy',
         ],
+
         'forum_post' => [
             'all' => 'Wszystkie fora',
             'link' => 'Przeszukaj forum',
             'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
-            'title' => 'Forum',
+            'title' => '',
+
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij podfora',
@@ -55,28 +58,31 @@ return [
                 'username' => 'autor',
             ],
         ],
+
         'mode' => [
             'all' => 'wszystkie',
             'beatmapset' => 'beatmapa',
-            'forum_post' => 'forum',
+            'forum_post' => '',
             'user' => 'użytkownik',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
+
         'user' => [
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max użytkowników. Spróbuj zmienić wyszukiwaną frazę.',
             'title' => 'Użytkownicy',
         ],
+
         'wiki_page' => [
             'link' => 'Przeszukaj wiki',
             'more_simple' => 'Zobacz więcej wyszukanych artykułów na wiki',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'rozpocznij swoją<br>przygodę z osu!',
+        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
         'os' => [
             'windows' => 'dla systemu Windows',
@@ -134,13 +140,13 @@ return [
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => '',
         'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
         'body' => [
             'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
             'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych czy oglądania innych graczy?',
         ],
         'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
-        'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
+        'download-starting' => "A, i nie martw się - pobieranie już się rozpoczęło ;)",
     ],
 ];
