@@ -92,12 +92,12 @@ return [
         'age' => ':age jaar oud',
         'change_avatar' => '',
         'first_members' => 'Hier sinds het begin',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age uit :country',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Nog geen...',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Favoriete Beatmaps (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu Beschikbaar',
                 'available_info' => "Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.",
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
                 'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Deze gebruiker heeft nog geen kudosu ontvangen!",
 
                     'beatmap_discussion' => [
@@ -226,13 +226,13 @@ return [
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
-                'title' => '',
+                'title' => 'Recent',
             ],
             'top_ranks' => [
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => '',
-                'pp' => '',
-                'title' => '',
+                'pp' => ':amountpp',
+                'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
 
                 'best' => [
@@ -297,13 +297,13 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
-            'level' => '',
-            'maximum_combo' => '',
-            'play_count' => '',
+            'level' => 'Level :level',
+            'maximum_combo' => 'Maximum Combo',
+            'play_count' => 'Play Count',
             'play_time' => '',
             'ranked_score' => 'Gerankte Score',
             'replays_watched_by_others' => 'Replays Gekeken door Anderen',
-            'score_ranks' => '',
+            'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
         ],
