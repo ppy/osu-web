@@ -42,14 +42,14 @@ return [
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
             'more_simple' => 'Se fler sök resultat på beatmaps',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Alla forum',
             'link' => 'Sök på forumet',
             'more_simple' => 'Se fler sök resultat på forum',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'sök i forum',
@@ -61,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'alla',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
             'user' => 'spelare',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Sök på wiki',
             'more_simple' => 'Se fler sök resultat på wiki',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -108,7 +108,7 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '',
+        'video-guide' => 'video guide',
     ],
 
     'user' => [
@@ -135,12 +135,12 @@ return [
         'buttons' => [
             'download' => 'Ladda ner osu!',
             'support' => 'Stötta osu!',
-            'store' => '',
+            'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Det ser ut som att du har det bra! :D',
         'body' => [
             'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som söttar utvecklingen och och kostnader för underhåll?',
