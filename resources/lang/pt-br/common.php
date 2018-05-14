@@ -23,7 +23,7 @@ return [
     'saved' => 'Salvo',
 
     'array_and' => [
-        'words_connector' => '',
+        'words_connector' => ', ',
         'two_words_connector' => ' e ',
         'last_word_connector' => ', e ',
     ],
@@ -51,10 +51,10 @@ return [
     'count' => [
         'badges' => '',
         'days' => ':count dia|:count dias',
-        'hour_short_unit' => '',
+        'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
-        'minute_short_unit' => '',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count mês|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
@@ -62,19 +62,19 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => '',
-            'php' => '',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Teclado',
-        'mouse' => '',
+        'mouse' => 'Mouse',
         'tablet' => 'Mesa digitalizadora',
-        'touch' => '',
+        'touch' => 'Touch Screen',
     ],
 
     'dropzone' => [
@@ -87,11 +87,11 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
-        'count_geki' => '',
-        'count_katu' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
         'count_miss' => 'Erro',
     ],
 
