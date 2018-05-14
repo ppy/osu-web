@@ -17,18 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'blurb' => [
             'important' => 'WAŻNE',
             'instruction' => [
-                '_' => 'Instalacja: Gdy paczka zostanie pobrana,
+                '_' => "Instalacja: Gdy paczka zostanie pobrana,
                 wypakuj plik .rar w folderze z beatmapami (Songs).
                 Wszystkie beatmapy w paczce będą nadal miały
                 rozszerzenie .zip czy .osz, dlatego osu! rozpakuje je
                 przy przejściu do ekranu listy beatmap.
                 :scary wypakowuj tych plików samodzielnie, inaczej nie
-                będą one funkcjonowały prawidłowo.',
+                będą one funkcjonowały prawidłowo.",
                 'scary' => 'Nie',
             ],
             'note' => [
@@ -39,6 +40,7 @@ return [
         'title' => 'Paczki beatmap',
         'description' => 'Kolekcje beatmap o wspólnej tematyce.',
     ],
+
     'show' => [
         'download' => 'Pobierz',
         'item' => [
@@ -46,12 +48,14 @@ return [
             'not_cleared' => 'nieukończona',
         ],
     ],
+
     'mode' => [
         'artist' => 'Artysta/Album',
         'chart' => 'Wyróżnione',
         'standard' => 'Standardowe',
         'theme' => 'Tematyczne',
     ],
+
     'require_login' => [
         '_' => 'Aby pobrać tę paczkę, musisz się :link',
         'link_text' => 'zalogować',
