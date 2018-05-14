@@ -43,9 +43,9 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
+            'before_registration' => 'Rejestracja dla tego turnieju nie została jeszcze rozpoczęta.',
             'ended' => 'Ten turniej zakończył się. Sprawdź stronę informacyjną po wyniki.',
-            'registration_closed' => '',
+            'registration_closed' => 'Rejestracja dla tego turnieju została zakończona. Sprawdź stronę informacyjną po najnowsze informacje.',
             'running' => 'Ten turniej jest obecnie aktywny. Sprawdź stronę informacyjną po więcej informacji.',
         ],
     ],
