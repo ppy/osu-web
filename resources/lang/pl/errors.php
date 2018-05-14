@@ -20,24 +20,24 @@
 
 return [
     'codes' => [
-        'http-403' => 'Odmowa dostępu.',
-        'http-401' => 'Zaloguj się, aby kontynuować.',
-        'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
+        'http-401' => 'Please sign in to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Wybrano nieprawidłowy tryb.',
-        'standard_converts_only' => 'Brak wyników dla wybranego trybu na tym poziomie trudności.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Masz za dużo ulubionych beatmap! Usuń jakąś, jeżeli chcesz kontynuować.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
-    'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
-    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli posiadasz blokadę konta.',
-    'unknown' => 'Wystąpił nieoczekiwany błąd.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];
