@@ -28,17 +28,17 @@ return [
             'support_button' => 'Saya ingin mendukung osu!',
         ],
 
-        'dev_quote' => "Meskipun osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biayanya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! menggunakan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak tidak jelas manapun sama sekali!
-            <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai 'peppy'.
+        'dev_quote' => 'Meskipun osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biayanya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! menggunakan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak tidak jelas manapun sama sekali!
+            <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai \'peppy\'.
             Pada akhirnya, saya harus keluar dari pekerjaan tetap saya agar dapat terus mengembangkan osu!,
             dan di samping itu terkadang saya juga harus harus bersusah payah demi mempertahankan standar kualitas yang telah saya tetapkan.
             Saya ingin mengucapkan terima kasih secara pribadi kepada mereka yang telah mendukung osu! sampai saat ini,
-            dan juga bagi mereka yang terus mendukung permainan yang luar biasa ini beserta komunitas-komunitasnya sampai ke masa yang akan datang :).",
+            dan juga bagi mereka yang terus mendukung permainan yang luar biasa ini beserta komunitas-komunitasnya sampai ke masa yang akan datang :).',
 
         'supporter_status' => [
             'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
             'gifted' => ':giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!',
-            'not_yet' => 'Anda belum pernah memiliki supporter tag :(',
+            'not_yet' => "Anda belum pernah memiliki supporter tag :(",
             'title' => 'Status supporter saat ini',
             'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',
             'was_valid_until' => 'Supporter Tag Anda berlaku hingga :date.',
@@ -48,7 +48,7 @@ return [
             'title' => 'Mengapa saya harus mendukung osu!?',
             'blocks' => [
                 'dev' => 'Senantiasa diasuh dan dikembangkan oleh satu orang di Australia',
-                'time' => "Memerlukan begitu banyak waktu untuk menjalankannya sehingga tidak mungkin lagi menyebutnya sebagai 'hobi'.",
+                'time' => 'Memerlukan begitu banyak waktu untuk menjalankannya sehingga tidak mungkin lagi menyebutnya sebagai \'hobi\'.',
                 'ads' => 'Tidak ada iklan di mana pun. <br/><br/>
                 Tidak seperti 99,95% situs web lainnya, kami tidak berorientasi pada keuntungan atau mengiklankan barang-barang tawarannya secara semena-mena di depan layar monitor Anda. ',
                 'goodies' => 'Anda akan mendapatkan beberapa fitur ekstra!',
@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
+                'title' => '',
                 'description' => 'akses cepat dan mudah untuk mencari beatmap tanpa meninggalkan permainan.',
             ],
 
