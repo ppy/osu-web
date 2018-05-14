@@ -19,7 +19,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'covers' => [
             'regenerate' => 'Wygeneruj ponownie',
@@ -44,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Usuń',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Nie ustawiono tła',
 
@@ -74,7 +73,7 @@ return [
             'title' => 'Konsola administratora',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Ogólne',
                 'store' => 'Sklep',
             ],
