@@ -64,7 +64,7 @@ return [
             'beatmapset' => '谱面',
             'forum_post' => '论坛',
             'user' => '玩家',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -77,12 +77,12 @@ return [
         'wiki_page' => [
             'link' => '在 Wiki 中搜索',
             'more_simple' => '查看更多搜索结果',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => '让我们<br>开始吧！',
+        'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
         'os' => [
             'windows' => 'Windows 版',
@@ -147,6 +147,6 @@ return [
             'part-2' => '如果你选择给 osu! 捐赠，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
         ],
         'find-out-more' => '点击这里以了解更多',
-        'download-starting' => '对了，别担心 - 下载已经开始了 ;)',
+        'download-starting' => "对了，别担心 - 下载已经开始了 ;)",
     ],
 ];
