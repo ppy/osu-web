@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,19 +36,20 @@ return [
         'button' => 'Suchen',
         'empty_result' => 'Nichts gefunden!',
         'missing_query' => 'Die Sucheingabe muss mindestens :n Buchstaben lang sein',
+        'placeholder' => '',
         'title' => 'Suchergebnisse',
 
         'beatmapset' => [
             'more' => ':count weitere gefundenen Beatmaps',
             'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
-            'title' => 'Beatmaps',
+            'title' => '',
         ],
 
         'forum_post' => [
             'all' => 'Alle Foren',
             'link' => 'Das Forum durchsuchen',
             'more_simple' => 'Mehr gefundene Forenbeiträge anzeigen',
-            'title' => 'Forum',
+            'title' => '',
 
             'label' => [
                 'forum' => 'in foren suchen',
@@ -60,10 +61,10 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
+            'beatmapset' => '',
+            'forum_post' => '',
             'user' => 'spieler',
-            'wiki_page' => 'wiki',
+            'wiki_page' => '',
         ],
 
         'user' => [
@@ -76,19 +77,19 @@ return [
         'wiki_page' => [
             'link' => 'Das Wiki durchsuchen',
             'more_simple' => 'Mehr gefundene Wikieinträge anzeigen',
-            'title' => 'Wiki',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => 'lass uns<br>loslegen!',
+        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
         'os' => [
             'windows' => 'für Windows',
             'macos' => 'für macOS',
             'linux' => 'für Linux',
         ],
-        'mirror' => 'mirror',
+        'mirror' => '',
         'macos-fallback' => 'macOS benutzer',
         'steps' => [
             'register' => [
@@ -111,9 +112,9 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => '',
         'news' => [
-            'title' => 'News',
+            'title' => '',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
         ],
         'header' => [
@@ -129,23 +130,23 @@ return [
             'new' => 'Neue <Approved> Beatmaps',
             'popular' => 'Beliebte Beatmaps',
             'by' => 'von',
-            'plays' => ':count plays',
+            'plays' => '',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',
             'support' => 'osu! unterstützen',
-            'store' => 'osu!store',
+            'store' => '',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => '',
         'subtitle' => 'Dir scheint es ja richtig Spaß zu machen! :D',
         'body' => [
             'part-1' => 'Wusstest du, dass osu! ohne Werbung läuft und sich für seine Entwicklungs- und andere laufende Kosten auf die Unterstützung durch seine Spieler verlässt?',
             'part-2' => 'Wusstest du auch, dass du fürs Unterstützen eine Menge nützlicher Features wie <strong>Beatmapdownloads innerhalb des Spiels</strong> (die im Mehrspieler oder beim Zuschauen automatisch starten) erhältst?',
         ],
         'find-out-more' => 'Hier klicken, um mehr herauszufinden!',
-        'download-starting' => 'Oh, und keine Sorge - dein Download wurde schon für dich gestartet ;)',
+        'download-starting' => "Oh, und keine Sorge - dein Download wurde schon für dich gestartet ;)",
     ],
 ];
