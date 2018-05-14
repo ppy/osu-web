@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => '続行するにはログインが必要です。',
-        'http-403' => 'アクセスが拒否されました。',
-        'http-429' => '試行回数が上限に達しました。しばらく時間をおいて再度お試しください。',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => '指定のモードは無効です。',
-        'standard_converts_only' => 'この難易度の指定のモードのスコアは見つかりませんでした。',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'お気に入りの数の上限に達しています。お気に入り譜面の数を減らしましょう。',
-    ],
-    'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
-    'supporter_only' => 'サポーター限定の機能です。',
-    'no_restricted_access' => 'アカウントが制限中は無効です。',
-    'unknown' => '不明のエラーが発生しました。',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "不明のエラーが発生しました。",
 ];
