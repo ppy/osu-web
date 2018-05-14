@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Войдите для продолжения.', // Base text changed from "log" to "sign"
-        'http-403' => 'Доступ запрещён.',
-        'http-429' => 'Слишком много попыток. Попробуйте позже.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Возникла ошибка. Попробуй перезагрузить страницу.',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => 'Указан недопустимый мод.',
-        'standard_converts_only' => 'Результатов для запрашиваемого мода нет.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'У вас слишком много избранных карт! Удалите одну из них для продолжения.',
-    ],
-    'logged_out' => 'Вы вышли из аккаунта. Пожалуйста войдите и попробуйте ещё раз.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',
-    'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
-    'unknown' => 'Возникла неизвестная ошибка.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Возникла неизвестная ошибка.",
 ];
