@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,133 +20,133 @@
 
 return [
     'landing' => [
-        'download' => 'Download now',
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'download' => '',
+        'online' => '',
+        'peak' => '',
+        'players' => '',
 
         'slogan' => [
-            'main' => 'the bestest free-to-win rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => '',
+            'sub' => '',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'placeholder' => 'type to search',
-        'title' => 'Search',
+        'advanced_link' => '',
+        'button' => '',
+        'empty_result' => '',
+        'missing_query' => '',
+        'placeholder' => '',
+        'title' => '',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
-            'title' => 'Beatmaps',
+            'more' => '',
+            'more_simple' => '',
+            'title' => '',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
-            'title' => 'Forum',
+            'all' => '',
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => '',
+                'forum_children' => '',
+                'topic_id' => '',
+                'username' => '',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
-            'wiki_page' => 'wiki',
+            'all' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'user' => '',
+            'wiki_page' => '',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'more' => '',
+            'more_simple' => '',
+            'more_hidden' => '',
+            'title' => '',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
-            'title' => 'Wiki',
+            'link' => '',
+            'more_simple' => '',
+            'title' => '',
         ],
     ],
 
     'download' => [
-        'tagline' => "let's get<br>you started!",
-        'action' => 'Download osu!',
+        'tagline' => "",
+        'action' => '',
         'os' => [
-            'windows' => 'for Windows',
-            'macos' => 'for macOS',
-            'linux' => 'for Linux',
+            'windows' => '',
+            'macos' => '',
+            'linux' => '',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS users',
+        'mirror' => '',
+        'macos-fallback' => '',
         'steps' => [
             'register' => [
-                'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to sign in or make a new account',
+                'title' => '',
+                'description' => '',
             ],
             'download' => [
-                'title' => 'download the game',
-                'description' => 'click the button above to download the installer, then run it!',
+                'title' => '',
+                'description' => '',
             ],
             'beatmaps' => [
-                'title' => 'get beatmaps',
+                'title' => '',
                 'description' => [
-                    '_' => ':browse the vast library of user-created beatmaps and start playing!',
-                    'browse' => 'browse',
+                    '_' => '',
+                    'browse' => '',
                 ],
             ],
         ],
-        'video-guide' => 'video guide',
+        'video-guide' => '',
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => '',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => '',
+            'error' => '',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have :count new message|You have :count new messages',
+            'welcome' => '',
+            'messages' => '',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => '',
+                'games' => '',
+                'online' => '',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'new' => '',
+            'popular' => '',
+            'by' => '',
+            'plays' => '',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
-            'store' => 'osu!store',
+            'download' => '',
+            'support' => '',
+            'store' => '',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'title' => '',
+        'subtitle' => '',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => '',
+            'part-2' => '',
         ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+        'find-out-more' => '',
+        'download-starting' => "",
     ],
 ];
