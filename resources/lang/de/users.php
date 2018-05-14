@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s Posts',
+        'title' => ':username\'s Beiträge',
     ],
 
     'signup' => [
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'ehemals bekannt als',
         'plays_with' => 'Spielt mit :devices',
         'title' => ":usernames Profil",
 
@@ -265,7 +265,7 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Interessen',
             'lastfm' => 'Last.fm',
             'location' => 'Aktueller Standort',
@@ -277,9 +277,9 @@ return [
         'not_found' => [
             'reason_1' => '',
             'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
-            'title' => '',
+            'reason_3' => 'Du hast dich vielleicht verschrieben!',
+            'reason_header' => 'Es gibt ein paar mögliche Gründe dafür:',
+            'title' => 'Benutzer nicht gefunden! ;_;',
         ],
         'page' => [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
