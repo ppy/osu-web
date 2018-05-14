@@ -27,11 +27,11 @@ return [
 
     'index' => [
         'title' => 'Liste des beatmaps',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Discussion',
 
         'details' => [
             'made-by' => 'créée par ',
@@ -46,7 +46,7 @@ return [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
                 'no-video' => 'sans Vidéo',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'unfavourite' => 'Retirer ce beatmapset des favoris',
@@ -60,23 +60,23 @@ return [
             'ar' => 'Niveau d\'approche',
             'stars' => 'Difficulté en étoiles',
             'total_length' => 'Longeur',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
             'rating-spread' => 'Propagation note',
-            'nominations' => '',
+            'nominations' => 'Nominations',
             'playcount' => 'Nombre de joueurs',
         ],
         'info' => [
-            'description' => '',
-            'genre' => '',
+            'description' => 'Description',
+            'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
             'points-of-failure' => 'Répartition des échecs',
-            'source' => '',
+            'source' => 'Source',
             'success-rate' => 'Taux de réussite',
-            'tags' => '',
+            'tags' => 'Tags',
             'unranked' => 'Beatmap non classifiée',
         ],
         'scoreboard' => [
@@ -92,12 +92,12 @@ return [
                 'accuracy' => 'Précision',
                 'combo' => 'Combo max',
                 'miss' => 'Raté',
-                'mods' => '',
+                'mods' => 'Mods',
                 'player' => 'Joueur',
-                'pp' => '',
+                'pp' => 'pp',
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
-                'score' => '',
+                'score' => 'Score',
             ],
 
             'no_scores' => [
