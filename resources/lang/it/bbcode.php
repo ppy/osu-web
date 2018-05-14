@@ -23,7 +23,7 @@ return [
     'heading' => 'Intestazione',
     'image' => 'Immagine',
     'italic' => 'Corsivo',
-    'link' => '',
+    'link' => 'Link',
     'list' => 'Lista',
     'list_numbered' => 'Lista Ordinata',
     'size' => [
