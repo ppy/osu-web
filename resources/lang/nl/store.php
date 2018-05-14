@@ -24,12 +24,33 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => '',
+        'cart_problems_edit' => '',
+        'declined' => '',
+        'error' => '',
+        'old_cart' => '',
         'pay' => 'Afrekenen met Paypal',
+        'pending_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+            'link_text' => '',
+        ],
         'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
+    ],
+
+    'discount' => '',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
     ],
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => '',
+            ],
             'quantity' => 'Aantal',
         ],
     ],
@@ -49,5 +70,22 @@ return [
         'notification_remove_text' => 'hier',
 
         'notification_in_stock' => 'Dit product is al op voorraad!',
+    ],
+
+    'supporter_tag' => [
+        'gift' => '',
+        'require_login' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+    ],
+
+    'username_change' => [
+        'check' => '',
+        'checking' => '',
+        'require_login' => [
+            '_' => '',
+            'link_text' => '',
+        ],
     ],
 ];
