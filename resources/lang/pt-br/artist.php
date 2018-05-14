@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => '',
         'download' => 'Baixar modelo de beatmap',
         'download-na' => 'Modelo de beatmap indisponível',
     ],
@@ -37,6 +37,7 @@ return [
     ],
 
     'links' => [
+        'osu' => '',
         'site' => 'Site oficial',
     ],
 
