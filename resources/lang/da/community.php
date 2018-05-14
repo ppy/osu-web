@@ -37,7 +37,7 @@ return [
         'supporter_status' => [
             'contribution' => ' Tak for din støtte indtil nu! Du har bidraget med :dollars over :tags supporter tag indkøb!',
             'gifted' => ':giftedTags af dine supporter tag indkøb var givet som gave (for et samlet antal af :giftedDollars), hvor generøst!',
-            'not_yet' => "",
+            'not_yet' => "You don't have a supporter tag yet :(",
             'title' => 'Nuværende supporter status',
             'valid_until' => 'Dit nuværende supporter tag gælder indtil den :date!',
             'was_valid_until' => 'Dit supporter tag galdt indtil den :date.',
@@ -57,7 +57,7 @@ return [
         'perks' => [
             'title' => 'Uhh, hvad får jeg så?!',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'hurtig og nem adgang til at søge efter beatmaps uden at forlade spillet.',
             ],
 
@@ -72,7 +72,7 @@ return [
             ],
 
             'early_access' => [
-                'title' => '',
+                'title' => 'Early Access',
                 'description' => 'Adgang til splinternye versioner, hvor du kan prøve alle de nye funktioner inden, at den bliver udgivet!',
             ],
 
@@ -87,7 +87,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => '',
+                'title' => 'Yellow Fellow',
                 'description' => 'Bliv genkendt i spillet med din nye gule farve i dit navn i chatten.',
             ],
 
