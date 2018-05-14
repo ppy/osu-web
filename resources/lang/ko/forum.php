@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => '여론 투표를',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '일 동안 진행',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
                 'max_options' => '투표가능 항목 수',
