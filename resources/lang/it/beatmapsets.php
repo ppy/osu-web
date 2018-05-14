@@ -19,18 +19,38 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => 'This beatmap is currently not available for download.',
+        'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
+        'more-info' => 'Check here for more information.',
+    ],
+
+    'index' => [
+        'title' => 'Beatmaps Listing',
+        'guest_title' => 'Beatmaps',
+    ],
+
     'show' => [
+        'discussion' => 'Discussion',
+
         'details' => [
             'made-by' => 'creata da ',
             'submitted' => 'inviata il ',
+            'updated' => 'last updated on ',
             'ranked' => 'rankata il ',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!', // Base text changed from "log" to "sign"
+            'approved' => 'approved on ',
+            'qualified' => 'qualified on ',
+            'loved' => 'loved on ',
+            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'download' => [
                 '_' => 'Scarica',
                 'video' => 'con Video',
                 'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
             ],
+            'favourite' => 'Favourite this beatmapset',
+            'unfavourite' => 'Unfavourite this beatmapset',
+            'favourited_count' => '+ 1 other!|+ :count others!',
         ],
         'stats' => [
             'cs' => 'Dimensione dei Cerchi',
@@ -43,26 +63,21 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',
             'count_sliders' => 'Numero di Slider',
-
-            'chart' => [
-                'cs' => 'CS',
-                'hp' => 'HP',
-                'od' => 'OD',
-                'ar' => 'AR',
-                'sd' => 'SD',
-            ],
-
             'user-rating' => 'Voto degli Utenti',
             'rating-spread' => 'Diffusione della Valutazione',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
         'info' => [
-            'success-rate' => 'Rateo di Successo',
-            'points-of-failure' => 'Punti di Fallimento',
-
             'description' => 'Descrizione',
-
+            'genre' => 'Genre',
+            'language' => 'Language',
+            'no_scores' => 'Data still being calculated...',
+            'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'raggiunto :when',
@@ -73,17 +88,28 @@ return [
             'supporter-only' => 'Devi essere un supporter per accedere alle classifiche amici e paese!',
             'title' => 'Classifica',
 
-            'list' => [
-                'accuracy' => 'Precisione',
-                'player-header' => 'Giocatore',
-                'rank-header' => 'Rank',
-                'score' => 'Punteggio',
+            'headers' => [
+                'accuracy' => 'Accuracy',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
+                'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
                 'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'unranked' => 'Unranked beatmap.',
+            ],
+            'score' => [
+                'first' => 'In the Lead',
+                'own' => 'Your Best',
             ],
         ],
     ],
