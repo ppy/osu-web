@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'edit' => [
         'title' => 'Ustawienia <strong>konta</strong>',
@@ -26,48 +27,56 @@ return [
         'avatar' => [
             'title' => 'Awatar',
         ],
+
         'email' => [
             'current' => 'obecny e-mail',
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
-            'title' => 'Email',
+            'title' => '',
         ],
+
         'password' => [
             'current' => 'aktualne hasło',
             'new' => 'nowe hasło',
             'new_confirmation' => 'potwierdź hasło',
             'title' => 'Hasło',
         ],
+
         'profile' => [
             'title' => 'Profil',
+
             'user' => [
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'zajęcia',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'strona internetowa',
-                'user_discord' => 'discord',
+                'user_discord' => '',
             ],
         ],
+
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
         ],
     ],
+
     'update_email' => [
         'email_subject' => 'potwierdź zmianę maila',
         'update' => 'zaktualizuj',
     ],
+
     'update_password' => [
         'email_subject' => 'potwierdź zmianę hasła',
         'update' => 'zaktualizuj',
     ],
+
     'playstyles' => [
         'title' => 'Style gry',
         'mouse' => 'myszka',
         'keyboard' => 'klawiatura',
-        'tablet' => 'tablet',
+        'tablet' => '',
         'touch' => 'ekran dotykowy',
     ],
 ];
