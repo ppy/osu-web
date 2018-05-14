@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Du skal være logget ind for at kunne redigere.', // Base text changed from "log" to "sign"
+            'null_user' => 'Du skal være logget ind for at kunne redigere.',
             'system_generated' => 'System-genererede opslag kan ikke redigeres.',
             'wrong_user' => 'Du skal være ejer af dette opslag for at kunne redigere.',
         ],
@@ -45,6 +45,13 @@ return [
         ],
     ],
 
+    'item' => [
+        'created_at' => '',
+        'deleted_at' => '',
+        'message_type' => '',
+        'permalink' => '',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Ingen af opslagene angår mine bekymringer',
         'notice' => 'Der er opslag omkring :timestamp (:existing_timestamps). Vær venlig at tjekke dem inden du slår noget op.',
@@ -52,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Log ind for at svare', // Base text changed from "log" to "sign"
+            'guest' => 'Log ind for at svare',
             'user' => 'Svar',
         ],
     ],
@@ -65,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'admin' => '',
+        'bng' => '',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
