@@ -97,7 +97,7 @@ return [
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'missingtext' => '오타가 있는 것 같은데요! (그게 아니라면 차단된 사용자일 수 있습니다)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age, :country에 거주',
         'origin_country' => ':country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
@@ -175,12 +175,12 @@ return [
                 'available' => '사용 가능한 Kudosu',
                 'available_info' => "Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게해주는 kudosu 별(★)로 교환할 수 있습니다. 여기 나타난 Kudous는 아직 교환하지 않은 kudous 수를 나타냅니다.",
                 'recent_entries' => '최근 Kudosu 기록',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => '총 획득한 Kudosu 수',
                 'total_info' => '유저가 비트맵 제작 과정에서의 조정에 얼마나 기여했는지를 나타내는 척도입니다. 더 많은 정보를 보려면 <a href="'.osu_url('user.kudosu').'">이 페이지</a>를 확인해주세요.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "아직 어떤 kudosu도 받지 못했습니다!",
 
                     'beatmap_discussion' => [
@@ -219,7 +219,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'me!',
             ],
             'medals' => [
                 'empty' => "아직 아무런 업적 메달도 받지 못했네요. ;_;",
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => '순위',
                 'weighted_pp' => '가중치 적용: :pp (:percentage)',
 
