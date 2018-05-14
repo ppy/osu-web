@@ -39,17 +39,17 @@ return [
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Download',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'cleared',
+            'not_cleared' => 'not cleared',
         ],
     ],
 
     'mode' => [
         'artist' => 'Künstler/Album',
         'chart' => 'Chart',
-        'standard' => '',
+        'standard' => 'Standard',
         'theme' => 'Thema',
     ],
 
