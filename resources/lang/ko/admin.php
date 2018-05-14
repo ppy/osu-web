@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => '활성화 하기',
                 'activate_confirm' => '이 비트맵에 modding v2을 활성화할까요?',
                 'active' => '활성',
