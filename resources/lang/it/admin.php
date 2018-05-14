@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => '',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'attivare',
                 'activate_confirm' => 'attivare il modding v2 per questa mappa?',
                 'active' => 'attivo',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Elimina',
 
-                'forum-name' => '',
+                'forum-name' => 'Forum #:id: :name',
 
                 'no-cover' => 'Nessuna cover impostata',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Console degli Amministratori',
 
             'sections' => [
-                'forum' => '',
+                'forum' => 'Forum',
                 'general' => 'Generale',
                 'store' => 'Negozio',
             ],
