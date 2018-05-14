@@ -92,12 +92,12 @@ return [
         'age' => 'Âgé de :age',
         'change_avatar' => 'changer votre avatar !',
         'first_members' => 'Ici depuis le début',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu la dernière fois :date',
         'missingtext' => 'Vous avez fait une faute de frappe, je crois ! (ou l\'utilisateur est banni)',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':age ans et de :country',
         'origin_country' => 'Depuis :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Aucune... Pour le moment.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Beatmaps favorites (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu disponible',
                 'available_info' => "Les Kudosu peuvent être échangés pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés.",
                 'recent_entries' => 'Hitorique de Kudosu récents',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
                 'total_info' => 'Basé sur notre contribution à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "Cet utilisateur n'a jamais reçu de Kudosu !",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
 
@@ -249,16 +249,16 @@ return [
 
                 'recent_infringements' => [
                     'title' => 'Sanctions récentes',
-                    'date' => '',
+                    'date' => 'date',
                     'action' => 'sanction',
                     'length' => 'longeur',
-                    'length_permanent' => '',
-                    'description' => '',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'description',
                     'actor' => 'par :username',
 
                     'actions' => [
                         'restriction' => 'Restriction',
-                        'silence' => '',
+                        'silence' => 'Silence',
                         'note' => 'Avertissement',
                     ],
                 ],
@@ -267,11 +267,11 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Centres d\'intérêt',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Position actuelle',
-            'occupation' => '',
-            'skype' => '',
-            'twitter' => '',
+            'occupation' => 'Occupation',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'Site Internet',
         ],
         'not_found' => [
