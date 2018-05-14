@@ -21,7 +21,7 @@
 return [
     'header' => ':type-Rangliste',
     'type' => [
-        'performance' => '',
+        'performance' => 'Performance',
         'charts' => 'Charts',
         'score' => 'Punktzahl',
         'country' => 'Länder',
@@ -31,13 +31,13 @@ return [
         'active_users' => 'Aktive Nutzer',
         'country' => 'Land',
         'play_count' => 'Gespielt',
-        'performance' => '',
+        'performance' => 'Performance',
         'total_score' => 'Gesamtpunktzahl',
         'ranked_score' => 'Punktzahl auf Rangliste',
         'average_score' => 'Durchschn. Pkte.',
         'average_performance' => 'Durchschn. Perf.',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];
