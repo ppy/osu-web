@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Danh Sách Beatmap',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
@@ -46,7 +46,7 @@ return [
                 '_' => 'Tải Xuống',
                 'video' => 'cùng Video',
                 'no-video' => 'không Video',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Yêu thích beatmapset này',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Tốc Độ Tiếp Cận',
             'stars' => 'Độ Khó',
             'total_length' => 'Độ Dài',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Số Nốt Bấm',
             'count_sliders' => 'Số Nốt Trượt',
             'user-rating' => 'Đánh Giá',
@@ -70,13 +70,13 @@ return [
         ],
         'info' => [
             'description' => 'Mô Tả',
-            'genre' => '',
-            'language' => '',
+            'genre' => 'Genre',
+            'language' => 'Language',
             'no_scores' => 'Beatmap chưa được xếp hạng',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
-            'tags' => '',
+            'tags' => 'Tags',
             'unranked' => '',
         ],
         'scoreboard' => [
@@ -91,10 +91,10 @@ return [
             'headers' => [
                 'accuracy' => 'Độ Chính Xác',
                 'combo' => 'Combo Tối Đa',
-                'miss' => '',
-                'mods' => '',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
                 'player' => 'Người Chơi',
-                'pp' => '',
+                'pp' => 'pp',
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
