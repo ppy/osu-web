@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Thời gian thăm dò',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'ngày',
                 'length_info' => 'Để trống nếu nó không bao giờ kết thúc',
                 'max_options' => 'Số lựa chọn cho một người',
