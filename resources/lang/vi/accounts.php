@@ -32,7 +32,7 @@ return [
             'current' => 'email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
-            'title' => '',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -48,11 +48,11 @@ return [
             'user' => [
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'trang web',
-                'user_discord' => '',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -76,7 +76,7 @@ return [
         'title' => 'Lối Chơi',
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
-        'tablet' => '',
+        'tablet' => 'tablet',
         'touch' => 'cảm ứng',
     ],
 ];
