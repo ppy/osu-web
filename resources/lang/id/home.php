@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'mari persiapkan<br>diri Anda!',
+        'tagline' => "mari persiapkan<br>diri Anda!",
         'action' => 'Unduh osu!',
         'os' => [
             'windows' => 'untuk Windows',
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan berbagai fitur eksklusif seperti <strong>pengunduh beatmap otomatis di dalam aplikasi osu!</strong> yang akan secara otomatis mengunduh beatmap yang Anda belum miliki di saat sedang menonton pemain lain dan di dalam pertandingan multiplayer?',
         ],
         'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',
-        'download-starting' => 'Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)',
+        'download-starting' => "Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)",
     ],
 ];
