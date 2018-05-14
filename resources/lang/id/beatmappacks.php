@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
-                '_' => 'Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
+                '_' => "Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
                     Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat Anda masuk ke mode Play.
                     :scary ekstrak zip/osz sendiri,
-                    atau beatmap akan ditampilkan secara tidak benar di dalam osu! dan tidak akan berfungsi dengan baik.',
+                    atau beatmap akan ditampilkan secara tidak benar di dalam osu! dan tidak akan berfungsi dengan baik.",
                 'scary' => 'JANGAN',
             ],
             'note' => [
@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artis/Album',
-        'chart' => 'Spotlights',
+        'chart' => '',
         'standard' => 'Standar',
         'theme' => 'Tematik',
     ],
