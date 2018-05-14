@@ -23,13 +23,16 @@ return [
     'saved' => 'Guardado',
 
     'array_and' => [
-        'words_connector' => ', ',
+        'words_connector' => '',
         'two_words_connector' => ' y ',
         'last_word_connector' => ' y ',
     ],
 
     'buttons' => [
         'cancel' => 'Cancelar',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
         'delete' => 'Eliminar',
         'permalink' => 'enlace permanente',
         'permalink_copied' => 'enlace copiado',
@@ -48,10 +51,10 @@ return [
     'count' => [
         'badges' => ':count insignia|:count insignias',
         'days' => ':count día|:count días',
-        'hour_short_unit' => 'hr|hrs',
+        'hour_short_unit' => '',
         'hours' => ':count hora|:count horas',
         'item' => ':count unidad|:count unidades',
-        'minute_short_unit' => 'min|mins',
+        'minute_short_unit' => '',
         'months' => ':count mes|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count año|:count años',
@@ -63,7 +66,7 @@ return [
             'php' => 'MMMM \\d\\e y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => '',
         ],
     ],
 
@@ -83,12 +86,12 @@ return [
         'next' => 'siguiente',
     ],
 
-     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
+    'score_count' => [
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
         'count_miss' => 'Fallo',
     ],
 
