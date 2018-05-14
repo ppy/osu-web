@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Var vänlig logga in för att fortsätta.', // Base text changed from "log" to "sign"
-        'http-403' => 'Åtkomst nekad.',
-        'http-429' => 'För många försök. Försök igen senare.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Ett fel uppstod. Försök att ladda om sidan.',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => 'Ogiltigt läge specificerat.',
-        'standard_converts_only' => 'Inga poäng är tillgängliga enligt begärt läge på denna beatmap svårighetsgrad.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Du har för många favoriserade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
-    ],
-    'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
-    'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
-    'unknown' => 'Okänt fel uppstod.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Okänt fel uppstod.",
 ];
