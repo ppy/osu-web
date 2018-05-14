@@ -70,9 +70,9 @@ class @StoreSupporterTagPrice
     texts = []
 
     if duration.years > 0
-      texts.push Lang.choice('common.count.years', duration.years)
+      texts.push osu.transChoice('common.count.years', duration.years)
 
     if duration.months > 0
-      texts.push Lang.choice('common.count.months', duration.months)
+      texts.push osu.transChoice('common.count.months', duration.months)
 
     texts.join(', ')
