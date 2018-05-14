@@ -22,8 +22,8 @@ return [
     'header' => ':type Rangering',
     'type' => [
         'performance' => 'Præstation',
-        'charts' => 'Baner', // Base text has changed, please check.
-        'score' => 'Score',
+        'charts' => 'Baner',
+        'score' => '',
         'country' => 'Land',
     ],
     'stat' => [
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Rangeret Score',
         'average_score' => 'Gns. Score',
         'average_performance' => 'Gns. Præs.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];
