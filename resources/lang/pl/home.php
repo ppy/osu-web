@@ -30,6 +30,7 @@ return [
             'sub' => 'rytm jest tylko o klik stąd!',
         ],
     ],
+
     'search' => [
         'advanced_link' => 'Zaawansowane wyszukiwanie',
         'button' => 'Szukaj',
@@ -43,11 +44,13 @@ return [
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
             'title' => 'Beatmapy',
         ],
+
         'forum_post' => [
             'all' => 'Wszystkie fora',
             'link' => 'Przeszukaj forum',
             'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
             'title' => 'Forum',
+
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij podfora',
@@ -55,6 +58,7 @@ return [
                 'username' => 'autor',
             ],
         ],
+
         'mode' => [
             'all' => 'wszystkie',
             'beatmapset' => 'beatmapa',
@@ -62,12 +66,14 @@ return [
             'user' => 'użytkownik',
             'wiki_page' => 'wiki',
         ],
+
         'user' => [
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max użytkowników. Spróbuj zmienić wyszukiwaną frazę.',
             'title' => 'Użytkownicy',
         ],
+
         'wiki_page' => [
             'link' => 'Przeszukaj wiki',
             'more_simple' => 'Zobacz więcej wyszukanych artykułów na wiki',
@@ -76,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'rozpocznij swoją<br>przygodę z osu!',
+        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
         'os' => [
             'windows' => 'dla systemu Windows',
@@ -141,6 +147,6 @@ return [
             'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych czy oglądania innych graczy?',
         ],
         'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
-        'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
+        'download-starting' => "A, i nie martw się - pobieranie już się rozpoczęło ;)",
     ],
 ];
