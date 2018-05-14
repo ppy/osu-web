@@ -367,17 +367,9 @@ class Order extends Model
 
     public function delete()
     {
-        $this->getConnection()->transaction(function () {
-            // wait for any pending status update to be committed, otherwise
-            // it'll be checking against the old value and deleting once other transactions
-            // release the lock.
-            $locked = $this->lockSelf();
-            if ($locked->isModifiable() === false) {
-                throw new Exception("Delete not allowed on Order ({$locked->getKey()}).");
-            }
+        $this->guardNotModifiable(function () {
+            parent::delete();
         });
-
-        parent::delete();
     }
 
     public function paid(Payment $payment = null)
