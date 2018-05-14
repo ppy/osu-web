@@ -1,6 +1,6 @@
 files:
   - source: /resources/lang/en/**/*.php
-    translation: /resources/lang/%locale%/%original_file_name%
+    translation: /resources/lang/%locale%/**/%original_file_name%
     languages_mapping:
       locale:
         zh-CN: zh
