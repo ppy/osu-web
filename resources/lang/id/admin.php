@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Kelola Sampul Beatmapset',
             'discussion' => [
-                '_' => 'Modding v2',
+                '_' => '',
                 'activate' => 'aktifkan',
                 'activate_confirm' => 'aktifkan modding v2 untuk beatmap ini?',
                 'active' => 'aktif',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Hapus',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
                 'no-cover' => 'Sampul belum diatur',
 
@@ -73,7 +73,7 @@ return [
             'title' => 'Konsol Admin',
 
             'sections' => [
-                'forum' => 'Forum',
+                'forum' => '',
                 'general' => 'Umum',
                 'store' => 'Toko',
             ],
