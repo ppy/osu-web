@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,14 +23,14 @@ return [
     'heading' => 'Überschrift',
     'image' => 'Bild',
     'italic' => 'Kursiv',
-    'link' => 'Link',
+    'link' => '',
     'list' => 'Liste',
     'list_numbered' => 'Nummerierte Liste',
     'size' => [
         '_' => 'Schriftgröße',
         'tiny' => 'Winzig',
         'small' => 'Klein',
-        'normal' => 'Normal',
+        'normal' => '',
         'large' => 'Groß',
     ],
     'spoilerbox' => 'Spoiler',
