@@ -22,6 +22,8 @@ return [
     'deleted' => '[usuário deletado]',
 
     'beatmapset_activities' => [
+        'title' => "",
+
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
         ],
@@ -45,6 +47,7 @@ return [
 
     'card' => [
         'loading' => 'Carregando...',
+        'send_message' => '',
     ],
 
     'login' => [
@@ -55,9 +58,9 @@ return [
         'button' => 'Conectar',
         'button_posting' => 'Conectando...',
         'remember' => 'Lembrar deste computador',
-        'title' => 'Por favor, conecte-se para prosseguir', // Base text changed from "log" to "sign"
-        'failed' => 'Login incorreto', // Base text changed from "log" to "sign"
-        'register' => 'Você não tem uma conta no osu!? Faça uma!',
+        'title' => 'Por favor, conecte-se para prosseguir',
+        'failed' => 'Login incorreto',
+        'register' => "Você não tem uma conta no osu!? Faça uma!",
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
             'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
@@ -75,12 +78,12 @@ return [
         '_' => 'Registrar',
     ],
     'anonymous' => [
-        'login_link' => 'clique para conectar-se', // Base text changed from "log" to "sign"
-        'login_text' => 'conectar', // Base text changed from "log" to "sign"
+        'login_link' => 'clique para conectar-se',
+        'login_text' => 'conectar',
         'username' => 'Convidado',
-        'error' => 'Você precisa estar conectado para fazer isso.', // Base text changed from "log" to "sign"
+        'error' => 'Você precisa estar conectado para fazer isso.',
     ],
-    'logout_confirm' => 'Tem certeza de que deseja sair? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
@@ -89,17 +92,18 @@ return [
         'age' => ':age anos',
         'change_avatar' => 'mude seu avatar!',
         'first_members' => 'Aqui desde o começo',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Entrou em :date',
         'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
-        'origin_age' => ':age',
+        'origin_age' => '',
         'origin_country_age' => ':age morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
+        'previous_usernames' => '',
         'plays_with' => 'Joga com :devices',
-        'title' => 'Perfil de :username',
+        'title' => "Perfil de :username",
 
         'edit' => [
             'cover' => [
@@ -133,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Nenhum... ainda.',
-                'title' => 'Beatmaps',
+                'title' => '',
 
                 'favourite' => [
                     'title' => 'Beatmaps favoritos (:count)',
@@ -169,15 +173,15 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponível',
-                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.',
+                'available_info' => "Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.",
                 'recent_entries' => 'Histórico de kudosu recente',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => 'Total de Kudosu Adquirido',
                 'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um beatmap. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => 'Esse usuário ainda não tem nenhum kudosu!',
+                    'amount' => '',
+                    'empty' => "Esse usuário ainda não tem nenhum kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -218,7 +222,7 @@ return [
                 'title' => 'eu!',
             ],
             'medals' => [
-                'empty' => 'Esse usuário não conseguiu nenhuma recentemente. ;_;',
+                'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
@@ -226,7 +230,8 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'pp' => ':amountpp',
+                'not_ranked' => '',
+                'pp' => '',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
 
@@ -239,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
-                'bad_standing' => 'A conta de <strong>:username</strong> não está num estado muito bom :(',
+                'bad_standing' => "A conta de <strong>:username</strong> não está num estado muito bom :(",
                 'remaining_silence' => '<strong>:username</strong> vai poder falar novamente em :duration.',
 
                 'recent_infringements' => [
@@ -260,15 +265,20 @@ return [
             ],
         ],
         'info' => [
+            'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => 'Lugar Atual',
             'occupation' => 'Ocupação',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
-            'website' => 'Website',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
@@ -290,6 +300,7 @@ return [
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
+            'play_time' => '',
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',
@@ -298,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => '',
+        'offline' => '',
     ],
     'store' => [
         'saved' => 'Usuário criado',
