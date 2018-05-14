@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '',
+    'deleted' => '[deleted user]',
 
     'beatmapset_activities' => [
         'title' => "",
@@ -51,23 +51,23 @@ return [
     ],
 
     'login' => [
-        '_' => '',
-        'locked_ip' => '',
-        'username' => '',
-        'password' => '',
-        'button' => '',
-        'button_posting' => '',
-        'remember' => '',
+        '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'username' => 'Username',
+        'password' => 'Password',
+        'button' => 'Sign in',
+        'button_posting' => 'Signing in...',
+        'remember' => 'Remember this computer',
         'title' => 'Please login to proceed',
         'failed' => 'Incorrect login',
-        'register' => "",
-        'forgot' => '',
+        'register' => "Don't have an osu! account? Make a new one",
+        'forgot' => 'Forgotten your password?',
         'beta' => [
-            'main' => '',
-            'small' => '',
+            'main' => 'Beta access is currently restricted to privileged users.',
+            'small' => '(supporters will get in soon)',
         ],
 
-        'here' => '', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -75,49 +75,49 @@ return [
     ],
 
     'signup' => [
-        '_' => '',
+        '_' => 'Register',
     ],
     'anonymous' => [
         'login_link' => 'click to login',
         'login_text' => '',
-        'username' => '',
+        'username' => 'Guest',
         'error' => 'You need to be logged in to do this.',
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'restricted_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Your account has been restricted!',
+        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
     ],
     'show' => [
-        'age' => '',
+        'age' => ':age years old',
         'change_avatar' => '',
-        'first_members' => '',
-        'is_developer' => '',
-        'is_supporter' => '',
-        'joined_at' => '',
-        'lastvisit' => '',
-        'missingtext' => '',
-        'origin_age' => '',
-        'origin_country_age' => '',
-        'origin_country' => '',
-        'page_description' => '',
+        'first_members' => 'Here since the beginning',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Joined :date',
+        'lastvisit' => 'Last seen :date',
+        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        'origin_age' => ':age',
+        'origin_country_age' => ':age from :country',
+        'origin_country' => 'From :country',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => '',
-        'plays_with' => '',
-        'title' => "",
+        'plays_with' => 'Plays with :devices',
+        'title' => ":username's profile",
 
         'edit' => [
             'cover' => [
-                'button' => '',
-                'defaults_info' => '',
+                'button' => 'Change Profile Cover',
+                'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
-                    'broken_file' => '',
-                    'button' => '',
-                    'dropzone' => '',
-                    'dropzone_info' => '',
-                    'restriction_info' => "".route('store.products.show', 'supporter-tag')."",
-                    'size_info' => '',
-                    'too_large' => '',
-                    'unsupported_format' => '',
+                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
+                    'button' => 'Upload image',
+                    'dropzone' => 'Drop here to upload',
+                    'dropzone_info' => 'You can also drop your image here to upload',
+                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
+                    'size_info' => 'Cover size should be 2000x700',
+                    'too_large' => 'Uploaded file is too large.',
+                    'unsupported_format' => 'Unsupported format.',
                 ],
             ],
 
@@ -128,81 +128,81 @@ return [
         ],
 
         'extra' => [
-            'followers' => '',
-            'unranked' => '',
+            'followers' => '1 follower|:count followers',
+            'unranked' => 'No recent plays',
 
             'achievements' => [
-                'title' => '',
-                'achieved-on' => '',
+                'title' => 'Achievements',
+                'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
-                'none' => '',
-                'title' => '',
+                'none' => 'None... yet.',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => '',
+                    'title' => 'Favourite Beatmaps (:count)',
                 ],
                 'graveyard' => [
                     'title' => '',
                 ],
                 'ranked_and_approved' => [
-                    'title' => '',
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
                 'unranked' => [
                     'title' => '',
                 ],
             ],
             'historical' => [
-                'empty' => '',
-                'title' => '',
+                'empty' => 'No performance records. :(',
+                'title' => 'Historical',
 
                 'monthly_playcounts' => [
                     'title' => '',
                 ],
                 'most_played' => [
-                    'count' => '',
-                    'title' => '',
+                    'count' => 'times played',
+                    'title' => 'Most Played Beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '',
-                    'title' => '',
+                    'accuracy' => 'accuracy: :percentage',
+                    'title' => 'Recent Plays (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => '',
                 ],
             ],
             'kudosu' => [
-                'available' => '',
-                'available_info' => "",
-                'recent_entries' => '',
-                'title' => '',
-                'total' => '',
-                'total_info' => ''.osu_url('user.kudosu').'',
+                'available' => 'Kudosu Available',
+                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
+                'recent_entries' => 'Recent Kudosu History',
+                'title' => 'Kudosu!',
+                'total' => 'Total Kudosu Earned',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
                 'entry' => [
-                    'amount' => '',
-                    'empty' => "",
+                    'amount' => ':amount kudosu',
+                    'empty' => "This user hasn't received any kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Denied :amount from modding post :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Lost :amount from modding post deletion of :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Received :amount from modding post restoration of :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Received :amount from obtaining votes in modding post of :post',
+                            'reset' => 'Lost :amount from losing votes in modding post of :post',
                         ],
 
                         'recalculate' => [
@@ -212,34 +212,34 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Received :amount from :giver for a post at :post',
+                        'reset' => 'Kudosu reset by :giver for the post :post',
+                        'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "",
-                'title' => '',
+                'empty' => "This user hasn't gotten any yet. ;_;",
+                'title' => 'Medals',
             ],
             'recent_activity' => [
                 'title' => '',
             ],
             'top_ranks' => [
-                'empty' => '',
+                'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => '',
-                'pp' => '',
-                'title' => '',
-                'weighted_pp' => '',
+                'pp' => ':amountpp',
+                'title' => 'Ranks',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
-                    'title' => '',
+                    'title' => 'Best Performance',
                 ],
                 'first' => [
-                    'title' => '',
+                    'title' => 'First Place Ranks',
                 ],
             ],
             'account_standing' => [
@@ -282,40 +282,40 @@ return [
             'title' => '',
         ],
         'page' => [
-            'description' => '',
-            'edit_big' => '',
-            'placeholder' => '',
-            'restriction_info' => "".route('store.products.show', 'supporter-tag')."",
+            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
+            'edit_big' => 'Edit me!',
+            'placeholder' => 'Type page content here',
+            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'post_count' => [
             '_' => '',
             'count' => '',
         ],
         'rank' => [
-            'country' => '',
-            'global' => '',
+            'country' => 'Country rank for :mode',
+            'global' => 'Global rank for :mode',
         ],
         'stats' => [
-            'hit_accuracy' => '',
-            'level' => '',
-            'maximum_combo' => '',
-            'play_count' => '',
+            'hit_accuracy' => 'Hit Accuracy',
+            'level' => 'Level :level',
+            'maximum_combo' => 'Maximum Combo',
+            'play_count' => 'Play Count',
             'play_time' => '',
-            'ranked_score' => '',
-            'replays_watched_by_others' => '',
-            'score_ranks' => '',
-            'total_hits' => '',
-            'total_score' => '',
+            'ranked_score' => 'Ranked Score',
+            'replays_watched_by_others' => 'Replays Watched by Others',
+            'score_ranks' => 'Score Ranks',
+            'total_hits' => 'Total Hits',
+            'total_score' => 'Total Score',
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'User created',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Account Verification',
     ],
 ];
