@@ -33,28 +33,34 @@ return [
             'getDownload' => 'ladda ner',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
+            'index' => 'dashboard',
             'legal-show' => 'information',
             'news-index' => 'nyheter',
             'news-show' => 'nyheter',
             'password-reset-index' => 'återställ lösenord',
             'search' => 'sök',
             'supportTheGame' => 'stötta spelet',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'hjälp',
             'getFaq' => 'faq',
-            'getSupport' => 'support', //obsolete
+            'getRules' => 'rules',
+            'getSupport' => 'support',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'listning',
             'artists' => 'framhävda artister',
-            'packs' => 'samling',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset-watches-index' => 'modding övervakningslista',
-            // 'getCharts' => 'charts', // Base text has changed, please check.
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'listning',
+            'packs' => 'samling',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -72,7 +78,7 @@ return [
         'community' => [
             '_' => 'gemenskap',
             'dev' => 'osu!dev',
-            'getForum' => 'forum', // Base text changed to plural, please check.
+            'getForum' => 'forum',
             'getChat' => 'chatt',
             'getLive' => 'live',
             'contests' => 'tävlingar',
@@ -81,10 +87,10 @@ return [
             'tournaments-index' => 'turneringar',
             'tournaments-show' => 'turnering info',
             'forum-topic-watches-index' => 'prenumerationer',
-            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-create' => 'forum',
+            'forum-topics-show' => 'forum',
+            'forum-forums-index' => 'forum',
+            'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
@@ -101,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'användare',
-            'getLogin' => 'logga in', // Base text changed from "log" to "sign"
+            'getLogin' => 'logga in',
             'disabled' => 'inaktiverad',
 
             'register' => 'registrera',
@@ -110,8 +116,14 @@ return [
 
             'messages' => 'Meddelanden',
             'settings' => 'Inställningar',
-            'logout' => 'Logga Ut', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Logga Ut',
             'help' => 'Hjälp',
+            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-events' => 'user modding events',
+            'modding-history-index' => 'user modding history',
+            'modding-history-posts' => 'user modding posts',
+            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-votesReceived' => 'user modding votes received',
         ],
         'store' => [
             '_' => 'butik',
@@ -139,11 +151,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'index',
+            'beatmapsets-covers' => 'beatmapset covers',
             'logs-index' => 'logg',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmap samlingar',
-                'covers' => 'omslag',
                 'show' => 'detaljer',
             ],
         ],
@@ -181,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Sida saknas',
-            'description' => 'Förlåt, men sidan du frågade efter finns inte här!',
+            'description' => "Förlåt, men sidan du frågade efter finns inte här!",
         ],
         '403' => [
-            'error' => 'Du bör inte vara här',
+            'error' => "Du bör inte vara här",
             'description' => 'Du kan däremot försöka gå tillbaka.',
         ],
         '401' => [
-            'error' => 'Du bör inte vara här',
-            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.', // Base text changed from "log" to "sign"
+            'error' => "Du bör inte vara här",
+            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.',
         ],
         '405' => [
             'error' => 'Sida saknas',
-            'description' => 'Förlåt, men sidan du frågade efter finns inte här!',
+            'description' => "Förlåt, men sidan du frågade efter finns inte här!",
         ],
         '500' => [
             'error' => 'Oh nej! Något gick isönder! ;_;',
-            'description' => 'Vi blir automatiskt notifierade av varje fel',
+            'description' => "Vi blir automatiskt notifierade av varje fel",
         ],
         'fatal' => [
             'error' => 'Oh nej! Något gick verkligen isönder! ;_;',
-            'description' => 'Vi blir automatiskt notifierade av varje fel',
+            'description' => "Vi blir automatiskt notifierade av varje fel",
         ],
         '503' => [
             'error' => 'Nere för underhåll!',
-            'description' => 'Underhåll brukar oftast ta från 5 sekunder till 10 minuter. Om vi är nere längre, se :link för mer information.',
+            'description' => "Underhåll brukar oftast ta från 5 sekunder till 10 minuter. Om vi är nere längre, se :link för mer information.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Bara ifall att, här är en kod du kan ge till support!',
+        'reference' => "Bara ifall att, här är en kod du kan ge till support!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'email adress',
-            'forgot' => 'Jag har glömt mina detaljer',
+            'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',
             'title' => 'Logga In För Att Fortsätta',
 
             'error' => [
-                'email' => 'Användarnamn eller email adress finns inte',
+                'email' => "Användarnamn eller email adress finns inte",
                 'password' => 'Inkorrekt lösenord',
             ],
         ],
 
         'register' => [
-            'info' => 'Herrn, du behöver ett konto. Varför har du inte ett redan?',
-            'title' => 'Har du inte ett konto?',
+            'info' => "Herrn, du behöver ett konto. Varför har du inte ett redan?",
+            'title' => "Har du inte ett konto?",
         ],
     ],
 
@@ -238,7 +251,7 @@ return [
         'links' => [
             'account-edit' => 'Inställningar',
             'friends' => 'Vänner',
-            'logout' => 'Logga Ut', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Logga Ut',
             'profile' => 'Min Profil',
         ],
     ],
