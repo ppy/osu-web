@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
-            'owner' => 'Không thể bình chọn cuộc thảo luận của bạn.',
+            'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap đang chờ.',
         ],
     ],
@@ -87,7 +87,7 @@ return [
 
             'store' => [
                 'play_more' => 'Vui lòng thử chơi game này trước khi đăng bài lên diễn đàn! Nếu bạn gặp vấn đề khi chơi, Vui lòng đăng bài lên diễn đàn Trợ Giúp và Hỗ Trợ (Help and Support).',
-                'too_many_help_posts' => 'Bạn cần phải chơi game này nhiều hơn trước khi bạn tạo thêm bài đăng. Nếu bạn vẫn còn gặp vấn đề khi chơi game, email support@ppy.sh', // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Bạn cần phải chơi game này nhiều hơn trước khi bạn tạo thêm bài đăng. Nếu bạn vẫn còn gặp vấn đề khi chơi game, email support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -100,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để trả lời.',
-                    'restricted' => 'Không thể trả lời trong khi bị hạn chế.',
-                    'silenced' => 'Không thể trả lời trong khi bị im lặng.',
+                    'restricted' => "Không thể trả lời trong khi bị hạn chế.",
+                    'silenced' => "Không thể trả lời trong khi bị im lặng.",
                 ],
             ],
 
@@ -118,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để bình chọn.',
-                    'restricted' => 'Không thể bình chọn trong khi bị hạn chế',
-                    'silenced' => 'Không thể bình chọn khi im lặng',
+                    'restricted' => "Không thể bình chọn trong khi bị hạn chế",
+                    'silenced' => "Không thể bình chọn khi im lặng",
                 ],
             ],
 
@@ -144,9 +144,9 @@ return [
 
     'unauthorized' => 'Truy cập bị từ chối.',
 
-    'silenced' => 'Không thể làm việc đó trong khi bị im lặng.',
+    'silenced' => "Không thể làm việc đó trong khi bị im lặng.",
 
-    'restricted' => 'Không thể làm việc đó trong khi bị hạn chế',
+    'restricted' => "Không thể làm việc đó trong khi bị hạn chế",
 
     'user' => [
         'page' => [
