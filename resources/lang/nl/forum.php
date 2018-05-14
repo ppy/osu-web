@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Gepinde Onderwerpen',
     'slogan' => "",
     'subforums' => 'Subfora',
-    'title' => '',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -72,7 +72,7 @@ return [
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Maak nieuw onderwerp',
-        'post_reply' => '',
+        'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
         'started_by' => 'door :user',
 
@@ -81,7 +81,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => '',
-            'submit' => '',
+            'submit' => 'Post',
 
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
