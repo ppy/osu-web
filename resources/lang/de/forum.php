@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Abstimmung offen für',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'Tage',
                 'length_info' => 'Nichts eingeben für eine nie endende Abstimmung',
                 'max_options' => 'Antworten pro Benutzer',
