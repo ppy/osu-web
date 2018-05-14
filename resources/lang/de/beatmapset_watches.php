@@ -28,8 +28,8 @@ return [
 
     'index' => [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
-        'title_compact' => '',
-        'title_main' => '',
+        'title_compact' => 'modding watchlist',
+        'title_main' => 'Modding Watchlist',
 
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
