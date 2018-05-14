@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,14 +33,14 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ลบไปแล้ว',
-        'title' => 'Beatmap Discussions',
+        'title' => '',
 
         'form' => [
-            'deleted' => 'Include deleted discussions',
+            'deleted' => '',
 
             'user' => [
                 'label' => 'ผู้ใช้',
-                'overview' => 'Activities overview',
+                'overview' => '',
             ],
         ],
     ],
@@ -53,8 +53,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => '',
+        'notice' => '',
     ],
 
     'reply' => [
@@ -72,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'admin' => '',
+        'bng' => '',
+        'owner' => '',
+        'qat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => '',
+        'label' => '',
     ],
 ];
