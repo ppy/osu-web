@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Подождите немного прежде чем голосовать дальше',
-            'owner' => 'Нельзя голосовать в собственном обсуждении!',
+            'owner' => "Нельзя голосовать в собственном обсуждении!",
             'wrong_beatmapset_state' => 'Можно голосовать только в обсуждениях ожидающих карт.',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Только автор может редактировать эту публикацию.',
                 'topic_locked' => 'Невозможно изменить публикацию в закрытой теме.',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,9 +99,9 @@ return [
                 'no_permission' => 'Нет прав для ответа.',
 
                 'user' => [
-                    'require_login' => 'Войдите для ответа.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Нельзя ответить пока аккаунт ограничен',
-                    'silenced' => 'Нельзя ответить пока заткнут.',
+                    'require_login' => 'Войдите для ответа.',
+                    'restricted' => "Нельзя ответить пока аккаунт ограничен",
+                    'silenced' => "Нельзя ответить пока заткнут.",
                 ],
             ],
 
@@ -112,9 +117,9 @@ return [
                 'voted' => 'Менять свой ответ запрещено.',
 
                 'user' => [
-                    'require_login' => 'Войдите для ответа.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Нельзя ответить пока аккаунт ограничен',
-                    'silenced' => 'Нельзя ответить пока заткнут.',
+                    'require_login' => 'Войдите для ответа.',
+                    'restricted' => "Нельзя ответить пока аккаунт ограничен",
+                    'silenced' => "Нельзя ответить пока заткнут.",
                 ],
             ],
 
@@ -135,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Войдите для продолжения.', // Base text changed from "log" to "sign"
+    'require_login' => 'Войдите для продолжения.',
 
     'unauthorized' => 'Доступ запрещён.',
 
-    'silenced' => 'Нельзя делать это пока ограничен',
+    'silenced' => "Нельзя делать это пока ограничен",
 
-    'restricted' => 'Нельзя делать это пока заткнут',
+    'restricted' => "Нельзя делать это пока заткнут",
 
     'user' => [
         'page' => [

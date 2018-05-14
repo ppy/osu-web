@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'match' => [
         'header' => 'Tryb wieloosobowy',
@@ -33,6 +34,7 @@ return [
             'match-created' => 'gracz :user stworzył grę',
             'match-disbanded' => 'gra została rozwiązana',
             'host-changed' => 'gracz :user został hostem',
+
             'player-left-no-user' => 'gracz wyszedł z gry',
             'player-joined-no-user' => 'gracz dołączył do gry',
             'player-kicked-no-user' => 'gracz został wyrzucony z meczu',

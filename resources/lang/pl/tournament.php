@@ -27,16 +27,27 @@ return [
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
         'registration_period' => 'Rejestracja: od :start do :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Zarejestruj mnie!',
-            'cancel' => 'Anuluj rejestrację',
-        ],
+        'banner' => 'Support Your Team',
         'entered' => 'Twoje konto jest zarejestrowane na ten turniej.<br><br>Miej na uwadze, że nie oznacza to, iż zostało ono dołączone do danej drużyny.<br><br>Dalsze informacje zostaną przesłane drogą mailową później, dlatego upewnij się, że twoje konto osu! używa prawidłowego adresu e-mail!',
+        'info_page' => 'Information Page',
         'login_to_register' => 'Prosimy, :login, aby poznać szczegóły rejestracji!',
         'not_yet_entered' => 'Twoje konto nie jest zarejestrowane na ten turniej.',
         'rank_too_low' => 'Przepraszamy, ale twoja pozycja w rankingu nie spełnia wymagań turnieju!',
         'registration_ends' => 'Rejestracja kończy się :date',
+
+        'button' => [
+            'cancel' => 'Anuluj rejestrację',
+            'register' => 'Zarejestruj mnie!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => 'od :start do :end',
 ];

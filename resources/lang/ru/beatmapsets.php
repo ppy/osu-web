@@ -88,21 +88,22 @@ return [
             'supporter-only' => 'Вы должны иметь osu!supporter для использования данной возможности!',
             'title' => 'Табло',
 
-            'list' => [
-                'accuracy' => 'Точность',
-                'combo' => 'Макс. комбо',
-                'miss' => 'Промах',
-                'mods' => 'Моды',
-                'player' => 'Игрок',
+            'headers' => [
+                'accuracy' => 'Accuracy',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
                 'pp' => 'pp',
-                'rank' => 'Ранг',
-                'score_total' => 'Всего очков',
-                'score' => 'Очки',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
+                'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'Никто из вашей страны ещё не играл в эту карту!',
                 'friend' => 'Никто из ваших друзей ещё не играл в эту карту!',
-                'global' => 'Никто ещё не играл в эту карту! Может быть вы попробуете?', // есть альтернативный вариант перевода
+                'global' => 'Никто ещё не играл в эту карту! Может быть вы попробуете?',
                 'loading' => 'Результаты загружаются...',
                 'unranked' => 'Unranked карта.',
             ],

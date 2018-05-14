@@ -17,16 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'buttons' => [
       'add' => 'dodaj znajomego',
       'remove' => 'usuń znajomego',
     ],
+
     'state' => [
       'friends' => 'znajomi',
       'mutual' => 'przyjaciele',
     ],
+
     'title' => 'Znajomi',
     'title_compact' => 'znajomi',
+
     'too_many' => 'Limit znajomych został osiągnięty.',
 ];
