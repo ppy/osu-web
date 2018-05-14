@@ -23,7 +23,7 @@ return [
     'type' => [
         'performance' => 'Præstation',
         'charts' => 'Baner',
-        'score' => '',
+        'score' => 'Score',
         'country' => 'Land',
     ],
     'stat' => [
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Rangeret Score',
         'average_score' => 'Gns. Score',
         'average_performance' => 'Gns. Præs.',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];
