@@ -49,7 +49,7 @@ return [
             'all' => 'Wszystkie fora',
             'link' => 'Przeszukaj forum',
             'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
-            'title' => '',
+            'title' => 'Forum',
 
             'label' => [
                 'forum' => 'przeszukaj fora',
@@ -62,9 +62,9 @@ return [
         'mode' => [
             'all' => 'wszystkie',
             'beatmapset' => 'beatmapa',
-            'forum_post' => '',
+            'forum_post' => 'forum',
             'user' => 'użytkownik',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => 'Przeszukaj wiki',
             'more_simple' => 'Zobacz więcej wyszukanych artykułów na wiki',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -140,7 +140,7 @@ return [
     ],
 
     'support-osu' => [
-        'title' => '',
+        'title' => 'Wow!',
         'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
         'body' => [
             'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
