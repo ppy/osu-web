@@ -28,7 +28,7 @@ return [
             '_' => 'trang chủ',
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
-            'changelog-index' => '',
+            'changelog-index' => 'changelog',
             'changelog-show' => 'bản dựng',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
@@ -40,18 +40,18 @@ return [
             'password-reset-index' => 'đặt lại mật khẩu',
             'search' => 'tìm kiếm',
             'supportTheGame' => 'ủng hộ osu!',
-            'team' => '',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'trợ giúp',
-            'getFaq' => '',
-            'getRules' => '',
+            'getFaq' => 'faq',
+            'getRules' => 'rules',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmaps',
             'artists' => 'nghệ sĩ tiêu biểu',
             'beatmap_discussion_posts-index' => 'bài đăng góc thảo luận beatmap',
             'beatmap_discussions-index' => 'góc thảo luận beatmap',
@@ -63,23 +63,23 @@ return [
             'show' => 'thông tin',
         ],
         'beatmapsets' => [
-            '_' => '',
-            'discussion' => '',
+            '_' => 'beatmaps',
+            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'xếp hạng',
-            'index' => '',
-            'performance' => '',
-            'charts' => '',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'spotlights',
             'score' => 'điểm',
             'country' => 'quốc gia',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'dev' => '',
+            'dev' => 'osu!dev',
             'getForum' => 'diễn đàn',
-            'getChat' => '',
+            'getChat' => 'chat',
             'getLive' => 'live stream',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
@@ -93,7 +93,7 @@ return [
             'forum-forums-show' => 'diễn đàn',
         ],
         'multiplayer' => [
-            '_' => '',
+            '_' => 'multiplayer',
             'show' => 'trận đấu ',
         ],
         'error' => [
@@ -126,7 +126,7 @@ return [
             'modding-history-votesReceived' => '',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'store',
             'checkout-show' => '',
             'getListing' => 'danh sách',
             'cart-show' => 'giỏ hàng',
@@ -141,22 +141,22 @@ return [
             'thanks' => 'cảm ơn',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'bìa diễn đàn',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => 'đơn hàng',
             'orders-show' => 'đơn hàng',
         ],
         'admin' => [
-            '_' => '',
+            '_' => 'admin',
             'beatmapsets-covers' => 'bìa beatmapset',
-            'logs-index' => '',
+            'logs-index' => 'log',
             'root' => 'mục lục',
 
             'beatmapsets' => [
-                '_' => '',
+                '_' => 'beatmapsets',
                 'show' => 'chi tiết',
             ],
         ],
@@ -166,21 +166,21 @@ return [
         'general' => [
             '_' => 'Chung',
             'home' => 'Trang Chủ',
-            'changelog-index' => '',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
             'download' => 'Tải Xuống osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Giúp Đỡ & Cộng Đồng',
             'faq' => 'Những Câu Hỏi Thường Gặp',
             'forum' => 'Diễn Đàn',
-            'livestreams' => '',
+            'livestreams' => 'Live Streams',
             'report' => 'Báo Cáo Một Vấn Đề',
         ],
         'support' => [
             '_' => 'Ủng Hộ osu!',
-            'tags' => '',
+            'tags' => 'Supporter Tags',
             'merchandise' => 'Hàng Hóa',
         ],
         'legal' => [
@@ -220,8 +220,8 @@ return [
             'error' => 'Đang bảo trì!',
             'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
@@ -232,7 +232,7 @@ return [
         'login' => [
             'email' => 'địa chỉ email',
             'forgot' => "Quên mật khẩu",
-            'password' => '',
+            'password' => 'password',
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
