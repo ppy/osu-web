@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => '',
             'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
@@ -32,7 +33,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
-            'owner' => 'Kan inte rösta på din egen diskussion!',
+            'owner' => "Kan inte rösta på din egen diskussion!",
+            'wrong_beatmapset_state' => '',
         ],
     ],
 
@@ -82,6 +84,11 @@ return [
                 'not_owner' => 'Endast ägare kan redigera inlägget.',
                 'topic_locked' => 'Kan ej redigera låst inlägg.',
             ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -92,9 +99,9 @@ return [
                 'no_permission' => 'Inget tillstånd att svara.',
 
                 'user' => [
-                    'require_login' => 'Var vänlig logga in för att svara.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Kan ej svara när man är begränsad.',
-                    'silenced' => 'Kan ej svara när man är tystad.',
+                    'require_login' => 'Var vänlig logga in för att svara.',
+                    'restricted' => "Kan ej svara när man är begränsad.",
+                    'silenced' => "Kan ej svara när man är tystad.",
                 ],
             ],
 
@@ -110,9 +117,9 @@ return [
                 'voted' => 'Ändra röst är ej tillåtet.',
 
                 'user' => [
-                    'require_login' => 'Var vänlig logga in för att rösta.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Kan ej rösta när man är begränsad.',
-                    'silenced' => 'Kan ej rösta när man är tystad.',
+                    'require_login' => 'Var vänlig logga in för att rösta.',
+                    'restricted' => "Kan ej rösta när man är begränsad.",
+                    'silenced' => "Kan ej rösta när man är tystad.",
                 ],
             ],
 
@@ -133,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Var vänlig logga in för att fortsätta.', // Base text changed from "log" to "sign"
+    'require_login' => 'Var vänlig logga in för att fortsätta.',
 
     'unauthorized' => 'Åtkomst nekad.',
 
-    'silenced' => 'Kan ej göra det när man är tystad.',
+    'silenced' => "Kan ej göra det när man är tystad.",
 
-    'restricted' => 'Kan ej göra det när man är begränsad.',
+    'restricted' => "Kan ej göra det när man är begränsad.",
 
     'user' => [
         'page' => [
