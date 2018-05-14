@@ -25,12 +25,12 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => '',
+            '_' => 'home',
             'account-edit' => '',
             'friends-index' => '',
             'changelog-index' => '',
             'changelog-show' => '',
-            'getDownload' => '',
+            'getDownload' => 'download',
             'getIcons' => 'icone',
             'groups-show' => '',
             'index' => '',
@@ -47,7 +47,7 @@ return [
             'getFaq' => 'domande comuni',
             'getRules' => '',
             'getSupport' => 'supporto',
-            'getWiki' => '',
+            'getWiki' => 'wiki',
             'wiki-show' => '',
         ],
         'beatmaps' => [
@@ -64,7 +64,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
-            'discussion' => '',
+            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'rank',
@@ -79,7 +79,7 @@ return [
             '_' => 'comunità',
             'dev' => '',
             'getForum' => 'forum',
-            'getChat' => '',
+            'getChat' => 'chat',
             'getLive' => 'dirette',
             'contests' => 'concorsi',
             'profile' => 'profilo',
@@ -94,7 +94,7 @@ return [
         ],
         'multiplayer' => [
             '_' => 'multigiocatore',
-            'show' => '',
+            'show' => 'match',
         ],
         'error' => [
             '_' => 'errore',
@@ -136,27 +136,27 @@ return [
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',
-            'home' => '',
-            'index' => '',
+            'home' => 'home',
+            'index' => 'home',
             'thanks' => 'grazie',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'copertine del forum',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => 'ordini',
             'orders-show' => 'ordine',
         ],
         'admin' => [
             '_' => 'admministratori',
             'beatmapsets-covers' => '',
-            'logs-index' => '',
+            'logs-index' => 'log',
             'root' => '',
 
             'beatmapsets' => [
-                '_' => '',
+                '_' => 'beatmapsets',
                 'show' => 'dettagli',
             ],
         ],
@@ -165,11 +165,11 @@ return [
     'footer' => [
         'general' => [
             '_' => 'Generale',
-            'home' => '',
+            'home' => 'Home',
             'changelog-index' => '',
             'beatmaps' => 'Lista Beatmap',
             'download' => 'Scarica osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Aiuto e Comunità',
@@ -181,11 +181,11 @@ return [
         'support' => [
             '_' => 'Sostieni osu!',
             'tags' => 'Tag Supporter',
-            'merchandise' => '',
+            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Legale e Status',
-            'copyright' => '',
+            'copyright' => 'Copyright (DMCA)',
             'server_status' => 'Stato del Server',
             'terms' => 'Termini di Servizio',
         ],
@@ -220,8 +220,8 @@ return [
             'error' => 'Chiuso per manutenzione!',
             'description' => "La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
@@ -232,7 +232,7 @@ return [
         'login' => [
             'email' => 'indirizzo email',
             'forgot' => "Ho dimenticato i miei dati",
-            'password' => '',
+            'password' => 'password',
             'title' => 'Accedi per procedere',
 
             'error' => [
