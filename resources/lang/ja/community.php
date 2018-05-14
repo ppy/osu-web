@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => '特典とは？',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => 'ゲーム内でブラウザを開くことなく譜面を素早くダウンロード。',
             ],
 
