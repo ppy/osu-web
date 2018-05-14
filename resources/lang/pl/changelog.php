@@ -17,10 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'feed_title' => 'lista',
     'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
     'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
+
     'prefixes' => [
         'add' => 'nowość',
         'fix' => 'poprawka',
