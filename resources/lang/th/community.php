@@ -22,9 +22,10 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '',
+            'big_description' => 'Love osu!?<br/>
+                                Support the osu! dev :D',
             'small_description' => '',
-            'support_button' => '',
+            'support_button' => 'I want to support osu!',
         ],
 
         'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
@@ -44,93 +45,94 @@ return [
         ],
 
         'why_support' => [
-            'title' => '',
+            'title' => 'Why should I support osu!?',
             'blocks' => [
-                'dev' => '',
-                'time' => '',
-                'ads' => '',
-                'goodies' => '',
+                'dev' => 'Developed and maintained predominantly by one guy in Australia',
+                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
+                'ads' => 'No ads anywhere. <br/><br/>
+                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
+                'goodies' => 'You get some extra goodies!',
             ],
         ],
 
         'perks' => [
-            'title' => '',
+            'title' => 'Oh? What do I get?!',
             'osu_direct' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'osu!direct',
+                'description' => 'quick and easy access to search beatmaps without leaving the game.',
             ],
 
             'auto_downloads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Auto Downloads',
+                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
             ],
 
             'upload_more' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Upload More',
+                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
             ],
 
             'early_access' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Early Access',
+                'description' => 'Access to early releases, where you can try new features before they go public!',
             ],
 
             'customisation' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Customisation',
+                'description' => 'Customise your profile by adding a fully customisable user page.',
             ],
 
             'beatmap_filters' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Beatmap Filters',
+                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
             ],
 
             'yellow_fellow' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Yellow Fellow',
+                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
             ],
 
             'speedy_downloads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Speedy Downloads',
+                'description' => 'More lenient download restrictions, especially when using osu!direct.',
             ],
 
             'change_username' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Change Username',
+                'description' => 'The ability to change your username without additional costs. (once max)',
             ],
 
             'skinnables' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Skinnables',
+                'description' => 'Extra in-game skinnables, like the main menu background.',
             ],
 
             'feature_votes' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Feature Votes',
+                'description' => 'Votes for feature requests. (2 per month)',
             ],
 
             'sort_options' => [
-                'title' => '',
+                'title' => 'Sort Options',
                 'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
             'feel_special' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Feel Special',
+                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
             ],
 
             'more_to_come' => [
-                'title' => '',
+                'title' => 'More to come',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => '',
-            'support' => '',
-            'gift' => '',
-            'instructions' => '',
+            'title' => 'I\'m convinced! :D',
+            'support' => 'support osu!',
+            'gift' => 'or gift support to other players',
+            'instructions' => 'click the heart button to proceed to the osu!store',
         ],
     ],
 ];
