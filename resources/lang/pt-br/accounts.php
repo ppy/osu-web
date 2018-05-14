@@ -32,7 +32,7 @@ return [
             'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmar email',
-            'title' => '',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -48,10 +48,10 @@ return [
             'user' => [
                 'user_from' => 'localização atual',
                 'user_interests' => '',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
-                'user_twitter' => '',
-                'user_website' => '',
+                'user_twitter' => 'twitter',
+                'user_website' => 'website',
                 'user_discord' => '',
             ],
         ],
@@ -74,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Estilo de jogo',
-        'mouse' => '',
+        'mouse' => 'mouse',
         'keyboard' => 'teclado',
         'tablet' => 'mesa digitalizadora',
-        'touch' => '',
+        'touch' => 'touch',
     ],
 ];
