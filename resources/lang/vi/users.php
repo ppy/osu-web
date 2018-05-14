@@ -22,7 +22,7 @@ return [
     'deleted' => '[người dùng đã bị xóa]',
 
     'beatmapset_activities' => [
-        'title' => 'Lịch Sử Modding Của :user',
+        'title' => "Lịch Sử Modding Của :user",
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -51,7 +51,7 @@ return [
     ],
 
     'login' => [
-        '_' => 'Sign in',
+        '_' => '',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'username' => 'Tên tài khoản',
         'password' => 'Mật khẩu',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Nhớ máy tính này',
         'title' => 'Vui lòng đăng nhập để tiếp tục',
         'failed' => 'Đăng nhập không chính xác',
-        'register' => 'Không có tài khoản osu!? Tạo một tài khoản mới',
+        'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
         'forgot' => 'Quên mật khẩu?',
         'beta' => [
             'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
@@ -92,18 +92,18 @@ return [
         'age' => ':age tuổi',
         'change_avatar' => 'đổi ảnh đại diện!',
         'first_members' => 'Tại đây từ thuở xa xưa',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
-        'origin_age' => ':age',
+        'origin_age' => '',
         'origin_country_age' => ':age từ :country',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi với :devices',
-        'title' => 'Trang cá nhân của :username',
+        'title' => "Trang cá nhân của :username",
 
         'edit' => [
             'cover' => [
@@ -137,13 +137,13 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Chưa có... gì cả.',
-                'title' => 'Beatmaps',
+                'title' => '',
 
                 'favourite' => [
                     'title' => 'Beatmap Yêu Thích (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',
@@ -173,15 +173,15 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Có Sẵn',
-                'available_info' => 'Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.',
+                'available_info' => "Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.",
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => 'Tông Số Kudosu Nhận Được',
                 'total_info' => 'Dựa vào số lượng đóng góp mà người dùng này đã thực hiện để điều chỉnh beatmap. Xem <a href="'.osu_url('user.kudosu').'">trang này</a> để biết thêm thông tin.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => 'Người dùng này chưa nhận kudosu nào!',
+                    'amount' => '',
+                    'empty' => "Người dùng này chưa nhận kudosu nào!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'tôi!',
             ],
             'medals' => [
-                'empty' => 'Người dùng này chưa có huy chương nào cả. ;_;',
+                'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
-                'pp' => ':amountpp',
+                'pp' => '',
                 'title' => 'Xếp Hạng',
                 'weighted_pp' => 'trọng số: :pp (:percentage)',
 
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
-                'bad_standing' => 'Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(',
+                'bad_standing' => "Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(",
                 'remaining_silence' => '<strong>:username</strong> sẽ được nói trở lại vào :duration.',
 
                 'recent_infringements' => [
@@ -257,7 +257,7 @@ return [
                     'actor' => 'bởi :username',
 
                     'actions' => [
-                        'restriction' => 'Ban',
+                        'restriction' => '',
                         'silence' => 'Im lặng',
                         'note' => 'Ghi chú',
                     ],
@@ -265,14 +265,14 @@ return [
             ],
         ],
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Sở Thích',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
-            'website' => 'Website',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
         ],
         'not_found' => [
             'reason_1' => 'Có thể họ đã đổi tên tài khoản.',
@@ -297,7 +297,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
-            'level' => 'Level :level',
+            'level' => '',
             'maximum_combo' => 'Combo Cao Nhất',
             'play_count' => 'Số Lần Chơi',
             'play_time' => 'Tổng Thời Gian Chơi',
@@ -309,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => '',
+        'offline' => '',
     ],
     'store' => [
         'saved' => 'Đã tạo người dùng',
