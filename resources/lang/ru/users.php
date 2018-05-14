@@ -22,6 +22,8 @@ return [
     'deleted' => '[удалённый пользователь]',
 
     'beatmapset_activities' => [
+        'title' => "",
+
         'discussions' => [
             'title_recent' => 'Недавно начатые дискуссии',
         ],
@@ -58,7 +60,7 @@ return [
         'remember' => 'Запомнить этот браузер',
         'title' => 'Войдите для продолжения',
         'failed' => 'Неверный вход',
-        'register' => 'У вас всё ещё нет аккаунта в osu!? Создайте новый',
+        'register' => "У вас всё ещё нет аккаунта в osu!? Создайте новый",
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
             'main' => 'Доступ к бета-версии ограничен.',
@@ -79,7 +81,7 @@ return [
         'login_link' => 'нажмите для входа',
         'login_text' => 'войти',
         'username' => 'Гость',
-        'error' => 'Вы должны войти чтобы сделать это.', // Base text changed from "log" to "sign"
+        'error' => 'Вы должны войти чтобы сделать это.',
     ],
     'logout_confirm' => 'Вы точно хотите выйти? :(',
     'restricted_banner' => [
@@ -90,18 +92,18 @@ return [
         'age' => ':age год|:age года|:age лет',
         'change_avatar' => 'сменить аватар!',
         'first_members' => 'Здесь с самого начала',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Присоединился :date',
         'lastvisit' => 'Заходил :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
-        'origin_age' => ':age',
+        'origin_age' => '',
         'origin_country_age' => ':age, из :country',
         'origin_country' => 'Из :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
         'plays_with' => 'Играет с :devices',
-        'title' => 'Профиль :username',
+        'title' => "Профиль :username",
 
         'edit' => [
             'cover' => [
@@ -171,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Кудосу доступно',
-                'available_info' => 'Кудосу могут быть использованы для обмена между другими авторами карт, которые в свою очередь помогут привлечь к Вашей карте больше внимания. Это количество Кудосу, которые Вы не задействовали.',
+                'available_info' => "Кудосу могут быть использованы для обмена между другими авторами карт, которые в свою очередь помогут привлечь к Вашей карте больше внимания. Это количество Кудосу, которые Вы не задействовали.",
                 'recent_entries' => 'Последние обмены',
                 'title' => 'Кудосу!',
                 'total' => 'Всего Кудосу накоплено',
@@ -179,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount кудосу',
-                    'empty' => 'Этот пользователь не обменивался Кудосу!',
+                    'empty' => "Этот пользователь не обменивался Кудосу!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -220,7 +222,7 @@ return [
                 'title' => 'обо мне!',
             ],
             'medals' => [
-                'empty' => 'Этот пользователь ничего не получил. ;_;',
+                'empty' => "Этот пользователь ничего не получил. ;_;",
                 'title' => 'Медали',
             ],
             'recent_activity' => [
@@ -229,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => 'Никакой записи об удивительной производительности. :(',
                 'not_ranked' => 'Очки производительности выдаются только за ранкнутые карты.',
-                'pp' => ':amountpp',
+                'pp' => '',
                 'title' => 'Рейтинги',
                 'weighted_pp' => 'взвешено: :pp (:percentage)',
 
@@ -242,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
-                'bad_standing' => 'с аккаунтом <strong>:username</strong> не всё хорошо :(',
+                'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
                 'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
 
                 'recent_infringements' => [
@@ -263,16 +265,20 @@ return [
             ],
         ],
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Интересы',
-            'lastfm' => 'Last.fm',
+            'lastfm' => '',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Веб-сайт',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => 'Игрок не найден! ;_;',
         ],
         'page' => [
