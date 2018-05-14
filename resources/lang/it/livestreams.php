@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => '',
+        'description' => '',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => '',
     ],
 ];
