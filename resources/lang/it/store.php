@@ -24,12 +24,33 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => '',
+        'cart_problems_edit' => '',
+        'declined' => '',
+        'error' => '',
+        'old_cart' => '',
         'pay' => 'Acquista con Paypal',
+        'pending_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+            'link_text' => '',
+        ],
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+    ],
+
+    'discount' => '',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
     ],
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => '',
+            ],
             'quantity' => 'Quantità',
         ],
     ],
@@ -49,5 +70,22 @@ return [
         'notification_remove_text' => 'qui',
 
         'notification_in_stock' => 'Questo prodotto è già disponibile!',
+    ],
+
+    'supporter_tag' => [
+        'gift' => '',
+        'require_login' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+    ],
+
+    'username_change' => [
+        'check' => '',
+        'checking' => '',
+        'require_login' => [
+            '_' => '',
+            'link_text' => '',
+        ],
     ],
 ];
