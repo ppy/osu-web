@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
-            'owner' => 'Man kann nicht in der eigenen Diskussion abstimmen!',
+            'owner' => "Man kann nicht in der eigenen Diskussion abstimmen!",
             'wrong_beatmapset_state' => 'Abstimmung nur in Diskussion von <Pending> Beatmaps möglich.',
         ],
     ],
@@ -84,6 +84,11 @@ return [
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -95,8 +100,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zum Antworten bitte einloggen.',
-                    'restricted' => 'Man kann nicht antworten, während man <restricted> ist.',
-                    'silenced' => 'Man kann nicht antworten, während man stummgeschaltet ist.',
+                    'restricted' => "Man kann nicht antworten, während man <restricted> ist.",
+                    'silenced' => "Man kann nicht antworten, während man stummgeschaltet ist.",
                 ],
             ],
 
@@ -113,8 +118,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zum Abstimmen bitte einloggen.',
-                    'restricted' => 'Man kann nicht abstimmen, während man <restricted> ist.',
-                    'silenced' => 'Man kann nicht abstimmen, während man stummgeschaltet ist.',
+                    'restricted' => "Man kann nicht abstimmen, während man <restricted> ist.",
+                    'silenced' => "Man kann nicht abstimmen, während man stummgeschaltet ist.",
                 ],
             ],
 
@@ -139,9 +144,9 @@ return [
 
     'unauthorized' => 'Zugang verwehrt.',
 
-    'silenced' => 'Während Stummschaltung nicht möglich.',
+    'silenced' => "Während Stummschaltung nicht möglich.",
 
-    'restricted' => 'Während <restriction> nicht möglich.',
+    'restricted' => "Während <restriction> nicht möglich.",
 
     'user' => [
         'page' => [
