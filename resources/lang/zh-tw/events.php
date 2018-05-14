@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset 已經被 <strong>:user</strong> 恢復。',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了譜面 "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一個新譜面 ":beatmapset"',
-    'empty' => '該用戶最近沒有活動！',
+    'empty' => "該用戶最近沒有活動！",
     'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> （:mode）中取得第 :rank 名',
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> （:mode）的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感謝您的慷慨捐贈！',
