@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Pertandingan Multiplayer',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
             'player-left' => ':user meninggalkan pertandingan',
@@ -66,7 +66,7 @@ return [
             'score' => 'Skor Tertinggi',
             'accuracy' => 'Akurasi Tertinggi',
             'combo' => 'Kombo Tertinggi',
-            'scorev2' => 'Score V2',
+            'scorev2' => '',
         ],
     ],
 ];
