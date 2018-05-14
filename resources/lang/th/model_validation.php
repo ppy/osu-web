@@ -19,14 +19,14 @@
  */
 
 return [
-    'not_negative' => '',
-    'required' => '',
+    'not_negative' => ':attribute cannot be negative.',
+    'required' => ':attribute is required.',
     'too_long' => '',
-    'wrong_confirmation' => '',
+    'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmap_discussion_post' => [
         'discussion_locked' => '',
-        'first_post' => '',
+        'first_post' => 'Can not delete starting post.',
     ],
 
     'beatmapset_discussion' => [
@@ -54,12 +54,12 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
-            'not_enough_feature_votes' => '',
+            'not_feature_topic' => 'Can only vote a feature request.',
+            'not_enough_feature_votes' => 'Not enough votes.',
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Invalid option specified.',
         ],
 
         'post' => [
@@ -68,27 +68,27 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
-            'minimum_two_options' => '',
-            'too_many_options' => '',
+            'duplicate_options' => 'Duplicated option is not allowed.',
+            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
+            'minimum_one_selection' => 'A minimum of one option per user is required.',
+            'minimum_two_options' => 'Need at least two options.',
+            'too_many_options' => 'Exceeded maximum number of allowed options.',
         ],
 
         'topic_vote' => [
             'required' => '',
-            'too_many' => '',
+            'too_many' => 'Selected more options than allowed.',
         ],
     ],
 
     'user' => [
-        'contains_username' => '',
-        'email_already_used' => '',
-        'invalid_country' => '',
+        'contains_username' => 'Password may not contain username.',
+        'email_already_used' => 'Email address already used.',
+        'invalid_country' => 'Country not in database.',
         'invalid_discord' => '',
         'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => '',
-        'unknown_duplicate' => '',
+        'too_short' => 'New password is too short.',
+        'unknown_duplicate' => 'Username or email address already used.',
         'username_available_in' => '',
         'username_available_soon' => '',
         'username_invalid_characters' => '',
@@ -96,12 +96,12 @@ return [
         'username_no_space_userscore_mix' => '',
         'username_no_spaces' => "",
         'username_not_allowed' => '',
-        'username_too_short' => '',
+        'username_too_short' => 'The requested username is too short.',
         'username_too_long' => '',
-        'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
+        'weak' => 'Blacklisted password.',
+        'wrong_current_password' => 'Current password is incorrect.',
+        'wrong_email_confirmation' => 'Email confirmation does not match.',
+        'wrong_password_confirmation' => 'Password confirmation does not match.',
         'too_long' => '',
 
         'change_username' => [
