@@ -49,7 +49,7 @@ return [
         'created_at' => 'Beitragsdatum',
         'deleted_at' => 'Löschdatum',
         'message_type' => 'Typ',
-        'permalink' => '',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -72,10 +72,10 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
-        'bng' => '',
+        'admin' => 'admin',
+        'bng' => 'nominator',
         'owner' => 'ersteller',
-        'qat' => '',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
