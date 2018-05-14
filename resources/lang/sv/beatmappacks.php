@@ -47,9 +47,9 @@ return [
     ],
 
     'mode' => [
-        'artist' => '',
+        'artist' => 'Artist/Album',
         'chart' => 'Diagram',
-        'standard' => '',
+        'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
