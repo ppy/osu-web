@@ -19,20 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => 'Per favore effettua il login per poter continuare.', // Base text changed from "log" to "sign"
-        'http-403' => 'Accesso Negato.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'Si è verificato un errore. Prova a ricaricare la pagina.',
-        ],
-    ],
-    'beatmaps' => [
-        'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
-    ],
-    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.', // Base text changed from "log" to "sign"
-    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
-    'unknown' => 'Si è verificato un errore sconosciuto.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "Si è verificato un errore sconosciuto.",
 ];

@@ -19,12 +19,37 @@
  */
 
 return [
-    'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.', // :attribute cannot be negative.
-    'required' => ':attribute 속성이 필요합니다.', // :attribute is required.
+    'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
+    'required' => ':attribute 속성이 필요합니다.',
+    'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmap_discussion_post' => [
-        'first_post' => '시작글은 삭제할 수 없습니다.', // Can not delete starting post
+        'discussion_locked' => 'Discussion is locked.',
+        'first_post' => '시작글은 삭제할 수 없습니다.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
+        'beatmapset_no_hype' => "Beatmap can't be hyped.",
+        'hype_requires_null_beatmap' => 'Hype must be done in the General (all difficulties) section.',
+        'invalid_beatmap_id' => 'Invalid difficulty specified.',
+        'invalid_beatmapset_id' => 'Invalid beatmap specified.',
+        'locked' => 'Discussion is locked.',
+        'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
+
+        'hype' => [
+            'guest' => 'Must be signed in to hype.',
+            'hyped' => 'You have already hyped this beatmap.',
+            'limit_exceeded' => 'You have used all your hype.',
+            'not_hypeable' => 'This beatmap can not be hyped',
+            'owner' => 'No hyping your own beatmap.',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
+            'negative' => "Timestamp can't be negative.",
+        ],
     ],
 
     'forum' => [
@@ -37,6 +62,11 @@ return [
             'invalid' => '항목 선택이 잘못되었습니다.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
+            'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => '지정하려는 항목이 이미 존재합니다.',
             'invalid_max_options' => '지정된 항목보다 많이 투표하도록 설정할 수 없습니다.',
@@ -46,6 +76,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => 'Select an option when voting.',
             'too_many' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
     ],
@@ -54,14 +85,31 @@ return [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
-        'invalid_email' => '이메일 주소가 잘못되었습니다.', // Doesn't seem to be an email address
+        'invalid_discord' => 'Discord username invalid.',
+        'invalid_email' => "이메일 주소가 잘못되었습니다.",
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
+        'username_available_in' => 'This username will be available for use in :duration.',
+        'username_available_soon' => 'This username will be available for use any minute now!',
+        'username_invalid_characters' => 'The requested username contains invalid characters.',
+        'username_in_use' => 'Username is already in use!',
+        'username_no_space_userscore_mix' => 'Please use either underscores or spaces, not both!',
+        'username_no_spaces' => "Username can't start or end with spaces!",
+        'username_not_allowed' => 'This username choice is not allowed.',
         'username_too_short' => '요청하신 유저 이름이 너무 짧습니다.',
-        'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.', // Blacklisted password
+        'username_too_long' => 'The requested username is too long.',
+        'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.',
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
-        'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.', // Email confirmation does not match
+        'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.',
         'wrong_password_confirmation' => '비밀번호와 비밀번호 확인란이 일치하지 않습니다.',
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => 'You must have :link to change your name!',
+                'link_text' => 'supported osu!',
+            ],
+            'username_is_same' => 'This is already your username, silly!',
+        ],
     ],
 ];

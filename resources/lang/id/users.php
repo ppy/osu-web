@@ -22,7 +22,7 @@ return [
     'deleted' => '[pengguna yang dihapus]',
 
     'beatmapset_activities' => [
-        'title' => 'Riwayat Modding :user',
+        'title' => "Riwayat Modding :user",
 
         'discussions' => [
             'title_recent' => 'Diskusi terbaru yang baru dimulai',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'failed' => 'Gagal masuk',
-        'register' => 'Belum memiliki akun osu!? Buat sekarang',
+        'register' => "Belum memiliki akun osu!? Buat sekarang",
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
@@ -103,7 +103,7 @@ return [
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
-        'title' => 'profil :username',
+        'title' => "profil :username",
 
         'edit' => [
             'cover' => [
@@ -173,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tersedia',
-                'available_info' => 'Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.',
+                'available_info' => "Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.",
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang diperoleh',
@@ -181,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Pengguna ini belum menerima kudosu!',
+                    'empty' => "Pengguna ini belum menerima kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => 'Pengguna ini belum mendapatkannya. ;_;',
+                'empty' => "Pengguna ini belum mendapatkannya. ;_;",
                 'title' => 'Medali',
             ],
             'recent_activity' => [
@@ -244,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
-                'bad_standing' => 'Akun <strong>:username</strong> tidak dalam kondisi baik :(',
+                'bad_standing' => "Akun <strong>:username</strong> tidak dalam kondisi baik :(",
                 'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
 
                 'recent_infringements' => [

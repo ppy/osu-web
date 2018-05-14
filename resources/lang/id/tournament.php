@@ -27,16 +27,27 @@ return [
         'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
         'registration_period' => 'Pendaftaran: :start sampai :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Daftarkan saya!',
-            'cancel' => 'Batalkan Pendaftaran',
-        ],
+        'banner' => 'Support Your Team',
         'entered' => 'Anda telah berhasil mendaftarkan diri Anda pada turnamen ini. <br><br>Mohon diperhatikan bahwa hal ini bukan berarti Anda telah secara otomatis telah diikutsertakan ke dalam salah satu tim yang bertanding. <br><br>Instruksi lebih lanjut akan dikirimkan melalui email saat turnamen akan dimulai, jadi mohon pastikan alamat email akun osu! Anda valid!',
+        'info_page' => 'Information Page',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
         'not_yet_entered' => 'Anda tidak terdaftar pada turnamen ini.',
         'rank_too_low' => 'Maaf, Anda tidak memenuhi persyaratan peringkat untuk mengikuti turnamen ini!',
         'registration_ends' => 'Pendaftaran ditutup pada tanggal :date',
+
+        'button' => [
+            'cancel' => 'Batalkan Pendaftaran',
+            'register' => 'Daftarkan saya!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => ':start sampai :end',
 ];

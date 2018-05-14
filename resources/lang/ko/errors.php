@@ -19,25 +19,7 @@
  */
 
 return [
-    'codes' => [
-        'http-401' => '계속하려면 로그인해주세요.', // Base text changed from "log" to "sign"
-        'http-403' => '접근이 거부됨.',
-        'http-429' => '시도 횟수가 너무 많습니다. 나중에 다시 시도해주세요.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => '문제가 발생했습니다. 페이지를 새로고침 해보세요.',
-        ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => '잘못된 모드 종류입니다.',
-        'standard_converts_only' => '선택하신 모드로는 현재 난이도에서 점수를 사용할 수 없습니다.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => '즐겨찾기한 비트맵이 너무 많습니다! 계속하려면 즐겨찾기를 하나 해제해주세요.',
-    ],
-    'logged_out' => '로그아웃 되었습니다. 로그인하시고 다시 시도해보세요.', // Base text changed from "log" to "sign"
-    'supporter_only' => '서포터가 아니면 이 기능을 사용할 수 없습니다.',
-    'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.', // 딱딱한 번역 (not able to perform this action -> 작업을 수행할 수 없습니다)
-    'unknown' => '알 수 없는 문제가 발생했습니다.',
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "알 수 없는 문제가 발생했습니다.",
 ];

@@ -21,9 +21,46 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Devi avere effettuato il login per modificare.', // Base text changed from "log" to "sign"
+            'null_user' => 'Devi avere effettuato il login per modificare.',
             'system_generated' => 'I post generati dal sistema non possono essere modificati.',
             'wrong_user' => 'Devi essere l\'autore del post per modificarlo.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => 'Nothing has happened... yet.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'deleted',
+        'title' => 'Beatmap Discussions',
+
+        'form' => [
+            'deleted' => 'Include deleted discussions',
+
+            'user' => [
+                'label' => 'User',
+                'overview' => 'Activities overview',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Post date',
+        'deleted_at' => 'Deletion date',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'None of the posts address my concern',
+        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Sign in to Respond',
+            'user' => 'Respond',
         ],
     ],
 
@@ -32,5 +69,17 @@ return [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'admin',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by user',
     ],
 ];

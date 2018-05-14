@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Tópicos Fixados',
-    'slogan' => 'é perigoso jogar sozinho.',
+    'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
 
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Você tem :votes restantes.',
-                    'not_enough' => 'Você não tem mais votos restantes',
+                    'not_enough' => "Você não tem mais votos restantes",
                 ],
             ],
 

@@ -27,16 +27,27 @@ return [
         'none_running' => '現在開催中のトーナメントはないみたいです。また今度確認してみましょう！',
         'registration_period' => '参加登録期間： :start から :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => '登録申請する！',
-            'cancel' => '登録をキャンセル',
-        ],
+        'banner' => 'Support Your Team',
         'entered' => 'このトーナメントへの参加登録は完了しています。<br><br>チームへの割り振りが完了しているとは限らないので注意。<br><br>トーナメントの詳細は開催日が近づくとメールに送られます。アカウントに登録されているEメールアドレスが有効であることを確認するのをお勧めします',
+        'info_page' => 'Information Page',
         'login_to_register' => '詳細を閲覧するには:loginが必要です',
         'not_yet_entered' => 'このトーナメントには参加登録していません。',
         'rank_too_low' => 'このトーナメントの参加登録に必要なランク条件を満たしていません！',
         'registration_ends' => '参加登録期間は:dateに終了します',
+
+        'button' => [
+            'cancel' => '登録をキャンセル',
+            'register' => '登録申請する！',
+        ],
+
+        'state' => [
+            'before_registration' => 'Registration for this tournament has not yet opened.',
+            'ended' => 'This tournament has concluded. Check the information page for results.',
+            'registration_closed' => 'Registration for this tournament has closed. Check the information page for latest updates.',
+            'running' => 'This tournament is currently in progress. Check the information page for more details.',
+        ],
     ],
     'tournament_period' => ':start から :end',
 ];

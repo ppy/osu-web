@@ -20,11 +20,21 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'is_hype' => 'Can not undo hyping.',
+            'has_reply' => 'Can not delete discussion with replies',
+        ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
         ],
         'resolve' => [
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono rispolvere una discussione.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Please wait a while before casting more votes',
+            'owner' => "Can't vote on own discussion.",
+            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
         ],
     ],
 
@@ -46,6 +56,7 @@ return [
                 'channel' => [
                     'no_access' => 'È richiesto l\'accesso al canale di destinazione.',
                     'moderated' => 'Il canale è momentaneamente moderato.',
+                    'not_lazer' => 'You can only speak in #lazer at this time.',
                 ],
 
                 'not_allowed' => 'Non puoi inviare un messaggio mentre sei bannato/ristretto/silenziato.',
@@ -67,10 +78,16 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'Can not edit deleted post.',
                 'locked' => 'Il post è bloccato dall\'effettuare modifiche.',
                 'no_forum_access' => 'È richiesto l\'accesso al forum.',
                 'not_owner' => 'Solo l\'autore del post lo può modificare.',
                 'topic_locked' => 'Non puoi modificare i post di un topic bloccato.',
+            ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -82,9 +99,9 @@ return [
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per rispondere.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Non è possibile rispondere mentre sei ristretto.',
-                    'silenced' => 'Non è possibile rispondere mentre sei silenziato.',
+                    'require_login' => 'Per favore effettua il login per rispondere.',
+                    'restricted' => "Non è possibile rispondere mentre sei ristretto.",
+                    'silenced' => "Non è possibile rispondere mentre sei silenziato.",
                 ],
             ],
 
@@ -100,9 +117,9 @@ return [
                 'voted' => 'Non è permesso cambiare voti.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per votare.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Non puoi votare mentre sei ristretto.',
-                    'silenced' => 'Non puoi votare mentre sei silenziato.',
+                    'require_login' => 'Per favore effettua il login per votare.',
+                    'restricted' => "Non puoi votare mentre sei ristretto.",
+                    'silenced' => "Non puoi votare mentre sei silenziato.",
                 ],
             ],
 
@@ -123,13 +140,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Per favore effettua il login per poter procedere.', // Base text changed from "log" to "sign"
+    'require_login' => 'Per favore effettua il login per poter procedere.',
 
     'unauthorized' => 'Accesso Negato.',
 
-    'silenced' => 'Non puoi farlo mentre sei silenziato.',
+    'silenced' => "Non puoi farlo mentre sei silenziato.",
 
-    'restricted' => 'Non puoi farlo mentre sei ristretto.',
+    'restricted' => "Non puoi farlo mentre sei ristretto.",
 
     'user' => [
         'page' => [
