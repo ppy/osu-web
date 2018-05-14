@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Lancer le sujet pour',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez blanc pour un sondage sans fin',
                 'max_options' => 'Réponses par utlisateur',
