@@ -47,8 +47,8 @@ return [
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => '本当にサポートが必要です！',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '譜面',
@@ -64,7 +64,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '譜面',
-            'discussion' => '',
+            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'ランキング',
@@ -73,7 +73,7 @@ return [
             'charts' => 'チャート',
             'score' => 'スコア',
             'country' => '国別',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'コミュニティ',
@@ -135,22 +135,22 @@ return [
             'getInvoice' => '送り状',
             'products-show' => '製品',
 
-            'new' => '',
+            'new' => 'new',
             'home' => 'ホーム',
             'index' => 'ホーム',
             'thanks' => 'お礼',
         ],
         'admin-forum' => [
-            '_' => '',
+            '_' => 'admin::forum',
             'forum-covers-index' => 'フォーラムカバー',
         ],
         'admin-store' => [
-            '_' => '',
+            '_' => 'admin::store',
             'orders-index' => '注文',
             'orders-show' => '注文',
         ],
         'admin' => [
-            '_' => '',
+            '_' => 'admin',
             'beatmapsets-covers' => 'ビートマップセットカバー',
             'logs-index' => 'ログ',
             'root' => 'インデックス',
@@ -169,7 +169,7 @@ return [
             'changelog-index' => '更新履歴',
             'beatmaps' => '譜面のリスト',
             'download' => 'osu!をダウンロード',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'ヘルプ＆コミュニティ',
@@ -184,7 +184,7 @@ return [
             'merchandise' => '商品',
         ],
         'legal' => [
-            '_' => '',
+            '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
             'server_status' => 'サーバー状態',
             'terms' => '利用規約',
@@ -220,8 +220,8 @@ return [
             'error' => 'メンテナンス中です！',
             'description' => "メンテナンスは大体5秒から10分の間で完了します。もし10分以上サーバーに接続できない場合は:linkを参照してください。",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
