@@ -54,6 +54,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             return [];
         }
 
+        if (!priv_check('BeatmapsetShow', $beatmapset)->can()) {
+            return [];
+        }
+
         return [
             'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,

@@ -33,10 +33,10 @@ class Contest.Voting.VoteSummary extends React.Component
     voteSummary = []
     voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
       div className: classes.join(' '),
-        i className: 'fa fa-fw fa-star'
+        i className: 'fas fa-fw fa-star'
     voteSummary.push _.times @props.voteCount, ->
       div className: classes.concat(selectedClass).join(' '),
-        i className: 'fa fa-fw fa-star'
+        i className: 'fas fa-fw fa-star'
 
     div {},
       voteSummary

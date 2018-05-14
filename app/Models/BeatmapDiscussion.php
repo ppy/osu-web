@@ -105,10 +105,11 @@ class BeatmapDiscussion extends Model
             $query->withoutDeleted();
         }
 
-        // TODO: readd this when content becomes public
-        // $query->whereHas('user', function ($userQuery) {
-        //     $userQuery->default();
-        // });
+        if (!($rawParams['is_moderator'] ?? false)) {
+            $query->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+        }
 
         return ['query' => $query, 'params' => $params];
     }
@@ -124,6 +125,11 @@ class BeatmapDiscussion extends Model
     }
 
     public function beatmapset()
+    {
+        return $this->visibleBeatmapset()->withTrashed();
+    }
+
+    public function visibleBeatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
     }

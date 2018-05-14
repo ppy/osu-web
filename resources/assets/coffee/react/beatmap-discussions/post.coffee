@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = ReactDOMFactories
+{a, button, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -79,20 +79,33 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        a
+        div
           className: "#{bn}__user-container"
-          href: laroute.route('users.show', user: @props.user.id)
           style:
             color: userColor
+
+          a
+            className: "#{bn}__user-link"
+            href: laroute.route('users.show', user: @props.user.id)
+
           div className: "#{bn}__avatar",
             el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
             className: "#{bn}__user"
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              style:
-                color: userColor
-              @props.user.username
+            div
+              className: "#{bn}__user-row"
+              span
+                className: "#{bn}__user-text u-ellipsis-overflow"
+                style:
+                  color: userColor
+                @props.user.username
+
+              if !@props.user.is_bot
+                a
+                  className: "#{bn}__user-modding-history-link"
+                  href: laroute.route('users.modding.index', user: @props.user.id)
+                  title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
+                  i className: 'fas fa-align-left'
 
             div
               className: "#{bn}__user-badge"
@@ -124,51 +137,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @setState editing: true, =>
       @textarea.focus()
-
-  discussionLinkify: (text) =>
-    matches = text.match osu.urlRegex
-    currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
-
-    _.each matches, (url) ->
-      targetUrl = new URL(url)
-
-      if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?
-          if currentBeatmapsetDiscussions? &&
-              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
-            # same beatmapset, format: #123
-            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
-          else
-            # different beatmapset, format: 1234#567
-            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
-
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
-
-    return text
-
-  formattedMessage: =>
-    text = @props.post.message
-    text = _.escape text
-    text = text.trim()
-    text = @discussionLinkify text
-    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
-    # replace newlines with <br>
-    # - trim trailing spaces
-    # - then join with <br>
-    # - limit to 2 consecutive <br>s
-    text = text
-      .split '\n'
-      .map (x) -> x.trim()
-      .join '<br>'
-      .replace /(?:<br>){2,}/g, '<br><br>'
-    text
-
 
   handleEnter: (e) =>
     return if e.keyCode != 13 || e.shiftKey
@@ -227,7 +195,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: @formattedMessage()
+          __html: BeatmapDiscussionHelper.format @props.post.message
 
       div className: "#{bn}__info-container",
         span

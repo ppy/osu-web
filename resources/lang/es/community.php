@@ -22,8 +22,8 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '¿Amas osu!?<br/>
-                                Ayuda a su desarrollo :D',
+            'big_description' => '¿Te encanta osu!?<br/>
+                                Ayúdanos con su desarrollo :D',
             'small_description' => '',
             'support_button' => '¡Quiero ayudar a osu!',
         ],
@@ -32,8 +32,17 @@ return [
             <br/><br/>Al final osu! es en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
             He tenido que dejar mi trabajo con el fin de mantenerme al día con osu!,
             y en ocasiones lucho para mantener los estándares por los que me esfuerzo.
-            Me gustaría ofrecer mi agradecimiento personal a aquellos que han apoyado osu! hasta ahora,
+            Me gustaría dar mi agradecimiento personal a aquellos que han apoyado osu! hasta ahora,
             y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
+
+        'supporter_status' => [
+            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido un total de :dollars con la compra de :tags tags!',
+            'gifted' => ':giftedTags de tus compras de tags han sido regaladas (un total de :giftedDollars regalados), ¡qué generoso!',
+            'not_yet' => 'Todavía no tienes un tag de supporter :(',
+            'title' => 'Estado de supporter actual',
+            'valid_until' => 'Tu tag de supporter actual es válida hasta el :date!',
+            'was_valid_until' => 'Tu tag de supporter fue válida hasta el :date.',
+        ],
 
         'why_support' => [
             'title' => '¿Por qué debo apoyar osu!?',

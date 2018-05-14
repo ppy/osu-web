@@ -29,6 +29,15 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
+  classWithModifiers: (className, modifiers) ->
+    ret = className
+
+    if modifiers?
+      ret += " #{className}--#{modifier}" for modifier in modifiers
+
+    ret
+
+
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
 
@@ -83,7 +92,11 @@
 
 
   pageChange: ->
-    Timeout.set 0, -> $(document).trigger('osu:page:change')
+    Timeout.set 0, osu.pageChangeImmediate
+
+
+  pageChangeImmediate: ->
+    $(document).trigger('osu:page:change')
 
 
   parseJson: (id) ->
@@ -103,7 +116,9 @@
       false
 
 
-  isDesktop: -> window.matchMedia('(min-width: 840px)').matches
+  isDesktop: ->
+    # sync with boostrap-variables @screen-sm-min
+    window.matchMedia('(min-width: 900px)').matches
 
 
   isMobile: -> !osu.isDesktop()
@@ -213,6 +228,10 @@
 
     document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
+
+
+  popupShowing: ->
+    $('#overlay').is(':visible')
 
 
   trans: (key, replacements) ->

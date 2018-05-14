@@ -17,11 +17,11 @@
 --}}
 @php
     $postTypeToIcon = [
-      'hype' => 'bullhorn',
-      'mapper_note' => 'sticky-note-o',
-      'praise' => 'heart',
-      'problem' => 'exclamation-circle',
-      'suggestion' => 'circle-o',
+      'hype' => 'fas fa-bullhorn',
+      'mapper_note' => 'far fa-sticky-note',
+      'praise' => 'fas fa-heart',
+      'problem' => 'fas fa-exclamation-circle',
+      'suggestion' => 'far fa-circle',
     ];
 @endphp
 <div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
@@ -35,7 +35,7 @@
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{$discussion->message_type}}">
-                        <span class="fa fa-{{$postTypeToIcon[$discussion->message_type]}}"></span>
+                        <span class="{{$postTypeToIcon[$discussion->message_type]}}"></span>
                     </span>
                 </div>
             </div>
@@ -44,16 +44,8 @@
             <div class="beatmap-discussion__top">
                 <div class="beatmap-discussion-post beatmap-discussion-post--discussion">
                     <div class="beatmap-discussion-post__content">
-                        <div class="beatmap-discussion-post__user-container">
-                            <div class="beatmap-discussion-post__avatar">
-                                <a href="{{ route('users.beatmapset-activities', $discussion->user) }}">
-                                    <div class="avatar avatar--full-rounded" style="background-image: url('{{$discussion->user->user_avatar}}');"></div>
-                                </a>
-                            </div>
-                            <div class="beatmap-discussion-post__user">
-                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($discussion->user) !!}</span>
-                            </div>
-                        </div>
+                        @include('beatmapset_activities._user', ['user' => $discussion->user])
+
                         <div class="beatmap-discussion-post__message-container">
                             <div class="beatmap-discussion-post__message">{{$discussion->startingPost->message}}</div>
                             <div class="beatmap-discussion-post__info-container">

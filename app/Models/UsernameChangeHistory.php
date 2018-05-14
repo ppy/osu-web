@@ -27,4 +27,9 @@ class UsernameChangeHistory extends Model
 
     protected $dates = ['timestamp'];
     public $timestamps = false;
+
+    public function scopeVisible($query)
+    {
+        $query->whereIn('type', ['support', 'paid']);
+    }
 }

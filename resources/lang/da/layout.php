@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen er kun et *klik* away!  Med Ouendan/EBA, Taiko og originale spiltilstande, såvel som en fuld funktionel beatmap-editor.',
+        'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spiltilstande, såvel som en fuld funktionel beatmap-editor.',
     ],
 
     'menu' => [
@@ -51,10 +51,10 @@ return [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'liste',
-            'artists' => 'fremhævede artister',
+            'artists' => 'udvalgte kunstnere',
             'packs' => 'pakker',
             'beatmapset-watches-index' => 'modding watchlist',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'charts', // Base text has changed, please check.
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -64,7 +64,7 @@ return [
             '_' => 'rangering',
             'index' => 'præstation',
             'performance' => 'præstation',
-            'charts' => 'diagrammer',
+            'charts' => 'baner',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',
@@ -105,7 +105,7 @@ return [
             'disabled' => 'deaktiveret',
 
             'register' => 'registrer',
-            'reset' => 'genvind',
+            'reset' => 'gendan',
             'new' => 'ny',
 
             'messages' => 'Beskeder',
@@ -173,7 +173,6 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Server Status',
             'terms' => 'Betingelser for Brug',
         ],
@@ -183,32 +182,26 @@ return [
         '404' => [
             'error' => 'Siden findes ikke',
             'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Du burde ikke være her.',
             'description' => 'Du kunne prøve at gå tilbage igen, okay?',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Du burde ikke være her.',
             'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => 'Siden findes ikke',
             'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
             'description' => 'Vi er blevet informeret om fejlen.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
             'description' => 'Vi er blevet informeret om fejlen.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Under Vedligeholdelse!',

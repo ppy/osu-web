@@ -33,6 +33,11 @@ class OsuAuthorize
 {
     private $cache = [];
 
+    public function cacheReset()
+    {
+        $this->cache = [];
+    }
+
     public function doCheckUser($user, $ability, $object)
     {
         $cacheKey = serialize([
@@ -66,14 +71,8 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null) {
-            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
-                return 'ok';
-            }
-
-            if ($user->getKey() === $beatmap->beatmapset->user_id) {
-                return 'ok';
-            }
+        if ($this->doCheckUser($user, 'BeatmapsetShow', $beatmap->beatmapset)->can()) {
+            return 'ok';
         }
     }
 
@@ -339,6 +338,23 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetShow($user, $beatmapset)
+    {
+        if (!$beatmapset->trashed()) {
+            return 'ok';
+        }
+
+        if ($user !== null) {
+            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+                return 'ok';
+            }
+
+            if ($user->getKey() === $beatmapset->user_id) {
+                return 'ok';
+            }
+        }
+    }
+
     public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
@@ -374,6 +390,7 @@ class OsuAuthorize
         static $publicEvents = [
             BeatmapsetEvent::NOMINATE,
             BeatmapsetEvent::QUALIFY,
+            BeatmapsetEvent::NOMINATION_RESET,
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
@@ -591,6 +608,30 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumPostStore($user, $post)
+    {
+        $prefix = 'forum.post.store.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        $plays = (int) $user->monthlyPlaycounts()->sum('playcount');
+        $posts = $user->user_posts;
+        $forInitialHelpForum = in_array($post->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+
+        if ($forInitialHelpForum) {
+            if ($plays < 10 && $posts > 10) {
+                return $prefix.'too_many_help_posts';
+            }
+        } else {
+            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                return $prefix.'play_more';
+            }
+        }
+
+        return 'ok';
+    }
+
     public function checkForumTopicEdit($user, $topic)
     {
         return $this->checkForumPostEdit($user, $topic->posts()->first());
@@ -616,6 +657,14 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts([
+            'forum_id' => $topic->forum_id,
+        ])->make());
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_reply', $topic->forum)) {
@@ -646,6 +695,14 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->make()->posts()->make([
+            'forum_id' => $forum->getKey(),
+        ]));
+
+        if (!$postStorePermission->can()) {
+            return $postStorePermission->rawMessage();
         }
 
         if (!$forum->isOpen()) {
@@ -758,7 +815,8 @@ class OsuAuthorize
                 return $prefix.'not_owner';
             }
 
-            if ($page->post_edit_locked || $page->topic->isLocked()) {
+            // Some user pages (posts) are orphaned and don't have parent topic.
+            if ($page->post_edit_locked || optional($page->topic)->isLocked() ?? false) {
                 return $prefix.'locked';
             }
         }

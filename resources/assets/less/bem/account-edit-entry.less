@@ -55,6 +55,14 @@
     overflow: hidden;
   }
 
+  &__button {
+    margin-left: 10px;
+
+    @media @mobile {
+      margin-left: 5px;
+    }
+  }
+
   &__drop-overlay {
     .full-size();
     .center-content();
@@ -116,6 +124,10 @@
       font-size: @font-size--phone-input;
     }
 
+    .@{top}--read-only & {
+      background: none;
+    }
+
     &:focus {
       border-color: @yellow;
     }
@@ -134,6 +146,7 @@
     flex: none;
     padding-bottom: 5px;
     order: -1;
+    font-weight: bold;
 
     @media @desktop {
       align-self: center;

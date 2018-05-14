@@ -15,71 +15,44 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div>
-    @foreach ($search->all() as $mode => $result)
-        <div class="search-result search-result--{{ $mode }}">
-            @if (request('mode') !== $mode)
-                <h2 class="search-result__row search-result__row--title">
-                    @lang("home.search.{$mode}.title")
-                </h2>
-            @endif
-
-            {{-- `empty(collect())` is false :D --}}
-            @if (count($result['data']) === 0)
-                <div class="search-result__row search-result__row--notice">
-                    @lang('home.search.empty_result')
-                </div>
-            @else
-                <div class="search-result__row search-result__row--entries-container">
-                    <div class="search-result__entries">
-                        @php
-                            // FIXME: Users for forum search; do something about this in cleanup branch
-                            // $result enumeration should probably be done according to each blade.
-                            if ($result instanceof App\Libraries\ForumSearch) {
-                                $users = $result->users()->select('user_id', 'username', 'user_avatar')->get();
-                            }
-                        @endphp
-                        @foreach ($result['data'] as $entry)
-                            <div class="search-result__entry">
-                                @include("home._search_{$mode}", compact('entry', 'users'))
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <a
-                        class="
-                            search-result__more-button
-                            {{ $search->mode === $mode ? 'search-result__more-button--hidden' : '' }}
-                        "
-                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
-                    >
-                        <span class="fa fa-angle-right"></span>
-                    </a>
-                </div>
-
-                @if ($search->mode === $mode)
-                    @php
-                        $pagination = $search->paginate($mode)->appends(request()->query());
-                    @endphp
-
-                    @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
-                        <div class="search-result__row search-result__row--notice">
-                            {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
-                        </div>
-                    @endif
-
-                    <div class="search-result__row search-result__row--paginator">
-                        @include('objects._pagination', ['object' => $pagination, 'modifier' => 'search'])
-                    </div>
-                @else
-                    <a
-                        class="search-result__row search-result__row--more"
-                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
-                    >
-                        @lang("home.search.{$mode}.more_simple")
-                    </a>
-                @endif
-            @endif
+<div class="search-result search-result--{{ $mode }}">
+    @if ($search->total() === 0)
+        <div class="search-result__row search-result__row--notice">
+            @lang('home.search.empty_result')
         </div>
-    @endforeach
+    @else
+        <div class="search-result__row search-result__row--entries-container">
+            <div class="search-result__entries">
+                @include("home._search_result_{$mode}", compact('search'))
+            </div>
+
+            <a
+                class="search-result__more-button {{ $showMore ? '' : 'search-result__more-button--hidden' }}"
+                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+            >
+                <span class="fas fa-angle-right"></span>
+            </a>
+        </div>
+
+        @if ($showMore)
+            <a
+                class="search-result__row search-result__row--more"
+                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
+            >
+                @lang("home.search.{$mode}.more_simple")
+            </a>
+        @else
+            @if (request('mode') === 'user' && $search->overLimit())
+                <div class="search-result__row search-result__row--notice">
+                    {{ trans("home.search.user.more_hidden", ['max' => config("osu.search.max.user")]) }}
+                </div>
+            @endif
+            <div class="search-result__row search-result__row--paginator">
+                @include('objects._pagination', [
+                    'object' => $search->getPaginator(['path' => route('search')])->appends(request()->query()),
+                    'modifier' => 'search'
+                ])
+            </div>
+        @endif
+    @endif
 </div>

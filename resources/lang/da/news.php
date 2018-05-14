@@ -43,12 +43,12 @@ return [
     ],
 
     'store' => [
-        'button' => 'Opdatér',
+        'button' => 'Opdater',
         'ok' => 'Liste opdateret.',
     ],
 
     'update' => [
-        'button' => 'Opdatér',
+        'button' => 'Opdater',
         'ok' => 'Opslag opdateret.',
     ],
 ];

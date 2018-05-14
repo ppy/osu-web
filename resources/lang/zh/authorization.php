@@ -34,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => '在投更多票之前请稍等一会。',
             'owner' => '不能为自己的讨论投票！',
+            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
         ],
     ],
 
@@ -83,6 +84,11 @@ return [
                 'not_owner' => '只有作者能编辑此回复。',
                 'topic_locked' => '无法编辑被锁定主题的回复。',
             ],
+
+            'store' => [
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'too_many_help_posts' => '如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh', // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -124,8 +130,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => '指定的封面不可用。',
-                'not_owner' => '只有楼主可以编辑封面。',
+                'uneditable' => '指定的头图不可用。',
+                'not_owner' => '只有楼主可以编辑头图。',
             ],
         ],
 

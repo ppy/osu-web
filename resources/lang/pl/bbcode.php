@@ -21,11 +21,11 @@
 return [
     'bold' => 'Pogrubienie',
     'heading' => 'Nagłówek',
-    'image' => 'Obrazek',
+    'image' => 'Obraz',
     'italic' => 'Kursywa',
     'link' => 'Łącze',
-    'list' => 'Lista',
-    'list_numbered' => 'Numerowana lista',
+    'list' => 'Lista punktowana',
+    'list_numbered' => 'Lista numerowana',
     'size' => [
         '_' => 'Rozmiar czcionki',
         'tiny' => 'Malutka',
@@ -33,6 +33,6 @@ return [
         'normal' => 'Normalna',
         'large' => 'Duża',
     ],
-    'spoilerbox' => 'Spoiler',
+    'spoilerbox' => 'Blok ze spoilerem',
     'strikethrough' => 'Przekreślenie',
 ];

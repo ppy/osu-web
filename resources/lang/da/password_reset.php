@@ -22,7 +22,7 @@ return [
     'title' => 'Nulstil Adgangskode',
 
     'button' => [
-        'cancel' => 'Annullér',
+        'cancel' => 'Annuller',
         'resend' => 'Gensend Bekræftelsesemail',
         'set' => 'Indstil adgangskode',
         'start' => 'Start',

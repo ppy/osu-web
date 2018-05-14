@@ -22,7 +22,7 @@ return [
     'header' => ':type Rangering',
     'type' => [
         'performance' => 'Præstation',
-        'charts' => 'Diagrammer',
+        'charts' => 'Baner', // Base text has changed, please check.
         'score' => 'Score',
         'country' => 'Land',
     ],
@@ -32,7 +32,7 @@ return [
         'country' => 'Land',
         'play_count' => 'Antal Gange Spillet',
         'performance' => 'Præstation',
-        'total_score' => 'samlet Score',
+        'total_score' => 'Samlet Score',
         'ranked_score' => 'Rangeret Score',
         'average_score' => 'Gns. Score',
         'average_performance' => 'Gns. Præs.',

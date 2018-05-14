@@ -46,8 +46,7 @@ class @TrackPreview extends React.Component
         className: 'tracklist__preview js-audio--play'
         href: '#'
         'data-audio-url': @props.track.preview
-        el Icon,
-          name: if @state.playing then 'pause' else 'play'
+        i className: "fas #{if @state.playing then 'fa-pause' else 'fa-play'}"
 
 
   previewPlay: (_e, {url}) =>

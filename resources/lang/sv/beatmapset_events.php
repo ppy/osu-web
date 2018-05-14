@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator återställde inlägg från diskussionen :discussion.',
         'discussion_restore' => 'Moderator återställde diskussionen :discussion.',
-        'disqualify' => 'Diskvalificerad av :user. Anledning: :text.',
+        'disqualify_legacy' => 'Diskvalificerad av :user. Anledning: :text.',
         'issue_reopen' => 'Löst problem :discussion öppnat igen.',
         'issue_resolve' => 'Problem :discussion markerat som löst.',
         'kudosu_allow' => 'Kudosu nekning för diskussion :discussion har tagits bort.',

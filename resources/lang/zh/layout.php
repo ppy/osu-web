@@ -33,17 +33,20 @@ return [
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
+            'index' => '看板',
             'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
+            'team' => '团队',
         ],
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
-            'getSupport' => '获取帮助', //obsolete
+            'getRules' => '规章制度', //使用文章标题
+            'getSupport' => '帮助中心', //使用文章标题
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -67,7 +70,7 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => '月赛',
+            'charts' => '月赛', // Base text has changed, please check.
             'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu',
@@ -84,10 +87,10 @@ return [
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
-            'forum-topics-create' => '论坛', // Base text changed to plural, please check.
-            'forum-topics-show' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-index' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-show' => '论坛', // Base text changed to plural, please check.
+            'forum-topics-create' => '论坛',
+            'forum-topics-show' => '论坛',
+            'forum-forums-index' => '论坛',
+            'forum-forums-show' => '论坛',
         ],
         'multiplayer' => [
             '_' => '多人游戏',
@@ -113,9 +116,14 @@ return [
 
             'messages' => '信息',
             'settings' => '设置',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'help' => '帮助',
-            'beatmapset_activities' => '玩家谱面活动', //需要上下文
+            'modding-history-discussions' => '用户摸图讨论', //↓上下文
+            'modding-history-events' => '用户摸图事件',
+            'modding-history-index' => '用户摸图历史',
+            'modding-history-posts' => '用户摸图帖',
+            'modding-history-votesGiven' => '用户摸图投票数',
+            'modding-history-votesReceived' => '用户摸图获得票数', //↑
         ],
         'store' => [
             '_' => '商店',
@@ -178,7 +186,6 @@ return [
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',
-            'osu_status' => '@osustatus',
             'server_status' => '服务器状态',
             'terms' => '服务条款',
         ],
@@ -188,32 +195,26 @@ return [
         '404' => [
             'error' => '无法找到网页',
             'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
-            'link' => false,
         ],
         '403' => [
             'error' => '没有权限',
             'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面',
-            'link' => false,
         ],
         '401' => [
             'error' => '没有权限',
             'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）',
-            'link' => false,
         ],
         '405' => [
             'error' => '无法找到网页',
             'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
-            'link' => false,
         ],
         '500' => [
             'error' => '哎呀，服务器崩溃了',
             'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '哎呀，服务器被外星人带走了',
             'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
-            'link' => false,
         ],
         '503' => [
             'error' => '啊哦...服务器正在维护中',
@@ -250,7 +251,7 @@ return [
         'links' => [
             'account-edit' => '设置',
             'friends' => '好友',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'profile' => '我的资料',
         ],
     ],

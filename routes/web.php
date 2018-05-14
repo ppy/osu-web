@@ -77,7 +77,6 @@ Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->nam
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
-Route::put('beatmapsets/{beatmapset}/disqualify', 'BeatmapsetsController@disqualify')->name('beatmapsets.disqualify');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
 
@@ -146,7 +145,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::put('account', 'AccountController@update')->name('account.update');
 
     Route::get('search', 'HomeController@search')->name('search');
-    Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
@@ -164,6 +162,8 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
+
+    Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
@@ -184,8 +184,17 @@ Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->na
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
-Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+
+Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
+    Route::get('/', 'ModdingHistoryController@index')->name('index');
+    Route::get('/events', 'ModdingHistoryController@events')->name('events');
+    Route::get('/discussions', 'ModdingHistoryController@discussions')->name('discussions');
+    Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
+    Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
+    Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
+});
+
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 
@@ -345,7 +354,7 @@ route_redirect('s/{beatmapset}', 'beatmapsets.show');
 route_redirect('u/{user}', 'users.show');
 route_redirect('forum', 'forum.forums.index');
 route_redirect('mp/{match}', 'matches.show');
-route_redirect('wiki/{page?}', 'wiki.show');
+route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
 if (Config::get('app.debug')) {

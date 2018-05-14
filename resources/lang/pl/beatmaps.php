@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie wątku nie powiodło się',
+            'error' => 'Zapisywanie posta nie powiodło się',
         ],
     ],
 
@@ -35,7 +35,7 @@ return [
         'allow_kudosu' => 'zezwól na kudosu',
         'delete' => 'usuń',
         'deleted' => 'Usunięte przez :editor :delete_time',
-        'deny_kudosu' => 'zablokuj kudosu',
+        'deny_kudosu' => 'odrzuć kudosu',
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
@@ -60,13 +60,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ta odpowiedź znajdzie się w generalnej dyskusji tego beatmapsetu. Aby zmodować tę beatmapę, zacznij odpowiedź od konkretnego momentu (np. 00:12:345).',
-            'in_timeline' => 'Aby zgłosić uwagi dotyczące kilku różnych momentów piosenki, utwórz dla nich odrębne komentarze (po jednym dla każdego momentu utworu).',
+            'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
+            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne komentarze (po jednym dla każdego znacznika czasu).',
         ],
 
         'message_type' => [
+            'disqualify' => 'Zdyskwalifikuj',
             'hype' => 'Priorytet',
             'mapper_note' => 'Adnotacja',
+            'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
@@ -94,7 +96,7 @@ return [
 
         'sort' => [
             '_' => 'Sortowane według:',
-            'created_at' => 'czas utworzenia',
+            'created_at' => 'data utworzenia',
             'timeline' => 'oś czasu',
             'updated_at' => 'ostatnie aktualizacje',
         ],
@@ -111,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez twórcę...',
+            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...',
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
@@ -137,7 +139,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Powód dyskwalifikacji?',
-        'disqualified_at' => 'zdyskwalifkowane :time_ago (:reason).',
+        'disqualified_at' => 'Zdyskwalifkowane :time_ago (:reason).',
         'disqualified_no_reason' => 'brak określonego powodu',
         'disqualify' => 'Zdyskwalifikuj',
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
@@ -147,15 +149,23 @@ return [
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',
-        'reset_at' => 'Liczba nominacji została zresetowana :time_ago, ponieważ pojawił się nowy problem :discussion.',
-        'reset_confirm' => 'Na pewno? Utworzenie nowego problemu zresetuje liczbę nominacji.',
+        'reset_message_deleted' => 'usunięta',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
+
+        'reset_at' => [
+            'nomination_reset' => ':user zresetował(a) proces nominacji :time_ago z powodu nowego problemu :discussion (:message).',
+            'disqualify' => ':user zdyskwalifikował(a) beatmapę :time_ago z powodu nowego problemu :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
+        ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'wpisz żądaną frazę...',
+            'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
@@ -167,6 +177,7 @@ return [
                 'language' => 'Język',
                 'extra' => 'Dodatkowe',
                 'rank' => 'Uzyskana ocena',
+                'played' => 'Ukończenie',
             ],
         ],
         'mode' => 'Tryb gry',
@@ -194,7 +205,7 @@ return [
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
         'pending' => 'Oczekujące',
-        'graveyard' => 'Cmentarz',
+        'graveyard' => 'Porzucone',
         'my-maps' => 'Moje beatmapy',
     ],
     'genre' => [
@@ -231,6 +242,7 @@ return [
         'FI' => 'Fade In',
         '9K' => '9K',
         'NM' => 'Brak modyfikatorów',
+        'TD' => 'Urządzenie dotykowe',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
@@ -249,6 +261,11 @@ return [
     'extra' => [
         'video' => 'Posiada wideo',
         'storyboard' => 'Posiada scenorys',
+    ],
+    'played' => [
+        'any' => 'Jakikolwiek',
+        'played' => 'Ukończona',
+        'unplayed' => 'Nieukończona',
     ],
     'rank' => [
         'any' => 'Jakakolwiek',

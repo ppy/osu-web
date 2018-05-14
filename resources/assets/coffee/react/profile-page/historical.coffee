@@ -245,7 +245,7 @@ class ProfilePage.Historical extends React.PureComponent
         else
           null
     else
-      chart.options.ticks.x = 6
+      chart.options.ticks.x = Math.min(6, (data ? chart.data).length)
       chart.options.tickValues.x = null
 
 

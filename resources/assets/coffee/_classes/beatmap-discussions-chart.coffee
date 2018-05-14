@@ -153,10 +153,12 @@ class @BeatmapDiscussionsChart
     @svgPoints
       .select ".#{bn}__icon"
       .append 'tspan'
-      .classed 'fa', true
-      .html (d) =>
+      .attr 'class', (d) ->
         type = if d.resolved then 'resolved' else _.camelCase(d.message_type)
-        BeatmapDiscussionHelper.messageType.iconText[type]
+        BeatmapDiscussionHelper.messageType.iconText[type][0]
+      .html (d) ->
+        type = if d.resolved then 'resolved' else _.camelCase(d.message_type)
+        BeatmapDiscussionHelper.messageType.iconText[type][1]
 
     @resize()
 

@@ -77,7 +77,6 @@ return [
         'message' => '在被限制時，無法與其他玩家互動，分數只有自己可見。該限制通常由系統自動給予，並將在24小時內解除。需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支持團隊</a>.',
     ],
     'show' => [
-        '404' => '找不到指定的用戶',
         'age' => ':age 歲',
         'current_location' => '位於 :location',
         'first_members' => '元老玩家',
@@ -205,17 +204,21 @@ return [
                 'title' => '最近活動',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => '最好成績',
-                ],
                 'empty' => '還沒有上傳過成績。 :(',
-                'first' => [
-                    'title' => '第一名',
-                ],
                 'pp' => ':amountpp',
                 'title' => '成績',
                 'weighted_pp' => '權重：:pp (:percentage)',
+
+                'best' => [
+                    'title' => '最好成績',
+                ],
+                'first' => [
+                    'title' => '第一名',
+                ],
             ],
+        ],
+        'not_found' => [
+            'title' => '找不到指定的用戶',
         ],
         'page' => [
             'description' => '<strong>個人介紹</strong> 是您可以自定義的展示區.',

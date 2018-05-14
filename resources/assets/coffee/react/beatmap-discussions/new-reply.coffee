@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span} = ReactDOMFactories
+{button, div, form, input, label, span, i} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -78,20 +78,20 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
-                icon: 'check'
+                icon: 'fas fa-check'
                 extraProps:
                   'data-action': 'resolve'
 
             if @canResolve() && @props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_reopen')
-                icon: 'exclamation'
+                icon: 'fas fa-exclamation-circle'
                 extraProps:
                   'data-action': 'reopen'
 
             @renderReplyButton
               text: osu.trans('common.buttons.reply')
-              icon: 'reply'
+              icon: 'fas fa-reply'
 
 
   renderCancelButton: =>
@@ -99,15 +99,15 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       className: "#{bn}__action #{bn}__action--cancel"
       disabled: @state.posting?
       onClick: => @setState editing: false
-      el Icon, name: 'times'
+      i className: 'fas fa-times'
 
 
   renderPlaceholder: =>
     [text, icon] =
       if @props.currentUser.id?
-        [osu.trans('beatmap_discussions.reply.open.user'), 'reply']
+        [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply']
       else
-        [osu.trans('beatmap_discussions.reply.open.guest'), 'sign-in']
+        [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt']
 
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
@@ -129,7 +129,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       el BigButton,
         text: text
         # wobbles if using spinner
-        icon: if @state.posting then 'ellipsis-h' else icon
+        icon: if @state.posting then 'fas fa-ellipsis-h' else icon
         props: props
 
 

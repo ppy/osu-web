@@ -46,7 +46,7 @@ trait TopicTrait
             'topic_id' => $this->topic_id,
             'poster_id' => $this->topic_poster,
             'forum_id' => $this->forum_id,
-            'post_time' => $this->topic_time->toIso8601String(),
+            'post_time' => json_time($this->topic_time),
             'search_content' => $this->topic_title,
             'type' => 'topics',
         ];

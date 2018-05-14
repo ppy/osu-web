@@ -50,6 +50,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @state.currentMode = query.mode
     @state.currentFilter = query.filter
     @state.currentBeatmapId = query.beatmapId if query.beatmapId?
+    @state.selectedUserId = query.user
 
 
   componentDidMount: =>
@@ -58,6 +59,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
+
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on 'turbolinks:before-cache.beatmapDiscussions', @saveStateToContainer
@@ -92,8 +94,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
         currentFilter: @state.currentFilter
         currentUser: @state.currentUser
         discussions: @discussions()
+        discussionStarters: @discussionStarters()
         events: @state.beatmapset.events
         mode: @state.currentMode
+        selectedUserId: @state.selectedUserId
         users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
@@ -179,6 +183,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     countsByBeatmap = {}
     countsByPlaymode = {}
+    totalHype = 0
     unresolvedIssues = 0
     byMode =
       timeline: []
@@ -198,27 +203,26 @@ class BeatmapDiscussions.Main extends React.PureComponent
       for own _filter, modes of byFilter
         modes[mode] = {}
 
+    for own _id, d of @discussions()
+      if !d.deleted_at?
+        totalHype++ if d.message_type == 'hype'
 
-    for d in @state.beatmapset.discussions
-      # skipped discussion
-      # - not privileged (deleted discussion)
-      # - deleted beatmap
-      continue if _.isEmpty(d)
+        if d.can_be_resolved && !d.resolved
+          beatmap = @beatmaps()[d.beatmap_id]
 
-      if !d.deleted_at? && d.can_be_resolved && !d.resolved
-        beatmap = @beatmaps()[d.beatmap_id]
+          if !d.beatmap_id? || (beatmap? && !beatmap.deleted_at?)
+            unresolvedIssues++
 
-        if !d.beatmap_id? || (beatmap? && !beatmap.deleted_at?)
-          unresolvedIssues++
+          if beatmap?
+            countsByBeatmap[beatmap.id] ?= 0
+            countsByBeatmap[beatmap.id]++
 
-        if beatmap?
-          countsByBeatmap[beatmap.id] ?= 0
-          countsByBeatmap[beatmap.id]++
+            if !beatmap.deleted_at?
+              countsByPlaymode[beatmap.mode] ?= 0
+              countsByPlaymode[beatmap.mode]++
 
-          if !beatmap.deleted_at?
-            countsByPlaymode[beatmap.mode] ?= 0
-            countsByPlaymode[beatmap.mode]++
-
+      # skip if filtering users
+      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
       mode =
         if d.beatmap_id?
@@ -263,11 +267,26 @@ class BeatmapDiscussions.Main extends React.PureComponent
     general = byMode.general
     generalAll = byMode.generalAll
 
-    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, unresolvedIssues}
+    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
 
 
   discussions: =>
-    @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
+    # skipped discussions
+    # - not privileged (deleted discussion)
+    # - deleted beatmap
+    @cache.discussions ?= _ @state.beatmapset.discussions
+                            .filter (d) -> !_.isEmpty(d)
+                            .keyBy 'id'
+                            .value()
+
+
+  discussionStarters: =>
+    _ @discussions()
+      .map 'user_id'
+      .uniq()
+      .map (user_id) => @users()[user_id]
+      .orderBy (user) -> user.username.toLocaleLowerCase()
+      .value()
 
 
   groupedBeatmaps: (discussionSet) =>
@@ -344,7 +363,18 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @update e, playmode: mode
 
 
-  update: (_e, {mode, callback, beatmapId, playmode, beatmapset, watching, filter}) =>
+  update: (_e, options) =>
+    {
+      callback
+      mode
+      modeIf
+      beatmapId
+      playmode
+      beatmapset
+      watching
+      filter
+      selectedUserId
+    } = options
     newState = {}
 
     if beatmapset?
@@ -369,7 +399,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
         newState.currentFilter = filter
 
     if mode? && mode != @state.currentMode
-      newState.currentMode = mode
+      if !modeIf? || modeIf == @state.currentMode
+        newState.currentMode = mode
 
       # switching to events:
       # - record last filter, to be restored when setMode is called
@@ -384,6 +415,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else if @state.currentMode == 'events'
         newState.currentFilter = @lastFilter ? 'total'
 
+    newState.selectedUserId = selectedUserId if selectedUserId != undefined # need to setState if null
+
     @setState newState, callback
 
 
@@ -392,6 +425,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       beatmap: @currentBeatmap()
       mode: @state.currentMode
       filter: @state.currentFilter
+      user: @state.selectedUserId
 
 
   users: =>

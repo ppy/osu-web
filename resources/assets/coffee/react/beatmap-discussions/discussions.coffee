@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, p, span} = ReactDOMFactories
+{a, button, div, i, p, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussions'
@@ -24,7 +24,7 @@ lp = 'beatmaps.discussions'
 
 sortPresets =
   updated_at:
-    icon: 'calendar'
+    icon: 'fas fa-calendar-alt'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
       if a.updated_at == b.updated_at
@@ -33,7 +33,7 @@ sortPresets =
         Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
-    icon: 'folder-o'
+    icon: 'far fa-folder'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
       if a.created_at == b.created_at
@@ -43,7 +43,7 @@ sortPresets =
 
   # there's obviously no timeline field
   timeline:
-    icon: 'barcode'
+    icon: 'fas fa-barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
       if a.timestamp == b.timestamp
@@ -81,9 +81,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               'data-type': 'sort'
               onClick: @changeSort
               span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
-              el Icon,
-                name: sortPresets[@currentSort()].icon
-                parentClass: "#{bn}__toolbar-link-content"
+              span className: "#{bn}__toolbar-link-content", i className: sortPresets[@currentSort()].icon
               span className: "#{bn}__toolbar-link-content", sortPresets[@currentSort()].text
 
             a
@@ -125,7 +123,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
-              @sortedDisussions().map @discussionPage
+              @sortedDiscussions().map @discussionPage
 
             @timelineCircle()
 
@@ -185,7 +183,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
-  sortedDisussions: ->
+  sortedDiscussions: ->
     @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
       mapperNoteCompare =
         # no sticky for timeline sort

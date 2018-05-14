@@ -107,6 +107,10 @@ class LocaleMeta
             'name' => 'Tagalog',
             'flag' => 'PH',
         ],
+        'vi' => [
+            'name' => 'Tiếng Việt',
+            'flag' => 'VN',
+        ],
         'zh' => [
             'name' => '简体中文',
             'flag' => 'CN',

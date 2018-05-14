@@ -65,11 +65,14 @@ return [
             'count_sliders' => '滑条总数',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
+            'nominations' => 'Nominations',
+            'playcount' => '游玩次数',
         ],
         'info' => [
             'description' => '介绍',
             'genre' => '流派',
             'language' => '语言',
+            'no_scores' => '数据还在计算中。。。',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'success-rate' => '成功率',
@@ -81,7 +84,6 @@ return [
             'country' => '国内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'miss_count' => ':count miss', //上下文
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
             'title' => '排行榜',

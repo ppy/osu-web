@@ -140,10 +140,11 @@ class BBCodeForDB
     * - Italic (i)
     * - Strike (strike, s)
     * - Underline (u)
+    * - Spoiler (spoiler)
     */
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'strike', 's', 'u'] as $tag) {
+        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
@@ -168,8 +169,8 @@ class BBCodeForDB
     public function parseLinks($text)
     {
         $spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
-        // plain http/https/ftp
 
+        // plain http/https/ftp
         $text = preg_replace(
             "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
             "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",

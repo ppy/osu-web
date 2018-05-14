@@ -69,7 +69,7 @@ return [
             '_' => '排名',
             'index' => '表現',
             'performance' => '表現',
-            'charts' => '月賽',
+            'charts' => '月賽', // Base text has changed, please check.
             'score' => '得分',
             'country' => '國家',
             'kudosu' => 'kudosu',
@@ -118,7 +118,7 @@ return [
             'settings' => '設置',
             'logout' => '退出',
             'help' => '幫助',
-            'beatmapset_activities' => '玩家譜面活動', //需要上下文
+            'modding-history-index' => '玩家譜面活動', //需要上下文 // needs update
         ],
         'store' => [
             '_' => '商店',
@@ -181,7 +181,6 @@ return [
         'legal' => [
             '_' => '法律 & 狀態',
             'copyright' => '版權（DMCA）',
-            'osu_status' => '@osustatus',
             'server_status' => '服務器狀態',
             'terms' => '服務條款',
         ],
@@ -191,32 +190,26 @@ return [
         '404' => [
             'error' => '無法找到網頁',
             'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
-            'link' => false,
         ],
         '403' => [
             'error' => '沒有權限',
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面',
-            'link' => false,
         ],
         '401' => [
             'error' => '沒有權限',
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
-            'link' => false,
         ],
         '405' => [
             'error' => '無法找到網頁',
             'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
-            'link' => false,
         ],
         '500' => [
             'error' => '哎呀，服務器崩潰了',
             'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '哎呀，服務器被外星人帶走了',
             'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
-            'link' => false,
         ],
         '503' => [
             'error' => '啊哦...服務器正在維護中',

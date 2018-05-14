@@ -34,6 +34,10 @@
     padding: 0;
   }
 
+  &--store {
+    padding: 0;
+  }
+
   &__figure-caption {
     margin-top: 5px;
     font-style: normal;
@@ -112,6 +116,10 @@
     .@{top}--news & {
       .link-default();
     }
+
+    .@{top}--store & {
+      .link-default();
+    }
   }
 
   &__list {
@@ -124,16 +132,32 @@
     &--deep {
       color: #ccc;
     }
+
+    .@{top}--store & {
+      margin-left: 10px;
+    }
   }
 
   &__paragraph {
     margin-bottom: @paragraph-space;
     line-height: 1.5;
+
+    .@{top}--store & {
+      margin-bottom: 10px;
+    }
   }
 
+  // not actual table but its container
   &__table {
     font-family: @font-family-sans-serif;
+    overflow-x: auto;
     margin-bottom: 20px;
+
+    .@{top}--store & {
+      table {
+        width: 100%;
+      }
+    }
   }
 
   &__table-data {

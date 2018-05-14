@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'blurb' => [
@@ -35,6 +36,7 @@ return [
         'title' => 'Collections de Beatmaps',
         'description' => 'Collection de beatmaps basées sur un thème',
     ],
+
     'show' => [
         'download' => 'Télécharger',
         'item' => [
@@ -42,13 +44,15 @@ return [
             'not_cleared' => 'non terminé',
         ],
     ],
+
     'mode' => [
         'artist' => 'Artiste/Album',
         // unsure for this
-        'chart' => 'Classement',
+        'chart' => 'Classement', // Base text has changed, please check.
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],
+
     'require_login' => [
         '_' => 'Vous devez être :link pour télécharger',
         'link_text' => 'connecté', // Base text changed from "log" to "sign"

@@ -38,10 +38,10 @@ class Contest.Entry.UserEntry extends React.Component
     div className: 'contest-userentry contest-userentry--ok',
       if !@props.locked
         a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
-          i className: 'fa fa-times'
+          i className: 'fas fa-times'
 
       div className: 'contest-userentry__fileicon',
-        i className: 'fa fa-file-o'
+        i className: 'far fa-file'
 
       div className: 'contest-userentry__filename u-ellipsis-overflow', @props.entry.filename
       div className: 'contest-userentry__entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}

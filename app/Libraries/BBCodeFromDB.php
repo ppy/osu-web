@@ -77,7 +77,7 @@ class BBCodeFromDB
         $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('collapsed text'), $text);
+        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('SPOILER'), $text);
         $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
@@ -85,7 +85,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fas fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -221,7 +221,8 @@ class BBCodeFromDB
         preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
 
         foreach ($users as $user) {
-            $userLink = link_to_user($user['id'], $user['id'], null);
+            $username = html_entity_decode_better($user['id']);
+            $userLink = link_to_user($username, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
 
@@ -230,9 +231,9 @@ class BBCodeFromDB
 
     public function parseQuote($text)
     {
-        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]#", '<h4>\\1 wrote:</h4><blockquote>', $text);
-        $text = str_replace("[quote:{$this->uid}]", '<blockquote>', $text);
-        $text = str_replace("[/quote:{$this->uid}]", '</blockquote>', $text);
+        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<h4>\\1 wrote:</h4><blockquote>', $text);
+        $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\s*#", '</blockquote>', $text);
 
         return $text;
     }
@@ -355,7 +356,8 @@ class BBCodeFromDB
         $text = str_replace(":{$this->uid}]", ']', $text);
 
         // strip url
-        $text = preg_replace('#<!-- ([emw]) --><a.*?>(.*?)</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- ([mw]) --><a.*?href=[\'"]([^"\']+)[\'"].*?>.*?</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- e --><a.*?href=[\'"]mailto:([^"\']+)[\'"].*?>.*?</a><!-- e -->#', '\\1', $text);
 
         // strip relative url
         $text = preg_replace('#<!-- l --><a.*?href="(.*?)".*?>.*?</a><!-- l -->#', '\\1', $text);

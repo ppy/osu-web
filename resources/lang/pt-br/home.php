@@ -36,7 +36,6 @@ return [
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
-        'title' => 'Resultados de Busca',
 
         'beatmapset' => [
             'more' => ':count mais resultados de beatmaps',
@@ -118,7 +117,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
-            'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
+            'messages' => 'Você tem :count nova mensagem|Você tem :count novas mensagens',
             'stats' => [
                 'friends' => 'Amigos Online',
                 'games' => 'Partidas',

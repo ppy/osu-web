@@ -86,7 +86,6 @@ return [
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
     ],
     'show' => [
-        '404' => 'Usuário não encontrado! ;_;',
         'age' => ':age anos',
         'change_avatar' => 'mude seu avatar!',
         'first_members' => 'Aqui desde o começo',
@@ -226,16 +225,17 @@ return [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'Melhor Performance',
-                ],
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'first' => [
-                    'title' => 'Primeiros Lugares',
-                ],
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'Melhor Performance',
+                ],
+                'first' => [
+                    'title' => 'Primeiros Lugares',
+                ],
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
@@ -267,6 +267,9 @@ return [
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
+        ],
+        'not_found' => [
+            'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',

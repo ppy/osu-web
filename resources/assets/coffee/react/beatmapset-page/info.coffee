@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h3, span, textarea} = ReactDOMFactories
+{a, button, div, h3, span, i, textarea} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component
@@ -109,7 +109,7 @@ class BeatmapsetPage.Info extends React.Component
         className: 'btn-circle'
         onClick: @editStart
         span className: 'btn-circle__content',
-          el Icon, name: 'edit'
+          i className: 'fas fa-pencil-alt'
 
 
   render: ->
@@ -133,6 +133,7 @@ class BeatmapsetPage.Info extends React.Component
 
             div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,
+                modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
                 onChange: @onEditorChange
                 onSelectionUpdate: @onSelectionUpdate

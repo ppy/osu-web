@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '账户设置',
         'title_compact' => '设置',
+        'username' => '用户名',
 
         'avatar' => [
-            'title' => '编辑头像',
+            'title' => '编辑头像', // Base text changed, please check.
         ],
 
         'email' => [
@@ -42,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '编辑个人资料',
+            'title' => '编辑个人资料', // Base text changed, please check.
 
             'user' => [
                 'user_from' => '当前位置',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
+                'user_discord' => 'Discord',
             ],
         ],
 

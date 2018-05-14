@@ -35,6 +35,15 @@ return [
             我以个人的名义感谢至今为止所有支持 osu! 的人，
             也包括继续支持 osu! 的所有人 :)。',
 
+        'supporter_status' => [
+            'contribution' => '感谢你一直以来的支持！你已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
+            'gifted' => '你已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！',
+            'not_yet' => '你还没有支持者标签 :(',
+            'title' => '当前支持者状态',
+            'valid_until' => '你的支持者标签将在 :date 到期',
+            'was_valid_until' => '你的支持者标签已于 :date 到期',
+        ],
+
         'why_support' => [
             'title' => '为什么要支持 osu! ？',
             'blocks' => [

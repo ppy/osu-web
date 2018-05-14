@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ритм всего лишь в *клике* от тебя! С Ouendan/EBA, Taiko и оригинальным типом игры, включая многофункциональный редактор карт.',
+        'page_description' => 'osu! - Ритм всего лишь в *клике* от тебя! Игра с Ouendan/EBA, Taiko и оригинальным типом игры, с многофункциональным редактором карт.',
     ],
 
     'menu' => [
@@ -46,17 +46,21 @@ return [
             '_' => 'помощь',
             'getFaq' => 'чаво',
             'getRules' => 'правила',
-            'getSupport' => 'мне реально нужна помощь!',
+            'getSupport' => 'мне правда нужна помощь!',
             'getWiki' => 'вики',
             'wiki-show' => 'вики',
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'show' => 'информация',
-            'index' => 'библиотека', // я бы предпочёл "список", но, в home.php я ранее описывал этот раздел как "библиотеку" карт
+            'artists' => 'избранные исполнители',
+            'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
+            'beatmap_discussions-index' => 'обсуждения карты',
+            'beatmapset-watches-index' => 'подписки на карты',
+            'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
+            'beatmapset_events-index' => 'события карты',
+            'index' => 'библиотека',
             'packs' => 'сборки',
             'show' => 'инфо',
-            // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
             '_' => 'карты',
@@ -66,7 +70,7 @@ return [
             '_' => 'рейтинг',
             'index' => 'производительности',
             'performance' => 'performance',
-            'charts' => 'по графикам',
+            'charts' => 'по графикам', // Base text has changed, please check.
             'score' => 'по очкам',
             'country' => 'по странам',
             'kudosu' => 'кудосу',
@@ -78,11 +82,11 @@ return [
             'getChat' => 'chat',
             'getLive' => 'прямые трансляции',
             'contests' => 'конкурсы',
-            'profile' => 'profile',
+            'profile' => 'профиль',
             'tournaments' => 'турниры',
             'tournaments-index' => 'турниры',
             'tournaments-show' => 'информация о турнире',
-            'forum-topic-watches-index' => 'подписки',
+            'forum-topic-watches-index' => 'подписки на темы',
             'forum-topics-create' => 'форумы',
             'forum-topics-show' => 'форумы',
             'forum-forums-index' => 'форумы',
@@ -114,9 +118,11 @@ return [
             'settings' => 'Настройки',
             'logout' => 'Выход', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Помощь',
+            'modding-history-index' => 'активность карты пользователя', // needs update
         ],
         'store' => [
             '_' => 'магазин',
+            'checkout-show' => 'проверка',
             'getListing' => 'товары',
             'cart-show' => 'корзина',
 
@@ -140,11 +146,12 @@ return [
         ],
         'admin' => [
             '_' => 'админ',
-            'root' => 'главная',
+            'beatmapsets-covers' => 'обложки карт',
             'logs-index' => 'логи',
+            'root' => 'главная',
+
             'beatmapsets' => [
                 '_' => 'карты',
-                'covers' => 'обложки',
                 'show' => 'детали',
             ],
         ],
@@ -174,7 +181,6 @@ return [
         'legal' => [
             '_' => 'Права и статус',
             'copyright' => 'Авторские права (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Статус серверов',
             'terms' => 'Условия использования',
         ],
@@ -184,32 +190,26 @@ return [
         '404' => [
             'error' => 'Страница не найдена',
             'description' => 'Извините, но запрашиваемая Вами страница не найдена.',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Вы не должны быть здесь.',
             'description' => 'Вы можете попробовать вернуться назад, наверно.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Вы не должны быть здесь.',
             'description' => 'Вы можете попробовать вернуться назад, наверно. Или может войти.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Страница не найдена',
             'description' => 'Извините, но запрашиваемая Вами страница не найдена.',
-            'link' => false,
         ],
         '500' => [
             'error' => 'О нет! Что-то сломалось! ;_;',
             'description' => 'Нам уже известно о проблеме и мы работаем над ее исправлением.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => 'О нет! Что-то сломалось (ужасно)! ;_;',
             'description' => 'Нам уже известно о проблеме и мы работаем над ее исправлением.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Закрыты на обслуживание!',
@@ -220,7 +220,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'На всякий случай, вот код, который ты можешь дать поддержке!',
+        'reference' => 'На всякий случай, вот код, который вы можете сообщить поддержке!',
     ],
 
     'popup_login' => [
@@ -237,8 +237,8 @@ return [
         ],
 
         'register' => [
-            'info' => 'Вам нужен аккаунт, сэр. Почему у Вас его всё ещё нет?',
-            'title' => 'У Вас нет аккаунта?',
+            'info' => 'Вам нужен аккаунт, сэр. Почему у вас его всё ещё нет?',
+            'title' => 'У вас нет аккаунта?',
         ],
     ],
 

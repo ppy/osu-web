@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, ul, li, a, span} = ReactDOMFactories
+{div, ul, li, a, i, span} = ReactDOMFactories
 el = React.createElement
 
 ProfilePage.Header = (props) ->
@@ -39,11 +39,12 @@ ProfilePage.Header = (props) ->
                   mode: mode
                 osu.trans "beatmaps.mode.#{mode}"
                 if props.user.playmode == mode
-                  span className: 'page-mode__item-icon',
+                  span
+                    className: 'page-mode__item-icon'
+                    title: osu.trans('users.show.edit.default_playmode.is_default_tooltip')
                     '\u00A0'
-                    el Icon,
-                      name: 'star'
-                      title: osu.trans('users.show.edit.default_playmode.is_default_tooltip')
+                    i className: 'fas fa-star'
+
                 span className: 'page-mode-link__stripe'
 
       el ProfilePage.HeaderMain, props

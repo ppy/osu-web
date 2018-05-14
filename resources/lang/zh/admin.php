@@ -45,7 +45,7 @@ return [
 
                 'forum-name' => '论坛 #:id: :name',
 
-                'no-cover' => '没有封面',
+                'no-cover' => '没有头图',
 
                 'submit' => [
                     'save' => '保存',
@@ -55,8 +55,8 @@ return [
                 'title' => '论坛封面列表',
 
                 'type-title' => [
-                    'default-topic' => '默认板块封面',
-                    'main' => '论坛封面',
+                    'default-topic' => '默认板块头图',
+                    'main' => '论坛头图',
                 ],
             ],
         ],

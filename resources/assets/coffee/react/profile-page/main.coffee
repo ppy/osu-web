@@ -60,9 +60,6 @@ class ProfilePage.Main extends React.PureComponent
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
 
-      if @props.user.is_bot
-        @state.profileOrder = ['me']
-
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
         @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
@@ -124,83 +121,20 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
+    if @props.user.is_bot
+      profileOrder = ['me']
+    else
+      profileOrder = @state.profileOrder.slice()
 
-    profileOrder = @state.profileOrder.slice()
     profileOrder.push 'account_standing' if !_.isEmpty @state.user.account_history
 
-    extraPageParams =
-      me:
-        extraClass: ('hidden' if !withMePage)
-        props:
-          userPage: @state.userPage
-          user: @state.user
-        component: ProfilePage.UserPage
-
-      recent_activity:
-        props:
-          pagination: @state.showMorePagination
-          recentActivity: @state.recentActivity
-          user: @state.user
-        component: ProfilePage.RecentActivity
-
-      kudosu:
-        props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
-        component: ProfilePage.Kudosu
-
-      top_ranks:
-        props:
-          user: @state.user
-          scoresBest: @state.scoresBest
-          scoresFirsts: @state.scoresFirsts
-          currentMode: @state.currentMode
-          pagination: @state.showMorePagination
-        component: ProfilePage.TopRanks
-
-      beatmaps:
-        props:
-          user: @state.user
-          favouriteBeatmapsets: @state.favouriteBeatmapsets
-          rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
-          unrankedBeatmapsets: @state.unrankedBeatmapsets
-          graveyardBeatmapsets: @state.graveyardBeatmapsets
-          counts:
-            favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
-            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
-            unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
-            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
-          pagination: @state.showMorePagination
-        component: ProfilePage.Beatmaps
-
-      medals:
-        props:
-          achievements: @props.achievements
-          userAchievements: @props.userAchievements
-          currentMode: @state.currentMode
-          user: @state.user
-        component: ProfilePage.Medals
-
-      historical:
-        props:
-          beatmapPlaycounts: @state.beatmapPlaycounts
-          scoresRecent: @state.scoresRecent
-          user: @state.user
-          currentMode: @state.currentMode
-          pagination: @state.showMorePagination
-        component: ProfilePage.Historical
-
-      account_standing:
-        props:
-          user: @state.user
-        component: ProfilePage.AccountStanding
+    if @state.userPage.initialRaw.trim() == '' && !@props.withEdit
+      _.pull profileOrder, 'me'
 
     div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
-        stats: @props.statistics
+        stats: @state.user.statistics
         currentMode: @state.currentMode
         withEdit: @props.withEdit
         rankHistory: @props.rankHistory
@@ -219,31 +153,29 @@ class ProfilePage.Main extends React.PureComponent
         div
           className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
           'data-sync-height-target': 'page-extra-tabs'
-          div className: 'osu-page',
-            div
-              className: 'page-mode page-mode--page-extra-tabs'
-              ref: (el) => @tabs = el
-              for m in profileOrder
-                continue if m == 'me' && !withMePage
-
-                a
-                  className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                  key: m
-                  'data-page-id': m
-                  onClick: @tabClick
-                  href: "##{m}"
-                  el ProfilePage.ExtraTab,
-                    page: m
-                    currentPage: @state.currentPage
-                    currentMode: @state.currentMode
+          if profileOrder.length > 1
+            div className: 'osu-page',
+              div
+                className: 'page-mode page-mode--page-extra-tabs'
+                ref: (el) => @tabs = el
+                for m in profileOrder
+                  a
+                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                    key: m
+                    'data-page-id': m
+                    onClick: @tabClick
+                    href: "##{m}"
+                    el ProfilePage.ExtraTab,
+                      page: m
+                      currentPage: @state.currentPage
+                      currentMode: @state.currentMode
 
       div
         className: 'osu-layout__section osu-layout__section--extra'
         div
           className: 'osu-layout__row'
           ref: (el) => @pages = el
-          for name in profileOrder
-            @extraPage name, extraPageParams[name]
+          @extraPage name for name in profileOrder
 
 
   _tabsStick: (_e, target) =>
@@ -251,7 +183,8 @@ class ProfilePage.Main extends React.PureComponent
     @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
 
-  extraPage: (name, {extraClass, props, component}) =>
+  extraPage: (name) =>
+    {extraClass, props, component} = @extraPageParams name
     topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     topClassName += ' js-sortable--page' if @isSortablePage name
     props.withEdit = @props.withEdit
@@ -265,6 +198,75 @@ class ProfilePage.Main extends React.PureComponent
       className: "#{topClassName} #{extraClass}"
       ref: (el) => @extraPages[name] = el
       el component, props
+
+
+  extraPageParams: (name) =>
+    switch name
+      when 'me'
+        props:
+          userPage: @state.userPage
+          user: @state.user
+        component: ProfilePage.UserPage
+
+      when 'recent_activity'
+        props:
+          pagination: @state.showMorePagination
+          recentActivity: @state.recentActivity
+          user: @state.user
+        component: ProfilePage.RecentActivity
+
+      when 'kudosu'
+        props:
+          user: @state.user
+          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
+          pagination: @state.showMorePagination
+        component: ProfilePage.Kudosu
+
+      when 'top_ranks'
+        props:
+          user: @state.user
+          scoresBest: @state.scoresBest
+          scoresFirsts: @state.scoresFirsts
+          currentMode: @state.currentMode
+          pagination: @state.showMorePagination
+        component: ProfilePage.TopRanks
+
+      when 'beatmaps'
+        props:
+          user: @state.user
+          favouriteBeatmapsets: @state.favouriteBeatmapsets
+          rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          unrankedBeatmapsets: @state.unrankedBeatmapsets
+          graveyardBeatmapsets: @state.graveyardBeatmapsets
+          counts:
+            favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
+            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
+            unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
+            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
+          pagination: @state.showMorePagination
+        component: ProfilePage.Beatmaps
+
+      when 'medals'
+        props:
+          achievements: @props.achievements
+          userAchievements: @props.userAchievements
+          currentMode: @state.currentMode
+          user: @state.user
+        component: ProfilePage.Medals
+
+      when 'historical'
+        props:
+          beatmapPlaycounts: @state.beatmapPlaycounts
+          scoresRecent: @state.scoresRecent
+          user: @state.user
+          currentMode: @state.currentMode
+          pagination: @state.showMorePagination
+        component: ProfilePage.Historical
+
+      when 'account_standing'
+        props:
+          user: @state.user
+        component: ProfilePage.AccountStanding
 
 
   showMore: (e, {showMoreLink}) =>

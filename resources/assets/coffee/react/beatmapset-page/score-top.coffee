@@ -46,6 +46,11 @@ BeatmapsetPage.ScoreTop = (props) ->
             href: laroute.route 'users.show', user: props.score.user.id
             props.score.user.username
 
+          div
+            className: "#{bn}__achieved"
+            dangerouslySetInnerHTML:
+              __html: osu.trans('beatmapsets.show.scoreboard.achieved', when: osu.timeago(props.score.created_at))
+
           a
             href: laroute.route 'rankings',
               mode: props.playmode

@@ -26,7 +26,7 @@
             <span class="download-page-header__tagline">{!! trans('home.download.tagline') !!}</span>
 
             <div class="download-page-header__icon">
-                <i class="fa fa-download" aria-hidden="true"></i>
+                <i class="fas fa-download" aria-hidden="true"></i>
             </div>
 
             <a class="btn-osu-big btn-osu-big--download-page" href="{{ config('osu.urls.installer') }}">

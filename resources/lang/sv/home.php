@@ -36,7 +36,6 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
-        'title' => 'Sök Resultat',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
@@ -117,7 +116,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Hej, <strong>:username</strong>!',
-            'messages' => 'Du har 1 nytt meddelande|Du har :count nya meddelanden',
+            'messages' => 'Du har :count nytt meddelande|Du har :count nya meddelanden',
             'stats' => [
                 'friends' => 'Vänner Online',
                 'games' => 'Spel',

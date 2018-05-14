@@ -37,6 +37,7 @@
     .default-header-overlay();
     padding: 90px 40px 0;
     background-size: cover;
+    background-position: center;
   }
 
   &__title-container {
@@ -52,6 +53,30 @@
     &:active {
       text-decoration: none;
       color: #fff;
+    }
+  }
+
+  &__filter-group {
+    min-width: 0;
+    flex: 1 1 auto;
+
+    & + & {
+      margin-top: 10px;
+    }
+
+    @media @desktop {
+      align-self: flex-end;
+
+      & + & {
+        margin-top: 0;
+      }
+
+      &--stats {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
     }
   }
 
@@ -73,7 +98,7 @@
     flex-wrap: wrap;
 
     @media @desktop {
-      margin: -5px;
+      margin-bottom: -5px;
       margin-left: 5px;
     }
   }

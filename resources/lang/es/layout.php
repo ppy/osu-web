@@ -33,6 +33,7 @@ return [
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'groups-show' => 'grupos',
+            'index' => 'panel',
             'legal-show' => 'información',
             'news-index' => 'novedades',
             'news-show' => 'novedades',
@@ -45,7 +46,7 @@ return [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
-            'getSupport' => 'no, de veras, ¡necesito ayuda!',
+            'getSupport' => 'en serio, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -69,7 +70,7 @@ return [
             '_' => 'rankings',
             'index' => 'rendimiento',
             'performance' => 'rendimiento',
-            'charts' => 'charts',
+            'charts' => 'charts', // Base text has changed, please check.
             'score' => 'puntuación',
             'country' => 'país',
             'kudosu' => 'kudosu',
@@ -117,7 +118,7 @@ return [
             'settings' => 'Opciones',
             'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
-            'beatmapset_activities' => 'actividades del usuario en el beatmap',
+            'modding-history-index' => 'actividades del usuario en el beatmap', // needs update
         ],
         'store' => [
             '_' => 'tienda',
@@ -179,7 +180,6 @@ return [
         'legal' => [
             '_' => 'Estatus Legal',
             'copyright' => 'Drechos de autor (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Estado del Servidor',
             'terms' => 'Términos de Servicio',
         ],
@@ -189,32 +189,26 @@ return [
         '404' => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.', // Base text changed from "log" to "sign"
-            'link' => false,
         ],
         '405' => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => 'Hemos sido notificados del error.',
-            'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
             'description' => 'Hemos sido notificados del error.',
-            'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',

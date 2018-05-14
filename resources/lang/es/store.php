@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Haz clic aquí para ir a editarlo.',
         'declined' => 'El pago ha sido cancelado.',
         'error' => 'Ocurrió un problema al completar tu factura :(',
+        'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Facturar con Paypal',
         'pending_checkout' => [
             'line_1' => 'Una factura ha sido iniciada pero no ha sido completada.',
@@ -38,6 +39,12 @@ return [
     ],
 
     'discount' => 'ahorra un :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '¡Hemos recibido tu orden de osu!store!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -74,6 +81,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => '¡Escribe un nombre de usuario para revisar tu disponibilidad!',
+        'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
             'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"

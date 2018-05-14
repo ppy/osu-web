@@ -52,6 +52,20 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+function datadog_timing(callable $callable, $stat, array $tag = null)
+{
+    $start = microtime(true);
+
+    $result = $callable();
+
+    if (config('datadog-helper.enabled')) {
+        $duration = microtime(true) - $start;
+        Datadog::microtiming($stat, $duration, 1, $tag);
+    }
+
+    return $result;
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
@@ -124,39 +138,6 @@ function es_records($results, $class)
     }
 
     return $records;
-}
-
-function es_search($params)
-{
-    try {
-        return Es::search($params);
-    } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
-        // all servers down
-        $error = $e;
-    } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
-        // invalid query
-        $error = $e;
-    } catch (Elasticsearch\Common\Exceptions\Missing404Exception $e) {
-        // index is missing ?_?
-        $error = $e;
-    }
-
-    if (config('datadog-helper.enabled')) {
-        Datadog::increment(
-            config('datadog-helper.prefix_web').'.search.errors',
-            1,
-            ['class' => get_class($error)]
-        );
-    }
-
-    // default return on failure
-    return [
-        'hits' => [
-            'hits' => [],
-            'total' => 0,
-        ],
-        'exception' => $error,
-    ];
 }
 
 function flag_path($country)
@@ -393,13 +374,14 @@ function countries_array_for_select()
     return $out;
 }
 
-function currency($price)
+function currency($price, $precision = 2, $zeroShowFree = true)
 {
-    if ($price === 0) {
+    $price = round($price, $precision);
+    if ($price === 0.00 && $zeroShowFree) {
         return 'free!';
     }
 
-    return sprintf('US$%.2f', $price);
+    return 'US$'.number_format($price, $precision);
 }
 
 /**
@@ -504,12 +486,12 @@ function link_to_user($user_id, $user_name = null, $user_color = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fa-cogs';
-        case 'assigned': return 'fa-user';
-        case 'confirmed': return 'fa-exclamation-triangle';
-        case 'resolved': return 'fa-check-circle';
-        case 'duplicate': return 'fa-copy';
-        case 'invalid': return 'fa-times-circle';
+        case 'added': return 'fas fa-cogs';
+        case 'assigned': return 'fas fa-user';
+        case 'confirmed': return 'fas fa-exclamation-triangle';
+        case 'resolved': return 'far fa-check-circle';
+        case 'duplicate': return 'fas fa-copy';
+        case 'invalid': return 'far fa-times-circle';
     }
 }
 
@@ -655,8 +637,7 @@ function footer_legal_links()
     return [
         'terms' => route('legal', 'terms'),
         'copyright' => route('legal', 'copyright'),
-        'server_status' => osu_url('status.server'),
-        'osu_status' => osu_url('status.osustatus'),
+        'server_status' => osu_url('server_status'),
     ];
 }
 

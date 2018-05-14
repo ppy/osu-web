@@ -24,7 +24,6 @@ use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
 use Cache;
-use Carbon\Carbon;
 
 class ChangelogController extends Controller
 {
@@ -83,11 +82,15 @@ class ChangelogController extends Controller
         $chartOrder = $buildHistory
             ->unique('label')
             ->pluck('label')
-            ->sortByDesc(function ($el) {
-                // 4 characters for year, 2 for month, 2 for day
-                $date = substr($el, 0, 8);
+            ->sortByDesc(function ($label) {
+                $parts = explode('.', $label);
+                if (count($parts) >= 1 && strlen($parts[0]) >= 8) {
+                    $date = substr($parts[0], 0, 8);
+                } elseif (count($parts) >= 2 && strlen($parts[0]) === 4 && strlen($parts[1]) >= 3 && strlen($parts[1]) <= 4) {
+                    $date = $parts[0].str_pad($parts[1], 4, '0', STR_PAD_LEFT);
+                }
 
-                return Carbon::parse($date);
+                return $date ?? null;
             })->values();
 
         return view('changelog.show', compact('changelogs', 'activeBuild', 'buildHistory', 'chartOrder'));

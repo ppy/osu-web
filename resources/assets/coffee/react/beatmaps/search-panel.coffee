@@ -80,7 +80,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           onInput: @onInput
           defaultValue: @props.filters.query
         div className: 'fancy-search__icon',
-          el Icon, name: 'search'
+          i className: 'fas fa-search'
 
       el Beatmaps.SearchFilter,
         name: 'general'
@@ -109,7 +109,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         href: '#'
         onClick: @props.expand
         div {}, osu.trans('beatmaps.listing.search.options')
-        div {}, i className: 'fa fa-angle-down'
+        div {}, i className: 'fas fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,
@@ -134,12 +134,23 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.extra
 
         if currentUser.is_supporter
-          el Beatmaps.SearchFilter,
-            name: 'rank'
-            title: osu.trans('beatmaps.listing.search.filters.rank')
-            options: filters.ranks
-            multiselect: true
-            selected: @props.filters.rank
+          [
+            el Beatmaps.SearchFilter,
+              key: 'rank'
+              name: 'rank'
+              title: osu.trans('beatmaps.listing.search.filters.rank')
+              options: filters.ranks
+              multiselect: true
+              selected: @props.filters.rank
+
+            el Beatmaps.SearchFilter,
+              key: 'played'
+              name: 'played'
+              title: osu.trans('beatmaps.listing.search.filters.played')
+              options: filters.played
+              default: @props.filterDefaults.played
+              selected: @props.filters.played
+          ]
 
 
   submit: (e) =>
