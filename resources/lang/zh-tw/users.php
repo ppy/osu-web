@@ -149,7 +149,7 @@ return [
                     'title' => 'Ranked 並且得到讚的譜面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => 'Pending Beatmaps (:count)',
                 ],
             ],
             'historical' => [
@@ -175,12 +175,12 @@ return [
                 'available' => '可用 kudosu',
                 'available_info' => "kudosu 可以兌換為 kudosu 星,它可以讓你的譜面更引人注意。這是你還沒有兌換的 kudosu 數。",
                 'recent_entries' => '最近 Kudosu 記錄',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => '總共獲得 kudosu',
                 'total_info' => '取決於你對制譜的貢獻如何。查看 <a href="'.osu_url('user.kudosu').'">這個頁面</a> 以得到更多信息。',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "該用戶還沒有收到過 kudosu ！",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => '還沒有上傳過成績。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => '成績',
                 'weighted_pp' => '權重：:pp (:percentage)',
 
