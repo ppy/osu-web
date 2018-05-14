@@ -121,7 +121,7 @@ class OrderItem extends Model
                 $duration = (int) $this->extra_data['duration'];
                 $text = SupporterTag::getDurationText($duration);
 
-                return __('store.order.item.display_name.supporter_tag', [
+                return trans('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
                     // test data didn't include username, so ?? ''
                     'username' => $this->extra_data['username'] ?? '',
