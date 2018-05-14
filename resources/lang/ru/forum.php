@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Ограничить опрос по времени на',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'дней',
                 'length_info' => 'Оставьте пустым для снятия ограничения',
                 'max_options' => 'Количество ответов',
