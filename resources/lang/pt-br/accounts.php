@@ -22,16 +22,17 @@ return [
     'edit' => [
         'title' => 'Configurações de <strong>conta</strong>',
         'title_compact' => 'configurações',
+        'username' => '',
 
         'avatar' => [
-            'title' => 'Editar avatar', // Base text changed, please check.
+            'title' => 'Editar avatar',
         ],
 
         'email' => [
             'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmar email',
-            'title' => 'Email',
+            'title' => '',
         ],
 
         'password' => [
@@ -42,14 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar perfil', // Base text changed, please check.
+            'title' => 'Editar perfil',
 
             'user' => [
                 'user_from' => 'localização atual',
-                'user_msnm' => 'skype',
+                'user_interests' => '',
+                'user_msnm' => '',
                 'user_occ' => 'ocupação',
-                'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_twitter' => '',
+                'user_website' => '',
+                'user_discord' => '',
             ],
         ],
 
@@ -71,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Estilo de jogo',
-        'mouse' => 'mouse',
+        'mouse' => '',
         'keyboard' => 'teclado',
         'tablet' => 'mesa digitalizadora',
-        'touch' => 'touch',
+        'touch' => '',
     ],
 ];
