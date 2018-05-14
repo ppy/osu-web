@@ -42,7 +42,7 @@ return [
     ],
 
     'songs' => [
-        '_' => '',
+        '_' => 'Songs',
         'count' => ':count เพลง|:count เพลง',
         'exclusive' => 'เฉพาะ osu!',
     ],
