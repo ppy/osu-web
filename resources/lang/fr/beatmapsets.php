@@ -20,18 +20,18 @@
 
 return [
     'availability' => [
-        'disabled' => "Cette beatmap n'est actuellement pas disponible au téléchargement.",
-        'parts-removed' => "Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d'un titulaire de droits tiers",
-        'more-info' => "Voir ici pour plus d'informations.",
+        'disabled' => 'Cette beatmap n\'est actuellement pas disponible au téléchargement.',
+        'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers',
+        'more-info' => 'Voir ici pour plus d\'informations.',
     ],
 
     'index' => [
         'title' => 'Liste des beatmaps',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => '',
     ],
 
     'show' => [
-        'discussion' => 'Discussion',
+        'discussion' => '',
 
         'details' => [
             'made-by' => 'créée par ',
@@ -41,12 +41,12 @@ return [
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !', // Base text changed from "log" to "sign"
+            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !',
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
                 'no-video' => 'sans Vidéo',
-                'direct' => 'osu!direct',
+                'direct' => '',
             ],
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'unfavourite' => 'Retirer ce beatmapset des favoris',
@@ -57,26 +57,26 @@ return [
             'cs-mania' => 'Nombre de touches',
             'drain' => 'Drainage PV',
             'accuracy' => 'Précision',
-            'ar' => "Niveau d'approche",
+            'ar' => 'Niveau d\'approche',
             'stars' => 'Difficulté en étoiles',
             'total_length' => 'Longeur',
-            'bpm' => 'BPM',
+            'bpm' => '',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
             'rating-spread' => 'Propagation note',
-            'nominations' => 'Nominations',
+            'nominations' => '',
             'playcount' => 'Nombre de joueurs',
         ],
         'info' => [
-            'description' => 'Description',
-            'genre' => 'Genre',
+            'description' => '',
+            'genre' => '',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
             'points-of-failure' => 'Répartition des échecs',
-            'source' => 'Source',
+            'source' => '',
             'success-rate' => 'Taux de réussite',
-            'tags' => 'Tags',
+            'tags' => '',
             'unranked' => 'Beatmap non classifiée',
         ],
         'scoreboard' => [
@@ -92,17 +92,17 @@ return [
                 'accuracy' => 'Précision',
                 'combo' => 'Combo max',
                 'miss' => 'Raté',
-                'mods' => 'Mods',
+                'mods' => '',
                 'player' => 'Joueur',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
-                'score' => 'Score',
+                'score' => '',
             ],
 
             'no_scores' => [
-                'country' => "Personne de votre pays n'a encore fait un score !",
-                'friend' => "Personnne de vos amis n'a encore fait un score !",
+                'country' => 'Personne de votre pays n\'a encore fait un score !',
+                'friend' => 'Personnne de vos amis n\'a encore fait un score !',
                 'global' => 'Pas de scores. Peut-être vous dans le classement ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',
