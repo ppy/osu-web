@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => '',
+        'approve' => 'Approved.',
         'discussion_delete' => 'Moderator가 :discussion 토론을 삭제했습니다.',
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
         'discussion_post_restore' => 'Moderator가 :discussion 토론에서 삭제된 글을 복원했습니다.',
@@ -36,8 +36,8 @@ return [
         'kudosu_recalculate' => '',
         'nominate' => 'Nominated.',
         'nomination_reset' => '',
-        'qualify' => '',
-        'rank' => '',
+        'qualify' => 'Qualified.',
+        'rank' => 'Ranked.',
     ],
 
     'index' => [
