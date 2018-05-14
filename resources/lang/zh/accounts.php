@@ -25,7 +25,7 @@ return [
         'username' => '用户名',
 
         'avatar' => [
-            'title' => '编辑头像', // Base text changed, please check.
+            'title' => '编辑头像',
         ],
 
         'email' => [
@@ -43,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '编辑个人资料', // Base text changed, please check.
+            'title' => '编辑个人资料',
 
             'user' => [
                 'user_from' => '当前位置',
