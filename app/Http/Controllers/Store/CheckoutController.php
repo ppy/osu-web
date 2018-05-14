@@ -78,7 +78,7 @@ class CheckoutController extends Controller
 
         // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
         // an array and will cause issues in shared views.
-        $flash = session('checkout.error.errors') ?? [];
+        $flash = session('checkout.error.errors') ?? $checkout->validate();
         View::share('validationErrors', $flash);
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
