@@ -21,8 +21,8 @@
 return [
     'pinned_topics' => 'Pinned Emner',
     'slogan' => "det er farlig at spille alene.",
-    'subforums' => '',
-    'title' => '',
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
