@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,53 +20,53 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Matches',
+        'header' => '',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
         'events' => [
-            'player-left' => ':user left the match',
-            'player-joined' => ':user joined the match',
-            'player-kicked' => ':user has been kicked from the match',
-            'match-created' => ':user created the match',
-            'match-disbanded' => 'the match was disbanded',
-            'host-changed' => ':user became the host',
+            'player-left' => '',
+            'player-joined' => '',
+            'player-kicked' => '',
+            'match-created' => '',
+            'match-disbanded' => '',
+            'host-changed' => '',
 
-            'player-left-no-user' => 'a player left the match',
-            'player-joined-no-user' => 'a player joined the match',
-            'player-kicked-no-user' => 'a player has been kicked from the match',
-            'match-created-no-user' => 'the match was created',
-            'match-disbanded-no-user' => 'the match was disbanded',
-            'host-changed-no-user' => 'the host was changed',
+            'player-left-no-user' => '',
+            'player-joined-no-user' => '',
+            'player-kicked-no-user' => '',
+            'match-created-no-user' => '',
+            'match-disbanded-no-user' => '',
+            'host-changed-no-user' => '',
         ],
-        'in-progress' => '(match in progress)',
+        'in-progress' => '',
         'score' => [
             'stats' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Combo',
-                'score' => 'Score',
+                'accuracy' => '',
+                'combo' => '',
+                'score' => '',
             ],
         ],
-        'failed' => 'FAILED',
+        'failed' => '',
         'teams' => [
-            'blue' => 'Blue Team',
-            'red' => 'Red Team',
+            'blue' => '',
+            'red' => '',
         ],
-        'winner' => ':team wins',
-        'difference' => 'by :difference',
-        'loading-events' => 'Loading events...',
-        'more-events' => 'view all...',
-        'beatmap-deleted' => 'deleted beatmap',
+        'winner' => '',
+        'difference' => '',
+        'loading-events' => '',
+        'more-events' => '',
+        'beatmap-deleted' => '',
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Highest Score',
-            'accuracy' => 'Highest Accuracy',
-            'combo' => 'Highest Combo',
-            'scorev2' => 'Score V2',
+            'score' => '',
+            'accuracy' => '',
+            'combo' => '',
+            'scorev2' => '',
         ],
     ],
 ];
