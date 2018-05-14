@@ -97,7 +97,7 @@ return [
         'joined_at' => '登録日時 :date',
         'lastvisit' => '最終ログイン :date',
         'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
-        'origin_age' => '',
+        'origin_age' => ':age',
         'origin_country_age' => ':countryの:age歳',
         'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
@@ -160,11 +160,11 @@ return [
                     'title' => 'プレイ回数の履歴',
                 ],
                 'most_played' => [
-                    'count' => '',
+                    'count' => 'times played',
                     'title' => '最もプレイ回数の多い譜面順',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '',
+                    'accuracy' => 'accuracy: :percentage',
                     'title' => '最近のプレイ（24時間以内）',
                 ],
                 'replays_watched_counts' => [
@@ -175,12 +175,12 @@ return [
                 'available' => '使用可能のKudosu',
                 'available_info' => "Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。",
                 'recent_entries' => '最近のKudosu履歴',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
                 'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">Kudosu!</a> wikiを参照。',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "このユーザーはまだkudosu!を取得していません。",
 
                     'beatmap_discussion' => [
@@ -219,7 +219,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'me!',
             ],
             'medals' => [
                 'empty' => "このユーザーはまだメダルを取得していません。",
@@ -231,9 +231,9 @@ return [
             'top_ranks' => [
                 'empty' => 'まだ記録を作ってません！',
                 'not_ranked' => '',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => 'ランク',
-                'weighted_pp' => '',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'ベストパフォーマンス',
@@ -254,7 +254,7 @@ return [
                     'length' => '期間',
                     'length_permanent' => '永久',
                     'description' => '詳細',
-                    'actor' => '',
+                    'actor' => 'by :username',
 
                     'actions' => [
                         'restriction' => 'BAN',
@@ -267,11 +267,11 @@ return [
         'info' => [
             'discord' => '',
             'interests' => '趣味',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => '現在地',
             'occupation' => '職業',
-            'skype' => '',
-            'twitter' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'サイト',
         ],
         'not_found' => [
