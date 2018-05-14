@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Listado de Beatmaps',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
@@ -46,7 +46,7 @@ return [
                 '_' => 'Descargar',
                 'video' => 'con video',
                 'no-video' => 'sin video',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Marcar como favorito',
             'unfavourite' => 'Desmarcar como favorito',
@@ -60,7 +60,7 @@ return [
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
             'total_length' => 'Duración',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Número de Círculos',
             'count_sliders' => 'Número de Deslizadores',
             'user-rating' => 'Valoración de los Usuarios',
@@ -92,10 +92,10 @@ return [
                 'accuracy' => 'Precisión',
                 'combo' => 'Combo máx.',
                 'miss' => 'Fallos',
-                'mods' => '',
+                'mods' => 'Mods',
                 'player' => 'Jugador',
-                'pp' => '',
-                'rank' => '',
+                'pp' => 'pp',
+                'rank' => 'Rank',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
