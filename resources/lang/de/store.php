@@ -56,7 +56,7 @@ return [
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Name',
 
         'stock' => [
             'out' => 'Leider ist dieser Artikel momentan ausverkauft. Schau doch später noch mal vorbei!',
