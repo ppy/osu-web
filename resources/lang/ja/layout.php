@@ -47,8 +47,8 @@ return [
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => '本当にサポートが必要です！',
-            'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
+            'getWiki' => '',
+            'wiki-show' => '',
         ],
         'beatmaps' => [
             '_' => '譜面',
@@ -64,16 +64,16 @@ return [
         ],
         'beatmapsets' => [
             '_' => '譜面',
-            'discussion' => 'modding',
+            'discussion' => '',
         ],
         'rankings' => [
             '_' => 'ランキング',
             'index' => 'パフォーマンス',
             'performance' => 'パフォーマンス',
-            'charts' => 'チャート', // Base text has changed, please check.
+            'charts' => 'チャート',
             'score' => 'スコア',
             'country' => '国別',
-            'kudosu' => 'kudosu',
+            'kudosu' => '',
         ],
         'community' => [
             '_' => 'コミュニティ',
@@ -118,7 +118,12 @@ return [
             'settings' => '設定',
             'logout' => 'ログアウト',
             'help' => 'ヘルプ',
-            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ', // needs update
+            'modding-history-discussions' => '',
+            'modding-history-events' => '',
+            'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ',
+            'modding-history-posts' => '',
+            'modding-history-votesGiven' => '',
+            'modding-history-votesReceived' => '',
         ],
         'store' => [
             '_' => 'ストア',
@@ -130,22 +135,22 @@ return [
             'getInvoice' => '送り状',
             'products-show' => '製品',
 
-            'new' => 'new',
+            'new' => '',
             'home' => 'ホーム',
             'index' => 'ホーム',
             'thanks' => 'お礼',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => '',
             'forum-covers-index' => 'フォーラムカバー',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => '',
             'orders-index' => '注文',
             'orders-show' => '注文',
         ],
         'admin' => [
-            '_' => 'admin',
+            '_' => '',
             'beatmapsets-covers' => 'ビートマップセットカバー',
             'logs-index' => 'ログ',
             'root' => 'インデックス',
@@ -164,7 +169,7 @@ return [
             'changelog-index' => '更新履歴',
             'beatmaps' => '譜面のリスト',
             'download' => 'osu!をダウンロード',
-            'wiki' => 'Wiki',
+            'wiki' => '',
         ],
         'help' => [
             '_' => 'ヘルプ＆コミュニティ',
@@ -179,9 +184,8 @@ return [
             'merchandise' => '商品',
         ],
         'legal' => [
-            '_' => 'Legal & Status',
+            '_' => '',
             'copyright' => '著作権 (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'サーバー状態',
             'terms' => '利用規約',
         ],
@@ -190,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'ページが見つかりません',
-            'description' => 'ご希望のページはここにはない様です。',
+            'description' => "ご希望のページはここにはない様です。",
         ],
         '403' => [
-            'error' => '何か手違いがあったみたいです。',
+            'error' => "何か手違いがあったみたいです。",
             'description' => '戻ってみることをおすすめします。',
         ],
         '401' => [
-            'error' => '何か手違いがあったみたいです。',
+            'error' => "何か手違いがあったみたいです。",
             'description' => '戻ってみるか、ログインしてみる事をおすすめします。',
         ],
         '405' => [
             'error' => 'ページが見つかりません',
-            'description' => 'ご希望のページはここにはない様です。',
+            'description' => "ご希望のページはここにはない様です。",
         ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
-            'description' => '自動的にエラーは報告されます。',
+            'description' => "自動的にエラーは報告されます。",
         ],
         'fatal' => [
             'error' => '予期せぬエラーが発生しました（爆） ;_;',
-            'description' => '自動的にエラーは報告されます。',
+            'description' => "自動的にエラーは報告されます。",
         ],
         '503' => [
             'error' => 'メンテナンス中です！',
-            'description' => 'メンテナンスは大体5秒から10分の間で完了します。もし10分以上サーバーに接続できない場合は:linkを参照してください。',
+            'description' => "メンテナンスは大体5秒から10分の間で完了します。もし10分以上サーバーに接続できない場合は:linkを参照してください。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '念の為に、サポートに提示できるコードが表示されます。',
+        'reference' => "念の為に、サポートに提示できるコードが表示されます。",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'Eメールアドレス',
-            'forgot' => 'ログイン情報を忘れた',
+            'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
 
             'error' => [
-                'email' => 'ユーザー名かEメールか存在しません',
+                'email' => "ユーザー名かEメールか存在しません",
                 'password' => 'パスワードが一致しませんでした。',
             ],
         ],
 
         'register' => [
-            'info' => 'アカウントが必要です。作ってみませんか？',
-            'title' => 'アカウントが必要です',
+            'info' => "アカウントが必要です。作ってみませんか？",
+            'title' => "アカウントが必要です",
         ],
     ],
 
