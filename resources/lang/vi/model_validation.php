@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Mốc thời gian đã chỉ định nhưng không có beatmap.',
-        'beatmapset_no_hype' => 'Không thể hype beatmap này được.',
+        'beatmapset_no_hype' => "Không thể hype beatmap này được.",
         'hype_requires_null_beatmap' => 'Hype phải được thực hiện tại phần Chung (tất cả difficulties).',
         'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
         'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Mốc thời gian đã chọn vượt quá độ dài beatmap.',
-            'negative' => 'Mốc thời gian không thể âm.',
+            'negative' => "Mốc thời gian không thể âm.",
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'Địa chỉ email đã được sử dụng.',
         'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
         'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
-        'invalid_email' => 'Dường như đây không phải là địa chỉ email hợp lệ.',
+        'invalid_email' => "Dường như đây không phải là địa chỉ email hợp lệ.",
         'too_short' => 'Mật khẩu mới quá ngắn.',
         'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
         'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',
@@ -94,7 +94,7 @@ return [
         'username_invalid_characters' => 'Tên người dùng đã yêu cầu chứa các ký tự không hợp lệ.',
         'username_in_use' => 'Tên người dùng đã được sử dụng!',
         'username_no_space_userscore_mix' => 'Vui lòng sử dụng dấu gạch dưới hoặc dấu cách, không phải cả hai!',
-        'username_no_spaces' => 'Tên người dùng không thể bắt đầu hoặc kết thúc bằng dấu cách!',
+        'username_no_spaces' => "Tên người dùng không thể bắt đầu hoặc kết thúc bằng dấu cách!",
         'username_not_allowed' => 'Không cho phép sử dụng tên người dùng đã chọn.',
         'username_too_short' => 'Tên người dùng đã yêu cầu quá ngắn.',
         'username_too_long' => 'Tên người dùng đã yêu cầu quá dài.',
