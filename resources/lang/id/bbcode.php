@@ -30,7 +30,7 @@ return [
         '_' => 'Ukuran Huruf',
         'tiny' => 'Mungil',
         'small' => 'Kecil',
-        'normal' => 'Normal',
+        'normal' => '',
         'large' => 'Besar',
     ],
     'spoilerbox' => 'Kotak Spoiler',
