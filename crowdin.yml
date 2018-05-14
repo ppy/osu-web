@@ -1,8 +1,20 @@
 files:
   - source: /resources/lang/en/**/*.php
-    translation: /resources/lang/%two_letters_code%/%original_file_name%
+    translation: /resources/lang/%locale%/%original_file_name%
     languages_mapping:
-      two_letters_code:
+      locale:
         zh-CN: zh
-        pt-BR: pt-br
         zh-TW: zh-tw
+        da: da
+        nl: nl
+        fr: fr
+        id: id
+        it: it
+        ja: ja
+        ko: ko
+        pl: pl
+        pt-BR: pt-br
+        ru: ru
+        sv-SE: sv
+        vi: vi
+        es-ES: es
