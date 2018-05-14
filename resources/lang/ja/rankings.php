@@ -22,7 +22,7 @@ return [
     'header' => ':typeランキング',
     'type' => [
         'performance' => 'パフォーマンス',
-        'charts' => 'チャート', // Base text has changed, please check.
+        'charts' => 'チャート',
         'score' => 'スコア',
         'country' => '国別',
     ],
@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'ランクドスコア',
         'average_score' => '平均スコア',
         'average_performance' => '平均Perf.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];
