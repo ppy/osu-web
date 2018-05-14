@@ -23,7 +23,7 @@ return [
     'heading' => 'Tiêu Đề',
     'image' => 'Hình Ảnh',
     'italic' => 'Nghiêng',
-    'link' => 'Link',
+    'link' => '',
     'list' => 'Danh Sách',
     'list_numbered' => 'Danh Sách Đánh Số',
     'size' => [
@@ -33,6 +33,6 @@ return [
         'normal' => 'Bình Thường',
         'large' => 'Lớn',
     ],
-    'spoilerbox' => 'Hộp Spoiler', //?
+    'spoilerbox' => 'Hộp Spoiler',
     'strikethrough' => 'Gạch Ngang',
 ];
