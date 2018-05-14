@@ -21,6 +21,35 @@
 return [
     'deleted' => '[raderad användare]',
 
+    'beatmapset_activities' => [
+        'title' => "",
+
+        'discussions' => [
+            'title_recent' => '',
+        ],
+
+        'events' => [
+            'title_recent' => '',
+        ],
+
+        'posts' => [
+            'title_recent' => '',
+        ],
+
+        'votes_received' => [
+            'title_most' => '',
+        ],
+
+        'votes_made' => [
+            'title_most' => '',
+        ],
+    ],
+
+    'card' => [
+        'loading' => '',
+        'send_message' => '',
+    ],
+
     'login' => [
         '_' => 'Logga in',
         'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
@@ -29,9 +58,9 @@ return [
         'button' => 'Logga in',
         'button_posting' => 'Loggar in...',
         'remember' => 'Kom ihåg denna dator',
-        'title' => 'Var vänlig logga in för att fortsätta', // Base text changed from "log" to "sign"
-        'failed' => 'Felaktig inloggning', // Base text changed from "log" to "sign"
-        'register' => 'Har inget osu! konto? Skapa en ny',
+        'title' => 'Var vänlig logga in för att fortsätta',
+        'failed' => 'Felaktig inloggning',
+        'register' => "Har inget osu! konto? Skapa en ny",
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
@@ -40,32 +69,39 @@ return [
 
         'here' => 'här', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => '',
+    ],
+
     'signup' => [
         '_' => 'Registrera',
     ],
     'anonymous' => [
-        'login_link' => 'klicka för att logga in', // Base text changed from "log" to "sign"
-        'login_text' => 'logga in', // Base text changed from "log" to "sign"
+        'login_link' => 'klicka för att logga in',
+        'login_text' => 'logga in',
         'username' => 'Gäst',
-        'error' => 'Du behöver vara inloggad för att göra detta.', // Base text changed from "log" to "sign"
+        'error' => 'Du behöver vara inloggad för att göra detta.',
     ],
-    'logout_confirm' => 'Är du säker på att du vill logga ut? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
     ],
     'show' => [
         'age' => ':age år gammal',
+        'change_avatar' => '',
         'first_members' => 'Här sen början',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_developer' => '',
+        'is_supporter' => '',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
-        'origin_age' => ':age',
-        'origin_country' => 'Från :country',
+        'origin_age' => '',
         'origin_country_age' => ':age från :country',
+        'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
+        'previous_usernames' => '',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
@@ -84,7 +120,13 @@ return [
                     'unsupported_format' => 'Formatet stöds ej.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => '',
+                'set' => '',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 följare|:count följare',
             'unranked' => 'Inga senaste spel',
@@ -95,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Inga... än.',
-                'title' => 'Beatmaps',
+                'title' => '',
 
                 'favourite' => [
                     'title' => 'Favoriserade Beatmaps (:count)',
@@ -114,6 +156,9 @@ return [
                 'empty' => 'Inga prestanda uppgifter. :(',
                 'title' => 'Historisk',
 
+                'monthly_playcounts' => [
+                    'title' => '',
+                ],
                 'most_played' => [
                     'count' => 'gånger spelade',
                     'title' => 'Mest Spelade Beatmaps',
@@ -122,18 +167,21 @@ return [
                     'accuracy' => 'precision: :percentage',
                     'title' => 'Senaste spel (24h)',
                 ],
+                'replays_watched_counts' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tillängligt',
-                'available_info' => 'Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.',
+                'available_info' => "Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.",
                 'recent_entries' => 'Nyligen Kudosu Historia',
-                'title' => 'Kudosu!',
+                'title' => '',
                 'total' => 'Total Kudosu Intjänad',
                 'total_info' => 'Baserad på hur mycket bidrag användaren har gjort till beatmap moderation. Se <a href="'.osu_url('user.kudosu').'">denna sida</a> för mer information.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => 'Denna användare har inte fått någon kudosu!',
+                    'amount' => '',
+                    'empty' => "Denna användare har inte fått någon kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -174,7 +222,7 @@ return [
                 'title' => 'jag!',
             ],
             'medals' => [
-                'empty' => 'Denna användare har inte fått några än. ;_;',
+                'empty' => "Denna användare har inte fått några än. ;_;",
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
@@ -182,7 +230,8 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Inga fantastiska precision uppgifter än. :(',
-                'pp' => ':amountpp',
+                'not_ranked' => '',
+                'pp' => '',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
 
@@ -193,8 +242,43 @@ return [
                     'title' => 'Första Plats Ranker',
                 ],
             ],
+            'account_standing' => [
+                'title' => '',
+                'bad_standing' => "",
+                'remaining_silence' => '',
+
+                'recent_infringements' => [
+                    'title' => '',
+                    'date' => '',
+                    'action' => '',
+                    'length' => '',
+                    'length_permanent' => '',
+                    'description' => '',
+                    'actor' => '',
+
+                    'actions' => [
+                        'restriction' => '',
+                        'silence' => '',
+                        'note' => '',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'discord' => '',
+            'interests' => '',
+            'lastfm' => '',
+            'location' => '',
+            'occupation' => '',
+            'skype' => '',
+            'twitter' => '',
+            'website' => '',
         ],
         'not_found' => [
+            'reason_1' => '',
+            'reason_2' => '',
+            'reason_3' => '',
+            'reason_header' => '',
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
@@ -202,6 +286,10 @@ return [
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sido innehåll här',
             'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
+        ],
+        'post_count' => [
+            '_' => '',
+            'count' => '',
         ],
         'rank' => [
             'country' => 'Land rank för :mode',
@@ -212,6 +300,7 @@ return [
             'level' => 'Nivå :level',
             'maximum_combo' => 'Maximal Kombo',
             'play_count' => 'Antal Spel',
+            'play_time' => '',
             'ranked_score' => 'Rankad Poäng',
             'replays_watched_by_others' => 'Repriser Sedda av Andra',
             'score_ranks' => 'Poäng Ranker',
@@ -220,8 +309,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => '',
+        'offline' => '',
     ],
     'store' => [
         'saved' => 'Användare skapad',
