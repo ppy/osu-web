@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Ajustes</strong> de la Cuenta',
         'title_compact' => 'ajustes',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Editar Avatar', // Base text changed, please check.
+            'title' => 'Editar Avatar',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil', // Base text changed, please check.
+            'title' => 'Editar Perfil',
 
             'user' => [
                 'user_from' => 'ubicación actual',
-                'user_msnm' => 'skype',
                 'user_interests' => 'intereses',
+                'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
+                'user_discord' => 'discord',
             ],
         ],
 
