@@ -19,38 +19,54 @@
  */
 
 return [
-    'confirmation' => '확실합니까?', //  Are you sure?
+    'confirmation' => '확실합니까?',
     'saved' => '저장됨',
 
     'array_and' => [
-        'words_connector' => ', ', // A[[, ]]B[[, ]]C, and D 를 표시할 때 사용
-        'two_words_connector' => ' 와(과) ', // A[[ and ]]B 를 표시할 때 사용 (앞 종성에 따른 모호함이 발생)
-        'last_word_connector' => ', 그리고 ', // A, B, C[, and ] 를 표시할 때 사용
+        'words_connector' => '',
+        'two_words_connector' => ' 와(과) ',
+        'last_word_connector' => ', 그리고 ',
     ],
 
     'buttons' => [
         'cancel' => '취소',
+        'change' => '',
+        'click_to_copy' => '',
+        'click_to_copy_copied' => '',
         'delete' => '삭제',
-        'permalink' => '고유 주소', // permalink
-        'post' => '게시하기', // Post
-        'reply' => '답변하기', // Reply
+        'permalink' => '고유 주소',
+        'permalink_copied' => '',
+        'post' => '게시하기',
+        'reply' => '답변하기',
+        'reply_reopen' => '',
+        'reply_resolve' => '',
         'reset' => '초기화',
         'save' => '저장',
         'saving' => '저장 중...',
+        'see_more' => '',
         'show_more' => '더 보기',
         'upload_image' => '이미지 업로드',
     ],
 
     'count' => [
-        'item' => ':count unit|:count units',
+        'badges' => '',
+        'days' => '',
+        'hour_short_unit' => '',
+        'hours' => '',
+        'item' => '',
+        'minute_short_unit' => '',
         'months' => ':count 달|:count 달',
+        'second_short_unit' => '',
         'years' => ':count 년|:count 년',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => '',
+            'php' => '',
+        ],
+        'year_month_short' => [
+            'moment' => '',
         ],
     ],
 
@@ -71,12 +87,12 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '100',
-        'count_300' => '300',
-        'count_50' => '50',
-        'count_geki' => 'MAX',
-        'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_100' => '',
+        'count_300' => '',
+        'count_50' => '',
+        'count_geki' => '',
+        'count_katu' => '',
+        'count_miss' => '',
     ],
 
     'time' => [
@@ -87,6 +103,6 @@ return [
     ],
 
     'title' => [
-        'notice' => '알림', // Notice
+        'notice' => '알림',
     ],
 ];
