@@ -20,14 +20,14 @@
 
 return [
     'availability' => [
-        'disabled' => '',
-        'parts-removed' => '',
-        'more-info' => '',
+        'disabled' => 'This beatmap is currently not available for download.',
+        'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
+        'more-info' => 'Check here for more information.',
     ],
 
     'index' => [
         'title' => 'Beatmaps Liste',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'show' => [
@@ -43,10 +43,10 @@ return [
             'loved' => 'loved den ',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'download' => [
-                '_' => '',
+                '_' => 'Download',
                 'video' => 'med Video',
                 'no-video' => 'uden Video',
-                'direct' => '',
+                'direct' => 'osu!direct',
             ],
             'favourite' => 'Markér dette beatmapset som favorit',
             'unfavourite' => 'Fjern markering af dette beatmapset som favorit',
@@ -57,10 +57,10 @@ return [
             'cs-mania' => 'Key Antal',
             'drain' => 'HP Dræn',
             'accuracy' => 'Præcision',
-            'ar' => '',
+            'ar' => 'Approach Rate',
             'stars' => 'Stjerne Sværhedsgrad',
             'total_length' => 'Længde',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => 'Cirkel Antal',
             'count_sliders' => 'Slider Antal',
             'user-rating' => 'Brugerbedømmelse',
@@ -70,13 +70,13 @@ return [
         ],
         'info' => [
             'description' => 'Beskrivelse',
-            'genre' => '',
+            'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Dataen er ved at blive beregnet...',
             'points-of-failure' => 'Fejlpoints',
             'source' => 'Kilde',
             'success-rate' => 'Succes Rate',
-            'tags' => '',
+            'tags' => 'Tags',
             'unranked' => 'Ikke-ranked beatmap',
         ],
         'scoreboard' => [
@@ -86,18 +86,18 @@ return [
             'global' => 'Global Rangering',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de smarte fordele du får!',
             'supporter-only' => 'Du skal være supporter for at få adgang til venne- og landerangering!',
-            'title' => '',
+            'title' => 'Scoreboard',
 
             'headers' => [
                 'accuracy' => 'Præcision',
-                'combo' => '',
-                'miss' => '',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
                 'mods' => '',
                 'player' => 'Spiller',
                 'pp' => '',
-                'rank' => '',
+                'rank' => 'Rank',
                 'score_total' => 'Samlet Score',
-                'score' => '',
+                'score' => 'Score',
             ],
 
             'no_scores' => [
