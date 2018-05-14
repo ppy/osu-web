@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
         'error' => 'Es gab ein Problem beim Bezahlvorgang :(',
+        'old_cart' => '',
         'pay' => 'Mit Paypal bezahlen',
         'pending_checkout' => [
             'line_1' => 'Der vorherige Bezahlvorgang wurde gestartet, aber nicht beendet.',
@@ -39,6 +40,12 @@ return [
 
     'discount' => 'spar :percent%',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
+    ],
+
     'order' => [
         'item' => [
             'display_name' => [
@@ -49,7 +56,7 @@ return [
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => '',
 
         'stock' => [
             'out' => 'Leider ist dieser Artikel momentan ausverkauft. Schau doch später noch mal vorbei!',
