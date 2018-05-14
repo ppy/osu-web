@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '',
-    'invalid_resource_id' => '',
-    'unknown' => "Unbekannter Fehler aufgetreten.",
+    'instrument_declined' => 'Die gewählte Zahlungsweise wurde von Paypal abgelehnt.',
+    'invalid_resource_id' => 'Es wurden keine Zahlungsinformationen gefunden.',
+    'unknown' => "Es ist ein unbekannter Fehler aufgetreten.",
 ];
