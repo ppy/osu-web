@@ -46,8 +46,8 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Précision',
-                'combo' => '',
-                'score' => '',
+                'combo' => 'Combo',
+                'score' => 'Score',
             ],
         ],
         'failed' => 'Échec',
@@ -66,7 +66,7 @@ return [
             'score' => 'Score le plus haut',
             'accuracy' => 'Précision la plus haute',
             'combo' => 'Combo le plus haut',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
