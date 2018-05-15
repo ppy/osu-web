@@ -46,6 +46,12 @@ class AuthorizationResult
         return presence($this->rawMessage, 'unauthorized');
     }
 
+    public function requireLogin()
+    {
+        return $this->rawMessage() === 'require_login' ||
+            ends_with($this->rawMessage(), '.require_login');
+    }
+
     public function message()
     {
         if ($this->can()) {
@@ -61,8 +67,7 @@ class AuthorizationResult
             return;
         }
 
-        if ($this->rawMessage() === 'require_login' ||
-            ends_with($this->rawMessage(), '.require_login')) {
+        if ($this->requireLogin()) {
             $class = AuthenticationException::class;
         } else {
             $class = AuthorizationException::class;

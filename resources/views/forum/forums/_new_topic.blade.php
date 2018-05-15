@@ -15,35 +15,56 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<li class="forum-topic-entry clickable-row u-forum--hover-area">
+<li class="
+    forum-topic-entry
+    u-forum--hover-area
+    {{ $disabled ? 'forum-topic-entry--disabled' : 'clickable-row' }}
+">
     <div class="forum-topic-entry__bg"></div>
 
-    <a
-        class="
-            forum-topic-entry__col
-            forum-topic-entry__col--icon
-            forum-topic-entry__col--icon-plus
-            js-login-required--click
-        "
-        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-    >
-        <i class="fas fa-plus"></i>
-    </a>
+    @if ($disabled)
+        <span class="forum-topic-entry__col forum-topic-entry__col--icon forum-topic-entry__col--icon-plus">
+            <i class="fas fa-plus"></i>
+        </span>
+    @else
+        <a
+            class="
+                forum-topic-entry__col
+                forum-topic-entry__col--icon
+                forum-topic-entry__col--icon-plus
+                js-login-required--click
+            "
+            href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
+        >
+            <i class="fas fa-plus"></i>
+        </a>
+    @endif
 
     <div class="forum-topic-entry__col forum-topic-entry__col--main">
         <div class="forum-topic-entry__content forum-topic-entry__content--left">
-            <a
-                class="
-                    u-forum--link
-                    u-forum--hover-target
-                    clickable-row-link
-                    js-login-required--click
-                    forum-topic-entry__title
-                "
-                href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-            >
-                {{ trans('forum.topic.new_topic') }}
-            </a>
+            @if ($disabled)
+                <span
+                    class="
+                        u-forum--link
+                        u-forum--hover-target
+                        forum-topic-entry__title
+                    "
+                    title="{{ $disabledReason ?? '' }}"
+                >{{ trans('forum.topic.new_topic') }}</span>
+            @else
+                <a
+                    class="
+                        u-forum--link
+                        u-forum--hover-target
+                        clickable-row-link
+                        js-login-required--click
+                        forum-topic-entry__title
+                    "
+                    href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
+                >
+                    {{ trans('forum.topic.new_topic') }}
+                </a>
+            @endif
         </div>
     </div>
 

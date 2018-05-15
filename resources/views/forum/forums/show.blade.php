@@ -81,6 +81,7 @@
                     'title' => trans('forum.topics._'),
                     'topics' => $topics,
                     'withNewTopicLink' => $forum->isOpen(),
+                    'forum' => $forum,
                 ])
 
                 @include('forum._pagination', ['object' => $topics
