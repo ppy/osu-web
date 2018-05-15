@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'community',
-            'dev' => 'osu!dev',
+            'dev' => 'development',
             'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'live',
