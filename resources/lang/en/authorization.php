@@ -27,6 +27,7 @@ return [
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
             'incorrect_state' => 'Error performing that action, try refreshing the page.',
+            'owner' => "Can't nominate own beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
