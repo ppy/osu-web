@@ -54,7 +54,7 @@
                 <div class="alert alert-danger">
                     <p>
                         {{ trans('store.checkout.pending_checkout.line_1') }}<br>
-                        {{ trans('store.checkout.pending_checkout.line_2', ['link' => $cancelLink]) }}
+                        {!! trans('store.checkout.pending_checkout.line_2', ['link' => $cancelLink]) !!}
                     </p>
                 </div>
             @endif

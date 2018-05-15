@@ -38,8 +38,8 @@
                         ];
                     @endphp
                     <p class="beatmap-packs__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
-                    <p>{{ trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) }}</p>
-                    <p>{{ trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) }}</p>
+                    <p>{!! trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
+                    <p>{!! trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
                 </div>
             </div>
             <ul class="page-mode">
