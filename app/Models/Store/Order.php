@@ -294,47 +294,6 @@ class Order extends Model
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
-    public function isValidForCheckout()
-    {
-        $valid = true;
-
-        foreach ($this->items as $item) {
-            $valid &= $item->isValid();
-        }
-
-        return $valid;
-    }
-
-    public function removeInvalidItems()
-    {
-        $modified = false;
-
-        //check to make sure we don't have any invalid products in our cart.
-        $deleteItems = [];
-
-        foreach ($this->items as $i) {
-            if ($i->product === null || !$i->product->enabled) {
-                $deleteItems[] = $i;
-                continue;
-            }
-
-            if (!$i->product->inStock($i->quantity)) {
-                $this->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
-                $modified = true;
-            }
-        }
-
-        if (count($deleteItems)) {
-            foreach ($deleteItems as $i) {
-                $i->delete();
-            }
-
-            $modified = true;
-        }
-
-        return $modified;
-    }
-
     /**
      * Updates the cost of the order for checkout.
      * Don't call this anywhere except beginning checkout.
