@@ -187,6 +187,13 @@ class OrderCheckout
                     );
                 }
             }
+
+            if (!$item->product->inStock($item->quantity)) {
+                $itemErrors[$item->id] = array_merge(
+                    $itemErrors[$item->id] ?? [],
+                    ['insufficient_stock']
+                );
+            }
         }
 
         $errors = [];

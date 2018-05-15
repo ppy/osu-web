@@ -65,10 +65,6 @@ class OrderItem extends Model
             $this->validationErrors()->add('product', 'not_available');
         }
 
-        if (!$this->product->inStock($this->quantity)) {
-            $this->validationErrors()->add('product', 'insufficient_stock');
-        }
-
         if ($this->quantity > $this->product->max_quantity) {
             $route = route('store.cart.show');
 
