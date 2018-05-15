@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'osu!noticias',
 
         'nav' => [
             'newer' => 'Publicaciones más recientes',

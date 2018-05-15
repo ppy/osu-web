@@ -28,7 +28,7 @@ return [
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
         'error' => 'Houve um problema com a sua compra :(',
-        'old_cart' => '',
+        'old_cart' => 'Seu carrinho aparenta estar desatualizado e foi recarregado, por favor tente novamente.',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
             'line_1' => 'Uma compra antiga foi atualizada mas não foi finalizada.',
@@ -42,7 +42,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Recebemos o seu pedido da osu!store!',
         ],
     ],
 

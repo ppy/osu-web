@@ -55,7 +55,7 @@ return [
                 'title' => 'Liste der Forenbanner',
 
                 'type-title' => [
-                    'default-topic' => 'Standard-Forenbanner',
+                    'default-topic' => 'Standard-Themenbanner',
                     'main' => 'Forenbanner',
                 ],
             ],

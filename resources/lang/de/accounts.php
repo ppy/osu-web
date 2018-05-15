@@ -38,7 +38,7 @@ return [
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'passwort wiederholen',
+            'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
         ],
 

@@ -73,21 +73,21 @@ return [
             'delete' => [
                 'only_last_post' => 'Somente a última publicação pode ser excluída.',
                 'locked' => 'Não é possível excluir a publicação de um tópico trancado.',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor pode excluir a publicação.',
             ],
 
             'edit' => [
-                'deleted' => 'Não é possível editar uma publicação excluida.',
-                'locked' => 'A edição desta publicação está bloqueada',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'deleted' => 'Não é possível editar uma publicação excluída.',
+                'locked' => 'A edição desta publicação está bloqueada.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
                 'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Por favor tente jogar o jogo antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
+                'too_many_help_posts' => "Você precisa jogar o jogo antes de criar postagens. Se você está tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

@@ -22,7 +22,7 @@ return [
     'deleted' => '[utilisateur supprimé]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => "Historique des modifications de :user",
 
         'discussions' => [
             'title_recent' => 'Discussions commencées récemment',
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Pas de première place. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Seules les beatmaps classées donnent des pp.',
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
@@ -265,7 +265,7 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Centres d\'intérêt',
             'lastfm' => 'Last.fm',
             'location' => 'Position actuelle',
@@ -275,10 +275,10 @@ return [
             'website' => 'Site Internet',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'Il a probablement changé son nom d\'utilisateur.',
+            'reason_2' => 'Le compte a peut-être été indisponible temporairement pour des raisons de sécurité ou d\'abus.',
+            'reason_3' => 'Vous avez peut-être fait une faute de frappe !',
+            'reason_header' => 'Il y a quelques raisons possibles pour ceci:',
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [

@@ -24,6 +24,6 @@ return [
     ],
 
     'item' => [
-        'score' => '',
+        'score' => '점수',
     ],
 ];

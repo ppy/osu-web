@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Temas Fijados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => '',
+    'title' => 'osu!communidad',
 
     'covers' => [
         'create' => [

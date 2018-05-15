@@ -30,9 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancelar',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => 'mudar',
+        'click_to_copy' => 'clique para copiar',
+        'click_to_copy_copied' => 'copiado para a área de transferência!',
         'delete' => 'Excluir',
         'permalink' => 'copiar link da postagem',
         'permalink_copied' => 'link copiado',
@@ -49,7 +49,7 @@ return [
     ],
 
     'count' => [
-        'badges' => '',
+        'badges' => ':count emblema|:count emblemas',
         'days' => ':count dia|:count dias',
         'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hora|:count horas',

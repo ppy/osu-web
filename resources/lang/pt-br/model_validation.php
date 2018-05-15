@@ -85,7 +85,7 @@ return [
         'contains_username' => 'Senha não deve conter seu username.',
         'email_already_used' => 'Email já utilizado.',
         'invalid_country' => 'País não presente no banco de dados.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",
         'too_short' => 'Nova senha curta demais.',
         'unknown_duplicate' => 'Username ou email já utilizado.',

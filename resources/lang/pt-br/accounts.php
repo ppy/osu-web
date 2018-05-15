@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => 'Configurações de <strong>conta</strong>',
         'title_compact' => 'configurações',
-        'username' => '',
+        'username' => 'nome de usuário',
 
         'avatar' => [
-            'title' => 'Editar avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -43,16 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Editar perfil',
+            'title' => 'Perfil',
 
             'user' => [
                 'user_from' => 'localização atual',
-                'user_interests' => '',
+                'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
-                'user_discord' => '',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Estilo de jogo',
+        'title' => 'Estilos de jogo',
         'mouse' => 'mouse',
         'keyboard' => 'teclado',
         'tablet' => 'mesa digitalizadora',

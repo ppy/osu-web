@@ -25,15 +25,15 @@ return [
         'title' => ":user 的摸图历史",
 
         'discussions' => [
-            'title_recent' => '最近打開的討論',
+            'title_recent' => '最近開始的討論',
         ],
 
         'events' => [
-            'title_recent' => '最近事件',
+            'title_recent' => '近期活動',
         ],
 
         'posts' => [
-            'title_recent' => '最近帖子',
+            'title_recent' => '最新發表',
         ],
 
         'votes_received' => [
@@ -46,19 +46,19 @@ return [
     ],
 
     'card' => [
-        'loading' => '加载中。。。',
-        'send_message' => '发送消息',
+        'loading' => '載入中...',
+        'send_message' => '傳送簡訊',
     ],
 
     'login' => [
-        '_' => '登錄',
-        'locked_ip' => 'IP 已被鎖定，請稍等幾分鐘',
-        'username' => '用戶名',
+        '_' => '登入',
+        'locked_ip' => '您的 IP 位址已鎖定。請稍候幾分鐘。',
+        'username' => '用戶名稱',
         'password' => '密碼',
-        'button' => '登錄',
-        'button_posting' => '登錄中...',
-        'remember' => '記住此電腦',
-        'title' => '登錄以繼續',
+        'button' => '登入',
+        'button_posting' => '登入中...',
+        'remember' => '在這台電腦記住我',
+        'title' => '請先登錄。',
         'failed' => '登錄失敗',
         'register' => "沒有 osu! 帳戶？現在就註冊一個！",
         'forgot' => '忘記密碼？',
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username 的帖子',
+        'title' => ':username 的貼文',
     ],
 
     'signup' => [
@@ -83,9 +83,9 @@ return [
         'username' => '遊客',
         'error' => '請先登錄',
     ],
-    'logout_confirm' => '確定要退出嗎？o(TヘTo)',
+    'logout_confirm' => '確定要登出嗎？o(TヘTo)',
     'restricted_banner' => [
-        'title' => '帳戶進入限制模式！',
+        'title' => '您的帳戶已被限制!',
         'message' => '在被限制時，無法與其他玩家互動，分數只有自己可見。該限制通常由系統自動給予，並將在24小時內解除。需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支持團隊</a>.',
     ],
     'show' => [
@@ -93,9 +93,9 @@ return [
         'change_avatar' => '更換你的頭像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 開發者',
-        'is_supporter' => 'osu! 支持者',
+        'is_supporter' => 'osu! 贊助玩家',
         'joined_at' => '註冊時間：:date',
-        'lastvisit' => '上次登錄：:date',
+        'lastvisit' => '最後上線於：:date',
         'missingtext' => '未找到用戶！（或者該用戶已經被 ban）',
         'origin_age' => ':age 歲',
         'origin_country_age' => ':age，來自 :country',

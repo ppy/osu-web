@@ -65,10 +65,10 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => 'Desqualificado',
             'hype' => 'Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Resetar Nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',
@@ -150,13 +150,13 @@ return [
         'qualified' => 'Esse beatmap será ranqueado em :date, caso nenhum problema seja encontrado.',
         'qualified_soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required_text' => 'Nomeações: :current/:required',
-        'reset_message_deleted' => '',
+        'reset_message_deleted' => 'apagado',
         'title' => 'Estado de nomeação',
         'unresolved_issues' => 'Ainda há problemas não resolvidos que precisam de uma resposta.',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => 'Processo de nomeação resetado :time_ago por :user com um novo problema :discussion (:message).',
+            'disqualify' => 'Desqualificado :time_ago por :user com um novo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -178,7 +178,7 @@ return [
                 'language' => 'Idioma',
                 'extra' => 'extra',
                 'rank' => 'Ranque Conquistado',
-                'played' => '',
+                'played' => 'Jogado',
             ],
         ],
         'mode' => 'Modo',
@@ -243,7 +243,7 @@ return [
         'Relax' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
-        'TD' => '',
+        'TD' => 'Dispositivo de toque',
     ],
     'language' => [
         'any' => 'Todos',
@@ -260,9 +260,9 @@ return [
         'other' => 'Outro',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => 'Qualquer',
+        'played' => 'Jogado',
+        'unplayed' => 'Não jogado',
     ],
     'extra' => [
         'video' => 'Possui Vídeo',

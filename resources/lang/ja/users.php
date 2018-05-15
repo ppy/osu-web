@@ -47,7 +47,7 @@ return [
 
     'card' => [
         'loading' => '読み込み中・・・',
-        'send_message' => '',
+        'send_message' => 'メッセージの送信',
     ],
 
     'login' => [
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':countryの:age歳',
         'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
-        'previous_usernames' => '',
+        'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'まだ記録を作ってません！',
-                'not_ranked' => '',
+                'not_ranked' => 'Ranked譜面のみがppを授与します。',
                 'pp' => ':amountpp',
                 'title' => 'ランク',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
@@ -265,7 +265,7 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => '趣味',
             'lastfm' => 'Last.fm',
             'location' => '現在地',
@@ -275,7 +275,7 @@ return [
             'website' => 'サイト',
         ],
         'not_found' => [
-            'reason_1' => '',
+            'reason_1' => '対象はユーザーネームを変更した可能性があります。',
             'reason_2' => '',
             'reason_3' => '',
             'reason_header' => '',

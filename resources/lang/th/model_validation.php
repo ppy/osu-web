@@ -87,7 +87,7 @@ return [
         'invalid_country' => 'Country not in database.',
         'invalid_discord' => '',
         'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => 'New password is too short.',
+        'too_short' => 'รหัสผ่านใหม่สั้นเกินไป',
         'unknown_duplicate' => 'Username or email address already used.',
         'username_available_in' => '',
         'username_available_soon' => '',
@@ -101,7 +101,7 @@ return [
         'weak' => 'Blacklisted password.',
         'wrong_current_password' => 'Current password is incorrect.',
         'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
+        'wrong_password_confirmation' => 'รหัสผ่านไม่ตรงกัน',
         'too_long' => '',
 
         'change_username' => [
