@@ -175,12 +175,12 @@ return [
                 'available' => '可用 kudosu',
                 'available_info' => "kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。",
                 'recent_entries' => '最近 Kudosu 记录',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
                 'total_info' => '取决于你对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':amount kudosu',
                     'empty' => "该用户还没有收到过 kudosu ！",
 
                     'beatmap_discussion' => [
@@ -231,7 +231,7 @@ return [
             'top_ranks' => [
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
-                'pp' => '',
+                'pp' => ':amountpp',
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
 
@@ -265,12 +265,12 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => '兴趣爱好',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => '',
+            'skype' => 'Skype',
             'twitter' => '推特',
             'website' => '网站',
         ],
