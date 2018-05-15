@@ -103,7 +103,6 @@ class CheckoutController extends Controller
         }
 
         $checkout = new OrderCheckout($order, $provider);
-        $checkout->beginCheckout();
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
@@ -113,7 +112,8 @@ class CheckoutController extends Controller
             );
         }
 
-        // checkout
+        $checkout->beginCheckout();
+
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
             return $this->freeCheckout($checkout);
         }
