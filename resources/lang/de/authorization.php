@@ -34,7 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
             'owner' => "Man kann nicht in der eigenen Diskussion abstimmen!",
-            'wrong_beatmapset_state' => 'Abstimmung nur in Diskussion von <Pending> Beatmaps möglich.',
+            'wrong_beatmapset_state' => 'Abstimmung nur in Diskussion von Pending Beatmaps möglich.',
         ],
     ],
 
@@ -59,7 +59,7 @@ return [
                     'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
                 ],
 
-                'not_allowed' => 'Gebannt, <restricted> oder stummgeschaltet kann man keine Nachrichten senden',
+                'not_allowed' => 'Gebannt, restricted oder stummgeschaltet kann man keine Nachrichten senden.',
             ],
         ],
     ],
@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Versuch das Spiel zu spielen, bevor du einen Beitrag erstellts! Falls du Probleme hast zu spielen, frage in den Hilfe und Support Foren.',
+                'too_many_help_posts' => "Du musst das Spiel erst spielen bevor du weitere Beiträge erstellts. Falls du immernoch Probleme hast zu spielen, schreibe an support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -100,7 +100,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Zum Antworten bitte einloggen.',
-                    'restricted' => "Man kann nicht antworten, während man <restricted> ist.",
+                    'restricted' => "Man kann nicht antworten, während man restricted ist.",
                     'silenced' => "Man kann nicht antworten, während man stummgeschaltet ist.",
                 ],
             ],
@@ -118,7 +118,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Zum Abstimmen bitte einloggen.',
-                    'restricted' => "Man kann nicht abstimmen, während man <restricted> ist.",
+                    'restricted' => "Man kann nicht abstimmen, während man restricted ist.",
                     'silenced' => "Man kann nicht abstimmen, während man stummgeschaltet ist.",
                 ],
             ],
@@ -146,7 +146,7 @@ return [
 
     'silenced' => "Während Stummschaltung nicht möglich.",
 
-    'restricted' => "Während <restriction> nicht möglich.",
+    'restricted' => "Während Restriction nicht möglich.",
 
     'user' => [
         'page' => [
