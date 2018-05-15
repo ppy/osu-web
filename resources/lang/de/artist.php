@@ -37,7 +37,7 @@ return [
     ],
 
     'links' => [
-        'osu' => 'osu! profil',
+        'osu' => 'osu!-Profil',
         'site' => 'Offizielle Webseite',
     ],
 
