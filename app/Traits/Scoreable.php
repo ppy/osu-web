@@ -25,10 +25,15 @@ use App\Libraries\ModsHelper;
 trait Scoreable
 {
     protected $_enabledMods = null;
+    private $gamemodeString = null;
 
     public function gamemodeString()
     {
-        return snake_case(get_class_basename(static::class));
+        if ($this->gamemodeString === null) {
+            $this->gamemodeString = snake_case(get_class_basename(static::class));
+        }
+
+        return $this->gamemodeString;
     }
 
     public function getScoringType()

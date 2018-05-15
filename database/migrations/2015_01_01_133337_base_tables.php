@@ -468,6 +468,42 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_mirrors', 'DYNAMIC');
 
+        Schema::create('osu_replays', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays', 'DYNAMIC');
+
+        Schema::create('osu_replays_fruits', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_fruits', 'DYNAMIC');
+
+        Schema::create('osu_replays_mania', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_mania', 'DYNAMIC');
+
+        Schema::create('osu_replays_taiko', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_taiko', 'DYNAMIC');
+
         Schema::create('osu_scores_fruits_high', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1517,6 +1553,10 @@ class BaseTables extends Migration
         Schema::drop('osu_leaders_taiko');
         Schema::drop('osu_login_attempts');
         Schema::drop('osu_mirrors');
+        Schema::drop('osu_replays');
+        Schema::drop('osu_replays_fruits');
+        Schema::drop('osu_replays_mania');
+        Schema::drop('osu_replays_taiko');
         Schema::drop('osu_scores_fruits_high');
         Schema::drop('osu_scores_fruits');
         Schema::drop('osu_scores_high');

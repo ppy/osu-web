@@ -22,6 +22,7 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
+use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use DB;
@@ -34,6 +35,14 @@ abstract class Model extends BaseModel
         'accurateRankCounts',
         'forListing',
         'userBest',
+    ];
+
+    const RANK_TO_STATS_COLUMN_MAPPING = [
+        'A' => 'a_rank_count',
+        'S' => 's_rank_count',
+        'SH' => 'sh_rank_count',
+        'X' => 'x_rank_count',
+        'XH' => 'xh_rank_count',
     ];
 
     public function replayFile()
@@ -316,8 +325,38 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
+    public function replayViewCount()
+    {
+        $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
+
+        return $this->hasOne($class, 'score_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function delete()
+    {
+        $result = $this->getConnection()->transaction(function () {
+            $stats = optional($this->user)->statistics($this->gamemodeString());
+
+            if ($stats !== null) {
+                $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
+
+                if ($statsColumn !== null) {
+                    $stats->decrement($statsColumn);
+                }
+            }
+
+            optional($this->replayViewCount)->delete();
+
+            return parent::delete();
+        });
+
+        optional($this->replayFile())->delete();
+
+        return $result;
     }
 }
