@@ -184,7 +184,7 @@ class OrderCheckout
             }
 
             if (!$item->product->inStock($item->quantity)) {
-                $messages[] = ['insufficient_stock'];
+                $messages[] = [trans('model_validation/store/product.insufficient_stock')];
             }
 
             foreach ($messages as $array) {

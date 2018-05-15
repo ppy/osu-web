@@ -62,7 +62,7 @@ class OrderItem extends Model
         }
 
         if ($this->product === null || !$this->product->enabled) {
-            $this->validationErrors()->add('product', 'not_available');
+            $this->validationErrors()->add('product', '.not_available');
         }
 
         if ($this->quantity > $this->product->max_quantity) {
@@ -146,6 +146,11 @@ class OrderItem extends Model
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'store.order_item';
+        return 'store/order_item';
+    }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
     }
 }
