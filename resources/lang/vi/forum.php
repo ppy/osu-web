@@ -215,7 +215,7 @@ return [
             'to_0' => '',
             'to_0_done' => '',
             'to_1' => '',
-            'to_1_done' => '',
+            'to_1_done' => 'Chủ đề đã bị khóa',
         ],
 
         'moderate_move' => [
@@ -223,12 +223,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Bỏ ghim chủ đề',
+            'to_0_done' => 'Chủ đề đã được bỏ ghim',
+            'to_1' => 'Ghim chủ đề',
+            'to_1_done' => 'Chủ để đã ghim',
             'to_2' => '',
-            'to_2_done' => '',
+            'to_2_done' => 'Chủ đề đã ghim và sẽ đánh dấu là thông báo',
         ],
 
         'show' => [
@@ -258,8 +258,8 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
+            'to_not_watching' => 'Chưa đánh dấu',
+            'to_watching' => 'Đánh dấu',
             'to_watching_mail' => '',
             'mail_disable' => '',
         ],

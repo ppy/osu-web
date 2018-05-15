@@ -22,22 +22,22 @@ return [
     'signature' => [
         'not_match' => 'Signaturen stimmen nicht überein',
     ],
-    'notification_type' => 'notification_type ist nicht gültig :typ',
+    'notification_type' => 'notification_type ist nicht gültig :type',
     'order' => [
-        'invalid' => 'Bestellung ist nicht gültig',
+        'invalid' => 'Bestellung ist ungültig',
         'items' => [
-            'virtual_only' => '`:anbieter`Bezahlung nicht möglich für physische Gegenstände.',
+            'virtual_only' => '`:provider` Zahlung nicht möglich für physische Gegenstände.',
         ],
         'status' => [
-            'not_checkout' => 'Versucht, eine Bezahlung für eine Bestellung mit dem falschen Zustand zu akzeptieren. `:status`.',
-            'not_paid' => '',
+            'not_checkout' => 'Versuche, eine Bezahlung für eine Bestellung in dem falschen Zustand `:state` zu akzeptieren.',
+            'not_paid' => 'Versuche, eine Zahlung für eine Bestellung im falschen Status `:state:` zurückzuerstatten.',
         ],
     ],
     'param' => [
         'invalid' => '`:param`Param stimmt nicht überein',
     ],
     'paypal' => [
-        'not_echeck' => '',
+        'not_echeck' => 'Ausstehende Zahlung ist kein echeck (:actual)',
     ],
     'purchase' => [
         'checkout' => [
@@ -46,7 +46,7 @@ return [
         ],
     ],
     'order_number' => [
-        'malformed' => '',
-        'user_id_mismatch' => '',
+        'malformed' => 'Erhaltene Transaktions-ID ist fehlerhaft',
+        'user_id_mismatch' => 'external_id enthält die falsche Nutzer-ID',
     ],
 ];

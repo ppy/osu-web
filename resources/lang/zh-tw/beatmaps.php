@@ -27,7 +27,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => '更新投票失敗',
+            'error' => '投票更新失敗',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
         'message_placeholder' => '在此處輸入您的內容',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_type_select' => '選擇回覆類型',
-        'reply_notice' => '按下回車以提交',
+        'reply_notice' => '按下輸入鍵回覆',
         'reply_placeholder' => '在此處輸入您的回覆',
         'require-login' => '登錄以繼續',
         'resolved' => '已解決',
@@ -60,12 +60,12 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '這個信息將提交到整個譜面討論中。如果需要單獨針對某處，請在開頭使用時間戳 (例如: 00:12:345)。',
-            'in_timeline' => '需要 Mod 多處，請在每一個時間戳後寫下意見並發表。',
+            'in_general' => '這個信息將提交到整體譜面討論中。如果需要單獨針對某處，請在開頭使用時間戳 (例如: 00:12:345)。',
+            'in_timeline' => '若要 Mod 多個位置，請將每個時間戳分開至獨立的貼文，並寫下意見發表。',
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => '取消提名',
             'hype' => '推薦！',
             'mapper_note' => '備註',
             'nomination_reset' => '重置提名',
@@ -75,8 +75,8 @@ return [
         ],
 
         'mode' => [
-            'events' => '歷史',
-            'general' => '一般',
+            'events' => '路程碑',
+            'general' => '整體',
             'timeline' => '時間線',
             'scopes' => [
                 'general' => '当前难度',
@@ -105,7 +105,7 @@ return [
             'deleted' => '已刪除',
             'mapper_notes' => '備註',
             'mine' => '我的',
-            'pending' => 'Pending',
+            'pending' => '未解決',
             'praises' => '讚',
             'resolved' => '已解決',
             'total' => '所有',
@@ -243,7 +243,7 @@ return [
         'Relax' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
-        'TD' => '',
+        'TD' => '觸控螢幕',
     ],
     'language' => [
         'any' => '所有',

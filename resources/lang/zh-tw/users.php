@@ -22,7 +22,7 @@ return [
     'deleted' => '[被刪除的用戶]',
 
     'beatmapset_activities' => [
-        'title' => ":user 的摸图历史",
+        'title' => ":user 的摸圖歷史紀錄",
 
         'discussions' => [
             'title_recent' => '最近開始的討論',
@@ -47,24 +47,24 @@ return [
 
     'card' => [
         'loading' => '載入中...',
-        'send_message' => '傳送簡訊',
+        'send_message' => '傳送訊息',
     ],
 
     'login' => [
         '_' => '登入',
-        'locked_ip' => '您的 IP 位址已鎖定。請稍候幾分鐘。',
-        'username' => '用戶名稱',
+        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
+        'username' => '使用者名稱',
         'password' => '密碼',
         'button' => '登入',
         'button_posting' => '登入中...',
-        'remember' => '在這台電腦記住我',
-        'title' => '請先登錄。',
-        'failed' => '登錄失敗',
+        'remember' => '記住我這台裝置',
+        'title' => '登入以繼續',
+        'failed' => '登入失敗',
         'register' => "沒有 osu! 帳戶？現在就註冊一個！",
         'forgot' => '忘記密碼？',
         'beta' => [
             'main' => 'Beta 僅限於特定用戶訪問',
-            'small' => '（捐贈玩家將在不久開放）',
+            'small' => '（贊助者將在不久後開放）',
         ],
 
         'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
@@ -78,14 +78,14 @@ return [
         '_' => '註冊',
     ],
     'anonymous' => [
-        'login_link' => '點擊登錄',
-        'login_text' => '登錄',
-        'username' => '遊客',
-        'error' => '請先登錄',
+        'login_link' => '點擊登入',
+        'login_text' => '登入',
+        'username' => '訪客',
+        'error' => '請先登入',
     ],
     'logout_confirm' => '確定要登出嗎？o(TヘTo)',
     'restricted_banner' => [
-        'title' => '您的帳戶已被限制!',
+        'title' => '帳戶進入限制模式！',
         'message' => '在被限制時，無法與其他玩家互動，分數只有自己可見。該限制通常由系統自動給予，並將在24小時內解除。需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支持團隊</a>.',
     ],
     'show' => [
@@ -93,43 +93,43 @@ return [
         'change_avatar' => '更換你的頭像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 開發者',
-        'is_supporter' => 'osu! 贊助玩家',
+        'is_supporter' => 'osu! 支持者',
         'joined_at' => '註冊時間：:date',
-        'lastvisit' => '最後上線於：:date',
-        'missingtext' => '未找到用戶！（或者該用戶已經被 ban）',
+        'lastvisit' => '最後登入於：:date',
+        'missingtext' => '未找到的使用者！（或者該使用者已經被 ban）',
         'origin_age' => ':age 歲',
         'origin_country_age' => ':age，來自 :country',
         'origin_country' => '來自 :country',
-        'page_description' => 'osu! - 你想知道的關於 :username 的一切!',
-        'previous_usernames' => '曾用名',
+        'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
+        'previous_usernames' => '舊的使用者名稱',
         'plays_with' => '慣用 :devices',
-        'title' => ":username 的個人資料",
+        'title' => ":username 的個人簡介",
 
         'edit' => [
             'cover' => [
-                'button' => '更換個人資料皮膚',
-                'defaults_info' => '在將來會有更多皮膚可用',
+                'button' => '變更個人簡介的皮膚',
+                'defaults_info' => '未來將提供更多的封面選項',
                 'upload' => [
                     'broken_file' => '上傳失敗.請檢查上傳的圖片然後重試.',
                     'button' => '上傳圖片',
                     'dropzone' => '拖拽到此處',
-                    'dropzone_info' => '將圖片拖動到這裡也可以上傳',
-                    'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
+                    'dropzone_info' => '您也可以將圖片拉到此處上傳',
+                    'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 可用",
                     'size_info' => '圖片尺寸應為2000x500',
-                    'too_large' => '上傳的圖片過大.',
-                    'unsupported_format' => '不支持的格式.',
+                    'too_large' => '上傳的圖片檔案過大.',
+                    'unsupported_format' => '不支援的檔案格式.',
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '默认游戏模式',
-                'set' => '设置 :mode 为个人资料的默认游戏模式',
+                'is_default_tooltip' => '默認的遊戲模式',
+                'set' => '設定 :mode 為個人簡介默認的遊戲模式',
             ],
         ],
 
         'extra' => [
             'followers' => '關注者：:count',
-            'unranked' => '最近沒有玩過',
+            'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
                 'title' => '成就',
@@ -137,31 +137,31 @@ return [
             ],
             'beatmaps' => [
                 'none' => '暫時沒有...',
-                'title' => '譜面',
+                'title' => '圖譜',
 
                 'favourite' => [
-                    'title' => '收藏的譜面 (:count)',
+                    'title' => '喜愛的圖譜 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '墳場裡的譜面 (:count)',
+                    'title' => '墓地裡的圖譜 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 並且得到讚的譜面 (:count)',
+                    'title' => '被列入排名且認可的圖譜 (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => '待認可的圖譜 (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => '沒有遊戲記錄。:(',
+                'empty' => '尚無遊戲分數。:(',
                 'title' => '歷史記錄',
 
                 'monthly_playcounts' => [
-                    'title' => '游玩记录',
+                    'title' => '遊玩紀錄',
                 ],
                 'most_played' => [
                     'count' => '遊玩次數',
-                    'title' => '玩得最多的譜面',
+                    'title' => '玩過次數最多的圖譜',
                 ],
                 'recent_plays' => [
                     'accuracy' => '準確率：:percentage',
@@ -265,12 +265,12 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => '兴趣爱好',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => '',
+            'skype' => 'Skype',
             'twitter' => '推特',
             'website' => '网站',
         ],

@@ -22,18 +22,18 @@ return [
     'deleted' => '[삭제된 사용자]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":user님의 모딩 기록",
 
         'discussions' => [
             'title_recent' => '',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => '최근 일어난 일',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => '최근 게시물',
         ],
 
         'votes_received' => [
@@ -46,8 +46,8 @@ return [
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => '로딩중...',
+        'send_message' => '메시지 보내기',
     ],
 
     'login' => [
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => ':username 님의 포스트',
     ],
 
     'signup' => [
@@ -90,7 +90,7 @@ return [
     ],
     'show' => [
         'age' => ':age살',
-        'change_avatar' => '',
+        'change_avatar' => '아바타를 바꾸세요!',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!개발진',
         'is_supporter' => 'osu!서포터',
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age, :country에 거주',
         'origin_country' => ':country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
-        'previous_usernames' => '',
+        'previous_usernames' => '전에 사용했던 이름',
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
@@ -122,7 +122,7 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
+                'is_default_tooltip' => '기본 게임 모드',
                 'set' => '',
             ],
         ],
@@ -149,7 +149,7 @@ return [
                     'title' => 'Ranked / Approved 된 비트맵 (:count개)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => '대기 중인 비트맵 (:count개)',
                 ],
             ],
             'historical' => [
@@ -157,7 +157,7 @@ return [
                 'title' => '기록',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => '플레이 기록',
                 ],
                 'most_played' => [
                     'count' => '플레이 횟수',
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
-                'not_ranked' => '',
+                'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp' => ':amountpp',
                 'title' => '순위',
                 'weighted_pp' => '가중치 적용: :pp (:percentage)',
@@ -243,39 +243,39 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => '계정 상태',
+                'bad_standing' => "<strong>:username</strong> 님의 계정 상태는 영 좋지 못하네요 :(",
+                'remaining_silence' => '<strong>:username</strong> 님은 :duration 후에 말할 수 있습니다.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => '최근 사건',
+                    'date' => '날짜',
+                    'action' => '동작',
+                    'length' => '길이',
+                    'length_permanent' => '영구',
+                    'description' => '설명',
+                    'actor' => ':username으로',
 
                     'actions' => [
-                        'restriction' => '',
-                        'silence' => '',
-                        'note' => '',
+                        'restriction' => '차단',
+                        'silence' => '침묵',
+                        'note' => '알림',
                     ],
                 ],
             ],
         ],
         'info' => [
-            'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
-            'skype' => '',
-            'twitter' => '',
-            'website' => '',
+            'discord' => '디스코드',
+            'interests' => '관심 분야',
+            'lastfm' => 'Last.fm',
+            'location' => '현재 거주하는 곳',
+            'occupation' => '직업',
+            'skype' => '스카이프',
+            'twitter' => '트위터',
+            'website' => '웹사이트',
         ],
         'not_found' => [
-            'reason_1' => '',
+            'reason_1' => '이름을 바꿨나 봐요.',
             'reason_2' => '',
             'reason_3' => '',
             'reason_header' => '',
@@ -288,8 +288,8 @@ return [
             'restriction_info' => "이 기능을 이용하려면 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!서포터</a>가 되어야 합니다.",
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => '기여한 :link',
+            'count' => ':count개의 포럼 글|:count개의 포럼 글',
         ],
         'rank' => [
             'country' => ':mode 모드에 대한 국가 내 순위',
@@ -300,7 +300,7 @@ return [
             'level' => '레벨 :level',
             'maximum_combo' => '최대 콤보 수',
             'play_count' => '플레이 횟수',
-            'play_time' => '',
+            'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',
             'replays_watched_by_others' => '다른 플레이어가 관전한 횟수',
             'score_ranks' => '점수 순위',

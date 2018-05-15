@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Hypen kann nicht rückgängig gemacht werden.',
+            'is_hype' => 'Hype kann nicht rückgängig gemacht werden.',
             'has_reply' => 'Eine Diskussion mit Antworten kann nicht gelöscht werden',
         ],
         'nominate' => [
@@ -54,12 +54,12 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Zugang zum Kanal wurde verwehrt.',
+                    'no_access' => 'Dieser Kanal ist vorgeschrieben!',
                     'moderated' => 'Der Kanal wird momentan moderiert.',
                     'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
                 ],
 
-                'not_allowed' => 'Gebannt, restricted oder stummgeschaltet kann man keine Nachrichten senden.',
+                'not_allowed' => 'Gebannt, eingeschränkt oder stummgeschaltet kann man keine Nachrichten senden.',
             ],
         ],
     ],
@@ -72,7 +72,7 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
-                'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
+                'locked' => 'Beiträge in gesperrten Themen können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
             ],
@@ -82,19 +82,19 @@ return [
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
-                'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
+                'topic_locked' => 'Beiträge in gesperrten Themen können nicht bearbeitet werden.',
             ],
 
             'store' => [
-                'play_more' => 'Versuch das Spiel zu spielen, bevor du einen Beitrag erstellts! Falls du Probleme hast zu spielen, frage in den Hilfe und Support Foren.',
-                'too_many_help_posts' => "Du musst das Spiel erst spielen bevor du weitere Beiträge erstellts. Falls du immernoch Probleme hast zu spielen, schreibe an support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Versuch das Spiel zu spielen, bevor du einen Beitrag erstellst! Falls du Probleme mit dem Spiel hast, frage in dem Hilfe- und Support-Forum.',
+                'too_many_help_posts' => "Du musst das Spiel erst spielen bevor du weitere Beiträge erstellst. Falls du immer noch Probleme mit dem Spiel hast, schreibe eine E-Mail an support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
                 'double_post' => 'Du hast gerade erst einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
-                'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
+                'locked' => 'Auf gesperrte Themen kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
 
@@ -107,7 +107,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'no_permission' => 'Keine Berechtigung, einen neuen Thread zu erstellen.',
+                'no_permission' => 'Keine Berechtigung, ein neues Thema zu erstellen.',
                 'forum_closed' => 'Das Forum ist geschlossen. Man kann nicht mehr beitragen.',
             ],
 

@@ -108,8 +108,8 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => 'Votes de fonctions',
-                'description' => 'Votez pour les demandes de fonctions. (2x par mois)',
+                'title' => 'Votes de fonctionnalités',
+                'description' => 'Votez pour les demandes de fonctionnalités. (2x par mois)',
             ],
 
             'sort_options' => [

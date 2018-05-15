@@ -35,7 +35,7 @@ return [
             'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
             'link_text' => 'clique aqui',
         ],
-        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquaanto nós realizamos os pedidos mais recentes.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',

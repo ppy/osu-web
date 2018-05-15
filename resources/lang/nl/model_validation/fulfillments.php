@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => '',
-        'insufficient_paid' => '',
+        'only_one' => 'maar 1 naamsverandering toegestaan per order.',
+        'insufficient_paid' => 'Kost om gebruikersnaam te weizigen overschrijdt betaald bedrag (:expected > :actual)',
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Donatie is minder dan het nodige voor supporter gifte (:actual >:expected)',
     ],
 ];

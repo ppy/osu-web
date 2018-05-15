@@ -66,7 +66,7 @@ return [
 
         'message_type' => [
             'disqualify' => '',
-            'hype' => '',
+            'hype' => '홍보!',
             'mapper_note' => '',
             'nomination_reset' => '',
             'praise' => '칭찬',
@@ -97,8 +97,8 @@ return [
         'sort' => [
             '_' => '',
             'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'timeline' => '타임라인',
+            'updated_at' => '최근 업데이트',
         ],
 
         'stats' => [
@@ -128,8 +128,8 @@ return [
         'explanation' => '',
         'explanation_guest' => '',
         'new_time' => "",
-        'remaining' => '',
-        'required_text' => '',
+        'remaining' => ':remaining개의 홍보 가능 횟수가 남았습니다.',
+        'required_text' => '홍보 가능 횟수: :current/:required',
         'section_title' => 'Hype Train',
         'title' => '비트맵 홍보',
     ],

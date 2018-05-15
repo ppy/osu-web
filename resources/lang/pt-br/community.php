@@ -36,12 +36,12 @@ return [
             e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
 
         'supporter_status' => [
-            'contribution' => 'Obrigado pelo apoio! Você contribuiu com :dollars!',
-            'gifted' => '',
-            'not_yet' => "Você ainda não tem supporter :(",
+            'contribution' => 'Obrigado pelo o seu apoio! Você contribuiu com :dollars em :tags compras de tags!',
+            'gifted' => ':giftedTags de suas compras de tag foram presenteadas (um total de :giftedDollars presenteados), que generoso!',
+            'not_yet' => "Você ainda não tem uma supporter tag :(",
             'title' => 'Status atual do supporter',
-            'valid_until' => 'Seu supporter é válido até :date!',
-            'was_valid_until' => 'Sua tag de supporter é valida até :date.',
+            'valid_until' => 'Sua atual supporter tag é válido até :date!',
+            'was_valid_until' => 'Sua supporter tag era válido até :date.',
         ],
 
         'why_support' => [
@@ -114,12 +114,12 @@ return [
 
             'sort_options' => [
                 'title' => 'Opções de Organização',
-                'description' => 'A capacidade de ver rankings de país/amigos/certas modificações dentro do jogo.',
+                'description' => 'A capacidade de ver rankings de país/amigos/mod específico dentro do jogo.',
             ],
 
             'feel_special' => [
                 'title' => 'Sinta-se Especial',
-                'description' => 'Aquela sensação quentinha e gostosa por ter feito sua parte em manter o osu! rodando tranquilo!',
+                'description' => 'Aquela sensação quentinha e gostosa por fazer sua parte em manter o osu! rodando tranquilo!',
             ],
 
             'more_to_come' => [

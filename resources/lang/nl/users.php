@@ -19,44 +19,44 @@
  */
 
 return [
-    'deleted' => '',
+    'deleted' => '[verwijderde gebruiker]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":user's modding geschiedenis",
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Recent gestarte discussies',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Recente gebeurtenissen',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Recente berichten',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Meest geupvote door (laatste 3 maanden)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Meest geupvote (laatste 3 maanden)',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Bezig met laden...',
+        'send_message' => 'stuur bericht',
     ],
 
     'login' => [
         '_' => 'Inloggen',
-        'locked_ip' => '',
+        'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'username' => 'Gebruikernaam',
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
-        'button_posting' => '',
+        'button_posting' => 'Inloggen...',
         'remember' => 'Onthoud deze computer',
         'title' => 'Log in om verder te gaan',
         'failed' => 'Verkeerde login',
@@ -71,26 +71,26 @@ return [
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => ':username\'s berichten',
     ],
 
     'signup' => [
-        '_' => '',
+        '_' => 'Registreer',
     ],
     'anonymous' => [
         'login_link' => 'klik om in te loggen',
-        'login_text' => '',
+        'login_text' => 'log in',
         'username' => 'Gast',
         'error' => 'Je moet ingelogd zijn om dit te doen.',
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'restricted_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Je account is gerestricteerd!',
+        'message' => 'Zolang je gerestricteerd bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
     ],
     'show' => [
         'age' => ':age jaar oud',
-        'change_avatar' => '',
+        'change_avatar' => 'verander je avatar!',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -101,8 +101,8 @@ return [
         'origin_country_age' => ':age uit :country',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
-        'previous_usernames' => '',
-        'plays_with' => '',
+        'previous_usernames' => 'vroeger bekend als',
+        'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",
 
         'edit' => [
@@ -122,14 +122,14 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
-                'set' => '',
+                'is_default_tooltip' => 'standaard spelmode',
+                'set' => 'zet :mode als standaard profiel spelmode',
             ],
         ],
 
         'extra' => [
-            'followers' => '',
-            'unranked' => '',
+            'followers' => '1 volger|:count volgers',
+            'unranked' => 'Geen recente plays',
 
             'achievements' => [
                 'title' => 'Prestaties',

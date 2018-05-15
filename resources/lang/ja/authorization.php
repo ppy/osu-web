@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'フォーラムに投稿をする前にゲームのプレイをお願いします。プレイする上で問題が発生した場合、Helpフォーラムにお問い合わせください。',
+                'too_many_help_posts' => "続けて投稿する為に必要とされているプレイ回数を満たしていません。未だにプレイする上で問題が発生している場合、support@ppy.sh宛てにEメールでお問い合わせください。", // FIXME: unhardcode email address.
             ],
         ],
 

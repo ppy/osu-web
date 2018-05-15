@@ -64,7 +64,7 @@ return [
             'beatmapset' => '谱面',
             'forum_post' => '论坛',
             'user' => '玩家',
-            'wiki_page' => '',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -77,7 +77,7 @@ return [
         'wiki_page' => [
             'link' => '在 Wiki 中搜索',
             'more_simple' => '查看更多搜索结果',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -89,7 +89,7 @@ return [
             'macos' => 'macOS 版',
             'linux' => 'Linux 版',
         ],
-        'mirror' => '镜像',
+        'mirror' => '从镜像服务器下载',
         'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [

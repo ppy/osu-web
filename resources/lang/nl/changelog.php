@@ -19,20 +19,20 @@
  */
 
 return [
-    'feed_title' => '',
-    'generic' => '',
-    'users-online' => '',
+    'feed_title' => 'feed',
+    'generic' => 'Bugfixes en kleine verbeteringen.',
+    'users-online' => '1 gebruiker online|:users gebruikers online',
 
     'prefixes' => [
-        'add' => '',
-        'fix' => '',
-        'misc' => '',
+        'add' => 'toevoeging',
+        'fix' => 'fix',
+        'misc' => 'overige',
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => 'Hou je van deze update?',
+        'text_1' => 'Ondersteun de verdere ontwikkeling van osu! en :link vandaag!',
+        'text_1_link' => 'word een supporter',
+        'text_2' => 'Zo help je niet alleen development te versnellen, maar krijg je ook extra features en costumizations!',
     ],
 ];
