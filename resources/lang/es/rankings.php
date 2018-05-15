@@ -36,8 +36,8 @@ return [
         'ranked_score' => 'Puntuación rankeada',
         'average_score' => 'Puntuación promedio',
         'average_performance' => 'Rendimiento promedio',
-        'ss' => '',
-        's' => '',
-        'a' => '',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
     ],
 ];

@@ -25,7 +25,7 @@ return [
         'title' => "Riwayat Modding :user",
 
         'discussions' => [
-            'title_recent' => 'Diskusi terbaru yang baru dimulai',
+            'title_recent' => 'Diskusi yang baru dimulai',
         ],
 
         'events' => [
@@ -60,7 +60,7 @@ return [
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'failed' => 'Gagal masuk',
-        'register' => "Belum memiliki akun osu!? Buat sekarang",
+        'register' => "Belum memiliki akun osu!? Buat yang baru",
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',

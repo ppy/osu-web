@@ -29,7 +29,7 @@ return [
         'show' => [
             'covers' => 'Administrar Portadas de los Beatmap',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => 'activar',
                 'activate_confirm' => '¿activar modding v2 para este beatmap?',
                 'active' => 'activo',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Eliminar',
 
-                'forum-name' => 'Foro #:id: :name',
+                'forum-name' => 'Foro #:id: : nombre',
 
                 'no-cover' => 'Portada no definida',
 
@@ -74,7 +74,7 @@ return [
 
             'sections' => [
                 'forum' => 'Foro',
-                'general' => '',
+                'general' => 'General',
                 'store' => 'Tienda',
             ],
         ],
@@ -83,7 +83,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Listado de Pedidos',
+                'title' => 'Lista de Pedidos',
             ],
         ],
     ],

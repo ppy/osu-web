@@ -37,16 +37,16 @@ return [
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
         'placeholder' => 'type to search',
-        'title' => 'Search',
+        'title' => 'ค้นหา',
 
         'beatmapset' => [
             'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
-            'title' => 'Beatmaps',
+            'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
+            'title' => 'บีทแมพ',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
+            'all' => 'ฟอรั่มทั้งหมด',
             'link' => 'Search the forum',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
@@ -55,16 +55,16 @@ return [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
                 'topic_id' => 'topic #',
-                'username' => 'author',
+                'username' => 'ผู้สร้าง',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
-            'wiki_page' => 'wiki',
+            'all' => 'ทั้งหมด',
+            'beatmapset' => 'บีทแมพ',
+            'forum_post' => 'ฟอรั่ม',
+            'user' => 'ผู้เล่น',
+            'wiki_page' => 'วิกิ',
         ],
 
         'user' => [

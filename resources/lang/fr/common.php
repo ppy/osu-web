@@ -30,9 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Annuler',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => 'changer',
+        'click_to_copy' => 'cliquez pour copier dans le presse-papiers',
+        'click_to_copy_copied' => 'copié dans le presse-papiers !',
         'delete' => 'Supprimer',
         'permalink' => 'permalien',
         'permalink_copied' => 'lien copié',

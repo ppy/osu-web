@@ -24,8 +24,8 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => '¡Oh oh, hay problemas en tu carrito!',
-        'cart_problems_edit' => 'Haz clic aquí para ir a editarlo.',
+        'cart_problems' => '¡Oh oh, hay problemas con tu carrito!',
+        'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
         'error' => 'Ocurrió un problema al completar tu factura :(',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',

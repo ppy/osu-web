@@ -178,7 +178,7 @@ return [
                 'language' => 'Language',
                 'extra' => 'extra',
                 'rank' => 'Rank Achieved',
-                'played' => '',
+                'played' => 'เคยเล่นแล้ว',
             ],
         ],
         'mode' => 'Mode',

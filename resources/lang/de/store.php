@@ -28,7 +28,7 @@ return [
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
         'error' => 'Es gab ein Problem beim Bezahlvorgang :(',
-        'old_cart' => '',
+        'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
         'pending_checkout' => [
             'line_1' => 'Der vorherige Bezahlvorgang wurde gestartet, aber nicht beendet.',
@@ -42,7 +42,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Wir haben deine osu!store Bestellung erhalten!',
         ],
     ],
 

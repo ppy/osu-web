@@ -49,8 +49,8 @@ return [
     'started' => [
         'password' => 'รหัสผ่านใหม่',
         'password_confirmation' => 'ยืนยันรหัสผ่าน',
-        'title' => 'กำลังตั้งรหัสผ่านใหม่ให้กับผู้ใช้ <strong>:username</strong>.',
-        'verification_key' => 'รหัสผ่านยืนยัน',
+        'title' => 'กำลังตั้งรหัสผ่านใหม่สำหรับผู้ใช้ <strong>:username</strong>.',
+        'verification_key' => 'รหัสยืนยัน',
     ],
 
     'starting' => [

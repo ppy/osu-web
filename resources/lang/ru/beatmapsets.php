@@ -90,7 +90,7 @@ return [
 
             'headers' => [
                 'accuracy' => '',
-                'combo' => '',
+                'combo' => 'Максимальное комбо',
                 'miss' => '',
                 'mods' => '',
                 'player' => '',

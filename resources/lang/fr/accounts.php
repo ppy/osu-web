@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
-        'username' => '',
+        'username' => 'nom d\'utilisateur',
 
         'avatar' => [
             'title' => 'Éditer l\'Avatar',
@@ -52,7 +52,7 @@ return [
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
-                'user_discord' => '',
+                'user_discord' => 'discord',
             ],
         ],
 

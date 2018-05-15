@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
+        'admin' => 'administrador',
         'bng' => 'nominador',
-        'owner' => '',
-        'qat' => '',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Todos',
+        'label' => 'Filtrar por usuario',
     ],
 ];

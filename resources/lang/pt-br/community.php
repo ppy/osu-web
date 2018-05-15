@@ -36,12 +36,12 @@ return [
             e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
 
         'supporter_status' => [
-            'contribution' => '',
+            'contribution' => 'Obrigado pelo apoio! Você contribuiu com :dollars!',
             'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'not_yet' => "Você ainda não tem supporter :(",
+            'title' => 'Status atual do supporter',
+            'valid_until' => 'Seu supporter é válido até :date!',
+            'was_valid_until' => 'Sua tag de supporter é valida até :date.',
         ],
 
         'why_support' => [

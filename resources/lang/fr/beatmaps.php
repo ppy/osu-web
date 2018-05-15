@@ -178,7 +178,7 @@ return [
                 'language' => 'Langue',
                 'extra' => 'supplément',
                 'rank' => 'Rang Atteint',
-                'played' => '',
+                'played' => 'Jouée',
             ],
         ],
         'mode' => 'Mode',
@@ -260,9 +260,9 @@ return [
         'other' => 'Autre',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => 'Toutes',
+        'played' => 'Jouée',
+        'unplayed' => 'Non-jouée',
     ],
     'extra' => [
         'video' => 'Avec vidéo',

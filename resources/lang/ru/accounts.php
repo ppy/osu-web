@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
-        'username' => '',
+        'username' => 'Имя пользователя',
 
         'avatar' => [
             'title' => 'Смена аватара',

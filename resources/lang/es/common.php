@@ -23,16 +23,16 @@ return [
     'saved' => 'Guardado',
 
     'array_and' => [
-        'words_connector' => '',
+        'words_connector' => ', ',
         'two_words_connector' => ' y ',
         'last_word_connector' => ' y ',
     ],
 
     'buttons' => [
         'cancel' => 'Cancelar',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => 'Cambiar',
+        'click_to_copy' => 'Clic para copiar al portapapeles',
+        'click_to_copy_copied' => 'copiado al portapapeles!',
         'delete' => 'Eliminar',
         'permalink' => 'enlace permanente',
         'permalink_copied' => 'enlace copiado',
@@ -51,10 +51,10 @@ return [
     'count' => [
         'badges' => ':count insignia|:count insignias',
         'days' => ':count día|:count días',
-        'hour_short_unit' => '',
+        'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hora|:count horas',
         'item' => ':count unidad|:count unidades',
-        'minute_short_unit' => '',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count mes|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count año|:count años',
@@ -66,7 +66,7 @@ return [
             'php' => 'MMMM \\d\\e y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMMM [de] YYYY',
         ],
     ],
 
@@ -87,11 +87,11 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
-        'count_geki' => '',
-        'count_katu' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
         'count_miss' => 'Fallo',
     ],
 

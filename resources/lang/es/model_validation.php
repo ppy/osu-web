@@ -85,7 +85,7 @@ return [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
         'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
         'invalid_country' => 'El país no está en la base de datos.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Usuario de Discord invalido.',
         'invalid_email' => "No parece que haya un correo electrónico.",
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',

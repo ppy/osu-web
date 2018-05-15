@@ -21,10 +21,10 @@
 return [
     'header' => 'จัดอันดับประเภท :type',
     'type' => [
-        'performance' => 'ค่าศักยภาพ',
-        'charts' => 'Charts',
+        'performance' => 'ประสิทธิภาพ',
+        'charts' => 'ชาร์ท',
         'score' => 'คะแนน',
-        'country' => 'ภายในประเภท',
+        'country' => 'ประเทศ',
     ],
     'stat' => [
         'accuracy' => 'ความแม่นยำ',

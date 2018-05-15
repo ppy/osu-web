@@ -30,7 +30,7 @@ return [
 
         'edit' => [
             'link' => 'Lihat di GitHub',
-            'refresh' => 'Muat Ulang',
+            'refresh' => 'Perbarui',
         ],
 
         'outdated' => [

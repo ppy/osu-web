@@ -67,7 +67,7 @@ return [
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => 'หัวข้อที่ถูกลบ',
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
@@ -169,9 +169,9 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => '',
+            'to_0' => 'ลบ"แท็ก"ที่เพิ่ม',
             'to_0_done' => '',
-            'to_1' => '',
+            'to_1' => 'เพิ่มแท็ก',
             'to_1_done' => '',
         ],
 
@@ -261,7 +261,7 @@ return [
             'to_not_watching' => '',
             'to_watching' => '',
             'to_watching_mail' => '',
-            'mail_disable' => '',
+            'mail_disable' => 'ปิดการแจ้งเตือน',
         ],
     ],
 ];

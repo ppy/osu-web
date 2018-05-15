@@ -22,7 +22,7 @@ return [
     'deleted' => '[usuário deletado]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":user's Histórico de Mod's",
 
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
@@ -47,7 +47,7 @@ return [
 
     'card' => [
         'loading' => 'Carregando...',
-        'send_message' => '',
+        'send_message' => 'enviar mensagem',
     ],
 
     'login' => [
@@ -80,13 +80,13 @@ return [
     'anonymous' => [
         'login_link' => 'clique para conectar-se',
         'login_text' => 'conectar',
-        'username' => 'Convidado',
+        'username' => 'Visitante',
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
-        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'anteriormente conhecido como',
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
@@ -116,7 +116,7 @@ return [
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
                     'restriction_info' => "Envio disponível apenas para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'O tamanho da capa deve ser 2000x700',
-                    'too_large' => 'Arquivo enviado é muito grande.',
+                    'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
             ],
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
@@ -265,7 +265,7 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
             'location' => 'Lugar Atual',
@@ -275,10 +275,10 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'Eles talvez tenham mudado o nome de usuário deles.',
+            'reason_2' => 'A conta pode estar temporariamente indisponível devido a problemas de abuso ou de segurança.',
+            'reason_3' => 'Você pode ter feito um erro de digitação!',
+            'reason_header' => 'Há algumas possíveis razões para isso:',
             'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
@@ -300,7 +300,7 @@ return [
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
-            'play_time' => '',
+            'play_time' => 'Tempo Total Jogado',
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',

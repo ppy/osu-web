@@ -20,29 +20,29 @@
 
 return [
     'signature' => [
-        'not_match' => '',
+        'not_match' => 'Signaturen stimmen nicht überein',
     ],
-    'notification_type' => '',
+    'notification_type' => 'notification_type ist nicht gültig :typ',
     'order' => [
-        'invalid' => '',
+        'invalid' => 'Bestellung ist nicht gültig',
         'items' => [
-            'virtual_only' => '',
+            'virtual_only' => '`:anbieter`Bezahlung nicht möglich für physische Gegenstände.',
         ],
         'status' => [
-            'not_checkout' => '',
+            'not_checkout' => 'Versucht, eine Bezahlung für eine Bestellung mit dem falschen Zustand zu akzeptieren. `:status`.',
             'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '',
+        'invalid' => '`:param`Param stimmt nicht überein',
     ],
     'paypal' => [
         'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '',
-            'currency' => '',
+            'amount' => 'Zahlungsbetrag ist ungültig: :actual != :expected',
+            'currency' => 'Zahlung ist nicht in USD. (:type)',
         ],
     ],
     'order_number' => [

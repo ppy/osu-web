@@ -22,7 +22,7 @@ return [
     'deleted' => '[usuario eliminado]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => "Historia de Modding de :usuario",
 
         'discussions' => [
             'title_recent' => 'Discusiones recientemente empezadas',
@@ -92,12 +92,12 @@ return [
         'age' => ':age años',
         'change_avatar' => '¡cambia tu avatar!',
         'first_members' => 'Aquí desde el comienzo',
-        'is_developer' => '',
-        'is_supporter' => '',
+        'is_developer' => 'osu!desarrollador',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
         'missingtext' => '¡Has cometido un error de ortografía! (o el usuario pudo haber sido baneado)',
-        'origin_age' => '',
+        'origin_age' => ':edad',
         'origin_country_age' => ':age de :country',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -137,7 +137,7 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Ninguno... aún.',
-                'title' => '',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
                     'title' => 'Beatmaps Favoritos (:count)',
@@ -175,12 +175,12 @@ return [
                 'available' => 'Kudosu disponible',
                 'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
-                'title' => '',
+                'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
                 'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
 
                 'entry' => [
-                    'amount' => '',
+                    'amount' => ':cantidad kudosu',
                     'empty' => "¡Este usuario no ha recibido ningún kudosu!",
 
                     'beatmap_discussion' => [
@@ -230,8 +230,8 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'No hay récords increíbles aún. :(',
-                'not_ranked' => '',
-                'pp' => '',
+                'not_ranked' => 'Sólo los mapas rankeados pueden darte PP.',
+                'pp' => ':amountpp',
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
 
@@ -257,7 +257,7 @@ return [
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => '',
+                        'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
                         'note' => 'Nota',
                     ],
@@ -265,20 +265,20 @@ return [
             ],
         ],
         'info' => [
-            'discord' => '',
+            'discord' => 'Discord',
             'interests' => 'Intereses',
-            'lastfm' => '',
+            'lastfm' => 'Last.fm',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => '',
-            'twitter' => '',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
             'website' => 'Sitio web',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'El nombre de usuario pudo haberse cambiado.',
+            'reason_2' => 'La cuenta puede estar temporalmente no disponible debido a problemas de seguridad o de abuso.',
+            'reason_3' => '¡Es posible que hayas cometido un error tipográfico!',
+            'reason_header' => 'Existen unas cuantas causas posibles para este error:',
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [

@@ -29,9 +29,9 @@ return [
     ],
 
     'show' => [
-        'banner' => '',
+        'banner' => 'Apoie seu time',
         'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email mais próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email e conta do osu! são válidos!',
-        'info_page' => '',
+        'info_page' => 'Página de informações',
         'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!',
         'not_yet_entered' => 'Você não está registrado nesse torneio.',
         'rank_too_low' => 'Desculpa, você não tem os requisitos mínimos necessários para esse torneio!',
@@ -43,10 +43,10 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
-            'ended' => '',
-            'registration_closed' => '',
-            'running' => '',
+            'before_registration' => 'A inscrição para este torneio ainda não está aberta.',
+            'ended' => 'Este torneio foi concluído. Para ver o resultado, verifique a página de informações.',
+            'registration_closed' => 'As inscrições para o torneio foram fechadas. Verifique a página de informações para atualizações mais recentes.',
+            'running' => 'Esse torneio está atualmente em progresso. Verifique a página de informações para mais detalhes.',
         ],
     ],
     'tournament_period' => ':start até :end',

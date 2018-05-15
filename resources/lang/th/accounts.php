@@ -21,11 +21,11 @@
 return [
     'edit' => [
         'title' => 'ตั้งค่า <strong>ผู้ใช้</strong>',
-        'title_compact' => 'ตั้งค่า',
-        'username' => '',
+        'title_compact' => 'การตั้งค่า',
+        'username' => 'ชื่อผู้ใช้',
 
         'avatar' => [
-            'title' => 'แก้ไข Avatar',
+            'title' => 'แก้ไขรูปโปรไฟล์',
         ],
 
         'email' => [
@@ -43,14 +43,14 @@ return [
         ],
 
         'profile' => [
-            'title' => 'แก้ไขโปรไฟล์',
+            'title' => 'โปรไฟล์',
 
             'user' => [
-                'user_from' => 'ตำแหน่งปัจจุบัน',
+                'user_from' => 'ที่อยู่ปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
                 'user_msnm' => 'skype',
                 'user_occ' => 'อาชีพ',
-                'user_twitter' => 'twitter',
+                'user_twitter' => 'ทวิตเตอร์',
                 'user_website' => 'เว็บไซต์',
                 'user_discord' => '',
             ],
@@ -64,7 +64,7 @@ return [
 
     'update_email' => [
         'email_subject' => 'ยืนยันการเปลี่ยนอีเมล osu!',
-        'update' => 'อัพเดต',
+        'update' => 'อัปเดต',
     ],
 
     'update_password' => [
@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'รูปแบบการเล่น',
+        'title' => 'แบบการเล่น',
         'mouse' => 'เมาส์',
         'keyboard' => 'คีย์บอร์ด',
         'tablet' => 'แท็บเล็ต',

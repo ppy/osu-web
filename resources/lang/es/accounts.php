@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>Ajustes</strong> de la Cuenta',
         'title_compact' => 'ajustes',
-        'username' => '',
+        'username' => 'Nombre de Usuario',
 
         'avatar' => [
             'title' => 'Editar Avatar',
@@ -48,11 +48,11 @@ return [
             'user' => [
                 'user_from' => 'ubicación actual',
                 'user_interests' => 'intereses',
-                'user_msnm' => '',
+                'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
-                'user_twitter' => '',
+                'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
-                'user_discord' => '',
+                'user_discord' => 'discord',
             ],
         ],
 

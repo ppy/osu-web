@@ -30,7 +30,7 @@ return [
         '_' => 'Tamaño de fuente',
         'tiny' => 'Diminuto',
         'small' => 'Pequeño',
-        'normal' => '',
+        'normal' => 'Normal',
         'large' => 'Grande',
     ],
     'spoilerbox' => 'Caja de Spoiler',

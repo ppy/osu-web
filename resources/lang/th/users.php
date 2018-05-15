@@ -46,19 +46,19 @@ return [
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'กำลังโหลด....',
+        'send_message' => 'ส่งข้อความ',
     ],
 
     'login' => [
         '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
-        'button' => 'Sign in',
-        'button_posting' => 'Signing in...',
-        'remember' => 'Remember this computer',
-        'title' => 'Please login to proceed',
+        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
+        'username' => 'ชื่อผู้ใช้',
+        'password' => 'รหัสผ่าน',
+        'button' => 'ลงชื่อเข้าใช้',
+        'button_posting' => 'กำลังลงชื่อเข้าใช้…',
+        'remember' => 'จำคอมพิวเตอร์นี้',
+        'title' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
         'failed' => 'Incorrect login',
         'register' => "Don't have an osu! account? Make a new one",
         'forgot' => 'Forgotten your password?',
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => 'โพสต์ทั้งหมดของ:username',
     ],
 
     'signup' => [
@@ -79,7 +79,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'click to login',
-        'login_text' => '',
+        'login_text' => 'ลงชื่อเข้าใช้',
         'username' => 'Guest',
         'error' => 'You need to be logged in to do this.',
     ],
@@ -90,7 +90,7 @@ return [
     ],
     'show' => [
         'age' => ':age years old',
-        'change_avatar' => '',
+        'change_avatar' => 'เปลี่ยนรูปของคุณ',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'เคยมีชื่อว่า',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
@@ -157,7 +157,7 @@ return [
                 'title' => 'Historical',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => 'ประวัติการเล่น',
                 ],
                 'most_played' => [
                     'count' => 'times played',
@@ -219,20 +219,20 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'ฉัน!',
             ],
             'medals' => [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
             'recent_activity' => [
-                'title' => '',
+                'title' => 'ล่า​สุด',
             ],
             'top_ranks' => [
                 'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => '',
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
+                'title' => 'อันดับ',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
@@ -249,37 +249,37 @@ return [
 
                 'recent_infringements' => [
                     'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
+                    'date' => 'วันที่',
+                    'action' => 'ดำเนินการ',
+                    'length' => 'ความยาว',
+                    'length_permanent' => 'ถาวร',
+                    'description' => 'คำอธิบาย',
                     'actor' => '',
 
                     'actions' => [
-                        'restriction' => '',
-                        'silence' => '',
-                        'note' => '',
+                        'restriction' => 'แบน',
+                        'silence' => 'ถูกเงียบ',
+                        'note' => 'หมายเหตุ',
                     ],
                 ],
             ],
         ],
         'info' => [
-            'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
-            'skype' => '',
-            'twitter' => '',
-            'website' => '',
+            'discord' => 'ดิสคอร์ด',
+            'interests' => 'สิ่งที่สนใจ',
+            'lastfm' => 'Last.fm',
+            'location' => 'ตำแหน่งปัจจุบัน',
+            'occupation' => 'อาชีพ',
+            'skype' => 'Skype',
+            'twitter' => 'ทวิตเตอร์',
+            'website' => 'เว็บไซต์',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
+            'reason_1' => 'ผู้ใช้นั้นอาจเปลี่ยนชื่อ',
+            'reason_2' => 'ชื่อผู้ใช้อาจไม่สามารถเข้าถึงได้ชั่วคราวเนื่องจากปัญหาเกี่ยวกับความปลอดภัยหรือ abuse',
             'reason_3' => '',
             'reason_header' => '',
-            'title' => '',
+            'title' => 'ไม่พบผู้ใช้นี้',
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
@@ -300,7 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
-            'play_time' => '',
+            'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',
@@ -309,13 +309,13 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => 'ออนไลน์',
+        'offline' => 'ออฟไลน์',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => 'ผู้ใช้ถูกสร้างขึ้น',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => 'ยืนยันตัวตนบัญชี',
     ],
 ];

@@ -21,20 +21,20 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
-            'has_reply' => 'Can not delete discussion with replies',
+            'is_hype' => 'ไม่สามารถยกเลิก hype',
+            'has_reply' => 'ไม่สามารถลบการสนทนาที่มีข้อความตอบกลับ',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'คุณถึงขีดจำกัดของการ nomination สำหรับวันนี้ โปรดลองอีกครั้งพรุ่งนี้',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => 'เฉพาะผู้เริ่ม thread และเจ้าของ beatmap สามารถ resolve การสนทนา',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
+            'limit_exceeded' => 'กรุณารอสักครู่ก่อนโหวตเพิ่ม',
             'owner' => "Can not vote own discussion!",
-            'wrong_beatmapset_state' => '',
+            'wrong_beatmapset_state' => 'สามารถโหวตในการสนทนาของ beatmaps ที่อยู่ในสถานะ pending เท่านั้น',
         ],
     ],
 
@@ -56,16 +56,16 @@ return [
                 'channel' => [
                     'no_access' => 'Access to target channel is required.',
                     'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'not_lazer' => 'คุณสามารถพูดแค่ใน #lazer ในขณะนี้',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'ไม่สามารถส่งข้อความขณะถูกแบน/จำกัด/เงียบ',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'คุณไม่สามารถเปลี่ยนการโหวตหลังจากระยะเวลาลงคะแนนเสียงสำหรับการประกวดนี้ได้สิ้นสุดลง',
     ],
 
     'forum' => [
@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'โปรดลองเล่นเกมก่อนที่จะโพสต์ในฟอรั่ม หากคุณมีปัญหากับการเล่น กรุณาโพสต์ฟอรั่มความช่วยเหลือและสนับสนุน',
+                'too_many_help_posts' => "คุณต้องเล่นเกมเพิ่มก่อนที่คุณสามารถจะโพสต์อีกในฟอรั่ม หากคุณมีปัญหาในการเล่นเกม อีเมล์ support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
