@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => '多人游戏',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => '个人',
+            'tag-coop' => '接力',
+            'team-vs' => '组队',
+            'tag-team-vs' => '组队接力',
         ],
         'events' => [
             'player-left' => ':user 离开了房间',
@@ -66,7 +66,7 @@ return [
             'score' => '最高分',
             'accuracy' => '最高准确率',
             'combo' => '最高连击',
-            'scorev2' => '',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];
