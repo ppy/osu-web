@@ -35,12 +35,12 @@ return [
 
         'details' => [
             'made-by' => 'erstellt von ',
-            'submitted' => 'eingereicht an ',
-            'updated' => 'letztes update an ',
-            'ranked' => '<ranked> an ',
-            'approved' => '<approved> an ',
-            'qualified' => 'qualifziert an ',
-            'loved' => '<loved> on ',
+            'submitted' => 'eingereicht am ',
+            'updated' => 'letztes update am ',
+            'ranked' => 'ranked am ',
+            'approved' => 'approved am ',
+            'qualified' => 'qualifziert am ',
+            'loved' => 'loved am ',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'download' => [
                 '_' => 'Download',
@@ -50,7 +50,7 @@ return [
             ],
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
-            'favourited_count' => '+ 1 other!|+ :count others!',
+            'favourited_count' => '+ 1 anderer!|+ :count andere!',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -105,7 +105,7 @@ return [
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
                 'loading' => 'Lade Ränge...',
-                'unranked' => 'Nicht <ranked> Beatmap.',
+                'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [
                 'first' => 'An der Spitze',
