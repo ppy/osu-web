@@ -54,8 +54,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       hype = _.min([requiredHype, hypeRaw])
       userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
-    userCanNominate = @props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_qat
-    userCanDisqualify = @props.currentUser.is_admin || @props.currentUser.is_qat
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
@@ -150,16 +148,16 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     " #{nominations.current}/#{nominations.required}"
                 @renderLights(nominations.current, nominations.required)
 
-              if currentUser.id?
+              if @props.currentUser.id?
                 div className: "#{bn}__row-right",
-                  if userCanDisqualify && mapIsQualified
+                  if mapIsQualified && @userCanDisqualify()
                     el BigButton,
                       modifiers: ['full']
                       text: osu.trans 'beatmaps.nominations.disqualify'
                       icon: 'fas fa-thumbs-down'
                       props:
                         onClick: @focusNewDiscussionForDisqualification
-                  else if userCanNominate && mapCanBeNominated
+                  else if mapCanBeNominated && @userCanNominate()
                     if @props.currentDiscussions.unresolvedIssues > 0
                       # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
                       div title: osu.trans('beatmaps.nominations.unresolved_issues'),
@@ -313,3 +311,15 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       discussion: parsedEvent.link
       message: parsedEvent.message
       user: osu.link laroute.route('users.show', user: parsedEvent.user.id), parsedEvent.user.username
+
+
+  userCanNominate: =>
+    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_qat)
+
+
+  userCanDisqualify: =>
+    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_qat)
+
+
+  userIsOwner: =>
+    @props.currentUser? && @props.currentUser.id == @props.beatmapset.user_id
