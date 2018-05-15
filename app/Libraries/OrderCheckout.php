@@ -169,29 +169,29 @@ class OrderCheckout
      */
     public function validate()
     {
+        // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
         $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
+            $messages = [];
             if (!$item->isValid()) {
-                $itemErrors[$item->id] = $item->validationErrors()->allMessages();
+                $messages[] = $item->validationErrors()->allMessages();
             }
 
             if ($item->product->custom_class === 'username-change') {
                 $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $messages = $changeUsername->validate()->allMessages();
-                if (!empty($messages)) {
-                    // merge with existing errors, if any.
-                    $itemErrors[$item->id] = array_merge(
-                        $itemErrors[$item->id] ?? [],
-                        $messages
-                    );
-                }
+                $messages[] = $changeUsername->validate()->allMessages();
             }
 
             if (!$item->product->inStock($item->quantity)) {
+                $messages[] = ['insufficient_stock'];
+            }
+
+            foreach ($messages as $array) {
+                // merge with existing errors, if any.
                 $itemErrors[$item->id] = array_merge(
                     $itemErrors[$item->id] ?? [],
-                    ['insufficient_stock']
+                    $array
                 );
             }
         }
