@@ -39,8 +39,8 @@ return [
         'mapper_note_wrong_user' => '',
 
         'hype' => [
-            'guest' => '',
-            'hyped' => '',
+            'guest' => '로그인하셔야 홍보하실 수 있습니다.',
+            'hyped' => '이미 이 비트맵을 홍보했습니다.',
             'limit_exceeded' => '',
             'not_hypeable' => '',
             'owner' => '',

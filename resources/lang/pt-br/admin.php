@@ -91,7 +91,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => 'Este usuário está restrito.',
-            'message' => '(só administradores conseguem ver isto)',
+            'message' => '(somente administradores podem ver isto)',
         ],
     ],
 

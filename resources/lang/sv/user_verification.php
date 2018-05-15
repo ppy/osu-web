@@ -20,9 +20,9 @@
 
 return [
     'box' => [
-        'sent' => 'Ett email att skickats till :mail med en verifikations kod. Skriv in koden.',
+        'sent' => 'Ett email har skickats till :mail med en verifikations kod. Skriv in koden.',
         'title' => 'Konto Verifiering',
-        'verifying' => 'Verifieras...',
+        'verifying' => 'Verifierar...',
         'issuing' => 'Utfärdar ny kod...',
 
         'info' => [
@@ -30,7 +30,7 @@ return [
             'recover' => "Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.",
             'recover_link' => 'email återställning processen här',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
-            'reissue_link' => 'begära annan kod',
+            'reissue_link' => 'begär en annan kod',
             'logout_link' => 'logga ut',
         ],
     ],
@@ -40,10 +40,10 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Verifierings kod är utgången, ny verifierings email skickad.',
+        'expired' => 'Verifierings kod är utgången, ett nytt verifierings email har skickats.',
         'incorrect_key' => 'Felaktig verifierings kod.',
-        'retries_exceeded' => 'Felaktig verifierings kod. Försöks gräns uppnådd, ny verifierings email skickad.',
+        'retries_exceeded' => 'Felaktig verifierings kod. Försöks gräns uppnådd, ny verifierings email skickats.',
         'reissued' => 'Verifierings kod återutfärdat, ny verifierings email skickad.',
-        'unknown' => 'Okänt problem uppstod, ny verifierings email skickad.',
+        'unknown' => 'Okänt problem har uppstått, ny verifierings email har skickats.',
     ],
 ];

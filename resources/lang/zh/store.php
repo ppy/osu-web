@@ -82,7 +82,7 @@ return [
 
     'username_change' => [
         'check' => '输入用户名并检查是否可用',
-        'checking' => '正在检查 :username 是否可用。。。',
+        'checking' => '正在检查 :username 是否可用...',
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',

@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
-        'modding_history_link' => 'Ver histórico de mapeamento',
+        'modding_history_link' => 'Exibir histórico de modding',
     ],
 ];

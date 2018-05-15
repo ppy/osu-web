@@ -32,15 +32,15 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'title' => '',
+        'deleted_beatmap' => 'raderad',
+        'title' => 'Beatmap diskussioner',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => 'Inkludera raderade diskussioner',
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Användare',
+                'overview' => 'Aktivitetsöversikt',
             ],
         ],
     ],
@@ -48,13 +48,13 @@ return [
     'item' => [
         'created_at' => '',
         'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'message_type' => 'Typ',
+        'permalink' => 'Permalänk',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Inga av dessa inlägg har med mig att göra',
-        'notice' => 'Dessa är inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera innan du lägger upp ett inlägg.',
+        'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
     ],
 
     'reply' => [
@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
+        'admin' => 'admin',
         'bng' => 'nominerade',
         'owner' => '',
-        'qat' => '',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
         'everyone' => '',
-        'label' => '',
+        'label' => 'Filtrera genom användare',
     ],
 ];

@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Angepinnte Threads',
+    'pinned_topics' => 'Angepinnte Themen',
     'slogan' => "es ist gefährlich, alleine zu spielen.",
     'subforums' => 'Subforen',
     'title' => 'osu!community',
@@ -38,12 +38,12 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Neue Antwort auf Thread ":title"',
+        'new_reply' => '[osu!] Neue Antwort im Thema ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'Keine Threads!',
+            'empty' => 'Keine Themen!',
         ],
     ],
 
@@ -67,11 +67,11 @@ return [
     ],
 
     'topic' => [
-        'deleted' => 'gelöschter thread',
+        'deleted' => 'gelöschtes Thema',
         'go_to_latest' => 'letzten beitrag anschauen',
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
-        'new_topic' => 'Neuen Thread erstellen',
+        'new_topic' => 'Neues Thema erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
         'started_by' => 'von :user',
@@ -110,26 +110,26 @@ return [
             'title_main' => 'Foren<strong>abonnenements</strong>',
 
             'box' => [
-                'total' => 'Abonnierte Threads',
-                'unread' => 'Threads mit ungelesenen Antworten',
+                'total' => 'Abonnierte Themen',
+                'unread' => 'Themen mit ungelesenen Antworten',
             ],
 
             'info' => [
-                'total' => 'Du hast :total Threads abonniert.',
-                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
+                'total' => 'Du hast :total Themen abonniert.',
+                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Themen.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Thread deabonnieren?',
+                'confirmation' => 'Thema deabonnieren?',
                 'title' => 'Deabonnieren',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Threads',
+        '_' => 'Themen',
 
         'actions' => [
             'reply' => 'Antworten',
@@ -211,11 +211,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
-            'to_0' => 'Thread entsperren',
-            'to_0_done' => 'Thread wurde entsperrt',
-            'to_1' => 'Thread sperren',
-            'to_1_done' => 'Thread wurde gesperrt',
+            'is_locked' => 'Dieses Thema ist gesperrt und erlaubt keine weiteren Beiträge',
+            'to_0' => 'Thema entsperren',
+            'to_0_done' => 'Thema wurde entsperrt',
+            'to_1' => 'Thema sperren',
+            'to_1_done' => 'Thema wurde gesperrt',
         ],
 
         'moderate_move' => [

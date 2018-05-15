@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
-        'username' => 'Имя пользователя',
+        'username' => 'никнейм',
 
         'avatar' => [
             'title' => 'Смена аватара',
@@ -46,7 +46,7 @@ return [
             'title' => 'Дополнительная информация',
 
             'user' => [
-                'user_from' => 'проживание',
+                'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
                 'user_msnm' => 'skype',
                 'user_occ' => 'профессия',
@@ -74,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Устройства',
-        'mouse' => 'мышка',
+        'mouse' => 'мышь',
         'keyboard' => 'клавиатура',
-        'tablet' => 'планшет',
+        'tablet' => 'графический планшет',
         'touch' => 'сенсорный экран',
     ],
 ];

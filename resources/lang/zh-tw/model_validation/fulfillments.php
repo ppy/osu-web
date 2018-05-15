@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => '一個訂單中只能更改一個用戶名',
-        'insufficient_paid' => '支付金額不足以更改用戶名（ :expected > :actual ）',
-        'reverting_username_mismatch' => '當前用戶名（:current）與要撤銷更改的用戶名不一致（:username）',
+        'only_one' => '每一筆訂單僅能變更一個使用者名稱',
+        'insufficient_paid' => '餘額不足以支付變更使用者名稱所需的費用（ :expected > :actual ）',
+        'reverting_username_mismatch' => '目前的使用者名稱（:current）與要撤銷變更的使用者名稱不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '捐贈少於支持者標籤所需要求（:actual > :expected）',
+        'insufficient_paid' => '捐款少於該Support Tag禮物所需的價錢（:actual > :expected）',
     ],
 ];

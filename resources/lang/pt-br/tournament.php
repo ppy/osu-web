@@ -30,7 +30,7 @@ return [
 
     'show' => [
         'banner' => 'Apoie seu time',
-        'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email mais próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email e conta do osu! são válidos!',
+        'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email próximo da data do torneio, então, por favor, certifique-se de que seu endereço de email e conta do osu! são válidos!',
         'info_page' => 'Página de informações',
         'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!',
         'not_yet_entered' => 'Você não está registrado nesse torneio.',

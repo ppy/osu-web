@@ -21,13 +21,13 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '',
-            'regenerating' => '',
-            'remove' => '',
-            'removing' => '',
+            'regenerate' => 'Regenereer',
+            'regenerating' => 'Regenereren...',
+            'remove' => 'Verwijder',
+            'removing' => 'Verwijderen...',
         ],
         'show' => [
-            'covers' => '',
+            'covers' => 'Beheer Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activeer',
@@ -90,8 +90,8 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Deze gebruiker is momenteel gerestricteerd.',
+            'message' => '(enkel administrators kunnen dit zien)',
         ],
     ],
 

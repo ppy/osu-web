@@ -94,7 +94,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Spieler',
-                'pp' => 'PP',
+                'pp' => 'pp',
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',

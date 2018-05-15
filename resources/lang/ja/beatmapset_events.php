@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => '目次',
-        'discussion_deleted' => '',
+        'discussion_deleted' => '[削除済み]',
         'type' => 'タイプ',
     ],
 ];

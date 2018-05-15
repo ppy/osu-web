@@ -308,16 +308,22 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
+        static $prefix = 'beatmap_discussion.nominate.';
+
         if (!$user->isBNG() && !$user->isQAT()) {
             return 'unauthorized';
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
-            return 'beatmap_discussion.nominate.incorrect-state';
+            return $prefix.'incorrect_state';
         }
 
         if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
-            return 'beatmap_discussion.nominate.exhausted';
+            return $prefix.'exhausted';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            return $prefix.'owner';
         }
 
         return 'ok';
@@ -332,7 +338,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
-            return 'beatmap_discussion.nominate.incorrect-state';
+            return 'beatmap_discussion.nominate.incorrect_state';
         }
 
         return 'ok';
@@ -375,7 +381,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
-            return 'beatmap_discussion.disqualify.incorrect-state';
+            return 'beatmap_discussion.nominate.incorrect_state';
         }
 
         return 'ok';

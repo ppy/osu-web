@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Beatmap Diskussionsinlägg',
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => 'Innehåll',
+        'modding_history_link' => 'Visa modding historik',
     ],
 ];

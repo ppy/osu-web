@@ -78,7 +78,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Não é possível editar uma publicação excluída.',
+                'deleted' => 'Não é possível editar uma publicação excluida.',
                 'locked' => 'A edição desta publicação está bloqueada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Por favor tente jogar o jogo antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
-                'too_many_help_posts' => "Você precisa jogar o jogo antes de criar postagens. Se você está tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Por favor tente jogar antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
+                'too_many_help_posts' => "Você precisa jogar mais antes que você possa criar postagens adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -95,7 +95,7 @@ return [
             'reply' => [
                 'double_post' => 'Você acabou de publicar. Aguarde um pouco ou edite a sua última publicação.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para responder.',
 
                 'user' => [
@@ -106,14 +106,14 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para criar um novo tópico.',
                 'forum_closed' => 'O fórum está trancado e não pode ser publicado.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório',
-                'over' => 'A votação está encerrada e não é possível mais votar.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
+                'over' => 'A votação está encerrada e não é mais possível votar.',
                 'voted' => 'Não é permitido alterar o voto.',
 
                 'user' => [
@@ -124,7 +124,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
             ],
         ],
 

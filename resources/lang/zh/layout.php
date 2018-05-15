@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => '社区',
-            'dev' => 'osu! 开发',
+            'dev' => '',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getLive' => '直播',
@@ -180,7 +180,7 @@ return [
         ],
         'support' => [
             '_' => '支持 osu!',
-            'tags' => '成为支持者',
+            'tags' => '成为 Supporter',
             'merchandise' => '商店',
         ],
         'legal' => [

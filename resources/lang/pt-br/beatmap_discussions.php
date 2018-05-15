@@ -49,7 +49,7 @@ return [
         'created_at' => 'Data de postagem',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
-        'permalink' => 'Copiar link da postagem',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -80,6 +80,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Todos',
-        'label' => 'Filtro por usuário',
+        'label' => 'Filtrar por usuário',
     ],
 ];

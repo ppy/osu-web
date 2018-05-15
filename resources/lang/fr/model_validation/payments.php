@@ -26,7 +26,7 @@ return [
     'order' => [
         'invalid' => 'La commande n\'est pas valide',
         'items' => [
-            'virtual_only' => 'La paiement via `:provider` n\'est pas valide pour les produits physiques',
+            'virtual_only' => 'La paiement par `:provider` n\'est pas valide pour les produits physiques.',
         ],
         'status' => [
             'not_checkout' => 'Tentative d\'accepter le paiement pour une commande dans un état invalide `:state`.',
@@ -37,16 +37,16 @@ return [
         'invalid' => 'Le paramètre `:param` ne correspond pas',
     ],
     'paypal' => [
-        'not_echeck' => 'Le paiement en attente n\'est pas un echeck (:actual)',
+        'not_echeck' => 'Le paiement en attente n\'est pas un e-chèque. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Le montant du paiement ne correspond pas: :actual != :expected',
+            'amount' => 'Le montant payé ne correspond pas au montant attendu: :actual != :expected',
             'currency' => 'Le paiement n\'est pas en USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'L\'identifiant de transaction de commande est mal-formé.',
+        'malformed' => 'L\'identifiant de transaction de commande reçu est mal-formé',
         'user_id_mismatch' => 'external_id contient le mauvais id utilisateur',
     ],
 ];
