@@ -23,9 +23,9 @@ return [
         'header' => 'マルチ部屋',
         'team-types' => [
             'head-to-head' => '個人戦',
-            'tag-coop' => 'チームVS',
-            'team-vs' => '',
-            'tag-team-vs' => 'タッグチームVS',
+            'tag-coop' => '協力モード',
+            'team-vs' => 'チーム戦',
+            'tag-team-vs' => 'タッグチーム戦',
         ],
         'events' => [
             'player-left' => ':userが退室しました',

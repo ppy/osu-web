@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Nội dung',
-        'modding_history_link' => '',
+        'modding_history_link' => 'Xem lịch sử thay đổi',
     ],
 ];

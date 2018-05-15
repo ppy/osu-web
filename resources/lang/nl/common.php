@@ -19,54 +19,54 @@
  */
 
 return [
-    'confirmation' => '',
-    'saved' => '',
+    'confirmation' => 'Weet je dat zeker?',
+    'saved' => 'Opgeslaan',
 
     'array_and' => [
-        'words_connector' => '',
-        'two_words_connector' => '',
-        'last_word_connector' => '',
+        'words_connector' => ', ',
+        'two_words_connector' => ' en ',
+        'last_word_connector' => ', en ',
     ],
 
     'buttons' => [
         'cancel' => 'Annuleer',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
-        'delete' => '',
-        'permalink' => '',
-        'permalink_copied' => '',
+        'change' => 'verander',
+        'click_to_copy' => 'klik op naar klembord kopiëren',
+        'click_to_copy_copied' => 'gekopiëerd naar klembord!',
+        'delete' => 'Verwijder',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link gekopieerd',
         'post' => 'Post',
         'reply' => 'Beantwoord',
-        'reply_reopen' => '',
-        'reply_resolve' => '',
+        'reply_reopen' => 'Beantwoord en Heropen',
+        'reply_resolve' => 'Beantwoord en Los op',
         'reset' => 'Herstel',
         'save' => 'Opslaan',
-        'saving' => '',
-        'see_more' => '',
+        'saving' => 'Opslaan...',
+        'see_more' => 'toon meer',
         'show_more' => 'toon meer',
-        'upload_image' => '',
+        'upload_image' => 'upload afbeelding',
     ],
 
     'count' => [
-        'badges' => '',
-        'days' => '',
-        'hour_short_unit' => '',
-        'hours' => '',
+        'badges' => ':count badge|:count badges',
+        'days' => ':count dag|:count dagen',
+        'hour_short_unit' => 'uur|uur',
+        'hours' => ':count uur|:count uren',
         'item' => ':count stuk|:count stuks',
-        'minute_short_unit' => '',
-        'months' => '',
-        'second_short_unit' => '',
+        'minute_short_unit' => 'minuut|minuten',
+        'months' => ':count maand|:count maanden',
+        'second_short_unit' => 'second|seconden',
         'years' => '',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => '',
-            'php' => '',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
@@ -87,19 +87,19 @@ return [
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
-        'count_geki' => '',
-        'count_katu' => '',
-        'count_miss' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Mis',
     ],
 
     'time' => [
         'days_ago' => ':count dag geleden|:count dagen geleden',
         'hours_ago' => ':count uur geleden|:count uur geleden',
         'now' => 'nu',
-        'remaining' => '',
+        'remaining' => 'Resterende Tijd',
     ],
 
     'title' => [

@@ -24,16 +24,16 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => '',
-        'cart_problems_edit' => '',
-        'declined' => '',
-        'error' => '',
+        'cart_problems' => '장바구니에 문제가 생겼어요!',
+        'cart_problems_edit' => '편집하려면 클릭하세요.',
+        'declined' => '결제 실패했어요',
+        'error' => '결제하는데 문제가 생겨버렸네요:(',
         'old_cart' => '',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
             'line_1' => '',
             'line_2' => '',
-            'link_text' => '',
+            'link_text' => '여기를 클릭하세요',
         ],
         'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
     ],
@@ -73,7 +73,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => '',
+        'gift' => '선물하기',
         'require_login' => [
             '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
             'link_text' => '로그인',
@@ -81,8 +81,8 @@ return [
     ],
 
     'username_change' => [
-        'check' => '',
-        'checking' => '',
+        'check' => '사용 가능한 이름인지 확인하려면 입력하세요!',
+        'checking' => ':username의 유효성 검사하는 중...',
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
             'link_text' => '로그인',

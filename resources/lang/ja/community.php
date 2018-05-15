@@ -36,12 +36,12 @@ return [
             この素晴らしいゲームとコミュニティをこれからも支援し続けてくれる方々には感謝の気持ちでいっぱいです。',
 
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'contribution' => 'osu!を支えてくれてありがとうございます！ 今までに:dollers で:tags 個のタグを購入しました！',
+            'gifted' => ':giftedTags のサポーター タグが贈られました!(今までの合計:GiftedDollars) なんて寛大な！',
+            'not_yet' => "サポーター タグをまだ持っていません:(",
+            'title' => '現在のサポーターの状態',
+            'valid_until' => 'あなたのサポーター タグは :date まで有効です！',
+            'was_valid_until' => 'あなたのサポーター タグは :date まで有効でした。',
         ],
 
         'why_support' => [

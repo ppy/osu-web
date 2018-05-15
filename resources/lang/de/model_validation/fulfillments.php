@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => '',
-        'insufficient_paid' => '',
-        'reverting_username_mismatch' => '',
+        'only_one' => 'Nur ein Benutzername pro Auftrag erlaubt.',
+        'insufficient_paid' => 'Die Namensänderung kostet mehr als gezahlt wurde (:expected > :actual)',
+        'reverting_username_mismatch' => 'Aktueller Nutzername (:current) entspricht nicht dem, der widerrufen werden soll (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Die Spende liegt unter dem für einen Supporter-Tag nötigen Betrag (:actual > :expected)',
     ],
 ];

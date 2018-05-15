@@ -30,9 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'キャンセル',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => '変更',
+        'click_to_copy' => 'クリックでコピー',
+        'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'delete' => '削除',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',

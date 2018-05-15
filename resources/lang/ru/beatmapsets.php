@@ -89,15 +89,15 @@ return [
             'title' => 'Табло',
 
             'headers' => [
-                'accuracy' => '',
+                'accuracy' => 'Точность',
                 'combo' => 'Максимальное комбо',
-                'miss' => '',
-                'mods' => '',
-                'player' => '',
-                'pp' => '',
-                'rank' => '',
-                'score_total' => '',
-                'score' => '',
+                'miss' => 'Промах',
+                'mods' => 'Моды',
+                'player' => 'Игрок',
+                'pp' => 'pp',
+                'rank' => 'Рейтинг',
+                'score_total' => 'Всего очков',
+                'score' => 'Очки',
             ],
 
             'no_scores' => [

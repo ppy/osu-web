@@ -20,38 +20,38 @@
 
 return [
     'edit' => [
-        'title' => '帳戶設置',
-        'title_compact' => '設置',
-        'username' => '用户名',
+        'title' => '<strong>帳號</strong>設定',
+        'title_compact' => '設定',
+        'username' => '使用者名稱',
 
         'avatar' => [
             'title' => '編輯頭像',
         ],
 
         'email' => [
-            'current' => '當前郵箱地址',
-            'new' => '新郵箱地址',
-            'new_confirmation' => '確認新郵箱地址',
-            'title' => '郵箱',
+            'current' => '目前電子郵件地址',
+            'new' => '新電子郵件地址',
+            'new_confirmation' => '再次輸入電子郵件地址',
+            'title' => '電子郵件',
         ],
 
         'password' => [
-            'current' => '當前密碼',
+            'current' => '目前密碼',
             'new' => '新密碼',
-            'new_confirmation' => '確認新密碼',
+            'new_confirmation' => '再次輸入新密碼',
             'title' => '密碼',
         ],
 
         'profile' => [
-            'title' => '編輯個人資料',
+            'title' => '編輯個人簡介',
 
             'user' => [
-                'user_from' => '當前位置',
+                'user_from' => '目前所在地',
                 'user_interests' => '興趣愛好',
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
-                'user_twitter' => '推特',
-                'user_website' => '個人主頁',
+                'user_twitter' => 'twitter',
+                'user_website' => '個人網站',
                 'user_discord' => 'Discord',
             ],
         ],
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帳戶郵箱更改',
+        'email_subject' => 'osu! 帳號電子郵件變更',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帳戶密碼更改',
+        'email_subject' => 'osu! 帳號密碼變更',
         'update' => '更新',
     ],
 

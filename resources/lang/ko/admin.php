@@ -21,10 +21,10 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '',
-            'regenerating' => '',
-            'remove' => '',
-            'removing' => '',
+            'regenerate' => '재생성',
+            'regenerating' => '재생성 중...',
+            'remove' => '제거',
+            'removing' => '제거 중...',
         ],
         'show' => [
             'covers' => '',
@@ -91,7 +91,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => '이 사용자 계정은 현재 제한된 상태입니다.',
-            'message' => '(관리자만 이 메세지를 볼 수 있습니다)',
+            'message' => '(관리자만 이 메시지를 볼 수 있습니다)',
         ],
     ],
 

@@ -25,7 +25,7 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => 'общее',
+            '_' => 'главная',
             'account-edit' => 'настройки',
             'friends-index' => 'друзья',
             'changelog-index' => 'список изменений',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'сообщество',
-            'dev' => 'osu!dev',
+            'dev' => '',
             'getForum' => 'форумы',
             'getChat' => 'chat',
             'getLive' => 'прямые трансляции',

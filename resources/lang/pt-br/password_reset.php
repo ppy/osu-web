@@ -35,7 +35,7 @@ return [
     'error' => [
         'contact_support' => 'Por favor, entre em contato com o suporte para recuperar a sua conta.',
         'is_privileged' => 'Fala com o peppy, lul.',
-        'missing_key' => 'Necessário.',
+        'missing_key' => 'Obrigatório.',
         'too_many_tries' => 'Número de tentativas excedido.',
         'user_not_found' => 'O usuário selecionado não existe.',
         'wrong_key' => 'Código incorreto.',
