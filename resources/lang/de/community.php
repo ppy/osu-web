@@ -36,12 +36,12 @@ return [
             genau so auch an diejenigen, die es in Zukunft weiterführen werden :).',
 
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'contribution' => 'Danke für deine bisherige Unterstützung! Du hast insgesamt :dollars durch :tags Supporter-Tags beigesteuert!',
+            'gifted' => ':giftedTags deiner Supporter-Einkäufe waren Geschenke (für insgesamt :giftedDollars), wie großzügig von dir!',
+            'not_yet' => "Du hast noch kein Supporter-Tag :(",
+            'title' => 'Aktueller Supporter-Status',
+            'valid_until' => 'Dein aktuelles Supporter-Tag ist bis zum :date gültig!',
+            'was_valid_until' => 'Dein Supporter-Tag war bis :date gültig.',
         ],
 
         'why_support' => [
@@ -69,7 +69,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Mehr Hochladen',
-                'description' => 'Zusätzliche "ausstehende" Beatmapplätze (pro <ranked> Beatmap), bis zu einem Maximum von 10.',
+                'description' => 'Zusätzliche "ausstehende" Beatmapplätze (pro Ranked Beatmap), bis zu einem Maximum von 10.',
             ],
 
             'early_access' => [
@@ -131,7 +131,7 @@ return [
         'convinced' => [
             'title' => 'Ich bin überzeugt! :D',
             'support' => 'unterstütze osu!',
-            'gift' => 'oder verschenke \'supporter\' an andere Spieler',
+            'gift' => 'oder verschenke \'Supporter\' an andere Spieler',
             'instructions' => 'klick auf das herz, um zum osu!store zu gelangen',
         ],
     ],

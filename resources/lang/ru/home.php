@@ -62,7 +62,7 @@ return [
         'mode' => [
             'all' => 'все',
             'beatmapset' => 'карты',
-            'forum_post' => 'форумы',
+            'forum_post' => 'форум',
             'user' => 'игроки',
             'wiki_page' => 'вики',
         ],

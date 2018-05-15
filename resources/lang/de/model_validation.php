@@ -25,7 +25,7 @@ return [
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskussion ist <locked>.',
+        'discussion_locked' => 'Diskussion ist gesperrt.',
         'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
     ],
 
@@ -35,7 +35,7 @@ return [
         'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.',
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
-        'locked' => 'Die Diskussion ist <locked>.',
+        'locked' => 'Die Diskussion ist gesperrt.',
         'mapper_note_wrong_user' => 'Nur der Besitzer der Beatmap kann Notizen posten.',
 
         'hype' => [
@@ -71,7 +71,7 @@ return [
             'duplicate_options' => 'Die gleiche Antwort kann nicht doppelt enthalten sein.',
             'invalid_max_options' => 'Die Zahl an Antworten pro Benutzer kann die Anzahl an Antworten nicht überschreiten.',
             'minimum_one_selection' => 'Mindestens eine Antwort wird pro Benutzer benötigt.',
-            'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt .',
+            'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt.',
             'too_many_options' => 'Maximale Anzahl an Antworten überschritten',
         ],
 
@@ -85,7 +85,7 @@ return [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discordname ungültig.',
         'invalid_email' => "Scheint keine gültige E-Mail-Adresse zu sein.",
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',

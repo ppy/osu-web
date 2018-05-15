@@ -153,7 +153,7 @@ return [
             'edit' => [
                 'locked' => '个人页面被锁定。',
                 'not_owner' => '只能编辑自己的个人页面。',
-                'require_supporter_tag' => '需要成为支持者。',
+                'require_supporter_tag' => '需要 Supporter 标签。',
             ],
         ],
     ],

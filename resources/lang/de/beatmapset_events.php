@@ -20,15 +20,15 @@
 
 return [
     'event' => [
-        'approve' => '<Approved>.',
+        'approve' => 'Approved.',
         'discussion_delete' => 'Ein Moderator hat die Diskussion :discussion gelöscht.',
         'discussion_post_delete' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion gelöscht.',
         'discussion_post_restore' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion wiederhergestellt.',
         'discussion_restore' => 'Ein Moderator hat die Diskussion :discussion wiederhergestellt.',
         'disqualify' => 'Von :user disqualifiziert mit der Begründung: :text.',
-        'disqualify_legacy' => '',
-        'issue_reopen' => 'Gelöste <issue> :discussion wiedereröffnet.',
-        'issue_resolve' => '<issue> :discussion als gelöst gekennzeichnet.',
+        'disqualify_legacy' => 'Von :user disqualifiziert mit der Begründung: :text.',
+        'issue_reopen' => 'Gelöster/-s Vorschlag/Problem :discussion wiedereröffnet.',
+        'issue_resolve' => 'Vorschlag/Problem :discussion als gelöst gekennzeichnet.',
         'kudosu_allow' => 'Das kudosu-Verbot für Diskussion :discussion wurde entfernt.',
         'kudosu_deny' => 'Diskussion :discussion wurde das kudosu verwehrt.',
         'kudosu_gain' => 'Die Diskussion :discussion von :user hat genug Stimmen für kudosu erhalten.',
@@ -37,7 +37,7 @@ return [
         'nominate' => 'Von :user nominiert.',
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
         'qualify' => 'Qualifiziert.',
-        'rank' => '<Ranked>.',
+        'rank' => 'Ranked.',
     ],
 
     'index' => [
@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => 'Inhalt',
-        'discussion_deleted' => '',
+        'discussion_deleted' => '[gelöscht]',
         'type' => 'Typ',
     ],
 ];

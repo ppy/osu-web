@@ -57,7 +57,7 @@ return [
             'beatmap_discussions-index' => 'dyskusje',
             'beatmapset-watches-index' => 'obserwowane dyskusje',
             'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
-            'beatmapset_events-index' => 'historia zdrzeń zestawu beatmap',
+            'beatmapset_events-index' => 'historia zdarzeń zestawu beatmap',
             'index' => 'lista',
             'packs' => 'paczki',
             'show' => 'informacje',
@@ -156,7 +156,7 @@ return [
             'root' => 'strona główna',
 
             'beatmapsets' => [
-                '_' => 'beatmapy',
+                '_' => 'zestawy beatmap',
                 'show' => 'szczegóły',
             ],
         ],
@@ -172,9 +172,9 @@ return [
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Pomoc i Społeczność',
+            '_' => 'Pomoc i społeczność',
             'faq' => 'Często zadawane pytania',
-            'forum' => 'Forum',
+            'forum' => 'Fora',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
         ],
@@ -202,7 +202,7 @@ return [
         ],
         '401' => [
             'error' => "Nie powinno cię tu być.",
-            'description' => 'Jednakże możesz spróbować się wrócić albo się zalogować',
+            'description' => 'Jednakże możesz spróbować się wrócić albo się zalogować.',
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
@@ -218,7 +218,7 @@ return [
         ],
         '503' => [
             'error' => 'Przerwa techniczna!',
-            'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź <a>:link tutaj</a>, aby dowiedzieć się więcej.",
+            'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -231,7 +231,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adres e-mail',
-            'forgot' => "Nie pamiętam moich danych logowania!",
+            'forgot' => "Nie pamiętam swoich danych logowania",
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby przejść dalej',
 

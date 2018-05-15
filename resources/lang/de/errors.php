@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => 'Du hast zu viele favorisierte Beatmaps! Bitte entferne eine, bevor du fortfährst.',
     ],
     'logged_out' => 'Du wurdest ausgeloggt. Einloggen und erneut versuchen.',
-    'supporter_only' => 'Für dieses Feature muss man Supporter sein',
-    'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account <restricted> ist.',
+    'supporter_only' => 'Für dieses Feature muss man Supporter sein.',
+    'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',
 ];

@@ -31,8 +31,8 @@ return [
     'buttons' => [
         'cancel' => 'Abbrechen',
         'change' => 'ändern',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'click_to_copy' => 'Zum Speichern in die Zwischenablage klicken',
+        'click_to_copy_copied' => 'In die Zwischenablage kopiert!',
         'delete' => 'Löschen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link kopiert',

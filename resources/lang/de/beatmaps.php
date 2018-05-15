@@ -50,7 +50,7 @@ return [
         'title' => 'Diskussionen',
 
         'collapse' => [
-            'all-collapse' => 'Alle reduzieren',
+            'all-collapse' => 'Alle verkleinern',
             'all-expand' => 'Alle erweitern',
         ],
 
@@ -65,10 +65,10 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => 'Disqualifizieren',
             'hype' => 'Hype!',
             'mapper_note' => 'Anmerkung',
-            'nomination_reset' => '',
+            'nomination_reset' => 'Nominierung zurücksetzen',
             'praise' => 'Loben',
             'problem' => 'Problem',
             'suggestion' => 'Vorschlag',
@@ -112,10 +112,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Diese Beatmap wurde am :date <approved>!',
+            'approved' => 'Diese Beatmap wurde am :date approved!',
             'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...",
-            'loved' => 'Diese Beatmap wurde am :date zu <loved> hinzugefügt!',
-            'ranked' => 'Diese Beatmap wurde am :date zu <ranked> hinzugefügt!',
+            'loved' => 'Diese Beatmap wurde am :date loved!',
+            'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
 
@@ -125,8 +125,8 @@ return [
         'button' => 'Beatmap hypen!',
         'button_done' => 'Schon gehypt!',
         'confirm' => "Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.",
-        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
-        'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
+        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und ranked sichtbarer zu machen!',
+        'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und ranked sichtbarer zu machen!',
         'new_time' => "Um :new_time wirst du deinen nächsten Hype erhalten.",
         'remaining' => 'Du hast noch :remaining Hypes übrig.',
         'required_text' => 'Hype: :current/:required',
@@ -140,27 +140,27 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
-        'disqualified_at' => '',
-        'disqualified_no_reason' => '',
+        'disqualified_at' => 'Disqualifiziert vor :time_ago (:reason).',
+        'disqualified_no_reason' => 'kein grund angegeben',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
-        'qualified' => 'Die Beatmap wird voraussichtlich am :date <ranked>, wenn keine <issues> gefunden werden.',
-        'qualified_soon' => 'Die Beatmap wird bald <ranked>, wenn keine <issues> gefunden werden.',
+        'qualified' => 'Die Beatmap wird voraussichtlich am :date ranked, wenn keine Probleme gefunden werden.',
+        'qualified_soon' => 'Die Beatmap wird bald ranked, wenn keine Probleme gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',
-        'reset_message_deleted' => '',
+        'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
-        'unresolved_issues' => 'Es existieren noch <issues>, die gelöst werden müssen.',
+        'unresolved_issues' => 'Es existieren noch Vorschläge/Probleme, die gelöst werden müssen.',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
+            'disqualify' => 'Disqualifiziert vor :time_ago von :user mit dem Problem :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
         ],
     ],
 
@@ -178,11 +178,11 @@ return [
                 'language' => 'Sprache',
                 'extra' => 'extra',
                 'rank' => 'Erreichter Rang',
-                'played' => '',
+                'played' => 'Gespielt',
             ],
         ],
         'mode' => 'Modus',
-        'status' => 'Rank Status',
+        'status' => 'Ranking-Status',
         'mapped-by' => 'Von :mapper erstellt',
         'source' => 'von/aus :source',
         'load-more' => 'Mehr laden...',
@@ -200,13 +200,13 @@ return [
     ],
     'status' => [
         'any' => 'Alle',
-        'ranked-approved' => '<Ranked> & <Approved>',
-        'approved' => '<Approved>',
+        'ranked-approved' => 'Ranked & Approved',
+        'approved' => 'Approved',
         'qualified' => 'Qualifiziert',
-        'loved' => '<Loved>',
+        'loved' => 'Loved',
         'faves' => 'Favoriten',
-        'pending' => 'Ausstehend',
-        'graveyard' => '<Graveyard>',
+        'pending' => 'Pending',
+        'graveyard' => 'Graveyard',
         'my-maps' => 'Meine Beatmaps',
     ],
     'genre' => [
@@ -243,7 +243,7 @@ return [
         'Relax' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
-        'TD' => '',
+        'TD' => 'Touch-Gerät',
     ],
     'language' => [
         'any' => 'Alle',
@@ -260,9 +260,9 @@ return [
         'other' => 'Andere',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => 'Alle',
+        'played' => 'Gespielt',
+        'unplayed' => 'Ungespielt',
     ],
     'extra' => [
         'video' => 'Hat Video',

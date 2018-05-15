@@ -90,7 +90,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Dieser Benutzer ist momentan <restricted>',
+            'title' => 'Dieser Benutzer ist momentan restricted.',
             'message' => '(nur admins können dies sehen)',
         ],
     ],

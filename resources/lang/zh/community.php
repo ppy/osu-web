@@ -58,7 +58,7 @@ return [
         'perks' => [
             'title' => '我能得到什么？',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '在游戏客户端内搜索和下载谱面。',
             ],
 

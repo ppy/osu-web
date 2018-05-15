@@ -41,8 +41,8 @@ return [
     'show' => [
         'download' => 'Download',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => 'geschafft',
+            'not_cleared' => 'nicht geschafft',
         ],
     ],
 

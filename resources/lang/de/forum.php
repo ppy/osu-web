@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Angepinnte Threads',
-    'slogan' => "es ist gefährlich, alleine zu gehen.",
+    'slogan' => "es ist gefährlich, alleine zu spielen.",
     'subforums' => 'Subforen',
     'title' => 'osu!community',
 
@@ -153,7 +153,7 @@ return [
                 'max_options_info' => 'Dies ist die Anzahl an Antworten, die jeder maximal Benutzer wählen kann.',
                 'options' => 'Antworten',
                 'options_info' => 'Platziere jede Antwort in einer neuen Zeile. Du kannst maximal 10 Antworten eingeben.',
-                'title' => 'Question',
+                'title' => 'Frage',
                 'vote_change' => 'Erlaube Antwortänderungen.',
                 'vote_change_info' => 'Wenn aktiv, können Benutzer ihre Antworten ändern.',
             ],
@@ -260,7 +260,7 @@ return [
         'watch' => [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
-            'to_watching_mail' => '',
+            'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
             'mail_disable' => 'Benachrichtigungen deaktivieren',
         ],
     ],

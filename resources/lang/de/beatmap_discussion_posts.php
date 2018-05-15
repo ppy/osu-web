@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Inhalt',
-        'modding_history_link' => '',
+        'modding_history_link' => 'Moddingverlauf anschauen',
     ],
 ];

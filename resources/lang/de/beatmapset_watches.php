@@ -28,12 +28,12 @@ return [
 
     'index' => [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'title_compact' => 'beobachtete moddingthreads',
+        'title_main' => 'Beobachtete Moddingthreads',
 
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
-            'open_issues' => 'Offene <issues>',
+            'open_issues' => 'Offene Vorschläge/Probleme',
             'state' => 'Status',
             'title' => 'Titel',
         ],

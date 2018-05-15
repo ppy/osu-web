@@ -36,11 +36,11 @@ return [
         'button' => 'Suchen',
         'empty_result' => 'Nichts gefunden!',
         'missing_query' => 'Die Sucheingabe muss mindestens :n Buchstaben lang sein',
-        'placeholder' => '',
+        'placeholder' => 'Zum Suchen Text eingeben',
         'title' => 'Suchergebnisse',
 
         'beatmapset' => [
-            'more' => ':count weitere gefundenen Beatmaps',
+            'more' => ':count weitere gefundene Beatmaps',
             'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
             'title' => 'Beatmaps',
         ],
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Neue <Approved> Beatmaps',
+            'new' => 'Neue Approved Beatmaps',
             'popular' => 'Beliebte Beatmaps',
             'by' => 'von',
             'plays' => ':count plays',

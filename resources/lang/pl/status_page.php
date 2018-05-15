@@ -31,7 +31,7 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Ilość użytkoników online w ciągu ostatnich 24 godzin',
+            'users' => 'Ilość użytkowników online w ciągu ostatnich 24 godzin',
             'score' => 'Liczba wysłanych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
@@ -62,7 +62,7 @@ return [
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|{5,*} :count tygodni temu',
+            'weeks_ago' => ':count tydzień temu|:count tygodnie temu|:count tygodni temu',
         ],
     ],
 ];
