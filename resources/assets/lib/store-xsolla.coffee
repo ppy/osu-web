@@ -52,7 +52,10 @@ export class StoreXsolla
       done = true
 
     XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
+      LoadingOverlay.show()
+      LoadingOverlay.show.flush()
+
       if done
-        LoadingOverlay.show()
-        LoadingOverlay.show.flush()
         window.location = laroute.route('payments.xsolla.completed', 'foreignInvoice': orderNumber)
+      else
+        window.location.reload()
