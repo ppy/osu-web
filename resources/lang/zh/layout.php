@@ -73,7 +73,7 @@ return [
             'charts' => '月赛',
             'score' => '得分',
             'country' => '国家',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => '社区',
@@ -220,8 +220,8 @@ return [
             'error' => '啊哦...服务器正在维护中',
             'description' => "每次维护需要5秒到10分钟的时间。如果维护时间太长，查看 :link 以获得更多信息。",
             'link' => [
-                'text' => '',
-                'href' => '',
+                'text' => '@osustatus',
+                'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
