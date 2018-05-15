@@ -26,10 +26,12 @@ export class StoreXsolla
       StoreXsolla.onXsollaReady(orderNumber)
       XPayStationWidget.init(options)
 
+
   @fetchScript: ->
     new Promise (resolve, reject) ->
       loading = window.turbolinksReload.load 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js', resolve
       resolve() unless loading
+
 
   @fetchToken: ->
     new Promise (resolve, reject) ->
@@ -41,9 +43,11 @@ export class StoreXsolla
       .fail (xhr) ->
         reject(xhr: xhr)
 
+
   @optionsWithToken: (token) ->
     access_token: token,
     sandbox: process.env.PAYMENT_SANDBOX # injected by webpack.DefinePlugin
+
 
   @onXsollaReady: (orderNumber) ->
     done = false
