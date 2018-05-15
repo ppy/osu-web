@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
+            'is_hype' => 'Kan inte ångra hyping.',
             'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
@@ -55,7 +55,7 @@ return [
             'send' => [
                 'channel' => [
                     'no_access' => 'Åtkomst till kanal behövs',
-                    'moderated' => 'Kanal modereras just nu.',
+                    'moderated' => 'Kanalen modereras just nu.',
                     'not_lazer' => 'Du kan endast prata i #lazer just nu.',
                 ],
 
@@ -86,8 +86,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Vänligen prova att spela spelet innan du postar på forumet! Om du har problem med att spela, posta till hjälp och Support forumet.',
+                'too_many_help_posts' => "Du behöver spela spelet mer innan du kan göra ytterligare inlägg. Om du fortfarande har problem med att spela spelet, maila support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

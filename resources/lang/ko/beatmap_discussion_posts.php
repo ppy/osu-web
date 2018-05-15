@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => '비트맵 토론 게시판',
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => '내용',
+        'modding_history_link' => '수정 내역',
     ],
 ];

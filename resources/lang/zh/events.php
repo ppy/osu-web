@@ -30,7 +30,7 @@ return [
     'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> （:mode）中取得第 :rank 名',
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> （:mode）的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感谢您的慷慨捐赠！',
-    'user_support_first' => '<strong>:user</strong> 成为了 osu!支持者 - 感谢您的慷慨捐赠！',
-    'user_support_gift' => '<strong>:user</strong> 成为了 osu!支持者 - 来自匿名玩家的赠予！',
-    'username_change' => '<strong>:previousUsername</strong> 将名字改为 <strong><em>:user</strong></em>！',
+    'user_support_first' => '<strong>:user</strong> 成为了 osu! Supporter - 感谢您的慷慨捐赠！',
+    'user_support_gift' => '<strong>:user</strong> 成为了 osu! Supporter - 来自匿名玩家的赠予！',
+    'username_change' => '<strong>:previousUsername</strong> 已将名字改为 <strong><em>:user</strong></em>！',
 ];

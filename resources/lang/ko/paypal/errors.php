@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '',
-    'invalid_resource_id' => '',
+    'instrument_declined' => '선택하신 결제 수단은 거부되었습니다.',
+    'invalid_resource_id' => '결제 정보가 없습니다.',
     'unknown' => "알 수 없는 문제가 발생했습니다.",
 ];

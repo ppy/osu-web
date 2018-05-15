@@ -30,7 +30,7 @@ return [
 
     'show' => [
         'banner' => 'สนับสนุนทีมของคุณ',
-        'entered' => 'Your are registered for this tournament.<br><br>Note that this does not mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
+        'entered' => 'คุณลงทะเบียนการแข่งขันนี้แล้ว.<br><br>โปรดทราบ นี่ไม่ได้หมายความว่าคุณได้รับการแต่งตั้งในทีม<br><br>คำแนะนำเพิ่มเติมจะถูกส่งไปที่อีเมล์ของคุณเมื่อการแข่งขันใกล้จะเริ่ม กรุณาตรวจสอบให้แน่ใจว่าที่อยู่อีเมล์ osu! account ของคุณนั้นถูกต้อง',
         'info_page' => 'หน้าข้อมูล',
         'login_to_register' => 'กรุณา :login เพื่อดูข้อมูลการลงทะเบียน',
         'not_yet_entered' => 'คุณไม่สามารถลงทะเบียนการแข่งขันนี้ได้',

@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>계정</strong> 설정',
         'title_compact' => '설정',
-        'username' => '',
+        'username' => '사용자 이름',
 
         'avatar' => [
-            'title' => '아바타 수정',
+            'title' => '아바타',
         ],
 
         'email' => [
@@ -47,18 +47,18 @@ return [
 
             'user' => [
                 'user_from' => '지역',
-                'user_interests' => '',
-                'user_msnm' => '스카이프',
+                'user_interests' => '관심 분야',
+                'user_msnm' => 'Skype',
                 'user_occ' => '직업',
-                'user_twitter' => '트위터',
+                'user_twitter' => 'Twitter',
                 'user_website' => '사이트',
-                'user_discord' => '',
+                'user_discord' => 'Discord',
             ],
         ],
 
         'signature' => [
             'title' => '시그니처',
-            'update' => '업데이트',
+            'update' => '수정',
         ],
     ],
 

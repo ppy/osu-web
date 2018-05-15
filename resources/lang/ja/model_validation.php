@@ -85,7 +85,7 @@ return [
         'contains_username' => 'ユーザーネームを含んだパスワードは使用できません。',
         'email_already_used' => '既に使用されているEメールアドレスです。',
         'invalid_country' => 'データベースに存在しない国です。',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効のメールアドレスです。",
         'too_short' => '新しいパスワードが短すぎます。',
         'unknown_duplicate' => 'ユーザーネームかEメールアドレスが既に使用されています。',

@@ -28,28 +28,28 @@ return [
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => '아무 일도 일어나지 않았네요... 아직은요.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'title' => '',
+        'deleted_beatmap' => '삭제됨',
+        'title' => '비트맵 토론',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => '삭제된 토론 포함',
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => '사용자',
+                'overview' => '활동 개요',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => '게시일',
+        'deleted_at' => '삭제일',
+        'message_type' => '종류',
+        'permalink' => '고유 주소',
     ],
 
     'nearby_posts' => [
@@ -79,7 +79,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => '모두',
+        'label' => '사용자로 필터링',
     ],
 ];
