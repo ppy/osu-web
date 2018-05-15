@@ -34,8 +34,8 @@ return [
         ],
 
         'outdated' => [
-            '_' => 'Diese Seite zeigt eine veraltete Übersetzung. Siehe :default für den neuesten Stand (und ziehe in Erwägung bei der Übersetzung zu helfen, wenn du kannst)!',
-            'default' => 'Englische Version',
+            '_' => 'Diese Seite zeigt eine veraltete Übersetzung. Schau dir die :default für den neusten Stand an (und überlege, ob du vielleicht beim Übersetzen hilfst)!',
+            'default' => 'englische Version',
         ],
     ],
 ];
