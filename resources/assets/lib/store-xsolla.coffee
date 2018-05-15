@@ -23,7 +23,7 @@ export class StoreXsolla
     ]).then (values) ->
       token = values[0]
       options = StoreXsolla.optionsWithToken(token)
-      StoreXsolla.onXsollaComplete(orderNumber)
+      StoreXsolla.onXsollaReady(orderNumber)
       XPayStationWidget.init(options)
 
   @fetchScript: ->
@@ -45,7 +45,7 @@ export class StoreXsolla
     access_token: token,
     sandbox: process.env.PAYMENT_SANDBOX # injected by webpack.DefinePlugin
 
-  @onXsollaComplete: (orderNumber) ->
+  @onXsollaReady: (orderNumber) ->
     done = false
 
     XPayStationWidget.on XPayStationWidget.eventTypes.STATUS_DONE, ->
