@@ -125,7 +125,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                   "#{hypeRaw} / #{requiredHype}"
               @renderLights(hype, requiredHype)
 
-            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
+            if @props.currentUser.id? && !@userIsOwner()
               div className: "#{bn}__row-right",
                 el BigButton,
                   modifiers: ['full', 'wrap-text']
@@ -148,7 +148,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     " #{nominations.current}/#{nominations.required}"
                 @renderLights(nominations.current, nominations.required)
 
-              if @props.currentUser.id?
+              if @props.currentUser.id? && !@userIsOwner()
                 div className: "#{bn}__row-right",
                   if mapIsQualified && @userCanDisqualify()
                     el BigButton,
