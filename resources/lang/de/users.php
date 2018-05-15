@@ -22,7 +22,7 @@ return [
     'deleted' => '[gelöschter benutzer]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":users Moddingverlauf",
 
         'discussions' => [
             'title_recent' => 'Letztens gestartete Diskussionen',
@@ -47,7 +47,7 @@ return [
 
     'card' => [
         'loading' => 'Lädt...',
-        'send_message' => '',
+        'send_message' => 'nachricht senden',
     ],
 
     'login' => [
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s Beiträge',
+        'title' => ':usernames Beiträge',
     ],
 
     'signup' => [
@@ -85,8 +85,8 @@ return [
     ],
     'logout_confirm' => 'Sicher, dass du dich ausloggen willst? :(',
     'restricted_banner' => [
-        'title' => 'Dein Account wurde <restricted>!',
-        'message' => 'Während du <restricted> bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglisten<scores> sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine <Restriction> erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'title' => 'Dein Account wurde restricted!',
+        'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
-        'previous_usernames' => 'ehemals bekannt als',
+        'previous_usernames' => 'vorher bekannt als',
         'plays_with' => 'Spielt mit :devices',
         'title' => ":usernames Profil",
 
@@ -129,7 +129,7 @@ return [
 
         'extra' => [
             'followers' => '1 Follower|:count Follower',
-            'unranked' => 'Keine <Plays> in letzter Zeit',
+            'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
                 'title' => 'Erfolge',
@@ -146,10 +146,10 @@ return [
                     'title' => 'Begrabene Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => '<Ranked> & <Approved> Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
                 'unranked' => [
-                    'title' => '<Pending> Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps (:count)',
                 ],
             ],
             'historical' => [
@@ -157,7 +157,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => '<Play> <History>',
+                    'title' => 'Play-Verlauf',
                 ],
                 'most_played' => [
                     'count' => 'mal gespielt',
@@ -165,10 +165,10 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche <Plays> (24h)',
+                    'title' => 'Neuliche Plays (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Angeschaute Wiederholungen <History>',
+                    'title' => 'Angeschaute Wiederholungen',
                 ],
             ],
             'kudosu' => [
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Noch keine Performance-Rekorde. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp' => ':amountpp',
                 'title' => 'Ränge',
                 'weighted_pp' => 'gewichtet: :pp (:percentage)',
@@ -275,7 +275,7 @@ return [
             'website' => 'Webseite',
         ],
         'not_found' => [
-            'reason_1' => 'Der gesuchte Benutzer hat seinen Namen geändert.',
+            'reason_1' => 'Der gesuchte Benutzer könnte seinen Namen geändert haben.',
             'reason_2' => 'Der Account ist aus Sicherheitsgründen temporär nicht verfügbar.',
             'reason_3' => 'Du hast dich vielleicht verschrieben!',
             'reason_header' => 'Es gibt ein paar mögliche Gründe dafür:',
@@ -299,8 +299,8 @@ return [
             'hit_accuracy' => 'Genauigkeit',
             'level' => 'Level :level',
             'maximum_combo' => 'Höchste Combo',
-            'play_count' => '<Play>anzahl',
-            'play_time' => 'Gesamte Spielzeit',
+            'play_count' => 'Play-Anzahl',
+            'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
             'score_ranks' => 'Ränge durch Punkte',
