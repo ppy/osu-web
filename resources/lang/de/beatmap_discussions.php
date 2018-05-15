@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
-        'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe diese, bevor du diesen absendest.',
+        'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe die, bevor du diesen absendest.',
     ],
 
     'reply' => [
@@ -79,7 +79,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Jeder',
+        'label' => 'Nach Nutzer filtern',
     ],
 ];
