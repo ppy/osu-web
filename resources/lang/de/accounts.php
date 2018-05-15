@@ -25,7 +25,7 @@ return [
         'username' => 'benutzername',
 
         'avatar' => [
-            'title' => 'Avatar bearbeiten',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -38,12 +38,12 @@ return [
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'passwort bestätigen',
+            'new_confirmation' => 'passwort wiederholen',
             'title' => 'Passwort',
         ],
 
         'profile' => [
-            'title' => 'Profil bearbeiten',
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'aktueller standort',
