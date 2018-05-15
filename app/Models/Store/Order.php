@@ -21,7 +21,6 @@
 namespace App\Models\Store;
 
 use App\Exceptions\OrderNotModifiableException;
-use App\Libraries\ValidationErrors;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -392,30 +391,25 @@ class Order extends Model
      * Updates the Order with form parameters.
      *
      * Updates the Order with with an item extracted from submitted form parameters.
-     * The function returns an array containing whether the operation was successful,
-     * and a message.
+     * The function returns null on success; an error message, otherwise.
      *
      * @param array $itemForm form parameters.
      * @param bool $addToExisting whether the quantity should be added or replaced.
-     * @return ValidationErrors
+     * @return string|null null on success; error message, otherwise.
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
-            $errors = new ValidationErrors('order');
             $params = static::orderItemParams($itemForm);
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
                 $this->removeOrderItem($params);
-
-                return $errors;
             }
 
+            // TODO: better validation handling.
             if ($params['product'] === null) {
-                $errors->addTranslated('product', 'no product');
-
-                return $errors;
+                return trans('model_validation/store/order_item.not_available');
             }
 
             if ($params['product']->allow_multiple) {
@@ -426,8 +420,6 @@ class Order extends Model
 
             $this->saveOrExplode();
             $item->saveOrExplode();
-
-            return $errors;
         });
     }
 
