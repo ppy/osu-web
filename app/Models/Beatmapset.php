@@ -23,6 +23,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -595,6 +596,9 @@ class Beatmapset extends Model implements AfterCommit
             // enqueue a cover check job to ensure cover images are all present
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
+
+            // remove current scores
+            dispatch(new RemoveBeatmapsetBestScores($this));
         });
 
         return true;
