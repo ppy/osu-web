@@ -22,14 +22,14 @@ return [
     'beatmapsets' => [
         'covers' => [
             'regenerate' => '重新生成',
-            'regenerating' => '重新生成中。。。',
+            'regenerating' => '重新生成中...',
             'remove' => '移除',
-            'removing' => '移除中。。。',
+            'removing' => '正在删除...',
         ],
         'show' => [
             'covers' => '管理谱面封面',
             'discussion' => [
-                '_' => '',
+                '_' => 'Modding v2',
                 'activate' => '启用',
                 'activate_confirm' => '确认要为这个谱面启用 Modding v2 吗?',
                 'active' => '已启用',
