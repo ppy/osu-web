@@ -183,15 +183,13 @@ class OrderCheckout
                 $messages[] = [trans('model_validation/store/product.not_available')];
             }
 
+            // TODO: probably can combine max_quantity and inStock check and message.
             if (!$item->product->inStock($item->quantity)) {
                 $messages[] = [trans('model_validation/store/product.insufficient_stock')];
             }
 
             if ($item->quantity > $item->product->max_quantity) {
-                $route = route('store.cart.show');
-
-                // FIXME: old message; seems silly
-                $messages[] = ["you can only order {$item->product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
+                $messages[] = [trans_choice('model_validation/store/product.too_many', $item->product->max_quantity)];
             }
 
             $customClass = $item->getCustomClassInstance();
