@@ -49,7 +49,7 @@
                                     {{{$i->getDisplayName()}}}
                                 </span>
 
-                                {!! Form::open(['class' => 'store-order-item__options', "url" => "store/update-cart", "data-remote" => true]) !!}
+                                {!! Form::open(['class' => 'store-order-item__options', "url" => route('store.cart.store'), "data-remote" => true]) !!}
                                     <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
                                     <input type="hidden" name="item[id]" value="{{ $i->id }}">
                                     @if($i->product->allow_multiple)
@@ -77,7 +77,7 @@
 
                 <div class="store-cart-footer">
                     <p>
-                        <a href='/store/listing'>{{ trans('store.cart.more_goodies') }}</a>
+                        <a href="{{ route('store.products.index') }}">{{ trans('store.cart.more_goodies') }}</a>
                     </p>
 
                     <div class="store-cart-footer__total-box store-cart-footer__total-box--padded">
