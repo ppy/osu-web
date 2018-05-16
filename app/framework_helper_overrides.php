@@ -29,11 +29,7 @@ function trans($key = null, $replace = [], $locale = null)
     if ($translated === null) {
         $fallbackLocale = config('app.fallback_locale');
 
-        if ($locale === $fallbackLocale) {
-            $translated = $key;
-        } else {
-            $translated = $translator->get($key, $replace, $fallbackLocale, false);
-        }
+        $translated = $translator->get($key, $replace, $fallbackLocale, false);
     }
 
     return $translated;
@@ -53,11 +49,7 @@ function trans_choice($key, $number, array $replace = [], $locale = null)
     if ($translated === null) {
         $fallbackLocale = config('app.fallback_locale');
 
-        if ($locale === $fallbackLocale) {
-            $translated = $key;
-        } else {
-            $translated = $translator->transChoice($key, $number, $replace, $fallbackLocale);
-        }
+        $translated = $translator->transChoice($key, $number, $replace, $fallbackLocale);
     }
 
     return $translated;
