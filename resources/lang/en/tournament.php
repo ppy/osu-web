@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'There are no tournaments running at the moment, please check back later!',
         'registration_period' => 'Registration: :start to :end',
+
+        'state' => [
+            'current' => 'Active Tournaments',
+            'previous' => 'Past Tournaments',
+        ],
     ],
 
     'show' => [
