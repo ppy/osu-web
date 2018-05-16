@@ -169,6 +169,12 @@ class Product extends Model
             return true;
         }
 
+        // stock may have been directly updated to 0.
+        // TODO: should count reservations and available stock separately or something.
+        if ($this->stock <= 0) {
+            return false;
+        }
+
         $this->increment('stock', $quantity);
     }
 
