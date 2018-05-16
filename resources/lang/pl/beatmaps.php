@@ -46,7 +46,7 @@ return [
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
-        'restore' => 'przywróć',
+        'restore' => 'odzyskaj',
         'title' => 'Dyskusje',
 
         'collapse' => [
@@ -160,7 +160,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
         ],
     ],
 
@@ -212,7 +212,7 @@ return [
     'genre' => [
         'any' => 'Jakikolwiek',
         'unspecified' => 'Nieokreślony',
-        'video-game' => 'Gra wideo',
+        'video-game' => 'Gra',
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',

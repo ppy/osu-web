@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Musisz się zalogować, aby edytować post.',
+            'null_user' => 'Musisz się zalogować, aby zedytować post.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanych postów.',
             'wrong_user' => 'Tylko autor posta może go zedytować.',
         ],
@@ -36,11 +36,11 @@ return [
         'title' => 'Dyskusje',
 
         'form' => [
-            'deleted' => 'Zawrzyj usunięte dyskusje',
+            'deleted' => 'Uwzględnij usunięte dyskusje',
 
             'user' => [
                 'label' => 'Użytkownik',
-                'overview' => 'Przegląd aktywności',
+                'overview' => 'Całokształt aktywności',
             ],
         ],
     ],
@@ -49,7 +49,7 @@ return [
         'created_at' => 'Data utworzenia',
         'deleted_at' => 'Data usunięcia',
         'message_type' => 'Typ',
-        'permalink' => 'Link bezpośredni',
+        'permalink' => 'Odnośnik bezpośredni',
     ],
 
     'nearby_posts' => [

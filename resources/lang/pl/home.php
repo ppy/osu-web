@@ -27,7 +27,7 @@ return [
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
-            'sub' => 'rytm jest tylko o klik stąd',
+            'sub' => 'rytm jest tylko o klik stąd!',
         ],
     ],
 
@@ -60,7 +60,7 @@ return [
         ],
 
         'mode' => [
-            'all' => 'wszystko',
+            'all' => 'wszystkie',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
             'user' => 'użytkownik',

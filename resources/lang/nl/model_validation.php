@@ -26,17 +26,17 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussie is vergrendeld.',
-        'first_post' => '',
+        'first_post' => 'Je kan de startpost niet verwijderen.',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
+        'beatmap_missing' => 'Tijdstempel is opgegeven, maar beatmap ontbreekt.',
+        'beatmapset_no_hype' => "Beatmap kan niet worden gehyped.",
+        'hype_requires_null_beatmap' => 'Hype moet gebeuren in de General afdeling (alle moeilijkheidsgraden).',
+        'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
+        'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
-        'mapper_note_wrong_user' => '',
+        'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
             'guest' => '',

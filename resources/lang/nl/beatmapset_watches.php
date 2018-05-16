@@ -28,12 +28,12 @@ return [
 
     'index' => [
         'description' => 'Dit zijn de beatmap discussies die je volgt. Je wordt verwittigd bij nieuwe berichten of updates.',
-        'title_compact' => '',
-        'title_main' => '',
+        'title_compact' => 'modding volglijst',
+        'title_main' => 'Modding Volglijst',
 
         'table' => [
             'empty' => 'Geen map discussies aan het volgen.',
-            'open_issues' => '',
+            'open_issues' => 'Open problemen',
             'state' => 'Staat',
             'title' => 'Titel',
         ],

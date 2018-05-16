@@ -30,7 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '',
+        'invalid_mode' => 'Invalide mode opgegeven.',
         'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
     ],
     'beatmapsets' => [

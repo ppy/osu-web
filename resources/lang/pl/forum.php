@@ -20,14 +20,14 @@
 
 return [
     'pinned_topics' => 'Przypięte wątki',
-    'slogan' => "niebezpiecznie jest grać samemu.",
+    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
 
     'covers' => [
         'create' => [
             '_' => 'Ustaw tło',
-            'button' => 'Prześlij tło',
+            'button' => 'Dodaj tło',
             'info' => 'Tło powinno mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
@@ -70,7 +70,7 @@ return [
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'latest_post' => ':when przez :user',
-        'latest_reply_by' => 'najnowsza odpowiedź od :user',
+        'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Stwórz nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
@@ -90,7 +90,7 @@ return [
         ],
 
         'jump' => [
-            'enter' => 'kliknij, aby przejść do konkretnego posta',
+            'enter' => 'kliknij, aby przejść do specyficznego posta',
             'first' => 'przejdź do pierwszego posta',
             'last' => 'przejdź do ostatniego posta',
             'next' => 'pomiń następne 10 postów',
@@ -106,7 +106,7 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Zasubskrybowane wątki',
-            'title_compact' => 'subskrybcje wątków',
+            'title_compact' => 'subskrybcje',
             'title_main' => '<strong>Subskrybcje</strong> wątków',
 
             'box' => [
@@ -115,8 +115,8 @@ return [
             ],
 
             'info' => [
-                'total' => 'Zasubskrybowałeś łącznie :total wątków.',
-                'unread' => 'Liczba zasubskrybowanych wątków z nieodczytanymi odpowiedziami: :unread.',
+                'total' => 'Liczba zasubskrybowanych wątków: :total.',
+                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
             ],
         ],
 
@@ -146,13 +146,13 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Prowadź ankietę przez',
+                'length' => 'Przeprowadź ankietę przez',
                 'length_days_suffix' => 'dni',
                 'length_info' => 'Zostaw puste dla niekończącej się ankiety.',
-                'max_options' => 'Możliwości wyboru dla każdego użytkownika',
+                'max_options' => 'Możliwości wyboru na każdego użytkownika',
                 'max_options_info' => 'Liczba wyborów, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
-                'options_info' => 'Umieszczaj każdą ocpję wyboru w nowej linii. Możesz wprowadzić maksymalnie 10 opcji wybórów.',
+                'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
                 'vote_change' => 'Zezwól na zmianę głosów.',
                 'vote_change_info' => 'Jeżeli ta opcja będzie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
@@ -223,9 +223,9 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Odepnij wątek',
+            'to_0' => 'Odepnij ten wątek',
             'to_0_done' => 'Wątek został odpięty',
-            'to_1' => 'Przypnij wątek',
+            'to_1' => 'Przypnij ten wątek',
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłosznie',
@@ -237,7 +237,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Priorytet: +:count',
-                'do' => 'Promuj tę prośbę',
+                'do' => 'Nagłośnij tę prośbę',
 
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',

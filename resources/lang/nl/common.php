@@ -57,7 +57,7 @@ return [
         'minute_short_unit' => 'minuut|minuten',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
-        'years' => '',
+        'years' => ':count jaar|:count jaar',
     ],
 
     'datetime' => [

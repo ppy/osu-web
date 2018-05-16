@@ -25,9 +25,9 @@ return [
             'has_reply' => 'Nie możesz usunąć dyskusji z odpowiedziami',
         ],
         'nominate' => [
-            'exhausted' => 'Osiągnąłeś swój dzienny limit nominacji, spróbuj ponownie jutro.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
+            'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
+            'owner' => "Nie możesz nominować własnej beatmapy.",
         ],
         'resolve' => [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zamknąć tę dyskusję.',
@@ -35,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => "Nie możesz głosować na własną dyskusję!",
+            'owner' => "Nie możesz głosować we własnej dyskusji!",
             'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
         ],
     ],

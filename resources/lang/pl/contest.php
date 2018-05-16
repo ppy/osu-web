@@ -24,10 +24,10 @@ return [
         'large' => 'Konkursy społeczności',
     ],
     'voting' => [
-        'over' => 'Głosowanie w tym konkursie zostało zakończone',
+        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',
         'best_of' => [
-            'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie zagrana!",
+            'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie ukończona.",
         ],
     ],
     'entry' => [
@@ -36,7 +36,7 @@ return [
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zostało zakończone i wkrótce zacznie się głosowanie.',
-        'limit_reached' => 'Limit zgłoszeń do tego konkursu został przez ciebie osiągnięty.',
+        'limit_reached' => 'Limit zgłoszeń do tego konkursu został przez ciebie przekroczony.',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'wrong_type' => [
             'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
@@ -57,12 +57,12 @@ return [
 
         'starts' => [
             '_' => 'Data rozpoczęcia: :date',
-            'soon' => 'wkrótce™',
+            'soon' => 'niedługo™',
         ],
     ],
     'states' => [
         'entry' => 'Otwarty na zgłoszenia',
-        'voting' => 'Głosowanie rozpoczęte',
+        'voting' => 'Głosowanie',
         'results' => 'Wyniki',
     ],
 ];

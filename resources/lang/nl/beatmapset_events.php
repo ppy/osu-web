@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'Beatmapset Gebeurtenissen',
     ],
 
     'item' => [

@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer morgen opnieuw.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
+            'owner' => "Je kan je eigen beatmap niet nomineren.",
         ],
         'resolve' => [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
