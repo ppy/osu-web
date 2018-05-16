@@ -29,11 +29,17 @@
   background-color: @pink;
 }
 
+:root {
+  --font-default: @font-family-sans-serif;
+  --font-content: @font-family-content;
+}
+
 html, body {
   height: 100%;
 }
 
 body {
+  .default-font();
   // no overlap between rightmost side and scrollbar
   -ms-overflow-style: scrollbar;
   // prevent moving navbar

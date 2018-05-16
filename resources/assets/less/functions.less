@@ -225,3 +225,8 @@
   line-height: 1.35;
   color: #444;
 }
+
+.default-font() {
+  font-family: @font-family-sans-serif;
+  font-family: var(--font-default-override, var(--font-default));
+}
