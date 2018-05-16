@@ -178,13 +178,25 @@ class OrderCheckout
                 $messages[] = $item->validationErrors()->allMessages();
             }
 
-            if ($item->product->custom_class === 'username-change') {
-                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $messages[] = $changeUsername->validate()->allMessages();
+            // Checkout process level validations, should not be part of OrderItem validation.
+            if ($item->product === null || !$item->product->enabled) {
+                $messages[] = [trans('model_validation/store/product.not_available')];
             }
 
             if (!$item->product->inStock($item->quantity)) {
                 $messages[] = [trans('model_validation/store/product.insufficient_stock')];
+            }
+
+            if ($item->quantity > $item->product->max_quantity) {
+                $route = route('store.cart.show');
+
+                // FIXME: old message; seems silly
+                $messages[] = ["you can only order {$item->product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
+            }
+
+            if ($item->product->custom_class === 'username-change') {
+                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
+                $messages[] = $changeUsername->validate()->allMessages();
             }
 
             foreach ($messages as $array) {
