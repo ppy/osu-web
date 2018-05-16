@@ -55,7 +55,14 @@
                                     @if($i->product->allow_multiple)
                                         <span class="store-order-item__quantity">{{ trans_choice('common.count.item', $i->quantity) }}</span>
                                     @else
-                                        {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'store-order-item__quantity form-control js-auto-submit']) !!}
+                                        {!!
+                                            Form::select(
+                                                "item[quantity]",
+                                                product_quantity_options($i->product, $i->quantity),
+                                                $i->quantity,
+                                                ['class' => 'store-order-item__quantity form-control js-auto-submit']
+                                            )
+                                        !!}
                                     @endif
                                     <span class="store-order-item__subtotal">{{ currency($i->subtotal()) }}</span>
                                     <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
