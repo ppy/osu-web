@@ -28,15 +28,18 @@
 
     @if(!$order || !count($order->items))
         <div class="osu-layout__row osu-layout__row--page">
-            <h1>Shopping Cart</h1>
+            <h1>{{ trans('store.cart.title') }}</h1>
 
-            <p>Your cart is empty.</p>
-            <p>Return to the <a href="/store/">store listing</a> to find some goodies!</p>
+            <p>{{ trans('store.cart.empty.text') }}</p>
+            <p>{!! trans('store.cart.empty.return_link._', [
+                'link' => Html::link(route('store.products.index'), trans('store.cart.empty.return_link.link_text')),
+                ]) !!}
+            </p>
         </div>
     @else
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
-                <h1>Shopping Cart</h1>
+                <h1>{{ trans('store.cart.title') }}</h1>
 
                 <ul class="table cart-items">
                     @foreach($order->items as $i)
@@ -74,11 +77,11 @@
 
                 <div class="store-cart-footer">
                     <p>
-                        <a href='/store/listing'>I want to check out more goodies before completing the order</a>
+                        <a href='/store/listing'>{{ trans('store.cart.more_goodies') }}</a>
                     </p>
 
                     <div class="store-cart-footer__total-box store-cart-footer__total-box--padded">
-                        <p class="store-cart-footer__text">total</p>
+                        <p class="store-cart-footer__text">{{ trans('store.cart.total') }}</p>
 
                         <p class="store-cart-footer__text store-cart-footer__text--amount">
                             {{{ currency($order->getSubtotal()) }}}
@@ -86,7 +89,7 @@
 
                         @if($order->requiresShipping())
                             <p class="store-cart-footer__text store-cart-footer__text--shipping">
-                                + shipping fees
+                                + {{ trans('store.cart.shipping_fees') }}
                             </p>
                         @endif
                     </div>
@@ -95,10 +98,16 @@
 
             <div class="osu-layout__sub-row">
                 @if ($hasErrors)
-                    Cannot checkout out while cart has errors
+                    <div class="alert alert-danger">
+                        @foreach (trans('store.cart.errors_no_checkout') as $_k => $v)
+                            <p>{{ $v }}</p>
+                        @endforeach
+                    </div>
                 @else
                     <div class="big-button">
-                        <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
+                        <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">
+                            {{ trans('store.cart.checkout' ) }}
+                        </a>
                     </div>
                 @endif
             </div>
