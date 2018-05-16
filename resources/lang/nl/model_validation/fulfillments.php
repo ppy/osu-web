@@ -21,7 +21,7 @@
 return [
     'username_change' => [
         'only_one' => 'maar 1 naamsverandering toegestaan per order.',
-        'insufficient_paid' => 'Kost om gebruikersnaam te weizigen overschrijdt betaald bedrag (:expected > :actual)',
+        'insufficient_paid' => 'Kosten om gebruikersnaam te wijzigen overschrijdt het betaalde bedrag (:expected > :actual)',
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [

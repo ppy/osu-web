@@ -28,26 +28,26 @@ return [
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Non è successo nulla... per ora.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
+        'deleted_beatmap' => 'eliminato',
         'title' => '',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => 'Includi discussioni eliminate',
 
             'user' => [
-                'label' => '',
+                'label' => 'Utente',
                 'overview' => '',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
+        'created_at' => 'Data del Post',
+        'deleted_at' => 'Data di eliminazione',
         'message_type' => '',
         'permalink' => '',
     ],
@@ -59,8 +59,8 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Registrati per Rispondere',
+            'user' => 'Rispondi',
         ],
     ],
 
@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
+        'admin' => 'amministratore',
         'bng' => '',
         'owner' => '',
         'qat' => '',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Tutti',
+        'label' => 'Filtra per utente',
     ],
 ];

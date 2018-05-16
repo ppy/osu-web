@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator återställde inlägg från diskussionen :discussion.',
         'discussion_restore' => 'Moderator återställde diskussionen :discussion.',
-        'disqualify' => '',
+        'disqualify' => 'Diskvalificerad av :user. Anledning: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalificerad av :user. Anledning: :text.',
         'issue_reopen' => 'Löst problem :discussion öppnat igen.',
         'issue_resolve' => 'Problem :discussion markerat som löst.',
@@ -41,12 +41,12 @@ return [
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'Beatmapset händelser',
     ],
 
     'item' => [
-        'content' => '',
-        'discussion_deleted' => '',
-        'type' => '',
+        'content' => 'Innehåll',
+        'discussion_deleted' => '[raderad]',
+        'type' => 'Typ',
     ],
 ];

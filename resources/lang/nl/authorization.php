@@ -21,20 +21,22 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
-            'has_reply' => '',
+            'is_hype' => 'Hyping kan niet ongedaan gemaakt worden.',
+            'has_reply' => 'Je kan geen discussie met reacties verwijderen',
         ],
         'nominate' => [
-            'exhausted' => '',
+            'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer morgen opnieuw.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
         ],
 
         'vote' => [
-            'limit_exceeded' => '',
-            'owner' => "",
-            'wrong_beatmapset_state' => '',
+            'limit_exceeded' => 'Wacht even voor meer stemmen in te dienen',
+            'owner' => "Je kan niet stemmen op je eigen discussie.",
+            'wrong_beatmapset_state' => 'Kan alleen stemmen op discussies van pending beatmaps.',
         ],
     ],
 
@@ -56,7 +58,7 @@ return [
                 'channel' => [
                     'no_access' => 'Toegang tot dit kanaal is vereist.',
                     'moderated' => 'Kanaal wordt op het moment gemodereerd.',
-                    'not_lazer' => '',
+                    'not_lazer' => 'Je kan op dit moment enkel in #lazer praten.',
                 ],
 
                 'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
@@ -65,7 +67,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => '',
+        'voting_over' => 'Je kan je stem niet meer veranderen nadat de stemperiode van deze wedstrijd is afgelopen.',
     ],
 
     'forum' => [
@@ -78,7 +80,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => '',
+                'deleted' => 'Je kan een verwijderde post niet bewerken.',
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
@@ -86,8 +88,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Probeer eerste de game te spelen voor je op de forums post! Als je een probleem hebt met te spelen, post dan a. u. b. in de Help en Support forum.',
+                'too_many_help_posts' => "Je moet eerst de game spelen voor je extra posts kan maken. Als je nog steeds problemen ondervindt, e-mail dan support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -99,9 +101,9 @@ return [
                 'no_permission' => 'Geen toestemming om te antwoorden.',
 
                 'user' => [
-                    'require_login' => '',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'require_login' => 'Log in om te antwoorden.',
+                    'restricted' => "Je kan niet reageren terwijl je restricted bent.",
+                    'silenced' => "Kan niet beantwoorden wanneer je silenced bent.",
                 ],
             ],
 
@@ -112,19 +114,19 @@ return [
             ],
 
             'vote' => [
-                'no_forum_access' => '',
-                'over' => '',
-                'voted' => '',
+                'no_forum_access' => 'Je hebt toegang tot deze form nodig.',
+                'over' => 'De stemperiode is voorbij en er kan niet meer gestemd worden.',
+                'voted' => 'Je mag je stem niet meer veranderen.',
 
                 'user' => [
-                    'require_login' => '',
-                    'restricted' => "",
-                    'silenced' => "",
+                    'require_login' => 'Gelieve in te loggen om te stemmen.',
+                    'restricted' => "Je kan niet stemmen als je gerestricteerd bent.",
+                    'silenced' => "Kan niet stemmen wanneer gestilt.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => '',
+                'no_forum_access' => 'Je hebt toegang tot deze forum nodig.',
             ],
         ],
 

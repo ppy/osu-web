@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu!-离节奏就差一此 * 点击 *! 与 Ouendan/EBA, 太鼓和原创的游戏模式, 以及一个带有完善功能的级别编辑器。',
     ],
 
     'menu' => [
@@ -47,8 +47,8 @@ return [
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => '维基',
+            'wiki-show' => '维基',
         ],
         'beatmaps' => [
             '_' => '谱面',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => '社区',
-            'dev' => '',
+            'dev' => '开发',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getLive' => '直播',
@@ -112,7 +112,7 @@ return [
 
             'register' => '注册',
             'reset' => '重置',
-            'new' => '',
+            'new' => '新增',
 
             'messages' => '信息',
             'settings' => '设置',
@@ -135,9 +135,9 @@ return [
             'getInvoice' => '发票',
             'products-show' => '商品',
 
-            'new' => '',
-            'home' => '',
-            'index' => '',
+            'new' => '新增',
+            'home' => '首页',
+            'index' => '主页',
             'thanks' => '感谢',
         ],
         'admin-forum' => [
@@ -169,7 +169,7 @@ return [
             'changelog-index' => '更新日志',
             'beatmaps' => '谱面列表',
             'download' => '下载 osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => '帮助 & 社区',

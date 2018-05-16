@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'コミュニティ',
-            'dev' => '',
+            'dev' => '開発',
             'getForum' => 'フォーラム',
             'getChat' => 'チャット',
             'getLive' => '配信',

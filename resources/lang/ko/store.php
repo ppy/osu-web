@@ -31,7 +31,7 @@ return [
         'old_cart' => '',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
-            'line_1' => '',
+            'line_1' => '이전 결제가 시작 됐지만 끝나지 않았습니다.',
             'line_2' => '',
             'link_text' => '여기를 클릭하세요',
         ],
@@ -42,7 +42,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => '저희는 귀하의 osu!상점 주문을 받았습니다!',
         ],
     ],
 

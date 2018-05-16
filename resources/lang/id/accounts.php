@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Pengaturan</strong> Akun',
+        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 

@@ -32,7 +32,7 @@ return [
         'banner' => 'Apoya A Tu Equipo',
         'entered' => 'Estás inscrito en este torneo.<br><br>Ten en cuenta que esto no significa que hayas sido asignado a un equipo.<br><br>Instrucciones posteriores serán enviadas a tu correo electrónico antes de la fecha del torneo, así que ¡por favor asegúrate que tu correo electrónico sea válido!',
         'info_page' => 'Página de Información',
-        'login_to_register' => '¡Por favor :login para ver los detalles de inscripción!',
+        'login_to_register' => '¡Por favor :inicia sesion para ver los detalles de inscripción!',
         'not_yet_entered' => 'No estás inscrito en este torneo.',
         'rank_too_low' => '¡Lo sentimos, no cumples con los requisitos de rank para este torneo!',
         'registration_ends' => 'Las inscripciones se cierran en :date',
@@ -49,5 +49,5 @@ return [
             'running' => 'Este torneo está actualmente en curso. Visite la página de información para más detalles.',
         ],
     ],
-    'tournament_period' => 'Desde el :start al :end',
+    'tournament_period' => 'Desde el :inicia al :termina',
 ];

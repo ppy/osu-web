@@ -21,10 +21,10 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '',
-            'regenerating' => '',
-            'remove' => '',
-            'removing' => '',
+            'regenerate' => 'Rigenera',
+            'regenerating' => 'Rigenerando...',
+            'remove' => 'Rimuovi',
+            'removing' => 'Rimuovendo...',
         ],
         'show' => [
             'covers' => '',
@@ -90,8 +90,8 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Questo utente è attualmente ristretto.',
+            'message' => '(solo gli amministratori possono vedere questo)',
         ],
     ],
 

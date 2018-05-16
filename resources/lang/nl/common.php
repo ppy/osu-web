@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => 'Weet je dat zeker?',
-    'saved' => 'Opgeslaan',
+    'saved' => 'Opgeslagen',
 
     'array_and' => [
         'words_connector' => ', ',

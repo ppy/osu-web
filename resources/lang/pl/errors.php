@@ -22,11 +22,11 @@ return [
     'codes' => [
         'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
-        'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
+        'http-429' => 'Za dużo prób, spróbuj ponownie później.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
+            'generic' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
     ],
     'beatmaps' => [
@@ -38,6 +38,6 @@ return [
     ],
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
-    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli posiadasz blokadę konta.',
+    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli twoje konto jest zablokowane.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',
 ];

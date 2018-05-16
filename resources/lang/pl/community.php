@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Kochasz osu!?<br/>
-                                Wspomóż deweloperów osu! :D',
+                                Wspomóż twórców gry! :D',
             'small_description' => '',
             'support_button' => 'Chcę wspomóc osu!',
         ],
@@ -39,7 +39,7 @@ return [
             'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
             'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
             'title' => 'Status donatora',
-            'valid_until' => 'Twój status donatora jest aktywny do :date!',
+            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],
 

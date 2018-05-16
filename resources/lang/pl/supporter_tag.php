@@ -19,7 +19,7 @@
  */
 
 return [
-    'months' => 'ilość miesięcy',
+    'months' => 'liczba miesięcy',
 
     'user_search' => [
         'searching' => 'wyszukiwanie...',

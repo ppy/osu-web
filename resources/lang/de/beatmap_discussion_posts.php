@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'Beatmapdiskussion: Beiträge',
+        'title' => 'Beatmapdiskussionsbeiträge',
     ],
 
     'item' => [
         'content' => 'Inhalt',
-        'modding_history_link' => 'Moddingverlauf anschauen',
+        'modding_history_link' => 'Moddingverlauf ansehen',
     ],
 ];

@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '一日のノミネーションの上限に達しました。後日お試しください。',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'スレッド作者と譜面作者にのみディスカッションは解決できます。',

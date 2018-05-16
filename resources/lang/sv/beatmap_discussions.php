@@ -46,8 +46,8 @@ return [
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
+        'created_at' => 'Skapad',
+        'deleted_at' => 'Borttagen',
         'message_type' => 'Typ',
         'permalink' => 'Permalänk',
     ],
@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
+        'admin' => 'administratör',
         'bng' => 'nominerade',
-        'owner' => '',
+        'owner' => 'mappare',
         'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => 'Filtrera genom användare',
+        'everyone' => 'Alla',
+        'label' => 'Filtrera på användare',
     ],
 ];

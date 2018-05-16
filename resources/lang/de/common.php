@@ -43,7 +43,7 @@ return [
         'reset' => 'Zurücksetzen',
         'save' => 'Speichern',
         'saving' => 'Speichert...',
-        'see_more' => 'mehr sehen (?)',
+        'see_more' => 'mehr anzeigen',
         'show_more' => 'mehr zeigen',
         'upload_image' => 'bild hochladen',
     ],

@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Beatmap debat indlæg',
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => 'Indhold',
+        'modding_history_link' => 'Se modding historie',
     ],
 ];

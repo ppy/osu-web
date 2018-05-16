@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'komunitas',
-            'dev' => '',
+            'dev' => 'pengembangan',
             'getForum' => 'forum',
             'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',

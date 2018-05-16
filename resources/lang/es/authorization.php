@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, inténtalo de nuevo mañana.',
+            'incorrect_state' => 'Error al realizar esa acción, intenta recargando la página.',
+            'owner' => "No puedes nominar tu propio mapa.",
         ],
         'resolve' => [
             'not_owner' => 'Solo el creador del tema y el dueño del beatmap pueden resolver una discusión.',
@@ -40,7 +42,7 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Una publiación generada automáticamente no puede ser editada.',
+            'system_generated' => 'Una publicación generada automáticamente no puede ser editada.',
             'not_owner' => 'La publicación solo puede ser editada por su creador.',
         ],
     ],
@@ -79,15 +81,15 @@ return [
 
             'edit' => [
                 'deleted' => 'No puedes editar una publicación eliminada.',
-                'locked' => 'La edición del post está bloqueada.',
+                'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Necesitas acceso al foro solicitado.',
-                'not_owner' => 'Solo el creador del post puede editarlo.',
+                'not_owner' => 'Solo el creador de la publicación puede editarla.',
                 'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
             ],
 
             'store' => [
-                'play_more' => '¡Trata de jugar al juego antes de publicar en los foros, por favor!. Sí tienes algún problema jugando, por favor, dilo en el foro de Ayuda y Soporte.',
-                'too_many_help_posts' => "Necesita jugar más el juego antes de poder hacer posts adicionales. Si sigue teniendo problemas jugando, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => '¡Intenta jugar más antes de publicar en los foros, por favor! Si tienes algún problema jugando, publícalo en el foro de ayuda y soporte.',
+                'too_many_help_posts' => "Necesitas jugar más al juego antes de hacer más publicaciones. Si sigues teniendo problemas para jugar, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

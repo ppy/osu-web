@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '目前的使用者名稱（:current）與要撤銷變更的使用者名稱不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '捐款少於該Support Tag禮物所需的價錢（:actual > :expected）',
+        'insufficient_paid' => '讓該使用者成為贊助者所需的贊助金額不足（:actual > :expected）',
     ],
 ];

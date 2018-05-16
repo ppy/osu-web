@@ -20,16 +20,16 @@
 
 return [
     'page_description' => 'Artistas Destacados en osu!',
-    'title' => 'Artistas Destacados',
+    'title' => 'Artistas destacados',
 
     'admin' => [
-        'hidden' => 'EL ARTISTA ESTÁ OCULTO ACTUALMENTE',
+        'hidden' => 'EL ARTISTA ESTÁ ACTUALMENTE OCULTO',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Descargar Plantilla del Beatmap',
-        'download-na' => 'La Plantilla del Beatmap no está disponible aún',
+        '_' => 'Mapas',
+        'download' => 'Descargar plantilla del mapa',
+        'download-na' => 'La plantilla del mapa no está disponible aún',
     ],
 
     'index' => [
