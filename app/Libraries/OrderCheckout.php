@@ -194,9 +194,9 @@ class OrderCheckout
                 $messages[] = ["you can only order {$item->product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
             }
 
-            if ($item->product->custom_class === 'username-change') {
-                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $messages[] = $changeUsername->validate()->allMessages();
+            $customClass = $item->getCustomClassInstance();
+            if ($customClass !== null) {
+                $messages[] = $customClass->validate()->allMessages();
             }
 
             foreach ($messages as $array) {

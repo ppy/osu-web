@@ -20,6 +20,7 @@
 
 namespace App\Models\Store;
 
+use App\Libraries\ChangeUsername;
 use App\Exceptions\ValidationException;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
@@ -112,6 +113,14 @@ class OrderItem extends Model
             return;
         }
         $this->cost = $this->product->cost;
+    }
+
+    public function getCustomClassInstance()
+    {
+        // only one for now
+        if ($this->product->custom_class === 'username-change') {
+            return new ChangeUsername($this->order->user, $this->extra_info, 'paid');
+        }
     }
 
     public function getDisplayName()
