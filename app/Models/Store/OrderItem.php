@@ -20,8 +20,8 @@
 
 namespace App\Models\Store;
 
-use App\Libraries\ChangeUsername;
 use App\Exceptions\ValidationException;
+use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
 use Exception;

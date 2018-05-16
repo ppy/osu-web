@@ -26,7 +26,6 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
-use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
