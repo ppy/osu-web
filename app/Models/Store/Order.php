@@ -363,7 +363,7 @@ class Order extends Model
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
-                $this->removeOrderItem($params);
+                return $this->removeOrderItem($params);
             }
 
             // TODO: better validation handling.
