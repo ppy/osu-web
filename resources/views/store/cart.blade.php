@@ -46,18 +46,18 @@
                         <li class="store-order-item">
                             <div class="store-order-item__line">
                                 <span class="store-order-item__name">
-                                    {{{$i->getDisplayName()}}}
+                                    {{ $i->getDisplayName() }}
                                 </span>
 
                                 {!! Form::open(['class' => 'store-order-item__options', "url" => route('store.cart.store'), "data-remote" => true]) !!}
                                     <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
                                     <input type="hidden" name="item[id]" value="{{ $i->id }}">
                                     @if($i->product->allow_multiple)
-                                        <span class="store-order-item__quantity">{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
+                                        <span class="store-order-item__quantity">{{ trans_choice('common.count.item', $i->quantity) }}</span>
                                     @else
                                         {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'store-order-item__quantity form-control js-auto-submit']) !!}
                                     @endif
-                                    <span class="store-order-item__subtotal">{{{currency($i->subtotal())}}}</span>
+                                    <span class="store-order-item__subtotal">{{ currency($i->subtotal()) }}</span>
                                     <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
                                 {!! Form::close() !!}
                             </div>
@@ -84,7 +84,7 @@
                         <p class="store-cart-footer__text">{{ trans('store.cart.total') }}</p>
 
                         <p class="store-cart-footer__text store-cart-footer__text--amount">
-                            {{{ currency($order->getSubtotal()) }}}
+                            {{ currency($order->getSubtotal()) }}
                         </p>
 
                         @if($order->requiresShipping())
