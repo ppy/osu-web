@@ -368,7 +368,7 @@ class Order extends Model
 
             // TODO: better validation handling.
             if ($params['product'] === null) {
-                return trans('model_validation/store/order_item.not_available');
+                return trans('model_validation/store/product.not_available');
             }
 
             if ($params['product']->allow_multiple) {
