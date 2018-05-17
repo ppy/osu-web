@@ -76,9 +76,12 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => 'You cannot modify your order as it has been cancelled.',
+            'checkout' => 'You cannot modify your order while it is being processed.', // checkout and processing should have the same message.
             'default' => 'Order is not modifiable',
+            'delivered' => 'You cannot modify your order as it has already been delivered.',
             'paid' => 'You cannot modify your order as it has already been paid for.',
             'processing' => 'You cannot modify your order while it is being processed.',
+            'shipped' => 'You cannot modify your order as it has already been shipped.',
         ],
     ],
 

@@ -33,7 +33,12 @@ class OrderNotModifiableException extends Exception
 
     public function __construct(Order $order)
     {
-        parent::__construct(static::buildMessage($order));
+        $key = "store.order.not_modifiable_exception.{$order->status}";
+        $trans = trans($key);
+
+        parent::__construct(
+            $trans === $key ? trans('store.order.not_modifiable_exception.default') : $trans
+        );
 
         $this->order = $order;
     }
@@ -41,24 +46,5 @@ class OrderNotModifiableException extends Exception
     public function getOrder()
     {
         return $this->order;
-    }
-
-    private static function buildMessage(Order $order)
-    {
-        switch ($order->status) {
-            case 'checkout':
-            case 'processing':
-                return trans('store.order.not_modifiable_exception.processing');
-
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
-                return trans('store.order.not_modifiable_exception.paid');
-
-            case 'cancelled':
-                return trans('store.order.not_modifiable_exception.cancelled');
-        }
-
-        return trans('store.order.not_modifiable_exception.default');
     }
 }
