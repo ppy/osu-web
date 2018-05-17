@@ -24,10 +24,17 @@ return [
     ],
 
     'cart' => [
+        'checkout' => 'Checkout',
+        'more_goodies' => 'I want to check out more goodies before completing the order',
+        'shipping_fees' => 'shipping fees',
+        'title' => 'Shopping Cart',
+        'total' => 'total',
+
         'errors_no_checkout' => [
             'line_1' => 'Uh oh, there are problems with your cart preventing a checkout!',
             'line_2' => 'Remove or update items above to continue.',
         ],
+
         'empty' => [
             'text' => 'Your cart is empty.',
             'return_link' => [
@@ -35,11 +42,6 @@ return [
                 'link_text' => 'store listing',
             ],
         ],
-        'checkout' => 'Checkout',
-        'more_goodies' => 'I want to check out more goodies before completing the order',
-        'shipping_fees' => 'shipping fees',
-        'title' => 'Shopping Cart',
-        'total' => 'total',
     ],
 
     'checkout' => [
