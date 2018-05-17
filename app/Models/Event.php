@@ -73,6 +73,18 @@ class Event extends Model
 
                 break;
 
+            case 'usernameChange':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$options['previousUsername']}</a></b> has changed their username to {$options['newUsername']}!",
+                    'user_id' => $user['id'],
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
+
             case 'userSupportGift':
                 $user = static::userParams($options['user']);
                 $params = [

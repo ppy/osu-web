@@ -23,6 +23,7 @@ namespace App\Libraries\Fulfillments;
 use App\Events\Fulfillments\UsernameChanged;
 use App\Events\Fulfillments\UsernameReverted;
 use App\Libraries\ChangeUsername;
+use App\Models\Event;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
@@ -35,7 +36,15 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $this->throwOnFail($this->validateRun());
 
         $user = $this->order->user;
+        $previousUsername = $user->username;
         $user->changeUsername($this->getNewUserName(), $this->getChangeType());
+        Event::generate('usernameChange', [
+            'user' => $user,
+            'previousUsername' => $previousUsername,
+            'newUsername' => $this->getNewUsername(),
+            'date' => $this->order->paid_at,
+        ]);
+
         event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
     }
 
