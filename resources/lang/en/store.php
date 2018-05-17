@@ -73,6 +73,13 @@ return [
             ],
             'quantity' => 'Quantity',
         ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'You cannot modify your order as it has been cancelled.',
+            'default' => 'Order is not modifiable',
+            'paid' => 'You cannot modify your order as it has already been paid for.',
+            'processing' => 'You cannot modify your order while it is being processed.',
+        ],
     ],
 
     'product' => [

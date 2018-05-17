@@ -48,17 +48,17 @@ class OrderNotModifiableException extends Exception
         switch ($order->status) {
             case 'checkout':
             case 'processing':
-                return 'You cannot modify your order while it is being processed.';
+                return trans('store.order.not_modifiable_exception.processing');
 
             case 'paid':
             case 'shipped':
             case 'delivered':
-                return 'You cannot modify your order as it has already been paid for.';
+                return trans('store.order.not_modifiable_exception.paid');
 
             case 'cancelled':
-                return 'You cannot modify your order as it has been cancelled.';
+                return trans('store.order.not_modifiable_exception.cancelled');
         }
 
-        return 'Order is not modifiable';
+        return trans('store.order.not_modifiable_exception.default');
     }
 }
