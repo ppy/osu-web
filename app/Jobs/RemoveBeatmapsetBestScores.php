@@ -65,7 +65,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         foreach (Beatmap::MODES as $mode => $_modeInt) {
             static::scoreClass($mode)::whereIn('beatmap_id', $beatmapIds)
                 ->orderBy('score_id')
-                ->where('score_id', '<', $this->maxScoreIds[$mode])
+                ->where('score_id', '<=', $this->maxScoreIds[$mode])
                 ->chunkById(100, function ($scores) {
                     $scores->each->delete();
                 });
