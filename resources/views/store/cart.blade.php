@@ -73,7 +73,7 @@
                                 <div class="store-order-item__line">
                                     <ul class="store-order-item__errors">
                                         @foreach ($itemErrors[$i->id] as $message)
-                                            <li class="store-order-item__error">{!! $message !!}
+                                            <li class="store-order-item__error">{{ $message }}
                                         @endforeach
                                     </ul>
                                 </div>
