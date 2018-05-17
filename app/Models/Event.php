@@ -74,10 +74,10 @@ class Event extends Model
                 break;
 
             case 'userSupportGift':
-                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $user = static::userParams($options['user']);
                 $params = [
-                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has received the gift of osu! supporter!",
-                    'user_id' => $user->getKey(),
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
+                    'user_id' => $user['id'],
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -86,10 +86,10 @@ class Event extends Model
                 break;
 
             case 'userSupportFirst':
-                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $user = static::userParams($options['user']);
                 $params = [
-                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has become an osu! supporter - thanks for your generosity!",
-                    'user_id' => $user->getKey(),
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user['id'],
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -98,10 +98,10 @@ class Event extends Model
                 break;
 
             case 'userSupportAgain':
-                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $user = static::userParams($options['user']);
                 $params = [
-                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has once again chosen to support osu! - thanks for your generosity!",
-                    'user_id' => $user->getKey(),
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user['id'],
                     'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
@@ -354,6 +354,10 @@ class Event extends Model
 
     private static function userParams($user)
     {
-        return [$user, $user->username, e(route('users.show', $user, false))];
+        return [
+            'id' => $user->getKey(),
+            'username' =>$user->username,
+            'url' => e(route('users.show', $user, false)),
+        ];
     }
 }
