@@ -165,8 +165,11 @@ class Product extends Model
 
     public function release($quantity)
     {
-        if ($this->stock === null) {
-            return true;
+        if ($this->stock === null
+            // stock may have been directly updated to 0.
+            // TODO: should count reservations and available stock separately or something.
+            || $this->stock <= 0) {
+            return;
         }
 
         $this->increment('stock', $quantity);
@@ -175,7 +178,7 @@ class Product extends Model
     public function reserve($quantity)
     {
         if ($this->stock === null) {
-            return true;
+            return;
         }
 
         $this->decrement('stock', $quantity);
