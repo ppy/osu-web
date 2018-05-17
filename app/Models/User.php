@@ -134,7 +134,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    public function revertUsername($type = 'revert')
+    public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
         // TODO: validation errors instead?
         if ($this->user_id <= 1) {
@@ -145,11 +145,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException(['username_previous is blank.']);
         }
 
-        $this->updateUsername($this->username_previous, null, $type);
-        \Log::debug("username reverted: {$this->username}");
+        return $this->updateUsername($this->username_previous, null, $type);
     }
 
-    public function changeUsername($newUsername, $type = 'support')
+    public function changeUsername($newUsername, $type = 'support') : UsernameChangeHistory
     {
         // TODO: validation errors instead?
         if ($this->user_id <= 1) {
@@ -161,12 +160,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException($errors);
         }
 
-        DB::transaction(function () use ($newUsername, $type) {
+        return DB::transaction(function () use ($newUsername, $type) {
             // check for an exsiting inactive username and renames it.
             static::renameUsernameIfInactive($newUsername);
 
-            $this->updateUsername($newUsername, $this->username, $type);
-            \Log::debug("username changed: {$this->username}");
+            return $this->updateUsername($newUsername, $this->username, $type);
         });
     }
 
@@ -185,12 +183,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    private function updateUsername($newUsername, $oldUsername, $type)
+    private function updateUsername($newUsername, $oldUsername, $type) : UsernameChangeHistory
     {
         $this->username_previous = $oldUsername;
         $this->username = $newUsername;
 
-        DB::transaction(function () use ($newUsername, $oldUsername, $type) {
+        return DB::transaction(function () use ($newUsername, $oldUsername, $type) {
             Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
             // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
             Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
@@ -210,6 +208,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
+
+            return $history;
         });
     }
 

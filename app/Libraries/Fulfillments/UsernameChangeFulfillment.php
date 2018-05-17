@@ -36,13 +36,10 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $this->throwOnFail($this->validateRun());
 
         $user = $this->order->user;
-        $previousUsername = $user->username;
-        $user->changeUsername($this->getNewUserName(), $this->getChangeType());
+        $history = $user->changeUsername($this->getNewUserName(), $this->getChangeType());
         Event::generate('usernameChange', [
             'user' => $user,
-            'previousUsername' => $previousUsername,
-            'newUsername' => $this->getNewUsername(),
-            'date' => $this->order->paid_at,
+            'history' => $history,
         ]);
 
         event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
