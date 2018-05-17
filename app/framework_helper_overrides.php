@@ -18,39 +18,22 @@ function trans($key = null, $replace = [], $locale = null)
         return $translator;
     }
 
-    $locale ?? $locale = $translator->getLocale();
-
-    $translated = null;
-
     if ($translator->hasForLocale($key, $locale)) {
         $translated = presence($translator->get($key, $replace, $locale, false));
     }
 
-    if ($translated === null) {
-        $fallbackLocale = config('app.fallback_locale');
-
-        $translated = $translator->get($key, $replace, $fallbackLocale, false);
-    }
-
-    return $translated;
+    return $translated ??
+        $translator->get($key, $replace, config('app.fallback_locale'), false);
 }
 
 function trans_choice($key, $number, array $replace = [], $locale = null)
 {
     $translator = app('translator');
-    $locale ?? $locale = $translator->getLocale();
-
-    $translated = null;
 
     if ($translator->hasForLocale($key, $locale)) {
         $translated = presence($translator->transChoice($key, $number, $replace, $locale));
     }
 
-    if ($translated === null) {
-        $fallbackLocale = config('app.fallback_locale');
-
-        $translated = $translator->transChoice($key, $number, $replace, $fallbackLocale);
-    }
-
-    return $translated;
+    return $translated ??
+        $translator->transChoice($key, $number, $replace, config('app.fallback_locale'));
 }
