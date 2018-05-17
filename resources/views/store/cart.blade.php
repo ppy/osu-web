@@ -52,7 +52,8 @@
                                 {!! Form::open(['class' => 'store-order-item__options', "url" => route('store.cart.store'), "data-remote" => true]) !!}
                                     <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
                                     <input type="hidden" name="item[id]" value="{{ $i->id }}">
-                                    @if($i->product->allow_multiple)
+                                    {{-- anything where stock is null either allows multiple or is max_quantity 1--}}
+                                    @if($i->product->allow_multiple || $i->product->stock <= 0)
                                         <span class="store-order-item__quantity">{{ trans_choice('common.count.item', $i->quantity) }}</span>
                                     @else
                                         {!!
