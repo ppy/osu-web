@@ -180,16 +180,16 @@ class OrderCheckout
 
             // Checkout process level validations, should not be part of OrderItem validation.
             if ($item->product === null || !$item->product->enabled) {
-                $messages[] = [trans('model_validation/store/product.not_available')];
+                $messages[] = trans('model_validation/store/product.not_available');
             }
 
             // TODO: probably can combine max_quantity and inStock check and message.
             if (!$item->product->inStock($item->quantity)) {
-                $messages[] = [trans('model_validation/store/product.insufficient_stock')];
+                $messages[] = trans('model_validation/store/product.insufficient_stock');
             }
 
             if ($item->quantity > $item->product->max_quantity) {
-                $messages[] = [trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity])];
+                $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
             }
 
             $customClass = $item->getCustomClassInstance();
