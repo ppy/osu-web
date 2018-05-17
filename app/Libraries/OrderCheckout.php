@@ -197,13 +197,7 @@ class OrderCheckout
                 $messages[] = $customClass->validate()->allMessages();
             }
 
-            foreach ($messages as $array) {
-                // merge with existing errors, if any.
-                $itemErrors[$item->id] = array_merge(
-                    $itemErrors[$item->id] ?? [],
-                    $array
-                );
-            }
+            $itemErrors[$item->id] = array_flatten($messages);
         }
 
         $errors = [];
