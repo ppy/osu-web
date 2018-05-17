@@ -28,7 +28,6 @@ use Auth;
 use DB;
 use Exception;
 use Request;
-use View;
 
 class CheckoutController extends Controller
 {
@@ -78,10 +77,9 @@ class CheckoutController extends Controller
 
         // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
         // an array and will cause issues in shared views.
-        $flash = session('checkout.error.errors') ?? $checkout->validate();
-        View::share('validationErrors', $flash);
+        $validationErrors = session('checkout.error.errors') ?? $checkout->validate();
 
-        return view('store.checkout', compact('order', 'addresses', 'checkout'));
+        return view('store.checkout', compact('order', 'addresses', 'checkout', 'validationErrors'));
     }
 
     public function store()
