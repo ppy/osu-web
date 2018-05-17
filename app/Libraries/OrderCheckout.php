@@ -200,12 +200,7 @@ class OrderCheckout
             $itemErrors[$item->id] = array_flatten($messages);
         }
 
-        $errors = [];
-        if ($itemErrors !== []) {
-            $errors['orderItems'] = $itemErrors;
-        }
-
-        return $errors;
+        return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
     }
 
     /**
