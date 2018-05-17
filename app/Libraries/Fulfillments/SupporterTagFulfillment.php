@@ -21,6 +21,7 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\OrderFulfillerEvent;
+use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -81,6 +82,8 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         $isGift = count($giftees) !== 0;
 
+        Event::generate($donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst', ['user' => $donor]);
+
         if (present($donor->user_email)) {
             Mail::to($donor->user_email)
                 ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
@@ -89,6 +92,8 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         foreach ($giftees as $giftee) {
+            Event::generate('userSupportGift', ['user' => $giftee]);
+
             if (present($giftee->user_email)) {
                 Mail::to($giftee->user_email)
                     ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));

@@ -70,6 +70,41 @@ class Event extends Model
                     'private' => false,
                     'epicfactor' => 8,
                 ];
+
+                break;
+
+            case 'userSupportGift':
+                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has received the gift of osu! supporter!",
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportFirst':
+                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportAgain':
+                list($user, $userName, $userUrl) = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
         }
 
         if (isset($params)) {
@@ -312,5 +347,10 @@ class Event extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('date', 'desc')->limit(5);
+    }
+
+    private static function userParams($user)
+    {
+        return [$user, $user->username, e(route('users.show', $user, false))];
     }
 }
