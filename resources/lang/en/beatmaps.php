@@ -183,7 +183,6 @@ return [
         ],
         'mode' => 'Mode',
         'status' => 'Rank Status',
-        'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
     ],
