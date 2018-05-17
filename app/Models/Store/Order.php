@@ -370,13 +370,14 @@ class Order extends Model
                 return trans('model_validation/store/product.not_available');
             }
 
+            $this->saveOrExplode();
+
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
                 $item = $this->updateOrderItem($params, $addToExisting);
             }
 
-            $this->saveOrExplode();
             $item->saveOrExplode();
         });
     }
