@@ -84,7 +84,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         Event::generate(
             $donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst',
-            ['user' => $donor ,'date' => $this->order->paid_at]
+            ['user' => $donor, 'date' => $this->order->paid_at]
         );
 
         if (present($donor->user_email)) {

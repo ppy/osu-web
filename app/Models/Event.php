@@ -86,7 +86,6 @@ class Event extends Model
 
                 break;
 
-
             case 'userSupportGift':
                 $user = static::userParams($options['user']);
                 $params = [
@@ -370,7 +369,7 @@ class Event extends Model
     {
         return [
             'id' => $user->getKey(),
-            'username' =>$user->username,
+            'username' => $user->username,
             'url' => e(route('users.show', $user, false)),
         ];
     }
