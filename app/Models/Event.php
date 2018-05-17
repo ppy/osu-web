@@ -78,6 +78,7 @@ class Event extends Model
                 $params = [
                     'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has received the gift of osu! supporter!",
                     'user_id' => $user->getKey(),
+                    'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
                 ];
@@ -89,6 +90,7 @@ class Event extends Model
                 $params = [
                     'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has become an osu! supporter - thanks for your generosity!",
                     'user_id' => $user->getKey(),
+                    'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
                 ];
@@ -100,6 +102,7 @@ class Event extends Model
                 $params = [
                     'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> has once again chosen to support osu! - thanks for your generosity!",
                     'user_id' => $user->getKey(),
+                    'date' => $options['date'],
                     'private' => false,
                     'epicfactor' => 2,
                 ];

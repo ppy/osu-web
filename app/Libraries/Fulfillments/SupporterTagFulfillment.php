@@ -82,7 +82,10 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         $isGift = count($giftees) !== 0;
 
-        Event::generate($donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst', ['user' => $donor]);
+        Event::generate(
+            $donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst',
+            ['user' => $donor ,'date' => $this->order->paid_at]
+        );
 
         if (present($donor->user_email)) {
             Mail::to($donor->user_email)
@@ -92,7 +95,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         foreach ($giftees as $giftee) {
-            Event::generate('userSupportGift', ['user' => $giftee]);
+            Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
                 Mail::to($giftee->user_email)
