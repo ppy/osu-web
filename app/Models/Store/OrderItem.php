@@ -37,6 +37,9 @@ class OrderItem extends Model
         'cost' => 'float',
         'extra_data' => 'array',
     ];
+
+    protected $guarded = [];
+
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',

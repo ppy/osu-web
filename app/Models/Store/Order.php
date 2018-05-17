@@ -528,15 +528,13 @@ class Order extends Model
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        $item = new OrderItem();
-        $item->order_id = $this->order_id;
-        $item->quantity = $params['quantity'];
-        $item->extra_info = $params['extraInfo'];
-        $item->extra_data = $params['extraData'];
-        $item->cost = $params['cost'];
-        $item->product()->associate($product);
-
-        return $item;
+        return $this->items()->make([
+            'quantity' => $params['quantity'],
+            'extra_info' => $params['extraInfo'],
+            'extra_data' => $params['extraData'],
+            'cost' => $params['cost'],
+            'product_id' => $product->product_id,
+        ]);
     }
 
     private function updateOrderItem(array $params, $addToExisting = false)
