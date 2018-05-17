@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silahkan muat ulang halaman.',
+            'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -35,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
-            'owner' => "Anda tidak dapat memberikan suara pada topik diskusi milik Anda sendiri.",
+            'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
     ],
@@ -50,7 +50,7 @@ return [
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Anda tidak diperbolehkan mengakses kanal yang ingin Anda tuju.',
+                'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
             ],
         ],
         'message' => [
@@ -73,18 +73,18 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
-                'locked' => 'Tidak dapat menghapus postingan di topik yang telah dikunci.',
+                'only_last_post' => 'Hanya kiriman terakhir yang dapat dihapus.',
+                'locked' => 'Tidak dapat menghapus kiriman di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menghapus posting.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menghapus kiriman.',
             ],
 
             'edit' => [
-                'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
-                'locked' => 'Topik telah dikunci, sehingga penyuntingan post tidak lagi dapat dilakukan.',
+                'deleted' => 'Tidak dapat menyunting kiriman yang telah dihapus.',
+                'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menyunting post.',
-                'topic_locked' => 'Tidak dapat menyunting postingan di topik yang telah dikunci.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
+                'topic_locked' => 'Tidak dapat menyunting kiriman di topik yang telah dikunci.',
             ],
 
             'store' => [
@@ -95,7 +95,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
+                'double_post' => 'Anda baru saja mengirim. Tunggulah sebentar atau sunting kiriman terakhir Anda.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',

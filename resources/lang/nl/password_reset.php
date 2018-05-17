@@ -33,8 +33,8 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '',
-        'is_privileged' => '',
+        'contact_support' => 'Contakteer support om je account te herstellen.',
+        'is_privileged' => 'Contacteer peppy lol.',
         'missing_key' => 'Vereist.',
         'too_many_tries' => 'Te veel mislukte pogingen.',
         'user_not_found' => 'Deze gebruiker bestaat niet.',

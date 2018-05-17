@@ -64,13 +64,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'Log Bekijken',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Adminpaneel Geval',
+            'title' => 'Admin Console Ding',
 
             'sections' => [
                 'forum' => 'Forum',
@@ -83,7 +83,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Lijst van Bestellingen',
+                'title' => 'Bestellingslijst',
             ],
         ],
     ],

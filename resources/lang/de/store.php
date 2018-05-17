@@ -38,7 +38,7 @@ return [
         'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
     ],
 
-    'discount' => 'Spare :percent%',
+    'discount' => 'spare :percent%',
 
     'mail' => [
         'payment_completed' => [

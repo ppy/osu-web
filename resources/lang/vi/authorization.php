@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
+            'owner' => "Bạn không thể đề cử beatmap của bạn.",
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
@@ -148,13 +148,13 @@ return [
 
     'silenced' => "Không thể làm việc đó trong khi bị im lặng.",
 
-    'restricted' => "Không thể làm việc đó trong khi bị hạn chế",
+    'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page này đã bị khóa.',
-                'not_owner' => 'Chỉ có thể chỉnh sửa user page của bạn.',
+                'locked' => 'Trang người dùng này đã bị khóa.',
+                'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
                 'require_supporter_tag' => 'Yêu cầu supporter tag.',
             ],
         ],

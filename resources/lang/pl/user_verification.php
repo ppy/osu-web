@@ -26,9 +26,9 @@ return [
         'issuing' => 'Tworzenie nowego kodu...',
 
         'info' => [
-            'check_spam' => "Sprawdź folder spam, jeżeli nie możesz znaleźć maila.",
-            'recover' => "Jeżeli nie masz dostępu do maila, lub nie pamiętasz, który jest przypisany do konta, spróbuj :link.",
-            'recover_link' => 'odzyskać maila tutaj',
+            'check_spam' => "Sprawdź folder spam, jeżeli nie możesz znaleźć e-maila.",
+            'recover' => "Jeżeli nie masz dostępu do e-maila, lub nie pamiętasz, który jest przypisany do konta, spróbuj :link.",
+            'recover_link' => 'odzyskać go tutaj',
             'reissue' => 'Możesz także :reissue_link lub :logout_link.',
             'reissue_link' => 'poprosić o inny kod',
             'logout_link' => 'wylogować się',
@@ -41,9 +41,9 @@ return [
 
     'errors' => [
         'expired' => 'Ten kod wygasł. Wysłano nowy kod weryfikacyjny.',
-        'incorrect_key' => 'Wprowadzono zły kod weryfikacyjny.',
-        'retries_exceeded' => 'Wprowadzono zły kod weryfikacyjny. Przekroczyłeś liczbę prób. Wysłano nowy kod weryfikacyjny.',
+        'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
+        'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Przekroczono liczbę prób, wysłano nowy kod weryfikacyjny.',
         'reissued' => 'Odświeżono kod weryfikacyjny. Wysłano nowy kod weryfikacyjny',
-        'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy kod weryfikacyjny.',
+        'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy e-mail weryfikacyjny.',
     ],
 ];

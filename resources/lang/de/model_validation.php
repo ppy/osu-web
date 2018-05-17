@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion ist gesperrt.',
-        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
+        'first_post' => 'Der erste Post kann nicht gelöscht werden.',
     ],
 
     'beatmapset_discussion' => [
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht löschen.',
-            'beatmapset_post_no_edit' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht bearbeiten.',
+            'beatmapset_post_no_delete' => 'Den Metadaten-Post einer Beatmap kann man nicht löschen.',
+            'beatmapset_post_no_edit' => 'Den Metadaten-Post einer Beatmap kann man nicht bearbeiten.',
         ],
 
         'topic_poll' => [

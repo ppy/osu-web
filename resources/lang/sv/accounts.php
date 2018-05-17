@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Användar</strong> Inställningar',
+        'title' => '<strong>Konto</strong> Inställningar',
         'title_compact' => 'inställningar',
         'username' => 'användarnamn',
 

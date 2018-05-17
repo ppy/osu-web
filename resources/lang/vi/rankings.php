@@ -19,23 +19,23 @@
  */
 
 return [
-    'header' => 'Xếp hạng theo :type',
+    'header' => 'Xếp Hạng Theo :type',
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Spotlights',
         'score' => 'Điểm',
-        'country' => 'Quốc gia',
+        'country' => 'Quốc Gia',
     ],
     'stat' => [
-        'accuracy' => 'Độ chính xác',
-        'active_users' => 'Số người đang chơi',
-        'country' => 'Quốc gia',
-        'play_count' => 'Số lần chơi',
+        'accuracy' => 'Độ Chính Xác',
+        'active_users' => 'Số Người Đang Chơi',
+        'country' => 'Quốc Gia',
+        'play_count' => 'Số Lần Chơi',
         'performance' => 'Performance',
-        'total_score' => 'Tổng số điểm',
-        'ranked_score' => 'Điểm rank',
-        'average_score' => 'Điểm trung bình',
-        'average_performance' => 'Avg. Perf.',
+        'total_score' => 'Tổng Điểm',
+        'ranked_score' => 'Điểm Được Xếp Hạng',
+        'average_score' => 'Điểm Trung Bình',
+        'average_performance' => 'pp Trung Bình',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

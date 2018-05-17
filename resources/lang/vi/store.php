@@ -81,7 +81,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => 'Điền tên tài khoản để kiểm tra tính khả dụng!',
+        'check' => 'Nhập tên tài khoản để kiểm tra tính khả dụng!',
         'checking' => 'Đang kiểm tra tính khả dụng của :username...',
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',

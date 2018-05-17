@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '오늘은 더이상 추천할 수 없습니다, 내일 다시 시도해주세요.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
+            'owner' => "자신의 비트맵을 추천할 수 없습니다.",
         ],
         'resolve' => [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
@@ -88,8 +88,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => '포럼에 글을 올리기 전에 게임을 플레이해주세요, 제발요! 만약 플레이하는데 문제가 있다면, Help and Support 포럼에 글을 남겨주세요.',
+                'too_many_help_posts' => "추가 글을 더 남기려면 게임을 플레이해야 합니다. 만약 아직도 게임을 하는 데 문제가 있다면, support@ppy.sh 에 이메일을 보내주세요.", // FIXME: unhardcode email address.
             ],
         ],
 

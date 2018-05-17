@@ -25,7 +25,7 @@ return [
         'username' => 'tên tài khoản',
 
         'avatar' => [
-            'title' => 'Ảnh Đại Diện',
+            'title' => 'Ảnh đại diện',
         ],
 
         'email' => [
@@ -39,11 +39,11 @@ return [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',
             'new_confirmation' => 'xác nhận mật khẩu',
-            'title' => 'Mật Khẩu',
+            'title' => 'Mật khẩu',
         ],
 
         'profile' => [
-            'title' => 'Trang Cá Nhân',
+            'title' => 'Trang cá nhân',
 
             'user' => [
                 'user_from' => 'vị trí hiện tại',
@@ -57,7 +57,7 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Chữ Kí',
+            'title' => 'Chữ kí',
             'update' => 'cập nhật',
         ],
     ],
@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Lối Chơi',
+        'title' => 'Kiểu chơi',
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
         'tablet' => 'tablet',

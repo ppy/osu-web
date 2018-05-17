@@ -32,14 +32,14 @@ return [
             'current' => 'текущая почта',
             'new' => 'новая почта',
             'new_confirmation' => 'напишите ещё раз',
-            'title' => 'Почта',
+            'title' => 'Смена почты',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
             'new_confirmation' => 'напишите ещё раз',
-            'title' => 'Пароль',
+            'title' => 'Смена пароля',
         ],
 
         'profile' => [
@@ -49,7 +49,7 @@ return [
                 'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
                 'user_msnm' => 'skype',
-                'user_occ' => 'профессия',
+                'user_occ' => 'род деятельности',
                 'user_twitter' => 'twitter',
                 'user_website' => 'веб-сайт',
                 'user_discord' => 'discord',

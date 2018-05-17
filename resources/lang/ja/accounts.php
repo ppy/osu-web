@@ -25,7 +25,7 @@ return [
         'username' => 'ユーザー名',
 
         'avatar' => [
-            'title' => 'アバターの変更',
+            'title' => 'プロフィール画像',
         ],
 
         'email' => [
@@ -51,13 +51,13 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'ウェブサイト',
                 'user_discord' => 'discord',
             ],
         ],
 
         'signature' => [
-            'title' => 'シグネチャー',
+            'title' => '署名',
             'update' => '適用',
         ],
     ],
@@ -77,6 +77,6 @@ return [
         'mouse' => 'マウス',
         'keyboard' => 'キーボード',
         'tablet' => 'ペンタブ',
-        'touch' => 'タッチ',
+        'touch' => 'タッチスクリーン',
     ],
 ];

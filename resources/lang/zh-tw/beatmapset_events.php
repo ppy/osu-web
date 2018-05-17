@@ -36,7 +36,7 @@ return [
         'kudosu_recalculate' => '討論 :discussion 所得的 kudosu 已經重新計算。',
         'nominate' => 'Nominated.',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
-        'qualify' => '被提名。',
+        'qualify' => '提名',
         'rank' => '進榜',
     ],
 

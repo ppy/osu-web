@@ -42,7 +42,7 @@ return [
         'message_placeholder' => 'Ketik di sini untuk posting',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_type_select' => 'Pilih Jenis Komentar',
-        'reply_notice' => 'Tekan enter untuk membalas',
+        'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
         'resolved' => 'Terselesaikan',

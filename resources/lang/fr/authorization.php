@@ -27,7 +27,7 @@ return [
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
-            'owner' => "",
+            'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',

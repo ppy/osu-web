@@ -25,7 +25,7 @@ return [
         'title' => ":user님의 모딩 기록",
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => '최근 시작된 토론',
         ],
 
         'events' => [
@@ -37,11 +37,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => '가장 많이 추천 된 (지난 3개월간)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => '가장 많이 추천됨 (지난 3개월간)',
         ],
     ],
 
@@ -123,7 +123,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => '기본 게임 모드',
-                'set' => '',
+                'set' => ':mode를 프로필 기본 게임 모드로 설정',
             ],
         ],
 
@@ -168,12 +168,12 @@ return [
                     'title' => '최근 플레이 (24시간)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => '관전한 횟수',
                 ],
             ],
             'kudosu' => [
                 'available' => '사용 가능한 Kudosu',
-                'available_info' => "Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게해주는 kudosu 별(★)로 교환할 수 있습니다. 여기 나타난 Kudous는 아직 교환하지 않은 kudous 수를 나타냅니다.",
+                'available_info' => "Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게 해주는 kudosu 별(★) 로 교환할 수 있습니다. 여기 나타난 Kudosu는 아직 교환하지 않은 kudosu 수를 나타냅니다.",
                 'recent_entries' => '최근 Kudosu 기록',
                 'title' => 'Kudosu!',
                 'total' => '총 획득한 Kudosu 수',

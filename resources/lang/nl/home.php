@@ -89,8 +89,8 @@ return [
             'macos' => 'voor macOS',
             'linux' => 'voor Linux',
         ],
-        'mirror' => '',
-        'macos-fallback' => '',
+        'mirror' => 'mirror',
+        'macos-fallback' => 'macOS gebruikers',
         'steps' => [
             'register' => [
                 'title' => 'maak een account',
@@ -114,8 +114,8 @@ return [
     'user' => [
         'title' => 'dashboard',
         'news' => [
-            'title' => '',
-            'error' => '',
+            'title' => 'Nieuws',
+            'error' => 'Fout tijdens laden van nieuws, probeer de pagina te verversen?...',
         ],
         'header' => [
             'welcome' => 'Hallo, <strong>:username</strong>!',

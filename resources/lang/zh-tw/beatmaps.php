@@ -112,10 +112,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => '這張圖譜於 :date 被 Approved !',
+            'approved' => '這張圖譜於 :date 被批准!',
             'graveyard' => "這張圖譜自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
             'loved' => '這張圖譜於 :date 被 Loved !',
-            'ranked' => '這張圖譜於 :date 被 Ranked !',
+            'ranked' => '這張圖譜於 :date 被進榜了!',
             'wip' => '注意：這張圖譜被作者標記為 WIP（半成品）',
         ],
 
@@ -200,9 +200,9 @@ return [
     ],
     'status' => [
         'any' => '所有',
-        'ranked-approved' => 'Ranked & Approved',
-        'approved' => 'Approved',
-        'qualified' => 'Qualified',
+        'ranked-approved' => '進榜/批准',
+        'approved' => '批准',
+        'qualified' => '提名',
         'loved' => 'Loved',
         'faves' => '我的最愛',
         'pending' => 'Pending',

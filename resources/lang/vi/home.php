@@ -127,8 +127,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Beatmaps Approved Mới',
-            'popular' => 'Beatmaps Được Chơi Nhiều',
+            'new' => 'Beatmaps Mới',
+            'popular' => 'Beatmaps Phổ Biến',
             'by' => 'bởi',
             'plays' => ':count lần chơi',
         ],

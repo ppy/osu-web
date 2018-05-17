@@ -140,7 +140,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Lí do để qualify?',
-        'disqualified_at' => 'Bị loại :time_ago (:reason).',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
@@ -148,19 +148,19 @@ return [
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified_soon' => 'Có thể ​​sẽ được xếp hạng sớm, nếu không có vấn đề nào.',
-        'required_text' => 'Đề cử:: current /: required',
-        'reset_message_deleted' => 'deleted',
+        'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
+        'required_text' => 'Trạng thái đề cử: :current/:required',
+        'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
 
         'reset_at' => [
-            'nomination_reset' => 'Đặt lại quy trình đề xuất: time_ago bởi: người dùng có vấn đề mới: thảo luận (:mesage).',
-            'disqualify' => 'Bị từ chối :time_ago bởi :người dùng có vấn đề mới :discussion (message).',
+            'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago bởi :user với vấn đề mới :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Bạn có chắc chứ? Đăng một bản đồ mới sẽ thiết lập lại quá trình đề cử.',
+            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
         ],
     ],
 

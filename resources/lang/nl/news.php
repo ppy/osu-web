@@ -20,7 +20,7 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => '',
+        'news-index' => 'lijst',
         'news-show' => 'bericht',
     ],
 
@@ -44,7 +44,7 @@ return [
 
     'store' => [
         'button' => 'Bijwerken',
-        'ok' => '',
+        'ok' => 'Lijst bijgewerkt.',
     ],
 
     'update' => [

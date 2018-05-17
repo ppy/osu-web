@@ -65,10 +65,10 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Desqualificado',
+            'disqualify' => 'Desqualificar',
             'hype' => 'Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Resetar Nomeação',
+            'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',

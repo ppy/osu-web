@@ -258,9 +258,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '즐겨찾기 안됨',
+            'to_not_watching' => '즐겨찾기 등록 안됨',
             'to_watching' => '즐겨찾기',
-            'to_watching_mail' => '',
+            'to_watching_mail' => '알림과 함께 즐겨찾기',
             'mail_disable' => '알림 사용 안 함',
         ],
     ],

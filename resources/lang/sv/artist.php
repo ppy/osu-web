@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Utvalda artister är artister som vi jobbar tillsammans med för att skapa ny och originell musik till osu!. Dessa artister och ett urval av deras låtar har blivit handplockade av osu! teamet på grund av att de är grymt bra och lämpliga för mapping. Några av dessa framhävda artister har också skapat exklusiva nya låtar för användning i osu! <br><br>Alla dessa låtar i denna sektion ges ut som för-tajmade .osz filer och har blivit officielt licensierade för använding i osu! och osu!-relaterat innehåll.',
+        'description' => 'Utvalda artister är artister som vi jobbar tillsammans med för att skapa ny och originell musik till osu!. Dessa artister och ett urval av deras låtar har blivit handplockade av osu! teamet på grund av att de är grymt bra och lämpliga för mapping. Några av dessa utvalda artister har också skapat exklusiva nya låtar för användning i osu! <br><br>Alla dessa låtar i denna sektion ges ut som för-tajmade .osz filer och har blivit officielt licensierade för använding i osu! och osu!-relaterat innehåll.',
     ],
 
     'links' => [

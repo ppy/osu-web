@@ -69,7 +69,7 @@ return [
 
     'update_password' => [
         'email_subject' => 'osu! wachtwoordverandering bevestiging',
-        'update' => 'update',
+        'update' => 'bijwerken',
     ],
 
     'playstyles' => [
@@ -77,6 +77,6 @@ return [
         'mouse' => 'muis',
         'keyboard' => 'toetsenbord',
         'tablet' => 'tablet',
-        'touch' => 'touch',
+        'touch' => 'touchscreen',
     ],
 ];
