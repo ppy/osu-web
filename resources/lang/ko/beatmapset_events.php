@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
         'discussion_post_restore' => 'Moderator가 :discussion 토론에서 삭제된 글을 복원했습니다.',
         'discussion_restore' => 'Moderator가 삭제된 :discussion 토론을 복원했습니다.',
-        'disqualify' => '',
+        'disqualify' => ':user 님에 의해서 실격 처리되었습니다. 이유: :discussion (:text).',
         'disqualify_legacy' => '실격 처리되었습니다. 사유: :text.',
         'issue_reopen' => '결정되었던 :discussion 토론이 재개되었습니다.',
         'issue_resolve' => ':discussion 토론이 결정된 것으로 표시되었습니다.',
@@ -45,8 +45,8 @@ return [
     ],
 
     'item' => [
-        'content' => '',
-        'discussion_deleted' => '',
-        'type' => '',
+        'content' => '내용',
+        'discussion_deleted' => '[삭제됨]',
+        'type' => '종류',
     ],
 ];

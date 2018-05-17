@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> registrierte Spieler',
 
         'slogan' => [
-            'main' => 'free-to-play rhythmusspiel',
+            'main' => 'das allerbeste free-to-play rhythmusspiel',
             'sub' => 'der rhythmus ist nur einen klick entfernt',
         ],
     ],

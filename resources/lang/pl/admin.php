@@ -27,7 +27,7 @@ return [
             'removing' => 'Usuwanie...',
         ],
         'show' => [
-            'covers' => 'Zarządzaj tłami beatmapy',
+            'covers' => 'Zarządzaj tłami zestawu beatmap',
             'discussion' => [
                 '_' => 'Modowanie v2',
                 'activate' => 'aktywuj',

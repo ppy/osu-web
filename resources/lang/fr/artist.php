@@ -29,7 +29,7 @@ return [
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Télécharger une beatmap type',
-        'download-na' => 'Beatmap type non disponible',
+        'download-na' => 'Beatmap type pas encore disponible',
     ],
 
     'index' => [
@@ -42,8 +42,8 @@ return [
     ],
 
     'songs' => [
-        '_' => 'Musiques',
-        'count' => ':count musique|:count musiques',
+        '_' => 'Titres',
+        'count' => ':count titre|:count titres',
         'exclusive' => 'exclusivité osu!',
     ],
 ];

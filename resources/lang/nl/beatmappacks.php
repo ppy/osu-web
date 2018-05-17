@@ -21,37 +21,40 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => '',
+            'important' => 'LEES DIT VOOR TE DOWNLOADEN',
             'instruction' => [
-                '_' => "",
-                'scary' => '',
+                '_' => "Installatie: Eens een pack gedownload is, pak dan de .rar uit in je osu! Songs map.
+                    Alle individuele beatmaps zijn nog in .zip of .osz formaat, dus osu! zal ze zelf uitpakken de volgende keer dat je in de Play mode gaat.
+                    :scary de zip's/osz's zelf uitpakken,
+                    of de beatmaps  zullen incorrect in osu! worden weergegeven/niet werken.",
+                'scary' => 'Ga NIET',
             ],
             'note' => [
-                '_' => '',
-                'scary' => '',
+                '_' => 'Merk ook op dat het is ten zeerste is aangeraden om :scary, omdat de oudste maps van mindere kwaliteit zijn dan de meeste recente maps.',
+                'scary' => 'eerst de oudste packs te downloaden',
             ],
         ],
-        'title' => '',
-        'description' => '',
+        'title' => 'Beatmap Packs',
+        'description' => 'Voorverpakte collecties van beatmaps gebaseerd rond een gedeeld thema.',
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Download',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'uitgespeeld',
+            'not_cleared' => 'nog niet uitgespeeld',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'Artiest/Album',
+        'chart' => 'In de schijnwerpers',
+        'standard' => 'Standaard',
+        'theme' => 'Thema',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'Je moet :link zijn om de downloaden',
+        'link_text' => 'ingelogd',
     ],
 ];

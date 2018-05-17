@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',

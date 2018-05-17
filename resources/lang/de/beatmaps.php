@@ -32,7 +32,7 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'kudosu verteilen',
+        'allow_kudosu' => 'kudosu erlauben',
         'delete' => 'löschen',
         'deleted' => 'Von :editor gelöscht (:delete_time).',
         'deny_kudosu' => 'kudosu verweigern',

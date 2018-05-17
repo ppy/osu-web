@@ -36,8 +36,8 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
-        'placeholder' => '',
-        'title' => '',
+        'placeholder' => 'skriv för att söka',
+        'title' => 'Sök',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'kontrollpanel',
         'news' => [
             'title' => 'Nyheter',
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',

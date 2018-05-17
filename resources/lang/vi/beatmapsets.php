@@ -65,7 +65,7 @@ return [
             'count_sliders' => 'Số Nốt Trượt',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
-            'nominations' => '',
+            'nominations' => 'Đề cử',
             'playcount' => 'Đã chơi',
         ],
         'info' => [

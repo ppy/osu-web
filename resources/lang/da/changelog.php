@@ -30,9 +30,9 @@ return [
     ],
 
     'support' => [
-        'heading' => '',
+        'heading' => 'Elsker du denne opdatering?',
         'text_1' => '',
         'text_1_link' => '',
-        'text_2' => '',
+        'text_2' => 'Ikke blot vil du hjælpe hastighed udvikling, men du vil også få nogle ekstra funktioner og tilpasninger!',
     ],
 ];

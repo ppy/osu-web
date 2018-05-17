@@ -46,9 +46,9 @@ return [
         ],
 
         'forum_post' => [
-            'all' => 'Wszystkie fora',
+            'all' => 'Całe forum',
             'link' => 'Przeszukaj forum',
-            'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
+            'more_simple' => 'Zobacz więcej wyszukanych wątków na forum',
             'title' => 'Forum',
 
             'label' => [

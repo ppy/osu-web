@@ -32,10 +32,10 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => '',
-        'delete' => '',
-        'deleted' => '',
-        'deny_kudosu' => '',
+        'allow_kudosu' => 'permetti kudosu',
+        'delete' => 'elimina',
+        'deleted' => 'Eliminato da :editor :delete_time.',
+        'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
         'kudosu_denied' => '',

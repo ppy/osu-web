@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => '',
+    'title' => 'Wachtwoord Resetten',
 
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'cancel' => 'Annuleer',
+        'resend' => 'Verificatie e-mail opnieuw versturen',
+        'set' => 'Wachtwoord instellen',
+        'start' => 'Start',
     ],
 
     'email' => [
-        'subject' => '',
+        'subject' => 'osu! account herstellen',
     ],
 
     'error' => [
         'contact_support' => '',
         'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'missing_key' => 'Vereist.',
+        'too_many_tries' => 'Te veel mislukte pogingen.',
+        'user_not_found' => 'Deze gebruiker bestaat niet.',
+        'wrong_key' => 'Onjuiste code.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Controleer uw e-mail voor de verificatiecode.',
+        'saved' => 'Het nieuwe wachtwoord is opgeslagen!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Nieuw wachtwoord',
+        'password_confirmation' => 'Wacthwoordbevestiging',
+        'title' => 'Opnieuw instellen van het wachtwoord van account <strong>:username</strong>.',
+        'verification_key' => 'Verificatiecode',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Vul e-mail adres of gebruikersnaam in',
     ],
 ];

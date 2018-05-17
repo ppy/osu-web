@@ -40,12 +40,12 @@ return [
             'password-reset-index' => 'reset password',
             'search' => 'search',
             'supportTheGame' => 'support the game',
-            'team' => '',
+            'team' => 'ทีม',
         ],
         'help' => [
             '_' => 'help',
             'getFaq' => 'faq',
-            'getRules' => '',
+            'getRules' => 'ปฏ',
             'getSupport' => 'support',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'community',
-            'dev' => '',
+            'dev' => 'พัฒนาการ',
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
@@ -129,11 +129,11 @@ return [
             '_' => 'store',
             'checkout-show' => '',
             'getListing' => 'listing',
-            'cart-show' => '',
+            'cart-show' => 'ตะกร้าสินค้า',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
-            'products-show' => '',
+            'products-show' => 'สินค้า',
 
             'new' => 'new',
             'home' => 'home',

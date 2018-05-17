@@ -223,7 +223,7 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'No fijar tema',
+            'to_0' => 'Desfijar tema',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
             'to_1_done' => 'El tema ya ha sido fijado',

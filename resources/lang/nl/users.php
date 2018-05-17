@@ -157,7 +157,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => 'Speelgeschiedenis',
                 ],
                 'most_played' => [
                     'count' => 'keer gespeeld',
@@ -168,7 +168,7 @@ return [
                     'title' => 'Recent gespeeld',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => 'Replays Gekeken Geschiedenis',
                 ],
             ],
             'kudosu' => [
@@ -189,11 +189,11 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => ':amount ontkend voor modding bericht :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => ':amount verloren vanwege verwijdering modding post :post',
                         ],
 
                         'restore' => [
@@ -222,7 +222,7 @@ return [
                 'title' => 'ik!',
             ],
             'medals' => [
-                'empty' => "",
+                'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
@@ -243,42 +243,42 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => 'Account Reputatie',
+                'bad_standing' => "<strong>:username's</strong> account heeft geen goede reputatie :(",
+                'remaining_silence' => '<strong>:username</strong> kan terug spreken in :duration.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'Recente Overtredingen',
+                    'date' => 'datum',
+                    'action' => 'actie',
+                    'length' => 'lengte',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'omschrijving',
+                    'actor' => 'door :username',
 
                     'actions' => [
-                        'restriction' => '',
+                        'restriction' => 'Ban',
                         'silence' => '',
-                        'note' => '',
+                        'note' => 'Opmerking',
                     ],
                 ],
             ],
         ],
         'info' => [
             'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
+            'interests' => 'Interesses',
+            'lastfm' => 'Last.fm',
+            'location' => 'Huidige Locatie',
+            'occupation' => 'Beroep',
             'skype' => '',
             'twitter' => '',
-            'website' => '',
+            'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'Misschien is hun gebruikersnaam veranderd.',
+            'reason_2' => 'Het account kan tijdelijk onbeschikbaar zijn vanwege beveiligingsredenen of misbruik.',
+            'reason_3' => 'Misschien heb je een typefout gemaakt!',
+            'reason_header' => 'Er enkele mogelijke redenen hiervoor:',
             'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
@@ -288,8 +288,8 @@ return [
             'restriction_info' => "Je moet een <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Plaatste :link',
+            'count' => ':count forum bericht|:count forum berichten',
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
@@ -300,7 +300,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
-            'play_time' => '',
+            'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',
             'replays_watched_by_others' => 'Replays Gekeken door Anderen',
             'score_ranks' => 'Score Ranks',
@@ -309,13 +309,13 @@ return [
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'Door gebruiker gemaakt',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Accountverificatie',
     ],
 ];

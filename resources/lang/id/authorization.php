@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -48,7 +50,7 @@ return [
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
+                'no_access' => 'Anda tidak diperbolehkan mengakses kanal yang ingin Anda tuju.',
             ],
         ],
         'message' => [

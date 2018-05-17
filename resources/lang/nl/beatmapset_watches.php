@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Stop met volgen',
+            'to_1' => 'Bekijk',
         ],
     ],
 
     'index' => [
-        'description' => '',
-        'title_compact' => '',
-        'title_main' => '',
+        'description' => 'Dit zijn de beatmap discussies die je volgt. Je wordt verwittigd bij nieuwe berichten of updates.',
+        'title_compact' => 'modding volglijst',
+        'title_main' => 'Modding Volglijst',
 
         'table' => [
-            'empty' => '',
-            'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'empty' => 'Geen map discussies aan het volgen.',
+            'open_issues' => 'Open problemen',
+            'state' => 'Staat',
+            'title' => 'Titel',
         ],
     ],
 
     'mail' => [
-        'update' => '',
+        'update' => 'Nieuwe update voor beatmap ":Titel"',
     ],
 
     'status' => [
-        'read' => '',
-        'unread' => '',
+        'read' => 'Gelezen',
+        'unread' => 'Ongelezen',
     ],
 ];

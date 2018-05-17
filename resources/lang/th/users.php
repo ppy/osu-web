@@ -29,11 +29,11 @@ return [
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'เหตุการณ์ล่าสุด',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'โพสต์ล่าสุด',
         ],
 
         'votes_received' => [
@@ -243,7 +243,7 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => '',
+                'title' => 'ชื่อเสียงของบัญชี',
                 'bad_standing' => "",
                 'remaining_silence' => '',
 

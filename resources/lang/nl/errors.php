@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Log in om verder te gaan.',
         'http-403' => 'Toegang geweigerd.',
-        'http-429' => '',
+        'http-429' => 'Te veel pogingen. Probeer later opnieuw.',
     ],
     'account' => [
         'profile-order' => [
@@ -30,11 +30,11 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '',
-        'standard_converts_only' => '',
+        'invalid_mode' => 'Invalide mode opgegeven.',
+        'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => '',
+        'too-many-favourites' => 'Je hebt te veel favoriete beatmaps! Verwijder er een voor verder te gaan.',
     ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',

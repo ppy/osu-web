@@ -20,12 +20,12 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listning',
+        'news-index' => 'lista',
         'news-show' => 'inlägg',
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title' => 'osu!nyheter',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'uppladdad :time',
+        'posted' => 'upplagd :time',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
@@ -44,7 +44,7 @@ return [
 
     'store' => [
         'button' => 'Uppdatera',
-        'ok' => 'Listning uppdaterat.',
+        'ok' => 'Listning uppdaterad.',
     ],
 
     'update' => [

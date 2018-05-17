@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Per favore effettua il login per poter continuare.',
         'http-403' => 'Accesso Negato.',
-        'http-429' => '',
+        'http-429' => 'Troppi tentativi. Riprova più tardi.',
     ],
     'account' => [
         'profile-order' => [
@@ -30,11 +30,11 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '',
+        'invalid_mode' => 'Modalità specificata non valida.',
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => '',
+        'too-many-favourites' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
     ],
     'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',

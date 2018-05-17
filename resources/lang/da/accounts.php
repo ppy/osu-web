@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
-        'username' => '',
+        'username' => 'brugernavn',
 
         'avatar' => [
             'title' => 'Ændr Avatar',
