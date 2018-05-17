@@ -189,7 +189,7 @@ class OrderCheckout
             }
 
             if ($item->quantity > $item->product->max_quantity) {
-                $messages[] = [trans_choice('model_validation/store/product.too_many', $item->product->max_quantity)];
+                $messages[] = [trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity])];
             }
 
             $customClass = $item->getCustomClassInstance();
