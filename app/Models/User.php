@@ -83,25 +83,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_interests' => 30,
     ];
 
-    const ES_MAPPINGS = [
-        'is_old' => ['type' => 'boolean'],
-        'user_lastvisit' => ['type' => 'date'],
-        'username' => [
-            'type' => 'text',
-            'analyzer' => 'username_lower',
-            'fields' => [
-                // for exact match
-                'raw' => ['type' => 'keyword'],
-                // try match sloppy search guesses
-                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
-                // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
-            ],
-        ],
-        'user_warnings' => ['type' => 'short'],
-        'user_type' => ['type' => 'short'],
-    ];
-
     private $memoized = [];
 
     private $validateCurrentPassword = false;

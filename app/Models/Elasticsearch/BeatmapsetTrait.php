@@ -60,10 +60,14 @@ trait BeatmapsetTrait
 
     private function esBeatmapsetValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPSETS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
+            if ($field === 'difficulties') {
+                continue;
+            }
+
             $value = $this[$field];
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
@@ -77,7 +81,7 @@ trait BeatmapsetTrait
 
     private function esBeatmapValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPS;
+        $mappings = static::esMappings()['difficulties']['properties'];
 
         $values = [];
         // initialize everything to an array.

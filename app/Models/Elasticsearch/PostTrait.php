@@ -41,7 +41,7 @@ trait PostTrait
 
     public function toEsJson()
     {
-        $mappings = static::ES_MAPPINGS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
