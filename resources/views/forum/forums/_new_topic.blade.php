@@ -36,7 +36,11 @@
             "
             href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
         >
-            <i class="fas fa-plus"></i>
+            @if (Auth::check())
+                <i class="fas fa-plus"></i>
+            @else
+                <i class="fas fa-sign-in-alt"></i>
+            @endif
         </a>
     @endif
 
@@ -62,7 +66,11 @@
                     "
                     href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
                 >
-                    {{ trans('forum.topic.new_topic') }}
+                    @if (Auth::check())
+                        {{ trans('forum.topic.new_topic') }}
+                    @else
+                        {{ trans('forum.topic.new_topic_login') }}
+                    @endif
                 </a>
             @endif
         </div>
