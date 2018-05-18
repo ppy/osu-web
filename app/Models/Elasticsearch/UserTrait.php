@@ -120,6 +120,11 @@ trait UserTrait
         return static::ES_MAPPINGS;
     }
 
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/users.json');
+    }
+
     public static function esType()
     {
         return 'users';

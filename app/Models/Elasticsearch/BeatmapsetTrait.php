@@ -56,6 +56,11 @@ trait BeatmapsetTrait
         );
     }
 
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/beatmaps.json');
+    }
+
     public static function esType()
     {
         return 'beatmaps';

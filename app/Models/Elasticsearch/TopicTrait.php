@@ -76,6 +76,11 @@ trait TopicTrait
         return Post::esMappings();
     }
 
+    public static function esSchemaFile()
+    {
+        return Post::esSchemaFile();
+    }
+
     public static function esType()
     {
         return Post::esType();

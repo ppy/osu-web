@@ -32,6 +32,8 @@ trait EsIndexable
 
     abstract public static function esMappings();
 
+    abstract public static function esSchemaFile();
+
     abstract public static function esType();
 
     abstract public function toEsJson();
@@ -172,5 +174,15 @@ trait EsIndexable
 
         $duration = time() - $startTime;
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
+    public static function esSchemaConfig()
+    {
+        static $schema;
+        if (!isset($schema)) {
+            $schema = json_decode(file_get_contents(static::esSchemaFile()), true);
+        }
+
+        return $schema;
     }
 }
