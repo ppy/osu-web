@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps (:count)',
                 ],
+                'loved' => [
+                    'title' => 'Loved Beatmaps (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],

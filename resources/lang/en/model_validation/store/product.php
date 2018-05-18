@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,48 +18,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-order-item {
-  .default-border-radius();
-  .default-box-shadow();
-  list-style: none;
-  padding: 10px;
-  margin: 0 0 5px;
-
-  @media @desktop {
-    flex-wrap: nowrap;
-  }
-
-  &__error {
-    list-style: none;
-  }
-
-  &__errors {
-    color: @red;
-  }
-
-  &__line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    flex-wrap: wrap;
-  }
-
-  &__options {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__quantity {
-    flex: 0 0 100px;
-  }
-
-  &__name {
-    flex: 0 1 auto;
-  }
-
-  &__subtotal {
-    flex: 0 0 150px;
-    padding: 0 20px;
-  }
-}
+return [
+    'insufficient_stock' => 'There is not enough of this item left!',
+    'not_available' => 'This item is not available.',
+    'too_many' => 'You can only order :count of this item per order.',
+];

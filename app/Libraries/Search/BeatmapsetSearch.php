@@ -202,6 +202,13 @@ class BeatmapsetSearch extends RecordSearch
             return [new Sort('_score', 'desc')];
         }
 
+        if ($this->params->status === 3) {
+            return [
+                new Sort('queued_at', 'desc'),
+                new Sort('approved_date', 'desc'), // fallback
+            ];
+        }
+
         if (in_array($this->params->status, [4, 5, 6], true)) {
             return [new Sort('last_update', 'desc')];
         }

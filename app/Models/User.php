@@ -1446,6 +1446,14 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsLoved()
+    {
+        return $this->beatmapsets()
+            ->loved()
+            ->active()
+            ->with('beatmaps');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();

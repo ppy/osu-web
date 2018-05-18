@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Libraries\OrderCheckout;
 use Request;
 
 class CartController extends Controller
@@ -46,17 +47,21 @@ class CartController extends Controller
             return ujs_redirect(route('store.checkout.show'));
         }
 
-        return view('store.cart')->with('order', $this->userCart());
+        $order = $this->userCart();
+        $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
+
+        return view('store.cart', compact('order', 'validationErrors'));
     }
 
     public function store()
     {
-        $result = $this->userCart()->updateItem(Request::input('item', []));
+        $error = $this->userCart()->updateItem(Request::input('item', []));
 
-        if ($result[0]) {
+        if ($error === null) {
             return js_view('layout.ujs-reload');
         } else {
-            return error_popup($result[1]);
+            return error_popup($error);
         }
     }
 }

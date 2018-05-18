@@ -68,7 +68,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $sort = explode('_', $request['sort']);
-        $this->sort = static::normalizeSort(
+        $this->sort = $this->normalizeSort(
             [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
         );
     }
@@ -76,7 +76,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private static function normalizeSort($sorts)
+    private function normalizeSort($sorts)
     {
         // additional options
         static $orderOptions = [
@@ -92,6 +92,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $newSort = [];
         foreach ($sorts as $sort) {
+            // assign sort modes if any.
             $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
             if ($options !== []) {
                 $sort->mode = $options['mode'];
@@ -99,8 +100,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $newSort[] = $sort;
 
+            // append/prepend extra sort orders.
             if ($sort->field === 'nominations') {
                 $newSort[] = new Sort('hype', $sort->order);
+            } elseif ($sort->field === 'approved_date' && $this->status === 3) {
+                array_unshift($newSort, new Sort('queued_at', $sort->order));
             }
         }
 
