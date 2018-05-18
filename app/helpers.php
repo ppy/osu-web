@@ -256,16 +256,22 @@ function param_string_simple($value)
     return presence($value);
 }
 
-function product_quantity_options($product)
+function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
         $max = $product->max_quantity;
     } else {
         $max = min($product->max_quantity, $product->stock);
     }
+
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
         $opts[$i] = trans_choice('common.count.item', $i);
+    }
+
+    // include selected value separately if it's out of range.
+    if ($selected > $max) {
+        $opts[$selected] = trans_choice('common.count.item', $selected);
     }
 
     return $opts;

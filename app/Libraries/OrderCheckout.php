@@ -169,32 +169,38 @@ class OrderCheckout
      */
     public function validate()
     {
+        // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
         $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
+            $messages = [];
             if (!$item->isValid()) {
-                $itemErrors[$item->id] = $item->validationErrors()->allMessages();
+                $messages[] = $item->validationErrors()->allMessages();
             }
 
-            if ($item->product->custom_class === 'username-change') {
-                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $messages = $changeUsername->validate()->allMessages();
-                if (!empty($messages)) {
-                    // merge with existing errors, if any.
-                    $itemErrors[$item->id] = array_merge(
-                        $itemErrors[$item->id] ?? [],
-                        $messages
-                    );
-                }
+            // Checkout process level validations, should not be part of OrderItem validation.
+            if ($item->product === null || !$item->product->enabled) {
+                $messages[] = trans('model_validation/store/product.not_available');
             }
+
+            // TODO: probably can combine max_quantity and inStock check and message.
+            if (!$item->product->inStock($item->quantity)) {
+                $messages[] = trans('model_validation/store/product.insufficient_stock');
+            }
+
+            if ($item->quantity > $item->product->max_quantity) {
+                $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+            }
+
+            $customClass = $item->getCustomClassInstance();
+            if ($customClass !== null) {
+                $messages[] = $customClass->validate()->allMessages();
+            }
+
+            $itemErrors[$item->id] = array_flatten($messages);
         }
 
-        $errors = [];
-        if ($itemErrors !== []) {
-            $errors['orderItems'] = $itemErrors;
-        }
-
-        return $errors;
+        return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
     }
 
     /**

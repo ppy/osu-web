@@ -215,7 +215,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
 
-    Route::post('update-cart', 'Store\CartController@store'); // temporarily to avoid 404ing after deploy
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');
