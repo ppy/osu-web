@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,18 +22,18 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => "Vous aimez osu!?<br/>
-                                Supportez le développement d'osu! :D",
+            'big_description' => 'Vous aimez osu!?<br/>
+                                Supportez le développement d\'osu! :D',
             'small_description' => '',
             'support_button' => 'Je veux supporter osu!',
         ],
 
-        'dev_quote' => "osu! est un free-to-win complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
-                    <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom \"peppy\".
-                    J'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
-                    et à certains moments je lutte pour garder mes standards.
-                    J'aurais aimé d'offrir mes remerciments personnels pour ceux qui ont supporté osu! jusque là,
-                    et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).",
+        'dev_quote' => 'osu! est un jeu entièrement free-to-play, mais le maintenir à flots n\'est certainement pas gratuit. Entre le prix des serveurs et de la bande passante internationale de qualité, le temps passé à maintenir le système et la communauté, fournir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! requiert une certaine quantité d\'argent! Oh, et n\'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
+                    <br/><br/>osu! est en majorité opéré par moi-même, vous me connaissez sûrement sous le pseudo "peppy".
+                    J\'ai du quitter mon travail pour garder le rythme avec osu!,
+                    et je lutte par moments pour maintenir mes standards.
+                    J\'aimerais remercier personnellement tout ceux qui ont supporté osu! jusqu\'ici,
+                    et de la même manière tout ceux qui continueront à supporter ce super jeu et sa communauté dans le futur :).',
 
         'supporter_status' => [
             'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
@@ -45,21 +45,21 @@ return [
         ],
 
         'why_support' => [
-            'title' => 'Pourquoi je supporterais osu! ?',
+            'title' => 'Pourquoi devrais-je supporter osu !?',
             'blocks' => [
-                'dev' => 'Développé et maitenu par une seule personne en Australie',
-                'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",
-                'ads' => "Aucune pub, nulle part. <br/><br/>
-                        Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l'argent.",
+                'dev' => 'Développé et maintenu en majorité par une seule personne en Australie',
+                'time' => 'Prend tellement de temps pour le maitenir que ce n\'est plus possible d\'appeler ça un "hobby".',
+                'ads' => 'Aucune pub, nulle part. <br/><br/>
+                        Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l\'argent.',
                 'goodies' => 'Vous obtiendrez des goodies !',
             ],
         ],
 
         'perks' => [
-            'title' => "Ah? J'aurais quoi?!",
+            'title' => 'Ah? J\'aurais quoi?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'accès à la recherche et au téléchargement de beatmap sans quitter le jeu.',
+                'description' => 'accès rapide à la recherche et au téléchargement de beatmap sans quitter le jeu.',
             ],
 
             'auto_downloads' => [
@@ -68,8 +68,8 @@ return [
             ],
 
             'upload_more' => [
-                'title' => "Plus de slots d'upload",
-                'description' => "Slots de beatmaps additionnels jusqu'à 10.",
+                'title' => 'Plus de slots d\'upload',
+                'description' => 'Slots de beatmaps additionnels jusqu\'à 10.',
             ],
 
             'early_access' => [
@@ -104,12 +104,12 @@ return [
 
             'skinnables' => [
                 'title' => 'Skin',
-                'description' => "Plus d'options de skin, comme le fond du menu principal.",
+                'description' => 'Plus d\'options de skin, comme le fond du menu principal.',
             ],
 
             'feature_votes' => [
-                'title' => 'Votes de fonctions',
-                'description' => 'Votez pour les demandes de fonctions. (2x par mois)',
+                'title' => 'Votes de fonctionnalités',
+                'description' => 'Votez pour les demandes de fonctionnalités. (2x par mois)',
             ],
 
             'sort_options' => [
@@ -118,7 +118,7 @@ return [
             ],
 
             'feel_special' => [
-                'title' => 'Sentiment spécial',
+                'title' => 'Sentez-vous spécial',
                 'description' => 'Le sentiment spécial de participer au fonctionnement d\'osu! !',
             ],
 
@@ -130,9 +130,9 @@ return [
 
         'convinced' => [
             'title' => 'Je suis convaincu! :D',
-            'support' => 'supportez osu!',
-            'gift' => 'ou envoyez en cadeau à un utilisateur',
-            'instructions' => 'cliquez sur le coeur pour aller au osu!store',
+            'support' => 'supporter osu!',
+            'gift' => 'ou faites-en cadeau à un autre joueur',
+            'instructions' => 'cliquez sur le cœur pour vous rendre dans l\'osu!store',
         ],
     ],
 ];

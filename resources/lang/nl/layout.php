@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,24 +26,41 @@ return [
     'menu' => [
         'home' => [
             '_' => 'start',
-            'getChangelog' => 'changelog',
+            'account-edit' => 'instellingen',
+            'friends-index' => 'vrienden',
+            'changelog-index' => '',
+            'changelog-show' => '',
             'getDownload' => 'downloaden',
             'getIcons' => 'iconen',
-            'getNews' => 'nieuws',
+            'groups-show' => 'groepen',
+            'index' => '',
+            'legal-show' => 'informatie',
+            'news-index' => 'nieuws',
+            'news-show' => 'nieuws',
+            'password-reset-index' => 'wachtwoord resetten',
+            'search' => 'zoeken',
             'supportTheGame' => 'ondersteun het spel',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'hulp',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'ondersteuning', //obsolete
+            'getRules' => 'regels',
+            'getSupport' => 'ondersteuning',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
+            'artists' => '',
+            'beatmap_discussion_posts-index' => 'beatmap discussie berichten',
+            'beatmap_discussions-index' => 'beatmap discussies',
+            'beatmapset-watches-index' => '',
+            'beatmapset_discussion_votes-index' => 'beatmap discussie stemmen',
+            'beatmapset_events-index' => 'beatmapset evenementen',
             'index' => 'index',
-            // 'getPacks' => 'pakketten',
-            // 'getCharts' => 'grafieken', // Base text has changed, please check.
+            'packs' => 'pakketten',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -51,21 +68,33 @@ return [
         ],
         'rankings' => [
             '_' => 'rankings',
-            'charts' => 'grafieken', // Base text has changed, please check.
+            'index' => 'prestaties',
+            'performance' => 'prestatie',
+            'charts' => 'grafieken',
+            'score' => 'score',
+            'country' => 'land',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
-            'getForum' => 'forum', // Base text changed to plural, please check.
+            'dev' => 'ontwikkeling',
+            'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'contests' => '',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
             'tournaments-index' => 'toernooien',
             'tournaments-show' => 'toernooi info',
-            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
+            'forum-topic-watches-index' => 'abonnementen',
+            'forum-topics-create' => 'forum',
+            'forum-topics-show' => 'forum',
+            'forum-forums-index' => 'forum',
+            'forum-forums-show' => 'forum',
+        ],
+        'multiplayer' => [
+            '_' => 'multiplayer',
+            'show' => '',
         ],
         'error' => [
             '_' => 'fout',
@@ -78,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'gebruiker',
-            'getLogin' => 'inloggen', // Base text changed from "log" to "sign"
+            'getLogin' => 'inloggen',
             'disabled' => 'inactief',
 
             'register' => 'registreren',
@@ -87,11 +116,18 @@ return [
 
             'messages' => 'Berichten',
             'settings' => 'Instellingen',
-            'logout' => 'Uitloggen', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Uitloggen',
             'help' => 'Help',
+            'modding-history-discussions' => 'gebruiker mod discussie',
+            'modding-history-events' => 'gebruiker mod evenementen',
+            'modding-history-index' => 'gebruiker mod geschiedenis',
+            'modding-history-posts' => 'gebruiker mod post',
+            'modding-history-votesGiven' => 'gebruiker mod stemmen gegeven',
+            'modding-history-votesReceived' => 'gebruiker mod stemmen ontvangen',
         ],
         'store' => [
             '_' => 'winkel',
+            'checkout-show' => '',
             'getListing' => 'index',
             'cart-show' => 'winkelwagen',
 
@@ -115,48 +151,113 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => '',
             'logs-index' => 'log',
+            'root' => '',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'covers',
                 'show' => 'detail',
             ],
         ],
     ],
+
+    'footer' => [
+        'general' => [
+            '_' => 'Algemeen',
+            'home' => 'Startpagina',
+            'changelog-index' => '',
+            'beatmaps' => 'Beatmap Lijst',
+            'download' => 'Download osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Help & Community',
+            'faq' => 'Veelgestelde Vragen',
+            'forum' => '',
+            'livestreams' => '',
+            'report' => 'Een Probleem Melden',
+        ],
+        'support' => [
+            '_' => 'Steun osu!',
+            'tags' => '',
+            'merchandise' => '',
+        ],
+        'legal' => [
+            '_' => '',
+            'copyright' => '',
+            'server_status' => 'Server Status',
+            'terms' => 'Gebruikersvoorwaarden',
+        ],
+    ],
+
     'errors' => [
         '404' => [
             'error' => 'Pagina Mist',
-            'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
+            'description' => "Sorry, de pagina die je hebt opgevraagd is er niet!",
         ],
         '403' => [
-            'error' => 'Jij hoort hier niet te zijn.',
+            'error' => "Jij hoort hier niet te zijn.",
             'description' => 'Je zou kunnen proberen terug te gaan.',
         ],
         '401' => [
-            'error' => 'Jij hoort hier niet.',
-            'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.', // Base text changed from "log" to "sign"
+            'error' => "Jij hoort hier niet.",
+            'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.',
         ],
         '405' => [
             'error' => 'Pagina Mist',
-            'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
+            'description' => "Sorry, de pagina die je hebt opgevraagd is er niet!",
         ],
         '500' => [
             'error' => 'Oh nee! Iets brak! ;_;',
-            'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
+            'description' => "We worden automatisch op de hoogte gesteld van alle fouten.",
         ],
         'fatal' => [
             'error' => 'Oh nee! Iets brak (heel erg)! ;_;',
-            'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
+            'description' => "We worden automatisch op de hoogte gesteld van alle fouten.",
         ],
         '503' => [
             'error' => 'Offline voor onderhoud!',
-            'description' => 'Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.',
+            'description' => "Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!',
+        'reference' => "Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!",
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'emailadres',
+            'forgot' => "Ik ben mij gegevens vergeten",
+            'password' => 'wachtwoord',
+            'title' => 'Log In Om Verder Te Gaan',
+
+            'error' => [
+                'email' => "Gebruikersnaam of emailadres bestaat niet",
+                'password' => 'Incorrect wachtwoord',
+            ],
+        ],
+
+        'register' => [
+            'info' => "Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?",
+            'title' => "Heb je geen account?",
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'account-edit' => 'Instellingen',
+            'friends' => 'Vrienden',
+            'logout' => 'Log Uit',
+            'profile' => 'Mijn Profiel',
+        ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Type om te zoeken!',
+        'retry' => 'Zoekopdracht mislukt. Klik om opnieuw te proberen.',
     ],
 ];

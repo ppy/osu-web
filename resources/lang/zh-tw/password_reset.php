@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,12 +19,12 @@
  */
 
 return [
-    'title' => '重置密碼',
+    'title' => '重設密碼',
 
     'button' => [
         'cancel' => '取消',
         'resend' => '重新發送確認郵件',
-        'set' => '設置密碼',
+        'set' => '設定密碼',
         'start' => '開始',
     ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,19 +21,19 @@
 return [
     'header' => 'Ranking :type',
     'type' => [
-        'performance' => 'globalny',
-        'charts' => 'wyróżnionych',
-        'score' => 'punktowy',
-        'country' => 'krajowy',
+        'performance' => 'Globalny',
+        'charts' => 'Wyróżnionych',
+        'score' => 'Punktowy',
+        'country' => 'Krajowy',
     ],
     'stat' => [
         'accuracy' => 'Precyzja',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
         'play_count' => 'Ilość zagrań',
-        'performance' => 'Ilość pp',
+        'performance' => 'Liczba pp',
         'total_score' => 'Łączna ilość punktów',
-        'ranked_score' => 'Ilość punktów rankingowych',
+        'ranked_score' => 'Punkty rankingowe',
         'average_score' => 'Średni wynik',
         'average_performance' => 'Średnia ilość pp',
         'ss' => 'SS',

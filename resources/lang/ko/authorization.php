@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,10 +21,13 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => '홍보 한 것을 되돌릴 수 없습니다.',
             'has_reply' => '답글이 달린 토론은 삭제할 수 없습니다',
         ],
         'nominate' => [
             'exhausted' => '오늘은 더이상 추천할 수 없습니다, 내일 다시 시도해주세요.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
@@ -32,7 +35,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => '투표를 더 받을 때 까지 좀 더 기다려주세요',
-            'owner' => '본인이 제시한 토론에는 투표할 수 없습니다!',
+            'owner' => "본인이 제시한 토론에는 투표할 수 없습니다!",
+            'wrong_beatmapset_state' => '대기 중인 비트맵의 토론에만 투표할 수 있습니다.',
         ],
     ],
 
@@ -82,6 +86,11 @@ return [
                 'not_owner' => '본인이 쓴 답글만 수정할 수 있습니다.',
                 'topic_locked' => '잠긴 주제에 달린 답글은 수정할 수 없습니다.',
             ],
+
+            'store' => [
+                'play_more' => '',
+                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -92,9 +101,9 @@ return [
                 'no_permission' => '답변할 권한이 없습니다.',
 
                 'user' => [
-                    'require_login' => '답글을 게시하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
-                    'restricted' => '제한된 상태의 계정은 답글을 게시할 수 없습니다.',
-                    'silenced' => '침묵 상태의 계정은 답글을 게시할 수 없습니다.',
+                    'require_login' => '답글을 게시하려면 로그인해 주세요.',
+                    'restricted' => "제한된 상태의 계정은 답글을 게시할 수 없습니다.",
+                    'silenced' => "침묵 상태의 계정은 답글을 게시할 수 없습니다.",
                 ],
             ],
 
@@ -110,9 +119,9 @@ return [
                 'voted' => '투표 변경이 허용되지 않았습니다.',
 
                 'user' => [
-                    'require_login' => '투표하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
-                    'restricted' => '제한된 상태의 계정은 투표할 수 없습니다.',
-                    'silenced' => '침묵 상태의 계정은 투표할 수 없습니다.',
+                    'require_login' => '투표하려면 로그인해 주세요.',
+                    'restricted' => "제한된 상태의 계정은 투표할 수 없습니다.",
+                    'silenced' => "침묵 상태의 계정은 투표할 수 없습니다.",
                 ],
             ],
 
@@ -133,13 +142,13 @@ return [
         ],
     ],
 
-    'require_login' => '계속하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
+    'require_login' => '계속하려면 로그인해 주세요.',
 
     'unauthorized' => '접근이 제한되었습니다.',
 
-    'silenced' => '침묵 상태에서는 할 수 없습니다.',
+    'silenced' => "침묵 상태에서는 할 수 없습니다.",
 
-    'restricted' => '제한된 상태에서는 할 수 없습니다.',
+    'restricted' => "제한된 상태에서는 할 수 없습니다.",
 
     'user' => [
         'page' => [

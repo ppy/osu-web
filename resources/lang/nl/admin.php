@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenereer',
+            'regenerating' => 'Regenereren...',
+            'remove' => 'Verwijder',
+            'removing' => 'Verwijderen...',
+        ],
         'show' => [
+            'covers' => 'Beheer Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activeer',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Lijst van Bestellingen',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Deze gebruiker is momenteel gerestricteerd.',
+            'message' => '(enkel administrators kunnen dit zien)',
         ],
     ],
 

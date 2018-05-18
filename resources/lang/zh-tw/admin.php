@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
                 'activate' => '啟用',
                 'activate_confirm' => '確認要為這個譜面啟用 Modding v2 嗎?',
                 'active' => '已啟用',
-                'inactive' => '未啟用',
+                'inactive' => '停用',
             ],
         ],
     ],
@@ -41,21 +41,21 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => '刪除',
+                'delete' => '取消',
 
                 'forum-name' => '論壇 #:id: :name',
 
                 'no-cover' => '沒有封面',
 
                 'submit' => [
-                    'save' => '保存',
+                    'save' => '儲存',
                     'update' => '更新',
                 ],
 
-                'title' => '論壇封面列表',
+                'title' => '論壇封面清單',
 
                 'type-title' => [
-                    'default-topic' => '預設板塊封面',
+                    'default-topic' => '預設主題封面',
                     'main' => '論壇封面',
                 ],
             ],
@@ -64,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => '日誌查看器',
+            'title' => '日誌檢視器',
         ],
     ],
 
@@ -90,8 +90,8 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => '該帳戶當前處於限制模式',
-            'message' => '（只有管理員能看見這條信息）',
+            'title' => '該使用者目前受到限制。',
+            'message' => '（只有管理員能看到此訊息）',
         ],
     ],
 

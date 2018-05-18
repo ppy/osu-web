@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,10 +20,11 @@
 
 return [
     'index' => [
-        'title' => '譜面討論貼',
+        'title' => '圖譜討論文',
     ],
 
     'item' => [
-        'content' => '正文', //需要上下文
+        'content' => '內容',
+        'modding_history_link' => '查看摸圖歷史',
     ],
 ];

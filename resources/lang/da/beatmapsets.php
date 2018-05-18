@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,7 @@ return [
             'approved' => 'godkendt den ',
             'qualified' => 'kvalificeret den ',
             'loved' => 'loved den ',
-            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'download' => [
                 '_' => 'Download',
                 'video' => 'med Video',
@@ -65,24 +65,25 @@ return [
             'count_sliders' => 'Slider Antal',
             'user-rating' => 'Brugerbedømmelse',
             'rating-spread' => 'Rating Fordeling',
+            'nominations' => '',
+            'playcount' => '',
         ],
         'info' => [
-            'points-of-failure' => 'Fejlpoints',
-            'success-rate' => 'Succes Rate',
             'description' => 'Beskrivelse',
-            'source' => 'Kilde',
-            'tags' => 'Tags',
-            'unranked' => 'Ikke-ranked beatmap',
             'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Dataen er ved at blive beregnet...',
+            'points-of-failure' => 'Fejlpoints',
+            'source' => 'Kilde',
+            'success-rate' => 'Succes Rate',
+            'tags' => 'Tags',
+            'unranked' => 'Ikke-ranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'opnået :when',
             'country' => 'Landerangering',
             'friend' => 'Vennerangering',
             'global' => 'Global Rangering',
-            'miss_count' => ':count miss',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de smarte fordele du får!',
             'supporter-only' => 'Du skal være supporter for at få adgang til venne- og landerangering!',
             'title' => 'Scoreboard',
@@ -91,7 +92,9 @@ return [
                 'accuracy' => 'Præcision',
                 'combo' => 'Max Combo',
                 'miss' => 'Miss',
+                'mods' => '',
                 'player' => 'Spiller',
+                'pp' => '',
                 'rank' => 'Rank',
                 'score_total' => 'Samlet Score',
                 'score' => 'Score',
@@ -104,7 +107,6 @@ return [
                 'loading' => 'Indlæser scores...',
                 'unranked' => 'Ikke-ranked beatmap.',
             ],
-
             'score' => [
                 'first' => 'I førerpositionen',
                 'own' => 'Dit bedste',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Przypięte wątki',
-    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
+    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
 
@@ -113,6 +113,7 @@ return [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
+
             'info' => [
                 'total' => 'Liczba zasubskrybowanych wątków: :total.',
                 'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
@@ -146,11 +147,10 @@ return [
 
             'poll' => [
                 'length' => 'Przeprowadź ankietę przez',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dni',
-                'length_info' => 'Zostaw puste dla niekończącej się ankiety',
+                'length_info' => 'Zostaw puste dla niekończącej się ankiety.',
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
-                'max_options_info' => 'Ilość możliwości, które każdy użytkownik może wybrać podczas głosowania.',
+                'max_options_info' => 'Liczba wyborów, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
                 'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
@@ -242,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
                     'current' => 'Pozostało ci :votes głosów.',
-                    'not_enough' => 'Nie posiadasz żadnych głosów',
+                    'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
             ],
 

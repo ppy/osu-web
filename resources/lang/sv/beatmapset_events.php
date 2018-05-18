@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator återställde inlägg från diskussionen :discussion.',
         'discussion_restore' => 'Moderator återställde diskussionen :discussion.',
+        'disqualify' => 'Diskvalificerad av :user. Anledning: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalificerad av :user. Anledning: :text.',
         'issue_reopen' => 'Löst problem :discussion öppnat igen.',
         'issue_resolve' => 'Problem :discussion markerat som löst.',
@@ -37,5 +38,15 @@ return [
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Kvalificerad.',
         'rank' => 'Rankad.',
+    ],
+
+    'index' => [
+        'title' => 'Beatmapset händelser',
+    ],
+
+    'item' => [
+        'content' => 'Innehåll',
+        'discussion_deleted' => '[raderad]',
+        'type' => 'Typ',
     ],
 ];

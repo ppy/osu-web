@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '一日のノミネーションの上限に達しました。後日お試しください。',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'スレッド作者と譜面作者にのみディスカッションは解決できます。',
@@ -33,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => '再度評価するには少し間を置いてください。',
-            'owner' => '自分のディスカッションは評価できません。',
+            'owner' => "自分のディスカッションは評価できません。",
             'wrong_beatmapset_state' => 'pending譜面のディスカッションにのみ評価できます。',
         ],
     ],
@@ -84,6 +86,11 @@ return [
                 'not_owner' => '投稿者にのみ投稿が編集できます。',
                 'topic_locked' => 'ロックされたトピックの投稿は編集できません。',
             ],
+
+            'store' => [
+                'play_more' => 'フォーラムに投稿をする前にゲームのプレイをお願いします。プレイする上で問題が発生した場合、Helpフォーラムにお問い合わせください。',
+                'too_many_help_posts' => "続けて投稿する為に必要とされているプレイ回数を満たしていません。未だにプレイする上で問題が発生している場合、support@ppy.sh宛てにEメールでお問い合わせください。", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -95,8 +102,8 @@ return [
 
                 'user' => [
                     'require_login' => '返信するにはログインが必要です。',
-                    'restricted' => '制限中は返信できません。',
-                    'silenced' => 'サイレンス中は返信できません。',
+                    'restricted' => "制限中は返信できません。",
+                    'silenced' => "サイレンス中は返信できません。",
                 ],
             ],
 
@@ -113,8 +120,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票するにはログインが必要です。',
-                    'restricted' => '制限中は投票できません。',
-                    'silenced' => 'サイレンス中は投票できません。',
+                    'restricted' => "制限中は投票できません。",
+                    'silenced' => "サイレンス中は投票できません。",
                 ],
             ],
 
@@ -139,9 +146,9 @@ return [
 
     'unauthorized' => 'アクセスが拒否されました。',
 
-    'silenced' => 'サイレンス中には不可能です。',
+    'silenced' => "サイレンス中には不可能です。",
 
-    'restricted' => '制限中には不可能です。',
+    'restricted' => "制限中には不可能です。",
 
     'user' => [
         'page' => [

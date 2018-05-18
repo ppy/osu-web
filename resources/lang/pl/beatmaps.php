@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie posta nie powiodło się',
+            'error' => 'Zapisywanie postu nie powiodło się',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
-        'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
         'restore' => 'odzyskaj',
@@ -113,20 +113,21 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...',
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...",
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
         ],
+
     ],
 
     'hype' => [
         'button' => 'Nagłośnij beatmapę!',
         'button_done' => 'Już nagłośniono!',
-        'confirm' => 'Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.',
-        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'new_time' => 'Nagłośnienie kolejnej mapy będzie możliwe za :new_time.',
+        'confirm' => "Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.",
+        'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
         'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
@@ -221,27 +222,27 @@ return [
         'electronic' => 'Muzyka elektroniczna',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'Brak modyfikatorów',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
         'TD' => 'Urządzenie dotykowe',
     ],
     'language' => [
@@ -258,14 +259,14 @@ return [
         'instrumental' => 'Instrumentalny',
         'other' => 'Inny',
     ],
-    'extra' => [
-        'video' => 'Posiada wideo',
-        'storyboard' => 'Posiada scenorys',
-    ],
     'played' => [
         'any' => 'Jakikolwiek',
         'played' => 'Ukończona',
         'unplayed' => 'Nieukończona',
+    ],
+    'extra' => [
+        'video' => 'Posiada wideo',
+        'storyboard' => 'Posiada scenorys',
     ],
     'rank' => [
         'any' => 'Jakakolwiek',

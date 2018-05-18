@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
+    'slogan' => "",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 
@@ -47,12 +48,14 @@ return [
     ],
 
     'post' => [
-        'confirm_delete' => 'Vuoi veramente eliminare il post?',
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
-            'delete' => 'Elimina post',
+            'destroy' => '',
+            'restore' => '',
             'edit' => 'Modifica post',
         ],
     ],
@@ -64,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => '',
         'go_to_latest' => 'guarda gli ultimi post',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
@@ -74,6 +78,9 @@ return [
 
         'create' => [
             'preview' => 'Anteprima',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => '',
             'submit' => 'Invia',
 
             'placeholder' => [
@@ -93,11 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
-
-            'zoom' => [
-                'start' => 'Schermo intero',
-                'end' => 'Esci da Schermo Intero',
-            ],
         ],
     ],
 
@@ -105,6 +107,7 @@ return [
         'index' => [
             'title' => 'Iscrizioni ai Topic',
             'title_compact' => 'iscrizioni',
+            'title_main' => '',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -129,7 +132,9 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'reply' => '',
             'reply_with_quote' => 'Quota il post per rispondere',
+            'search' => '',
         ],
 
         'create' => [
@@ -142,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Durata del sondaggio:',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
                 'max_options' => 'Opzioni per Utente',
@@ -155,9 +159,55 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => '',
+        ],
+
         'index' => [
             'views' => 'visualizzazioni',
             'replies' => 'risposte',
+        ],
+
+        'issue_tag_added' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_assigned' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_confirmed' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_duplicate' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_invalid' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
+        ],
+
+        'issue_tag_resolved' => [
+            'to_0' => '',
+            'to_0_done' => '',
+            'to_1' => '',
+            'to_1_done' => '',
         ],
 
         'lock' => [
@@ -177,9 +227,14 @@ return [
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
             'to_1' => 'Fissa topic',
             'to_1_done' => 'Il topic è stato fissato',
+            'to_2' => '',
+            'to_2_done' => '',
         ],
 
         'show' => [
+            'deleted-posts' => '',
+            'total_posts' => '',
+
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
@@ -187,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'current' => 'Hai :votes rimanenti.',
-                    'not_enough' => 'Non hai altri voti rimanenti',
+                    'not_enough' => "Non hai altri voti rimanenti",
                 ],
             ],
 
@@ -203,8 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Disiscritto dal topic',
-            'to_watching_done' => 'Iscritto al topic',
+            'to_not_watching' => '',
+            'to_watching' => '',
+            'to_watching_mail' => '',
+            'mail_disable' => '',
         ],
     ],
 ];

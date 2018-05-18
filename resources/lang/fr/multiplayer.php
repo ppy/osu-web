@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -40,7 +40,7 @@ return [
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
             'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => "l'hôte a changé",
+            'host-changed-no-user' => 'l\'hôte a changé',
         ],
         'in-progress' => '(match en cours)',
         'score' => [

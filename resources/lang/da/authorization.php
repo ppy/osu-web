@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
@@ -33,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
-            'owner' => 'Du kan ikke stemme på din egen diskussion!',
+            'owner' => "Du kan ikke stemme på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner hvis beatmappen er i Afventende.',
         ],
     ],
@@ -84,6 +86,11 @@ return [
                 'not_owner' => 'Kun ejeren af dette opslaget kan redigere opslaget.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
+
+            'store' => [
+                'play_more' => 'Prøv at spille spillet før du skriver i forumet, tak! Hvis du har et problem med at spille, bedes du skrive til Hjælp og Support forumet.',
+                'too_many_help_posts' => "Du skal spille spillet mere, før du kan lave flere indlæg. Hvis du stadig har problemer med at spille spillet, skal du sende en email til support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,9 +101,9 @@ return [
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at svare.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Du kan ikke svare, når du er begrænset.',
-                    'silenced' => 'Du kan ikke svare, når du er mutet.',
+                    'require_login' => 'Log venligst ind for at svare.',
+                    'restricted' => "Du kan ikke svare, når du er begrænset.",
+                    'silenced' => "Du kan ikke svare, når du er mutet.",
                 ],
             ],
 
@@ -112,9 +119,9 @@ return [
                 'voted' => 'Det er ikke tilladt at ændre stemme.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at stemme.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Du kan ikke stemme, når du er begrænset.',
-                    'silenced' => 'Du kan ikke stemme, når du er mutet.',
+                    'require_login' => 'Log venligst ind for at stemme.',
+                    'restricted' => "Du kan ikke stemme, når du er begrænset.",
+                    'silenced' => "Du kan ikke stemme, når du er mutet.",
                 ],
             ],
 
@@ -135,13 +142,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Log venligst ind for at fortsætte.', // Base text changed from "log" to "sign"
+    'require_login' => 'Log venligst ind for at fortsætte.',
 
     'unauthorized' => 'Adgang nægtet.',
 
-    'silenced' => 'Det kan du ikke gøre, når du er mutet.',
+    'silenced' => "Det kan du ikke gøre, når du er mutet.",
 
-    'restricted' => 'Det kan du ikke gøre, når du er begrænset.',
+    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
 
     'user' => [
         'page' => [

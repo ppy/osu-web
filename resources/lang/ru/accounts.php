@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,30 +22,31 @@ return [
     'edit' => [
         'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
+        'username' => 'никнейм',
 
         'avatar' => [
-            'title' => 'Смена аватара', // Base text changed, please check.
+            'title' => 'Смена аватара',
         ],
 
         'email' => [
             'current' => 'текущая почта',
             'new' => 'новая почта',
             'new_confirmation' => 'напишите ещё раз',
-            'title' => 'Смена почты',
+            'title' => 'Почта',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
             'new_confirmation' => 'напишите ещё раз',
-            'title' => 'Смена пароля',
+            'title' => 'Пароль',
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация', // Base text changed, please check.
+            'title' => 'Дополнительная информация',
 
             'user' => [
-                'user_from' => 'проживание',
+                'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
                 'user_msnm' => 'skype',
                 'user_occ' => 'профессия',
@@ -73,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Устройства',
-        'mouse' => 'мышка',
+        'mouse' => 'мышь',
         'keyboard' => 'клавиатура',
-        'tablet' => 'планшет',
+        'tablet' => 'графический планшет',
         'touch' => 'сенсорный экран',
     ],
 ];

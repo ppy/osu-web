@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,7 @@ return [
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
             'loved' => 'loved em ',
-            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'download' => [
                 '_' => 'Baixar',
                 'video' => 'com Vídeo',
@@ -63,7 +63,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
-            'user-rating' => 'Avaliação',
+            'user-rating' => 'Avaliação de Usuários',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
             'playcount' => 'Vezes Jogadas',
@@ -74,7 +74,7 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
             'points-of-failure' => 'Pontos de Falha',
-            'source' => 'Origem',
+            'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
             'unranked' => 'Beatmap não ranqueado',
@@ -84,7 +84,6 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
-            'miss_count' => ':count erros',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
             'title' => 'Placar',
@@ -96,7 +95,7 @@ return [
                 'mods' => 'Mods',
                 'player' => 'Jogador',
                 'pp' => 'pp',
-                'rank' => 'Colocação',
+                'rank' => 'Rank',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
             ],

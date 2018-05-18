@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator slettede et opslag fra diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator gendannede et opslag fra diskussionen :discussion.',
         'discussion_restore' => 'Moderator gendannede diskussionen :discussion.',
+        'disqualify' => '',
         'disqualify_legacy' => 'Diskvalificeret af :user. Årsag: :text.',
         'issue_reopen' => 'Løste problem :discussion genåbnet.',
         'issue_resolve' => 'Problem :discussion markeret som løst.',
@@ -37,5 +38,15 @@ return [
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
         'qualify' => 'Kvalificeret.',
         'rank' => 'Ranked.',
+    ],
+
+    'index' => [
+        'title' => '',
+    ],
+
+    'item' => [
+        'content' => '',
+        'discussion_deleted' => '',
+        'type' => '',
     ],
 ];

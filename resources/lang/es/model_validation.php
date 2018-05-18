@@ -31,22 +31,24 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'La marca de tiempo ha sido especificada pero el beatmap no se encontró.',
-        'beatmapset_no_hype' => 'El beatmap no puede ser hypeado.',
+        'beatmapset_no_hype' => "El beatmap no puede ser hypeado.",
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido',
         'locked' => 'La discusión ha sido bloqueada.',
         'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas del mapper',
+
         'hype' => [
-            'guest' => 'Debes iniciar sesión para hypear.', // Base text changed from "log" to "sign"
+            'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
             'limit_exceeded' => 'Ya has utilizado todos tus hype.',
             'not_hypeable' => 'Este mapa no puede ser hypeado.',
             'owner' => 'No puedes hypear tu propio mapa.',
         ],
+
         'timestamp' => [
             'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del mapa.',
-            'negative' => 'La marca de tiempo no puede ser negativa.',
+            'negative' => "La marca de tiempo no puede ser negativa.",
         ],
     ],
 
@@ -83,7 +85,8 @@ return [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
         'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
         'invalid_country' => 'El país no está en la base de datos.',
-        'invalid_email' => 'No parece que haya un correo electrónico.',
+        'invalid_discord' => 'Usuario de Discord invalido.',
+        'invalid_email' => "No parece que haya un correo electrónico.",
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
         'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',
@@ -91,7 +94,7 @@ return [
         'username_invalid_characters' => 'El nombre de usuario solicitado tiene carácteres inválidos.',
         'username_in_use' => '¡El nombre de usuario ya está en uso!',
         'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
-        'username_no_spaces' => '¡El nombre no puede iniciar o finalizar con espacios!',
+        'username_no_spaces' => "¡El nombre no puede iniciar o finalizar con espacios!",
         'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',
         'username_too_short' => 'El nombre de usuario solicitado es muy corto.',
         'username_too_long' => 'El nombre de usuario solicitado es muy largo.',

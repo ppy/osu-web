@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -76,7 +76,7 @@ return [
         'gift' => 'подарок для игрока',
         'require_login' => [
             '_' => 'Вы должны :link для покупки osu!supporter тега!',
-            'link_text' => 'войти', // Base text changed from "log" to "sign"
+            'link_text' => 'войти',
         ],
     ],
 
@@ -85,7 +85,7 @@ return [
         'checking' => 'Проверяем доступность имени :username...',
         'require_login' => [
             '_' => 'Вы должны :link для смены ника!',
-            'link_text' => 'войти', // Base text changed from "log" to "sign"
+            'link_text' => 'войти',
         ],
     ],
 ];

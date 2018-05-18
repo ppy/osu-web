@@ -1,0 +1,22 @@
+files:
+  - source: /resources/lang/en/**/*.php
+    translation: /resources/lang/%locale%/**/%original_file_name%
+    languages_mapping:
+      locale:
+        zh-CN: zh
+        zh-TW: zh-tw
+        da: da
+        nl: nl
+        fr: fr
+        id: id
+        it: it
+        ja: ja
+        ko: ko
+        pl: pl
+        pt-BR: pt-br
+        ru: ru
+        sv-SE: sv
+        vi: vi
+        es-ES: es
+        de: de
+        th: th

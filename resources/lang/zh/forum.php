@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => '置顶主题',
-    'slogan' => '独乐乐不如众乐乐~',
+    'slogan' => "独乐乐不如众乐乐~",
     'subforums' => '子版块',
     'title' => 'osu! 社区',
 
@@ -28,12 +28,12 @@ return [
         'create' => [
             '_' => '设置封面',
             'button' => '上传图片',
-            'info' => '图片尺寸应为 :dimensions. 也可以将图片拖动到这里上传.',
+            'info' => '图片尺寸应为 :dimensions 。 也可以将图片拖动到这里上传。',
         ],
 
         'destroy' => [
             '_' => '移除封面',
-            'confirm' => '移除这个封面？',
+            'confirm' => '要移除这个封面吗？',
         ],
     ],
 
@@ -62,7 +62,7 @@ return [
 
     'search' => [
         'go_to_post' => '前往该楼层',
-        'post_number_input' => '输入楼层数',
+        'post_number_input' => '输入楼层号',
         'total_posts' => '一共有 :posts_count 楼',
     ],
 
@@ -78,6 +78,8 @@ return [
 
         'create' => [
             'preview' => '预览',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => '编辑',
             'submit' => '发表',
 
@@ -145,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => '投票持续',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
                 'max_options' => '最大可选数',
@@ -167,7 +168,7 @@ return [
             'replies' => '回复数',
         ],
 
-        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
+        'issue_tag_added' => [
             'to_0' => '移除 "added" 标签',
             'to_0_done' => '已移除 "added" 标签',
             'to_1' => '添加 "added" 标签',
@@ -239,9 +240,9 @@ return [
                 'do' => '提升这个请求',
 
                 'user' => [
-                    'count' => '{0} 没有票|[1,*] :count 票',
-                    'current' => '还有 :votes 票.',
-                    'not_enough' => '没有票了',
+                    'count' => ':count 票',
+                    'current' => '还有 :votes 。',
+                    'not_enough' => "没有票了",
                 ],
             ],
 
@@ -257,8 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => '已取消订阅！',
-            'to_watching_done' => '订阅成功！',
+            'to_not_watching' => '未订阅',
+            'to_watching' => '订阅',
+            'to_watching_mail' => '订阅并启用邮件通知',
+            'mail_disable' => '禁用邮件通知',
         ],
     ],
 ];

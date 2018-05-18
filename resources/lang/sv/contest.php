@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävlingen har avslutas.',
-        'login_required' => 'Var vänlig logga in för att rösta.', // Base text changed from "log" to "sign"
+        'login_required' => 'Var vänlig logga in för att rösta.',
         'best_of' => [
-            'none_played' => 'Det ser inte ut som att du har spelat någon av beatmapsen som kvalificerar för denna tävling!',
+            'none_played' => "Det ser inte ut som att du har spelat någon av beatmapsen som kvalificerar för denna tävling!",
         ],
     ],
     'entry' => [
         '_' => 'bidrag',
-        'login_required' => 'Var vänlig logga in för att gå med i tävlingen.', // Base text changed from "log" to "sign"
+        'login_required' => 'Var vänlig logga in för att gå med i tävlingen.',
         'silenced_or_restricted' => 'Du kan inte gå med i en tävling när du är begränsad eller tystad.',
         'preparation' => 'Vi håller på att förbereda denna tävling. Var god vänta med tålamod!',
         'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',

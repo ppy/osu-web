@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => 'Голосование окончено',
-        'login_required' => 'Войдите для голосования.', // Base text changed from "log" to "sign"
+        'login_required' => 'Войдите для голосования.',
         'best_of' => [
-            'none_played' => 'Не похоже чтобы вы играли в те карты, которые участвуют в этом конкурсе.',
+            'none_played' => "Не похоже чтобы вы играли в те карты, которые участвуют в этом конкурсе.",
         ],
     ],
     'entry' => [
         '_' => 'заявка',
-        'login_required' => 'Войдите, чтобы участвовать в этом конкурсе.', // Base text changed from "log" to "sign"
+        'login_required' => 'Войдите, чтобы участвовать в этом конкурсе.',
         'silenced_or_restricted' => 'Вы не можете участвовать в конкурсе пока ваши права ограничены.',
         'preparation' => 'В настоящее время мы готовим этот конкурс! Пожалуйста, потерпи немного.',
         'over' => 'Благодарим за ваши заявки на участие в этом конкурсе! Голосование начнется в ближайшее время.',

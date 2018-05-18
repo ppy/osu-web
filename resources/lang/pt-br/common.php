@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,8 +30,11 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancelar',
+        'change' => 'mudar',
+        'click_to_copy' => 'clique para copiar',
+        'click_to_copy_copied' => 'copiado para a área de transferência!',
         'delete' => 'Excluir',
-        'permalink' => 'copiar link da postagem',
+        'permalink' => 'permalink',
         'permalink_copied' => 'link copiado',
         'post' => 'Enviar',
         'reply' => 'Responder',
@@ -46,6 +49,7 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count emblema|:count emblemas',
         'days' => ':count dia|:count dias',
         'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hora|:count horas',

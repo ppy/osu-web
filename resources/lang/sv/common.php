@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,8 +30,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Avbryt',
+        'change' => 'ändra',
+        'click_to_copy' => 'klicka för att kopiera till urklipp',
+        'click_to_copy_copied' => 'kopierad till urklipp!',
         'delete' => 'Radera',
         'permalink' => 'permalänk',
+        'permalink_copied' => 'länk kopierad',
         'post' => 'Lägg upp',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och Öppna Igen',
@@ -39,13 +43,20 @@ return [
         'reset' => 'Återställ',
         'save' => 'Spara',
         'saving' => 'Sparar...',
+        'see_more' => 'se mer',
         'show_more' => 'visa mer',
         'upload_image' => 'ladda upp bild',
     ],
 
     'count' => [
+        'badges' => ':count emblem|:count emblem',
+        'days' => ':count dag|:count dagar',
+        'hour_short_unit' => 't|t',
+        'hours' => ':count timme|:count timmar',
         'item' => ':count enhet|:count enheter',
+        'minute_short_unit' => 'm|m',
         'months' => ':count månad|:count månader',
+        'second_short_unit' => 's|s',
         'years' => ':count år|:count år',
     ],
 
@@ -54,13 +65,16 @@ return [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
         ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
         'keyboard' => 'Tangentbord',
         'mouse' => 'Mus',
         'tablet' => 'Platta',
-        'touch' => 'Touch Skärm',
+        'touch' => 'Pekskärm',
     ],
 
     'dropzone' => [

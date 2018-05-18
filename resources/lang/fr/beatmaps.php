@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,7 +34,7 @@ return [
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
         'delete' => 'supprimer',
-        'deleted' => 'supprimé par :editor :delete_time',
+        'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor :update_time',
@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
-        'require-login' => 'Veuillez vous connecter pour poster ou répondre', // Base text changed from "log" to "sign"
+        'require-login' => 'Veuillez vous connecter pour poster ou répondre',
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'title' => 'Discussions',
@@ -127,7 +127,7 @@ return [
         'confirm' => "Êtes-vous sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
         'explanation' => 'Hyper cette beatmap permet de la rendre plus visible pour sa nomination et son classement !',
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
-        'new_time' => 'Vous obtiendrez un point de hype :new_time.',
+        'new_time' => "Vous obtiendrez un point de hype :new_time.",
         'remaining' => 'Vous avez :remaining hypes restants.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Train de la hype',
@@ -143,12 +143,12 @@ return [
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
-        'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
+        'incorrect_state' => 'Erreur lors de l\'action, merci de réesayer.',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap?',
         'nominated_by' => 'nominée par :users',
-        'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
-        'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
+        'qualified' => 'Map classée environ le :date, si aucun problème n\'est trouvé.',
+        'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'supprimé',
         'title' => 'Statut de la nomination',
@@ -178,6 +178,7 @@ return [
                 'language' => 'Langue',
                 'extra' => 'supplément',
                 'rank' => 'Rang Atteint',
+                'played' => 'Jouée',
             ],
         ],
         'mode' => 'Mode',
@@ -258,12 +259,17 @@ return [
         'instrumental' => 'Instrumentale',
         'other' => 'Autre',
     ],
+    'played' => [
+        'any' => 'Toutes',
+        'played' => 'Jouée',
+        'unplayed' => 'Non-jouée',
+    ],
     'extra' => [
         'video' => 'Avec vidéo',
         'storyboard' => 'Avec storyboard',
     ],
     'rank' => [
-        'any' => "N'importe",
+        'any' => 'N\'importe',
         'XH' => 'SS argenté',
         'X' => 'SS',
         'SH' => 'S argenté',

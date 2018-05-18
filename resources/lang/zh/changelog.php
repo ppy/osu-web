@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,5 +27,12 @@ return [
         'add' => '添加',
         'fix' => '修复',
         'misc' => '杂项',
+    ],
+
+    'support' => [
+        'heading' => '喜欢这次更新吗？',
+        'text_1' => '支持 osu! 的后续开发并 :link 吧！',
+        'text_1_link' => '成为 Supporter',
+        'text_2' => '你不仅仅能加快开发，还能享受额外的功能和更多的自定义内容！',
     ],
 ];

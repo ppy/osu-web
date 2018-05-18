@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,9 @@
 
 return [
     'availability' => [
-        'disabled' => "Cette beatmap n'est actuellement pas disponible au téléchargement.",
-        'parts-removed' => "Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d'un titulaire de droits tiers",
-        'more-info' => "Voir ici pour plus d'informations.",
+        'disabled' => 'Cette beatmap n\'est actuellement pas disponible au téléchargement.',
+        'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers',
+        'more-info' => 'Voir ici pour plus d\'informations.',
     ],
 
     'index' => [
@@ -37,11 +37,11 @@ return [
             'made-by' => 'créée par ',
             'submitted' => 'envoyée le ',
             'updated' => 'dernière mise à jour le ',
-            'ranked' => 'classifiée le ',
+            'ranked' => 'classée le ',
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !', // Base text changed from "log" to "sign"
+            'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
@@ -57,9 +57,9 @@ return [
             'cs-mania' => 'Nombre de touches',
             'drain' => 'Drainage PV',
             'accuracy' => 'Précision',
-            'ar' => "Niveau d'approche",
+            'ar' => 'Niveau d\'approche',
             'stars' => 'Difficulté en étoiles',
-            'total_length' => 'Longeur',
+            'total_length' => 'Longueur',
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
@@ -77,7 +77,7 @@ return [
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap non classifiée',
+            'unranked' => 'Beatmap non classée',
         ],
         'scoreboard' => [
             'achieved' => 'atteint :when',
@@ -101,8 +101,8 @@ return [
             ],
 
             'no_scores' => [
-                'country' => "Personne de votre pays n'a encore fait un score !",
-                'friend' => "Personnne de vos amis n'a encore fait un score !",
+                'country' => 'Personne de votre pays n\'a encore fait un score !',
+                'friend' => 'Personnne de vos amis n\'a encore fait un score !',
                 'global' => 'Pas de scores. Peut-être vous dans le classement ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',

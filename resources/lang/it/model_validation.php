@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,39 @@
  */
 
 return [
+    'not_negative' => '',
+    'required' => ':attribute è richiesto.',
+    'too_long' => '',
+    'wrong_confirmation' => '',
+
+    'beatmap_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => '',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '',
+        'beatmapset_no_hype' => "",
+        'hype_requires_null_beatmap' => '',
+        'invalid_beatmap_id' => '',
+        'invalid_beatmapset_id' => '',
+        'locked' => '',
+        'mapper_note_wrong_user' => '',
+
+        'hype' => [
+            'guest' => '',
+            'hyped' => '',
+            'limit_exceeded' => '',
+            'not_hypeable' => '',
+            'owner' => '',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '',
+            'negative' => "",
+        ],
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Puoi votare solamente una richiesta di feature.',
@@ -27,6 +60,11 @@ return [
 
         'poll_vote' => [
             'invalid' => 'Specificata un\'Opzione Invalida.',
+        ],
+
+        'post' => [
+            'beatmapset_post_no_delete' => '',
+            'beatmapset_post_no_edit' => '',
         ],
 
         'topic_poll' => [
@@ -38,9 +76,40 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '',
             'too_many' => 'Sono state selezionate più opzioni del consentito.',
         ],
     ],
 
-    'required' => ':attribute è richiesto.',
+    'user' => [
+        'contains_username' => '',
+        'email_already_used' => '',
+        'invalid_country' => '',
+        'invalid_discord' => '',
+        'invalid_email' => "",
+        'too_short' => '',
+        'unknown_duplicate' => '',
+        'username_available_in' => '',
+        'username_available_soon' => '',
+        'username_invalid_characters' => '',
+        'username_in_use' => '',
+        'username_no_space_userscore_mix' => '',
+        'username_no_spaces' => "",
+        'username_not_allowed' => '',
+        'username_too_short' => '',
+        'username_too_long' => '',
+        'weak' => '',
+        'wrong_current_password' => '',
+        'wrong_email_confirmation' => '',
+        'wrong_password_confirmation' => '',
+        'too_long' => '',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+            'username_is_same' => '',
+        ],
+    ],
 ];

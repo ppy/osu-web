@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => '譜面收藏數超出限制，請刪除一個後再試。',
     ],
     'logged_out' => '你已退出，請登錄後再試。',
-    'supporter_only' => '要使用此功能，請先成為 osu!支持者 。',
+    'supporter_only' => '要使用此功能，請先成為 osu!贊助者 。',
     'no_restricted_access' => '帳戶處於限制模式，無法執行該操作。',
     'unknown' => '發生了未知的錯誤。',
 ];

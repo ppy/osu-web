@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,7 +32,7 @@ return [
     'support' => [
         'heading' => 'Понравилось обновление?',
         'text_1' => 'Поддержите будущее разработки osu! и :link сегодня!',
-        'text_1_link' => 'купите osu!supporter',
+        'text_1_link' => 'Поддержите osu!, приобретя osu!supporter',
         'text_2' => 'Вы не только ускорите разработку, но и получите дополнительные возможности!',
     ],
 ];

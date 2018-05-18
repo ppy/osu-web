@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,10 +33,11 @@ return [
     ],
 
     'index' => [
-        'description' => '주요 아티스트는 osu!와 협력하여 osu!의 오리지널 곡을 작업중인 분들입니다. osu!팀은 정말 멋있고 비트맵으로 만들기에 제격인 곡들과 그 아티스트들을 엄선하였습니다. 여기 주요 아티스트중 몇몇은 이미 osu!에서 사용될 고유한 곡을 작곡하기도 했습니다.<br><br>이 곳에 실린 모든 곡들은 비트매핑되지 않은 .osz파일로 제공되며, 공식적으로 osu! 또는 osu!와 관련된 콘텐츠에 사용되도록 허가되었습니다.',
+        'description' => '주요 아티스트는 osu!와 협력하여 osu!의 오리지널 곡을 작업 중인 분들입니다. osu!팀은 정말 멋있고 비트맵으로 만들기에 제격인 곡들과 그 아티스트들을 엄선하였습니다. 여기 주요 아티스트 중 몇몇은 이미 osu!에서 사용될 고유한 곡을 작곡하기도 했습니다.<br><br>이 곳에 실린 모든 곡들은 매핑되지 않은 .osz 파일로 제공되며, 공식적으로 osu! 또는 osu!와 관련된 콘텐츠에 사용되도록 허가되었습니다.',
     ],
 
     'links' => [
+        'osu' => 'osu! 프로필',
         'site' => '공식 웹사이트',
     ],
 

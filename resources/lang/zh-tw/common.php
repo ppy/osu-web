@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => '確定？',
-    'saved' => '已保存',
+    'saved' => '儲存',
 
     'array_and' => [
         'words_connector' => '，',
@@ -30,24 +30,31 @@ return [
 
     'buttons' => [
         'cancel' => '取消',
+        'change' => '變更',
+        'click_to_copy' => '點擊以複製到剪貼簿',
+        'click_to_copy_copied' => '已複製到剪貼簿！',
         'delete' => '刪除',
-        'permalink' => '靜態鏈接',
-        'permalink_copied' => '鏈接已複製',
-        'post' => '發送',
+        'permalink' => '永久連結',
+        'permalink_copied' => '連結已複製',
+        'post' => '發表',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',
-        'reset' => '重置',
-        'save' => '保存',
-        'saving' => '保存中...',
+        'reset' => '重設',
+        'save' => '儲存',
+        'saving' => '儲存中...',
+        'see_more' => '查看更多',
         'show_more' => '顯示更多',
         'upload_image' => '上傳圖片',
     ],
 
     'count' => [
+        'badges' => ':count 枚徽章',
+        'days' => ':count 天',
         'hour_short_unit' => '小時',
+        'hours' => ':count 小時',
         'item' => ':count 個',
-        'minute_short_unit' => '分鐘',
+        'minute_short_unit' => '分',
         'months' => ':count 個月',
         'second_short_unit' => '秒',
         'years' => ':count 年',
@@ -57,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',
+        ],
+        'year_month_short' => [
+            'moment' => 'YYYY年 MMM',
         ],
     ],
 

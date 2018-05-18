@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,19 +23,18 @@ return [
         'blurb' => [
             'important' => '下載前必讀',
             'instruction' => [
-                '_' => '安裝：下載好曲包之後,直接解壓 .rar 文件到你的 osu! 的 Songs 文件夾下。
-                    所有的譜面此時都是 .zip 或 .osz 文件, osu! 會在你下一次啟動時自動載入這些譜面，
-                    因此 :scary 自己解壓這些譜面。
-                    否則這些譜面可能無法正常遊玩。',
+                '_' => "安裝方式：當您下載好壓縮檔之後,請將壓縮檔 .rar 解壓到您 osu! 安裝目錄下的 Songs 資料夾內。
+                    解壓出來的圖譜檔案皆是 .zip 或 .osz 檔案, osu! 會在你下一次啟動時自動載入這些圖譜。
+                    因此請 :scary 自行解壓這些圖譜檔案，否則恐導致無法正常遊戲。",
                 'scary' => '不要',
             ],
             'note' => [
-                '_' => '強烈建議 :scary，因為舊譜面的質量可能不如現在。',
-                'scary' => '下載最新的曲包',
+                '_' => '強烈建議您 :scary，因為舊圖譜的品質可能不如現在。',
+                'scary' => '下載最新的圖譜壓縮檔',
             ],
         ],
-        'title' => '曲包',
-        'description' => '圍繞某個相同主題打包好的曲包',
+        'title' => '圖譜壓縮檔',
+        'description' => '相同主題的圖譜合集壓縮檔',
     ],
 
     'show' => [
@@ -48,13 +47,13 @@ return [
 
     'mode' => [
         'artist' => '藝術家/專輯',
-        'chart' => '月賽', // Base text has changed, please check.
+        'chart' => '月賽',
         'standard' => '標準',
         'theme' => '主題',
     ],
 
     'require_login' => [
-        '_' => '需要 :link 才能下載',
-        'link_text' => '登錄',
+        '_' => '您需要 :link 才能下載',
+        'link_text' => '登入',
     ],
 ];

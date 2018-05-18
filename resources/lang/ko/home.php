@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@ return [
         'download' => '지금 바로 다운로드하기',
         'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
-        'players' => '총 플레이어: <strong>:count</strong>명',
+        'players' => '가입된 플레이어: <strong>:count</strong>명',
 
         'slogan' => [
             'main' => '무료 리듬 게임',
@@ -36,6 +36,8 @@ return [
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
         'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
+        'placeholder' => '검색하기 위해 입력하세요',
+        'title' => '검색',
 
         'beatmapset' => [
             'more' => ':count개의 비트맵 검색 결과 더 보기',
@@ -79,6 +81,36 @@ return [
         ],
     ],
 
+    'download' => [
+        'tagline' => "자, 시작해 보자!",
+        'action' => 'osu! 다운로드',
+        'os' => [
+            'windows' => 'Windows 용',
+            'macos' => 'macOS 용',
+            'linux' => 'Linux 용',
+        ],
+        'mirror' => '미러',
+        'macos-fallback' => 'macOS 사용자',
+        'steps' => [
+            'register' => [
+                'title' => '계정 만들기',
+                'description' => '게임을 시작하면 로그인하거나 계정을 만드는 절차를 따르세요.',
+            ],
+            'download' => [
+                'title' => '게임 다운로드!',
+                'description' => '위 버튼을 눌러 설치기를 내려받고, 실행하세요!',
+            ],
+            'beatmaps' => [
+                'title' => '비트맵 받기',
+                'description' => [
+                    '_' => '사용자가 만든 비트맵의 광대한 라이브러리를 :browse하고 시작해 보세요!',
+                    'browse' => '탐색',
+                ],
+            ],
+        ],
+        'video-guide' => '영상 가이드',
+    ],
+
     'user' => [
         'title' => 'dashboard',
         'news' => [
@@ -95,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Approved된 비트맵', // 비트맵 상태에 대한 적절한 번역을 결정하면 수정
+            'new' => '새로 Approved된 비트맵',
             'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',
@@ -115,6 +147,6 @@ return [
             'part-2' => '그리고 또, osu!를 지원하면 게임 내 자동 다운로드 같은 다양한 유용한 기능들을 이용할 수 있다는 점도 알고 계세요?',
         ],
         'find-out-more' => '더 알아보려면 여기를 눌러주세요!',
-        'download-starting' => '아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)',
+        'download-starting' => "아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)",
     ],
 ];

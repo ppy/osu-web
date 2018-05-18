@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,16 +27,27 @@ return [
         'none_running' => '現在開催中のトーナメントはないみたいです。また今度確認してみましょう！',
         'registration_period' => '参加登録期間： :start から :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => '登録申請する！',
-            'cancel' => '登録をキャンセル',
-        ],
+        'banner' => 'チームを応援する',
         'entered' => 'このトーナメントへの参加登録は完了しています。<br><br>チームへの割り振りが完了しているとは限らないので注意。<br><br>トーナメントの詳細は開催日が近づくとメールに送られます。アカウントに登録されているEメールアドレスが有効であることを確認するのをお勧めします',
+        'info_page' => '詳細ページ',
         'login_to_register' => '詳細を閲覧するには:loginが必要です',
         'not_yet_entered' => 'このトーナメントには参加登録していません。',
         'rank_too_low' => 'このトーナメントの参加登録に必要なランク条件を満たしていません！',
         'registration_ends' => '参加登録期間は:dateに終了します',
+
+        'button' => [
+            'cancel' => '登録をキャンセル',
+            'register' => '登録申請する！',
+        ],
+
+        'state' => [
+            'before_registration' => 'このトーナメントの参加受付はまだ開始していません。',
+            'ended' => 'このトーナメントは終了しました。詳細ページで結果を確認できます。',
+            'registration_closed' => 'このトーナメントの参加受付は終了しました。詳細ページで最新の情報を確認してください。',
+            'running' => 'このトーナメントは現在進行中です。詳細ページで更なる情報を確認できます。',
+        ],
     ],
     'tournament_period' => ':start から :end',
 ];

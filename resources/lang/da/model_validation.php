@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,20 +21,35 @@
 return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute er påkrævet.',
+    'too_long' => '',
     'wrong_confirmation' => 'Bekræftelseskoderne matcher ikke.',
 
-    'beatmap_discussion' => [
-        'hype' => [
-            'guest' => 'Du skal være logget ind for at hype.', // Base text changed from "log" to "sign"
-            'hyped' => 'Du har allerede hypet denne beatmap.',
-            'limit_exceeded' => 'Du har opbrugt alle dine hype.',
-            'not_hypeable' => 'Dette beatmap kan ikke blive hypet',
-            'owner' => 'Du kan ikke hype dit eget beatmap.',
-        ],
+    'beatmap_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => 'Kan ikke slette det startende opslag.',
     ],
 
-    'beatmap_discussion_post' => [
-        'first_post' => 'Kan ikke slette det startende opslag.',
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '',
+        'beatmapset_no_hype' => "",
+        'hype_requires_null_beatmap' => '',
+        'invalid_beatmap_id' => '',
+        'invalid_beatmapset_id' => '',
+        'locked' => '',
+        'mapper_note_wrong_user' => '',
+
+        'hype' => [
+            'guest' => '',
+            'hyped' => '',
+            'limit_exceeded' => '',
+            'not_hypeable' => '',
+            'owner' => '',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '',
+            'negative' => "",
+        ],
     ],
 
     'forum' => [
@@ -47,6 +62,11 @@ return [
             'invalid' => 'Ugyldig valgmulighed er valgt.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => '',
+            'beatmapset_post_no_edit' => '',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
             'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
@@ -56,6 +76,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '',
             'too_many' => 'Valgte flere valgmuliheder en tilladt.',
         ],
     ],
@@ -64,14 +85,31 @@ return [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
         'invalid_country' => 'Landet er ikke i databasen.',
-        'invalid_email' => 'Dette ligner ikke en email-adresse...',
+        'invalid_discord' => '',
+        'invalid_email' => "Dette ligner ikke en email-adresse...",
         'too_short' => 'Den nye adgangskode er for kort.',
         'unknown_duplicate' => 'Brugernavnet eller email-adressen er allerede i brug.',
+        'username_available_in' => '',
+        'username_available_soon' => '',
+        'username_invalid_characters' => '',
+        'username_in_use' => '',
+        'username_no_space_userscore_mix' => '',
+        'username_no_spaces' => "",
+        'username_not_allowed' => '',
         'username_too_short' => 'Det anmodede brugernavn er for kort.',
+        'username_too_long' => '',
         'weak' => 'Blacklistet adgangskode.',
         'wrong_current_password' => 'Den nuværende adgangskode er ugyldig.',
         'wrong_email_confirmation' => 'Emailbekræftelsen er forkert.',
         'wrong_password_confirmation' => 'Adgangskodebekræftelsen er forkert.',
         'too_long' => 'Overskrider maksimale længde - kan højest være op til :limit karakterer.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+            'username_is_same' => '',
+        ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Precisa estar conectado para editar.', // Base text changed from "log" to "sign"
+            'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
             'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
         ],
@@ -49,7 +49,7 @@ return [
         'created_at' => 'Data de postagem',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
-        'permalink' => 'Copiar link da postagem',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conecte-se para Responder', // Base text changed from "log" to "sign"
+            'guest' => 'Conecte-se para Responder',
             'user' => 'Responder',
         ],
     ],
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Todos',
+        'label' => 'Filtrar por usuário',
     ],
 ];

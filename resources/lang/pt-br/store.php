@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,16 +28,23 @@ return [
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
         'error' => 'Houve um problema com a sua compra :(',
+        'old_cart' => 'Seu carrinho aparenta estar desatualizado e foi recarregado, por favor tente novamente.',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
             'line_1' => 'Uma compra antiga foi atualizada mas não foi finalizada.',
             'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
             'link_text' => 'clique aqui',
         ],
-        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquaanto nós realizamos os pedidos mais recentes.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Recebemos o seu pedido da osu!store!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -69,7 +76,7 @@ return [
         'gift' => 'dar de presente',
         'require_login' => [
             '_' => 'Você precisa estar :link para comprar uma supporter tag!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 
@@ -78,7 +85,7 @@ return [
         'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 ];

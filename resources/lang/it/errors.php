@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,9 @@
 
 return [
     'codes' => [
-        'http-401' => 'Per favore effettua il login per poter continuare.', // Base text changed from "log" to "sign"
+        'http-401' => 'Per favore effettua il login per poter continuare.',
         'http-403' => 'Accesso Negato.',
+        'http-429' => 'Troppi tentativi. Riprova più tardi.',
     ],
     'account' => [
         'profile-order' => [
@@ -29,9 +30,13 @@ return [
         ],
     ],
     'beatmaps' => [
+        'invalid_mode' => 'Modalità specificata non valida.',
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
-    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.', // Base text changed from "log" to "sign"
+    'beatmapsets' => [
+        'too-many-favourites' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
+    ],
+    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
     'unknown' => 'Si è verificato un errore sconosciuto.',

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'header' => [
@@ -25,16 +27,27 @@ return [
         'none_running' => 'No hay torneos activos por ahora, ¡revisa más tarde!',
         'registration_period' => 'Inscripción: :start to :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => '¡Inscribirme!',
-            'cancel' => 'Cancelar inscripción',
-        ],
+        'banner' => 'Apoya A Tu Equipo',
         'entered' => 'Estás inscrito en este torneo.<br><br>Ten en cuenta que esto no significa que hayas sido asignado a un equipo.<br><br>Instrucciones posteriores serán enviadas a tu correo electrónico antes de la fecha del torneo, así que ¡por favor asegúrate que tu correo electrónico sea válido!',
-        'login_to_register' => '¡Por favor :login para ver los detalles de inscripción!',
+        'info_page' => 'Página de Información',
+        'login_to_register' => '¡Por favor :inicia sesion para ver los detalles de inscripción!',
         'not_yet_entered' => 'No estás inscrito en este torneo.',
         'rank_too_low' => '¡Lo sentimos, no cumples con los requisitos de rank para este torneo!',
         'registration_ends' => 'Las inscripciones se cierran en :date',
+
+        'button' => [
+            'cancel' => 'Cancelar inscripción',
+            'register' => '¡Inscribirme!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Aún no ha abierto el registro para este torneo.',
+            'ended' => 'Este torneo ha concluido. Visite la página de información para los resultados.',
+            'registration_closed' => 'Registro para este torneo ha cerrado. Visite la página de información para las actualizaciones más recientes.',
+            'running' => 'Este torneo está actualmente en curso. Visite la página de información para más detalles.',
+        ],
     ],
-    'tournament_period' => 'Desde el :start al :end',
+    'tournament_period' => 'Desde el :inicia al :termina',
 ];

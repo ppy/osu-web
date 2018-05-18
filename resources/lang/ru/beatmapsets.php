@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -88,9 +88,9 @@ return [
             'supporter-only' => 'Вы должны иметь osu!supporter для использования данной возможности!',
             'title' => 'Табло',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Точность',
-                'combo' => 'Макс. комбо',
+                'combo' => 'Максимальное комбо',
                 'miss' => 'Промах',
                 'mods' => 'Моды',
                 'player' => 'Игрок',
@@ -99,10 +99,11 @@ return [
                 'score_total' => 'Всего очков',
                 'score' => 'Очки',
             ],
+
             'no_scores' => [
                 'country' => 'Никто из вашей страны ещё не играл в эту карту!',
                 'friend' => 'Никто из ваших друзей ещё не играл в эту карту!',
-                'global' => 'Никто ещё не играл в эту карту! Может быть вы попробуете?', // есть альтернативный вариант перевода
+                'global' => 'Никто ещё не играл в эту карту! Может быть вы попробуете?',
                 'loading' => 'Результаты загружаются...',
                 'unranked' => 'Unranked карта.',
             ],

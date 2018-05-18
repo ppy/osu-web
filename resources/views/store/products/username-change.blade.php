@@ -35,7 +35,7 @@
             {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}
         </div>
         <strong>
-            <div id="username-check-status">@lang('store.username_change.check')</div>
+            <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
         </strong>
         <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
     </div>

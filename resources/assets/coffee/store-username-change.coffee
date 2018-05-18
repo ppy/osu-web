@@ -54,9 +54,9 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
   preventUsernameSubmission()
 
   if requestedUsername.length == 0
-    $status.text Lang.get('store.username_change.check')
+    $status.text osu.trans('store.username_change.check')
   else
-    $status.text Lang.get('store.username_change.checking', username: requestedUsername)
+    $status.text osu.trans('store.username_change.checking', username: requestedUsername)
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->

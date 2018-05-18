@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerera',
+            'regenerating' => 'Regenererar...',
+            'remove' => 'Ta bort',
+            'removing' => 'Tar bort...',
+        ],
         'show' => [
+            'covers' => 'Hantera Beatmapsetomslag',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'aktivera',
@@ -58,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logg Visare',
+            'title' => 'Logg',
         ],
     ],
 
@@ -77,15 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Lista',
+                'title' => 'Orderlista',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Denna användare är begränsad.',
-            'message' => '(endast admins kan se detta)',
+            'title' => 'Denna användare är för närvarande avstängd.',
+            'message' => '(endast administratörer kan se detta)',
         ],
     ],
 

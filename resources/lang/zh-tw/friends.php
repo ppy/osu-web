@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => '添加好友',
+      'add' => '新增好友',
       'remove' => '刪除好友',
     ],
 
     'state' => [
-      'friends' => '已關注',
-      'mutual' => '互相關注',
+      'friends' => '已加好友',
+      'mutual' => '互為好友',
     ],
 
     'title' => '好友',
     'title_compact' => '好友',
 
-    'too_many' => '好友數量達到最大限制。',
+    'too_many' => '好友數量達到最大上限。',
 ];

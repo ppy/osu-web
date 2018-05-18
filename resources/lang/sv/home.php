@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,6 +36,8 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
+        'placeholder' => 'skriv för att söka',
+        'title' => 'Sök',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
@@ -80,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'låt oss<br>få dig igång!',
+        'tagline' => "låt oss<br>få dig igång!",
         'action' => 'Ladda ner osu!',
         'os' => [
             'windows' => 'för Windows',
@@ -92,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto', // Base text changed from "log" to "sign"
+                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
             ],
             'download' => [
                 'title' => 'ladda ner spelet',
@@ -110,6 +112,7 @@ return [
     ],
 
     'user' => [
+        'title' => 'kontrollpanel',
         'news' => [
             'title' => 'Nyheter',
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
@@ -144,6 +147,6 @@ return [
             'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
         ],
         'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => 'Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)',
+        'download-starting' => "Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
     ],
 ];

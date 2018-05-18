@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,11 +28,23 @@ return [
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
         'error' => 'Der opstod et problem under betalingen :(',
+        'old_cart' => '',
         'pay' => 'Betal med PayPal',
+        'pending_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+            'link_text' => '',
+        ],
         'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
     ],
 
     'discount' => 'spar :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -64,14 +76,16 @@ return [
         'gift' => 'giv som gave',
         'require_login' => [
             '_' => 'Du skal være :link for at få et supporter tag!',
-            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+            'link_text' => 'logget ind',
         ],
     ],
 
     'username_change' => [
+        'check' => '',
+        'checking' => '',
         'require_login' => [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
-            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+            'link_text' => 'logget ind',
         ],
     ],
 ];

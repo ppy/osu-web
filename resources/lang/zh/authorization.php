@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',
@@ -33,7 +35,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => '在投更多票之前请稍等一会。',
-            'owner' => '不能为自己的讨论投票！',
+            'owner' => "不能为自己的讨论投票！",
+            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
         ],
     ],
 
@@ -83,6 +86,11 @@ return [
                 'not_owner' => '只有作者能编辑此回复。',
                 'topic_locked' => '无法编辑被锁定主题的回复。',
             ],
+
+            'store' => [
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'too_many_help_posts' => "如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
@@ -94,8 +102,8 @@ return [
 
                 'user' => [
                     'require_login' => '回复前请先登录。',
-                    'restricted' => '账户处于限制模式，无法回复。',
-                    'silenced' => '账户被禁言，无法回复。',
+                    'restricted' => "账户处于限制模式，无法回复。",
+                    'silenced' => "账户被禁言，无法回复。",
                 ],
             ],
 
@@ -112,8 +120,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票前请先登录。',
-                    'restricted' => '账户处于限制模式，无法投票。',
-                    'silenced' => '账户被禁言，无法投票。',
+                    'restricted' => "账户处于限制模式，无法投票。",
+                    'silenced' => "账户被禁言，无法投票。",
                 ],
             ],
 
@@ -124,8 +132,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => '指定的封面不可用。',
-                'not_owner' => '只有楼主可以编辑封面。',
+                'uneditable' => '指定的头图不可用。',
+                'not_owner' => '只有楼主可以编辑头图。',
             ],
         ],
 
@@ -138,16 +146,16 @@ return [
 
     'unauthorized' => '没有权限。',
 
-    'silenced' => '账户被禁言，无法进行该操作。',
+    'silenced' => "账户被禁言，无法进行该操作。",
 
-    'restricted' => '账户处于限制模式，无法进行该操作。',
+    'restricted' => "账户处于限制模式，无法进行该操作。",
 
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => '个人页面被锁定。',
                 'not_owner' => '只能编辑自己的个人页面。',
-                'require_supporter_tag' => '需要成为支持者。',
+                'require_supporter_tag' => '需要 Supporter 标签。',
             ],
         ],
     ],

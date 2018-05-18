@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => 'Temas Fijados',
-    'slogan' => 'es peligroso jugar solo.',
+    'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'osu!community',
+    'title' => 'osu!communidad',
 
     'covers' => [
         'create' => [
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Duración de la encuesta',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'días',
                 'length_info' => 'Deja en blanco para una encuesta sin fin',
                 'max_options' => 'Opciones por usuario',
@@ -224,7 +223,7 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
+            'to_0' => 'Desfijar tema',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
             'to_1_done' => 'El tema ya ha sido fijado',
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Tienes :votes restantes.',
-                    'not_enough' => 'No te quedan más votos',
+                    'not_enough' => "No te quedan más votos",
                 ],
             ],
 

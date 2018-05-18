@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ return [
         'missing' => 'Den anmodede side kunne ikke blive fundet.',
         'missing_title' => 'Ikke fundet',
         'missing_translation' => 'Den anmodede side kunne ikke blive fundet på det valgte sprog.',
+        'search' => '',
         'toc' => 'Indhold',
 
         'edit' => [

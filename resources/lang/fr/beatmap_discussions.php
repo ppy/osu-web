@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,14 +21,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Vous devez être connecté pour éditer.', // Base text changed from "log" to "sign"
-            'system_generated' => 'Un post système ne peut être édité.',
-            'wrong_user' => "Vous devez être le créateur du post pour l'éditer.",
+            'null_user' => 'Vous devez être connecté pour éditer.',
+            'system_generated' => 'Un post généré par le système ne peut être édité.',
+            'wrong_user' => 'Vous devez être l\'auteur du post pour l\'éditer.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Rien ne s\'est passé... pour le moment.',
+        'empty' => 'Il ne s\'est rien passé... pour le moment.',
     ],
 
     'index' => [
@@ -54,12 +54,12 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
-        'notice' => 'Il y a des posts :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
+        'notice' => 'Il y a des posts pour :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Se connecter pour répondre',
+            'guest' => 'Connectez-vous pour répondre',
             'user' => 'Répondre',
         ],
     ],
@@ -76,5 +76,10 @@ return [
         'bng' => 'nominateur',
         'owner' => 'mappeur',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Tout le monde',
+        'label' => 'Filtre par utilisateur',
     ],
 ];

@@ -70,15 +70,15 @@ return [
             '_' => 'rankings',
             'index' => 'rendimiento',
             'performance' => 'rendimiento',
-            'charts' => 'charts', // Base text has changed, please check.
+            'charts' => 'charts',
             'score' => 'puntuación',
             'country' => 'país',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidad',
-            'dev' => 'osu!dev',
-            'getForum' => 'foro', // Base text changed to plural, please check.
+            'dev' => 'desarrollo',
+            'getForum' => 'foro',
             'getChat' => 'chat',
             'getLive' => 'en vivo',
             'contests' => 'concursos',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
             'forum-topic-watches-index' => 'suscripciones',
-            'forum-topics-create' => 'foro', // Base text changed to plural, please check.
-            'forum-topics-show' => 'foro', // Base text changed to plural, please check.
-            'forum-forums-index' => 'foro', // Base text changed to plural, please check.
-            'forum-forums-show' => 'foro', // Base text changed to plural, please check.
+            'forum-topics-create' => 'foro',
+            'forum-topics-show' => 'foro',
+            'forum-forums-index' => 'foro',
+            'forum-forums-show' => 'foro',
         ],
         'multiplayer' => [
             '_' => 'multijugador',
@@ -107,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'usuario',
-            'getLogin' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'getLogin' => 'iniciar sesión',
             'disabled' => 'desactivado',
 
             'register' => 'registrarse',
@@ -118,7 +118,12 @@ return [
             'settings' => 'Opciones',
             'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
-            'modding-history-index' => 'actividades del usuario en el beatmap', // needs update
+            'modding-history-discussions' => 'discusiones sobre modding',
+            'modding-history-events' => 'eventos sobre modding',
+            'modding-history-index' => 'actividades del usuario en el beatmap',
+            'modding-history-posts' => 'posts de modding',
+            'modding-history-votesGiven' => 'votos dados sobre modding',
+            'modding-history-votesReceived' => 'votos recibidos sobre modding',
         ],
         'store' => [
             '_' => 'tienda',
@@ -136,19 +141,20 @@ return [
             'thanks' => 'gracias',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => 'administrador::foro',
             'forum-covers-index' => 'portadas del foro',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => 'administrador::tienda',
             'orders-index' => 'órdenes',
             'orders-show' => 'órden',
         ],
         'admin' => [
-            '_' => 'admin',
+            '_' => 'administrador',
             'beatmapsets-covers' => 'portadas de los beatmap',
-            'root' => 'índice',
             'logs-index' => 'registro',
+            'root' => 'índice',
+
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',
                 'show' => 'detalles',
@@ -188,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '403' => [
-            'error' => 'No deberías estar aquí.',
+            'error' => "No deberías estar aquí.",
             'description' => 'Aunque podrías intentar volver atrás.',
         ],
         '401' => [
-            'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.', // Base text changed from "log" to "sign"
+            'error' => "No deberías estar aquí.",
+            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.',
         ],
         '405' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Hemos sido notificados del error.',
+            'description' => "Hemos sido notificados del error.",
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Hemos sido notificados del error.',
+            'description' => "Hemos sido notificados del error.",
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, síguenos en :link para más información.',
+            'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, síguenos en :link para más información.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!',
+        'reference' => "¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'correo electrónico',
-            'forgot' => 'He olvidado mis datos',
+            'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
             'title' => 'Regístrate para continuar',
 
             'error' => [
-                'email' => 'El nombre de usuario o correo electrónico no existe',
+                'email' => "El nombre de usuario o correo electrónico no existe",
                 'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
-            'info' => 'Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?',
-            'title' => '¿No tienes una cuenta?',
+            'info' => "Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?",
+            'title' => "¿No tienes una cuenta?",
         ],
     ],
 

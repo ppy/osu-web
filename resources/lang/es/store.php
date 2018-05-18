@@ -24,8 +24,8 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => '¡Oh oh, hay problemas en tu carrito!',
-        'cart_problems_edit' => 'Haz clic aquí para ir a editarlo.',
+        'cart_problems' => '¡Oh oh, hay problemas con tu carrito!',
+        'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
         'error' => 'Ocurrió un problema al completar tu factura :(',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
@@ -76,7 +76,7 @@ return [
         'gift' => 'regalar al jugador',
         'require_login' => [
             '_' => '¡Tienes que :link para obtener un título de supporter!',
-            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'link_text' => 'iniciar sesión',
         ],
     ],
 
@@ -85,7 +85,7 @@ return [
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
-            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'link_text' => 'iniciar sesión',
         ],
     ],
 ];

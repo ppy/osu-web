@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => 'メモ',
+            'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
             'suggestion' => '提案',
@@ -111,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'この譜面は:dateにApprovedになりました！',
-            'graveyard' => 'この譜面は:dateから更新が止まっています・・・',
+            'graveyard' => "この譜面は:dateから更新が止まっています・・・",
             'loved' => 'この譜面は:dateにLovedになりました！',
             'ranked' => 'この譜面は:dateにRankedになりました！',
             'wip' => '注：この譜面は作者に未完成だとマークされています',
@@ -122,10 +124,10 @@ return [
     'hype' => [
         'button' => '譜面をHype！',
         'button_done' => 'Hype済みです！',
-        'confirm' => 'あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？',
+        'confirm' => "あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？",
         'explanation' => 'Hypeすることで譜面に注目が集まりやすくなります。Rankedして欲しい譜面はHypeしましょう！',
         'explanation_guest' => 'Hypeすることで譜面に注目が集まりやすくなります。ログインして譜面をHypeしましょう！',
-        'new_time' => ':new_timeで残りhype数が回復します。',
+        'new_time' => ":new_timeで残りhype数が回復します。",
         'remaining' => 'あなたの残りHype数は:remaining回です',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype進行',
@@ -148,10 +150,18 @@ return [
         'qualified' => '問題が発覚しなければ:dateにRanked予定',
         'qualified_soon' => '問題が発覚しなければ間もなくRanked',
         'required_text' => 'ノミネート数: :current/:required',
-        'reset_at' => ':discussionにより:time_agoにノミネートリセット',
-        'reset_confirm' => 'ノミネートをリセットしますか？問題を指摘することによってリセットされます。',
+        'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
         'unresolved_issues' => 'まだ未解決の問題があります。',
+
+        'reset_at' => [
+            'nomination_reset' => ':userが:time_agoに新しい問題:discussion (:message)によりノミネーションをリセットしました。',
+            'disqualify' => ':userが:time_agoに新しい問題:discussion (:message)によりDisqualifyしました。',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '',
+        ],
     ],
 
     'listing' => [
@@ -168,6 +178,7 @@ return [
                 'language' => '言語',
                 'extra' => 'エキストラ',
                 'rank' => '取得ランク',
+                'played' => 'プレイ済み',
             ],
         ],
         'mode' => 'モード',
@@ -211,27 +222,28 @@ return [
         'electronic' => 'エレクトロニック',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => '液晶タブレット',
     ],
     'language' => [
         'any' => '全て',
@@ -246,6 +258,11 @@ return [
         'swedish' => 'スウェーデン語',
         'instrumental' => 'Instrumental',
         'other' => 'その他',
+    ],
+    'played' => [
+        'any' => '全て',
+        'played' => 'プレイ済み',
+        'unplayed' => '未プレイ',
     ],
     'extra' => [
         'video' => '動画あり',

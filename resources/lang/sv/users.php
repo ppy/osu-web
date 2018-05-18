@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,35 @@
 return [
     'deleted' => '[raderad användare]',
 
+    'beatmapset_activities' => [
+        'title' => ":user's Modding Historik",
+
+        'discussions' => [
+            'title_recent' => 'Nyligen startade diskussioner',
+        ],
+
+        'events' => [
+            'title_recent' => 'Senaste händelser',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Senaste inläggen',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Mest uppröstad av (senaste 3 månaderna)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Mest uppröstad (senaste 3 månaderna)',
+        ],
+    ],
+
+    'card' => [
+        'loading' => 'Laddar...',
+        'send_message' => 'skicka meddelande',
+    ],
+
     'login' => [
         '_' => 'Logga in',
         'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
@@ -29,9 +58,9 @@ return [
         'button' => 'Logga in',
         'button_posting' => 'Loggar in...',
         'remember' => 'Kom ihåg denna dator',
-        'title' => 'Var vänlig logga in för att fortsätta', // Base text changed from "log" to "sign"
-        'failed' => 'Felaktig inloggning', // Base text changed from "log" to "sign"
-        'register' => 'Har inget osu! konto? Skapa en ny',
+        'title' => 'Var vänlig logga in för att fortsätta',
+        'failed' => 'Felaktig inloggning',
+        'register' => "Har du inget osu! konto? Skapa ett nytt",
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
@@ -40,51 +69,64 @@ return [
 
         'here' => 'här', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s inlägg',
+    ],
+
     'signup' => [
         '_' => 'Registrera',
     ],
     'anonymous' => [
-        'login_link' => 'klicka för att logga in', // Base text changed from "log" to "sign"
-        'login_text' => 'logga in', // Base text changed from "log" to "sign"
+        'login_link' => 'klicka för att logga in',
+        'login_text' => 'logga in',
         'username' => 'Gäst',
-        'error' => 'Du behöver vara inloggad för att göra detta.', // Base text changed from "log" to "sign"
+        'error' => 'Du behöver vara inloggad för att göra detta.',
     ],
-    'logout_confirm' => 'Är du säker på att du vill logga ut? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
     ],
     'show' => [
         'age' => ':age år gammal',
-        'first_members' => 'Här sen början',
+        'change_avatar' => 'byt din profilbild!',
+        'first_members' => 'Här sedan början',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
         'origin_age' => ':age',
-        'origin_country' => 'Från :country',
         'origin_country_age' => ':age från :country',
+        'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
+        'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
         'edit' => [
             'cover' => [
-                'button' => 'Ändra Profil Omslag',
-                'defaults_info' => 'Mer omslag val kommer finnas i framtiden',
+                'button' => 'Ändra Profilomslag',
+                'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
                 'upload' => [
-                    'broken_file' => 'Misslyckades processa bild. Verifiera uppladdad bild och försök igen.',
+                    'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
                     'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
-                    'size_info' => 'Omslags storlek bör vara 2000x700',
+                    'size_info' => 'Omslagets storlek bör vara 2000x700',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'standard spelläge',
+                'set' => 'sätt :mode som profilens förvalda spelläge',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 följare|:count följare',
             'unranked' => 'Inga senaste spel',
@@ -114,6 +156,9 @@ return [
                 'empty' => 'Inga prestanda uppgifter. :(',
                 'title' => 'Historisk',
 
+                'monthly_playcounts' => [
+                    'title' => 'Spelhistorik',
+                ],
                 'most_played' => [
                     'count' => 'gånger spelade',
                     'title' => 'Mest Spelade Beatmaps',
@@ -122,10 +167,13 @@ return [
                     'accuracy' => 'precision: :percentage',
                     'title' => 'Senaste spel (24h)',
                 ],
+                'replays_watched_counts' => [
+                    'title' => 'Repriser kollade',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tillängligt',
-                'available_info' => 'Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.',
+                'available_info' => "Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.",
                 'recent_entries' => 'Nyligen Kudosu Historia',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Intjänad',
@@ -133,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Denna användare har inte fått någon kudosu!',
+                    'empty' => "Denna användare har inte fått någon kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -174,44 +222,85 @@ return [
                 'title' => 'jag!',
             ],
             'medals' => [
-                'empty' => 'Denna användare har inte fått några än. ;_;',
+                'empty' => "Denna användare har inte fått några än. ;_;",
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
-                'title' => 'Nyligen',
+                'title' => 'Senaste',
             ],
             'top_ranks' => [
-                'empty' => 'Inga fantastiska precision uppgifter än. :(',
+                'empty' => 'Inga fantastiska prestationsrekord än. :(',
+                'not_ranked' => 'Endast rankade beatmaps ger pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
 
                 'best' => [
-                    'title' => 'Bästa Prestanda',
+                    'title' => 'Bästa Prestation',
                 ],
                 'first' => [
-                    'title' => 'Första Plats Ranker',
+                    'title' => 'Förstaplats-ranker',
+                ],
+            ],
+            'account_standing' => [
+                'title' => 'Kontoställning',
+                'bad_standing' => "<strong>:username's</strong> konto är inte i en bra ställning :(",
+                'remaining_silence' => '<strong>:username</strong> kan prata igen om :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Senaste Överträdelser',
+                    'date' => 'datum',
+                    'action' => 'åtgärd',
+                    'length' => 'längd',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'beskrivning',
+                    'actor' => 'efter :användarnamn',
+
+                    'actions' => [
+                        'restriction' => 'Bannlys',
+                        'silence' => 'Tystnad',
+                        'note' => 'Anteckning',
+                    ],
                 ],
             ],
         ],
+        'info' => [
+            'discord' => 'Discord',
+            'interests' => 'Intressen',
+            'lastfm' => 'Last.fm',
+            'location' => 'Nuvarande plats',
+            'occupation' => 'Sysselsättning',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Hemsida',
+        ],
         'not_found' => [
+            'reason_1' => 'De kan ha ändrat sitt användarnamn.',
+            'reason_2' => 'Kontot kan vara otillgängligt på grund av säkerhet eller missbruksproblem.',
+            'reason_3' => 'Du kan ha gjort ett stavfel!',
+            'reason_header' => 'Det finns några möjliga orsaker till detta:',
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
-            'placeholder' => 'Skriv sido innehåll här',
+            'placeholder' => 'Skriv sidoinnehåll här',
             'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
         ],
+        'post_count' => [
+            '_' => 'Bidragit med :link',
+            'count' => ':count foruminlägg|:count foruminlägg',
+        ],
         'rank' => [
-            'country' => 'Land rank för :mode',
+            'country' => 'Landsrank för :mode',
             'global' => 'Global rank för :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Träff Precision',
+            'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
             'maximum_combo' => 'Maximal Kombo',
-            'play_count' => 'Antal Spel',
+            'play_count' => 'Antal Gånger Spelat',
+            'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',
             'replays_watched_by_others' => 'Repriser Sedda av Andra',
             'score_ranks' => 'Poäng Ranker',
@@ -227,6 +316,6 @@ return [
         'saved' => 'Användare skapad',
     ],
     'verify' => [
-        'title' => 'Konto Verifiering',
+        'title' => 'Kontoverifiering',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,9 +27,9 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => '譜面',
-        'download' => '下載譜面模版',
-        'download-na' => '譜面模版暫時不可用',
+        '_' => '圖譜',
+        'download' => '下載圖譜範本',
+        'download-na' => '圖譜範本暫不提供',
     ],
 
     'index' => [
@@ -37,11 +37,12 @@ return [
     ],
 
     'links' => [
+        'osu' => 'osu! 個人簡介',
         'site' => '官方網站',
     ],
 
     'songs' => [
-        '_' => '音樂',
+        '_' => '樂曲',
         'count' => ':count 首音樂',
         'exclusive' => 'osu! 獨享',
     ],

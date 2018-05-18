@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,15 +22,16 @@ return [
     'edit' => [
         'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
+        'username' => 'nom d\'utilisateur',
 
         'avatar' => [
-            'title' => "Éditer l'Avatar", // Base text changed, please check.
+            'title' => 'Avatar',
         ],
 
         'email' => [
             'current' => 'email actuel',
             'new' => 'nouvel email',
-            'new_confirmation' => "confirmation de l'email",
+            'new_confirmation' => 'confirmation de l\'email',
             'title' => 'Email',
         ],
 
@@ -42,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Éditer le Profil', // Base text changed, please check.
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'localisation actuelle',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -61,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => "Confirmation du changement d'email d'osu!",
+        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
         'update' => 'mettre à jour',
     ],
 
     'update_password' => [
-        'email_subject' => "Confirmation du changement de mot de passe d'osu!",
+        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
         'update' => 'mettre à jour',
     ],
 
@@ -75,6 +77,6 @@ return [
         'mouse' => 'souris',
         'keyboard' => 'clavier',
         'tablet' => 'tablette',
-        'touch' => 'tactile',
+        'touch' => 'écran tactile',
     ],
 ];

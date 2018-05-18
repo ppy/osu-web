@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'deleted' => '[削除されたユーザーです]',
 
     'beatmapset_activities' => [
+        'title' => ":userのModding履歴",
+
         'discussions' => [
             'title_recent' => '最近のディスカッション',
         ],
@@ -45,6 +47,7 @@ return [
 
     'card' => [
         'loading' => '読み込み中・・・',
+        'send_message' => 'メッセージの送信',
     ],
 
     'login' => [
@@ -57,7 +60,7 @@ return [
         'remember' => 'ログイン状態を保存する',
         'title' => '続行するにはログインが必要です',
         'failed' => '認証に失敗しました',
-        'register' => 'osu!アカウントがない方はこちらから',
+        'register' => "osu!アカウントがない方はこちらから",
         'forgot' => 'パスワードを紛失した場合',
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
@@ -68,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\の投稿',
+        'title' => ':username\\の投稿',
     ],
 
     'signup' => [
@@ -98,8 +101,9 @@ return [
         'origin_country_age' => ':countryの:age歳',
         'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
+        'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
-        'title' => ':usernameのプロフィール',
+        'title' => ":usernameのプロフィール",
 
         'edit' => [
             'cover' => [
@@ -110,7 +114,7 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップでアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
+                    'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2000x700です',
                     'too_large' => '画像ファイルの容量が大きすぎます。',
                     'unsupported_format' => '対応している画像形式ではありません。',
@@ -169,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => '使用可能のKudosu',
-                'available_info' => 'Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。',
+                'available_info' => "Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。",
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
@@ -177,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'このユーザーはまだkudosu!を取得していません。',
+                    'empty' => "このユーザーはまだkudosu!を取得していません。",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -218,27 +222,29 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => 'このユーザーはまだメダルを取得していません。',
+                'empty' => "このユーザーはまだメダルを取得していません。",
                 'title' => 'メダル',
             ],
             'recent_activity' => [
                 'title' => '最近の活動',
             ],
             'top_ranks' => [
-                'best' => [
-                    'title' => 'ベストパフォーマンス',
-                ],
                 'empty' => 'まだ記録を作ってません！',
-                'first' => [
-                    'title' => '1位の記録',
-                ],
+                'not_ranked' => 'Ranked譜面のみがppを授与します。',
                 'pp' => ':amountpp',
                 'title' => 'ランク',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
+
+                'best' => [
+                    'title' => 'ベストパフォーマンス',
+                ],
+                'first' => [
+                    'title' => '1位の記録',
+                ],
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
-                'bad_standing' => '<strong>:username</strong>のアカウントはルール違反の記録があります。',
+                'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
                 'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
 
                 'recent_infringements' => [
@@ -259,6 +265,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => '趣味',
             'lastfm' => 'Last.fm',
             'location' => '現在地',
@@ -268,13 +275,17 @@ return [
             'website' => 'サイト',
         ],
         'not_found' => [
+            'reason_1' => '対象はユーザーネームを変更した可能性があります。',
+            'reason_2' => 'セキュリティの問題や不正利用の可能性によりアカウントが一時的に利用不可能になっている場合があります。',
+            'reason_3' => '打ち間違いがないか確認してください！',
+            'reason_header' => '考えられる主な理由：',
             'title' => 'ユーザーが見つかりませんでした。 ｡･ﾟ･(ﾉД` )･ﾟ･｡',
         ],
         'page' => [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => '内容はここ',
-            'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>限定の機能です。",
+            'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>限定の機能です。",
         ],
         'post_count' => [
             '_' => 'フォーラム投稿 :link',

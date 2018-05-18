@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,10 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'index' => [
         'title' => 'Votos de la discusión del mapa',
     ],
+
     'item' => [
         'score' => 'Puntuación',
     ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,10 +34,10 @@ return [
         'kudosu_gain' => 'La discussion :discussion par :user a obtenu assez de votes pour le kudosu.',
         'kudosu_lost' => 'La discussion :discussion par :user a perdu ses votes et le kudosu accordé a été retiré.',
         'kudosu_recalculate' => 'La discussion :discussion a vu ses kudosu accordés recalculés.',
-        'nominate' => 'Nominé par :user.',
+        'nominate' => 'Nominée par :user.',
         'nomination_reset' => 'Le nouveau problème :discussion a déclenché une réinitialisation du processus de nomination.',
-        'qualify' => 'Qualifié.',
-        'rank' => 'Classé.',
+        'qualify' => 'Qualifiée.',
+        'rank' => 'Classée.',
     ],
 
     'index' => [

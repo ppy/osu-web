@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,8 @@
  */
 
 return [
-    'defaults' => [ //TODO 好长,之后再翻译吧
-        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
+    'defaults' => [
+        'page_description' => 'osu!-离节奏就差一此 * 点击 *! 与 Ouendan/EBA, 太鼓和原创的游戏模式, 以及一个带有完善功能的级别编辑器。',
     ],
 
     'menu' => [
@@ -33,19 +33,22 @@ return [
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
+            'index' => '看板',
             'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
+            'team' => '团队',
         ],
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
-            'getSupport' => '获取帮助', //obsolete
-            'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
+            'getRules' => '规章制度',
+            'getSupport' => '帮助中心',
+            'getWiki' => '维基',
+            'wiki-show' => '维基',
         ],
         'beatmaps' => [
             '_' => '谱面',
@@ -67,15 +70,15 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => '月赛', // Base text has changed, please check.
+            'charts' => '月赛',
             'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => '社区',
-            'dev' => 'osu! 开发',
-            'getForum' => '论坛', // Base text changed to plural, please check.
+            'dev' => '开发',
+            'getForum' => '论坛',
             'getChat' => '聊天',
             'getLive' => '直播',
             'contests' => '评选',
@@ -84,10 +87,10 @@ return [
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
-            'forum-topics-create' => '论坛', // Base text changed to plural, please check.
-            'forum-topics-show' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-index' => '论坛', // Base text changed to plural, please check.
-            'forum-forums-show' => '论坛', // Base text changed to plural, please check.
+            'forum-topics-create' => '论坛',
+            'forum-topics-show' => '论坛',
+            'forum-forums-index' => '论坛',
+            'forum-forums-show' => '论坛',
         ],
         'multiplayer' => [
             '_' => '多人游戏',
@@ -109,13 +112,18 @@ return [
 
             'register' => '注册',
             'reset' => '重置',
-            'new' => 'new', //TODO 需要上下文
+            'new' => '新增',
 
             'messages' => '信息',
             'settings' => '设置',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'help' => '帮助',
-            'modding-history-index' => '玩家谱面活动', //需要上下文 // needs update
+            'modding-history-discussions' => '用户摸图讨论',
+            'modding-history-events' => '用户摸图事件',
+            'modding-history-index' => '用户摸图历史',
+            'modding-history-posts' => '用户摸图帖',
+            'modding-history-votesGiven' => '用户摸图投票数',
+            'modding-history-votesReceived' => '用户摸图获得票数',
         ],
         'store' => [
             '_' => '商店',
@@ -127,17 +135,17 @@ return [
             'getInvoice' => '发票',
             'products-show' => '商品',
 
-            'new' => 'new', //TODO 需要上下文
-            'home' => 'home', //TODO 需要上下文
-            'index' => 'home', //TODO 需要上下文
+            'new' => '新增',
+            'home' => '首页',
+            'index' => '主页',
             'thanks' => '感谢',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum', //TODO 需要上下文
+            '_' => '',
             'forum-covers-index' => '论坛封面',
         ],
         'admin-store' => [
-            '_' => 'admin::store', //TODO 需要上下文
+            '_' => '',
             'orders-index' => '订单',
             'orders-show' => '订单',
         ],
@@ -172,7 +180,7 @@ return [
         ],
         'support' => [
             '_' => '支持 osu!',
-            'tags' => '成为支持者',
+            'tags' => '成为 Supporter',
             'merchandise' => '商店',
         ],
         'legal' => [
@@ -186,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => '无法找到网页',
-            'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
+            'description' => "很抱歉，您访问的页面不存在...请返回到上一个页面",
         ],
         '403' => [
-            'error' => '没有权限',
+            'error' => "没有权限",
             'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面',
         ],
         '401' => [
-            'error' => '没有权限',
+            'error' => "没有权限",
             'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）',
         ],
         '405' => [
             'error' => '无法找到网页',
-            'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
+            'description' => "很抱歉，您访问的页面不存在...请返回到上一个页面",
         ],
         '500' => [
             'error' => '哎呀，服务器崩溃了',
-            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
+            'description' => "我们会自动报告每一个错误，请返回到上一个页面。",
         ],
         'fatal' => [
             'error' => '哎呀，服务器被外星人带走了',
-            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
+            'description' => "我们会自动报告每一个错误，请返回到上一个页面。",
         ],
         '503' => [
             'error' => '啊哦...服务器正在维护中',
-            'description' => '每次维护需要5秒到10分钟的时间。如果维护时间太长，查看 :link 以获得更多信息。',
+            'description' => "每次维护需要5秒到10分钟的时间。如果维护时间太长，查看 :link 以获得更多信息。",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防万一，你可以将这里的代码发给我们！',
+        'reference' => "以防万一，你可以将这里的代码发给我们！",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => '用户名/邮箱',
-            'forgot' => '我忘记了我的登录信息',
+            'forgot' => "我忘记了我的登录信息",
             'password' => '密码',
             'title' => '登录以继续',
 
             'error' => [
-                'email' => '用户名或邮箱不存在',
+                'email' => "用户名或邮箱不存在",
                 'password' => '密码错误',
             ],
         ],
 
         'register' => [
-            'info' => '点击下方的注册按钮以成为 osu! 大家庭中的一员！',
-            'title' => '没有帐号？',
+            'info' => "点击下方的注册按钮以成为 osu! 大家庭中的一员！",
+            'title' => "没有帐号？",
         ],
     ],
 
@@ -243,7 +251,7 @@ return [
         'links' => [
             'account-edit' => '设置',
             'friends' => '好友',
-            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => '退出',
             'profile' => '我的资料',
         ],
     ],

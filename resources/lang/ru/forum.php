@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Закреплённые темы',
-    'slogan' => 'опасно играть одному.',
+    'slogan' => "опасно играть одному.",
     'subforums' => 'Подфорумы',
     'title' => 'osu!сообщество',
 
@@ -147,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => 'Ограничить опрос по времени на',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'дней',
                 'length_info' => 'Оставьте пустым для снятия ограничения',
                 'max_options' => 'Количество ответов',
@@ -176,7 +175,7 @@ return [
             'to_1_done' => 'Добавлен тег "добавлено"',
         ],
 
-        'issue_tag_assigned' => [ // TODO: Непонятно, где встречается эта фраза. Исправить в будущем.
+        'issue_tag_assigned' => [
             'to_0' => 'Убрать тег "присвоено"',
             'to_0_done' => 'Убран тег "присвоено"',
             'to_1' => 'Добавить тег "присвоено"',
@@ -243,7 +242,7 @@ return [
                 'user' => [
                     'count' => ':count голос|:count голоса|:count голосов',
                     'current' => 'У вас осталось :votes голосов.',
-                    'not_enough' => 'У вас больше нет голосов',
+                    'not_enough' => "У вас больше нет голосов",
                 ],
             ],
 
@@ -259,9 +258,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Отписаны от темы',
+            'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
-            'to_watching_done' => 'Подписано на тему',
+            'to_watching_mail' => 'В закладки с оповещением',
             'mail_disable' => 'Отключить уведомления',
         ],
     ],

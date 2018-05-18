@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'match' => [
         'header' => '多人遊戲',
-        'team-types' => [ //TODO 待翻譯
+        'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
@@ -57,9 +57,9 @@ return [
         ],
         'winner' => ':team 勝利',
         'difference' => '，領先 :difference 分',
-        'loading-events' => '加載事件...',
+        'loading-events' => '載入事件..。',
         'more-events' => '查看全部...',
-        'beatmap-deleted' => '刪除譜面',
+        'beatmap-deleted' => '刪除圖譜',
     ],
     'game' => [
         'scoring-type' => [

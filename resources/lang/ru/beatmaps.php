@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter для ответа.',
         'reply_placeholder' => 'Введите тут ответ',
-        'require-login' => 'Войди для публикации или ответа', // Base text changed from "log" to "sign"
+        'require-login' => 'Войди для публикации или ответа',
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'title' => 'Отзывы',
@@ -113,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Эта карта была одобрена :date!',
-            'graveyard' => 'Эта карта не обновлялась с :date и похоже, что автор её забросил...',
+            'graveyard' => "Эта карта не обновлялась с :date и похоже, что автор её забросил...",
             'loved' => 'Эта карта была признана "любимой" :date!',
             'ranked' => 'Эта карта была ранкнута :date!',
             'wip' => 'Заметьте: Эта карта была помечена создателем как незавершённая.',
@@ -124,10 +124,10 @@ return [
     'hype' => [
         'button' => 'Хайпануть карту!',
         'button_done' => 'Уже хайпанута!',
-        'confirm' => 'Вы уверены? Это действие отберёт один из :n хайпов и не может быть отменено.',
+        'confirm' => "Вы уверены? Это действие отберёт один из :n хайпов и не может быть отменено.",
         'explanation' => 'Это сделает карту доступной для номинирования!',
         'explanation_guest' => 'Войдите в аккаунт, чтобы сделать карту доступной для номинирования!',
-        'new_time' => 'Вы получите другой хайп :new_time.',
+        'new_time' => "Вы получите другой хайп :new_time.",
         'remaining' => 'У вас осталось :remaining хайпа.',
         'required_text' => 'Хайп: :current/:required',
         'section_title' => 'Прогресс хайпа',
@@ -178,6 +178,7 @@ return [
                 'language' => 'Язык',
                 'extra' => 'Дополнительно',
                 'rank' => 'Рейтинг',
+                'played' => 'Сыграно',
             ],
         ],
         'mode' => 'Режим игры',
@@ -205,7 +206,7 @@ return [
         'loved' => 'Любимые',
         'faves' => 'Избранные',
         'pending' => 'Ожидающие',
-        'graveyard' => 'Заброшенные', // TODO: найти перевод лучше
+        'graveyard' => 'Заброшенные',
         'my-maps' => 'Мои карты',
     ],
     'genre' => [
@@ -258,9 +259,14 @@ return [
         'instrumental' => 'Инструментальный',
         'other' => 'Другой',
     ],
+    'played' => [
+        'any' => 'Все',
+        'played' => 'Сыграно',
+        'unplayed' => 'Не сыграно',
+    ],
     'extra' => [
         'video' => 'Есть видео',
-        'storyboard' => 'Есть сторибоард',
+        'storyboard' => 'Есть сториборд',
     ],
     'rank' => [
         'any' => 'Все',

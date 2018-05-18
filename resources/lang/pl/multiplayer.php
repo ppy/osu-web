@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'match' => [
         'header' => 'Tryb wieloosobowy',
@@ -27,17 +28,18 @@ return [
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
-            'player-left' => 'gracz :user wyszedł z gry',
-            'player-joined' => 'gracz :user dołączył do gry',
-            'player-kicked' => 'gracz :user został wyrzucony z gry',
-            'match-created' => 'gracz :user stworzył grę',
-            'match-disbanded' => 'gra została rozwiązana',
+            'player-left' => 'gracz :user wyszedł z meczu',
+            'player-joined' => 'gracz :user dołączył do meczu',
+            'player-kicked' => 'gracz :user został wyrzucony z meczu',
+            'match-created' => 'gracz :user stworzył mecz',
+            'match-disbanded' => 'mecz został rozwiązany ',
             'host-changed' => 'gracz :user został hostem',
-            'player-left-no-user' => 'gracz wyszedł z gry',
-            'player-joined-no-user' => 'gracz dołączył do gry',
+
+            'player-left-no-user' => 'gracz opuścił mecz',
+            'player-joined-no-user' => 'gracz dołączył do meczu',
             'player-kicked-no-user' => 'gracz został wyrzucony z meczu',
-            'match-created-no-user' => 'Mecz został stworzony',
-            'match-disbanded-no-user' => 'Mecz został zakończony',
+            'match-created-no-user' => 'mecz został utworzony',
+            'match-disbanded-no-user' => 'mecz został zakończony',
             'host-changed-no-user' => 'host został zmieniony',
         ],
         'in-progress' => '(mecz trwa)',
@@ -50,14 +52,14 @@ return [
         ],
         'failed' => 'PRZEGRANA',
         'teams' => [
-            'blue' => 'Drużyna Niebieska',
-            'red' => 'Drużyna Czerwona',
+            'blue' => 'Drużyna niebieska',
+            'red' => 'Drużyna czerwona',
         ],
         'winner' => ':team wygrywa',
         'difference' => 'różnicą :difference punktów',
         'loading-events' => 'Ładowanie zdarzeń...',
         'more-events' => 'wyświetl wszystkie...',
-        'beatmap-deleted' => 'usunięto beatmapę',
+        'beatmap-deleted' => 'usunięta beatmapa',
     ],
     'game' => [
         'scoring-type' => [

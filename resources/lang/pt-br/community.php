@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,15 @@ return [
             e às vezes é difícil manter os padrões que desejo.
             Gostaria de agradecer pessoalmente a todos que ajudaram o osu! até agora,
             e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
+
+        'supporter_status' => [
+            'contribution' => 'Obrigado pelo o seu apoio! Você contribuiu com :dollars em :tags compras de tags!',
+            'gifted' => ':giftedTags de suas compras de tag foram presenteadas (um total de :giftedDollars presenteados), que generoso!',
+            'not_yet' => "Você ainda não tem uma supporter tag :(",
+            'title' => 'Status atual do supporter',
+            'valid_until' => 'Sua atual supporter tag é válido até :date!',
+            'was_valid_until' => 'Sua supporter tag era válido até :date.',
+        ],
 
         'why_support' => [
             'title' => 'Por que devo ajudar o osu!?',
@@ -105,12 +114,12 @@ return [
 
             'sort_options' => [
                 'title' => 'Opções de Organização',
-                'description' => 'A capacidade de ver rankings de país/amigos/certas modificações dentro do jogo.',
+                'description' => 'A capacidade de ver rankings de país/amigos/mod específico dentro do jogo.',
             ],
 
             'feel_special' => [
                 'title' => 'Sinta-se Especial',
-                'description' => 'Aquela sensação quentinha e gostosa por ter feito sua parte em manter o osu! rodando tranquilo!',
+                'description' => 'Aquela sensação quentinha e gostosa por fazer sua parte em manter o osu! rodando tranquilo!',
             ],
 
             'more_to_come' => [

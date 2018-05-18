@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -70,14 +70,14 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'classements', // Base text has changed, please check.
+            'charts' => 'classements',
             'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'communauté',
-            'dev' => 'osu!dev',
+            'dev' => 'développement',
             'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'direct',
@@ -107,18 +107,23 @@ return [
         ],
         'user' => [
             '_' => 'utilisateur',
-            'getLogin' => 'se connecter', // Base text changed from "log" to "sign" : OK
+            'getLogin' => 'se connecter',
             'disabled' => 'désactivé',
 
-            'register' => "s'inscrire",
+            'register' => 's\'inscrire',
             'reset' => 'récupérer',
             'new' => 'nouveau',
 
             'messages' => 'Messages',
             'settings' => 'Paramètres',
-            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check. : OK
+            'logout' => 'Se déconnecter',
             'help' => 'Aide',
-            'modding-history-index' => 'activités utilisateur du beatmapset', // needs update
+            'modding-history-discussions' => 'discussion des modifications utilisateur',
+            'modding-history-events' => 'événements de modifications utilisateur',
+            'modding-history-index' => 'activités utilisateur du beatmapset',
+            'modding-history-posts' => 'messages de modifications utilisateur',
+            'modding-history-votesGiven' => 'votes de modifications utilisateur donnés',
+            'modding-history-votesReceived' => 'votes de modifications utilisateur reçus',
         ],
         'store' => [
             '_' => 'magasin',
@@ -192,11 +197,11 @@ return [
             'description' => "Désolé, mais la page demandée n'est pas ici !",
         ],
         '403' => [
-            'error' => 'Vous ne devriez pas être ici',
+            'error' => "Vous ne devriez pas être ici",
             'description' => 'Vous pouvez essayer de revenir en arrière.',
         ],
         '401' => [
-            'error' => 'Vous ne devriez pas être ici', // Base text changed from "log" to "sign"
+            'error' => "Vous ne devriez pas être ici",
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
         ],
         '405' => [
@@ -204,12 +209,12 @@ return [
             'description' => "Désolé, mais la page demandée n'est pas ici !",
         ],
         '500' => [
-            'error' => "Oh non ! Quelque chose s'est cassé ! ;_;",
-            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
+            'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
+            'description' => "Nous avons été notifié automatiquement de cette erreur.",
         ],
         'fatal' => [
-            'error' => "Oh non ! Quelque chose s'est cassé ! (gravement) ;_;",
-            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
+            'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
+            'description' => "Nous avons été notifié automatiquement de cette erreur.",
         ],
         '503' => [
             'error' => 'Maitenance en cours!',
@@ -220,7 +225,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support !',
+        'reference' => "Juste au cas où, voici un code que vous pourrez retourner au support !",
     ],
 
     'popup_login' => [
@@ -246,7 +251,7 @@ return [
         'links' => [
             'account-edit' => 'Paramètres',
             'friends' => 'Amis',
-            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
         ],
     ],

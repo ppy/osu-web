@@ -94,6 +94,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         currentFilter: @state.currentFilter
         currentUser: @state.currentUser
         discussions: @discussions()
+        discussionStarters: @discussionStarters()
         events: @state.beatmapset.events
         mode: @state.currentMode
         selectedUserId: @state.selectedUserId
@@ -202,12 +203,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       for own _filter, modes of byFilter
         modes[mode] = {}
 
-    for d in @state.beatmapset.discussions
-      # skipped discussion
-      # - not privileged (deleted discussion)
-      # - deleted beatmap
-      continue if _.isEmpty(d)
-
+    for own _id, d of @discussions()
       if !d.deleted_at?
         totalHype++ if d.message_type == 'hype'
 
@@ -275,7 +271,22 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   discussions: =>
-    @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
+    # skipped discussions
+    # - not privileged (deleted discussion)
+    # - deleted beatmap
+    @cache.discussions ?= _ @state.beatmapset.discussions
+                            .filter (d) -> !_.isEmpty(d)
+                            .keyBy 'id'
+                            .value()
+
+
+  discussionStarters: =>
+    _ @discussions()
+      .map 'user_id'
+      .uniq()
+      .map (user_id) => @users()[user_id]
+      .orderBy (user) -> user.username.toLocaleLowerCase()
+      .value()
 
 
   groupedBeatmaps: (discussionSet) =>

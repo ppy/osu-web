@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,20 +20,33 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.', // 공인됨
+        'approve' => 'Approved.',
         'discussion_delete' => 'Moderator가 :discussion 토론을 삭제했습니다.',
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
         'discussion_post_restore' => 'Moderator가 :discussion 토론에서 삭제된 글을 복원했습니다.',
         'discussion_restore' => 'Moderator가 삭제된 :discussion 토론을 복원했습니다.',
-        'disqualify_legacy' => '실격 처리되었습니다. 사유: :text.', // Disqualified
-        'issue_reopen' => '결정되었던 :discussion 토론이 재개되었습니다.', // Resolved issue :discussion reopened.
-        'issue_resolve' => ':discussion 토론이 결정된 것으로 표시되었습니다.', // Issue :discussion marked as resolved.
-        'kudosu_allow' => ':discussion 토론에서의 kudous 거절을 취소했습니다.', // Kudosu denial for discussion :discussion has been removed
-        'kudosu_deny' => ':discussion 토론에서 kudosu를 거당했습니다.', // Discussion :discussion denied for kudosu
-        'kudosu_gain' => ':discussion 토론에서 kudosu를 받을 만큼 충분한 표를 얻었습니다.', // Discussion :discussion obtained enough votes for kudosu
-        'kudosu_lost' => ':discussion 토론에서 충분한 표를 얻지 못해 획득한 kudous가 삭제되었습니다.', // (삭제 -> 반환? 검토 필요) Discussion :discussion lost votes and granted kudosu has been removed.
+        'disqualify' => ':user 님에 의해서 실격 처리되었습니다. 이유: :discussion (:text).',
+        'disqualify_legacy' => '실격 처리되었습니다. 사유: :text.',
+        'issue_reopen' => '결정되었던 :discussion 토론이 재개되었습니다.',
+        'issue_resolve' => ':discussion 토론이 결정된 것으로 표시되었습니다.',
+        'kudosu_allow' => ':discussion 토론에서의 kudous 거절을 취소했습니다.',
+        'kudosu_deny' => ':discussion 토론에서 kudosu를 거당했습니다.',
+        'kudosu_gain' => ':discussion 토론에서 kudosu를 받을 만큼 충분한 표를 얻었습니다.',
+        'kudosu_lost' => ':discussion 토론에서 충분한 표를 얻지 못해 획득한 kudous가 삭제되었습니다.',
+        'kudosu_recalculate' => '',
         'nominate' => 'Nominated.',
+        'nomination_reset' => '',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
+    ],
+
+    'index' => [
+        'title' => '',
+    ],
+
+    'item' => [
+        'content' => '내용',
+        'discussion_deleted' => '[삭제됨]',
+        'type' => '종류',
     ],
 ];

@@ -30,6 +30,9 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancelar',
+        'change' => 'cambiar',
+        'click_to_copy' => 'haz clic aquí para copiarlo al portapapeles',
+        'click_to_copy_copied' => 'copiado al portapapeles!',
         'delete' => 'Eliminar',
         'permalink' => 'enlace permanente',
         'permalink_copied' => 'enlace copiado',
@@ -60,10 +63,10 @@ return [
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM [de] YYYY',
-            'php' => 'MMMM \\d\\e y',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'MMMM [de] YYYY',
         ],
     ],
 
@@ -83,7 +86,7 @@ return [
         'next' => 'siguiente',
     ],
 
-     'score_count' => [
+    'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',

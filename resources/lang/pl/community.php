@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Kochasz osu!?<br/>
-                                Wspomóż deweloperów osu! :D',
+                                Wspomóż twórców gry! :D',
             'small_description' => '',
             'support_button' => 'Chcę wspomóc osu!',
         ],
@@ -37,9 +37,9 @@ return [
         'supporter_status' => [
             'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
             'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
-            'not_yet' => 'Nie posiadasz jeszcze statusu donatora :(',
+            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
             'title' => 'Status donatora',
-            'valid_until' => 'Twój status donatora jest aktywny do :date!',
+            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],
 

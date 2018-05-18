@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,16 +27,27 @@ return [
         'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
         'registration_period' => 'Tilmelding: :start til :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Tilmeld mig!',
-            'cancel' => 'Annullér tilmelding',
-        ],
+        'banner' => '',
         'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
+        'info_page' => '',
         'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
         'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
         'rank_too_low' => 'Beklager, du opfylder ikke rang kravene til denne turnering!',
         'registration_ends' => 'Tilmelding lukker på :date',
+
+        'button' => [
+            'cancel' => 'Annullér tilmelding',
+            'register' => 'Tilmeld mig!',
+        ],
+
+        'state' => [
+            'before_registration' => '',
+            'ended' => '',
+            'registration_closed' => '',
+            'running' => '',
+        ],
     ],
     'tournament_period' => ':start til :end',
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 return [
     'page_description' => 'Udvalgte kunstnere på osu!',
     'title' => 'Udvalgte kunstnere',
+
     'admin' => [
         'hidden' => 'KUNSTNEREN ER I ØJEBLIKKET SKJULT',
     ],
@@ -33,10 +34,10 @@ return [
 
     'index' => [
         'description' => 'Udvalgte kunstnere er kunstnere, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse kunstnere og et udvalg af deres sange er blevet specielt udvalgt af osu! teamet for at være gode og være egnet til at blive mappet. Nogle af de udvalgte kunstnere har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle sange i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
-
     ],
 
     'links' => [
+        'osu' => 'osu! profil',
         'site' => 'Officiel Hjemmeside',
     ],
 

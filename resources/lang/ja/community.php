@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,15 @@ return [
             自分に課した基準を維持する為に日々奮闘しています。
             osu!をこれまで支援してくれた方々には大変感謝していて、
             この素晴らしいゲームとコミュニティをこれからも支援し続けてくれる方々には感謝の気持ちでいっぱいです。',
+
+        'supporter_status' => [
+            'contribution' => 'osu!を支えてくれてありがとうございます！今までに:dollarsで:tags個のタグを購入しました！',
+            'gifted' => '今までのサポータータグ購入のうち:giftedTags個がギフト（合計金額：:giftedDollars）として送られました。あなたの寛大さに拍手！',
+            'not_yet' => "サポータータグをまだ持っていません :(",
+            'title' => '現在のサポーターの状態',
+            'valid_until' => 'あなたのサポータータグは:dateまで有効です！',
+            'was_valid_until' => 'あなたのサポータータグは:dateに期限切れになりました。',
+        ],
 
         'why_support' => [
             'title' => 'osu!を支援する理由とは？',

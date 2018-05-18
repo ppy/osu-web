@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,15 +19,31 @@
  */
 
 return [
+    'page_description' => 'Artisti in primo piano su osu!',
+    'title' => 'Artisti in primo piano',
+
+    'admin' => [
+        'hidden' => 'L\'ARTISTA È ATTUALMENTE NASCOSTO',
+    ],
+
     'beatmaps' => [
         '_' => 'Mappe',
         'download' => 'Scarica Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],
-    'page_description' => 'Artisti in primo piano su osu!',
-    'title' => 'Artisti in primo piano',
-    'songs' => ':count canzone|:count songs',
+
+    'index' => [
+        'description' => 'Gli artisti in primo piano sono artisti con i quali stiamo collaborando con lo scopo di portare musica nuova ed originale su osu!. Questi artisti e alcuni dei loro brani sono stati scelti dal team di osu! per essere adatti e sfiziosi per il mapping. Alcuni di questi artisti in primo piano hanno creato inoltre nuovi brani esclusivi per osu!. <br><br>Tutti i brani in questa sezione vengono forniti come file .osz prefatti e sono stati ufficialmente autorizzati per essere utilizzati su osu! e tutto ciò che ne concerne.',
+    ],
+
     'links' => [
+        'osu' => 'osu! profilo',
         'site' => 'Sito Ufficiale',
+    ],
+
+    'songs' => [
+        '_' => 'Brani',
+        'count' => ':count brano |:count brani',
+        'exclusive' => 'osu! esclusiva',
     ],
 ];

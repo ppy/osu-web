@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,14 +33,16 @@ return [
 
     'search' => [
         'advanced_link' => '高級搜索',
-        'button' => '搜索',
+        'button' => '搜尋',
         'empty_result' => '沒有結果！',
         'missing_query' => '搜索內容不少於 :n 個字符',
+        'placeholder' => '請輸入以搜尋',
+        'title' => '搜尋',
 
         'beatmapset' => [
-            'more' => '搜索到 :count 張譜面',
+            'more' => '搜索到 :count 張圖譜',
             'more_simple' => '查看更多搜索結果',
-            'title' => '譜面',
+            'title' => '圖譜',
         ],
 
         'forum_post' => [
@@ -59,7 +61,7 @@ return [
 
         'mode' => [
             'all' => '所有',
-            'beatmapset' => '譜面',
+            'beatmapset' => '圖譜',
             'forum_post' => '論壇',
             'user' => '玩家',
             'wiki_page' => 'wiki',
@@ -80,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => '讓我們<br>開始吧！',
+        'tagline' => "讓我們<br>開始吧！",
         'action' => '下載 osu!',
         'os' => [
             'windows' => 'Windows 版',
@@ -145,6 +147,6 @@ return [
             'part-2' => '如果你選擇給 osu! 捐贈，就可以解鎖額外的功能，例如<strong>遊戲內自動下載</strong>。',
         ],
         'find-out-more' => '點擊這裡以瞭解更多',
-        'download-starting' => '對了，別擔心 - 下載已經開始了 ;)',
+        'download-starting' => "對了，別擔心 - 下載已經開始了 ;)",
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,38 +19,39 @@
  */
 
 return [
-    'defaults' => [ //TODO 好長,之後再翻譯吧
+    'defaults' => [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
 
     'menu' => [
         'home' => [
-            '_' => '主頁',
-            'account-edit' => '設置',
-            'friends' => '好友',
+            '_' => '首頁',
+            'account-edit' => '設定',
             'friends-index' => '好友',
             'changelog-index' => '更新日誌',
             'changelog-show' => '版本',
             'getDownload' => '下載',
-            'getIcons' => '圖標',
-            'groups-show' => '用戶組',
-            'index' => 'osu!',
-            'legal-show' => '信息',
+            'getIcons' => '圖示',
+            'groups-show' => '群組',
+            'index' => '看板',
+            'legal-show' => '資訊',
             'news-index' => '新聞',
             'news-show' => '新聞',
-            'password-reset-index' => '重置密碼',
-            'search' => '搜索',
-            'supportTheGame' => '支持 osu!',
+            'password-reset-index' => '重設密碼',
+            'search' => '搜尋',
+            'supportTheGame' => '贊助 osu!',
+            'team' => '團隊',
         ],
         'help' => [
             '_' => '幫助',
             'getFaq' => '常見問題',
-            'getSupport' => '獲取幫助',
+            'getRules' => '规章制度',
+            'getSupport' => '支援服務',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => '譜面',
+            '_' => '圖譜',
             'artists' => '精選藝術家',
             'beatmap_discussion_posts-index' => '譜面討論帖',
             'beatmap_discussions-index' => '譜面討論',
@@ -58,34 +59,33 @@ return [
             'beatmapset_discussion_votes-index' => '譜面討論投票',
             'beatmapset_events-index' => '譜面事件',
             'index' => '列表',
-            'packs' => '曲包',
-            'show' => '信息',
+            'packs' => '圖譜壓縮檔',
+            'show' => '資訊',
         ],
         'beatmapsets' => [
-            '_' => '譜面',
+            '_' => '圖譜',
             'discussion' => '修改',
         ],
         'rankings' => [
-            '_' => '排名',
-            'index' => '表現',
-            'performance' => '表現',
-            'charts' => '月賽', // Base text has changed, please check.
-            'score' => '得分',
+            '_' => '排行榜',
+            'index' => '成績',
+            'performance' => '成績',
+            'charts' => '月賽',
+            'score' => '總分',
             'country' => '國家',
             'kudosu' => 'kudosu',
         ],
         'community' => [
-            '_' => '社區',
-            'dev' => 'osu! 開發',
+            '_' => '社群',
+            'dev' => '開發',
             'getForum' => '論壇',
             'getChat' => '聊天',
-            'getSupport' => '獲取幫助',
             'getLive' => '直播',
             'contests' => '評選',
-            'profile' => '個人資料',
+            'profile' => '個人簡介',
             'tournaments' => '官方比賽',
             'tournaments-index' => '官方比賽',
-            'tournaments-show' => '官方比賽信息',
+            'tournaments-show' => '官方比賽訊息',
             'forum-topic-watches-index' => '訂閱',
             'forum-topics-create' => '論壇',
             'forum-topics-show' => '論壇',
@@ -99,26 +99,31 @@ return [
         'error' => [
             '_' => '錯誤',
             '404' => '無法找到網頁',
-            '403' => '拒絕訪問',
+            '403' => '拒絕存取',
             '401' => '權限不足',
             '405' => '資源被禁止',
             '500' => '內部錯誤',
             '503' => '維護中',
         ],
         'user' => [
-            '_' => '用戶',
-            'getLogin' => '登錄',
+            '_' => '使用者',
+            'getLogin' => '登入',
             'disabled' => '禁用',
 
             'register' => '註冊',
-            'reset' => '重置',
-            'new' => 'new', //TODO 需要上下文
+            'reset' => '復原',
+            'new' => '新增',
 
-            'messages' => '信息',
-            'settings' => '設置',
-            'logout' => '退出',
+            'messages' => '訊息',
+            'settings' => '設定',
+            'logout' => '登出',
             'help' => '幫助',
-            'modding-history-index' => '玩家譜面活動', //需要上下文 // needs update
+            'modding-history-discussions' => '使用者摸圖討論區',
+            'modding-history-events' => '使用者摸圖事件',
+            'modding-history-index' => '使用者摸圖歷史紀錄',
+            'modding-history-posts' => '使用者摸圖貼文',
+            'modding-history-votesGiven' => '使用者摸圖投票數',
+            'modding-history-votesReceived' => '使用者摸圖得票数',
         ],
         'store' => [
             '_' => '商店',
@@ -130,17 +135,17 @@ return [
             'getInvoice' => '發票',
             'products-show' => '商品',
 
-            'new' => 'new', //TODO 需要上下文
-            'home' => 'home', //TODO 需要上下文
-            'index' => 'home', //TODO 需要上下文
+            'new' => 'new',
+            'home' => '首頁',
+            'index' => 'home',
             'thanks' => '感謝',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum', //TODO 需要上下文
+            '_' => 'admin::forum',
             'forum-covers-index' => '論壇封面',
         ],
         'admin-store' => [
-            '_' => 'admin::store', //TODO 需要上下文
+            '_' => 'admin::store',
             'orders-index' => '訂單',
             'orders-show' => '訂單',
         ],
@@ -160,9 +165,9 @@ return [
     'footer' => [
         'general' => [
             '_' => '網站地圖',
-            'home' => '主頁',
+            'home' => '首頁',
             'changelog-index' => '更新日誌',
-            'beatmaps' => '譜面列表',
+            'beatmaps' => '圖譜列表',
             'download' => '下載 osu!',
             'wiki' => 'Wiki',
         ],
@@ -171,17 +176,17 @@ return [
             'faq' => '常見問題',
             'forum' => '論壇',
             'livestreams' => '直播',
-            'report' => '報告問題',
+            'report' => '問題回報',
         ],
         'support' => [
-            '_' => '支持 osu!',
-            'tags' => '成為支持者',
-            'merchandise' => '商店',
+            '_' => '贊助 osu!',
+            'tags' => '成為贊助者',
+            'merchandise' => '銷售',
         ],
         'legal' => [
             '_' => '法律 & 狀態',
             'copyright' => '版權（DMCA）',
-            'server_status' => '服務器狀態',
+            'server_status' => '伺服器狀態',
             'terms' => '服務條款',
         ],
     ],
@@ -189,56 +194,56 @@ return [
     'errors' => [
         '404' => [
             'error' => '無法找到網頁',
-            'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
+            'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '403' => [
-            'error' => '沒有權限',
+            'error' => "沒有權限",
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面',
         ],
         '401' => [
-            'error' => '沒有權限',
+            'error' => "沒有權限",
             'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
         ],
         '405' => [
             'error' => '無法找到網頁',
-            'description' => '很抱歉，您訪問的頁面不存在...請返回到上一個頁面',
+            'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '500' => [
             'error' => '哎呀，服務器崩潰了',
-            'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
+            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
         ],
         'fatal' => [
             'error' => '哎呀，服務器被外星人帶走了',
-            'description' => '我們會自動報告每一個錯誤，請返回到上一個頁面。',
+            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
         ],
         '503' => [
             'error' => '啊哦...服務器正在維護中',
-            'description' => '每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。',
+            'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防萬一，你可以將這裡的代碼發給我們！',
+        'reference' => "以防萬一，你可以將這裡的代碼發給我們！",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => '用戶名/郵箱',
-            'forgot' => '我忘記了我的登錄信息',
+            'forgot' => "我忘記了我的登錄信息",
             'password' => '密碼',
             'title' => '登錄以繼續',
 
             'error' => [
-                'email' => '用戶名或郵箱不存在',
+                'email' => "用戶名或郵箱不存在",
                 'password' => '密碼錯誤',
             ],
         ],
 
         'register' => [
-            'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
-            'title' => '沒有帳號？',
+            'info' => "點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！",
+            'title' => "沒有帳號？",
         ],
     ],
 

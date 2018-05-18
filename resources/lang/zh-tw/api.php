@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'limit_exceeded' => '您發送消息的頻率太快了，坐下來泡杯茶休息會兒吧。',
+            'limit_exceeded' => '您發送訊息的速度太快了，坐下來泡杯茶休息一會吧。',
         ],
     ],
 ];

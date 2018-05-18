@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,12 +32,22 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'permetti kudosu',
+        'delete' => 'elimina',
+        'deleted' => 'Eliminato da :editor :delete_time.',
+        'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
+        'kudosu_denied' => '',
         'message_placeholder' => 'Scrivi qui per postare',
+        'message_placeholder_deleted_beatmap' => '',
         'message_type_select' => 'Seleziona il tipo di commento',
-        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
+        'reply_notice' => '',
+        'reply_placeholder' => '',
+        'require-login' => 'Per favore effettua il login per postare o rispondere',
         'resolved' => 'Risolto',
+        'restore' => '',
+        'title' => '',
 
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',
@@ -46,7 +56,7 @@ return [
 
         'empty' => [
             'empty' => 'Ancora nessuna discussione!',
-            'filtered' => 'Nessuna discussione corrisponde ai filtri selezionati.',
+            'hidden' => '',
         ],
 
         'message_hint' => [
@@ -55,36 +65,103 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
+            'events' => '',
+            'general' => '',
             'timeline' => 'Linea Temporale',
+            'scopes' => [
+                'general' => '',
+                'generalAll' => '',
+            ],
+        ],
+
+        'new' => [
+            'timestamp' => '',
+            'timestamp_missing' => '',
+            'title' => '',
         ],
 
         'show' => [
             'title' => 'Discussione Beatmap',
         ],
 
+        'sort' => [
+            '_' => '',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
+        ],
+
         'stats' => [
+            'deleted' => '',
+            'mapper_notes' => '',
             'mine' => 'Mio',
             'pending' => 'In attesa',
             'praises' => 'Elogi',
             'resolved' => 'Risolti',
+            'total' => '',
         ],
+
+        'status-messages' => [
+            'approved' => '',
+            'graveyard' => "",
+            'loved' => '',
+            'ranked' => '',
+            'wip' => '',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => '',
+        'button_done' => '',
+        'confirm' => "",
+        'explanation' => '',
+        'explanation_guest' => '',
+        'new_time' => "",
+        'remaining' => '',
+        'required_text' => '',
+        'section_title' => '',
+        'title' => '',
+    ],
+
+    'feedback' => [
+        'button' => '',
     ],
 
     'nominations' => [
         'disqualification_prompt' => 'Ragioni della squalifica?',
         'disqualified_at' => 'squalificata :time_ago',
+        'disqualified_no_reason' => '',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'nominate' => 'Nomina',
+        'nominate_confirm' => '',
+        'nominated_by' => '',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
         'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nominazioni: :current/:required',
+        'reset_message_deleted' => '',
+        'title' => '',
+        'unresolved_issues' => '',
+
+        'reset_at' => [
+            'nomination_reset' => '',
+            'disqualify' => '',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '',
+        ],
     ],
 
     'listing' => [
@@ -93,12 +170,26 @@ return [
             'options' => 'Più Opzioni di Ricerca',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
+            'filters' => [
+                'general' => '',
+                'mode' => '',
+                'status' => '',
+                'genre' => '',
+                'language' => '',
+                'extra' => '',
+                'rank' => '',
+                'played' => '',
+            ],
         ],
         'mode' => 'Modalità',
         'status' => 'Status del Rank',
         'mapped-by' => 'mappata da :mapper',
         'source' => 'da :source',
         'load-more' => 'Carica altro...',
+    ],
+    'general' => [
+        'recommended' => '',
+        'converts' => '',
     ],
     'mode' => [
         'any' => 'Qualsiasi',
@@ -111,9 +202,11 @@ return [
         'any' => 'Tutto',
         'ranked-approved' => 'Rankate e Approvate',
         'approved' => 'Approvate',
+        'qualified' => '',
+        'loved' => '',
         'faves' => 'Preferiti',
         'pending' => 'In Attesa',
-        'graveyard' => 'Cimitero', // It litterally means "Cimitero" in italian, but maybe there's a better translation?
+        'graveyard' => 'Cimitero',
         'my-maps' => 'Mie Mappe',
     ],
     'genre' => [
@@ -129,41 +222,47 @@ return [
         'electronic' => 'Elettronica',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'Senza Mod',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => '',
     ],
     'language' => [
-    'any' => 'Qualsiasi',
-    'english' => 'Inglese',
-    'chinese' => 'Cinese',
-    'french' => 'Francese',
-    'german' => 'Tedesco',
-    'italian' => 'Italiano',
-    'japanese' => 'Giapponese',
-    'korean' => 'Coreano',
-    'spanish' => 'Spagnolo',
-    'swedish' => 'Svedese',
-    'instrumental' => 'Strumentale',
-    'other' => 'Altro',
+        'any' => 'Qualsiasi',
+        'english' => 'Inglese',
+        'chinese' => 'Cinese',
+        'french' => 'Francese',
+        'german' => 'Tedesco',
+        'italian' => 'Italiano',
+        'japanese' => 'Giapponese',
+        'korean' => 'Coreano',
+        'spanish' => 'Spagnolo',
+        'swedish' => 'Svedese',
+        'instrumental' => 'Strumentale',
+        'other' => 'Altro',
+    ],
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
     ],
     'extra' => [
         'video' => 'Ha Video',

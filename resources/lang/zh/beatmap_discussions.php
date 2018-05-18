@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,7 +28,7 @@ return [
     ],
 
     'events' => [
-        'empty' => '还没有事件。。。',
+        'empty' => '目前还没有什么事件...呢。',
     ],
 
     'index' => [
@@ -38,7 +38,7 @@ return [
         'form' => [
             'deleted' => '包含已经删除的讨论',
 
-            'user' => [ //上下文
+            'user' => [
                 'label' => '用户',
                 'overview' => '活动总览',
             ],
@@ -76,5 +76,10 @@ return [
         'bng' => '谱面管理团队',
         'owner' => '谱面作者',
         'qat' => '质量保证团队',
+    ],
+
+    'user_filter' => [
+        'everyone' => '所有人',
+        'label' => '按用户筛选',
     ],
 ];

@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, inténtalo de nuevo mañana.',
+            'incorrect_state' => 'Error al realizar esa acción, intenta recargando la página.',
+            'owner' => "No puedes nominar tu propio mapa.",
         ],
         'resolve' => [
             'not_owner' => 'Solo el creador del tema y el dueño del beatmap pueden resolver una discusión.',
@@ -33,14 +35,14 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
-            'owner' => '¡No puedes votar discusiones propias!',
+            'owner' => "¡No puedes votar discusiones propias!",
             'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de beatmaps pendientes.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Una publiación generada automáticamente no puede ser editada.',
+            'system_generated' => 'Una publicación generada automáticamente no puede ser editada.',
             'not_owner' => 'La publicación solo puede ser editada por su creador.',
         ],
     ],
@@ -79,10 +81,15 @@ return [
 
             'edit' => [
                 'deleted' => 'No puedes editar una publicación eliminada.',
-                'locked' => 'La edición del post está bloqueada.',
+                'locked' => 'La edición de la publicación está bloqueada.',
                 'no_forum_access' => 'Necesitas acceso al foro solicitado.',
-                'not_owner' => 'Solo el creador del post puede editarlo.',
+                'not_owner' => 'Solo el creador de la publicación puede editarla.',
                 'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
+            ],
+
+            'store' => [
+                'play_more' => '¡Intenta jugar más antes de publicar en los foros, por favor! Si tienes algún problema jugando, publícalo en el foro de ayuda y soporte.',
+                'too_many_help_posts' => "Necesitas jugar más al juego antes de hacer más publicaciones. Si sigues teniendo problemas para jugar, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -94,9 +101,9 @@ return [
                 'no_permission' => 'No tienes permisos para responder.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para responder.', // Base text changed from "log" to "sign"
-                    'restricted' => 'No puedes responder mientras estés restringido.',
-                    'silenced' => 'No puedes responder mientras estés silenciado.',
+                    'require_login' => 'Inicia sesión para responder.',
+                    'restricted' => "No puedes responder mientras estés restringido.",
+                    'silenced' => "No puedes responder mientras estés silenciado.",
                 ],
             ],
 
@@ -112,9 +119,9 @@ return [
                 'voted' => 'No se puede cambiar tu voto.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para votar.', // Base text changed from "log" to "sign"
-                    'restricted' => 'No puedes votar mientras estés restringido.',
-                    'silenced' => 'No puedes votar mientras estés silenciado.',
+                    'require_login' => 'Inicia sesión para votar.',
+                    'restricted' => "No puedes votar mientras estés restringido.",
+                    'silenced' => "No puedes votar mientras estés silenciado.",
                 ],
             ],
 
@@ -135,13 +142,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
+    'require_login' => 'Inicia sesión para continuar.',
 
     'unauthorized' => 'Acceso denegado.',
 
-    'silenced' => 'No puedes hacer eso mientras estés silenciado.',
+    'silenced' => "No puedes hacer eso mientras estés silenciado.",
 
-    'restricted' => 'No puedes hacer eso mientras estés restringido.',
+    'restricted' => "No puedes hacer eso mientras estés restringido.",
 
     'user' => [
         'page' => [

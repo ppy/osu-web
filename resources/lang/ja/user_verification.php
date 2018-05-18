@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,8 @@ return [
         'issuing' => 'コードの生成中・・・',
 
         'info' => [
-            'check_spam' => 'スパムフォルダーに入っていないか確認をお願いいたします。',
-            'recover' => 'Eメールアカウントにアクセスできない場合はこちらから復元を試みてください。:link.',
+            'check_spam' => "スパムフォルダーに入っていないか確認をお願いいたします。",
+            'recover' => "Eメールアカウントにアクセスできない場合はこちらから復元を試みてください。:link.",
             'recover_link' => 'Eメールの復元',
             'reissue' => 'コードの:reissue_linkや:logout_linkもできます。',
             'reissue_link' => '再生成',

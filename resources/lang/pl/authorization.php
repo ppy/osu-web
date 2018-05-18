@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
+            'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
+            'owner' => "Nie możesz nominować własnej beatmapy.",
         ],
         'resolve' => [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zamknąć tę dyskusję.',
@@ -33,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => 'Nie możesz głosować we własnej dyskusji!',
+            'owner' => "Nie możesz głosować we własnej dyskusji!",
             'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
         ],
     ],
@@ -87,7 +89,7 @@ return [
 
             'store' => [
                 'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
-                'too_many_help_posts' => 'Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh',
+                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -100,8 +102,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
-                    'restricted' => 'Nie możesz odpowiadać podczas blokady konta.',
-                    'silenced' => 'Nie możesz odpowiadać podczas uciszenia.',
+                    'restricted' => "Nie możesz odpowiadać podczas blokady konta.",
+                    'silenced' => "Nie możesz odpowiadać podczas uciszenia.",
                 ],
             ],
 
@@ -118,8 +120,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
-                    'restricted' => 'Nie możesz głosować podczas blokady konta.',
-                    'silenced' => 'Nie możesz głosować podczas uciszenia.',
+                    'restricted' => "Nie możesz głosować podczas blokady konta.",
+                    'silenced' => "Nie możesz głosować podczas uciszenia.",
                 ],
             ],
 
@@ -144,9 +146,9 @@ return [
 
     'unauthorized' => 'Odmowa dostępu.',
 
-    'silenced' => 'Nie możesz tego zrobić podczas uciszenia.',
+    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
 
-    'restricted' => 'Nie możesz tego zrobić podczas blokady konta.',
+    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
 
     'user' => [
         'page' => [

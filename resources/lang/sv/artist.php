@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Framhävda artister på osu!',
-    'title' => 'Framhävda Artister',
+    'page_description' => 'Utvalda artister på osu!',
+    'title' => 'Utvalda Artister',
 
     'admin' => [
         'hidden' => 'ARTIST ÄR FÖR NÄRVARANDE GÖMD',
@@ -29,20 +29,21 @@ return [
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Ladda ner Beatmap Mall',
-        'download-na' => 'Beatmap Mall är inte tillgänglig',
+        'download-na' => 'Beatmap Mall är inte tillgänglig än',
     ],
 
     'index' => [
-        'description' => 'Framhävda artister är artister som vi jobbar tillsammans med för att skapa ny och originell musik till osu!. Dessa artister och ett urval av deras låtar har blivit handplockade av osu! teamet på grund av att dem är grymt bra och lämpliga för mapping. Några av dessa framhävda artister har också skapat exklusiva nya låtar för användning i osu! <br><br>Alla dessa låtar i denna sektion ges ut som för-tajmade .osz filer och har blivit officielt licensierade för använding i osu! och osu!-relaterat innehåll.',
+        'description' => 'Utvalda artister är artister som vi jobbar tillsammans med för att skapa ny och originell musik till osu!. Dessa artister och ett urval av deras låtar har blivit handplockade av osu! teamet på grund av att de är grymt bra och lämpliga för mapping. Några av dessa framhävda artister har också skapat exklusiva nya låtar för användning i osu! <br><br>Alla dessa låtar i denna sektion ges ut som för-tajmade .osz filer och har blivit officielt licensierade för använding i osu! och osu!-relaterat innehåll.',
     ],
 
     'links' => [
+        'osu' => 'osu! profil',
         'site' => 'Officiell Hemsida',
     ],
 
     'songs' => [
-        '_' => 'Sånger',
-        'count' => ':count sång|:count sånger',
-        'exclusive' => 'osu! exklusiv',
+        '_' => 'Låtar',
+        'count' => ':count låt|:count låtar',
+        'exclusive' => 'osu! exklusiva',
     ],
 ];

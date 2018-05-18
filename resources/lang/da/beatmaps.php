@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
-        'require-login' => 'Log ind for at slå op eller svare', // Base text changed from "log" to "sign"
+        'require-login' => 'Log ind for at slå op eller svare',
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'title' => 'Diskussioner',
@@ -113,7 +113,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Dette beatmap blev godkendt på :date!',
-            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...',
+            'graveyard' => "Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...",
             'loved' => 'Dette beatmap blev tilføjet til "Loved" på :date!',
             'ranked' => 'Dette beatmap blev ranked på :date!',
             'wip' => 'Notat: Dette beatmap er blevet markeret som "Under konstruktion" af skaberen.',
@@ -124,10 +124,10 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Allerede Hypet!',
-        'confirm' => 'Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.',
+        'confirm' => "Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.",
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
-        'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
-        'new_time' => 'Du får en ny hype ved :new_time.',
+        'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
+        'new_time' => "Du får en ny hype ved :new_time.",
         'remaining' => 'Du har :remaining hypes tilbage.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Tog',
@@ -178,6 +178,7 @@ return [
                 'language' => 'Sprog',
                 'extra' => 'extra',
                 'rank' => 'Rank Opnået',
+                'played' => '',
             ],
         ],
         'mode' => 'Mode',
@@ -257,6 +258,11 @@ return [
         'swedish' => 'Svensk',
         'instrumental' => 'Instrumentalt',
         'other' => 'Andet',
+    ],
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
     ],
     'extra' => [
         'video' => 'Har Video',

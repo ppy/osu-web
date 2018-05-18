@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,16 +27,27 @@ return [
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
         'registration_period' => 'Rejestracja: od :start do :end',
     ],
+
     'show' => [
-        'button' => [
-            'register' => 'Zarejestruj mnie!',
-            'cancel' => 'Anuluj rejestrację',
-        ],
-        'entered' => 'Twoje konto jest zarejestrowane na ten turniej.<br><br>Miej na uwadze, że nie oznacza to, iż zostało ono dołączone do danej drużyny.<br><br>Dalsze informacje zostaną przesłane drogą mailową później, dlatego upewnij się, że twoje konto osu! używa prawidłowego adresu e-mail!',
-        'login_to_register' => 'Prosimy, :login, aby poznać szczegóły rejestracji!',
+        'banner' => 'Wspomóż swoją drużynę',
+        'entered' => 'Twoje konto zostało zarejestrowane na ten turniej.<br><br>Miej na uwadze, że nie oznacza to, iż zostało ono dołączone do danej drużyny.<br><br>Dalsze informacje zostaną przesłane później drogą mailową, dlatego upewnij się, że twoje konto osu! używa prawidłowego adresu e-mail!',
+        'info_page' => 'Strona informacyjna',
+        'login_to_register' => 'Aby poznać szczegóły rejestracji, :login!',
         'not_yet_entered' => 'Twoje konto nie jest zarejestrowane na ten turniej.',
         'rank_too_low' => 'Przepraszamy, ale twoja pozycja w rankingu nie spełnia wymagań turnieju!',
-        'registration_ends' => 'Rejestracja kończy się :date',
+        'registration_ends' => 'Rejestracja zakończy się :date',
+
+        'button' => [
+            'cancel' => 'Anuluj rejestrację',
+            'register' => 'Zarejestruj mnie!',
+        ],
+
+        'state' => [
+            'before_registration' => 'Rejestracja dla tego turnieju nie została jeszcze rozpoczęta.',
+            'ended' => 'Ten turniej zakończył się. Sprawdź stronę informacyjną po wyniki.',
+            'registration_closed' => 'Rejestracja dla tego turnieju została zakończona. Sprawdź stronę informacyjną po najnowsze informacje.',
+            'running' => 'Ten turniej jest obecnie aktywny. Sprawdź stronę informacyjną po więcej informacji.',
+        ],
     ],
     'tournament_period' => 'od :start do :end',
 ];

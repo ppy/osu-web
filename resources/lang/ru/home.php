@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -62,7 +62,7 @@ return [
         'mode' => [
             'all' => 'все',
             'beatmapset' => 'карты',
-            'forum_post' => 'форумы',
+            'forum_post' => 'форум',
             'user' => 'игроки',
             'wiki_page' => 'вики',
         ],
@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => 'давайте<br>начнём!',
+        'tagline' => "давайте<br>начнём!",
         'action' => 'Скачать osu!',
         'os' => [
             'windows' => 'для Windows',
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Знали ли вы что поддерживая osu! вы получаете большое количество приятных плюшек, к примеру <strong>внутриигровую загрузку карт</strong>, которая срабатывает автоматически при наблюдении или в мультиплеере.',
         ],
         'find-out-more' => 'Нажмите сюда для подробностей!',
-        'download-starting' => 'Ах да, не беспокойтесь - загрузка карты уже началась ;)',
+        'download-starting' => "Ах да, не беспокойтесь - загрузка карты уже началась ;)",
     ],
 ];

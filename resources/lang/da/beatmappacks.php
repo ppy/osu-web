@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,13 +48,13 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Chart', // Base text has changed, please check.
+        'chart' => 'Chart',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
     'require_login' => [
         '_' => 'Du skal være :link for at kunne downloade',
-        'link_text' => 'logget ind', // Base text changed from "log" to "sign"
+        'link_text' => 'logget ind',
     ],
 ];

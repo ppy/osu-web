@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'deleted' => '[usuário deletado]',
 
     'beatmapset_activities' => [
+        'title' => ":user's Histórico de Mod's",
+
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
         ],
@@ -45,6 +47,7 @@ return [
 
     'card' => [
         'loading' => 'Carregando...',
+        'send_message' => 'enviar mensagem',
     ],
 
     'login' => [
@@ -55,9 +58,9 @@ return [
         'button' => 'Conectar',
         'button_posting' => 'Conectando...',
         'remember' => 'Lembrar deste computador',
-        'title' => 'Por favor, conecte-se para prosseguir', // Base text changed from "log" to "sign"
-        'failed' => 'Login incorreto', // Base text changed from "log" to "sign"
-        'register' => 'Você não tem uma conta no osu!? Faça uma!',
+        'title' => 'Por favor, conecte-se para prosseguir',
+        'failed' => 'Login incorreto',
+        'register' => "Você não tem uma conta no osu!? Faça uma!",
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
             'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
@@ -75,15 +78,15 @@ return [
         '_' => 'Registrar',
     ],
     'anonymous' => [
-        'login_link' => 'clique para conectar-se', // Base text changed from "log" to "sign"
-        'login_text' => 'conectar', // Base text changed from "log" to "sign"
-        'username' => 'Convidado',
-        'error' => 'Você precisa estar conectado para fazer isso.', // Base text changed from "log" to "sign"
+        'login_link' => 'clique para conectar-se',
+        'login_text' => 'conectar',
+        'username' => 'Visitante',
+        'error' => 'Você precisa estar conectado para fazer isso.',
     ],
-    'logout_confirm' => 'Tem certeza de que deseja sair? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
-        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -98,8 +101,9 @@ return [
         'origin_country_age' => ':age morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
+        'previous_usernames' => 'anteriormente conhecido como',
         'plays_with' => 'Joga com :devices',
-        'title' => 'Perfil de :username',
+        'title' => "Perfil de :username",
 
         'edit' => [
             'cover' => [
@@ -112,7 +116,7 @@ return [
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
                     'restriction_info' => "Envio disponível apenas para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'O tamanho da capa deve ser 2000x700',
-                    'too_large' => 'Arquivo enviado é muito grande.',
+                    'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
             ],
@@ -169,7 +173,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponível',
-                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.',
+                'available_info' => "Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.",
                 'recent_entries' => 'Histórico de kudosu recente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Adquirido',
@@ -177,7 +181,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Esse usuário ainda não tem nenhum kudosu!',
+                    'empty' => "Esse usuário ainda não tem nenhum kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -218,7 +222,7 @@ return [
                 'title' => 'eu!',
             ],
             'medals' => [
-                'empty' => 'Esse usuário não conseguiu nenhuma recentemente. ;_;',
+                'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
@@ -226,6 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
+                'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
@@ -239,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
-                'bad_standing' => 'A conta de <strong>:username</strong> não está num estado muito bom :(',
+                'bad_standing' => "A conta de <strong>:username</strong> não está num estado muito bom :(",
                 'remaining_silence' => '<strong>:username</strong> vai poder falar novamente em :duration.',
 
                 'recent_infringements' => [
@@ -260,6 +265,7 @@ return [
             ],
         ],
         'info' => [
+            'discord' => 'Discord',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
             'location' => 'Lugar Atual',
@@ -269,11 +275,15 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
+            'reason_1' => 'Eles talvez tenham mudado o nome de usuário deles.',
+            'reason_2' => 'A conta pode estar temporariamente indisponível devido a problemas de abuso ou de segurança.',
+            'reason_3' => 'Você pode ter feito um erro de digitação!',
+            'reason_header' => 'Há algumas possíveis razões para isso:',
             'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
-            'edit_big' => 'Editar eu!',
+            'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear este recurso.",
         ],
@@ -290,6 +300,7 @@ return [
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
+            'play_time' => 'Tempo Total Jogado',
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',

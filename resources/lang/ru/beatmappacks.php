@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'ПРОЧИТАЙТЕ ЭТО ПЕРЕД ЗАГРУЗКОЙ',
             'instruction' => [
-                '_' => 'Установка: как только вы скачали карту, распакуйте содержимое .rar архива в папку osu! > Songs.
+                '_' => "Установка: как только вы скачали карту, распакуйте содержимое .rar архива в папку osu! > Songs.
                     Все песни внутри сборки будут в формате .zip и/ли .osz, поэтому osu! потребуется их распаковать в следующий раз, когда вы начнёте играть.
                     Просим :scary распаковывать эти файлы самостоятельно,
-                    так как карта может отображаться некорректно в osu! и не работать',
+                    так как карта может отображаться некорректно в osu! и не работать",
                 'scary' => 'НЕ',
             ],
             'note' => [
@@ -47,8 +47,8 @@ return [
     ],
 
     'mode' => [
-        'artist' => 'Артисты/Альбомы',
-        'chart' => 'Чарты', // Base text has changed, please check.
+        'artist' => 'Исполнители/Альбомы',
+        'chart' => 'Чарты',
         'standard' => 'Стандартные',
         'theme' => 'Темы',
     ],

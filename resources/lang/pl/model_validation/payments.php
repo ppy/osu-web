@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,15 +22,15 @@ return [
     'signature' => [
         'not_match' => 'Sygnatury nie są jednakowe',
     ],
-    'notification_type' => 'notification_type nie jest poprawnym :type', //need context
+    'notification_type' => 'notification_type nie jest poprawnym :type',
     'order' => [
         'invalid' => 'Zamówienie nie jest prawidłowe',
         'items' => [
             'virtual_only' => 'Płatność przez `:provider` nie jest możliwa dla materialnych przedmiotów.',
         ],
         'status' => [
-            'not_checkout' => 'Próbujesz zaakceptować płatność dla zamówienia w niepoprawnym stanie `:state`.',
-            'not_paid' => 'Próbujesz cofnąć płatność dla zamówienia w niepoprawnym stanie `:state`.',
+            'not_checkout' => 'Próbujesz zaakceptować płatność dla zamówienia w niewłaściwym stanie `:state`.',
+            'not_paid' => 'Próbujesz cofnąć płatność dla zamówienia w niewłaściwym stanie `:state`.',
         ],
     ],
     'param' => [

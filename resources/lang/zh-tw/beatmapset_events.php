@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,14 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.',
+        'approve' => '已批准。',
         'discussion_delete' => '管理員刪除了 :discussion 。',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
         'discussion_post_restore' => '管理員在 :discussion 中恢復了這條回覆。',
         'discussion_restore' => '管理員恢復了 :discussion 。',
-        'disqualify_legacy' => '該譜面因為 :text 被 DQ',
-        'issue_reopen' => '問題 :discussion 被重新打開。',
+        'disqualify' => '由於 :discussion (:text) 被 :user DQ。',
+        'disqualify_legacy' => '該圖譜因 :text 被 DQ',
+        'issue_reopen' => '被解決的問題 :discussion 被重新打開。',
         'issue_resolve' => '問題 :discussion 被標記為 “已解決”。',
         'kudosu_allow' => '討論 :discussion 的 kudosu 移除操作已被重置。',
         'kudosu_deny' => '討論 :discussion 所得的 kudosu 被移除。',
@@ -35,16 +36,17 @@ return [
         'kudosu_recalculate' => '討論 :discussion 所得的 kudosu 已經重新計算。',
         'nominate' => 'Nominated.',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
-        'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'qualify' => '被提名。',
+        'rank' => '進榜',
     ],
 
     'index' => [
-        'title' => '譜面事件',
+        'title' => '圖譜事件',
     ],
 
-    'item' => [ //上下文
+    'item' => [
         'content' => '內容',
+        'discussion_deleted' => '[已刪除]',
         'type' => '類型',
     ],
 ];

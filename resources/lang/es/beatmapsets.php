@@ -41,7 +41,7 @@ return [
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
             'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con video',
@@ -74,8 +74,8 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'points-of-failure' => 'Puntos de Fracaso',
-            'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
+            'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap no rankeado',
         ],
@@ -87,6 +87,7 @@ return [
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
+
             'headers' => [
                 'accuracy' => 'Precisión',
                 'combo' => 'Combo máx.',
@@ -98,6 +99,7 @@ return [
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
+
             'no_scores' => [
                 'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',

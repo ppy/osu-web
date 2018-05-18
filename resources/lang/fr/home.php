@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,14 +26,14 @@ return [
         'players' => '<strong>:count</strong> joueurs inscrits',
 
         'slogan' => [
-            'main' => 'jeu de rythme free-to-win',
+            'main' => 'le meilleur jeu de rythme free-to-win',
             'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'button' => 'rechercher',
+        'button' => 'Rechercher',
         'empty_result' => 'Aucun résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'placeholder' => 'tapez pour rechercher',
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => 'Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)',
+        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];

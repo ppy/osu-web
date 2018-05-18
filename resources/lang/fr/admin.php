@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'covers' => [
             'regenerate' => 'Restaurer',
@@ -53,10 +52,10 @@ return [
                     'update' => 'Modifier',
                 ],
 
-                'title' => 'Liste des bannières forum',
+                'title' => 'Liste des bannières du forum',
 
                 'type-title' => [
-                    'default-topic' => 'Bannière forum par défaut',
+                    'default-topic' => 'Bannière par défaut du sujet',
                     'main' => 'Bannière du forum',
                 ],
             ],
@@ -65,18 +64,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visionneur de logs',
+            'title' => 'Voir les logs',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Trucs de console Admin',
+            'title' => 'Bidule console Admin',
 
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Général',
-                'store' => 'Magasin',
+                'store' => 'Boutique',
             ],
         ],
     ],
@@ -92,7 +91,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => 'Cet utilisateur est actuellement restreint.',
-            'message' => '(uniquement les admins peuvent voir ça)',
+            'message' => '(seuls les admins peuvent voir ça)',
         ],
     ],
 

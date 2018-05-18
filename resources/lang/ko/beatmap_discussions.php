@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,21 +21,46 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '로그인하셔야 수정하실 수 있습니다.', // Base text changed from "log" to "sign"
+            'null_user' => '로그인하셔야 수정하실 수 있습니다.',
             'system_generated' => '시스템에서 자동으로 만든 답글은 수정할 수 없습니다.',
             'wrong_user' => '답글을 쓴 사람만 수정할 수 있습니다.',
         ],
     ],
 
+    'events' => [
+        'empty' => '아무 일도 일어나지 않았네요... 아직은요.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => '삭제됨',
+        'title' => '비트맵 토론',
+
+        'form' => [
+            'deleted' => '삭제된 토론 포함',
+
+            'user' => [
+                'label' => '사용자',
+                'overview' => '활동 개요',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => '게시일',
+        'deleted_at' => '삭제일',
+        'message_type' => '종류',
+        'permalink' => '고유 주소',
+    ],
+
     'nearby_posts' => [
-        'confirm' => '새로 달린 답글이 없습니다', // None of the posts address my concern
-        'notice' => ':timestamp (:existing_timestamps)에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.', // There are posts around :timestamp (:existing_timestamps). Please check them before posting.
+        'confirm' => '새로 달린 답글이 없습니다',
+        'notice' => ':timestamp (:existing_timestamps)에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '답글을 달려면 로그인하세요', // Base text changed from "log" to "sign"
-            'user' => '답글달기', // Respond
+            'guest' => '답글을 달려면 로그인하세요',
+            'user' => '답글달기',
         ],
     ],
 
@@ -48,8 +73,13 @@ return [
 
     'user' => [
         'admin' => '관리자',
-        'bng' => '노미네이터', // nominator
-        'owner' => '매퍼', // mapper
-        'qat' => 'QAT', // QAT
+        'bng' => '노미네이터',
+        'owner' => '매퍼',
+        'qat' => 'QAT',
+    ],
+
+    'user_filter' => [
+        'everyone' => '모두',
+        'label' => '사용자로 필터링',
     ],
 ];

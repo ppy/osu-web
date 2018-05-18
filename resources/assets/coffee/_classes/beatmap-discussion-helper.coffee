@@ -25,12 +25,12 @@ class @BeatmapDiscussionHelper
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
-  @discussionLinkify: (text) =>
-    matches = text.match osu.urlRegex
+  # text should be pre-escaped.
+  @discussionLinkify: (text) ->
     currentUrl = new URL(window.location)
     currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
 
-    _.each matches, (url) ->
+    text.replace osu.urlRegex, (url) ->
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
@@ -40,17 +40,13 @@ class @BeatmapDiscussionHelper
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
             # same beatmapset, format: #123
             linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+            attrs = 'class="js-beatmap-discussion--jump"'
           else
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
 
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
+      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
 
-    text
 
 
   @discussionMode: (discussion) ->

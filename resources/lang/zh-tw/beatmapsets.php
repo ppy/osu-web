@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,42 +20,42 @@
 
 return [
     'availability' => [
-        'disabled' => '該譜面現在無法下載。',
-        'parts-removed' => '應作者/第三方版權持有者的要求，這張譜面已經下架。',
-        'more-info' => '點擊這裡查看更多信息。',
+        'disabled' => '該圖譜現在無法下載。',
+        'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
+        'more-info' => '點擊這裡查看更多訊息。',
     ],
 
     'index' => [
-         'title' => '譜面列表',
-         'guest_title' => '譜面',
-     ],
+        'title' => '譜面列表',
+        'guest_title' => '圖譜',
+    ],
 
     'show' => [
         'discussion' => '討論',
 
         'details' => [
             'made-by' => '作者: ',
-            'submitted' => '提交於 ',
+            'submitted' => '發佈於 ',
             'updated' => '上次更新於 ',
             'ranked' => 'ranked 於 ',
             'approved' => 'approved 於 ',
             'qualified' => 'qualified 於 ',
             'loved' => 'loved 於 ',
-            'logged-out' => '下載譜面前請先登錄！',
+            'logged-out' => '下載圖譜前請先登入！',
             'download' => [
                 '_' => '下載',
-                'video' => '帶視頻',
-                'no-video' => '不帶視頻',
+                'video' => '含影像',
+                'no-video' => '不含影像',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => '收藏這張譜面',
+            'favourite' => '收藏這張圖譜',
             'unfavourite' => '取消收藏',
             'favourited_count' => '還有很多人...',
         ],
         'stats' => [
             'cs' => '縮圈大小',
             'cs-mania' => '鍵位數量',
-            'drain' => '掉血速度',
+            'drain' => '扣血速度',
             'accuracy' => '準確率',
             'ar' => '縮圈速度',
             'stars' => '難度星級',
@@ -65,25 +65,27 @@ return [
             'count_sliders' => '滑條總數',
             'user-rating' => '玩家評價',
             'rating-spread' => '評分情況',
+            'nominations' => '提名',
+            'playcount' => '遊玩次数',
         ],
         'info' => [
-            'description' => '介紹',
-            'genre' => '流派',
+            'description' => '詳情',
+            'genre' => '曲風',
             'language' => '語言',
-            'no_scores' => 'Unranked 譜面',
+            'no_scores' => 'Unranked 圖譜',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'success-rate' => '成功率',
             'tags' => '標籤',
+            'unranked' => 'Unranked 圖譜',
         ],
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排名',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'miss_count' => ':count miss', //上下文
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
-            'supporter-only' => '你需要成為支持者才能查看國內/好友排名！',
+            'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
 
             'headers' => [
@@ -94,20 +96,20 @@ return [
                 'player' => '玩家',
                 'pp' => 'pp',
                 'rank' => '排名',
-                'score_total' => '得分',
+                'score_total' => '總分',
                 'score' => '得分',
             ],
 
             'no_scores' => [
-                'country' => '還沒有玩家上傳過成績！',
-                'friend' => '還沒有好友上傳成績！',
-                'global' => '還沒有玩家上傳過成績，來玩一把？',
+                'country' => '您的所在地玩家尚未上傳成績！',
+                'friend' => '您的好友尚未上傳成績！',
+                'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
                 'loading' => '加載分數中...',
-                'unranked' => 'Unranked 譜面',
+                'unranked' => 'Unranked 圖譜',
             ],
             'score' => [
-                'first' => '領銜者',
-                'own' => '你的最佳成績',
+                'first' => '領先者',
+                'own' => '您的最佳成績',
             ],
         ],
     ],

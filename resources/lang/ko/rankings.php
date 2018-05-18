@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'header' => ':type 순위',
     'type' => [
         'performance' => '퍼포먼스',
-        'charts' => '차트별', // Base text has changed, please check.
+        'charts' => '스포트라이트',
         'score' => '점수',
         'country' => '국가별',
     ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,13 @@
 return [
     'header' => [
         'small' => '享受遊戲以外的競賽體驗。',
-        'large' => 'osu! 社區評選',
+        'large' => 'osu! 社群評選',
     ],
     'voting' => [
         'over' => '這場評選的投票已經結束',
         'login_required' => '請登錄後再投票.',
         'best_of' => [
-            'none_played' => '沒有符合此次評選條件的譜面！',
+            'none_played' => "沒有符合此次評選條件的譜面！",
         ],
     ],
     'entry' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,9 +21,46 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Moet ingelogd zijn om te bewerken.', // Base text changed from "log" to "sign"
+            'null_user' => 'Moet ingelogd zijn om te bewerken.',
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
             'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => 'Er is nog niets gebeurt... nog niet.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'verwijderd',
+        'title' => 'Beatmap Discussies',
+
+        'form' => [
+            'deleted' => 'Verwijderde discussies toevoegen',
+
+            'user' => [
+                'label' => 'Gebruiker',
+                'overview' => 'Activiteitenoverzicht',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Postdatum',
+        'deleted_at' => 'Verwijderdatum',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
+        'notice' => 'Dit zijn de posts rong :timestamp (:existing_timestamp). Controleer ze voor te posten.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Log in om te beantwoorden',
+            'user' => 'Beantwoord',
         ],
     ],
 
@@ -32,5 +69,17 @@ return [
             'true' => 'Gemarkeerd als opgelost door :user',
             'false' => 'Heropend door :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'administrator',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Iedereen',
+        'label' => 'Filter op gebruiker',
     ],
 ];

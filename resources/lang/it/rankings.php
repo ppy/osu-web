@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,4 +18,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [];
+return [
+    'header' => 'Classifica :type',
+    'type' => [
+        'performance' => 'Performance',
+        'charts' => '',
+        'score' => 'Punteggio',
+        'country' => 'Nazione',
+    ],
+    'stat' => [
+        'accuracy' => 'Precisione',
+        'active_users' => 'Utenti Attivi',
+        'country' => 'Paese',
+        'play_count' => 'Partite Giocate',
+        'performance' => 'Performance',
+        'total_score' => 'Punteggio Totale',
+        'ranked_score' => 'Punteggio Rankato',
+        'average_score' => 'Media Punteggio',
+        'average_performance' => 'Media Performance',
+        'ss' => '',
+        's' => '',
+        'a' => '',
+    ],
+];

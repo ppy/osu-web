@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,11 +19,13 @@
  */
 
 return [
-    'deleted' => '[被删除的用户]', //TODO 需要上下文
+    'deleted' => '[被删除的用户]',
 
     'beatmapset_activities' => [
+        'title' => ":user 的摸图历史",
+
         'discussions' => [
-            'title_recent' => '最近打开的讨论', //上下文
+            'title_recent' => '最近打开的讨论',
         ],
 
         'events' => [
@@ -43,6 +45,11 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => '加载中...',
+        'send_message' => '发送消息',
+    ],
+
     'login' => [
         '_' => '登录',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
@@ -53,15 +60,20 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => '没有 osu! 账户？现在就注册一个！',
+        'register' => "没有 osu! 账户？现在就注册一个！",
         'forgot' => '忘记密码？',
-        'beta' => [ //已弃用(?)
+        'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
             'small' => '（捐赠玩家将在不久开放）',
         ],
 
-        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
+        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username 的帖子',
+    ],
+
     'signup' => [
         '_' => '注册',
     ],
@@ -78,36 +90,43 @@ return [
     ],
     'show' => [
         'age' => ':age 岁',
+        'change_avatar' => '更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
-        'is_supporter' => 'osu! 支持者',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_age' => ':age 岁',
-        'origin_country' => '来自 :country',
         'origin_country_age' => ':age，来自 :country',
+        'origin_country' => '来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
+        'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
-        'title' => ':username 的个人资料',
-        'change_avatar' => '更换你的头像！',
+        'title' => ":username 的个人资料",
 
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料皮肤',
-                'defaults_info' => '在将来会有更多皮肤可用',
+                'button' => '更换个人资料头图',
+                'defaults_info' => '在将来会有更多头图可用',
                 'upload' => [
                     'broken_file' => '上传失败.请检查上传的图片然后重试.',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
-                    'size_info' => '图片尺寸应为2000x500',
-                    'too_large' => '上传的图片过大.',
-                    'unsupported_format' => '不支持的格式.',
+                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 可用",
+                    'size_info' => '图片大小最好是 2000x700 像素',
+                    'too_large' => '上传的图片过大。',
+                    'unsupported_format' => '不支持的格式。',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => '默认游戏模式',
+                'set' => '设置 :mode 为个人资料的默认游戏模式',
+            ],
         ],
+
         'extra' => [
             'followers' => '关注者：:count',
             'unranked' => '最近没有玩过',
@@ -130,13 +149,16 @@ return [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending 的谱面 (:count)',
                 ],
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
                 'title' => '历史记录',
 
+                'monthly_playcounts' => [
+                    'title' => '游玩记录',
+                ],
                 'most_played' => [
                     'count' => '游玩次数',
                     'title' => '玩得最多的谱面',
@@ -145,10 +167,13 @@ return [
                     'accuracy' => '准确率：:percentage',
                     'title' => '最近24小时游玩',
                 ],
+                'replays_watched_counts' => [
+                    'title' => '回放被观看记录',
+                ],
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',
-                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。',
+                'available_info' => "kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。",
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
@@ -156,9 +181,9 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => '该用户还没有收到过 kudosu ！',
+                    'empty' => "该用户还没有收到过 kudosu ！",
 
-                    'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
+                    'beatmap_discussion' => [
                         'allow_kudosu' => [
                             'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
                         ],
@@ -197,7 +222,7 @@ return [
                 'title' => '个人介绍',
             ],
             'medals' => [
-                'empty' => '该用户还没有获得成就。;_;',
+                'empty' => "该用户还没有获得成就。;_;",
                 'title' => '成就',
             ],
             'recent_activity' => [
@@ -205,6 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => '还没有上传过成绩。 :(',
+                'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp' => ':amountpp',
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
@@ -216,15 +242,54 @@ return [
                     'title' => '第一名',
                 ],
             ],
+            'account_standing' => [
+                'title' => '帐号状态',
+                'bad_standing' => "<strong>:username</strong> 的帐号存在不良记录 :(",
+                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
+
+                'recent_infringements' => [
+                    'title' => '最近记录',
+                    'date' => '时间',
+                    'action' => '处理',
+                    'length' => '时长',
+                    'length_permanent' => '永久',
+                    'description' => '原因',
+                    'actor' => '裁决者： :username',
+
+                    'actions' => [
+                        'restriction' => '封禁',
+                        'silence' => '禁言',
+                        'note' => '注释',
+                    ],
+                ],
+            ],
+        ],
+        'info' => [
+            'discord' => 'Discord',
+            'interests' => '兴趣爱好',
+            'lastfm' => 'Last.fm',
+            'location' => '所在地',
+            'occupation' => '职业',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => '网站',
         ],
         'not_found' => [
+            'reason_1' => '他可能换了用户名。',
+            'reason_2' => '该帐号由于安全或滥用问题暂时不可用。',
+            'reason_3' => '你可能输错用户名了！',
+            'reason_header' => '可能是由于以下原因：',
             'title' => '找不到指定的用户',
         ],
         'page' => [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 以解锁该特性.",
+        ],
+        'post_count' => [
+            '_' => '发表了 :link',
+            'count' => ':count 篇帖子',
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',

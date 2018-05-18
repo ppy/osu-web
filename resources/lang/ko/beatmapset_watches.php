@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
 
         'table' => [
             'empty' => '주시하고있는 비트맵 토론이 없습니다.',
-            'open_issues' => '열린 이슈', // Open issues
+            'open_issues' => '열린 이슈',
             'state' => '상태',
             'title' => '제목',
         ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,14 +21,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Вы должны войти для редактирования.', // Base text changed from "log" to "sign"
+            'null_user' => 'Вы должны войти для редактирования.',
             'system_generated' => 'Системное сообщение не может быть отредактировано.',
             'wrong_user' => 'Вы должны быть автором данной публикации для редактирования.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Ничего не происходит... пока.',
+        'empty' => 'Ничего не происходит... пока что.',
     ],
 
     'index' => [
@@ -60,7 +60,7 @@ return [
     'reply' => [
         'open' => [
             'guest' => 'Войдите, чтобы ответить',
-            'user' => 'Ответить',
+            'user' => 'Отправить',
         ],
     ],
 
@@ -76,5 +76,10 @@ return [
         'bng' => 'номинатор',
         'owner' => 'маппер',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Все',
+        'label' => 'Сортировать по пользователям',
     ],
 ];

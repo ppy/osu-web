@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'deleted' => '[usunięty użytkownik]',
 
     'beatmapset_activities' => [
-        'title' => 'Historia modowania użytkownika :user',
+        'title' => "Historia modowania użytkownika :user",
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Nieprawidłowe dane logowania',
-        'register' => 'Nie posiadasz konta osu!? Utwórz nowe.',
+        'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
@@ -77,7 +77,6 @@ return [
     'signup' => [
         '_' => 'Zarejestruj się',
     ],
-
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
         'login_text' => 'zaloguj się',
@@ -91,6 +90,7 @@ return [
     ],
     'show' => [
         'age' => 'Ma :age lat',
+        'change_avatar' => 'zmień swój awatar!',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
@@ -98,13 +98,12 @@ return [
         'lastvisit' => 'Ostatnio widziany :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_age' => ':age',
-        'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
+        'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
-        'title' => 'Profil :username',
-        'change_avatar' => 'zmień swój awatar!',
+        'title' => "Profil :username",
 
         'edit' => [
             'cover' => [
@@ -127,6 +126,7 @@ return [
                 'set' => 'ustaw :mode jako domyślny tryb gry',
             ],
         ],
+
         'extra' => [
             'followers' => '1 śledzący|:count śledzących|:count śledzących',
             'unranked' => 'Brak nowych wyników',
@@ -160,7 +160,7 @@ return [
                     'title' => 'Wykres zagrań',
                 ],
                 'most_played' => [
-                    'count' => 'ilość zagrań',
+                    'count' => 'liczba zagrań',
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
@@ -173,15 +173,15 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
-                'available_info' => 'Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.',
+                'available_info' => "Punkty kudosu mogą zostać wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi.",
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
-                'total' => 'Ilość zdobytego kudosu',
+                'total' => 'Zdobyte kudosu',
                 'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
+                    'empty' => "Ten gracz nie otrzymał żadnego kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -204,6 +204,7 @@ return [
                             'give' => 'Otrzymano :amount za zdobycie głosów w wątku :post',
                             'reset' => 'Utracono :amount za utratę głosów w wątku :post',
                         ],
+
                         'recalculate' => [
                             'give' => 'Otrzymano :amount w wyniku przekalkulowania głosów w wątku :post',
                             'reset' => 'Utracono :amount w wyniku przekalkulowania głosów w wątku :post',
@@ -221,7 +222,7 @@ return [
                 'title' => 'ja!',
             ],
             'medals' => [
-                'empty' => 'Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;',
+                'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'title' => 'Medale',
             ],
             'recent_activity' => [
@@ -243,7 +244,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => 'Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(',
+                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
                 'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [
@@ -298,12 +299,12 @@ return [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
-            'play_count' => 'Ilość zagrań',
+            'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
-            'total_hits' => 'Łączna ilość uderzeń',
+            'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
         ],
     ],
@@ -312,10 +313,9 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'Użytkownik utworzony', //no context
+        'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [
         'title' => 'Weryfikacja konta',
     ],
-
 ];

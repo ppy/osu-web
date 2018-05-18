@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,18 +19,38 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => '',
+        'parts-removed' => '',
+        'more-info' => '',
+    ],
+
+    'index' => [
+        'title' => '',
+        'guest_title' => '',
+    ],
+
     'show' => [
+        'discussion' => '',
+
         'details' => [
             'made-by' => 'creata da ',
             'submitted' => 'inviata il ',
+            'updated' => '',
             'ranked' => 'rankata il ',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!', // Base text changed from "log" to "sign"
+            'approved' => '',
+            'qualified' => '',
+            'loved' => '',
+            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'download' => [
                 '_' => 'Scarica',
                 'video' => 'con Video',
                 'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
             ],
+            'favourite' => '',
+            'unfavourite' => '',
+            'favourited_count' => '',
         ],
         'stats' => [
             'cs' => 'Dimensione dei Cerchi',
@@ -43,26 +63,21 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',
             'count_sliders' => 'Numero di Slider',
-
-            'chart' => [
-                'cs' => 'CS',
-                'hp' => 'HP',
-                'od' => 'OD',
-                'ar' => 'AR',
-                'sd' => 'SD',
-            ],
-
             'user-rating' => 'Voto degli Utenti',
             'rating-spread' => 'Diffusione della Valutazione',
+            'nominations' => '',
+            'playcount' => '',
         ],
         'info' => [
-            'success-rate' => 'Rateo di Successo',
-            'points-of-failure' => 'Punti di Fallimento',
-
             'description' => 'Descrizione',
-
+            'genre' => '',
+            'language' => '',
+            'no_scores' => '',
+            'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'unranked' => '',
         ],
         'scoreboard' => [
             'achieved' => 'raggiunto :when',
@@ -73,17 +88,28 @@ return [
             'supporter-only' => 'Devi essere un supporter per accedere alle classifiche amici e paese!',
             'title' => 'Classifica',
 
-            'list' => [
-                'accuracy' => 'Precisione',
-                'player-header' => 'Giocatore',
-                'rank-header' => 'Rank',
-                'score' => 'Punteggio',
+            'headers' => [
+                'accuracy' => '',
+                'combo' => '',
+                'miss' => '',
+                'mods' => '',
+                'player' => '',
+                'pp' => '',
+                'rank' => '',
+                'score_total' => '',
+                'score' => '',
             ],
+
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
                 'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'unranked' => '',
+            ],
+            'score' => [
+                'first' => '',
+                'own' => '',
             ],
         ],
     ],

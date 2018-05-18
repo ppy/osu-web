@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,14 @@ return [
 
     'prefixes' => [
         'add' => 'tillägg',
-        'fix' => 'fix',
+        'fix' => 'ändring',
         'misc' => 'diverse',
+    ],
+
+    'support' => [
+        'heading' => 'Älskar du den här uppdateringen?',
+        'text_1' => 'Stöd ytterligare utveckling av osu! och :link idag!',
+        'text_1_link' => 'bli en understödjare',
+        'text_2' => 'Du kommer inte bara hjälpa till med att skynda på utvecklingen, du får extra funktioner och anpassningar också!',
     ],
 ];

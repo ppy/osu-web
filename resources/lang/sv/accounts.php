@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,34 +22,37 @@ return [
     'edit' => [
         'title' => '<strong>Användar</strong> Inställningar',
         'title_compact' => 'inställningar',
+        'username' => 'användarnamn',
 
         'avatar' => [
-            'title' => 'Ändra Avatar', // Base text changed, please check.
+            'title' => 'Profilbild',
         ],
 
         'email' => [
-            'current' => 'nuvarande email',
-            'new' => 'ny email',
+            'current' => 'nuvarande e-postadress',
+            'new' => 'ny e-postadress',
             'new_confirmation' => 'email bekräftelse',
-            'title' => 'Email',
+            'title' => 'E-postadress',
         ],
 
         'password' => [
             'current' => 'nuvarande lösenord',
             'new' => 'nytt lösenord',
-            'new_confirmation' => 'lösenord bekräftelse',
+            'new_confirmation' => 'lösenordsbekräftelse',
             'title' => 'Lösenord',
         ],
 
         'profile' => [
-            'title' => 'Ändra Profil', // Base text changed, please check.
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'nuvarande position',
-                'user_msnm' => 'skype',
+                'user_interests' => 'intressen',
+                'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'hemsida',
+                'user_discord' => '',
             ],
         ],
 
@@ -60,20 +63,20 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'ändring av osu! email bekräftelse',
+        'email_subject' => 'bekräfta ändrad osu! e-postadress',
         'update' => 'uppdatera',
     ],
 
     'update_password' => [
-        'email_subject' => 'ändring av osu! lösenord bekräftelse',
+        'email_subject' => 'bekräfta ändrat osu! lösenord',
         'update' => 'uppdatera',
     ],
 
     'playstyles' => [
-        'title' => 'Spelsätt',
+        'title' => 'Spelstil',
         'mouse' => 'mus',
         'keyboard' => 'tangentbord',
         'tablet' => 'platta',
-        'touch' => 'touch',
+        'touch' => 'pekskärm',
     ],
 ];

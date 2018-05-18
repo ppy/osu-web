@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,16 +32,31 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'kudosu toestaan',
+        'delete' => 'verwijder',
+        'deleted' => 'Verwijderd door :editor :delete_time.',
+        'deny_kudosu' => 'kudosu weigeren',
+        'edit' => 'bewerk',
+        'edited' => 'Laatst bewerkt door :editor :update_time',
+        'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
+        'message_placeholder' => 'Typ hier om te posten',
+        'message_placeholder_deleted_beatmap' => 'Deze difficulty is verwijderd en mag niet meer besproken worden.',
+        'message_type_select' => 'Selecteer Commentaartype',
+        'reply_notice' => 'Druk op enter om te reageren.',
+        'reply_placeholder' => 'Type hier je reactie',
+        'require-login' => 'Log in om te posten of te antwoorden',
+        'resolved' => 'Opgelost',
+        'restore' => 'herstel',
+        'title' => 'Discussies',
+
         'collapse' => [
             'all-collapse' => 'Sluit alles',
             'all-expand' => 'Open alles',
         ],
 
-        'edit' => 'bewerk',
-        'edited' => 'Laatst bewerkt door :editor :update_time',
         'empty' => [
             'empty' => 'Nog geen bestaande discussie!',
-            'filtered' => 'Geen discussies matcht het geselecteerde filter.',
+            'hidden' => 'Geen discussies komen overeen met de geselecteerde filter.',
         ],
 
         'message_hint' => [
@@ -49,32 +64,103 @@ return [
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
 
-        'message_placeholder' => 'Typ hier om te posten',
-
         'message_type' => [
+            'disqualify' => 'Diskwalificeer',
+            'hype' => 'Hype!',
+            'mapper_note' => 'Opmerking',
+            'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Lof',
             'problem' => 'Probleem',
             'suggestion' => 'Suggestie',
         ],
 
-        'message_type_select' => 'Selecteer Commentaartype',
-
         'mode' => [
+            'events' => 'Geschiedenis',
+            'general' => 'Algemeen :scope',
             'timeline' => 'Tijdlijn',
+            'scopes' => [
+                'general' => 'Deze moeilijkheidsgraad',
+                'generalAll' => 'Alle moeilijkheidsgraden',
+            ],
         ],
 
-        'require-login' => 'Log in om te posten of te antwoorden', // Base text changed from "log" to "sign"
-        'resolved' => 'Opgelost',
+        'new' => [
+            'timestamp' => 'Tijdstempel',
+            'timestamp_missing' => 'ctrl+c in de bewerkmodus en plak in je bericht om een tijdstempel toe te voegen!',
+            'title' => 'Nieuwe Discussie',
+        ],
 
         'show' => [
             'title' => 'Beatmapdiscussie',
         ],
 
+        'sort' => [
+            '_' => 'Gesorteerd op:',
+            'created_at' => 'aanmaaktijd',
+            'timeline' => 'tijdlijn',
+            'updated_at' => 'laatste update',
+        ],
+
         'stats' => [
+            'deleted' => 'Verwijderd',
+            'mapper_notes' => 'Opmerkingen',
             'mine' => 'Van Mij',
             'pending' => 'Afwachtend',
             'praises' => 'Aangeprezen',
             'resolved' => 'Opgelost',
+            'total' => 'Alle',
+        ],
+
+        'status-messages' => [
+            'approved' => 'Deze beatmap werd goedgekeurd op :datum!',
+            'graveyard' => "Deze beatmap is niet meer bijgewerkt sinds :date en is waarschijnlijk opgegeven door de maker...",
+            'loved' => 'Deze map was bij de geliefde categorie toegevoegd op: datum!',
+            'ranked' => 'Deze beatmap werd ranked op :date!',
+            'wip' => 'Deze beatmap is gemarkeerd als work-in-progress door de maker.',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => 'Hype Beatmap!',
+        'button_done' => 'Al Gehyped!',
+        'confirm' => "Weet je dat zeker? Dit zal een van je :n hypes gebruiken en kan niet ongedaan gemaakt worden.",
+        'explanation' => 'Hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
+        'explanation_guest' => 'Log in en hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
+        'new_time' => "Je krijgt nog een hype :new_time.",
+        'remaining' => 'Je hebt nog :remaining hype over.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Train',
+        'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Geef Feedback',
+    ],
+
+    'nominations' => [
+        'disqualification_prompt' => 'Reden voor diskwalificatie?',
+        'disqualified_at' => 'Gediskwalificeerd :time_ago (:reason).',
+        'disqualified_no_reason' => 'geen reden opgegeven',
+        'disqualify' => 'Diskwalificeer',
+        'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
+        'nominate' => 'Nomineer',
+        'nominate_confirm' => 'Nomineer deze beatmap?',
+        'nominated_by' => 'genomineerd door :gebruikers',
+        'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
+        'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
+        'required_text' => 'Nimonaties: :current/:required',
+        'reset_message_deleted' => 'verwijderd',
+        'title' => 'Nominatiestatus',
+        'unresolved_issues' => 'Er zijn nog steeds onopgeloste problemen die eerst moeten worden aangepakt.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nominatieprocess :time_ago gereset door :user met nieuw probleem :discussion (:message).',
+            'disqualify' => 'Gediskwalificeerd :time_ago door :user met nieuw probleem :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
         ],
     ],
 
@@ -84,12 +170,26 @@ return [
             'options' => 'Meer Zoekopties',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
+            'filters' => [
+                'general' => 'Algemeen',
+                'mode' => 'Mode',
+                'status' => 'Rank Status',
+                'genre' => 'Genre',
+                'language' => 'Taal',
+                'extra' => 'extra',
+                'rank' => 'Rank Behaald',
+                'played' => 'Gespeeld',
+            ],
         ],
         'mode' => 'Modus',
         'status' => 'Rank Status',
         'mapped-by' => 'gemapped door :mapper',
         'source' => 'van :source',
         'load-more' => 'Laad meer...',
+    ],
+    'general' => [
+        'recommended' => 'Aanbevolen moeilijkheid',
+        'converts' => 'Tel geconverteerde beatmaps mee',
     ],
     'mode' => [
         'any' => 'Alles',
@@ -102,6 +202,8 @@ return [
         'any' => 'Alles',
         'ranked-approved' => 'Gerankt & Goedgekeurd',
         'approved' => 'Goedgekeurd',
+        'qualified' => 'Gekwalificeerd',
+        'loved' => 'Loved',
         'faves' => 'Favorieten',
         'pending' => 'Afwachtend',
         'graveyard' => 'Begraafplaats',
@@ -119,6 +221,30 @@ return [
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
     ],
+    'mods' => [
+        '4K' => '',
+        '5K' => '',
+        '6K' => '',
+        '7K' => '',
+        '8K' => '',
+        '9K' => '',
+        'AP' => '',
+        'DT' => '',
+        'EZ' => '',
+        'FI' => '',
+        'FL' => '',
+        'HD' => '',
+        'HR' => '',
+        'HT' => '',
+        'NC' => '',
+        'NF' => '',
+        'NM' => '',
+        'PF' => '',
+        'Relax' => '',
+        'SD' => '',
+        'SO' => '',
+        'TD' => '',
+    ],
     'language' => [
         'any' => 'Alles',
         'english' => 'Engels',
@@ -132,6 +258,11 @@ return [
         'swedish' => 'Zweeds',
         'instrumental' => 'Instrumentaal',
         'other' => 'Anders',
+    ],
+    'played' => [
+        'any' => 'Alles',
+        'played' => 'Gespeeld',
+        'unplayed' => 'Ongespeeld',
     ],
     'extra' => [
         'video' => 'Heeft Video',

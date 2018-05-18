@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => '保存失敗',
+            'error' => '儲存失敗',
         ],
     ],
 
     'discussion-votes' => [
         'update' => [
-            'error' => '更新投票失敗',
+            'error' => '投票更新失敗',
         ],
     ],
 
@@ -42,16 +42,16 @@ return [
         'message_placeholder' => '在此處輸入您的內容',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_type_select' => '選擇回覆類型',
-        'reply_notice' => '按下回車以提交',
+        'reply_notice' => '按下 Enter 以回覆',
         'reply_placeholder' => '在此處輸入您的回覆',
-        'require-login' => '登錄以繼續',
+        'require-login' => '回覆前請先登入。',
         'resolved' => '已解決',
         'restore' => '已修復',
-        'title' => '討論',
+        'title' => '討論區',
 
         'collapse' => [
-            'all-collapse' => '全部摺疊',
-            'all-expand' => '全部展開',
+            'all-collapse' => '收回全部',
+            'all-expand' => '展開全部',
         ],
 
         'empty' => [
@@ -60,13 +60,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '這個信息將提交到整個譜面討論中。如果需要單獨針對某處，請在開頭使用時間戳 (例如: 00:12:345)。',
-            'in_timeline' => '需要 Mod 多處，請在每一個時間戳後寫下意見並發表。',
+            'in_general' => '這篇貼文將發佈到圖譜討論區中。如需要檢查此圖譜某個特定部分，請在開頭加入時間戳 (例如: 00:12:345)。',
+            'in_timeline' => '每篇貼文僅加入一個時間戳，如需要檢查多個時間戳，請將時間戳分別發佈至不同貼文，並寫下發表意見。',
         ],
 
         'message_type' => [
+            'disqualify' => '取消提名',
             'hype' => '推薦！',
             'mapper_note' => '備註',
+            'nomination_reset' => '重置提名',
             'praise' => '讚',
             'problem' => '問題',
             'suggestion' => '建議',
@@ -74,14 +76,17 @@ return [
 
         'mode' => [
             'events' => '歷史',
-            'general' => '一般',
-            'general_all' => '一般（全難度）',
+            'general' => '整體:scope',
             'timeline' => '時間線',
+            'scopes' => [
+                'general' => '目前難度',
+                'generalAll' => '所有難度',
+            ],
         ],
 
         'new' => [
             'timestamp' => '時間戳',
-            'timestamp_missing' => '在編輯模式下按 Ctrl+C 然後在您的輸入框中粘貼以添加時間戳！',
+            'timestamp_missing' => '在編輯模式下按 Ctrl+C 並至您輸入的對話框中按 Ctrl+V 以加入時間戳！',
             'title' => '新的討論',
         ],
 
@@ -91,7 +96,7 @@ return [
 
         'sort' => [
             '_' => '排序：',
-            'created_at' => '創建時間',
+            'created_at' => '建立時間',
             'timeline' => '時間軸',
             'updated_at' => '最後更新時間',
         ],
@@ -100,52 +105,58 @@ return [
             'deleted' => '已刪除',
             'mapper_notes' => '備註',
             'mine' => '我的',
-            'pending' => 'Pending',
-            'praises' => '讚',
+            'pending' => '未解決',
+            'praises' => '表揚',
             'resolved' => '已解決',
-            'total' => '所有',
+            'total' => '全部',
         ],
 
         'status-messages' => [
-            'approved' => '這張譜面於 :date 被 Approved !',
-            'graveyard' => '這張譜面自 :date 就未更新了，或許它已經被作者拋棄了 ;w;',
-            'loved' => '這張譜面於 :date 被 Loved !',
-            'ranked' => '這張譜面於 :date 被 Ranked !',
-            'wip' => '注意：這張譜面被作者標記為 WIP（work-in-progress）',
+            'approved' => '這張圖譜於 :date 被 Approved !',
+            'graveyard' => "這張圖譜自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
+            'loved' => '這張圖譜於 :date 被 Loved !',
+            'ranked' => '這張圖譜於 :date 被 Ranked !',
+            'wip' => '注意：這張圖譜被作者標記為 WIP（半成品）',
         ],
 
     ],
 
     'hype' => [
-        'button' => '推薦譜面！',
+        'button' => '推薦圖譜！',
         'button_done' => '已經推薦！',
-        'confirm' => '你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。',
-        'explanation' => '推薦這張譜面讓它更容易被提名然後 ranked ！',
-        'explanation_guest' => '登錄並推薦這張譜面讓它更容易被提名然後 ranked ！',
-        'new_time' => '你將在 :new_time 後獲得新的推薦次數。',
+        'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。",
+        'explanation' => '推薦這張圖譜讓它更容易被提名然後 ranked ！',
+        'explanation_guest' => '登入並推薦這張圖譜讓它更容易被提名然後 ranked ！',
+        'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
         'required_text' => '推薦進度： :current/:required',
         'section_title' => '推薦進度',
         'title' => '推薦',
     ],
 
+    'feedback' => [
+        'button' => '留下建議',
+    ],
+
     'nominations' => [
         'disqualification_prompt' => 'Disqualified 的理由？',
         'disqualified_at' => '於 :time_ago 被 Disqualified（:reason）。',
-        'disqualified_no_reason' => '沒有指定原因',
+        'disqualified_no_reason' => '沒有任何原因',
         'disqualify' => 'Disqualify',
-        'incorrect_state' => '操作出錯了，請刷新頁面。',
+        'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'nominate' => '提名',
-        'nominate_confirm' => '提名這張譜面？',
+        'nominate_confirm' => '要飛這張圖嗎？',
         'nominated_by' => '被 :users 提名',
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
+        'reset_message_deleted' => '已删除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
         'reset_at' => [
             'nomination_reset' => '提名於 :time_ago 被新問題 :discussion 重置。',
+            'disqualify' => ':time_ago  :user 因新问题 :discussion (:message) 而被 DQ.',
         ],
 
         'reset_confirm' => [
@@ -156,45 +167,51 @@ return [
     'listing' => [
         'search' => [
             'prompt' => '輸入關鍵字...',
-            'options' => '更多搜索選項',
+            'options' => '更多搜尋選項',
             'not-found' => '沒有結果',
-            'not-found-quote' => '呃，什麼也沒有...',
+            'not-found-quote' => '姆....，什麼也沒有。',
             'filters' => [
+                'general' => '一般',
                 'mode' => '模式',
                 'status' => 'Rank 狀態',
-                'genre' => '流派',
+                'genre' => '曲風',
                 'language' => '語言',
-                'extra' => '額外',
+                'extra' => '其他資訊',
                 'rank' => '已 Rank',
+                'played' => '玩過',
             ],
         ],
         'mode' => '模式',
         'status' => 'Rank 狀態',
         'mapped-by' => '作者: :mapper',
         'source' => '來自 :source',
-        'load-more' => '加載更多...',
+        'load-more' => '載入更多...',
     ],
-    'mode' => [ //不翻譯
+    'general' => [
+        'recommended' => '推薦難度',
+        'converts' => '包括转谱',
+    ],
+    'mode' => [
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
-    'status' => [ //需要幫助
+    'status' => [
         'any' => '所有',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'qualified' => 'Qualified',
         'loved' => 'Loved',
-        'faves' => 'Favourites',
+        'faves' => '我的最愛',
         'pending' => 'Pending',
-        'graveyard' => 'Graveyard',
-        'my-maps' => '我的',
+        'graveyard' => '拋棄',
+        'my-maps' => '我的圖譜',
     ],
     'genre' => [
         'any' => '所有',
-        'unspecified' => '尚未指定',
+        'unspecified' => '未指定',
         'video-game' => '電子遊戲',
         'anime' => '動漫',
         'rock' => '搖滾',
@@ -202,30 +219,31 @@ return [
         'other' => '其他',
         'novelty' => '新奇',
         'hip-hop' => '嘻哈',
-        'electronic' => '電子',
+        'electronic' => '電音',
     ],
-    'mods' => [ //不翻譯
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
+    'mods' => [
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => '觸控螢幕',
     ],
     'language' => [
         'any' => '所有',
@@ -238,15 +256,20 @@ return [
         'korean' => '韓語',
         'spanish' => '西班牙語',
         'swedish' => '瑞典語',
-        'instrumental' => '器樂',
+        'instrumental' => '樂器演奏',
         'other' => '其他',
     ],
+    'played' => [
+        'any' => '所有',
+        'played' => '玩過',
+        'unplayed' => '未曾玩過',
+    ],
     'extra' => [
-        'video' => '有視頻',
+        'video' => '有影像',
         'storyboard' => '有 Storyboard',
     ],
     'rank' => [
-        'any' => '任意',
+        'any' => '所有',
         'XH' => '白銀 SS',
         'X' => 'SS',
         'SH' => '白銀 S',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => '고정된 주제',
-    'slogan' => '혼자서 놀기엔 너무 위험하지요.',
+    'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
     'title' => 'osu!커뮤니티',
 
@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
@@ -99,10 +100,6 @@ return [
         'post_edit' => [
             'cancel' => '취소',
             'post' => '저장',
-            'zoom' => [
-                'start' => '전체 화면',
-                'end' => '전체 화면 나가기',
-            ],
         ],
     ],
 
@@ -116,6 +113,7 @@ return [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
             ],
+
             'info' => [
                 'total' => 'You subscribed to :total topics.',
                 'unread' => 'You have :unread unread replies to subscribed topics.',
@@ -134,6 +132,7 @@ return [
         '_' => '주제',
 
         'actions' => [
+            'reply' => '답변',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',
         ],
@@ -148,7 +147,6 @@ return [
 
             'poll' => [
                 'length' => '여론 투표를',
-                'length_days_prefix' => '',
                 'length_days_suffix' => '일 동안 진행',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
                 'max_options' => '투표가능 항목 수',
@@ -244,7 +242,7 @@ return [
                 'user' => [
                     'count' => '{0} 표 없음|{1,*} :count 표',
                     'current' => '투표 횟수가 :votes회 남았습니다.',
-                    'not_enough' => '투표를 모두 사용하여 더이상 투표할 수 없습니다.',
+                    'not_enough' => "투표를 모두 사용하여 더이상 투표할 수 없습니다.",
                 ],
             ],
 
@@ -260,8 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Unsubscribed from topic',
-            'to_watching_done' => 'Subscribed to topic',
+            'to_not_watching' => '즐겨찾기 안됨',
+            'to_watching' => '즐겨찾기',
+            'to_watching_mail' => '',
+            'mail_disable' => '알림 사용 안 함',
         ],
     ],
 ];

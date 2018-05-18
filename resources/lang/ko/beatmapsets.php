@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,7 @@ return [
             'approved' => 'approved된 날짜: ',
             'qualified' => 'qualified된 날짜: ',
             'loved' => 'loved된 날짜: ',
-            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!', // Base text changed from "log" to "sign"
+            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!',
             'download' => [
                 '_' => '다운로드',
                 'video' => '영상 포함',
@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => '이 비트맵을 즐겨찾기에 등록',
             'unfavourite' => '이 비트맵을 즐겨찾기에서 제거',
+            'favourited_count' => '',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -64,12 +65,17 @@ return [
             'count_sliders' => 'Slider Count',
             'user-rating' => '유저 평점',
             'rating-spread' => '평점 분포도',
+            'nominations' => '',
+            'playcount' => '플레이 횟수',
         ],
         'info' => [
-            'points-of-failure' => '실패 점수',
-            'success-rate' => '성공률',
             'description' => '설명',
-            'source' => '원 작품', // Source
+            'genre' => '장르',
+            'language' => '언어',
+            'no_scores' => '데이터가 여전히 계산되고 있습니다...',
+            'points-of-failure' => '실패 점수',
+            'source' => '원 작품',
+            'success-rate' => '성공률',
             'tags' => '태그',
             'unranked' => 'Unranked 비트맵',
         ],
@@ -82,12 +88,18 @@ return [
             'supporter-only' => '서포터만 국가별 및 친구 간 순위를 확인할 수 있습니다!',
             'title' => '스코어보드',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => '정확도',
-                'player-header' => '플레이어',
-                'rank-header' => '순위',
+                'combo' => '최대 콤보',
+                'miss' => 'Miss',
+                'mods' => '모드',
+                'player' => '플레이어',
+                'pp' => '',
+                'rank' => '랭크',
+                'score_total' => '총 점수',
                 'score' => '점수',
             ],
+
             'no_scores' => [
                 'country' => '아직 소속 국가에서 점수를 기록한 사람이 없습니다!',
                 'friend' => '아직 친구들 중 점수를 기록한 사람이 없습니다!',
@@ -96,7 +108,7 @@ return [
                 'unranked' => 'Unranked 비트맵.',
             ],
             'score' => [
-                'first' => '순위권', // In the Lead
+                'first' => '순위권',
                 'own' => '내 최고 점수',
             ],
         ],

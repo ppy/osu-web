@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono beatmapy.',
-        'beatmapset_no_hype' => 'Nie można nadać priorytetu tej beatmapie.',
+        'beatmapset_no_hype' => "Nie można nadać priorytetu tej beatmapie.",
         'hype_requires_null_beatmap' => 'Priorytet musi zostać nadany w sekcji Główne (wszystkie poziomy trudności).',
         'invalid_beatmap_id' => 'Ustawiono niewłaściwy poziom trudności.',
         'invalid_beatmapset_id' => 'Ustawiono niewłaściwą beatmapę.',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Określony znacznik czasu sięga ponad długość beatmapy.',
-            'negative' => 'Znacznik czasu nie może być ujemny.',
+            'negative' => "Znacznik czasu nie może być ujemny.",
         ],
     ],
 
@@ -69,10 +69,10 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikaty nie są dozwolone.',
-            'invalid_max_options' => 'Ilość możliwości wyboru na użytkownika nie może przekroczyć ich całościowej liczby.',
+            'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',
             'minimum_one_selection' => 'Potrzeba minimalnie jedną opcję.',
             'minimum_two_options' => 'Potrzeba minimalnie dwóch opcji.',
-            'too_many_options' => 'Przekroczono maksymalną ilość możliwości wyboru.',
+            'too_many_options' => 'Przekroczono maksymalną liczbę możliwości wyboru.',
         ],
 
         'topic_vote' => [
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'Ten adres e-mail jest już w użyciu.',
         'invalid_country' => 'Kraj nie występuje w bazie danych.',
         'invalid_discord' => 'Nieprawidłowa nazwa użytkownika na Discordzie.',
-        'invalid_email' => 'To nie wygląda na poprawny adres e-mail.',
+        'invalid_email' => "To nie wygląda na poprawny adres e-mail.",
         'too_short' => 'Nowe hasło jest za krótkie.',
         'unknown_duplicate' => 'Nazwa użytkownika lub adres e-mail jest już w użyciu.',
         'username_available_in' => 'Ta nazwa użytkownika będzie dostępna za :duration.',
@@ -94,7 +94,7 @@ return [
         'username_invalid_characters' => 'Ta nazwa użytkownika zawiera nieprawidłowe znaki.',
         'username_in_use' => 'Ta nazwa użytkownika jest już zajęta!',
         'username_no_space_userscore_mix' => 'Użyj spacji albo znaków podkreślenia, nie obu naraz!',
-        'username_no_spaces' => 'Nazwa użytkownika nie może zaczynać się lub kończyć spacjami!',
+        'username_no_spaces' => "Nazwa użytkownika nie może zaczynać się lub kończyć spacjami!",
         'username_not_allowed' => 'Ta nazwa użytkownika nie jest dozwolona.',
         'username_too_short' => 'Ta nazwa użytkownika jest zbyt krótka.',
         'username_too_long' => 'Ta nazwa użytkownika jest zbyt długa.',

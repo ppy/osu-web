@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
@@ -33,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => 'Não é possível votar na própria discussão!',
+            'owner' => "Não é possível votar na própria discussão!",
             'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
         ],
     ],
@@ -73,16 +75,21 @@ return [
             'delete' => [
                 'only_last_post' => 'Somente a última publicação pode ser excluída.',
                 'locked' => 'Não é possível excluir a publicação de um tópico trancado.',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor pode excluir a publicação.',
             ],
 
             'edit' => [
                 'deleted' => 'Não é possível editar uma publicação excluida.',
-                'locked' => 'A edição desta publicação está bloqueada',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'locked' => 'A edição desta publicação está bloqueada.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
                 'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
+            ],
+
+            'store' => [
+                'play_more' => 'Por favor tente jogar antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
+                'too_many_help_posts' => "Você precisa jogar mais antes que você possa criar postagens adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -90,36 +97,36 @@ return [
             'reply' => [
                 'double_post' => 'Você acabou de publicar. Aguarde um pouco ou edite a sua última publicação.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para responder.',
 
                 'user' => [
-                    'require_login' => 'Por favor, inicie a sessão para responder.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Não é possível responder enquanto restrito.',
-                    'silenced' => 'Não é possível responder enquanto silenciado.',
+                    'require_login' => 'Por favor, inicie a sessão para responder.',
+                    'restricted' => "Não é possível responder enquanto restrito.",
+                    'silenced' => "Não é possível responder enquanto silenciado.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para criar um novo tópico.',
                 'forum_closed' => 'O fórum está trancado e não pode ser publicado.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório',
-                'over' => 'A votação está encerrada e não é possível mais votar.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
+                'over' => 'A votação está encerrada e não é mais possível votar.',
                 'voted' => 'Não é permitido alterar o voto.',
 
                 'user' => [
-                    'require_login' => 'Por favor, inicie a sessão para votar.', // Base text changed from "log" to "sign"
-                    'restricted' => 'Não é possível votar enquanto restrito.',
-                    'silenced' => 'Não é possível votar enquanto silenciado.',
+                    'require_login' => 'Por favor, inicie a sessão para votar.',
+                    'restricted' => "Não é possível votar enquanto restrito.",
+                    'silenced' => "Não é possível votar enquanto silenciado.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
             ],
         ],
 
@@ -135,13 +142,13 @@ return [
         ],
     ],
 
-    'require_login' => 'Por favor, inicie a sessão para continuar.', // Base text changed from "log" to "sign"
+    'require_login' => 'Por favor, inicie a sessão para continuar.',
 
     'unauthorized' => 'Acesso negado.',
 
-    'silenced' => 'Não é possível fazer isso enquanto silenciado.',
+    'silenced' => "Não é possível fazer isso enquanto silenciado.",
 
-    'restricted' => 'Não é possível fazer isso enquanto restrito.',
+    'restricted' => "Não é possível fazer isso enquanto restrito.",
 
     'user' => [
         'page' => [
