@@ -78,7 +78,7 @@ class @Nav2
     @currentMenu == 'nav2-login-box'
 
 
-  stickLogin: (_e, target) =>
+  stickLogin: =>
     return unless @loginBoxVisible()
 
     @loginBox.style.position =
