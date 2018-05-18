@@ -24,12 +24,12 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-account-edit-privacy">
+            <label class="account-edit-entry js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <div class="account-edit-entry__label"></div>
                 <div class="osu-checkbox">
                     <input
-                        name="pm_friends_only"
-                        class="osu-checkbox__input"
+                        name="user[pm_friends_only]"
+                        class="osu-checkbox__input js-account-edit__input"
                         type="checkbox"
                         @if (Auth::user()->pm_friends_only)
                             checked

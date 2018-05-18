@@ -18,7 +18,7 @@
 
 class @AccountEdit
   constructor: ->
-    $(document).on 'input', '.js-account-edit', @initializeUpdate
+    $(document).on 'input change', '.js-account-edit', @initializeUpdate
 
     $(document).on 'ajax:error', '.js-account-edit', @ajaxError
     $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
@@ -70,7 +70,12 @@ class @AccountEdit
 
   update: (form) =>
     input = form.querySelector('.js-account-edit__input')
-    value = input.value
+
+    if input.type == 'checkbox'
+      value = input.checked
+    else
+      value = input.value
+
     prevValue = form.dataset.lastValue
 
     return if value == prevValue
