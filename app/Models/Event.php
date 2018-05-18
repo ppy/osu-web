@@ -75,9 +75,10 @@ class Event extends Model
 
             case 'usernameChange':
                 $user = static::userParams($options['user']);
-                $history = $options['history'];
+                $oldUsername = e($options['history']->username_last);
+                $newUsername = e($options['history']->username);
                 $params = [
-                    'text' => "<b><a href='{$user['url']}'>{$history->username_last}</a></b> has changed their username to {$history->username}!",
+                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
                     'user_id' => $user['id'],
                     'date' => $history->timestamp,
                     'private' => false,
