@@ -1,6 +1,7 @@
 {
   "mappings": {
     "users": {
+      "dynamic": false,
       "properties": {
         "is_old": {
           "type": "boolean"

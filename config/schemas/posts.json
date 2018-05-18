@@ -1,6 +1,7 @@
 {
   "mappings": {
     "posts": {
+      "dynamic": false,
       "properties": {
         "forum_id": {
           "type": "long"

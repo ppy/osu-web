@@ -1,6 +1,7 @@
 {
   "mappings": {
     "beatmaps": {
+      "dynamic": false,
       "properties": {
         "approved": {
           "type": "long"
@@ -31,6 +32,7 @@
           }
         },
         "difficulties": {
+          "dynamic": false,
           "properties": {
             "approved": {
               "type": "long"
