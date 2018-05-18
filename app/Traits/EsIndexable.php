@@ -30,8 +30,6 @@ trait EsIndexable
 
     abstract public static function esIndexingQuery();
 
-    abstract public static function esMappings();
-
     abstract public static function esSchemaFile();
 
     abstract public static function esType();
@@ -124,6 +122,11 @@ trait EsIndexable
         Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
+    }
+
+    public static function esMappings()
+    {
+        return static::esSchemaConfig()['mappings'][static::esType()]['properties'];
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)

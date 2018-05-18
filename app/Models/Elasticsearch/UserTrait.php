@@ -115,11 +115,6 @@ trait UserTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->select($columns);
     }
 
-    public static function esMappings()
-    {
-        return static::ES_MAPPINGS;
-    }
-
     public static function esSchemaFile()
     {
         return config_path('schemas/users.json');

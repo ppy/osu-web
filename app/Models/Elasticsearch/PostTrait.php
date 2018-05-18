@@ -93,11 +93,6 @@ trait PostTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
-    {
-        return static::ES_MAPPINGS;
-    }
-
     public static function esSchemaFile()
     {
         return config_path('schemas/posts.json');

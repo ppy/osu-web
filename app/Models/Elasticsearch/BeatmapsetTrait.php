@@ -48,14 +48,6 @@ trait BeatmapsetTrait
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 
-    public static function esMappings()
-    {
-        return array_merge(
-            static::ES_MAPPINGS_BEATMAPSETS,
-            ['difficulties' => ['properties' => static::ES_MAPPINGS_BEATMAPS]]
-        );
-    }
-
     public static function esSchemaFile()
     {
         return config_path('schemas/beatmaps.json');

@@ -71,11 +71,6 @@ trait TopicTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
-    {
-        return Post::esMappings();
-    }
-
     public static function esSchemaFile()
     {
         return Post::esSchemaFile();
