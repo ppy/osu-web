@@ -40,7 +40,7 @@ return [
             'not_yet' => "У вас нет osu!supporter :(",
             'title' => 'Текущий статус osu!supporter',
             'valid_until' => 'Ваш osu!supporter активен до :date!',
-            'was_valid_until' => 'Ваш osu!supporter был активен до :date.',
+            'was_valid_until' => 'Ваш osu!supporter истекает :date.',
         ],
 
         'why_support' => [

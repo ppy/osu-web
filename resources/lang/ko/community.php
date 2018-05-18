@@ -36,12 +36,12 @@ return [
             앞으로 이 멋진 게임과 커뮤니티에 계속해서 지원해주실 분들도 마찬가지로 말이죠 :).',
 
         'supporter_status' => [
-            'contribution' => '',
+            'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결재로 :dollars를 후원하셨습니다.',
             'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'not_yet' => "아직 후원자가 아니시군요 :(",
+            'title' => '현재 후원 상태',
+            'valid_until' => '당신의 현재 후원자 태그는 :date 까지 유효합니다!',
+            'was_valid_until' => '당신의 후원자 태그는 :date 까지 유효했습니다.',
         ],
 
         'why_support' => [

@@ -86,7 +86,7 @@ return [
 
         'new' => [
             'timestamp' => 'marca de tiempo',
-            'timestamp_missing' => '¡Usa Ctrl + C en el modo de edición y pega en tu mensaje para añadir una marca de tiempo!',
+            'timestamp_missing' => '¡Usa Ctrl + C en el modo de edición y pégalo en tu mensaje para añadir una marca de tiempo!',
             'title' => 'Nueva Discusión',
         ],
 

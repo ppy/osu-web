@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => '譜面討論貼',
+        'title' => '圖譜討論文',
     ],
 
     'item' => [
-        'content' => '正文',
-        'modding_history_link' => '查看摸图历史',
+        'content' => '內容',
+        'modding_history_link' => '查看摸圖歷史',
     ],
 ];

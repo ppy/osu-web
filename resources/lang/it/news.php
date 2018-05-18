@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => '',
-        'news-show' => '',
+        'news-show' => 'post',
     ],
 
     'index' => [
@@ -43,12 +43,12 @@ return [
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Aggiorna',
+        'ok' => 'Elenco aggiornato.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Aggiorna',
+        'ok' => 'Post aggiornato.',
     ],
 ];

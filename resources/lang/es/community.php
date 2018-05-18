@@ -74,7 +74,7 @@ return [
 
             'early_access' => [
                 'title' => 'Acceso Temprano',
-                'description' => '¡Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!',
+                'description' => '¡Acceso a lanzamientos anticipados, donde puedes probar nuevas características antes de que sean públicas!',
             ],
 
             'customisation' => [

@@ -67,7 +67,7 @@ return [
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
@@ -258,10 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => 'Inte bokmärkt',
+            'to_watching' => 'Bokmärk',
+            'to_watching_mail' => 'Bokmärke med notifikation',
+            'mail_disable' => 'Stäng av notifikationer',
         ],
     ],
 ];

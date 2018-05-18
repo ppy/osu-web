@@ -46,10 +46,10 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_from' => 'résidence actuelle',
+                'user_from' => 'localisation actuelle',
                 'user_interests' => 'centres d\'intérêt',
                 'user_msnm' => 'skype',
-                'user_occ' => 'emploi',
+                'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
                 'user_discord' => 'discord',
@@ -63,17 +63,17 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmation du changement d\'email du compte osu!',
+        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
         'update' => 'mettre à jour',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmation du changement de mot de passe du compte osu!',
+        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
         'update' => 'mettre à jour',
     ],
 
     'playstyles' => [
-        'title' => 'Méthodes de jeu',
+        'title' => 'Styles de jeu',
         'mouse' => 'souris',
         'keyboard' => 'clavier',
         'tablet' => 'tablette',

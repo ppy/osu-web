@@ -20,63 +20,63 @@
 
 return [
     'edit' => [
-        'title' => '',
-        'title_compact' => '',
-        'username' => '',
+        'title' => '<strong>Account</strong> Impostazioni',
+        'title_compact' => 'impostazioni',
+        'username' => 'nome utente',
 
         'avatar' => [
-            'title' => '',
+            'title' => 'Avatar',
         ],
 
         'email' => [
-            'current' => '',
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'current' => 'email corrente',
+            'new' => 'nuova e-mail',
+            'new_confirmation' => 'conferma email',
+            'title' => 'Email',
         ],
 
         'password' => [
-            'current' => '',
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'current' => 'password corrente',
+            'new' => 'nuova password',
+            'new_confirmation' => 'conferma password',
+            'title' => 'Password',
         ],
 
         'profile' => [
-            'title' => '',
+            'title' => 'Profilo',
 
             'user' => [
-                'user_from' => '',
-                'user_interests' => '',
+                'user_from' => 'posizione attuale',
+                'user_interests' => 'interessi',
                 'user_msnm' => '',
-                'user_occ' => '',
+                'user_occ' => 'occupazione',
                 'user_twitter' => '',
-                'user_website' => '',
+                'user_website' => 'sito web',
                 'user_discord' => '',
             ],
         ],
 
         'signature' => [
-            'title' => '',
-            'update' => '',
+            'title' => 'Firma',
+            'update' => 'aggiorna',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => '',
-        'update' => '',
+        'email_subject' => 'conferma del cambio email',
+        'update' => 'aggiorna',
     ],
 
     'update_password' => [
-        'email_subject' => '',
-        'update' => '',
+        'email_subject' => 'conferma del cambio password',
+        'update' => 'aggiorna',
     ],
 
     'playstyles' => [
-        'title' => '',
-        'mouse' => '',
-        'keyboard' => '',
-        'tablet' => '',
-        'touch' => '',
+        'title' => 'Stili di gioco',
+        'mouse' => 'mouse',
+        'keyboard' => 'tastiera',
+        'tablet' => 'tablet',
+        'touch' => 'touchscreen',
     ],
 ];

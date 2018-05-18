@@ -20,63 +20,63 @@
 
 return [
     'edit' => [
-        'title' => '',
-        'title_compact' => '',
-        'username' => '',
+        'title' => '<strong>Account</strong> Instellingen',
+        'title_compact' => 'instellingen',
+        'username' => 'gebruikersnaam',
 
         'avatar' => [
-            'title' => '',
+            'title' => 'Avatar',
         ],
 
         'email' => [
-            'current' => '',
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'current' => 'huidige e-mail',
+            'new' => 'nieuwe e-mail',
+            'new_confirmation' => 'e-mailconfirmatie',
+            'title' => 'E-mail',
         ],
 
         'password' => [
-            'current' => '',
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'current' => 'huidig wachtwoord',
+            'new' => 'nieuw wachtwoord',
+            'new_confirmation' => 'wachtwoordbevestiging',
+            'title' => 'Wachtwoord',
         ],
 
         'profile' => [
-            'title' => '',
+            'title' => 'Profiel',
 
             'user' => [
-                'user_from' => '',
-                'user_interests' => '',
-                'user_msnm' => '',
-                'user_occ' => '',
-                'user_twitter' => '',
-                'user_website' => '',
-                'user_discord' => '',
+                'user_from' => 'huidige locatie',
+                'user_interests' => 'interesses',
+                'user_msnm' => 'skype',
+                'user_occ' => 'beroep',
+                'user_twitter' => 'twitter',
+                'user_website' => 'website',
+                'user_discord' => 'discord',
             ],
         ],
 
         'signature' => [
-            'title' => '',
-            'update' => '',
+            'title' => 'Ondertekening',
+            'update' => 'bijwerken',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => '',
-        'update' => '',
+        'email_subject' => 'osu! e-mailverandering bevestiging',
+        'update' => 'update',
     ],
 
     'update_password' => [
-        'email_subject' => '',
-        'update' => '',
+        'email_subject' => 'osu! wachtwoordverandering bevestiging',
+        'update' => 'update',
     ],
 
     'playstyles' => [
-        'title' => '',
-        'mouse' => '',
-        'keyboard' => '',
-        'tablet' => '',
-        'touch' => '',
+        'title' => 'Speelstijlen',
+        'mouse' => 'muis',
+        'keyboard' => 'toetsenbord',
+        'tablet' => 'tablet',
+        'touch' => 'touch',
     ],
 ];

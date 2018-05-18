@@ -32,12 +32,12 @@ return [
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
+        'advanced_link' => 'Ricerca avanzata',
+        'button' => 'Cerca',
+        'empty_result' => 'Nessun risultato!',
         'missing_query' => '',
-        'placeholder' => '',
-        'title' => '',
+        'placeholder' => 'digita per cercare',
+        'title' => 'Cerca',
 
         'beatmapset' => [
             'more' => '',
@@ -46,7 +46,7 @@ return [
         ],
 
         'forum_post' => [
-            'all' => '',
+            'all' => 'Tutti i forum',
             'link' => '',
             'more_simple' => '',
             'title' => '',

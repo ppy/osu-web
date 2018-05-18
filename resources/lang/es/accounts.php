@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Ajustes</strong> de la Cuenta',
         'title_compact' => 'ajustes',
-        'username' => 'Nombre de Usuario',
+        'username' => 'nombre de usuario',
 
         'avatar' => [
-            'title' => 'Editar Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -38,12 +38,12 @@ return [
         'password' => [
             'current' => 'contraseña actual',
             'new' => 'nueva contraseña',
-            'new_confirmation' => 'verificar contraseña',
+            'new_confirmation' => 'confirmar contraseña',
             'title' => 'Contraseña',
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil',
+            'title' => 'Perfil',
 
             'user' => [
                 'user_from' => 'ubicación actual',
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
+        'email_subject' => 'Confirmación de cambio de correo electrónico de osu!',
         'update' => 'actualizar',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! - Confirmación de cambio de contraseña',
+        'email_subject' => 'Confirmación de cambio de contraseña de osu!',
         'update' => 'actualizar',
     ],
 

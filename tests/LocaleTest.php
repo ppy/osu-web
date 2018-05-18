@@ -32,6 +32,9 @@ class LocaleTest extends TestCase
             'key_1.choice' => ':count unit|:count units',
             'key_1.choice_empty' => ':count item|:count items',
             'key_1.choice_missing' => ':count entity|:count entities',
+            'key_1.empty' => '',
+            'key_1.empty_empty' => '',
+            'key_1.empty_missing' => '',
         ], $fallbackLocale);
 
         App::setLocale($fallbackLocale);
@@ -40,6 +43,7 @@ class LocaleTest extends TestCase
         $this->assertSame('test: stuff', trans('key_1.keyed', ['value' => 'stuff']));
         $this->assertSame('1 unit', trans_choice('key_1.choice', 1));
         $this->assertSame('2 units', trans_choice('key_1.choice', 2));
+        $this->assertSame('', trans('key_1.empty'));
 
         $incompleteLocale = 'ja';
         trans()->addLines([
@@ -49,6 +53,7 @@ class LocaleTest extends TestCase
             'key_1.keyed_empty' => '',
             'key_1.choice' => ':count個',
             'key_1.choice_empty' => '',
+            'key_1.empty' => '',
         ], $incompleteLocale);
 
         app('translator')->setFallback($fallbackLocale);
@@ -68,5 +73,8 @@ class LocaleTest extends TestCase
         $this->assertSame('2 items', trans_choice('key_1.choice_empty', 2));
         $this->assertSame('1 entity', trans_choice('key_1.choice_missing', 1));
         $this->assertSame('2 entities', trans_choice('key_1.choice_missing', 2));
+        $this->assertSame('', trans('key_1.empty'));
+        $this->assertSame('', trans('key_1.empty_empty'));
+        $this->assertSame('', trans('key_1.empty_missing'));
     }
 }

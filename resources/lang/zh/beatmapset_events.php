@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => '',
+        'approve' => '已批准',
         'discussion_delete' => '管理员删除了 :discussion 。',
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复。',
@@ -36,8 +36,8 @@ return [
         'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
         'nominate' => 'Nominated.',
         'nomination_reset' => '新问题 :discussion 导致提名被重置。',
-        'qualify' => '',
-        'rank' => '',
+        'qualify' => 'Qualified.',
+        'rank' => 'Ranked.',
     ],
 
     'index' => [

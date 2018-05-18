@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '選擇的支付方式被 Paypal 拒絕。',
-    'invalid_resource_id' => '找不到支付信息。',
+    'instrument_declined' => '選擇的付款方式遭 Paypal 拒絕。',
+    'invalid_resource_id' => '找不到付款資訊。',
     'unknown' => "由於不明原因，您的付款遭到拒絕。",
 ];

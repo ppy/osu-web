@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie posta nie powiodło się',
+            'error' => 'Zapisywanie postu nie powiodło się',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
-        'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
         'restore' => 'odzyskaj',
@@ -125,9 +125,9 @@ return [
         'button' => 'Nagłośnij beatmapę!',
         'button_done' => 'Już nagłośniono!',
         'confirm' => "Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.",
-        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'new_time' => "Nagłośnienie kolejnej mapy będzie możliwe za :new_time.",
+        'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
         'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',

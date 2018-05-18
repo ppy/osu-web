@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '',
-    'invalid_resource_id' => '',
-    'unknown' => "Een onbekende fout trad op.",
+    'instrument_declined' => 'De geselecteerde betaling was afgewezen door Paypal.',
+    'invalid_resource_id' => 'Geen betalingsinformatie gevonden.',
+    'unknown' => "Een onbekende fout trad op, maar we weten niet waarom.",
 ];

@@ -57,9 +57,9 @@ return [
         ],
         'winner' => ':team 勝利',
         'difference' => '，領先 :difference 分',
-        'loading-events' => '加載事件...',
+        'loading-events' => '載入事件..。',
         'more-events' => '查看全部...',
-        'beatmap-deleted' => '刪除譜面',
+        'beatmap-deleted' => '刪除圖譜',
     ],
     'game' => [
         'scoring-type' => [

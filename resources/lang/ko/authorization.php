@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '오늘은 더이상 추천할 수 없습니다, 내일 다시 시도해주세요.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
@@ -34,7 +36,7 @@ return [
         'vote' => [
             'limit_exceeded' => '투표를 더 받을 때 까지 좀 더 기다려주세요',
             'owner' => "본인이 제시한 토론에는 투표할 수 없습니다!",
-            'wrong_beatmapset_state' => '',
+            'wrong_beatmapset_state' => '대기 중인 비트맵의 토론에만 투표할 수 있습니다.',
         ],
     ],
 

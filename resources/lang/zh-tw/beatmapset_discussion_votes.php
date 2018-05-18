@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => '譜面討論投票',
+        'title' => '圖譜討論投票',
     ],
 
     'item' => [

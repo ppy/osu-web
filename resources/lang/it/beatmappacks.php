@@ -21,14 +21,14 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => '',
+            'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
                 '_' => "",
-                'scary' => '',
+                'scary' => 'NON',
             ],
             'note' => [
-                '_' => '',
-                'scary' => '',
+                '_' => 'Nota inoltre che è altamente consigliabile :scary, visto che le mappe più vecchie sono di qualità nettamente inferiore rispetto alle più recenti.',
+                'scary' => 'scarica i pacchetti dal più recente al più vecchio',
             ],
         ],
         'title' => '',
@@ -36,7 +36,7 @@ return [
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Download',
         'item' => [
             'cleared' => '',
             'not_cleared' => '',
@@ -44,14 +44,14 @@ return [
     ],
 
     'mode' => [
-        'artist' => '',
+        'artist' => 'Artista/Album',
         'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'standard' => 'Standard',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [
-        '_' => '',
+        '_' => 'Devi essere :link per scaricare',
         'link_text' => '',
     ],
 ];

@@ -260,7 +260,7 @@ return [
         'other' => 'その他',
     ],
     'played' => [
-        'any' => '',
+        'any' => '全て',
         'played' => 'プレイ済み',
         'unplayed' => '未プレイ',
     ],

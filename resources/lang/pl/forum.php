@@ -148,9 +148,9 @@ return [
             'poll' => [
                 'length' => 'Przeprowadź ankietę przez',
                 'length_days_suffix' => 'dni',
-                'length_info' => 'Zostaw puste dla niekończącej się ankiety',
+                'length_info' => 'Zostaw puste dla niekończącej się ankiety.',
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
-                'max_options_info' => 'Ilość możliwości, które każdy użytkownik może wybrać podczas głosowania.',
+                'max_options_info' => 'Liczba wyborów, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
                 'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',

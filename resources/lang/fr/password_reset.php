@@ -24,7 +24,7 @@ return [
     'button' => [
         'cancel' => 'Annuler',
         'resend' => 'Renvoyer l\'email de vérification',
-        'set' => 'Définit le mot de passe',
+        'set' => 'Définir le mot de passe',
         'start' => 'Démarrer',
     ],
 

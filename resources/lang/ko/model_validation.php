@@ -21,29 +21,29 @@
 return [
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
-    'too_long' => '',
+    'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => '',
+        'discussion_locked' => '토론이 잠겨있습니다.',
         'first_post' => '시작글은 삭제할 수 없습니다.',
     ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
+        'beatmapset_no_hype' => "비트맵이 홍보될 수 없었습니다.",
         'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
-        'locked' => '',
+        'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
+        'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
+        'locked' => '토론이 잠겨있습니다.',
         'mapper_note_wrong_user' => '',
 
         'hype' => [
             'guest' => '로그인하셔야 홍보하실 수 있습니다.',
             'hyped' => '이미 이 비트맵을 홍보했습니다.',
-            'limit_exceeded' => '',
+            'limit_exceeded' => '모든 홍보권을 사용하셨습니다.',
             'not_hypeable' => '',
-            'owner' => '',
+            'owner' => '자신의 비트맵은 홍보하지 마세요.',
         ],
 
         'timestamp' => [
@@ -59,7 +59,7 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => '항목 선택이 잘못되었습니다.',
+            'invalid' => '항목 선택이 올바르지 않습니다.',
         ],
 
         'post' => [
@@ -85,7 +85,7 @@ return [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
@@ -109,7 +109,7 @@ return [
                 '_' => '',
                 'link_text' => '',
             ],
-            'username_is_same' => '',
+            'username_is_same' => '이미 당신이 사용 중인 이름입니다, 혹시.. 건망증?',
         ],
     ],
 ];

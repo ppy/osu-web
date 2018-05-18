@@ -258,9 +258,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
+            'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
-            'to_watching_mail' => '',
+            'to_watching_mail' => 'В закладки с оповещением',
             'mail_disable' => 'Отключить уведомления',
         ],
     ],

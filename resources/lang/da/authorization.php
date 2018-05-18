@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
@@ -86,8 +88,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Prøv at spille spillet før du skriver i forumet, tak! Hvis du har et problem med at spille, bedes du skrive til Hjælp og Support forumet.',
+                'too_many_help_posts' => "Du skal spille spillet mere, før du kan lave flere indlæg. Hvis du stadig har problemer med at spille spillet, skal du sende en email til support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

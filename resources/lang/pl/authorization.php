@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
+            'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
+            'owner' => "Nie możesz nominować własnej beatmapy.",
         ],
         'resolve' => [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zamknąć tę dyskusję.',

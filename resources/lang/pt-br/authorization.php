@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',

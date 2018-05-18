@@ -23,8 +23,8 @@ return [
 
     'button' => [
         'cancel' => 'Avbryt',
-        'resend' => 'Skicka verifikations email igen',
-        'set' => 'Sätt lösenord',
+        'resend' => 'Skicka bekräftelsemail igen',
+        'set' => 'Ange lösenord',
         'start' => 'Starta',
     ],
 
@@ -35,25 +35,25 @@ return [
     'error' => [
         'contact_support' => 'Vänligen kontakta support för att återhämta konto.',
         'is_privileged' => 'Kontakta peppy lulz.',
-        'missing_key' => 'Behövs.',
+        'missing_key' => 'Krävs.',
         'too_many_tries' => 'För många misslyckade försök.',
-        'user_not_found' => 'Begärd användare finns inte.',
+        'user_not_found' => 'Användaren finns inte.',
         'wrong_key' => 'Felaktig kod.',
     ],
 
     'notice' => [
-        'sent' => 'Kolla din email för verifikations koden.',
+        'sent' => 'Kontrollera din email för att få din verifikationskod.',
         'saved' => 'Nytt lösenord sparat!',
     ],
 
     'started' => [
         'password' => 'Nytt lösenord',
-        'password_confirmation' => 'Lösenord bekräftelse',
+        'password_confirmation' => 'Lösenordsbekräftelse',
         'title' => 'Åteställer lösenord för användare <strong>:username</strong>.',
-        'verification_key' => 'Verifikations kod',
+        'verification_key' => 'Bekräftelsekod',
     ],
 
     'starting' => [
-        'username' => 'Skriv in email adress eller användarnamn',
+        'username' => 'Fyll i din e-postadress eller ditt användarnamn',
     ],
 ];

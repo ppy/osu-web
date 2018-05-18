@@ -21,8 +21,8 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerieren',
-            'regenerating' => 'Regeneriert...',
+            'regenerate' => 'Erneuern',
+            'regenerating' => 'Erneuert...',
             'remove' => 'Entfernen',
             'removing' => 'Entfernt...',
         ],

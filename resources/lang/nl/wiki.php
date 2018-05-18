@@ -20,22 +20,22 @@
 
 return [
     'show' => [
-        'fallback_translation' => '',
-        'languages' => '',
-        'missing' => '',
-        'missing_title' => '',
-        'missing_translation' => '',
-        'search' => '',
-        'toc' => '',
+        'fallback_translation' => 'De opgevraagde pagina is nog niet vertaald naar de geselecteerde taal (:language). Engelse versie wordt getoond.',
+        'languages' => 'Talen',
+        'missing' => 'Gevraagde pagina ":keyword" kon niet worden gevonden.',
+        'missing_title' => 'Niet Gevonden',
+        'missing_translation' => 'De opgevraagde pagina kon niet gevonden worden in de geselecteerde taal.',
+        'search' => 'Zoek bestaande pagina\'s voor :link.',
+        'toc' => 'Inhoud',
 
         'edit' => [
-            'link' => '',
-            'refresh' => '',
+            'link' => 'Toon op GitHub',
+            'refresh' => 'Ververs',
         ],
 
         'outdated' => [
-            '_' => '',
-            'default' => '',
+            '_' => 'Deze pagina bevat een oude vertaling van de originele inhoud. Check de :default voor de meest accurate informatie (en overweeg de vertaling te updaten als je kan helpen)!',
+            'default' => 'Engelse versie',
         ],
     ],
 ];

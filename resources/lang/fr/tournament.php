@@ -30,7 +30,7 @@ return [
 
     'show' => [
         'banner' => 'Soutenez votre équipe',
-        'entered' => 'Vous êtes inscrit à ce tournoi.<br><br>Cela ne signifie pas que vous avez été assigné à une équipe.<br><br>Des instructions vous seront envoyées proche de la date du tournoi, merci de vérifier que l\'e-mail sur votre compte osu! est toujours valide.',
+        'entered' => 'Vous êtes inscrit à ce tournoi.<br><br>Notez que cela ne signifie pas que vous avez été assigné à une équipe.<br><br>Des instructions vous seront envoyées aux alentours de la date du tournoi, merci de vérifier que l\'e-mail lié à votre compte osu! est toujours valide !',
         'info_page' => 'Page d\'informations',
         'login_to_register' => 'Merci de :login pour voir les détails d\'inscription !',
         'not_yet_entered' => 'Vous n\'êtes pas inscrit à ce tournoi.',
@@ -43,9 +43,9 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'L\'inscription pour ce tournoi n\'a pas encore été ouvert.',
-            'ended' => 'Ce tournament s\'est conclu. Visitez la page d\'informations pour voir les résultats.',
-            'registration_closed' => 'L\'inscription pour ce tournoi a fermé. Visitez la page d\'informations pour les dernières mises à jour.',
+            'before_registration' => 'Les inscriptions pour ce tournoi n\'ont pas encore été ouvertes.',
+            'ended' => 'Ce tournoi s\'est conclu. Visitez la page d\'informations pour voir les résultats.',
+            'registration_closed' => 'Les inscriptions pour ce tournoi sont closes. Visitez la page d\'informations pour les dernières actualités.',
             'running' => 'Ce tournoi est actuellement en cours. Visitez la page d\'informations pour plus de détails.',
         ],
     ],
