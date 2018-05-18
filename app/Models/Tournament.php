@@ -30,16 +30,15 @@ class Tournament extends Model
 
     public static function getGroupedListing()
     {
-        $tournaments = self::query()
+        $tournaments = static::query()
             ->orderBy('tournament_id', 'desc')
             ->get();
 
-        $current = $tournaments->where('end_date', '>', Carbon::now());
-        $previous = $tournaments->where('end_date', '<=', Carbon::now());
+        $now = Carbon::now();
 
         return [
-            'current' => $current,
-            'previous' => $previous,
+            'current' => $tournaments->where('end_date', '>', $now),
+            'previous' => $tournaments->where('end_date', '<=', $now),
         ];
     }
 
