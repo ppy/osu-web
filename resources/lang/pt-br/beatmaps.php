@@ -37,7 +37,7 @@ return [
         'deleted' => 'Excluído por :editor às :delete_time.',
         'deny_kudosu' => 'negar kudosu',
         'edit' => 'editar',
-        'edited' => 'Última vez editado por :editor às :update_time.',
+        'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu',
         'message_placeholder' => 'Digite aqui para postar',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e não poderá mais ser discutida.',

@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như một level editor đầy đủ chức năng.',
+        'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như chế độ level editor đầy đủ chức năng.',
     ],
 
     'menu' => [
@@ -29,7 +29,7 @@ return [
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'bản dựng',
+            'changelog-show' => 'build',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -45,7 +45,7 @@ return [
         'help' => [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
-            'getRules' => 'rules',
+            'getRules' => 'luật',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -70,7 +70,7 @@ return [
             '_' => 'xếp hạng',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'spotlights',
+            'charts' => 'tiêu điểm',
             'score' => 'điểm',
             'country' => 'quốc gia',
             'kudosu' => 'kudosu',
@@ -118,7 +118,7 @@ return [
             'settings' => 'Cài Đặt',
             'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
-            'modding-history-discussions' => 'cuộc thảo luận modding của người dùng',
+            'modding-history-discussions' => 'thảo luận modding của người dùng',
             'modding-history-events' => 'sự kiện modding của người dùng',
             'modding-history-index' => 'lịch sử modding của người dùng',
             'modding-history-posts' => 'bài đăng modding của người dùng',
@@ -164,11 +164,11 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'Chung',
+            '_' => 'Tổng quát',
             'home' => 'Trang Chủ',
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
-            'download' => 'Tải Xuống osu!',
+            'download' => 'Download osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
@@ -236,7 +236,7 @@ return [
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
-                'email' => "Không tồn tại tên tài khoản hoặc địa chỉ email",
+                'email' => "Tài khoản hoặc địa chỉ email không tồn tại",
                 'password' => 'Sai mật khẩu',
             ],
         ],

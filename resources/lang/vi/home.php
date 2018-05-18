@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'tagline' => "hãy<br>bắt đầu!",
-        'action' => 'Tải xuống osu!',
+        'action' => 'Download osu!',
         'os' => [
             'windows' => 'cho Windows',
             'macos' => 'cho macOS',
@@ -133,7 +133,7 @@ return [
             'plays' => ':count lần chơi',
         ],
         'buttons' => [
-            'download' => 'Tải Xuống osu!',
+            'download' => 'Download osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],

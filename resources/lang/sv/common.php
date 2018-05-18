@@ -73,7 +73,7 @@ return [
     'device' => [
         'keyboard' => 'Tangentbord',
         'mouse' => 'Mus',
-        'tablet' => 'Platta',
+        'tablet' => 'Ritplatta',
         'touch' => 'Pekskärm',
     ],
 

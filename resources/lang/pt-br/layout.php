@@ -30,7 +30,7 @@ return [
             'friends-index' => 'amigos',
             'changelog-index' => 'registro de alterações',
             'changelog-show' => 'versão',
-            'getDownload' => 'download',
+            'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
             'index' => 'painel de controle',

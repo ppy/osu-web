@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Pengaturan</strong> Akun',
+        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 
@@ -29,10 +29,10 @@ return [
         ],
 
         'email' => [
-            'current' => 'email saat ini',
-            'new' => 'surel baru',
-            'new_confirmation' => 'konfirmasi surel',
-            'title' => 'Surel',
+            'current' => 'surel saat ini',
+            'new' => 'email baru',
+            'new_confirmation' => 'konfirmasi email',
+            'title' => 'Email',
         ],
 
         'password' => [
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'konfirmasi perubahan surel osu!',
+        'email_subject' => 'konfirmasi perubahan email osu!',
         'update' => 'perbarui',
     ],
 

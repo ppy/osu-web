@@ -206,7 +206,7 @@ return [
         'loved' => 'Amados',
         'faves' => 'Favoritos',
         'pending' => 'Pendientes',
-        'graveyard' => 'Sepultados',
+        'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],
     'genre' => [

@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'limit_exceeded' => 'Bạn đang gửi tin nhắn quá nhanh, hãy đợi một lát trước khi thử lại.',
+            'limit_exceeded' => 'Bạn đang gửi tin nhắn quá nhanh, xin hãy đợi một chút trước khi thử lại.',
         ],
     ],
 ];

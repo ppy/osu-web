@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Failed saving post',
+            'error' => 'บันทึกโพสต์ล้มเหลว',
         ],
     ],
 
@@ -33,19 +33,19 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'allow kudosu',
-        'delete' => 'delete',
-        'deleted' => 'Deleted by :editor :delete_time',
-        'deny_kudosu' => 'deny kudosu',
-        'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
+        'delete' => 'ลบ',
+        'deleted' => 'ลบโดย :editor ณ เวลา :delete_time',
+        'deny_kudosu' => 'ปฏิเสธ kudosu',
+        'edit' => 'แก้ไข',
+        'edited' => 'แก้ไขล่าสุด โดย :editor ณ เวลา :update_time',
         'kudosu_denied' => '',
-        'message_placeholder' => 'Type here to post',
+        'message_placeholder' => 'พิมพ์ที่นี่เพื่อโพสต์',
         'message_placeholder_deleted_beatmap' => '',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to submit.',
         'reply_placeholder' => 'Type your response here',
-        'require-login' => 'Please login to post or reply',
-        'resolved' => 'Resolved',
+        'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
+        'resolved' => 'แก้ไขแล้ว',
         'restore' => 'restore',
         'title' => 'Discussions',
 
@@ -79,8 +79,8 @@ return [
             'general' => 'General',
             'timeline' => 'Timeline',
             'scopes' => [
-                'general' => '',
-                'generalAll' => '',
+                'general' => 'ระดับความยากนี้',
+                'generalAll' => 'ระดับความยากทั้งหมด',
             ],
         ],
 
@@ -95,10 +95,10 @@ return [
         ],
 
         'sort' => [
-            '_' => '',
-            'created_at' => '',
+            '_' => 'เรียงตาม:',
+            'created_at' => 'เวลาที่สร้าง',
             'timeline' => '',
-            'updated_at' => '',
+            'updated_at' => 'อัพเดทล่าสุด',
         ],
 
         'stats' => [
@@ -146,21 +146,21 @@ return [
         'incorrect_state' => '',
         'nominate' => 'Nominate',
         'nominate_confirm' => '',
-        'nominated_by' => '',
+        'nominated_by' => 'เสนอชื่อโดย :users',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified_soon' => '',
-        'required_text' => '',
-        'reset_message_deleted' => '',
+        'qualified_soon' => 'คาดการณ์ว่าจะได้ Ranked ในเร็วๆนี้ ถ้าไม่พบปัญหา',
+        'required_text' => 'การเสนอชื่อ: :current/:required',
+        'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'Nomination Status',
-        'unresolved_issues' => '',
+        'unresolved_issues' => 'ยังมีปัญหาที่ต้องแก้ไขให้เสร็จก่อน',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => 'การเสนอชื่อถูกรีเซ็ตเมื่อ :time_ago โดยผู้ใช้ :user ที่มีปัญหาใหม่ :discussion (:message)',
+            'disqualify' => 'ถูกตัดสิทธิ์เมื่อ :time_ago โดยผู้ใช้ :user ที่มีปัญหาใหม่ :discussion (:message)',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => 'ในการโพสต์ปัญหาใหม่จะต้องรีเซ็ตการเสนอชื่อจัดอันดับคะแนน คุณแน่ใจหรือ?',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
-                'general' => '',
+                'general' => 'ทั่วไป',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
@@ -188,8 +188,8 @@ return [
         'load-more' => 'Load more...',
     ],
     'general' => [
-        'recommended' => '',
-        'converts' => '',
+        'recommended' => 'ระดับความยากที่แนะนำ',
+        'converts' => 'รวมแมพคอนเวิรต์ด้วย',
     ],
     'mode' => [
         'any' => 'Any',
@@ -202,7 +202,7 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => '',
+        'qualified' => 'ผ่านเกณฑ์',
         'loved' => 'Loved',
         'faves' => 'Favourites',
         'pending' => 'Pending',
@@ -260,9 +260,9 @@ return [
         'other' => 'Other',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => 'ไม่เจาะจง',
+        'played' => 'เคยเล่นแล้ว',
+        'unplayed' => 'ยังไม่เคยเล่น',
     ],
     'extra' => [
         'video' => 'Has Video',

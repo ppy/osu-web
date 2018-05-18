@@ -20,16 +20,16 @@
 
 return [
     'edit' => [
-        'title' => 'Cài Đặt <strong>Tài Khoản</strong>',
+        'title' => 'Cài đặt <strong>Tài khoản</strong>',
         'title_compact' => 'cài đặt',
-        'username' => 'tên tài khoản',
+        'username' => 'tên người dùng',
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
         ],
 
         'email' => [
-            'current' => 'email hiện tại',
+            'current' => 'Email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -39,7 +39,7 @@ return [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',
             'new_confirmation' => 'xác nhận mật khẩu',
-            'title' => 'Mật khẩu',
+            'title' => 'Mật Khẩu',
         ],
 
         'profile' => [
@@ -51,7 +51,7 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => 'twitter',
-                'user_website' => 'trang web',
+                'user_website' => 'website',
                 'user_discord' => 'discord',
             ],
         ],

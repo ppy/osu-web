@@ -19,7 +19,7 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
+    'page_description' => 'Featured artists di osu!',
     'title' => 'Featured Artists',
 
     'admin' => [

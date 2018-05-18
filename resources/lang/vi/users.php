@@ -51,7 +51,7 @@ return [
     ],
 
     'login' => [
-        '_' => 'Sign in',
+        '_' => 'Đăng nhập',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'username' => 'Tên tài khoản',
         'password' => 'Mật khẩu',
@@ -91,18 +91,18 @@ return [
     'show' => [
         'age' => ':age tuổi',
         'change_avatar' => 'đổi ảnh đại diện!',
-        'first_members' => 'Tại đây từ thuở xa xưa',
+        'first_members' => 'Ở đây kể từ khi bắt đầu',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age từ :country',
+        'origin_country_age' => ':age đến từ :country',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
-        'plays_with' => 'Chơi với :devices',
+        'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",
 
         'edit' => [

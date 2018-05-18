@@ -252,7 +252,7 @@ return [
             'account-edit' => '設定',
             'friends' => '好友',
             'logout' => '登出',
-            'profile' => '個人簡介',
+            'profile' => '我的資料',
         ],
     ],
 

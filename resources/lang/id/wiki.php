@@ -34,7 +34,7 @@ return [
         ],
 
         'outdated' => [
-            '_' => 'Halaman ini berisi konten dengan tejermahan yang belum diperbarui. Silahkan periksa :default untuk informasi selengkapnya (dan mohon pertimbangkan untuk memperbarui terjemahan bila anda dapat membantu)!',
+            '_' => 'Halaman ini berisi konten dengan terjemahan yang belum diperbarui. Silahkan periksa :default untuk informasi selengkapnya (dan mohon pertimbangkan untuk memperbarui terjemahan bila anda dapat membantu)!',
             'default' => 'Versi Bahasa Inggris',
         ],
     ],

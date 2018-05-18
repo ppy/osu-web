@@ -37,7 +37,7 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '得讚最多（最近三個月）',
+            'title_most' => '得讚最多（近三個月）',
         ],
 
         'votes_made' => [

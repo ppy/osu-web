@@ -47,8 +47,8 @@ return [
 
     'mode' => [
         'artist' => '藝術家/專輯',
-        'chart' => '賽事',
-        'standard' => '標準',
+        'chart' => '頭條',
+        'standard' => '日期',
         'theme' => '主題',
     ],
 

@@ -74,7 +74,7 @@ return [
 
             'early_access' => [
                 'title' => 'Akses Versi Pra-Rilis',
-                'description' => 'Akses ke rilisan terbaru lebih awal, di mana Anda dapat mencoba fitur yang bahkan belum dirilis secara publik!.',
+                'description' => 'Akses ke rilisan terbaru lebih awal, di mana Anda dapat mencoba fitur yang bahkan belum dirilis secara publik!',
             ],
 
             'customisation' => [
@@ -99,12 +99,12 @@ return [
 
             'change_username' => [
                 'title' => 'Ganti Nama Pengguna',
-                'description' => 'Kemampuan untuk mengubah nama pengguna Anda tanpa biaya tambahan. (maksimum sekali).',
+                'description' => 'Kemampuan untuk mengubah nama pengguna Anda tanpa biaya tambahan (maksimum sekali).',
             ],
 
             'skinnables' => [
                 'title' => 'Elemen Skinning',
-                'description' => 'Tambahan elemen yang bisa Anda skin. Seperti latar belakang menu utama.',
+                'description' => 'Tambahan elemen yang bisa Anda skin, seperti latar belakang menu utama.',
             ],
 
             'feature_votes' => [
@@ -119,7 +119,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Merasa Spesial',
-                'description' => 'Perasaan hangat karena Anda telah melakukan bagian Anda untuk memastikan osu! berjalan lancar!.',
+                'description' => 'Perasaan hangat karena Anda telah melakukan bagian Anda untuk memastikan osu! berjalan lancar!',
             ],
 
             'more_to_come' => [

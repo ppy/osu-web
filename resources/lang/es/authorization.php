@@ -25,7 +25,7 @@ return [
             'has_reply' => 'No se puede eliminar una discusión con respuestas',
         ],
         'nominate' => [
-            'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, porfavor, inténtalo de nuevo mañana.',
+            'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
             'owner' => "No puedes nominar tu propio beatmap.",
         ],

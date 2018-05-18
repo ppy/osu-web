@@ -145,12 +145,12 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'nominate' => '提名',
-        'nominate_confirm' => '要飛這張圖嗎？',
+        'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
-        'reset_message_deleted' => '已删除',
+        'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
@@ -173,7 +173,7 @@ return [
             'filters' => [
                 'general' => '一般',
                 'mode' => '模式',
-                'status' => 'Rank 狀態',
+                'status' => '審核狀態',
                 'genre' => '曲風',
                 'language' => '語言',
                 'extra' => '其他資訊',

@@ -34,7 +34,7 @@ return [
     'search' => [
         'advanced_link' => 'Advanced search',
         'button' => 'ค้นหา',
-        'empty_result' => 'Nothing found!',
+        'empty_result' => 'ไม่พบสิ่งใด!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
         'placeholder' => 'type to search',
         'title' => 'ค้นหา',
@@ -54,7 +54,7 @@ return [
             'label' => [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
+                'topic_id' => 'หัวข้อ #',
                 'username' => 'ผู้สร้าง',
             ],
         ],
@@ -71,7 +71,7 @@ return [
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
             'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'title' => 'ผู้เล่น',
         ],
 
         'wiki_page' => [
@@ -114,22 +114,22 @@ return [
     'user' => [
         'title' => 'dashboard',
         'news' => [
-            'title' => 'News',
+            'title' => 'ข่าวสาร',
             'error' => 'Error loading news, try refreshing the page?...',
         ],
         'header' => [
             'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have :count new message|You have :count new messages',
+            'messages' => 'คุณมี :count ข้อความใหม่|คุณมี :count ข้อความใหม่',
             'stats' => [
-                'friends' => 'Online Friends',
+                'friends' => 'จำนวนเพื่อนที่ออนไลน์',
                 'games' => 'Games',
-                'online' => 'Online Users',
+                'online' => 'จำนวนผู้ใช้ที่ออนไลน์',
             ],
         ],
         'beatmaps' => [
             'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
+            'popular' => 'บีทแมพที่นิยม',
+            'by' => 'โดย',
             'plays' => ':count plays',
         ],
         'buttons' => [
@@ -140,7 +140,7 @@ return [
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => 'ว้าว!',
         'subtitle' => 'You seem to be having a good time! :D',
         'body' => [
             'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',

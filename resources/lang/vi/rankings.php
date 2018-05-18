@@ -22,13 +22,13 @@ return [
     'header' => 'Xếp Hạng Theo :type',
     'type' => [
         'performance' => 'Performance',
-        'charts' => 'Spotlights',
+        'charts' => 'Tiêu điểm',
         'score' => 'Điểm',
         'country' => 'Quốc Gia',
     ],
     'stat' => [
         'accuracy' => 'Độ Chính Xác',
-        'active_users' => 'Số Người Đang Chơi',
+        'active_users' => 'Số người đang hoạt động',
         'country' => 'Quốc Gia',
         'play_count' => 'Số Lần Chơi',
         'performance' => 'Performance',

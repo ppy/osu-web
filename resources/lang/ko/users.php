@@ -206,8 +206,8 @@ return [
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => '모딩 글 :post 에서 투표를 재계산하여 :amount 만큼 표를 받았습니다.',
+                            'reset' => '모딩 글 :post 에서 투표를 재계산하여 :amount 만큼 표를 잃었습니다.',
                         ],
                     ],
 
@@ -296,7 +296,7 @@ return [
             'global' => ':mode 모드에 대한 글로벌 순위',
         ],
         'stats' => [
-            'hit_accuracy' => '명중률',
+            'hit_accuracy' => '정확도',
             'level' => '레벨 :level',
             'maximum_combo' => '최대 콤보 수',
             'play_count' => '플레이 횟수',
