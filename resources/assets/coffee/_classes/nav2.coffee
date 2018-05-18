@@ -42,6 +42,7 @@ class @Nav2
     $(window).on 'throttled-resize.nav2-center-popup', doCenter
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
+    @stickLogin()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
 
