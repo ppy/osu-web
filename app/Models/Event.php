@@ -369,7 +369,7 @@ class Event extends Model
     {
         return [
             'id' => $user->getKey(),
-            'username' => $user->username,
+            'username' => e($user->username),
             'url' => e(route('users.show', $user, false)),
         ];
     }
