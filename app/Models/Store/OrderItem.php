@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
+use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
 use Exception;
@@ -36,6 +37,9 @@ class OrderItem extends Model
         'cost' => 'float',
         'extra_data' => 'array',
     ];
+
+    protected $guarded = [];
+
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',
@@ -75,7 +79,8 @@ class OrderItem extends Model
 
     public function save(array $options = [])
     {
-        if (!$this->isValid()) {
+        $skipValidations = $options['skipValidations'] ?? false;
+        if (!$skipValidations && !$this->isValid()) {
             // FIXME: Simpler to just throw instead of fixing all the save() calls right now.
             throw new ValidationException($this->validationErrors());
         }
@@ -113,6 +118,14 @@ class OrderItem extends Model
         $this->cost = $this->product->cost;
     }
 
+    public function getCustomClassInstance()
+    {
+        // only one for now
+        if ($this->product->custom_class === 'username-change') {
+            return new ChangeUsername($this->order->user, $this->extra_info, 'paid');
+        }
+    }
+
     public function getDisplayName()
     {
         switch ($this->product->custom_class) {
@@ -134,6 +147,11 @@ class OrderItem extends Model
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'store.order_item';
+        return 'store/order_item';
+    }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
     }
 }

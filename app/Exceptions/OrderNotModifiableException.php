@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,37 +18,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Store;
+namespace App\Exceptions;
 
-use App\Http\Controllers\Controller as BaseController;
 use App\Models\Store\Order;
-use Auth;
+use Exception;
 
-abstract class Controller extends BaseController
+/**
+ * Exception for when the order is not modifiable.
+ * The exception message should be safe to display to the user.
+ */
+class OrderNotModifiableException extends Exception
 {
-    protected $section = 'store';
+    private $order;
 
-    /**
-     * Gets the cart of the currently logged in user.
-     *
-     * TODO: should probably memoize this
-     *
-     * @return Order|null cart of the current user if logged in; null, if not logged in.
-     */
-    protected function userCart()
+    public function __construct(Order $order)
     {
-        if (Auth::check()) {
-            return Order::cart(Auth::user()) ?? new Order(['user_id' => Auth::user()->user_id]);
-        }
+        $key = "store.order.not_modifiable_exception.{$order->status}";
+        $trans = trans($key);
+
+        parent::__construct(
+            $trans === $key ? trans('store.order.not_modifiable_exception.default') : $trans
+        );
+
+        $this->order = $order;
     }
 
-    /**
-     * @return bool
-     */
-    protected function hasPendingCheckout()
+    public function getOrder()
     {
-        $cart = $this->userCart();
-
-        return $cart === null ? false : $cart->isProcessing();
+        return $this->order;
     }
 }

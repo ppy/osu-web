@@ -31,10 +31,7 @@
             @if (session()->has('checkout.error.message') || $hasErrors)
                 <div class="alert alert-danger">
                     <p>
-                        {{ trans('store.checkout.error') }}
-                    </p>
-                    <p>
-                        {{ session('checkout.error.message') }}
+                        {{ session('checkout.error.message') ?? trans('store.checkout.cart_problems') }}
                     </p>
                 </div>
             @endif
