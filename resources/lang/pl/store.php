@@ -25,9 +25,9 @@ return [
 
     'checkout' => [
         'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
-        'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować',
+        'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
         'declined' => 'Płatność została anulowana.',
-        'error' => 'Wystąpił problem z zatwierdzaniem twojego zamówienia :(',
+        'error' => 'Wystąpił problem z zatwierdzeniem twojego zamówienia :(',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
         'pending_checkout' => [
@@ -35,7 +35,7 @@ return [
             'line_2' => 'Wznów proces poprzez wybór metody płatności lub :link, aby przerwać składanie zamówienia.',
             'link_text' => 'kliknij tutaj',
         ],
-        'delayed_shipping' => 'Obecnie jesteśmy przytłoczeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
+        'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
     ],
 
     'discount' => 'zaoszczędź :percent%',
@@ -59,17 +59,17 @@ return [
         'name' => 'Nazwa',
 
         'stock' => [
-            'out' => 'Ten przedmiot jest obecnie niedostępny. Sprawdź poźniej.',
+            'out' => 'Ten przedmiot jest obecnie niedostępny. Sprawdź później!',
             'out_with_alternative' => 'Niestety ten przedmiot jest obecnie niedostępny. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
         ],
 
         'add_to_cart' => 'Dodaj do koszyka',
-        'notify' => 'Powiadom mnie, kiedy będzie dostępny!',
+        'notify' => 'Powiadom mnie, kiedy produkt będzie dostępny!',
 
         'notification_success' => 'dostaniesz powiadomienie, kiedy produkt będzie dostępny. kliknij :link aby anulować.',
         'notification_remove_text' => 'tutaj',
 
-        'notification_in_stock' => 'Produkt jest dostępny!',
+        'notification_in_stock' => 'Ten produkt jest już dostępny!',
     ],
 
     'supporter_tag' => [

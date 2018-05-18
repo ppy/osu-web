@@ -73,8 +73,8 @@ return [
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'Nominator',
-        'owner' => 'Mapper',
+        'bng' => 'nominator',
+        'owner' => 'ersteller',
         'qat' => 'qat',
     ],
 

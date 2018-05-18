@@ -21,18 +21,18 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'No mirar',
+            'to_0' => 'Dejar de mirar',
             'to_1' => 'Mirar',
         ],
     ],
 
     'index' => [
-        'description' => 'Estos son las discusiones de beatmaps que estás siguiendo. Serás notificado cuando se realize un nuevo post o actualización.',
-        'title_compact' => 'seguimientos de modding',
-        'title_main' => 'Lista de seguimientos de modding',
+        'description' => 'Estas son las discusiones de Beatmap que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
+        'title_compact' => 'lista de seguimiento de modificaciones',
+        'title_main' => 'Lista de seguimiento de modificaciones',
 
         'table' => [
-            'empty' => 'No estás viendo ninguna discusión de un mapa.',
+            'empty' => 'No estás mirando discusiones de Beatmaps.',
             'open_issues' => 'Problemas abiertos',
             'state' => 'Estado',
             'title' => 'Título',
@@ -40,7 +40,7 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nueva actualización para el mapa ":title"',
+        'update' => 'Nueva actualización para el Beatmap ":title"',
     ],
 
     'status' => [

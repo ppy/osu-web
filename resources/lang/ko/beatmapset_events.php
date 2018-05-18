@@ -29,19 +29,19 @@ return [
         'disqualify_legacy' => '실격 처리되었습니다. 사유: :text.',
         'issue_reopen' => '결정되었던 :discussion 토론이 재개되었습니다.',
         'issue_resolve' => ':discussion 토론이 결정된 것으로 표시되었습니다.',
-        'kudosu_allow' => ':discussion 토론에서의 kudous 거절을 취소했습니다.',
+        'kudosu_allow' => ':discussion 토론에서의 kudosu 거절은 삭제되었습니다.',
         'kudosu_deny' => ':discussion 토론에서 kudosu를 거당했습니다.',
         'kudosu_gain' => ':discussion 토론에서 kudosu를 받을 만큼 충분한 표를 얻었습니다.',
-        'kudosu_lost' => ':discussion 토론에서 충분한 표를 얻지 못해 획득한 kudous가 삭제되었습니다.',
-        'kudosu_recalculate' => '',
+        'kudosu_lost' => ':discussion 토론에서 충분한 표를 얻지 못해 획득한 kudosu가 삭제되었습니다.',
+        'kudosu_recalculate' => ':discussion 토론에서 kudosu 부여량이 재조정되었습니다.',
         'nominate' => 'Nominated.',
-        'nomination_reset' => '',
+        'nomination_reset' => '새로운 문제 :discussion (:text) 가 추천 수를 초기화했습니다.',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => '비트맵셋 활동',
     ],
 
     'item' => [

@@ -119,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息|{0}',
+            'messages' => '{0}|你有 :count 条新消息',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',

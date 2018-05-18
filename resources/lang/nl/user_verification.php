@@ -43,7 +43,7 @@ return [
         'expired' => 'Verificatiecode is verlopen, nieuwe verificatie e-mail verstuurd.',
         'incorrect_key' => 'Onjuiste verificatiecode.',
         'retries_exceeded' => 'Onjuiste verificatiecode. Limiet opnieuw proberen overschreden, nieuwe verificatie e-mail verstuurd.',
-        'reissued' => '',
+        'reissued' => 'Verificatiecode is hermaakt, nieuwe verificatie e-mail verstuurd.',
         'unknown' => 'Onbekend probleem trad op, nieuwe verificatie e-mail verstuurd.',
     ],
 ];

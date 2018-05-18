@@ -21,8 +21,8 @@
 return [
     'pinned_topics' => '置頂主題',
     'slogan' => "獨樂樂不如眾樂樂~",
-    'subforums' => '子版塊',
-    'title' => 'osu! 社區',
+    'subforums' => '其他相關討論',
+    'title' => 'osu! 社群',
 
     'covers' => [
         'create' => [
@@ -68,13 +68,13 @@ return [
 
     'topic' => [
         'deleted' => '已刪除的主題',
-        'go_to_latest' => '查看最後的帖子',
+        'go_to_latest' => '查看最後的貼文',
         'latest_post' => ':when :user',
         'latest_reply_by' => '最後回覆: :user',
         'new_topic' => '發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
-        'started_by' => '發帖人： :user',
+        'started_by' => '發表人： :user',
 
         'create' => [
             'preview' => '預覽',
@@ -99,7 +99,7 @@ return [
 
         'post_edit' => [
             'cancel' => '取消',
-            'post' => '保存',
+            'post' => '儲存',
         ],
     ],
 
@@ -134,7 +134,7 @@ return [
         'actions' => [
             'reply' => '回覆',
             'reply_with_quote' => '引用以回覆',
-            'search' => '搜索',
+            'search' => '搜尋',
         ],
 
         'create' => [

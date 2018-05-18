@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Speichern des Beitrages fehlgeschlagen',
+            'error' => 'Speichern des Posts fehlgeschlagen',
         ],
     ],
 
@@ -39,12 +39,12 @@ return [
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
-        'message_placeholder' => 'Beitrag hier eingeben',
+        'message_placeholder' => 'Zum Posten hier Text eingeben',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
-        'require-login' => 'Zum Beitragen oder Antworten bitte einloggen',
+        'require-login' => 'Zum Posten oder Antworten bitte einloggen',
         'resolved' => 'Gelöst',
         'restore' => 'wiederherstellen',
         'title' => 'Diskussionen',
@@ -60,8 +60,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
-            'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Beiträge erstellen (ein Beitrag pro Timestamp).',
+            'in_general' => 'Dieser Post wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
+            'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Posts erstellen (ein Post pro Timestamp).',
         ],
 
         'message_type' => [
@@ -140,7 +140,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
-        'disqualified_at' => 'Disqualifiziert vor :time_ago (:reason).',
+        'disqualified_at' => 'Disqualifiziert :time_ago (:reason).',
         'disqualified_no_reason' => 'kein grund angegeben',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
@@ -156,7 +156,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
-            'disqualify' => 'Disqualifiziert vor :time_ago von :user mit dem Problem :discussion (:message).',
+            'disqualify' => 'Disqualifiziert :time_ago von :user mit der Erstellung des Problems :discussion (:message).',
         ],
 
         'reset_confirm' => [

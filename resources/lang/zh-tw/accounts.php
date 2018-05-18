@@ -47,7 +47,7 @@ return [
 
             'user' => [
                 'user_from' => '目前所在地',
-                'user_interests' => '興趣愛好',
+                'user_interests' => '喜好',
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',

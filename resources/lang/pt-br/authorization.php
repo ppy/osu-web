@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Erro ao realizar esta ação, tente atualizar a página.',
+            'owner' => "Não é possível nominar o próprio beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
@@ -80,7 +80,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Não é possível editar uma publicação excluida.',
+                'deleted' => 'Não é possível editar uma publicação excluída.',
                 'locked' => 'A edição desta publicação está bloqueada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',

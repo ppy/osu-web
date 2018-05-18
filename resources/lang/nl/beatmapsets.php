@@ -64,7 +64,7 @@ return [
             'count_circles' => 'Aantal Cirkels',
             'count_sliders' => 'Aantal Sliders',
             'user-rating' => 'Gebruikersbeoordelingen',
-            'rating-spread' => '',
+            'rating-spread' => 'Rating Verspreiding',
             'nominations' => 'Nominaties',
             'playcount' => 'Playcount',
         ],

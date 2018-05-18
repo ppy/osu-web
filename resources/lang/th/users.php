@@ -51,7 +51,7 @@ return [
     ],
 
     'login' => [
-        '_' => 'Sign in',
+        '_' => 'ลงชื่อเข้าใช้',
         'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
         'username' => 'ชื่อผู้ใช้',
         'password' => 'รหัสผ่าน',
@@ -61,7 +61,7 @@ return [
         'title' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
         'failed' => 'Incorrect login',
         'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        'forgot' => 'ลืมรหัสผ่าน?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
@@ -75,21 +75,21 @@ return [
     ],
 
     'signup' => [
-        '_' => 'Register',
+        '_' => 'สมัครสมาชิก',
     ],
     'anonymous' => [
-        'login_link' => 'click to login',
+        'login_link' => 'คลิกเพื่อลงฃื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
-        'username' => 'Guest',
+        'username' => 'ผู้เยี่ยมชม',
         'error' => 'You need to be logged in to do this.',
     ],
-    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'logout_confirm' => 'คุณแน่ใจหรือว่าต้องการออกจากระบบ? :(',
     'restricted_banner' => [
         'title' => 'Your account has been restricted!',
         'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
     ],
     'show' => [
-        'age' => ':age years old',
+        'age' => ':age ปี',
         'change_avatar' => 'เปลี่ยนรูปของคุณ',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
@@ -111,7 +111,7 @@ return [
                 'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
                     'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
-                    'button' => 'Upload image',
+                    'button' => 'อัพโหลดรูปภาพ',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
                     'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
@@ -122,13 +122,13 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
+                'is_default_tooltip' => 'เกมโหมดหลัก',
                 'set' => '',
             ],
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => '1 ผู้ติดตาม|:count ผู้ติดตาม',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -140,7 +140,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'บีทแมพที่ชื่นชอบ (:count)',
                 ],
                 'graveyard' => [
                     'title' => '',
@@ -161,14 +161,14 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'title' => 'บีทแมพที่เล่นมากที่สุด',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'accuracy' => 'ความแม่นยำ: :percentage',
+                    'title' => 'เล่นล่าสุด (24 ชั่วโมง)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => 'ประวัติการดูรีเพลย์',
                 ],
             ],
             'kudosu' => [
@@ -223,7 +223,7 @@ return [
             ],
             'medals' => [
                 'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'title' => 'เหรียญตรา',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
@@ -254,7 +254,7 @@ return [
                     'length' => 'ความยาว',
                     'length_permanent' => 'ถาวร',
                     'description' => 'คำอธิบาย',
-                    'actor' => '',
+                    'actor' => 'โดย {username}',
 
                     'actions' => [
                         'restriction' => 'แบน',
@@ -296,16 +296,16 @@ return [
             'global' => 'Global rank for :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
+            'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
             'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
+            'maximum_combo' => 'คอมโบสูงสุด',
+            'play_count' => 'จำนวนครั้งที่เล่น',
             'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'total_score' => 'คะแนนรวมทั้งหมด',
         ],
     ],
     'status' => [

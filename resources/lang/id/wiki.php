@@ -30,11 +30,11 @@ return [
 
         'edit' => [
             'link' => 'Lihat di GitHub',
-            'refresh' => 'Perbarui',
+            'refresh' => 'Muat Ulang',
         ],
 
         'outdated' => [
-            '_' => 'Halaman ini berisi terjemahan konten yang menggunakan versi lama. Silakan periksa :default untuk informasi paling akurat (dan pertimbangkan memperbarui terjemahan jika Anda dapat membantu)!',
+            '_' => 'Halaman ini berisi konten dengan terjemahan yang belum diperbarui. Silahkan periksa :default untuk informasi selengkapnya (dan mohon pertimbangkan untuk memperbarui terjemahan bila anda dapat membantu)!',
             'default' => 'Versi Bahasa Inggris',
         ],
     ],

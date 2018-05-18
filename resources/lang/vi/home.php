@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'tagline' => "hãy<br>bắt đầu!",
-        'action' => 'Tải xuống osu!',
+        'action' => 'Download osu!',
         'os' => [
             'windows' => 'cho Windows',
             'macos' => 'cho macOS',
@@ -127,13 +127,13 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Beatmaps Approved Mới',
-            'popular' => 'Beatmaps Được Chơi Nhiều',
+            'new' => 'Beatmaps Mới',
+            'popular' => 'Beatmaps Phổ Biến',
             'by' => 'bởi',
             'plays' => ':count lần chơi',
         ],
         'buttons' => [
-            'download' => 'Tải Xuống osu!',
+            'download' => 'Download osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],

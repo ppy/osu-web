@@ -70,7 +70,7 @@ return [
         'user' => [
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda',
+            'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda.',
             'title' => 'Pengguna',
         ],
 

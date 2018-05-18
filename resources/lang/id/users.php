@@ -160,7 +160,7 @@ return [
                     'title' => 'Riwayat Main',
                 ],
                 'most_played' => [
-                    'count' => 'jumlah dimainkan',
+                    'count' => 'kali dimainkan',
                     'title' => 'Beatmap yang Paling Banyak Dimainkan',
                 ],
                 'recent_plays' => [
@@ -176,7 +176,7 @@ return [
                 'available_info' => "Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.",
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
-                'total' => 'Jumlah Kudosu yang diperoleh',
+                'total' => 'Jumlah Kudosu yang Diperoleh',
                 'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
@@ -288,7 +288,7 @@ return [
             'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
         ],
         'post_count' => [
-            '_' => 'Berkontribusi sebanyak :link',
+            '_' => 'Berkontribusi :link',
             'count' => ':count postingan forum',
         ],
         'rank' => [

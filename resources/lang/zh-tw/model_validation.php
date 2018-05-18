@@ -99,7 +99,7 @@ return [
         'username_too_short' => '用戶名太短。',
         'username_too_long' => '用户名太长。',
         'weak' => '弱密碼。',
-        'wrong_current_password' => '當前密碼錯誤。',
+        'wrong_current_password' => '密碼不正確.',
         'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
         'too_long' => '超出長度限制——最多為 :limit 個字符。',

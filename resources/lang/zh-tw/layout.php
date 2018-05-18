@@ -45,7 +45,7 @@ return [
         'help' => [
             '_' => '幫助',
             'getFaq' => '常見問題',
-            'getRules' => '规章制度',
+            'getRules' => '規則準則',
             'getSupport' => '支援服務',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -58,7 +58,7 @@ return [
             'beatmapset-watches-index' => '譜面關注列表',
             'beatmapset_discussion_votes-index' => '譜面討論投票',
             'beatmapset_events-index' => '譜面事件',
-            'index' => '列表',
+            'index' => '圖譜列表',
             'packs' => '圖譜壓縮檔',
             'show' => '資訊',
         ],
@@ -128,16 +128,16 @@ return [
         'store' => [
             '_' => '商店',
             'checkout-show' => '結帳',
-            'getListing' => '列表',
+            'getListing' => '商品列表',
             'cart-show' => '購物車',
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
             'products-show' => '商品',
 
-            'new' => 'new',
+            'new' => '最新消息',
             'home' => '首頁',
-            'index' => 'home',
+            'index' => '首頁',
             'thanks' => '感謝',
         ],
         'admin-forum' => [
@@ -209,15 +209,15 @@ return [
             'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '500' => [
-            'error' => '哎呀，服務器崩潰了',
-            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
+            'error' => '糟糕，伺服器崩潰了',
+            'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
         ],
         'fatal' => [
             'error' => '哎呀，服務器被外星人帶走了',
-            'description' => "我們會自動報告每一個錯誤，請返回到上一個頁面。",
+            'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
         ],
         '503' => [
-            'error' => '啊哦...服務器正在維護中',
+            'error' => '啊...伺服器正在維護中',
             'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。",
             'link' => [
                 'text' => '@osustatus',
@@ -249,15 +249,15 @@ return [
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '設置',
+            'account-edit' => '設定',
             'friends' => '好友',
-            'logout' => '退出',
+            'logout' => '登出',
             'profile' => '我的資料',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '鍵入以搜索！',
+        'initial' => '請輸入以搜尋!',
         'retry' => '搜索失敗，點擊以重試。',
     ],
 ];

@@ -81,7 +81,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => 'Entre com um username para checar disponibilidade!',
+        'check' => 'Entre com um nome de usuário para checar disponibilidade!',
         'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',

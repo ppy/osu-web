@@ -112,10 +112,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => '這張圖譜於 :date 被 Approved !',
+            'approved' => '這張圖譜於 :date 被批准!',
             'graveyard' => "這張圖譜自 :date 就未更新了，或許它已經被作者拋棄了 ;w;",
             'loved' => '這張圖譜於 :date 被 Loved !',
-            'ranked' => '這張圖譜於 :date 被 Ranked !',
+            'ranked' => '這張圖譜於 :date 被進榜了!',
             'wip' => '注意：這張圖譜被作者標記為 WIP（半成品）',
         ],
 
@@ -145,12 +145,12 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'nominate' => '提名',
-        'nominate_confirm' => '要飛這張圖嗎？',
+        'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
-        'reset_message_deleted' => '已删除',
+        'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
@@ -173,7 +173,7 @@ return [
             'filters' => [
                 'general' => '一般',
                 'mode' => '模式',
-                'status' => 'Rank 狀態',
+                'status' => '審核狀態',
                 'genre' => '曲風',
                 'language' => '語言',
                 'extra' => '其他資訊',
@@ -200,9 +200,9 @@ return [
     ],
     'status' => [
         'any' => '所有',
-        'ranked-approved' => 'Ranked & Approved',
-        'approved' => 'Approved',
-        'qualified' => 'Qualified',
+        'ranked-approved' => '進榜/批准',
+        'approved' => '批准',
+        'qualified' => '提名',
         'loved' => 'Loved',
         'faves' => '我的最愛',
         'pending' => 'Pending',

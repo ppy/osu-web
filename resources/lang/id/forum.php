@@ -148,7 +148,7 @@ return [
             'poll' => [
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jejak pendapat ini',
+                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
                 'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
                 'options' => 'Pilihan',

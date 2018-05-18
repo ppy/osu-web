@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har uppnått din nominerings gräns för idag, var god försök igen imorgon.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
+            'owner' => "Kan ej nominera egen beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',

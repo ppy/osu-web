@@ -20,25 +20,25 @@
 
 return [
     'edit' => [
-        'title' => 'ตั้งค่า <strong>ผู้ใช้</strong>',
-        'title_compact' => 'การตั้งค่า',
+        'title' => 'ตั้งค่า<strong>บัญชีผู้ใช้</strong>',
+        'title_compact' => 'ตั้งค่า',
         'username' => 'ชื่อผู้ใช้',
 
         'avatar' => [
-            'title' => 'แก้ไขรูปโปรไฟล์',
+            'title' => 'รูปโปรไฟล์',
         ],
 
         'email' => [
             'current' => 'อีเมลปัจจุบัน',
             'new' => 'อีเมลใหม่',
-            'new_confirmation' => 'ยืนยันอีเมลใหม่',
+            'new_confirmation' => 'ยืนยันอีเมล',
             'title' => 'อีเมล',
         ],
 
         'password' => [
             'current' => 'รหัสผ่านปัจจุบัน',
             'new' => 'รหัสผ่านใหม่',
-            'new_confirmation' => 'ยืนยันรหัสผ่านใหม่',
+            'new_confirmation' => 'ยืนยันรหัสผ่าน',
             'title' => 'รหัสผ่าน',
         ],
 
@@ -57,14 +57,14 @@ return [
         ],
 
         'signature' => [
-            'title' => 'เอกลักษณ์',
+            'title' => 'ลายเซ็นต์',
             'update' => 'อัพเดต',
         ],
     ],
 
     'update_email' => [
         'email_subject' => 'ยืนยันการเปลี่ยนอีเมล osu!',
-        'update' => 'อัปเดต',
+        'update' => 'อัพเดต',
     ],
 
     'update_password' => [
@@ -73,9 +73,9 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'แบบการเล่น',
+        'title' => 'รูปแบบการเล่น',
         'mouse' => 'เมาส์',
-        'keyboard' => 'คีย์บอร์ด',
+        'keyboard' => 'แป้นพิมพ์',
         'tablet' => 'แท็บเล็ต',
         'touch' => 'จอสัมผัส',
     ],

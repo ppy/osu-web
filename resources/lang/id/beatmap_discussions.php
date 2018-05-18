@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Masuk untuk menanggapi',
+            'guest' => 'Masuk untuk Menanggapi',
             'user' => 'Tanggapi',
         ],
     ],
@@ -80,6 +80,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Di Saring berdasarkan pengguna',
+        'label' => 'Filter berdasarkan pengguna',
     ],
 ];

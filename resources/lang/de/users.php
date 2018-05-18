@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':usernames Beiträge',
+        'title' => 'Posts von :username',
     ],
 
     'signup' => [
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
-        'previous_usernames' => 'vorher bekannt als',
+        'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
         'title' => ":usernames Profil",
 
@@ -244,8 +244,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "<strong>:usernames</strong> Account ist zurzeit",
-                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen',
+                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',

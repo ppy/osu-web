@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'รายการ',
-        'news-show' => 'โพส',
+        'news-show' => 'โพสต์',
     ],
 
     'index' => [
@@ -34,11 +34,11 @@ return [
     ],
 
     'show' => [
-        'posted' => 'โพสเมื่อ :time',
+        'posted' => 'โพสต์เมื่อ :time',
 
         'nav' => [
-            'newer' => 'โพสใหม่กว่า',
-            'older' => 'โพสเก่ากว่า',
+            'newer' => 'โพสต์ใหม่กว่า',
+            'older' => 'โพสต์เก่ากว่า',
         ],
     ],
 

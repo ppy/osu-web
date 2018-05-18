@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu!-离节奏就差一此 * 点击 *! 与 Ouendan/EBA, 太鼓和原创的游戏模式, 以及一个带有完善功能的级别编辑器。',
+        'page_description' => 'osu! - 节奏跃然指上！带有 osu! 原创、「押忍！战斗应援团」、「精英节拍特工」和太鼓的游戏体验，还有为其设计的功能完备的难度编辑器。',
     ],
 
     'menu' => [
@@ -47,8 +47,8 @@ return [
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => '维基',
-            'wiki-show' => '维基',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '谱面',

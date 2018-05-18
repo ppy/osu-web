@@ -21,17 +21,17 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'LEES DIT VOOR TE DOWNLOADEN',
+            'important' => 'LEES DIT VOOR TE JE DOWNLOAD',
             'instruction' => [
                 '_' => "Installatie: Eens een pack gedownload is, pak dan de .rar uit in je osu! Songs map.
                     Alle individuele beatmaps zijn nog in .zip of .osz formaat, dus osu! zal ze zelf uitpakken de volgende keer dat je in de Play mode gaat.
                     :scary de zip's/osz's zelf uitpakken,
-                    of de beatmaps  zullen incorrect in osu! worden weergegeven/niet werken.",
+                    of de beatmaps zullen incorrect in osu! worden weergegeven/niet werken.",
                 'scary' => 'Ga NIET',
             ],
             'note' => [
-                '_' => 'Merk ook op dat het is ten zeerste is aangeraden om :scary, omdat de oudste maps van mindere kwaliteit zijn dan de meeste recente maps.',
-                'scary' => 'eerst de oudste packs te downloaden',
+                '_' => 'Merk ook op dat het is ten zeerste is aangeraden om :scary, omdat de oudste maps van mindere kwaliteit zijn dan de recentere maps.',
+                'scary' => 'eerst de nieuwste packs te downloaden',
             ],
         ],
         'title' => 'Beatmap Packs',

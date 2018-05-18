@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'โพสการอภิปราย beatmap',
+        'title' => 'โพสต์การอภิปราย Beatmap',
     ],
 
     'item' => [
         'content' => 'เนื้อหา',
-        'modding_history_link' => '',
+        'modding_history_link' => 'ดูประวัติการ mod',
     ],
 ];

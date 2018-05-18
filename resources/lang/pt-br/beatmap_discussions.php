@@ -49,7 +49,7 @@ return [
         'created_at' => 'Data de postagem',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
-        'permalink' => 'Permalink',
+        'permalink' => 'Copiar link da postagem',
     ],
 
     'nearby_posts' => [

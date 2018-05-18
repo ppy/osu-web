@@ -19,7 +19,7 @@
  */
 
 return [
-    'bold' => 'Dikgedrukt',
+    'bold' => 'Vetgedrukt',
     'heading' => 'Kop',
     'image' => 'Afbeelding',
     'italic' => 'Cursief',
@@ -27,12 +27,12 @@ return [
     'list' => 'Lijst',
     'list_numbered' => 'Genummerde Lijst',
     'size' => [
-        '_' => 'Lettertypegrootte',
+        '_' => 'Lettergrootte',
         'tiny' => 'Minuscuul',
         'small' => 'Klein',
         'normal' => 'Normaal',
         'large' => 'Groot',
     ],
     'spoilerbox' => 'Spoilerbox',
-    'strikethrough' => 'Doorhalen',
+    'strikethrough' => 'Doorstrepen',
 ];

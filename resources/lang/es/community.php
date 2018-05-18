@@ -41,7 +41,7 @@ return [
             'not_yet' => "Todavía no tienes un tag de supporter :(",
             'title' => 'Estado de supporter actual',
             'valid_until' => 'Tu tag de supporter actual es válida hasta el :date!',
-            'was_valid_until' => 'Tu tag de supporter fue válida hasta el :date.',
+            'was_valid_until' => 'Tu tag de supporter fue válida hasta :date.',
         ],
 
         'why_support' => [

@@ -20,7 +20,7 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Transmissões Ao Vivo',
+        'headline' => 'Transmissões ao vivo',
         'description' => 'Os dados são obtidos do twitch.tv a cada cinco minutos com base na listagem de diretórios. Sinta-se livre para começar a transmitir e aparecer na lista! Para mais informações sobre como preparar sua transmissão, acesse a página da wiki sobre transmissões ao vivo.',
     ],
     'headers' => [

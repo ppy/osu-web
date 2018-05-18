@@ -64,7 +64,7 @@ return [
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
-            'small' => '(donatorzy otrzymają go wkrótce)',
+            'small' => '(donatorzy otrzymają ją wkrótce)',
         ],
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
@@ -128,7 +128,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 śledzący|:count śledzących|:count śledzących',
+            'followers' => '1 obserwujący|:count obserwujących|:count obserwujących',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -165,7 +165,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precyzja: :percentage',
-                    'title' => 'Ostatnie wyniki',
+                    'title' => 'Ostatnie wyniki (24 godz.)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Wykres obejrzanych powtórek',
@@ -173,48 +173,48 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
-                'available_info' => "Punkty kudosu mogą zostać wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi.",
+                'available_info' => "Punkty kudosu mogą zostać wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. Powyżej podano liczbę kudosu, którą możesz wymienić.",
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Zdobyte kudosu',
-                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+                'total_info' => 'Oparte na tym, ile użytkownik zrobił dla modowania beatmap. Sprawdź <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Ten gracz nie otrzymał żadnego kudosu!",
+                    'empty' => "Ten gracz nie otrzymał jeszcze żadnego kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Otrzymano :amount za uchylenie odmowy otrzymania kudosu w wątku :post',
+                            'give' => 'Otrzymano :amount za uchylenie odmowy otrzymania kudosu za post :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Odmówiono :amount za wątek :post',
+                            'reset' => 'Odmówiono :amount za post :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Utracono :amount za usunięcie wątku :post',
+                            'reset' => 'Utracono :amount za usunięcie posta :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Otrzymano :amount za przywrócenie wątku :post',
+                            'give' => 'Otrzymano :amount za przywrócenie posta :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Otrzymano :amount za zdobycie głosów w wątku :post',
-                            'reset' => 'Utracono :amount za utratę głosów w wątku :post',
+                            'give' => 'Otrzymano :amount za zdobycie głosów w poście :post',
+                            'reset' => 'Utracono :amount za utratę głosów w poście :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Otrzymano :amount w wyniku przekalkulowania głosów w wątku :post',
-                            'reset' => 'Utracono :amount w wyniku przekalkulowania głosów w wątku :post',
+                            'give' => 'Otrzymano :amount w wyniku przekalkulowania głosów w poście :post',
+                            'reset' => 'Utracono :amount w wyniku przekalkulowania głosów w poście :post',
                         ],
                     ],
 
                     'forum_post' => [
                         'give' => 'Otrzymano :amount od :giver za post na :post',
-                        'reset' => 'Zresetowano kudosu przez :giver za post na :post',
-                        'revoke' => 'Odebrano kudosu przez :giver za post na :post',
+                        'reset' => 'Zresetowano kudosu przez :giver za post :post',
+                        'revoke' => 'Odebrano kudosu przez :giver za post :post',
                     ],
                 ],
             ],
@@ -293,7 +293,7 @@ return [
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
-            'global' => 'Pozycja w rankingu światowym dla :mode',
+            'global' => 'Pozycja w rankingu globalnym dla :mode',
         ],
         'stats' => [
             'hit_accuracy' => 'Precyzja',

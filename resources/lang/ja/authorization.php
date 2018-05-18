@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => '一日のノミネーションの上限に達しました。後日お試しください。',
-            'incorrect_state' => '',
+            'incorrect_state' => 'そのアクションを実行するエラー ページを更新してみてください。',
             'owner' => "",
         ],
         'resolve' => [

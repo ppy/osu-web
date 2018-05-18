@@ -29,7 +29,7 @@ return [
         ],
         'events' => [
             'player-left' => ':user ออกจากแมตช์',
-            'player-joined' => ':user joined the match',
+            'player-joined' => ':user เข้าร่วมแมตช์',
             'player-kicked' => ':user has been kicked from the match',
             'match-created' => ':user created the match',
             'match-disbanded' => 'the match was disbanded',
@@ -52,7 +52,7 @@ return [
         ],
         'failed' => 'ล้มเหลว',
         'teams' => [
-            'blue' => 'ทีมสีฟ้า',
+            'blue' => 'ทีมสีน้ำเงิน',
             'red' => 'ทีมสีแดง',
         ],
         'winner' => ':team ชนะ',

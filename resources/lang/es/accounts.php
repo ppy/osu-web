@@ -31,7 +31,7 @@ return [
         'email' => [
             'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
-            'new_confirmation' => 'verificar correo electrónico',
+            'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo Electrónico',
         ],
 

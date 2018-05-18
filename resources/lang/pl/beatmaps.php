@@ -46,7 +46,7 @@ return [
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
-        'restore' => 'odzyskaj',
+        'restore' => 'przywróć',
         'title' => 'Dyskusje',
 
         'collapse' => [
@@ -61,7 +61,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
-            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne komentarze (po jednym dla każdego znacznika czasu).',
+            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne posty (po jednym dla każdego znacznika czasu).',
         ],
 
         'message_type' => [
@@ -160,7 +160,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
         ],
     ],
 
@@ -212,7 +212,7 @@ return [
     'genre' => [
         'any' => 'Jakikolwiek',
         'unspecified' => 'Nieokreślony',
-        'video-game' => 'Gra',
+        'video-game' => 'Gra wideo',
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',

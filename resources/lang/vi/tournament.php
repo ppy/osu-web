@@ -29,7 +29,7 @@ return [
     ],
 
     'show' => [
-        'banner' => 'Hỗ Trợ Đội Của Bạn',
+        'banner' => 'Ủng Hộ Đội Của Bạn',
         'entered' => 'Bạn đã đăng kí cuộc thi này.<br><br>Lưu ý rằng điều này không có nghĩa là bạn đã được chia đội.<br><br>Hướng dẫn thêm sẽ được gửi cho bạn qua email vào khoảng thời gian gần ngày thi đấu, vì thế hãy chắc chắn rằng email của tài khoản osu! của bạn hợp lệ',
         'info_page' => 'Trang Thông Tin',
         'login_to_register' => 'Vui lòng :login để xem chi tiết đăng kí!',
@@ -43,7 +43,7 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Đăng ký giải đấu này không khả dụng.',
+            'before_registration' => 'Cổng đăng kí của giải đấu này chưa mở.',
             'ended' => 'Giải đấu này đã kết thúc. Kiểm tra trang thông tin để biết kết quả.',
             'registration_closed' => 'Đăng ký cho giải đấu này đã kết thúc. Kiểm tra trang thông tin để biết các cập nhật mới nhất.',
             'running' => 'Giải đấu này hiện đang diễn ra. Kiểm tra trang thông tin để biết thêm chi tiết.',

@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Artistas em destaque no osu!',
-    'title' => 'Artistas em destaque',
+    'page_description' => 'Artistas oficiais no osu!',
+    'title' => 'Artistas oficiais',
 
     'admin' => [
         'hidden' => 'ARTISTA OCULTO',

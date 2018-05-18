@@ -64,7 +64,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Điểm Cao Nhất',
-            'accuracy' => 'Độ Chính Xác Cao Nhất',
+            'accuracy' => 'Accuracy Cao Nhất',
             'combo' => 'Combo Cao Nhất',
             'scorev2' => 'Score V2',
         ],
