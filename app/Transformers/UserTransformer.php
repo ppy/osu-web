@@ -79,6 +79,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
+            'pm_friends_only' => $user->pm_friends_only,
             'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
             'profile_order' => $profileCustomization->extras_order,

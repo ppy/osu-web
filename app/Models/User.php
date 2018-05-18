@@ -450,6 +450,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['osu_playstyle'] = $styles;
     }
 
+    public function getPmFriendsOnlyAttribute($value)
+    {
+        return !$this->attributes['user_allow_pm'];
+    }
+
+    public function setPmFriendsOnlyAttribute($value)
+    {
+        $this->attributes['user_allow_pm'] = !$value;
+    }
+
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
