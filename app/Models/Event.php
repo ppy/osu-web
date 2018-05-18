@@ -80,7 +80,7 @@ class Event extends Model
                 $params = [
                     'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
                     'user_id' => $user['id'],
-                    'date' => $history->timestamp,
+                    'date' => $options['history']->timestamp,
                     'private' => false,
                     'epicfactor' => 4,
                 ];
