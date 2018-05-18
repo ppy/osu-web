@@ -197,7 +197,10 @@ class OrderCheckout
                 $messages[] = $customClass->validate()->allMessages();
             }
 
-            $itemErrors[$item->id] = array_flatten($messages);
+            $flattened = array_flatten($messages);
+            if (!empty($flattened)) {
+                $itemErrors[$item->id] = array_flatten($messages);
+            }
         }
 
         return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
