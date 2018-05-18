@@ -35,6 +35,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
         'previous_usernames',
@@ -233,6 +234,15 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             return [
                 $user->profileBeatmapsetsFavourite()->count(),
+            ];
+        });
+    }
+
+    public function includeLovedBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsLoved() ->count(),
             ];
         });
     }

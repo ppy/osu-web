@@ -231,6 +231,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',
@@ -280,9 +281,9 @@ class UsersController extends Controller
                 'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
                 'rankedAndApprovedBeatmapsets' => 6,
+                'lovedBeatmapsets' => 6,
                 'unrankedBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
-                'lovedBeatmapsets' => 6,
 
                 'recentActivity' => 5,
                 'recentlyReceivedKudosu' => 5,
