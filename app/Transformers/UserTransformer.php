@@ -35,6 +35,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
         'previous_usernames',
@@ -96,6 +97,22 @@ class UserTransformer extends Fractal\TransformerAbstract
         ];
     }
 
+    public function includeAccountHistory(User $user)
+    {
+        $histories = $user->accountHistories()->recent();
+
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+            $histories->default();
+        } else {
+            $histories->with('actor');
+        }
+
+        return $this->collection(
+            $histories->get(),
+            new UserAccountHistoryTransformer()
+        );
+    }
+
     public function includeActiveTournamentBanner(User $user)
     {
         return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
@@ -116,6 +133,38 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer);
     }
 
+    public function includeDisqusAuth(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $data = [
+                'id' => $user->user_id,
+                'username' => $user->username,
+                'email' => $user->user_email,
+                'avatar' => $user->user_avatar,
+                'url' => route('users.show', $user->user_id),
+            ];
+
+            $encodedData = base64_encode(json_encode($data));
+            $timestamp = time();
+            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
+
+            return [
+                'short_name' => config('services.disqus.short_name'),
+                'public_key' => config('services.disqus.public_key'),
+                'auth_data' => "$encodedData $hmac $timestamp",
+            ];
+        });
+    }
+
+    public function includeFavouriteBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsFavourite()->count(),
+            ];
+        });
+    }
+
     public function includeFollowerCount(User $user)
     {
         return $this->item($user, function ($user) {
@@ -129,6 +178,24 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeGraveyardBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsGraveyard()->count(),
+            ];
+        });
+    }
+
+    public function includeLovedBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsLoved()->count(),
+            ];
+        });
     }
 
     public function includeMonthlyPlaycounts(User $user)
@@ -153,36 +220,21 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeReplaysWatchedCounts(User $user)
+    public function includePreviousUsernames(User $user)
     {
-        return $this->collection(
-            $user->replaysWatchedCounts,
-            new UserReplaysWatchedCountTransformer
-        );
-    }
-
-    public function includeUserAchievements(User $user)
-    {
-        return $this->collection(
-            $user->userAchievements()->orderBy('date', 'desc')->get(),
-            new UserAchievementTransformer()
-        );
-    }
-
-    public function includeAccountHistory(User $user)
-    {
-        $histories = $user->accountHistories()->recent();
-
-        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $histories->default();
-        } else {
-            $histories->with('actor');
-        }
-
-        return $this->collection(
-            $histories->get(),
-            new UserAccountHistoryTransformer()
-        );
+        return $this->item($user, function ($user) {
+            return $user
+                ->usernameChangeHistory()
+                ->visible()
+                ->select(['username_last', 'timestamp'])
+                ->withPresent('username_last')
+                ->where('username_last', '<>', $user->username)
+                ->orderBy('timestamp', 'ASC')
+                ->get()
+                ->pluck('username_last')
+                ->unique()
+                ->toArray();
+        });
     }
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
@@ -192,6 +244,14 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $user->profileBeatmapsetsRankedAndApproved()->count(),
             ];
         });
+    }
+
+    public function includeReplaysWatchedCounts(User $user)
+    {
+        return $this->collection(
+            $user->replaysWatchedCounts,
+            new UserReplaysWatchedCountTransformer
+        );
     }
 
     public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
@@ -219,61 +279,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeGraveyardBeatmapsetCount(User $user)
+    public function includeUserAchievements(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsGraveyard()->count(),
-            ];
-        });
-    }
-
-    public function includeFavouriteBeatmapsetCount(User $user)
-    {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsFavourite()->count(),
-            ];
-        });
-    }
-
-    public function includeDisqusAuth(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $data = [
-                'id' => $user->user_id,
-                'username' => $user->username,
-                'email' => $user->user_email,
-                'avatar' => $user->user_avatar,
-                'url' => route('users.show', $user->user_id),
-            ];
-
-            $encodedData = base64_encode(json_encode($data));
-            $timestamp = time();
-            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
-
-            return [
-                'short_name' => config('services.disqus.short_name'),
-                'public_key' => config('services.disqus.public_key'),
-                'auth_data' => "$encodedData $hmac $timestamp",
-            ];
-        });
-    }
-
-    public function includePreviousUsernames(User $user)
-    {
-        return $this->item($user, function ($user) {
-            return $user
-                ->usernameChangeHistory()
-                ->visible()
-                ->select(['username_last', 'timestamp'])
-                ->withPresent('username_last')
-                ->where('username_last', '<>', $user->username)
-                ->orderBy('timestamp', 'ASC')
-                ->get()
-                ->pluck('username_last')
-                ->unique()
-                ->toArray();
-        });
+        return $this->collection(
+            $user->userAchievements()->orderBy('date', 'desc')->get(),
+            new UserAchievementTransformer()
+        );
     }
 }
