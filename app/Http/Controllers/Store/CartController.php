@@ -48,8 +48,13 @@ class CartController extends Controller
         }
 
         $order = $this->userCart();
-        $checkout = new OrderCheckout($order);
-        $validationErrors = $checkout->validate();
+
+        if ($order !== null) {
+            $checkout = new OrderCheckout($order);
+            $validationErrors = $checkout->validate();
+        } else {
+            $validationErrors = [];
+        }
 
         return view('store.cart', compact('order', 'validationErrors'));
     }
