@@ -282,6 +282,11 @@ class Beatmapset extends Model implements AfterCommit
         return $query->where('approved', '=', self::STATES['graveyard']);
     }
 
+    public function scopeLoved($query)
+    {
+        return $query->where('approved', '=', self::STATES['loved']);
+    }
+
     public function scopeWip($query)
     {
         return $query->where('approved', '=', self::STATES['wip']);
