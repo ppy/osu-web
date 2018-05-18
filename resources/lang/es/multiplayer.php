@@ -52,7 +52,7 @@ return [
         ],
         'failed' => 'FALLIDO',
         'teams' => [
-            'blue' => 'Equipo Azul',
+            'blue' => 'Equipo Azúl',
             'red' => 'Equipo Rojo',
         ],
         'winner' => ':team gana',

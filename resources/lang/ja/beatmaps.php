@@ -65,10 +65,10 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => 'メモ',
-            'nomination_reset' => '',
+            'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
             'suggestion' => '提案',
@@ -150,13 +150,13 @@ return [
         'qualified' => '問題が発覚しなければ:dateにRanked予定',
         'qualified_soon' => '問題が発覚しなければ間もなくRanked',
         'required_text' => 'ノミネート数: :current/:required',
-        'reset_message_deleted' => '',
+        'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
         'unresolved_issues' => 'まだ未解決の問題があります。',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => ':userが:time_agoに新しい問題:discussion (:message)によりノミネーションをリセットしました。',
+            'disqualify' => ':userが:time_agoに新しい問題:discussion (:message)によりDisqualifyしました。',
         ],
 
         'reset_confirm' => [
@@ -178,7 +178,7 @@ return [
                 'language' => '言語',
                 'extra' => 'エキストラ',
                 'rank' => '取得ランク',
-                'played' => '',
+                'played' => 'プレイ済み',
             ],
         ],
         'mode' => 'モード',
@@ -243,7 +243,7 @@ return [
         'Relax' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
-        'TD' => '',
+        'TD' => '液晶タブレット',
     ],
     'language' => [
         'any' => '全て',
@@ -261,8 +261,8 @@ return [
     ],
     'played' => [
         'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'played' => 'プレイ済み',
+        'unplayed' => '未プレイ',
     ],
     'extra' => [
         'video' => '動画あり',

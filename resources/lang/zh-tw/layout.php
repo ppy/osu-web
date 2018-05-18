@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => '社區',
-            'dev' => 'osu! 開發',
+            'dev' => '',
             'getForum' => '論壇',
             'getChat' => '聊天',
             'getLive' => '直播',

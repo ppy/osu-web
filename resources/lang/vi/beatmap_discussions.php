@@ -79,7 +79,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Mọi người',
+        'label' => 'Lọc theo người dùng',
     ],
 ];

@@ -79,7 +79,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => '全てのユーザー',
+        'label' => 'ユーザーで絞り込む',
     ],
 ];

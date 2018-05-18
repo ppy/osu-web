@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
+            'is_hype' => '홍보 한 것을 되돌릴 수 없습니다.',
             'has_reply' => '답글이 달린 토론은 삭제할 수 없습니다',
         ],
         'nominate' => [

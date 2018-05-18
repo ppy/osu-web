@@ -22,7 +22,7 @@ return [
     'deleted' => '[削除されたユーザーです]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":userのModding履歴",
 
         'discussions' => [
             'title_recent' => '最近のディスカッション',
@@ -276,9 +276,9 @@ return [
         ],
         'not_found' => [
             'reason_1' => '対象はユーザーネームを変更した可能性があります。',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_2' => 'セキュリティの問題や不正利用の可能性によりアカウントが一時的に利用不可能になっている場合があります。',
+            'reason_3' => '打ち間違いがないか確認してください！',
+            'reason_header' => '考えられる主な理由：',
             'title' => 'ユーザーが見つかりませんでした。 ｡･ﾟ･(ﾉД` )･ﾟ･｡',
         ],
         'page' => [

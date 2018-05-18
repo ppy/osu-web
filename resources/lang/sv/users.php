@@ -22,37 +22,37 @@ return [
     'deleted' => '[raderad användare]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => ":user's Modding Historik",
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Nyligen startade diskussioner',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Senaste händelser',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Senaste inläggen',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Mest uppröstad av (senaste 3 månaderna)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Mest uppröstad (senaste 3 månaderna)',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Laddar...',
+        'send_message' => 'skicka meddelande',
     ],
 
     'login' => [
         '_' => 'Logga in',
-        'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
+        'locked_ip' => 'din IP adress har låsts. Var vänlig vänta några minuter.',
         'username' => 'Användarnamn',
         'password' => 'Lösenord',
         'button' => 'Logga in',
@@ -60,7 +60,7 @@ return [
         'remember' => 'Kom ihåg denna dator',
         'title' => 'Var vänlig logga in för att fortsätta',
         'failed' => 'Felaktig inloggning',
-        'register' => "Har inget osu! konto? Skapa en ny",
+        'register' => "Har du inget osu! konto? Skapa ett nytt",
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => ':username\'s inlägg',
     ],
 
     'signup' => [
@@ -90,7 +90,7 @@ return [
     ],
     'show' => [
         'age' => ':age år gammal',
-        'change_avatar' => '',
+        'change_avatar' => 'byt din profilbild!',
         'first_members' => 'Här sen början',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -101,7 +101,7 @@ return [
         'origin_country_age' => ':age från :country',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'förr känd som',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
@@ -122,8 +122,8 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
-                'set' => '',
+                'is_default_tooltip' => 'standard spelläge',
+                'set' => 'sätta :mode som profilens förvalda spelläge',
             ],
         ],
 
@@ -157,7 +157,7 @@ return [
                 'title' => 'Historisk',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => 'Spelhistorik',
                 ],
                 'most_played' => [
                     'count' => 'gånger spelade',
@@ -168,7 +168,7 @@ return [
                     'title' => 'Senaste spel (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => 'Repriser kollade',
                 ],
             ],
             'kudosu' => [
@@ -230,7 +230,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Inga fantastiska precision uppgifter än. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Bara rankade mappar ger ut pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
@@ -243,42 +243,42 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => 'Kontoställning',
+                'bad_standing' => "<strong>:username's</strong> konto är inte i en bra ställning :(",
+                'remaining_silence' => '<strong>:username</strong> kan prata igen om :duration.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'Senaste överträdelser',
+                    'date' => 'datum',
+                    'action' => 'handling',
+                    'length' => 'längd',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'beskrivning',
+                    'actor' => 'efter :användarnamn',
 
                     'actions' => [
-                        'restriction' => '',
-                        'silence' => '',
-                        'note' => '',
+                        'restriction' => 'Bannlys',
+                        'silence' => 'Tystnad',
+                        'note' => 'Anteckning',
                     ],
                 ],
             ],
         ],
         'info' => [
-            'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
-            'skype' => '',
-            'twitter' => '',
-            'website' => '',
+            'discord' => 'Discord',
+            'interests' => 'Intressen',
+            'lastfm' => 'Last.fm',
+            'location' => 'Nuvarande plats',
+            'occupation' => 'Sysselsättning',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Hemsida',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'De kan ha ändrat deras användarnamn.',
+            'reason_2' => 'Kontot kan vara otillgängligt på grund av säkerhet eller missbruksproblem.',
+            'reason_3' => 'Du kanske har gjort ett stavfel!',
+            'reason_header' => 'Det finns två möjliga orsaker till felet:',
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
@@ -288,8 +288,8 @@ return [
             'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Medverkade :link',
+            'count' => ':count foruminlägg|:count foruminlägg',
         ],
         'rank' => [
             'country' => 'Land rank för :mode',
@@ -300,7 +300,7 @@ return [
             'level' => 'Nivå :level',
             'maximum_combo' => 'Maximal Kombo',
             'play_count' => 'Antal Spel',
-            'play_time' => '',
+            'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',
             'replays_watched_by_others' => 'Repriser Sedda av Andra',
             'score_ranks' => 'Poäng Ranker',

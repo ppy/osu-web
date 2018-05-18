@@ -66,7 +66,7 @@ return [
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => '',
-            'playcount' => '',
+            'playcount' => 'Đã chơi',
         ],
         'info' => [
             'description' => 'Mô Tả',
@@ -77,7 +77,7 @@ return [
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
-            'unranked' => '',
+            'unranked' => 'Beatmap chưa có xếp hạng',
         ],
         'scoreboard' => [
             'achieved' => 'đạt được :when',

@@ -20,7 +20,7 @@
 
 return [
     'admin' => [
-        'warehouse' => 'ウェアハウス',
+        'warehouse' => '倉庫',
     ],
 
     'checkout' => [
@@ -28,7 +28,7 @@ return [
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
         'error' => '精算中に問題が発生しました。',
-        'old_cart' => '',
+        'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
         'pending_checkout' => [
             'line_1' => '前回の精算が完了していません。',
@@ -42,7 +42,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'あなたの注文を受け付けました！',
         ],
     ],
 

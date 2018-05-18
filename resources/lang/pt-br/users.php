@@ -283,7 +283,7 @@ return [
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
-            'edit_big' => 'Editar eu!',
+            'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear este recurso.",
         ],

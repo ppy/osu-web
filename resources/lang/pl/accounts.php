@@ -32,11 +32,11 @@ return [
             'current' => 'obecny e-mail',
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
-            'title' => 'Email',
+            'title' => 'Adres e-mail',
         ],
 
         'password' => [
-            'current' => 'aktualne hasło',
+            'current' => 'obecne hasło',
             'new' => 'nowe hasło',
             'new_confirmation' => 'potwierdź hasło',
             'title' => 'Hasło',
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'potwierdź zmianę maila',
+        'email_subject' => 'potwierdź zmianę adresu e-mail',
         'update' => 'zaktualizuj',
     ],
 

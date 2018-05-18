@@ -25,7 +25,7 @@ return [
         'username' => 'nom d\'utilisateur',
 
         'avatar' => [
-            'title' => 'Éditer l\'Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -43,13 +43,13 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Éditer le Profil',
+            'title' => 'Profil',
 
             'user' => [
-                'user_from' => 'localisation actuelle',
+                'user_from' => 'résidence actuelle',
                 'user_interests' => 'centres d\'intérêt',
                 'user_msnm' => 'skype',
-                'user_occ' => 'occupation',
+                'user_occ' => 'emploi',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
                 'user_discord' => 'discord',
@@ -63,20 +63,20 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
+        'email_subject' => 'Confirmation du changement d\'email du compte osu!',
         'update' => 'mettre à jour',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
+        'email_subject' => 'Confirmation du changement de mot de passe du compte osu!',
         'update' => 'mettre à jour',
     ],
 
     'playstyles' => [
-        'title' => 'Styles de jeu',
+        'title' => 'Méthodes de jeu',
         'mouse' => 'souris',
         'keyboard' => 'clavier',
         'tablet' => 'tablette',
-        'touch' => 'tactile',
+        'touch' => 'écran tactile',
     ],
 ];

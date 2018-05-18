@@ -146,7 +146,7 @@ return [
         'incorrect_state' => '',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => '',
-        'nominated_by' => '',
+        'nominated_by' => 'Được :users đề cử',
         'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
         'qualified_soon' => '',
         'required_text' => '',

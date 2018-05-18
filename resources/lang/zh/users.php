@@ -46,7 +46,7 @@ return [
     ],
 
     'card' => [
-        'loading' => '加载中。。。',
+        'loading' => '加载中...',
         'send_message' => '发送消息',
     ],
 
@@ -93,7 +93,7 @@ return [
         'change_avatar' => '更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
-        'is_supporter' => 'osu! 支持者',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
@@ -114,10 +114,10 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
-                    'size_info' => '图片尺寸应为2000x700',
-                    'too_large' => '上传的图片过大.',
-                    'unsupported_format' => '不支持的格式.',
+                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 可用",
+                    'size_info' => '图片大小最好是 2000x700 像素',
+                    'too_large' => '上传的图片过大。',
+                    'unsupported_format' => '不支持的格式。',
                 ],
             ],
 
@@ -149,7 +149,7 @@ return [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => 'Pending 的谱面 (:count)',
                 ],
             ],
             'historical' => [
@@ -271,7 +271,7 @@ return [
             'location' => '所在地',
             'occupation' => '职业',
             'skype' => 'Skype',
-            'twitter' => '推特',
+            'twitter' => 'Twitter',
             'website' => '网站',
         ],
         'not_found' => [
@@ -285,7 +285,7 @@ return [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 以解锁该特性.",
         ],
         'post_count' => [
             '_' => '发表了 :link',

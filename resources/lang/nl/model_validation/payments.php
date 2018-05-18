@@ -20,33 +20,33 @@
 
 return [
     'signature' => [
-        'not_match' => '',
+        'not_match' => 'Digitale handtekeningen komen niet overeen',
     ],
-    'notification_type' => '',
+    'notification_type' => 'notification_type is geen geldig :type',
     'order' => [
-        'invalid' => '',
+        'invalid' => 'Order is niet geldig',
         'items' => [
-            'virtual_only' => '',
+            'virtual_only' => '`:provider` is niet juist voor fysieke items.',
         ],
         'status' => [
-            'not_checkout' => '',
-            'not_paid' => '',
+            'not_checkout' => 'Proberen betaling te accepteren voor foute state `:state`.',
+            'not_paid' => 'Proberen terugbetaling te accepteren voor foute state `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '',
+        'invalid' => '`:param` parameter komt niet overeen',
     ],
     'paypal' => [
-        'not_echeck' => '',
+        'not_echeck' => 'Betaling in afwachting is geen echeck. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '',
-            'currency' => '',
+            'amount' => 'Betalingsbedrag komt niet overeen: :actual != :expected',
+            'currency' => 'Betaling is niet in USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => '',
-        'user_id_mismatch' => '',
+        'malformed' => 'Ontvangen order transactie-id is ongeldig',
+        'user_id_mismatch' => 'external_id bevat verkeerde gebruikersid',
     ],
 ];
