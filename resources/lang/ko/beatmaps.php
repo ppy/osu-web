@@ -65,7 +65,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => '실격',
             'hype' => '홍보!',
             'mapper_note' => '',
             'nomination_reset' => '',
@@ -76,11 +76,11 @@ return [
 
         'mode' => [
             'events' => '기록',
-            'general' => '',
+            'general' => '일반 :scope',
             'timeline' => '타임라인',
             'scopes' => [
-                'general' => '',
-                'generalAll' => '',
+                'general' => '이 난이도',
+                'generalAll' => '모든 난이도',
             ],
         ],
 
@@ -95,8 +95,8 @@ return [
         ],
 
         'sort' => [
-            '_' => '',
-            'created_at' => '',
+            '_' => '정렬 기준:',
+            'created_at' => '작성일',
             'timeline' => '타임라인',
             'updated_at' => '최근 업데이트',
         ],
@@ -128,14 +128,14 @@ return [
         'explanation' => '',
         'explanation_guest' => '',
         'new_time' => "",
-        'remaining' => ':remaining개의 홍보 가능 횟수가 남았습니다.',
+        'remaining' => ':remaining개의 홍보권이 남았습니다.',
         'required_text' => '홍보 가능 횟수: :current/:required',
         'section_title' => 'Hype Train',
         'title' => '비트맵 홍보',
     ],
 
     'feedback' => [
-        'button' => '',
+        'button' => '의견 남기기',
     ],
 
     'nominations' => [
@@ -143,14 +143,14 @@ return [
         'disqualified_at' => ':time_ago에 실격처리 되었습니다 (:reason).',
         'disqualified_no_reason' => '사유가 명시되지 않았습니다',
         'disqualify' => '실격시키기',
-        'incorrect_state' => '',
+        'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'nominate' => '추천하기',
         'nominate_confirm' => '이 비트맵을 추천할까요?',
         'nominated_by' => '',
         'qualified' => '아무런 문제가 발견되지 않으면, :date에 Ranked될 것입니다.',
         'qualified_soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
         'required_text' => '추천 수: :current/:required',
-        'reset_message_deleted' => '',
+        'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
         'unresolved_issues' => '',
 
@@ -171,14 +171,14 @@ return [
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
-                'general' => '',
+                'general' => '일반',
                 'mode' => '모드',
                 'status' => '등록 상태',
                 'genre' => '장르',
                 'language' => '언어 분류',
                 'extra' => '부가 기능',
                 'rank' => '순위 기록됨',
-                'played' => '',
+                'played' => '플레이함',
             ],
         ],
         'mode' => '모드',
@@ -188,8 +188,8 @@ return [
         'load-more' => '더 불러오기...',
     ],
     'general' => [
-        'recommended' => '',
-        'converts' => '',
+        'recommended' => '권장 난이도',
+        'converts' => '변환된 비트맵 포함',
     ],
     'mode' => [
         'any' => '모두',
@@ -261,8 +261,8 @@ return [
     ],
     'played' => [
         'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'played' => '플레이함',
+        'unplayed' => '플레이하지 않음',
     ],
     'extra' => [
         'video' => '비디오 있음',

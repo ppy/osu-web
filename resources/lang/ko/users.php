@@ -143,7 +143,7 @@ return [
                     'title' => '즐겨찾기한 비트맵 (:count개)',
                 ],
                 'graveyard' => [
-                    'title' => '',
+                    'title' => '무덤에 묻힌 비트맵 (:count개)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked / Approved 된 비트맵 (:count개)',
@@ -276,9 +276,9 @@ return [
         ],
         'not_found' => [
             'reason_1' => '이름을 바꿨나 봐요.',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_2' => '보안 문제 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
+            'reason_3' => '오타가 있을 수 있습니다!',
+            'reason_header' => '이에 대한 몇 가지 이유가 있습니다:',
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [

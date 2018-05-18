@@ -21,13 +21,13 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '',
-            'regenerating' => '',
-            'remove' => '',
-            'removing' => '',
+            'regenerate' => 'Regenerera',
+            'regenerating' => 'Regenererar...',
+            'remove' => 'Ta bort',
+            'removing' => 'Tar bort...',
         ],
         'show' => [
-            'covers' => '',
+            'covers' => 'Hantera Beatmapsetomslag',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'aktivera',
@@ -64,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logg Visare',
+            'title' => 'Logg',
         ],
     ],
 
@@ -83,15 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Lista',
+                'title' => 'Orderlista',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Denna användare är begränsad.',
-            'message' => '(endast admins kan se detta)',
+            'title' => 'Denna användare är för närvarande avstängd.',
+            'message' => '(endast administratörer kan se detta)',
         ],
     ],
 

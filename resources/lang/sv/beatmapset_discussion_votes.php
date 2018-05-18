@@ -20,10 +20,10 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Beatmapdiskussionsröster',
     ],
 
     'item' => [
-        'score' => '',
+        'score' => 'Poäng',
     ],
 ];

@@ -69,10 +69,10 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikaty nie są dozwolone.',
-            'invalid_max_options' => 'Ilość możliwości wyboru na użytkownika nie może przekroczyć ich całościowej liczby.',
+            'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',
             'minimum_one_selection' => 'Potrzeba minimalnie jedną opcję.',
             'minimum_two_options' => 'Potrzeba minimalnie dwóch opcji.',
-            'too_many_options' => 'Przekroczono maksymalną ilość możliwości wyboru.',
+            'too_many_options' => 'Przekroczono maksymalną liczbę możliwości wyboru.',
         ],
 
         'topic_vote' => [

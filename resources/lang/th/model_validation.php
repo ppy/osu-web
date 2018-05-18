@@ -107,7 +107,7 @@ return [
         'change_username' => [
             'supporter_required' => [
                 '_' => '',
-                'link_text' => '',
+                'link_text' => 'สนับสนุน osu!',
             ],
             'username_is_same' => '',
         ],

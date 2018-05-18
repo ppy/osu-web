@@ -21,33 +21,33 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => '',
+            'subtitle' => 'Een lijst van actieve, officieel erkende tournooien',
             'title' => '',
         ],
-        'none_running' => '',
-        'registration_period' => '',
+        'none_running' => 'Momenteel zijn er geen toernooien bezig, Kijk later nog eens!',
+        'registration_period' => 'Registratie: :start tot :end',
     ],
 
     'show' => [
-        'banner' => '',
-        'entered' => '',
-        'info_page' => '',
+        'banner' => 'Ondersteun jouw team',
+        'entered' => 'Je bent ingeschreven voor dit toernooi.<br><br>Houd in gedachte dat dit niet betekent dat je voor een team bent toebedeeld.<br><br>Verdere instructies zullen via e-mail worden verzonden dichter bij de toernooidatum, dus zorg er voor dat het e-mailadres dat gelinkt is aan je osu! account geldig is!',
+        'info_page' => 'Informatie pagina',
         'login_to_register' => '',
-        'not_yet_entered' => '',
-        'rank_too_low' => '',
-        'registration_ends' => '',
+        'not_yet_entered' => 'U bent niet geregistreerd voor dit toernooi.',
+        'rank_too_low' => 'Sorry, je voldoet niet aan de rangvereisten voor dit toernooi!',
+        'registration_ends' => 'Registratie gesloten op :date',
 
         'button' => [
-            'cancel' => '',
-            'register' => '',
+            'cancel' => 'Annuleer registratie',
+            'register' => 'Schrijf me in!',
         ],
 
         'state' => [
-            'before_registration' => '',
+            'before_registration' => 'Registratie voor dit toernooi is nog niet begonnen.',
             'ended' => '',
             'registration_closed' => '',
             'running' => '',
         ],
     ],
-    'tournament_period' => '',
+    'tournament_period' => ':start tot :end',
 ];

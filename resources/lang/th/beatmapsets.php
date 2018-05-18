@@ -66,12 +66,12 @@ return [
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
             'nominations' => '',
-            'playcount' => '',
+            'playcount' => 'เล่นนับ',
         ],
         'info' => [
             'description' => 'Description',
-            'genre' => '',
-            'language' => '',
+            'genre' => 'ประเภท',
+            'language' => 'ภาษา',
             'no_scores' => 'Unranked beatmap',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
@@ -89,15 +89,15 @@ return [
             'title' => 'Scoreboard',
 
             'headers' => [
-                'accuracy' => '',
+                'accuracy' => 'ความแม่นยำ',
                 'combo' => '',
                 'miss' => '',
                 'mods' => '',
-                'player' => '',
+                'player' => 'ผู้เล่น',
                 'pp' => '',
-                'rank' => '',
+                'rank' => 'อันดับ',
                 'score_total' => '',
-                'score' => '',
+                'score' => 'คะแนน',
             ],
 
             'no_scores' => [

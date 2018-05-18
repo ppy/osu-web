@@ -30,7 +30,7 @@ return [
     'rank' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 #:rank등을 기록했습니다',
     'rank_lost' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 1등 자리를 빼앗겼습니다.',
     'user_support_again' => '<strong>:user</strong>님이 다시 한번 osu!를 지원하기로 결정하셨군요! - 당신의 그 너그러움에 감사를!',
-    'user_support_first' => '<strong>:user</strong>님이 osu! 되었습니다 - 당신의 그 너그러움에 감사를!',
+    'user_support_first' => '<strong>:user</strong>님이 osu! 후원자가 되었습니다. - 당신의 그 너그러움에 감사를!',
     'user_support_gift' => '<strong>:user</strong>님이 osu! 서포터를 선물받았습니다!',
     'username_change' => '<strong>:previousUsername</strong>님이 유저이름을 <strong><em>:user</strong></em>로 변경했습니다!',
 ];

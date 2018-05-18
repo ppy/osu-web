@@ -31,7 +31,7 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Ilość użytkowników online w ciągu ostatnich 24 godzin',
+            'users' => 'Liczba użytkowników online w ciągu ostatnich 24 godzin',
             'score' => 'Liczba wysłanych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',

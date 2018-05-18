@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',

@@ -77,8 +77,8 @@ return [
         ],
         'community' => [
             '_' => 'społeczność',
-            'dev' => '',
-            'getForum' => 'fora',
+            'dev' => 'rozwój',
+            'getForum' => 'forum',
             'getChat' => 'czat',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'turnieje',
             'tournaments-show' => 'informacje o turnieju',
             'forum-topic-watches-index' => 'subskrybcje',
-            'forum-topics-create' => 'fora',
-            'forum-topics-show' => 'fora',
+            'forum-topics-create' => 'forum',
+            'forum-topics-show' => 'forum',
             'forum-forums-index' => 'fora',
-            'forum-forums-show' => 'fora',
+            'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
             '_' => 'tryb wieloosobowy',
@@ -174,7 +174,7 @@ return [
         'help' => [
             '_' => 'Pomoc i społeczność',
             'faq' => 'Często zadawane pytania',
-            'forum' => 'Fora',
+            'forum' => 'Forum społeczności',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
         ],

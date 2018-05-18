@@ -25,7 +25,7 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => 'главная',
+            '_' => 'общее',
             'account-edit' => 'настройки',
             'friends-index' => 'друзья',
             'changelog-index' => 'список изменений',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'сообщество',
-            'dev' => '',
+            'dev' => 'разработка',
             'getForum' => 'форумы',
             'getChat' => 'chat',
             'getLive' => 'прямые трансляции',
@@ -118,12 +118,12 @@ return [
             'settings' => 'Настройки',
             'logout' => 'Выход',
             'help' => 'Помощь',
-            'modding-history-discussions' => '',
-            'modding-history-events' => '',
+            'modding-history-discussions' => 'обсуждение',
+            'modding-history-events' => 'история событий',
             'modding-history-index' => 'активность карты пользователя',
-            'modding-history-posts' => '',
-            'modding-history-votesGiven' => '',
-            'modding-history-votesReceived' => '',
+            'modding-history-posts' => 'история публикаций',
+            'modding-history-votesGiven' => 'голоса',
+            'modding-history-votesReceived' => 'полученные голоса',
         ],
         'store' => [
             '_' => 'магазин',

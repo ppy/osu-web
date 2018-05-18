@@ -160,7 +160,7 @@ return [
                     'title' => 'Wykres zagrań',
                 ],
                 'most_played' => [
-                    'count' => 'ilość zagrań',
+                    'count' => 'liczba zagrań',
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
@@ -173,10 +173,10 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
-                'available_info' => "Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.",
+                'available_info' => "Punkty kudosu mogą zostać wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi.",
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
-                'total' => 'Ilość zdobytego kudosu',
+                'total' => 'Zdobyte kudosu',
                 'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
 
                 'entry' => [
@@ -299,12 +299,12 @@ return [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
-            'play_count' => 'Ilość zagrań',
+            'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
-            'total_hits' => 'Łączna ilość uderzeń',
+            'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
         ],
     ],

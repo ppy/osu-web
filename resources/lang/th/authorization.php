@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'คุณถึงขีดจำกัดของการ nomination สำหรับวันนี้ โปรดลองอีกครั้งพรุ่งนี้',
+            'incorrect_state' => '',
+            'owner' => "",
         ],
         'resolve' => [
             'not_owner' => 'เฉพาะผู้เริ่ม thread และเจ้าของ beatmap สามารถ resolve การสนทนา',

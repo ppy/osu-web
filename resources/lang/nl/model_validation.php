@@ -19,24 +19,24 @@
  */
 
 return [
-    'not_negative' => '',
+    'not_negative' => ':attribute kan niet negatief zijn.',
     'required' => ':attribute is nodig.',
-    'too_long' => '',
-    'wrong_confirmation' => '',
+    'too_long' => ':attribute heeft de maximum lengte overschreden - kan enkel tot :limit karakters gebruiken.',
+    'wrong_confirmation' => 'Bevestiging komt niet overeen.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Discussie is vergrendeld.',
+        'first_post' => 'Je kan de startpost niet verwijderen.',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
-        'locked' => '',
-        'mapper_note_wrong_user' => '',
+        'beatmap_missing' => 'Tijdstempel is opgegeven, maar beatmap ontbreekt.',
+        'beatmapset_no_hype' => "Beatmap kan niet worden gehyped.",
+        'hype_requires_null_beatmap' => 'Hype moet gebeuren in de General afdeling (alle moeilijkheidsgraden).',
+        'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
+        'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
+        'locked' => 'Discussie is vergrendeld.',
+        'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
             'guest' => '',
@@ -71,31 +71,31 @@ return [
             'duplicate_options' => '',
             'invalid_max_options' => '',
             'minimum_one_selection' => '',
-            'minimum_two_options' => '',
+            'minimum_two_options' => 'Moet ten minste twee opties hebben.',
             'too_many_options' => '',
         ],
 
         'topic_vote' => [
-            'required' => '',
-            'too_many' => '',
+            'required' => 'Selecteer een optie om te stemmen.',
+            'too_many' => 'Meer opties selecteren is niet toegestaan.',
         ],
     ],
 
     'user' => [
         'contains_username' => '',
-        'email_already_used' => '',
+        'email_already_used' => 'Dit e-mailadres is al in gebruik.',
         'invalid_country' => '',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discord gebruikersnaam is ongeldig.',
         'invalid_email' => "",
-        'too_short' => '',
-        'unknown_duplicate' => '',
-        'username_available_in' => '',
-        'username_available_soon' => '',
+        'too_short' => 'Nieuw wachtwoord is te kort.',
+        'unknown_duplicate' => 'Gebruikersnaam of e-mailadres is al in gebruik.',
+        'username_available_in' => 'Deze gebruikersnaam zal over :duration beschikbaar zijn.',
+        'username_available_soon' => 'Deze gebruikersnaam kan elk moment beschikbaar worden!',
         'username_invalid_characters' => '',
-        'username_in_use' => '',
+        'username_in_use' => 'Gebruikersnaam is al in gebruik!',
         'username_no_space_userscore_mix' => '',
         'username_no_spaces' => "",
-        'username_not_allowed' => '',
+        'username_not_allowed' => 'Deze gebruikersnaam is niet toegestaan.',
         'username_too_short' => '',
         'username_too_long' => '',
         'weak' => '',
@@ -106,7 +106,7 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => '',
+                '_' => 'Je moet :link hebben om je naam te veranderen!',
                 'link_text' => '',
             ],
             'username_is_same' => '',

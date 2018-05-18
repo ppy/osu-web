@@ -34,7 +34,7 @@ return [
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
         'delete' => 'supprimer',
-        'deleted' => 'supprimé par :editor :delete_time',
+        'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor :update_time',

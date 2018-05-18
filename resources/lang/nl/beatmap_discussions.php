@@ -28,39 +28,39 @@ return [
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Er is nog niets gebeurt... nog niet.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'title' => '',
+        'deleted_beatmap' => 'verwijderd',
+        'title' => 'Beatmap Discussies',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => 'Verwijderde discussies toevoegen',
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Gebruiker',
+                'overview' => 'Activiteitenoverzicht',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Postdatum',
+        'deleted_at' => 'Verwijderdatum',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
+        'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
+        'notice' => 'Dit zijn de posts rong :timestamp (:existing_timestamp). Controleer ze voor te posten.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Log in om te beantwoorden',
+            'user' => 'Beantwoord',
         ],
     ],
 
@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
-        'bng' => '',
-        'owner' => '',
-        'qat' => '',
+        'admin' => 'administrator',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Iedereen',
+        'label' => 'Filter op gebruiker',
     ],
 ];

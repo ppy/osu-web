@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => 'Vous avez trop de beatmaps favorites ! Merci de supprimer une beatmap de vos favoris.',
     ],
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
-    'supporter_only' => 'Vous devez être un osu!supporter pour accéder à cela.',
-    'no_restricted_access' => 'Vous ne pouvez pas faire ça avec un compte avec un accès restreint.',
-    'unknown' => 'Erreur inconnue survenue.',
+    'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
+    'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
+    'unknown' => 'Une erreur inconnue est survenue.',
 ];

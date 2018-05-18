@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
-        'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe die, bevor du diesen absendest.',
+        'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
     ],
 
     'reply' => [
@@ -66,20 +66,20 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Von :user als gelöst erklärt',
+            'true' => 'Von :user für gelöst erklärt',
             'false' => 'Von :user wiedereröffnet',
         ],
     ],
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'ersteller',
+        'bng' => 'Nominator',
+        'owner' => 'Mapper',
         'qat' => 'qat',
     ],
 
     'user_filter' => [
         'everyone' => 'Jeder',
-        'label' => 'Nach Nutzer filtern',
+        'label' => 'Nach Benutzer filtern',
     ],
 ];

@@ -65,7 +65,7 @@ return [
             'count_sliders' => '滑条总数',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
-            'nominations' => '',
+            'nominations' => '被提名者',
             'playcount' => '游玩次数',
         ],
         'info' => [
