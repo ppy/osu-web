@@ -80,29 +80,10 @@ trait EsIndexable
 
     public static function esCreateIndex(string $name = null)
     {
-        $settings = [
-            'index' => [
-                'number_of_shards' => config('osu.elasticsearch.number_of_shards'),
-            ],
-        ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings['analysis'] = static::esAnalysisSettings();
-        }
-
-        $type = static::esType();
-        $body = [
-            'mappings' => [
-                $type => [
-                    'properties' => static::esMappings(),
-                ],
-            ],
-            'settings' => $settings,
-        ];
-
+        // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
-            'body' => $body,
+            'body' => static::esSchemaConfig(),
         ];
 
         return Es::indices()->create($params);
