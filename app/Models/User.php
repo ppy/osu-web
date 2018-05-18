@@ -56,6 +56,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
+        'user_allow_pm' => 'boolean',
         'user_timezone', 'float',
     ];
 
@@ -450,14 +451,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['osu_playstyle'] = $styles;
     }
 
-    public function getPmFriendsOnlyAttribute($value)
+    public function getPmFriendsOnlyAttribute()
     {
-        return !$this->attributes['user_allow_pm'];
+        return !$this->user_allow_pm;
     }
 
     public function setPmFriendsOnlyAttribute($value)
     {
-        $this->attributes['user_allow_pm'] = !$value;
+        $this->user_allow_pm = !$value;
     }
 
     public function setUsernameAttribute($value)
