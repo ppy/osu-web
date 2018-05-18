@@ -199,7 +199,7 @@ class OrderCheckout
 
             $flattened = array_flatten($messages);
             if (!empty($flattened)) {
-                $itemErrors[$item->id] = array_flatten($messages);
+                $itemErrors[$item->id] = $flattened;
             }
         }
 
