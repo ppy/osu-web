@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
+            'new' => 'New Ranked Beatmaps',
             'popular' => 'Popular Beatmaps',
             'by' => 'by',
             'plays' => ':count plays',
