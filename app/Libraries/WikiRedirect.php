@@ -40,7 +40,13 @@ class WikiRedirect
                 60,
                 function () {
                     try {
-                        return Yaml::parse(strip_utf8_bom(OsuWiki::fetchContent('wiki/redirect.yaml')), true);
+                        $yaml = Yaml::parse(strip_utf8_bom(OsuWiki::fetchContent('wiki/redirect.yaml')), true);
+                        $normalizedYaml = array();
+                        foreach ($yaml as $key => $value) {
+                            $normalizedKey = $this->normalizePath($key);
+                            $normalizedYaml["$normalizedKey"] = $value;
+                        }
+                        return $normalizedYaml;
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
