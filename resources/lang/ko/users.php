@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => '무덤에 묻힌 비트맵 (:count개)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked / Approved 된 비트맵 (:count개)',
                 ],

@@ -31,7 +31,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mode spécifié invalide.',
-        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode selectionné sur cette difficulté de beatmap.',
+        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Vous avez trop de beatmaps favorites ! Merci de supprimer une beatmap de vos favoris.',

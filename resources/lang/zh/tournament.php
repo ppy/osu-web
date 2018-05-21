@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => '目前没有正在进行的比赛，过段时间再来看看吧！',
         'registration_period' => '报名时间： :start 到 :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

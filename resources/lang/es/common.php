@@ -25,16 +25,16 @@ return [
     'array_and' => [
         'words_connector' => ', ',
         'two_words_connector' => ' y ',
-        'last_word_connector' => ' y ',
+        'last_word_connector' => ', y ',
     ],
 
     'buttons' => [
         'cancel' => 'Cancelar',
         'change' => 'cambiar',
-        'click_to_copy' => 'haz clic aquí para copiarlo al portapapeles',
-        'click_to_copy_copied' => 'copiado al portapapeles!',
+        'click_to_copy' => 'haz clic para copiarlo al portapapeles',
+        'click_to_copy_copied' => '¡copiado al portapapeles!',
         'delete' => 'Eliminar',
-        'permalink' => 'enlace permanente',
+        'permalink' => 'permalink',
         'permalink_copied' => 'enlace copiado',
         'post' => 'Publicar',
         'reply' => 'Responder',
@@ -78,7 +78,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'suelta aquí para cargar',
+        'target' => 'suelta aquí para subirlo',
     ],
 
     'pagination' => [

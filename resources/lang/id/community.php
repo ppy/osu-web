@@ -23,12 +23,12 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Suka osu!?<br/>
-                                Dukung perkembangannya! :D',
+                                Dukung pengembangannya! :D',
             'small_description' => '',
             'support_button' => 'Saya ingin mendukung osu!',
         ],
 
-        'dev_quote' => 'Meskipun osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biayanya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! menggunakan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak tidak jelas manapun sama sekali!
+        'dev_quote' => 'Meskipun osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biaya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! membutuhkan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak manapun yang tidak jelas, sama sekali!
             <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai \'peppy\'.
             Pada akhirnya, saya harus keluar dari pekerjaan tetap saya agar dapat terus mengembangkan osu!,
             dan di samping itu terkadang saya juga harus harus bersusah payah demi mempertahankan standar kualitas yang telah saya tetapkan.
@@ -47,11 +47,11 @@ return [
         'why_support' => [
             'title' => 'Mengapa saya harus mendukung osu!?',
             'blocks' => [
-                'dev' => 'Senantiasa diasuh dan dikembangkan oleh satu orang di Australia',
+                'dev' => 'Senantiasa dipelihara dan dikembangkan oleh satu orang di Australia',
                 'time' => 'Memerlukan begitu banyak waktu untuk menjalankannya sehingga tidak mungkin lagi menyebutnya sebagai \'hobi\'.',
                 'ads' => 'Tidak ada iklan di mana pun. <br/><br/>
-                Tidak seperti 99,95% situs web lainnya, kami tidak berorientasi pada keuntungan atau mengiklankan barang-barang tawarannya secara semena-mena di depan layar monitor Anda. ',
-                'goodies' => 'Anda akan mendapatkan beberapa fitur ekstra!',
+                Tidak seperti 99,95% situs web lainnya, kami tidak berorientasi pada keuntungan atau mengiklankan tawaran barang-barang secara semena-mena di depan layar monitor Anda.',
+                'goodies' => 'Anda akan mendapatkan beberapa fitur tambahan!',
             ],
         ],
 
@@ -73,7 +73,7 @@ return [
             ],
 
             'early_access' => [
-                'title' => 'Akses Versi Pra-Rilis',
+                'title' => 'Akses Pra-Rilis',
                 'description' => 'Akses ke rilisan terbaru lebih awal, di mana Anda dapat mencoba fitur yang bahkan belum dirilis secara publik!',
             ],
 
@@ -98,13 +98,13 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Ganti Nama Pengguna',
+                'title' => 'Perubahan Nama Pengguna',
                 'description' => 'Kemampuan untuk mengubah nama pengguna Anda tanpa biaya tambahan (maksimum sekali).',
             ],
 
             'skinnables' => [
                 'title' => 'Elemen Skinning',
-                'description' => 'Tambahan elemen yang bisa Anda skin, seperti latar belakang menu utama.',
+                'description' => 'Tambahan elemen skin yang bisa Anda kustomisasi, seperti latar belakang menu utama.',
             ],
 
             'feature_votes' => [
@@ -132,7 +132,7 @@ return [
             'title' => 'Saya yakin! :D',
             'support' => 'dukung osu!',
             'gift' => 'atau hadiahkan supporter tag kepada pemain lain',
-            'instructions' => 'klik tombol hati untuk diarahkan menuju osu!store',
+            'instructions' => 'klik tombol hati untuk melanjutkan ke osu!store',
         ],
     ],
 ];

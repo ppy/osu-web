@@ -26,14 +26,14 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => '設置封面',
+            '_' => '新增封面',
             'button' => '上傳圖片',
-            'info' => '圖片尺寸應為 :dimensions. 也可以將圖片拖動到這裡上傳.',
+            'info' => '圖片尺寸應為 :dimensions. 也可以將圖片拉到此處上傳.',
         ],
 
         'destroy' => [
             '_' => '移除封面',
-            'confirm' => '移除這個封面？',
+            'confirm' => '您確定要刪除封面嗎？',
         ],
     ],
 
@@ -84,17 +84,17 @@ return [
             'submit' => '發表',
 
             'placeholder' => [
-                'body' => '在這裡輸入正文',
-                'title' => '點擊這裡設置標題',
+                'body' => '在這裡輸入內文',
+                'title' => '點擊這裡編輯標題',
             ],
         ],
 
         'jump' => [
-            'enter' => '點擊這裡跳轉到指定回覆',
-            'first' => '跳轉到第一條回覆',
-            'last' => '跳轉到最後一條回覆',
-            'next' => '向後 10 條',
-            'previous' => '向前 10 條',
+            'enter' => '點擊這裡跳轉到指定的回覆',
+            'first' => '返回頂部',
+            'last' => '跳至最後',
+            'next' => '往後 10 篇',
+            'previous' => '往前 10 篇',
         ],
 
         'post_edit' => [
@@ -133,29 +133,29 @@ return [
 
         'actions' => [
             'reply' => '回覆',
-            'reply_with_quote' => '引用以回覆',
+            'reply_with_quote' => '引用此回覆',
             'search' => '搜尋',
         ],
 
         'create' => [
-            'create_poll' => '創建投票',
+            'create_poll' => '建立投票',
 
             'create_poll_button' => [
-                'add' => '創建投票',
-                'remove' => '取消創建投票',
+                'add' => '建立投票',
+                'remove' => '取消建立投票',
             ],
 
             'poll' => [
                 'length' => '投票持續',
                 'length_days_suffix' => '天',
                 'length_info' => '如果無期限則留空',
-                'max_options' => '最大可選數',
-                'max_options_info' => '填寫每個人最多可以選的選項數。',
+                'max_options' => '最多可選數',
+                'max_options_info' => '每個人最多可選的數量。',
                 'options' => '選項',
                 'options_info' => '一個選項佔一行，最多10個選項。',
                 'title' => '問題',
                 'vote_change' => '允許修改',
-                'vote_change_info' => '如果選中，則用戶可以更改他們的投票。',
+                'vote_change_info' => '允許投票者修改他們的投票。',
             ],
         ],
 
@@ -164,71 +164,71 @@ return [
         ],
 
         'index' => [
-            'views' => '查看數',
+            'views' => '瀏覽數',
             'replies' => '回覆數',
         ],
 
         'issue_tag_added' => [
-            'to_0' => '移除 "added" 标签',
-            'to_0_done' => '已移除 "added" 标签',
-            'to_1' => '添加 "added" 标签',
-            'to_1_done' => '已添加 "added" 标签',
+            'to_0' => '移除 "added" 標籤',
+            'to_0_done' => '已移除 "added" 標籤',
+            'to_1' => '新增 "added" 標籤',
+            'to_1_done' => '已新增 "added" 標籤',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => '移除 "assigned" 标签',
+            'to_0' => '移除 "assigned" 標籤',
             'to_0_done' => '已移除 "assigned" 标签',
-            'to_1' => '添加 "assigned" 标签',
-            'to_1_done' => '已添加 "assigned" 标签',
+            'to_1' => '新增 "assigned" 標籤',
+            'to_1_done' => '已新增 "assigned" 標籤',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => '移除 "confirmed" 标签',
-            'to_0_done' => '已移除 "confirmed" 标签',
-            'to_1' => '添加 "confirmed" 标签',
-            'to_1_done' => '已添加 "confirmed" 标签',
+            'to_0' => '移除 "confirmed" 標籤',
+            'to_0_done' => '已移除 "confirmed" 標籤',
+            'to_1' => '新增 "confirmed" 標籤',
+            'to_1_done' => '已新增 "confirmed" 標籤',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => '移除 "duplicate" 标签',
-            'to_0_done' => '已移除 "duplicate" 标签',
-            'to_1' => '添加 "duplicate" 标签',
-            'to_1_done' => '已添加 "duplicate" 标签',
+            'to_0' => '移除 "duplicate" 標籤',
+            'to_0_done' => '已移除 "duplicate" 標籤',
+            'to_1' => '新增 "duplicate" 標籤',
+            'to_1_done' => '已新增 "duplicate" 標籤',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => '移除 "invalid" 标签',
-            'to_0_done' => '已移除 "invalid" 标签',
-            'to_1' => '添加 "invalid" 标签',
-            'to_1_done' => '已添加 "invalid" 标签',
+            'to_0' => '移除 "invalid" 標籤',
+            'to_0_done' => '已移除 "invalid" 標籤',
+            'to_1' => '新增 "invalid" 標籤',
+            'to_1_done' => '已新增 "invalid" 標籤',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '移除 "resolved" 标签',
-            'to_0_done' => '已移除 "resolved" 标签',
-            'to_1' => '添加 "resolved" 标签',
-            'to_1_done' => '已添加 "resolved" 标签',
+            'to_0' => '移除 "resolved" 標籤',
+            'to_0_done' => '已移除 "resolved" 標籤',
+            'to_1' => '新增 "resolved" 標籤',
+            'to_1_done' => '已新增 "resolved" 標籤',
         ],
 
         'lock' => [
             'is_locked' => '主題已被鎖定，不能回覆',
-            'to_0' => '解锁主题',
-            'to_0_done' => '主题已经解锁',
-            'to_1' => '锁定主题',
-            'to_1_done' => '主题已被锁定',
+            'to_0' => '解鎖主题',
+            'to_0_done' => '主题已經解鎖',
+            'to_1' => '鎖定主题',
+            'to_1_done' => '主题已被鎖定',
         ],
 
         'moderate_move' => [
-            'title' => '將主題移動到其他板塊',
+            'title' => '將主題移動至其他討論',
         ],
 
         'moderate_pin' => [
-            'to_0' => '取消置顶',
-            'to_0_done' => '该主题已取消置顶',
-            'to_1' => '置顶',
-            'to_1_done' => '该主题已置顶',
-            'to_2' => '置顶并标记为公告',
-            'to_2_done' => '该主题已置顶并标记为公告',
+            'to_0' => '取消置頂',
+            'to_0_done' => '該主题已取消置頂',
+            'to_1' => '置頂',
+            'to_1_done' => '該主题已置頂',
+            'to_2' => '至頂並標記為公告',
+            'to_2_done' => '該主题已置頂並標記為公告',
         ],
 
         'show' => [

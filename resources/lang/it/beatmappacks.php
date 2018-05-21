@@ -23,7 +23,10 @@ return [
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
-                '_' => "",
+                '_' => "Installazione: Una volta che il pacchetto è stato scaricato, estrai il .rar nella directory delle canzoni di osu!.
+                    Tutte le canzoni saranno dei file .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap la prossima volta che entri in modalità Play.
+                    :scary estrai i zip/osz da te,
+                    oppure le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
                 'scary' => 'NON',
             ],
             'note' => [
@@ -31,27 +34,27 @@ return [
                 'scary' => 'scarica i pacchetti dal più recente al più vecchio',
             ],
         ],
-        'title' => '',
-        'description' => '',
+        'title' => 'Pacchetto Beatmap',
+        'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
     ],
 
     'show' => [
         'download' => 'Download',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'completato',
+            'not_cleared' => 'non completate',
         ],
     ],
 
     'mode' => [
         'artist' => 'Artista/Album',
-        'chart' => '',
+        'chart' => 'Spotlight',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],
 
     'require_login' => [
         '_' => 'Devi essere :link per scaricare',
-        'link_text' => '',
+        'link_text' => 'accesso effettuato',
     ],
 ];

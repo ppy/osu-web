@@ -20,7 +20,7 @@
 
 return [
     'landing' => [
-        'download' => '立即下载',
+        'download' => '立即下載',
         'online' => '<strong>:players</strong> 名線上玩家, <strong>:games</strong> 個遊戲房間',
         'peak' => '最高線上人數 :count 人',
         'players' => '<strong>:count</strong> 名已註冊玩家',

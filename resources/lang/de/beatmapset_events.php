@@ -22,8 +22,8 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Ein Moderator hat die Diskussion :discussion gelöscht.',
-        'discussion_post_delete' => 'Ein Moderator hat einen Post der Diskussion :discussion gelöscht.',
-        'discussion_post_restore' => 'Ein Moderator hat einen Post der Diskussion :discussion wiederhergestellt.',
+        'discussion_post_delete' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion gelöscht.',
+        'discussion_post_restore' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion wiederhergestellt.',
         'discussion_restore' => 'Ein Moderator hat die Diskussion :discussion wiederhergestellt.',
         'disqualify' => 'Von :user disqualifiziert mit der Begründung: :text.',
         'disqualify_legacy' => 'Von :user disqualifiziert mit der Begründung: :text.',

@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Momenteel zijn er geen toernooien bezig, Kijk later nog eens!',
         'registration_period' => 'Registratie: :start tot :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

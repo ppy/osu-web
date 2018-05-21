@@ -77,6 +77,6 @@ return [
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
         'tablet' => 'tablet',
-        'touch' => 'cảm ứng',
+        'touch' => 'touchscreen',
     ],
 ];

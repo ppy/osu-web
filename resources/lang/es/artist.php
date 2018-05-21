@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Los artistas destacados son artistas con los que estamos trabajando en colaboración para llevar música nueva y original a osu!. Estos artistas ,y una selección de sus canciones, han sido seleccionados por el equipo de osu! por ser increíbles y adecuadas para el mapeo. Algunos de estos artistas destacados también han creado pistas nuevas y exclusivas para usar en osu!.<br> <br>Todas las pistas de esta sección se proporcionan como archivos .osz con el ritmo previamente calculado y se han licenciado oficialmente para su uso en osu! y contenido relacionado con osu!',
+        'description' => 'Los artistas destacados son artistas con los que colaboramos para brindarle música nueva y original a osu!. Estos artistas y una selección de sus trabajos han sido escogidos por el equipo de osu! por ser geniales y adecuados para mapeo. Algunos de estos artistas destacados también crearon nuevas canciones exclusivas para su uso en osu!.<br><br>Todas las canciones en esta sección son proporcionadas como archivos .osz con ritmo previamente calculado y han sido licenciadas oficialmente para su uso en osu! y contenido relacionado con osu!.',
     ],
 
     'links' => [

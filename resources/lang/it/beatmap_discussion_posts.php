@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Post di discussione di beatmap',
     ],
 
     'item' => [
         'content' => 'Contenuto',
-        'modding_history_link' => '',
+        'modding_history_link' => 'Mostra cronologia modding',
     ],
 ];

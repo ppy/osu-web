@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos mapas aprovados',
+            'new' => 'Novos mapas ranqueados',
             'popular' => 'Mapas populares',
             'by' => 'por',
             'plays' => ':count vezes jogadas',

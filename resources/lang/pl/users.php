@@ -95,7 +95,7 @@ return [
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
-        'lastvisit' => 'Ostatnio widziany :date',
+        'lastvisit' => 'Ostatnio widziano :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_age' => ':age',
         'origin_country_age' => ':age i pochodzi z :country',
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy (:count)',
+                ],
+                'loved' => [
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',

@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps in het kerkhof (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
                 ],

@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Nghệ sĩ nổi bật của osu!',
-    'title' => 'Nghệ sĩ nổi bật',
+    'page_description' => 'Nghệ sĩ tiêu biểu của osu!',
+    'title' => 'Nghệ Sĩ Tiêu Biểu',
 
     'admin' => [
         'hidden' => 'NGHỆ SĨ ĐANG BỊ ẨN',
@@ -37,13 +37,13 @@ return [
     ],
 
     'links' => [
-        'osu' => 'trang cá nhân osu!',
+        'osu' => 'trang cá nhân',
         'site' => 'Website chính thức',
     ],
 
     'songs' => [
-        '_' => 'Bản nhạc',
-        'count' => ':count bản nhạc',
+        '_' => 'Bài hát',
+        'count' => ':count bài hát',
         'exclusive' => 'độc quyền cho osu',
     ],
 ];

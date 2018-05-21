@@ -34,7 +34,7 @@ return [
         ],
 
         'outdated' => [
-            '_' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare il :default per informazioni più accurate (e considera di aggiornare la traduzione se sei in grado di aiutare)!',
+            '_' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare la :default per informazioni più accurate (e considera di aggiornare la traduzione se sei in grado di aiutare)!',
             'default' => 'Versione inglese',
         ],
     ],

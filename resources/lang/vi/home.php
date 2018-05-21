@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'tagline' => "hãy<br>bắt đầu!",
-        'action' => 'Download osu!',
+        'action' => 'Tải xuống osu!',
         'os' => [
             'windows' => 'cho Windows',
             'macos' => 'cho macOS',
@@ -127,13 +127,13 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Beatmaps Mới',
+            'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
             'by' => 'bởi',
             'plays' => ':count lần chơi',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
+            'download' => 'Tải Xuống osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Và bạn có biết rằng bằng cách hỗ trợ osu! bạn nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tự động tải xuống trong game</strong> khi bạn trong chế độ theo dõi người chơi và trong chế độ multiplayer?',
         ],
         'find-out-more' => 'Nhấp vào đây để tìm hiểu thêm!',
-        'download-starting' => "Ồ, và đừng lo lăng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
+        'download-starting' => "Ồ, và đừng lo lắng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
     ],
 ];

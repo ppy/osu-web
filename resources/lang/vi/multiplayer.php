@@ -56,7 +56,7 @@ return [
             'red' => 'Đội Đỏ',
         ],
         'winner' => ':team thắng',
-        'difference' => 'bởi :difference',
+        'difference' => 'với :difference',
         'loading-events' => 'Đang tải các sự kiện...',
         'more-events' => 'xem tất cả...',
         'beatmap-deleted' => 'beatmap đã bị xóa',
@@ -64,7 +64,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Điểm Cao Nhất',
-            'accuracy' => 'Accuracy Cao Nhất',
+            'accuracy' => 'Độ Chính Xác Cao Nhất',
             'combo' => 'Combo Cao Nhất',
             'scorev2' => 'Score V2',
         ],

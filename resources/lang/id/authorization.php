@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silahkan muat ulang halaman.',
+            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang halaman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
         'resolve' => [
@@ -42,22 +42,22 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
-            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting post.',
+            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
+                'no_access' => 'Anda tidak diperbolehkan mengakses channel yang ingin Anda tuju.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
-                    'moderated' => 'Kanal ini sedang berada dalam moderasi admin.',
+                    'no_access' => 'Anda tidak memiliki akses ke channel yang ingin Anda tuju.',
+                    'moderated' => 'Channel ini sedang berada dalam moderasi admin.',
                     'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini.',
                 ],
 
@@ -102,7 +102,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Tidak dapat membalas saat dibatasi.",
+                    'restricted' => "Tidak dapat membalas saat status dibatasi aktif.",
                     'silenced' => "Tidak dapat membalas saat dibungkam.",
                 ],
             ],
@@ -116,11 +116,11 @@ return [
             'vote' => [
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'voted' => 'Mengubah suara tidak diizinkan.',
+                'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [
-                    'require_login' => 'Silakan masuk untuk memilih.',
-                    'restricted' => "Tidak dapat memilih saat dibatasi.",
+                    'require_login' => 'Silakan masuk untuk memberikan suara.',
+                    'restricted' => "Tidak dapat memberikan suara saat status dibatasi aktif.",
                     'silenced' => "Tidak dapat memilih saat dibungkam.",
                 ],
             ],

@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nieuwe Goedgekeurde Beatmaps',
+            'new' => '',
             'popular' => 'Populaire Beatmaps',
             'by' => 'door',
             'plays' => ':count keren gespeeld',

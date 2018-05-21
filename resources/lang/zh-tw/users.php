@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => '進坟的圖譜 (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 和 Approved 的圖譜 (:count)',
                 ],

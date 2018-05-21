@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
-    'slogan' => "เล่นคนเดียวมันเหงา เล่นกับเราไม่เหงาหรอก",
+    'slogan' => "เล่นคนเดียวมันอันตราย",
     'subforums' => 'ฟอรั่มย่อย',
     'title' => 'osu!community',
 
@@ -73,33 +73,33 @@ return [
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
         'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
+        'started_by' => 'โดย :user',
 
         'create' => [
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview_hide' => 'เขียน',
+            'submit' => 'โพสต์',
 
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'พิมพ์เนื้อหาโพสต์ที่นี่',
+                'title' => 'คลิกที่นี่เพื่อตั้งหัวข้อ',
             ],
         ],
 
         'jump' => [
             'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
+            'first' => 'ไปที่โพสต์แรก',
+            'last' => 'ไปที่โพสต์ล่าสุด',
             'next' => 'skip next 10 posts',
             'previous' => 'go back 10 posts',
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'ยกเลิก',
+            'post' => 'บันทึก',
         ],
     ],
 

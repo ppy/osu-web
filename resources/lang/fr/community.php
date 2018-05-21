@@ -37,7 +37,7 @@ return [
 
         'supporter_status' => [
             'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
-            'gifted' => ':giftedTags de vos achats des tags étaient en cadeau (pour un total de :giftedDollars offert), quelle générosité !',
+            'gifted' => '',
             'not_yet' => "Vous n'avez pas de tag supporter :(",
             'title' => 'Statut du supporter',
             'valid_until' => 'Votre tag supporter expire :date!',
@@ -48,7 +48,7 @@ return [
             'title' => 'Pourquoi devrais-je supporter osu !?',
             'blocks' => [
                 'dev' => 'Développé et maintenu en majorité par une seule personne en Australie',
-                'time' => 'Prend tellement de temps pour le maitenir que ce n\'est plus possible d\'appeler ça un "hobby".',
+                'time' => 'Prend tellement de temps pour le maintenir que ce n\'est plus possible d\'appeler ça un "hobby".',
                 'ads' => 'Aucune pub, nulle part. <br/><br/>
                         Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l\'argent.',
                 'goodies' => 'Vous obtiendrez des goodies !',

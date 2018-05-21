@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như chế độ level editor đầy đủ chức năng.',
+        'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như một level editor đầy đủ chức năng.',
     ],
 
     'menu' => [
@@ -45,7 +45,7 @@ return [
         'help' => [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
-            'getRules' => 'luật',
+            'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -168,7 +168,7 @@ return [
             'home' => 'Trang Chủ',
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
-            'download' => 'Download osu!',
+            'download' => 'Tải Xuống osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [

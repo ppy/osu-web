@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+            'wrong_user' => 'Precisa ser o dono da postagem para editá-la.',
         ],
     ],
 
@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'excluído',
-        'title' => 'Discussão do Beatmap',
+        'title' => 'Discussão do mapa',
 
         'form' => [
             'deleted' => 'Incluir discussões excluídas',
@@ -66,7 +66,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Marcada como resolvida por :user',
+            'true' => 'Marcado como resolvido por :user',
             'false' => 'Reaberto por :user',
         ],
     ],

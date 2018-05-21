@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'Заброшенные карты (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ранкнутые и одобренные карты (:count)',
                 ],

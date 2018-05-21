@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Ajustes</strong> de la Cuenta',
+        'title' => '<strong>Ajustes</strong> de la cuenta',
         'title_compact' => 'ajustes',
         'username' => 'nombre de usuario',
 
@@ -32,7 +32,7 @@ return [
             'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
             'new_confirmation' => 'confirmar correo electrónico',
-            'title' => 'Correo Electrónico',
+            'title' => 'Correo electrónico',
         ],
 
         'password' => [
