@@ -69,39 +69,6 @@ trait UserTrait
         return array_intersect_key(static::esMappings(), $columnMap);
     }
 
-    public static function esAnalysisSettings()
-    {
-        static $settings = [
-            'filter' => [
-                // sloppy match index filter
-                'username_slop_filter' => [
-                    'type' => 'ngram',
-                    'min_gram' => 2,
-                    'max_gram' => 8,
-                ],
-            ],
-            'analyzer' => [
-                'username_slop' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase', 'username_slop_filter'],
-                ],
-                'username_lower' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase'],
-                ],
-                'whitespace' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'whitespace',
-                    'filter' => ['lowercase'],
-                ],
-            ],
-        ];
-
-        return $settings;
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'users';

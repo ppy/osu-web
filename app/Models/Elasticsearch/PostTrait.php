@@ -61,26 +61,6 @@ trait PostTrait
         return $values;
     }
 
-    public static function esAnalysisSettings()
-    {
-        static $settings = [
-            'analyzer' => [
-                'post_text_analyzer' => [
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase'],
-                    'char_filter' => ['html_filter'],
-                ],
-            ],
-            'char_filter' => [
-                'html_filter' => [
-                    'type' => 'html_strip',
-                ],
-            ],
-        ];
-
-        return $settings;
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'posts';

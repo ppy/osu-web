@@ -54,11 +54,6 @@ trait TopicTrait
         return $values;
     }
 
-    public static function esAnalysisSettings()
-    {
-        return Post::esAnalysisSettings();
-    }
-
     public static function esIndexName()
     {
         return Post::esIndexName();
