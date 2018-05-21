@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'No hay torneos activos por ahora, ¡revisa más tarde!',
         'registration_period' => 'Inscripción: :start to :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

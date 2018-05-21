@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
                 ],

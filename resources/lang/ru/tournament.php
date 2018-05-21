@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'На данный момент нет турниров, пожалуйста, попробуйте позже!',
         'registration_period' => 'Регистрация: с :start до :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

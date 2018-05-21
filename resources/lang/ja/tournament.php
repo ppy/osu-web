@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => '現在開催中のトーナメントはないみたいです。また今度確認してみましょう！',
         'registration_period' => '参加登録期間： :start から :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'สุสานบีทแมพ (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ (:count)',
                 ],

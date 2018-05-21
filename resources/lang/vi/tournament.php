@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Hiên tại không có giải đấu nào đang diễn ra, vui lòng kiểm tra lại sau!',
         'registration_period' => 'Đăng kí: :start đến :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

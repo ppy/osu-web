@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
         'registration_period' => 'Pendaftaran: :start sampai :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => 'Turnamen Sebelumnya',
+        ],
     ],
 
     'show' => [

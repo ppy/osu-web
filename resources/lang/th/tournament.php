@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'ไม่มีทัวร์นาเมนต์ในขณะนี้ โปรดตรวจสอบในภายหลัง',
         'registration_period' => 'Registration: :start to :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [
