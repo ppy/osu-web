@@ -66,7 +66,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Von :user für gelöst erklärt',
+            'true' => 'Von :user als gelöst erklärt',
             'false' => 'Von :user wiedereröffnet',
         ],
     ],
@@ -74,7 +74,7 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'owner' => 'ersteller',
+        'owner' => 'mapper',
         'qat' => 'qat',
     ],
 

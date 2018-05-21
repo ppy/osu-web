@@ -144,7 +144,7 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
                     'title' => 'Beatmaps Preferite (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '',
+                    'title' => 'Beatmap abbandonate (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Rankate e Approvate (:count)',
@@ -202,13 +202,13 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Ricevuto :amount dall\'ottenimento di voti nel post di modding di :post',
+                            'reset' => 'Perso :amount dalla perdita di voti nel posto di modding di :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Ricevuto :amount dal ricalcolo di voti nel post di modding di :post',
+                            'reset' => 'Perso :amount dal ricalcolo di voti nel post di modding di :post',
                         ],
                     ],
 

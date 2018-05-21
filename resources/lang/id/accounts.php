@@ -29,7 +29,7 @@ return [
         ],
 
         'email' => [
-            'current' => 'surel saat ini',
+            'current' => 'email saat ini',
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',

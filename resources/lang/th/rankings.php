@@ -19,10 +19,10 @@
  */
 
 return [
-    'header' => 'จัดอันดับประเภท :type',
+    'header' => 'อันดับ:type',
     'type' => [
         'performance' => 'ประสิทธิภาพ',
-        'charts' => 'ชาร์ท',
+        'charts' => 'สปอร์ตไลท์',
         'score' => 'คะแนน',
         'country' => 'ประเทศ',
     ],
@@ -33,7 +33,7 @@ return [
         'play_count' => 'จำนวนครั้งที่เล่น',
         'performance' => 'ค่าศักยภาพ',
         'total_score' => 'คะแนนรวมทั้งหมด',
-        'ranked_score' => 'อันดับที่',
+        'ranked_score' => 'คะแนนที่แรงค์',
         'average_score' => 'คะแนนเฉลี่ย',
         'average_performance' => 'ค่าศักยภาพเฉลี่ย',
         'ss' => 'SS',

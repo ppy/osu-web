@@ -75,7 +75,7 @@ return [
     'playstyles' => [
         'title' => 'รูปแบบการเล่น',
         'mouse' => 'เมาส์',
-        'keyboard' => 'แป้นพิมพ์',
+        'keyboard' => 'คีย์บอร์ด',
         'tablet' => 'แท็บเล็ต',
         'touch' => 'จอสัมผัส',
     ],

@@ -29,7 +29,7 @@ return [
         'declined' => 'Pembayaran dibatalkan.',
         'error' => 'Terjadi masalah saat menyelesaikan pembayaran :(',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
-        'pay' => 'Bayar via Paypal',
+        'pay' => 'Bayar lewat Paypal',
         'pending_checkout' => [
             'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
             'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
@@ -59,12 +59,12 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Barang saat ini kehabisan stok. Periksa kembali nanti!',
-            'out_with_alternative' => 'Sayangnya barang ini kehabisan stok. Gunakan dropdown untuk memilih jenis yang lain atau periksa kembali nanti!',
+            'out' => 'Stok untuk barang ini habis. Silahkan Periksa kembali nanti!',
+            'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
         ],
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
-        'notify' => 'Beri tahu saya bila tersedia!',
+        'notify' => 'Beri tahu saya bila telah tersedia!',
 
         'notification_success' => 'Anda akan diberitahu saat kami punya stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',

@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Approved 谱面',
+            'new' => '新的 Ranked 谱面',
             'popular' => '高人气谱面',
             'by' => '作者：',
             'plays' => ':count 次游玩',

@@ -21,8 +21,8 @@
 return [
     'edit' => [
         'title' => '<strong>Account</strong>einstellungen',
-        'title_compact' => 'Einstellungen',
-        'username' => 'Benutzername',
+        'title_compact' => 'einstellungen',
+        'username' => 'benutzername',
 
         'avatar' => [
             'title' => 'Avatar',
@@ -36,8 +36,8 @@ return [
         ],
 
         'password' => [
-            'current' => 'Aktuelles Passwort',
-            'new' => 'Neues Passwort',
+            'current' => 'aktuelles passwort',
+            'new' => 'neues passwort',
             'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
         ],
@@ -46,12 +46,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_from' => 'Aktueller Standort',
+                'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
                 'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
-                'user_website' => 'Webseite',
+                'user_website' => 'webseite',
                 'user_discord' => 'discord',
             ],
         ],
@@ -74,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Spielstil',
-        'mouse' => 'Maus',
-        'keyboard' => 'Tastatur',
-        'tablet' => 'Tablet',
+        'mouse' => 'maus',
+        'keyboard' => 'tastatur',
+        'tablet' => 'tablet',
         'touch' => 'touch',
     ],
 ];

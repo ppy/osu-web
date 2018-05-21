@@ -30,11 +30,11 @@ return [
                 'scary' => 'NÃO',
             ],
             'note' => [
-                '_' => 'Lembre-se que é altamente recomendado :scary, já que beatmaps mais antigos tem uma qualidade muito menor do que os mais recentes.',
-                'scary' => 'baixar os pacotes de beatmaps dos mais recentes para os mais antigos',
+                '_' => 'Lembre-se que é altamente recomendado :scary, já que mapas mais antigos tem uma qualidade muito menor do que os mais recentes.',
+                'scary' => 'baixar os pacotes de mapas dos mais recentes para os mais antigos',
             ],
         ],
-        'title' => 'Pacotes de Beatmaps',
+        'title' => 'Pacotes de mapas',
         'description' => 'Coleções temáticas pré-compactadas.',
     ],
 

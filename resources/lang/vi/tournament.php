@@ -43,7 +43,7 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Cổng đăng kí của giải đấu này chưa mở.',
+            'before_registration' => 'Giải đấu này hiện chưa mở đăng ký.',
             'ended' => 'Giải đấu này đã kết thúc. Kiểm tra trang thông tin để biết kết quả.',
             'registration_closed' => 'Đăng ký cho giải đấu này đã kết thúc. Kiểm tra trang thông tin để biết các cập nhật mới nhất.',
             'running' => 'Giải đấu này hiện đang diễn ra. Kiểm tra trang thông tin để biết thêm chi tiết.',

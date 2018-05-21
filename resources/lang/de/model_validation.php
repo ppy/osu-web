@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion ist gesperrt.',
-        'first_post' => 'Der erste Post kann nicht gelöscht werden.',
+        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
     ],
 
     'beatmapset_discussion' => [

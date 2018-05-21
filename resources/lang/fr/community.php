@@ -48,7 +48,7 @@ return [
             'title' => 'Pourquoi devrais-je supporter osu !?',
             'blocks' => [
                 'dev' => 'Développé et maintenu en majorité par une seule personne en Australie',
-                'time' => 'Prend tellement de temps pour le maitenir que ce n\'est plus possible d\'appeler ça un "hobby".',
+                'time' => 'Prend tellement de temps pour le maintenir que ce n\'est plus possible d\'appeler ça un "hobby".',
                 'ads' => 'Aucune pub, nulle part. <br/><br/>
                         Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l\'argent.',
                 'goodies' => 'Vous obtiendrez des goodies !',

@@ -21,20 +21,20 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
+            'is_hype' => 'Non è possibile annullare l\'hyping.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Errore nel eseguire l\'azione, prova a ricaricare la pagina.',
+            'owner' => "Non possono nominare i propri beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono rispolvere una discussione.',
         ],
 
         'vote' => [
-            'limit_exceeded' => '',
+            'limit_exceeded' => 'Si prega di attendere un po\' prima di esprimere altri voti',
             'owner' => "Impossibile votare la propria discussione.",
             'wrong_beatmapset_state' => 'Possibile votare solo su discussioni di mappe in attesa.',
         ],

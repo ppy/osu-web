@@ -81,21 +81,21 @@ return [
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
-                'locked' => 'Dieser Post ist gesperrt und kann nicht bearbeitet werden.',
+                'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Posts kann ihn bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
 
             'store' => [
-                'play_more' => 'Bevor du etwas im Forum postest, solltest du das Spiel gespielt haben! Wenn du Probleme beim Spielen hast, wende dich an das Hilfe-Forum.',
+                'play_more' => 'Versuche dich erst einmal am Spiel, bevor du einen Beitrag erstellst! Falls du Probleme mit dem Spiel hast, frage in dem Hilfe- und Support-Forum.',
                 'too_many_help_posts' => "Du musst das Spiel gespielt haben, bevor du weitere Beiträge erstellen kannst. Falls du immer noch Probleme mit dem Spiel hast, schreibe eine E-Mail an support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du hast erst kürzlich etwas gepostet! Warte kurz oder bearbeite deinen letzten Post.',
+                'double_post' => 'Du hast erst kürzlich einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
                 'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',

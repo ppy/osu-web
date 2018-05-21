@@ -46,7 +46,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Tanggal post',
+        'created_at' => 'Tanggal kiriman',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
         'permalink' => 'Tautan',

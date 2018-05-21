@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Beatmap Berstatus Ranked Terbaru',
+            'new' => '',
             'popular' => 'Beatmap Populer',
             'by' => 'oleh',
             'plays' => ':count kali dimainkan',
@@ -143,7 +143,7 @@ return [
         'title' => 'Wow!',
         'subtitle' => 'Anda tampaknya sedang bersenang-senang! :D',
         'body' => [
-            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan biaya operasionalnya sepenuhnya bergantung pada donasi sukarela dari penggunanya?',
+            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan operasionalnya bergantung sepenuhnya pada donasi sukarela dari para penggunanya?',
             'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan berbagai fitur eksklusif seperti <strong>pengunduh beatmap otomatis di dalam aplikasi osu!</strong> yang akan secara otomatis mengunduh beatmap yang Anda belum miliki di saat sedang menonton pemain lain dan di dalam pertandingan multiplayer?',
         ],
         'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',

@@ -78,7 +78,7 @@ return [
         '_' => 'Registrieren',
     ],
     'anonymous' => [
-        'login_link' => 'zum einloggen klicken',
+        'login_link' => 'zum Einloggen klicken',
         'login_text' => 'einloggen',
         'username' => 'Gast',
         'error' => 'Dafür musst du eingeloggt sein.',
@@ -103,7 +103,7 @@ return [
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
         'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => ":usernames Profil",
+        'title' => "Profil von :username",
 
         'edit' => [
             'cover' => [
@@ -250,7 +250,7 @@ return [
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
                     'date' => 'datum',
-                    'action' => 'verstoß',
+                    'action' => 'maßnahme',
                     'length' => 'länge',
                     'length_permanent' => 'Permanent',
                     'description' => 'beschreibung',
@@ -258,7 +258,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Bann',
-                        'silence' => 'Stummschaltung',
+                        'silence' => 'Silence',
                         'note' => 'Warnung',
                     ],
                 ],

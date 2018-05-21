@@ -30,13 +30,13 @@ return [
             'owner' => "Não é possível nominar o próprio beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
+            'not_owner' => 'Somente o autor da discussão e o dono do mapa podem resolver uma discussão.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => "Não é possível votar na própria discussão!",
-            'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
+            'owner' => "Não é possível votar na própria discussão.",
+            'wrong_beatmapset_state' => 'Só é possível votar nas discussões de mapas pendentes.',
         ],
     ],
 

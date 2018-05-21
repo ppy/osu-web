@@ -203,7 +203,7 @@ return [
         'ranked-approved' => 'Được Xếp Hạng & Được Chấp Nhận',
         'approved' => 'Được Chấp Nhận',
         'qualified' => 'Qualified',
-        'loved' => 'Được Love',
+        'loved' => 'Yêu thích',
         'faves' => 'Yêu Thích',
         'pending' => 'Đang Chờ',
         'graveyard' => 'Graveyard',

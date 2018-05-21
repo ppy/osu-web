@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nowe rankingowe beatmapy',
+            'new' => '',
             'popular' => 'Popularne beatmapy',
             'by' => 'autorstwa',
             'plays' => ':count zagrań',

@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => '',
+    'title' => 'Resetta password',
 
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'cancel' => 'Annulla',
+        'resend' => 'Rimanda email di verifica',
+        'set' => 'Imposta password',
+        'start' => 'Inizia',
     ],
 
     'email' => [
-        'subject' => '',
+        'subject' => 'Ripristino account osu!',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'contact_support' => 'Si prega di contattare il supporto per ripristinare l\'account.',
+        'is_privileged' => 'Contatta peppy lulz.',
+        'missing_key' => 'Richiesto.',
+        'too_many_tries' => 'Troppi tentativi sbagliati.',
+        'user_not_found' => 'L\'utente richiesto non esiste.',
+        'wrong_key' => 'Codice errato.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Controlla la tua email per il codice verifica.',
+        'saved' => 'Nuova password salvata!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Nuova password',
+        'password_confirmation' => 'Conferma password',
+        'title' => 'Resettando password per l\'account <strong>:username</strong>.',
+        'verification_key' => 'Codice verifica',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Inserisci indirizzo email o nome utente',
     ],
 ];
