@@ -21,16 +21,9 @@
 bn = 'avatar'
 
 @UserAvatar = (props) ->
-  modifiers = props
-    .modifiers
-    .map (m) => "#{bn}--#{m}"
-    .join ' '
-
-  className = "#{bn} #{modifiers}"
-
   if props.user.id?
     div
-      className: className
+      className: osu.classWithModifiers(bn, props.modifiers)
       style:
         backgroundImage: "url('#{props.user.avatar_url}')"
   else
