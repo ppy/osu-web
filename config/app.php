@@ -105,6 +105,7 @@ return [
         'ru',
         'sv',
         'th',
+        'tr',
         'vi',
         'zh',
         'zh-tw',
