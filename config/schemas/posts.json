@@ -14,7 +14,8 @@
           "analyzer": "post_text_analyzer"
         },
         "post_time": {
-          "type": "date"
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
         },
         "poster_id": {
           "type": "long"

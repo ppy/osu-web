@@ -7,7 +7,8 @@
           "type": "long"
         },
         "approved_date": {
-          "type": "date"
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
         },
         "artist": {
           "type": "text",
@@ -118,7 +119,8 @@
           "type": "long"
         },
         "last_update": {
-          "type": "date"
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
         },
         "nominations": {
           "type": "long"
@@ -130,7 +132,8 @@
           "type": "long"
         },
         "queued_at": {
-          "type": "date"
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
         },
         "rating": {
           "type": "double"
@@ -145,7 +148,8 @@
           "type": "boolean"
         },
         "submit_date": {
-          "type": "date"
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
         },
         "tags": {
           "type": "text"
