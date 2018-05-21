@@ -94,6 +94,7 @@ return [
         'el',
         'es',
         'fr',
+        'hu',
         'id',
         'it',
         'ja',
