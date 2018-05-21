@@ -733,6 +733,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserBadge::class, 'user_id');
     }
 
+    public function githubUsers()
+    {
+        return $this->hasMany(GithubUser::class, 'user_id');
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');

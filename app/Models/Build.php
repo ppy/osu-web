@@ -43,6 +43,11 @@ class Build extends Model
         return $this->hasMany(Changelog::class, 'build', 'version');
     }
 
+    public function changelogEntries()
+    {
+        return $this->belongsToMany(ChangelogEntry::class, null, 'build_id');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('stream_id');
