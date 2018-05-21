@@ -20,12 +20,12 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
-use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -48,6 +48,8 @@ class Order extends Model
     const ECHECK_CLEARED = 'ECHECK CLEARED';
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
+
+    protected $fillable = ['user_id'];
 
     protected $primaryKey = 'order_id';
 
@@ -243,6 +245,18 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function guardNotModifiable(callable $callable)
+    {
+        return $this->getConnection()->transaction(function () use ($callable) {
+            $locked = $this->exists ? $this->lockSelf() : $this;
+            if ($locked->isModifiable() === false) {
+                throw new OrderNotModifiableException($locked);
+            }
+
+            return $callable();
+        });
+    }
+
     public function canCheckout()
     {
         return in_array($this->status, ['incart', 'processing'], true);
@@ -279,36 +293,6 @@ class Order extends Model
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
-    public function removeInvalidItems()
-    {
-        $modified = false;
-
-        //check to make sure we don't have any invalid products in our cart.
-        $deleteItems = [];
-
-        foreach ($this->items as $i) {
-            if ($i->product === null || !$i->product->enabled) {
-                $deleteItems[] = $i;
-                continue;
-            }
-
-            if (!$i->product->inStock($i->quantity)) {
-                $this->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
-                $modified = true;
-            }
-        }
-
-        if (count($deleteItems)) {
-            foreach ($deleteItems as $i) {
-                $i->delete();
-            }
-
-            $modified = true;
-        }
-
-        return $modified;
-    }
-
     /**
      * Updates the cost of the order for checkout.
      * Don't call this anywhere except beginning checkout.
@@ -320,7 +304,7 @@ class Order extends Model
     {
         foreach ($this->items as $i) {
             $i->refreshCost();
-            $i->saveOrExplode();
+            $i->saveOrExplode(['skipValidations' => true]);
         }
 
         if ($this->requiresShipping()) {
@@ -340,17 +324,9 @@ class Order extends Model
 
     public function delete()
     {
-        $this->getConnection()->transaction(function () {
-            // wait for any pending status update to be committed, otherwise
-            // it'll be checking against the old value and deleting once other transactions
-            // release the lock.
-            $locked = $this->lockSelf();
-            if ($locked->isModifiable() === false) {
-                throw new Exception("Delete not allowed on Order ({$locked->getKey()}).");
-            }
+        $this->guardNotModifiable(function () {
+            parent::delete();
         });
-
-        parent::delete();
     }
 
     public function paid(Payment $payment = null)
@@ -373,55 +349,37 @@ class Order extends Model
      * Updates the Order with form parameters.
      *
      * Updates the Order with with an item extracted from submitted form parameters.
-     * The function returns an array containing whether the operation was successful,
-     * and a message.
+     * The function returns null on success; an error message, otherwise.
      *
      * @param array $itemForm form parameters.
      * @param bool $addToExisting whether the quantity should be added or replaced.
-     * @return array [success, message]
+     * @return string|null null on success; error message, otherwise.
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        $this->getConnection()->transaction(function () {
-            $locked = $this->exists ? $this->lockSelf() : $this;
-            if ($locked->isModifiable() === false) {
-                // FIXME: better handling.
-                return [false, 'Cart cannot be updated at this time.'];
+        return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
+            $params = static::orderItemParams($itemForm);
+
+            // done first to allow removing of disabled products from cart.
+            if ($params['quantity'] <= 0) {
+                return $this->removeOrderItem($params);
             }
-        });
 
-        $params = [
-            'id' => array_get($itemForm, 'id'),
-            'quantity' => array_get($itemForm, 'quantity'),
-            'product' => Product::enabled()->find(array_get($itemForm, 'product_id')),
-            'cost' => intval(array_get($itemForm, 'cost')),
-            'extraInfo' => array_get($itemForm, 'extra_info'),
-            'extraData' => array_get($itemForm, 'extra_data'),
-        ];
+            // TODO: better validation handling.
+            if ($params['product'] === null) {
+                return trans('model_validation/store/product.not_available');
+            }
 
-        if ($params['product'] === null) {
-            return [false, 'no product'];
-        }
+            $this->saveOrExplode();
 
-        $result = [true, ''];
-
-        if ($params['quantity'] <= 0) {
-            $this->removeOrderItem($params);
-        } else {
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
                 $item = $this->updateOrderItem($params, $addToExisting);
             }
 
-            $result = $this->validateBeforeSave($params['product'], $item);
-            if ($result[0]) {
-                $this->saveOrExplode();
-                $this->items()->save($item);
-            }
-        }
-
-        return $result;
+            $item->saveOrExplode();
+        });
     }
 
     public function releaseItems()
@@ -464,27 +422,11 @@ class Order extends Model
 
     public static function cart($user)
     {
-        $cart = static::query()
+        return static::query()
             ->where('user_id', $user->user_id)
             ->inCart()
             ->with('items.product')
             ->first();
-
-        if (!$cart) {
-            // still stuff that relies on cart not returning null.
-            $cart = new static();
-            $cart->user_id = $user->user_id;
-
-            return $cart;
-        }
-
-        // TODO: maybe should show a notification and only remove
-        // when beginning the checkout process?
-        if ($cart->removeInvalidItems()) {
-            $cart = $cart->fresh();
-        }
-
-        return $cart;
     }
 
     public function macroItemsQuantities()
@@ -586,14 +528,13 @@ class Order extends Model
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        $item = new OrderItem();
-        $item->quantity = $params['quantity'];
-        $item->extra_info = $params['extraInfo'];
-        $item->extra_data = $params['extraData'];
-        $item->cost = $params['cost'];
-        $item->product()->associate($product);
-
-        return $item;
+        return $this->items()->make([
+            'quantity' => $params['quantity'],
+            'extra_info' => $params['extraInfo'],
+            'extra_data' => $params['extraData'],
+            'cost' => $params['cost'],
+            'product_id' => $product->product_id,
+        ]);
     }
 
     private function updateOrderItem(array $params, $addToExisting = false)
@@ -613,18 +554,15 @@ class Order extends Model
         return $item;
     }
 
-    private function validateBeforeSave(Product $product, $item)
+    private static function orderItemParams(array $form)
     {
-        if (!$product->inStock($item->quantity)) {
-            return [false, 'not enough stock'];
-        } elseif (!$product->enabled) {
-            return [false, 'invalid item'];
-        } elseif ($item->quantity > $product->max_quantity) {
-            $route = route('store.cart.show');
-
-            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
-        }
-
-        return [true, ''];
+        return [
+            'id' => array_get($form, 'id'),
+            'quantity' => array_get($form, 'quantity'),
+            'product' => Product::enabled()->find(array_get($form, 'product_id')),
+            'cost' => intval(array_get($form, 'cost')),
+            'extraInfo' => array_get($form, 'extra_info'),
+            'extraData' => array_get($form, 'extra_data'),
+        ];
     }
 }

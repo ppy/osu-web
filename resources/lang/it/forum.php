@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
-    'slogan' => "",
+    'slogan' => "è pericoloso giocare da solo.",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 
@@ -48,14 +48,14 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Vuoi veramente eliminare il post?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Elimina post',
+            'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
         ],
     ],
@@ -67,7 +67,7 @@ return [
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda gli ultimi post',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
@@ -80,7 +80,7 @@ return [
             'preview' => 'Anteprima',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
+            'preview_hide' => 'Scrivi',
             'submit' => 'Invia',
 
             'placeholder' => [
@@ -107,7 +107,7 @@ return [
         'index' => [
             'title' => 'Iscrizioni ai Topic',
             'title_compact' => 'iscrizioni',
-            'title_main' => '',
+            'title_main' => 'Forum <strong>Sottoiscrizioni</strong>',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -132,9 +132,9 @@ return [
         '_' => 'Topic',
 
         'actions' => [
-            'reply' => '',
+            'reply' => 'Rispondi',
             'reply_with_quote' => 'Quota il post per rispondere',
-            'search' => '',
+            'search' => 'Cerca',
         ],
 
         'create' => [
@@ -160,7 +160,7 @@ return [
         ],
 
         'edit_title' => [
-            'start' => '',
+            'start' => 'Modifica titolo',
         ],
 
         'index' => [
@@ -169,45 +169,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "aggiunto"',
+            'to_0_done' => 'Rimosso tag "aggiunto"',
+            'to_1' => 'Aggiungi tag "aggiunto"',
+            'to_1_done' => 'Aggiunto tag "aggiunto"',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "assegnato"',
+            'to_0_done' => 'Rimosso tag "assegnato"',
+            'to_1' => 'Aggiungi tag "assegnato"',
+            'to_1_done' => 'Aggiunto tag "assegnato"',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "confermato"',
+            'to_0_done' => 'Rimosso tag "confermato"',
+            'to_1' => 'Aggiungi tag "confermato"',
+            'to_1_done' => 'Aggiunto tag "confermato"',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "duplicato"',
+            'to_0_done' => 'Rimosso tag "duplicato"',
+            'to_1' => 'Aggiungi tag "duplicato"',
+            'to_1_done' => 'Aggiunto tag "duplicato"',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "invalido"',
+            'to_0_done' => 'Rimosso tag "invalido"',
+            'to_1' => 'Aggiungi tag "invalido"',
+            'to_1_done' => 'Aggiunto tag "invalido"',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Rimuovi tag "risolto"',
+            'to_0_done' => 'Rimosso tag "risolto"',
+            'to_1' => 'Aggiungi tag "risolto"',
+            'to_1_done' => 'Aggiunto tag "risolto"',
         ],
 
         'lock' => [
@@ -227,13 +227,13 @@ return [
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
             'to_1' => 'Fissa topic',
             'to_1_done' => 'Il topic è stato fissato',
-            'to_2' => '',
-            'to_2_done' => '',
+            'to_2' => 'Fissa discussione e segna come annuncio',
+            'to_2_done' => 'La discussione è stata fissata e segnata come annuncio',
         ],
 
         'show' => [
-            'deleted-posts' => '',
-            'total_posts' => '',
+            'deleted-posts' => 'Post cancellati',
+            'total_posts' => 'Post totali',
 
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',
@@ -258,10 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => 'Non preferito',
+            'to_watching' => 'Preferito',
+            'to_watching_mail' => 'Preferito con notifica',
+            'mail_disable' => 'Disabilita notifiche',
         ],
     ],
 ];

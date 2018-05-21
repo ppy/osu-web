@@ -28,39 +28,39 @@ return [
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Non è successo nulla... per ora.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'title' => '',
+        'deleted_beatmap' => 'eliminato',
+        'title' => 'Discussioni di beatmap',
 
         'form' => [
-            'deleted' => '',
+            'deleted' => 'Includi discussioni eliminate',
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Utente',
+                'overview' => 'Panoramica delle attività',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Data del Post',
+        'deleted_at' => 'Data di eliminazione',
+        'message_type' => 'Tipo',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
+        'confirm' => 'Nessuno dei post riguarda il mio problema',
         'notice' => '',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Registrati per Rispondere',
+            'user' => 'Rispondi',
         ],
     ],
 
@@ -72,14 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
-        'bng' => '',
-        'owner' => '',
-        'qat' => '',
+        'admin' => 'amministratore',
+        'bng' => 'nominatore',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Tutti',
+        'label' => 'Filtra per utente',
     ],
 ];

@@ -28,7 +28,7 @@ return [
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
-            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.',
+            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
         ],
 
         'destroy' => [
@@ -48,8 +48,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Vraiment supprimer ce post?',
-        'confirm_restore' => 'Vraiment restaurer ce post?',
+        'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
+        'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
 
@@ -94,7 +94,7 @@ return [
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
             'next' => 'passer de 10 posts suivants',
-            'previous' => 'passer à 10 posts précédents',
+            'previous' => 'revenir 10 posts en arrière',
         ],
 
         'post_edit' => [
@@ -146,16 +146,16 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Lancer le sujet pour',
+                'length' => 'Durée du sondage',
                 'length_days_suffix' => 'jours',
-                'length_info' => 'Laissez blanc pour un sondage sans fin',
+                'length_info' => 'Laissez vide pour un sondage sans fin',
                 'max_options' => 'Réponses par utlisateur',
                 'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
                 'options' => 'Réponses',
-                'options_info' => 'Placez chaque réponse sur une ligne.',
+                'options_info' => 'Entrez chaque réponse sur une nouvelle ligne. Vous pouvez entrer jusqu\'à 10 réponses.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
-                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
+                'vote_change_info' => 'Si cette option est activée, les utilisateurs pourront changer leur vote.',
             ],
         ],
 
@@ -211,11 +211,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
-            'to_0' => 'Déverouiller le sujet',
-            'to_0_done' => 'Le sujet a été déverouillé',
-            'to_1' => 'Verouiller le sujet',
-            'to_1_done' => 'Le sujet a été verouillé',
+            'is_locked' => 'Ce sujet est verrouillé, vous ne pouvez pas y répondre',
+            'to_0' => 'Déverrouiller le sujet',
+            'to_0_done' => 'Le sujet a été déverrouillé',
+            'to_1' => 'Verrouiller le sujet',
+            'to_1_done' => 'Le sujet a été verrouillé',
         ],
 
         'moderate_move' => [

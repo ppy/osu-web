@@ -38,9 +38,9 @@ return [
         'deny_kudosu' => 'kudosu 거절',
         'edit' => '편집',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
-        'kudosu_denied' => '',
+        'kudosu_denied' => 'kudosu 획득이 거부되었습니다.',
         'message_placeholder' => '게시할 답글의 내용을 입력하세요.',
-        'message_placeholder_deleted_beatmap' => '',
+        'message_placeholder_deleted_beatmap' => '이 난이도는 제거되어서 이제 논의될 수 없습니다.',
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
         'reply_placeholder' => '보내실 답변의 내용을 입력하세요.',
@@ -65,10 +65,10 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
+            'disqualify' => '실격',
             'hype' => '홍보!',
-            'mapper_note' => '',
-            'nomination_reset' => '',
+            'mapper_note' => '노트',
+            'nomination_reset' => '추천 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
             'suggestion' => '제안',
@@ -76,11 +76,11 @@ return [
 
         'mode' => [
             'events' => '기록',
-            'general' => '',
+            'general' => '일반 :scope',
             'timeline' => '타임라인',
             'scopes' => [
-                'general' => '',
-                'generalAll' => '',
+                'general' => '이 난이도',
+                'generalAll' => '모든 난이도',
             ],
         ],
 
@@ -95,17 +95,17 @@ return [
         ],
 
         'sort' => [
-            '_' => '',
-            'created_at' => '',
+            '_' => '정렬 기준:',
+            'created_at' => '작성일',
             'timeline' => '타임라인',
             'updated_at' => '최근 업데이트',
         ],
 
         'stats' => [
             'deleted' => '삭제됨',
-            'mapper_notes' => '',
+            'mapper_notes' => '노트',
             'mine' => 'Mine',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => '모두',
@@ -125,17 +125,17 @@ return [
         'button' => '비트맵 홍보하기!',
         'button_done' => '이미 이 비트맵을 홍보하셨습니다!',
         'confirm' => "",
-        'explanation' => '',
-        'explanation_guest' => '',
+        'explanation' => '추천과 랭크가 더 잘되기 위하여 이 비트맵을 홍보하세요!',
+        'explanation_guest' => '추천과 랭크가 더 잘되기 위하여 로그인 후에 이 비트맵을 홍보하세요!',
         'new_time' => "",
-        'remaining' => ':remaining개의 홍보 가능 횟수가 남았습니다.',
+        'remaining' => ':remaining개의 홍보권이 남았습니다.',
         'required_text' => '홍보 가능 횟수: :current/:required',
         'section_title' => 'Hype Train',
         'title' => '비트맵 홍보',
     ],
 
     'feedback' => [
-        'button' => '',
+        'button' => '의견 남기기',
     ],
 
     'nominations' => [
@@ -143,24 +143,24 @@ return [
         'disqualified_at' => ':time_ago에 실격처리 되었습니다 (:reason).',
         'disqualified_no_reason' => '사유가 명시되지 않았습니다',
         'disqualify' => '실격시키기',
-        'incorrect_state' => '',
+        'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'nominate' => '추천하기',
         'nominate_confirm' => '이 비트맵을 추천할까요?',
-        'nominated_by' => '',
+        'nominated_by' => ':users 사용자들 에게 추천됨',
         'qualified' => '아무런 문제가 발견되지 않으면, :date에 Ranked될 것입니다.',
         'qualified_soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
         'required_text' => '추천 수: :current/:required',
-        'reset_message_deleted' => '',
+        'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
-        'unresolved_issues' => '',
+        'unresolved_issues' => '먼저 해결되어야 하는 미해결 문제가 있습니다.',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => ':user 님에 의해 :time_ago 전, 추천 수가 초기화되었습니다. :discussion (:message)',
+            'disqualify' => ':user 님에 의해 :time_ago 전, Disqualified 처리되었습니다. :discussion (:message)',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 수를 초기화합니다.',
         ],
     ],
 
@@ -171,14 +171,14 @@ return [
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
-                'general' => '',
+                'general' => '일반',
                 'mode' => '모드',
                 'status' => '등록 상태',
                 'genre' => '장르',
                 'language' => '언어 분류',
                 'extra' => '부가 기능',
                 'rank' => '순위 기록됨',
-                'played' => '',
+                'played' => '플레이함',
             ],
         ],
         'mode' => '모드',
@@ -188,8 +188,8 @@ return [
         'load-more' => '더 불러오기...',
     ],
     'general' => [
-        'recommended' => '',
-        'converts' => '',
+        'recommended' => '권장 난이도',
+        'converts' => '변환된 비트맵 포함',
     ],
     'mode' => [
         'any' => '모두',
@@ -202,7 +202,7 @@ return [
         'any' => '모두',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => '',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => '즐겨찾기',
         'pending' => 'Pending',
@@ -260,9 +260,9 @@ return [
         'other' => '기타',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => '아무거나',
+        'played' => '플레이함',
+        'unplayed' => '플레이하지 않음',
     ],
     'extra' => [
         'video' => '비디오 있음',

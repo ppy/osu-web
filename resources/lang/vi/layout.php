@@ -29,7 +29,7 @@ return [
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'bản dựng',
+            'changelog-show' => 'build',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -45,7 +45,7 @@ return [
         'help' => [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
-            'getRules' => 'rules',
+            'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -70,14 +70,14 @@ return [
             '_' => 'xếp hạng',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'spotlights',
+            'charts' => 'tiêu điểm',
             'score' => 'điểm',
             'country' => 'quốc gia',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'dev' => '',
+            'dev' => 'phát triển',
             'getForum' => 'diễn đàn',
             'getChat' => 'chat',
             'getLive' => 'live stream',
@@ -118,16 +118,16 @@ return [
             'settings' => 'Cài Đặt',
             'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
-            'modding-history-discussions' => '',
-            'modding-history-events' => '',
-            'modding-history-index' => '',
-            'modding-history-posts' => '',
-            'modding-history-votesGiven' => '',
-            'modding-history-votesReceived' => '',
+            'modding-history-discussions' => 'thảo luận modding của người dùng',
+            'modding-history-events' => 'sự kiện modding của người dùng',
+            'modding-history-index' => 'lịch sử modding của người dùng',
+            'modding-history-posts' => 'bài đăng modding của người dùng',
+            'modding-history-votesGiven' => 'modding votes đã cho của người dùng',
+            'modding-history-votesReceived' => 'modding votes đã nhận của người dùng',
         ],
         'store' => [
-            '_' => 'store',
-            'checkout-show' => '',
+            '_' => 'cửa hàng',
+            'checkout-show' => 'thanh toán',
             'getListing' => 'danh sách',
             'cart-show' => 'giỏ hàng',
 
@@ -164,7 +164,7 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'Chung',
+            '_' => 'Tổng quát',
             'home' => 'Trang Chủ',
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
@@ -236,7 +236,7 @@ return [
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
-                'email' => "Không tồn tại tên tài khoản hoặc địa chỉ email",
+                'email' => "Tài khoản hoặc địa chỉ email không tồn tại",
                 'password' => 'Sai mật khẩu',
             ],
         ],

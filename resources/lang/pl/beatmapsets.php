@@ -34,7 +34,7 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'stworzona przez ',
+            'made-by' => 'autorstwa ',
             'submitted' => 'dodana ',
             'updated' => 'ostatnio aktualizowana ',
             'ranked' => 'rankingowa od ',
@@ -62,11 +62,11 @@ return [
             'total_length' => 'Długość',
             'bpm' => 'BPM',
             'count_circles' => 'Ilość kółek',
-            'count_sliders' => 'Ilość sliderów',
+            'count_sliders' => 'Liczba sliderów',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
-            'playcount' => 'Ilość zagrań',
+            'playcount' => 'Liczba zagrań',
         ],
         'info' => [
             'description' => 'Opis',

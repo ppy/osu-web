@@ -22,10 +22,12 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Không thể hủy bỏ hype.',
-            'has_reply' => 'Không thể xóa cuộc thảo luận cùng trả lời',
+            'has_reply' => 'Không thể xóa cuộc thảo luận có trả lời trong đó',
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
+            'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
+            'owner' => "Bạn không thể đề cử chính beatmap của bạn.",
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
@@ -33,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
-            'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
+            'owner' => "Không thể bình chọn cuộc thảo luận của chính bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap đang chờ.',
         ],
     ],
@@ -72,22 +74,22 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
-                'locked' => 'Không thể xóa bài đăng của một topic bị khóa.',
+                'locked' => 'Không thể xóa bài đăng của một chủ đề bị khóa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'not_owner' => 'Chỉ người đăng mới có thể xóa bài đăng.',
             ],
 
             'edit' => [
-                'deleted' => 'Không thể chỉnh sửa bài đăng đã bị khóa.',
+                'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
-                'topic_locked' => 'Không thể chỉnh sửa bài đăng của một topic bị khóa.',
+                'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
             ],
 
             'store' => [
                 'play_more' => 'Vui lòng thử chơi game này trước khi đăng bài lên diễn đàn! Nếu bạn gặp vấn đề khi chơi, Vui lòng đăng bài lên diễn đàn Trợ Giúp và Hỗ Trợ (Help and Support).',
-                'too_many_help_posts' => "Bạn cần phải chơi game này nhiều hơn trước khi bạn tạo thêm bài đăng. Nếu bạn vẫn còn gặp vấn đề khi chơi game, email support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Bạn cần phải chơi game này nhiều hơn trước khi bạn tạo thêm bài đăng. Nếu bạn vẫn còn gặp vấn đề khi chơi game, hãy gửi email tới địa chỉ support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -96,7 +98,7 @@ return [
                 'double_post' => 'Bạn vừa đăng. Đợi một lát hoặc chỉnh sửa bài đăng cuối cùng của bạn.',
                 'locked' => 'Không thể trả lời một thread bị khóa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
-                'no_permission' => 'Không cho phép trả lời.',
+                'no_permission' => 'Không được phép trả lời.',
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để trả lời.',
@@ -107,7 +109,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
-                'no_permission' => 'Không cho phép tạo topic mới.',
+                'no_permission' => 'Không cho phép tạo chủ đề mới.',
                 'forum_closed' => 'Diễn đàn này đã bị đóng và không thể đăng.',
             ],
 
@@ -146,13 +148,13 @@ return [
 
     'silenced' => "Không thể làm việc đó trong khi bị im lặng.",
 
-    'restricted' => "Không thể làm việc đó trong khi bị hạn chế",
+    'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page này đã bị khóa.',
-                'not_owner' => 'Chỉ có thể chỉnh sửa user page của bạn.',
+                'locked' => 'Trang người dùng này đã bị khóa.',
+                'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
                 'require_supporter_tag' => 'Yêu cầu supporter tag.',
             ],
         ],

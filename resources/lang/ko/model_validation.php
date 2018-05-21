@@ -21,34 +21,34 @@
 return [
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
-    'too_long' => '',
+    'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => '',
+        'discussion_locked' => '토론이 잠겨있습니다.',
         'first_post' => '시작글은 삭제할 수 없습니다.',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
-        'locked' => '',
-        'mapper_note_wrong_user' => '',
+        'beatmap_missing' => '타임스탬프가 지정되어 있지만, 비트맵이 빠져있습니다.',
+        'beatmapset_no_hype' => "비트맵이 홍보될 수 없습니다.",
+        'hype_requires_null_beatmap' => '홍보는 무조건 일반 (모든 난이도) 섹션에서 이루어져야 합니다.',
+        'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
+        'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
+        'locked' => '토론이 잠겨있습니다.',
+        'mapper_note_wrong_user' => '비트맵 소유자만이 매퍼 노트를 수정할 수 있습니다.',
 
         'hype' => [
             'guest' => '로그인하셔야 홍보하실 수 있습니다.',
             'hyped' => '이미 이 비트맵을 홍보했습니다.',
-            'limit_exceeded' => '',
-            'not_hypeable' => '',
-            'owner' => '',
+            'limit_exceeded' => '모든 홍보권을 사용하셨습니다.',
+            'not_hypeable' => '이 비트맵을 홍보 할 수 없습니다',
+            'owner' => '자신의 비트맵은 홍보하지 마세요.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "",
+            'exceeds_beatmapset_length' => '지정된 타임스탬프는 비트맵 길이를 벗어납니다.',
+            'negative' => "타임스탬프는 음수가 될 수 없습니다.",
         ],
     ],
 
@@ -59,12 +59,12 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => '항목 선택이 잘못되었습니다.',
+            'invalid' => '항목 선택이 올바르지 않습니다.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
+            'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제 하는 것은 허용되지 않습니다.',
+            'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정 하는 것은 허용되지 않습니다.',
         ],
 
         'topic_poll' => [
@@ -76,7 +76,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => '',
+            'required' => '투표할 때 옵션을 선택해 주세요.',
             'too_many' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
     ],
@@ -85,19 +85,19 @@ return [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
-        'username_available_in' => '',
-        'username_available_soon' => '',
-        'username_invalid_characters' => '',
-        'username_in_use' => '',
-        'username_no_space_userscore_mix' => '',
-        'username_no_spaces' => "",
-        'username_not_allowed' => '',
+        'username_available_in' => '이 사용자 이름은 :duration 안에 사용 가능합니다.',
+        'username_available_soon' => '이 사용자 이름은 곧 사용 가능 합니다!',
+        'username_invalid_characters' => '요청한 사용자 이름에 유효하지 않은 문자가 있습니다.',
+        'username_in_use' => '이미 사용중인 사용자 이름 입니다!',
+        'username_no_space_userscore_mix' => '언더바나 공백을 사용해주세요, 둘 중 하나요!',
+        'username_no_spaces' => "사용자 이름은 공백으로 시작하거나 끝날 수 없습니다!",
+        'username_not_allowed' => '이 사용자 이름 선택은 허용되지 않습니다.',
         'username_too_short' => '요청하신 유저 이름이 너무 짧습니다.',
-        'username_too_long' => '',
+        'username_too_long' => '요청한 사용자 이름이 너무 깁니다.',
         'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.',
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
         'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.',
@@ -106,10 +106,10 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => '무조건 :link해야만 이름을 변경할 수 있습니다!',
+                'link_text' => 'osu!를 후원',
             ],
-            'username_is_same' => '',
+            'username_is_same' => '이미 당신이 사용 중인 이름입니다, 혹시.. 건망증?',
         ],
     ],
 ];

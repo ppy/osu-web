@@ -123,7 +123,7 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button_done' => '',
+        'button_done' => 'Đã Được Hype!',
         'confirm' => "Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn và không thể hủy bỏ.",
         'explanation' => 'Hype beatmap này để làm nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'explanation_guest' => 'Đăng nhập và hype beatmap này để nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
@@ -139,28 +139,28 @@ return [
     ],
 
     'nominations' => [
-        'disqualification_prompt' => '',
-        'disqualified_at' => '',
-        'disqualified_no_reason' => '',
+        'disqualification_prompt' => 'Lí do để qualify?',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
-        'incorrect_state' => '',
+        'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'nominate' => 'Đề Cử',
-        'nominate_confirm' => '',
+        'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified_soon' => '',
-        'required_text' => '',
-        'reset_message_deleted' => 'deleted',
+        'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
+        'required_text' => 'Trạng thái đề cử: :current/:required',
+        'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago bởi :user với vấn đề mới :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
         ],
     ],
 
@@ -203,7 +203,7 @@ return [
         'ranked-approved' => 'Được Xếp Hạng & Được Chấp Nhận',
         'approved' => 'Được Chấp Nhận',
         'qualified' => 'Qualified',
-        'loved' => 'Được Love',
+        'loved' => 'Yêu thích',
         'faves' => 'Yêu Thích',
         'pending' => 'Đang Chờ',
         'graveyard' => 'Graveyard',

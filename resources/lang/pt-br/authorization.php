@@ -26,15 +26,17 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
+            'incorrect_state' => 'Erro ao realizar esta ação, tente atualizar a página.',
+            'owner' => "Não é possível nominar o próprio beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
+            'not_owner' => 'Somente o autor da discussão e o dono do mapa podem resolver uma discussão.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => "Não é possível votar na própria discussão!",
-            'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
+            'owner' => "Não é possível votar na própria discussão.",
+            'wrong_beatmapset_state' => 'Só é possível votar nas discussões de mapas pendentes.',
         ],
     ],
 
@@ -78,7 +80,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Não é possível editar uma publicação excluida.',
+                'deleted' => 'Não é possível editar uma publicação excluída.',
                 'locked' => 'A edição desta publicação está bloqueada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',

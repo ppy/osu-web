@@ -63,17 +63,17 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Downloads Automáticos',
+                'title' => 'Downloads automáticos',
                 'description' => 'Downloads automáticos quando jogando no multijogador, assistindo outros jogadores ou clicando em links no chat!',
             ],
 
             'upload_more' => [
-                'title' => 'Envie Mais',
-                'description' => 'Espaços adicionais para beatmaps pendentes (por beatmap ranqueado) até um máximo de 10.',
+                'title' => 'Envie mais',
+                'description' => 'Espaços adicionais para mapas pendentes (por mapa ranqueado) até um máximo de 10.',
             ],
 
             'early_access' => [
-                'title' => 'Acesso Antecipado',
+                'title' => 'Acesso antecipado',
                 'description' => 'Acesso a lançamentos mais cedo, onde você pode testar novas funcionalidades antes de irem ao público!',
             ],
 
@@ -83,12 +83,12 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtros de Beatmaps',
-                'description' => 'Filtre buscas de beatmaps por beatmaps jogados ou não jogados e ranques alcançados (se tiver).',
+                'title' => 'Filtros de mapas',
+                'description' => 'Filtre buscas de mapas por mapas jogados ou não jogados e ranques alcançados (se tiver).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Camarada Amarelo',
+                'title' => 'Camarada amarelo',
                 'description' => 'Seja reconhecido dentro do jogo com a sua nova cor de nome de usuário amarela.',
             ],
 
@@ -98,27 +98,27 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Alteração de Nome de Usuário',
+                'title' => 'Alteração de nome de usuário',
                 'description' => 'A capacidade de alterar seu nome de usuário sem custos adicionais. (uma vez)',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
+                'title' => 'Customização',
                 'description' => 'Maior função para skins, como a habilidade de alterar o fundo do menu principal.',
             ],
 
             'feature_votes' => [
-                'title' => 'Votos para Solicitar Recursos',
+                'title' => 'Votos para solicitar recursos',
                 'description' => 'Votos para solicitações de recursos. (2 por mês)',
             ],
 
             'sort_options' => [
-                'title' => 'Opções de Organização',
+                'title' => 'Opções de organização',
                 'description' => 'A capacidade de ver rankings de país/amigos/mod específico dentro do jogo.',
             ],
 
             'feel_special' => [
-                'title' => 'Sinta-se Especial',
+                'title' => 'Sinta-se especial',
                 'description' => 'Aquela sensação quentinha e gostosa por fazer sua parte em manter o osu! rodando tranquilo!',
             ],
 

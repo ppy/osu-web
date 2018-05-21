@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => '',
+        'title' => 'status',
         'description' => 'vad händer mah dude?',
     ],
 
@@ -31,8 +31,8 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Användare Online dem senaste 24 timmarna',
-            'score' => 'Poäng Inlämningar dem senaste 24 timmarna',
+            'users' => 'Användare Online de senaste 24 timmarna',
+            'score' => 'Poäng Inlämningar de senaste 24 timmarna',
         ],
         'current' => 'Nuvarande Användare Online',
         'score' => 'Poäng Inlämningar per Sekund',
@@ -43,7 +43,7 @@ return [
             'title' => 'Senaste Incidenter',
             'state' => [
                 'resolved' => 'Löst',
-                'resolving' => 'Lösande',
+                'resolving' => 'Skickar förfrågan',
                 'unknown' => 'Okänd',
             ],
         ],
@@ -51,8 +51,8 @@ return [
         'uptime' => [
             'title' => 'Upptid',
             'graphs' => [
-                'server' => '',
-                'web' => '',
+                'server' => 'server',
+                'web' => 'web',
             ],
         ],
 
@@ -61,7 +61,7 @@ return [
             'week' => 'vecka',
             'month' => 'månad',
             'all_time' => 'all tid',
-            'last_week' => 'senaste vecka',
+            'last_week' => 'förra veckan',
             'weeks_ago' => ':count vecka sedan|:count veckor sedan',
         ],
     ],

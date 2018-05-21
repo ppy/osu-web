@@ -27,7 +27,7 @@ return [
             'removing' => '제거 중...',
         ],
         'show' => [
-            'covers' => '',
+            'covers' => '비트맵셋 표지 관리',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '활성화 하기',

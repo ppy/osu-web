@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Kochasz osu!?<br/>
-                                Wspomóż deweloperów osu! :D',
+                                Wspomóż twórców gry! :D',
             'small_description' => '',
             'support_button' => 'Chcę wspomóc osu!',
         ],
@@ -39,17 +39,17 @@ return [
             'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
             'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
             'title' => 'Status donatora',
-            'valid_until' => 'Twój status donatora jest aktywny do :date!',
+            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],
 
         'why_support' => [
             'title' => 'Dlaczego mam wspomóc osu!?',
             'blocks' => [
-                'dev' => 'Stworzone i utrzymywane głównie przez jedną osobę z Australii.',
+                'dev' => 'Stworzona i utrzymywana głównie przez jedną osobę z Australii.',
                 'time' => 'Zajmuje tyle czasu, że nie można tego już nazwać "hobby".',
                 'ads' => 'Brak jakichkolwiek reklam. <br/><br/>
-                        W odróżnieniu od 99.95% Internetu, nie zarabiamy na pokazywaniu reklam.',
+                        W odróżnieniu od 99,95% Internetu, nie zarabiamy na pokazywaniu reklam.',
                 'goodies' => 'Dostajesz dodatkowe korzyści!',
             ],
         ],
@@ -113,7 +113,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortowanie',
-                'description' => 'Możliwość przeglądania rankingu krajowego / znajomych / poszczególnego moda w grze.',
+                'description' => 'Możliwość przeglądania rankingu krajowego, znajomych oraz dla wybranych przez ciebie modów w grze.',
             ],
 
             'feel_special' => [

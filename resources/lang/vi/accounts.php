@@ -20,16 +20,16 @@
 
 return [
     'edit' => [
-        'title' => 'Cài Đặt <strong>Tài Khoản</strong>',
+        'title' => 'Cài đặt <strong>Tài khoản</strong>',
         'title_compact' => 'cài đặt',
-        'username' => 'tên tài khoản',
+        'username' => 'tên người dùng',
 
         'avatar' => [
-            'title' => 'Ảnh Đại Diện',
+            'title' => 'Ảnh đại diện',
         ],
 
         'email' => [
-            'current' => 'email hiện tại',
+            'current' => 'Email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -43,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Trang Cá Nhân',
+            'title' => 'Trang cá nhân',
 
             'user' => [
                 'user_from' => 'vị trí hiện tại',
@@ -51,13 +51,13 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => 'twitter',
-                'user_website' => 'trang web',
+                'user_website' => 'website',
                 'user_discord' => 'discord',
             ],
         ],
 
         'signature' => [
-            'title' => 'Chữ Kí',
+            'title' => 'Chữ kí',
             'update' => 'cập nhật',
         ],
     ],
@@ -73,10 +73,10 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Lối Chơi',
+        'title' => 'Kiểu chơi',
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
         'tablet' => 'tablet',
-        'touch' => 'cảm ứng',
+        'touch' => 'touchscreen',
     ],
 ];

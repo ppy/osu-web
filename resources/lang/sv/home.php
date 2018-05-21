@@ -35,24 +35,24 @@ return [
         'advanced_link' => 'Avancerad sökning',
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
-        'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
-        'placeholder' => '',
-        'title' => '',
+        'missing_query' => 'Sökning på nyckelord behöver vara minst :n tecken',
+        'placeholder' => 'skriv för att söka',
+        'title' => 'Sök',
 
         'beatmapset' => [
-            'more' => ':count fler sök resultat på beatmaps',
-            'more_simple' => 'Se fler sök resultat på beatmaps',
+            'more' => ':count fler sökresultat på beatmaps',
+            'more_simple' => 'Se fler sökresultat på beatmaps',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Alla forum',
             'link' => 'Sök på forumet',
-            'more_simple' => 'Se fler sök resultat på forum',
+            'more_simple' => 'Se fler sökresultat på forum',
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'sök i forum',
+                'forum' => 'sök i forumen',
                 'forum_children' => 'inkludera subforum',
                 'topic_id' => 'ämne #',
                 'username' => 'författare',
@@ -68,15 +68,15 @@ return [
         ],
 
         'user' => [
-            'more' => ':count fler sök resultat på spelare',
-            'more_simple' => 'Se fler sök resultat på spelare',
-            'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök förfina sökningen.',
+            'more' => ':count fler sökresultat på spelare',
+            'more_simple' => 'Se fler sökresultat på spelare',
+            'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök att förfina sökningen.',
             'title' => 'Spelare',
         ],
 
         'wiki_page' => [
-            'link' => 'Sök på wiki',
-            'more_simple' => 'Se fler sök resultat på wiki',
+            'link' => 'Sök på wikin',
+            'more_simple' => 'Se fler sökresultat på wikin',
             'title' => 'Wiki',
         ],
     ],
@@ -98,7 +98,7 @@ return [
             ],
             'download' => [
                 'title' => 'ladda ner spelet',
-                'description' => 'klicka på knappen ovan för att ladda ner installeraren, sen kör den!',
+                'description' => 'klicka på knappen ovan för att ladda ner installeraren, sedan kör du den!',
             ],
             'beatmaps' => [
                 'title' => 'skaffa beatmaps',
@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'kontrollpanel',
         'news' => [
             'title' => 'Nyheter',
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nya Godkända Beatmaps',
+            'new' => '',
             'popular' => 'Populära Beatmaps',
             'by' => 'av',
             'plays' => 'Spelad :count gånger',
@@ -141,12 +141,12 @@ return [
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'Det ser ut som att du har det bra! :D',
+        'subtitle' => 'Det ser ut som att du har kul! :D',
         'body' => [
-            'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som söttar utvecklingen och och kostnader för underhåll?',
+            'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som stöttar utvecklingen och kostnader för underhåll?',
             'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
         ],
         'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => "Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
+        'download-starting' => "Åh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
     ],
 ];

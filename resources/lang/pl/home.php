@@ -27,7 +27,7 @@ return [
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
-            'sub' => 'rytm jest tylko o klik stąd!',
+            'sub' => 'rytm jest tylko o klik stąd',
         ],
     ],
 
@@ -46,9 +46,9 @@ return [
         ],
 
         'forum_post' => [
-            'all' => 'Wszystkie fora',
+            'all' => 'Całe forum',
             'link' => 'Przeszukaj forum',
-            'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
+            'more_simple' => 'Zobacz więcej wyszukanych wątków na forum',
             'title' => 'Forum',
 
             'label' => [
@@ -60,7 +60,7 @@ return [
         ],
 
         'mode' => [
-            'all' => 'wszystkie',
+            'all' => 'wszystko',
             'beatmapset' => 'beatmapa',
             'forum_post' => 'forum',
             'user' => 'użytkownik',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nowe rankingowe beatmapy',
+            'new' => '',
             'popular' => 'Popularne beatmapy',
             'by' => 'autorstwa',
             'plays' => ':count zagrań',

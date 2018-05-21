@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => '',
-        'news-show' => '',
+        'news-index' => 'lijst',
+        'news-show' => 'bericht',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'osu!nieuws',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Nieuwere berichten',
+            'older' => 'Oudere berichten',
         ],
     ],
 
     'show' => [
-        'posted' => '',
+        'posted' => 'geplaatst :time',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Nieuwer bericht',
+            'older' => 'Ouder bericht',
         ],
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Bijwerken',
+        'ok' => 'Lijst bijgewerkt.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Bijwerken',
+        'ok' => 'Bericht bijgewerkt.',
     ],
 ];

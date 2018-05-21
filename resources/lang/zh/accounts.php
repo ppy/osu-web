@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>账户</strong>设置',
+        'title' => '账户设置',
         'title_compact' => '设置',
         'username' => '用户名',
 
@@ -48,11 +48,11 @@ return [
             'user' => [
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'Skype',
+                'user_msnm' => 'skype',
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
-                'user_discord' => 'Discord',
+                'user_discord' => 'discord',
             ],
         ],
 

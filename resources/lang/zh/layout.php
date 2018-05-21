@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - 节奏跃然指上！内含来自「押忍！战斗应援团」、「精英节拍特工」、太鼓的以及 osu! 原创的游戏模式，以及为其设计的全功能谱面编辑器。',
     ],
 
     'menu' => [
@@ -47,8 +47,8 @@ return [
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => '',
-            'wiki-show' => '',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '谱面',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => '社区',
-            'dev' => '',
+            'dev' => '开发',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getLive' => '直播',
@@ -112,7 +112,7 @@ return [
 
             'register' => '注册',
             'reset' => '重置',
-            'new' => '',
+            'new' => '新增',
 
             'messages' => '信息',
             'settings' => '设置',
@@ -135,9 +135,9 @@ return [
             'getInvoice' => '发票',
             'products-show' => '商品',
 
-            'new' => '',
-            'home' => '',
-            'index' => '',
+            'new' => '新增',
+            'home' => '首页',
+            'index' => '主页',
             'thanks' => '感谢',
         ],
         'admin-forum' => [
@@ -164,12 +164,12 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => '网站地图',
+            '_' => '常用',
             'home' => '主页',
             'changelog-index' => '更新日志',
             'beatmaps' => '谱面列表',
             'download' => '下载 osu!',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => '帮助 & 社区',
@@ -181,7 +181,7 @@ return [
         'support' => [
             '_' => '支持 osu!',
             'tags' => '成为 Supporter',
-            'merchandise' => '商店',
+            'merchandise' => '周边',
         ],
         'legal' => [
             '_' => '法律 & 状态',
@@ -194,38 +194,38 @@ return [
     'errors' => [
         '404' => [
             'error' => '无法找到网页',
-            'description' => "很抱歉，您访问的页面不存在...请返回到上一个页面",
+            'description' => "抱歉，您正在尝试访问的页面不存在！",
         ],
         '403' => [
-            'error' => "没有权限",
-            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面',
+            'error' => "这里不是你该来的地方。",
+            'description' => '不过，你可以选择往回走。',
         ],
         '401' => [
-            'error' => "没有权限",
-            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）',
+            'error' => "这里不是你该来的地方。",
+            'description' => '不过，你可以选择往回走。或者试试登录？',
         ],
         '405' => [
             'error' => '无法找到网页',
-            'description' => "很抱歉，您访问的页面不存在...请返回到上一个页面",
+            'description' => "抱歉，您正在尝试访问的页面不存在！",
         ],
         '500' => [
-            'error' => '哎呀，服务器崩溃了',
-            'description' => "我们会自动报告每一个错误，请返回到上一个页面。",
+            'error' => '哎呀，服务器崩溃了！;_;',
+            'description' => "服务器一旦出错，我们都会收到通知。请返回到上一个页面。",
         ],
         'fatal' => [
-            'error' => '哎呀，服务器被外星人带走了',
-            'description' => "我们会自动报告每一个错误，请返回到上一个页面。",
+            'error' => '哎呀，服务器被外星人带走了！;_;',
+            'description' => "服务器一旦出错，我们都会收到通知。请返回到上一个页面。",
         ],
         '503' => [
-            'error' => '啊哦...服务器正在维护中',
-            'description' => "每次维护需要5秒到10分钟的时间。如果维护时间太长，查看 :link 以获得更多信息。",
+            'error' => '服务器维护中！',
+            'description' => "一般情况下，维护工作只需要 5 秒到 10 分钟的时间。如果服务器一直处于维护状态，请查看 :link 以获得更多信息。",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "以防万一，你可以将这里的代码发给我们！",
+        'reference' => "如果需要的话，请把这里的代码发送给支持团队！",
     ],
 
     'popup_login' => [
@@ -243,7 +243,7 @@ return [
 
         'register' => [
             'info' => "点击下方的注册按钮以成为 osu! 大家庭中的一员！",
-            'title' => "没有帐号？",
+            'title' => "没有账号？",
         ],
     ],
 
@@ -258,6 +258,6 @@ return [
 
     'popup_search' => [
         'initial' => '键入以搜索！',
-        'retry' => '搜索失败，点击以重试。',
+        'retry' => '搜索失败。点此重试。',
     ],
 ];

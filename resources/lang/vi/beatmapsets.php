@@ -34,7 +34,7 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
-            'made-by' => 'được làm bởi ',
+            'made-by' => 'được tạo bởi ',
             'submitted' => 'tải lên vào ',
             'updated' => 'cập nhật lần cuối lúc ',
             'ranked' => 'được xếp hạng vào ',
@@ -65,19 +65,19 @@ return [
             'count_sliders' => 'Số Nốt Trượt',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
-            'nominations' => '',
+            'nominations' => 'Đề cử',
             'playcount' => 'Đã chơi',
         ],
         'info' => [
             'description' => 'Mô Tả',
-            'genre' => 'Genre',
-            'language' => 'Language',
-            'no_scores' => 'Beatmap chưa được xếp hạng',
+            'genre' => 'Thể Loại',
+            'language' => 'Ngôn Ngữ',
+            'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap chưa có xếp hạng',
+            'unranked' => 'Beatmap chưa được xếp hạng',
         ],
         'scoreboard' => [
             'achieved' => 'đạt được :when',

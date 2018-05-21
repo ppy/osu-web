@@ -32,7 +32,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'usunięte',
+        'deleted_beatmap' => 'usunięta',
         'title' => 'Dyskusje',
 
         'form' => [
@@ -74,7 +74,7 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'owner' => 'mapper',
+        'owner' => 'twórca',
         'qat' => 'qat',
     ],
 

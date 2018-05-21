@@ -30,12 +30,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Avbryt',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => 'ändra',
+        'click_to_copy' => 'klicka för att kopiera till urklipp',
+        'click_to_copy_copied' => 'kopierad till urklipp!',
         'delete' => 'Radera',
         'permalink' => 'permalänk',
-        'permalink_copied' => '',
+        'permalink_copied' => 'länk kopierad',
         'post' => 'Lägg upp',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och Öppna Igen',
@@ -43,20 +43,20 @@ return [
         'reset' => 'Återställ',
         'save' => 'Spara',
         'saving' => 'Sparar...',
-        'see_more' => '',
+        'see_more' => 'se mer',
         'show_more' => 'visa mer',
         'upload_image' => 'ladda upp bild',
     ],
 
     'count' => [
-        'badges' => '',
-        'days' => '',
-        'hour_short_unit' => '',
-        'hours' => '',
+        'badges' => ':count emblem|:count emblem',
+        'days' => ':count dag|:count dagar',
+        'hour_short_unit' => 't|t',
+        'hours' => ':count timme|:count timmar',
         'item' => ':count enhet|:count enheter',
-        'minute_short_unit' => '',
+        'minute_short_unit' => 'm|m',
         'months' => ':count månad|:count månader',
-        'second_short_unit' => '',
+        'second_short_unit' => 's|s',
         'years' => ':count år|:count år',
     ],
 
@@ -66,15 +66,15 @@ return [
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Tangentbord',
         'mouse' => 'Mus',
-        'tablet' => 'Platta',
-        'touch' => 'Touch Skärm',
+        'tablet' => 'Ritplatta',
+        'touch' => 'Pekskärm',
     ],
 
     'dropzone' => [

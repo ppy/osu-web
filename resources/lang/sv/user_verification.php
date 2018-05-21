@@ -21,29 +21,29 @@
 return [
     'box' => [
         'sent' => 'Ett email har skickats till :mail med en verifikations kod. Skriv in koden.',
-        'title' => 'Konto Verifiering',
+        'title' => 'Kontobekräftelse',
         'verifying' => 'Verifierar...',
-        'issuing' => 'Utfärdar ny kod...',
+        'issuing' => 'Skickar ny kod...',
 
         'info' => [
-            'check_spam' => "Dubbelkolla din skräpkorg ifall du inte kan hitta emailet.",
-            'recover' => "Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.",
+            'check_spam' => "Dubbelkolla skräpposten ifall du inte kan hitta emailet.",
+            'recover' => "Om du inte har tillgång till din email eller har glömt vad du använde, var vänlig följ :link.",
             'recover_link' => 'email återställning processen här',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
-            'reissue_link' => 'begär en annan kod',
+            'reissue_link' => 'begära en ny kod',
             'logout_link' => 'logga ut',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! konto verifiering',
+        'subject' => 'osu! kontobekräftelse',
     ],
 
     'errors' => [
-        'expired' => 'Verifierings kod är utgången, ett nytt verifierings email har skickats.',
-        'incorrect_key' => 'Felaktig verifierings kod.',
-        'retries_exceeded' => 'Felaktig verifierings kod. Försöks gräns uppnådd, ny verifierings email skickats.',
-        'reissued' => 'Verifierings kod återutfärdat, ny verifierings email skickad.',
-        'unknown' => 'Okänt problem har uppstått, ny verifierings email har skickats.',
+        'expired' => 'Verifieringskoden har utgått, ett nytt bekräftelsemail har skickats.',
+        'incorrect_key' => 'Felaktig bekräftelsekod.',
+        'retries_exceeded' => 'Felaktig verifieringskod. Försöksgräns uppnådd, ett nytt bekräftelsemail har skickats.',
+        'reissued' => 'Verifieringskod återutfärdad, ett nytt bekräftelsemail har skickats.',
+        'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemail har skickats.',
     ],
 ];

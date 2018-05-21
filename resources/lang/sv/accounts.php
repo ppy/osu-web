@@ -22,32 +22,32 @@ return [
     'edit' => [
         'title' => '<strong>Konto</strong> Inställningar',
         'title_compact' => 'inställningar',
-        'username' => '',
+        'username' => 'användarnamn',
 
         'avatar' => [
-            'title' => 'Ändra Avatar',
+            'title' => 'Profilbild',
         ],
 
         'email' => [
-            'current' => 'nuvarande email',
-            'new' => 'ny email',
+            'current' => 'nuvarande e-postadress',
+            'new' => 'ny e-postadress',
             'new_confirmation' => 'email bekräftelse',
-            'title' => '',
+            'title' => 'E-postadress',
         ],
 
         'password' => [
             'current' => 'nuvarande lösenord',
             'new' => 'nytt lösenord',
-            'new_confirmation' => 'lösenord bekräftelse',
+            'new_confirmation' => 'lösenordsbekräftelse',
             'title' => 'Lösenord',
         ],
 
         'profile' => [
-            'title' => 'Ändra Profil',
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'nuvarande position',
-                'user_interests' => '',
+                'user_interests' => 'intressen',
                 'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
@@ -63,20 +63,20 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'ändring av osu! email bekräftelse',
+        'email_subject' => 'bekräfta ändrad osu! e-postadress',
         'update' => 'uppdatera',
     ],
 
     'update_password' => [
-        'email_subject' => 'ändring av osu! lösenord bekräftelse',
+        'email_subject' => 'bekräfta ändrat osu! lösenord',
         'update' => 'uppdatera',
     ],
 
     'playstyles' => [
-        'title' => 'Spelsätt',
+        'title' => 'Spelstil',
         'mouse' => 'mus',
         'keyboard' => 'tangentbord',
         'tablet' => 'platta',
-        'touch' => 'vidrörning',
+        'touch' => 'pekskärm',
     ],
 ];

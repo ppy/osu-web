@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Momentan laufen keine Turniere, schau später noch mal!',
         'registration_period' => 'Anmeldung: :start bis :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

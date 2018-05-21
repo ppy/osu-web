@@ -50,7 +50,7 @@ return [
         'artist' => 'Artis/Album',
         'chart' => 'Spotlights',
         'standard' => 'Standar',
-        'theme' => 'Tematik',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [

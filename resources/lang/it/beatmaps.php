@@ -32,22 +32,22 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => '',
-        'delete' => '',
-        'deleted' => '',
-        'deny_kudosu' => '',
+        'allow_kudosu' => 'permetti kudosu',
+        'delete' => 'elimina',
+        'deleted' => 'Eliminato da :editor :delete_time.',
+        'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
-        'kudosu_denied' => '',
+        'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder' => 'Scrivi qui per postare',
-        'message_placeholder_deleted_beatmap' => '',
+        'message_placeholder_deleted_beatmap' => 'La difficoltà è stata eliminata cosicché non possa essere più discussa.',
         'message_type_select' => 'Seleziona il tipo di commento',
-        'reply_notice' => '',
-        'reply_placeholder' => '',
+        'reply_notice' => 'Premi invio per rispondere.',
+        'reply_placeholder' => 'Scrivi la tua risposta qui',
         'require-login' => 'Per favore effettua il login per postare o rispondere',
         'resolved' => 'Risolto',
-        'restore' => '',
-        'title' => '',
+        'restore' => 'ripristina',
+        'title' => 'Discussioni',
 
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',
@@ -56,7 +56,7 @@ return [
 
         'empty' => [
             'empty' => 'Ancora nessuna discussione!',
-            'hidden' => '',
+            'hidden' => 'Nessuna discussione coincide con il filtro selezionato.',
         ],
 
         'message_hint' => [
@@ -65,29 +65,29 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
+            'disqualify' => 'Squalifica',
+            'hype' => 'Hype!',
+            'mapper_note' => 'Nota',
+            'nomination_reset' => 'Reset Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
-            'events' => '',
-            'general' => '',
+            'events' => 'Storico',
+            'general' => ':scope generale',
             'timeline' => 'Linea Temporale',
             'scopes' => [
-                'general' => '',
-                'generalAll' => '',
+                'general' => 'Questa difficoltà',
+                'generalAll' => 'Tutte le difficoltà',
             ],
         ],
 
         'new' => [
-            'timestamp' => '',
-            'timestamp_missing' => '',
-            'title' => '',
+            'timestamp' => 'Data e ora',
+            'timestamp_missing' => 'ctrl-c in modalità modifica e incollaci il tuo messaggio per aggiungere un timestamp!',
+            'title' => 'Nuova Discussione',
         ],
 
         'show' => [
@@ -95,64 +95,64 @@ return [
         ],
 
         'sort' => [
-            '_' => '',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            '_' => 'Ordinato per:',
+            'created_at' => 'data di creazione',
+            'timeline' => 'linea temporale',
+            'updated_at' => 'ultimo aggiornamento',
         ],
 
         'stats' => [
-            'deleted' => '',
-            'mapper_notes' => '',
+            'deleted' => 'Eliminato',
+            'mapper_notes' => 'Note',
             'mine' => 'Mio',
             'pending' => 'In attesa',
             'praises' => 'Elogi',
             'resolved' => 'Risolti',
-            'total' => '',
+            'total' => 'Tutto',
         ],
 
         'status-messages' => [
-            'approved' => '',
-            'graveyard' => "",
-            'loved' => '',
-            'ranked' => '',
-            'wip' => '',
+            'approved' => 'Questa beatmap è stata approvata il :date!',
+            'graveyard' => "Questa beatmap non è stata aggiornata dal :date ed è stata molto probabilmente abbandonata dal creatore...",
+            'loved' => 'Questa beatmap è stata approvata il :date!',
+            'ranked' => 'Questa beatmap è stata rankata il :date!',
+            'wip' => 'Nota: Questa beatmap è contrassegnata come un work-in-progress dal creatore.',
         ],
 
     ],
 
     'hype' => [
-        'button' => '',
-        'button_done' => '',
-        'confirm' => "",
-        'explanation' => '',
-        'explanation_guest' => '',
-        'new_time' => "",
-        'remaining' => '',
-        'required_text' => '',
+        'button' => 'Beatmap hype!',
+        'button_done' => 'Già Hyped!',
+        'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi rimanenti :n hype e non può essere annullata.",
+        'explanation' => 'Hype questo beatmap per renderla più visibile per nomina e posizione in graduatoria!',
+        'explanation_guest' => 'Effettua l\'accesso e hype questa beatmap per renderla più visibile per la nomina e classificazione!',
+        'new_time' => "Riceverai un altro hype :new_time.",
+        'remaining' => 'Hai ancora :remaining hype rimanenti.',
+        'required_text' => 'Hype: :current/:required',
         'section_title' => '',
-        'title' => '',
+        'title' => 'Hype',
     ],
 
     'feedback' => [
-        'button' => '',
+        'button' => 'Lascia un feedback',
     ],
 
     'nominations' => [
         'disqualification_prompt' => 'Ragioni della squalifica?',
         'disqualified_at' => 'squalificata :time_ago',
-        'disqualified_no_reason' => '',
+        'disqualified_no_reason' => 'nessuna motivazione specificata',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'nominate' => 'Nomina',
-        'nominate_confirm' => '',
-        'nominated_by' => '',
+        'nominate_confirm' => 'Nominare questa beatmap?',
+        'nominated_by' => 'nominato da :users',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
         'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nominazioni: :current/:required',
-        'reset_message_deleted' => '',
-        'title' => '',
-        'unresolved_issues' => '',
+        'reset_message_deleted' => 'eliminato',
+        'title' => 'Stato nomina',
+        'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che devono essere indirizzati prima.',
 
         'reset_at' => [
             'nomination_reset' => '',
@@ -160,7 +160,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
         ],
     ],
 
@@ -171,14 +171,14 @@ return [
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
             'filters' => [
-                'general' => '',
-                'mode' => '',
-                'status' => '',
-                'genre' => '',
-                'language' => '',
-                'extra' => '',
-                'rank' => '',
-                'played' => '',
+                'general' => 'Generale',
+                'mode' => 'Modalità',
+                'status' => 'Stato del rank',
+                'genre' => 'Genere',
+                'language' => 'Lingua',
+                'extra' => 'extra',
+                'rank' => 'Rank ottenuto',
+                'played' => 'Giocato',
             ],
         ],
         'mode' => 'Modalità',
@@ -188,8 +188,8 @@ return [
         'load-more' => 'Carica altro...',
     ],
     'general' => [
-        'recommended' => '',
-        'converts' => '',
+        'recommended' => 'Difficoltà raccomandata',
+        'converts' => 'Includi beatmap convertite',
     ],
     'mode' => [
         'any' => 'Qualsiasi',
@@ -202,8 +202,8 @@ return [
         'any' => 'Tutto',
         'ranked-approved' => 'Rankate e Approvate',
         'approved' => 'Approvate',
-        'qualified' => '',
-        'loved' => '',
+        'qualified' => 'Qualificata',
+        'loved' => 'Loved',
         'faves' => 'Preferiti',
         'pending' => 'In Attesa',
         'graveyard' => 'Cimitero',
@@ -260,9 +260,9 @@ return [
         'other' => 'Altro',
     ],
     'played' => [
-        'any' => '',
-        'played' => '',
-        'unplayed' => '',
+        'any' => 'Qualsiasi',
+        'played' => 'Giocato',
+        'unplayed' => 'Non giocato',
     ],
     'extra' => [
         'video' => 'Ha Video',

@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Tópicos Fixados',
+    'pinned_topics' => 'Tópicos fixados',
     'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
@@ -105,9 +105,9 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Inscrições de Fórum',
+            'title' => 'Inscrições de fórum',
             'title_compact' => 'inscrições de fórum',
-            'title_main' => '<strong>Inscrições</strong> de Fórum',
+            'title_main' => '<strong>Inscrições</strong> de fórum',
 
             'box' => [
                 'total' => 'Tópicos inscritos',
@@ -116,14 +116,14 @@ return [
 
             'info' => [
                 'total' => 'Você se inscreveu em :total tópicos.',
-                'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
+                'unread' => 'Você tem :unread respostas não visualizadas de tópicos inscritos.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Cancelar inscrição no tópico?',
-                'title' => 'Cancelar Inscrição',
+                'title' => 'Cancelar inscrição',
             ],
         ],
     ],
@@ -138,7 +138,7 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Criação de Enquete',
+            'create_poll' => 'Criação de enquete',
 
             'create_poll_button' => [
                 'add' => 'Criar enquete',
@@ -155,7 +155,7 @@ return [
                 'options_info' => 'Coloque cada uma das opções em uma nova linha. Você pode inserir até 10 opções.',
                 'title' => 'Pergunta',
                 'vote_change' => 'Permitir alteração de voto.',
-                'vote_change_info' => 'Caso ativado, usuários poderão alterar o voto.',
+                'vote_change_info' => 'Caso ativado, os usuários poderão alterar o voto.',
             ],
         ],
 
@@ -232,11 +232,11 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Publicações Excluídas',
-            'total_posts' => 'Total de Postagens',
+            'deleted-posts' => 'Publicações excluídas',
+            'total_posts' => 'Total de postagens',
 
             'feature_vote' => [
-                'current' => 'Prioridade Atual: +:count',
+                'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [

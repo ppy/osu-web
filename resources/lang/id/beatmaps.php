@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Gagal menyimpan post',
+            'error' => 'Gagal menyimpan kiriman',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
         'message_placeholder' => 'Ketik di sini untuk posting',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_type_select' => 'Pilih Jenis Komentar',
-        'reply_notice' => 'Tekan enter untuk membalas',
+        'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
         'resolved' => 'Terselesaikan',
@@ -60,7 +60,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, mulai pesan Anda dengan keterangan waktu (cth : 00:12:345).',
+            'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, mulai pesan Anda dengan keterangan waktu (cth: 00:12:345).',
             'in_timeline' => 'Topik-topik diskusi ini berlaku untuk masing-masing tingkat kesulitan secara spesifik. Untuk memulai topik diskusi baru, salin keterangan waktu dari editor disertai dengan komentar Anda (satu topik per keterangan waktu).',
         ],
 
@@ -75,7 +75,7 @@ return [
         ],
 
         'mode' => [
-            'events' => 'Peristiwa',
+            'events' => 'Riwayat',
             'general' => 'Umum :scope',
             'timeline' => 'Linimasa',
             'scopes' => [
@@ -95,7 +95,7 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Urut berdasarkan:',
+            '_' => 'Sortir berdasarkan:',
             'created_at' => 'waktu pembuatan',
             'timeline' => 'linimasa',
             'updated_at' => 'pembaruan terakhir',
@@ -105,7 +105,7 @@ return [
             'deleted' => 'Dihapus',
             'mapper_notes' => 'Catatan',
             'mine' => 'Milik Saya',
-            'pending' => 'Menunggu',
+            'pending' => 'Tertunda',
             'praises' => 'Pujian',
             'resolved' => 'Terselesaikan',
             'total' => 'Semua',
@@ -143,9 +143,9 @@ return [
         'disqualified_at' => 'Didiskualifikasi :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
-        'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, coba muat ulang halaman.',
+        'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang halaman.',
         'nominate' => 'Nominasi',
-        'nominate_confirm' => 'Nominasi beatmap ini?',
+        'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
         'qualified' => 'Diperkirakan akan berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
         'qualified_soon' => 'Diperkirakan akan segera berstatus Ranked jika tidak ada masalah yang ditemukan.',
@@ -167,7 +167,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'ketik kata kunci...',
-            'options' => 'Perbanyak Opsi Pencarian',
+            'options' => 'Opsi Pencarian Lebih Lanjut',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
             'filters' => [
@@ -189,7 +189,7 @@ return [
     ],
     'general' => [
         'recommended' => 'Tingkat kesulitan yang disarankan',
-        'converts' => 'Sertakan beatmap konversi',
+        'converts' => 'Sertakan beatmap yang dikonversi',
     ],
     'mode' => [
         'any' => 'Semua',
@@ -261,7 +261,7 @@ return [
     ],
     'played' => [
         'any' => 'Semua',
-        'played' => 'Telah Dimainkan',
+        'played' => 'Pernah Dimainkan',
         'unplayed' => 'Belum Dimainkan',
     ],
     'extra' => [

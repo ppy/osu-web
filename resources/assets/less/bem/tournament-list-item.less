@@ -39,6 +39,10 @@
       background-color: lighten(@community-grayblue-tile-background, 5%);
     }
 
+    &--old {
+      flex-basis: calc(50% ~'-' 10px);
+    }
+
     &__metadata {
       display: flex;
       justify-content: space-between;
@@ -88,14 +92,23 @@
     }
 
     &__image-wrapper {
-      // hack using scale + overflow:hidden wrapper cuz background-size no worky with transition
       overflow: hidden;
     }
 
     &__image {
       transition: 50ms ease-in-out;
-      height: 450px;
-      background-size: cover;
-      background-position: center center;
+      width: 100%;
+      object-fit: cover;
+      will-change: transform, filter, opacity;
+
+      .@{_top}--old & {
+        filter: grayscale();
+        opacity: 0.75;
+      }
+
+      .@{_top}--old:hover & {
+        filter: none;
+        opacity: 1;
+      }
     }
   }

@@ -38,7 +38,7 @@ abstract class Controller extends BaseController
     protected function userCart()
     {
         if (Auth::check()) {
-            return Order::cart(Auth::user());
+            return Order::cart(Auth::user()) ?? new Order(['user_id' => Auth::user()->user_id]);
         }
     }
 

@@ -19,44 +19,44 @@
  */
 
 return [
-    'deleted' => '',
+    'deleted' => '[utente eliminato]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => "Cronologia di Modding dell'utente",
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Discussioni aperte di recente',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Eventi recenti',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Post recenti',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Più votate da (ultimi 3 mesi)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Più votati (ultimi 3 mesi)',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Caricamento...',
+        'send_message' => 'invia messaggio',
     ],
 
     'login' => [
         '_' => 'Accedi',
-        'locked_ip' => '',
+        'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'username' => 'Nome Utente',
         'password' => 'Password',
         'button' => 'Accedi',
-        'button_posting' => '',
+        'button_posting' => 'Registrazione in corso...',
         'remember' => 'Ricorda questo computer',
         'title' => 'Per favore accedi per procedere',
         'failed' => 'Login non corretto',
@@ -71,7 +71,7 @@ return [
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => ':post dell\'utente',
     ],
 
     'signup' => [
@@ -79,18 +79,19 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'clicca per accedere',
-        'login_text' => '',
+        'login_text' => 'registrati',
         'username' => 'Ospite',
         'error' => 'Devi accedere per poterlo fare.',
     ],
     'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(',
     'restricted_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Il tuo account è stato limitato!',
+        'message' => 'Quando sei ristretto, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Questo è solitamente il risultato di un processo automatico e verrà sollevato preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, si prega <a
+href="mailto:accounts@ppy.sh">contatta supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
-        'change_avatar' => '',
+        'change_avatar' => 'cambia il tuo avatar!',
         'first_members' => 'Qui dall\'inizio',
         'is_developer' => 'sviluppatore di osu!',
         'is_supporter' => 'sostenitore di osu!',
@@ -101,8 +102,8 @@ return [
         'origin_country_age' => ':age fa da :country',
         'origin_country' => 'da :country',
         'page_description' => 'osu! - Tutto ciò che vuoi sapere su :username!',
-        'previous_usernames' => '',
-        'plays_with' => '',
+        'previous_usernames' => 'precedentemente conosciuto come',
+        'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
         'edit' => [
@@ -115,21 +116,21 @@ return [
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
                     'restriction_info' => "Caricamento disponibile solo per gli <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'L\'immaigne di copertina dovrebbe essere 2000x700',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2000x700',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
-                'set' => '',
+                'is_default_tooltip' => 'modalità predefinita',
+                'set' => 'imposta :mode come modalità predefinita',
             ],
         ],
 
         'extra' => [
-            'followers' => '',
-            'unranked' => '',
+            'followers' => '1 follower|:count followers',
+            'unranked' => 'Nessuna partita recente',
 
             'achievements' => [
                 'title' => 'Obiettivi',
@@ -143,13 +144,16 @@ return [
                     'title' => 'Beatmaps Preferite (:count)',
                 ],
                 'graveyard' => [
+                    'title' => 'Beatmap abbandonate (:count)',
+                ],
+                'loved' => [
                     'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Rankate e Approvate (:count)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => 'Beatmaps in attesa (:count)',
                 ],
             ],
             'historical' => [
@@ -157,7 +161,7 @@ return [
                 'title' => 'Storico',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => 'Cronologia partite',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
@@ -168,7 +172,7 @@ return [
                     'title' => 'Partite recenti',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => 'Cronologia replay guardati',
                 ],
             ],
             'kudosu' => [
@@ -185,35 +189,35 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Ricevuto :amount dall\'annullamento del rifiuto di kudosu del modding post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Negato :amount dal modding post :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Perso :amount dalla rimozione del modding post :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Ricevuto :amount dal ripristino del modding post :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Ricevuto :amount dall\'ottenimento di voti nel post di modding di :post',
+                            'reset' => 'Perso :amount dalla perdita di voti nel posto di modding di :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Ricevuto :amount dal ricalcolo di voti nel post di modding di :post',
+                            'reset' => 'Perso :amount dal ricalcolo di voti nel post di modding di :post',
                         ],
                     ],
 
                     'forum_post' => [
                         'give' => 'Ricevuto :amount da :giver per il post in :post',
-                        'reset' => '',
+                        'reset' => 'Kudosu resettato da :giver per il post :post',
                         'revoke' => 'Kudosu negato da :giver per il post :post',
                     ],
                 ],
@@ -222,7 +226,7 @@ return [
                 'title' => 'io!',
             ],
             'medals' => [
-                'empty' => "",
+                'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
                 'title' => 'Medaglie',
             ],
             'recent_activity' => [
@@ -230,7 +234,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
-                'not_ranked' => '',
+                'not_ranked' => 'Solo le mappe classificate danno pp.',
                 'pp' => ':amountpp',
                 'title' => 'Rank',
                 'weighted_pp' => 'valutata: :pp (:percentage)',
@@ -243,42 +247,42 @@ return [
                 ],
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => 'Stato dell\'account',
+                'bad_standing' => "<strong>:username's</strong>l'account non ha una buona reputazione :(",
+                'remaining_silence' => '<strong>:username</strong> potrà parlare di nuovo tra :duration.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'Infrazioni recenti',
+                    'date' => 'data',
+                    'action' => 'azione',
+                    'length' => 'durata',
+                    'length_permanent' => 'Permanente',
+                    'description' => 'descrizione',
+                    'actor' => 'da :username',
 
                     'actions' => [
-                        'restriction' => '',
-                        'silence' => '',
-                        'note' => '',
+                        'restriction' => 'Ban',
+                        'silence' => 'Silenziato',
+                        'note' => 'Nota',
                     ],
                 ],
             ],
         ],
         'info' => [
             'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
+            'interests' => 'Interessi',
+            'lastfm' => 'Last.fm',
+            'location' => 'Posizione Attuale',
+            'occupation' => 'Occupazione',
             'skype' => '',
             'twitter' => '',
-            'website' => '',
+            'website' => 'Sito',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'Potrebbero aver cambiato il loro nome utente.',
+            'reason_2' => 'L\'account potrebbe essere temporaneamente non disponibile a causa di problemi di sicurezza o abuso.',
+            'reason_3' => 'Potresti aver commesso un errore di battitura!',
+            'reason_header' => 'Ci sono alcuni possibili motivi per questo:',
             'title' => 'Utente non trovato! ;_;',
         ],
         'page' => [
@@ -288,8 +292,8 @@ return [
             'restriction_info' => "Devi essere un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> per sbloccare questa funzione.",
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Ha contribuito :link',
+            'count' => ':count forum post |:count forum post',
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
@@ -300,7 +304,7 @@ return [
             'level' => 'Livello :level',
             'maximum_combo' => 'Combo Massima',
             'play_count' => 'Partite giocate',
-            'play_time' => '',
+            'play_time' => 'Tempo totale di gioco',
             'ranked_score' => 'Punteggio Rankato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
@@ -309,11 +313,11 @@ return [
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'Utente creato',
     ],
     'verify' => [
         'title' => 'Verifica dell\'account',

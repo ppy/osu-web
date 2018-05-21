@@ -20,8 +20,8 @@
 
 return [
     'buttons' => [
-      'add' => 'Añadir amigo',
-      'remove' => 'Eliminar amigo',
+      'add' => 'agregar amigo',
+      'remove' => 'eliminar amigo',
     ],
 
     'state' => [

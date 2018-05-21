@@ -53,7 +53,7 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'featured artists',
-            'beatmap_discussion_posts-index' => 'beatmapdiskussion: beiträge',
+            'beatmap_discussion_posts-index' => 'beatmapdiskussion: posts',
             'beatmap_discussions-index' => 'beatmapdiskussion',
             'beatmapset-watches-index' => 'modding watchlist',
             'beatmapset_discussion_votes-index' => 'beatmapdiskussion: abstimmungen',

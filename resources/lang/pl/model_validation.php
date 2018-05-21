@@ -26,12 +26,12 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Dyskusja została zablokowana.',
-        'first_post' => 'Nie można usunąć wątku rozpoczynającego.',
+        'first_post' => 'Nie możesz usunąć posta rozpoczynającego.',
     ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono beatmapy.',
-        'beatmapset_no_hype' => "Nie można nadać priorytetu tej beatmapie.",
+        'beatmapset_no_hype' => "Nie możesz nagłośnij tej beatmapy.",
         'hype_requires_null_beatmap' => 'Priorytet musi zostać nadany w sekcji Główne (wszystkie poziomy trudności).',
         'invalid_beatmap_id' => 'Ustawiono niewłaściwy poziom trudności.',
         'invalid_beatmapset_id' => 'Ustawiono niewłaściwą beatmapę.',
@@ -39,22 +39,22 @@ return [
         'mapper_note_wrong_user' => 'Tylko twórca beatmapy może zamieszczać adnotacje.',
 
         'hype' => [
-            'guest' => 'Musisz się zalogować, aby nadać priorytet.',
-            'hyped' => 'Już nadano priorytet tej beatmapie.',
-            'limit_exceeded' => 'Zużyto całą liczbę możliwych do nadania priorytetów.',
-            'not_hypeable' => 'Nie można nadać priorytetu tej beatmapie',
-            'owner' => 'Nie można nadać priorytetu własnej beatmapie.',
+            'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
+            'hyped' => 'Już nagłośniono tę beatmapę.',
+            'limit_exceeded' => 'Zużyto całą liczbę nagłośnień.',
+            'not_hypeable' => 'Nie można nagłośnić tej beatmapy',
+            'owner' => 'Nie możesz nagłośnić własnej beatmapy.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Określony znacznik czasu sięga ponad długość beatmapy.',
+            'exceeds_beatmapset_length' => 'Określony znacznik czasu przekracza długość beatmapy.',
             'negative' => "Znacznik czasu nie może być ujemny.",
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Można głosować tylko na prośby o funkcję.',
+            'not_feature_topic' => 'Możesz głosować tylko na prośby o funkcję.',
             'not_enough_feature_votes' => 'Niewystarczająco dużo głosów.',
         ],
 
@@ -63,26 +63,26 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Usuwanie posta z metadanymi beatmapy jest zabronione.',
-            'beatmapset_post_no_edit' => 'Edytowanie posta z metadanymi beatmapy jest zabronione.',
+            'beatmapset_post_no_delete' => 'Nie możesz usuwać posta z metadanymi beatmapy.',
+            'beatmapset_post_no_edit' => 'Nie możesz edytować posta z metadanymi beatmapy.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplikaty nie są dozwolone.',
-            'invalid_max_options' => 'Ilość możliwości wyboru na użytkownika nie może przekroczyć ich całościowej liczby.',
-            'minimum_one_selection' => 'Potrzeba minimalnie jedną opcję.',
-            'minimum_two_options' => 'Potrzeba minimalnie dwóch opcji.',
-            'too_many_options' => 'Przekroczono maksymalną ilość możliwości wyboru.',
+            'duplicate_options' => 'Nie możesz dodawać takich samych możliwości wyboru.',
+            'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',
+            'minimum_one_selection' => 'Wymagany jest conajmniej jeden wybór na użytkownika.',
+            'minimum_two_options' => 'Wymagane są conajmniej dwie możliwości wyboru.',
+            'too_many_options' => 'Przekroczono maksymalną liczbę możliwości wyboru.',
         ],
 
         'topic_vote' => [
             'required' => 'Wybierz jedną z opcji, aby zagłosować.',
-            'too_many' => 'Wybrano więcej opcji, niż jest dozwolone.',
+            'too_many' => 'Wybrano więcej opcji, niż jest to dozwolone.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Hasło nie może zawierać pseudonimu.',
+        'contains_username' => 'Hasło nie może zawierać nazwy użytkownika.',
         'email_already_used' => 'Ten adres e-mail jest już w użyciu.',
         'invalid_country' => 'Kraj nie występuje w bazie danych.',
         'invalid_discord' => 'Nieprawidłowa nazwa użytkownika na Discordzie.',
@@ -92,9 +92,9 @@ return [
         'username_available_in' => 'Ta nazwa użytkownika będzie dostępna za :duration.',
         'username_available_soon' => 'Ta nazwa użytkownika będzie dostępna niedługo!',
         'username_invalid_characters' => 'Ta nazwa użytkownika zawiera nieprawidłowe znaki.',
-        'username_in_use' => 'Ta nazwa użytkownika jest już zajęta!',
-        'username_no_space_userscore_mix' => 'Użyj spacji albo znaków podkreślenia, nie obu naraz!',
-        'username_no_spaces' => "Nazwa użytkownika nie może zaczynać się lub kończyć spacjami!",
+        'username_in_use' => 'Ta nazwa użytkownika jest już w użyciu!',
+        'username_no_space_userscore_mix' => 'Używaj spacji albo znaków podkreślenia, nie obu naraz!',
+        'username_no_spaces' => "Nazwa użytkownika nie może zaczynać się ani kończyć spacjami!",
         'username_not_allowed' => 'Ta nazwa użytkownika nie jest dozwolona.',
         'username_too_short' => 'Ta nazwa użytkownika jest zbyt krótka.',
         'username_too_long' => 'Ta nazwa użytkownika jest zbyt długa.',

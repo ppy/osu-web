@@ -30,24 +30,24 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
-        'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
+        'beatmap_missing' => 'Marcação de tempo é especificada mas o mapa está faltando.',
+        'beatmapset_no_hype' => "Mapa não pode ser hypado.",
         'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
         'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
-        'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
+        'invalid_beatmapset_id' => 'Mapa inválido especificado.',
         'locked' => 'Discussão está trancada.',
-        'mapper_note_wrong_user' => 'Apenas o dono do beatmap pode postar notas de mapper.',
+        'mapper_note_wrong_user' => 'Apenas o dono do mapa pode postar notas de mapper.',
 
         'hype' => [
             'guest' => 'Precisa estar conectado para hypar.',
-            'hyped' => 'Você já hypou este beatmap.',
+            'hyped' => 'Você já hypou este mapa.',
             'limit_exceeded' => 'Você usou todo seu hype.',
-            'not_hypeable' => 'Este beatmap não pode ser hypado',
-            'owner' => 'Não é possível hypar seu próprio beatmap.',
+            'not_hypeable' => 'Este mapa não pode ser hypado',
+            'owner' => 'Não é possível hypar seu próprio mapa.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do beatmap.',
+            'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do mapa.',
             'negative' => "Marcação de tempo não pode ser negativa.",
         ],
     ],
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
-            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um mapa não é permitido.',
+            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um mapa não é permitido.',
         ],
 
         'topic_poll' => [
@@ -82,22 +82,22 @@ return [
     ],
 
     'user' => [
-        'contains_username' => 'Senha não deve conter seu username.',
+        'contains_username' => 'Senha não deve conter seu nome de usuário.',
         'email_already_used' => 'Email já utilizado.',
         'invalid_country' => 'País não presente no banco de dados.',
         'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",
         'too_short' => 'Nova senha curta demais.',
-        'unknown_duplicate' => 'Username ou email já utilizado.',
-        'username_available_in' => 'Este username estará disponível em :duration.',
-        'username_available_soon' => 'Este username estará disponível a qualquer momento!',
-        'username_invalid_characters' => 'O username contém caracteres inválidos.',
-        'username_in_use' => 'Username já está em uso!',
+        'unknown_duplicate' => 'Nome de usuário ou email já utilizado.',
+        'username_available_in' => 'Este nome de usuário estará disponível em :duration.',
+        'username_available_soon' => 'Este nome de usuário estará disponível a qualquer momento!',
+        'username_invalid_characters' => 'O nome de usuário contém caracteres inválidos.',
+        'username_in_use' => 'Nome de usuário já está em uso!',
         'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
-        'username_no_spaces' => "Username não pode comeaçr ou terminar com espaços!",
-        'username_not_allowed' => 'Esta escolha de username não é permitida.',
-        'username_too_short' => 'O username é muito curto.',
-        'username_too_long' => 'O username é muito longo.',
+        'username_no_spaces' => "Nome de usuário não pode começar ou terminar com espaços!",
+        'username_not_allowed' => 'Nome de usuário não permitido.',
+        'username_too_short' => 'O nome de usuário é muito curto.',
+        'username_too_long' => 'O nome de usuário é muito longo.',
         'weak' => 'Senha proibida.',
         'wrong_current_password' => 'Senha atual incorreta.',
         'wrong_email_confirmation' => 'Confirmação de email não confere.',
@@ -106,10 +106,10 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Você precisa ser um :link para mudar seu username!',
+                '_' => 'Você precisa ser um :link para mudar seu nome de usuário!',
                 'link_text' => 'osu!supporter',
             ],
-            'username_is_same' => 'Este já é seu username, bobinho!',
+            'username_is_same' => 'Este já é seu nome de usuário, bobinho!',
         ],
     ],
 ];

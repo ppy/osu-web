@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => '',
-      'remove' => '',
+      'add' => 'aggiungi amico',
+      'remove' => 'rimuovi amico',
     ],
 
     'state' => [
-      'friends' => '',
-      'mutual' => '',
+      'friends' => 'amici',
+      'mutual' => 'in comune',
     ],
 
-    'title' => '',
-    'title_compact' => '',
+    'title' => 'Amici',
+    'title_compact' => 'amici',
 
-    'too_many' => '',
+    'too_many' => 'Limite amici raggiunto.',
 ];

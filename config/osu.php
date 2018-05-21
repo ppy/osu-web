@@ -118,7 +118,7 @@ return [
 
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => '/p/twitter',
+            'twitter' => '/help/wiki/Twitter',
         ],
         'server_status' => 'https://twitter.com/osustatus',
         'user' => [

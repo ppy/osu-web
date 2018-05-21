@@ -21,27 +21,29 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'No se puede deshacer el hyping.',
-            'has_reply' => 'No es posible eliminar una discusión con respuestas',
+            'is_hype' => 'No puedes deshacer el hyping.',
+            'has_reply' => 'No se puede eliminar una discusión con respuestas',
         ],
         'nominate' => [
-            'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, inténtalo de nuevo mañana.',
+            'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
+            'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
+            'owner' => "No puedes nominar tu propio beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Solo el creador del tema y el dueño del beatmap pueden resolver una discusión.',
+            'not_owner' => 'Solo el creador del tema y dueño del beatmap puede resolver una discusión.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
-            'owner' => "¡No puedes votar discusiones propias!",
-            'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de beatmaps pendientes.',
+            'owner' => "No puedes votar tus propias discusiones.",
+            'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de mapas pendientes.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Una publiación generada automáticamente no puede ser editada.',
-            'not_owner' => 'La publicación solo puede ser editada por su creador.',
+            'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
+            'not_owner' => 'Solo el creador puede editar la publicación.',
         ],
     ],
 
@@ -59,7 +61,7 @@ return [
                     'not_lazer' => 'Solo puedes hablar en #lazer en este momento.',
                 ],
 
-                'not_allowed' => 'No se puede enviar un mensaje mientras estés baneado/restringido/silenciado.',
+                'not_allowed' => 'No puedes enviar un mensaje mientras estás baneado/restringido/silenciado.',
             ],
         ],
     ],
@@ -73,65 +75,65 @@ return [
             'delete' => [
                 'only_last_post' => 'Solo se puede eliminar la última publicación.',
                 'locked' => 'No se puede eliminar una publicación en un hilo cerrado.',
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador de la publicación puede eliminarla.',
             ],
 
             'edit' => [
                 'deleted' => 'No puedes editar una publicación eliminada.',
-                'locked' => 'La edición del post está bloqueada.',
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
-                'not_owner' => 'Solo el creador del post puede editarlo.',
+                'locked' => 'La edición de la publicación está bloqueada.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
+                'not_owner' => 'Solo el creador puede editar la publicación.',
                 'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
             ],
 
             'store' => [
-                'play_more' => '¡Trata de jugar al juego antes de publicar en los foros, por favor!. Sí tienes algún problema jugando, por favor, dilo en el foro de Ayuda y Soporte.',
-                'too_many_help_posts' => "Necesita jugar más el juego antes de poder hacer posts adicionales. Si sigue teniendo problemas jugando, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => '¡Intenta jugar antes de publicar en los foros, por favor! Si tiene un problema jugando, publícalo en el foro de Ayuda y Soporte.',
+                'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si aún tienes problemas para jugar, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Acabas de publicar. Espera un momento o edita tu última publicación.',
+                'double_post' => 'Acabas de publicar. Espera un poco o edita tu última publicación.',
                 'locked' => 'No puedes responder a un hilo cerrado.',
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para responder.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para responder.',
-                    'restricted' => "No puedes responder mientras estés restringido.",
-                    'silenced' => "No puedes responder mientras estés silenciado.",
+                    'require_login' => 'Por favor, inicia sesión para responder.',
+                    'restricted' => "No puedo responder mientras estás restringido.",
+                    'silenced' => "No puedes responder mientras estás silenciado.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para crear un nuevo hilo.',
                 'forum_closed' => 'Este foro está cerrado y no puedes publicar en él.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
-                'over' => 'La encuesta ha terminado y ya no puedes votar.',
-                'voted' => 'No se puede cambiar tu voto.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
+                'over' => 'La encuesta terminó y ya no se puede votar.',
+                'voted' => 'Cambiar el voto no está permitido.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para votar.',
+                    'require_login' => 'Por favor, Inicia sesión para votar.',
                     'restricted' => "No puedes votar mientras estés restringido.",
                     'silenced' => "No puedes votar mientras estés silenciado.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_forum_access' => 'Se requiere acceso al foro solicitado.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Portada inválida.',
-                'not_owner' => 'Solo el dueño puede cambiar la portada.',
+                'uneditable' => 'Portada especificada inválida.',
+                'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
         ],
 
@@ -140,7 +142,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Inicia sesión para continuar.',
+    'require_login' => 'Por favor, inicia sesión para continuar.',
 
     'unauthorized' => 'Acceso denegado.',
 

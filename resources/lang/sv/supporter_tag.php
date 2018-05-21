@@ -23,6 +23,6 @@ return [
 
     'user_search' => [
         'searching' => 'söker...',
-        'not_found' => "Denna användare finns inte",
+        'not_found' => "Användaren finns inte",
     ],
 ];

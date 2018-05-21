@@ -21,24 +21,24 @@
 return [
     'breadcrumbs' => [
         'news-index' => '列表',
-        'news-show' => '新聞',
+        'news-show' => '最新消息',
     ],
 
     'index' => [
-        'title' => 'osu!新聞',
+        'title' => 'osu!最新消息',
 
         'nav' => [
-            'newer' => '下一條新聞',
-            'older' => '上一條新聞',
+            'newer' => '下一條新消息',
+            'older' => '上一條新消息',
         ],
     ],
 
     'show' => [
-        'posted' => ':time 推送',
+        'posted' => ':time 發佈',
 
         'nav' => [
-            'newer' => '下一條新聞',
-            'older' => '上一條新聞',
+            'newer' => '下一條新消息',
+            'older' => '上一條新消息',
         ],
     ],
 
@@ -49,6 +49,6 @@ return [
 
     'update' => [
         'button' => '更新',
-        'ok' => '新聞已更新.',
+        'ok' => '消息已更新.',
     ],
 ];

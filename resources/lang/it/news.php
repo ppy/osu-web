@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => '',
-        'news-show' => '',
+        'news-index' => 'lista',
+        'news-show' => 'post',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'osu!news',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Post più recenti',
+            'older' => 'Post più vecchi',
         ],
     ],
 
     'show' => [
-        'posted' => '',
+        'posted' => 'pubblicato :time',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Post più recenti',
+            'older' => 'Post più vecchi',
         ],
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Aggiorna',
+        'ok' => 'Elenco aggiornato.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Aggiorna',
+        'ok' => 'Post aggiornato.',
     ],
 ];

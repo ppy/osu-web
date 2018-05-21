@@ -34,7 +34,7 @@ return [
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
         'delete' => 'supprimer',
-        'deleted' => 'supprimé par :editor :delete_time',
+        'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor :update_time',
@@ -113,9 +113,9 @@ return [
 
         'status-messages' => [
             'approved' => 'Cette beatmap a été approuvée le :date !',
-            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonée par son créateur...",
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonnée par son créateur...",
             'loved' => 'Cette beatmap a été ajoutée pour être loved le :date !',
-            'ranked' => 'Cette beatmap a été clasée le :date !',
+            'ranked' => 'Cette beatmap a été classée le :date !',
             'wip' => 'Note: Cette beatmap a été marquée comme en cours de travail par son créateur.',
         ],
 
@@ -143,11 +143,11 @@ return [
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
-        'incorrect_state' => 'Erreur lors de l\'action, merci de réesayer.',
+        'incorrect_state' => 'Erreur lors de l\'action, merci de réessayer.',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap?',
         'nominated_by' => 'nominée par :users',
-        'qualified' => 'Map classée environ le :date, si aucun problème n\'est trouvé.',
+        'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'supprimé',
@@ -171,7 +171,7 @@ return [
             'not-found' => 'Aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
             'filters' => [
-                'general' => 'Géneral',
+                'general' => 'Général',
                 'mode' => 'Mode',
                 'status' => 'Statut du Classement',
                 'genre' => 'Genre',

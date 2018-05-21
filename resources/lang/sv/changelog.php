@@ -25,14 +25,14 @@ return [
 
     'prefixes' => [
         'add' => 'tillägg',
-        'fix' => '',
+        'fix' => 'ändring',
         'misc' => 'diverse',
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => 'Älskar du den här uppdateringen?',
+        'text_1' => 'Stöd ytterligare utveckling av osu! och :link idag!',
+        'text_1_link' => 'bli en supporter',
+        'text_2' => 'Du kommer inte bara hjälpa till med att skynda på utvecklingen, du får extra funktioner och anpassningar också!',
     ],
 ];

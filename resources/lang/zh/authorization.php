@@ -21,11 +21,13 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '无法撤销推荐',
+            'is_hype' => '无法撤销推荐。',
             'has_reply' => '无法删除有回复的讨论。',
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
+            'incorrect_state' => '操作出错了，请尝试刷新页面。',
+            'owner' => "不能提名自己的谱面。",
         ],
         'resolve' => [
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',

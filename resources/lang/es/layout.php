@@ -46,7 +46,7 @@ return [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
-            'getSupport' => 'en serio, ¡necesito ayuda!',
+            'getSupport' => 'no, en serio, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'comunidad',
-            'dev' => '',
+            'dev' => 'desarrollo',
             'getForum' => 'foro',
             'getChat' => 'chat',
             'getLive' => 'en vivo',

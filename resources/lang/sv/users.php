@@ -52,7 +52,7 @@ return [
 
     'login' => [
         '_' => 'Logga in',
-        'locked_ip' => 'din IP adress har låsts. Var vänlig vänta några minuter.',
+        'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
         'username' => 'Användarnamn',
         'password' => 'Lösenord',
         'button' => 'Logga in',
@@ -91,7 +91,7 @@ return [
     'show' => [
         'age' => ':age år gammal',
         'change_avatar' => 'byt din profilbild!',
-        'first_members' => 'Här sen början',
+        'first_members' => 'Här sedan början',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
@@ -101,21 +101,21 @@ return [
         'origin_country_age' => ':age från :country',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
-        'previous_usernames' => 'förr känd som',
+        'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
         'edit' => [
             'cover' => [
-                'button' => 'Ändra Profil Omslag',
-                'defaults_info' => 'Mer omslag val kommer finnas i framtiden',
+                'button' => 'Ändra Profilomslag',
+                'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
                 'upload' => [
-                    'broken_file' => 'Misslyckades processa bild. Verifiera uppladdad bild och försök igen.',
+                    'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
                     'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
-                    'size_info' => 'Omslags storlek bör vara 2000x700',
+                    'size_info' => 'Omslagets storlek bör vara 2000x700',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
                 ],
@@ -123,7 +123,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => 'standard spelläge',
-                'set' => 'sätta :mode som profilens förvalda spelläge',
+                'set' => 'sätt :mode som profilens förvalda spelläge',
             ],
         ],
 
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Begravda Beatmaps (:count)',
+                ],
+                'loved' => [
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankade & Godkända Beatmaps (:count)',
@@ -226,20 +229,20 @@ return [
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
-                'title' => 'Nyligen',
+                'title' => 'Senaste',
             ],
             'top_ranks' => [
-                'empty' => 'Inga fantastiska precision uppgifter än. :(',
-                'not_ranked' => 'Bara rankade mappar ger ut pp.',
+                'empty' => 'Inga fantastiska prestationsrekord än. :(',
+                'not_ranked' => 'Endast rankade beatmaps ger pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranker',
                 'weighted_pp' => 'vägd: :pp (:percentage)',
 
                 'best' => [
-                    'title' => 'Bästa Prestanda',
+                    'title' => 'Bästa Prestation',
                 ],
                 'first' => [
-                    'title' => 'Första Plats Ranker',
+                    'title' => 'Förstaplats-ranker',
                 ],
             ],
             'account_standing' => [
@@ -248,9 +251,9 @@ return [
                 'remaining_silence' => '<strong>:username</strong> kan prata igen om :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Senaste överträdelser',
+                    'title' => 'Senaste Överträdelser',
                     'date' => 'datum',
-                    'action' => 'handling',
+                    'action' => 'åtgärd',
                     'length' => 'längd',
                     'length_permanent' => 'Permanent',
                     'description' => 'beskrivning',
@@ -275,31 +278,31 @@ return [
             'website' => 'Hemsida',
         ],
         'not_found' => [
-            'reason_1' => 'De kan ha ändrat deras användarnamn.',
+            'reason_1' => 'De kan ha ändrat sitt användarnamn.',
             'reason_2' => 'Kontot kan vara otillgängligt på grund av säkerhet eller missbruksproblem.',
-            'reason_3' => 'Du kanske har gjort ett stavfel!',
-            'reason_header' => 'Det finns två möjliga orsaker till felet:',
+            'reason_3' => 'Du kan ha gjort ett stavfel!',
+            'reason_header' => 'Det finns några möjliga orsaker till detta:',
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
-            'placeholder' => 'Skriv sido innehåll här',
+            'placeholder' => 'Skriv sidoinnehåll här',
             'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
         ],
         'post_count' => [
-            '_' => 'Medverkade :link',
+            '_' => 'Bidragit med :link',
             'count' => ':count foruminlägg|:count foruminlägg',
         ],
         'rank' => [
-            'country' => 'Land rank för :mode',
+            'country' => 'Landsrank för :mode',
             'global' => 'Global rank för :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Träff Precision',
+            'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
             'maximum_combo' => 'Maximal Kombo',
-            'play_count' => 'Antal Spel',
+            'play_count' => 'Antal Gånger Spelat',
             'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',
             'replays_watched_by_others' => 'Repriser Sedda av Andra',
@@ -316,6 +319,6 @@ return [
         'saved' => 'Användare skapad',
     ],
     'verify' => [
-        'title' => 'Konto Verifiering',
+        'title' => 'Kontoverifiering',
     ],
 ];

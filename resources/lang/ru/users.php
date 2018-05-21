@@ -94,15 +94,15 @@ return [
         'first_members' => 'Здесь с самого начала',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Присоединился :date',
-        'lastvisit' => 'Последний вход :date',
+        'joined_at' => 'Дата регистрации: :date',
+        'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
         'origin_country_age' => ':age, из :country',
         'origin_country' => 'Из :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
-        'plays_with' => 'Играет на :devices',
+        'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
         'edit' => [
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Заброшенные карты (:count)',
+                ],
+                'loved' => [
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ранкнутые и одобренные карты (:count)',
@@ -275,8 +278,8 @@ return [
             'website' => 'Веб-сайт',
         ],
         'not_found' => [
-            'reason_1' => 'Они могли изменить их псевдонимы.',
-            'reason_2' => 'Этот аккаунт может быть временно недоступен по причинам проблем с безопасностью или злоупотребления.',
+            'reason_1' => 'Они могли изменить свои псевдонимы.',
+            'reason_2' => 'Учетная запись может быть временно недоступна в связи с жалобами или проблемами безопасности.',
             'reason_3' => 'Возможно, вы сделали опечатку!',
             'reason_header' => 'Есть несколько возможных причин:',
             'title' => 'Игрок не найден! ;_;',

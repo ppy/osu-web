@@ -24,32 +24,32 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => '',
-        'cart_problems_edit' => '',
-        'declined' => '',
-        'error' => '',
-        'old_cart' => '',
+        'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
+        'cart_problems_edit' => 'Clicca qui per modificarlo.',
+        'declined' => 'Il pagamento è annullato.',
+        'error' => 'Si è verificato un errore durante il checkout :(',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, si prega di riprovare.',
         'pay' => 'Acquista con Paypal',
         'pending_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
-            'link_text' => '',
+            'line_1' => 'Un precedente check-out è stato iniziato ma non è stato portato a termine.',
+            'line_2' => 'Riprendi il tuo checkout selezionando un metodo di pagamento, o :link to annullare.',
+            'link_text' => 'clicca qui',
         ],
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
     ],
 
-    'discount' => '',
+    'discount' => 'risparmi :percent%',
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Abbiamo ricevuto il tuo ordine di osu!store!',
         ],
     ],
 
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name per :username(:duration)',
             ],
             'quantity' => 'Quantità',
         ],
@@ -73,19 +73,19 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => '',
+        'gift' => 'regalo ad un giocatore',
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Devi essere :link per ottenere un tag sostenitore!',
+            'link_text' => 'accesso effettuato',
         ],
     ],
 
     'username_change' => [
-        'check' => '',
-        'checking' => '',
+        'check' => 'Inserisci un nome utente per controllare la disponibilità!',
+        'checking' => 'Controllando la disponibilità di :username...',
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Devi essere :link per cambiare il tuo nome!',
+            'link_text' => 'accesso effettuato',
         ],
     ],
 ];

@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'komunitas',
-            'dev' => '',
+            'dev' => 'pengembangan',
             'getForum' => 'forum',
             'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',
@@ -108,7 +108,7 @@ return [
         'user' => [
             '_' => 'pengguna',
             'getLogin' => 'masuk',
-            'disabled' => 'nonaktif',
+            'disabled' => 'dinonaktifkan',
 
             'register' => 'daftar',
             'reset' => 'pulihkan',

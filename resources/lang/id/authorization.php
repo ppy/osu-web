@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
+            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang halaman.',
+            'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -33,29 +35,29 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
-            'owner' => "Anda tidak dapat memberikan suara pada topik diskusi milik Anda sendiri.",
+            'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
-            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting post.',
+            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
+                'no_access' => 'Anda tidak diperbolehkan mengakses channel yang ingin Anda tuju.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Anda tidak memiliki akses ke kanal yang ingin Anda tuju.',
-                    'moderated' => 'Kanal ini sedang berada dalam moderasi admin.',
+                    'no_access' => 'Anda tidak memiliki akses ke channel yang ingin Anda tuju.',
+                    'moderated' => 'Channel ini sedang berada dalam moderasi admin.',
                     'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini.',
                 ],
 
@@ -71,36 +73,36 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Hanya postingan terakhir yang dapat dihapus.',
-                'locked' => 'Tidak dapat menghapus postingan di topik yang telah dikunci.',
+                'only_last_post' => 'Hanya kiriman terakhir yang dapat dihapus.',
+                'locked' => 'Tidak dapat menghapus kiriman di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menghapus posting.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menghapus kiriman.',
             ],
 
             'edit' => [
-                'deleted' => 'Tidak bisa menyunting postingan yang telah dihapus',
-                'locked' => 'Topik telah dikunci, sehingga penyuntingan post tidak lagi dapat dilakukan.',
+                'deleted' => 'Tidak dapat menyunting kiriman yang telah dihapus.',
+                'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
-                'not_owner' => 'Hanya pemilik topik yang dapat menyunting post.',
-                'topic_locked' => 'Tidak dapat menyunting postingan di topik yang telah dikunci.',
+                'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
+                'topic_locked' => 'Tidak dapat menyunting kiriman di topik yang telah dikunci.',
             ],
 
             'store' => [
-                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan untuk langsung menuju forum Help & Support.',
+                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
                 'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan untuk mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Anda baru saja memposting. Tunggu sebentar atau sunting posting terakhir Anda.',
+                'double_post' => 'Anda baru saja mengirim. Tunggulah sebentar atau sunting kiriman terakhir Anda.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Tidak dapat membalas saat dibatasi.",
+                    'restricted' => "Tidak dapat membalas saat status dibatasi aktif.",
                     'silenced' => "Tidak dapat membalas saat dibungkam.",
                 ],
             ],
@@ -114,11 +116,11 @@ return [
             'vote' => [
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'voted' => 'Mengubah suara tidak diizinkan.',
+                'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [
-                    'require_login' => 'Silakan masuk untuk memilih.',
-                    'restricted' => "Tidak dapat memilih saat dibatasi.",
+                    'require_login' => 'Silakan masuk untuk memberikan suara.',
+                    'restricted' => "Tidak dapat memberikan suara saat status dibatasi aktif.",
                     'silenced' => "Tidak dapat memilih saat dibungkam.",
                 ],
             ],

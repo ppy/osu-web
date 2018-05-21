@@ -20,29 +20,29 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Matches',
+        'header' => 'แข่งขันแบบหลายคน',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
+            'head-to-head' => 'ตัว ต่อ ตัว',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'ทีม VS',
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user ออกจากแมตช์',
-            'player-joined' => ':user joined the match',
-            'player-kicked' => ':user has been kicked from the match',
-            'match-created' => ':user created the match',
-            'match-disbanded' => 'the match was disbanded',
-            'host-changed' => ':user became the host',
+            'player-joined' => ':user เข้าร่วมแมตช์',
+            'player-kicked' => ':user ถูกเตะออกจากการแข่งขันแล้ว',
+            'match-created' => ':user ได้สร้างการแข่งขัน',
+            'match-disbanded' => 'การแข่งขันถูกยกเลิก',
+            'host-changed' => ':user กลายเป็นโฮส',
 
-            'player-left-no-user' => 'a player left the match',
-            'player-joined-no-user' => 'a player joined the match',
-            'player-kicked-no-user' => 'a player has been kicked from the match',
-            'match-created-no-user' => 'the match was created',
-            'match-disbanded-no-user' => 'the match was disbanded',
-            'host-changed-no-user' => 'the host was changed',
+            'player-left-no-user' => 'ผู้เล่นออกจากการแข่งขัน',
+            'player-joined-no-user' => 'ผู้เล่น เข้าร่วมการแข่งขัน',
+            'player-kicked-no-user' => 'ผู้เล่นถูกเตะออกจากการแข่งขัน',
+            'match-created-no-user' => 'การแข่งขันถูกสร้าง',
+            'match-disbanded-no-user' => 'การแข่งขันถูกยกเลิก',
+            'host-changed-no-user' => 'โฮสได้มีการเปลี่ยน',
         ],
-        'in-progress' => '(match in progress)',
+        'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
         'score' => [
             'stats' => [
                 'accuracy' => 'ความแม่นยำ',
@@ -52,7 +52,7 @@ return [
         ],
         'failed' => 'ล้มเหลว',
         'teams' => [
-            'blue' => 'ทีมสีฟ้า',
+            'blue' => 'ทีมสีน้ำเงิน',
             'red' => 'ทีมสีแดง',
         ],
         'winner' => ':team ชนะ',

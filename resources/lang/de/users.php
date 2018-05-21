@@ -71,14 +71,14 @@ return [
     ],
 
     'posts' => [
-        'title' => ':usernames Beiträge',
+        'title' => 'Posts von :username',
     ],
 
     'signup' => [
         '_' => 'Registrieren',
     ],
     'anonymous' => [
-        'login_link' => 'zum einloggen klicken',
+        'login_link' => 'zum Einloggen klicken',
         'login_text' => 'einloggen',
         'username' => 'Gast',
         'error' => 'Dafür musst du eingeloggt sein.',
@@ -101,9 +101,9 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
-        'previous_usernames' => 'vorher bekannt als',
+        'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => ":usernames Profil",
+        'title' => "Profil von :username",
 
         'edit' => [
             'cover' => [
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps (:count)',
+                ],
+                'loved' => [
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
@@ -244,13 +247,13 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "<strong>:usernames</strong> Account ist zurzeit",
-                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen',
+                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
                     'date' => 'datum',
-                    'action' => 'verstoß',
+                    'action' => 'maßnahme',
                     'length' => 'länge',
                     'length_permanent' => 'Permanent',
                     'description' => 'beschreibung',
@@ -258,7 +261,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Bann',
-                        'silence' => 'Stummschaltung',
+                        'silence' => 'Silence',
                         'note' => 'Warnung',
                     ],
                 ],

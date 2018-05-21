@@ -29,8 +29,8 @@ return [
             'virtual_only' => 'Płatność przez `:provider` nie jest możliwa dla materialnych przedmiotów.',
         ],
         'status' => [
-            'not_checkout' => 'Próbujesz zaakceptować płatność dla zamówienia w niepoprawnym stanie `:state`.',
-            'not_paid' => 'Próbujesz cofnąć płatność dla zamówienia w niepoprawnym stanie `:state`.',
+            'not_checkout' => 'Próbujesz zaakceptować płatność dla zamówienia w niewłaściwym stanie `:state`.',
+            'not_paid' => 'Próbujesz cofnąć płatność dla zamówienia w niewłaściwym stanie `:state`.',
         ],
     ],
     'param' => [

@@ -19,36 +19,36 @@
  */
 
 return [
-    'pinned_topics' => 'Pinned Topics',
-    'slogan' => "it's dangerous to play alone.",
-    'subforums' => 'Subforums',
+    'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
+    'slogan' => "เล่นคนเดียวมันอันตราย",
+    'subforums' => 'ฟอรั่มย่อย',
     'title' => 'osu!community',
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => 'ตั้งภาพหน้าปก',
+            'button' => 'อัพโหลดรูปภาพ',
+            'info' => 'ภาพหน้าปกควรมีขนาด :dimensions. คุณยังสามารถลากวางรูปที่นี่ได้เพื่ออัพโหลด',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => 'นำภาพหน้าปกออก',
+            'confirm' => 'คุณแน่ใจหรือไม่ว่าจะนำภาพหน้าปกออก',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '[osu!] มีการตอบกลับใหม่ใน ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => 'ไม่มีหัวข้อ',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
+        'confirm_destroy' => 'ลบโพสต์จริงๆ หรือ',
         'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
@@ -73,33 +73,33 @@ return [
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
         'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
+        'started_by' => 'โดย :user',
 
         'create' => [
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview_hide' => 'เขียน',
+            'submit' => 'โพสต์',
 
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'พิมพ์เนื้อหาโพสต์ที่นี่',
+                'title' => 'คลิกที่นี่เพื่อตั้งหัวข้อ',
             ],
         ],
 
         'jump' => [
             'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
+            'first' => 'ไปที่โพสต์แรก',
+            'last' => 'ไปที่โพสต์ล่าสุด',
             'next' => 'skip next 10 posts',
             'previous' => 'go back 10 posts',
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'ยกเลิก',
+            'post' => 'บันทึก',
         ],
     ],
 
@@ -170,52 +170,52 @@ return [
 
         'issue_tag_added' => [
             'to_0' => 'ลบ"แท็ก"ที่เพิ่ม',
-            'to_0_done' => '',
+            'to_0_done' => 'ลบแท็ก "เพิ่มแล้ว" แล้ว',
             'to_1' => 'เพิ่มแท็ก',
-            'to_1_done' => '',
+            'to_1_done' => 'เพิ่มแท็ก "เพิ่มแล้ว" แล้ว',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ลบแท็ก "กำหนดแล้ว"',
+            'to_0_done' => 'ลบแท็ก "กำหนดแล้ว" แล้ว',
+            'to_1' => 'เพิ่มแท็ก "กำหนดแล้ว"',
+            'to_1_done' => 'เพิ่มแท็ก "กำหนดแล้ว" แล้ว',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ลบแท็ก "ยืนยันแล้ว"',
+            'to_0_done' => 'ลบแท็ก "ยืนยันแล้ว" แล้ว',
+            'to_1' => 'เพิ่มแท็ก "ยืนยันแล้ว"',
+            'to_1_done' => 'เพิ่มแท็ก "ยืนยันแล้ว" แล้ว',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ลบแท็ก "ซ้ำ"',
+            'to_0_done' => 'ลบแท็ก "ซ้ำ" แล้ว',
+            'to_1' => 'เพิ่มแท็ก "ซ้ำ"',
+            'to_1_done' => 'เพิ่มแท็ก "ซ้ำ" แล้ว',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ลบแท็ก "โมฆะ"',
+            'to_0_done' => 'ลบแท็ก "โมฆะ" แล้ว',
+            'to_1' => 'เพิ่มแท็ก "โมฆะ"',
+            'to_1_done' => 'เพิ่มแท็ก "โมฆะ" แล้ว',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ลบแท็ก "แก้แล้ว"',
+            'to_0_done' => 'ลบแท็ก "แก้แล้ว" แล้ว',
+            'to_1' => 'เพิ่มแท็ก "แก้แล้ว"',
+            'to_1_done' => 'เพิ่มแท็ก "แก้แล้ว" แล้ว',
         ],
 
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'ปลดล็อกหัวข้อ',
+            'to_0_done' => 'หัวข้อถูกปลดล็อกแล้ว',
+            'to_1' => 'ล็อกหัวข้อ',
+            'to_1_done' => 'หัวข้อถูกล็อกแล้ว',
         ],
 
         'moderate_move' => [
@@ -223,12 +223,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-            'to_2' => '',
-            'to_2_done' => '',
+            'to_0' => 'เลิกปักหมุดหัวข้อ',
+            'to_0_done' => 'หัวข้อถูกเลิกปักหมุดแล้ว',
+            'to_1' => 'ปักหมุดหัวข้อ',
+            'to_1_done' => 'หัวข้อถูกปักหมุดแล้ว',
+            'to_2' => 'ปักหมุดหัวข้อและตั้งให้เป็นประกาศ',
+            'to_2_done' => 'หัวข้อถูกปักหมุดและตั้งให้เป็นประกาศแล้ว',
         ],
 
         'show' => [
@@ -258,9 +258,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
+            'to_not_watching' => 'ไม่ได้บุ๊กมาร์คไว้',
+            'to_watching' => 'บุ๊กมาร์ค',
+            'to_watching_mail' => 'บุ๊กมาร์คและรับการแจ้งเตือน',
             'mail_disable' => 'ปิดการแจ้งเตือน',
         ],
     ],

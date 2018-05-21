@@ -40,9 +40,9 @@ return [
         'title' => 'Pesquisar',
 
         'beatmapset' => [
-            'more' => ':count mais resultados de beatmaps',
-            'more_simple' => 'Veja mais resultados de busca de beatmaps',
-            'title' => 'Beatmaps',
+            'more' => ':count mais resultados de mapas',
+            'more_simple' => 'Veja mais resultados de busca de mapas',
+            'title' => 'Mapas',
         ],
 
         'forum_post' => [
@@ -61,7 +61,7 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'mapa',
             'forum_post' => 'fórum',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
@@ -101,9 +101,9 @@ return [
                 'description' => 'clique no botão acima para baixar o instalador, depois execute-o!',
             ],
             'beatmaps' => [
-                'title' => 'baixar beatmaps',
+                'title' => 'baixar mapas',
                 'description' => [
-                    '_' => ':browse pela vasta coleção de beatmaps criados por usuários e comece a jogar!',
+                    '_' => ':browse pela vasta coleção de mapas criados por usuários e comece a jogar!',
                     'browse' => 'navegue',
                 ],
             ],
@@ -121,14 +121,14 @@ return [
             'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
             'messages' => 'Você tem :count nova mensagem|Você tem :count novas mensagens',
             'stats' => [
-                'friends' => 'Amigos Online',
+                'friends' => 'Amigos online',
                 'games' => 'Partidas',
-                'online' => 'Usuários Online',
+                'online' => 'Usuários online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos Beatmaps Aprovados',
-            'popular' => 'Beatmaps Populares',
+            'new' => 'Novos mapas ranqueados',
+            'popular' => 'Mapas populares',
             'by' => 'por',
             'plays' => ':count vezes jogadas',
         ],

@@ -36,12 +36,12 @@ return [
             e fare altrettanto a chi continuerà a sostenere questo fantastico gioco e la comunità nel futuro :).',
 
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'contribution' => 'Grazie per il tuo sostegno finora! Hai contribuito un totale di :dollars in :tags tag acquistati!',
+            'gifted' => ':giftedTags dei tuo tag acquistati sono stati regalati (per un totale di :giftedDollars donati), come sei generoso!',
+            'not_yet' => "Non hai ancora un tag supporter ancora :(",
+            'title' => 'Stato supporter corrente',
+            'valid_until' => 'Il tuo attuale tag supporter è valido fino al :date!',
+            'was_valid_until' => 'Il tuo tag supporter era valido fino al :date.',
         ],
 
         'why_support' => [

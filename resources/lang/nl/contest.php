@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Concurreren op meer manieren dan enkel het klikken van cirkels.',
+        'large' => 'osu! Community Wedstrijden',
     ],
     'voting' => [
-        'over' => '',
-        'login_required' => '',
+        'over' => 'Je kan niet meer stemmen in deze wedstrijd',
+        'login_required' => 'Log in om te kunnen stemmen.',
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Het lijkt erop dat je geen van de beatmaps in deze wedstrijd hebt gespeeld!",
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'over' => '',
-        'limit_reached' => '',
-        'drop_here' => '',
+        '_' => 'inzending',
+        'login_required' => 'Gelieve aan te melden om in de wedstrijd mee te doen.',
+        'silenced_or_restricted' => 'Je kan niet meedoen in wedstrijden als je gerestricteerd of gesilenced bent.',
+        'preparation' => 'We bereiden momenteel deze wedstrijd. Wacht nog even!',
+        'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
+        'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
+        'drop_here' => 'Sleep je inzending hier',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
+            'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
+            'music' => 'Alleen .mp3 bestanden worden geaccepteerd voor deze wedstrijd.',
         ],
-        'too_big' => '',
+        'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Download Inzending',
     ],
     'vote' => [
-        'list' => '',
-        'count' => '',
+        'list' => 'stemmen',
+        'count' => '1 stem|:count stemmen',
     ],
     'dates' => [
-        'ended' => '',
+        'ended' => 'Gesloten :date',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Gestart :date',
+            'soon' => 'binnenkort™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Inzendingen Open',
+        'voting' => 'Stemmen Gestard',
+        'results' => 'Resultaten Publiek',
     ],
 ];

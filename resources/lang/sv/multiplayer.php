@@ -20,12 +20,12 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Spel',
+        'header' => 'Multiplayer Matcher',
         'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Lag mot lag',
+            'tag-team-vs' => 'Tag Lag VS',
         ],
         'events' => [
             'player-left' => ':user lämnade spelet',
@@ -42,7 +42,7 @@ return [
             'match-disbanded-no-user' => 'spelet upplöstes',
             'host-changed-no-user' => 'värden ändrades',
         ],
-        'in-progress' => '(pågående spel)',
+        'in-progress' => '(pågående match)',
         'score' => [
             'stats' => [
                 'accuracy' => 'Precision',
@@ -66,7 +66,7 @@ return [
             'score' => 'Högsta Poäng',
             'accuracy' => 'Högsta Precision',
             'combo' => 'Högsta Kombo',
-            'scorev2' => 'Poäng V2',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];

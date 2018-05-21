@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Pengaturan</strong> Akun',
+        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'konfirmasi penggantian email osu!',
+        'email_subject' => 'konfirmasi perubahan email osu!',
         'update' => 'perbarui',
     ],
 
     'update_password' => [
-        'email_subject' => 'konfirmasi penggantian kata sandi osu!',
+        'email_subject' => 'konfirmasi perubahan kata sandi osu!',
         'update' => 'perbarui',
     ],
 
