@@ -91,6 +91,7 @@ return [
         // sort by name
         'da',
         'de',
+        'el',
         'es',
         'fr',
         'id',
