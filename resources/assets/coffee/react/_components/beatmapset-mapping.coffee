@@ -40,7 +40,7 @@ class @BeatmapsetMapping extends React.PureComponent
             __html: osu.trans 'beatmapsets.show.details.mapped_by',
               mapper: laroute.link_to_route 'users.show',
                 user.username
-                { user: user.user_id }
+                { user: user.id }
                 class: "#{bn}__user js-usercard"
                 'data-user-id': user.id
 
