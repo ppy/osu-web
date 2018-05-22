@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Magazyn',
     ],
 
+    'cart' => [
+        'checkout' => 'Zapłać',
+        'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
+        'shipping_fees' => 'koszt wysyłki',
+        'title' => 'Koszyk',
+        'total' => 'razem',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Oho, wystąpił problem z twoim koszykiem uniemożliwiający płatność!',
+            'line_2' => 'Usuń lub zmień przedmioty powyżej, aby kontynuować.',
+        ],
+
+        'empty' => [
+            'text' => 'Twój koszyk jest pusty.',
+            'return_link' => [
+                '_' => 'Wróć na :link, aby znaleźć coś interesującego!',
+                'link_text' => 'listę produktów',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
         'declined' => 'Płatność została anulowana.',
-        'error' => 'Wystąpił problem z zatwierdzeniem twojego zamówienia :(',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name dla :username (:duration)',
             ],
             'quantity' => 'Ilość',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono anulowane.',
+            'checkout' => 'Nie możesz edytować swojego zamówienia, ponieważ jest ono aktualnie przetwarzane.', // checkout and processing should have the same message.
+            'default' => 'Zamówienie nie może zostać zmienione',
+            'delivered' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już dostarczone.',
+            'paid' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już opłacone.',
+            'processing' => 'Nie możesz edytować swojego zamówienia, ponieważ jest ono aktualnie przetwarzane.',
+            'shipped' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już wysłane.',
         ],
     ],
 

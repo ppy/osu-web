@@ -549,7 +549,12 @@ class BeatmapDiscussion extends Model
             if ($restoredBy->getKey() !== $this->user_id) {
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
+
+            $timestamps = $this->timestamps;
+            $this->timestamps = false;
             $this->update(['deleted_at' => null]);
+            $this->timestamps = $timestamps;
+
             $this->refreshKudosu('restore');
         });
     }

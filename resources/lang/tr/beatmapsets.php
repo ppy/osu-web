@@ -34,13 +34,13 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'made-by' => 'Şu kullanıcı tarafından yapıldı: ',
-            'submitted' => 'tarihinde gönderildi ',
+            'mapped_by' => '',
+            'submitted' => 'gönderilme tarihi: ',
             'updated' => 'son güncelleme ',
-            'ranked' => 'tarihinde dereceli oldu ',
+            'ranked' => 'dereceli olma tarihi: ',
             'approved' => 'tarihinde onaylandı ',
-            'qualified' => 'tarihinde qualified oldu ',
-            'loved' => 'tarihinde sevildi ',
+            'qualified' => 'aday olma tarihi ',
+            'loved' => 'sevilme tarihi: ',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'download' => [
                 '_' => 'İndir',
@@ -50,7 +50,7 @@ return [
             ],
             'favourite' => 'Haritayı favorilere ekle',
             'unfavourite' => 'Haritayı favorilerden çıkar',
-            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
+            'favourited_count' => '+ :count kişi tarafından!',
         ],
         'stats' => [
             'cs' => 'Daire boyutu',

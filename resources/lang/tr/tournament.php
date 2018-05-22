@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Kayıtlar :start - :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Etkin Turnuvalar',
+            'previous' => 'Geçmiş Turnuvalar',
         ],
     ],
 

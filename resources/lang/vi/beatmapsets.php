@@ -34,7 +34,7 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
-            'made-by' => 'được tạo bởi ',
+            'mapped_by' => '',
             'submitted' => 'tải lên vào ',
             'updated' => 'cập nhật lần cuối lúc ',
             'ranked' => 'được xếp hạng vào ',

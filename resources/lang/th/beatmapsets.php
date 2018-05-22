@@ -34,7 +34,7 @@ return [
         'discussion' => 'การสนทนา',
 
         'details' => [
-            'made-by' => 'ทำโดย ',
+            'mapped_by' => '',
             'submitted' => 'ส่งเมื่อ ',
             'updated' => 'แก้ไขล่าสุดเมื่อ ',
             'ranked' => 'จัดอันดับเมื่อ ',

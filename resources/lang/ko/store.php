@@ -23,11 +23,31 @@ return [
         'warehouse' => '보급 창고',
     ],
 
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제 실패했어요',
-        'error' => '결제하는데 문제가 생겨버렸네요:(',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => '수량',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

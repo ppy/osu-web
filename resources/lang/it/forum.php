@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
-    'slogan' => "è pericoloso giocare da solo.",
+    'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 

@@ -73,7 +73,7 @@ return [
 
     'user' => [
         'admin' => 'διαχειριστής',
-        'bng' => 'υποψήφιος',
+        'bng' => 'nominator',
         'owner' => 'δημιουργός',
         'qat' => 'qat',
     ],

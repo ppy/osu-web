@@ -37,8 +37,8 @@ return [
             'made-by' => 'δημιουργήθηκε από ',
             'submitted' => 'υποβλήθηκε στις ',
             'updated' => 'τελευταία ενημέρωση στις ',
-            'ranked' => 'κατατάχθηκε στις ',
-            'approved' => 'εγκρίθηκε στις ',
+            'ranked' => 'έγινε ranked στις ',
+            'approved' => 'έγινε approved στις ',
             'qualified' => 'κρίθηκε ότι πληροί τα κριτήρια στις ',
             'loved' => 'έγινε loved στις ',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
@@ -77,7 +77,7 @@ return [
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
-            'unranked' => 'Beatmap εκτός κατάταξης',
+            'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'επετεύχθη :when',
@@ -105,7 +105,7 @@ return [
                 'friend' => 'Κανένας από τους φίλους σας δεν έχει σκορ σε αυτό το map ακόμα!',
                 'global' => 'Κανένα σκορ ακόμα. Μήπως να δοκιμάσετε εσείς να το πετύχετε;',
                 'loading' => 'Φόρτωση σκορ...',
-                'unranked' => 'Beatmap εκτός κατάταξης.',
+                'unranked' => 'Unranked beatmap.',
             ],
             'score' => [
                 'first' => 'Προηγείται',

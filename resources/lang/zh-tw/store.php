@@ -23,11 +23,31 @@ return [
         'warehouse' => '倉庫',
     ],
 
+    'cart' => [
+        'checkout' => '結帳',
+        'more_goodies' => '我想在完成訂單之前查看更多的東西',
+        'shipping_fees' => '運費',
+        'title' => '購物車',
+        'total' => '合計',
+
+        'errors_no_checkout' => [
+            'line_1' => '呃哦，您的購物車存在問題以致您無法結帳！',
+            'line_2' => '刪除或更新上述項目以繼續。',
+        ],
+
+        'empty' => [
+            'text' => '您的購物車是空的。',
+            'return_link' => [
+                '_' => '返回到 :link 來找些好東西！',
+                'link_text' => '商店列表',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '糟糕，您的購物車出現問題！',
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '付款被取消。',
-        'error' => '結帳時出現錯誤 :(',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name 給 :username （:duration）',
             ],
             'quantity' => '數量',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '您的訂單已被取消，因此無法修改。',
+            'checkout' => '您不能修改正在處理的訂單。', // checkout and processing should have the same message.
+            'default' => '訂單不可修改',
+            'delivered' => '您不能修改已經交付的訂單。',
+            'paid' => '您不能修改您的訂單，因為它已經支付。',
+            'processing' => '您不能修改正在處理的訂單。',
+            'shipped' => '您不能修改已經出貨的訂單。',
         ],
     ],
 

@@ -39,7 +39,7 @@ return [
             'news-show' => 'news',
             'password-reset-index' => 'passwort zurücksetzen',
             'search' => 'suche',
-            'supportTheGame' => 'das spiel unterstützen',
+            'supportTheGame' => 'Das Spiel unterstützen',
             'team' => 'team',
         ],
         'help' => [

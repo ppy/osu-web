@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'Von diesem Artikel sind nicht genug vorhanden!',
+    'not_available' => 'Dieser Artikel ist nicht verfügbar.',
+    'too_many' => 'Pro Bestellung kannst du nur :count von diesem Artikel bestellen.',
 ];

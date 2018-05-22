@@ -76,7 +76,7 @@ return [
 
         'mode' => [
             'events' => 'Ιστορικό',
-            'general' => 'Γενικά :score',
+            'general' => 'Γενικά :scope',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',
@@ -112,7 +112,7 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Αυτό το beatmap εγκρίθηκε στις :date!',
+            'approved' => 'Αυτό το beatmap έγινε approved στις :date!',
             'graveyard' => "Αυτό το beatmap δεν έχει ενημερωθεί από τις :date και έχει πιθανότατα εγκαταλειφθεί από το δημιουργό του...",
             'loved' => 'Αυτό το beatmap προστέθηκε στα loved στις :date!',
             'ranked' => 'Αυτό το beatmap προστέθηκε στα καταταγμένα στις :date!',
@@ -144,9 +144,9 @@ return [
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
-        'nominate' => 'Πρότεινε',
-        'nominate_confirm' => 'Πρότεινε αυτό το beatmap;',
-        'nominated_by' => 'προτάθηκε από :users',
+        'nominate' => 'Nominate',
+        'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
+        'nominated_by' => 'nominated από :users',
         'qualified' => 'Εκτιμάται ότι θα καταταχθεί στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'qualified_soon' => 'Εκτιμάται ότι θα καταταχθεί σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'required_text' => 'Υποψηφιότητες :current/:required',
@@ -180,6 +180,17 @@ return [
                 'rank' => 'Κατάκτηση Κατάταξης',
                 'played' => 'Που έχετε παίξει',
             ],
+            'sorting' => [
+                'title' => 'τίτλος',
+                'artist' => 'καλλιτέχνης',
+                'difficulty' => 'δυσκολία',
+                'updated' => 'ενημερωμένο',
+                'ranked' => 'ranked',
+                'rating' => 'βαθμολογία',
+                'plays' => 'προσπάθειες',
+                'relevance' => 'σχετικότητα',
+                'nominations' => 'nominations',
+            ],
         ],
         'mode' => 'Λειτουργία',
         'status' => 'Κατάσταση Κατάταξης',
@@ -201,7 +212,7 @@ return [
     'status' => [
         'any' => 'Οποιοδήποτε',
         'ranked-approved' => 'Καταταγμένα & Εγκεκριμένα',
-        'approved' => 'Εγκεκριμένα',
+        'approved' => 'Approved',
         'qualified' => 'Που πληρούν τα κριτήρια',
         'loved' => 'Loved',
         'faves' => 'Αγαπημένα',

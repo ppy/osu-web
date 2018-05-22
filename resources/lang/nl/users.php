@@ -146,7 +146,7 @@ return [
                     'title' => 'Beatmaps in het kerkhof (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Geliefde Beatmappen (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
