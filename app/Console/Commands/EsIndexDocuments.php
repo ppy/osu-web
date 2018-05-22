@@ -25,7 +25,9 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Log;
 
 class EsIndexDocuments extends Command
 {
@@ -88,6 +90,11 @@ class EsIndexDocuments extends Command
         $this->warn("\nIndexing completed in ".(time() - $start).'s');
     }
 
+    public function setLastUpdated(string $index, Carbon $updatedAt, $id)
+    {
+        Log::info("{$index} next: {$id}");
+    }
+
     protected function finish(array $indices, array $oldIndices)
     {
         if (!$this->inplace && $this->cleanup) {
@@ -129,12 +136,14 @@ class EsIndexDocuments extends Command
             if (!$this->inplace && $i === 0) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress, $lastId) use ($bar, $indexName) {
                     $bar->setProgress($progress);
+                    $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
             } else {
-                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
+                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress, $lastId) use ($bar, $indexName) {
                     $bar->setProgress($progress);
+                    $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
             }
 

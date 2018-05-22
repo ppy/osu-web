@@ -150,9 +150,8 @@ trait EsIndexable
                 $count += count($result['items']);
             }
 
-            Log::info(static::class." next: {$models->last()->getKey()}");
             if ($progress) {
-                $progress($count);
+                $progress($count, $models->last()->getKey());
             }
         });
 
