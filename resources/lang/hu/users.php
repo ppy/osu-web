@@ -146,7 +146,7 @@ return [
                     'title' => 'Eltemetett Beatmap-ek (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Szeretett Beatmap-ek (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmap-ek (:count)',

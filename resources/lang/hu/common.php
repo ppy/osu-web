@@ -92,7 +92,7 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Vétés',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [

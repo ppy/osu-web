@@ -20,13 +20,13 @@
 
 return [
     'event' => [
-        'approve' => 'Εγκρίθηκε.',
+        'approve' => 'Approved.',
         'discussion_delete' => 'Ένας συντονιστής διέγραψε τη συζήτηση :discussion.',
         'discussion_post_delete' => 'Ένας συντονιστής διέγραψε μια δημοσίευση από τη συζήτηση :discussion.',
         'discussion_post_restore' => 'Ένας συντονιστής επανέφερε μία δημοσίευση στη συζήτηση :discussion.',
         'discussion_restore' => 'Ένας συντονιστής επανέφερε τη συζήτηση :discussion.',
-        'disqualify' => 'Απορρίφθηκε από :user. Αιτία: :discussion (:text).',
-        'disqualify_legacy' => 'Απορρίφθηκε από :user. Αιτία: :text.',
+        'disqualify' => 'Disqualified από :user. Αιτία: :discussion (:text).',
+        'disqualify_legacy' => 'Disqualified από :user. Αιτία: :text.',
         'issue_reopen' => 'Το ζήτημα επιλύθηκε, η συζήτηση :discussion ξανάνοιξε.',
         'issue_resolve' => 'Ζήτημα :discussion σημάνθηκε ως επιλυμένο.',
         'kudosu_allow' => 'Άρνηση kudosu για τη συζήτηση :discussion που αφαιρέθηκε.',
@@ -34,10 +34,10 @@ return [
         'kudosu_gain' => 'Η συζήτηση :discussion από τον :user έλαβε αρκετές ψήφους για kudosu.',
         'kudosu_lost' => 'Η συζήτηση :discussion από τον :user έχασε ψήφους και τα kudosu που είχαν δοθεί αφαιρέθηκαν.',
         'kudosu_recalculate' => 'Τα κέρδη kudosu για τη συζήτηση :discussion επαναϋπολογίστηκαν.',
-        'nominate' => 'Προτάθηκε από :user.',
+        'nominate' => 'Nominated από :user.',
         'nomination_reset' => 'Ένα νέο πρόβλημα :discussion (:text) ξεκίνησε μια επαναφορά της διαδικασίας υποψηφιότητας.',
-        'qualify' => 'Πληροί τα κριτήρια.',
-        'rank' => 'Σε κατάταξη.',
+        'qualify' => 'Qualified.',
+        'rank' => 'Ranked.',
     ],
 
     'index' => [

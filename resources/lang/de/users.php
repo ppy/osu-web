@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '[gelöschter benutzer]',
+    'deleted' => '[gelöschter Benutzer]',
 
     'beatmapset_activities' => [
         'title' => ":users Moddingverlauf",
@@ -146,7 +146,7 @@ return [
                     'title' => 'Begrabene Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Geliebte Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',

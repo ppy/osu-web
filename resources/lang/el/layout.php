@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'προτεινόμενοι καλλιτέχνες',
+            'artists' => 'επιλεγμένοι καλλιτέχνες',
             'beatmap_discussion_posts-index' => 'αναρτήσεις της συζήτησης περί του beatmap',
             'beatmap_discussions-index' => 'συζητήσεις περί του beatmap',
             'beatmapset-watches-index' => 'modding λίστα παρακολούθησης',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'κοινότητα',
-            'dev' => 'ανάπτυξη',
+            'dev' => 'προγραμματισμός',
             'getForum' => 'φόρουμ',
             'getChat' => 'συνομιλία',
             'getLive' => 'ζωντανά',

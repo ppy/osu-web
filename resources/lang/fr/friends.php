@@ -25,7 +25,7 @@ return [
     ],
 
     'state' => [
-      'friends' => 'ami',
+      'friends' => 'amis',
       'mutual' => 'mutuel',
     ],
 

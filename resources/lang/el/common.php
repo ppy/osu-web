@@ -62,18 +62,18 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'ΜΜΜΜ ΧΧΧΧ',
-            'php' => 'ΜΜΜΜ χ',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'ΜΜΜ ΧΧΧΧ',
+            'moment' => 'MMM YYYY',
         ],
     ],
 
     'device' => [
         'keyboard' => 'Πληκτρολόγιο',
         'mouse' => 'Ποντίκι',
-        'tablet' => 'Tablet',
+        'tablet' => 'Γραφίδα',
         'touch' => 'Οθόνη Αφής',
     ],
 

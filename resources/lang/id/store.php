@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Gudang',
     ],
 
+    'cart' => [
+        'checkout' => 'Checkout',
+        'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
+        'shipping_fees' => 'biaya pengiriman',
+        'title' => 'Keranjang Belanja',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Aduh, ada masalah dengan pemesanan anda yang mencegah proses pembayaran!',
+            'line_2' => 'Hapus atau perbarui item-item di atas untuk melanjutkan.',
+        ],
+
+        'empty' => [
+            'text' => 'Keranjang anda masih kosong.',
+            'return_link' => [
+                '_' => 'Kembali ke tautan :link untuk mencari merchandise!',
+                'link_text' => 'etalase toko',
+            ],
+        ],
+    ],
+
     'checkout' => [
-        'cart_problems' => 'Aduh, ada masalah dengan keranjang Anda!',
+        'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'error' => 'Terjadi masalah saat menyelesaikan pembayaran :(',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Bayar lewat Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name untuk :username (:duration)',
             ],
             'quantity' => 'Jumlah',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Anda tidak dapat menyunting pesanan yang telah dibatalkan.',
+            'checkout' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.', // checkout and processing should have the same message.
+            'default' => 'Pesanan tidak dapat diubah',
+            'delivered' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
+            'paid' => 'Anda tidak dapat menyunting pesanan yang telah dibayar.',
+            'processing' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.',
+            'shipped' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
         ],
     ],
 

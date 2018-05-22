@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'Ödeme',
+        'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
+        'shipping_fees' => 'kargo ücretleri',
+        'title' => 'Alışveriş Sepeti',
+        'total' => 'toplam',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Hay aksi, alışveriş sepetinle ilgili ödemeyi engelleyen sorunlar var!',
+            'line_2' => 'Devam etmek için yukarıdaki eşyaları güncelleyin ya da kaldırın.',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'Sepetiniz boş.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Başka eşyalar bulmak için :link geri dönün!',
+                'link_text' => 'mağaza listesine',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Siparişiniz iptal edildiği için değiştiremezsiniz.',
+            'checkout' => 'Siparişiniz işlenirken değişiklik yapamazsınız.', // checkout and processing should have the same message.
+            'default' => 'Sipariş değiştirilemez',
+            'delivered' => 'Siparişiniz teslim edildiği için değiştiremezsiniz.',
+            'paid' => 'Siparişiniz ödendiği için değiştiremezsiniz.',
+            'processing' => 'Siparişiniz işlenirken değişiklik yapamazsınız.',
+            'shipped' => 'Siparişiniz çoktan yollandığı için değişiklik yapamazsınız.',
         ],
     ],
 

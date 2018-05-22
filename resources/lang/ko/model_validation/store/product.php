@@ -20,6 +20,6 @@
 
 return [
     'insufficient_stock' => '',
-    'not_available' => '',
+    'not_available' => '해당 항목은 사용하실 수 없습니다.',
     'too_many' => '',
 ];
