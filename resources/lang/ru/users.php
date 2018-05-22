@@ -146,7 +146,7 @@ return [
                     'title' => 'Заброшенные карты (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Любимые карты (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ранкнутые и одобренные карты (:count)',
@@ -292,7 +292,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Написал :link',
-            'count' => ':count постов|:count постов',
+            'count' => ':count пост|:count поста|:count постов',
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',

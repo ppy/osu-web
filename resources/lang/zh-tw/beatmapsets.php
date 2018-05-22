@@ -34,7 +34,7 @@ return [
         'discussion' => '討論',
 
         'details' => [
-            'made-by' => '作者: ',
+            'mapped_by' => '',
             'submitted' => '發佈於 ',
             'updated' => '上次更新於 ',
             'ranked' => '進榜於 ',

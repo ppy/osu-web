@@ -19,12 +19,12 @@
  */
 
 return [
-    'header' => ':type Κατάταξη',
+    'header' => 'Κατάταξη :type',
     'type' => [
         'performance' => 'Επίδοσης',
         'charts' => 'Spotlights',
         'score' => 'Σκορ',
-        'country' => 'Χώρα',
+        'country' => 'Χώρας',
     ],
     'stat' => [
         'accuracy' => 'Ακρίβεια',

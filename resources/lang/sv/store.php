@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Lager',
     ],
 
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, det finns problem med din varukorg!',
         'cart_problems_edit' => 'Klicka här för att redigera den.',
         'declined' => 'Betalningen avbröts.',
-        'error' => 'Det uppstod ett problem under betalningen :(',
         'old_cart' => 'Din varukorg verkar vara inaktuell och har blivit återladdad, var god försök igen.',
         'pay' => 'Betala med Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name för :username (:duration)',
             ],
             'quantity' => 'Antal',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

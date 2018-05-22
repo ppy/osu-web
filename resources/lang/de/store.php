@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Lagerhaus',
     ],
 
+    'cart' => [
+        'checkout' => 'Kasse',
+        'more_goodies' => 'Ich möchte noch nach anderen Artikeln suchen, bevor ich meine Bestellung aufgebe',
+        'shipping_fees' => 'Versandkosten',
+        'title' => 'Warenkorb',
+        'total' => 'gesamt',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => 'Entfernen oder aktualisieren Sie Ihre Artikel bevor Sie fortfahren.',
+        ],
+
+        'empty' => [
+            'text' => 'Ihr Warenkorb ist leer',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Es gibt Probleme in deinem Warenkorb!',
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
-        'error' => 'Es gab ein Problem beim Bezahlvorgang :(',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name für :username (:duration)',
             ],
             'quantity' => 'Menge',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Sie können ihre bestellung nicht bearbeiten da diese abgebrochen wurde',
+            'checkout' => 'Sie können Ihre Bestellung nicht verändern während diese bearbeitet wird.', // checkout and processing should have the same message.
+            'default' => 'Bestellung kann nicht bearbeitet werden',
+            'delivered' => 'Sie können Ihre Bestellung nicht verändern, da diese bereits zugestellt wird.',
+            'paid' => 'Sie können ihre Bestellung nicht bearbeiten, da diese bereits bezahlt wurde.',
+            'processing' => 'Sie können Ihre Bestellung nicht verändern, während diese bearbeitet wird.',
+            'shipped' => 'Sie können ihre Bestellung nicht bearbeiten da diese bereits verschickt wurde',
         ],
     ],
 

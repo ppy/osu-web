@@ -23,11 +23,31 @@ return [
         'warehouse' => 'คลังสินค้า',
     ],
 
+    'cart' => [
+        'checkout' => 'ชำระเงิน',
+        'more_goodies' => 'ฉันอยากจะดูของอยากอื่นก่อนที่จะดําเนินการสั่งซื้อ',
+        'shipping_fees' => 'ค่าส่ง',
+        'title' => 'ตะกร้าสินค้า',
+        'total' => 'ทั้งหมด',
+
+        'errors_no_checkout' => [
+            'line_1' => 'อ้าว! ตะกร้าสินค้าของคุณมีปัญหาที่ทําให้คุณจ่ายเงินไม่ได้!',
+            'line_2' => 'กรุณานําไอเทมข้างบนออกเพื่อที่จะดําเนินการต่อไป',
+        ],
+
+        'empty' => [
+            'text' => 'ตะกร้าสินค้าของคุณไม่มีของอะไร',
+            'return_link' => [
+                '_' => 'กลับไปที่ :link เพื่อดูสินค้าอื่นๆ!',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'ตายแล้ว มีปัญหาบางอย่างกับตะกร้าสินค้าของคุณ!',
         'cart_problems_edit' => 'กดที่นี่เพื่อแก้ไข',
         'declined' => 'การชำระเงินถูกยกเลิก',
-        'error' => 'มีปัญหาระหว่างเช็คเอาท์ :(',
         'old_cart' => 'เหมือนว่าตะกร้าสินค้าของคุณจะเก่าและได้ทำการรีโหลดให้แล้ว กรุณาลองใหม่อีกครั้ง',
         'pay' => 'จ่ายด้วย PayPal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name สำหรับ :username (:duration)',
             ],
             'quantity' => 'จำนวน',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

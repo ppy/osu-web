@@ -19,20 +19,7 @@
  */
 
 return [
-    'feed_title' => 'hírfolyam',
-    'generic' => 'Hibajavítások és kisebb fejlesztések.',
-    'users-online' => '1 felhasználó online |:users felhasználó online',
-
-    'prefixes' => [
-        'add' => 'kiegészítés',
-        'fix' => 'javítás',
-        'misc' => 'különféle',
-    ],
-
-    'support' => [
-        'heading' => 'Tetszik ez a frissítés?',
-        'text_1' => 'Támogasd a további osu! fejlesztéseket és :link még ma!',
-        'text_1_link' => 'legyél támogató',
-        'text_2' => 'Nem csak a gyors fejlesztést segíted, de még sok extra funkciót és egyediségi lehetőséget kapsz!',
-    ],
+    'insufficient_stock' => '',
+    'not_available' => '',
+    'too_many' => '',
 ];

@@ -23,17 +23,17 @@ return [
     'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => 'ARTIEST IS OP DIT MOMENT VERBORGEN',
+        'hidden' => 'ARTIEST IS MOMENTEEL VERBORGEN',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => 'Beatmappen',
         'download' => 'Beatmap Sjabloon Downloaden',
         'download-na' => 'Beatmap Sjabloon nog niet beschikbaar',
     ],
 
     'index' => [
-        'description' => 'Featured Artists zijn artiesten waarmee we hebben samengewerkt om nieuwe en originele muziek naar osu! te brengen. Deze artiesten en een selectie van hun nummers werden met de hand gekozen door het osu! team omdat ze fantastisch zijn voor mapping. Sommige van deze artiesten hebben exclusieve nummers gemaakt, speciaal voor osu!.<br><br>Alle nummers in deze sectie worden aangeboden als getimede .osz bestanden en hebben een officiële vergunning voor gebruik in osu! en osu!-gerelateerde inhoud.',
+        'description' => 'Featured Artists zijn artiesten waarmee we hebben samengewerkt om nieuwe en originele muziek naar osu! te brengen. Deze artiesten en een selectie van hun geweldige nummers is met de hand gekozen door het osu! team omdat ze zeer geschikt zijn voor mappen. Sommige van deze artiesten hebben nieuwe nummers gemaakt speciaal voor osu!.<br><br>Alle nummers in deze sectie worden aangeboden als getimede .osz bestanden en hebben een officiële vergunning voor gebruik in osu! en osu!-gerelateerde content.',
     ],
 
     'links' => [

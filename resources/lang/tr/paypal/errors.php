@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Seçilen ödeme yöntemi Paypal tarafından reddedildi.',
     'invalid_resource_id' => 'Ödeme bilgileri bulunamadı.',
-    'unknown' => "Ödeme reddedildi, ama nedenini bilmiyoruz.",
+    'unknown' => "Ödeme reddedildi ama nedenini bilmiyoruz.",
 ];

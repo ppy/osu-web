@@ -25,7 +25,7 @@ return [
     'italic' => 'İtalik',
     'link' => 'Bağlantı',
     'list' => 'Liste',
-    'list_numbered' => 'Numaralı liste',
+    'list_numbered' => 'Numaralı Liste',
     'size' => [
         '_' => 'Yazı Tipi Boyutu',
         'tiny' => 'Ufak',
@@ -34,5 +34,5 @@ return [
         'large' => 'Büyük',
     ],
     'spoilerbox' => 'Spoiler Kutusu',
-    'strikethrough' => 'Üstü çizili',
+    'strikethrough' => 'Üstü Çizili',
 ];

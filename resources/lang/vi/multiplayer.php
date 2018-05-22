@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Trận Đấu Multiplayer',
+        'header' => 'Những trận đấu Multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',

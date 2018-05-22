@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Registratie: :start tot :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Actieve Toernooien',
+            'previous' => 'Vorige Toernooien',
         ],
     ],
 

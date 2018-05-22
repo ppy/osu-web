@@ -127,8 +127,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
-            'popular' => 'Beatmap Populer',
+            'new' => 'Beatmap Ranked Terbaru',
+            'popular' => 'Beatmap yang Sedang Populer',
             'by' => 'oleh',
             'plays' => ':count kali dimainkan',
         ],

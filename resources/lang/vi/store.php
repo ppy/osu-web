@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Kho hàng',
     ],
 
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, có vấn đề với giỏ hàng của bạn!',
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
-        'error' => 'Đã xảy ra sự cố khi hoàn thành thanh toán của bạn  :(',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name cho :username (:duration)',
             ],
             'quantity' => 'Số lượng',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

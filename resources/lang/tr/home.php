@@ -129,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Yeni Dereceli Beatmapler',
             'popular' => 'Popüler Beatmapler',
-            'by' => 'tarafından',
+            'by' => 'yapan: ',
             'plays' => ':count kere oynandı',
         ],
         'buttons' => [

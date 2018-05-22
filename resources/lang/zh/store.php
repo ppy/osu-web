@@ -23,11 +23,31 @@ return [
         'warehouse' => '仓库',
     ],
 
+    'cart' => [
+        'checkout' => '结账',
+        'more_goodies' => '在完成订单之前，我想看看其他商品',
+        'shipping_fees' => '运费',
+        'title' => '购物车',
+        'total' => '总计',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '你的购物车是空的。',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '啊哦，你的购物车中存在问题！',
         'cart_problems_edit' => '点击此处以编辑。',
         'declined' => '支付被取消。',
-        'error' => '结账时出现错误 :(',
         'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name 给 :username （:duration）',
             ],
             'quantity' => '数量',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '你不能修改此订单，因为它已经被取消了。',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '你不能修改此订单，因为它已经被交付了。',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '你不能修改此订单，因为它已经开始运输了。',
         ],
     ],
 

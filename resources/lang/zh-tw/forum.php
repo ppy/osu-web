@@ -236,12 +236,12 @@ return [
             'total_posts' => '總主題數量',
 
             'feature_vote' => [
-                'current' => '當前優先級: +:count',
+                'current' => '當前優先順序: +:count',
                 'do' => '提升這個請求',
 
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',
-                    'current' => '還有 :votes 票.',
+                    'current' => '剩下 :votes 票.',
                     'not_enough' => "沒有票了",
                 ],
             ],
@@ -258,10 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '未订阅',
-            'to_watching' => '订阅',
-            'to_watching_mail' => '订阅并启用邮件通知',
-            'mail_disable' => '禁用邮件通知',
+            'to_not_watching' => '未訂閱',
+            'to_watching' => '訂閱',
+            'to_watching_mail' => '訂閱並開啟電子郵件通知',
+            'mail_disable' => '關閉電子郵件通知',
         ],
     ],
 ];

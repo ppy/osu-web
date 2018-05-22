@@ -114,7 +114,7 @@ return [
         'status-messages' => [
             'approved' => 'Ezt a beatmapot ekkor hagyták jóvá : :date!',
             'graveyard' => "Ezt a beatmap-et nem frissítették :date óta, és a készítő valszószínú elhagyatott állapotba hozta...",
-            'loved' => 'Ezt a beatmap-et ekkor helyezték szeretett kategóriába : :date!',
+            'loved' => 'Ezt a beatmap ekkor lett kedvelt: :date!',
             'ranked' => 'Ez a beatmap ekkor lett rangsorolt : :date!',
             'wip' => 'Megjegyzés: Ez a beatmap még készítés alatt áll.',
         ],
@@ -155,7 +155,7 @@ return [
         'unresolved_issues' => 'Még mindig vannak problémák amelyeket először meg kellene oldani.',
 
         'reset_at' => [
-            'nomination_reset' => 'A kijelölése folyamat újainditásra került :time_ago ideje, :user által egy új probléma miatt :discussiom (:message).',
+            'nomination_reset' => 'A kijelölési folyamat újaindításra került :time_ago :user által: :discussion (:message).',
             'disqualify' => 'Kizárva :time_ago -ja :user által e miatt a probléma miatt: :discussion (:message).',
         ],
 
@@ -180,6 +180,17 @@ return [
                 'rank' => 'Rank elérve',
                 'played' => 'Játszott',
             ],
+            'sorting' => [
+                'title' => 'cím',
+                'artist' => 'előadó',
+                'difficulty' => 'nehézség',
+                'updated' => 'frissítve',
+                'ranked' => '',
+                'rating' => 'értékelés',
+                'plays' => 'játszottság',
+                'relevance' => '',
+                'nominations' => '',
+            ],
         ],
         'mode' => 'Mód',
         'status' => 'Rank Státusz',
@@ -203,7 +214,7 @@ return [
         'ranked-approved' => 'Ranked & Elfogadott',
         'approved' => 'Elfogadott',
         'qualified' => 'Kvalifikált',
-        'loved' => 'Szeretett',
+        'loved' => 'Kedvelt',
         'faves' => 'Kedvencek',
         'pending' => 'Függő',
         'graveyard' => 'Temető',
