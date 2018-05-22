@@ -134,7 +134,7 @@ class @BeatmapsetPanel extends React.PureComponent
                 className: 'u-ellipsis-overflow'
                 dangerouslySetInnerHTML:
                   __html:
-                    osu.trans 'beatmaps.listing.mapped-by',
+                    osu.trans 'beatmapsets.show.details.mapped_by',
                       mapper:
                         laroute.link_to_route 'users.show',
                             beatmapset.creator,
