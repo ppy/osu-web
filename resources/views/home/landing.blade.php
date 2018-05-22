@@ -54,11 +54,14 @@
                         data-visibility="hidden"
                     >
                         @foreach (config('app.available_locales') as $locale)
-                            <a
+                            <button
+                                type="button"
                                 class="landing-nav__link landing-nav__link--locale"
-                                href="{{ route('set-locale', ['locale' => $locale]) }}"
-                                data-remote="1"
-                                data-method="POST"
+                                @if ($locale !== App::getLocale())
+                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
+                                    data-remote="1"
+                                    data-method="POST"
+                                @endif
                             >
                                 <span class="landing-nav__locale-link-pointer">
                                     <span class="fas fa-chevron-right"></span>
@@ -71,7 +74,7 @@
                                 >
 
                                 {{ locale_name($locale) }}
-                            </a>
+                            </button>
                         @endforeach
                     </div>
                 </div>
