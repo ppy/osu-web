@@ -57,6 +57,7 @@ class EsIndexDocuments extends Command
     protected $existingAliases;
     protected $inplace;
     protected $groups;
+    protected $skipCounts = false;
     protected $suffix;
     protected $yes;
 
@@ -135,7 +136,7 @@ class EsIndexDocuments extends Command
         foreach ($types as $i => $type) {
             $indexName = "{$type::esIndexName()}{$this->suffix}";
             $lastUpdatedId = $this->inplace ? $this->getLastUpdatedId($indexName) : 0;
-            $count = $type::esIndexingQueryFrom($lastUpdatedId)->count();
+            $count = $this->skipCounts ? null : $type::esIndexingQueryFrom($lastUpdatedId)->count();
             $bar = $this->output->createProgressBar($count);
 
             $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
