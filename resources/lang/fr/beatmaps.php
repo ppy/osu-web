@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
-        'require-login' => 'Veuillez vous connecter pour poster ou répondre',
+        'require-login' => 'Connectez-vous pour poster ou répondre',
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'title' => 'Discussions',
@@ -55,7 +55,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Pas de discussion !',
+            'empty' => 'Pas encore de discussion !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
@@ -179,6 +179,17 @@ return [
                 'extra' => 'supplément',
                 'rank' => 'Rang Atteint',
                 'played' => 'Jouée',
+            ],
+            'sorting' => [
+                'title' => 'titre',
+                'artist' => 'artiste',
+                'difficulty' => 'difficulté',
+                'updated' => 'mise à jour',
+                'ranked' => 'classée',
+                'rating' => 'évaluation',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
         ],
         'mode' => 'Mode',

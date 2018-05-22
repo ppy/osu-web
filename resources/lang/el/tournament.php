@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Εγγραφή από :start μέχρι :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Ενεργά Τουρνουά',
+            'previous' => 'Παλαιότερα Τουρνουά',
         ],
     ],
 

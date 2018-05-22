@@ -28,7 +28,7 @@ return [
         'registration_period' => 'Anmeldung: :start bis :end',
 
         'state' => [
-            'current' => '',
+            'current' => 'Aktive Turniere',
             'previous' => '',
         ],
     ],

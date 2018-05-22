@@ -34,7 +34,7 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'made-by' => '作者: ',
+            'mapped_by' => '',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
             'ranked' => 'ranked 于 ',

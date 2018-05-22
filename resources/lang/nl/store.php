@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Warenhuis',
     ],
 
+    'cart' => [
+        'checkout' => 'Afrekenen',
+        'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
+        'shipping_fees' => 'verzendkosten',
+        'title' => 'Winkewagen',
+        'total' => 'totaal',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, er zijn problemen met je winkelwagen die het afrekenen verhinderen!',
+            'line_2' => 'Verwijder of update bovenstaande voorwerpen om verder te gaan.',
+        ],
+
+        'empty' => [
+            'text' => 'Je winkelwagen is leeg.',
+            'return_link' => [
+                '_' => 'Keer terug naar de :link om meer goodies te vinden!',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, er zijn problemen met je winkelwagen!',
         'cart_problems_edit' => 'Klik hier om het te wijzigen.',
         'declined' => 'De betaling is geannuleerd.',
-        'error' => 'Er was een probleem met het voltooien van uw checkout :(',
         'old_cart' => 'Je winkelwagen lijkt verouderd te zijn en wordt herladen, probeer het opnieuw.',
         'pay' => 'Afrekenen met Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name voor :username (:duration)',
             ],
             'quantity' => 'Aantal',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Je kan je bestelling niet wijzigen omdat hij geannuleerd is.',
+            'checkout' => 'Je kan je bestelling niet wijzigen omdat hij geannuleerd is.', // checkout and processing should have the same message.
+            'default' => 'Bestelling kan niet gewijzigd worden',
+            'delivered' => 'Je kan je bestelling niet wijzigen omdat hij al afgeleverd is.',
+            'paid' => 'Je kan je bestelling niet wijzigen omdat hij al betaald is.',
+            'processing' => 'Je kan je bestelling niet wijzigen omdat hij verwerkt wordt.',
+            'shipped' => 'Je kan je bestelling niet wijzigen omdat hij al verzonden is.',
         ],
     ],
 
