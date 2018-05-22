@@ -18,7 +18,6 @@
 
 {{-- see also supporter-icon.coffee for react component --}}
 <span class="supporter-icon{{isset($smaller) && $smaller === true ? ' supporter-icon--smaller' : ''}} fa-stack" title="{{ trans('users.show.is_supporter') }}">
-    @if (isset($background) && $background === true) <i class="supporter-icon__bg fas fa-circle fa-stack-2x"></i> @endif
     <i class="far fa-circle fa-stack-2x"></i>
     <i class="supporter-icon__heart fas fa-heart fa-stack-1x"></i>
 </span>
