@@ -71,10 +71,7 @@
                             @if ($user->isSupporter())
                                 <div class="usercard__icon">
                                     <a class="usercard__link-wrapper" href="{{route('support-the-game')}}">
-                                        @include('objects._supporter_icon', [
-                                            'background' => true,
-                                            'smaller' => true,
-                                        ])
+                                        @include('objects._supporter_icon', ['smaller' => true])
                                     </a>
                                 </div>
                             @endif

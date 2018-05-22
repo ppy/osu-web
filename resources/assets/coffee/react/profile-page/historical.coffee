@@ -159,7 +159,7 @@ class ProfilePage.Historical extends React.PureComponent
           div
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             span dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.listing.mapped-by',
+                __html: osu.trans 'beatmapsets.show.details.mapped_by',
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
                     { user: bmset.user_id }
