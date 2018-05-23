@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Magasin',
     ],
 
+    'cart' => [
+        'checkout' => 'Paiement',
+        'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
+        'shipping_fees' => 'frais de livraison',
+        'title' => 'Panier',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, des problèmes avec votre panier empêchent le paiement!',
+            'line_2' => 'Supprimez ou mettez à jour les articles ci-dessus pour continuer.',
+        ],
+
+        'empty' => [
+            'text' => 'Votre panier est vide.',
+            'return_link' => [
+                '_' => 'Retourner à :link pour trouver quelques goodies!',
+                'link_text' => 'articles',
+            ],
+        ],
+    ],
+
     'checkout' => [
-        'cart_problems' => 'Uh oh, il y a des problèmes avec votre panier !',
+        'cart_problems' => 'Oh oh, il y a quelques problèmes avec votre panier !',
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
-        'error' => 'Il y a eu un problème lors de votre commande :(',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
         'pending_checkout' => [
@@ -42,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => 'Nous avons reçu votre commande osu!store !',
+            'subject' => 'Nous avons bien reçu votre commande osu!store !',
         ],
     ],
 
@@ -53,14 +73,24 @@ return [
             ],
             'quantity' => 'Quantité',
         ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Vous ne pouvez pas modifier votre commande, puisqu\'elle a été annulée.',
+            'checkout' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.', // checkout and processing should have the same message.
+            'default' => 'La commande n\'est pas modifiable',
+            'delivered' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
+            'paid' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a déjà été payée.',
+            'processing' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.',
+            'shipped' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
+        ],
     ],
 
     'product' => [
         'name' => 'Nom',
 
         'stock' => [
-            'out' => 'Cet article est en rupture de stock pour le moment :(. Revenez plus tard.',
-            'out_with_alternative' => 'Malheureusement cet article est en rupture de stock.. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard.',
+            'out' => 'Cet article est en rupture de stock pour le moment. Revenez plus tard !',
+            'out_with_alternative' => 'Malheureusement cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
         ],
 
         'add_to_cart' => 'Ajouter au panier',
@@ -84,7 +114,7 @@ return [
         'check' => 'Entrez un nom d\'utilisateur pour vérifier sa disponibilité !',
         'checking' => 'Vérification de la disponibilité de :username...',
         'require_login' => [
-            '_' => 'Vous devez être :link pour changer votre nom !',
+            '_' => 'Vous devez être :link pour changer de nom !',
             'link_text' => 'connecté',
         ],
     ],

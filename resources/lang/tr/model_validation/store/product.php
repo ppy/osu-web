@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'Bu üründen yeteri kadar kalmadı!',
+    'not_available' => 'Bu ürün mevcut değil.',
+    'too_many' => 'Bu ürünü sipariş başına sadece :count adet şipariş edebilirsiniz.',
 ];

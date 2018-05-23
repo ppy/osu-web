@@ -140,19 +140,19 @@ return [
                 'title' => '圖譜',
 
                 'favourite' => [
-                    'title' => '收藏的圖譜 (:count)',
+                    'title' => '收藏的譜面 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '進坟的圖譜 (:count)',
+                    'title' => '墳場裡的譜面 (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Loved Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 和 Approved 的圖譜 (:count)',
+                    'title' => 'Ranked 和 Approved 的譜面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => '待認可的圖譜 (:count)',
+                    'title' => 'Pending Beatmaps (:count)',
                 ],
             ],
             'historical' => [

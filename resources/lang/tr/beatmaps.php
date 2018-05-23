@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
         'reply_placeholder' => 'Yanıtınızı buraya yazın',
-        'require-login' => 'Devam etmek için lütfen giriş yapın',
+        'require-login' => 'Lütfen yorum yapmak ya da cevaplamak için giriş yapınız',
         'resolved' => 'Çözüldü',
         'restore' => 'restore et',
         'title' => 'Tartışmalar',
@@ -91,7 +91,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title :mapper tarafından haritalandı',
+            'title' => ':title :mapper tarafından maplendi',
         ],
 
         'sort' => [
@@ -177,18 +177,28 @@ return [
                 'genre' => 'Tür',
                 'language' => 'Dil',
                 'extra' => 'ekstra',
-                'rank' => 'Elde Edilmiş Derece',
+                'rank' => 'Alınan Derece',
                 'played' => 'Oynanmışlık',
+            ],
+            'sorting' => [
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
         ],
         'mode' => 'Oyun modu',
         'status' => 'Derece Durumu',
-        'mapped-by' => ':mapper tarafından haritalandı',
         'source' => ':source tarafından',
         'load-more' => 'Daha fazla yükle...',
     ],
     'general' => [
-        'recommended' => 'Önerilen zorluk',
+        'recommended' => 'Önerilen zorluk seviyesi',
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
     ],
     'mode' => [

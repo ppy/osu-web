@@ -46,6 +46,13 @@
     }
   }
 
+  &--flipped-checkbox {
+    @media @mobile {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
+
   &__avatar {
     .default-border-radius();
     .own-layer();
@@ -161,6 +168,16 @@
     }
   }
 
+  &__label-right {
+    @media @desktop {
+      margin-left: 5px;
+    }
+
+    @media @mobile {
+      margin-bottom: 5px;
+    }
+  }
+
   &__misc-info {
     max-width: @input-width;
     display: block;
@@ -181,6 +198,20 @@
 
     .@{top}.js-account-edit-avatar--saving & {
       opacity: 1;
+    }
+  }
+
+  &__status-left {
+    display: flex;
+    align-items: center;
+
+    @media @desktop {
+      width: @label-width + 25px; // offset by the size of the checkbox (plus padding)
+      justify-content: flex-end;
+    }
+
+    @media @mobile {
+      flex-direction: row-reverse;
     }
   }
 }

@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'excluído',
-        'title' => 'Discussão do mapa',
+        'title' => 'Discussão do Beatmap',
 
         'form' => [
             'deleted' => 'Incluir discussões excluídas',

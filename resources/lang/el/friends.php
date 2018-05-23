@@ -26,7 +26,7 @@ return [
 
     'state' => [
       'friends' => 'φίλοι',
-      'mutual' => 'αμοιβαία',
+      'mutual' => 'αμοιβαίοι',
     ],
 
     'title' => 'Φίλοι',

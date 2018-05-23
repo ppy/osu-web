@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Regisztráció: :start a :end -ig',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Aktív versenyek',
+            'previous' => 'Korábbi versenyek',
         ],
     ],
 

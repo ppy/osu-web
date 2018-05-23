@@ -131,7 +131,7 @@ return [
             'getListing' => 'lista',
             'cart-show' => 'kosár',
 
-            'getCheckout' => 'fozetés',
+            'getCheckout' => 'fizetés',
             'getInvoice' => 'számla',
             'products-show' => 'termék',
 

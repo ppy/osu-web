@@ -28,8 +28,8 @@ return [
         'registration_period' => '報名時間： :start 到 :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => '正在進行的比賽',
+            'previous' => '過去的比賽',
         ],
     ],
 

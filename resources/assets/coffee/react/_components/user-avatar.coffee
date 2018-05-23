@@ -27,4 +27,4 @@ bn = 'avatar'
       style:
         backgroundImage: "url('#{props.user.avatar_url}')"
   else
-    div className: "#{className} #{bn}--guest"
+    div className: osu.classWithModifiers(bn, _.concat(props.modifiers, 'guest'))

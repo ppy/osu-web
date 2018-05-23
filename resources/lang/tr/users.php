@@ -98,12 +98,12 @@ return [
         'lastvisit' => 'Son görülme :date',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age :country \'dan',
-        'origin_country' => ':country \'dan',
+        'origin_country_age' => ':age ülke: :country',
+        'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
-        'title' => ":username'in profili",
+        'title' => ":username kullanıcısının profili",
 
         'edit' => [
             'cover' => [
@@ -128,7 +128,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 takipçi |:count takipçi',
+            'followers' => ':count takipçi',
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [
@@ -140,13 +140,13 @@ return [
                 'title' => 'Beatmapler',
 
                 'favourite' => [
-                    'title' => 'Sevilen Beatmapler (:count)',
+                    'title' => 'Favori Beatmapler (:count)',
                 ],
                 'graveyard' => [
                     'title' => 'Terk Edilmiş Beatmapler (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Sevilen Haritalar (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Dereceli & Onaylanmış Beatmapler (:count)',
@@ -163,7 +163,7 @@ return [
                     'title' => 'Oyun Geçmişi',
                 ],
                 'most_played' => [
-                    'count' => 'kere oynandı',
+                    'count' => 'oynama sayısı',
                     'title' => 'En Çok Oynanan Beatmapler',
                 ],
                 'recent_plays' => [

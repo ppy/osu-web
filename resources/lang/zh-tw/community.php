@@ -36,11 +36,11 @@ return [
             也包括繼續支持 osu! 的所有人 :)。',
 
         'supporter_status' => [
-            'contribution' => '感谢您一直以來的支持！你已经捐赠了 :dollars 並購買了 :tags 次贊助者標籤！',
-            'gifted' => '您已经捐赠了 :giftedTags 次贊助者標籤（花费了 :giftedDollars ），真慷慨啊！',
+            'contribution' => '感謝您一直以來的支持！你已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
+            'gifted' => '您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！',
             'not_yet' => "您還沒有贊助者標籤 :(",
             'title' => '當前贊助者狀態',
-            'valid_until' => '您的贊助者標籤将在 :date 到期',
+            'valid_until' => '您的贊助者標籤將在 :date 到期',
             'was_valid_until' => '您的贊助者標籤已於 :date 到期',
         ],
 
@@ -59,27 +59,27 @@ return [
             'title' => '我能得到什麼？',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => '在遊戲客戶端內搜索和下載譜面。',
+                'description' => '在遊戲內提供圖譜快速下載與搜尋。',
             ],
 
             'auto_downloads' => [
                 'title' => '自動下載',
-                'description' => '本地沒有需要的譜面時，osu! 會自動下載！',
+                'description' => '當多人遊戲與觀看玩家無圖譜時，osu! 會自動下載！',
             ],
 
             'upload_more' => [
-                'title' => '上傳更多譜面',
-                'description' => '譜面集中 Pending 譜面上限增加到 10 張。',
+                'title' => '上傳更多圖譜',
+                'description' => '做圖者上傳待批准的圖譜上限增加到 10 張。',
             ],
 
             'early_access' => [
                 'title' => '搶先體驗',
-                'description' => '搶先體驗正在測試中的新特性！',
+                'description' => '搶先體驗正在測試中的新功能！',
             ],
 
             'customisation' => [
-                'title' => '個性化',
-                'description' => '自定義個人資料頁。',
+                'title' => '客製化',
+                'description' => '客製化您個頁面。',
             ],
 
             'beatmap_filters' => [
