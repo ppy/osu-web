@@ -56,24 +56,26 @@
                         @foreach (config('app.available_locales') as $locale)
                             <button
                                 type="button"
-                                class="landing-nav__link landing-nav__link--locale"
+                                class="landing-nav__locale-button"
                                 @if ($locale !== App::getLocale())
                                     data-url="{{ route('set-locale', ['locale' => $locale]) }}"
                                     data-remote="1"
                                     data-method="POST"
                                 @endif
                             >
-                                <span class="landing-nav__locale-link-pointer">
-                                    <span class="fas fa-chevron-right"></span>
+                                <span class="landing-nav__link landing-nav__link--locale">
+                                    <span class="landing-nav__locale-link-pointer">
+                                        <span class="fas fa-chevron-right"></span>
+                                    </span>
+
+                                    <img
+                                        class="landing-nav__locale-flag"
+                                        src="{{ flag_path(locale_flag($locale)) }}"
+                                        alt="{{ $locale }}"
+                                    >
+
+                                    {{ locale_name($locale) }}
                                 </span>
-
-                                <img
-                                    class="landing-nav__locale-flag"
-                                    src="{{ flag_path(locale_flag($locale)) }}"
-                                    alt="{{ $locale }}"
-                                >
-
-                                {{ locale_name($locale) }}
                             </button>
                         @endforeach
                     </div>

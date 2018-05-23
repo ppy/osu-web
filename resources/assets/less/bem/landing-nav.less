@@ -30,7 +30,6 @@
   }
 
   &__link {
-    .reset-input();
     .link-plain();
     display: flex;
     align-items: center;
@@ -54,11 +53,16 @@
       color: @purple;
       padding: 5px 0;
 
-      &:hover,
-      &:focus {
+      .@{top}__locale-button:hover &,
+      .@{top}__locale-button:focus & {
         color: #fff;
       }
     }
+  }
+
+  &__locale-button {
+    .reset-input();
+    padding-right: 10px;
   }
 
   &__locale-flag {
@@ -78,7 +82,7 @@
     color: #aaa;
     font-size: 75%;
 
-    .@{top}__link:hover & {
+    .@{top}__locale-button:hover & {
       opacity: 1;
     }
   }
@@ -94,6 +98,8 @@
     margin-left: -(5px + 10px + 5px - @link-gutter);
     padding: 5px 10px 5px 5px;
     background-color: #333;
+    display: flex;
+    flex-direction: column;
 
     &::before {
       content: ' ';
