@@ -33,11 +33,14 @@
             <span class="osu-checkbox__tick">
                 <i class="fas fa-check"></i>
             </span>
-
         </div>
 
-        {{ trans('accounts.playstyles.'.$field) }}
-    </label>
+        <span class="account-edit-entry__checkbox-label">
+            {{ trans('accounts.playstyles.'.$field) }}
+        </span>
 
-    @include('accounts._edit_entry_status')
+        <div class="account-edit-entry__checkbox-status">
+            @include('accounts._edit_entry_status')
+        </div>
+    </label>
 </div>
