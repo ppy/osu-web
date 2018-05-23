@@ -15,25 +15,29 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-account-edit-playstyle" data-playstyle="{{ $field }}">
-    <div class="account-edit-entry__label">
+<div
+    class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-playstyle"
+    data-playstyle="{{ $field }}"
+>
+    <label class="account-edit-entry__checkbox">
+        <div class="osu-checkbox">
+            <input
+                value="{{$field}}"
+                class="osu-checkbox__input"
+                type="checkbox"
+                @if (in_array($field, Auth::user()->osu_playstyle ?? []))
+                    checked
+                @endif
+            >
+            <span class="osu-checkbox__box"></span>
+            <span class="osu-checkbox__tick">
+                <i class="fas fa-check"></i>
+            </span>
+
+        </div>
+
         {{ trans('accounts.playstyles.'.$field) }}
-    </div>
+    </label>
 
-    <div class="osu-checkbox">
-        <input
-            value="{{$field}}"
-            class="osu-checkbox__input"
-            type="checkbox"
-            @if (is_array(Auth::user()->osu_playstyle) && in_array($field, Auth::user()->osu_playstyle))
-                checked
-            @endif
-        >
-        <span class="osu-checkbox__box"></span>
-        <span class="osu-checkbox__tick">
-            <i class="fas fa-check"></i>
-        </span>
-    </div>
     @include('accounts._edit_entry_status')
-
-</label>
+</div>
