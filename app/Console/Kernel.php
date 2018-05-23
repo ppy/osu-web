@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\EsIndexDocuments::class,
+        Commands\EsIndexHighScores::class,
 
         // modding stuff
         Commands\ModdingQueueUpdateCommand::class,
