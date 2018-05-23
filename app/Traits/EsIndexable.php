@@ -89,6 +89,16 @@ trait EsIndexable
         return Es::indices()->create($params);
     }
 
+    /**
+     * Convenience function to start the indexing query from an id.
+     */
+    public static function esIndexingQueryFrom($fromId = 0)
+    {
+        $dummy = new static();
+
+        return static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
+    }
+
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
@@ -116,7 +126,7 @@ trait EsIndexable
         $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
         $startTime = time();
 
-        $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
+        $baseQuery = static::esIndexingQueryFrom($fromId);
         $count = 0;
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count, $progress) {

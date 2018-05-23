@@ -54,6 +54,7 @@ class EsIndexDocuments extends Command
     protected $description = 'Indexes documents into Elasticsearch.';
 
     protected $cleanup;
+    protected $existingAliases;
     protected $inplace;
     protected $groups;
     protected $suffix;
@@ -72,10 +73,11 @@ class EsIndexDocuments extends Command
         $oldIndices = [];
         foreach ($this->groups as $name) {
             $type = static::ALLOWED_TYPES[$name][0];
-            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
+            // FIXME: should probably load this somewhere else.
+            $this->existingAliases[$type::esIndexName()] = Indexing::getOldIndices($type::esIndexName());
         }
 
-        $oldIndices = array_flatten($oldIndices);
+        $oldIndices = array_flatten(array_values($this->existingAliases));
 
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
@@ -88,6 +90,11 @@ class EsIndexDocuments extends Command
 
         $this->finish($indices, $oldIndices);
         $this->warn("\nIndexing completed in ".(time() - $start).'s');
+    }
+
+    public function getLastUpdatedId(string $index)
+    {
+        return 0;
     }
 
     public function setLastUpdated(string $index, Carbon $updatedAt, $id)
@@ -126,10 +133,11 @@ class EsIndexDocuments extends Command
         $types = static::ALLOWED_TYPES[$name];
 
         foreach ($types as $i => $type) {
-            $count = $type::esIndexingQuery()->count();
+            $indexName = "{$type::esIndexName()}{$this->suffix}";
+            $lastUpdatedId = $this->inplace ? $this->getLastUpdatedId($indexName) : 0;
+            $count = $type::esIndexingQueryFrom($lastUpdatedId)->count();
             $bar = $this->output->createProgressBar($count);
 
-            $indexName = "{$type::esIndexName()}{$this->suffix}";
             $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
             $this->info("{$pretext} {$type} into {$indexName}");
 
@@ -141,7 +149,7 @@ class EsIndexDocuments extends Command
                     $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
             } else {
-                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress, $lastId) use ($bar, $indexName) {
+                $type::esReindexAll(static::BATCH_SIZE, $lastUpdatedId, [], function ($progress, $lastId) use ($bar, $indexName) {
                     $bar->setProgress($progress);
                     $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
@@ -156,6 +164,12 @@ class EsIndexDocuments extends Command
         }
 
         return $indices;
+    }
+
+    protected function getRealIndexName(string $index)
+    {
+        // this needs to be updated if we have more than 1 index per alias.
+        return $this->existingAliases[$index][0] ?? $index;
     }
 
     protected function readOptions()
