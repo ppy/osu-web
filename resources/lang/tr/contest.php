@@ -50,7 +50,7 @@ return [
     ],
     'vote' => [
         'list' => 'oylar',
-        'count' => '1 oy|:count oy',
+        'count' => ':count oy',
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',

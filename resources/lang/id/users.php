@@ -146,7 +146,7 @@ return [
                     'title' => 'Beatmap Graveyarded (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Beatmap Favorit (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Ranked & Approved (:count)',

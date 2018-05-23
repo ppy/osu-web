@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Nessuno dei post riguarda il mio problema',
-        'notice' => '',
+        'notice' => 'Ci sono già post a :timestamp (:existing_timestamps). Si prega di controllare prima di postare.',
     ],
 
     'reply' => [

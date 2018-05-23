@@ -42,7 +42,7 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
 
         'supporter_status' => [
             'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
-            'gifted' => '',
+            'gifted' => 'A tagvásárlásaidból :giftedTags ajándék volt (ami :gifteddollars ajándékozás) milyen segítőkész!',
             'not_yet' => "Nincsen támogatói címed még :(",
             'title' => 'Jelenlegi támogatói állapot',
             'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',

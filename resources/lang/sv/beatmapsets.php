@@ -34,7 +34,7 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'gjord av ',
+            'mapped_by' => '',
             'submitted' => 'inkommen den ',
             'updated' => 'senast uppdaterad den ',
             'ranked' => 'rankad den ',

@@ -25,8 +25,8 @@ return [
     'wrong_confirmation' => 'La confirmación no coincide.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => 'La discusión ha sido bloqueada.',
-        'first_post' => 'No puedes eliminar la primera publicación.',
+        'discussion_locked' => 'La discusión está cerrada.',
+        'first_post' => 'No se puede eliminar la publicación inicial.',
     ],
 
     'beatmapset_discussion' => [
@@ -35,41 +35,41 @@ return [
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido',
-        'locked' => 'La discusión ha sido bloqueada.',
-        'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas del mapper',
+        'locked' => 'La discusión está cerrada.',
+        'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas de mapper.',
 
         'hype' => [
             'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
-            'limit_exceeded' => 'Ya has utilizado todos tus hype.',
-            'not_hypeable' => 'Este mapa no puede ser hypeado.',
-            'owner' => 'No puedes hypear tu propio mapa.',
+            'limit_exceeded' => 'Ya has utilizado todos tus hypes.',
+            'not_hypeable' => 'Este beatmap no puede ser hypeado',
+            'owner' => 'No puedes hypear tu propio beatmapa.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del mapa.',
+            'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del beatmapa.',
             'negative' => "La marca de tiempo no puede ser negativa.",
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Solo puedes votar en solicitudes de características.',
+            'not_feature_topic' => 'Solo se puede votar en solicitudes de características.',
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opción inválida.',
+            'invalid' => 'Opción especificada inválida.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Eliminar el post de los metadatos del mapa no está permitido.',
-            'beatmapset_post_no_edit' => 'Editar el post de los metadatos del mapa no está permitido.',
+            'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del beatmapa no está permitido.',
+            'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
-            'invalid_max_options' => 'Opciones por usuario no pueden exceder el número de opciones disponibles.',
+            'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
             'too_many_options' => 'Número de opciones permitidas excedidas.',
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Usuario de Discord invalido.',
-        'invalid_email' => "No parece que haya un correo electrónico.",
+        'invalid_email' => "No parece que sea un correo electrónico valido.",
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
         'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',
@@ -106,10 +106,10 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => '¡Debes :link para cambiar tu nombre!',
-                'link_text' => 'apoyar osu!',
+                '_' => '¡Debes tener :link para cambiar tu nombre!',
+                'link_text' => 'apoyar a osu!',
             ],
-            'username_is_same' => '¡Ese ya es tu nombre de usuario, tonto!',
+            'username_is_same' => '¡Este ya es tu nombre de usuario, tonto!',
         ],
     ],
 ];

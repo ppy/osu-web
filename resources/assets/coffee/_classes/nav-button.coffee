@@ -30,6 +30,8 @@ class @NavButton
       @listening = true
       $(window).on 'throttled-resize', @hideOrShow
 
+    return if @main.length == 0
+
     # assumes:
     # - the width never changes once the page loads
     # - items all have same width
@@ -41,6 +43,8 @@ class @NavButton
 
 
   hideOrShow: =>
+    return if @main.length == 0
+
     currentMaxWidth = @main[0].offsetWidth
     currentWidth = @defaultWidth
 
