@@ -46,6 +46,13 @@
     }
   }
 
+  &--flipped-checkbox {
+    @media @mobile {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
+
   &__avatar {
     .default-border-radius();
     .own-layer();
@@ -162,7 +169,13 @@
   }
 
   &__label-right {
-    margin-left: 5px;
+    @media @desktop {
+      margin-left: 5px;
+    }
+
+    @media @mobile {
+      margin-bottom: 5px;
+    }
   }
 
   &__misc-info {
@@ -185,6 +198,20 @@
 
     .@{top}.js-account-edit-avatar--saving & {
       opacity: 1;
+    }
+  }
+
+  &__status-left {
+    display: flex;
+    align-items: center;
+
+    @media @desktop {
+      width: @label-width + 25;
+      justify-content: flex-end;
+    }
+
+    @media @mobile {
+      flex-direction: row-reverse;
     }
   }
 }
