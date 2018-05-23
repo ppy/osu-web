@@ -141,56 +141,6 @@
   font-style: italic;
   .list-group;
   line-height: 36px;
-
-  li {
-    .default-border-radius();
-    .default-box-shadow();
-    list-style: none;
-    padding: 10px;
-    margin: 0 0 5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    flex-wrap: wrap;
-    @media @desktop {
-      flex-wrap: nowrap;
-    }
-
-    .product-name {
-      flex: 0 1 auto;
-    }
-
-    > form {
-      flex: 0 1 100%;
-      @media @desktop {
-        flex: 0 0 300px;
-      }
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-
-      .item-quantity {
-        flex: 0 0 100px;
-      }
-
-      .subtotal {
-        flex: 0 0 150px;
-        padding: 0 20px;
-      }
-
-      button {
-        &:hover {
-          color: #f00;
-        }
-
-        &:active {
-          box-shadow: none; // remove bootstrap background
-        }
-      }
-    }
-  }
 }
 
 .cart-footer {

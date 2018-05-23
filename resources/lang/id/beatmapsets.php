@@ -34,7 +34,7 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'made-by' => 'dibuat oleh ',
+            'mapped_by' => '',
             'submitted' => 'diunggah pada ',
             'updated' => 'terakhir diperbarui pada ',
             'ranked' => 'berstatus Ranked sejak ',

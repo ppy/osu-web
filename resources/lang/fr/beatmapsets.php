@@ -102,7 +102,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Personnne de vos amis n\'a encore fait un score !',
+                'friend' => 'Aucun de vos amis n\'a de score sur cette map !',
                 'global' => 'Pas de scores. Peut-être vous dans le classement ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',

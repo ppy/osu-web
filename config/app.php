@@ -91,8 +91,10 @@ return [
         // sort by name
         'da',
         'de',
+        'el',
         'es',
         'fr',
+        'hu',
         'id',
         'it',
         'ja',
@@ -103,6 +105,7 @@ return [
         'ru',
         'sv',
         'th',
+        'tr',
         'vi',
         'zh',
         'zh-tw',

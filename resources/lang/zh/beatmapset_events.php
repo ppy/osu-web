@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => '已批准',
+        'approve' => 'Approved.',
         'discussion_delete' => '管理员删除了 :discussion 。',
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复。',

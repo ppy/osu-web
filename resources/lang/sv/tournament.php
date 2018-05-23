@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Det finns inga pågående turneringar just nu, var vänlig kolla igen senare!',
         'registration_period' => 'Registrering: :start till :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

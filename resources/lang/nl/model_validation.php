@@ -30,7 +30,7 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Tijdstempel is opgegeven, maar beatmap ontbreekt.',
+        'beatmap_missing' => 'Tijdstip is opgegeven, maar beatmap ontbreekt.',
         'beatmapset_no_hype' => "Beatmap kan niet worden gehyped.",
         'hype_requires_null_beatmap' => 'Hype moet gebeuren in de General afdeling (alle moeilijkheidsgraden).',
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
@@ -39,16 +39,16 @@ return [
         'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
-            'guest' => '',
-            'hyped' => '',
-            'limit_exceeded' => '',
-            'not_hypeable' => '',
-            'owner' => '',
+            'guest' => 'He moet ingelogd zijn om te hypen.',
+            'hyped' => 'Je hebt deze beatmap al gehyped.',
+            'limit_exceeded' => 'Je hebt all je hype opgebruikt.',
+            'not_hypeable' => 'Deze beatmap kan niet gehyped worden',
+            'owner' => 'Je kan je eigen beatmap niet hypen!',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "",
+            'exceeds_beatmapset_length' => 'Opgegeven tijdstip is later dan het einde van de beatmap.',
+            'negative' => "Tijdstip kan niet negatief zijn.",
         ],
     ],
 
@@ -59,20 +59,20 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Ongeldige optie opgegeven.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
+            'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
+            'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
+            'duplicate_options' => 'Een optie dupliceren is niet toegestaan.',
+            'invalid_max_options' => 'Opties per gebruiker mag niet groter zijn dan het aantal opties.',
+            'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
-            'too_many_options' => '',
+            'too_many_options' => 'Maximum aantal opties overschreden.',
         ],
 
         'topic_vote' => [
@@ -82,34 +82,34 @@ return [
     ],
 
     'user' => [
-        'contains_username' => '',
+        'contains_username' => 'Wachtwoorden mogen je gebruikersnaam niet bevatten.',
         'email_already_used' => 'Dit e-mailadres is al in gebruik.',
-        'invalid_country' => '',
+        'invalid_country' => 'Land niet in de database.',
         'invalid_discord' => 'Discord gebruikersnaam is ongeldig.',
-        'invalid_email' => "",
+        'invalid_email' => "Dit lijkt niet een geldig e-mailadres te zijn.",
         'too_short' => 'Nieuw wachtwoord is te kort.',
         'unknown_duplicate' => 'Gebruikersnaam of e-mailadres is al in gebruik.',
         'username_available_in' => 'Deze gebruikersnaam zal over :duration beschikbaar zijn.',
         'username_available_soon' => 'Deze gebruikersnaam kan elk moment beschikbaar worden!',
-        'username_invalid_characters' => '',
+        'username_invalid_characters' => 'De opgevraagde gebruikersnaam bevat ongeldige tekens.',
         'username_in_use' => 'Gebruikersnaam is al in gebruik!',
-        'username_no_space_userscore_mix' => '',
-        'username_no_spaces' => "",
+        'username_no_space_userscore_mix' => 'Gebruik oftewel underscores of spaties, niet beide!',
+        'username_no_spaces' => "Gebruikersnaam kan niet beginnen of eindigen met spaties!",
         'username_not_allowed' => 'Deze gebruikersnaam is niet toegestaan.',
-        'username_too_short' => '',
-        'username_too_long' => '',
-        'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
-        'too_long' => '',
+        'username_too_short' => 'De aangevraagde gebruikersnaam is te kort.',
+        'username_too_long' => 'De aangevraagde gebruikersnaam is te lang.',
+        'weak' => 'Wachtwoord staat op de zwarte lijst.',
+        'wrong_current_password' => 'Dit wachtwoord is onjuist.',
+        'wrong_email_confirmation' => 'Email bevestiging komt niet overeen.',
+        'wrong_password_confirmation' => 'Wachtwoord bevestiging komt niet overeen.',
+        'too_long' => 'Maximum lengte overschreden - kan enkel tot :limit karakters zijn.',
 
         'change_username' => [
             'supporter_required' => [
                 '_' => 'Je moet :link hebben om je naam te veranderen!',
-                'link_text' => '',
+                'link_text' => 'support osu!',
             ],
-            'username_is_same' => '',
+            'username_is_same' => 'Dit is je gebruikersnaam al, dommerik!',
         ],
     ],
 ];

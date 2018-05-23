@@ -34,7 +34,7 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'made-by' => '作者: ',
+            'mapped_by' => '',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
             'ranked' => 'ranked 于 ',
@@ -65,7 +65,7 @@ return [
             'count_sliders' => '滑条总数',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
-            'nominations' => '被提名者',
+            'nominations' => '提名状态',
             'playcount' => '游玩次数',
         ],
         'info' => [

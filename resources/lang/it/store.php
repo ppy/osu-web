@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Magazzino',
     ],
 
+    'cart' => [
+        'checkout' => 'Pagamento',
+        'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
+        'shipping_fees' => 'costi di spedizione',
+        'title' => 'Carrello della spesa',
+        'total' => 'totale',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, ci sono problemi con il vostro carrello che stanno impedendo il check-out!',
+            'line_2' => 'Rimuovere o aggiornare gli elementi di sopra per continuare.',
+        ],
+
+        'empty' => [
+            'text' => 'Il tuo carrello è vuoto.',
+            'return_link' => [
+                '_' => 'Ritorna al :link per trovare alcuni elementi!',
+                'link_text' => 'listino',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è annullato.',
-        'error' => 'Si è verificato un errore durante il checkout :(',
         'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, si prega di riprovare.',
         'pay' => 'Acquista con Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name per :username(:duration)',
             ],
             'quantity' => 'Quantità',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Non è possibile modificare il vostro ordine in quanto è stato cancellato.',
+            'checkout' => 'Non è possibile modificare il vostro ordine mentre è processato.', // checkout and processing should have the same message.
+            'default' => 'L\'ordine non è modificabile',
+            'delivered' => 'Non è possibile modificare il vostro ordine in quanto è stato consegnato.',
+            'paid' => 'Non è possibile modificare il vostro ordine in quanto è stato già pagato.',
+            'processing' => 'Non è possibile modificare il vostro ordine mentre è processato.',
+            'shipped' => 'Non è possibile modificare il vostro ordine in quanto è stato inviato.',
         ],
     ],
 

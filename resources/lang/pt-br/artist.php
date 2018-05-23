@@ -44,6 +44,6 @@ return [
     'songs' => [
         '_' => 'Músicas',
         'count' => ':count música|:count músicas',
-        'exclusive' => 'exclusiva do osu!',
+        'exclusive' => 'exclusivo do osu!',
     ],
 ];

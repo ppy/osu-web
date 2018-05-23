@@ -41,7 +41,7 @@ class TournamentsController extends Controller
     public function index()
     {
         return view('tournaments.index')
-            ->with('tournaments', Tournament::getRegistrationStage());
+            ->with('listing', Tournament::getGroupedListing());
     }
 
     public function show($id)

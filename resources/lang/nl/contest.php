@@ -33,7 +33,7 @@ return [
     'entry' => [
         '_' => 'inzending',
         'login_required' => 'Gelieve aan te melden om in de wedstrijd mee te doen.',
-        'silenced_or_restricted' => '',
+        'silenced_or_restricted' => 'Je kan niet meedoen in wedstrijden als je gerestricteerd of gesilenced bent.',
         'preparation' => 'We bereiden momenteel deze wedstrijd. Wacht nog even!',
         'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
         'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',

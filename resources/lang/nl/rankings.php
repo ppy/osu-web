@@ -22,7 +22,7 @@ return [
     'header' => ':type Klassering',
     'type' => [
         'performance' => 'Prestatie',
-        'charts' => '',
+        'charts' => 'In de schijnwerpers',
         'score' => 'Score',
         'country' => 'Landelijk',
     ],

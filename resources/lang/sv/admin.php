@@ -52,11 +52,11 @@ return [
                     'update' => 'Uppdatera',
                 ],
 
-                'title' => 'Forum Omslag Lista',
+                'title' => 'Forumomslagslista',
 
                 'type-title' => [
                     'default-topic' => 'Ordinarie Ämne Omslag',
-                    'main' => 'Forum Omslag',
+                    'main' => 'Forumomslag',
                 ],
             ],
         ],
@@ -70,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Konsol Sak',
+            'title' => 'Administrativ Konsolsak',
 
             'sections' => [
                 'forum' => 'Forum',

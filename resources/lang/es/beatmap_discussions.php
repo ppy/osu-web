@@ -22,13 +22,13 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Debes iniciar sesión para editar.',
-            'system_generated' => 'No se puede editar una publicación generada por el sistema.',
-            'wrong_user' => 'Debes ser dueño del post para editarlo.',
+            'system_generated' => 'Una publicación generada por el sistema no se puede editar.',
+            'wrong_user' => 'Debes ser el dueño de la publicación para editarla.',
         ],
     ],
 
     'events' => [
-        'empty' => 'No ha ocurrido nada... aún.',
+        'empty' => 'Nada ha sucedido... aún.',
     ],
 
     'index' => [
@@ -40,20 +40,20 @@ return [
 
             'user' => [
                 'label' => 'Usuario',
-                'overview' => 'Actividades generales',
+                'overview' => 'Resumen de actividades',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'Fecha de posting',
+        'created_at' => 'Fecha de publicación',
         'deleted_at' => 'Fecha de eliminación',
         'message_type' => 'Tipo',
-        'permalink' => 'Enlace permanente',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Ninguno de estos posts se relaciona con mi caso',
+        'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
         'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
     ],
 

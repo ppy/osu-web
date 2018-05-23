@@ -23,7 +23,7 @@ return [
 
     'button' => [
         'cancel' => 'Anuluj',
-        'resend' => 'Wyślij ponownie email weryfikacyjny',
+        'resend' => 'Wyślij ponownie e-mail weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',
     ],
@@ -42,13 +42,13 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Sprawdź e-mail, aby uzyskać kod.',
+        'sent' => 'Sprawdź e-mail, aby uzyskać kod weryfikacyjny.',
         'saved' => 'Nowe hasło zostało zapisane!',
     ],
 
     'started' => [
         'password' => 'Nowe hasło',
-        'password_confirmation' => 'Potwierdzenie hasła',
+        'password_confirmation' => 'Potwierdź hasło',
         'title' => 'Resetowanie hasła dla konta <strong>:username</strong>.',
         'verification_key' => 'Kod weryfikacyjny',
     ],

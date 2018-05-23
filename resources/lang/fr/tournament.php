@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
         'registration_period' => 'Inscriptions : :start à :end',
+
+        'state' => [
+            'current' => 'Tournois en cours',
+            'previous' => 'Tournois passés',
+        ],
     ],
 
     'show' => [
@@ -43,8 +48,8 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Les inscriptions pour ce tournoi n\'ont pas encore été ouvertes.',
-            'ended' => 'Ce tournoi s\'est conclu. Visitez la page d\'informations pour voir les résultats.',
+            'before_registration' => 'Les inscriptions pour ce tournoi n\'ont pas encore débuté.',
+            'ended' => 'Ce tournoi est terminé. Visitez la page d\'informations pour voir les résultats.',
             'registration_closed' => 'Les inscriptions pour ce tournoi sont closes. Visitez la page d\'informations pour les dernières actualités.',
             'running' => 'Ce tournoi est actuellement en cours. Visitez la page d\'informations pour plus de détails.',
         ],

@@ -15,17 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav2">
-    <div class="nav2__colgroup">
+<div class="nav2 js-nav-button">
+    <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
             <a href="{{ route('home') }}" class="nav2__logo-link">
                 <div class="nav2__logo nav2__logo--bg"></div>
                 <div class="nav2__logo"></div>
             </a>
         </div>
-    </div>
 
-    <div class="nav2__colgroup nav2__colgroup--menu">
         @foreach (nav_links() as $section => $links)
             <div class="nav2__col nav2__col--menu">
                 <a
@@ -75,7 +73,37 @@
             </a>
         </div>
     </div>
-    <div class="nav2__colgroup">
+    <div class="nav2__colgroup js-nav-button--container">
+        <div class="nav2__col js-nav-button--item">
+            <a
+                href="{{ osu_url('social.twitter') }}"
+                class="nav2__button nav2__button--social"
+                title="Twitter"
+            >
+                <span class="fab fa-twitter"></span>
+            </a>
+        </div>
+
+        <div class="nav2__col js-nav-button--item">
+            <a
+                href="{{ osu_url('social.facebook') }}"
+                class="nav2__button nav2__button--social"
+                title="Facebook"
+            >
+                <span class="fab fa-facebook"></span>
+            </a>
+        </div>
+
+        <div class="nav2__col">
+            <a
+                href="{{ route('support-the-game') }}"
+                class="nav2__button nav2__button--support"
+                title="{{ trans('layout.menu.home.supportTheGame') }}"
+            >
+                <span class="fas fa-heart"></span>
+            </a>
+        </div>
+
         <div class="nav2__col">
             <button
                 class="nav2__button nav2__button--stadium js-click-menu"
@@ -120,16 +148,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-
-        <div class="nav2__col">
-            <a
-                href="{{ route('support-the-game') }}"
-                class="nav2__button nav2__button--support"
-                title="{{ trans('layout.menu.home.supportTheGame') }}"
-            >
-                <span class="fas fa-heart"></span>
-            </a>
         </div>
 
         @if (Auth::user() !== null)

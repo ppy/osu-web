@@ -145,6 +145,9 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyardの譜面 (:count)',
                 ],
+                'loved' => [
+                    'title' => '',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'RankedかApprovedの譜面 (:count)',
                 ],

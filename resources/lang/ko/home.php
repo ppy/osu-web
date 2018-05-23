@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Approved된 비트맵',
+            'new' => '',
             'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',

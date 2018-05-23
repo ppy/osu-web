@@ -26,7 +26,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Terjadi masalah. Coba muat ulang halaman.',
+            'generic' => 'Terjadi masalah. Cobalah untuk memuat ulang halaman.',
         ],
     ],
     'beatmaps' => [
@@ -39,5 +39,5 @@ return [
     'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
     'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',
     'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini saat akun Anda sedang dibatasi.',
-    'unknown' => 'Terjadi masalah yang tidak diketahui.',
+    'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 ];

@@ -66,15 +66,15 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Von :user für gelöst erklärt',
+            'true' => 'Von :user als gelöst erklärt',
             'false' => 'Von :user wiedereröffnet',
         ],
     ],
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'Nominator',
-        'owner' => 'Mapper',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
         'qat' => 'qat',
     ],
 

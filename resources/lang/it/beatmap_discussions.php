@@ -33,14 +33,14 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'eliminato',
-        'title' => '',
+        'title' => 'Discussioni di beatmap',
 
         'form' => [
             'deleted' => 'Includi discussioni eliminate',
 
             'user' => [
                 'label' => 'Utente',
-                'overview' => '',
+                'overview' => 'Panoramica delle attività',
             ],
         ],
     ],
@@ -48,13 +48,13 @@ return [
     'item' => [
         'created_at' => 'Data del Post',
         'deleted_at' => 'Data di eliminazione',
-        'message_type' => '',
-        'permalink' => '',
+        'message_type' => 'Tipo',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
+        'confirm' => 'Nessuno dei post riguarda il mio problema',
+        'notice' => 'Ci sono già post a :timestamp (:existing_timestamps). Si prega di controllare prima di postare.',
     ],
 
     'reply' => [
@@ -73,9 +73,9 @@ return [
 
     'user' => [
         'admin' => 'amministratore',
-        'bng' => '',
-        'owner' => '',
-        'qat' => '',
+        'bng' => 'nominatore',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [

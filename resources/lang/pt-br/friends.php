@@ -26,7 +26,7 @@ return [
 
     'state' => [
       'friends' => 'amigos',
-      'mutual' => 'recíproco',
+      'mutual' => 'mutual',
     ],
 
     'title' => 'Amigos',

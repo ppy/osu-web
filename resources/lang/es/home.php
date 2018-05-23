@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> usuarios registrados',
 
         'slogan' => [
-            'main' => 'juego de ritmo gratis',
+            'main' => 'el mejor juego de ritmo gratis',
             'sub' => 'el ritmo está solo a un clic de distancia',
         ],
     ],
@@ -69,8 +69,8 @@ return [
 
         'user' => [
             'more' => ':count jugadores más coinciden con la búsqueda',
-            'more_simple' => 'Ver más resultados de los jugadores',
-            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Refine tus términos de búsqueda.',
+            'more_simple' => 'Ver más resultados de jugadores',
+            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',
             'title' => 'Jugadores',
         ],
 
@@ -89,19 +89,19 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'respaldo',
+        'mirror' => 'link alternativo',
         'macos-fallback' => 'usuarios de macOS',
         'steps' => [
             'register' => [
-                'title' => 'crea una cuenta',
-                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta',
+                'title' => 'obtener una cuenta',
+                'description' => 'sigue las instrucciones cuando inicies el juego para iniciar sesión o crear una nueva cuenta',
             ],
             'download' => [
                 'title' => 'descarga el juego',
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
-                'title' => 'descarga beatmaps',
+                'title' => 'obtener beatmaps',
                 'description' => [
                     '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
                     'browse' => 'echa un vistazo',
@@ -114,8 +114,8 @@ return [
     'user' => [
         'title' => 'panel',
         'news' => [
-            'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intenta refrescar la página?...',
+            'title' => 'Noticias',
+            'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
             'welcome' => '¡Hola, <strong>:username</strong>!',
@@ -127,26 +127,26 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Beatmaps Aprobados',
+            'new' => 'Nuevos Beatmaps Rankeados',
             'popular' => 'Beatmaps Populares',
             'by' => 'por',
             'plays' => ':count veces jugado',
         ],
         'buttons' => [
             'download' => 'Descarga osu!',
-            'support' => 'Apoya osu!',
+            'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
         'title' => '¡Wow!',
-        'subtitle' => '¡Parece que estás pasando un buen rato! :D',
+        'subtitle' => '¡Pareces estar pasando un buen rato! :D',
         'body' => [
-            'part-1' => '¿Sabías que osu! está activo sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+            'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar Beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
-        'find-out-more' => '¡Haz clic para más información!',
-        'download-starting' => "Oh, y no te preocupes - la descarga ya comenzó por ti ;)",
+        'find-out-more' => '¡Haz clic aquí para obtener más información!',
+        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
     ],
 ];

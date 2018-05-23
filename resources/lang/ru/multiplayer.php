@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Многопользовательские игры',
+        'header' => 'Многопользовательская игра',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -29,8 +29,8 @@ return [
         ],
         'events' => [
             'player-left' => ':user покинул игру',
-            'player-joined' => ':user присоединился к игре',
-            'player-kicked' => ':user был кикнут из игры',
+            'player-joined' => ':user зашёл в игру',
+            'player-kicked' => ':user был выгнан из игры',
             'match-created' => ':user создал игру',
             'match-disbanded' => 'игра была распущена',
             'host-changed' => ':user стал хостом',
@@ -45,9 +45,9 @@ return [
         'in-progress' => '(игра в процессе)',
         'score' => [
             'stats' => [
-                'accuracy' => 'Точность',
-                'combo' => 'Комбо',
-                'score' => 'Очки',
+                'accuracy' => 'точность',
+                'combo' => 'комбо',
+                'score' => 'очки',
             ],
         ],
         'failed' => 'ПРОИГРЫШ',

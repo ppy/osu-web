@@ -21,18 +21,23 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Un listado de torneos oficialmente reconocidos y activos',
+            'subtitle' => 'Una lista de torneos activos, y oficialmente reconocidos',
             'title' => 'Torneos de la comunidad',
         ],
-        'none_running' => 'No hay torneos activos por ahora, ¡revisa más tarde!',
-        'registration_period' => 'Inscripción: :start to :end',
+        'none_running' => 'No hay torneos en activos en este momento, ¡por favor vuelve más tarde!',
+        'registration_period' => 'Inscripción: :start al :end',
+
+        'state' => [
+            'current' => 'Torneos Activos',
+            'previous' => 'Torneos Pasados',
+        ],
     ],
 
     'show' => [
         'banner' => 'Apoya A Tu Equipo',
-        'entered' => 'Estás inscrito en este torneo.<br><br>Ten en cuenta que esto no significa que hayas sido asignado a un equipo.<br><br>Instrucciones posteriores serán enviadas a tu correo electrónico antes de la fecha del torneo, así que ¡por favor asegúrate que tu correo electrónico sea válido!',
+        'entered' => 'Estás inscrito para este torneo.<br> <br>Ten en cuenta que esto no significa que hayas sido asignado a un equipo.<br><br>Más instrucciones te serán enviadas por correo electrónico cercanos a la fecha del torneo, así que por favor ¡Asegúrate que tu dirección de correo electronico vinculado con tu cuenta de osu! sea valido!',
         'info_page' => 'Página de Información',
-        'login_to_register' => '¡Por favor :inicia sesion para ver los detalles de inscripción!',
+        'login_to_register' => '¡Por favor :login para ver los detalles de inscripción!',
         'not_yet_entered' => 'No estás inscrito en este torneo.',
         'rank_too_low' => '¡Lo sentimos, no cumples con los requisitos de rank para este torneo!',
         'registration_ends' => 'Las inscripciones se cierran en :date',
@@ -43,11 +48,11 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Aún no ha abierto el registro para este torneo.',
-            'ended' => 'Este torneo ha concluido. Visite la página de información para los resultados.',
+            'before_registration' => 'La inscripción para este torneo aún no se ha abierto.',
+            'ended' => 'Este torneo ha concluido. Visita la página de información para los resultados.',
             'registration_closed' => 'Registro para este torneo ha cerrado. Visite la página de información para las actualizaciones más recientes.',
-            'running' => 'Este torneo está actualmente en curso. Visite la página de información para más detalles.',
+            'running' => 'Este torneo está actualmente en curso. Visita la página de información para más detalles.',
         ],
     ],
-    'tournament_period' => 'Desde el :inicia al :termina',
+    'tournament_period' => 'Desde el :start al :end',
 ];

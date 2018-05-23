@@ -28,10 +28,10 @@ return [
             'support_button' => 'Tôi muốn ủng hộ osu!',
         ],
 
-        'dev_quote' => 'osu! là một trò chơi hoàn toàn miễn phí, nhưng để cho osu chạy được thì lại không hề miễn phí. Giữa chi phí cho các máy chủ hoạt động và băng thông quốc tế chất lượng cao, thời gian dành ra để bảo trì hệ thống và cộng đồng osu!, việc cung cấp giải thưởng cho các cuộc thi, việc trả lời các câu hỏi giúp đỡ và giữ được sự vui vẻ cho mọi người như thường lệ, số lượng tiền mà osu tiêu tốn khá là khổng lồ. À, và chưa kể chúng tôi làm mà không nhờ đến sự quảng cáo nào hay hợp tác với nhưng thanh công cụ vớ vẫn và tương tự!
-            <br/><br/>Suy cho cùng thì osu chạy được là phần lớn nhờ vào tôi, người mà bạn có thể biết đến với cái tên "peppy".
+        'dev_quote' => 'osu! là một trò chơi hoàn toàn miễn phí, nhưng để cho osu! hoạt động được thì lại không hề miễn phí. Giữa chi phí cho các máy chủ hoạt động và băng thông quốc tế chất lượng cao, thời gian dành ra để bảo trì hệ thống và cộng đồng osu!, việc cung cấp giải thưởng cho các cuộc thi, việc trả lời các câu hỏi giúp đỡ và giữ được sự vui vẻ cho mọi người như thường lệ, số lượng tiền mà osu! tiêu tốn khá là khổng lồ. Ồ, và chưa kể chúng tôi làm mà không nhờ đến quảng cáo nào hay hợp tác với nhưng thanh công cụ vớ vẩn và những thứ tương tự!
+            <br/><br/>Suy cho cùng thì osu! hoạt động được là phần lớn nhờ vào tôi, người mà bạn có thể biết đến với cái tên "peppy".
             Tồi đã phải nghỉ công việc của mình để mà bắt kịp với osu!,
-            và cũng lúc cố gắng để duy trì những tiêu chuẩn mà tôi đặt ra.
+            và cùng lúc cố gắng để duy trì những tiêu chuẩn mà tôi đặt ra.
             Tôi muốn biếu tặng trực tiếp sự cảm tạ của tôi đối những người đã ủng hộ osu!,
             và cũng như những người đang hỗ trợ trò chơi tuyệt với này cùng với cộng đồng của nó trong tương lai :).',
 
@@ -47,11 +47,11 @@ return [
         'why_support' => [
             'title' => 'Tại sao tôi nên ủng hộ osu!?',
             'blocks' => [
-                'dev' => 'Được phát triển và duy trì một cách vượt trội bởi một người sống ở Úc',
-                'time' => 'Dành quá nhiều thời gian để trò chơi chạy được đến mức không còn gọi nó là một "thú vui" nữa.',
+                'dev' => 'Được phát triển và duy trì một cách vượt trội bởi một gã sống ở Úc',
+                'time' => 'Dành quá nhiều thời gian để trò chơi hoạt động được đến mức không còn gọi nó là một "thú vui" nữa.',
                 'ads' => 'Không có quảng cáo ở bất cứ đâu. <br/><br/>
                         Khác với 99.95% của web, chúng tôi không kiếm lợi nhuận bẳng cách ném đồ vào mặt bạn.',
-                'goodies' => 'Bạn sẽ được nhận thêm các phần quà hấp dẫn!',
+                'goodies' => 'Bạn sẽ được nhận thêm nhiều phần quà hấp dẫn!',
             ],
         ],
 
@@ -78,8 +78,8 @@ return [
             ],
 
             'customisation' => [
-                'title' => 'Chỉnh Sửa',
-                'description' => 'Chỉnh sửa profile của bạn bằng cách thêm một user page đầy đủ có thể chỉnh sửa.',
+                'title' => 'Tùy Biến',
+                'description' => 'Tùy biến trang cá nhân của bạn bằng cách thêm một user page đầy đủ có thể chỉnh sửa.',
             ],
 
             'beatmap_filters' => [
@@ -114,12 +114,12 @@ return [
 
             'sort_options' => [
                 'title' => 'Tùy Chọn Sắp Xếp',
-                'description' => 'MỚI: Cho phép xem xếp hạng theo quốc gia / bạn bè / theo-mod của beatmap trong game.',
+                'description' => 'Cho phép xem xếp hạng theo quốc gia / bạn bè / theo-mod của beatmap trong game.',
             ],
 
             'feel_special' => [
                 'title' => 'Cảm Thấy Đặc Biệt',
-                'description' => 'Cảm giác ấm áp mờ khi chung tay giúp cho osu! chạy một cách trơn tru!',
+                'description' => 'Cảm giác ấm áp và dễ chịu khi chung tay giúp cho osu! chạy một cách trơn tru!',
             ],
 
             'more_to_come' => [
@@ -130,7 +130,7 @@ return [
 
         'convinced' => [
             'title' => 'Tôi đã tin! :D',
-            'support' => 'Support osu!',
+            'support' => 'hỗ trợ osu!',
             'gift' => 'hay gửi support đến người chơi khác',
             'instructions' => 'nhấp vào nút trái tim để đi đến osu!store',
         ],

@@ -20,53 +20,53 @@
 
 return [
     'confirmation' => 'Sei sicuro?',
-    'saved' => '',
+    'saved' => 'Salvato',
 
     'array_and' => [
-        'words_connector' => '',
-        'two_words_connector' => '',
-        'last_word_connector' => '',
+        'words_connector' => ', ',
+        'two_words_connector' => ' e ',
+        'last_word_connector' => ', e ',
     ],
 
     'buttons' => [
         'cancel' => 'Cancella',
-        'change' => '',
-        'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'change' => 'modifica',
+        'click_to_copy' => 'clicca per copiare negli appunti',
+        'click_to_copy_copied' => 'copiato negli appunti!',
         'delete' => 'Elimina',
-        'permalink' => '',
-        'permalink_copied' => '',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link copiato',
         'post' => 'Posta',
         'reply' => 'Rispondi',
-        'reply_reopen' => '',
-        'reply_resolve' => '',
+        'reply_reopen' => 'Rispondi e Riapri',
+        'reply_resolve' => 'Rispondi e Risolvi',
         'reset' => 'Resetta',
         'save' => 'Salva',
-        'saving' => '',
-        'see_more' => '',
+        'saving' => 'Salvando...',
+        'see_more' => 'vedi più',
         'show_more' => 'mostra altro',
-        'upload_image' => '',
+        'upload_image' => 'carica immagine',
     ],
 
     'count' => [
-        'badges' => '',
-        'days' => '',
-        'hour_short_unit' => '',
-        'hours' => '',
+        'badges' => ':count medaglia |:count medaglie',
+        'days' => ':count giorno |:count giorni',
+        'hour_short_unit' => 'ora|ore',
+        'hours' => ':count ora|:count ore',
         'item' => ':count unità|:count unità',
-        'minute_short_unit' => '',
-        'months' => '',
-        'second_short_unit' => '',
-        'years' => '',
+        'minute_short_unit' => 'minuto|minuti',
+        'months' => ':count mese|:count mesi',
+        'second_short_unit' => 'secondo|secondi',
+        'years' => ':count anno|:count anni',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => '',
-            'php' => '',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => '',
+            'moment' => 'MMM YYY',
         ],
     ],
 
@@ -99,7 +99,7 @@ return [
         'days_ago' => ':count giorni fa|:count giorni fa',
         'hours_ago' => ':count ore fa|:count ore fa',
         'now' => 'ora',
-        'remaining' => '',
+        'remaining' => 'Tempo rimanente',
     ],
 
     'title' => [

@@ -90,7 +90,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Pengguna saat ini sedang dibatasi.',
+            'title' => 'Pengguna ini sedang dalam status dibatasi.',
             'message' => '(hanya admin yang dapat melihat pesan ini)',
         ],
     ],

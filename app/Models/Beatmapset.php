@@ -145,6 +145,7 @@ class Beatmapset extends Model implements AfterCommit
         'nominations' => ['type' => 'long'],
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
+        'queued_at' => ['type' => 'date'],
         'rating' => ['type' => 'double'],
         'source' => ['type' => 'text'],
         'star_priority' => ['type' => 'long'],
@@ -279,6 +280,11 @@ class Beatmapset extends Model implements AfterCommit
     public function scopeGraveyard($query)
     {
         return $query->where('approved', '=', self::STATES['graveyard']);
+    }
+
+    public function scopeLoved($query)
+    {
+        return $query->where('approved', '=', self::STATES['loved']);
     }
 
     public function scopeWip($query)

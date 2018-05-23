@@ -94,8 +94,8 @@ return [
         'first_members' => 'Здесь с самого начала',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Присоединился :date',
-        'lastvisit' => 'Последний вход :date',
+        'joined_at' => 'Дата регистрации: :date',
+        'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
         'origin_country_age' => ':age, из :country',
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Заброшенные карты (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Любимые карты (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ранкнутые и одобренные карты (:count)',
@@ -289,7 +292,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Написал :link',
-            'count' => ':count постов|:count постов',
+            'count' => ':count пост|:count поста|:count постов',
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',

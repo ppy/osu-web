@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'osu!nyheter',
+        'title' => 'osu!news',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
@@ -44,7 +44,7 @@ return [
 
     'store' => [
         'button' => 'Uppdatera',
-        'ok' => 'Listning uppdaterad.',
+        'ok' => 'Lista uppdaterad.',
     ],
 
     'update' => [

@@ -33,12 +33,12 @@ return [
 
         'destroy' => [
             '_' => 'Hapus gambar sampul',
-            'confirm' => 'Apakah Anda yakin akan menghapus gambar sampul ini?',
+            'confirm' => 'Apakah Anda yakin ingin menghapus gambar sampul ini?',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Balasan baru dari topik ":title"',
+        'new_reply' => '[osu!] Balasan terbaru dari topik ":title"',
     ],
 
     'forums' => [
@@ -54,7 +54,7 @@ return [
         'posted_at' => 'Diposting :when',
 
         'actions' => [
-            'destroy' => 'Hapus post',
+            'destroy' => 'Hapus Kiriman',
             'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
         ],
@@ -67,7 +67,7 @@ return [
     ],
 
     'topic' => [
-        'deleted' => 'topik dihapus',
+        'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
@@ -148,7 +148,7 @@ return [
             'poll' => [
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jejak pendapat ini',
+                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
                 'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
                 'options' => 'Pilihan',

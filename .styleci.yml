@@ -14,8 +14,10 @@ finder:
   not-path:
     - resources/lang/da
     - resources/lang/de
+    - resources/lang/el
     - resources/lang/es
     - resources/lang/fr
+    - resources/lang/hu
     - resources/lang/id
     - resources/lang/it
     - resources/lang/ja
@@ -26,6 +28,7 @@ finder:
     - resources/lang/ru
     - resources/lang/sv
     - resources/lang/th
+    - resources/lang/tr
     - resources/lang/vi
     - resources/lang/zh
     - resources/lang/zh-tw

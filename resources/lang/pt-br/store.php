@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Armazém',
     ],
 
+    'cart' => [
+        'checkout' => 'Confira',
+        'more_goodies' => 'Quero conferir mais guloseimas antes de completar o pedido',
+        'shipping_fees' => 'taxas de envio',
+        'title' => 'Carrinho de compras',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, existem problemas com o seu carrinho impedindo um check-out!',
+            'line_2' => 'Remover ou atualizar itens acima para continuar.',
+        ],
+
+        'empty' => [
+            'text' => 'Seu carrinho está vazio.',
+            'return_link' => [
+                '_' => 'Volte para o link: para encontrar algumas guloseimas!',
+                'link_text' => 'armazenar a listagem',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Ops, seu carrinho parece ter alguns problemas!',
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'error' => 'Houve um problema com a sua compra :(',
         'old_cart' => 'Seu carrinho aparenta estar desatualizado e foi recarregado, por favor tente novamente.',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name para :username (:duration)',
             ],
             'quantity' => 'Quantidade',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Você não pode modificar seu pedido, pois ele foi cancelado.',
+            'checkout' => 'Você não pode modificar seu pedido enquanto está sendo processado.', // checkout and processing should have the same message.
+            'default' => 'A ordem não é modificável',
+            'delivered' => 'Você não pode modificar seu pedido, pois ele já foi entregue.',
+            'paid' => 'Você não pode modificar seu pedido, pois ele já foi pago.',
+            'processing' => 'Você não pode modificar seu pedido enquanto está sendo processado.',
+            'shipped' => 'Você não pode modificar seu pedido, pois ele já foi enviado.',
         ],
     ],
 
@@ -81,7 +111,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => 'Entre com um username para checar disponibilidade!',
+        'check' => 'Entre com um nome de usuário para checar disponibilidade!',
         'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',

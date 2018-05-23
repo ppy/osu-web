@@ -70,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Консоль администратора Thingy',
+            'title' => 'Консоль администратора',
 
             'sections' => [
                 'forum' => 'Форум',

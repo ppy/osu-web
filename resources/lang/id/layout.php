@@ -108,7 +108,7 @@ return [
         'user' => [
             '_' => 'pengguna',
             'getLogin' => 'masuk',
-            'disabled' => 'nonaktif',
+            'disabled' => 'dinonaktifkan',
 
             'register' => 'daftar',
             'reset' => 'pulihkan',

@@ -26,7 +26,7 @@ return [
     'order' => [
         'invalid' => 'Order is niet geldig',
         'items' => [
-            'virtual_only' => '`:provider` is niet juist voor fysieke items.',
+            'virtual_only' => '`:provider` is niet geldig voor fysieke items.',
         ],
         'status' => [
             'not_checkout' => 'Proberen betaling te accepteren voor foute state `:state`.',

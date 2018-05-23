@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '最新の公認譜面',
+            'new' => '',
             'popular' => '人気の譜面',
             'by' => 'by',
             'plays' => ':count plays',

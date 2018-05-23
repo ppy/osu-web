@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Warehouse',
     ],
 
+    'cart' => [
+        'checkout' => 'Checkout',
+        'more_goodies' => 'I want to check out more goodies before completing the order',
+        'shipping_fees' => 'shipping fees',
+        'title' => 'Shopping Cart',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, there are problems with your cart preventing a checkout!',
+            'line_2' => 'Remove or update items above to continue.',
+        ],
+
+        'empty' => [
+            'text' => 'Your cart is empty.',
+            'return_link' => [
+                '_' => 'Return to the :link to find some goodies!',
+                'link_text' => 'store listing',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, there are problems with your cart!',
         'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => 'Quantity',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'You cannot modify your order as it has been cancelled.',
+            'checkout' => 'You cannot modify your order while it is being processed.', // checkout and processing should have the same message.
+            'default' => 'Order is not modifiable',
+            'delivered' => 'You cannot modify your order as it has already been delivered.',
+            'paid' => 'You cannot modify your order as it has already been paid for.',
+            'processing' => 'You cannot modify your order while it is being processed.',
+            'shipped' => 'You cannot modify your order as it has already been shipped.',
         ],
     ],
 

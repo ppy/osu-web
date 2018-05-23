@@ -21,40 +21,40 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'ต้องเข้าสู่ระบบก่อนที่จะแก้ไข',
-            'system_generated' => 'ไม่สามารถแก้โพสจากระบบได้',
-            'wrong_user' => 'เจ้าของโพสเท่านั้นที่จะสามารถแก้ไขได้',
+            'null_user' => 'ต้องเข้าสู่ระบบก่อนจะแก้ไข',
+            'system_generated' => 'โพสต์ที่ถูกสร้างขึ้นเองจากระบบไม่สามารถถูกแก้ไขได้',
+            'wrong_user' => 'ต้องเป็นเจ้าของโพสนี้ถึงจะสามารถแก้ไขได้',
         ],
     ],
 
     'events' => [
-        'empty' => 'ยังไม่มีอะไรเลย...ใช่ นั่นแหล่',
+        'empty' => 'ยังไม่มีอะไรเกิดขึ้น...ยัง',
     ],
 
     'index' => [
-        'deleted_beatmap' => 'ลบไปแล้ว',
-        'title' => 'Beatmap Discussions',
+        'deleted_beatmap' => 'ถูกลบไปแล้ว',
+        'title' => 'การสนทนาเกี่ยวกับ Beatmap',
 
         'form' => [
-            'deleted' => 'Include deleted discussions',
+            'deleted' => 'รวมการสนทนาที่ถูกลบ',
 
             'user' => [
                 'label' => 'ผู้ใช้',
-                'overview' => 'Activities overview',
+                'overview' => 'ภาพรวมกิจกรรม',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'โพสเมื่อวันที่',
-        'deleted_at' => 'ถูกลบเมื่อวันที่',
+        'created_at' => 'วันโพสต์',
+        'deleted_at' => 'วันที่ถูกลบ',
         'message_type' => 'ประเภท',
-        'permalink' => 'ลิงค์',
+        'permalink' => 'ลิงก์ถาวร',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'ไม่มีโพสต์ใดกล่าวถึงปัญหาของฉัน',
+        'notice' => 'มีโพสต์เมื่อเวลาประมาณ :timestamp (:existing_timestamps). โปรตตรวจสอบก่อนโพสต์',
     ],
 
     'reply' => [
@@ -66,20 +66,20 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'ตั้งสถานะได้รับการแก้ไขแล้วโดย :user',
+            'true' => 'ทำเครื่องหมายเป็นแก้ไขแล้วโดย :user',
             'false' => 'ถูกเปิดใหม่โดย :user',
         ],
     ],
 
     'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
+        'admin' => 'ผู้ดูแล',
+        'bng' => 'ผู้เสนอชื่อ',
+        'owner' => 'ผู้ทำแมพ',
         'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'ทุกคน',
+        'label' => 'กรองโดยผู้ใช้',
     ],
 ];

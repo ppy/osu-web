@@ -78,7 +78,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => '拖動到此處以上傳',
+        'target' => '拉到此處以上傳',
     ],
 
     'pagination' => [

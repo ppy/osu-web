@@ -56,6 +56,7 @@ $(document).on 'turbolinks:load', ->
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
 @nav2 ?= new Nav2
+@navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview

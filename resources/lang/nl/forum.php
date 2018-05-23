@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Gepinde Onderwerpen',
-    'slogan' => "",
+    'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subfora',
     'title' => 'osu!community',
 

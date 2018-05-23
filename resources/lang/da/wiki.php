@@ -25,7 +25,7 @@ return [
         'missing' => 'Den anmodede side kunne ikke blive fundet.',
         'missing_title' => 'Ikke fundet',
         'missing_translation' => 'Den anmodede side kunne ikke blive fundet på det valgte sprog.',
-        'search' => '',
+        'search' => 'Søg eksisterende sider for :link.',
         'toc' => 'Indhold',
 
         'edit' => [

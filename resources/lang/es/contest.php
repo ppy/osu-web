@@ -25,17 +25,17 @@ return [
     ],
     'voting' => [
         'over' => 'Las votaciones para este concurso ya han terminado',
-        'login_required' => 'Inicia sesión para votar.',
+        'login_required' => 'Por favor, inicia sesión para votar.',
         'best_of' => [
             'none_played' => "¡No parece que hayas jugado algún beatmap que califique para este concurso!",
         ],
     ],
     'entry' => [
         '_' => 'participación',
-        'login_required' => 'Inicia sesión para entrar al concurso.',
-        'silenced_or_restricted' => 'No puedes entrar a concursos mientras esté restringido o silenciado.',
-        'preparation' => 'Estamos preparando este concurso actualmente. ¡Espera pacientemente!',
-        'over' => 'Gracias por tu participación! Los envíos han cerrado para este concurso y la votación abrirá pronto.',
+        'login_required' => 'Por favor, inicia sesión para entrar al concurso.',
+        'silenced_or_restricted' => 'No puedes entrar a concursos mientras estas restringido o silenciado.',
+        'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
+        'over' => '¡Gracias por tu participación! Los envios se han cerrado para este concurso y la votación se abrirá pronto.',
         'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
         'drop_here' => 'Suelta tu entrada aquí',
         'wrong_type' => [
@@ -46,7 +46,7 @@ return [
         'too_big' => 'Tu archivo no puede exceder el siguiente tamaño: :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Descargar',
+        'download' => 'Descargar entrada',
     ],
     'vote' => [
         'list' => 'votos',
@@ -56,7 +56,7 @@ return [
         'ended' => 'Finalizó el :date',
 
         'starts' => [
-            '_' => 'Empezó :date',
+            '_' => 'Empezó el :date',
             'soon' => 'pronto',
         ],
     ],

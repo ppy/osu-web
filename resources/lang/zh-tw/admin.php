@@ -21,17 +21,17 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '重新生成',
-            'regenerating' => '重新生成中...',
+            'regenerate' => '重新產生',
+            'regenerating' => '重新產生中...',
             'remove' => '移除',
             'removing' => '移除中...',
         ],
         'show' => [
-            'covers' => '管理譜面封面',
+            'covers' => '管理圖譜封面',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '啟用',
-                'activate_confirm' => '確認要為這個譜面啟用 Modding v2 嗎?',
+                'activate_confirm' => '確認要為這個圖譜開啟 Modding v2 嗎?',
                 'active' => '已啟用',
                 'inactive' => '停用',
             ],
@@ -52,10 +52,10 @@ return [
                     'update' => '更新',
                 ],
 
-                'title' => '論壇封面清單',
+                'title' => '論壇封面列表',
 
                 'type-title' => [
-                    'default-topic' => '預設主題封面',
+                    'default-topic' => '預設主題',
                     'main' => '論壇封面',
                 ],
             ],

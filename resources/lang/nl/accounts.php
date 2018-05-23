@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'huidige e-mail',
             'new' => 'nieuwe e-mail',
-            'new_confirmation' => 'e-mailconfirmatie',
+            'new_confirmation' => 'e-mail bevestiging',
             'title' => 'E-mail',
         ],
 
         'password' => [
-            'current' => 'huidig wachtwoord',
-            'new' => 'nieuw wachtwoord',
-            'new_confirmation' => 'wachtwoordbevestiging',
+            'current' => 'huidige wachtwoord',
+            'new' => 'nieuwe wachtwoord',
+            'new_confirmation' => 'wachtwoord bevestiging',
             'title' => 'Wachtwoord',
         ],
 
@@ -49,7 +49,7 @@ return [
                 'user_from' => 'huidige locatie',
                 'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
-                'user_occ' => 'beroep',
+                'user_occ' => 'bezigheid',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
                 'user_discord' => 'discord',
@@ -63,13 +63,13 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-mailverandering bevestiging',
-        'update' => 'update',
+        'email_subject' => 'osu! e-mail wijziging bevestigen',
+        'update' => 'bijwerken',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! wachtwoordverandering bevestiging',
-        'update' => 'update',
+        'email_subject' => 'osu! wachtwoord wijziging bevestiging',
+        'update' => 'bijwerken',
     ],
 
     'playstyles' => [

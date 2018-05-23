@@ -55,7 +55,7 @@ return [
                 'title' => 'Lista de portadas del foro',
 
                 'type-title' => [
-                    'default-topic' => 'Portada del tema por defecto',
+                    'default-topic' => 'Portada por defecto del tema ',
                     'main' => 'Portada de foro',
                 ],
             ],
@@ -64,7 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visor de los registros',
+            'title' => 'Visualizador del Registro',
         ],
     ],
 

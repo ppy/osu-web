@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
         'registration_period' => 'Tilmelding: :start til :end',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

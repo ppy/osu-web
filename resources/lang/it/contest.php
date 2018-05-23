@@ -21,48 +21,48 @@
 return [
     'header' => [
         'small' => '',
-        'large' => '',
+        'large' => 'Contest della Community di osu!',
     ],
     'voting' => [
-        'over' => '',
-        'login_required' => '',
+        'over' => 'Le votazioni per questo contest sono terminate',
+        'login_required' => 'Per favore effettua il login per votare.',
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Sembra che tu non abbia giocato nessuna beatmap che si qualificasse per questo contest!",
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'over' => '',
-        'limit_reached' => '',
-        'drop_here' => '',
+        '_' => 'iscrizione',
+        'login_required' => 'Per favore effettua il login per entrare nel contest.',
+        'silenced_or_restricted' => 'Non puoi entrare nei contest se sei ristretto o silenziato.',
+        'preparation' => 'Attualmente stiamo preparando il contest. Per favore attendi con pazienza!',
+        'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverrano presto.',
+        'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
+        'drop_here' => 'Trascina la tua iscrizione qui',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Solo file .jpg e .png sono accettati per questo contest.',
+            'beatmap' => 'Solo file .osu sono accettati per questo contest.',
+            'music' => 'Solo file .mp3 sono accettati per questo contest.',
         ],
-        'too_big' => '',
+        'too_big' => 'Le iscrizioni per questo contest possono solo essere fino a :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Scarica iscrizione',
     ],
     'vote' => [
-        'list' => '',
-        'count' => '',
+        'list' => 'voti',
+        'count' => '1 voto|:count voti',
     ],
     'dates' => [
-        'ended' => '',
+        'ended' => 'Terminato :date',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Inizia :date',
+            'soon' => 'presto™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Iscrizioni aperte',
+        'voting' => 'Votazione iniziata',
+        'results' => 'Risultati pubblicati',
     ],
 ];

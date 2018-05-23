@@ -71,7 +71,7 @@ return [
         'go_to_latest' => 'pokaż najnowszy post',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
-        'new_topic' => 'Stwórz nowy wątek',
+        'new_topic' => 'Utwórz nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'started_by' => 'przez :user',
@@ -122,8 +122,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Cofnąć subskrybcję wątku?',
-                'title' => 'Cofnij subskrybcję',
+                'confirmation' => 'Czy na pewno chcesz przestać subskrybować ten wątek?',
+                'title' => 'Przestań subskrybować',
             ],
         ],
     ],
@@ -150,12 +150,12 @@ return [
                 'length_days_suffix' => 'dni',
                 'length_info' => 'Zostaw puste dla niekończącej się ankiety.',
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
-                'max_options_info' => 'Liczba wyborów, jakie każdy użytkownik może zaznaczyć.',
+                'max_options_info' => 'Liczba możliwości, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
-                'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
+                'options_info' => 'Umieszczaj wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
                 'vote_change' => 'Zezwól na zmianę głosów.',
-                'vote_change_info' => 'Jeżeli ta opcja będzie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
+                'vote_change_info' => 'Jeżeli ta opcja zostanie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
             ],
         ],
 
@@ -228,7 +228,7 @@ return [
             'to_1' => 'Przypnij ten wątek',
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłosznie',
+            'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 
         'show' => [
@@ -251,8 +251,8 @@ return [
 
                 'detail' => [
                     'end_time' => 'Ankieta zakończy się :time',
-                    'ended' => 'Ankieta zakończona :time',
-                    'total' => 'Wszystkich głosów: :count',
+                    'ended' => 'Ankieta zakończyła się :time',
+                    'total' => 'Liczba wszystkich głosów: :count',
                 ],
             ],
         ],

@@ -52,7 +52,7 @@ return [
 
     'login' => [
         '_' => 'Se connecter',
-        'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
+        'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'username' => 'Nom d\'utilisateur',
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
@@ -95,8 +95,8 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
-        'lastvisit' => 'Vu la dernière fois :date',
-        'missingtext' => 'Vous avez fait une faute de frappe, je crois ! (ou l\'utilisateur est banni)',
+        'lastvisit' => 'Vu pour la dernière fois :date',
+        'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
         'origin_age' => ':age',
         'origin_country_age' => ':age ans et de :country',
         'origin_country' => 'Depuis :country',
@@ -113,9 +113,9 @@ return [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
-                    'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
+                    'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> uniquement",
-                    'size_info' => 'La taille de la bannière devrait être 2000x700',
+                    'size_info' => 'La taille de la bannière devrait être de 2000x700',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
                 ],
@@ -136,7 +136,7 @@ return [
                 'achieved-on' => 'Acquis le :date',
             ],
             'beatmaps' => [
-                'none' => 'Aucune... Pour le moment.',
+                'none' => 'Aucune... pour le moment.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -144,6 +144,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps dans le cimetière (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Beatmaps en attente (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps classées et approuvées (:count)',
@@ -153,7 +156,7 @@ return [
                 ],
             ],
             'historical' => [
-                'empty' => 'Aucun enregistrement de performance. :(',
+                'empty' => 'Aucun performance enregistrée. :(',
                 'title' => 'Historique',
 
                 'monthly_playcounts' => [
@@ -222,7 +225,7 @@ return [
                 'title' => 'Moi!',
             ],
             'medals' => [
-                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
+                'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'title' => 'Médailles',
             ],
             'recent_activity' => [
@@ -230,7 +233,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Pas de première place. :(',
-                'not_ranked' => 'Seules les beatmaps classées donnent des pp.',
+                'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
@@ -269,16 +272,16 @@ return [
             'interests' => 'Centres d\'intérêt',
             'lastfm' => 'Last.fm',
             'location' => 'Position actuelle',
-            'occupation' => 'Occupation',
+            'occupation' => 'Occupation professionnelle',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Site Internet',
         ],
         'not_found' => [
-            'reason_1' => 'Il a probablement changé son nom d\'utilisateur.',
+            'reason_1' => 'Il a peut-être changé de nom d\'utilisateur.',
             'reason_2' => 'Ce compte est peut-être temporairement indisponible pour des raisons de sécurité ou d\'abus.',
             'reason_3' => 'Vous avez peut-être fait une faute de frappe !',
-            'reason_header' => 'Il y a quelques raisons possibles pour ceci:',
+            'reason_header' => 'Il y a plusieurs raisons possibles pour cela:',
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [

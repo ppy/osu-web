@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Trận Đấu Multiplayer',
+        'header' => 'Những trận đấu Multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -56,7 +56,7 @@ return [
             'red' => 'Đội Đỏ',
         ],
         'winner' => ':team thắng',
-        'difference' => 'bởi :difference',
+        'difference' => 'với :difference',
         'loading-events' => 'Đang tải các sự kiện...',
         'more-events' => 'xem tất cả...',
         'beatmap-deleted' => 'beatmap đã bị xóa',

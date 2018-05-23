@@ -22,8 +22,8 @@ return [
     'event' => [
         'approve' => 'Zatwierdzona.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
-        'discussion_post_delete' => 'Moderator usunął odpowiedź z dyskusji :discussion.',
-        'discussion_post_restore' => 'Moderator przywrócił odpowiedź z dyskusji :discussion.',
+        'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
+        'discussion_post_restore' => 'Moderator przywrócił post z dyskusji :discussion.',
         'discussion_restore' => 'Moderator przywrócił dyskusję :discussion.',
         'disqualify' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :discussion (:text).',
         'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń beatmapy',
+        'title' => 'Historia zdarzeń zestawu beatmap',
     ],
 
     'item' => [

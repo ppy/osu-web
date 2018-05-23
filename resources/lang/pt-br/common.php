@@ -34,7 +34,7 @@ return [
         'click_to_copy' => 'clique para copiar',
         'click_to_copy_copied' => 'copiado para a área de transferência!',
         'delete' => 'Excluir',
-        'permalink' => 'permalink',
+        'permalink' => 'copiar link da postagem',
         'permalink_copied' => 'link copiado',
         'post' => 'Enviar',
         'reply' => 'Responder',

@@ -143,13 +143,16 @@ return [
                     'title' => 'Favoriete Beatmaps (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '',
+                    'title' => 'Beatmaps in het kerkhof (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Geliefde Beatmappen (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => 'Afwachtende Beatmaps (:count)',
                 ],
             ],
             'historical' => [
@@ -185,7 +188,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Kreeg :amount kudosu voor in beroep gaan van afwijzing in modding post :post',
                         ],
 
                         'deny_kudosu' => [
@@ -197,23 +200,23 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Kreeg :amount voor modding post :post the herstellen',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Kreeg :amount via stemmen in modding post :post',
+                            'reset' => 'Verloor :amount uit verliezende stemmen van post :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Kreeg :post uit stemming hertelling in modding post van :post',
+                            'reset' => 'Verloor :post uit stemming hertelling in modding post van :post',
                         ],
                     ],
 
                     'forum_post' => [
                         'give' => ':amount ontvangen van :giver voor :post',
-                        'reset' => '',
+                        'reset' => 'Kudosu reset door :giver voor de post :post',
                         'revoke' => 'Kudosu geweigerd door :giver voor :post',
                     ],
                 ],
@@ -258,7 +261,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Ban',
-                        'silence' => '',
+                        'silence' => 'Silence',
                         'note' => 'Opmerking',
                     ],
                 ],

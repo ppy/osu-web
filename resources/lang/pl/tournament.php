@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
         'registration_period' => 'Rejestracja: od :start do :end',
+
+        'state' => [
+            'current' => 'Aktualnie rozgrywane turnieje',
+            'previous' => 'Wcześniejsze turnieje',
+        ],
     ],
 
     'show' => [

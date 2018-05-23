@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
+            'owner' => "Eigene Beatmaps können nicht nominiert werden.",
         ],
         'resolve' => [
             'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
@@ -67,7 +67,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Stimmen können nach dem Ende der Abstimmung nicht mehr geändert werden.',
+        'voting_over' => 'Stimmen können nach dem Abstimmungsende nicht mehr geändert werden.',
     ],
 
     'forum' => [
@@ -76,14 +76,14 @@ return [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
                 'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
+                'not_owner' => 'Nur der Autor des Posts kann ihn löschen.',
             ],
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+                'not_owner' => 'Nur der Autor des Posts kann ihn bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
 
@@ -96,7 +96,7 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Du hast erst kürzlich einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
-                'locked' => 'Auf gesperrte Themen kann nicht geantwortet werden.',
+                'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
 
@@ -109,8 +109,8 @@ return [
 
             'store' => [
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'no_permission' => 'Keine Berechtigung, ein neues Thema zu erstellen.',
-                'forum_closed' => 'Das Forum ist geschlossen. Man kann nicht mehr beitragen.',
+                'no_permission' => 'Keine Berechtigung, einen neuen Thread zu erstellen.',
+                'forum_closed' => 'Das Forum ist geschlossen. Man kann keine Posts mehr senden.',
             ],
 
             'vote' => [

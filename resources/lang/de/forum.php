@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Angepinnte Themen',
+    'pinned_topics' => 'Angepinnte Threads',
     'slogan' => "es ist gefährlich, alleine zu spielen.",
     'subforums' => 'Subforen',
     'title' => 'osu!community',
@@ -38,40 +38,40 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Neue Antwort im Thema ":title"',
+        'new_reply' => '[osu!] Neue Antwort auf Thread ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'Keine Themen!',
+            'empty' => 'Keine Threads!',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Beitrag wirklich entfernen?',
-        'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
-        'edited' => 'Zuletzt von :user an :when bearbeitet, insgesamt :count Mal bearbeitet.',
-        'posted_at' => 'erstellt am :when',
+        'confirm_destroy' => 'Post entfernen?',
+        'confirm_restore' => 'Post wiederherstellen?',
+        'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count Mal bearbeitet.',
+        'posted_at' => 'erstellt :when',
 
         'actions' => [
-            'destroy' => 'Beitrag löschen',
-            'restore' => 'Beitrag wiederherstellen',
-            'edit' => 'Beitrag bearbeiten',
+            'destroy' => 'Post löschen',
+            'restore' => 'Post wiederherstellen',
+            'edit' => 'Post bearbeiten',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Gehe zu Beitrag',
-        'post_number_input' => 'Beitragsnummer hier eingeben',
-        'total_posts' => 'Insgesamt :posts_count Beiträge',
+        'go_to_post' => 'Gehe zu Post',
+        'post_number_input' => 'postnummer hier eingeben',
+        'total_posts' => 'Insgesamt :posts_count Posts',
     ],
 
     'topic' => [
-        'deleted' => 'gelöschtes Thema',
-        'go_to_latest' => 'letzten beitrag anschauen',
+        'deleted' => 'gelöschter thread',
+        'go_to_latest' => 'letzten post anschauen',
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
-        'new_topic' => 'Neues Thema erstellen',
+        'new_topic' => 'Neuen Thread erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
         'started_by' => 'von :user',
@@ -84,17 +84,17 @@ return [
             'submit' => 'Erstellen',
 
             'placeholder' => [
-                'body' => 'Beitragsinhalt hier eingeben',
+                'body' => 'Inhalt hier eingeben',
                 'title' => 'Hier klicken, um den Titel festzulegen',
             ],
         ],
 
         'jump' => [
-            'enter' => 'hier klicken, um eine beitragsnummer einzugeben',
-            'first' => 'zum ersten beitrag',
-            'last' => 'zum letzten beitrag',
-            'next' => '10 beiträge vor',
-            'previous' => '10 beiträge zurück',
+            'enter' => 'hier klicken, um eine postnummer einzugeben',
+            'first' => 'zum ersten post',
+            'last' => 'zum letzten post',
+            'next' => '10 posts überspringen',
+            'previous' => '10 posts zurückgehen',
         ],
 
         'post_edit' => [
@@ -110,30 +110,30 @@ return [
             'title_main' => 'Foren<strong>abonnenements</strong>',
 
             'box' => [
-                'total' => 'Abonnierte Themen',
-                'unread' => 'Themen mit ungelesenen Antworten',
+                'total' => 'Abonnierte Threads',
+                'unread' => 'Threads mit ungelesenen Antworten',
             ],
 
             'info' => [
-                'total' => 'Du hast :total Themen abonniert.',
-                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Themen.',
+                'total' => 'Du hast :total Threads abonniert.',
+                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Thema deabonnieren?',
+                'confirmation' => 'Thread deabonnieren?',
                 'title' => 'Deabonnieren',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Themen',
+        '_' => 'Threads',
 
         'actions' => [
             'reply' => 'Antworten',
-            'reply_with_quote' => 'Beitrag in der Antwort zitieren',
+            'reply_with_quote' => 'Post in der Antwort zitieren',
             'search' => 'Suchen',
         ],
 
@@ -211,11 +211,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Dieses Thema ist gesperrt und erlaubt keine weiteren Beiträge',
-            'to_0' => 'Thema entsperren',
-            'to_0_done' => 'Thema wurde entsperrt',
-            'to_1' => 'Thema sperren',
-            'to_1_done' => 'Thema wurde gesperrt',
+            'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
+            'to_0' => 'Thread entsperren',
+            'to_0_done' => 'Thread wurde entsperrt',
+            'to_1' => 'Thread sperren',
+            'to_1_done' => 'Thread wurde gesperrt',
         ],
 
         'moderate_move' => [
@@ -232,8 +232,8 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Gelöschte Beiträge',
-            'total_posts' => 'Beiträge insgesamt',
+            'deleted-posts' => 'Gelöschte Posts',
+            'total_posts' => 'Posts insgesamt',
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',

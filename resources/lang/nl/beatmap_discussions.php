@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Moet ingelogd zijn om te bewerken.',
+            'null_user' => 'Je moet ingelogd zijn om te bewerken.',
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
             'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
         ],
@@ -54,12 +54,12 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
-        'notice' => 'Dit zijn de posts rong :timestamp (:existing_timestamp). Controleer ze voor te posten.',
+        'notice' => 'Dit zijn de posts rond :timestamp (:existing_timestamp). Controleer ze voor te posten.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Log in om te beantwoorden',
+            'guest' => 'Log in om te Antwoorden',
             'user' => 'Beantwoord',
         ],
     ],

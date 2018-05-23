@@ -140,7 +140,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
-        'disqualified_at' => 'Disqualifiziert vor :time_ago (:reason).',
+        'disqualified_at' => 'Disqualifiziert :time_ago (:reason).',
         'disqualified_no_reason' => 'kein grund angegeben',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
@@ -156,7 +156,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
-            'disqualify' => 'Disqualifiziert vor :time_ago von :user mit dem Problem :discussion (:message).',
+            'disqualify' => 'Disqualifiziert :time_ago von :user mit der Erstellung des Problems :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -179,6 +179,17 @@ return [
                 'extra' => 'extra',
                 'rank' => 'Erreichter Rang',
                 'played' => 'Gespielt',
+            ],
+            'sorting' => [
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
         ],
         'mode' => 'Modus',

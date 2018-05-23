@@ -27,7 +27,7 @@ return [
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
-            'owner' => "",
+            'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
@@ -73,7 +73,7 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier post peut être supprimé.',
+                'only_last_post' => 'Seul le dernier message peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',
@@ -88,7 +88,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Essayez de jouer au jeu avant de poster sur les forums ! Si vous encontrez des problèmes pour jouer, essayez de poster sur le forum Aide et Support.',
+                'play_more' => 'Essayez de jouer au jeu avant de poster sur les forums ! Si vous rencontrez des problèmes pour jouer, essayez de poster sur le forum Aide et Support.',
                 'too_many_help_posts' => "Vous devez jouer davantage avant de pouvoir créer de nouveaux messages. Si vous rencontrez encore des difficultés pour jouer, envoyez un email à support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],

@@ -55,7 +55,7 @@ return [
                 'title' => 'Liste der Forenbanner',
 
                 'type-title' => [
-                    'default-topic' => 'Standard-Themenbanner',
+                    'default-topic' => 'Standard-Threadbanner',
                     'main' => 'Forenbanner',
                 ],
             ],
@@ -90,7 +90,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Dieser Benutzer hat momentan eingeschränkte Rechte.',
+            'title' => 'Dieser Benutzer ist momentan restricted.',
             'message' => '(nur admins können dies sehen)',
         ],
     ],

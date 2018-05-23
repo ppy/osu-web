@@ -26,13 +26,13 @@ return [
     'prefixes' => [
         'add' => 'adición',
         'fix' => 'corrección',
-        'misc' => 'misceláneo',
+        'misc' => 'varios',
     ],
 
     'support' => [
-        'heading' => '¿Adoras esta actualización?',
-        'text_1' => '¡Apoya el desarrollo de osu! y :link hoy!',
+        'heading' => '¿Amas esta actualización?',
+        'text_1' => '¡Apoyar a un mayor desarrollo de osu! y: :link hoy!',
         'text_1_link' => 'vuélvete un supporter',
-        'text_2' => 'No solo ayudarás a acelerar el desarrollo, ¡también obtendrás funciones extra y demás personalizaciones!',
+        'text_2' => 'No solo ayudará a acelerar el desarrollo,!también obtendrás algunas características adicionales y personalizaciones!',
     ],
 ];

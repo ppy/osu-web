@@ -70,6 +70,58 @@ class Event extends Model
                     'private' => false,
                     'epicfactor' => 8,
                 ];
+
+                break;
+
+            case 'usernameChange':
+                $user = static::userParams($options['user']);
+                $oldUsername = e($options['history']->username_last);
+                $newUsername = e($options['history']->username);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
+                    'user_id' => $user['id'],
+                    'date' => $options['history']->timestamp,
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
+            case 'userSupportGift':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportFirst':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportAgain':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
         }
 
         if (isset($params)) {
@@ -312,5 +364,14 @@ class Event extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('date', 'desc')->limit(5);
+    }
+
+    private static function userParams($user)
+    {
+        return [
+            'id' => $user->getKey(),
+            'username' => e($user->username),
+            'url' => e(route('users.show', $user, false)),
+        ];
     }
 }

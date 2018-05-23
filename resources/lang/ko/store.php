@@ -23,16 +23,36 @@ return [
         'warehouse' => '보급 창고',
     ],
 
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제 실패했어요',
-        'error' => '결제하는데 문제가 생겨버렸네요:(',
-        'old_cart' => '',
+        'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
             'line_1' => '이전 결제가 시작 됐지만 끝나지 않았습니다.',
-            'line_2' => '',
+            'line_2' => '결제 수단을 선택하여 결제를 계속하시거나, :link를 눌러 취소하세요.',
             'link_text' => '여기를 클릭하세요',
         ],
         'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => '수량',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

@@ -53,7 +53,7 @@ return [
         'count' => '1 stimme|:count stimmen',
     ],
     'dates' => [
-        'ended' => 'Endet am :date',
+        'ended' => 'Endete am :date',
 
         'starts' => [
             '_' => 'Startet am :date',

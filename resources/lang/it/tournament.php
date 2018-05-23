@@ -26,6 +26,11 @@ return [
         ],
         'none_running' => 'Non ci sono tornei in corso in questo momento, prova a vedere più tardi!',
         'registration_period' => 'Registrazioni da :inizio a :fine',
+
+        'state' => [
+            'current' => '',
+            'previous' => '',
+        ],
     ],
 
     'show' => [

@@ -19,21 +19,21 @@
  */
 
 return [
-    'header' => 'จัดอันดับประเภท :type',
+    'header' => 'อันดับ:type',
     'type' => [
         'performance' => 'ประสิทธิภาพ',
-        'charts' => 'ชาร์ท',
+        'charts' => 'สปอร์ตไลท์',
         'score' => 'คะแนน',
         'country' => 'ประเทศ',
     ],
     'stat' => [
         'accuracy' => 'ความแม่นยำ',
-        'active_users' => 'จำผู้ใช้ที่ยังออนไลน์อยู่',
+        'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',
         'country' => 'ประเทศ',
         'play_count' => 'จำนวนครั้งที่เล่น',
         'performance' => 'ค่าศักยภาพ',
         'total_score' => 'คะแนนรวมทั้งหมด',
-        'ranked_score' => 'อันดับที่',
+        'ranked_score' => 'คะแนนที่แรงค์',
         'average_score' => 'คะแนนเฉลี่ย',
         'average_performance' => 'ค่าศักยภาพเฉลี่ย',
         'ss' => 'SS',

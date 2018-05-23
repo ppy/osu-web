@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'แน่ใจที่จะต่อหรือไม่?',
+    'confirmation' => 'แน่ใจหรือ?',
     'saved' => 'บันทึกแล้ว',
 
     'array_and' => [
@@ -31,20 +31,20 @@ return [
     'buttons' => [
         'cancel' => 'ยกเลิก',
         'change' => 'เปลี่ยน',
-        'click_to_copy' => 'คลิกเพื่อคัดลอกไปยัง clipboard',
-        'click_to_copy_copied' => 'คัดลอกไปยัง clipboard แล้ว!',
+        'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
+        'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
         'delete' => 'ลบ',
-        'permalink' => 'ลิงค์',
-        'permalink_copied' => 'คัดลอก link แล้ว',
-        'post' => 'โพส',
+        'permalink' => 'ลิงก์ถาวร',
+        'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
+        'post' => 'โพสต์',
         'reply' => 'ตอบกลับ',
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
-        'reply_resolve' => 'ตอบกลับ และแก้ไขแล้ว',
-        'reset' => 'เริ่มใหม่',
+        'reply_resolve' => 'ตอบกลับ และแก้ไข',
+        'reset' => 'รีเซ็ต',
         'save' => 'บันทึก',
         'saving' => 'กำลังบันทึก...',
-        'see_more' => 'ดูเพิ่ม',
-        'show_more' => 'แสดงเพิ่ม',
+        'see_more' => 'ดูเพิ่มเติม',
+        'show_more' => 'แสดงเพิ่มเติม',
         'upload_image' => 'อัพโหลดรูปภาพ',
     ],
 
@@ -54,7 +54,7 @@ return [
         'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
-        'minute_short_unit' => 'min|mins',
+        'minute_short_unit' => 'นาที|นาที',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',
@@ -71,7 +71,7 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'คีย์บอร์ด',
+        'keyboard' => 'แป้นพิมพ์',
         'mouse' => 'เมาส์',
         'tablet' => 'แทบเล็ต',
         'touch' => 'จอสัมผัส',
@@ -82,8 +82,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'หน้าก่อน',
-        'next' => 'หน้าถัดไป',
+        'previous' => 'ก่อนหน้า',
+        'next' => 'ถัดไป',
     ],
 
     'score_count' => [
@@ -98,11 +98,11 @@ return [
     'time' => [
         'days_ago' => ':count วันที่แล้ว|:count วันที่แล้ว',
         'hours_ago' => ':count ชั่วโมงที่แล้ว|:count ชั่วโมงที่แล้ว',
-        'now' => 'ตอนนี้',
-        'remaining' => 'เหลือเวลาอีก',
+        'now' => 'ขณะนี้',
+        'remaining' => 'เวลาที่เหลือ',
     ],
 
     'title' => [
-        'notice' => 'แจ้งให้ทราบ',
+        'notice' => 'แจ้งเตือน',
     ],
 ];
