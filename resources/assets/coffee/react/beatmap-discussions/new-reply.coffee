@@ -129,7 +129,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       el BigButton,
         text: text
         # wobbles if using spinner
-        icon: if @state.posting then 'fas fa-ellipsis-h' else icon
+        icon: if @state.posting then '_spinner' else icon
         props: props
 
 
