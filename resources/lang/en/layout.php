@@ -188,7 +188,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'server_status' => 'Server Status',
             'source_code' => 'Source Code',
-            'terms' => 'Terms of Service',
+            'terms' => 'Terms',
         ],
     ],
 
