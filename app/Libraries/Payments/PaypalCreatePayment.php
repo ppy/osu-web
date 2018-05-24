@@ -61,6 +61,12 @@ class PaypalCreatePayment
             ->setPayer($payer)
             ->setRedirectUrls($this->getRedirectUrls())
             ->setTransactions([$this->getTransaction()]);
+
+        if (!$this->order->requiresShipping()) {
+            // current version of SDK doesn't support application_context, so need to use
+            //  an experience profile instead.
+            $this->payment->setExperienceProfileId(config('payments.paypal.profiles.no_shipping'));
+        }
     }
 
     public function getApprovalLink()
