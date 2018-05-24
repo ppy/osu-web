@@ -29,6 +29,7 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\ShippingAddress;
 use PayPal\Api\Transaction;
 use PayPal\Exception\PayPalConnectionException;
 
@@ -42,7 +43,10 @@ class PaypalCreatePayment
 {
     use StoreNotifiable;
 
+    /** @var Order */
     private $order;
+
+    /** @var Payment */
     private $payment;
 
     public function __construct(Order $order)
@@ -92,7 +96,7 @@ class PaypalCreatePayment
 
     private function getItemList()
     {
-        return (new ItemList())
+        $itemList = (new ItemList())
             ->setItems([
                 (new Item())
                     ->setName($this->order->getOrderName())
@@ -101,6 +105,12 @@ class PaypalCreatePayment
                     ->setSku($this->order->getOrderNumber())
                     ->setPrice($this->order->getSubTotal()),
                 ]);
+
+        if ($this->order->requiresShipping()) {
+            $itemList->setShippingAddress($this->getShippingAddress());
+        }
+
+        return $itemList;
     }
 
     private function getRedirectUrls()
@@ -108,6 +118,20 @@ class PaypalCreatePayment
         return (new RedirectUrls())
             ->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
             ->setCancelUrl(route('payments.paypal.declined', ['order_id' => $this->order->order_id]));
+    }
+
+    private function getShippingAddress()
+    {
+        $address = $this->order->address;
+
+        return (new ShippingAddress())
+            ->setCity($address->city)
+            ->setCountryCode($address->country_code)
+            ->setLine1($address->street)
+            ->setPhone($address->phone)
+            ->setPostalCode($address->zip)
+            ->setRecipientName("{$address->first_name} {$address->last_name}") // what could possibly go wrong?
+            ->setState($address->state);
     }
 
     private function getTransaction()
