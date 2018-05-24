@@ -33,6 +33,7 @@ abstract class Search implements Queryable
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
+    protected $aggregation;
     protected $index;
     protected $params;
     protected $queryString;
@@ -142,6 +143,11 @@ abstract class Search implements Queryable
         return $this->response;
     }
 
+    public function setAggregation(array $aggregation)
+    {
+        $this->aggregation = $aggregation;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -163,6 +169,10 @@ abstract class Search implements Queryable
 
         if (isset($this->source)) {
             $body['_source'] = $this->source;
+        }
+
+        if (isset($this->aggregation)) {
+            $body['aggs'] = $this->aggregation;
         }
 
         $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
