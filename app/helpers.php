@@ -644,6 +644,7 @@ function footer_legal_links()
         'terms' => route('legal', 'terms'),
         'copyright' => route('legal', 'copyright'),
         'server_status' => osu_url('server_status'),
+        'source_code' => osu_url('source_code'),
     ];
 }
 
