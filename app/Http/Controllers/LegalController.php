@@ -33,8 +33,11 @@ class LegalController extends Controller
             case 'copyright':
                 $path = 'Legal/Copyright';
                 break;
+            case 'privacy':
+                $path = 'Legal/Privacy';
+                break;
             case 'terms':
-                $path = 'Legal/TOS';
+                $path = 'Legal/Terms';
                 break;
             default:
                 abort(404);
