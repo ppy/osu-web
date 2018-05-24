@@ -13,7 +13,7 @@ return [
         'url' => env('PAYPAL_URL'),
         'merchant_id' => env('PAYPAL_MERCHANT_ID'),
         'profiles' => [
-            'no_shipping' => env('PAYPAL_NO_SHIPPING_EXPERIENCE_PROFILE'),
+            'no_shipping' => env('PAYPAL_NO_SHIPPING_EXPERIENCE_PROFILE_ID'),
         ],
     ],
     'xsolla' => [
