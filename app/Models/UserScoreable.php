@@ -1,0 +1,77 @@
+<?php
+
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace App\Models;
+
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Search\BasicSearch;
+
+trait UserScoreable
+{
+    public function aggregatedScoresBest(string $mode, int $size)
+    {
+        $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
+
+        $search = new BasicSearch($index);
+        $search
+            ->size(0) // don't care about hits
+            ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->getKey()]]))
+            ->setAggregation([
+                'by_beatmaps' => [
+                    'terms' => [
+                        'field' => 'beatmap_id',
+                        'order' => ['max_pp' => 'desc'], // sort by sub-aggregation max_pp
+                        'size' => $size
+                    ],
+                    'aggs' => [
+                        'top_scores' => [
+                            'top_hits' => [
+                                '_source' => ['score_id'],
+                                'size' => 1,
+                                'sort' => [['pp' => ['order' => 'desc']]],
+                            ],
+                        ],
+                        // top_hits aggregation is not useable for sorting, so we need an extra aggregation to sort on.
+                        'max_pp' => ['max' => ['field' => 'pp']],
+                    ],
+                ],
+            ]);
+
+        return $search->response();
+    }
+
+    public function beatmapBestScoreIds(string $mode, int $size)
+    {
+        $buckets = array_get($this->aggregatedScoresBest($mode, $size)->raw(), 'aggregations.by_beatmaps.buckets');
+        return array_map(function ($bucket) {
+            return array_get($bucket, 'top_scores.hits.hits.0._source.score_id');
+        }, $buckets);
+    }
+
+    public function beatmapBestScores(string $mode, int $limit, int $offset = 0)
+    {
+        // aggregations do not support regular pagination.
+        $ids = $this->beatmapBestScoreIds($mode, $offset + $limit);
+        $ids = array_slice($ids, $offset, $limit);
+        $clazz = 'App\Models\Score\Best\\'.studly_case($mode);
+
+        return $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids);
+    }
+}
