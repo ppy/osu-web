@@ -47,17 +47,9 @@ export class StoreCheckout
         $.post laroute.route('store.checkout.store'), { provider, orderId }
         .done =>
           @startPayment(event.target.dataset)
+          .catch @handleError
 
-      .catch (error) ->
-        LoadingOverlay.hide()
-        # errors from they jquery deferred will propagate here.
-        if error.getResponseHeader # check if 4xx ujs_redirect
-          type = error.getResponseHeader('Content-Type')
-          return if _.startsWith(type, 'application/javascript')
-
-        # TODO: less unknown error, disable button
-        # TODO: handle error.message
-        osu.ajaxError(error?.xhr)
+      .catch @handleError
 
 
   @startPayment: (params) ->
@@ -76,3 +68,15 @@ export class StoreCheckout
         # FIXME: flickering when transitioning to widget
         XPayStationWidget.open()
         LoadingOverlay.hide()
+
+
+  @handleError: (error) ->
+    LoadingOverlay.hide()
+    # errors from they jquery deferred will propagate here.
+    if error.getResponseHeader # check if 4xx ujs_redirect
+      type = error.getResponseHeader('Content-Type')
+      return if _.startsWith(type, 'application/javascript')
+
+    # TODO: less unknown error, disable button
+    # TODO: handle error.message
+    osu.ajaxError(error?.xhr)
