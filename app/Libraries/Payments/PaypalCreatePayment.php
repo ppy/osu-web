@@ -102,7 +102,7 @@ class PaypalCreatePayment
 
     private function getItemList()
     {
-        $itemList = (new ItemList())
+        return (new ItemList())
             ->setItems([
                 (new Item())
                     ->setName($this->order->getOrderName())
@@ -110,13 +110,8 @@ class PaypalCreatePayment
                     ->setQuantity(1)
                     ->setSku($this->order->getOrderNumber())
                     ->setPrice($this->order->getSubTotal()),
-                ]);
-
-        if ($this->order->requiresShipping()) {
-            $itemList->setShippingAddress($this->getShippingAddress());
-        }
-
-        return $itemList;
+            ])
+            ->setShippingAddress($this->getShippingAddress());
     }
 
     private function getRedirectUrls()
@@ -128,6 +123,10 @@ class PaypalCreatePayment
 
     private function getShippingAddress()
     {
+        if (!$this->order->requiresShipping()) {
+            return;
+        }
+
         $address = $this->order->address;
 
         return (new ShippingAddress())
