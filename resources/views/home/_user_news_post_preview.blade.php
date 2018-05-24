@@ -23,7 +23,7 @@
         {!! background_image($post->firstImage()) !!}
     ></a>
     <div class="news-post-preview__body">
-        <div class="news-post-preview__post-date">
+        <div class="news-post-preview__post-date js-tooltip-time" title="{{ json_time($post->createdAt()) }}">
             <div class="news-post-preview__date">
                 {{$post->createdAt()->formatLocalized('%d')}}
             </div>
