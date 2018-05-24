@@ -64,10 +64,6 @@ trait BeatmapsetTrait
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
-            if ($field === 'difficulties') {
-                continue;
-            }
-
             $value = $this[$field];
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
