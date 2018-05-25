@@ -57,7 +57,7 @@ class Event extends Model
                 $beatmapset = $options['beatmapset'];
 
                 $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->title);
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
                 $userName = e($beatmapset->user->username);
                 $userUrl = e(route('users.show', $beatmapset->user, false));
                 $approval = e($beatmapset->status());
