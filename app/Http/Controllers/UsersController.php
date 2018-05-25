@@ -419,9 +419,9 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->scoresBest($options['mode'], true)
-                    ->orderBy('pp', 'DESC')
-                    ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset)
+                    ->with('beatmap', 'beatmap.beatmapset')
+                    ->get();
                 $withScoresPosition = true;
                 break;
             case 'scoresFirsts':
