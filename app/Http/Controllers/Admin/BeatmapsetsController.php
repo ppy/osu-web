@@ -23,8 +23,8 @@ namespace App\Http\Controllers\Admin;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
-use Request;
 use Auth;
+use Request;
 
 class BeatmapsetsController extends PrivilegedController
 {
@@ -71,14 +71,12 @@ class BeatmapsetsController extends PrivilegedController
 
         $beatmapset = Beatmapset::findOrFail($id);
 
-        if (isset($params['approved']))
-        {
+        if (isset($params['approved'])) {
             //ensure ranked sets are never touched by this due to shenanigans
-            if ($beatmapset->approved == 4 or $beatmapset->approved <= 0)
-                $beatmapset->setApproved(($params['approved'] == -1) ? 'wip' : 'loved', Auth::user());
-        }
-        else
-        {
+            if ($beatmapset->approved === 4 or $beatmapset->approved <= 0) {
+                $beatmapset->setApproved(($params['approved'] === -1) ? 'wip' : 'loved', Auth::user());
+            }
+        } else {
             $beatmapset->update($params);
         }
 

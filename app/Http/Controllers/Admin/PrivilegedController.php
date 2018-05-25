@@ -14,17 +14,13 @@ abstract class PrivilegedController extends BaseController
         $this->middleware('auth');
 
         $this->middleware(function ($request, $next) {
-            if (Auth::check() && !Auth::user()->isAdmin()) 
-            {
-                if (!Auth::user()->isQAT())
-                {
-                    if (!Auth::user()->isProjectLoved())
-                    {
+            if (Auth::check() && !Auth::user()->isAdmin()) {
+                if (!Auth::user()->isQAT()) {
+                    if (!Auth::user()->isProjectLoved()) {
                         abort(403);
                     }
-                }   
+                }
             }
-
 
             return $next($request);
         });

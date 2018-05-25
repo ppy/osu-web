@@ -36,7 +36,7 @@ return [
                 'inactive' => 'inactive',
             ],
             'loved' => [
-                '_' => "Loved",
+                '_' => 'Loved',
                 'activate' => 'add to Loved',
                 'activate_confirm' => 'are you absolutely sure you want to add this map to Loved?',
                 'active' => 'is Loved',
