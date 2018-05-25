@@ -34,7 +34,7 @@ trait UserScoreable
         $search
             ->size(0) // don't care about hits
             ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->getKey()]]))
-            ->setAggregation([
+            ->setAggregations([
                 'by_beatmaps' => [
                     'terms' => [
                         'field' => 'beatmap_id',
