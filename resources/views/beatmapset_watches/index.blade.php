@@ -59,8 +59,12 @@
                     @foreach ($watches as $watch)
                         <tr>
                             <td class="beatmapset-watches__col beatmapset-watches__col--cover">
-                                <div {!! background_image($watch->beatmapset->coverURL('list'), false) !!} class="beatmapset-watches__cover">
-                                </div>
+                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                    <div
+                                        {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
+                                        class="beatmapset-watches__cover"
+                                    ></div>
+                                </a>
                             </td>
                             <td class="beatmapset-watches__col">
                                 <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
