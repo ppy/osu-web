@@ -42,7 +42,7 @@
             data-target=".js-navbar-mobile--menu"
         >
             <i class="fas fa-sign-out-alt"></i>
-        </a>
+        </button>
     @else
         <a
             class="js-user-link navbar-mobile-item__main navbar-mobile-item__main--user"
