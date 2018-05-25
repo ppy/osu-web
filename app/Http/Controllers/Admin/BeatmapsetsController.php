@@ -26,7 +26,7 @@ use App\Models\Beatmapset;
 use Request;
 use Auth;
 
-class BeatmapsetsController extends Controller
+class BeatmapsetsController extends PrivilegedController
 {
     protected $section = 'admin';
     protected $actionPrefix = 'beatmapsets-';
@@ -71,7 +71,7 @@ class BeatmapsetsController extends Controller
 
         $beatmapset = Beatmapset::findOrFail($id);
 
-        if ($params['approved'] != null)
+        if (isset($params['approved']))
         {
             //ensure ranked sets are never touched by this due to shenanigans
             if ($beatmapset->approved == 4 or $beatmapset->approved <= 0)
