@@ -152,7 +152,7 @@ return [
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
                 'max_options_info' => 'Liczba możliwości, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
-                'options_info' => 'Umieszczaj wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
+                'options_info' => 'Umieść wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
                 'vote_change' => 'Zezwól na zmianę głosów.',
                 'vote_change_info' => 'Jeżeli ta opcja zostanie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',

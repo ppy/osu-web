@@ -49,7 +49,7 @@ return [
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
                 'user_msnm' => 'skype',
-                'user_occ' => 'beschäftigung',
+                'user_occ' => 'tätigkeit',
                 'user_twitter' => 'twitter',
                 'user_website' => 'webseite',
                 'user_discord' => 'discord',

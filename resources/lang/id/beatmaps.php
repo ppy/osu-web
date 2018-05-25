@@ -143,7 +143,7 @@ return [
         'disqualified_at' => 'Didiskualifikasi :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
-        'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang halaman.',
+        'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',

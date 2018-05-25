@@ -34,7 +34,7 @@ return [
         'discussion' => 'Discussie',
 
         'details' => [
-            'made-by' => 'gemaakt door ',
+            'mapped_by' => 'gemapped door :mapper',
             'submitted' => 'ingezonden op ',
             'updated' => 'laatst geüpdatet op ',
             'ranked' => 'gerankt op ',

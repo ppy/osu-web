@@ -146,7 +146,7 @@ return [
                     'title' => 'Terk Edilmiş Beatmapler (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Sevilen Haritalar (:count)',
+                    'title' => 'Sevilen Beatmapler (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Dereceli & Onaylanmış Beatmapler (:count)',
@@ -242,7 +242,7 @@ return [
                     'title' => 'En İyi Performans',
                 ],
                 'first' => [
-                    'title' => 'İlk Sıralama Dereceleri',
+                    'title' => 'Birincilikler',
                 ],
             ],
             'account_standing' => [

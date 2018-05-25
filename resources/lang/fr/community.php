@@ -37,7 +37,7 @@ return [
 
         'supporter_status' => [
             'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
-            'gifted' => '',
+            'gifted' => ':giftedTags de vos achats de tags ont été offerts en cadeau (pour un total de :giftedDollars offerts), quelle générosité !',
             'not_yet' => "Vous n'avez pas de tag supporter :(",
             'title' => 'Statut du supporter',
             'valid_until' => 'Votre tag supporter expire :date!',

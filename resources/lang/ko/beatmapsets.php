@@ -34,10 +34,10 @@ return [
         'discussion' => '토론',
 
         'details' => [
-            'made-by' => '맵 제작: ',
+            'mapped_by' => ':mapper님이 제작한 맵',
             'submitted' => '맵 제출일: ',
             'updated' => '마지막 업데이트: ',
-            'ranked' => 'ranked된 날짜: ',
+            'ranked' => '랭크된 날짜: ',
             'approved' => 'approved된 날짜: ',
             'qualified' => 'qualified된 날짜: ',
             'loved' => 'loved된 날짜: ',
@@ -50,7 +50,7 @@ return [
             ],
             'favourite' => '이 비트맵을 즐겨찾기에 등록',
             'unfavourite' => '이 비트맵을 즐겨찾기에서 제거',
-            'favourited_count' => '',
+            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -77,7 +77,7 @@ return [
             'source' => '원 작품',
             'success-rate' => '성공률',
             'tags' => '태그',
-            'unranked' => 'Unranked 비트맵',
+            'unranked' => '랭크되지 않은 비트맵',
         ],
         'scoreboard' => [
             'achieved' => ':when에 달성함',
@@ -105,7 +105,7 @@ return [
                 'friend' => '아직 친구들 중 점수를 기록한 사람이 없습니다!',
                 'global' => '아직 기록된 점수가 없네요. 한 번 기록해보시는 건 어때요?',
                 'loading' => '점수 불러오는 중...',
-                'unranked' => 'Unranked 비트맵.',
+                'unranked' => '랭크되지 않은 비트맵.',
             ],
             'score' => [
                 'first' => '순위권',

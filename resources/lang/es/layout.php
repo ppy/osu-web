@@ -168,7 +168,7 @@ return [
             'home' => 'Inicio',
             'changelog-index' => 'Lista de Cambios',
             'beatmaps' => 'Lista de Beatmaps',
-            'download' => 'Descarga osu!',
+            'download' => 'Descargar osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [

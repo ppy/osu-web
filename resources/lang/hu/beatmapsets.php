@@ -34,7 +34,7 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
-            'made-by' => 'készítette ',
+            'mapped_by' => 'mappolva :mapper által',
             'submitted' => 'beküldve ',
             'updated' => 'utoljára frissítve ',
             'ranked' => 'rank-elve ',

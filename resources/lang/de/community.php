@@ -40,7 +40,7 @@ return [
             'gifted' => ':giftedTags deiner Supporter-Einkäufe waren Geschenke (für insgesamt :giftedDollars), wie großzügig von dir!',
             'not_yet' => "Du hast noch kein Supporter-Tag :(",
             'title' => 'Aktueller Supporter-Status',
-            'valid_until' => 'Dein aktuelles Supporter-Tag ist bis zum :date gültig!',
+            'valid_until' => 'Dein aktuelles Supporter-Tag endet :date!',
             'was_valid_until' => 'Dein Supporter-Tag war bis :date gültig.',
         ],
 

@@ -70,7 +70,7 @@ return [
             '_' => 'κατατάξεις',
             'index' => 'επίδοση',
             'performance' => 'επίδοση',
-            'charts' => 'προβολείς',
+            'charts' => 'spotlights',
             'score' => 'βαθμολογία',
             'country' => 'χώρα',
             'kudosu' => 'kudosu',
