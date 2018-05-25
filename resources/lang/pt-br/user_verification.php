@@ -27,7 +27,7 @@ return [
 
         'info' => [
             'check_spam' => "Certifique-se de verificar a sua pasta de spam caso não consiga encontrar o e-mail.",
-            'recover' => "Caso não consiga acessar o seu e-mail ou tenha esquecido o e-mail usado, siga o :link.",
+            'recover' => "Caso tenha esquecido seu email ou não tenha mais acesso a ele, utilize o :link.",
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',

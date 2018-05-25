@@ -39,7 +39,7 @@ return [
 
         'supporter_status' => [
             'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결재로 :dollars를 후원하셨습니다.',
-            'gifted' => '',
+            'gifted' => ':giftedTags번의 후원자 태그를 선물했습니다. (총 :giftedDollars 달러 선물 됨), 엄청나게 관대하시네요!',
             'not_yet' => "아직 후원자가 아니시군요 :(",
             'title' => '현재 후원 상태',
             'valid_until' => '당신의 현재 후원자 태그는 :date 까지 유효합니다!',
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => '업로드 제한 감소',
-                'description' => '최대 10개 까지 (Ranked된 비트맵 당) 추가적인 Pending상태의 비트맵을 업로드할 수 있습니다.',
+                'description' => '추가로 최대 10개까지 (랭크된 비트맵당) 보류 상태의 비트맵을 업로드할 수 있습니다.',
             ],
 
             'early_access' => [

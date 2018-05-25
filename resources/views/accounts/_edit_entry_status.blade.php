@@ -17,7 +17,7 @@
 --}}
 <div class="account-edit-status">
     <div class="account-edit-status__content account-edit-status__content--saving">
-        <i class="fas fa-spinner fa-pulse fa-fw"></i>
+        {!! spinner() !!}
     </div>
 
     <div class="account-edit-status__content account-edit-status__content--saved">

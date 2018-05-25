@@ -180,7 +180,7 @@ return [
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang Diperoleh',
-                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
+                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">laman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -285,9 +285,9 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di halaman profil Anda.',
+            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
-            'placeholder' => 'Ketik konten halaman di sini',
+            'placeholder' => 'Ketik konten laman di sini',
             'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
         ],
         'post_count' => [

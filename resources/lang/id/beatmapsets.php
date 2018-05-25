@@ -34,7 +34,7 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => 'dibuat oleh :mapper',
             'submitted' => 'diunggah pada ',
             'updated' => 'terakhir diperbarui pada ',
             'ranked' => 'berstatus Ranked sejak ',

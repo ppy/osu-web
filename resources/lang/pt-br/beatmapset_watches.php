@@ -27,12 +27,12 @@ return [
     ],
 
     'index' => [
-        'description' => 'Estas são as discussões de mapas que você está acompanhando. Você será notificado quando o mapa receber atualizações ou postagens novas.',
+        'description' => 'Estas são as discussões de beatmap que você está acompanhando. Você será notificado quando o beatmap receber atualizações ou postagens novas.',
         'title_compact' => 'notificações de modding',
         'title_main' => 'Lista de notificações de modding',
 
         'table' => [
-            'empty' => 'Nenhuma mapa selecionado para notificações.',
+            'empty' => 'Nenhuma discussão de beatmap supervisionada.',
             'open_issues' => 'Problemas em aberto',
             'state' => 'Estado',
             'title' => 'Título',
@@ -40,11 +40,11 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nova atualização no mapa ":title"',
+        'update' => 'Nova atualização no beatmap ":title"',
     ],
 
     'status' => [
         'read' => 'Lido',
-        'unread' => 'Desmarcar como lido',
+        'unread' => 'Não lido',
     ],
 ];

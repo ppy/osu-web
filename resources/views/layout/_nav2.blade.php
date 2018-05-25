@@ -122,30 +122,32 @@
                     data-click-menu-id="nav2-locale-popup"
                     data-visibility="hidden"
                 >
-                    @foreach (config('app.available_locales') as $locale)
-                        <button
-                            type="button"
-                            class="
-                                simple-menu__item
-                                {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
-                            "
-                            @if ($locale !== App::getLocale())
-                                data-url="{{ route('set-locale', ['locale' => $locale]) }}"
-                                data-remote="1"
-                                data-method="POST"
-                            @endif
-                        >
-                            <span class="nav2-locale-item">
-                                <img
-                                    src="{{ flag_path(locale_flag($locale)) }}"
-                                    alt="{{ $locale }}"
-                                    class="nav2-locale-item__flag"
-                                >
+                    <div class="simple-menu__content">
+                        @foreach (config('app.available_locales') as $locale)
+                            <button
+                                type="button"
+                                class="
+                                    simple-menu__item
+                                    {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
+                                "
+                                @if ($locale !== App::getLocale())
+                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
+                                    data-remote="1"
+                                    data-method="POST"
+                                @endif
+                            >
+                                <span class="nav2-locale-item">
+                                    <img
+                                        src="{{ flag_path(locale_flag($locale)) }}"
+                                        alt="{{ $locale }}"
+                                        class="nav2-locale-item__flag"
+                                    >
 
-                                {{ locale_name($locale) }}
-                            </span>
-                        </button>
-                    @endforeach
+                                    {{ locale_name($locale) }}
+                                </span>
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

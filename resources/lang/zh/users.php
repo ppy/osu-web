@@ -146,7 +146,7 @@ return [
                     'title' => '坟场里的谱面 (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Loved 的谱面 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',

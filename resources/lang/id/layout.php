@@ -193,8 +193,8 @@ return [
 
     'errors' => [
         '404' => [
-            'error' => 'Halaman Hilang',
-            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
+            'error' => 'Laman Hilang',
+            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
             'error' => "Anda seharusnya tidak di sini.",
@@ -206,7 +206,7 @@ return [
         ],
         '405' => [
             'error' => 'Halaman Hilang',
-            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '500' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',

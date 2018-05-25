@@ -38,7 +38,7 @@ return [
         'empty' => [
             'text' => 'Tu carrito está vacío.',
             'return_link' => [
-                '_' => '¡Regrese a :link para encontrar algunos manjares!',
+                '_' => '¡Regresa a la :link para encontrar algunos manjares!',
                 'link_text' => 'lista de la tienda',
             ],
         ],
@@ -51,8 +51,8 @@ return [
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
         'pending_checkout' => [
-            'line_1' => 'Un antierior pago ha sido iniciado pero no fue completado.',
-            'line_2' => 'Reanuda tu pago seleccionando un método de pago, o: link para cancelar.',
+            'line_1' => 'Un anterior pago ha sido iniciado pero no fue completado.',
+            'line_2' => 'Reanuda tu pago seleccionando un método de pago, o :link para cancelar.',
             'link_text' => 'haz clic aquí',
         ],
         'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',

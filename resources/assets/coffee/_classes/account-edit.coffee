@@ -31,6 +31,7 @@ class @AccountEdit
     return if form.dataset.accountEditAutoSubmit != '1'
 
     @abortUpdate form
+    @saving form
     form.debouncedUpdate ?= _.debounce @update, 1000
     form.debouncedUpdate form
 
@@ -78,11 +79,9 @@ class @AccountEdit
 
     prevValue = form.dataset.lastValue
 
-    return if value == prevValue
+    return @clearState(form) if value == prevValue
 
     form.dataset.lastValue = value
-
-    @saving form
 
     form.updating = $.ajax laroute.route('account.update'),
       method: 'PUT'

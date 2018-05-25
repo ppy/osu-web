@@ -186,9 +186,10 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Server Status',
             'source_code' => 'Source Code',
-            'terms' => 'Terms of Service',
+            'terms' => 'Terms',
         ],
     ],
 

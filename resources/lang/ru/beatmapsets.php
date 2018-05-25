@@ -34,7 +34,7 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
-            'made-by' => 'карту сделал ',
+            'mapped_by' => 'сделана :mapper',
             'submitted' => 'опубликован ',
             'updated' => 'обновлён ',
             'ranked' => 'ранкнут ',

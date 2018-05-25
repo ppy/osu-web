@@ -39,7 +39,7 @@ return [
             'text' => 'Je winkelwagen is leeg.',
             'return_link' => [
                 '_' => 'Keer terug naar de :link om meer goodies te vinden!',
-                'link_text' => '',
+                'link_text' => 'aanbiedingen',
             ],
         ],
     ],

@@ -34,7 +34,7 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => 'skapad av :mapper',
             'submitted' => 'inkommen den ',
             'updated' => 'senast uppdaterad den ',
             'ranked' => 'rankad den ',

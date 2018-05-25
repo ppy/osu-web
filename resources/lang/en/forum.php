@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
