@@ -41,7 +41,7 @@ abstract class Search implements Queryable
      */
     public $statTag = 'search';
 
-    protected $aggregation;
+    protected $aggregations;
     protected $index;
     protected $params;
     protected $queryString;
@@ -151,9 +151,9 @@ abstract class Search implements Queryable
         return $this->response;
     }
 
-    public function setAggregation(array $aggregation)
+    public function setAggregations(array $aggregations)
     {
-        $this->aggregation = $aggregation;
+        $this->aggregations = $aggregations;
     }
 
     /**
@@ -179,8 +179,8 @@ abstract class Search implements Queryable
             $body['_source'] = $this->source;
         }
 
-        if (isset($this->aggregation)) {
-            $body['aggs'] = $this->aggregation;
+        if (isset($this->aggregations)) {
+            $body['aggs'] = $this->aggregations;
         }
 
         $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
