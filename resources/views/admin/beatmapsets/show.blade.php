@@ -22,6 +22,7 @@
         <h1>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h1>
 
         <ul>
+            @if (Auth::user()->isAdmin())
             <li>{{ trans('admin.beatmapsets.show.discussion._') }}:
                 @if ($beatmapset->discussion_enabled)
                     {{ trans('admin.beatmapsets.show.discussion.active') }}
@@ -38,6 +39,8 @@
                     >{{ trans('admin.beatmapsets.show.discussion.activate') }}</a>
                 @endif
             </li>
+            <li><a href="{{ route('admin.beatmapsets.covers', $beatmapset->beatmapset_id) }}">{{ trans('admin.beatmapsets.show.covers') }}</a></li>
+            @endif
             <li>{{ trans('admin.beatmapsets.show.loved._') }}:
                 @if ($beatmapset->approved <= 0)
                     {{ trans('admin.beatmapsets.show.loved.inactive') }}
@@ -65,7 +68,6 @@
                     {{ trans('admin.beatmapsets.show.loved.invalid') }}
                 @endif
             </li>
-            <li><a href="{{ route('admin.beatmapsets.covers', $beatmapset->beatmapset_id) }}">{{ trans('admin.beatmapsets.show.covers') }}</a></li>
         </ul>
     </div>
 @endsection
