@@ -22,7 +22,7 @@ class ProfilePage.ShowMoreLink extends React.PureComponent
   render: =>
     if @props.pagination?.loading
       div className: 'show-more-link',
-        i className: 'fas fa-sync fa-spin'
+        el Spinner
 
     else
       firstLoad = !@props.pagination?

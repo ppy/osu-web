@@ -45,7 +45,7 @@ class Beatmaps.Paginator extends React.PureComponent
     div
       className: 'beatmapsets-show-more'
       if @props.paging.loading
-        i className: 'fas fa-sync fa-spin'
+        el Spinner
       else if @props.paging.more
         a
           href: @props.paging.url

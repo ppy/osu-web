@@ -330,6 +330,11 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
+function spinner()
+{
+    return '<div class="la-ball-clip-rotate"></div>';
+}
+
 function strip_utf8_bom($input)
 {
     if (substr($input, 0, 3) === "\xEF\xBB\xBF") {

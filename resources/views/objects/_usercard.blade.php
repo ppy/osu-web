@@ -44,7 +44,7 @@
             <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
-                        <i class="fas fa-fw fa-sync fa-spin"></i>
+                        {!! spinner() !!}
                     </div>
                     @if (!isset($loading))
                         <img class="usercard__avatar usercard__avatar--main" src="{{$user->user_avatar}}">

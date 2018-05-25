@@ -20,8 +20,7 @@
 el = React.createElement
 
 @BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
-  props.className = 'btn-osu-big'
-  props.className += " btn-osu-big--#{mod}" for mod in modifiers
+  props.className = osu.classWithModifiers('btn-osu-big', modifiers)
   props.className += " #{klass}" for klass in extraClasses
 
   blockElement = if props.href? then a else button
@@ -36,4 +35,8 @@ el = React.createElement
       if icon?
         span className: 'btn-osu-big__icon',
           # ensure no random width change when changing icon
-          i className: "fa-fw #{icon}"
+          span className: 'fa-fw',
+            if icon == '_spinner'
+              el Spinner
+            else
+              i className: icon
