@@ -143,7 +143,12 @@ class @BeatmapsetPanel extends React.PureComponent
                               'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'
-                beatmapset.source
+                if beatmapset.status in ['graveyard', 'wip', 'pending']
+                  span dangerouslySetInnerHTML: __html:
+                    osu.trans 'beatmapsets.show.details.updated_timeago',
+                      timeago: osu.timeago(beatmapset.last_updated)
+                else
+                  beatmapset.source
 
             div className: 'beatmapset-panel__icons-box',
               if currentUser?.id
