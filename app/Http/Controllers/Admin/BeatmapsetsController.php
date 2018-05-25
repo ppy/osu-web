@@ -24,6 +24,7 @@ use App\Jobs\RegenerateBeatmapsetCover;
 use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
 use Request;
+use Auth;
 
 class BeatmapsetsController extends Controller
 {
@@ -66,10 +67,20 @@ class BeatmapsetsController extends Controller
 
     public function update($id)
     {
-        $params = get_params(Request::input(), 'beatmapset', ['discussion_enabled:bool']);
+        $params = get_params(Request::input(), 'beatmapset', ['discussion_enabled:bool', 'approved:numeric|between:-2,4']);
 
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->update($params);
+
+        if ($params['approved'] != null)
+        {
+            //ensure ranked sets are never touched by this due to shenanigans
+            if ($beatmapset->approved == 4 or $beatmapset->approved <= 0)
+                $beatmapset->setApproved(($params['approved'] == -1) ? 'wip' : 'loved', Auth::user());
+        }
+        else
+        {
+            $beatmapset->update($params);
+        }
 
         return ujs_redirect(route('admin.beatmapsets.show', $beatmapset));
     }
