@@ -33,6 +33,14 @@ abstract class Search implements Queryable
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
+    /**
+     * A tag to use when logging timing of fetches.
+     * FIXME: context-based tagging would be nicer.
+     *
+     * @var string|null
+     */
+    public $statTag = 'search';
+
     protected $aggregation;
     protected $index;
     protected $params;
@@ -213,7 +221,7 @@ abstract class Search implements Queryable
                 function () {
                     return new SearchResponse(Es::search($this->toArray()));
                 },
-                config('datadog-helper.prefix_web').'.search.fetch',
+                config('datadog-helper.prefix_web').".{$this->statTag}.fetch",
                 ['type' => get_called_class()]
             );
         } catch (NoNodesAvailableException $e) {
@@ -229,7 +237,7 @@ abstract class Search implements Queryable
 
         if (config('datadog-helper.enabled')) {
             Datadog::increment(
-                config('datadog-helper.prefix_web').'.search.errors',
+                config('datadog-helper.prefix_web').".{$this->statTag}.errors",
                 1,
                 ['class' => get_class($this->error)]
             );
