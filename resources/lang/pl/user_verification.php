@@ -42,7 +42,7 @@ return [
     'errors' => [
         'expired' => 'Ten kod wygasł. Wysłano nowy kod weryfikacyjny.',
         'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
-        'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Liczba prób została przekroczona, w związku z tym wysłaliśmy nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
+        'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Przekroczono liczbę prób, wysłano nowy kod weryfikacyjny.',
         'reissued' => 'Wygenerowano nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
         'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy e-mail weryfikacyjny.',
     ],

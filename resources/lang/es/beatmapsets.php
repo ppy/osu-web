@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Este Beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Algunas partes de este Beatmap se han eliminado a petición del creador o de un titular de derechos de autor.',
+        'parts-removed' => 'Algunas partes de este beatmap se han eliminado a petición del creador o de un titular de derechos de autor.',
         'more-info' => 'Marca aquí para más información.',
     ],
 
@@ -34,22 +34,22 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
-            'made-by' => 'creado por ',
-            'submitted' => 'publicado el ',
-            'updated' => 'actualizado el ',
-            'ranked' => 'rankeado el ',
+            'mapped_by' => 'mapeado por : mapeador',
+            'submitted' => 'enviado en ',
+            'updated' => 'última actualización en ',
+            'ranked' => 'clasificado en ',
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
-            'loved' => 'loveado el ',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier Beatmap!',
+            'loved' => 'amado el ',
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con Video',
                 'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'Marcar como favorito este Beatmapset',
-            'unfavourite' => 'Desmarcar como favorito este Beatmapset',
+            'favourite' => 'Marcar como favorito este beatmapset',
+            'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'favourited_count' => '+ ¡1 persona más!|+ ¡:count personas más!',
         ],
         'stats' => [

@@ -215,7 +215,7 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => 'Λάβατε :amount από τον :giver για ένα post στο :post',
+                        'give' => 'Λάβατε :amount από τον :giver για μια ανάρτηση στο :post',
                         'reset' => 'Διαγράφηκαν τα Kudosu από τον :giver για το post :post',
                         'revoke' => 'Ο :giver αρνήθηκε τα kudosu για το post :post',
                     ],

@@ -312,8 +312,8 @@ return [
         ],
     ],
     'status' => [
-        'online' => 'Conectado',
-        'offline' => 'Desconectado',
+        'online' => 'Conectados',
+        'offline' => 'Desconectados',
     ],
     'store' => [
         'saved' => 'Usuario creado',

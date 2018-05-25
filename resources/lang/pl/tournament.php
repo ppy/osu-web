@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Rejestracja: od :start do :end',
 
         'state' => [
-            'current' => 'Aktualnie rozgrywane turnieje',
-            'previous' => 'Wcześniejsze turnieje',
+            'current' => 'Aktualne turnieje',
+            'previous' => 'Zakończone turnieje',
         ],
     ],
 

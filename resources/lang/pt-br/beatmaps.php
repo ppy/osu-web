@@ -40,7 +40,7 @@ return [
         'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
         'message_placeholder' => 'Digite aqui para postar',
-        'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
+        'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e não poderá mais ser discutida.',
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
         'reply_placeholder' => 'Digite sua resposta aqui',

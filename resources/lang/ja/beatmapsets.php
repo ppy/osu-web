@@ -34,7 +34,7 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'made-by' => '作者 ',
+            'mapped_by' => '',
             'submitted' => '投稿日 ',
             'updated' => '最後の更新 ',
             'ranked' => 'ranked日時 ',

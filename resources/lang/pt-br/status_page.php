@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'estado',
-        'description' => 'o que tá acontecendo?',
+        'description' => 'que que tá acontecendo, meu parsa?',
     ],
 
     'incidents' => [

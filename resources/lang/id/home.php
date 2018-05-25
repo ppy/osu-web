@@ -115,7 +115,7 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang halaman?...',
+            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
             'welcome' => 'Halo, <strong>:username</strong>!',

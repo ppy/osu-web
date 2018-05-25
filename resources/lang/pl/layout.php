@@ -174,7 +174,7 @@ return [
         'help' => [
             '_' => 'Pomoc i społeczność',
             'faq' => 'Często zadawane pytania',
-            'forum' => 'Forum społeczności',
+            'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
         ],

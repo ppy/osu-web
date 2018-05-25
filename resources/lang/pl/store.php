@@ -28,7 +28,7 @@ return [
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
         'title' => 'Koszyk',
-        'total' => 'razem',
+        'total' => 'łącznie',
 
         'errors_no_checkout' => [
             'line_1' => 'Oho, wystąpił problem z twoim koszykiem uniemożliwiający płatność!',

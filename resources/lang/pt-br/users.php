@@ -86,7 +86,7 @@ return [
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
-        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -98,7 +98,7 @@ return [
         'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age morando em :country',
+        'origin_country_age' => ':age e morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
         'previous_usernames' => 'anteriormente conhecido como',
@@ -107,7 +107,7 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Mudar capa de perfil',
+                'button' => 'Mudar Capa de Perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
@@ -143,7 +143,7 @@ return [
                     'title' => 'Beatmaps favoritos (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps desatualizados (:count)',
+                    'title' => 'Beatmaps no cemitério (:count)',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps Loved (: contagem)',
@@ -271,7 +271,7 @@ return [
             'discord' => 'Discord',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
-            'location' => 'Lugar Atual',
+            'location' => 'Local atual',
             'occupation' => 'Ocupação',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
@@ -286,7 +286,7 @@ return [
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
-            'edit_big' => 'Editar eu!',
+            'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear este recurso.",
         ],
@@ -299,7 +299,7 @@ return [
             'global' => 'Ranking global de :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisão',
+            'hit_accuracy' => 'Precisão de Acertos',
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
@@ -307,7 +307,7 @@ return [
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',
-            'total_hits' => 'Vezes Clicadas',
+            'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
         ],
     ],

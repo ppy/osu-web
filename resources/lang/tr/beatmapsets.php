@@ -34,7 +34,7 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => ':mapper tarafından yapıldı',
             'submitted' => 'gönderilme tarihi: ',
             'updated' => 'son güncelleme ',
             'ranked' => 'dereceli olma tarihi: ',

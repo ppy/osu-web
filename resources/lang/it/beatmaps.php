@@ -194,7 +194,6 @@ return [
         ],
         'mode' => 'Modalità',
         'status' => 'Status del Rank',
-        'mapped-by' => 'mappata da :mapper',
         'source' => 'da :source',
         'load-more' => 'Carica altro...',
     ],

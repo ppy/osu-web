@@ -114,7 +114,7 @@ return [
         'status-messages' => [
             'approved' => '¡Este beatmap fue aprobado el :date!',
             'graveyard' => "Este beatmap no se ha actualizado desde el :date y muy probablemente haya sido abandonado por el creador...",
-            'loved' => '¡Este Beatmap fue agregado a Loved el :date!',
+            'loved' => '¡Este Beatmap fue agregado a Amados el :date!',
             'ranked' => '¡Este Beatmap fue rankeado el :date!',
             'wip' => 'Nota: Este Beatmap fue marcado como trabajo en proceso por el creador.',
         ],
@@ -194,7 +194,6 @@ return [
         ],
         'mode' => 'Modo',
         'status' => 'Estado de Rank',
-        'mapped-by' => 'mappeado por :mapper',
         'source' => 'de :source',
         'load-more' => 'Cargar más...',
     ],

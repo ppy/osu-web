@@ -26,7 +26,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Terjadi masalah. Cobalah untuk memuat ulang halaman.',
+            'generic' => 'Terjadi masalah. Cobalah untuk memuat ulang laman.',
         ],
     ],
     'beatmaps' => [

@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'Checka ut',
+        'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
+        'shipping_fees' => 'fraktavgifter',
+        'title' => 'Varukorg',
+        'total' => 'totalt',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Oj då, det är problem med din varukorg som hindrar en utcheckning!',
+            'line_2' => 'Ta bort eller uppdatera produkterna ovan för att fortsätta.',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'Din varukorg är tom.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Återvänd till :link för att hitta några godsaker!',
+                'link_text' => 'butikslista',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Du kan inte ändra din beställning då den har blivit avbruten.',
+            'checkout' => 'Du kan inte ändra din beställning när den bearbetas.', // checkout and processing should have the same message.
+            'default' => 'Beställningen kan inte ändras',
+            'delivered' => 'Du kan inte ändra din beställning då den redan har blivit levererad.',
+            'paid' => 'Du kan inte ändra din beställning då den redan har betalats.',
+            'processing' => 'Du kan inte ändra din beställning när den bearbetas.',
+            'shipped' => 'Du kan inte ändra din beställning då den redan har skeppats.',
         ],
     ],
 

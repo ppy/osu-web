@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'listagem',
-        'news-show' => 'postagem',
+        'news-show' => 'publicação',
     ],
 
     'index' => [
@@ -49,6 +49,6 @@ return [
 
     'update' => [
         'button' => 'Atualizar',
-        'ok' => 'Postagem atualizada.',
+        'ok' => 'Publicação atualizada.',
     ],
 ];

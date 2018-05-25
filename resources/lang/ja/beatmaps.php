@@ -194,7 +194,6 @@ return [
         ],
         'mode' => 'モード',
         'status' => 'ランクステータス',
-        'mapped-by' => '作者 :mapper',
         'source' => ':source より',
         'load-more' => '更に読み込む',
     ],

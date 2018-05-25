@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => 'painel de controle',
         'news' => [
             'title' => 'Notícias',
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos mapas ranqueados',
+            'new' => 'Novos mapas classificados',
             'popular' => 'Mapas populares',
             'by' => 'por',
             'plays' => ':count vezes jogadas',

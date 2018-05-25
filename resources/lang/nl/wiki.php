@@ -30,11 +30,11 @@ return [
 
         'edit' => [
             'link' => 'Toon op GitHub',
-            'refresh' => 'Ververs',
+            'refresh' => 'Vernieuwen',
         ],
 
         'outdated' => [
-            '_' => 'Deze pagina bevat een oude vertaling van de originele inhoud. Check de :default voor de meest accurate informatie (en overweeg de vertaling te updaten als je kan helpen)!',
+            '_' => 'Deze pagina bevat een oude vertaling van de originele inhoud. Check de :default voor de meest accurate informatie (en overweeg de vertaling bij te werken als je wilt helpen)!',
             'default' => 'Engelse versie',
         ],
     ],

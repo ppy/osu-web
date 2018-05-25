@@ -194,7 +194,6 @@ return [
         ],
         'mode' => 'Mode',
         'status' => 'Rank Status',
-        'mapped-by' => 'mappet af :mapper',
         'source' => 'fra :source',
         'load-more' => 'Indlæs mere...',
     ],

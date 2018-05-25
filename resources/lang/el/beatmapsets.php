@@ -34,7 +34,7 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
-            'made-by' => 'δημιουργήθηκε από ',
+            'mapped_by' => 'δημιουργήθηκε από :mapper',
             'submitted' => 'υποβλήθηκε στις ',
             'updated' => 'τελευταία ενημέρωση στις ',
             'ranked' => 'έγινε ranked στις ',

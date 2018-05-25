@@ -34,7 +34,7 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'autorstwa ',
+            'mapped_by' => 'autorstwa :mapper',
             'submitted' => 'dodana ',
             'updated' => 'ostatnio aktualizowana ',
             'ranked' => 'rankingowa od ',

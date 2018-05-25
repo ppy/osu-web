@@ -79,7 +79,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => 'Kustomisasi profil Anda dengan menambahkan halaman pengguna yang dapat Anda hias sepenuhnya.',
+                'description' => 'Kustomisasi profil Anda dengan menambahkan laman pengguna yang dapat Anda hias sepenuhnya.',
             ],
 
             'beatmap_filters' => [
