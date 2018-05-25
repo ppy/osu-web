@@ -69,14 +69,8 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
+        $this->loadMetadata();
         $this->suffix = !$this->inplace ? '_'.time() : '';
-
-        $oldIndices = [];
-        foreach ($this->groups as $name) {
-            $type = static::ALLOWED_TYPES[$name][0];
-            // FIXME: should probably load this somewhere else.
-            $this->existingAliases[$type::esIndexName()] = Indexing::getOldIndices($type::esIndexName());
-        }
 
         $oldIndices = array_flatten(array_values($this->existingAliases));
 
@@ -211,5 +205,13 @@ class EsIndexDocuments extends Command
         }
 
         return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
+    }
+
+    private function loadMetadata()
+    {
+        foreach ($this->groups as $name) {
+            $type = static::ALLOWED_TYPES[$name][0];
+            $this->existingAliases[$type::esIndexName()] = Indexing::getOldIndices($type::esIndexName());
+        }
     }
 }
