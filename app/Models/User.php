@@ -627,6 +627,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['dev']);
     }
 
+    public function isProjectLoved()
+    {
+        return $this->isGroup(UserGroup::GROUPS['projectloved']);
+    }
+
     public function isMod()
     {
         return $this->isGroup(UserGroup::GROUPS['mod']);
