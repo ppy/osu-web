@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Search\BasicSearch;
+use Cache;
 
 trait UserScoreable
 {
@@ -69,7 +70,13 @@ trait UserScoreable
     public function beatmapBestScores(string $mode, int $limit, int $offset = 0)
     {
         // aggregations do not support regular pagination.
-        $ids = $this->beatmapBestScoreIds($mode, $offset + $limit);
+        // always fetching 100 to cache; we're not supporting beyond 100, either.
+        // TODO: combine/extract with SearchParams::fetchCacheable
+        $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
+        $ids = Cache::remember($key, 5, function () use ($mode) {
+            return $this->beatmapBestScoreIds($mode, 100);
+        });
+
         $ids = array_slice($ids, $offset, $limit);
         $clazz = 'App\Models\Score\Best\\'.studly_case($mode);
 
