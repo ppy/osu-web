@@ -30,7 +30,7 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry" data-user-email-field="current_password">
+            <div class="account-edit-entry" data-user-email-field="current_password">
                 <input
                     class="account-edit-entry__input"
                     name="user[current_password]"
@@ -43,11 +43,11 @@
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
+            </div>
         </div>
 
         <div class="account-edit__input-group">
-            <label class="account-edit-entry" data-user-email-field="email">
+            <div class="account-edit-entry" data-user-email-field="email">
                 <input
                     class="account-edit-entry__input js-form-confirmation"
                     name="user[user_email]"
@@ -59,9 +59,9 @@
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
+            </div>
 
-            <label
+            <div
                 class="account-edit-entry"
                 data-user-email-field="email_confirmation"
             >
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
+            </div>
         </div>
 
         <div class="account-edit__input-group">
