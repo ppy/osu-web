@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when par :user',
         'latest_reply_by' => 'dernière réponse par :user',
         'new_topic' => 'Poster un nouveau sujet',
+        'new_topic_login' => 'Connectez-vous pour poster un nouveau sujet',
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
         'started_by' => 'par :user',

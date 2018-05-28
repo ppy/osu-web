@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'érintőképernyő',
     ],
+
+    'privacy' => [
+        'title' => 'Adatvédelem',
+        'friends_only' => 'Privát üzenetek tiltása olyan személyektől, akik nincsenek a barát listádon',
+    ],
 ];

@@ -35,8 +35,9 @@ return [
 
         'details' => [
             'mapped_by' => 'skapad av :mapper',
-            'submitted' => 'inkommen den ',
+            'submitted' => 'uppladdad den ',
             'updated' => 'senast uppdaterad den ',
+            'updated_timeago' => 'senast ändrad :timeago',
             'ranked' => 'rankad den ',
             'approved' => 'godkänd den ',
             'qualified' => 'kvalificerad den ',
@@ -81,9 +82,9 @@ return [
         ],
         'scoreboard' => [
             'achieved' => 'uppnått :when',
-            'country' => 'Land Ranking',
-            'friend' => 'Vän Ranking',
-            'global' => 'Global Ranking',
+            'country' => 'Nationell rankning',
+            'friend' => 'Rankning bland vänner',
+            'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
             'title' => 'Resultattavla',

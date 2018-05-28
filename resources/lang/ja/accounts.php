@@ -79,4 +79,9 @@ return [
         'tablet' => 'ペンタブ',
         'touch' => 'タッチスクリーン',
     ],
+
+    'privacy' => [
+        'title' => '',
+        'friends_only' => '',
+    ],
 ];

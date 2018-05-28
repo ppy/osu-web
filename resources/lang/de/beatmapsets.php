@@ -37,6 +37,7 @@ return [
             'mapped_by' => 'erstellt von :mapper',
             'submitted' => 'eingereicht am ',
             'updated' => 'letztes update am ',
+            'updated_timeago' => 'zuletzt aktualisiert :timeago',
             'ranked' => 'ranked am ',
             'approved' => 'approved am ',
             'qualified' => 'qualifziert am ',

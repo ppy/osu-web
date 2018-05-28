@@ -34,9 +34,10 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
-            'mapped_by' => 'mapeado por : mapeador',
+            'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado en ',
             'updated' => 'última actualización en ',
+            'updated_timeago' => 'actualizado por última vez el :timeago',
             'ranked' => 'clasificado en ',
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',

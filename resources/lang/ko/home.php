@@ -119,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메세지 :count건이 있습니다',
+            'messages' => '새로 받은 메시지 :count건이 있습니다',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',

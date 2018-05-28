@@ -37,6 +37,7 @@ return [
             'mapped_by' => ':mapper tarafından yapıldı',
             'submitted' => 'gönderilme tarihi: ',
             'updated' => 'son güncelleme ',
+            'updated_timeago' => 'son güncelleme :timeago',
             'ranked' => 'dereceli olma tarihi: ',
             'approved' => 'tarihinde onaylandı ',
             'qualified' => 'aday olma tarihi ',

@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'touch',
     ],
+
+    'privacy' => [
+        'title' => 'Privatsphäre',
+        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
+    ],
 ];

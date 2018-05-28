@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
         'new_topic' => 'Post topik baru',
+        'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
         'started_by' => 'oleh :user',

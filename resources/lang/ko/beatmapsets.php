@@ -37,6 +37,7 @@ return [
             'mapped_by' => ':mapper님이 제작한 맵',
             'submitted' => '맵 제출일: ',
             'updated' => '마지막 업데이트: ',
+            'updated_timeago' => ':timeago에 마지막으로 업데이트됨',
             'ranked' => '랭크된 날짜: ',
             'approved' => 'approved된 날짜: ',
             'qualified' => 'qualified된 날짜: ',

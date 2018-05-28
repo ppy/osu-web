@@ -20,14 +20,14 @@
 
 return [
     'availability' => [
-        'disabled' => 'Este beatmap não está mais disponível para baixar.',
-        'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
+        'disabled' => 'Este mapa não está mais disponível para baixar.',
+        'parts-removed' => 'Partes deste mapa foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
         'more-info' => 'Clique aqui para mais informações.',
     ],
 
     'index' => [
-        'title' => 'Lista de Beatmaps',
-        'guest_title' => 'Beatmaps',
+        'title' => 'Lista de mapas',
+        'guest_title' => 'Mapas',
     ],
 
     'show' => [
@@ -37,18 +37,19 @@ return [
             'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado em ',
             'updated' => 'última atualização em ',
+            'updated_timeago' => 'última vez atualizado :timeago',
             'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
             'loved' => 'loved em ',
-            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
+            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer mapa!',
             'download' => [
                 '_' => 'Baixar',
                 'video' => 'com Vídeo',
                 'no-video' => 'sem Vídeo',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'Favoritar este beatmap',
+            'favourite' => 'Favoritar este mapa',
             'unfavourite' => 'Remover dos favoritos',
             'favourited_count' => '+ 1 favorito!|+ :count outros favoritos!',
         ],
@@ -66,7 +67,7 @@ return [
             'user-rating' => 'Avaliação',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
-            'playcount' => 'Vezes Jogadas',
+            'playcount' => 'Vezes jogado',
         ],
         'info' => [
             'description' => 'Descrição',
@@ -76,8 +77,8 @@ return [
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
-            'tags' => 'Tags',
-            'unranked' => 'Beatmap não ranqueado',
+            'tags' => 'Palavras-chave',
+            'unranked' => 'Mapa sem classificação',
         ],
         'scoreboard' => [
             'achieved' => 'conquistado :when',
@@ -101,15 +102,15 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ninguém do seu país fez uma pontuação nesse beatmap ainda!',
-                'friend' => 'Nenhum de seus amigos fez uma pontuação nesse beatmap ainda!',
+                'country' => 'Ninguém do seu país fez uma pontuação nesse mapa ainda!',
+                'friend' => 'Nenhum de seus amigos fez uma pontuação nesse mapa ainda!',
                 'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
                 'loading' => 'Carregando pontuações...',
                 'unranked' => 'Beatmap não ranqueado.',
             ],
             'score' => [
                 'first' => 'Na Liderança',
-                'own' => 'Seu Melhor',
+                'own' => 'Seu melhor',
             ],
         ],
     ],

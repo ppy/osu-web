@@ -114,7 +114,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opções de organização',
-                'description' => 'A capacidade de ver rankings de país/amigos/mod específico dentro do jogo.',
+                'description' => 'A capacidade de ver classificações por país / amigos / mods específicos dentro do jogo.',
             ],
 
             'feel_special' => [

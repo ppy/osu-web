@@ -114,7 +114,7 @@ return [
             'reset' => '복원',
             'new' => '새',
 
-            'messages' => '메세지',
+            'messages' => '메시지',
             'settings' => '설정',
             'logout' => '로그아웃',
             'help' => '도움말',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
+            'privacy' => '개인 정보 보호 정책',
             'server_status' => '서버 상태 확인',
+            'source_code' => '소스 코드',
             'terms' => '서비스 이용약관',
         ],
     ],

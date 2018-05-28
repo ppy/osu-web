@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Stato del Server',
+            'source_code' => 'Codice Sorgente',
             'terms' => 'Termini di Servizio',
         ],
     ],

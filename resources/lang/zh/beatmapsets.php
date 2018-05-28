@@ -37,6 +37,7 @@ return [
             'mapped_by' => '作者: :mapper',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
+            'updated_timeago' => '上次更新于 :timeago',
             'ranked' => 'ranked 于 ',
             'approved' => 'approved 于 ',
             'qualified' => 'qualified 于 ',

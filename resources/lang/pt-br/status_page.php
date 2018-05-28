@@ -25,13 +25,13 @@ return [
     ],
 
     'incidents' => [
-        'title' => 'Incidentes Ativos',
+        'title' => 'Incidentes ativos',
         'automated' => 'automatizado',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Usuários Online nas últimas 24 Horas',
+            'users' => 'Usuários online nas últimas 24 Horas',
             'score' => 'Pontuações atingidas nas últimas 24 Horas',
         ],
         'current' => 'Usuários Online',
@@ -40,7 +40,7 @@ return [
 
     'recent' => [
         'incidents' => [
-            'title' => 'Incidentes Recentes',
+            'title' => 'Incidentes recentes',
             'state' => [
                 'resolved' => 'Resolvidos',
                 'resolving' => 'Resolvendo',
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Tempo de Atividade',
+            'title' => 'Tempo de atividade',
             'graphs' => [
                 'server' => 'servidor',
                 'web' => 'web',

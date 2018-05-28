@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'touch',
     ],
+
+    'privacy' => [
+        'title' => '',
+        'friends_only' => '',
+    ],
 ];
