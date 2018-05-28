@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+{div, p} = ReactDOMFactories
 el = React.createElement
 VirtualList = window.VirtualList
 
@@ -114,21 +114,32 @@ class Beatmaps.Main extends React.PureComponent
 
           div
             className: 'beatmapsets__content'
-            if @state.beatmaps.length > 0
-              el BeatmapList,
-                items: _.chunk(@state.beatmaps, @state.columnCount)
-                itemBuffer: 5
-                itemHeight: ITEM_HEIGHT
-
-            else
+            if (@state.filters.played != null || @state.filters.rank.length > 0) && !currentUser.is_supporter
               div className: 'beatmapsets__empty',
                 el Img2x,
-                  src: '/images/layout/beatmaps/not-found.png'
-                  alt: osu.trans("beatmaps.listing.search.not-found")
-                  title: osu.trans("beatmaps.listing.search.not-found")
-                osu.trans("beatmaps.listing.search.not-found-quote")
+                  src: '/images/layout/beatmaps/supporter-required.png'
+                  alt: osu.trans("beatmaps.listing.search.supporter-filter")
+                  title: osu.trans("beatmaps.listing.search.supporter-filter")
+                
+                p
+                  dangerouslySetInnerHTML:
+                    __html: osu.trans("beatmaps.listing.search.supporter-filter-quote")
+            else
+              if @state.beatmaps.length > 0
+                el BeatmapList,
+                  items: _.chunk(@state.beatmaps, @state.columnCount)
+                  itemBuffer: 5
+                  itemHeight: ITEM_HEIGHT
 
-          el(Beatmaps.Paginator, paging: @state.paging)
+              else
+                div className: 'beatmapsets__empty',
+                  el Img2x,
+                    src: '/images/layout/beatmaps/not-found.png'
+                    alt: osu.trans("beatmaps.listing.search.not-found")
+                    title: osu.trans("beatmaps.listing.search.not-found")
+                  osu.trans("beatmaps.listing.search.not-found-quote")
+
+                  el(Beatmaps.Paginator, paging: @state.paging)
 
 
   buildSearchQuery: =>
@@ -143,6 +154,7 @@ class Beatmaps.Main extends React.PureComponent
       if value? && BeatmapsetFilter.getDefault(params, key) != value
         charParams[keyToChar[key]] = value
 
+    delete charParams[keyToChar['played']] if !currentUser.is_supporter
     delete charParams[keyToChar['rank']] if !currentUser.is_supporter
 
     charParams
