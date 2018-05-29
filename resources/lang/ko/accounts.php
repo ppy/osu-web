@@ -79,4 +79,9 @@ return [
         'tablet' => '태블릿',
         'touch' => '터치',
     ],
+
+    'privacy' => [
+        'title' => '개인 정보',
+        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
+    ],
 ];

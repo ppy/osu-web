@@ -107,7 +107,7 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Mudar Capa de Perfil',
+                'button' => 'Mudar capa de perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
@@ -137,22 +137,22 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Nenhum... ainda.',
-                'title' => 'Beatmaps',
+                'title' => 'Mapas',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
+                    'title' => 'Mapas favoritos (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no cemitério (:count)',
+                    'title' => 'Mapas desatualizados (:count)',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps Loved (: contagem)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados (:count)',
+                    'title' => 'Mapas classificados e aprovados (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes (:count)',
+                    'title' => 'Mapas Pendentes (:count)',
                 ],
             ],
             'historical' => [
@@ -164,7 +164,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'vezes jogadas',
-                    'title' => 'Beatmaps Mais Jogados',
+                    'title' => 'Mapas mais jogados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
@@ -180,7 +180,7 @@ return [
                 'recent_entries' => 'Histórico de kudosu recente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Adquirido',
-                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um beatmap. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um mapa. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -233,7 +233,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
+                'not_ranked' => 'Apenas mapas classificados dão pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',

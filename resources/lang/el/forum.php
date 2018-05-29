@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when από τον χρήστη :user',
         'latest_reply_by' => 'τελευταία απάντηση από τον χρήστη :user',
         'new_topic' => 'Δημοσιεύστε νέο θέμα',
+        'new_topic_login' => 'Συνδεθείτε για να δημοσιεύσετε νέο θέμα',
         'post_reply' => 'Δημοσίευση',
         'reply_box_placeholder' => 'Πληκτρολογήστε εδώ για να απαντήσετε',
         'started_by' => 'από τον χρήστη :user',

@@ -147,7 +147,7 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
                     'title' => 'Beatmap abbandonate (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Beatmap Loved (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Rankate e Approvate (:count)',

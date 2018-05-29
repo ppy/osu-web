@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
         'new_topic' => 'Создать новую тему',
+        'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Начинайте вводить тут',
         'started_by' => 'от :user',

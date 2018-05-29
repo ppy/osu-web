@@ -79,4 +79,9 @@ return [
         'tablet' => 'mesa digitalizadora',
         'touch' => 'touch',
     ],
+
+    'privacy' => [
+        'title' => 'Privacidade',
+        'friends_only' => 'Bloquear mensagens de pessoas que não estão na sua lista de amigos',
+    ],
 ];

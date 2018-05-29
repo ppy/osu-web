@@ -39,7 +39,7 @@ return [
             'text' => 'ไม่มีสินค้าอยู่ในตะกร้าสินค้าของคุณ',
             'return_link' => [
                 '_' => 'กลับไปที่ :link เพื่อดูสินค้าอื่นๆ!',
-                'link_text' => '',
+                'link_text' => 'รายการร้านค้า',
             ],
         ],
     ],
@@ -75,7 +75,7 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
+            'cancelled' => 'คุณไม่สามารถแก้ไขหรือยกเลิกการสั่งซื้อได้',
             'checkout' => '', // checkout and processing should have the same message.
             'default' => '',
             'delivered' => '',

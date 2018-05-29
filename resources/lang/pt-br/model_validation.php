@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussão está trancada.',
-        'first_post' => 'Não é possível deletar a postagem inicial.',
+        'first_post' => 'Não é possível excluir a publicação inicial.',
     ],
 
     'beatmapset_discussion' => [
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um mapa não é permitido.',
-            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um mapa não é permitido.',
+            'beatmapset_post_no_delete' => 'Excluir publicação de metadados de um mapa não é permitido.',
+            'beatmapset_post_no_edit' => 'Editar publicação de metadados de um mapa não é permitido.',
         ],
 
         'topic_poll' => [

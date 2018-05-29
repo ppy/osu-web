@@ -37,6 +37,7 @@ return [
             'mapped_by' => '',
             'submitted' => '投稿日 ',
             'updated' => '最後の更新 ',
+            'updated_timeago' => '',
             'ranked' => 'ranked日時 ',
             'approved' => 'approved日時 ',
             'qualified' => 'qualified日時 ',

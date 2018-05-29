@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Publicar um novo tópico',
+        'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
         'started_by' => 'por :user',
@@ -233,7 +234,7 @@ return [
 
         'show' => [
             'deleted-posts' => 'Publicações excluídas',
-            'total_posts' => 'Publicações totais',
+            'total_posts' => 'Total de publicações',
 
             'feature_vote' => [
                 'current' => 'Prioridade atual: +:count',

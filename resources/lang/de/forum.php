@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
         'new_topic' => 'Neuen Thread erstellen',
+        'new_topic_login' => 'Melde dich an, um einen neuen Thread zu erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
         'started_by' => 'von :user',

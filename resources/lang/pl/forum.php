@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Utwórz nowy wątek',
+        'new_topic_login' => 'Zaloguj się, aby utworzyć nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'started_by' => 'przez :user',

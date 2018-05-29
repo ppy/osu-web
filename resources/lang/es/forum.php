@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Escribir nuevo tema',
+        'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
         'started_by' => 'por :user',

@@ -67,7 +67,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Ανεβάστε περισσότερα',
-                'description' => 'Επιπλέον θέσεις για εκκρεμή beatmaps (ανά ranked beatmap) μέχρι το μέγιστο των 10.',
+                'description' => 'Επιπλέον θέσεις για pending beatmaps (ανά ranked beatmap) μέχρι το μέγιστο των 10.',
             ],
 
             'early_access' => [

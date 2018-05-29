@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Yasal & Durum',
             'copyright' => 'Telif Hakkı (DMCA)',
+            'privacy' => 'Gizlilik',
             'server_status' => 'Sunucu Durumu',
+            'source_code' => 'Kaynak Kodu',
             'terms' => 'Hizmet Kullanım Şartları',
         ],
     ],

@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Đăng kí: :start đến :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Giải Đấu Đang Diễn Ra',
+            'previous' => 'Giải Đấu Trước',
         ],
     ],
 

@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => 'Ebből a tárgybol nem maradt elegendő!',
-    'not_available' => 'Ez a tárgy nem eléthető.',
-    'too_many' => 'Csak :count mennyiséget tudsz rendelni ebből a tárgybol.',
+    'insufficient_stock' => 'Ebből a tárgyból nem maradt elegendő!',
+    'not_available' => 'Ez a tárgy nem elérhető.',
+    'too_many' => 'Csak :count darabot tudsz rendelni ebből a tárgyból.',
 ];
