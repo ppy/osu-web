@@ -86,7 +86,7 @@ return [
 
         'new' => [
             'timestamp' => 'Tidsstämpel',
-            'timestamp_missing' => 'Tryck ctrl-c i redigerings läge och klistra in ditt meddelande för att lägga till en tidsstämpel!',
+            'timestamp_missing' => 'Tryck ctrl-c i redigeringsläge och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
         ],
 
@@ -112,7 +112,7 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'This beatmap was approved on :date!',
+            'approved' => 'Denna beatmap blev godkännd :date!',
             'graveyard' => "Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...",
             'loved' => 'Denna beatmap blev tillagd i älskad :date!',
             'ranked' => 'Denna beatmap blev rankad :date!',
@@ -169,7 +169,7 @@ return [
             'prompt' => 'skriv in nyckelord...',
             'options' => 'Mer Sök Alternativ',
             'not-found' => 'inga resultat',
-            'not-found-quote' => '... nope, ingenting hittades.',
+            'not-found-quote' => '... nepp, ingenting hittades.',
             'filters' => [
                 'general' => 'Allmänt',
                 'mode' => 'Läge',
