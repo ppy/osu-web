@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
+        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spellägen, tillsammans med en fullt funktionell nivåredigerare.',
     ],
 
     'menu' => [
