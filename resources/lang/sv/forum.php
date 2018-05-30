@@ -26,14 +26,14 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Sätt omslags bild',
+            '_' => 'Sätt omslagsbild',
             'button' => 'Ladda upp bild',
-            'info' => 'Omslags storlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
+            'info' => 'Omslagsstorlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
         ],
 
         'destroy' => [
-            '_' => 'Ta bort omslags bild',
-            'confirm' => 'Är du säker på att du vill ta bort omslags bilden?',
+            '_' => 'Ta bort omslagsbild',
+            'confirm' => 'Är du säker på att du vill ta bort omslagsbilden?',
         ],
     ],
 
@@ -85,13 +85,13 @@ return [
             'submit' => 'Lägg upp',
 
             'placeholder' => [
-                'body' => 'Skriv ditt inläggs innehåll här',
+                'body' => 'Skriv ditt inläggsinnehåll här',
                 'title' => 'Klicka här för att sätta titel',
             ],
         ],
 
         'jump' => [
-            'enter' => 'klicka för att skriva ett specifik inläggs nummer',
+            'enter' => 'klicka för att skriva ett specifikt inläggsnummer',
             'first' => 'gå till första inlägget',
             'last' => 'gå till sista inlägget',
             'next' => 'hoppa över nästa 10 inlägg',
