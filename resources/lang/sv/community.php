@@ -29,11 +29,11 @@ return [
         ],
 
         'dev_quote' => 'osu! är ett helt gratis-att-spela spel, men att underhålla det är verkligen inte gratis. Mellan kostanden av att betala servrar och internationell bandbredd av hög kvalité, tid som spenderas av att underhålla systemet och gemenskapen, ge priser till tävlingar, svara på support frågor och allmänt hålla personer glada, så konsumerar osu! ganska mycket pengar! Och, glöm inte att vi gör det utan någon annonsering eller partnerskap med löjliga annonseringsfält och gillamarkeringar!
-            <br/><br/>i slutet av dan så underhålls osu! mest av mig själv, ni kanske känner igen mig bäst som "peppy".
+            <br/><br/>i slutändan så underhålls osu! mest av mig själv, ni kanske känner igen mig bäst som "peppy".
             Jag var tvungen att säga upp mig från mitt dag jobb för att hinna med osu!,
             och ibland så har jag svårt att upprätthålla standarderna jag strävar efter.
-            Jag skulle vilja ge ett personligt tack till dem som har stöttat osu! än så länge,
-            och lika mycket till dem som fortsätter att stötta detta fantastiska spel och gemenskapen in i framtiden :).',
+            Jag skulle vilja ge ett personligt tack till alla som har stöttat osu! än så länge,
+            och lika mycket till de som fortsätter stötta detta fantastiska spel och dess gemenskap framöver :).',
 
         'supporter_status' => [
             'contribution' => 'Tack för ditt stöd! Än så länge har du bidragit med :dollars spritt över :tags tag-köp!',
@@ -89,12 +89,12 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Gul Typ',
-                'description' => 'Bli igenkänd i spelet med din nya ljusa gula chat användarnamn färg.',
+                'description' => 'Bli igenkänd i spelet med din nya ljus-gula chatt-användarnamn-färg.',
             ],
 
             'speedy_downloads' => [
                 'title' => 'Snabbare nedladdningar',
-                'description' => 'Mindre nedladdnings restriktioner, speciellt när du använder osu!direct.',
+                'description' => 'Mindre nedladdningsrestriktioner, speciellt när du använder osu!direct.',
             ],
 
             'change_username' => [
