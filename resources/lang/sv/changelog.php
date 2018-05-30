@@ -20,7 +20,7 @@
 
 return [
     'feed_title' => 'flöde',
-    'generic' => 'Bugg fixar och mindre förbättringar.',
+    'generic' => 'Buggfixar och mindre förbättringar.',
     'users-online' => '1 användare online|:users användare online',
 
     'prefixes' => [
