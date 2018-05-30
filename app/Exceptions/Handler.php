@@ -108,7 +108,7 @@ class Handler extends ExceptionHandler
         } else {
             $message = $this->exceptionMessage($e);
 
-            if ($request->ajax()) {
+            if ($request->ajax() || $request->wantsJson()) {
                 $response = response(['error' => $message]);
             } else {
                 $response = response()->view('layout.error', ['exceptionMessage' => $message]);
@@ -120,7 +120,7 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
+        if ($request->wantsJson()) {
             return response(['authentication' => 'basic'], 401);
         }
 
