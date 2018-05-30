@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Tävla i andra sätt än att bara klicka cirklar.',
-        'large' => 'osu! Genemskapstävlingar',
+        'large' => 'osu! Gemenskapstävlingar',
     ],
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
@@ -39,9 +39,9 @@ return [
         'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
         'drop_here' => 'Släpp ditt bidrag här',
         'wrong_type' => [
-            'art' => 'Endast .jpg och .png filer är tillåtna i denna tävling.',
-            'beatmap' => 'Endast .osu filer är tillåtna i denna tävling.',
-            'music' => 'Endast .mp3 filer är tillåtna i denna tävling.',
+            'art' => 'Endast .jpg- och .png-filer är tillåtna i denna tävling.',
+            'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
+            'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
         ],
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],
