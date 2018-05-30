@@ -67,7 +67,7 @@ trait UserScoreable
         }, $buckets);
     }
 
-    public function beatmapBestScores(string $mode, int $limit, int $offset = 0)
+    public function beatmapBestScores(string $mode, int $limit, int $offset = 0, $with = [])
     {
         // aggregations do not support regular pagination.
         // always fetching 100 to cache; we're not supporting beyond 100, either.
@@ -80,6 +80,16 @@ trait UserScoreable
         $ids = array_slice($ids, $offset, $limit);
         $clazz = 'App\Models\Score\Best\\'.studly_case($mode);
 
-        return $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids);
+        $results = $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids)->with($with)->get();
+
+        // fill in positions for weighting
+        $position = $offset;
+        foreach ($results as $result) {
+            $result->position = $position;
+            $result->weight = pow(0.95, $position);
+            $position++;
+        }
+
+        return $results;
     }
 }
