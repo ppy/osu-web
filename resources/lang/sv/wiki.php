@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den Engelska versionen.',
+        'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den engelska versionen.',
         'languages' => 'Språk',
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',
