@@ -56,16 +56,13 @@ class ChangelogController extends Controller
 
     public function show($buildId)
     {
-        $changelogs = Changelog::default()
-            ->with('user');
-
         $activeBuild = Build::default()
             ->with('updateStream')
             ->where('version', $buildId)
             ->firstOrFail();
 
-        $changelogs = $changelogs
-            ->where('build', $activeBuild->version)
+        $changelogs = $activeBuild->changelogs()
+            ->with('user')
             ->visibleOnBuilds()
             ->get();
 
