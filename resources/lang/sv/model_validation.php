@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion är låst.',
-        'first_post' => 'Kan inte radera ursprungs inlägg.',
+        'first_post' => 'Kan inte radera ursprungsinlägg.',
     ],
 
     'beatmapset_discussion' => [

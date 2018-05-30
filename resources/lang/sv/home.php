@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> registrerade spelare',
 
         'slogan' => [
-            'main' => 'gratis-att-spela rytm spel',
+            'main' => 'gratis-att-spela rytmspel',
             'sub' => 'rytmen är bara ett klick bort',
         ],
     ],

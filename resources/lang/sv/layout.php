@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
+        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spellägen, tillsammans med en fullt funktionell nivåredigerare.',
     ],
 
     'menu' => [
@@ -167,27 +167,27 @@ return [
             '_' => 'Allmänt',
             'home' => 'Hem',
             'changelog-index' => 'Ändringslogg',
-            'beatmaps' => 'Beatmap Listningar',
+            'beatmaps' => 'Beatmaplistningar',
             'download' => 'Ladda Ner osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Hjälp & Gemenskap',
             'faq' => 'Vanliga Frågor',
-            'forum' => 'GemenskapsForum',
-            'livestreams' => 'Live Strömmar',
+            'forum' => 'Gemenskapsforum',
+            'livestreams' => 'Liveströmmar',
             'report' => 'Rapportera ett Problem',
         ],
         'support' => [
             '_' => 'Stötta osu!',
-            'tags' => 'Supporter Taggar',
+            'tags' => 'Supportertaggar',
             'merchandise' => 'Handelsvaror',
         ],
         'legal' => [
             '_' => 'Juridik & Status',
             'copyright' => 'Copyright (DMCA)',
             'privacy' => 'Sekretess',
-            'server_status' => 'Server Status',
+            'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',
         ],

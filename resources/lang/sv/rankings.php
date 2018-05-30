@@ -32,7 +32,7 @@ return [
         'country' => 'Land',
         'play_count' => 'Antal Gånger Spelat',
         'performance' => 'Prestanda',
-        'total_score' => 'Total Poäng',
+        'total_score' => 'Totalpoäng',
         'ranked_score' => 'Rankad Poäng',
         'average_score' => 'Snittpoäng',
         'average_performance' => 'Snittprestanda',

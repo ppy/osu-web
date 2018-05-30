@@ -25,16 +25,16 @@ return [
             'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
-            'exhausted' => 'Du har uppnått din nominerings gräns för idag, var god försök igen imorgon.',
+            'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
             'owner' => "Kan ej nominera egen beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',
+            'not_owner' => 'Endast trådskaparen eller beatmap-ägare kan lösa en diskussion.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
+            'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',
         ],
@@ -42,7 +42,7 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatiska genererande inlägg kan inte redigeras.',
+            'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
             'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
         ],
     ],
@@ -155,7 +155,7 @@ return [
             'edit' => [
                 'locked' => 'Användar-sidan är låst.',
                 'not_owner' => 'Kan endast redigera egen användar-sida.',
-                'require_supporter_tag' => 'Supporter tagg behövs.',
+                'require_supporter_tag' => 'Supportertagg behövs.',
             ],
         ],
     ],

@@ -63,7 +63,7 @@ return [
         'register' => "Har du inget osu! konto? Skapa ett nytt",
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
-            'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
+            'main' => 'Betaåtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(supportare kommer komma in snart)',
         ],
 
