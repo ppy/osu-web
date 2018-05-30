@@ -32,5 +32,5 @@ return [
     'title' => 'Vänner',
     'title_compact' => 'vänner',
 
-    'too_many' => 'Vän gräns uppnådd.',
+    'too_many' => 'Vängräns uppnådd.',
 ];
