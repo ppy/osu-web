@@ -26,7 +26,7 @@ return [
                 '_' => "Installation: När en samling har laddats ner, extrahera .rar filen till din osu! Songs mapp.
                     Alla låtar är fortfarande i .zip/.osz-samlingen, så osu! kommer behöva extrahera beatmapsen nästa gång du går in i Spel läget.
                     Extrahera :scary .zip/.osz själv,
-                    för då kommer beatmapsen visas inkorrekt i osu och kommer inte fungera korrekt.",
+                    för då kommer beatmapsen visas inkorrekt i osu! och kommer inte fungera korrekt.",
                 'scary' => 'INTE',
             ],
             'note' => [
