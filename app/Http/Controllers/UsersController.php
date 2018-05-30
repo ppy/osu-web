@@ -419,10 +419,7 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset)
-                    ->with('beatmap', 'beatmap.beatmapset')
-                    ->get();
-                $withScoresPosition = true;
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
@@ -441,11 +438,6 @@ class UsersController extends Controller
 
         if (!isset($collection)) {
             $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        if (isset($withScoresPosition)) {
-            // for scores which require pp ('weight' include).
-            ScoreBestModel::fillInPosition($collection);
         }
 
         return json_collection($collection, $transformer, $includes ?? []);
