@@ -80,18 +80,11 @@ class @BlockButton extends React.PureComponent
 
 
   render: =>
-    if @isVisible()
-      @props.container?.classList.remove 'hidden'
-    else
-      @props.container?.classList.add 'hidden'
-
-      return null
-
-    blockClass = bn
+    return null unless @isVisible()
 
     button
       type: 'button'
-      className: blockClass
+      className: bn
       onClick: @clicked
       ref: (el) => @button = el
       disabled: @state.loading
@@ -109,9 +102,7 @@ class @BlockButton extends React.PureComponent
 
   isVisible: =>
     # - not a guest
-    # - not viewing own card
-    # - already blocked or can add more blocks
+    # - not viewing own profile
     currentUser.id? &&
       _.isFinite(@props.user_id) &&
-      @props.user_id != currentUser.id &&
-      (@state.block || currentUser.blocks.length < currentUser.max_blocks)
+      @props.user_id != currentUser.id
