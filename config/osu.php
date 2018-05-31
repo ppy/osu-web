@@ -164,7 +164,7 @@ return [
     ],
     'wiki' => [
         'custom_pages' => [
-            // 'Main_Page' => App\Models\Wiki\Pages\MainPage::class,
+            'Main_Page' => App\Models\Wiki\Pages\MainPage::class,
         ],
     ]
 ];
