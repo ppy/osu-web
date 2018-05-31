@@ -45,6 +45,14 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'too_many' => 'Block limit reached.',
+        'button' => [
+            'block' => 'block',
+            'unblock' => 'unblock',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Loading...',
         'send_message' => 'send message',

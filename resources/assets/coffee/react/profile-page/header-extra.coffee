@@ -68,6 +68,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
+    isBlocked = _.find(currentUser.blocks, target_id: @props.user.id)
 
     div
       className:
@@ -131,13 +132,16 @@ class ProfilePage.HeaderExtra extends React.Component
                       devices: rowValue playsWith
             @renderPostCount()
 
-          if !currentUser.id? || currentUser.id != @props.user.id
+          if !isBlocked
             div className: "#{bn}__rows #{bn}__rows--actions",
-              a
-                className: 'user-action-button user-action-button--message'
-                href: laroute.route 'messages.users.show', user: @props.user.id
-                title: osu.trans('users.card.send_message')
-                i className: 'fas fa-envelope'
+              if !currentUser.id? || currentUser.id != @props.user.id
+                a
+                  className: 'user-action-button user-action-button--message user-action-button--right-margin'
+                  href: laroute.route 'messages.users.show', user: @props.user.id
+                  title: osu.trans('users.card.send_message')
+                  i className: 'fas fa-envelope'
+
+              el BlockButton, user_id: @props.user.id
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",

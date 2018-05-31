@@ -103,6 +103,11 @@ reactTurbolinks.register 'friendButton', FriendButton, (target) ->
   container: target
   user_id: parseInt(target.dataset.target)
 
+# Globally init block buttons
+reactTurbolinks.register 'blockButton', BlockButton, (target) ->
+  container: target
+  user_id: parseInt(target.dataset.target)
+
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 

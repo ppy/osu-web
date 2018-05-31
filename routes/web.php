@@ -160,6 +160,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
+    Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 
