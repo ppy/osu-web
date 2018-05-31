@@ -27,6 +27,7 @@ class @UserCard
     el = event.currentTarget
     userId = el.getAttribute('data-user-id')
     return unless userId
+    return if _.find(currentUser.blocks, target_id: parseInt(userId))
 
     # when qtip has already been init for current element
     if el._tooltip?

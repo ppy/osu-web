@@ -1111,6 +1111,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->osu_playmode = Beatmap::modeInt($value);
     }
 
+    public function hasBlocked(User $user)
+    {
+        return $this->blocks()
+            ->where('user_id', $user->user_id)
+            ->exists();
+    }
+
     public function hasFavourited($beatmapset)
     {
         return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
