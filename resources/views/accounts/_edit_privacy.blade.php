@@ -24,7 +24,7 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit{{ count($blocks) < 1 ? ' account-edit-entry--singular' : ''}}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
                     <div class="osu-checkbox">
                         <input
