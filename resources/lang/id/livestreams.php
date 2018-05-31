@@ -21,7 +21,7 @@
 return [
     'top-headers' => [
         'headline' => 'Siaran Langsung',
-        'description' => 'Data diambil dari twitch.tv setiap lima menit berdasarkan daftar direktori. Jangan ragu untuk memulai siaran dan daftarkan dirimu! Untuk informasi lebih lanjut tentang cara penyiapan, mohon kunjungi halaman wiki bagian siaran langsung.',
+        'description' => 'Data diambil dari twitch.tv setiap lima menit berdasarkan daftar direktori. Jangan ragu untuk memulai siaran dan daftarkan dirimu! Untuk informasi lebih lanjut tentang cara penyiapan, mohon kunjungi laman wiki bagian siaran langsung.',
     ],
     'headers' => [
         'regular' => 'Sedang Siaran Langsung',

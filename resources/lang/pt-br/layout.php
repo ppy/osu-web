@@ -51,26 +51,26 @@ return [
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'artistas em destaque',
-            'beatmap_discussion_posts-index' => 'postagens de discussão sobre mapas',
-            'beatmap_discussions-index' => 'discussões de beatmaps',
+            '_' => 'mapas',
+            'artists' => 'artistas oficiais',
+            'beatmap_discussion_posts-index' => 'publicações de discussão sobre mapas',
+            'beatmap_discussions-index' => 'discussões de mapas',
             'beatmapset-watches-index' => 'lista de notificações de modding',
-            'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de mapas',
             'beatmapset_events-index' => 'eventos ocorridos no mapa',
             'index' => 'listagem',
             'packs' => 'pacotes',
             'show' => 'informação',
         ],
         'beatmapsets' => [
-            '_' => 'beatmaps',
+            '_' => 'mapas',
             'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'tabelas',
+            'charts' => 'destaques',
             'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',
@@ -166,17 +166,17 @@ return [
         'general' => [
             '_' => 'Geral',
             'home' => 'Início',
-            'changelog-index' => 'Registro de Alterações',
-            'beatmaps' => 'Lista de Beatmaps',
+            'changelog-index' => 'Registro de alterações',
+            'beatmaps' => 'Lista de mapas',
             'download' => 'Baixar osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Ajuda & Comunidade',
             'faq' => 'Perguntas Frequentes',
-            'forum' => 'Fóruns da Comunidade',
+            'forum' => 'Fóruns da comunidade',
             'livestreams' => 'Transmissões Ao Vivo',
-            'report' => 'Relatar um Problema',
+            'report' => 'Relatar um problema',
         ],
         'support' => [
             '_' => 'Apoie o osu!',
@@ -186,14 +186,16 @@ return [
         'legal' => [
             '_' => 'Informações Legais & Estado',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacidade',
             'server_status' => 'Estado dos Servidores',
+            'source_code' => 'Código-fonte',
             'terms' => 'Termos de Serviço',
         ],
     ],
 
     'errors' => [
         '404' => [
-            'error' => 'Página Não Encontrada',
+            'error' => 'Página não encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '403' => [
@@ -205,7 +207,7 @@ return [
             'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
         ],
         '405' => [
-            'error' => 'Página Não Encontrada',
+            'error' => 'Página não encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '500' => [
@@ -233,7 +235,7 @@ return [
             'email' => 'endereço de e-mail',
             'forgot' => "Esqueci meus dados",
             'password' => 'senha',
-            'title' => 'Inicie a Sessão Para Continuar',
+            'title' => 'Inicie a sessão para continuar',
 
             'error' => [
                 'email' => "O nome de usuário ou o endereço de e-mail não existe",

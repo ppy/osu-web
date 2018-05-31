@@ -53,7 +53,7 @@ return [
         'days' => ':count tag|:count tage',
         'hour_short_unit' => 'std.|std.',
         'hours' => ':count stunde|:count stunden',
-        'item' => ':count einheit|:count einheiten',
+        'item' => ':count Artikel',
         'minute_short_unit' => 'min.|min.',
         'months' => ':count monat|:count monate',
         'second_short_unit' => 'sek.|sek.',

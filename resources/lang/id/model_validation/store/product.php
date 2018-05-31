@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => 'Tidak ada stok yang tersisa untuk produk ini!',
+    'insufficient_stock' => 'Stok yang tersedia tidak mencukupi atau sudah habis!',
     'not_available' => 'Produk ini tidak tersedia.',
     'too_many' => 'Anda hanya dapat memesan :count dari produk ini dalam setiap pesanan.',
 ];

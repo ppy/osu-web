@@ -34,9 +34,10 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado em ',
             'updated' => 'última atualização em ',
+            'updated_timeago' => 'última vez atualizado :timeago',
             'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
@@ -63,7 +64,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
-            'user-rating' => 'Avaliação de Usuários',
+            'user-rating' => 'Avaliação',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
             'playcount' => 'Vezes jogado',
@@ -77,10 +78,10 @@ return [
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Palavras-chave',
-            'unranked' => 'Mapa não ranqueado',
+            'unranked' => 'Mapa sem classificação',
         ],
         'scoreboard' => [
-            'achieved' => 'conquistado em :when',
+            'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
@@ -105,7 +106,7 @@ return [
                 'friend' => 'Nenhum de seus amigos fez uma pontuação nesse mapa ainda!',
                 'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
                 'loading' => 'Carregando pontuações...',
-                'unranked' => 'Mapa não ranqueado.',
+                'unranked' => 'Beatmap não ranqueado.',
             ],
             'score' => [
                 'first' => 'Na Liderança',

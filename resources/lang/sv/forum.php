@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic_login' => '',
         'post_reply' => 'Lägg upp',
         'reply_box_placeholder' => 'Tryck här för att svara',
         'started_by' => 'av :user',

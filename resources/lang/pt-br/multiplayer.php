@@ -20,12 +20,12 @@
 
 return [
     'match' => [
-        'header' => 'Partidas Multiplayer',
+        'header' => 'Partidas multijogador',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => 'Frente-a-frente',
+            'tag-coop' => 'Tag cooperativo',
+            'team-vs' => 'Contra equipe',
+            'tag-team-vs' => 'Tag contra equipe',
         ],
         'events' => [
             'player-left' => ':user saiu da partida',

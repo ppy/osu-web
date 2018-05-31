@@ -30,7 +30,7 @@ return [
             'owner' => "Não é possível nominar o próprio beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
+            'not_owner' => 'Somente o autor da discussão e o dono do mapa podem resolver uma discussão.',
         ],
 
         'vote' => [

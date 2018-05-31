@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma posztolása',
+        'new_topic_login' => 'Jelentkezz be új téma nyitásához',
         'post_reply' => 'Poszt',
         'reply_box_placeholder' => 'Válasz írásához kattintson ide',
         'started_by' => ':user által',

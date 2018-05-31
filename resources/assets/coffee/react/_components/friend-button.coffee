@@ -100,7 +100,7 @@ class @FriendButton extends React.PureComponent
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
-        i className: 'fas fa-sync fa-spin'
+        el Spinner
       else
         if @state.friend
           [

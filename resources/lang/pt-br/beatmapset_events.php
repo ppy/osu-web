@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
-        'discussion_deleted' => '[excluído]',
+        'discussion_deleted' => '[apagado]',
         'type' => 'Tipo',
     ],
 ];

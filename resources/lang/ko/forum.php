@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => '새 주제글 작성',
+        'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
         'post_reply' => '게시하기',
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
         'started_by' => ':user님이 작성함',

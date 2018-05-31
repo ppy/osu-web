@@ -110,17 +110,18 @@ return [
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'osx' => 'https://osx.ppy.sh',
-        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
         'legacy-forum-thread-prefix' => '/forum/t/',
+        'osx' => 'https://osx.ppy.sh',
+        'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
+        'source_code' => 'https://github.com/ppy',
         'support-the-game' => '/p/support#transactionarea',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/help/wiki/Twitter',
         ],
-        'server_status' => 'https://twitter.com/osustatus',
         'user' => [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',

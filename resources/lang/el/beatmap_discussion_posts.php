@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Περιεχόμενο',
-        'modding_history_link' => 'Προβολή modding ιστορικού',
+        'modding_history_link' => 'Προβολή ιστορικού modding',
     ],
 ];

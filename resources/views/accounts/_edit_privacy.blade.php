@@ -24,9 +24,8 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry account-edit-entry--flipped-checkbox js-account-edit{{ count($blocks) < 1 ? ' account-edit-entry--singular' : ''}}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
-                <div class="account-edit-entry__status-left">
-                    @include('accounts._edit_entry_status')
+            <div class="account-edit-entry account-edit-entry--no-label js-account-edit{{ count($blocks) < 1 ? ' account-edit-entry--singular' : ''}}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+                <label class="account-edit-entry__checkbox">
                     <div class="osu-checkbox">
                         <input
                             name="user[pm_friends_only]"
@@ -41,11 +40,16 @@
                             <i class="fas fa-check"></i>
                         </span>
                     </div>
-                </div>
-                <div class="account-edit-entry__label-right">
-                    {{ trans('accounts.privacy.friends_only') }}
-                </div>
-            </label>
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ trans('accounts.privacy.friends_only') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </label>
+            </div>
         </div>
         @if (count($blocks) > 0)
             <div class="account-edit__input-group">

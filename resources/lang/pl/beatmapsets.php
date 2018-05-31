@@ -34,9 +34,10 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'autorstwa ',
+            'mapped_by' => 'autorstwa :mapper',
             'submitted' => 'dodana ',
             'updated' => 'ostatnio aktualizowana ',
+            'updated_timeago' => 'ostatnio zaktualizowana :timeago',
             'ranked' => 'rankingowa od ',
             'approved' => 'zatwierdzona od ',
             'qualified' => 'zakwalifikowana od ',

@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Nya Rankade Beatmaps',
             'popular' => 'Populära Beatmaps',
             'by' => 'av',
             'plays' => 'Spelad :count gånger',

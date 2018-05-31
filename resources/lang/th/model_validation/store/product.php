@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'สินค้าไม่เพียงพอ',
+    'not_available' => 'ไม่พบสินค้านี้',
+    'too_many' => 'คุณสามารถซื้อได้เพียง :count ชิ้นต่อการสั่งซื้อหนึ่งครั้ง',
 ];

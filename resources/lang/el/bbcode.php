@@ -22,7 +22,7 @@ return [
     'bold' => 'Έντονo',
     'heading' => 'Επικεφαλίδα',
     'image' => 'Εικόνα',
-    'italic' => 'Πλάγιοι χαρατήρες',
+    'italic' => 'Πλάγιοι χαρακτήρες',
     'link' => 'Σύνδεσμος',
     'list' => 'Λίστα',
     'list_numbered' => 'Αριθμημένη λίστα',
@@ -34,5 +34,5 @@ return [
         'large' => 'Μεγάλα',
     ],
     'spoilerbox' => 'Κουτί spoiler',
-    'strikethrough' => 'Εξάλειψη',
+    'strikethrough' => 'Διακριτή Διαγραφή',
 ];

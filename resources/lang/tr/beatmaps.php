@@ -91,7 +91,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title :mapper tarafından maplendi',
+            'title' => ':title :mapper tarafından yapıldı',
         ],
 
         'sort' => [
@@ -181,15 +181,15 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'başlık',
+                'artist' => 'sanatçı',
+                'difficulty' => 'zorluk',
+                'updated' => 'güncellenme',
+                'ranked' => 'dereceli',
+                'rating' => 'puan',
+                'plays' => 'oynanma',
+                'relevance' => 'alaka',
+                'nominations' => 'adaylıklar',
             ],
         ],
         'mode' => 'Oyun modu',

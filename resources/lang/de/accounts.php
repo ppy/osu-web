@@ -49,7 +49,7 @@ return [
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
                 'user_msnm' => 'skype',
-                'user_occ' => 'beschäftigung',
+                'user_occ' => 'tätigkeit',
                 'user_twitter' => 'twitter',
                 'user_website' => 'webseite',
                 'user_discord' => 'discord',
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'tastatur',
         'tablet' => 'tablet',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privatsphäre',
+        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
     ],
 ];

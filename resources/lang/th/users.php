@@ -128,7 +128,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 ผู้ติดตาม|:count ผู้ติดตาม',
+            'followers' => ':count ผู้ติดตาม',
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [

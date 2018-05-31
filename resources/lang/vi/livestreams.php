@@ -21,7 +21,7 @@
 return [
     'top-headers' => [
         'headline' => 'Live Streams',
-        'description' => 'Dữ liệu được lấy từ twitch.tv mỗi năm phút dựa trên dánh sách danh mục. Đừng ngại bắt đầu live stream để bạn được liệt kê! Để biết thêm thông tin về cách thiết lập, vui lòng xem trang wiki về live stream.',
+        'description' => 'Dữ liệu được lấy từ twitch.tv mỗi năm phút dựa trên danh sách danh mục. Đừng ngại bắt đầu live stream để bạn được liệt kê! Để biết thêm thông tin về cách thiết lập, vui lòng xem trang wiki về live stream.',
     ],
     'headers' => [
         'regular' => 'Những livestream đang phát sóng',

@@ -91,13 +91,13 @@ return [
         ],
 
         'show' => [
-            'title' => ':title แมพโดย :mapper',
+            'title' => ':title lสร้างโดย :mapper',
         ],
 
         'sort' => [
-            '_' => 'จัดเรียงตาม:',
+            '_' => 'เรียงตาม:',
             'created_at' => 'เวลาที่สร้าง',
-            'timeline' => 'เส้นเวลา',
+            'timeline' => 'ไทม์ไลน์',
             'updated_at' => 'อัพเดทล่าสุด',
         ],
 
@@ -181,14 +181,14 @@ return [
                 'played' => 'เคยเล่นแล้ว',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
+                'title' => 'ชื่อ',
+                'artist' => 'ศิลปิน',
+                'difficulty' => 'ระดับความยาก',
+                'updated' => 'เพิ่งอัพเดต',
                 'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
+                'rating' => 'คะแนน',
+                'plays' => 'จำนวนการเล่น',
+                'relevance' => 'ความเกี่ยวข้อง',
                 'nominations' => '',
             ],
         ],

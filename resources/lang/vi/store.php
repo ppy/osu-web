@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'Thanh Toán',
+        'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
+        'shipping_fees' => 'phí vận chuyển',
+        'title' => 'Giỏ Hàng',
+        'total' => 'tổng cộng',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Uh oh, đã có vấn đề với giỏ hàng của bạn làm ngăn cản việc thanh toán!',
+            'line_2' => 'Loại bỏ hoặc cập nhật các mặt hàng phía trên để tiếp tục.',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'Giỏ hàng của bạn không có gì cả.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Trở về :link để tìm thêm nhiều mặt hàng khác!',
+                'link_text' => 'danh sách',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã bị hủy bỏ.',
+            'checkout' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.', // checkout and processing should have the same message.
+            'default' => 'Đơn hàng không thể sửa đổi',
+            'delivered' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được giao.',
+            'paid' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được thanh toán.',
+            'processing' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.',
+            'shipped' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được vận chuyển.',
         ],
     ],
 

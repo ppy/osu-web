@@ -146,10 +146,10 @@ return [
                     'title' => '무덤에 묻힌 비트맵 (:count개)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Loved 비트맵 (:count개)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
+                    'title' => '랭크 및 승인된 비트맵 (:count개)',
                 ],
                 'unranked' => [
                     'title' => '대기 중인 비트맵 (:count개)',

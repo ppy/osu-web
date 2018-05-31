@@ -146,7 +146,7 @@ return [
                     'title' => 'Begravda Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Älskade Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankade & Godkända Beatmaps (:count)',

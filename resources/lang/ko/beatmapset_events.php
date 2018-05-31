@@ -37,7 +37,7 @@ return [
         'nominate' => 'Nominated.',
         'nomination_reset' => '새로운 문제 :discussion (:text) 가 추천 수를 초기화했습니다.',
         'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'rank' => '랭크 됨.',
     ],
 
     'index' => [
