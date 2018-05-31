@@ -1111,7 +1111,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->osu_playmode = Beatmap::modeInt($value);
     }
 
-    public function hasBlocked(User $user)
+    public function hasBlocked(self $user)
     {
         return $this->blocks()
             ->where('user_id', $user->user_id)
