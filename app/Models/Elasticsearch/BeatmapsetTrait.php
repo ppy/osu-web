@@ -48,12 +48,9 @@ trait BeatmapsetTrait
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return array_merge(
-            static::ES_MAPPINGS_BEATMAPSETS,
-            ['difficulties' => ['properties' => static::ES_MAPPINGS_BEATMAPS]]
-        );
+        return config_path('schemas/beatmaps.json');
     }
 
     public static function esType()
@@ -63,7 +60,7 @@ trait BeatmapsetTrait
 
     private function esBeatmapsetValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPSETS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -80,7 +77,7 @@ trait BeatmapsetTrait
 
     private function esBeatmapValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPS;
+        $mappings = static::esMappings()['difficulties']['properties'];
 
         $values = [];
         // initialize everything to an array.
