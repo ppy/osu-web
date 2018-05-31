@@ -198,6 +198,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       praises: {}
       resolved: {}
       total: {}
+    timelineAllUsers = []
 
     for own mode, _items of byMode
       for own _filter, modes of byFilter
@@ -221,21 +222,23 @@ class BeatmapDiscussions.Main extends React.PureComponent
               countsByPlaymode[beatmap.mode] ?= 0
               countsByPlaymode[beatmap.mode]++
 
-      # skip if filtering users
-      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
-
-      mode =
-        if d.beatmap_id?
-          if d.beatmap_id == @currentBeatmap().id
-            if d.timestamp?
-              'timeline'
-            else
-              'general'
+      if d.beatmap_id?
+        if d.beatmap_id == @currentBeatmap().id
+          if d.timestamp?
+            mode = 'timeline'
+            timelineAllUsers.push d
+          else
+            mode = 'general'
         else
-          'generalAll'
+          mode = null
+      else
+        mode = 'generalAll'
 
       # belongs to different beatmap, excluded
       continue unless mode?
+
+      # skip if filtering users
+      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
       filters = ['total']
 
@@ -267,7 +270,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     general = byMode.general
     generalAll = byMode.generalAll
 
-    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
+    @cache.currentDiscussions = {general, generalAll, timeline, timelineAllUsers, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
 
 
   discussions: =>
@@ -311,6 +314,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
         @state.currentFilter
       else
         BeatmapDiscussionHelper.DEFAULT_FILTER
+
+    if @state.selectedUserId? && @state.selectedUserId != discussion.user_id
+      newState.selectedUserId = null
 
     newState.callback = =>
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
