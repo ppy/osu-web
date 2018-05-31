@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when :user',
         'latest_reply_by' => '最後回覆: :user',
         'new_topic' => '發表新主題',
+        'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
         'started_by' => '發表人： :user',
@@ -236,12 +237,12 @@ return [
             'total_posts' => '總主題數量',
 
             'feature_vote' => [
-                'current' => '當前優先級: +:count',
+                'current' => '當前優先順序: +:count',
                 'do' => '提升這個請求',
 
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',
-                    'current' => '還有 :votes 票.',
+                    'current' => '剩下 :votes 票.',
                     'not_enough' => "沒有票了",
                 ],
             ],
@@ -258,10 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '未订阅',
-            'to_watching' => '订阅',
-            'to_watching_mail' => '订阅并启用邮件通知',
-            'mail_disable' => '禁用邮件通知',
+            'to_not_watching' => '未訂閱',
+            'to_watching' => '訂閱',
+            'to_watching_mail' => '訂閱並開啟電子郵件通知',
+            'mail_disable' => '關閉電子郵件通知',
         ],
     ],
 ];

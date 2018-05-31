@@ -329,7 +329,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
-        'fas fa-ellipsis-h'
+        '_spinner'
       else
         BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
 

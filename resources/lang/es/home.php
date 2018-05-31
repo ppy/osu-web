@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> usuarios registrados',
 
         'slogan' => [
-            'main' => 'juego de ritmo gratis',
+            'main' => 'el mejor juego de ritmo gratis',
             'sub' => 'el ritmo está solo a un clic de distancia',
         ],
     ],
@@ -40,14 +40,14 @@ return [
         'title' => 'Buscar',
 
         'beatmapset' => [
-            'more' => 'Hay :count Beatmaps más en los resultados',
-            'more_simple' => 'Ver más resultados de Beatmaps',
+            'more' => 'Hay :count beatmaps más en los resultados',
+            'more_simple' => 'Ver más resultados de beatmaps',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Todos los foros',
-            'link' => 'Busca el foro',
+            'link' => 'Busca en el foro',
             'more_simple' => 'Ver más resultados de los foros',
             'title' => 'Foro',
 
@@ -69,7 +69,7 @@ return [
 
         'user' => [
             'more' => ':count jugadores más coinciden con la búsqueda',
-            'more_simple' => 'Ver más resultados de los jugadores',
+            'more_simple' => 'Ver más resultados de jugadores',
             'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',
             'title' => 'Jugadores',
         ],
@@ -94,16 +94,16 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'obtener una cuenta',
-                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta',
+                'description' => 'sigue las instrucciones cuando inicies el juego para iniciar sesión o crear una nueva cuenta',
             ],
             'download' => [
-                'title' => 'descarga el juego',
-                'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡Ejecútalo!',
+                'title' => 'descargar el juego',
+                'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
-                'title' => 'obtener Beatmaps',
+                'title' => 'obtener beatmaps',
                 'description' => [
-                    '_' => ':browse a la gran biblioteca de Beatmaps creados por otros usuarios y ¡Empieza a jugar!',
+                    '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
                     'browse' => 'echa un vistazo',
                 ],
             ],
@@ -114,7 +114,7 @@ return [
     'user' => [
         'title' => 'panel',
         'news' => [
-            'title' => 'Novedades',
+            'title' => 'Noticias',
             'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
@@ -133,20 +133,20 @@ return [
             'plays' => ':count veces jugado',
         ],
         'buttons' => [
-            'download' => 'Descarga osu!',
-            'support' => 'Apoya osu!',
+            'download' => 'Descargar osu!',
+            'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
         'title' => '¡Wow!',
-        'subtitle' => '¡Parece que estás pasando un buen rato! :D',
+        'subtitle' => '¡Pareces estar pasando un buen rato! :D',
         'body' => [
             'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
             'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar Beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic aquí para obtener más información!',
-        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti;)",
+        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
     ],
 ];

@@ -24,7 +24,7 @@ return [
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar verificación por correo electrónico',
-        'set' => 'Definir contraseña',
+        'set' => 'Establecer contraseña',
         'start' => 'Empezar',
     ],
 
@@ -34,7 +34,7 @@ return [
 
     'error' => [
         'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
-        'is_privileged' => 'Contacta a peppy lulz.',
+        'is_privileged' => 'Contacta a peppy lol.',
         'missing_key' => 'Requerido.',
         'too_many_tries' => 'Demasiados intentos fallidos.',
         'user_not_found' => 'El usuario solicitado no existe.',
@@ -48,7 +48,7 @@ return [
 
     'started' => [
         'password' => 'Nueva contraseña',
-        'password_confirmation' => 'Verifica tu contraseña',
+        'password_confirmation' => 'Confirmar contraseña',
         'title' => 'Restableciendo contraseña para la cuenta <strong>:username</strong>.',
         'verification_key' => 'Código de verificación',
     ],

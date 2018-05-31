@@ -21,15 +21,15 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'listagem',
-        'news-show' => 'postagem',
+        'news-show' => 'publicação',
     ],
 
     'index' => [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Posts Novos',
-            'older' => 'Posts Antigos',
+            'newer' => 'Publicações recentes',
+            'older' => 'Publicações antigas',
         ],
     ],
 
@@ -49,6 +49,6 @@ return [
 
     'update' => [
         'button' => 'Atualizar',
-        'ok' => 'Postagem atualizada.',
+        'ok' => 'Publicação atualizada.',
     ],
 ];

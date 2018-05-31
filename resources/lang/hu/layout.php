@@ -131,7 +131,7 @@ return [
             'getListing' => 'lista',
             'cart-show' => 'kosár',
 
-            'getCheckout' => 'fozetés',
+            'getCheckout' => 'fizetés',
             'getInvoice' => 'számla',
             'products-show' => 'termék',
 
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Jogok és állapot',
             'copyright' => 'Szerzői jog (DMCA)',
+            'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
+            'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',
         ],
     ],

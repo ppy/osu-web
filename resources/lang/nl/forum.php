@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Maak nieuw onderwerp',
+        'new_topic_login' => '',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
         'started_by' => 'door :user',

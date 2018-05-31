@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
+            'privacy' => 'Quyền Riêng Tư',
             'server_status' => 'Trạng Thái Server',
+            'source_code' => 'Mã Nguồn',
             'terms' => 'Điều Khoản Và Điều Kiện',
         ],
     ],

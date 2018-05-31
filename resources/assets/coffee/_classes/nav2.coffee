@@ -42,6 +42,7 @@ class @Nav2
     $(window).on 'throttled-resize.nav2-center-popup', doCenter
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
+    @stickLogin()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
 
@@ -77,7 +78,7 @@ class @Nav2
     @currentMenu == 'nav2-login-box'
 
 
-  stickLogin: (_e, target) =>
+  stickLogin: =>
     return unless @loginBoxVisible()
 
     @loginBox.style.position =

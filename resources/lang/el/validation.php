@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute λείπει αριθμός ή γράμμα',
+    'mixture' => 'Στο :attribute λείπει αριθμός ή γράμμα',
     'required' => 'Απαιτείται :attribute',
 ];

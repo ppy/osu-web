@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Lager',
     ],
 
+    'cart' => [
+        'checkout' => 'Checka ut',
+        'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
+        'shipping_fees' => 'fraktavgifter',
+        'title' => 'Varukorg',
+        'total' => 'totalt',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Oj då, det är problem med din varukorg som hindrar en utcheckning!',
+            'line_2' => 'Ta bort eller uppdatera produkterna ovan för att fortsätta.',
+        ],
+
+        'empty' => [
+            'text' => 'Din varukorg är tom.',
+            'return_link' => [
+                '_' => 'Återvänd till :link för att hitta några godsaker!',
+                'link_text' => 'butikslista',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, det finns problem med din varukorg!',
         'cart_problems_edit' => 'Klicka här för att redigera den.',
         'declined' => 'Betalningen avbröts.',
-        'error' => 'Det uppstod ett problem under betalningen :(',
         'old_cart' => 'Din varukorg verkar vara inaktuell och har blivit återladdad, var god försök igen.',
         'pay' => 'Betala med Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name för :username (:duration)',
             ],
             'quantity' => 'Antal',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Du kan inte ändra din beställning då den har blivit avbruten.',
+            'checkout' => 'Du kan inte ändra din beställning när den bearbetas.', // checkout and processing should have the same message.
+            'default' => 'Beställningen kan inte ändras',
+            'delivered' => 'Du kan inte ändra din beställning då den redan har blivit levererad.',
+            'paid' => 'Du kan inte ändra din beställning då den redan har betalats.',
+            'processing' => 'Du kan inte ändra din beställning när den bearbetas.',
+            'shipped' => 'Du kan inte ändra din beställning då den redan har skeppats.',
         ],
     ],
 

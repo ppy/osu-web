@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
-    'slogan' => "è pericoloso giocare da solo.",
+    'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 
@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Scrivi nuovo topic',
+        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
         'post_reply' => 'Invia',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'started_by' => 'da :user',

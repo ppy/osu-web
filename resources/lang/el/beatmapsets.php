@@ -34,12 +34,13 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
-            'made-by' => 'δημιουργήθηκε από ',
+            'mapped_by' => 'δημιουργήθηκε από :mapper',
             'submitted' => 'υποβλήθηκε στις ',
             'updated' => 'τελευταία ενημέρωση στις ',
-            'ranked' => 'κατατάχθηκε στις ',
-            'approved' => 'εγκρίθηκε στις ',
-            'qualified' => 'κρίθηκε ότι πληροί τα κριτήρια στις ',
+            'updated_timeago' => 'τελευταία ενημέρωση :timeago',
+            'ranked' => 'έγινε ranked στις ',
+            'approved' => 'έγινε approved στις ',
+            'qualified' => 'qualified στις ',
             'loved' => 'έγινε loved στις ',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'download' => [
@@ -77,7 +78,7 @@ return [
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
-            'unranked' => 'Beatmap εκτός κατάταξης',
+            'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'επετεύχθη :when',
@@ -105,7 +106,7 @@ return [
                 'friend' => 'Κανένας από τους φίλους σας δεν έχει σκορ σε αυτό το map ακόμα!',
                 'global' => 'Κανένα σκορ ακόμα. Μήπως να δοκιμάσετε εσείς να το πετύχετε;',
                 'loading' => 'Φόρτωση σκορ...',
-                'unranked' => 'Beatmap εκτός κατάταξης.',
+                'unranked' => 'Unranked beatmap.',
             ],
             'score' => [
                 'first' => 'Προηγείται',

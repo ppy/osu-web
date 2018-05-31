@@ -72,6 +72,7 @@ return [
         'latest_post' => ':user tarafından :when',
         'latest_reply_by' => 'son cevap :user tarafından',
         'new_topic' => 'Yeni konu aç',
+        'new_topic_login' => 'Yeni konu başlatmak için giriş yapın',
         'post_reply' => 'Gönder',
         'reply_box_placeholder' => 'Yanıtlamak için buraya yazın',
         'started_by' => ':user tarafından',

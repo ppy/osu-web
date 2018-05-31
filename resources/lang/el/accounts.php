@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Ρυθμίσεις</strong>Λογαριασμού',
+        'title' => 'Ρυθμίσεις <strong>Λογαριασμού</strong>',
         'title_compact' => 'ρυθμίσεις',
         'username' => 'όνομα χρήστη',
 
@@ -29,7 +29,7 @@ return [
         ],
 
         'email' => [
-            'current' => 'τρέχων email',
+            'current' => 'τρέχον email',
             'new' => 'νέο email',
             'new_confirmation' => 'επιβεβαίωση email',
             'title' => 'Email',
@@ -68,7 +68,7 @@ return [
     ],
 
     'update_password' => [
-        'email_subject' => 'Επιβεβαίωση αλλαγής κωδικού πρόσβασης του osu!',
+        'email_subject' => 'επιβεβαίωση αλλαγής κωδικού πρόσβασης του osu!',
         'update' => 'ενημέρωση
 ',
     ],
@@ -79,5 +79,10 @@ return [
         'keyboard' => 'πληκτρολόγιο',
         'tablet' => 'γραφίδα',
         'touch' => 'οθόνη αφής',
+    ],
+
+    'privacy' => [
+        'title' => 'Απόρρητο',
+        'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
     ],
 ];

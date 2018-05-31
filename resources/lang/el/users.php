@@ -37,7 +37,7 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Το πιο upvoted από (3 μήνες)',
+            'title_most' => 'Το πιο upvoted από (τελευταίους 3 μήνες)',
         ],
 
         'votes_made' => [
@@ -146,7 +146,7 @@ return [
                     'title' => 'Παρατημένα Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Loved Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
@@ -215,14 +215,14 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => 'Λάβατε :amount από τον :giver για ένα post στο :post',
+                        'give' => 'Λάβατε :amount από τον :giver για μια ανάρτηση στο :post',
                         'reset' => 'Διαγράφηκαν τα Kudosu από τον :giver για το post :post',
                         'revoke' => 'Ο :giver αρνήθηκε τα kudosu για το post :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'εγώ!',
+                'title' => 'me!',
             ],
             'medals' => [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
@@ -247,7 +247,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Κατάσταση λογαριασμού',
-                'bad_standing' => "Ο λογαριασμός <strong>:username's</strong> δεν βρίσκεται σε καλή κατάσταση :(",
+                'bad_standing' => "Ο λογαριασμός του <strong>:username</strong> δεν βρίσκεται σε καλή κατάσταση :(",
                 'remaining_silence' => '<strong>:username</strong> θα μπορεί να μιλήσει πάλι σε :duration.',
 
                 'recent_infringements' => [
@@ -285,7 +285,7 @@ return [
             'title' => 'Ο χρήστης δεν βρέθηκε! ;_;',
         ],
         'page' => [
-            'description' => '<strong>me!</strong> είναι ένα προσωπικό επεξεργάσιμό πεδίο στο προφίλ σας.',
+            'description' => 'To <strong>me!</strong> είναι μια προσωπική προσαρμόσιμη περιοχή στη σελίδα του προφίλ σας.',
             'edit_big' => 'Επεξεργασία!',
             'placeholder' => 'Γράψτε το περιεχόμενο της σελίδας εδώ',
             'restriction_info' => "Χρειάζεται να είστε <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> για να ξεκλειδώσετε αυτή τη δυνατότητα.",
@@ -304,8 +304,8 @@ return [
             'maximum_combo' => 'Μέγιστο Combo',
             'play_count' => 'Αριθμός Προσπαθειών',
             'play_time' => 'Συνολικός Χρόνος Παιχνιδιού',
-            'ranked_score' => 'Κατάταξη Βαθμολογίας',
-            'replays_watched_by_others' => 'Replays που είδαν άλλοι',
+            'ranked_score' => 'Ranked Σκορ',
+            'replays_watched_by_others' => 'Replays που Παρακολουθήθηκαν από Άλλους',
             'score_ranks' => 'Κατάταξη Score',
             'total_hits' => 'Συνολικά hits',
             'total_score' => 'Συνολική βαθμολογία',

@@ -174,7 +174,7 @@ return [
         'help' => [
             '_' => 'Pomoc i społeczność',
             'faq' => 'Często zadawane pytania',
-            'forum' => 'Forum społeczności',
+            'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
         ],
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
+            'privacy' => 'Prywatność',
             'server_status' => 'Status serwera',
+            'source_code' => 'Kod źródłowy',
             'terms' => 'Warunki świadczenia usług',
         ],
     ],

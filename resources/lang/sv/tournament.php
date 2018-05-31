@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Registrering: :start till :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Aktiva Turneringar',
+            'previous' => 'Tidigare Turneringar',
         ],
     ],
 

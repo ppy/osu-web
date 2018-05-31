@@ -27,7 +27,7 @@ return [
 
         'slogan' => [
             'main' => '무료 리듬 게임',
-            'sub' => '리듬은 단순한 클릭만으로도 만들어질 수 있습니다',
+            'sub' => '리듬은 이미, 그 손끝에',
         ],
     ],
 
@@ -112,14 +112,14 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => '대시보드',
         'news' => [
             'title' => '뉴스',
             'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
             'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메세지 :count건이 있습니다',
+            'messages' => '새로 받은 메시지 :count건이 있습니다',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => '새로 랭크된 비트맵',
             'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',

@@ -21,35 +21,36 @@
 return [
     'availability' => [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
-        'parts-removed' => 'Ennek a beatmapnek pár része távolításra került a készitő vagy egy harmadik-fél jogai végett.',
+        'parts-removed' => 'Ez a beatmap eltávolításra került a készítő kérésére vagy egy harmadik fél a jogok tulajdonosa.',
         'more-info' => 'Itt találsz több információt.',
     ],
 
     'index' => [
         'title' => 'Beatmap lista',
-        'guest_title' => 'Beatmapek',
+        'guest_title' => 'Beatmap-ek',
     ],
 
     'show' => [
-        'discussion' => 'Megbeszélés',
+        'discussion' => 'Beszélgetés',
 
         'details' => [
-            'made-by' => 'készítette ',
-            'submitted' => 'beküldve:',
-            'updated' => 'utóljára frissitve:',
-            'ranked' => 'rankolva:',
-            'approved' => 'elfogadva:',
-            'qualified' => 'kvalifikálva:',
-            'loved' => 'szeretett lett:',
-            'logged-out' => 'Be kell jelentkezned mielőtt beatmapet tölthetnél le!',
+            'mapped_by' => 'mappolva :mapper által',
+            'submitted' => 'beküldve ',
+            'updated' => 'utoljára frissítve ',
+            'updated_timeago' => 'utóljára frissítve: :timeago',
+            'ranked' => 'rank-elve ',
+            'approved' => 'elfogadva ',
+            'qualified' => 'qualified ',
+            'loved' => 'loved ',
+            'logged-out' => 'Be kell jelentkezned mielőtt beatmap-et tölthetnél le!',
             'download' => [
                 '_' => 'Letöltés',
                 'video' => 'Videóval',
                 'no-video' => 'Videó nélkül',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'A beatmapszet kedvencek közé tétele',
-            'unfavourite' => 'A beatmapszet eltávolitása a kedvencek közül',
+            'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'favourited_count' => '+ 1 másik!|+ :count másik!',
         ],
         'stats' => [
@@ -91,7 +92,7 @@ return [
             'headers' => [
                 'accuracy' => 'Pontosság',
                 'combo' => 'Legmagasabb kombó',
-                'miss' => 'Vétés',
+                'miss' => 'Miss',
                 'mods' => 'Modok',
                 'player' => 'Játékos',
                 'pp' => '',
@@ -101,9 +102,9 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Senki sem ért még el eredményt az országodból ezen a pályán!',
-                'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a pályán!',
-                'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni egy párat?',
+                'country' => 'Senki sem ért még el eredményt az országodból ezen a map-en!',
+                'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a map-en!',
+                'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni párat?',
                 'loading' => 'Eredmények betöltése...',
                 'unranked' => 'Rangsorolatlan beatmap.',
             ],

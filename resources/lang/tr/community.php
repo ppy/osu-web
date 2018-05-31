@@ -31,7 +31,7 @@ return [
 
         'supporter_status' => [
             'contribution' => 'Desteğiniz için teşekkürler! Toplamda :tags farklı alımla :dollars yardımda bulundunuz!',
-            'gifted' => '',
+            'gifted' => ':giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!',
             'not_yet' => "Şimdilik supporter'ınız yok :(",
             'title' => 'Şu anki supporter durumu',
             'valid_until' => 'Şu anki supporter\'ınız :date tarihine kadar güncel!',

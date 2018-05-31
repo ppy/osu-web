@@ -115,7 +115,7 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang halaman?...',
+            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
             'welcome' => 'Halo, <strong>:username</strong>!',
@@ -127,8 +127,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
-            'popular' => 'Beatmap Populer',
+            'new' => 'Beatmap Ranked Terbaru',
+            'popular' => 'Beatmap yang Sedang Populer',
             'by' => 'oleh',
             'plays' => ':count kali dimainkan',
         ],

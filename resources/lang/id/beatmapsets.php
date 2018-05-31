@@ -34,9 +34,10 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'made-by' => 'dibuat oleh ',
+            'mapped_by' => 'dibuat oleh :mapper',
             'submitted' => 'diunggah pada ',
             'updated' => 'terakhir diperbarui pada ',
+            'updated_timeago' => 'terakhir diperbarui :timeago',
             'ranked' => 'berstatus Ranked sejak ',
             'approved' => 'berstatus Approved sejak ',
             'qualified' => 'berstatus Qualified sejak ',

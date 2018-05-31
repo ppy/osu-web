@@ -37,7 +37,7 @@ return [
 
         'supporter_status' => [
             'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
-            'gifted' => '',
+            'gifted' => ':giftedTags de vos achats de tags ont été offerts en cadeau (pour un total de :giftedDollars offerts), quelle générosité !',
             'not_yet' => "Vous n'avez pas de tag supporter :(",
             'title' => 'Statut du supporter',
             'valid_until' => 'Votre tag supporter expire :date!',
@@ -56,7 +56,7 @@ return [
         ],
 
         'perks' => [
-            'title' => 'Ah? J\'aurais quoi?!',
+            'title' => 'Ah ? Qu\'est-ce que j\'aurais en plus ?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'accès rapide à la recherche et au téléchargement de beatmap sans quitter le jeu.',
@@ -89,12 +89,12 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Compagnon jaune',
-                'description' => 'Soyez reconnu en jeu avec un pseudo tout jaune.',
+                'description' => 'Soyez reconnu en jeu avec un pseudo couleur or.',
             ],
 
             'speedy_downloads' => [
                 'title' => 'Téléchargements rapides',
-                'description' => 'Moins de restrictions de téléchargements, surtout avec osu!direct.',
+                'description' => 'Moins de restrictions de téléchargements, surtout grâce à osu!direct.',
             ],
 
             'change_username' => [
@@ -119,7 +119,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Sentez-vous spécial',
-                'description' => 'Le sentiment spécial de participer au fonctionnement d\'osu! !',
+                'description' => 'Le sentiment spécial de participer au bon fonctionnement d\'osu!',
             ],
 
             'more_to_come' => [
@@ -130,8 +130,8 @@ return [
 
         'convinced' => [
             'title' => 'Je suis convaincu! :D',
-            'support' => 'supporter osu!',
-            'gift' => 'ou faites-en cadeau à un autre joueur',
+            'support' => 'soutenez osu!',
+            'gift' => 'ou offrez osu!supporter à un autre joueur',
             'instructions' => 'cliquez sur le cœur pour vous rendre dans l\'osu!store',
         ],
     ],

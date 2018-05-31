@@ -28,8 +28,8 @@ return [
         'registration_period' => '报名时间： :start 到 :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => '正在进行的比赛',
+            'previous' => '已经结束的比赛',
         ],
     ],
 

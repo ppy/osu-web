@@ -28,7 +28,7 @@ return [
             '_' => 'home',
             'account-edit' => 'impostazioni',
             'friends-index' => 'amici',
-            'changelog-index' => 'Note di rilascio',
+            'changelog-index' => 'note di rilascio',
             'changelog-show' => 'versione',
             'getDownload' => 'download',
             'getIcons' => 'icone',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Stato del Server',
+            'source_code' => 'Codice Sorgente',
             'terms' => 'Termini di Servizio',
         ],
     ],

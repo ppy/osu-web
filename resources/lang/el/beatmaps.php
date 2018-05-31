@@ -76,7 +76,7 @@ return [
 
         'mode' => [
             'events' => 'Ιστορικό',
-            'general' => 'Γενικά :score',
+            'general' => 'Γενικά :scope',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',
@@ -105,17 +105,17 @@ return [
             'deleted' => 'Διαγράφηκε',
             'mapper_notes' => 'Σημειώσεις',
             'mine' => 'Δικό μου',
-            'pending' => 'Σε Εκκρεμότητα',
+            'pending' => 'Pending',
             'praises' => 'Έπαινοι',
             'resolved' => 'Επιλύθηκε',
             'total' => 'Όλα',
         ],
 
         'status-messages' => [
-            'approved' => 'Αυτό το beatmap εγκρίθηκε στις :date!',
+            'approved' => 'Αυτό το beatmap έγινε approved στις :date!',
             'graveyard' => "Αυτό το beatmap δεν έχει ενημερωθεί από τις :date και έχει πιθανότατα εγκαταλειφθεί από το δημιουργό του...",
             'loved' => 'Αυτό το beatmap προστέθηκε στα loved στις :date!',
-            'ranked' => 'Αυτό το beatmap προστέθηκε στα καταταγμένα στις :date!',
+            'ranked' => 'Αυτό το beatmap έγινε ranked στις :date!',
             'wip' => 'Σημείωση: Αυτό το beatmap χαρακτηρίζεται ως έργο-σε-εξέλιξη από τον δημιουργό.',
         ],
 
@@ -140,15 +140,15 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Λόγος αποκλεισμού;',
-        'disqualified_at' => 'Αποκλείστηκε :time_ago (:reason).',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
-        'nominate' => 'Πρότεινε',
-        'nominate_confirm' => 'Πρότεινε αυτό το beatmap;',
-        'nominated_by' => 'προτάθηκε από :users',
-        'qualified' => 'Εκτιμάται ότι θα καταταχθεί στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
-        'qualified_soon' => 'Εκτιμάται ότι θα καταταχθεί σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
+        'nominate' => 'Nominate',
+        'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
+        'nominated_by' => 'nominated από :users',
+        'qualified' => 'Εκτιμάται ότι θα γίνει ranked στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
+        'qualified_soon' => 'Εκτιμάται ότι θα γίνει ranked σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'required_text' => 'Υποψηφιότητες :current/:required',
         'reset_message_deleted' => 'διαγράφηκε',
         'title' => 'Κατάσταση Υποψηφιότητας',
@@ -156,7 +156,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Επαναφορά διεργασίας υποψηφιότητας :time_ago από :user με νέο πρόβλημα :discussion (:message).',
-            'disqualify' => 'Απορρίφθηκε :time_ago από :user με νέο πρόβλημα :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago από :user με νέο πρόβλημα :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -172,7 +172,7 @@ return [
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
             'filters' => [
                 'general' => 'Γενικά',
-                'mode' => 'Λειτουργία',
+                'mode' => 'Mode',
                 'status' => 'Κατάσταση Κατάταξης',
                 'genre' => 'Είδος',
                 'language' => 'Γλώσσα',
@@ -180,16 +180,26 @@ return [
                 'rank' => 'Κατάκτηση Κατάταξης',
                 'played' => 'Που έχετε παίξει',
             ],
+            'sorting' => [
+                'title' => 'τίτλος',
+                'artist' => 'καλλιτέχνης',
+                'difficulty' => 'δυσκολία',
+                'updated' => 'ενημερωμένο',
+                'ranked' => 'ranked',
+                'rating' => 'βαθμολογία',
+                'plays' => 'προσπάθειες',
+                'relevance' => 'σχετικότητα',
+                'nominations' => 'nominations',
+            ],
         ],
-        'mode' => 'Λειτουργία',
+        'mode' => 'Mode',
         'status' => 'Κατάσταση Κατάταξης',
-        'mapped-by' => 'δημιουργήθηκε από :mapper',
         'source' => 'από :source',
         'load-more' => 'Φόρτωση περισσότερων...',
     ],
     'general' => [
         'recommended' => 'Προτεινόμενη δυσκολία',
-        'converts' => 'Συμπερίλαβε beatmaps που έχουν μετατραπεί',
+        'converts' => 'Συμπεριλάμβανε beatmaps που έχουν μετατραπεί',
     ],
     'mode' => [
         'any' => 'Οποιοδήποτε',
@@ -200,12 +210,12 @@ return [
     ],
     'status' => [
         'any' => 'Οποιοδήποτε',
-        'ranked-approved' => 'Καταταγμένα & Εγκεκριμένα',
-        'approved' => 'Εγκεκριμένα',
-        'qualified' => 'Που πληρούν τα κριτήρια',
+        'ranked-approved' => 'Ranked & Approved',
+        'approved' => 'Approved',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Αγαπημένα',
-        'pending' => 'Σε Αναμονή',
+        'pending' => 'Pending',
         'graveyard' => 'Νεκροταφείο',
         'my-maps' => 'Τα maps μου',
     ],

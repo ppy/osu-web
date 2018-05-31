@@ -34,7 +34,7 @@ return [
         'standard_converts_only' => 'Não há pontuações disponíveis para o modo escolhido nesta dificuldade.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Há muitos beatmaps nos seus favoritos! Por favor, remova um antes de continuar.',
+        'too-many-favourites' => 'Há muitos mapas nos seus favoritos! Por favor, remova um antes de continuar.',
     ],
     'logged_out' => 'Você foi desconectado. Conecte-se e tente novamente.',
     'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',

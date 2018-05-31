@@ -39,7 +39,7 @@ return [
         'mapper_note_wrong_user' => 'Μόνο ο δημιουργός του beatmap μπορεί να δημοσιεύσει τις σημειώσεις του mapper.',
 
         'hype' => [
-            'guest' => 'Πρέπει να έχετε συνδεθεί για να κάνετε hype.',
+            'guest' => 'Πρέπει να είστε συνδεδεμένοι για να κάνετε hype.',
             'hyped' => 'Έχετε κάνει ήδη hype αυτό το beatmap.',
             'limit_exceeded' => 'Έχετε χρησιμοποιήσει όλο το hype σας.',
             'not_hypeable' => 'Δε μπορεί να γίνει hype σε αυτό το betamap',

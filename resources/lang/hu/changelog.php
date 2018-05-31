@@ -24,7 +24,7 @@ return [
     'users-online' => '1 felhasználó online |:users felhasználó online',
 
     'prefixes' => [
-        'add' => 'adalék',
+        'add' => 'kiegészítés',
         'fix' => 'javítás',
         'misc' => 'különféle',
     ],

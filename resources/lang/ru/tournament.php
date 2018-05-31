@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Регистрация: с :start до :end',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Активные турниры',
+            'previous' => 'Прошедшие турниры',
         ],
     ],
 

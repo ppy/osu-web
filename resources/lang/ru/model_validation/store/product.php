@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'Данный товар отсутствует в таком количестве!',
+    'not_available' => 'Этот товар недоступен.',
+    'too_many' => 'Вы можете заказать только :count шт. этого товара за раз.',
 ];

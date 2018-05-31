@@ -18,6 +18,9 @@
 
 class @TurbolinksDisqus
   constructor: (@turbolinksReload) ->
+    # FIXME: remove this when disqus stops overriding _
+    @origLodash = _
+
     @el = document.getElementsByClassName('js-turbolinks-disqus')
 
     addEventListener 'turbolinks:load', @initialize
@@ -65,7 +68,9 @@ class @TurbolinksDisqus
 
   initializeEmbed: =>
     window.disqus_config = @buildConfig()
-    @turbolinksReload.load "https://#{disqusShortName}.disqus.com/embed.js"
+    @turbolinksReload.load "https://#{disqusShortName}.disqus.com/embed.js", =>
+      # FIXME: remove this when disqus stops overriding _
+      window._ = @origLodash
 
 
   reload: =>

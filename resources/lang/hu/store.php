@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'Fizetés',
+        'more_goodies' => 'Még több jóságot szeretnék mielőtt befejezném a rendelésem',
+        'shipping_fees' => 'szállítási költség',
+        'title' => 'Kosár',
+        'total' => 'összesen',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => 'Uh oh, valami probléma van a kosaradban ami megakadályozza a továbblépést!',
+            'line_2' => 'Törölj vagy újits tárgyakat a folytatáshoz.',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'Üres a kosarad.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Menj vissza a :link-re tovább jóságokért!',
+                'link_text' => 'áruház listázás',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Nem változtathatsz a rendelésedem mivel törölve lett.',
+            'checkout' => 'Nem változtathatsz a rendeléseden feldolgozás alatt.', // checkout and processing should have the same message.
+            'default' => 'A rendelés nem módosítható',
+            'delivered' => 'Nem változtathatsz a rendeléseden mivel már ki lett szálítva.',
+            'paid' => 'Nem változtathatsz a rendeléseden mivel már kifizetted.',
+            'processing' => 'Nem tudod módosítani a rendelésed amíg feldolgozás alatt áll.',
+            'shipped' => 'Nem változtathatsz a rendeléseden mivel már ki lett küldve.',
         ],
     ],
 

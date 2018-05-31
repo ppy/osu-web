@@ -130,7 +130,7 @@ return [
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => '',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
@@ -155,8 +155,8 @@ return [
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che devono essere indirizzati prima.',
 
         'reset_at' => [
-            'nomination_reset' => '',
-            'disqualify' => '',
+            'nomination_reset' => 'Azzeramento processo di nomina :tempo_fa da :utente con nuovo problema :discussione (:messaggio).',
+            'disqualify' => 'Squalificato :time_ago da :user con il nuovo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -180,10 +180,20 @@ return [
                 'rank' => 'Rank ottenuto',
                 'played' => 'Giocato',
             ],
+            'sorting' => [
+                'title' => 'titolo',
+                'artist' => 'artista',
+                'difficulty' => 'difficoltà',
+                'updated' => 'aggiornato',
+                'ranked' => 'classificazione',
+                'rating' => 'rankate',
+                'plays' => 'volte giocata',
+                'relevance' => 'rilevanza',
+                'nominations' => 'candidature',
+            ],
         ],
         'mode' => 'Modalità',
         'status' => 'Status del Rank',
-        'mapped-by' => 'mappata da :mapper',
         'source' => 'da :source',
         'load-more' => 'Carica altro...',
     ],

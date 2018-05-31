@@ -29,8 +29,8 @@ return [
         ],
 
         'email' => [
-            'current' => 'email atual',
-            'new' => 'novo email',
+            'current' => 'e-mail atual',
+            'new' => 'novo e-mail',
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
         ],
@@ -51,7 +51,7 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'página da web',
                 'user_discord' => 'discord',
             ],
         ],
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmação de mudança de email do osu!',
+        'email_subject' => 'Confirmação de mudança de e-mail do osu!',
         'update' => 'atualizar',
     ],
 
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'teclado',
         'tablet' => 'mesa digitalizadora',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacidade',
+        'friends_only' => 'Bloquear mensagens de pessoas que não estão na sua lista de amigos',
     ],
 ];

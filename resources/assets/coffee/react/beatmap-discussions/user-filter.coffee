@@ -79,7 +79,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       div
         className: "#{bn}__selector"
         @renderOption allUsers
-        for own _, user of @props.users
+        for own _id, user of @props.users
           @renderOption user
 
 

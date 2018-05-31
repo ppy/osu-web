@@ -34,9 +34,10 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'lavet af ',
+            'mapped_by' => '',
             'submitted' => 'indsendt den ',
             'updated' => 'sidst opdateret den ',
+            'updated_timeago' => '',
             'ranked' => 'ranked den ',
             'approved' => 'godkendt den ',
             'qualified' => 'kvalificeret den ',

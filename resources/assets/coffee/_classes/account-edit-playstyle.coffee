@@ -28,6 +28,7 @@ class @AccountEditPlaystyle
     target = e.currentTarget
     target.dataset.playstyleUpdating = '1'
 
+    @xhr?.abort()
     @setState 'saving'
     @debouncedUpdate()
 
@@ -61,7 +62,6 @@ class @AccountEditPlaystyle
       checkbox = field.getElementsByTagName('input')[0]
       arr.push field.dataset.playstyle if checkbox.checked
 
-    @xhr?.abort()
     @xhr = $.ajax laroute.route('account.update'),
       method: 'PUT'
       data:

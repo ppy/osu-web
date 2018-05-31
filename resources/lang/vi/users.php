@@ -146,7 +146,7 @@ return [
                     'title' => 'Graveyarded Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Beatmaps Được Love (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',

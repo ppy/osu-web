@@ -39,7 +39,7 @@ return [
             'news-show' => 'news',
             'password-reset-index' => 'passwort zurücksetzen',
             'search' => 'suche',
-            'supportTheGame' => 'das spiel unterstützen',
+            'supportTheGame' => 'Das Spiel unterstützen',
             'team' => 'team',
         ],
         'help' => [
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Rechtliches & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privatsphäre',
             'server_status' => 'Serverstatus',
+            'source_code' => 'Quellcode',
             'terms' => 'Nutzungsbedingungen',
         ],
     ],

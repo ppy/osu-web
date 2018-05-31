@@ -23,11 +23,31 @@ return [
         'warehouse' => '보급 창고',
     ],
 
+    'cart' => [
+        'checkout' => '결제',
+        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요',
+        'shipping_fees' => '배송료',
+        'title' => '장바구니',
+        'total' => '합계',
+
+        'errors_no_checkout' => [
+            'line_1' => '음, 장바구니에 문제가 있어 결제할 수 없네요!',
+            'line_2' => '위에 있는 항목을 제거하거나 수정해서 계속하세요.',
+        ],
+
+        'empty' => [
+            'text' => '장바구니가 비어 있습니다.',
+            'return_link' => [
+                '_' => ':link으로 돌아가 상품을 찾아보세요!',
+                'link_text' => '상품 목록',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제 실패했어요',
-        'error' => '결제하는데 문제가 생겨버렸네요:(',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
@@ -42,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '저희는 귀하의 osu!상점 주문을 받았습니다!',
+            'subject' => '저희는 귀하의 osu!store 주문을 받았습니다!',
         ],
     ],
 
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => '수량',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '취소된 주문은 수정할 수 없습니다.',
+            'checkout' => '제품 처리 중인 경우엔 주문을 수정할 수 없습니다.', // checkout and processing should have the same message.
+            'default' => '주문을 수정할 수 없음',
+            'delivered' => '배달된 주문을 수정할 수 없습니다.',
+            'paid' => '이미 결제하여 주문을 수정할 수 없습니다.',
+            'processing' => '제품 처리 중인 경우엔 주문을 수정할 수 없습니다.',
+            'shipped' => '배송된 주문을 수정할 수 없습니다.',
         ],
     ],
 

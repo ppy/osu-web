@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'dokunmatik',
     ],
+
+    'privacy' => [
+        'title' => 'Gizlilik',
+        'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
+    ],
 ];

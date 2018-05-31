@@ -34,9 +34,10 @@ return [
         'discussion' => '討論',
 
         'details' => [
-            'made-by' => '作者: ',
+            'mapped_by' => '由 :mapper 製作',
             'submitted' => '發佈於 ',
             'updated' => '上次更新於 ',
+            'updated_timeago' => '最後更新時間 :timeago',
             'ranked' => '進榜於 ',
             'approved' => '批准於 ',
             'qualified' => '提名於 ',

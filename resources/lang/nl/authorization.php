@@ -22,11 +22,11 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hyping kan niet ongedaan gemaakt worden.',
-            'has_reply' => 'Je kan geen discussie die reacties heeft verwijderen',
+            'has_reply' => 'Je kan geen discussie met reacties verwijderen',
         ],
         'nominate' => [
-            'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer morgen opnieuw.',
-            'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
+            'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer het morgen opnieuw.',
+            'incorrect_state' => 'Fout tijdens het uitvoeren van deze actie, probeer de pagina te herladen.',
             'owner' => "Je kan je eigen beatmap niet nomineren.",
         ],
         'resolve' => [

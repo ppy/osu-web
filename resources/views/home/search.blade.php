@@ -44,7 +44,7 @@
                     </button>
 
                     <button class="search-header__icon search-header__icon--searching">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                        {!! spinner() !!}
                     </button>
                 </div>
             </div>

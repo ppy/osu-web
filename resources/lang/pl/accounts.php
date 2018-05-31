@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'ekran dotykowy',
     ],
+
+    'privacy' => [
+        'title' => 'Prywatność',
+        'friends_only' => 'Blokuj prywatne wiadomości od nieznajomych',
+    ],
 ];

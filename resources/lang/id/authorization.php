@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang halaman.',
+            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
         'resolve' => [
@@ -153,8 +153,8 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Halaman pengguna terkunci.',
-                'not_owner' => 'Hanya dapat menyunting halaman pengguna sendiri.',
+                'locked' => 'Laman pengguna terkunci.',
+                'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
                 'require_supporter_tag' => 'Supporter tag diperlukan.',
             ],
         ],

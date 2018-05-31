@@ -28,8 +28,8 @@ return [
         'registration_period' => '참가: :start부터 :end까지',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => '개최 중인 토너먼트',
+            'previous' => '개최된 토너먼트',
         ],
     ],
 

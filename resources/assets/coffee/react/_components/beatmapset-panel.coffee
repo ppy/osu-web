@@ -134,7 +134,7 @@ class @BeatmapsetPanel extends React.PureComponent
                 className: 'u-ellipsis-overflow'
                 dangerouslySetInnerHTML:
                   __html:
-                    osu.trans 'beatmaps.listing.mapped-by',
+                    osu.trans 'beatmapsets.show.details.mapped_by',
                       mapper:
                         laroute.link_to_route 'users.show',
                             beatmapset.creator,
@@ -143,7 +143,12 @@ class @BeatmapsetPanel extends React.PureComponent
                               'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'
-                beatmapset.source
+                if beatmapset.status in ['graveyard', 'wip', 'pending']
+                  span dangerouslySetInnerHTML: __html:
+                    osu.trans 'beatmapsets.show.details.updated_timeago',
+                      timeago: osu.timeago(beatmapset.last_updated)
+                else
+                  beatmapset.source
 
             div className: 'beatmapset-panel__icons-box',
               if currentUser?.id
