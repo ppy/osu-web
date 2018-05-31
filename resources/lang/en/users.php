@@ -46,7 +46,10 @@ return [
     ],
 
     'blocks' => [
+        'banner_text' => 'You have blocked this user.',
+        'hide_profile' => 'hide profile',
         'profile_header' => 'blocked users',
+        'show_profile' => 'show profile',
         'toggle_link' => 'toggle display',
         'toggle_text' => ':count blocked user, :link|:count blocked users, :link',
         'too_many' => 'Block limit reached.',
