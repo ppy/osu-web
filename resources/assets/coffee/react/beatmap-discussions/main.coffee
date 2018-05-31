@@ -315,6 +315,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         BeatmapDiscussionHelper.DEFAULT_FILTER
 
+    if @state.selectedUserId? && @state.selectedUserId != discussion.user_id
+      newState.selectedUserId = null
+
     newState.callback = =>
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
