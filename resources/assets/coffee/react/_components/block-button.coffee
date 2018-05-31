@@ -19,7 +19,7 @@
 el = React.createElement
 {button, div, i, span} = ReactDOMFactories
 
-bn = 'block-button'
+bn = 'textual-button'
 
 class @BlockButton extends React.PureComponent
   constructor: (props) ->

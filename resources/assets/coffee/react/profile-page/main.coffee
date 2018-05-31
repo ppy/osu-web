@@ -147,11 +147,11 @@ class ProfilePage.Main extends React.PureComponent
                 div className: 'notification-banner__button',
                   button
                     type: 'button'
-                    className: 'block-button'
+                    className: 'textual-button'
                     onClick: =>
                       @setState forceShow: !@state.forceShow
                     span {},
-                      i className: 'block-button__icon fas fa-low-vision'
+                      i className: 'textual-button__icon fas fa-low-vision'
                       " "
                       if @state.forceShow
                         osu.trans('users.blocks.hide_profile')
