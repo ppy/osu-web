@@ -24,7 +24,7 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry account-edit-entry--flipped-checkbox js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <label class="account-edit-entry account-edit-entry--flipped-checkbox js-account-edit{{ count($blocks) < 1 ? ' account-edit-entry--singular' : ''}}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <div class="account-edit-entry__status-left">
                     @include('accounts._edit_entry_status')
                     <div class="osu-checkbox">
@@ -47,5 +47,27 @@
                 </div>
             </label>
         </div>
+        @if (count($blocks) > 0)
+            <div class="account-edit__input-group">
+            <div class="account-edit-entry">
+                    <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
+                        {{ trans('users.blocks.profile_header') }}
+                    </div>
+                    <div class="user-list">
+                        {!! trans_choice('users.blocks.toggle_text', count($blocks),  [
+                            'link' => "<a class='user-list__toggle js-account-edit-blocklist' href='#'>".trans('users.blocks.toggle_link')."</a>"
+                        ])!!}
+                        <div class="user-list__content user-list__content--folded">
+                            @foreach ($blocks as $block)
+                                <div class="user-list-item">
+                                    <a class="user-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>
+                                    <div class="js-react--blockButton" data-target="{{$block->user_id}}"></div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
