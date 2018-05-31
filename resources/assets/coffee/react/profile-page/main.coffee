@@ -132,7 +132,7 @@ class ProfilePage.Main extends React.PureComponent
     if @state.userPage.initialRaw.trim() == '' && !@props.withEdit
       _.pull profileOrder, 'me'
 
-    isBlocked = _.find(currentUser.blocks, (o) => o.target_id == @state.user.id)
+    isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
     div className: 'osu-layout__no-scroll',
       if isBlocked
