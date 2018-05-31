@@ -135,7 +135,9 @@ class ModdingHistoryController extends Controller
             ]
         );
 
-        return view('beatmap_discussions.index', compact('discussions', 'search', 'user'));
+        $showUserSearch = false;
+
+        return view('beatmap_discussions.index', compact('discussions', 'search', 'user', 'showUserSearch'));
     }
 
     public function events()
