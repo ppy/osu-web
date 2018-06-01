@@ -16,7 +16,7 @@ Requirements
 Getting Started
 ---------------
 
-See the [setup guide](Setup.md) for a rundown on how to get a development environment up.
+See the [setup guide](SETUP.md) for a rundown on how to get a development environment up.
 
 
 Contributing
