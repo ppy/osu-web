@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Γεγονότα beatmapset',
+        'title' => 'Γεγονότα Beatmapset',
     ],
 
     'item' => [

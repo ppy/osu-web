@@ -27,7 +27,7 @@ return [
         'checkout' => 'Pagar',
         'more_goodies' => 'Gostaria de conferir mais coisas antes de finalizar meu pedido',
         'shipping_fees' => 'taxas de envio',
-        'title' => 'Carrinho de compras',
+        'title' => 'Carrinho de Compras',
         'total' => 'total',
 
         'errors_no_checkout' => [
@@ -55,7 +55,7 @@ return [
             'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
             'link_text' => 'clique aqui',
         ],
-        'delayed_shipping' => 'Estamos sobrecarregados com pedidos! Você é bem-vindo para fazer seu pedido, mas, por favor, aguarde um **atraso adicional de 1 a 2 semanas** enquanto nós realizamos os pedidos mais recentes.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você é bem-vindo para fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',
@@ -112,7 +112,7 @@ return [
 
     'username_change' => [
         'check' => 'Insira um nome de usuário para verificar a disponibilidade!',
-        'checking' => 'Verificando a disponibilidade de :username...',
+        'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
             'link_text' => 'conectado',

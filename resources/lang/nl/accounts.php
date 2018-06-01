@@ -81,7 +81,7 @@ return [
     ],
 
     'privacy' => [
-        'title' => '',
-        'friends_only' => '',
+        'title' => 'Privacy',
+        'friends_only' => 'Blokkeer privébericht van mensen buiten je vriendenlijst',
     ],
 ];

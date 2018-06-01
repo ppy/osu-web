@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => 'Prywatność',
-        'friends_only' => 'Blokuj prywatne wiadomości od nieznajomych',
+        'friends_only' => 'Blokuj prywatne wiadomości od osób spoza listy znajomych',
     ],
 ];

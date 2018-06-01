@@ -25,7 +25,7 @@ return [
             'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
-            'exhausted' => 'Du har uppnått din nominerings gräns för idag, var god försök igen imorgon.',
+            'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
             'owner' => "Kan ej nominera egen beatmap.",
         ],
@@ -42,7 +42,7 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatiska genererande inlägg kan inte redigeras.',
+            'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
             'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
         ],
     ],

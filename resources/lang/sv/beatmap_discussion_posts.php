@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Innehåll',
-        'modding_history_link' => 'Visa modding historik',
+        'modding_history_link' => 'Visa modding-historik',
     ],
 ];

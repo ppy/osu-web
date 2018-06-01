@@ -135,7 +135,7 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Αφήστε σχόλια',
+        'button' => 'Αφήστε Σχόλια',
     ],
 
     'nominations' => [

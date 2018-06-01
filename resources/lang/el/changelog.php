@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'ροή',
     'generic' => 'Διορθώσεις σφαλμάτων και μικρές βελτιώσεις.',
-    'users-online' => '1 χρήστης online|:users χρήστες online',
+    'users-online' => '1 συνδεδεμένος χρήστης|:users συνδεδεμένοι χρήστες',
 
     'prefixes' => [
         'add' => 'προσθήκη',
