@@ -34,8 +34,8 @@ return [
             'gifted' => ':giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!',
             'not_yet' => "Şimdilik supporter'ınız yok :(",
             'title' => 'Şu anki supporter durumu',
-            'valid_until' => 'Şu anki supporter\'ınız :date tarihine kadar güncel!',
-            'was_valid_until' => 'Supporter\'ınız :date tarihine kadar günceldi.',
+            'valid_until' => 'Şu anki supporter\'ınız :date daha geçerli!',
+            'was_valid_until' => 'Supporter\'ınız :date önceye kadar günceldi.',
         ],
 
         'why_support' => [

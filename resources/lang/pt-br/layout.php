@@ -29,11 +29,11 @@ return [
             'account-edit' => 'configurações',
             'friends-index' => 'amigos',
             'changelog-index' => 'registro de alterações',
-            'changelog-show' => 'versão',
+            'changelog-show' => 'build',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
-            'index' => 'painel de controle',
+            'index' => 'dashboard',
             'legal-show' => 'informação',
             'news-index' => 'notícias',
             'news-show' => 'notícias',
@@ -46,24 +46,24 @@ return [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
-            'getSupport' => 'não, sério, eu preciso de ajuda!',
+            'getSupport' => 'não, sério, preciso de ajuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'mapas',
-            'artists' => 'artistas oficiais',
-            'beatmap_discussion_posts-index' => 'publicações de discussão sobre mapas',
-            'beatmap_discussions-index' => 'discussões de mapas',
-            'beatmapset-watches-index' => 'lista de notificações de modding',
-            'beatmapset_discussion_votes-index' => 'votos na discussão de mapas',
-            'beatmapset_events-index' => 'eventos ocorridos no mapa',
+            '_' => 'beatmaps',
+            'artists' => 'artistas em destaque',
+            'beatmap_discussion_posts-index' => 'postagens de discussão sobre beatmaps',
+            'beatmap_discussions-index' => 'discussões de beatmaps',
+            'beatmapset-watches-index' => 'supervisão de modding',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
+            'beatmapset_events-index' => 'eventos do beatmap',
             'index' => 'listagem',
             'packs' => 'pacotes',
             'show' => 'informação',
         ],
         'beatmapsets' => [
-            '_' => 'mapas',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'rankings' => [
@@ -80,7 +80,7 @@ return [
             'dev' => 'desenvolvimento',
             'getForum' => 'fóruns',
             'getChat' => 'chat',
-            'getLive' => 'ao vivo',
+            'getLive' => 'transmissões',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneios',
@@ -93,7 +93,7 @@ return [
             'forum-forums-show' => 'fóruns',
         ],
         'multiplayer' => [
-            '_' => 'multijogador',
+            '_' => 'multiplayer',
             'show' => 'partida',
         ],
         'error' => [
@@ -127,11 +127,11 @@ return [
         ],
         'store' => [
             '_' => 'loja',
-            'checkout-show' => 'finalizar compra',
+            'checkout-show' => 'comprar',
             'getListing' => 'catálogo',
             'cart-show' => 'carrinho',
 
-            'getCheckout' => 'finalizar compra',
+            'getCheckout' => 'comprar',
             'getInvoice' => 'fatura',
             'products-show' => 'produto',
 
@@ -166,8 +166,8 @@ return [
         'general' => [
             '_' => 'Geral',
             'home' => 'Início',
-            'changelog-index' => 'Registro de alterações',
-            'beatmaps' => 'Lista de mapas',
+            'changelog-index' => 'Registro de Alterações',
+            'beatmaps' => 'Lista de Beatmaps',
             'download' => 'Baixar osu!',
             'wiki' => 'Wiki',
         ],
@@ -179,7 +179,7 @@ return [
             'report' => 'Relatar um problema',
         ],
         'support' => [
-            '_' => 'Apoie o osu!',
+            '_' => 'Apoiar osu!',
             'tags' => 'Supporter Tags',
             'merchandise' => 'Mercadorias',
         ],
@@ -233,7 +233,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'endereço de e-mail',
-            'forgot' => "Esqueci meus dados",
+            'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
 

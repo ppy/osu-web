@@ -56,7 +56,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Dieser Kanal ist vorgeschrieben!',
+                    'no_access' => 'Zugang zum Kanal wurde verwehrt.',
                     'moderated' => 'Der Kanal wird momentan moderiert.',
                     'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
                 ],
@@ -76,14 +76,14 @@ return [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
                 'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Posts kann ihn löschen.',
+                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
             ],
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Posts kann ihn bearbeiten.',
+                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
 
@@ -148,7 +148,7 @@ return [
 
     'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
 
-    'restricted' => "Nicht möglich, während man restricted ist.",
+    'restricted' => "Nicht möglich, während man eingeschränkt ist.",
 
     'user' => [
         'page' => [

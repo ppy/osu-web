@@ -49,9 +49,9 @@ return [
                 'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => '',
-            'unfavourite' => '',
-            'favourited_count' => '',
+            'favourite' => 'Mi piace questa lista di mappe',
+            'unfavourite' => 'Non mi piace questa lista di mappe',
+            'favourited_count' => '+ 1 altro!|+ :count altri!',
         ],
         'stats' => [
             'cs' => 'Dimensione dei Cerchi',
@@ -110,7 +110,7 @@ return [
             ],
             'score' => [
                 'first' => 'In testa',
-                'own' => '',
+                'own' => 'Il tuo miglior punteggio',
             ],
         ],
     ],

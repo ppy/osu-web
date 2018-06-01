@@ -28,7 +28,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Λήψη του πρότυπου του beatmap',
+        'download' => 'Λήψη του προτύπου του beatmap',
         'download-na' => 'Το πρότυπο του beatmap δεν είναι ακόμη διαθέσιμο',
     ],
 

@@ -28,7 +28,7 @@ return [
     ],
     'stat' => [
         'accuracy' => 'Ακρίβεια',
-        'active_users' => 'Ενεργοί χρήστες',
+        'active_users' => 'Ενεργοί Χρήστες',
         'country' => 'Χώρα',
         'play_count' => 'Αριθμός Προσπαθειών',
         'performance' => 'Eπίδοση',

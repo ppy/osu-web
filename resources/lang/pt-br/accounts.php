@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações de <strong>conta</strong>',
+        'title' => 'Configurações de <strong>Conta</strong>',
         'title_compact' => 'configurações',
         'username' => 'nome de usuário',
 
@@ -29,8 +29,8 @@ return [
         ],
 
         'email' => [
-            'current' => 'e-mail atual',
-            'new' => 'novo e-mail',
+            'current' => 'email atual',
+            'new' => 'novo email',
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
         ],
@@ -51,7 +51,7 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
                 'user_twitter' => 'twitter',
-                'user_website' => 'página da web',
+                'user_website' => 'website',
                 'user_discord' => 'discord',
             ],
         ],
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmação de mudança de e-mail do osu!',
+        'email_subject' => 'Confirmação de mudança de email do osu!',
         'update' => 'atualizar',
     ],
 
