@@ -28,6 +28,8 @@ Contributions can be made via pull requests to this repository. We hope to credi
 
 Note that while we already have certain standards in place, nothing is set in stone. If you have an issue with the way code is structured; with any libraries we are using; with any processes involved with contributing, *please* bring it up. I welcome all feedback so we can make contributing to this project as pain-free as possible.
 
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information about the code standards we expect from pull requests.
+
 Seeking Help
 ------------
 

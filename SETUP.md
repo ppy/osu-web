@@ -61,10 +61,10 @@ $ sudo bootstrap.sh
 $ ./build.sh
 ```
 
-<!-- You can then run the standalone php server from inside the `public` folder:
+You can then run the standalone php server from inside the `public` folder:
 ```
 php -S 127.0.0.1:8080
-``` -->
+```
 
 ## 3. Using Docker
 
@@ -106,18 +106,10 @@ Note that if you use the bundled docker-compose setup, yarn/webpack will be alre
 
 Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your `.env` configuration file as it obtains beatmap data from the osu! API.
 
-# Developing
+# Development
 
-### Generating assets while developing
+## Generating assets while developing
 
 To continuously generate assets as you make changes to files (less, coffeescript) you can run `webpack` in `watch` mode.
 
     $ yarn run watch
-
-### React vs Laravel Blade templates
-
-For the time being, using React is generally preferred for pages which involve interaction beyond simple hyperlinks (ie. when state is present that can be modified by the user) or when real-time changes are presented to the user (ie. the state is volatile depending on back-end updates).
-
-### Use of BEM for CSS naming
-
-Much of the CSS present abides to [BEM](http://getbem.com/) conventions but there is also a fair deal that doesn't. We haven't come to a unanimous decision about how to proceed going forward, so please use your own discretion or continue the discussion in the relevant [issue](https://github.com/ppy/osu-web/issues/53).
