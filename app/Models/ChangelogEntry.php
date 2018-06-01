@@ -37,8 +37,8 @@ class ChangelogEntry extends Model
         return new static([
             'title' => $changelog->message,
             'url' => $changelog->url,
-            'category' => $changelog->prefix,
-            'type' => $changelog->category,
+            'category' => $changelog->category,
+            'type' => $changelog->prefix,
             'private' => $changelog->private,
             'major' => $changelog->major,
             'created_at' => $changelog->date,
