@@ -160,10 +160,11 @@ return [
         'ban_persist_days' => intval(env('BAN_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
-        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
-        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
-        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
+        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];

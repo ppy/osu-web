@@ -85,6 +85,10 @@
     .box-color(3px, @changelog-stream--stable-fallback);
   }
 
+  &--web {
+    .box-color(3px, @changelog-stream--web);
+  }
+
   &--featured {
     width: 260px;
   }
@@ -137,6 +141,10 @@
 
     .@{_top}--stable-fallback & {
       background-color: @changelog-stream--stable-fallback;
+    }
+
+    .@{_top}--web & {
+      background-color: @changelog-stream--web;
     }
   }
 
