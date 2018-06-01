@@ -21,7 +21,7 @@ class CreateChangelogs extends Migration
 
         Schema::create('changelog_entries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('repository')->nullable()->default(null);
+            $table->string('repository', 150)->nullable()->default(null);
             $table->unsignedBigInteger('github_pull_request_id')->nullable()->default(null);
             $table->string('type')->nullable()->default(null);
             $table->string('category')->nullable()->default(null);
