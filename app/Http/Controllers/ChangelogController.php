@@ -35,8 +35,8 @@ class ChangelogController extends Controller
     public function index()
     {
         $from = (max(
-            Changelog::default()->first()->date,
-            ChangelogEntry::default()->first()->created_at
+            optional(Changelog::default()->first())->date,
+            optional(ChangelogEntry::default()->first())->created_at
         ) ?? Carbon::now())->subWeeks(config('osu.changelog.recent_weeks'));
 
         $legacyChangelogs = Changelog::default()
