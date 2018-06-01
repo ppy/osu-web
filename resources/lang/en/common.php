@@ -43,6 +43,7 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'search' => 'Search',
         'see_more' => 'see more',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
