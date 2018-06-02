@@ -659,7 +659,7 @@ class Topic extends Model implements AfterCommit
 
     public function setLastPostCache()
     {
-        $lastPost = $this->posts()->last()->first();
+        $lastPost = $this->posts()->last();
 
         if ($lastPost === null) {
             $this->topic_last_post_id = 0;
