@@ -1273,7 +1273,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
-        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+        $lastPost = $this->forumPosts()->select('post_time')->last();
 
         // FIXME: not null column, hence default 0. Change column to allow null
         $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;

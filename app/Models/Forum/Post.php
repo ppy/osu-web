@@ -284,11 +284,6 @@ class Post extends Model implements AfterCommit
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
     }
 
-    public function scopeLast($query)
-    {
-        return $query->orderBy('post_id', 'desc')->limit(1);
-    }
-
     public function scopeShowDeleted($query, $showDeleted)
     {
         if ($showDeleted) {
