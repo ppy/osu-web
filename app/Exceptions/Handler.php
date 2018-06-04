@@ -108,7 +108,7 @@ class Handler extends ExceptionHandler
         } else {
             $message = $this->exceptionMessage($e);
 
-            if ($request->ajax()) {
+            if ($request->expectsJson()) {
                 $response = response(['error' => $message]);
             } else {
                 $response = response()->view('layout.error', ['exceptionMessage' => $message]);
@@ -129,6 +129,10 @@ class Handler extends ExceptionHandler
 
     private function exceptionMessage($e)
     {
+        if ($e instanceof ModelNotFoundException) {
+            return;
+        }
+
         if ($this->statusCode($e) >= 500) {
             return;
         }

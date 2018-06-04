@@ -46,7 +46,7 @@
                 <div class="search-result search-result--forum_post">
                     @if ($search->total() === 0)
                         <div class="search-result__row search-result__row--notice">
-                            @lang('home.search.empty_result')
+                            {{ trans('home.search.empty_result') }}
                         </div>
                     @else
                         <div class="search-result__row search-result__row--entries-container">

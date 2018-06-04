@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -236,7 +236,7 @@ class LegacyController extends BaseController
             return Response::json([]);
         }
 
-        $replay = $score->getReplay();
+        $replay = optional($score->replayFile())->get();
         if ($replay === null) {
             return Response::json([]);
         }

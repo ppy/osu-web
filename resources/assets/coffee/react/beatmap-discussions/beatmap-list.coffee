@@ -31,6 +31,11 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
   componentDidMount: =>
     $(document).on 'click.beatmapList', @hideSelector
+    @syncBlackout()
+
+
+  componentDidUpdate: =>
+    @syncBlackout()
 
 
   componentWillUnmount: =>
@@ -40,15 +45,17 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
   render: =>
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
-      a
-        href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
-        className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
-        onClick: @toggleSelector
-        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
-
       div
-        className: "#{bn}__selector"
-        @props.beatmaps.map @beatmapListItem
+        className: "#{bn}__body"
+        a
+          href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
+          className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
+          onClick: @toggleSelector
+          el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
+
+        div
+          className: "#{bn}__selector"
+          @props.beatmaps.map @beatmapListItem
 
 
   beatmapListItem: (beatmap) =>
@@ -80,8 +87,6 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
   setSelector: (state) =>
     return if @state.showingSelector == state
 
-    Blackout.toggle(state, 0.5)
-
     @setState showingSelector: state
 
 
@@ -90,6 +95,10 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     e.preventDefault()
 
     $.publish 'beatmapsetDiscussions:update', beatmapId: parseInt(e.currentTarget.dataset.id, 10)
+
+
+  syncBlackout: =>
+    Blackout.toggle(@state.showingSelector, 0.5)
 
 
   toggleSelector: (e) =>

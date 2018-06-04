@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,31 +19,44 @@
  */
 
 return [
-    'confirmation' => '확실합니까?', //  Are you sure?
+    'confirmation' => '확실합니까?',
     'saved' => '저장됨',
 
     'array_and' => [
-        'words_connector' => ', ', // A[[, ]]B[[, ]]C, and D 를 표시할 때 사용
-        'two_words_connector' => ' 와(과) ', // A[[ and ]]B 를 표시할 때 사용 (앞 종성에 따른 모호함이 발생)
-        'last_word_connector' => ', 그리고 ', // A, B, C[, and ] 를 표시할 때 사용
+        'words_connector' => ', ',
+        'two_words_connector' => ' 와(과) ',
+        'last_word_connector' => ', 그리고 ',
     ],
 
     'buttons' => [
         'cancel' => '취소',
+        'change' => '변경',
+        'click_to_copy' => '클립보드에 복사하려면 클릭하기',
+        'click_to_copy_copied' => '클립보드에 복사되었습니다!',
         'delete' => '삭제',
-        'permalink' => '고유 주소', // permalink
-        'post' => '게시하기', // Post
-        'reply' => '답변하기', // Reply
+        'permalink' => '고유 주소',
+        'permalink_copied' => '링크 복사됨',
+        'post' => '게시하기',
+        'reply' => '답변하기',
+        'reply_reopen' => '답하고 다시 열기',
+        'reply_resolve' => '답하고 해결 처리하기',
         'reset' => '초기화',
         'save' => '저장',
         'saving' => '저장 중...',
+        'see_more' => '더 보기',
         'show_more' => '더 보기',
         'upload_image' => '이미지 업로드',
     ],
 
     'count' => [
+        'badges' => ':count개의 배지|:count개의 배지',
+        'days' => ':count 일|:count 일',
+        'hour_short_unit' => '시간|시간',
+        'hours' => ':count시간|:count시간',
         'item' => ':count unit|:count units',
+        'minute_short_unit' => '분|분',
         'months' => ':count 달|:count 달',
+        'second_short_unit' => '초|초',
         'years' => ':count 년|:count 년',
     ],
 
@@ -51,6 +64,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 
@@ -87,6 +103,6 @@ return [
     ],
 
     'title' => [
-        'notice' => '알림', // Notice
+        'notice' => '알림',
     ],
 ];

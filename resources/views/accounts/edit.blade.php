@@ -130,6 +130,10 @@
     </div>
 
     <div class="osu-page osu-page--small">
+        @include('accounts._edit_privacy')
+    </div>
+
+    <div class="osu-page osu-page--small">
         @include('accounts._edit_password')
     </div>
 

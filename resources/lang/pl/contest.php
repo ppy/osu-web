@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,16 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'header' => [
         'small' => 'Rywalizacja na więcej sposobów niż tylko klikanie w kółka.',
-        'large' => 'Konkursy Społecznościowe',
+        'large' => 'Konkursy społeczności',
     ],
     'voting' => [
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',
         'best_of' => [
-            'none_played' => 'Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie ukończona.',
+            'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie zagrana.",
         ],
     ],
     'entry' => [
@@ -34,8 +35,8 @@ return [
         'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
-        'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zostało zakończone i wkrótce zacznie się głosowanie.',
-        'limit_reached' => 'Limit zgłoszeń do tego konkursu został przez ciebie przekroczony.',
+        'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
+        'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'wrong_type' => [
             'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
@@ -53,9 +54,10 @@ return [
     ],
     'dates' => [
         'ended' => 'Zakończony :date',
+
         'starts' => [
             '_' => 'Data rozpoczęcia: :date',
-            'soon' => 'niedługo™',
+            'soon' => 'wkrótce™',
         ],
     ],
     'states' => [

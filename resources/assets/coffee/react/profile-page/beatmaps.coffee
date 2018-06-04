@@ -24,6 +24,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
     allBeatmapsets =
       favouriteBeatmapsets: @props.favouriteBeatmapsets
       rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
+      lovedBeatmapsets: @props.lovedBeatmapsets
       unrankedBeatmapsets: @props.unrankedBeatmapsets
       graveyardBeatmapsets: @props.graveyardBeatmapsets
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Måste vara inloggad för att redigera.', // Base text changed from "log" to "sign"
+            'null_user' => 'Måste vara inloggad för att redigera.',
             'system_generated' => 'System-genererade inlägg kan inte redigeras.',
             'wrong_user' => 'Måste vara ägare av inlägget för att redigera.',
         ],
@@ -31,14 +31,35 @@ return [
         'empty' => 'Inget har hänt... än.',
     ],
 
+    'index' => [
+        'deleted_beatmap' => 'raderad',
+        'title' => 'Beatmap diskussioner',
+
+        'form' => [
+            'deleted' => 'Inkludera raderade diskussioner',
+
+            'user' => [
+                'label' => 'Användare',
+                'overview' => 'Aktivitetsöversikt',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Skapad',
+        'deleted_at' => 'Borttagen',
+        'message_type' => 'Typ',
+        'permalink' => 'Permalänk',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Inga av dessa inlägg har med mig att göra',
-        'notice' => 'Dessa är inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera innan du lägger upp ett inlägg.',
+        'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Logga in för att svara', // Base text changed from "log" to "sign"
+            'guest' => 'Logga in för att svara',
             'user' => 'Svara',
         ],
     ],
@@ -51,9 +72,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
+        'admin' => 'administratör',
         'bng' => 'nominerade',
-        'owner' => 'mapper',
+        'owner' => 'mappare',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Alla',
+        'label' => 'Filtrera på användare',
     ],
 ];

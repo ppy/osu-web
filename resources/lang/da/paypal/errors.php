@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Den ønskede betalingsmetode blev afvist af PayPal.',
     'invalid_resource_id' => 'Ingen betalingsinformation blev fundet.',
-    'unknown' => 'Betalingen blev afvist, og vi er ikke sikre på hvorfor.',
+    'unknown' => "Betalingen blev afvist, og vi er ikke sikre på hvorfor.",
 ];

@@ -147,6 +147,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
+    Route::post('changelog/github', 'ChangelogController@github');
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::get('icons', 'HomeController@getIcons');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
@@ -215,7 +216,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
 
-    Route::post('update-cart', 'Store\CartController@store'); // temporarily to avoid 404ing after deploy
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');
@@ -354,7 +354,7 @@ route_redirect('s/{beatmapset}', 'beatmapsets.show');
 route_redirect('u/{user}', 'users.show');
 route_redirect('forum', 'forum.forums.index');
 route_redirect('mp/{match}', 'matches.show');
-route_redirect('wiki/{page?}', 'wiki.show');
+route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
 if (Config::get('app.debug')) {

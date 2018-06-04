@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => 'Nie można pobrać tej beatmapy.',
+        'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
     ],
@@ -34,14 +34,15 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'stworzona przez ',
+            'mapped_by' => 'autorstwa :mapper',
             'submitted' => 'dodana ',
             'updated' => 'ostatnio aktualizowana ',
+            'updated_timeago' => 'ostatnio zaktualizowana :timeago',
             'ranked' => 'rankingowa od ',
             'approved' => 'zatwierdzona od ',
             'qualified' => 'zakwalifikowana od ',
             'loved' => 'ulubiona społeczności od ',
-            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!',
+            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'download' => [
                 '_' => 'Pobierz',
                 'video' => 'z wideo',
@@ -62,20 +63,20 @@ return [
             'total_length' => 'Długość',
             'bpm' => 'BPM',
             'count_circles' => 'Ilość kółek',
-            'count_sliders' => 'Ilość sliderów',
+            'count_sliders' => 'Liczba sliderów',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
-            'playcount' => 'Ilość zagrań',
+            'playcount' => 'Liczba zagrań',
         ],
         'info' => [
-            'points-of-failure' => 'Wykres porażek',
-            'success-rate' => 'Wskaźnik sukcesu',
-            'genre' => 'Gatunek',
-            'no_scores' => 'Dane są nadal ładowane...',
-            'language' => 'Język',
             'description' => 'Opis',
+            'genre' => 'Gatunek',
+            'language' => 'Język',
+            'no_scores' => 'Dane są nadal ładowane...',
+            'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
+            'success-rate' => 'Wskaźnik sukcesu',
             'tags' => 'Tagi',
             'unranked' => 'Nierankingowa beatmapa',
         ],
@@ -84,7 +85,7 @@ return [
             'country' => 'Ranking krajowy',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
-            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za posiadanie statusu donatora!',
+            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
             'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
             'title' => 'Tabela wyników',
 

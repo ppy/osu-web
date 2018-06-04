@@ -222,7 +222,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
       discussions = []
 
-      for discussion in @props.currentDiscussions.timeline
+      for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
         continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
 
@@ -233,7 +233,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
       @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        discussions: discussions
+        discussions: _.sortBy discussions, 'timestamp'
 
     @cache.nearbyDiscussions.discussions
 
@@ -329,7 +329,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
-        'fas fa-ellipsis-h'
+        '_spinner'
       else
         BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
 

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
 @section("content")
     @php
@@ -54,14 +54,21 @@
         </div>
     </div>
     <div class="osu-page osu-page--small osu-page--rankings">
-        <div class="ranking-page">
-            <div class="ranking-page__jump-target" id="jump-target"></div>
-            @yield("scores")
-        </div>
         @include('objects._pagination', [
             'object' => $scores
                 ->appends(['country' => $country['acronym']])
-                ->fragment('jump-target')
+                ->fragment('scores')
+        ])
+
+        <div class="ranking-page">
+            <div class="ranking-page__jump-target" id="scores"></div>
+            @yield('scores')
+        </div>
+
+        @include('objects._pagination', [
+            'object' => $scores
+                ->appends(['country' => $country['acronym']])
+                ->fragment('scores')
         ])
     </div>
 @endsection

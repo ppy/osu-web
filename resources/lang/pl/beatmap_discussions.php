@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Musisz się zalogować, aby zedytować post.',
-            'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
-            'wrong_user' => 'Tylko autor może edytować ten post.',
+            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanych postów.',
+            'wrong_user' => 'Tylko autor posta może go zedytować.',
         ],
     ],
 
@@ -32,7 +32,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'usunięte',
+        'deleted_beatmap' => 'usunięta',
         'title' => 'Dyskusje',
 
         'form' => [
@@ -53,8 +53,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Żadna z tych odpowiedzi nie jest istotna',
-        'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem.',
+        'confirm' => 'Żaden z tych postów nie jest istotny',
+        'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
     ],
 
     'reply' => [
@@ -74,7 +74,12 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'owner' => 'mapper',
+        'owner' => 'twórca',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Wszyscy',
+        'label' => 'Filtruj według użytkownika',
     ],
 ];

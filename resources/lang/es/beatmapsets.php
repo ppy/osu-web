@@ -20,9 +20,9 @@
 
 return [
     'availability' => [
-        'disabled' => 'Este beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Partes de este beatmap han sido eliminadas por la solicitud de su creador o un titular de derechos de autor.',
-        'more-info' => 'Más información.',
+        'disabled' => 'Este Beatmap no está actualmente disponible para descargar.',
+        'parts-removed' => 'Algunas partes de este beatmap se han eliminado a petición del creador o de un titular de derechos de autor.',
+        'more-info' => 'Marca aquí para más información.',
     ],
 
     'index' => [
@@ -34,26 +34,27 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
-            'made-by' => 'creado por ',
-            'submitted' => 'publicado el ',
-            'updated' => 'actualizado el ',
-            'ranked' => 'rankeado el ',
+            'mapped_by' => 'mapeado por :mapper',
+            'submitted' => 'enviado en ',
+            'updated' => 'última actualización en ',
+            'updated_timeago' => 'actualizado por última vez el :timeago',
+            'ranked' => 'clasificado en ',
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
             'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
             'download' => [
                 '_' => 'Descargar',
-                'video' => 'con video',
-                'no-video' => 'sin video',
+                'video' => 'con Video',
+                'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => 'Marcar como favorito',
-            'unfavourite' => 'Desmarcar como favorito',
+            'favourite' => 'Marcar como favorito este beatmapset',
+            'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'favourited_count' => '+ ¡1 persona más!|+ ¡:count personas más!',
         ],
         'stats' => [
-            'cs' => 'Tamaño de Círculo',
+            'cs' => 'Tamaño del Círculo',
             'cs-mania' => 'Cantidad de Teclas',
             'drain' => 'Drenado de HP',
             'accuracy' => 'Precisión',
@@ -74,8 +75,8 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'points-of-failure' => 'Puntos de Fracaso',
-            'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
+            'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap no rankeado',
         ],
@@ -85,11 +86,12 @@ return [
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-            'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-            'title' => 'Puntuaciones',
+            'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de país!',
+            'title' => 'Tabla de puntuaciones',
+
             'headers' => [
                 'accuracy' => 'Precisión',
-                'combo' => 'Combo máx.',
+                'combo' => 'Combo máximo',
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
                 'player' => 'Jugador',
@@ -98,15 +100,16 @@ return [
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
+
             'no_scores' => [
                 'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
+                'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
                 'unranked' => 'Beatmap no rankeado.',
             ],
             'score' => [
-                'first' => 'Liderando',
+                'first' => 'A la cabeza',
                 'own' => 'Tu mejor puntuación',
             ],
         ],

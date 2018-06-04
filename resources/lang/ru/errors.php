@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Войдите для продолжения.', // Base text changed from "log" to "sign"
+        'http-401' => 'Войдите для продолжения.',
         'http-403' => 'Доступ запрещён.',
         'http-429' => 'Слишком много попыток. Попробуйте позже.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'У вас слишком много избранных карт! Удалите одну из них для продолжения.',
     ],
-    'logged_out' => 'Вы вышли из аккаунта. Пожалуйста войдите и попробуйте ещё раз.', // Base text changed from "log" to "sign"
+    'logged_out' => 'Вы вышли из аккаунта. Пожалуйста войдите и попробуйте ещё раз.',
     'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',
     'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
     'unknown' => 'Возникла неизвестная ошибка.',

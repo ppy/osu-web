@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,20 +19,55 @@
  */
 
 return [
-    'buttons' => [
-        'cancel' => 'Cancella',
-        'post' => 'Posta',
-        'reply' => 'Rispondi',
-        'reset' => 'Resetta',
-        'save' => 'Salva',
-        'show_more' => 'mostra altro',
-        'delete' => 'Elimina',
+    'confirmation' => 'Sei sicuro?',
+    'saved' => 'Salvato',
+
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' e ',
+        'last_word_connector' => ', e ',
     ],
 
-    'confirmation' => 'Sei sicuro?',
+    'buttons' => [
+        'cancel' => 'Cancella',
+        'change' => 'modifica',
+        'click_to_copy' => 'clicca per copiare negli appunti',
+        'click_to_copy_copied' => 'copiato negli appunti!',
+        'delete' => 'Elimina',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link copiato',
+        'post' => 'Posta',
+        'reply' => 'Rispondi',
+        'reply_reopen' => 'Rispondi e Riapri',
+        'reply_resolve' => 'Rispondi e Risolvi',
+        'reset' => 'Resetta',
+        'save' => 'Salva',
+        'saving' => 'Salvando...',
+        'see_more' => 'vedi più',
+        'show_more' => 'mostra altro',
+        'upload_image' => 'carica immagine',
+    ],
 
     'count' => [
+        'badges' => ':count medaglia |:count medaglie',
+        'days' => ':count giorno |:count giorni',
+        'hour_short_unit' => 'ora|ore',
+        'hours' => ':count ora|:count ore',
         'item' => ':count unità|:count unità',
+        'minute_short_unit' => 'minuto|minuti',
+        'months' => ':count mese|:count mesi',
+        'second_short_unit' => 'secondo|secondi',
+        'years' => ':count anno|:count anni',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYY',
+        ],
     ],
 
     'device' => [
@@ -46,6 +81,11 @@ return [
         'target' => 'trascina qui per caricare',
     ],
 
+    'pagination' => [
+        'previous' => 'prec',
+        'next' => 'succ',
+    ],
+
     'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
@@ -55,15 +95,11 @@ return [
         'count_miss' => 'Errori',
     ],
 
-    'pagination' => [
-        'previous' => 'prec',
-        'next' => 'succ',
-    ],
-
     'time' => [
         'days_ago' => ':count giorni fa|:count giorni fa',
         'hours_ago' => ':count ore fa|:count ore fa',
         'now' => 'ora',
+        'remaining' => 'Tempo rimanente',
     ],
 
     'title' => [

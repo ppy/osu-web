@@ -29,6 +29,15 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
+  classWithModifiers: (className, modifiers) ->
+    ret = className
+
+    if modifiers?
+      ret += " #{className}--#{modifier}" for modifier in modifiers
+
+    ret
+
+
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
 
@@ -225,8 +234,22 @@
     $('#overlay').is(':visible')
 
 
-  trans: (key, replacements) ->
-    Lang.get key, replacements
+  presence: (string) ->
+    if string? && string != '' then string else null
+
+
+  trans: (key, replacements, locale) ->
+    if locale?
+      initialLocale = Lang.getLocale()
+      Lang.setLocale locale
+      translated = Lang.get(key, replacements)
+      Lang.setLocale initialLocale
+
+      translated
+    else
+      translated = Lang.get(key, replacements) if Lang.has(key)
+
+      osu.presence(translated) ? osu.trans(key, replacements, fallbackLocale)
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -241,8 +264,18 @@
         "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
-  transChoice: (key, count, replacements) ->
-    Lang.choice key, count, replacements
+  transChoice: (key, count, replacements, locale) ->
+    if locale?
+      initialLocale = Lang.getLocale()
+      Lang.setLocale locale
+      translated = Lang.choice(key, count, replacements)
+      Lang.setLocale initialLocale
+
+      translated
+    else
+      translated = Lang.choice(key, count, replacements) if Lang.has(key)
+
+      osu.presence(translated) ? osu.transChoice(key, count, replacements, fallbackLocale)
 
 
   uuid: ->

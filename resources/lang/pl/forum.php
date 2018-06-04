@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,20 +20,20 @@
 
 return [
     'pinned_topics' => 'Przypięte wątki',
-    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
+    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
 
     'covers' => [
         'create' => [
-            '_' => 'Ustaw tło nagłówka',
+            '_' => 'Ustaw tło',
             'button' => 'Dodaj tło',
-            'info' => 'Nagłówek powinien mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
+            'info' => 'Tło powinno mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
         'destroy' => [
-            '_' => 'Usuń tło nagłówka',
-            'confirm' => 'Na pewno chcesz usunąć tło nagłówka?',
+            '_' => 'Usuń tło',
+            'confirm' => 'Czy na pewno chcesz usunąć tło?',
         ],
     ],
 
@@ -48,32 +48,33 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Na pewno usunąć odpowiedź?',
-        'confirm_restore' => 'Na pewno przywrócić odpowiedź?',
-        'edited' => 'Ostatnio edytowe przez :user :when, łącznie edytowane :count razy.',
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
+        'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count razy.',
         'posted_at' => 'opublikowane :when',
 
         'actions' => [
-            'destroy' => 'Usuń odpowiedź',
-            'restore' => 'Przywróć odpowiedź',
-            'edit' => 'Edytuj odpowiedź',
+            'destroy' => 'Usuń post',
+            'restore' => 'Przywróć post',
+            'edit' => 'Edytuj post',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Przejdź do odpowiedzi',
-        'post_number_input' => 'wprowadź numer odpowiedzi',
-        'total_posts' => 'łącznie :posts_count odpowiedzi',
+        'go_to_post' => 'Przejdź do posta',
+        'post_number_input' => 'wprowadź numer posta',
+        'total_posts' => 'łącznie :posts_count postów',
     ],
 
     'topic' => [
         'deleted' => 'usunięty wątek',
-        'go_to_latest' => 'pokaż najnowszą odpowiedź',
+        'go_to_latest' => 'pokaż najnowszy post',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
-        'new_topic' => 'Stwórz nowy wątek',
+        'new_topic' => 'Utwórz nowy wątek',
+        'new_topic_login' => 'Zaloguj się, aby utworzyć nowy wątek',
         'post_reply' => 'Opublikuj',
-        'reply_box_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'started_by' => 'przez :user',
 
         'create' => [
@@ -84,17 +85,17 @@ return [
             'submit' => 'Opublikuj',
 
             'placeholder' => [
-                'body' => 'Tutaj wpisz zawartość wątku',
+                'body' => 'Tutaj wpisz zawartość posta',
                 'title' => 'Kliknij, aby wprowadzić tytuł',
             ],
         ],
 
         'jump' => [
-            'enter' => 'kliknij, aby przejść do specyficznej odpowiedzi',
-            'first' => 'przejdź do pierwszej odpowiedzi',
-            'last' => 'przejdź do ostatniej odpowiedzi',
-            'next' => 'pomiń następne 10 odpowiedzi',
-            'previous' => 'cofnij się o 10 odpowiedzi',
+            'enter' => 'kliknij, aby przejść do specyficznego posta',
+            'first' => 'przejdź do pierwszego posta',
+            'last' => 'przejdź do ostatniego posta',
+            'next' => 'pomiń następne 10 postów',
+            'previous' => 'cofnij się o 10 postów',
         ],
 
         'post_edit' => [
@@ -113,6 +114,7 @@ return [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
+
             'info' => [
                 'total' => 'Liczba zasubskrybowanych wątków: :total.',
                 'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
@@ -121,8 +123,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Cofnąć subskrybcję wątku?',
-                'title' => 'Cofnij subskrybcję',
+                'confirmation' => 'Czy na pewno chcesz przestać subskrybować ten wątek?',
+                'title' => 'Przestań subskrybować',
             ],
         ],
     ],
@@ -146,16 +148,15 @@ return [
 
             'poll' => [
                 'length' => 'Przeprowadź ankietę przez',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dni',
-                'length_info' => 'Zostaw puste dla niekończącej się ankiety',
+                'length_info' => 'Zostaw puste dla niekończącej się ankiety.',
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
-                'max_options_info' => 'Ilość możliwości, które każdy użytkownik może wybrać podczas głosowania.',
+                'max_options_info' => 'Liczba możliwości, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
-                'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
+                'options_info' => 'Umieść wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
                 'vote_change' => 'Zezwól na zmianę głosów.',
-                'vote_change_info' => 'Jeżeli ta opcja będzie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
+                'vote_change_info' => 'Jeżeli ta opcja zostanie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
             ],
         ],
 
@@ -211,11 +212,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Ten wątek jest został zablokowany nie można w nim odpowiadać',
-            'to_0' => 'Odblokuj wątek',
-            'to_0_done' => 'Wątek został odblokowany',
-            'to_1' => 'Zablokuj wątek',
-            'to_1_done' => 'Wątek został zablokowany',
+            'is_locked' => 'Ten wątek został zamknięty i nie możesz w nim odpowiadać',
+            'to_0' => 'Otwórz wątek',
+            'to_0_done' => 'Wątek został otworzony',
+            'to_1' => 'Zamknij wątek',
+            'to_1_done' => 'Wątek został zamknięty',
         ],
 
         'moderate_move' => [
@@ -228,21 +229,21 @@ return [
             'to_1' => 'Przypnij ten wątek',
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłosznie',
+            'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 
         'show' => [
-            'deleted-posts' => 'Usunięte odpowiedzi',
-            'total_posts' => 'Wszystkie odpowiedzi',
+            'deleted-posts' => 'Usunięte posty',
+            'total_posts' => 'Wszystkie posty',
 
             'feature_vote' => [
                 'current' => 'Priorytet: +:count',
-                'do' => 'Wspomóż tę prośbę',
+                'do' => 'Nagłośnij tę prośbę',
 
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
                     'current' => 'Pozostało ci :votes głosów.',
-                    'not_enough' => 'Nie posiadasz żadnych głosów',
+                    'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
             ],
 
@@ -251,8 +252,8 @@ return [
 
                 'detail' => [
                     'end_time' => 'Ankieta zakończy się :time',
-                    'ended' => 'Ankieta zakończona :time',
-                    'total' => 'Wszystkich głosów: :count',
+                    'ended' => 'Ankieta zakończyła się :time',
+                    'total' => 'Liczba wszystkich głosów: :count',
                 ],
             ],
         ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,14 +20,35 @@
 
 return [
     'admin' => [
-        'warehouse' => 'ウェアハウス',
+        'warehouse' => '倉庫',
+    ],
+
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
     ],
 
     'checkout' => [
         'cart_problems' => 'カートに問題があります！',
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
-        'error' => '精算中に問題が発生しました。',
+        'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
         'pending_checkout' => [
             'line_1' => '前回の精算が完了していません。',
@@ -39,12 +60,28 @@ return [
 
     'discount' => ':percent%の割引',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'あなたの注文を受け付けました！',
+        ],
+    ],
+
     'order' => [
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':nameが:usernameに(:duration)',
             ],
             'quantity' => '個数',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

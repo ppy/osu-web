@@ -54,22 +54,6 @@ class Post extends Model implements AfterCommit
     private $skipBeatmapPostRestrictions = false;
     private $skipBodyPresenceCheck = false;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Elasticsearch mappings; can't put in a Trait.
-    |--------------------------------------------------------------------------
-    */
-    const ES_MAPPINGS = [
-        'post_id' => ['type' => 'long'],
-        'topic_id' => ['type' => 'long'],
-        'poster_id' => ['type' => 'long'],
-        'forum_id' => ['type' => 'long'],
-        'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']],
-    ];
-
     public function forum()
     {
         return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
@@ -298,11 +282,6 @@ class Post extends Model implements AfterCommit
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
-    }
-
-    public function scopeLast($query)
-    {
-        return $query->orderBy('post_id', 'desc')->limit(1);
     }
 
     public function scopeShowDeleted($query, $showDeleted)

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'header' => 'Classificação de :type',
     'type' => [
         'performance' => 'Desempenho',
-        'charts' => 'Gráficos',
+        'charts' => 'Destaques',
         'score' => 'Pontuação',
         'country' => 'País',
     ],
@@ -31,7 +31,7 @@ return [
         'active_users' => 'Usuários Ativos',
         'country' => 'País',
         'play_count' => 'Vezes Jogadas',
-        'performance' => 'Performance',
+        'performance' => 'Desempenho',
         'total_score' => 'Pontuação Total',
         'ranked_score' => 'Pontuação Ranqueada',
         'average_score' => 'Pont. Média',

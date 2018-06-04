@@ -56,6 +56,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
+        'user_allow_pm' => 'boolean',
         'user_timezone', 'float',
     ];
 
@@ -81,25 +82,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
-    ];
-
-    const ES_MAPPINGS = [
-        'is_old' => ['type' => 'boolean'],
-        'user_lastvisit' => ['type' => 'date'],
-        'username' => [
-            'type' => 'text',
-            'analyzer' => 'username_lower',
-            'fields' => [
-                // for exact match
-                'raw' => ['type' => 'keyword'],
-                // try match sloppy search guesses
-                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
-                // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
-            ],
-        ],
-        'user_warnings' => ['type' => 'short'],
-        'user_type' => ['type' => 'short'],
     ];
 
     private $memoized = [];
@@ -134,7 +116,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    public function revertUsername($type = 'revert')
+    public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
         // TODO: validation errors instead?
         if ($this->user_id <= 1) {
@@ -145,11 +127,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException(['username_previous is blank.']);
         }
 
-        $this->updateUsername($this->username_previous, null, $type);
-        \Log::debug("username reverted: {$this->username}");
+        return $this->updateUsername($this->username_previous, null, $type);
     }
 
-    public function changeUsername($newUsername, $type = 'support')
+    public function changeUsername($newUsername, $type = 'support') : UsernameChangeHistory
     {
         // TODO: validation errors instead?
         if ($this->user_id <= 1) {
@@ -161,12 +142,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException($errors);
         }
 
-        DB::transaction(function () use ($newUsername, $type) {
+        return DB::transaction(function () use ($newUsername, $type) {
             // check for an exsiting inactive username and renames it.
             static::renameUsernameIfInactive($newUsername);
 
-            $this->updateUsername($newUsername, $this->username, $type);
-            \Log::debug("username changed: {$this->username}");
+            return $this->updateUsername($newUsername, $this->username, $type);
         });
     }
 
@@ -185,12 +165,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    private function updateUsername($newUsername, $oldUsername, $type)
+    private function updateUsername($newUsername, $oldUsername, $type) : UsernameChangeHistory
     {
         $this->username_previous = $oldUsername;
         $this->username = $newUsername;
 
-        DB::transaction(function () use ($newUsername, $oldUsername, $type) {
+        return DB::transaction(function () use ($newUsername, $oldUsername, $type) {
             Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
             // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
             Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
@@ -210,6 +190,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
+
+            return $history;
         });
     }
 
@@ -448,6 +430,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $this->attributes['osu_playstyle'] = $styles;
+    }
+
+    public function getPmFriendsOnlyAttribute()
+    {
+        return !$this->user_allow_pm;
+    }
+
+    public function setPmFriendsOnlyAttribute($value)
+    {
+        $this->user_allow_pm = !$value;
     }
 
     public function setUsernameAttribute($value)
@@ -729,6 +721,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function badges()
     {
         return $this->hasMany(UserBadge::class, 'user_id');
+    }
+
+    public function githubUsers()
+    {
+        return $this->hasMany(GithubUser::class, 'user_id');
     }
 
     public function monthlyPlaycounts()
@@ -1285,7 +1282,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
-        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+        $lastPost = $this->forumPosts()->select('post_time')->last();
 
         // FIXME: not null column, hence default 0. Change column to allow null
         $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;
@@ -1451,6 +1448,14 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->graveyard()
+            ->active()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetsLoved()
+    {
+        return $this->beatmapsets()
+            ->loved()
             ->active()
             ->with('beatmaps');
     }

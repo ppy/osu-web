@@ -77,7 +77,7 @@ class BBCodeFromDB
         $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('collapsed text'), $text);
+        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('SPOILER'), $text);
         $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
@@ -221,7 +221,8 @@ class BBCodeFromDB
         preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
 
         foreach ($users as $user) {
-            $userLink = link_to_user($user['id'], $user['id'], null);
+            $username = html_entity_decode_better($user['id']);
+            $userLink = link_to_user($username, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
 

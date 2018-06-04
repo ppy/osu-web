@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -180,10 +180,20 @@ return [
                 'rank' => 'Rank Achieved',
                 'played' => 'Played',
             ],
+            'sorting' => [
+                'title' => 'title',
+                'artist' => 'artist',
+                'difficulty' => 'difficulty',
+                'updated' => 'updated',
+                'ranked' => 'ranked',
+                'rating' => 'rating',
+                'plays' => 'plays',
+                'relevance' => 'relevance',
+                'nominations' => 'nominations',
+            ],
         ],
         'mode' => 'Mode',
         'status' => 'Rank Status',
-        'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
     ],

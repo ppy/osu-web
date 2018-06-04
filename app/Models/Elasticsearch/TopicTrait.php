@@ -46,17 +46,12 @@ trait TopicTrait
             'topic_id' => $this->topic_id,
             'poster_id' => $this->topic_poster,
             'forum_id' => $this->forum_id,
-            'post_time' => $this->topic_time->toIso8601String(),
+            'post_time' => json_time($this->topic_time),
             'search_content' => $this->topic_title,
             'type' => 'topics',
         ];
 
         return $values;
-    }
-
-    public static function esAnalysisSettings()
-    {
-        return Post::esAnalysisSettings();
     }
 
     public static function esIndexName()
@@ -71,9 +66,9 @@ trait TopicTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return Post::esMappings();
+        return Post::esSchemaFile();
     }
 
     public static function esType()

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'L\'horodatage est correct, mais la beatmap est introuvable.',
-        'beatmapset_no_hype' => 'Cette beatmap ne peut pas être hypée.',
+        'beatmapset_no_hype' => "Cette beatmap ne peut pas être hypée.",
         'hype_requires_null_beatmap' => 'La hype doit être réalisée dans la section Général (toutes les difficultés).',
         'invalid_beatmap_id' => 'Difficulté spécifiée invalide.',
         'invalid_beatmapset_id' => 'Beatmap spécifiée invalide',
@@ -47,7 +47,7 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'L\'horodotage spécifié dépasse la longeur de la beatmap',
+            'exceeds_beatmapset_length' => 'L\'horodotage spécifié dépasse la longueur de la beatmap',
             'negative' => "L'horodotage ne peut pas être négatif",
         ],
     ],
@@ -70,22 +70,23 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
             'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
-            'minimum_one_selection' => "Un minimum d'une réponse par utilisateur est nécessaire.",
+            'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
             'minimum_two_options' => 'Au moins 2 réponses nécéssaires.',
             'too_many_options' => 'Nombre maximal de réponses dépassés.',
         ],
 
         'topic_vote' => [
-            'required' => 'Séléctionner une option pour voter.',
+            'required' => 'Séléctionnez une option pour voter.',
             'too_many' => 'Vous avez choisi trop de réponses.',
         ],
     ],
 
     'user' => [
-        'contains_username' => "Le mot de passe ne doit pas contenir de nom d'utilisateur.",
+        'contains_username' => 'Le mot de passe ne doit pas contenir de nom d\'utilisateur.',
         'email_already_used' => 'Adresse email déjà utilisée.',
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
-        'invalid_email' => 'Ça ne semble pas être une adresse email.',
+        'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
+        'invalid_email' => "Ça ne semble pas être une adresse email valide.",
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
         'username_available_in' => 'Ce nom d\'utilisateur sera disponible dans :duration.',
@@ -93,15 +94,15 @@ return [
         'username_invalid_characters' => 'Le nom d\'utilisateur contient des caractères invalides.',
         'username_in_use' => 'Le nom d\'utilisateur est déjà utilisé !',
         'username_no_space_userscore_mix' => 'Merci d\'utiliser soit des underscores ou des espaces, pas les deux ensemble !',
-        'username_no_spaces' => 'Le nom d\'utilisateur ne peut pas commencer ou terminer avec des espaces',
+        'username_no_spaces' => "Le nom d'utilisateur ne peut pas commencer ou terminer avec des espaces",
         'username_not_allowed' => 'Ce nom d\'utilisateur n\'est pas autorisé.',
         'username_too_short' => 'Le nom d\'utilisateur est trop court.',
         'username_too_long' => 'Le nom d\'utilisateur est trop long.',
         'weak' => 'Mot de passe interdit.',
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
-        'wrong_email_confirmation' => "La confirmation de l'email ne correspond pas.",
+        'wrong_email_confirmation' => 'La confirmation de l\'email ne correspond pas.',
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
-        'too_long' => 'Longeur maximale atteinte - elle est de :limit caractères.',
+        'too_long' => 'Longueur maximale atteinte - elle est de :limit caractères.',
 
         'change_username' => [
             'supporter_required' => [

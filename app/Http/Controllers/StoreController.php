@@ -172,12 +172,12 @@ class StoreController extends Controller
 
     public function postAddToCart()
     {
-        $result = $this->userCart()->updateItem(Request::input('item', []), true);
+        $error = $this->userCart()->updateItem(Request::input('item', []), true);
 
-        if ($result[0]) {
+        if ($error === null) {
             return ujs_redirect(route('store.cart.show'));
         } else {
-            return error_popup($result[1]);
+            return error_popup($error);
         }
     }
 }

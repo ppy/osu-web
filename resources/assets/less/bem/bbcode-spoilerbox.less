@@ -33,17 +33,22 @@
     display: none;
 
     .@{top}.js-spoilerbox--open & {
+      .default-border-radius();
       display: block;
+      background: #ddd;
+      padding: 20px;
+      margin-top: 4px;
     }
   }
 
   &__link {
-    color: @yellow-darker;
+    color: #333;
+    font-weight: bold;
 
     &:focus,
     &:hover,
     &:active {
-      color: @yellow-dark;
+      color: #111;
     }
   }
 }

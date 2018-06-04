@@ -32,6 +32,7 @@ use Exception;
 use Illuminate\Http\Request as HttpRequest;
 use Log;
 use Request;
+use Sentry;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
 
@@ -106,6 +107,10 @@ class XsollaController extends Controller
             return $this->errorResponse('INVALID_USER', 'INVALID_USER', 404);
         } catch (Exception $exception) {
             Log::error($exception);
+            if (config('sentry.dsn')) {
+                Sentry::captureException($exception);
+            }
+
             // status code needs to be a 4xx code to make Xsolla an error to the user.
             return $this->errorResponse('Something went wrong.', 'FATAL_ERROR', 422);
         }

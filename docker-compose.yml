@@ -26,7 +26,7 @@ services:
     ports:
       - "8080:80"
   db:
-    image: mysql:latest
+    image: mysql:5.7
     container_name: osuweb-mysql
     volumes:
       - database:/var/lib/mysql

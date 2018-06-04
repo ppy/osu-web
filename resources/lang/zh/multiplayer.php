@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,11 @@
 return [
     'match' => [
         'header' => '多人游戏',
-        'team-types' => [ //TODO 待翻译
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+        'team-types' => [
+            'head-to-head' => '个人',
+            'tag-coop' => '接力',
+            'team-vs' => '组队',
+            'tag-team-vs' => '组队接力',
         ],
         'events' => [
             'player-left' => ':user 离开了房间',

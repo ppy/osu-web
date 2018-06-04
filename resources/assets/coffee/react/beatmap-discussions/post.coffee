@@ -100,10 +100,12 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   color: userColor
                 @props.user.username
 
-              a
-                className: "#{bn}__user-modding-history-link"
-                href: laroute.route('users.modding.index', user: @props.user.id)
-                i className: 'fas fa-align-left'
+              if !@props.user.is_bot
+                a
+                  className: "#{bn}__user-modding-history-link"
+                  href: laroute.route('users.modding.index', user: @props.user.id)
+                  title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
+                  i className: 'fas fa-align-left'
 
             div
               className: "#{bn}__user-badge"

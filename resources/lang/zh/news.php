@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => '列表',
-        'news-show' => '新闻', //未使用字段
+        'news-show' => '新闻',
     ],
 
     'index' => [
@@ -43,12 +43,12 @@ return [
     ],
 
     'store' => [
-        'button' => '更新', //未使用字段
-        'ok' => '列表已更新.', //未使用字段
+        'button' => '更新',
+        'ok' => '列表已更新.',
     ],
 
     'update' => [
         'button' => '更新',
-        'ok' => '新闻已更新.', //未使用字段
+        'ok' => '新闻已更新。',
     ],
 ];

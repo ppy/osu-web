@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,27 +21,29 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Nie możesz cofnąć nadania priorytetu.',
-            'has_reply' => 'Nie możesz zamknąć dyskusji z odpowiedziami',
+            'is_hype' => 'Nie możesz cofnąć nagłośnienia.',
+            'has_reply' => 'Nie możesz usunąć dyskusji z odpowiedziami',
         ],
         'nominate' => [
-            'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
+            'exhausted' => 'Osiągnięto dzienny limit nominacji, spróbuj ponownie jutro.',
+            'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
+            'owner' => "Nie możesz nominować własnej beatmapy.",
         ],
         'resolve' => [
-            'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zamknąć tę dyskusję.',
+            'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zakończyć dyskusję.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => 'Nie możesz głosować we własnej dyskusji!',
-            'wrong_beatmapset_state' => 'Możesz głosować tylko na oczekujących beatmapach.',
+            'owner' => "Nie możesz głosować we własnej dyskusji!",
+            'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatycznie wygenerowany wątek nie może być edytowany.',
-            'not_owner' => 'Tylko autor wątku może go edytować.',
+            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
+            'not_owner' => 'Tylko autor posta może go edytować.',
         ],
     ],
 
@@ -65,56 +67,61 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Nie możesz zmienić swojego głosu po zakończeniu głosowania dla tego konkursu.',
+        'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Tylko ostatnia odpowiedź może zostać usunięta.',
-                'locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
+                'only_last_post' => 'Tylko ostatni post może zostać usunięty.',
+                'locked' => 'Nie możesz usuwać postów w zamkniętym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'not_owner' => 'Tylko autor wątka może go usunąć.',
+                'not_owner' => 'Tylko autor posta może go usunąć.',
             ],
 
             'edit' => [
                 'deleted' => 'Nie możesz edytować usuniętego posta.',
-                'locked' => 'Ten wątek jest chroniony przed edycją.',
+                'locked' => 'Ten post jest chroniony przed edycją.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'not_owner' => 'Tylko autor może edytować wątek.',
-                'topic_locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
+                'not_owner' => 'Tylko autor posta może go edytować.',
+                'topic_locked' => 'Nie możesz edytować postów w zamkniętym wątku.',
+            ],
+
+            'store' => [
+                'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
+                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Odpowiedź została już stworzony. Poczekaj chwilę albo edytuj swoją poprzednią odpowiedź.',
-                'locked' => 'Nie możesz odpowiedzieć w zablokowanym wątku.',
+                'double_post' => 'Post został przed chwilą utworzony. Poczekaj chwilę albo zedytuj swój ostatni post.',
+                'locked' => 'Nie możesz odpowiadać w zamkniętym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do odpowiadania.',
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
-                    'restricted' => 'Nie możesz odpowiadać podczas blokady konta.',
-                    'silenced' => 'Nie możesz odpowiadać podczas uciszenia.',
+                    'restricted' => "Nie możesz odpowiadać podczas blokady konta.",
+                    'silenced' => "Nie możesz odpowiadać podczas uciszenia.",
                 ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'no_permission' => 'Nie posiadasz uprawnień do stworzenia nowego wątku.',
-                'forum_closed' => 'Forum jest zamknięte i nie możesz w nim odpowiadać.',
+                'no_permission' => 'Nie posiadasz uprawnień do utworzenia nowego wątku.',
+                'forum_closed' => 'Forum zostało zamknięte i nie możesz w nim pisać.',
             ],
 
             'vote' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'over' => 'Ankieta została zakończona i nie możesz już w niej głosować.',
-                'voted' => 'Zmiana głosów jest niemożliwa.',
+                'voted' => 'Nie możesz zmienić swojego głosu.',
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
-                    'restricted' => 'Nie możesz głosować podczas blokady konta.',
-                    'silenced' => 'Nie możesz głosować podczas uciszenia.',
+                    'restricted' => "Nie możesz głosować podczas blokady konta.",
+                    'silenced' => "Nie możesz głosować podczas uciszenia.",
                 ],
             ],
 
@@ -125,8 +132,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Wybrano nieprawidłowy nagłówek.',
-                'not_owner' => 'Tylko autor może edytować nagłówek.',
+                'uneditable' => 'Wybrano nieprawidłowe tło.',
+                'not_owner' => 'Tylko autor może edytować tło.',
             ],
         ],
 
@@ -139,16 +146,16 @@ return [
 
     'unauthorized' => 'Odmowa dostępu.',
 
-    'silenced' => 'Nie możesz tego zrobić podczas uciszenia.',
+    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
 
-    'restricted' => 'Nie możesz tego zrobić podczas blokady konta.',
+    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Strona użytkownika jest zablokowana.',
-                'not_owner' => 'możesz edytować tylko własną stronę użytkownika.',
-                'require_supporter_tag' => 'Status donatora jest wymagany.',
+                'locked' => 'Strona użytkownika została zablokowana.',
+                'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
+                'require_supporter_tag' => 'Wymagany jest status donatora.',
             ],
         ],
     ],

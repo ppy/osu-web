@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '選擇的支付方式被 Paypal 拒絕。',
-    'invalid_resource_id' => '找不到支付信息。',
-    'unknown' => '由於未知原因，支付被拒絕。',
+    'instrument_declined' => '選擇的付款方式遭 Paypal 拒絕。',
+    'invalid_resource_id' => '找不到付款資訊。',
+    'unknown' => "由於不明原因，您的付款遭到拒絕。",
 ];

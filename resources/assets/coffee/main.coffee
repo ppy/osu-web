@@ -18,7 +18,6 @@
 
 @polyfills ?= new Polyfills
 Lang.setLocale(currentLocale)
-Lang.setFallback(fallbackLocale)
 jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
@@ -57,6 +56,7 @@ $(document).on 'turbolinks:load', ->
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
 @nav2 ?= new Nav2
+@navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview

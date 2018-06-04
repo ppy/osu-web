@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'covers' => [
             'regenerate' => 'Wygeneruj ponownie',
@@ -28,7 +27,7 @@ return [
             'removing' => 'Usuwanie...',
         ],
         'show' => [
-            'covers' => 'Zarządzaj tłami beatmapy',
+            'covers' => 'Zarządzaj tłami zestawu beatmap',
             'discussion' => [
                 '_' => 'Modowanie v2',
                 'activate' => 'aktywuj',
@@ -46,18 +45,18 @@ return [
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'Nie ustawiono nagłówka',
+                'no-cover' => 'Nie ustawiono tła',
 
                 'submit' => [
                     'save' => 'Zapisz',
                     'update' => 'Zaktualizuj',
                 ],
 
-                'title' => 'Lista nagłówków forum',
+                'title' => 'Lista teł forum',
 
                 'type-title' => [
-                    'default-topic' => 'Domyślny nagłówek wątku',
-                    'main' => 'Nagłówek forum',
+                    'default-topic' => 'Domyślne tło wątku',
+                    'main' => 'Tło forum',
                 ],
             ],
         ],

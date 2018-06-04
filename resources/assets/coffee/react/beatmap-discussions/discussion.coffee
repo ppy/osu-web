@@ -157,8 +157,10 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
   isOwner: (object = @props.discussion) =>
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
+
   canDownvote: =>
     @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
+
 
   post: (post, type) =>
     return if !post.id?

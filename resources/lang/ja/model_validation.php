@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'タイムスタンプは存在しますが譜面が見つかりませんでした',
-        'beatmapset_no_hype' => 'この譜面はHypeできません。',
+        'beatmapset_no_hype' => "この譜面はHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
         'invalid_beatmap_id' => '指定の難易度が無効です。',
         'invalid_beatmapset_id' => '指定の譜面が無効です。',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定されたタイムスタンプは譜面の長さの範囲に存在しません。',
-            'negative' => 'タイムスタンプは負の数が使えません。',
+            'negative' => "タイムスタンプは負の数が使えません。",
         ],
     ],
 
@@ -85,7 +85,8 @@ return [
         'contains_username' => 'ユーザーネームを含んだパスワードは使用できません。',
         'email_already_used' => '既に使用されているEメールアドレスです。',
         'invalid_country' => 'データベースに存在しない国です。',
-        'invalid_email' => '無効のメールアドレスです。',
+        'invalid_discord' => 'Discordのユーザー名が無効です。',
+        'invalid_email' => "無効のメールアドレスです。",
         'too_short' => '新しいパスワードが短すぎます。',
         'unknown_duplicate' => 'ユーザーネームかEメールアドレスが既に使用されています。',
         'username_available_in' => 'このユーザーネームは :duration で使用可能になります。',
@@ -93,7 +94,7 @@ return [
         'username_invalid_characters' => '指定のユーザーネームに無効の文字が含まれています。',
         'username_in_use' => '既に使用されているユーザーネームです！',
         'username_no_space_userscore_mix' => 'アンダーバーかスペースのどちらかに統一してください。',
-        'username_no_spaces' => 'ユーザーネームの端にスペースは使用できません。',
+        'username_no_spaces' => "ユーザーネームの端にスペースは使用できません。",
         'username_not_allowed' => 'このユーザーネームに使用は許可されていません。',
         'username_too_short' => 'ユーザーネームが短すぎます。',
         'username_too_long' => 'ユーザーネームが長すぎます。',

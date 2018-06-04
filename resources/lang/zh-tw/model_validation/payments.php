@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,31 +22,31 @@ return [
     'signature' => [
         'not_match' => '簽名不一致',
     ],
-    'notification_type' => 'notification_type 不可用 :type', //需要幫助
+    'notification_type' => 'notification_type 無效 :type',
     'order' => [
-        'invalid' => '訂單不可用',
+        'invalid' => '訂單無效',
         'items' => [
-            'virtual_only' => '`:provider` 支付方式無法在實物訂單中使用。',
+            'virtual_only' => '`:provider` 付款方式無法實體商品訂單中使用。',
         ],
         'status' => [
-            'not_checkout' => '嘗試在異常訂單中支付 `:state`.', //需要幫助
-            'not_paid' => '嘗試在異常訂單中退款 `:state`.', //需要幫助
+            'not_checkout' => '嘗試在異常訂單中付款 `:state`.',
+            'not_paid' => '嘗試在異常訂單中退款 `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` 參數不匹配',
+        'invalid' => '`:param` 參數不正確',
     ],
     'paypal' => [
         'not_echeck' => '訂單未付款。（:actual）',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '支付金額不符： :actual != :expected',
-            'currency' => '未以美元結算（:type）', //需要幫助
+            'amount' => '付款金額不正確： :actual != :expected',
+            'currency' => '並非以美元結算（:type）',
         ],
     ],
     'order_number' => [
         'malformed' => '訂單 ID 格式錯誤',
-        'user_id_mismatch' => 'external_id 包含了錯誤的用戶 ID', //需要幫助
+        'user_id_mismatch' => 'external_id 包含了錯誤的使用者 ID',
     ],
 ];

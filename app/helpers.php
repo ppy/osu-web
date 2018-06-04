@@ -256,16 +256,22 @@ function param_string_simple($value)
     return presence($value);
 }
 
-function product_quantity_options($product)
+function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
         $max = $product->max_quantity;
     } else {
         $max = min($product->max_quantity, $product->stock);
     }
+
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
         $opts[$i] = trans_choice('common.count.item', $i);
+    }
+
+    // include selected value separately if it's out of range.
+    if ($selected > $max) {
+        $opts[$selected] = trans_choice('common.count.item', $selected);
     }
 
     return $opts;
@@ -322,6 +328,11 @@ function require_login($text_key, $link_text_key)
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
+}
+
+function spinner()
+{
+    return '<div class="la-ball-clip-rotate"></div>';
 }
 
 function strip_utf8_bom($input)
@@ -636,8 +647,10 @@ function footer_legal_links()
 {
     return [
         'terms' => route('legal', 'terms'),
+        'privacy' => route('legal', 'privacy'),
         'copyright' => route('legal', 'copyright'),
         'server_status' => osu_url('server_status'),
+        'source_code' => osu_url('source_code'),
     ];
 }
 

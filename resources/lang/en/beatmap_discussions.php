@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap Discussions',
 
         'form' => [
+            '_' => 'Search',
             'deleted' => 'Include deleted discussions',
+            'types' => 'Message types',
+            'username' => 'Username',
 
             'user' => [
                 'label' => 'User',
@@ -76,5 +79,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by user',
     ],
 ];

@@ -54,9 +54,6 @@
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.length_info') }}</p>
         </div>
         <div class="simple-form__input-group">
-            <span class="simple-form__input-group-label simple-form__input-group-label--prefix">
-                {{ trans('forum.topics.create.poll.length_days_prefix') }}
-            </span>
             <input class="simple-form__input simple-form__input--small simple-form__input--centered" name="forum_topic_poll[length_days]" />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
                 {{ trans('forum.topics.create.poll.length_days_suffix') }}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,14 +23,65 @@ return [
         'warehouse' => 'Magazzino',
     ],
 
+    'cart' => [
+        'checkout' => 'Pagamento',
+        'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
+        'shipping_fees' => 'costi di spedizione',
+        'title' => 'Carrello della spesa',
+        'total' => 'totale',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, ci sono problemi con il vostro carrello che stanno impedendo il check-out!',
+            'line_2' => 'Rimuovere o aggiornare gli elementi di sopra per continuare.',
+        ],
+
+        'empty' => [
+            'text' => 'Il tuo carrello è vuoto.',
+            'return_link' => [
+                '_' => 'Ritorna al :link per trovare alcuni elementi!',
+                'link_text' => 'listino',
+            ],
+        ],
+    ],
+
     'checkout' => [
+        'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
+        'cart_problems_edit' => 'Clicca qui per modificarlo.',
+        'declined' => 'Il pagamento è annullato.',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, si prega di riprovare.',
         'pay' => 'Acquista con Paypal',
+        'pending_checkout' => [
+            'line_1' => 'Un precedente check-out è stato iniziato ma non è stato portato a termine.',
+            'line_2' => 'Riprendi il tuo checkout selezionando un metodo di pagamento, o :link to annullare.',
+            'link_text' => 'clicca qui',
+        ],
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+    ],
+
+    'discount' => 'risparmi :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Abbiamo ricevuto il tuo ordine di osu!store!',
+        ],
     ],
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name per :username(:duration)',
+            ],
             'quantity' => 'Quantità',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Non è possibile modificare il vostro ordine in quanto è stato cancellato.',
+            'checkout' => 'Non è possibile modificare il vostro ordine mentre è processato.', // checkout and processing should have the same message.
+            'default' => 'L\'ordine non è modificabile',
+            'delivered' => 'Non è possibile modificare il vostro ordine in quanto è stato consegnato.',
+            'paid' => 'Non è possibile modificare il vostro ordine in quanto è stato già pagato.',
+            'processing' => 'Non è possibile modificare il vostro ordine mentre è processato.',
+            'shipped' => 'Non è possibile modificare il vostro ordine in quanto è stato inviato.',
         ],
     ],
 
@@ -49,5 +100,22 @@ return [
         'notification_remove_text' => 'qui',
 
         'notification_in_stock' => 'Questo prodotto è già disponibile!',
+    ],
+
+    'supporter_tag' => [
+        'gift' => 'regalo ad un giocatore',
+        'require_login' => [
+            '_' => 'Devi essere :link per ottenere un tag sostenitore!',
+            'link_text' => 'accesso effettuato',
+        ],
+    ],
+
+    'username_change' => [
+        'check' => 'Inserisci un nome utente per controllare la disponibilità!',
+        'checking' => 'Controllando la disponibilità di :username...',
+        'require_login' => [
+            '_' => 'Devi essere :link per cambiare il tuo nome!',
+            'link_text' => 'accesso effettuato',
+        ],
     ],
 ];

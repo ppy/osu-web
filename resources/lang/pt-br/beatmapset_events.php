@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ return [
         'discussion_post_delete' => 'Moderador excluiu postagem da discussão :discussion.',
         'discussion_post_restore' => 'Moderador restaurou postagem da discussão :discussion.',
         'discussion_restore' => 'Moderador restaurou discussão :discussion.',
+        'disqualify' => 'Desqualificado por :user. Motivo: :discussion (:text).',
         'disqualify_legacy' => 'Desqualificado por :user. Motivo: :text.',
         'issue_reopen' => 'Reaberto problema :discussion já resolvido.',
         'issue_resolve' => 'Problema :discussion marcado como resolvido.',
@@ -45,6 +46,7 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
+        'discussion_deleted' => '[excluído]',
         'type' => 'Tipo',
     ],
 ];

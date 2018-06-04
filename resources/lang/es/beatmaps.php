@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'No se ha podido guardar la publicación.',
+            'error' => 'Error al guardar la publicación',
         ],
     ],
 
@@ -32,7 +32,7 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'otorgar kudosu',
+        'allow_kudosu' => 'permitir kudosu',
         'delete' => 'eliminar',
         'deleted' => 'Eliminado por :editor :delete_time',
         'deny_kudosu' => 'denegar kudosu',
@@ -40,35 +40,35 @@ return [
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder' => 'Escribe aquí para publicar',
-        'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada así que ya no se puede discutir.',
-        'message_type_select' => 'Seleccionar Tipo de Comentario',
-        'reply_notice' => 'Presiona Enter para responder.',
+        'message_placeholder_deleted_beatmap' => 'Esta dificultad se ha eliminado, por lo que ya puede ser discutida.',
+        'message_type_select' => 'Seleccionar tipo de comentario',
+        'reply_notice' => 'Presione enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
-        'require-login' => 'Inicia sesión para publicar o responder', // Base text changed from "log" to "sign"
+        'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
         'title' => 'Discusiones',
 
         'collapse' => [
-            'all-collapse' => 'Contraer todo',
+            'all-collapse' => 'Desplegar todo',
             'all-expand' => 'Expandir todo',
         ],
 
         'empty' => [
-            'empty' => '¡Aún no hay discusiones!',
+            'empty' => '¡Sin discusiones aún!',
             'hidden' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
 
         'message_hint' => [
-            'in_general' => 'Este post irá a la discusión general de beatmaps. Para moddear este beatmap, empieza un mensaje con una marca de tiempo (ejemplo: 00:12:345).',
-            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (una publicación por marca de tiempo).',
+            'in_general' => 'Esta publicación irá a la discusión general del Beatmapset. Para modificar este Beatmap, comienca el mensaje con una marca de tiempo (Ej: 00:12:345).',
+            'in_timeline' => 'Para modificar varias marcas de tiempo, publíca varias veces (una publicación por marca de tiempo).',
         ],
 
         'message_type' => [
             'disqualify' => 'Descalificación',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Reinicio de nominación',
+            'nomination_reset' => 'Reiniciar Nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugerencia',
@@ -85,8 +85,8 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'marca de tiempo',
-            'timestamp_missing' => '¡Usa Ctrl + C en el modo de edición y pega en tu mensaje para añadir una marca de tiempo!',
+            'timestamp' => 'Marca de tiempo',
+            'timestamp_missing' => '¡Usa Ctrl+C en el modo de edición y pega tu mensaje para agregar una marca de tiempo!',
             'title' => 'Nueva Discusión',
         ],
 
@@ -104,7 +104,7 @@ return [
         'stats' => [
             'deleted' => 'Eliminado',
             'mapper_notes' => 'Notas',
-            'mine' => 'Mi autoría', //This will display in discussion for the posts you made in that discussion. Using "mío" or "míos" will not work in this case
+            'mine' => 'Mío',
             'pending' => 'Pendiente',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
@@ -113,54 +113,55 @@ return [
 
         'status-messages' => [
             'approved' => '¡Este beatmap fue aprobado el :date!',
-            'graveyard' => 'Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...',
-            'loved' => '¡Este beatmap fue marcado como amado el :date!',
-            'ranked' => '¡Este beatmap fue rankeado el :date!',
-            'wip' => 'Nota: Este beatmap fue marcado como trabajo en proceso por el creador.',
+            'graveyard' => "Este beatmap no se ha actualizado desde el :date y muy probablemente haya sido abandonado por el creador...",
+            'loved' => '¡Este Beatmap fue agregado a Amados el :date!',
+            'ranked' => '¡Este Beatmap fue rankeado el :date!',
+            'wip' => 'Nota: Este Beatmap fue marcado como trabajo en proceso por el creador.',
         ],
+
     ],
 
-   'hype' => [
-        'button' => '¡Hypear este beatmap!',
+    'hype' => [
+        'button' => '¡Hypear este Beatmap!',
         'button_done' => '¡Hypeado!',
-        'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacer esta acción.',
-        'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
-        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!', // Base text changed from "log" to "sign"
-        'new_time' => 'Obtendrás otro hype :new_time.',
-        'remaining' => 'Te quedan :remaining hypes.',
+        'confirm' => "¿Estás seguro? Esto usará uno de tus :n Hype restantes y no se puede deshacer.",
+        'explanation' => '¡Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
+        'explanation_guest' => '¡Inicia sesión y Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
+        'new_time' => "Obtendrás otro hype :new_time.",
+        'remaining' => 'Te quedan :remaining Hypes.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Tren del hype',
+        'section_title' => 'Tren del Hype',
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Dejar comentarios',
+    ],
+
     'nominations' => [
-        'disqualification_prompt' => '¿Motivo de descalificación?',
-        'disqualified_at' => 'descalificado :time_ago (:reason).',
+        'disqualification_prompt' => '¿Motivo de la descalificación?',
+        'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
-        'incorrect_state' => 'Error al realizar esa acción, intenta recargando la página.',
+        'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
         'nominate' => 'Nominar',
-        'nominate_confirm' => '¿Nominar este beatmap?',
+        'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
-        'reset_message_deleted' => 'eliminado',
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
         'required_text' => 'Nominaciones: :current/:required',
+        'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de Nominación',
-        'unresolved_issues' => 'Todavía hay problemas sin resolver que deben ser resueltos primero.',
+        'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
 
         'reset_at' => [
-            'nomination_reset' => 'El proceso de nominación se ha reiniciado :time_ago por :user a causa del nuevo problema :discussion (:message).',
+            'nomination_reset' => 'Reinicio del proceso de nominación: time_ago por: usuario a causa de un nuevo problema :discusión (:mensaje).',
             'disqualify' => 'Descalificado :time_ago por :user a causa del nuevo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
         ],
-    ],
-
-    'feedback' => [
-        'button' => 'Dejar comentarios',
     ],
 
     'listing' => [
@@ -174,14 +175,25 @@ return [
                 'mode' => 'Modo',
                 'status' => 'Estado de aprobación',
                 'genre' => 'Género',
-                'language' => 'Lenguaje',
+                'language' => 'Idioma',
                 'extra' => 'Adicional',
                 'rank' => 'Rango conseguido',
+                'played' => 'Jugado',
+            ],
+            'sorting' => [
+                'title' => 'título',
+                'artist' => 'artista',
+                'difficulty' => 'dificultad',
+                'updated' => 'actualizado',
+                'ranked' => 'rankeado',
+                'rating' => 'calificación',
+                'plays' => 'veces jugadas',
+                'relevance' => 'relevancia',
+                'nominations' => 'nominaciones',
             ],
         ],
         'mode' => 'Modo',
         'status' => 'Estado de Rank',
-        'mapped-by' => 'mappeado por :mapper',
         'source' => 'de :source',
         'load-more' => 'Cargar más...',
     ],
@@ -204,12 +216,12 @@ return [
         'loved' => 'Amados',
         'faves' => 'Favoritos',
         'pending' => 'Pendientes',
-        'graveyard' => 'Sepultados',
+        'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],
     'genre' => [
         'any' => 'Cualquiera',
-        'unspecified' => 'No especificado',
+        'unspecified' => 'Sin especificar',
         'video-game' => 'Videojuego',
         'anime' => 'Anime',
         'rock' => 'Rock',
@@ -220,27 +232,27 @@ return [
         'electronic' => 'Electrónica',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Doble Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'Sin mods',
+        'PF' => 'Perfecto',
+        'Relax' => 'Relax',
+        'SD' => 'Muerte Súbita',
+        'SO' => 'Spun Out',
         'TD' => 'Dispositivo touch',
     ],
     'language' => [
@@ -256,6 +268,11 @@ return [
         'swedish' => 'Sueco',
         'instrumental' => 'Instrumental',
         'other' => 'Otro',
+    ],
+    'played' => [
+        'any' => 'Cualquiera',
+        'played' => 'Jugado',
+        'unplayed' => 'No jugado',
     ],
     'extra' => [
         'video' => 'Contiene video',

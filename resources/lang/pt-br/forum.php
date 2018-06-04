@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Tópicos Fixados',
-    'slogan' => 'é perigoso jogar sozinho.',
+    'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
 
@@ -48,31 +48,32 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Excluir mesmo a postagem?',
-        'confirm_restore' => 'Restaurar mesmo a postagem?',
+        'confirm_destroy' => 'Excluir mesmo a publicação?',
+        'confirm_restore' => 'Restaurar mesmo a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
-        'posted_at' => 'postado :when',
+        'posted_at' => 'publicado :when',
 
         'actions' => [
-            'destroy' => 'Excluir postagem',
-            'restore' => 'Restaurar postagem',
-            'edit' => 'Editar postagem',
+            'destroy' => 'Excluir publicação',
+            'restore' => 'Restaurar publicação',
+            'edit' => 'Editar publicação',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Ir para a postagem',
-        'post_number_input' => 'insira o número da postagem',
-        'total_posts' => ':posts_count postagens no total',
+        'go_to_post' => 'Ir para a publicação',
+        'post_number_input' => 'insira o número da publicação',
+        'total_posts' => ':posts_count publicações no total',
     ],
 
     'topic' => [
         'deleted' => 'tópico excluído',
-        'go_to_latest' => 'ver a última postagem',
+        'go_to_latest' => 'ver a ultima publicação',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Criar novo tópico',
-        'post_reply' => 'Postar',
+        'new_topic' => 'Publicar um novo tópico',
+        'new_topic_login' => 'Conecte-se para criar um novo tópico',
+        'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
         'started_by' => 'por :user',
 
@@ -81,20 +82,20 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
-            'submit' => 'Postar',
+            'submit' => 'Publicar',
 
             'placeholder' => [
-                'body' => 'Escreva o conteúdo da postagem aqui',
+                'body' => 'Escreva o conteúdo da publicação aqui',
                 'title' => 'Clique aqui para definir o título',
             ],
         ],
 
         'jump' => [
-            'enter' => 'clique para inserir um número de postagem específico',
-            'first' => 'ir para a primeira postagem',
-            'last' => 'ir para a última postagem',
-            'next' => 'pular as próximas 10 postagens',
-            'previous' => 'voltar 10 postagens',
+            'enter' => 'clique para inserir o número específico da publicação',
+            'first' => 'ir para a primeira publicação',
+            'last' => 'ir para a última publicação',
+            'next' => 'pular as próximas 10 publicações',
+            'previous' => 'voltar 10 publicações',
         ],
 
         'post_edit' => [
@@ -133,7 +134,7 @@ return [
 
         'actions' => [
             'reply' => 'Responder',
-            'reply_with_quote' => 'Citar postagem na resposta',
+            'reply_with_quote' => 'Citar publicação na resposta',
             'search' => 'Pesquisar',
         ],
 
@@ -147,7 +148,6 @@ return [
 
             'poll' => [
                 'length' => 'Manter enquete aberta por',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixe em branco para uma votação sem fim',
                 'max_options' => 'Opções por usuário',
@@ -234,7 +234,7 @@ return [
 
         'show' => [
             'deleted-posts' => 'Publicações Excluídas',
-            'total_posts' => 'Total de Postagens',
+            'total_posts' => 'Total de publicações',
 
             'feature_vote' => [
                 'current' => 'Prioridade Atual: +:count',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Você tem :votes restantes.',
-                    'not_enough' => 'Você não tem mais votos restantes',
+                    'not_enough' => "Você não tem mais votos restantes",
                 ],
             ],
 

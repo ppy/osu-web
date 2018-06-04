@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,11 +23,32 @@ return [
         'warehouse' => '仓库',
     ],
 
+    'cart' => [
+        'checkout' => '结账',
+        'more_goodies' => '在完成订单之前，我想看看其他商品',
+        'shipping_fees' => '运费',
+        'title' => '购物车',
+        'total' => '总计',
+
+        'errors_no_checkout' => [
+            'line_1' => '啊哦，你的购物车中存在问题导致你无法结账！',
+            'line_2' => '移除或更新上面的物品以继续。',
+        ],
+
+        'empty' => [
+            'text' => '你的购物车是空的。',
+            'return_link' => [
+                '_' => '返回到 :link 查看别的商品吧！',
+                'link_text' => '商店列表',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => '啊哦，你的购物车中存在问题！',
         'cart_problems_edit' => '点击此处以编辑。',
         'declined' => '支付被取消。',
-        'error' => '结账时出现错误 :(',
+        'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
             'line_1' => '先前的订单未完成',
@@ -39,12 +60,28 @@ return [
 
     'discount' => '节省 :percent%',
 
+    'mail' => [
+        'payment_completed' => [
+            'subject' => '我们已收到你的 osu!商店 订单！',
+        ],
+    ],
+
     'order' => [
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name 给 :username （:duration）',
             ],
             'quantity' => '数量',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '你不能修改此订单，因为它已经被取消了。',
+            'checkout' => '你不能修改正在处理的订单。', // checkout and processing should have the same message.
+            'default' => '订单不可修改',
+            'delivered' => '你不能修改此订单，因为它已经送达了。',
+            'paid' => '你不能修改此订单，因为它已经完成付款了。',
+            'processing' => '你不能修改正在处理的订单。',
+            'shipped' => '你不能修改此订单，因为已经发货了。',
         ],
     ],
 
@@ -74,6 +111,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => '输入用户名并检查是否可用',
+        'checking' => '正在检查 :username 是否可用...',
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',

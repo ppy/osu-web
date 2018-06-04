@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -70,14 +70,14 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'charts',
+            'charts' => 'spotlights',
             'score' => 'score',
             'country' => 'country',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
-            'dev' => 'osu!dev',
+            'dev' => 'development',
             'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'live',
@@ -186,8 +186,10 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Server Status',
-            'terms' => 'Terms of Service',
+            'source_code' => 'Source Code',
+            'terms' => 'Terms',
         ],
     ],
 

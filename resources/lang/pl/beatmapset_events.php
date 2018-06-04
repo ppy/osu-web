@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,15 +22,15 @@ return [
     'event' => [
         'approve' => 'Zatwierdzona.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
-        'discussion_post_delete' => 'Moderator usunął odpowiedź z dyskusji :discussion.',
-        'discussion_post_restore' => 'Moderator przywrócił odpowiedź z dyskusji :discussion.',
+        'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
+        'discussion_post_restore' => 'Moderator przywrócił post z dyskusji :discussion.',
         'discussion_restore' => 'Moderator przywrócił dyskusję :discussion.',
         'disqualify' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :discussion (:text).',
         'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
         'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',
         'issue_resolve' => 'Problem :discussion został oznaczony jako rozwiązany.',
-        'kudosu_allow' => 'Anulowanie kudosu dla dyskusji :discussion zostało usunięte.',
-        'kudosu_deny' => 'Dyskusja :discussion nie dostanie kudosu.',
+        'kudosu_allow' => 'Odrzucenie kudosu dla dyskusji :discussion zostało usunięte.',
+        'kudosu_deny' => 'Dyskusja :discussion nie otrzyma kudosu.',
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
         'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń beatmap',
+        'title' => 'Historia zdarzeń zestawu beatmap',
     ],
 
     'item' => [

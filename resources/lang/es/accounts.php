@@ -20,37 +20,39 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Ajustes</strong> de la Cuenta',
+        'title' => '<strong>Ajustes</strong> de la cuenta',
         'title_compact' => 'ajustes',
+        'username' => 'nombre de usuario',
 
         'avatar' => [
-            'title' => 'Editar Avatar', // Base text changed, please check.
+            'title' => 'Avatar',
         ],
 
         'email' => [
             'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
-            'new_confirmation' => 'verificar correo electrónico',
-            'title' => 'Correo Electrónico',
+            'new_confirmation' => 'confirmar correo electrónico',
+            'title' => 'Correo electrónico',
         ],
 
         'password' => [
             'current' => 'contraseña actual',
             'new' => 'nueva contraseña',
-            'new_confirmation' => 'verificar contraseña',
+            'new_confirmation' => 'confirmar contraseña',
             'title' => 'Contraseña',
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil', // Base text changed, please check.
+            'title' => 'Perfil',
 
             'user' => [
                 'user_from' => 'ubicación actual',
-                'user_msnm' => 'skype',
                 'user_interests' => 'intereses',
+                'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -61,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
+        'email_subject' => 'Confirmación de cambio de correo electrónico de osu!',
         'update' => 'actualizar',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! - Confirmación de cambio de contraseña',
+        'email_subject' => 'Confirmación de cambio de contraseña de osu!',
         'update' => 'actualizar',
     ],
 
@@ -76,5 +78,10 @@ return [
         'keyboard' => 'teclado',
         'tablet' => 'tableta',
         'touch' => 'táctil',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacidad',
+        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,21 +23,48 @@ return [
         'warehouse' => 'Armazém',
     ],
 
+    'cart' => [
+        'checkout' => 'Pagar',
+        'more_goodies' => 'Gostaria de conferir mais coisas antes de finalizar meu pedido',
+        'shipping_fees' => 'taxas de envio',
+        'title' => 'Carrinho de Compras',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Ops, há um problema em seu carrinho impedindo o pagamento!',
+            'line_2' => 'Remova ou atualize os itens acima para continuar.',
+        ],
+
+        'empty' => [
+            'text' => 'Seu carrinho está vazio.',
+            'return_link' => [
+                '_' => 'Volte à :link para encontrar coisas legais!',
+                'link_text' => 'lista de produtos',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Ops, seu carrinho parece ter alguns problemas!',
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'error' => 'Houve um problema com a sua compra :(',
+        'old_cart' => 'Seu carrinho aparenta estar desatualizado e foi recarregado, por favor tente novamente.',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
-            'line_1' => 'Uma compra antiga foi atualizada mas não foi finalizada.',
+            'line_1' => 'Um pagamento prévio foi iniciado mas não foi finalizado.',
             'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
             'link_text' => 'clique aqui',
         ],
-        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquaanto nós realizamos os pedidos mais recentes.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você é bem-vindo para fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Recebemos o seu pedido da osu!store!',
+        ],
+    ],
 
     'order' => [
         'item' => [
@@ -46,13 +73,23 @@ return [
             ],
             'quantity' => 'Quantidade',
         ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Você não pode mudar seu pedido, pois ele foi cancelado.',
+            'checkout' => 'Você não pode modificar seu pedido enquanto está sendo processado.', // checkout and processing should have the same message.
+            'default' => 'A ordem não é modificável',
+            'delivered' => 'Você não pode modificar seu pedido, pois ele já foi entregue.',
+            'paid' => 'Você não pode modificar seu pedido, pois ele já foi pago.',
+            'processing' => 'Você não pode modificar seu pedido enquanto está sendo processado.',
+            'shipped' => 'Você não pode modificar seu pedido, pois ele já foi enviado.',
+        ],
     ],
 
     'product' => [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Este item está fora de estoque. Volte mais tarde!',
+            'out' => 'Este item está atualmente fora de estoque. Volte mais tarde!',
             'out_with_alternative' => 'Infelizmente este item está fora de estoque. Por favor, selecione outro ou tente novamente mais tarde!',
         ],
 
@@ -69,16 +106,16 @@ return [
         'gift' => 'dar de presente',
         'require_login' => [
             '_' => 'Você precisa estar :link para comprar uma supporter tag!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 
     'username_change' => [
-        'check' => 'Entre com um username para checar disponibilidade!',
+        'check' => 'Insira um nome de usuário para verificar a disponibilidade!',
         'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
-            'link_text' => 'conectado', // Base text changed from "log" to "sign"
+            'link_text' => 'conectado',
         ],
     ],
 ];

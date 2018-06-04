@@ -3,8 +3,9 @@
 // osu config~
 return [
     'avatar' => [
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
     'assets' => [
@@ -83,6 +84,9 @@ return [
             'user' => 100,
         ],
     ],
+    'score_replays' => [
+        'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -93,22 +97,34 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
+    'tournament_banner' => [
+        'current' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
+        ],
+        'previous' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
+            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
+        ],
+    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'osx' => 'https://osx.ppy.sh',
-        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
         'legacy-forum-thread-prefix' => '/forum/t/',
+        'osx' => 'https://osx.ppy.sh',
+        'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
+        'source_code' => 'https://github.com/ppy',
         'support-the-game' => '/p/support#transactionarea',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => '/p/twitter',
+            'twitter' => '/help/wiki/Twitter',
         ],
-        'server_status' => 'https://twitter.com/osustatus',
         'user' => [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
@@ -144,10 +160,11 @@ return [
         'ban_persist_days' => intval(env('BAN_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
-        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
-        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
-        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
+        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];

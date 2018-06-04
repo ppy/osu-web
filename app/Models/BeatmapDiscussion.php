@@ -41,10 +41,10 @@ class BeatmapDiscussion extends Model
     const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
-        'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
         'mapper_note' => 3,
+        'praise' => 0,
         'hype' => 4,
     ];
 
@@ -105,7 +105,7 @@ class BeatmapDiscussion extends Model
             $query->withoutDeleted();
         }
 
-        if (!($params['is_moderator'] ?? false)) {
+        if (!($rawParams['is_moderator'] ?? false)) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });
@@ -549,7 +549,12 @@ class BeatmapDiscussion extends Model
             if ($restoredBy->getKey() !== $this->user_id) {
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
+
+            $timestamps = $this->timestamps;
+            $this->timestamps = false;
             $this->update(['deleted_at' => null]);
+            $this->timestamps = $timestamps;
+
             $this->refreshKudosu('restore');
         });
     }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => '選択された支払い方法はPaypalに拒否されました。',
     'invalid_resource_id' => '支払い情報が見つかりませんでした。',
-    'unknown' => '原因不明のエラーで支払いが拒否されました。',
+    'unknown' => "原因不明のエラーで支払いが拒否されました。",
 ];

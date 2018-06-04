@@ -25,12 +25,12 @@ class @BeatmapDiscussionHelper
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
-  @discussionLinkify: (text) =>
-    matches = text.match osu.urlRegex
+  # text should be pre-escaped.
+  @discussionLinkify: (text) ->
     currentUrl = new URL(window.location)
     currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
 
-    _.each matches, (url) ->
+    text.replace osu.urlRegex, (url) ->
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
@@ -40,17 +40,13 @@ class @BeatmapDiscussionHelper
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
             # same beatmapset, format: #123
             linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+            attrs = 'class="js-beatmap-discussion--jump"'
           else
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
 
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
+      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
 
-    text
 
 
   @discussionMode: (discussion) ->
@@ -100,8 +96,8 @@ class @BeatmapDiscussionHelper
 
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
-        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
+        osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @maxlength: 750
@@ -144,7 +140,7 @@ class @BeatmapDiscussionHelper
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: (options = {}) =>
+  @url: (options = {}, useCurrent = false) =>
     {
       beatmapsetId
       beatmapId
@@ -154,7 +150,8 @@ class @BeatmapDiscussionHelper
       discussionId
       discussions # for validating discussionId and getting relevant params
       discussion
-    } = options
+      user
+    } = if useCurrent then _.assign(@urlParse(), options) else options
 
     params = {}
 
@@ -191,6 +188,11 @@ class @BeatmapDiscussionHelper
     url.pathname = laroute.route 'beatmapsets.discussion', params
     url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
 
+    if user?
+      url.searchParams.set('user', user)
+    else
+      url.searchParams.delete('user')
+
     url.toString()
 
 
@@ -199,8 +201,7 @@ class @BeatmapDiscussionHelper
     options.forceDiscussionId ?= false
 
     url = new URL(urlString ? document.location.href)
-    params = url.searchParams
-    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split '/'
+    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
 
@@ -213,6 +214,7 @@ class @BeatmapDiscussionHelper
       # empty path segments are ''
       mode: if _.includes(@MODES, mode) then mode else @DEFAULT_MODE
       filter: if _.includes(@FILTERS, filter) then filter else @DEFAULT_FILTER
+      user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)

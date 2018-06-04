@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie wątku nie powiodło się',
+            'error' => 'Zapisywanie postu nie powiodło się',
         ],
     ],
 
@@ -35,7 +35,7 @@ return [
         'allow_kudosu' => 'zezwól na kudosu',
         'delete' => 'usuń',
         'deleted' => 'Usunięte przez :editor :delete_time',
-        'deny_kudosu' => 'zablokuj kudosu',
+        'deny_kudosu' => 'odrzuć kudosu',
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
@@ -43,10 +43,10 @@ return [
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
-        'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
-        'restore' => 'odzyskaj',
+        'restore' => 'przywróć',
         'title' => 'Dyskusje',
 
         'collapse' => [
@@ -60,8 +60,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ta odpowiedź znajdzie się w generalnej dyskusji tego beatmapsetu. Aby zmodować tę beatmapę, zacznij odpowiedź od konkretnego momentu (np. 00:12:345).',
-            'in_timeline' => 'Aby zgłosić uwagi dotyczące kilku różnych momentów piosenki, utwórz dla nich odrębne komentarze (po jednym dla każdego momentu utworu).',
+            'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
+            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne posty (po jednym dla każdego znacznika czasu).',
         ],
 
         'message_type' => [
@@ -96,7 +96,7 @@ return [
 
         'sort' => [
             '_' => 'Sortowane według:',
-            'created_at' => 'czas utworzenia',
+            'created_at' => 'data utworzenia',
             'timeline' => 'oś czasu',
             'updated_at' => 'ostatnie aktualizacje',
         ],
@@ -113,20 +113,21 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez twórcę...',
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...",
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
         ],
+
     ],
 
     'hype' => [
         'button' => 'Nagłośnij beatmapę!',
         'button_done' => 'Już nagłośniono!',
-        'confirm' => 'Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.',
-        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'new_time' => 'Nagłośnienie kolejnej mapy będzie możliwe za :new_time.',
+        'confirm' => "Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.",
+        'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
         'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
@@ -139,7 +140,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Powód dyskwalifikacji?',
-        'disqualified_at' => 'zdyskwalifkowane :time_ago (:reason).',
+        'disqualified_at' => 'Zdyskwalifkowane :time_ago (:reason).',
         'disqualified_no_reason' => 'brak określonego powodu',
         'disqualify' => 'Zdyskwalifikuj',
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
@@ -149,6 +150,7 @@ return [
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',
+        'reset_message_deleted' => 'usunięta',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
 
@@ -158,13 +160,13 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
         ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'wpisz żądaną frazę...',
+            'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
@@ -176,11 +178,22 @@ return [
                 'language' => 'Język',
                 'extra' => 'Dodatkowe',
                 'rank' => 'Uzyskana ocena',
+                'played' => 'Ukończenie',
+            ],
+            'sorting' => [
+                'title' => 'tytuł',
+                'artist' => 'wykonawca',
+                'difficulty' => 'poziom trudności',
+                'updated' => 'data modyfikacji',
+                'ranked' => 'data',
+                'rating' => 'ocena',
+                'plays' => 'liczba zagrań',
+                'relevance' => 'trafność',
+                'nominations' => 'nominacje',
             ],
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status beatmapy',
-        'mapped-by' => 'autorstwa :mapper',
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],
@@ -203,13 +216,13 @@ return [
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
         'pending' => 'Oczekujące',
-        'graveyard' => 'Cmentarz',
+        'graveyard' => 'Porzucone',
         'my-maps' => 'Moje beatmapy',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',
         'unspecified' => 'Nieokreślony',
-        'video-game' => 'Gra',
+        'video-game' => 'Gra wideo',
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',
@@ -219,28 +232,28 @@ return [
         'electronic' => 'Muzyka elektroniczna',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'Brak modyfikatorów',
-        'TD' => 'Touch Device',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Urządzenie dotykowe',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
@@ -255,6 +268,11 @@ return [
         'swedish' => 'Szwedzki',
         'instrumental' => 'Instrumentalny',
         'other' => 'Inny',
+    ],
+    'played' => [
+        'any' => 'Jakikolwiek',
+        'played' => 'Ukończona',
+        'unplayed' => 'Nieukończona',
     ],
     'extra' => [
         'video' => 'Posiada wideo',

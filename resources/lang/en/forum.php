@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
@@ -147,7 +148,6 @@ return [
 
             'poll' => [
                 'length' => 'Run poll for',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',
                 'max_options' => 'Options per user',
