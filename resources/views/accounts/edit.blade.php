@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_date', ['field' => 'user_birthday'])
+                    @include('accounts._edit_entry_date', ['field' => 'user_birthday', 'maxDate' => Carbon\Carbon::now()])
                 </div>
             </div>
         </div>

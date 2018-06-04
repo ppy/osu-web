@@ -19,13 +19,18 @@
     <input
         class="account-edit-entry__input js-account-edit__input"
         type="date"
-        min="1900-01-01"
-        max="{{ Carbon\Carbon::now()->toDateString() }}"
+        @if (isset($minDate))
+            min="{{ json_date($minDate) }}"
+        @endif
+        @if (isset($maxDate))
+            max="{{ json_date($maxDate) }}"
+        @endif
         name="user[{{ $field }}]"
         maxlength="10"
         placeholder="yyyy-mm-dd"
-        data-last-value="{{ Auth::user()->$field ? Auth::user()->$field->toDateString() : '' }}"
-        value="{{ Auth::user()->$field ? Auth::user()->$field->toDateString() : '' }}"
+        pattern="\d{4}-\d{2}-\d{2}"
+        data-last-value="{{ json_date(Auth::user()->$field) }}"
+        value="{{ Auth::user()->$field ? json_date(Auth::user()->$field) : '' }}"
     >
 
     <div class="account-edit-entry__label">
