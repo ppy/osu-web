@@ -468,7 +468,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             return;
         }
 
-        return Carbon::create($date[2], $date[1], $date[0]);
+        return Carbon::create($date[2], $date[1], $date[0], 0, 0, 0);
     }
 
     public function setUserBirthdayAttribute($value)
