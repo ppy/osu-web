@@ -21,5 +21,4 @@
 return [
     'mixture' => ':attribute is missing number or letter',
     'required' => ':attribute is required',
-    'date_format' => "invalid date format"
 ];
