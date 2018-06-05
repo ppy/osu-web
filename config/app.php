@@ -101,6 +101,7 @@ return [
         'ko',
         'nl',
         'pl',
+        'pt',
         'pt-br',
         'ru',
         'sv',
