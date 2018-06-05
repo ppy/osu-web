@@ -18,7 +18,7 @@
 @extends('master', ['titlePrepend' => $product->name])
 
 @section('content')
-    @include("store.header")
+    @include('store.header')
 
     {!! Form::open([
         "url" => "store/add-to-cart",
