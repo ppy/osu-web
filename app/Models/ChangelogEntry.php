@@ -103,6 +103,11 @@ class ChangelogEntry extends Model
         return presence($value) ?? 'fix';
     }
 
+    public function getCategoryAttribute($value)
+    {
+        return presence($value) ?? 'Misc';
+    }
+
     public function getUrlAttribute($value)
     {
         return presence($value);

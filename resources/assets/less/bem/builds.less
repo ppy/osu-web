@@ -16,48 +16,58 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.nav2-header {
-  @_top: nav2-header;
-  position: absolute;
-  width: 100%;
+.builds {
+  &__date {
+    font-size: @font-size--title;
+    font-weight: 300;
+    color: @yellow-light;
+    text-align: center;
+    padding: 20px 0 0;
+  }
 
-  &--legacy {
-    position: relative;
-    width: auto;
+  &__group {
+    padding: 0 @gutter;
 
-    @media @desktop {
-      margin-bottom: -5px;
+    & + & {
+      border-top: 2px solid #111;
+    }
+
+    &--discussions {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: #fff;
     }
   }
 
-  &__menu-bg {
-    .full-size();
-    height: @nav2-header-image-height;
-    background-color: fade(#000, 70%);
-    transition-duration: 0s;
+  &__item {
+    padding: 0 0 30px;
 
-    &[data-visibility=hidden] {
-      transition-duration: 250ms;
+    & + & {
+      border-top: 1px solid @dark-purple-darker;
     }
   }
 
-  &__legacy-gradient-overlay {
-    .full-size();
-    display: block;
-    transition: all 1s ease-in-out;
+  &__navs {
+    display: flex;
   }
 
-  &__legacy-triangles {
-    .full-size();
-    display: block;
-    background-size: 640px 360px;
+  &__nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
 
-    .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
+    &--left {
+      justify-content: flex-end;
+    }
   }
 
-  &__triangles {
-    .full-size();
-    background-image: url('/images/layout/nav2-background.png');
-    background-position: bottom center;
+  &__nav-link {
+    .link-white();
+    .link-plain();
+  }
+
+  &__nav-link-label {
+    padding: 0 10px;
   }
 }

@@ -19,6 +19,8 @@
 @BeatmapDiscussions = {}
 @Beatmaps = {}
 @BeatmapsetPage = {}
+@ChangelogIndex = {}
+@ChangelogBuild = {}
 @Contest = {}
 @Contest.Entry = {}
 @Contest.Voting = {}

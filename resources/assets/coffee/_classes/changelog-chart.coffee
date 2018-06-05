@@ -25,6 +25,7 @@ class @ChangelogChart
         class: d3.scaleOrdinal()
 
     @area = d3.select area
+    @area.classed 'changelog-chart', true
 
     @svg = @area
       .append 'svg'
@@ -41,7 +42,7 @@ class @ChangelogChart
     @hoverArea = @svg.append 'rect'
       .classed 'changelog-chart__hover-area', true
       .on 'mouseout', @hideTooltip
-      .on 'mousemove', @positionTooltip
+      .on 'mousemove', @moveTooltip
 
     @tooltipArea = @area.append 'div'
       .classed 'changelog-chart__tooltip-area', true
@@ -69,15 +70,14 @@ class @ChangelogChart
 
     @tooltipLine = @tooltipContainer.selectAll '.changelog-chart__tooltip-line'
 
-  loadData: ->
-    chartConfig = osu.parseJson 'json-chart-config'
-    @options.order = chartConfig.order
-    @options.isBuild = chartConfig.isBuild
 
-    data = @normalizeData chartConfig.buildHistory
+  loadData: ->
+    @config = osu.parseJson 'json-chart-config'
+
+    data = @normalizeData @config.buildHistory
 
     stack = d3.stack()
-      .keys @options.order
+      .keys @config.order
       .value (d, val) ->
         if d[val]? then d[val].normalized else 0
 
@@ -85,21 +85,25 @@ class @ChangelogChart
 
     @resize()
 
+
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
 
     @width = areaDims.width
     @height = areaDims.height
 
+
   setSvgSize: ->
     @svg
       .attr 'width', @width
       .attr 'height', @height
 
+
   setHoverAreaSize: ->
     @hoverArea
       .attr 'width', @width
       .attr 'height', @height
+
 
   setScalesRange: ->
     @options.scales.x
@@ -111,11 +115,12 @@ class @ChangelogChart
       .domain [0, 1]
 
     @options.scales.class
-      .range _.map @options.order, (d, i) =>
+      .range _.map @config.order, (d, i) =>
         # rotate over available build ids (0-11) when the amount of builds
         # exceeds the available amount of colors
-        if @options.isBuild then "build-#{i % 12}" else _.kebabCase d
-      .domain @options.order
+        if @config.isBuild then "build-#{i % 12}" else _.kebabCase d
+      .domain @config.order
+
 
   drawLines: ->
     @svgWrapper
@@ -126,16 +131,31 @@ class @ChangelogChart
       .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@options.scales.class d.key}"
       .attr 'd', @areaFunction
 
+
   showTooltip: =>
     Fade.in @tooltipContainer.node()
+
 
   hideTooltip: =>
     Fade.out @tooltipContainer.node()
 
-  positionTooltip: =>
+
+  moveTooltip: =>
     mousePos = d3.mouse @hoverArea.node()
-    x = @options.scales.x.invert mousePos[0]
-    y = mousePos[1] / @height
+    @x = @options.scales.x.invert mousePos[0]
+    @y = mousePos[1] / @height
+
+    @showTooltip()
+
+    Timeout.clear @_autoHideTooltip
+    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
+
+    @positionTooltip()
+
+
+  positionTooltip: =>
+    x = @x
+    y = @y
 
     pos = d3.bisector((d) -> d.data.date).left @data[0], x
 
@@ -147,11 +167,6 @@ class @ChangelogChart
         currentLabel = el.key
         labelModifier = @options.scales.class currentLabel
         break
-
-    @showTooltip()
-
-    Timeout.clear @_autoHideTooltip
-    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
 
     coord = @options.scales.x x
 
@@ -180,12 +195,28 @@ class @ChangelogChart
     @tooltipLine
       .style 'transform', "translateX(#{coord}px)"
 
+
+  hasData: =>
+    @config.buildHistory? &&
+      @config.buildHistory.length > 0 &&
+      _.every(@config.buildHistory, (b) -> b.user_count > 0)
+
+
   resize: =>
+    if @hasData()
+      @area.classed 'hidden', false
+    else
+      @area.classed 'hidden', true
+      return
+
     @setDimensions()
     @setScalesRange()
     @setSvgSize()
     @setHoverAreaSize()
     @drawLines()
+    @positionTooltip()
+
+
 
   normalizeData: (data) ->
     # normalize the user count values

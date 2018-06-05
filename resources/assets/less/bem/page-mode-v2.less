@@ -1,0 +1,103 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.page-mode-v2 {
+  @_top: page-mode-v2;
+  @_link-padding: 5px;
+  @_bar-height: 2px;
+  @_bar-active-height: 10px;
+
+  .default-text-shadow();
+  display: flex;
+  list-style: none;
+  padding: 0 (@gutter - 10px);
+  margin: 0;
+  width: 100%;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: @_bar-height;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &--changelog {
+    &::after {
+      background-color: @dark-purple;
+    }
+  }
+
+  &__item {
+    display: flex;
+
+    & + &::before {
+      content: '›';
+      padding: 5px 5px 15px;
+      margin: 0 5px;
+
+      .@{_top}--changelog & {
+        color: @dark-purple;
+      }
+    }
+  }
+
+  &__link {
+    .link-plain();
+    display: block;
+    padding: 5px @_link-padding 15px;
+    margin: 0 5px;
+    transition: all 100ms;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: ((@_bar-active-height - @_bar-height) / -2);
+      left: @_link-padding;
+      height: @_bar-active-height;
+      border-radius: 1000px;
+      width: calc(100% ~'-' (2 * @_link-padding));
+      transition: inherit;
+      will-change: transform;
+      pointer-events: none;
+      transform: scaleY(0);
+    }
+
+    &:hover::before {
+      transform: scaleY(1);
+    }
+
+    .@{_top}--changelog & {
+      color: @dark-purple;
+
+      &::before {
+        background-color: @dark-purple;
+      }
+    }
+
+    &&--active {
+      color: #fff;
+      font-weight: bold;
+
+      &::before {
+        transform: scaleY(1);
+      }
+    }
+  }
+}

@@ -33,7 +33,7 @@
     ret = className
 
     if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers
+      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
 
     ret
 

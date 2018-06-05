@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,52 +24,38 @@ use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
-use App\Models\ChangelogEntry;
 use App\Models\UpdateStream;
 use Cache;
-use Carbon\Carbon;
 
 class ChangelogController extends Controller
 {
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
+    private $latestBuilds = null;
+
     public function index()
     {
-        $from = (max(
-            optional(Changelog::default()->first())->date,
-            optional(ChangelogEntry::default()->first())->created_at
-        ) ?? Carbon::now())->subWeeks(config('osu.changelog.recent_weeks'));
-
-        $legacyChangelogs = Changelog::default()
-            ->with('user')
-            ->where('date', '>', $from)
-            ->get()
-            ->map(function ($item) {
-                return ChangelogEntry::convertLegacy($item);
-            });
-
-        $changelogs = ChangelogEntry::default()
-            ->with('githubUser.user')
-            ->where('created_at', '>', $from)
-            ->get()
-            ->concat($legacyChangelogs)
-            ->sortByDesc('created_at')
-            ->groupBy(function ($item) {
-                return i18n_date($item->created_at);
-            });
-
         $this->getBuilds();
 
-        $buildHistory = Cache::remember('build_propagation_history_global', config('osu.changelog.build_history_interval'), function () {
-            return BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
-        });
+        $chartConfig = Cache::remember(
+            'chart_config_global',
+            config('osu.changelog.build_history_interval'),
+            function () {
+                return $this->chartConfig(null);
+            });
 
-        $chartOrder = collect([$this->featuredBuild])->merge($this->builds)->map(function ($el) {
-            return $el->updateStream->pretty_name;
-        });
+        $builds = json_collection(
+            Build::with([
+                'updateStream',
+                'defaultChangelogs.user',
+                'defaultChangelogEntries.githubUser.user',
+            ])->orderBy('build_id', 'DESC')->paginate(),
+            'Build',
+            ['changelog_entries', 'changelog_entries.github_user']
+        );
 
-        return view('changelog.index', compact('changelogs', 'buildHistory', 'chartOrder'));
+        return view('changelog.index', compact('chartConfig', 'builds'));
     }
 
     public function github()
@@ -104,45 +90,69 @@ class ChangelogController extends Controller
         return ujs_redirect(build_url($build));
     }
 
-    public function build($stream, $version)
+    public function build($streamName, $version)
     {
-        $activeStream = UpdateStream::where('name', '=', $stream)->firstOrFail();
-
-        $activeBuild = Build::default()
-            ->with('updateStream')
-            ->where('version', '=', $version)
-            ->firstOrFail();
-
-        $legacyChangelogs = $activeBuild->changelogs()
-            ->default()
-            ->with('user')
-            ->visibleOnBuilds()
-            ->get()
-            ->map(function ($item) {
-                return ChangelogEntry::convertLegacy($item);
-            });
-
-        $changelogs = $activeBuild->changelogEntries()
-            ->default()
-            ->with('githubUser')
-            ->get()
-            ->concat($legacyChangelogs);
-
-        if (count($changelogs) === 0) {
-            $changelogs = [ChangelogEntry::placeholder()];
-        }
-
         $this->getBuilds();
 
-        $buildHistory = Cache::remember("build_propagation_history_{$activeBuild->stream_id}", config('osu.changelog.build_history_interval'), function () use ($activeBuild) {
-            return BuildPropagationHistory::changelog($activeBuild->stream_id, config('osu.changelog.chart_days'))->get();
-        });
+        $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
+        $build = json_item(
+            $stream->builds()->default()->where('version', $version)->firstOrFail(),
+            'Build',
+            ['changelog_entries', 'changelog_entries.github_user', 'versions']
+        );
 
-        $chartOrder = $buildHistory
+        $chartConfig = Cache::remember(
+            "chart_config_{$build['update_stream']['id']}",
+            config('osu.changelog.build_history_interval'),
+            function () use ($build) {
+                return $this->chartConfig($build['update_stream']['id']);
+            });
+
+        return view('changelog.build', compact('build', 'chartConfig'));
+    }
+
+    private function getBuilds()
+    {
+        $this->latestBuilds = json_collection(
+            Build::latestByStream(config('osu.changelog.update_streams'))
+                ->get()
+                ->sortBy(function ($i) {
+                    return $i->isFeatured() ? 0 : 1;
+                }),
+            'Build'
+        );
+
+        view()->share('latestBuilds', $this->latestBuilds);
+    }
+
+    private function chartConfig($stream)
+    {
+        $isBuild = $stream !== null;
+        $history = BuildPropagationHistory::changelog($stream, config('osu.changelog.chart_days'))->get();
+
+        if ($isBuild) {
+            $chartOrder = $this->buildChartOrder($history);
+        } else {
+            $chartOrder = array_map(function ($b) {
+                return $b['update_stream']['display_name'];
+            }, $this->latestBuilds);
+        }
+
+        return [
+            'buildHistory' => json_collection($history, 'BuildHistoryChart'),
+            'order' => $chartOrder,
+            'isBuild' => $isBuild,
+        ];
+    }
+
+    private function buildChartOrder($history)
+    {
+        return $history
             ->unique('label')
             ->pluck('label')
             ->sortByDesc(function ($label) {
                 $parts = explode('.', $label);
+
                 if (count($parts) >= 1 && strlen($parts[0]) >= 8) {
                     $date = substr($parts[0], 0, 8);
                 } elseif (count($parts) >= 2 && strlen($parts[0]) === 4 && strlen($parts[1]) >= 3 && strlen($parts[1]) <= 4) {
@@ -151,25 +161,5 @@ class ChangelogController extends Controller
 
                 return $date ?? null;
             })->values();
-
-        return view('changelog.show', compact('changelogs', 'activeBuild', 'buildHistory', 'chartOrder'));
-    }
-
-    private function getBuilds()
-    {
-        $this->builds = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->get();
-
-        $this->featuredBuild = null;
-
-        foreach ($this->builds as $index => $build) {
-            if ($build->stream_id === config('osu.changelog.featured_stream')) {
-                $this->featuredBuild = $build;
-                unset($this->builds[$index]);
-            }
-        }
-
-        view()->share('builds', $this->builds);
-        view()->share('featuredBuild', $this->featuredBuild);
     }
 }
