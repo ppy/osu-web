@@ -121,7 +121,7 @@ return [
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
                     'restricted' => "Tidak dapat memberikan suara saat status dibatasi aktif.",
-                    'silenced' => "Tidak dapat memilih saat dibungkam.",
+                    'silenced' => "Tidak dapat memberikan suara saat dibungkam.",
                 ],
             ],
 

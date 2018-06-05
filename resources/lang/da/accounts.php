@@ -81,7 +81,7 @@ return [
     ],
 
     'privacy' => [
-        'title' => '',
-        'friends_only' => '',
+        'title' => 'Privacy',
+        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
     ],
 ];

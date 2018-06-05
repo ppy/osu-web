@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'Der er ikke nok af denne vare tilbage!',
+    'not_available' => 'Dette produkt er ikke ledig.',
+    'too_many' => 'Du kan kun bestille :count af dette produkt for hver bestilling.',
 ];
