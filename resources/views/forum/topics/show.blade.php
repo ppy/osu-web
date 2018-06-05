@@ -28,7 +28,7 @@
     'pageDescription' => $topic->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
 
     @include('forum.topics._floating_header')

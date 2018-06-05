@@ -22,7 +22,7 @@
     'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
 ])
 
-@section("content")
+@section('content')
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
         <div class="osu-page">
             @include('objects._notification_banner', [

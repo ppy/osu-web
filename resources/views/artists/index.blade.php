@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
     'title' => trans('artist.title'),
@@ -23,7 +23,7 @@
     'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
             <div class="osu-page-header-v2__overlay"></div>

@@ -15,11 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'bodyAdditionalClasses' => 'osu-layout--body-555'
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-555',
 ])
 
-@section("content")
+@section('content')
 <div class="osu-page osu-page--header">
     <div class="osu-page-header-v2 osu-page-header-v2--download">
         <div class="download-page-header">

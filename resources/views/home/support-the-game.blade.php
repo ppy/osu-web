@@ -17,7 +17,7 @@
 --}}
 @extends('master', ['bodyAdditionalClasses' => 'osu-layout--body-dark'])
 
-@section("content")
+@section('content')
     <div class="osu-page">
         <!-- header info -->
         <div class="stg-header">

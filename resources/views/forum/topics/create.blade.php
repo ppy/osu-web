@@ -15,11 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    "bodyAdditionalClasses" => 't-forum-'.$forum->categorySlug(),
+@extends('master', [
+    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
 ])
 
-@section("content")
+@section('content')
     {!! Form::open([
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         'data-remote' => true,

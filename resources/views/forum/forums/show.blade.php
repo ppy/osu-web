@@ -27,7 +27,7 @@
     'pageDescription' => $forum->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
             @include('forum._header_breadcrumb')

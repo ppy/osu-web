@@ -15,9 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
-@section("content")
+@section('content')
 
 <div class="osu-page osu-page--generic text-center">
     <h1>{{{ trans("layout.errors.$currentAction.error") }}}</h1>
