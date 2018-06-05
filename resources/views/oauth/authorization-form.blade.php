@@ -1,4 +1,4 @@
-<?php $current_section = $current_action = "oauth"; ?>
+<?php $currentSection = $currentAction = 'oauth'; ?>
 @extends("master")
 
 @section("content")

@@ -20,15 +20,15 @@
 @section("content")
 
 <div class="osu-page osu-page--generic text-center">
-    <h1>{{{ trans("layout.errors.$current_action.error") }}}</h1>
+    <h1>{{{ trans("layout.errors.$currentAction.error") }}}</h1>
 
     @if (isset($exceptionMessage))
         <p>{{ $exceptionMessage }}</p>
     @endif
 
     <p>
-        {!! trans("layout.errors.$current_action.description", ['link' =>
-            '<a class="blue_normal" href="'.trans("layout.errors.$current_action.link.href").'">'.trans("layout.errors.$current_action.link.text").'</a>',
+        {!! trans("layout.errors.$currentAction.description", ['link' =>
+            '<a class="blue_normal" href="'.trans("layout.errors.$currentAction.link.href").'">'.trans("layout.errors.$currentAction.link.text").'</a>',
         ]) !!}
     </p>
 

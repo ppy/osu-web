@@ -35,7 +35,7 @@ class TournamentsController extends Controller
 
         parent::__construct();
 
-        view()->share('current_action', 'tournaments-'.current_action());
+        view()->share('currentAction', 'tournaments-'.current_action());
     }
 
     public function index()

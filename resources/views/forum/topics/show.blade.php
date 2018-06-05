@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
-    "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
     'search' => [
         'params' => [

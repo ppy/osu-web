@@ -26,12 +26,12 @@
                 {{
                     $titlePrepend.
                     ' · '.
-                    trans("layout.menu.$current_section.$current_action").
+                    trans("layout.menu.$currentSection.$currentAction").
                     ' · '.
-                    trans("layout.menu.$current_section._")
+                    trans("layout.menu.$currentSection._")
                 }}
             @else
-                {{ trans("layout.menu.$current_section.$current_action") }} · {{ trans("layout.menu.$current_section._") }}
+                {{ trans("layout.menu.$currentSection.$currentAction") }} · {{ trans("layout.menu.$currentSection._") }}
             @endif
             | osu!
         </title>
@@ -43,9 +43,9 @@
         class="
             osu-layout
             osu-layout--body
-            t-section-{{ $current_section or "error" }}
-            action-{{ $current_action }}
-            {{ $body_additional_classes or "" }}
+            t-section-{{ $currentSection ?? 'error' }}
+            action-{{ $currentAction }}
+            {{ $bodyAdditionalClasses ?? '' }}
         "
     >
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
@@ -54,16 +54,16 @@
         @if (!isset($blank))
             @include("layout.header")
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
+        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")
             @if (View::hasSection('content'))
                 @yield('content')
             @else
                 <div class="osu-layout__row osu-layout__row--page">
                     <h1 class="text-center">
-                        <span class="dark">{{ $current_section }}</span>
+                        <span class="dark">{{ $currentSection }}</span>
                         /
-                        <span class="dark">{{ $current_action }}</span>
+                        <span class="dark">{{ $currentAction }}</span>
                         is <span class="normal">now printing</span> <span class="light">♪</span>
                     </h1>
                 </div>

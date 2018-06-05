@@ -35,7 +35,7 @@ class TopicCoversController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-topic-covers-'.current_action());
+        view()->share('currentAction', 'forum-topic-covers-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'destroy',

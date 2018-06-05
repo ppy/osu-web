@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_action' => 'packs',
+@extends('master', [
+    'currentAction' => 'packs',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
-    'body_additional_classes' => 'osu-layout--body-555',
+    'bodyAdditionalClasses' => 'osu-layout--body-555',
 ])
 
-@section("content")
+@section('content')
     <div class="beatmap-packs">
         <div class="osu-page">
             <div class="osu-page-header osu-page-header--beatmappacks">

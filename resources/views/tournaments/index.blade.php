@@ -16,13 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'tournaments',
+    'currentSection' => 'community',
+    'currentAction' => 'tournaments',
     'title' => trans('tournament.index.header.title'),
-    'body_additional_classes' => 'osu-layout--body-darker'
+    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
             <div class="osu-page-header-v2__overlay"></div>

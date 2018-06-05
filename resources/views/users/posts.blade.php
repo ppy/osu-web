@@ -16,8 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-    'current_section' => 'community',
-    'current_action' => 'profile',
+    'currentSection' => 'community',
+    'currentAction' => 'profile',
     'title' => trans('users.posts.title', ['username' => $user->username]),
 ])
 

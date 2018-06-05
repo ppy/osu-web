@@ -105,7 +105,7 @@ class ModdingHistoryController extends Controller
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
         return view('users.beatmapset_activities', compact(
-            'current_action',
+            'currentAction',
             'discussions',
             'events',
             'posts',

@@ -16,11 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-  'current_section' => 'beatmaps',
-  'current_action' => 'index',
+  'currentSection' => 'beatmaps',
+  'currentAction' => 'index',
   'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
-  'body_additional_classes' => 'osu-layout--body-ddd'
+  'bodyAdditionalClasses' => 'osu-layout--body-ddd'
 ])
 
 @section("content")

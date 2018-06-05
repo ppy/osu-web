@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", ['body_additional_classes' => 'osu-layout--body-dark'])
+@extends('master', ['bodyAdditionalClasses' => 'osu-layout--body-dark'])
 
 @section("content")
     <div class="osu-page">

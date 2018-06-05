@@ -66,8 +66,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        view()->share('current_action', $this->statusCode($e));
-        view()->share('current_section', 'error');
+        view()->share('currentAction', $this->statusCode($e));
+        view()->share('currentSection', 'error');
 
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
