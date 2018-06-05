@@ -103,6 +103,7 @@ return [
         'pl',
         'pt',
         'pt-br',
+        'ro',
         'ru',
         'sv',
         'th',
