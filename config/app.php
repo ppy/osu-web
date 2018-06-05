@@ -93,6 +93,7 @@ return [
         'de',
         'el',
         'es',
+        'fi',
         'fr',
         'hu',
         'id',
