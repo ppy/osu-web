@@ -134,7 +134,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($this->params->mode ?? Beatmap::MODES['osu']);
+            $mode = Beatmap::modeStr($this->params->mode) ?? $this->params->user->playmode;
             $difficulty = $this->params->user->recommendedStarDifficulty($mode);
             $query->filter([
                 'range' => [
