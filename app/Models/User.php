@@ -1016,9 +1016,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function blocks()
     {
-        // 'cuz hasManyThrough is derp
-
-        return self::whereIn('user_id', $this->relations()->blocks()->pluck('zebra_id'));
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
     }
 
     public function friends()
@@ -1114,7 +1112,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function hasBlocked(self $user)
     {
         return $this->blocks()
-            ->where('user_id', $user->user_id)
+            ->where('zebra_id', $user->user_id)
             ->exists();
     }
 

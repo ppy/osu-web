@@ -86,16 +86,11 @@ class BlocksController extends Controller
     {
         $user = Auth::user();
 
-        $block = $user
-            ->blocks()
-            ->where(['user_id' => $id])
+        $block = $user->blocks()
+            ->where('zebra_id', $id)
             ->firstOrFail();
 
-        UserRelation::where([
-            'user_id' => $user->user_id,
-            'zebra_id' => $id,
-            'foe' => true,
-        ])->delete();
+        $user->blocks()->detach($block);
 
         return json_collection(
             $user->relations()->get(),
