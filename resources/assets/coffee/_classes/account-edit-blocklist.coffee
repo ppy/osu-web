@@ -17,12 +17,30 @@
 ###
 
 class @AccountEditBlocklist
+  bn: 'user-list__content'
+  jsClass: '.js-account-edit-blocklist'
+
   constructor: ->
-    $(document).on 'click', '.js-account-edit-blocklist', @toggle
+    $(document).on 'click', @jsClass, @toggle
+    $.subscribe 'user:update', @updateBlockCount
+    @visible = false
+
+
+  updateBlockCount: =>
+    $(@jsClass)
+      .parents('.account-edit-entry')
+      .find('.account-edit-entry__label')
+      .text osu.transChoice('users.blocks.blocked_count', currentUser.blocks.length)
 
 
   toggle: (e) =>
     e.preventDefault()
-    bn = 'user-list__content'
 
-    $(".#{bn}").toggleClass("#{bn}--folded")
+    if (@visible)
+      $(".#{@bn}").addClass("#{@bn}--folded")
+      $(@jsClass).text osu.trans('common.buttons.show')
+    else
+      $(".#{@bn}").removeClass("#{@bn}--folded")
+      $(@jsClass).text osu.trans('common.buttons.hide')
+
+    @visible = !@visible

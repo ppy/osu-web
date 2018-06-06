@@ -55,12 +55,10 @@
             <div class="account-edit__input-group">
                 <div class="account-edit-entry">
                     <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
-                        {{ trans('users.blocks.profile_header') }}
+                        {{ trans_choice('users.blocks.blocked_count', count($blocks)) }}
                     </div>
                     <div class="user-list">
-                        {!! trans_choice('users.blocks.toggle_text', count($blocks),  [
-                            'link' => "<a class='user-list__toggle js-account-edit-blocklist' href='#'>".trans('users.blocks.toggle_link')."</a>"
-                        ])!!}
+                        <a class='user-list__toggle js-account-edit-blocklist' href='#'>{{trans('common.buttons.show')}}</a>
                         <div class="user-list__content user-list__content--folded">
                             @foreach ($blocks as $block)
                                 <div class="user-list-item">
