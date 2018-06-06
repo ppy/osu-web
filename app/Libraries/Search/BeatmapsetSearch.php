@@ -59,7 +59,9 @@ class BeatmapsetSearch extends RecordSearch
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
+            // results must contain at least one of the terms and boosted by containing all of them.
             $query->must(QueryHelper::queryString($this->params->queryString));
+            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
         }
 
         $this->addModeFilter($query);

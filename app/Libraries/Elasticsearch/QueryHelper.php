@@ -50,12 +50,13 @@ class QueryHelper
      *
      * @return array
      */
-    public static function queryString(string $query, array $fields = []) : array
+    public static function queryString(string $query, array $fields = [], string $operator = 'or') : array
     {
         return [
             'simple_query_string' => [
                 'query' => $query,
                 'fields' => $fields,
+                'default_operator' => $operator,
             ],
         ];
     }
