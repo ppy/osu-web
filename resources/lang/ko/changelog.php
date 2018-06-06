@@ -21,7 +21,7 @@
 return [
     'feed_title' => '피드',
     'generic' => '버그 수정 및 소소한 사항 개선.',
-    'users-online' => ':users 명 접속 중',
+    'users-online' => ':users명 접속 중',
 
     'prefixes' => [
         'add' => '추가 사항',
@@ -31,8 +31,8 @@ return [
 
     'support' => [
         'heading' => '이 업데이트가 맘에 드세요?',
-        'text_1' => 'osu!의 개발을 지원하고, :link세요!',
-        'text_1_link' => '후원자가 되',
-        'text_2' => '빠른 개발을 도울 뿐만 아니라, 몇 가지 추가 기능과 맞춤 설정이 가능해집니다!',
+        'text_1' => 'osu!의 개발을 지원하고 :link세요!',
+        'text_1_link' => '서포터가 되',
+        'text_2' => '빠른 개발을 도울 뿐만 아니라 몇 가지 추가 기능과 맞춤 설정을 할 수 있어요!',
     ],
 ];

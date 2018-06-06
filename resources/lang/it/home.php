@@ -121,9 +121,9 @@ return [
             'welcome' => 'Ciao, <strong>:username</strong>!',
             'messages' => 'Hai :count nuovo messaggio | Hai :count nuovi messaggi',
             'stats' => [
-                'friends' => 'Amici in linea',
+                'friends' => 'Amici online',
                 'games' => 'Giochi',
-                'online' => 'Utenti in linea',
+                'online' => 'Utenti online',
             ],
         ],
         'beatmaps' => [

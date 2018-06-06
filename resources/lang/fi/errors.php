@@ -1,0 +1,43 @@
+<?php
+
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+return [
+    'codes' => [
+        'http-401' => 'Kirjaudu sisään jatkaaksesi.',
+        'http-403' => 'Pääsy evätty.',
+        'http-429' => 'Liian monta kirjautumisyritystä, yritä uudelleen myöhemmin.',
+    ],
+    'account' => [
+        'profile-order' => [
+            'generic' => 'Virhe. Yritä päivittää sivu.',
+        ],
+    ],
+    'beatmaps' => [
+        'invalid_mode' => 'Virheellinen pelimoodi annettu.',
+        'standard_converts_only' => 'Ei tuloksia saatavissa valitulle moodille tässä kentän vaikeusasteessa.',
+    ],
+    'beatmapsets' => [
+        'too-many-favourites' => 'Sinulla on liian monta suosikkikenttää! Ole ystävällinen ja ota yksi pois suosikeista ennen jatkamista.',
+    ],
+    'logged_out' => 'Sinut on kirjattu ulos. Kirjaudu sisään ja yritä uudelleen.',
+    'supporter_only' => 'Sinun täytyy olla tukija käyttääksesi tätä ominaisuutta.',
+    'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
+    'unknown' => 'Tuntematon virhe.',
+];

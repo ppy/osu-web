@@ -148,7 +148,7 @@ return [
 
     'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
 
-    'restricted' => "Nicht möglich, während man eingeschränkt ist.",
+    'restricted' => "Nicht möglich, während man restricted ist.",
 
     'user' => [
         'page' => [
