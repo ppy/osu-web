@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'Aktuelle E-Mail Adresse',
             'new' => 'Neue E-Mail',
-            'new_confirmation' => 'E-Mail bestätigen',
+            'new_confirmation' => 'e-mail bestätigen',
             'title' => 'E-Mail',
         ],
 
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'Passwort bestätigen',
+            'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -47,9 +47,9 @@ return [
 
             'user' => [
                 'user_from' => 'aktueller standort',
-                'user_interests' => 'Interessen',
+                'user_interests' => 'interessen',
                 'user_msnm' => 'skype',
-                'user_occ' => 'tätigkeit',
+                'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
                 'user_website' => 'webseite',
                 'user_discord' => 'discord',

@@ -19,21 +19,21 @@
  */
 
 return [
-    'pinned_topics' => '고정된 주제',
+    'pinned_topics' => '공지사항',
     'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
-    'title' => 'osu!커뮤니티',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
             '_' => '표지 이미지 설정',
             'button' => '이미지 업로드',
-            'info' => '표지 이미지의 크기는 :dimensions여야 합니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
+            'info' => '표지 이미지의 해상도는 최대 :dimensions입니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
         ],
 
         'destroy' => [
-            '_' => '표지 이미지 제거',
-            'confirm' => '정말 표지 이미지를 제거하실 건가요?',
+            '_' => '표지 이미지 삭제',
+            'confirm' => '정말 표지 이미지를 삭제하실 건가요?',
         ],
     ],
 
@@ -50,7 +50,7 @@ return [
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => '마지막으로 :user님이 :when에 수정하여, 총 :count회 수정되었습니다.',
+        'edited' => '마지막으로 :user님이 :when에 수정하여 총 :count회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
 
         'actions' => [
@@ -63,7 +63,7 @@ return [
     'search' => [
         'go_to_post' => '게시글로 이동',
         'post_number_input' => '글 번호를 입력하세요',
-        'total_posts' => '총 :posts_count개 글 발견',
+        'total_posts' => '총 :posts_count개의 글',
     ],
 
     'topic' => [
@@ -75,7 +75,7 @@ return [
         'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
         'post_reply' => '게시하기',
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
-        'started_by' => ':user님이 작성함',
+        'started_by' => 'by :user',
 
         'create' => [
             'preview' => '미리보기',

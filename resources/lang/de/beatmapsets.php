@@ -81,7 +81,7 @@ return [
             'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
-            'achieved' => 'erreicht am :when',
+            'achieved' => 'erreicht :when',
             'country' => 'Länder-Rangliste',
             'friend' => 'Freundes-Rangliste',
             'global' => 'Globale Rangliste',
