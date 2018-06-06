@@ -77,7 +77,7 @@ class BlocksController extends Controller
         }
 
         return json_collection(
-            $currentUser->relations()->get(),
+            $relations->get(),
             'UserRelation'
         );
     }

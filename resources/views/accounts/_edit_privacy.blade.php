@@ -53,7 +53,7 @@
         </div>
         @if (count($blocks) > 0)
             <div class="account-edit__input-group">
-            <div class="account-edit-entry">
+                <div class="account-edit-entry">
                     <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
                         {{ trans('users.blocks.profile_header') }}
                     </div>

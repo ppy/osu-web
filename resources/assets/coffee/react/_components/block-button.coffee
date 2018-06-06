@@ -35,13 +35,17 @@ class @BlockButton extends React.PureComponent
 
 
   updateBlocks: (data) =>
-    @setState block: _.find(data, (o) => o.target_id == @props.user_id), ->
+    @setState block: _.find(data, target_id: @props.user_id), ->
       currentUser.blocks = _.filter data, relation_type: 'block'
       currentUser.friends = _.filter data, relation_type: 'friend'
       $.publish 'user:update', currentUser
       $.publish 'blockButton:refresh'
       $.publish 'friendButton:refresh'
       $.publish 'user:page:update'
+
+
+  refresh: (e) =>
+    @setState block: _.find(currentUser.blocks, target_id: @props.user_id)
 
 
   clicked: (e) =>
@@ -65,9 +69,6 @@ class @BlockButton extends React.PureComponent
       .always @requestDone
 
 
-  refresh: (e) =>
-    @setState block: _.find(currentUser.blocks, target_id: @props.user_id), =>
-      @forceUpdate()
 
 
   componentDidMount: =>
@@ -88,17 +89,13 @@ class @BlockButton extends React.PureComponent
       onClick: @clicked
       ref: (el) => @button = el
       disabled: @state.loading
-      if @state.loading
-        i className: "#{bn}__icon fas fa-sync fa-spin"
-      else
-        if @state.block
-          span {},
-            i className: "#{bn}__icon fas fa-ban"
-            " #{osu.trans 'users.blocks.button.unblock'}"
+      span {},
+        if @state.loading
+          span className: "#{bn}__icon fa-fw", el Spinner
         else
-          span {},
-            i className: "#{bn}__icon fas fa-ban"
-            " #{osu.trans 'users.blocks.button.block'}"
+          i className: "#{bn}__icon fas fa-ban fa-fw"
+
+        if @state.block then " #{osu.trans 'users.blocks.button.unblock'}" else " #{osu.trans 'users.blocks.button.block'}"
 
   isVisible: =>
     # - not a guest
