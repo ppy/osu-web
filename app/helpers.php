@@ -976,9 +976,9 @@ function get_params($input, $namespace, $keys)
         $key = $keyAndType[0];
         $type = $keyAndType[1] ?? null;
 
-        $value = get_param_value(array_get($input, $key), $type);
+        if (array_has($input, $key)) {
+            $value = get_param_value(array_get($input, $key), $type);
 
-        if ($value !== null) {
             array_set($params, $key, $value);
         }
     }
