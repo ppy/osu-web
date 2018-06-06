@@ -30,10 +30,6 @@ class @BlockButton extends React.PureComponent
       block: _.find(currentUser.blocks, target_id: props.user_id)
 
 
-  requestDone: =>
-    @setState loading: false
-
-
   updateBlocks: (data) =>
     @setState block: _.find(data, target_id: @props.user_id), ->
       currentUser.blocks = _.filter data, relation_type: 'block'
@@ -41,7 +37,6 @@ class @BlockButton extends React.PureComponent
       $.publish 'user:update', currentUser
       $.publish 'blockButton:refresh'
       $.publish 'friendButton:refresh'
-      $.publish 'user:page:update'
 
 
   refresh: (e) =>
@@ -64,11 +59,14 @@ class @BlockButton extends React.PureComponent
           url: laroute.route 'blocks.store', target: @props.user_id
 
       @xhr
-      .done @updateBlocks
+      .always =>
+        @setState loading: false
       .fail osu.emitAjaxError(@button)
-      .always @requestDone
+      .done @updateBlocks
 
 
+  setButton: (element) =>
+    @button = element
 
 
   componentDidMount: =>
@@ -87,7 +85,7 @@ class @BlockButton extends React.PureComponent
       type: 'button'
       className: bn
       onClick: @clicked
-      ref: (el) => @button = el
+      ref: @setButton
       disabled: @state.loading
       span {},
         if @state.loading

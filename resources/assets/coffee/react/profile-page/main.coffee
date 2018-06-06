@@ -432,7 +432,8 @@ class ProfilePage.Main extends React.PureComponent
 
 
   userUpdate: (_e, user) =>
-    return if user?.id != @state.user.id
+    return @forceUpdate() if user?.id != @state.user.id
+
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
 
