@@ -57,8 +57,10 @@ class BlocksController extends Controller
             abort(404);
         }
 
-        $relations = $currentUser->relations(); // use builder
-        $existingRelation = $relations->where('zebra_id', $targetId)->first();
+        $existingRelation = $currentUser
+            ->relations()
+            ->where('zebra_id', $targetId)
+            ->first();
 
         if ($existingRelation) {
             $existingRelation->update([
@@ -77,7 +79,7 @@ class BlocksController extends Controller
         }
 
         return json_collection(
-            $relations->get(),
+            $currentUser->relations()->get(),
             'UserRelation'
         );
     }
