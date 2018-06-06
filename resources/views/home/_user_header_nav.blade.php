@@ -21,7 +21,7 @@
             href="{{ route('home') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('home.user.title') }}
@@ -35,7 +35,7 @@
             href="{{ route('friends.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'friends-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'friends-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('friends.title_compact') }}
@@ -49,7 +49,7 @@
             href="{{ route('account.edit') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'account-edit' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'account-edit' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('accounts.edit.title_compact') }}
@@ -63,7 +63,7 @@
             href="{{ route('forum.topic-watches.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'forum-topic-watches-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'forum-topic-watches-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('forum.topic_watches.index.title_compact') }}
@@ -77,7 +77,7 @@
             href="{{ route('beatmapsets.watches.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'beatmapset-watches-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'beatmapset-watches-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('beatmapset_watches.index.title_compact') }}

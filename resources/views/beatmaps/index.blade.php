@@ -15,15 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-  'current_section' => 'beatmaps',
-  'current_action' => 'index',
+@extends('master', [
+  'currentSection' => 'beatmaps',
+  'currentAction' => 'index',
   'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
-  'body_additional_classes' => 'osu-layout--body-ddd'
+  'bodyAdditionalClasses' => 'osu-layout--body-ddd'
 ])
 
-@section("content")
+@section('content')
   <div class="js-react--beatmaps"></div>
   {{--
     this should content a server side react.js render which doesn't exist in hhvm

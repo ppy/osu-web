@@ -44,7 +44,7 @@ class TopicsController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-topics-'.current_action());
+        view()->share('currentAction', 'forum-topics-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'create',

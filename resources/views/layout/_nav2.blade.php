@@ -35,7 +35,7 @@
                     <span class="nav2__menu-link-main-text">
                         {{ trans("layout.menu.{$section}._") }}
 
-                        @if ($section === $current_section && !($isSearchPage ?? false))
+                        @if ($section === $currentSection && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
                         @endif
                     </span>

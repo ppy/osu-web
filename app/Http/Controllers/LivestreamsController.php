@@ -29,7 +29,7 @@ class LivestreamsController extends Controller
 
     public function index()
     {
-        view()->share('current_action', 'getLive');
+        view()->share('currentAction', 'getLive');
 
         $livestream = new LivestreamCollection();
         $streams = $livestream->all();
