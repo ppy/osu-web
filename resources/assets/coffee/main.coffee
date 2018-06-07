@@ -36,6 +36,7 @@ $(document).on 'turbolinks:load', ->
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditPlaystyle ?= new AccountEditPlaystyle
+@accountEditBlocklist ?= new AccountEditBlocklist
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
@@ -100,6 +101,11 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  container: target
+  user_id: parseInt(target.dataset.target)
+
+# Globally init block buttons
+reactTurbolinks.register 'blockButton', BlockButton, (target) ->
   container: target
   user_id: parseInt(target.dataset.target)
 

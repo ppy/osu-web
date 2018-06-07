@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, li, ul} = ReactDOMFactories
+{a, button, div, i, li, span, ul} = ReactDOMFactories
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -132,51 +132,77 @@ class ProfilePage.Main extends React.PureComponent
     if @state.userPage.initialRaw.trim() == '' && !@props.withEdit
       _.pull profileOrder, 'me'
 
-    div className: 'osu-layout osu-layout--full',
-      el ProfilePage.Header,
-        user: @state.user
-        stats: @state.user.statistics
-        currentMode: @state.currentMode
-        withEdit: @props.withEdit
-        rankHistory: @props.rankHistory
+    isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-      div
-        className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+    div className: 'osu-layout__no-scroll',
+      if isBlocked
+        div className: 'osu-page',
+          el NotificationBanner,
+            type: 'warning'
+            title: osu.trans('users.blocks.banner_text')
+            message:
+              div className: 'notification-banner__button-group',
+                div className: 'notification-banner__button',
+                  el BlockButton, user_id: @props.user.id
+                div className: 'notification-banner__button',
+                  button
+                    type: 'button'
+                    className: 'textual-button'
+                    onClick: =>
+                      @setState forceShow: !@state.forceShow
+                    span {},
+                      i className: 'textual-button__icon fas fa-low-vision'
+                      " "
+                      if @state.forceShow
+                        osu.trans('users.blocks.hide_profile')
+                      else
+                        osu.trans('users.blocks.show_profile')
+
+      div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
+        el ProfilePage.Header,
+          user: @state.user
+          stats: @state.user.statistics
+          currentMode: @state.currentMode
+          withEdit: @props.withEdit
+          rankHistory: @props.rankHistory
 
         div
-          className: 'js-sticky-header'
-          'data-sticky-header-target': 'page-extra-tabs'
+          className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+
+          div
+            className: 'js-sticky-header'
+            'data-sticky-header-target': 'page-extra-tabs'
+
+          div
+            className: 'page-extra-tabs__padding js-sync-height--target'
+            'data-sync-height-id': 'page-extra-tabs'
+
+          div
+            className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
+            'data-sync-height-target': 'page-extra-tabs'
+            if profileOrder.length > 1
+              div className: 'osu-page',
+                div
+                  className: 'page-mode page-mode--page-extra-tabs'
+                  ref: (el) => @tabs = el
+                  for m in profileOrder
+                    a
+                      className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                      key: m
+                      'data-page-id': m
+                      onClick: @tabClick
+                      href: "##{m}"
+                      el ProfilePage.ExtraTab,
+                        page: m
+                        currentPage: @state.currentPage
+                        currentMode: @state.currentMode
 
         div
-          className: 'page-extra-tabs__padding js-sync-height--target'
-          'data-sync-height-id': 'page-extra-tabs'
-
-        div
-          className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
-          'data-sync-height-target': 'page-extra-tabs'
-          if profileOrder.length > 1
-            div className: 'osu-page',
-              div
-                className: 'page-mode page-mode--page-extra-tabs'
-                ref: (el) => @tabs = el
-                for m in profileOrder
-                  a
-                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                    key: m
-                    'data-page-id': m
-                    onClick: @tabClick
-                    href: "##{m}"
-                    el ProfilePage.ExtraTab,
-                      page: m
-                      currentPage: @state.currentPage
-                      currentMode: @state.currentMode
-
-      div
-        className: 'osu-layout__section osu-layout__section--extra'
-        div
-          className: 'osu-layout__row'
-          ref: (el) => @pages = el
-          @extraPage name for name in profileOrder
+          className: 'osu-layout__section osu-layout__section--extra'
+          div
+            className: 'osu-layout__row'
+            ref: (el) => @pages = el
+            @extraPage name for name in profileOrder
 
 
   _tabsStick: (_e, target) =>
@@ -406,7 +432,8 @@ class ProfilePage.Main extends React.PureComponent
 
 
   userUpdate: (_e, user) =>
-    return if user?.id != @state.user.id
+    return @forceUpdate() if user?.id != @state.user.id
+
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
 

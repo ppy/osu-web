@@ -70,6 +70,7 @@
 
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
   }
 
   &__checkbox-label {
@@ -187,6 +188,10 @@
       padding-right: 10px;
       padding-bottom: 0;
       text-align: right;
+    }
+
+    &--top-pinned {
+      align-self: flex-start;
     }
 
     *:focus ~ & {

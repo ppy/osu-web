@@ -51,5 +51,25 @@
                 </label>
             </div>
         </div>
+        @if (count($blocks) > 0)
+            <div class="account-edit__input-group">
+                <div class="account-edit-entry">
+                    <div class="account-edit-entry__label account-edit-entry__label--top-pinned js-account-edit-blocklist-count">
+                        {{ trans('users.blocks.blocked_count', ['count' => count($blocks)]) }}
+                    </div>
+                    <div class="user-list">
+                        <a class='user-list__toggle js-account-edit-blocklist' href='#'>{{trans('common.buttons.show')}}</a>
+                        <div class="user-list__content hidden">
+                            @foreach ($blocks as $block)
+                                <div class="user-list-item">
+                                    <a class="user-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>
+                                    <div class="js-react--blockButton" data-target="{{$block->user_id}}"></div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

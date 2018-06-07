@@ -1000,11 +1000,21 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserRelation::class, 'user_id');
     }
 
+    public function blocks()
+    {
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+    }
+
     public function friends()
     {
         // 'cuz hasManyThrough is derp
 
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    }
+
+    public function maxBlocks()
+    {
+        return ceil($this->maxFriends() / 10);
     }
 
     public function maxFriends()
@@ -1033,11 +1043,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
-    }
-
-    public function foes()
-    {
-        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -1088,6 +1093,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function hasBlocked(self $user)
+    {
+        return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
     }
 
     public function hasFavourited($beatmapset)
@@ -1202,7 +1214,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'friends']);
+        return json_item($this, 'User', ['disqus_auth', 'blocks', 'friends']);
     }
 
     public function supportLength()
