@@ -21,12 +21,13 @@
 namespace App\Models;
 
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\BasicSearch;
 use Cache;
 
 trait UserScoreable
 {
-    public function aggregatedScoresBest(string $mode, int $size)
+    public function aggregatedScoresBest(string $mode, int $size) : SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 
@@ -62,7 +63,9 @@ trait UserScoreable
 
     public function beatmapBestScoreIds(string $mode, int $size)
     {
-        $buckets = array_get($this->aggregatedScoresBest($mode, $size)->raw(), 'aggregations.by_beatmaps.buckets');
+        // FIXME: should return some sort of error on error...but the layers above can't handle them.
+        $buckets = $this->aggregatedScoresBest($mode, $size)->aggregations('by_beatmaps')['buckets'] ?? [];
+
         return array_map(function ($bucket) {
             return array_get($bucket, 'top_scores.hits.hits.0._source.score_id');
         }, $buckets);

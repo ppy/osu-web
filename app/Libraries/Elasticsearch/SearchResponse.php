@@ -38,6 +38,13 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->index = 0;
     }
 
+    public function aggregations(string $name = null)
+    {
+        return $name === null
+            ? $this->raw['aggregations'] ?? []
+            : $this->raw['aggregations'][$name] ?? [];
+    }
+
     public function count()
     {
         return count($this->hits());
