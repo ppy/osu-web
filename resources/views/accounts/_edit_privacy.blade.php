@@ -55,7 +55,7 @@
             <div class="account-edit__input-group">
                 <div class="account-edit-entry">
                     <div class="account-edit-entry__label account-edit-entry__label--top-pinned js-account-edit-blocklist-count">
-                        {{ trans_choice('users.blocks.blocked_count', count($blocks)) }}
+                        {{ trans('users.blocks.blocked_count', ['count' => count($blocks)]) }}
                     </div>
                     <div class="user-list">
                         <a class='user-list__toggle js-account-edit-blocklist' href='#'>{{trans('common.buttons.show')}}</a>
