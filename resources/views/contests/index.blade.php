@@ -17,10 +17,10 @@
 --}}
 
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'contests',
+    'currentSection' => 'community',
+    'currentAction' => 'contests',
     'title' => "Contests",
-    'body_additional_classes' => 'osu-layout--body-darker'
+    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

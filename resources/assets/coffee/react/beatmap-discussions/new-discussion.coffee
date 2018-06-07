@@ -222,7 +222,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
       discussions = []
 
-      for discussion in @props.currentDiscussions.timeline
+      for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
         continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
 

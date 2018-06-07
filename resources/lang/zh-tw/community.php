@@ -79,7 +79,7 @@ return [
 
             'customisation' => [
                 'title' => '客製化',
-                'description' => '客製化您個頁面。',
+                'description' => '客製化您的頁面。',
             ],
 
             'beatmap_filters' => [

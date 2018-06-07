@@ -19,7 +19,7 @@
  */
 
 return [
-    'title' => 'Redefinir senha',
+    'title' => 'Redefinir Senha',
 
     'button' => [
         'cancel' => 'Cancelar',

@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'framhävda artister',
+            'artists' => 'utvalda artister',
             'beatmap_discussion_posts-index' => 'beatmapdiskussionsinlägg',
             'beatmap_discussions-index' => 'beatmapdiskussioner',
             'beatmapset-watches-index' => 'modding övervakningslista',

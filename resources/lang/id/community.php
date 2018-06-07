@@ -28,9 +28,9 @@ return [
             'support_button' => 'Saya ingin mendukung osu!',
         ],
 
-        'dev_quote' => 'Meskipun osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biaya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! membutuhkan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak manapun yang tidak jelas, sama sekali!
+        'dev_quote' => 'osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biaya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! membutuhkan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak manapun yang tidak jelas, sama sekali!
             <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai \'peppy\'.
-            Pada akhirnya, saya harus keluar dari pekerjaan tetap saya agar dapat terus mengembangkan osu!,
+            Saya harus keluar dari pekerjaan tetap saya agar dapat terus mengembangkan osu!,
             dan di samping itu terkadang saya juga harus harus bersusah payah demi mempertahankan standar kualitas yang telah saya tetapkan.
             Saya ingin mengucapkan terima kasih secara pribadi kepada mereka yang telah mendukung osu! sampai saat ini,
             dan juga bagi mereka yang terus mendukung permainan yang luar biasa ini beserta komunitas-komunitasnya sampai ke masa yang akan datang :).',

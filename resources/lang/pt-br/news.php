@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'postado :time',
+        'posted' => 'publicado :time',
 
         'nav' => [
             'newer' => 'Postagem nova',

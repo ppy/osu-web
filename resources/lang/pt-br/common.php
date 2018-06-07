@@ -34,7 +34,7 @@ return [
         'click_to_copy' => 'clique para copiar',
         'click_to_copy_copied' => 'copiado para a área de transferência!',
         'delete' => 'Excluir',
-        'permalink' => 'copiar link da postagem',
+        'permalink' => 'permalink',
         'permalink_copied' => 'link copiado',
         'post' => 'Enviar',
         'reply' => 'Responder',
@@ -92,14 +92,14 @@ return [
         'count_50' => '50',
         'count_geki' => 'MAX',
         'count_katu' => '200',
-        'count_miss' => 'Erro',
+        'count_miss' => 'Erros',
     ],
 
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo Sobrando',
+        'remaining' => 'Tempo Restante',
     ],
 
     'title' => [

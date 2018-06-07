@@ -40,7 +40,7 @@ return [
             'updated_timeago' => 'τελευταία ενημέρωση :timeago',
             'ranked' => 'έγινε ranked στις ',
             'approved' => 'έγινε approved στις ',
-            'qualified' => 'qualified στις ',
+            'qualified' => 'έγινε qualified στις ',
             'loved' => 'έγινε loved στις ',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'download' => [

@@ -15,9 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", ['titlePrepend' => $product->name])
+@extends('master', ['titlePrepend' => $product->name])
 
-@section("content")
+@section('content')
     @include("store.header")
 
     {!! Form::open([

@@ -17,7 +17,7 @@
 --}}
 @extends('master')
 
-@section("content")
+@section('content')
     @php
         $selectorParams = [
             'type' => $type,

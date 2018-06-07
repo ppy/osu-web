@@ -41,12 +41,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Eventos ocorridos no mapa',
+        'title' => 'Eventos ocorridos no beatmap',
     ],
 
     'item' => [
         'content' => 'Conteúdo',
-        'discussion_deleted' => '[apagado]',
+        'discussion_deleted' => '[excluído]',
         'type' => 'Tipo',
     ],
 ];

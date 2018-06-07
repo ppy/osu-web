@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
 @php
     // always ignore empty keys.
@@ -23,7 +23,7 @@
     $itemErrors = $validationErrors['orderItems'] ?? [];
 @endphp
 
-@section("content")
+@section('content')
     @include("store.header")
 
     @if(!$order || !count($order->items))

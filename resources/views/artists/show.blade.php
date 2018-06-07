@@ -15,15 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'beatmaps',
-    'current_action' => 'artists',
+@extends('master', [
+    'currentSection' => 'beatmaps',
+    'currentAction' => 'artists',
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
-    'body_additional_classes' => 'osu-layout--body-darker'
+    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     @include('objects.css-override', ['mapping' => [
         '.osu-page-header-v2--artist' => $images['header_url'],
         '.artist__portrait' => $images['cover_url'],

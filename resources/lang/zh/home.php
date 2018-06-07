@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> 名已注册玩家',
 
         'slogan' => [
-            'main' => '免费音乐游戏',
+            'main' => '超级优质的免费音乐游戏',
             'sub' => '节奏跃然指上',
         ],
     ],

@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
-            'incorrect_state' => '',
-            'owner' => "",
+            'incorrect_state' => 'Fejl i udføringen af handlingen, prøv at genindlæse siden.',
+            'owner' => "Kan ikke nominere din egen beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',

@@ -86,7 +86,7 @@ return [
 
         'new' => [
             'timestamp' => 'Tidsstämpel',
-            'timestamp_missing' => 'Tryck ctrl-c i redigerings läge och klistra in ditt meddelande för att lägga till en tidsstämpel!',
+            'timestamp_missing' => 'Tryck ctrl-c i redigeringsläget och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
         ],
 

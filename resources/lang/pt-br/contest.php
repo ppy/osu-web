@@ -21,13 +21,13 @@
 return [
     'header' => [
         'small' => 'Compita de outras formas além de clicar em círculos.',
-        'large' => 'Concursos da comunidade osu!',
+        'large' => 'Concursos da Comunidade osu!',
     ],
     'voting' => [
         'over' => 'A votação deste concurso já foi encerrada',
         'login_required' => 'Por favor, conecte-se para votar.',
         'best_of' => [
-            'none_played' => "Parece que você não jogou nenhum dos mapas qualificados para este concurso!",
+            'none_played' => "Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!",
         ],
     ],
     'entry' => [
@@ -46,7 +46,7 @@ return [
         'too_big' => 'Inscrições não podem exceder :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Baixar inscrição',
+        'download' => 'Baixar Inscrição',
     ],
     'vote' => [
         'list' => 'votos',
@@ -61,8 +61,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Inscrição aberta',
-        'voting' => 'Votação iniciada',
+        'entry' => 'Inscrição Aberta',
+        'voting' => 'Votação Iniciada',
         'results' => 'Resultados',
     ],
 ];

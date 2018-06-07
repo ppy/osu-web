@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
-    "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
     'search' => [
         'params' => [
@@ -28,7 +28,7 @@
     'pageDescription' => $topic->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
 
     @include('forum.topics._floating_header')

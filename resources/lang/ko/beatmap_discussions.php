@@ -53,33 +53,33 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => '새로 달린 답글이 없습니다',
-        'notice' => ':timestamp (:existing_timestamps)에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
+        'confirm' => '지금 작성하는 토론과 연관된 토론이 없습니다',
+        'notice' => ':timestamp (:existing_timestamps)주위에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
     ],
 
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',
-            'user' => '답글달기',
+            'user' => '답글 달기',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => ':user님이 토론 결과를 결정했습니다',
+            'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],
 
     'user' => [
         'admin' => '관리자',
-        'bng' => '노미네이터',
+        'bng' => 'nominator',
         'owner' => '매퍼',
         'qat' => 'QAT',
     ],
 
     'user_filter' => [
         'everyone' => '모두',
-        'label' => '사용자로 필터링',
+        'label' => '사용자순 필터링',
     ],
 ];

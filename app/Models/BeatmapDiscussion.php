@@ -41,10 +41,10 @@ class BeatmapDiscussion extends Model
     const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
-        'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
         'mapper_note' => 3,
+        'praise' => 0,
         'hype' => 4,
     ];
 

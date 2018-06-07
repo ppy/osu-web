@@ -44,6 +44,7 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'search' => 'Search',
         'see_more' => 'see more',
         'show' => 'show',
         'show_more' => 'show more',

@@ -107,7 +107,7 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Mudar capa de perfil',
+                'button' => 'Mudar Capa de Perfil',
                 'defaults_info' => 'Mais opções de capa virão no futuro',
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
@@ -137,22 +137,22 @@ return [
             ],
             'beatmaps' => [
                 'none' => 'Nenhum... ainda.',
-                'title' => 'Mapas',
+                'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Mapas favoritos (:count)',
+                    'title' => 'Beatmaps favoritos (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Mapas desatualizados (:count)',
+                    'title' => 'Beatmaps no cemitério (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Loved (: contagem)',
+                    'title' => 'Beatmaps Loved (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Mapas classificados e aprovados (:count)',
+                    'title' => 'Beatmaps Ranqueados & Aprovados (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Mapas Pendentes (:count)',
+                    'title' => 'Beatmaps Pendentes (:count)',
                 ],
             ],
             'historical' => [
@@ -164,7 +164,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'vezes jogadas',
-                    'title' => 'Mapas mais jogados',
+                    'title' => 'Beatmaps Mais Jogados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
@@ -180,11 +180,11 @@ return [
                 'recent_entries' => 'Histórico de kudosu recente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Adquirido',
-                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um mapa. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um beatmap. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Esse usuário ainda não tem nenhum kudosu!",
+                    'empty' => "Esse usuário ainda não recebeu nenhum kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -233,7 +233,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
-                'not_ranked' => 'Apenas mapas classificados dão pp.',
+                'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
@@ -291,7 +291,7 @@ return [
             'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear este recurso.",
         ],
         'post_count' => [
-            '_' => 'Contribuiu :link',
+            '_' => 'Contribuiu com :link',
             'count' => ':count postagem no fórum|:count postagens no fórum',
         ],
         'rank' => [
@@ -299,11 +299,11 @@ return [
             'global' => 'Ranking global de :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisão de Acertos',
+            'hit_accuracy' => 'Precisão',
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
-            'play_time' => 'Tempo Total Jogado',
+            'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',

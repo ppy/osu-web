@@ -122,8 +122,8 @@ return [
             'modding-history-events' => 'eventi di modding tra utenti',
             'modding-history-index' => 'cronologia di modding tra utenti',
             'modding-history-posts' => 'post di modding tra utenti',
-            'modding-history-votesGiven' => '',
-            'modding-history-votesReceived' => '',
+            'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
+            'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
         ],
         'store' => [
             '_' => 'negozio',

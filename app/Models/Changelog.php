@@ -27,6 +27,11 @@ class Changelog extends Model
     protected $primaryKey = 'changelog_id';
     protected $guarded = [];
 
+    protected $casts = [
+        'private' => 'boolean',
+        'major' => 'boolean',
+    ];
+
     protected $dates = [
         'date',
     ];

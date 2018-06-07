@@ -204,8 +204,8 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => 'Menerima :amount atas dasar mendapatkan vote positif di post modding :post',
-                            'reset' => 'Kehilangan :amount atas dasar kehilangan vote positif di post modding :post',
+                            'give' => 'Menerima :amount karena mendapatkan vote positif di post modding :post',
+                            'reset' => 'Kehilangan :amount karena kehilangan vote positif di post modding :post',
                         ],
 
                         'recalculate' => [

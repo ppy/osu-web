@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => '',
+        'small' => 'Competi in più modi che solo cliccando sui cerchi.',
         'large' => 'Contest della Community di osu!',
     ],
     'voting' => [

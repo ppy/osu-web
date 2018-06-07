@@ -84,25 +84,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_interests' => 30,
     ];
 
-    const ES_MAPPINGS = [
-        'is_old' => ['type' => 'boolean'],
-        'user_lastvisit' => ['type' => 'date'],
-        'username' => [
-            'type' => 'text',
-            'analyzer' => 'username_lower',
-            'fields' => [
-                // for exact match
-                'raw' => ['type' => 'keyword'],
-                // try match sloppy search guesses
-                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
-                // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
-            ],
-        ],
-        'user_warnings' => ['type' => 'short'],
-        'user_type' => ['type' => 'short'],
-    ];
-
     private $memoized = [];
 
     private $validateCurrentPassword = false;
@@ -733,6 +714,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserBadge::class, 'user_id');
     }
 
+    public function githubUsers()
+    {
+        return $this->hasMany(GithubUser::class, 'user_id');
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
@@ -1299,7 +1285,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
-        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+        $lastPost = $this->forumPosts()->select('post_time')->last();
 
         // FIXME: not null column, hence default 0. Change column to allow null
         $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;

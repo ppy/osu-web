@@ -38,26 +38,26 @@ return [
         'permalink_copied' => '링크 복사됨',
         'post' => '게시하기',
         'reply' => '답변하기',
-        'reply_reopen' => '답하고 다시 열기',
-        'reply_resolve' => '답하고 해결 처리하기',
+        'reply_reopen' => '답변하고 토론 재개하기',
+        'reply_resolve' => '답변하고 토론 마무리하기',
         'reset' => '초기화',
         'save' => '저장',
         'saving' => '저장 중...',
         'see_more' => '더 보기',
         'show_more' => '더 보기',
-        'upload_image' => '이미지 업로드',
+        'upload_image' => '이미지 올리기',
     ],
 
     'count' => [
         'badges' => ':count개의 배지|:count개의 배지',
-        'days' => ':count 일|:count 일',
+        'days' => ':count일|:count일',
         'hour_short_unit' => '시간|시간',
         'hours' => ':count시간|:count시간',
         'item' => ':count unit|:count units',
         'minute_short_unit' => '분|분',
-        'months' => ':count 달|:count 달',
+        'months' => ':count달|:count달',
         'second_short_unit' => '초|초',
-        'years' => ':count 년|:count 년',
+        'years' => ':count년|:count년',
     ],
 
     'datetime' => [
@@ -74,7 +74,7 @@ return [
         'keyboard' => '키보드',
         'mouse' => '마우스',
         'tablet' => '태블릿',
-        'touch' => '터치 스크린',
+        'touch' => '터치스크린',
     ],
 
     'dropzone' => [
@@ -97,7 +97,7 @@ return [
 
     'time' => [
         'days_ago' => ':count 일 전',
-        'hours_ago' => ':count 시간 전',
+        'hours_ago' => ':count시간 전|:count시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',
     ],
