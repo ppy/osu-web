@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,28 @@ class Build extends Model
         'date',
     ];
 
+    protected $guarded = [];
+
     private $cache = [];
+
+    public static function generate($params)
+    {
+        $build = new static($params);
+
+        return $build->getConnection()->transaction(function () use ($build) {
+            $build->save();
+
+            $newChangelogEntryIds = $build
+                ->updateStream
+                ->changelogEntries()
+                ->whereDoesntHave('builds')
+                ->pluck('id');
+
+            $build->changelogEntries()->attach($newChangelogEntryIds);
+
+            return $build;
+        });
+    }
 
     public function updateStream()
     {

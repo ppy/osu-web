@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\News;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -37,6 +38,15 @@ class LegacyInterOpController extends Controller
         $this->dispatch($job);
 
         return ['success' => true];
+    }
+
+    public function generateBuild()
+    {
+        $params = get_params(request(), null, ['version', 'stream_id:int']);
+
+        $build = Build::generate($params);
+
+        return ['success' => true, 'url' => route('changelog.show', $build->version)];
     }
 
     public function news()
