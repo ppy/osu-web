@@ -22,7 +22,6 @@ class @AccountEditBlocklist
 
   constructor: ->
     $(document).on 'click', @jsClass, @toggle
-    $(document).on 'turbolinks:load osu:page:change', @reset
     $.subscribe 'user:update', @updateBlockCount
 
 
@@ -30,18 +29,15 @@ class @AccountEditBlocklist
     $("#{@jsClass}-count").text osu.transChoice('users.blocks.blocked_count', currentUser.blocks.length)
 
 
-  reset: =>
-    @visible = false
-
-
   toggle: (e) =>
     e.preventDefault()
 
-    if (@visible)
-      $(".#{@element}").addClass("#{@element}--hidden")
-      $(@jsClass).text osu.trans('common.buttons.show')
-    else
-      $(".#{@element}").removeClass("#{@element}--hidden")
-      $(@jsClass).text osu.trans('common.buttons.hide')
+    $(".#{@element}").toggleClass('hidden')
 
-    @visible = !@visible
+    label =
+      if $(".#{@element}").hasClass('hidden')
+        osu.trans 'common.buttons.show'
+      else
+        osu.trans 'common.buttons.hide'
+
+    $(@jsClass).text label

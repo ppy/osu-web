@@ -59,7 +59,7 @@
                     </div>
                     <div class="user-list">
                         <a class='user-list__toggle js-account-edit-blocklist' href='#'>{{trans('common.buttons.show')}}</a>
-                        <div class="user-list__content user-list__content--hidden">
+                        <div class="user-list__content hidden">
                             @foreach ($blocks as $block)
                                 <div class="user-list-item">
                                     <a class="user-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>
