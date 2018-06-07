@@ -90,7 +90,11 @@ class BlocksController extends Controller
 
         $block = $user->blocks()
             ->where('zebra_id', $id)
-            ->firstOrFail();
+            ->first();
+
+        if (!$block) {
+            abort(404, trans('users.blocks.not_blocked'));
+        }
 
         $user->blocks()->detach($block);
 
