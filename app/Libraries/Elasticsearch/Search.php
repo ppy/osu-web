@@ -21,6 +21,8 @@
 namespace App\Libraries\Elasticsearch;
 
 use Datadog;
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
@@ -32,6 +34,9 @@ abstract class Search implements Queryable
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
+
+    /** @var string */
+    public $connectionName = 'default';
 
     /**
      * A tag to use when logging timing of fetches.
@@ -102,7 +107,7 @@ abstract class Search implements Queryable
 
             $query['body'] = $body;
 
-            $this->count = Es::count($query)['count'];
+            $this->count = $this->client()->count($query)['count'];
         }
 
         return $this->count;
@@ -219,7 +224,7 @@ abstract class Search implements Queryable
         try {
             return datadog_timing(
                 function () {
-                    return new SearchResponse(Es::search($this->toArray()));
+                    return new SearchResponse($this->client()->search($this->toArray()));
                 },
                 config('datadog-helper.prefix_web').".{$this->statTag}.fetch",
                 ['type' => get_called_class()]
@@ -244,5 +249,21 @@ abstract class Search implements Queryable
         }
 
         return SearchResponse::failed($this->error);
+    }
+
+    public function client() : Client
+    {
+        return static::getClient($this->connectionName);
+    }
+
+    public static function getClient(string $name = 'default') : Client
+    {
+        static $clients = [];
+
+        if (!array_key_exists($name, $clients)) {
+            $clients[$name] = ClientBuilder::fromConfig(config('elasticsearch'));
+        }
+
+        return $clients[$name];
     }
 }

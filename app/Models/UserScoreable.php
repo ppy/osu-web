@@ -31,6 +31,7 @@ trait UserScoreable
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 
         $search = new BasicSearch($index);
+        $search->connectionName = 'scores';
         $search->statTag = "aggregatedScoresBest_{$mode}";
         $search
             ->size(0) // don't care about hits
