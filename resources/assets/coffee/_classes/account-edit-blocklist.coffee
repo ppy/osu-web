@@ -27,10 +27,7 @@ class @AccountEditBlocklist
 
 
   updateBlockCount: =>
-    $(@jsClass)
-      .parents('.account-edit-entry')
-      .find('.account-edit-entry__label')
-      .text osu.transChoice('users.blocks.blocked_count', currentUser.blocks.length)
+    $("#{@jsClass}-count").text osu.transChoice('users.blocks.blocked_count', currentUser.blocks.length)
 
 
   toggle: (e) =>
