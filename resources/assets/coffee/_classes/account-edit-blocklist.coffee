@@ -22,12 +22,16 @@ class @AccountEditBlocklist
 
   constructor: ->
     $(document).on 'click', @jsClass, @toggle
+    $(document).on 'turbolinks:load osu:page:change', @reset
     $.subscribe 'user:update', @updateBlockCount
-    @visible = false
 
 
   updateBlockCount: =>
     $("#{@jsClass}-count").text osu.transChoice('users.blocks.blocked_count', currentUser.blocks.length)
+
+
+  reset: =>
+    @visible = false
 
 
   toggle: (e) =>
