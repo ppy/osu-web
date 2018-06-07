@@ -77,7 +77,7 @@
                             @endif
                             <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
 
-                            @if ($user->exists && !Auth::user()->hasBlocked($user))
+                            @if ($user->exists && (!Auth::check() || !Auth::user()->hasBlocked($user)))
                                 <div class="usercard__icon">
                                     <a
                                         class="user-action-button user-action-button--message"
