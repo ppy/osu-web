@@ -20,14 +20,14 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use App\Libraries\Elasticsearch\Es;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Es;
 
 class Indexing
 {
     public static function deleteIndex(string $name)
     {
-        return Es::indices()->delete([
+        return Es::getClient()->indices()->delete([
             'index' => $name,
             'client' => ['ignore' => 404],
         ]);
@@ -37,7 +37,7 @@ class Indexing
     {
         try {
             // getAlias returns a dictionary where the keys are the names of the indices.
-            return array_keys(Es::indices()->getAlias(['name' => $alias]));
+            return array_keys(Es::getClient()->indices()->getAlias(['name' => $alias]));
         } catch (Missing404Exception $_e) {
             return [];
         }
@@ -56,7 +56,7 @@ class Indexing
 
         // updateAliases doesn't work if the alias doesn't exist :D
         if (count($oldIndices) === 0) {
-            return Es::indices()->putAlias(['index' => $indices, 'name' => $alias]);
+            return Es::getClient()->indices()->putAlias(['index' => $indices, 'name' => $alias]);
         }
 
         $actions = [];
@@ -68,7 +68,7 @@ class Indexing
             $actions[] = ['add' => ['index' => $index, 'alias' => $alias]];
         }
 
-        return Es::indices()->updateAliases([
+        return Es::getClient()->indices()->updateAliases([
             'body' => [
                 'actions' => $actions,
             ],

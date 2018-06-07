@@ -20,11 +20,11 @@
 
 namespace App\Console\Commands;
 
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Score\Best;
 use Carbon\Carbon;
-use Es;
 use Illuminate\Console\Command;
 
 class EsIndexHighScores extends EsIndexDocuments
@@ -57,7 +57,7 @@ class EsIndexHighScores extends EsIndexDocuments
 
     public function getLastUpdated(string $index)
     {
-        return Es::search([
+        return Es::getClient('scores')->search([
             'body' => ['query' => ['ids' => ['values' => [$this->getRealIndexName($index)]]]],
             'index' => config('osu.elasticsearch.prefix').'_index_meta',
         ]);
@@ -89,7 +89,7 @@ class EsIndexHighScores extends EsIndexDocuments
             ],
         ];
 
-        return Es::index($document);
+        return Es::getClient()->index($document);
     }
 
     protected function readOptions()
