@@ -261,7 +261,8 @@ abstract class Search implements Queryable
         static $clients = [];
 
         if (!array_key_exists($name, $clients)) {
-            $clients[$name] = ClientBuilder::fromConfig(config('elasticsearch'));
+            $config = $name === 'default' ? 'elasticsearch' : "elasticsearch_{$name}";
+            $clients[$name] = ClientBuilder::fromConfig(config($config));
         }
 
         return $clients[$name];
