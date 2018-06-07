@@ -22,12 +22,8 @@ namespace App\Libraries\Elasticsearch;
 
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
-use Illuminate\Support\Facades\Facade;
 
-/**
- * @see \Elasticsearch\Client
- */
-class Es extends Facade
+class Es
 {
     public static function getClient(string $name = 'default') : Client
     {
@@ -39,10 +35,5 @@ class Es extends Facade
         }
 
         return $clients[$name];
-    }
-
-    protected static function getFacadeAccessor()
-    {
-        return 'elasticsearch';
     }
 }
