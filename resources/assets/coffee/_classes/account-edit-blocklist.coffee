@@ -17,7 +17,7 @@
 ###
 
 class @AccountEditBlocklist
-  bn: 'user-list__content'
+  element: 'user-list__content'
   jsClass: '.js-account-edit-blocklist'
 
   constructor: ->
@@ -37,10 +37,10 @@ class @AccountEditBlocklist
     e.preventDefault()
 
     if (@visible)
-      $(".#{@bn}").addClass("#{@bn}--folded")
+      $(".#{@element}").addClass("#{@element}--hidden")
       $(@jsClass).text osu.trans('common.buttons.show')
     else
-      $(".#{@bn}").removeClass("#{@bn}--folded")
+      $(".#{@element}").removeClass("#{@element}--hidden")
       $(@jsClass).text osu.trans('common.buttons.hide')
 
     @visible = !@visible
