@@ -22,7 +22,6 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
-use App\Models\Elasticsearch\Score\BestTrait;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
@@ -30,8 +29,6 @@ use DB;
 
 abstract class Model extends BaseModel
 {
-    use BestTrait;
-
     public $position = null;
     public $weight = null;
     public $macros = [

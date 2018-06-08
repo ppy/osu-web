@@ -161,19 +161,12 @@ class EsIndexDocuments extends Command
         return $indices;
     }
 
-    protected function getRealIndexName(string $index)
-    {
-        // this needs to be updated if we have more than 1 index per alias.
-        return $this->existingAliases[$index][0] ?? $index;
-    }
-
     protected function readOptions()
     {
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
         $this->yes = $this->option('yes');
         $this->skipCounts = $this->option('skip-counts');
-
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
