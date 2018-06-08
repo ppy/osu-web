@@ -44,7 +44,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes} {--skip-counts}';
 
     /**
      * The console command description.
@@ -57,7 +57,7 @@ class EsIndexDocuments extends Command
     protected $existingAliases;
     protected $inplace;
     protected $groups;
-    protected $skipCounts = false;
+    protected $skipCounts;
     protected $suffix;
     protected $yes;
 
@@ -172,6 +172,8 @@ class EsIndexDocuments extends Command
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
         $this->yes = $this->option('yes');
+        $this->skipCounts = $this->option('skip-counts');
+
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
