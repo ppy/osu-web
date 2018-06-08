@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use App\Libraries\Elasticsearch\Es;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 
 class Indexing

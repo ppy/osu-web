@@ -27,7 +27,6 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;

@@ -42,7 +42,7 @@ trait UserScoreable
                     'terms' => [
                         'field' => 'beatmap_id',
                         'order' => ['max_pp' => 'desc'], // sort by sub-aggregation max_pp
-                        'size' => $size
+                        'size' => $size,
                     ],
                     'aggs' => [
                         'top_scores' => [
