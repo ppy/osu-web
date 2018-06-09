@@ -127,8 +127,14 @@
     }
 
     &:hover {
+      color: #fff;
+
       > td {
-        background-color: #ccc;
+        background-color: #555;
+
+        > a {
+          color: #fff;
+        }
       }
     }
 
@@ -164,6 +170,11 @@
 
   &__user-link {
     color: #555;
+
+    &:hover {
+      font-weight: bold;
+      text-decoration: none;
+    }
   }
 
   &__zero {
