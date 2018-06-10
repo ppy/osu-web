@@ -79,8 +79,16 @@ class PostSearch extends Search
                 ? Forum::findOrFail($this->params->forumId)->allSubForums()
                 : [$this->params->forumId];
 
-            $query->filter(['terms' => ['forum_id' => $forumIds]]);
+            $forum = Forum::whereIn($forumIds);
+        } else {
+            $forums = Forum::all();
         }
+
+        $filteredIds = $forums->filter(function ($forum) {
+            return priv_check('ForumView', $forum)->can();
+        })->pluck('forum_id');
+
+        $query->filter(['terms' => ['forum_id' => $filteredIds]]);
 
         return $query;
     }
