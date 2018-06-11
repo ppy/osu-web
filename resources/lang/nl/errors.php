@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Log in om verder te gaan.',
         'http-403' => 'Toegang geweigerd.',
+        'http-404' => '',
         'http-429' => 'Te veel pogingen. Probeer later opnieuw.',
     ],
     'account' => [

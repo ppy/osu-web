@@ -35,16 +35,18 @@
             {{ $log->category }}:
         @endif
 
-        @if ($log->anyUrl() === null)
+        @if (!present($log->url))
             {{ $log->title }}
         @else
-            <a href="{{ $log->anyUrl() }}">
+            <a href="{{ $log->url }}">
                 {{ $log->title }}
-
-                @if ($log->hasGithubPR())
-                    ({{ $log->repositoryName() }}#{{ $log->github_pull_request_id }})
-                @endif
             </a>
+        @endif
+
+        @if ($log->githubUrl())
+            ({!!
+                link_to($log->githubUrl(), "{$log->repositoryName()}#{$log->github_pull_request_id}")
+            !!})
         @endif
     </div>
 </div>

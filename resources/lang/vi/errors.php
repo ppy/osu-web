@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Hãy đăng nhập để tiếp tục.',
         'http-403' => 'Truy cập bị từ chối.',
+        'http-404' => 'Không tìm thấy.',
         'http-429' => 'Quá nhiều lần thử. Thử lại sau.',
     ],
     'account' => [
