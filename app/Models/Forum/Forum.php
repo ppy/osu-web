@@ -33,6 +33,7 @@ class Forum extends Model
     public $timestamps = false;
 
     protected $casts = [
+        'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
     ];
 
