@@ -94,6 +94,7 @@ class ChangelogController extends Controller
             ->firstOrFail();
 
         $legacyChangelogs = $activeBuild->changelogs()
+            ->default()
             ->with('user')
             ->visibleOnBuilds()
             ->get()
