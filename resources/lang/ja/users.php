@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '',
+        'blocked_count' => '',
+        'hide_profile' => '',
+        'not_blocked' => '',
+        'show_profile' => '',
+        'too_many' => '',
+        'button' => [
+            'block' => '',
+            'unblock' => '',
+        ],
+    ],
+
     'card' => [
         'loading' => '読み込み中・・・',
         'send_message' => 'メッセージの送信',

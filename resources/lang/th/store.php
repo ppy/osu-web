@@ -76,9 +76,9 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => 'คุณไม่สามารถแก้ไขหรือยกเลิกการสั่งซื้อได้',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
+            'checkout' => 'คุณไม่สามารถแก้ไขออเดอร์ของคุณได้ในระหว่างที่กำลังประมวลผลอยู่', // checkout and processing should have the same message.
+            'default' => 'สั่งซื้อไม่สามารถปรับเปลี่ยน',
+            'delivered' => 'คุณไม่สามารถแก้ไขออเดอร์ของคุณได้เพราะมันถูกจัดส่งเรียบร้อยแล้ว',
             'paid' => '',
             'processing' => '',
             'shipped' => '',

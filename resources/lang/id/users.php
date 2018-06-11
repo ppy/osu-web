@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'blocked_count' => 'pengguna yang diblokir (:count)',
+        'hide_profile' => 'sembunyikan profil',
+        'not_blocked' => 'Pengguna tidak diblokir.',
+        'show_profile' => 'tampilkan profil',
+        'too_many' => 'Batas blokir tercapai.',
+        'button' => [
+            'block' => 'blokir',
+            'unblock' => 'buka blokir',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Memuat...',
         'send_message' => 'kirim pesan',
