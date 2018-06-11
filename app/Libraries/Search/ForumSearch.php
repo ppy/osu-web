@@ -28,7 +28,6 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Elasticsearch\Sort;
-use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
@@ -70,13 +69,7 @@ class ForumSearch extends Search
             $query->should(QueryHelper::queryString($this->params->queryString, ['search_content']));
         }
 
-        if (isset($this->params->forumId)) {
-            $forumIds = $this->params->includeSubforums
-                ? Forum::findOrFail($this->params->forumId)->allSubForums()
-                : [$this->params->forumId];
-
-            $query->filter(['terms' => ['forum_id' => $forumIds]]);
-        }
+        $query->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);
 
         if (isset($this->params->topicId)) {
             $query->filter(['term' => ['topic_id' => $this->params->topicId]]);

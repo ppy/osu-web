@@ -27,7 +27,6 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Elasticsearch\Sort;
-use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -74,21 +73,7 @@ class PostSearch extends Search
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
         }
 
-        if (isset($this->params->forumId)) {
-            $forumIds = $this->params->includeSubforums
-                ? Forum::findOrFail($this->params->forumId)->allSubForums()
-                : [$this->params->forumId];
-
-            $forum = Forum::whereIn($forumIds);
-        } else {
-            $forums = Forum::all();
-        }
-
-        $filteredIds = $forums->filter(function ($forum) {
-            return priv_check('ForumView', $forum)->can();
-        })->pluck('forum_id');
-
-        $query->filter(['terms' => ['forum_id' => $filteredIds]]);
+        $query->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);
 
         return $query;
     }
