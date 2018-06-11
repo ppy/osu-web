@@ -204,7 +204,12 @@ class Topic extends Model implements AfterCommit
             $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $posts = $this->posts()->withTrashed()->with('forum')->get();
+            $posts->each(function ($post) use ($destinationForum) {
+                $post->forum()->associate($destinationForum);
+                $post->save();
+            });
+
             $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
             $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
