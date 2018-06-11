@@ -133,9 +133,4 @@ class ChangelogEntry extends Model
             return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
         }
     }
-
-    public function anyUrl()
-    {
-        return $this->githubUrl() ?? $this->url;
-    }
 }
