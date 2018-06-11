@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
+        'http-404' => 'Nie znaleziono.',
         'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
     ],
     'account' => [

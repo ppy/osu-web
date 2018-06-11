@@ -37,7 +37,7 @@ return [
         'empty_result' => 'Không có kết quả!',
         'missing_query' => 'Từ khóa tìm kiếm tối thiểu :n kí tự',
         'placeholder' => 'nhập để tìm kiếm',
-        'title' => 'Kết Quả Tìm Kiếm',
+        'title' => 'Tìm Kiếm',
 
         'beatmapset' => [
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
