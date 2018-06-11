@@ -31,7 +31,7 @@ trait HasFilteredForums
                 ? Forum::findOrFail($this->forumId)->allSubForums()
                 : [$this->forumId];
 
-            $forum = Forum::whereIn($forumIds);
+            $forums = Forum::whereIn('forum_id', $forumIds)->get();
         } else {
             $forums = Forum::all();
         }
