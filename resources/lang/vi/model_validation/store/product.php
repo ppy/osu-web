@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => 'Không còn hàng của sảnphẩm này!',
+    'insufficient_stock' => 'Không còn hàng của sản phẩm này!',
     'not_available' => 'Sản phẩm này không có sẵn.',
     'too_many' => 'Bạn chỉ có thể đặt mua sản phẩm này với số lượng :count.',
 ];

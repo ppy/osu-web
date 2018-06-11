@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => '隐私政策',
-        'friends_only' => '禁止来自陌生人的私信',
+        'friends_only' => '屏蔽来自陌生人的私信',
     ],
 ];
