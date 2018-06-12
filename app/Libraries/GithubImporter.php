@@ -43,16 +43,16 @@ class GithubImporter
         }
     }
 
-    public function isNewTag()
-    {
-        return $this->eventType === 'push' &&
-            starts_with($this->data['ref'], 'refs/tags/');
-    }
-
     public function isMergedPullRequest()
     {
         return $this->eventType === 'pull_request' &&
             $this->data['action'] === 'closed' &&
             $this->data['pull_request']['merged'];
+    }
+
+    public function isNewTag()
+    {
+        return $this->eventType === 'push' &&
+            starts_with($this->data['ref'], 'refs/tags/');
     }
 }
