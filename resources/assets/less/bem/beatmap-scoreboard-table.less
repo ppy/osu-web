@@ -153,6 +153,10 @@
 
   &__perfect {
     color: @green;
+
+    .@{_top}__body-row:hover & {
+      color: @green-lighter;
+    }
   }
 
   &__rank {
@@ -170,6 +174,7 @@
 
   &__user-link {
     color: #555;
+    transition: none;
 
     &:hover {
       font-weight: bold;
