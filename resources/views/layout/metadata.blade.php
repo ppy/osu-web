@@ -15,11 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<link rel="apple-touch-icon" sizes="180x180" href="{{ config('osu.static', '//s.ppy.sh') }}/apple-touch-icon.png">
-<link rel="icon" sizes="32x32" href="{{ config('osu.static', '//s.ppy.sh') }}/favicon-32x32.png">
-<link rel="icon" sizes="16x16" href="{{ config('osu.static', '//s.ppy.sh') }}/favicon-16x16.png">
-<link rel="manifest" href="{{ config('osu.static', '//s.ppy.sh') }}/site.webmanifest">
-<link rel="mask-icon" href="{{ config('osu.static', '//s.ppy.sh') }}/safari-pinned-tab.svg" color="#e2609a">
+<link rel="apple-touch-icon" sizes="180x180" href="//s.ppy.sh/apple-touch-icon.png">
+<link rel="icon" sizes="32x32" href="//s.ppy.sh/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="//s.ppy.sh/favicon-16x16.png">
+<link rel="manifest" href="//s.ppy.sh/site.webmanifest">
+<link rel="mask-icon" href="//s.ppy.sh/safari-pinned-tab.svg" color="#e2609a">
 <meta name="msapplication-TileColor" content="#603cba">
 <meta name="theme-color" content="#ffffff">
 
