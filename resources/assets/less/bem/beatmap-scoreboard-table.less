@@ -81,6 +81,10 @@
       width: 25px;
     }
 
+    &--player {
+      width: 180px;
+    }
+
     &--maxcombo {
       width: 100px;
     }
@@ -131,10 +135,6 @@
 
       > td {
         background-color: #555;
-
-        > a {
-          color: #fff;
-        }
       }
     }
 
@@ -175,8 +175,12 @@
       font-weight: bold;
       text-decoration: none;
     }
-  }
 
+    .@{_top}__body-row:hover & {
+      color: #fff;
+    }
+  }
+  
   &__zero {
     color: #aaa;
   }
