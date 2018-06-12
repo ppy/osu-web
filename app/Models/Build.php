@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class Build extends Model
 {
     public $timestamps = false;
@@ -35,23 +37,35 @@ class Build extends Model
 
     private $cache = [];
 
-    public static function generate($params)
+    public static function importFromGithubNewTag($data)
     {
-        $build = new static($params);
+        $repository = Repository::where('name', '=', $data['repository']['full_name'])->first();
 
-        return $build->getConnection()->transaction(function () use ($build) {
-            $build->save();
+        // abort on unknown repository
+        if ($repository === null) {
+            return;
+        }
 
-            $newChangelogEntryIds = $build
-                ->updateStream
-                ->changelogEntries()
-                ->whereDoesntHave('builds')
-                ->pluck('id');
+        $version = substr($data['ref'], strlen('refs/tags/'));
 
-            $build->changelogEntries()->attach($newChangelogEntryIds);
+        $build = $repository->updateStream->builds()->firstOrCreate([
+            'version' => $version,
+        ]);
 
-            return $build;
-        });
+        $lastChange = Carbon::parse($data['head_commit']['timestamp']);
+
+        $changelogEntry = new ChangelogEntry;
+
+        $newChangelogEntryIds = $repository
+            ->updateStream
+            ->changelogEntries()
+            ->whereDoesntHave('builds')
+            ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
+            ->pluck($changelogEntry->qualifyColumn('id'));
+
+        $build->changelogEntries()->attach($newChangelogEntryIds);
+
+        return $build;
     }
 
     public function updateStream()

@@ -40,15 +40,6 @@ class LegacyInterOpController extends Controller
         return ['success' => true];
     }
 
-    public function generateBuild()
-    {
-        $params = get_params(request(), null, ['version', 'stream_id:int']);
-
-        $build = Build::generate($params);
-
-        return ['success' => true, 'url' => route('changelog.show', $build->version)];
-    }
-
     public function news()
     {
         $news = News\Index::all(null, 5);

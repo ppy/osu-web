@@ -337,7 +337,6 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::get('/news', 'LegacyInterOpController@news');
-    Route::post('/generate-build', 'LegacyInterOpController@generateBuild');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -12,8 +12,14 @@ class LinkStreamsToChangelogEntries extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-updates')->table('streams', function ($table) {
-            $table->string('repository', 150)->nullable()->default(null);
+        Schema::create('repositories', function ($table) {
+            $table->bigIncrements('id');
+            $table->string('name', 150)->default(null);
+            $table->unsignedInteger('stream_id')->default(null);
+            $table->nullableTimestamps();
+
+            $table->unique('name');
+            $table->unique(['name', 'stream_id']);
         });
     }
 
@@ -24,8 +30,6 @@ class LinkStreamsToChangelogEntries extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-updates')->table('streams', function ($table) {
-            $table->dropColumn('repository');
-        });
+        Schema::drop('repositories');
     }
 }
