@@ -20,8 +20,8 @@
 
 namespace App\Libraries;
 
-use App\Models\ChangelogEntry;
 use App\Models\Build;
+use App\Models\ChangelogEntry;
 
 class GithubImporter
 {

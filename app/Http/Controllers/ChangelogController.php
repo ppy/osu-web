@@ -81,7 +81,6 @@ class ChangelogController extends Controller
             abort(403);
         }
 
-
         (new GithubImporter([
             'eventType' => request()->header('X-GitHub-Event'),
             'data' => request()->json()->all(),

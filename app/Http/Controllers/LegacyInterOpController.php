@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Models\Beatmapset;
-use App\Models\Build;
 use App\Models\News;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
