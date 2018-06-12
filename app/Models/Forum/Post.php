@@ -293,10 +293,10 @@ class Post extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->trashed()) {
-            dispatch(new EsDeleteDocument($this));
-        } else {
+        if ($this->forum->enable_indexing && !$this->trashed()) {
             dispatch(new EsIndexDocument($this));
+        } else {
+            dispatch(new EsDeleteDocument($this));
         }
     }
 

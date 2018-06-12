@@ -20,45 +20,24 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\SearchParams;
+use App\Models\Forum\Forum;
 
-class PostSearchParams extends SearchParams
+trait HasFilteredForums
 {
-    use HasFilteredForums;
-
-    // all public because lazy.
-
-    /** @var int|null */
-    public $forumId = null;
-
-    /** @var int|null */
-    public $topicId = null;
-
-    /** @var bool */
-    public $includeSubforums = false;
-
-    /** @var string|null */
-    public $queryString = null;
-
-    /** @var int */
-    public $userId = -1;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey() : string
+    public function filteredForumIds()
     {
-        $vars = get_object_vars($this);
-        ksort($vars);
+        if (isset($this->forumId)) {
+            $forumIds = $this->includeSubforums
+                ? Forum::findOrFail($this->forumId)->allSubForums()
+                : [$this->forumId];
 
-        return 'post-search:'.json_encode($vars);
-    }
+            $forums = Forum::whereIn('forum_id', $forumIds)->get();
+        } else {
+            $forums = Forum::all();
+        }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isCacheable() : bool
-    {
-        return false;
+        return $forums->filter(function ($forum) {
+            return priv_check('ForumView', $forum)->can();
+        })->pluck('forum_id');
     }
 }
