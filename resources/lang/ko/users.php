@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '이 사용자를 차단 했습니다.',
+        'blocked_count' => '차단된 사용자 (:count)',
+        'hide_profile' => '프로필 숨기기',
+        'not_blocked' => '해당 유저는 차단 되어 있지 않습니다.',
+        'show_profile' => '프로필 표시',
+        'too_many' => '차단 한계에 도달 했습니다.',
+        'button' => [
+            'block' => '차단',
+            'unblock' => '차단 해제',
+        ],
+    ],
+
     'card' => [
         'loading' => '로딩중...',
         'send_message' => '메시지 보내기',
@@ -128,7 +141,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => ':count 팔로워|:count 팔로워',
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [

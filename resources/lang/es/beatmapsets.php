@@ -51,7 +51,7 @@ return [
             ],
             'favourite' => 'Marcar como favorito este beatmapset',
             'unfavourite' => 'Desmarcar como favorito este beatmapset',
-            'favourited_count' => '+ ¡1 persona más!|+ ¡:count personas más!',
+            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
         ],
         'stats' => [
             'cs' => 'Tamaño del Círculo',

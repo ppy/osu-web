@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Vous avez bloqué cet utilisateur.',
+        'blocked_count' => 'utilisateurs bloqués (:count)',
+        'hide_profile' => 'masquer le profil',
+        'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
+        'show_profile' => 'afficher le profil',
+        'too_many' => 'Limite de bloquages atteinte.',
+        'button' => [
+            'block' => 'bloquer',
+            'unblock' => 'débloquer',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Chargement...',
         'send_message' => 'envoyer un message',

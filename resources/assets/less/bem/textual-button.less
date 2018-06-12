@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -18,8 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'insufficient_stock' => 'Данный товар отсутствует в требуемом количестве!',
-    'not_available' => 'Этот товар недоступен.',
-    'too_many' => 'Вы можете заказать только :count шт. этого товара за раз.',
-];
+.textual-button {
+  .reset-input();
+  .center-content();
+  .link-plain();
+  .link-gray-light();
+  font-size: @font-size--normal;
+
+  &__icon {
+    display: inline-block;
+    font-size: 0.85em;
+  }
+}

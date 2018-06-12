@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,11 +26,8 @@ use App\Models\UserRelation;
 use Auth;
 use Request;
 
-class FriendsController extends Controller
+class BlocksController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'friends-';
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -45,33 +42,12 @@ class FriendsController extends Controller
         return parent::__construct();
     }
 
-    public function index()
-    {
-        $friends = Auth::user()
-            ->friends()
-            ->with([
-                'userProfileCustomization',
-                'country',
-            ])
-            ->orderBy('username', 'asc')
-            ->get();
-
-        if (is_api_request()) {
-            return json_collection($friends, 'UserCompact', ['cover', 'country']);
-        } else {
-            $userlist = group_users_by_online_state($friends);
-
-            return view('friends.index', compact('userlist'));
-        }
-    }
-
     public function store()
     {
         $currentUser = Auth::user();
-        $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
 
-        if ($friends->count() >= $currentUser->maxFriends()) {
-            return error_popup(trans('friends.too_many'));
+        if ($currentUser->blocks()->count() >= $currentUser->maxBlocks()) {
+            return error_popup(trans('users.blocks.too_many'));
         }
 
         $targetId = get_int(Request::input('target'));
@@ -81,43 +57,49 @@ class FriendsController extends Controller
             abort(404);
         }
 
-        $alreadyFriends = $friends
-            ->where('user_id', $targetId)
-            ->exists();
+        $existingRelation = $currentUser
+            ->relations()
+            ->where('zebra_id', $targetId)
+            ->first();
 
-        if (!$alreadyFriends) {
+        if ($existingRelation) {
+            $existingRelation->update([
+                'foe' => true,
+                'friend' => false,
+            ]);
+
+            // users get unfollowed when blocked, so update follower count
+            dispatch(new UpdateUserFollowerCountCache($targetId));
+        } else {
             UserRelation::create([
                 'user_id' => $currentUser->user_id,
                 'zebra_id' => $targetId,
-                'friend' => true,
+                'foe' => true,
             ]);
-
-            dispatch(new UpdateUserFollowerCountCache($targetId));
         }
 
         return json_collection(
-            $currentUser->relations()->friends()->withMutual()->get(),
+            $currentUser->relations()->get(),
             'UserRelation'
         );
     }
 
     public function destroy($id)
     {
-        $friend = Auth::user()
-            ->friends()
-            ->where(['user_id' => $id])
-            ->firstOrFail();
+        $user = Auth::user();
 
-        UserRelation::where([
-            'user_id' => Auth::user()->user_id,
-            'zebra_id' => $id,
-            'friend' => 1,
-        ])->delete();
+        $block = $user->blocks()
+            ->where('zebra_id', $id)
+            ->first();
 
-        dispatch(new UpdateUserFollowerCountCache($id));
+        if (!$block) {
+            abort(404, trans('users.blocks.not_blocked'));
+        }
+
+        $user->blocks()->detach($block);
 
         return json_collection(
-            Auth::user()->relations()->friends()->withMutual()->get(),
+            $user->relations()->get(),
             'UserRelation'
         );
     }

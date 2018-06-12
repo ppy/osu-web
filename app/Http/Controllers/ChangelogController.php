@@ -53,6 +53,7 @@ class ChangelogController extends Controller
             ->where('created_at', '>', $from)
             ->get()
             ->concat($legacyChangelogs)
+            ->sortByDesc('created_at')
             ->groupBy(function ($item) {
                 return i18n_date($item->created_at);
             });
@@ -97,6 +98,7 @@ class ChangelogController extends Controller
             ->firstOrFail();
 
         $legacyChangelogs = $activeBuild->changelogs()
+            ->default()
             ->with('user')
             ->visibleOnBuilds()
             ->get()

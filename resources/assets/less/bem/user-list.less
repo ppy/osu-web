@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -18,8 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'insufficient_stock' => 'Данный товар отсутствует в требуемом количестве!',
-    'not_available' => 'Этот товар недоступен.',
-    'too_many' => 'Вы можете заказать только :count шт. этого товара за раз.',
-];
+.user-list {
+  align-self: flex-start;
+  flex-grow: 1;
+
+  &__content {
+    max-width: 250px;
+  }
+}

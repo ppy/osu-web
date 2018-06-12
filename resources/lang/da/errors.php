@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Log venligst ind for at fortsætte.',
         'http-403' => 'Adgang nægtet.',
+        'http-404' => '',
         'http-429' => 'For mange forsøg. Prøv igen senere.',
     ],
     'account' => [

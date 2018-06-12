@@ -18,8 +18,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'insufficient_stock' => 'Данный товар отсутствует в требуемом количестве!',
-    'not_available' => 'Этот товар недоступен.',
-    'too_many' => 'Вы можете заказать только :count шт. этого товара за раз.',
-];
+namespace App\Libraries\Search;
+
+use App\Models\Forum\Forum;
+
+trait HasFilteredForums
+{
+    public function filteredForumIds()
+    {
+        if (isset($this->forumId)) {
+            $forumIds = $this->includeSubforums
+                ? Forum::findOrFail($this->forumId)->allSubForums()
+                : [$this->forumId];
+
+            $forums = Forum::whereIn('forum_id', $forumIds)->get();
+        } else {
+            $forums = Forum::all();
+        }
+
+        return $forums->filter(function ($forum) {
+            return priv_check('ForumView', $forum)->can();
+        })->pluck('forum_id');
+    }
+}
