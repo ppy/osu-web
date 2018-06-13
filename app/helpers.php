@@ -695,14 +695,16 @@ function display_regdate($user)
         return;
     }
 
+    $tooltipDate = i18n_date($user->user_regdate);
+
     $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
+        return '<div title="'.$tooltipDate.'">'.trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => "<strong>{$formattedDate}</strong>",
+        'date' => "<strong title='{$tooltipDate}'>{$formattedDate}</strong>",
     ]);
 }
 
