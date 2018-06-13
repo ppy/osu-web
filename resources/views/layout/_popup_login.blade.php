@@ -45,13 +45,13 @@
 
             <div class="login-box__row login-box__row--inputs">
                 <input
-                    class="login-box__form-input js-nav2--autofocus"
+                    class="login-box__form-input js-login-form-input js-nav2--autofocus"
                     name="username"
                     placeholder="{{ trans('layout.popup_login.login.email') }}"
                     required
                 />
                 <input
-                    class="login-box__form-input"
+                    class="login-box__form-input js-login-form-input"
                     name="password"
                     type="password"
                     placeholder="{{ trans('layout.popup_login.login.password') }}"

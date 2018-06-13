@@ -25,6 +25,8 @@ class @UserLogin
 
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
+    $(document).on 'submit', '.js-login-form', @clearError
+    $(document).on 'input', '.js-login-form-input', @clearError
 
     $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
@@ -32,6 +34,10 @@ class @UserLogin
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
     $.subscribe 'nav:popup:hidden', @reset
+
+
+  clearError: (_e) ->
+    $('.js-login-form--error').text('')
 
 
   loginError: (e, xhr) =>
