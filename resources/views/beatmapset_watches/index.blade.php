@@ -95,7 +95,7 @@
                                     data-confirm="{{ trans('common.confirmation') }}"
                                     title="{{ trans('beatmapset_watches.button.action.to_0') }}"
                                 >
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-eye-slash"></i>
                                 </button>
                             </td>
                         </tr>
