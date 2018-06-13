@@ -80,7 +80,11 @@ class ChangelogEntry extends Model
     {
         return new static([
             'title' => trans('changelog.generic'),
-            'githubUser' => new GithubUser(['username' => 'peppy']),
+            'githubUser' => new GithubUser([
+                'username' => 'peppy',
+                'user_id' => null,
+                'user' => null,
+            ]),
         ]);
     }
 
