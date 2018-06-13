@@ -51,10 +51,6 @@ class ChangelogEntry extends Model
 
     public static function importFromGithub($data)
     {
-        if (!(isset($data['pull_request']) && $data['action'] === 'closed' && $data['pull_request']['merged'])) {
-            return;
-        }
-
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
 
         $params = [

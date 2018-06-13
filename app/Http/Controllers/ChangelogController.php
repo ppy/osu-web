@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
@@ -81,7 +82,10 @@ class ChangelogController extends Controller
             abort(403);
         }
 
-        ChangelogEntry::importFromGithub(request()->json()->all());
+        (new GithubImporter([
+            'eventType' => request()->header('X-GitHub-Event'),
+            'data' => request()->json()->all(),
+        ]))->import();
 
         return [];
     }

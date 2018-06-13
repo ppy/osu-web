@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class Build extends Model
 {
     public $timestamps = false;
@@ -31,7 +33,40 @@ class Build extends Model
         'date',
     ];
 
+    protected $guarded = [];
+
     private $cache = [];
+
+    public static function importFromGithubNewTag($data)
+    {
+        $repository = Repository::where('name', '=', $data['repository']['full_name'])->first();
+
+        // abort on unknown repository
+        if ($repository === null) {
+            return;
+        }
+
+        $version = substr($data['ref'], strlen('refs/tags/'));
+
+        $build = $repository->updateStream->builds()->firstOrCreate([
+            'version' => $version,
+        ]);
+
+        $lastChange = Carbon::parse($data['head_commit']['timestamp']);
+
+        $changelogEntry = new ChangelogEntry;
+
+        $newChangelogEntryIds = $repository
+            ->updateStream
+            ->changelogEntries()
+            ->whereDoesntHave('builds')
+            ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
+            ->pluck($changelogEntry->qualifyColumn('id'));
+
+        $build->changelogEntries()->attach($newChangelogEntryIds);
+
+        return $build;
+    }
 
     public function updateStream()
     {
