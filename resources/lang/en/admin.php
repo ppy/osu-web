@@ -35,6 +35,16 @@ return [
                 'active' => 'active',
                 'inactive' => 'inactive',
             ],
+            'loved' => [
+                '_' => 'Loved',
+                'activate' => 'add to Loved',
+                'activate_confirm' => 'are you absolutely sure you want to add this map to Loved?',
+                'active' => 'is Loved',
+                'deactivate' => 'remove from Loved',
+                'deactivate_confirm' => 'are you ABSOLUTELY sure you want to remove this map from Loved?',
+                'inactive' => 'is not Loved',
+                'invalid' => 'cannot be Loved, is Ranked',
+            ],
         ],
     ],
 

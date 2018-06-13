@@ -22,6 +22,7 @@
         <h1>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h1>
 
         <ul>
+            @if (Auth::user()->isAdmin())
             <li>{{ trans('admin.beatmapsets.show.discussion._') }}:
                 @if ($beatmapset->discussion_enabled)
                     {{ trans('admin.beatmapsets.show.discussion.active') }}
@@ -39,6 +40,34 @@
                 @endif
             </li>
             <li><a href="{{ route('admin.beatmapsets.covers', $beatmapset->beatmapset_id) }}">{{ trans('admin.beatmapsets.show.covers') }}</a></li>
+            @endif
+            <li>{{ trans('admin.beatmapsets.show.loved._') }}:
+                @if ($beatmapset->approved <= 0)
+                    {{ trans('admin.beatmapsets.show.loved.inactive') }}
+                    /
+                    <a
+                        href="{{ route('admin.beatmapsets.update', [
+                            'beatmapsets' => $beatmapset->getKey(),
+                            'beatmapset[approved]=4'
+                        ]) }}"
+                        data-method="PUT"
+                        data-confirm="{{ trans('admin.beatmapsets.show.loved.activate_confirm') }}"
+                    >{{ trans('admin.beatmapsets.show.loved.activate') }}</a>
+                @elseif ($beatmapset->approved == 4)
+                    {{ trans('admin.beatmapsets.show.loved.active') }}
+                    /
+                    <a
+                        href="{{ route('admin.beatmapsets.update', [
+                            'beatmapsets' => $beatmapset->getKey(),
+                            'beatmapset[approved]=-1'
+                        ]) }}"
+                        data-method="PUT"
+                        data-confirm="{{ trans('admin.beatmapsets.show.loved.deactivate_confirm') }}"
+                    >{{ trans('admin.beatmapsets.show.loved.deactivate') }}</a>
+                @elseif ($beatmapset->approved >= 1)
+                    {{ trans('admin.beatmapsets.show.loved.invalid') }}
+                @endif
+            </li>
         </ul>
     </div>
 @endsection
