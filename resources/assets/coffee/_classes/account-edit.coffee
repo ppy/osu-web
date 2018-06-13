@@ -72,6 +72,8 @@ class @AccountEdit
   update: (form) =>
     input = form.querySelector('.js-account-edit__input')
 
+    return @clearState(form) if !input.checkValidity()
+
     if input.type == 'checkbox'
       value = input.checked
     else

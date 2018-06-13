@@ -52,6 +52,7 @@ return [
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
+                'user_birthday' => 'birthday',
                 'user_discord' => 'discord',
             ],
         ],

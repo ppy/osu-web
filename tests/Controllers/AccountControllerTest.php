@@ -63,6 +63,20 @@ class AccountControllerTest extends TestCase
             ->assertJsonFragment(['profile_order' => $newOrder]);
     }
 
+    public function testUpdateBirthdayWithEmpty()
+    {
+        $this->actingAs($this->user())
+            ->withSession(['verified' => UserVerification::VERIFIED])
+            ->json('PUT', route('account.update'), [
+                'user' => [
+                    'user_birthday' => '',
+                ],
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame(null, $this->user()->user_birthday);
+    }
+
     public function testUpdateEmail()
     {
         $newEmail = 'new-'.$this->user->user_email;

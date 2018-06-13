@@ -29,6 +29,7 @@ use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
+use DateTime;
 use DB;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
@@ -467,7 +468,18 @@ class User extends Model implements AuthenticatableContract, Messageable
             return;
         }
 
-        return Carbon::create($date[2], $date[1], $date[0]);
+        return Carbon::create($date[2], $date[1], $date[0], 0, 0, 0);
+    }
+
+    public function setUserBirthdayAttribute($value)
+    {
+        if (!$value instanceof DateTime) {
+            $date = DateTime::createFromFormat('!Y-m-d', $value);
+
+            $value = $date === false ? null : Carbon::instance($date);
+        }
+
+        $this->attributes['user_birthday'] = optional($value)->format('d-m-Y') ?? '';
     }
 
     public function age()

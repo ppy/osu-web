@@ -64,6 +64,10 @@
                     @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
+
+                <div class="account-edit__input-group">
+                    @include('accounts._edit_entry_date', ['field' => 'user_birthday', 'maxDate' => Carbon\Carbon::now()])
+                </div>
             </div>
         </div>
     </div>
