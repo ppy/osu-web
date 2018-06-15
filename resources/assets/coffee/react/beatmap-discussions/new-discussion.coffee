@@ -94,6 +94,15 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           div className: "#{bn}__message",
             if @props.currentUser.id?
+              modeText = if @props.mode == 'generalAll'
+                           osu.trans 'beatmaps.discussions.mode.general',
+                             scope: "(#{osu.trans('beatmaps.discussions.mode.scopes.generalAll')})"
+                         else if @props.mode == 'general'
+                           osu.trans 'beatmaps.discussions.mode.general',
+                             scope: "(#{@props.currentBeatmap.version})"
+                         else
+                           osu.trans "beatmaps.discussions.mode.#{@props.mode}"
+
               [
                 el TextareaAutosize,
                   key: 'input'
@@ -105,7 +114,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onFocus: @setSticky
                   placeholder:
                     if @canPost()
-                      osu.trans 'beatmaps.discussions.message_placeholder'
+                      osu.trans 'beatmaps.discussions.message_placeholder', mode: modeText
                     else
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
