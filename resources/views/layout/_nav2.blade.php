@@ -118,7 +118,7 @@
 
             <div class="nav2__click-popup">
                 <div
-                    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+                    class="simple-menu simple-menu--nav2 simple-menu--nav2-locales js-click-menu js-nav2--centered-popup"
                     data-click-menu-id="nav2-locale-popup"
                     data-visibility="hidden"
                 >
