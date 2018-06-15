@@ -109,7 +109,7 @@
                 @endif
             </table>
 
-            @include('forum._pagination', ['object' => $watches])
+            @include('objects._pagination_v0', ['object' => $watches])
         </div>
     </div>
 @endsection
