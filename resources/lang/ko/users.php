@@ -33,7 +33,7 @@ return [
         ],
 
         'posts' => [
-            'title_recent' => '최근 게시물',
+            'title_recent' => '최근 답변',
         ],
 
         'votes_received' => [
@@ -46,12 +46,12 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '이 사용자를 차단 했습니다.',
+        'banner_text' => '이 사용자를 차단했습니다.',
         'blocked_count' => '차단된 사용자 (:count)',
         'hide_profile' => '프로필 숨기기',
-        'not_blocked' => '해당 유저는 차단 되어 있지 않습니다.',
+        'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
-        'too_many' => '차단 한계에 도달 했습니다.',
+        'too_many' => '차단 한계에 도달했습니다.',
         'button' => [
             'block' => '차단',
             'unblock' => '차단 해제',
@@ -153,19 +153,19 @@ return [
                 'title' => '비트맵',
 
                 'favourite' => [
-                    'title' => '즐겨찾기한 비트맵 (:count개)',
+                    'title' => '즐겨찾기한 비트맵 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '무덤에 묻힌 비트맵 (:count개)',
+                    'title' => '무덤에 간 비트맵 (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Loved 비트맵 (:count개)',
+                    'title' => 'Loved 비트맵 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked / Approved 된 비트맵 (:count개)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending 비트맵 (:count개)',
+                    'title' => 'Pending 비트맵 (:count)',
                 ],
             ],
             'historical' => [
@@ -184,7 +184,7 @@ return [
                     'title' => '최근 플레이 (24시간)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '다른 플레이어가 관전한 횟수',
+                    'title' => '리플레이가 재생된 횟수',
                 ],
             ],
             'kudosu' => [
@@ -217,13 +217,13 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => '토론 :post에서 득표하여 :amount를 받았습니다.',
-                            'reset' => '토론 :post에서 표를 잃어 :amount를 잃었습니다.',
+                            'give' => '모딩 토론 :post에서 득표하여 :amount를 받았습니다.',
+                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount를 잃었습니다.',
                         ],
 
                         'recalculate' => [
-                            'give' => '토론 :post에서 투표가 재계산되어 :amount를 얻었습니다.',
-                            'reset' => '토론 :post에서 투표가 재계산되어 :amount를 잃었습니다.',
+                            'give' => '모딩 토론 :post에서 투표가 재계산되어 :amount를 얻었습니다.',
+                            'reset' => '모딩 토론 :post에서 투표가 재계산되어 :amount를 잃었습니다.',
                         ],
                     ],
 
@@ -249,13 +249,13 @@ return [
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp' => ':amountpp',
                 'title' => '랭크',
-                'weighted_pp' => '가중치 적용: :pp (:percentage)',
+                'weighted_pp' => '가중치 적용시: :pp (:percentage)',
 
                 'best' => [
                     'title' => '최고 성과',
                 ],
                 'first' => [
-                    'title' => '1위 성과들',
+                    'title' => '1위 달성 맵',
                 ],
             ],
             'account_standing' => [
@@ -291,7 +291,7 @@ return [
             'website' => '웹사이트',
         ],
         'not_found' => [
-            'reason_1' => '이름을 바꿨나 봐요.',
+            'reason_1' => '사용자명이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
             'reason_3' => '오타가 있나봐요!',
             'reason_header' => '이에 대한 몇 가지 이유가 있습니다:',
@@ -309,12 +309,12 @@ return [
         ],
         'rank' => [
             'country' => ':mode 국가 순위',
-            'global' => ':mode 전체 순위',
+            'global' => ':mode 세계 순위',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
             'level' => '레벨 :level',
-            'maximum_combo' => '최대 콤보 수',
+            'maximum_combo' => '최대 콤보',
             'play_count' => '플레이 횟수',
             'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',

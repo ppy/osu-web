@@ -29,7 +29,7 @@ return [
 
         'state' => [
             'current' => '개최 중인 토너먼트',
-            'previous' => '개최된 토너먼트',
+            'previous' => '지난 토너먼트',
         ],
     ],
 

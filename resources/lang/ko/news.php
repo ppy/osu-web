@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'osu!뉴스',
+        'title' => 'osu!소식',
 
         'nav' => [
             'newer' => '최근 글',

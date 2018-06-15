@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'U hebt deze gebruiker geblokkeerd.',
+        'blocked_count' => 'geblokkeerde gebruikers (:count)',
+        'hide_profile' => 'profiel verbergen',
+        'not_blocked' => 'Deze gebruiker is niet geblokkeerd.',
+        'show_profile' => 'profiel weergeven',
+        'too_many' => 'Blok limiet bereikt.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'blokkeren',
+            'unblock' => 'deblokkeren',
         ],
     ],
 
