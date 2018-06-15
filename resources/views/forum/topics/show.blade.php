@@ -328,11 +328,11 @@
                     </span>
                 </a>
 
-                <button
-                    type="button"
-                    class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
-                >
-                    @if (Auth::check())
+                @if (Auth::check())
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
+                    >
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__icon">
                                 <i class="fas fa-comment"></i>
@@ -344,7 +344,12 @@
                                 </span>
                             </span>
                         </span>
-                    @else
+                    </button>
+                @else
+                    <a
+                        href="{{ route('forum.topics.show', $topic) }}"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick js-login-required--click"
+                    >
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__icon">
                                 <i class="fas fa-lock"></i>
@@ -356,8 +361,8 @@
                                 </span>
                             </span>
                         </span>
-                    @endif
-                </button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

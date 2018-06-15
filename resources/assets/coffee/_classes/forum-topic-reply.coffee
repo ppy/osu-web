@@ -74,10 +74,7 @@ class @ForumTopicReply
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
 
-    if currentUser.id?
-      @enableFlash() if @getState('sticking') != '1'
-    else
-      $.publish 'userLogin:show'
+    @enableFlash() if @getState('sticking') != '1' && currentUser.id?
 
 
   activateWithReply: (e, data) =>

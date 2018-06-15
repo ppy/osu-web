@@ -34,7 +34,6 @@ class @UserLogin
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
     $.subscribe 'nav:popup:hidden', @reset
-    $.subscribe 'userLogin:show', @show
 
 
   clearError: (_e) ->
