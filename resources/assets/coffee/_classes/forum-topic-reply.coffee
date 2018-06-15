@@ -74,6 +74,8 @@ class @ForumTopicReply
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
 
+    $.publish 'userLogin:show' unless currentUser.id?
+
 
   activateWithReply: (e, data) =>
     data += '\n'
