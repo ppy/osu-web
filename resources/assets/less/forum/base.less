@@ -38,42 +38,39 @@ body.community {
 
 }
 
-.forum-pagination {
+.pagination-v0 {
   padding: 10px;
-  > ul {
+  color: @gray;
+
+  &__row {
     list-style: none;
     padding: 0;
     margin: 0;
-
     text-align: center;
-    > li {
-      display: inline-block;
-      span { font-weight: bold; }
+    font-size: 12px;
+  }
 
-      &.active span {
-        background: none;
-        color: @gray;
-      }
+  &__item {
+    display: inline-block;
+  }
 
-      a, span {
-        display: block;
-        padding: 5px;
-        color: @gray;
-        font-size: 12px;
+  &__link {
+    .link-plain();
+    display: block;
+    padding: 5px;
 
-        &, &:hover {
-          text-decoration: none;
-        }
-      }
+    &--active {
+      font-weight: bold;
     }
 
-    &.forum-pagination-prevnext {
+    &--big {
+      padding: 0 10px;
+      font-size: 16px;
       font-weight: bold;
+    }
 
-      a, span {
-        font-size: 16px;
-        padding: 0 10px;
-      }
+    &--separator {
+      font-weight: bold;
     }
   }
 }
