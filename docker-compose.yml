@@ -4,9 +4,6 @@ services:
   php:
     build:
       context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
     container_name: osuweb-php
     working_dir: /data/osuweb
     volumes:
@@ -38,9 +35,6 @@ services:
   composer:
     build:
       context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
     depends_on:
       - db
     container_name: osuweb-composer
@@ -56,9 +50,6 @@ services:
   yarn:
     build:
       context: ./docker/yarn
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
     container_name: osuweb-yarn
     volumes:
       - .:/data/osuweb
