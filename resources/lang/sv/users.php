@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Du har blockerat denna användare.',
+        'blocked_count' => 'blockerade användare (:count)',
+        'hide_profile' => 'dölj profil',
+        'not_blocked' => 'Användaren är inte blockerad.',
+        'show_profile' => 'visa profil',
+        'too_many' => 'Du har nått gränsen för blockeringar.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'blockera',
+            'unblock' => 'avblockera',
         ],
     ],
 

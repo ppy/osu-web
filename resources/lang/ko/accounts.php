@@ -47,7 +47,7 @@ return [
 
             'user' => [
                 'user_from' => '거주지',
-                'user_interests' => '흥미',
+                'user_interests' => '관심 분야',
                 'user_msnm' => 'Skype',
                 'user_occ' => '직업',
                 'user_twitter' => 'Twitter',
@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => '개인정보처리방침',
-        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
+        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
     ],
 ];

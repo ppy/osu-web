@@ -31,19 +31,19 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => '타임스탬프가 지정되어 있지만, 비트맵이 빠져있습니다.',
-        'beatmapset_no_hype' => "비트맵이 홍보될 수 없습니다.",
-        'hype_requires_null_beatmap' => '홍보는 무조건 일반 (모든 난이도) 섹션에서 이루어져야 합니다.',
+        'beatmapset_no_hype' => "Hype가 불가능합니다.",
+        'hype_requires_null_beatmap' => 'Hype는 반드시 일반 (모든 난이도) 섹션에서 이루어져야 합니다.',
         'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
         'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
         'locked' => '토론이 잠겨있습니다.',
         'mapper_note_wrong_user' => '비트맵 소유자만이 매퍼 노트를 수정할 수 있습니다.',
 
         'hype' => [
-            'guest' => '로그인하셔야 홍보하실 수 있습니다.',
-            'hyped' => '이미 이 비트맵을 홍보했습니다.',
-            'limit_exceeded' => '모든 홍보권을 사용하셨습니다.',
-            'not_hypeable' => '이 비트맵을 홍보 할 수 없습니다',
-            'owner' => '자신의 비트맵은 홍보하지 마세요.',
+            'guest' => '로그인하셔야 Hype하실 수 있습니다.',
+            'hyped' => '이미 이 비트맵을 Hype했습니다.',
+            'limit_exceeded' => '모든 Hype를 사용하셨습니다.',
+            'not_hypeable' => '이 비트맵을 Hype할 수 없습니다.',
+            'owner' => '자신의 비트맵을 Hype할 수 없습니다.',
         ],
 
         'timestamp' => [
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제 하는 것은 허용되지 않습니다.',
-            'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정 하는 것은 허용되지 않습니다.',
+            'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
+            'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
         ],
 
         'topic_poll' => [
@@ -76,7 +76,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => '투표할 때 옵션을 선택해 주세요.',
+            'required' => '투표할 때 항목을 선택해 주세요.',
             'too_many' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
     ],

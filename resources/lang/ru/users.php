@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Вы заблокировали этого пользователя.',
-        'blocked_count' => 'заблокированных пользователей (:count)',
+        'banner_text' => 'пользователь добавлен в ваш чёрный список',
+        'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'скрыть профиль',
         'not_blocked' => 'Этот пользователь заблокирован.',
         'show_profile' => 'показать профиль',
         'too_many' => 'Достигнут лимит кол-ва заблокированных.',
         'button' => [
-            'block' => 'заблокировать',
-            'unblock' => 'разблокировать',
+            'block' => 'в чёрный список',
+            'unblock' => 'удалить',
         ],
     ],
 
@@ -111,8 +111,8 @@ return [
         'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age, из :country',
-        'origin_country' => 'Из :country',
+        'origin_country_age' => ':age, проживает в :country',
+        'origin_country' => 'Проживает в :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
         'plays_with' => 'Играет с :devices',

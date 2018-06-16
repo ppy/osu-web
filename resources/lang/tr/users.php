@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'blocked_count' => 'engellenen kullanıcılar (:count)',
+        'hide_profile' => 'profili gizle',
+        'not_blocked' => 'Bu kullanıcı engellenmemiş.',
+        'show_profile' => 'profili göster',
+        'too_many' => 'Engelleme sınırına ulaşıldı.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'engelle',
+            'unblock' => 'engellemeyi kaldır',
         ],
     ],
 
