@@ -306,11 +306,17 @@ class Post extends Model implements AfterCommit
             return;
         }
 
-        $this->topic->markRead($user, $this->post_time);
+        $topic = $this->topic()->withTrashed()->first();
+
+        if ($topic === null) {
+            return;
+        }
+
+        $topic->markRead($user, $this->post_time);
 
         // reset notification status when viewing latest post
-        if ($this->topic->topic_last_post_id === $this->getKey()) {
-            TopicWatch::lookupQuery($this->topic, $user)->update(['notify_status' => false]);
+        if ($topic->topic_last_post_id === $this->getKey()) {
+            TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
         }
     }
 }
