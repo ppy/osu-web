@@ -20,6 +20,8 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -27,6 +29,18 @@ use Illuminate\Support\Facades\Facade;
  */
 class Es extends Facade
 {
+    public static function getClient(string $name = 'default') : Client
+    {
+        static $clients = [];
+
+        if (!array_key_exists($name, $clients)) {
+            $config = $name === 'default' ? 'elasticsearch' : "elasticsearch_{$name}";
+            $clients[$name] = ClientBuilder::fromConfig(config($config));
+        }
+
+        return $clients[$name];
+    }
+
     protected static function getFacadeAccessor()
     {
         return 'elasticsearch';

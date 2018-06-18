@@ -22,7 +22,6 @@ namespace App\Libraries\Elasticsearch;
 
 use Datadog;
 use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
@@ -84,6 +83,11 @@ abstract class Search implements Queryable
      * @return array|Queryable
      */
     abstract public function getQuery();
+
+    public function client() : Client
+    {
+        return Es::getClient($this->connectionName);
+    }
 
     /**
      * Gets the numner of matches for the query.
@@ -249,22 +253,5 @@ abstract class Search implements Queryable
         }
 
         return SearchResponse::failed($this->error);
-    }
-
-    public function client() : Client
-    {
-        return static::getClient($this->connectionName);
-    }
-
-    public static function getClient(string $name = 'default') : Client
-    {
-        static $clients = [];
-
-        if (!array_key_exists($name, $clients)) {
-            $config = $name === 'default' ? 'elasticsearch' : "elasticsearch_{$name}";
-            $clients[$name] = ClientBuilder::fromConfig(config($config));
-        }
-
-        return $clients[$name];
     }
 }
