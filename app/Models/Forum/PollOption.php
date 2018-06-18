@@ -36,6 +36,7 @@ class PollOption extends Model
     {
         return $this
             ->belongsTo(Post::class, 'topic_id', 'topic_id')
+            ->withTrashed()
             ->orderBy('post_id', 'ASC')
             ->limit(1);
     }
