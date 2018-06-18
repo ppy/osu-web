@@ -19,10 +19,10 @@
  */
 
 return [
-    'pinned_topics' => '공지사항',
+    'pinned_topics' => '고정된 토픽',
     'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
-    'title' => 'osu!community',
+    'title' => 'osu!커뮤니티',
 
     'covers' => [
         'create' => [
@@ -108,16 +108,16 @@ return [
         'index' => [
             'title' => '구독한 주제글',
             'title_compact' => '구독',
-            'title_main' => '<strong>구독</strong>한 주제글',
+            'title_main' => '포럼 <strong>구독</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '구독한 주제글',
+                'unread' => '새로운 답변이 있는 주제글',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '총 :total개의 주제글을 구독했습니다.',
+                'unread' => '구독한 주제글에 :unread개의 읽지 않은 답변이 있습니다.',
             ],
         ],
 
@@ -139,16 +139,16 @@ return [
         ],
 
         'create' => [
-            'create_poll' => '여론 투표 생성',
+            'create_poll' => '투표 만들기',
 
             'create_poll_button' => [
                 'add' => '투표 만들기',
-                'remove' => '투표 생성 ',
+                'remove' => '투표 생성 취소',
             ],
 
             'poll' => [
-                'length' => '여론 투표를',
-                'length_days_suffix' => '일 동안 진행',
+                'length' => '투표 진행 기간',
+                'length_days_suffix' => '일',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
                 'max_options' => '투표가능 항목 수',
                 'max_options_info' => '중복으로 선택 가능한 항목 수를 나타냅니다.',
@@ -212,7 +212,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => '주제글이 잠겨있어 답글을 게시할 수 없습니다.',
+            'is_locked' => '주제글이 잠겨있어 답글을 달 수 없습니다.',
             'to_0' => '주제글 잠금 풀기',
             'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
             'to_1' => '주제글 잠그기',
@@ -243,7 +243,7 @@ return [
                 'user' => [
                     'count' => '{0} 표 없음|{1,*} :count 표',
                     'current' => '투표 횟수가 :votes회 남았습니다.',
-                    'not_enough' => "투표를 모두 사용하여 더이상 투표할 수 없습니다.",
+                    'not_enough' => "투표 횟수를 모두 사용하여 더이상 투표할 수 없습니다.",
                 ],
             ],
 
@@ -251,8 +251,8 @@ return [
                 'vote' => '투표',
 
                 'detail' => [
-                    'end_time' => '여론 투표가 :time에 종료됩니다.',
-                    'ended' => '여론 투표가 :time에 종료되었습니다.',
+                    'end_time' => '투표가 :time에 종료됩니다.',
+                    'ended' => '투표가 :time에 종료되었습니다.',
                     'total' => '총 투표 수: :count회',
                 ],
             ],

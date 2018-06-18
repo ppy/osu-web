@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => '내용',
-        'modding_history_link' => '모딩 내역 보기',
+        'modding_history_link' => '모딩 기록 보기',
     ],
 ];

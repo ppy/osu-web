@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Var vänlig logga in för att fortsätta.',
         'http-403' => 'Åtkomst nekad.',
-        'http-404' => '',
+        'http-404' => 'Hittades inte.',
         'http-429' => 'För många försök. Försök igen senare.',
     ],
     'account' => [
