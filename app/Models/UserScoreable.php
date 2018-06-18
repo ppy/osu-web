@@ -36,7 +36,11 @@ trait UserScoreable
         $search->statTag = "aggregatedScoresBest_{$mode}";
         $search
             ->size(0) // don't care about hits
-            ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->getKey()]]))
+            ->query(
+                (new BoolQuery)
+                    ->filter(['term' => ['user_id' => $this->getKey()]])
+                    ->filter(['term' => ['hidden' => 0]])
+            )
             ->setAggregations([
                 'by_beatmaps' => [
                     'terms' => [
