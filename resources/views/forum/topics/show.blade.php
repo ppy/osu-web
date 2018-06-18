@@ -352,7 +352,7 @@
                     >
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__icon">
-                                <i class="fas fa-lock"></i>
+                                <i class="fas fa-sign-in-alt"></i>
                             </span>
 
                             <span class="btn-osu-big__left">
