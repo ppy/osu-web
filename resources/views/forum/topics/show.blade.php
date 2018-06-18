@@ -346,9 +346,9 @@
                         </span>
                     </button>
                 @else
-                    <a
-                        href="{{ route('forum.topics.show', $topic) }}"
-                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick js-login-required--click"
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-user-link"
                     >
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__icon">
