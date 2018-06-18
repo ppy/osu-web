@@ -29,5 +29,13 @@
     width: 100%;
     padding-bottom: 20px;
     padding-top: 10px;
+
+    &.js-forum-topic-reply-flash {
+      animation: forum-topic-reply-flash 500ms ease-in-out;
+    }
+  }
+
+  @keyframes forum-topic-reply-flash {
+    50% { background-color: #777; }
   }
 }
