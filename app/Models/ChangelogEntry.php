@@ -51,10 +51,6 @@ class ChangelogEntry extends Model
 
     public static function importFromGithub($data)
     {
-        if (!(isset($data['pull_request']) && $data['action'] === 'closed' && $data['pull_request']['merged'])) {
-            return;
-        }
-
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
 
         $params = [
@@ -132,10 +128,5 @@ class ChangelogEntry extends Model
         if ($this->hasGithubPR()) {
             return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
         }
-    }
-
-    public function anyUrl()
-    {
-        return $this->githubUrl() ?? $this->url;
     }
 }

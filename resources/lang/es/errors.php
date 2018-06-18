@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Por favor, inicia sesión para continuar.',
         'http-403' => 'Acceso denegado.',
+        'http-404' => 'No encontrado.',
         'http-429' => 'Demasiados intentos. Inténtalo de nuevo más tarde.',
     ],
     'account' => [

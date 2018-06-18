@@ -34,6 +34,7 @@ return [
         'click_to_copy' => '클립보드에 복사하려면 클릭하기',
         'click_to_copy_copied' => '클립보드에 복사되었습니다!',
         'delete' => '삭제',
+        'hide' => '숨기기',
         'permalink' => '고유 주소',
         'permalink_copied' => '링크 복사됨',
         'post' => '게시하기',
@@ -43,7 +44,9 @@ return [
         'reset' => '초기화',
         'save' => '저장',
         'saving' => '저장 중...',
+        'search' => '검색',
         'see_more' => '더 보기',
+        'show' => '표시',
         'show_more' => '더 보기',
         'upload_image' => '이미지 올리기',
     ],
@@ -62,11 +65,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'YYYY년 MMMM',
+            'php' => 'y년 MMMM',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY년 MMM',
         ],
     ],
 
@@ -96,7 +99,7 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count 일 전',
+        'days_ago' => ':count일 전',
         'hours_ago' => ':count시간 전|:count시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',

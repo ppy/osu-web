@@ -29,6 +29,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'account_history',
         'active_tournament_banner',
         'badges',
+        'blocks',
         'defaultStatistics',
         'disqus_auth',
         'favourite_beatmapset_count',
@@ -94,6 +95,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
+            'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
         ];
     }
@@ -164,6 +166,14 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $user->profileBeatmapsetsFavourite()->count(),
             ];
         });
+    }
+
+    public function includeBlocks(User $user)
+    {
+        return $this->collection(
+            $user->relations()->blocks()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeFollowerCount(User $user)

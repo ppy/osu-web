@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '您已經封鎖這位使用者。',
+        'blocked_count' => '被封鎖的使用者 (:count)',
+        'hide_profile' => '隱藏用戶資料',
+        'not_blocked' => '這位使用者未被封鎖。',
+        'show_profile' => '顯示用戶資料',
+        'too_many' => '已達到封鎖上限。',
+        'button' => [
+            'block' => '封鎖',
+            'unblock' => '解除封鎖',
+        ],
+    ],
+
     'card' => [
         'loading' => '載入中...',
         'send_message' => '傳送訊息',

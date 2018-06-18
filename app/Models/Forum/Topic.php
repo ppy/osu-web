@@ -204,7 +204,12 @@ class Topic extends Model implements AfterCommit
             $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $posts = $this->posts()->withTrashed()->with(['forum', 'topic'])->get();
+            $posts->each(function ($post) use ($destinationForum) {
+                $post->forum()->associate($destinationForum);
+                $post->save();
+            });
+
             $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
             $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
@@ -810,10 +815,10 @@ class Topic extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->trashed()) {
-            dispatch(new EsDeleteDocument($this));
-        } else {
+        if ($this->forum->enable_indexing && !$this->trashed()) {
             dispatch(new EsIndexDocument($this));
+        } else {
+            dispatch(new EsDeleteDocument($this));
         }
     }
 }

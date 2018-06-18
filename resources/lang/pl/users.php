@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Ten użytkownik został zablokowany.',
+        'blocked_count' => 'zablokowani użytkownicy (:count)',
+        'hide_profile' => 'ukryj profil',
+        'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
+        'show_profile' => 'pokaż profil',
+        'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
+        'button' => [
+            'block' => 'zablokuj',
+            'unblock' => 'odblokuj',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Ładowanie...',
         'send_message' => 'wyślij wiadomość',

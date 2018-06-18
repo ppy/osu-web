@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
@@ -52,6 +53,7 @@ class ChangelogController extends Controller
             ->where('created_at', '>', $from)
             ->get()
             ->concat($legacyChangelogs)
+            ->sortByDesc('created_at')
             ->groupBy(function ($item) {
                 return i18n_date($item->created_at);
             });
@@ -80,7 +82,10 @@ class ChangelogController extends Controller
             abort(403);
         }
 
-        ChangelogEntry::importFromGithub(request()->json()->all());
+        (new GithubImporter([
+            'eventType' => request()->header('X-GitHub-Event'),
+            'data' => request()->json()->all(),
+        ]))->import();
 
         return [];
     }
@@ -93,6 +98,7 @@ class ChangelogController extends Controller
             ->firstOrFail();
 
         $legacyChangelogs = $activeBuild->changelogs()
+            ->default()
             ->with('user')
             ->visibleOnBuilds()
             ->get()
