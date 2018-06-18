@@ -92,7 +92,7 @@ class Topic extends Model implements AfterCommit
             'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
 
-        $this->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
+        $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
             $topic->addPostOrExplode($params['user'], $params['body']);
 
