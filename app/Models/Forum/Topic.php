@@ -83,14 +83,13 @@ class Topic extends Model implements AfterCommit
     public static function createNew($forum, $params, $poll = null)
     {
         $topic = new static([
-            'forum_id' => $forum->forum_id,
-            'forum' => $forum,
             'topic_time' => Carbon::now(),
             'topic_title' => $params['title'] ?? null,
             'topic_poster' => $params['user']->user_id,
             'topic_first_poster_name' => $params['user']->username,
             'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
+        $topic->forum()->associate($forum);
 
         $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
