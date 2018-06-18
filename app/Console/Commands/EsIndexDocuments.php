@@ -25,7 +25,9 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Log;
 
 class EsIndexDocuments extends Command
 {
@@ -42,7 +44,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes} {--skip-counts}';
 
     /**
      * The console command description.
@@ -52,8 +54,10 @@ class EsIndexDocuments extends Command
     protected $description = 'Indexes documents into Elasticsearch.';
 
     protected $cleanup;
+    protected $existingAliases;
     protected $inplace;
     protected $groups;
+    protected $skipCounts;
     protected $suffix;
     protected $yes;
 
@@ -65,15 +69,10 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
+        $this->loadMetadata();
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
-        $oldIndices = [];
-        foreach ($this->groups as $name) {
-            $type = static::ALLOWED_TYPES[$name][0];
-            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
-        }
-
-        $oldIndices = array_flatten($oldIndices);
+        $oldIndices = array_flatten(array_values($this->existingAliases));
 
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
@@ -86,6 +85,16 @@ class EsIndexDocuments extends Command
 
         $this->finish($indices, $oldIndices);
         $this->warn("\nIndexing completed in ".(time() - $start).'s');
+    }
+
+    public function getLastUpdatedId(string $index)
+    {
+        return 0;
+    }
+
+    public function setLastUpdated(string $index, Carbon $updatedAt, $id)
+    {
+        Log::info("{$index} next: {$id}");
     }
 
     protected function finish(array $indices, array $oldIndices)
@@ -119,22 +128,25 @@ class EsIndexDocuments extends Command
         $types = static::ALLOWED_TYPES[$name];
 
         foreach ($types as $i => $type) {
-            $count = $type::esIndexingQuery()->count();
+            $indexName = "{$type::esIndexName()}{$this->suffix}";
+            $lastUpdatedId = $this->inplace ? $this->getLastUpdatedId($indexName) : 0;
+            $count = $this->skipCounts ? null : $type::esIndexingQueryFrom($lastUpdatedId)->count();
             $bar = $this->output->createProgressBar($count);
 
-            $indexName = "{$type::esIndexName()}{$this->suffix}";
             $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
             $this->info("{$pretext} {$type} into {$indexName}");
 
             if (!$this->inplace && $i === 0) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress, $lastId) use ($bar, $indexName) {
                     $bar->setProgress($progress);
+                    $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
             } else {
-                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
+                $type::esReindexAll(static::BATCH_SIZE, $lastUpdatedId, [], function ($progress, $lastId) use ($bar, $indexName) {
                     $bar->setProgress($progress);
+                    $this->setLastUpdated($indexName, Carbon::now(), $lastId);
                 });
             }
 
@@ -154,6 +166,7 @@ class EsIndexDocuments extends Command
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
         $this->yes = $this->option('yes');
+        $this->skipCounts = $this->option('skip-counts');
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
@@ -187,5 +200,13 @@ class EsIndexDocuments extends Command
         }
 
         return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
+    }
+
+    private function loadMetadata()
+    {
+        foreach ($this->groups as $name) {
+            $type = static::ALLOWED_TYPES[$name][0];
+            $this->existingAliases[$type::esIndexName()] = Indexing::getOldIndices($type::esIndexName());
+        }
     }
 }

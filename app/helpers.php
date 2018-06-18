@@ -54,9 +54,13 @@ function beatmap_timestamp_format($ms)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
+    $uid = uniqid($stat);
+    $description = $stat.' '.($tag['type'] ?? null);
     $start = microtime(true);
 
+    clock()->startEvent($uid, $description);
     $result = $callable();
+    clock()->endEvent($uid);
 
     if (config('datadog-helper.enabled')) {
         $duration = microtime(true) - $start;

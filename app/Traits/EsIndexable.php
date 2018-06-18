@@ -20,8 +20,8 @@
 
 namespace App\Traits;
 
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
-use Es;
 use Log;
 
 trait EsIndexable
@@ -62,7 +62,7 @@ trait EsIndexable
             'client' => ['ignore' => 404],
         ], $options);
 
-        return Es::delete($document);
+        return Es::getClient()->delete($document);
     }
 
     public function esIndexDocument(array $options = [])
@@ -75,7 +75,7 @@ trait EsIndexable
             'body' => $this->toEsJson(),
         ], $options);
 
-        return Es::index($document);
+        return Es::getClient()->index($document);
     }
 
     public static function esCreateIndex(string $name = null)
@@ -86,7 +86,17 @@ trait EsIndexable
             'body' => static::esSchemaConfig(),
         ];
 
-        return Es::indices()->create($params);
+        return Es::getClient()->indices()->create($params);
+    }
+
+    /**
+     * Convenience function to start the indexing query from an id.
+     */
+    public static function esIndexingQueryFrom($fromId = 0)
+    {
+        $dummy = new static();
+
+        return static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
     }
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
@@ -116,7 +126,7 @@ trait EsIndexable
         $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
         $startTime = time();
 
-        $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
+        $baseQuery = static::esIndexingQueryFrom($fromId);
         $count = 0;
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count, $progress) {
@@ -140,7 +150,7 @@ trait EsIndexable
             }
 
             if ($actions !== []) {
-                $result = Es::bulk([
+                $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,
@@ -150,9 +160,8 @@ trait EsIndexable
                 $count += count($result['items']);
             }
 
-            Log::info(static::class." next: {$models->last()->getKey()}");
             if ($progress) {
-                $progress($count);
+                $progress($count, $models->last()->getKey());
             }
         });
 
