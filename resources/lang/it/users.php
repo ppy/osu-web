@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Hai bloccato questo utente.',
+        'blocked_count' => 'utenti bloccati (:count)',
+        'hide_profile' => 'nascondi profilo',
+        'not_blocked' => 'Questo utente non è bloccato.',
+        'show_profile' => 'visualizza profilo',
+        'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'blocca',
+            'unblock' => 'sblocca',
         ],
     ],
 

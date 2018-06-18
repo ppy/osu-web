@@ -36,7 +36,7 @@ return [
         'details' => [
             'mapped_by' => ':mapper님의 맵',
             'submitted' => '만든 날짜: ',
-            'updated' => '수정한 날짜: ',
+            'updated' => '마지막 수정 날짜: ',
             'updated_timeago' => ':timeago에 마지막으로 수정됨',
             'ranked' => 'ranked된 날짜: ',
             'approved' => 'approved된 날짜: ',
@@ -55,7 +55,7 @@ return [
         ],
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => '키 개수',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
@@ -106,7 +106,7 @@ return [
                 'friend' => '아직 친구들 중 점수를 기록한 사람이 없습니다!',
                 'global' => '아직 기록된 점수가 없네요. 한 번 기록해보시는 건 어때요?',
                 'loading' => '점수 불러오는 중...',
-                'unranked' => 'Unranked beatmap.',
+                'unranked' => '랭크되지 않은 비트맵입니다.',
             ],
             'score' => [
                 'first' => '순위권',

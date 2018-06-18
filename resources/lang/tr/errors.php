@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Devam etmek için lütfen giriş yapın.',
         'http-403' => 'Erişim engellendi.',
-        'http-404' => '',
+        'http-404' => 'Bulunamadı.',
         'http-429' => 'Çok fazla deneme yapıldı. Daha sonra tekrar deneyin.',
     ],
     'account' => [
