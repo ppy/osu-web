@@ -25,6 +25,7 @@ use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
 use App\Models\ChangelogEntry;
+use App\Models\UpdateStream;
 use Cache;
 use Carbon\Carbon;
 
@@ -90,11 +91,26 @@ class ChangelogController extends Controller
         return [];
     }
 
-    public function show($buildId)
+    public function show($version)
     {
+        $build = Build::default()->where('version', '=', $version)->firstOrFail();
+
+        if ($build === null) {
+            $normalizedVersion = preg_replace('#[^0-9.]#', '', $normalizedVersion);
+
+            $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
+        }
+
+        return ujs_redirect(build_url($build));
+    }
+
+    public function build($stream, $version)
+    {
+        $activeStream = UpdateStream::where('name', '=', $stream)->firstOrFail();
+
         $activeBuild = Build::default()
             ->with('updateStream')
-            ->where('version', $buildId)
+            ->where('version', '=', $version)
             ->firstOrFail();
 
         $legacyChangelogs = $activeBuild->changelogs()
