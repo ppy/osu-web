@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class UpdateStream extends Model
 {
     public $timestamps = false;
@@ -48,5 +50,24 @@ class UpdateStream extends Model
             null, // column name in this linking to bridge
             'name' // column name in bridge linking to target
         );
+    }
+
+    public function createBuild()
+    {
+        $entryIds = model_pluck(
+            $this->changelogEntries()->whereDoesntHave('builds'),
+            'id',
+            ChangelogEntry::class
+        );
+
+        if (empty($entryIds)) {
+            return;
+        }
+
+        $version = Carbon::now()->format('Y.nd.0');
+        $build = $this->builds()->firstOrCreate(compact('version'));
+        $build->changelogEntries()->attach($entryIds);
+
+        return $build;
     }
 }
