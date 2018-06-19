@@ -46,9 +46,11 @@ class Build extends Model
             return;
         }
 
-        $version = substr($data['ref'], strlen('refs/tags/'));
+        $stream = $repository->updateStream;
 
-        $build = $repository->updateStream->builds()->firstOrCreate([
+        $version = substr($data['ref'], strlen('refs/tags/')).$stream->name;
+
+        $build = $stream->builds()->firstOrCreate([
             'version' => $version,
         ]);
 
