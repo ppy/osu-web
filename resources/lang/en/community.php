@@ -41,10 +41,10 @@ return [
         'supporter_status' => [
             'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
             'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
-            'not_yet' => "You don't have a supporter tag yet :(",
-            'title' => 'Current supporter status',
-            'valid_until' => 'Your current supporter tag is valid until :date!',
-            'was_valid_until' => 'Your supporter tag was valid until :date.',
+            'not_yet' => "You don't have an osu!supporter tag yet :(",
+            'title' => 'Current osu!supporter status',
+            'valid_until' => 'Your current osu!supporter tag is valid until :date!',
+            'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
         ],
 
         'why_support' => [

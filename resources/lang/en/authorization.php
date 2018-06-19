@@ -155,7 +155,7 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
     ],
