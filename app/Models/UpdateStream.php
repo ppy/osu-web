@@ -64,7 +64,7 @@ class UpdateStream extends Model
             return;
         }
 
-        $version = Carbon::now()->format('Y.nd.0').$this->name;
+        $version = Carbon::now()->format('Y.nd.0');
         $build = $this->builds()->firstOrCreate(compact('version'));
         $build->changelogEntries()->attach($entryIds);
 
