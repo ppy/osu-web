@@ -48,7 +48,7 @@
                     @if ($activeBuild->versionNext() !== null)
                         <a
                             class="changelog__build-link"
-                            href="{{ build_url($activeBuild) }}"
+                            href="{{ build_url($activeBuild->versionNext()) }}"
                             title="{{ $activeBuild->versionNext()->displayVersion() }}"
                         >
                             <i class="fas fa-angle-double-right"></i>
