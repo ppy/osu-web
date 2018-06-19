@@ -518,6 +518,11 @@ function issue_icon($issue)
     }
 }
 
+function build_url($build)
+{
+    return route('changelog.build', [$build->updateStream->name, $build->version]);
+}
+
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
     $postIdParamKey = 'start';
