@@ -31,7 +31,7 @@ class PollOption extends Model
     public $timestamps = false;
     protected $guarded = [];
 
-    // for bbcode_uid
+    // For bbcode_uid, the first post (even if the post is deleted).
     public function post()
     {
         return $this
