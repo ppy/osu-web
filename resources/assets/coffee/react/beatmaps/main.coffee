@@ -114,7 +114,7 @@ class Beatmaps.Main extends React.PureComponent
 
           div
             className: 'beatmapsets__content'
-            if (@state.filters.played != null || @state.filters.rank.length > 0) && !currentUser.is_supporter
+            if @isSupporterMissing()
               div className: 'beatmapsets__empty',
                 el Img2x,
                   src: '/images/layout/beatmaps/supporter-required.png'
@@ -167,6 +167,10 @@ class Beatmaps.Main extends React.PureComponent
     @setState loading: false
 
 
+  isSupporterMissing: =>
+    !currentUser.is_supporter && (@state.filters.played != null || @state.filters.rank.length > 0)
+
+
   loadMore: =>
     if @state.loading || @state.paging.loading || !@state.paging.more
       return
@@ -207,7 +211,7 @@ class Beatmaps.Main extends React.PureComponent
     params = @buildSearchQuery()
     newUrl = laroute.route 'beatmapsets.index', params
 
-    return if "#{location.pathname}#{location.search}" == newUrl
+    return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
 
     @showLoader()
     @xhr.search = $.ajax @state.paging.url,
