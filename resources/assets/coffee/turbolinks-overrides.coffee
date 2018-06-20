@@ -58,4 +58,4 @@ Turbolinks.Controller::advanceHistory = (url) ->
 Turbolinks.Snapshot::hasAnchor = -> true
 
 Turbolinks.Controller::locationIsVisitable = (location) ->
-  location.isPrefixedBy(@view.getRootLocation()) && Url.isHTML(location)
+  location.isPrefixedBy(@view.getRootLocation()) && Url.isInternal(location) && Url.isHTML(location)

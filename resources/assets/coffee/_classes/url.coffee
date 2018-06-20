@@ -17,6 +17,23 @@
 ###
 
 class @Url
+  internal = [
+    'admin'
+    'api/v2'
+    'beatmaps'
+    'beatmapsets'
+    'community'
+    'help'
+    'home'
+    'legal'
+    'oauth'
+    'rankings'
+    'session'
+    'store'
+    'users'
+  ].join('|')
+
+
   @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
 
   # external link
@@ -27,3 +44,7 @@ class @Url
     location.isHTML() ||
       # Some changelog builds have `.` in their version, failing turbolinks' check.
       _.startsWith(location.getPath(), '/home/changelog/')
+
+
+  @isInternal: (location) ->
+    RegExp("^/(?:#{internal})(?:$|/)").test location.getPath()
