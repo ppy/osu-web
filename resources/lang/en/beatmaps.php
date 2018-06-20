@@ -168,7 +168,7 @@ return [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
-            'supporter_filter' => 'this filter requires supporter',
+            'supporter_filter' => 'Filtering by :filters requires supporter',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
@@ -193,7 +193,7 @@ return [
                 'nominations' => 'nominations',
             ],
             'supporter_filter_quote' => [
-                'before_link' => 'this filter requires an active ',
+                'before_link' => 'Filtering by :filters requires an active ',
                 'link_text' => 'supporter tag',
                 'after_link' => '',
             ],

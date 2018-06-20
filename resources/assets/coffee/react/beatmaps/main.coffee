@@ -97,6 +97,7 @@ class Beatmaps.Main extends React.PureComponent
 
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
+    supporterFilters = @supporterFiltersTrans()
 
     div className: 'osu-layout__section',
       el Beatmaps.SearchPanel,
@@ -118,17 +119,17 @@ class Beatmaps.Main extends React.PureComponent
               div className: 'beatmapsets__empty',
                 el Img2x,
                   src: '/images/layout/beatmaps/supporter-required.png'
-                  alt: osu.trans("beatmaps.listing.search.supporter_filter")
-                  title: osu.trans("beatmaps.listing.search.supporter_filter")
+                  alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
+                  title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
 
                 p {},
                   [
-                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.before_link'
+                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.before_link', filters: supporterFilters
                     a
                       key: ''
                       href: laroute.route('store.products.show', product: 'supporter-tag')
                       osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'
-                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.after_link'
+                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.after_link', filters: supporterFilters
                   ]
 
             else
@@ -175,7 +176,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   isSupporterMissing: =>
-    !currentUser.is_supporter && (@state.filters.played != null || @state.filters.rank.length > 0)
+    !currentUser.is_supporter && @supporterFilters().length > 0
 
 
   loadMore: =>
@@ -270,6 +271,17 @@ class Beatmaps.Main extends React.PureComponent
 
     filters: BeatmapsetFilter.fillDefaults(filters)
     isExpanded: expand
+
+
+  supporterFilters: =>
+    _.reject ['played', 'rank'], (name) =>
+      _.isEmpty @state.filters[name]
+
+
+  supporterFiltersTrans: =>
+    _(@supporterFilters()).map (name) ->
+      osu.trans "beatmaps.listing.search.filters.#{name}"
+    .join(', ')
 
 
   updateFilters: (_e, newFilters) =>
