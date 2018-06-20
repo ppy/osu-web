@@ -279,9 +279,8 @@ class Beatmaps.Main extends React.PureComponent
 
 
   supporterFiltersTrans: =>
-    _(@supporterFilters()).map (name) ->
+    osu.transArray _.map @supporterFilters(), (name) ->
       osu.trans "beatmaps.listing.search.filters.#{name}"
-    .join(', ')
 
 
   updateFilters: (_e, newFilters) =>
