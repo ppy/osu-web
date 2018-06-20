@@ -1024,7 +1024,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapsetDownloadAllowance()
     {
-        return $this->isSupporter() ? config('osu.beatmapset.download_limit') : config('osu.beatmapset.download_limit_supporter');
+        return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
     }
 
     public function uncachedFollowerCount()
