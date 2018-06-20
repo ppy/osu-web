@@ -21,7 +21,7 @@
         {{ isset($activeBuild) && $activeBuild->version === $build->version ? 'changelog-build--active' : '' }}
         changelog-build--{{ str_slug($build->updateStream->pretty_name) }}
     "
-    href={{ route('changelog.show', ['build' => $build->version]) }}
+    href={{ build_url($build) }}
   >
     <div class="changelog-build__content">
         <span class="changelog-build__name u-ellipsis-overflow">{{ $build->updateStream->pretty_name }}</span>

@@ -20,7 +20,6 @@
 
 namespace App\Models\Forum;
 
-use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -293,11 +292,7 @@ class Post extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->forum->enable_indexing && !$this->trashed()) {
-            dispatch(new EsIndexDocument($this));
-        } else {
-            dispatch(new EsDeleteDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 
     public function markRead($user)
