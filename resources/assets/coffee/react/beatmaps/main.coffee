@@ -97,6 +97,8 @@ class Beatmaps.Main extends React.PureComponent
 
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
+    url = laroute.route('store.products.show', product: 'supporter-tag')
+    link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter-filter-quote.link_text'}</a>"
 
     div className: 'osu-layout__section',
       el Beatmaps.SearchPanel,
@@ -123,7 +125,7 @@ class Beatmaps.Main extends React.PureComponent
 
                 p
                   dangerouslySetInnerHTML:
-                    __html: osu.trans("beatmaps.listing.search.supporter-filter-quote")
+                    __html: osu.trans('beatmaps.listing.search.supporter-filter-quote._', link: link)
             else
               if @state.beatmaps.length > 0
                 el BeatmapList,

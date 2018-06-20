@@ -169,7 +169,10 @@ return [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
             'supporter-filter' => 'this filter requires supporter',
-            'supporter-filter-quote' => "this filter requires an active <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>supporter tag</a>",
+            'supporter-filter-quote' => [
+                '_' => 'this filter requires an active :link',
+                'link_text' => 'supporter tag',
+            ],
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
