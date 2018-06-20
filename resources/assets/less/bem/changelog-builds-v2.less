@@ -21,6 +21,11 @@
   padding: 20px (@gutter - 5px);
   background-color: @dark-purple-darker;
 
+  @media @desktop {
+    padding-left: (@gutter-desktop - 5px);
+    padding-right: (@gutter-desktop - 5px);
+  }
+
   &__container {
     display: flex;
     flex-wrap: wrap;

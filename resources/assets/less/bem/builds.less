@@ -28,6 +28,11 @@
   &__group {
     padding: 0 @gutter;
 
+    @media @desktop {
+      padding-left: @gutter-desktop;
+      padding-right: @gutter-desktop;
+    }
+
     & + & {
       border-top: 2px solid #111;
     }

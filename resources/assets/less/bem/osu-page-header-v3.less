@@ -19,11 +19,17 @@
 .osu-page-header-v3 {
   @_top: osu-page-header-v3;
 
+  padding: 0 @gutter;
+
+  @media @desktop {
+    padding: 0;
+  }
+
   &__icon {
     width: 100%;
     padding-bottom: 100%;
     border-radius: 50%;
-    background-size: (@gutter - 30px);
+    background-size: (@gutter-desktop - 30px);
     background-position: center;
     background-repeat: no-repeat;
 
@@ -40,7 +46,7 @@
   }
 
   &__title-icon {
-    width: @gutter;
+    width: @gutter-desktop;
     padding-right: 20px;
   }
 
