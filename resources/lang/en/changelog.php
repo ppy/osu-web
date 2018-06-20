@@ -33,18 +33,6 @@ return [
         ],
     ],
 
-    'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellaneous',
-    ],
-
-    'types' => [
-        'add' => 'Additions',
-        'fix' => 'Fixes',
-        'misc' => 'Miscellaneous',
-    ],
-
     'support' => [
         'heading' => 'Love this update?',
         'text_1' => 'Support further development of osu! and :link today!',
