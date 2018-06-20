@@ -173,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
+            'supporter_filter' => 'Filtering by :filters requires an active supporter tag',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
@@ -195,6 +196,10 @@ return [
                 'plays' => 'plays',
                 'relevance' => 'relevance',
                 'nominations' => 'nominations',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtering by :filters requires an active :link',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Mode',
