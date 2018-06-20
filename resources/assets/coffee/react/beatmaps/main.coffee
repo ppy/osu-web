@@ -120,7 +120,7 @@ class Beatmaps.Main extends React.PureComponent
                   src: '/images/layout/beatmaps/supporter-required.png'
                   alt: osu.trans("beatmaps.listing.search.supporter-filter")
                   title: osu.trans("beatmaps.listing.search.supporter-filter")
-                
+
                 p
                   dangerouslySetInnerHTML:
                     __html: osu.trans("beatmaps.listing.search.supporter-filter-quote")
@@ -153,9 +153,6 @@ class Beatmaps.Main extends React.PureComponent
     for own key, value of params
       if value? && BeatmapsetFilter.getDefault(params, key) != value
         charParams[keyToChar[key]] = value
-
-    delete charParams[keyToChar['played']] if !currentUser.is_supporter
-    delete charParams[keyToChar['rank']] if !currentUser.is_supporter
 
     charParams
 
