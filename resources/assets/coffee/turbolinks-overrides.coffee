@@ -56,3 +56,6 @@ Turbolinks.Controller::advanceHistory = (url) ->
 # Ignore anchor check on loading snapshot to prevent repeating requesting page
 # when the target doesn't exist.
 Turbolinks.Snapshot::hasAnchor = -> true
+
+Turbolinks.Controller::locationIsVisitable = (location) ->
+  location.isPrefixedBy(@view.getRootLocation()) && Url.isHTML(location)

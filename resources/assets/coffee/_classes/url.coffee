@@ -21,3 +21,9 @@ class @Url
 
   # external link
   @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"
+
+  # location is Turbolinks.Location
+  @isHTML: (location) ->
+    location.isHTML() ||
+      # Some changelog builds have `.` in their version, failing turbolinks' check.
+      _.startsWith(location.getPath(), '/home/changelog/')
