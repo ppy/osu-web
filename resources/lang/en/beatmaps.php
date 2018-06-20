@@ -170,8 +170,9 @@ return [
             'options' => 'More Search Options',
             'supporter-filter' => 'this filter requires supporter',
             'supporter-filter-quote' => [
-                '_' => 'this filter requires an active :link',
+                'before_link' => 'this filter requires an active ',
                 'link_text' => 'supporter tag',
+                'after_link' => '',
             ],
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',

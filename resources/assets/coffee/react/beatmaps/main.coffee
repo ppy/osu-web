@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, p} = ReactDOMFactories
+{a, div, p} = ReactDOMFactories
 el = React.createElement
 VirtualList = window.VirtualList
 
@@ -97,8 +97,6 @@ class Beatmaps.Main extends React.PureComponent
 
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
-    url = laroute.route('store.products.show', product: 'supporter-tag')
-    link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter-filter-quote.link_text'}</a>"
 
     div className: 'osu-layout__section',
       el Beatmaps.SearchPanel,
@@ -123,9 +121,16 @@ class Beatmaps.Main extends React.PureComponent
                   alt: osu.trans("beatmaps.listing.search.supporter-filter")
                   title: osu.trans("beatmaps.listing.search.supporter-filter")
 
-                p
-                  dangerouslySetInnerHTML:
-                    __html: osu.trans('beatmaps.listing.search.supporter-filter-quote._', link: link)
+                p {},
+                  [
+                    osu.trans 'beatmaps.listing.search.supporter-filter-quote.before_link'
+                    a
+                      key: ''
+                      href: laroute.route('store.products.show', product: 'supporter-tag')
+                      osu.trans 'beatmaps.listing.search.supporter-filter-quote.link_text'
+                    osu.trans 'beatmaps.listing.search.supporter-filter-quote.after_link'
+                  ]
+
             else
               if @state.beatmaps.length > 0
                 el BeatmapList,
