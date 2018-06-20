@@ -532,7 +532,7 @@ class Topic extends Model implements AfterCommit
 
     public function pollTitleHTML()
     {
-        return bbcode($this->poll_title, $this->posts->first()->bbcode_uid);
+        return bbcode($this->poll_title, $this->posts()->withTrashed()->first()->bbcode_uid);
     }
 
     public function pollEnd()
