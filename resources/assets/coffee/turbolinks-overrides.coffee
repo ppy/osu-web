@@ -35,7 +35,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
 
 # Monkey patch Turbolinks to render 403, 404, and 500 normally
 # Reference: https://github.com/turbolinks/turbolinks/issues/179
-Turbolinks.HttpRequest.prototype.requestLoaded = ->
+Turbolinks.HttpRequest::requestLoaded = ->
   @endRequest =>
     if 200 <= @xhr.status < 300 || @xhr.status in [403, 404, 500]
       @delegate.requestCompletedWithResponse(@xhr.responseText, @xhr.getResponseHeader("Turbolinks-Location"))
@@ -45,7 +45,7 @@ Turbolinks.HttpRequest.prototype.requestLoaded = ->
 
 
 # may or may not actually work
-Turbolinks.Controller.prototype.advanceHistory = (url) ->
+Turbolinks.Controller::advanceHistory = (url) ->
   return if url == document.location.href
 
   @cacheSnapshot()
@@ -55,4 +55,4 @@ Turbolinks.Controller.prototype.advanceHistory = (url) ->
 
 # Ignore anchor check on loading snapshot to prevent repeating requesting page
 # when the target doesn't exist.
-Turbolinks.Snapshot.prototype.hasAnchor = -> true
+Turbolinks.Snapshot::hasAnchor = -> true
