@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Status Resmi',
             'copyright' => 'Hak Cipta (DMCA)',
+            'privacy' => 'Privasi',
             'server_status' => 'Status Server',
+            'source_code' => 'Kode Sumber',
             'terms' => 'Ketentuan Layanan',
         ],
     ],

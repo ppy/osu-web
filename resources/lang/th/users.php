@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '',
+        'blocked_count' => '',
+        'hide_profile' => '',
+        'not_blocked' => '',
+        'show_profile' => '',
+        'too_many' => '',
+        'button' => [
+            'block' => '',
+            'unblock' => '',
+        ],
+    ],
+
     'card' => [
         'loading' => 'กำลังโหลด....',
         'send_message' => 'ส่งข้อความ',
@@ -123,7 +136,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => 'เกมโหมดหลัก',
-                'set' => 'ตั้ง :mode เป็นเกมโหลดหลักของโปรไฟล์',
+                'set' => 'ตั้ง :mode เป็นเกมโหมดหลักของโปรไฟล์',
             ],
         ],
 

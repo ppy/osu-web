@@ -17,7 +17,7 @@
 --}}
 
 @extends('master', [
-    'body_additional_classes' => 'osu-layout--body-333',
+    'bodyAdditionalClasses' => 'osu-layout--body-333',
     'title' => null,
     'titlePrepend' => $page->title(true),
 ])

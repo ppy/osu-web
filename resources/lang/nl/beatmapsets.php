@@ -37,6 +37,7 @@ return [
             'mapped_by' => 'gemapped door :mapper',
             'submitted' => 'ingezonden op ',
             'updated' => 'laatst geüpdatet op ',
+            'updated_timeago' => 'laatst bijgewerkt :timeago',
             'ranked' => 'gerankt op ',
             'approved' => 'goedgekeurd op ',
             'qualified' => 'gekwalificeerd op ',

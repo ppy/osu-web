@@ -66,6 +66,18 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     return $result;
 }
 
+function db_unsigned_increment($column, $count)
+{
+    if ($count >= 0) {
+        $value = "{$column} + {$count}";
+    } else {
+        $change = -$count;
+        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+    }
+
+    return DB::raw($value);
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
@@ -506,6 +518,11 @@ function issue_icon($issue)
     }
 }
 
+function build_url($build)
+{
+    return route('changelog.build', [$build->updateStream->name, $build->version]);
+}
+
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
     $postIdParamKey = 'start';
@@ -695,14 +712,16 @@ function display_regdate($user)
         return;
     }
 
+    $tooltipDate = i18n_date($user->user_regdate);
+
     $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
+        return '<div title="'.$tooltipDate.'">'.trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => "<strong>{$formattedDate}</strong>",
+        'date' => "<strong title='{$tooltipDate}'>{$formattedDate}</strong>",
     ]);
 }
 
@@ -976,9 +995,9 @@ function get_params($input, $namespace, $keys)
         $key = $keyAndType[0];
         $type = $keyAndType[1] ?? null;
 
-        $value = get_param_value(array_get($input, $key), $type);
+        if (array_has($input, $key)) {
+            $value = get_param_value(array_get($input, $key), $type);
 
-        if ($value !== null) {
             array_set($params, $key, $value);
         }
     }

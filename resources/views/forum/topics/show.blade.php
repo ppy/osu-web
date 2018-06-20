@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
-    "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
     'search' => [
         'params' => [
@@ -28,7 +28,7 @@
     'pageDescription' => $topic->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
 
     @include('forum.topics._floating_header')
@@ -328,22 +328,41 @@
                     </span>
                 </a>
 
-                <button
-                    type="button"
-                    class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
-                >
-                    <span class="btn-osu-big__content">
-                        <span class="btn-osu-big__icon">
-                            <i class="fas fa-comment"></i>
-                        </span>
+                @if (Auth::check())
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
+                    >
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fas fa-comment"></i>
+                            </span>
 
-                        <span class="btn-osu-big__left">
-                            <span class="btn-osu-big__text-top">
-                                {{ trans('forum.topics.actions.reply') }}
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.reply') }}
+                                </span>
                             </span>
                         </span>
-                    </span>
-                </button>
+                    </button>
+                @else
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-user-link"
+                    >
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </span>
+
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.login_reply') }}
+                                </span>
+                            </span>
+                        </span>
+                    </button>
+                @endif
             </div>
         </div>
     </div>

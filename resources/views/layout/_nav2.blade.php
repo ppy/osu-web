@@ -35,7 +35,7 @@
                     <span class="nav2__menu-link-main-text">
                         {{ trans("layout.menu.{$section}._") }}
 
-                        @if ($section === $current_section && !($isSearchPage ?? false))
+                        @if ($section === $currentSection && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
                         @endif
                     </span>
@@ -118,7 +118,7 @@
 
             <div class="nav2__click-popup">
                 <div
-                    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+                    class="simple-menu simple-menu--nav2 simple-menu--nav2-locales js-click-menu js-nav2--centered-popup"
                     data-click-menu-id="nav2-locale-popup"
                     data-visibility="hidden"
                 >

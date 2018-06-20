@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',
+            'privacy' => '隐私政策',
             'server_status' => '服务器状态',
+            'source_code' => '源代码',
             'terms' => '服务条款',
         ],
     ],

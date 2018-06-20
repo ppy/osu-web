@@ -35,8 +35,8 @@ return [
             'groups-show' => '그룹',
             'index' => '대시보드',
             'legal-show' => '정보',
-            'news-index' => '뉴스',
-            'news-show' => '뉴스',
+            'news-index' => '소식',
+            'news-show' => '소식',
             'password-reset-index' => '비밀번호 재설정',
             'search' => '검색',
             'supportTheGame' => '게임 지원하기',
@@ -59,18 +59,18 @@ return [
             'beatmapset_discussion_votes-index' => '비트맵 토론 투표',
             'beatmapset_events-index' => '비트맵셋 활동',
             'index' => '목록',
-            'packs' => '모음집',
+            'packs' => '맵팩',
             'show' => '정보',
         ],
         'beatmapsets' => [
             '_' => '비트맵',
-            'discussion' => 'modding',
+            'discussion' => '모딩',
         ],
         'rankings' => [
             '_' => '순위',
             'index' => '퍼포먼스',
             'performance' => '퍼포먼스',
-            'charts' => '차트',
+            'charts' => '스포트라이트',
             'score' => '점수',
             'country' => '국가',
             'kudosu' => 'kudosu',
@@ -114,7 +114,7 @@ return [
             'reset' => '복원',
             'new' => '새',
 
-            'messages' => '메세지',
+            'messages' => '메시지',
             'settings' => '설정',
             'logout' => '로그아웃',
             'help' => '도움말',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
+            'privacy' => '개인 정보 보호 정책',
             'server_status' => '서버 상태 확인',
+            'source_code' => '소스 코드',
             'terms' => '서비스 이용약관',
         ],
     ],
@@ -237,7 +239,7 @@ return [
 
             'error' => [
                 'email' => "존재하지 않는 유저이름 또는 이메일입니다.",
-                'password' => '비밀번호가 틀렸습니다.',
+                'password' => '잘못된 비밀번호입니다.',
             ],
         ],
 

@@ -79,4 +79,9 @@ return [
         'tablet' => '数位板',
         'touch' => '触摸屏',
     ],
+
+    'privacy' => [
+        'title' => '隐私政策',
+        'friends_only' => '屏蔽来自陌生人的私信',
+    ],
 ];

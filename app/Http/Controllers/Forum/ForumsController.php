@@ -34,7 +34,7 @@ class ForumsController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-forums-'.current_action());
+        view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
     public function index()

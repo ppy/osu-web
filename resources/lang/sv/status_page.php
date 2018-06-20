@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'vad händer mah dude?',
+        'description' => 'vad händer mina bekanta?',
     ],
 
     'incidents' => [

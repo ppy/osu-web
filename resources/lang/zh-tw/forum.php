@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when :user',
         'latest_reply_by' => '最後回覆: :user',
         'new_topic' => '發表新主題',
+        'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
         'started_by' => '發表人： :user',

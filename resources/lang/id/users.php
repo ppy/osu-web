@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'blocked_count' => 'pengguna yang diblokir (:count)',
+        'hide_profile' => 'sembunyikan profil',
+        'not_blocked' => 'Pengguna tidak diblokir.',
+        'show_profile' => 'tampilkan profil',
+        'too_many' => 'Batas blokir tercapai.',
+        'button' => [
+            'block' => 'blokir',
+            'unblock' => 'buka blokir',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Memuat...',
         'send_message' => 'kirim pesan',
@@ -204,8 +217,8 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => 'Menerima :amount atas dasar mendapatkan vote positif di post modding :post',
-                            'reset' => 'Kehilangan :amount atas dasar kehilangan vote positif di post modding :post',
+                            'give' => 'Menerima :amount karena mendapatkan vote positif di post modding :post',
+                            'reset' => 'Kehilangan :amount karena kehilangan vote positif di post modding :post',
                         ],
 
                         'recalculate' => [

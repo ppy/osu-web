@@ -79,4 +79,9 @@ return [
         'tablet' => 'platta',
         'touch' => 'pekskärm',
     ],
+
+    'privacy' => [
+        'title' => 'Sekretess',
+        'friends_only' => 'Blockera privata meddelanden från icke-vänner',
+    ],
 ];

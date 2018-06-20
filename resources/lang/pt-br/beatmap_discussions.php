@@ -46,7 +46,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Data de postagem',
+        'created_at' => 'Data de publicação',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
         'permalink' => 'Copiar link da postagem',

@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Tryb wieloosobowy',
+        'header' => 'Mecz',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',

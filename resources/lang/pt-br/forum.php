@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Tópicos fixados',
+    'pinned_topics' => 'Tópicos Fixados',
     'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Publicar um novo tópico',
+        'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
         'started_by' => 'por :user',
@@ -105,9 +106,9 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Inscrições de fórum',
+            'title' => 'Inscrições de Fórum',
             'title_compact' => 'inscrições de fórum',
-            'title_main' => '<strong>Inscrições</strong> de fórum',
+            'title_main' => '<strong>Inscrições</strong> de Fórum',
 
             'box' => [
                 'total' => 'Tópicos inscritos',
@@ -116,14 +117,14 @@ return [
 
             'info' => [
                 'total' => 'Você se inscreveu em :total tópicos.',
-                'unread' => 'Você tem :unread respostas não visualizadas de tópicos inscritos.',
+                'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Cancelar inscrição no tópico?',
-                'title' => 'Cancelar inscrição',
+                'title' => 'Cancelar Inscrição',
             ],
         ],
     ],
@@ -138,7 +139,7 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Criação de enquete',
+            'create_poll' => 'Criação de Enquete',
 
             'create_poll_button' => [
                 'add' => 'Criar enquete',
@@ -155,7 +156,7 @@ return [
                 'options_info' => 'Coloque cada uma das opções em uma nova linha. Você pode inserir até 10 opções.',
                 'title' => 'Pergunta',
                 'vote_change' => 'Permitir alteração de voto.',
-                'vote_change_info' => 'Caso ativado, os usuários poderão alterar o voto.',
+                'vote_change_info' => 'Caso ativado, usuários poderão alterar o voto.',
             ],
         ],
 
@@ -211,11 +212,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Este tópico está bloqueado e não pode mais ser respondido',
-            'to_0' => 'Desbloquear tópico',
-            'to_0_done' => 'Tópico desbloqueado',
-            'to_1' => 'Bloquear tópico',
-            'to_1_done' => 'Tópico bloqueado',
+            'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
+            'to_0' => 'Destrancar tópico',
+            'to_0_done' => 'Tópico destrancado',
+            'to_1' => 'Trancar tópico',
+            'to_1_done' => 'Tópico trancado',
         ],
 
         'moderate_move' => [
@@ -232,11 +233,11 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Publicações excluídas',
-            'total_posts' => 'Publicações totais',
+            'deleted-posts' => 'Publicações Excluídas',
+            'total_posts' => 'Total de publicações',
 
             'feature_vote' => [
-                'current' => 'Prioridade atual: +:count',
+                'current' => 'Prioridade Atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [

@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'framhävda artister',
+            'artists' => 'utvalda artister',
             'beatmap_discussion_posts-index' => 'beatmapdiskussionsinlägg',
             'beatmap_discussions-index' => 'beatmapdiskussioner',
             'beatmapset-watches-index' => 'modding övervakningslista',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Juridik & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Sekretess',
             'server_status' => 'Server Status',
+            'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',
         ],
     ],

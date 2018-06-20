@@ -37,6 +37,7 @@ return [
             'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado em ',
             'updated' => 'última atualização em ',
+            'updated_timeago' => 'última vez atualizado :timeago',
             'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
@@ -91,7 +92,7 @@ return [
             'headers' => [
                 'accuracy' => 'Precisão',
                 'combo' => 'Combo Máximo',
-                'miss' => 'Erro',
+                'miss' => 'Erros',
                 'mods' => 'Mods',
                 'player' => 'Jogador',
                 'pp' => 'pp',

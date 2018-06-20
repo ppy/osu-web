@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'избранные исполнители',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset-watches-index' => 'подписки на карты',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Права и статус',
             'copyright' => 'Авторские права (DMCA)',
+            'privacy' => 'Конфиденциальность',
             'server_status' => 'Статус серверов',
+            'source_code' => 'Исходный код',
             'terms' => 'Условия использования',
         ],
     ],

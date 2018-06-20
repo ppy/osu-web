@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Please sign in to proceed.',
         'http-403' => 'Access denied.',
+        'http-404' => 'Not found.',
         'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [

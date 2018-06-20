@@ -33,14 +33,17 @@ $(document).on 'turbolinks:load', ->
   StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
+# ensure currentUser is updated early enough.
+@currentUserObserver ?= new CurrentUserObserver
+
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditPlaystyle ?= new AccountEditPlaystyle
+@accountEditBlocklist ?= new AccountEditBlocklist
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new ClickMenu
-@currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -100,6 +103,11 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  container: target
+  user_id: parseInt(target.dataset.target)
+
+# Globally init block buttons
+reactTurbolinks.register 'blockButton', BlockButton, (target) ->
   container: target
   user_id: parseInt(target.dataset.target)
 

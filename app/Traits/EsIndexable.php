@@ -30,7 +30,7 @@ trait EsIndexable
 
     abstract public static function esIndexingQuery();
 
-    abstract public static function esMappings();
+    abstract public static function esSchemaFile();
 
     abstract public static function esType();
 
@@ -67,6 +67,10 @@ trait EsIndexable
 
     public function esIndexDocument(array $options = [])
     {
+        if (method_exists($this, 'esShouldIndex') && !$this->esShouldIndex()) {
+            return $this->esDeleteDocument($options);
+        }
+
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
@@ -80,29 +84,10 @@ trait EsIndexable
 
     public static function esCreateIndex(string $name = null)
     {
-        $settings = [
-            'index' => [
-                'number_of_shards' => config('osu.elasticsearch.number_of_shards'),
-            ],
-        ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings['analysis'] = static::esAnalysisSettings();
-        }
-
-        $type = static::esType();
-        $body = [
-            'mappings' => [
-                $type => [
-                    'properties' => static::esMappings(),
-                ],
-            ],
-            'settings' => $settings,
-        ];
-
+        // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
-            'body' => $body,
+            'body' => static::esSchemaConfig(),
         ];
 
         return Es::indices()->create($params);
@@ -122,6 +107,11 @@ trait EsIndexable
         Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
+    }
+
+    public static function esMappings()
+    {
+        return static::esSchemaConfig()['mappings'][static::esType()]['properties'];
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
@@ -172,5 +162,15 @@ trait EsIndexable
 
         $duration = time() - $startTime;
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
+    public static function esSchemaConfig()
+    {
+        static $schema;
+        if (!isset($schema)) {
+            $schema = json_decode(file_get_contents(static::esSchemaFile()), true);
+        }
+
+        return $schema;
     }
 }

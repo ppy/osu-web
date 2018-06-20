@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'touchscreen',
     ],
+
+    'privacy' => [
+        'title' => 'Quyền Riêng Tư',
+        'friends_only' => 'Chặn tin nhắn từ những người không có trong danh sách bạn bè',
+    ],
 ];

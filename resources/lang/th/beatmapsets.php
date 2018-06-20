@@ -34,9 +34,10 @@ return [
         'discussion' => 'การสนทนา',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => 'แมพโดย :mapper',
             'submitted' => 'ส่งเมื่อ ',
             'updated' => 'แก้ไขล่าสุดเมื่อ ',
+            'updated_timeago' => 'อัพเดทล่าสุดเมื่อ :timeago',
             'ranked' => 'จัดอันดับเมื่อ ',
             'approved' => 'อนุมัติเมื่อ ',
             'qualified' => 'ผ่านเกณฑ์เมื่อ ',

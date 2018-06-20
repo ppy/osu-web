@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Bạn đã chặn người dùng này.',
+        'blocked_count' => 'người dùng đã bị chặn (:count)',
+        'hide_profile' => 'ẩn trang cá nhân',
+        'not_blocked' => 'Người dùng này chưa bị chặn.',
+        'show_profile' => 'hiển thị trang cá nhân',
+        'too_many' => 'Đã đạt giới hạn số người bị chặn.',
+        'button' => [
+            'block' => 'chặn',
+            'unblock' => 'bỏ chặn',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Đang tải...',
         'send_message' => 'gửi tin nhắn',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Graveyarded Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Loved Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',

@@ -37,6 +37,7 @@ return [
             'mapped_by' => 'mappolva :mapper által',
             'submitted' => 'beküldve ',
             'updated' => 'utoljára frissítve ',
+            'updated_timeago' => 'utóljára frissítve: :timeago',
             'ranked' => 'rank-elve ',
             'approved' => 'elfogadva ',
             'qualified' => 'qualified ',

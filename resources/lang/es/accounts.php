@@ -79,4 +79,9 @@ return [
         'tablet' => 'tableta',
         'touch' => 'táctil',
     ],
+
+    'privacy' => [
+        'title' => 'Privacidad',
+        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
+    ],
 ];

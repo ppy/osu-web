@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Você bloqueou este usuário.',
+        'blocked_count' => 'usuários bloqueados: (:count)',
+        'hide_profile' => 'ocultar perfil',
+        'not_blocked' => 'Este usuário não está bloqueado.',
+        'show_profile' => 'exibir perfil',
+        'too_many' => 'Limite de bloqueios atingido.',
+        'button' => [
+            'block' => 'bloquear',
+            'unblock' => 'desbloquear',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Carregando...',
         'send_message' => 'enviar mensagem',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Beatmaps no cemitério (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Loved (: contagem)',
+                    'title' => 'Beatmaps Loved (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Ranqueados & Aprovados (:count)',
@@ -184,7 +197,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Esse usuário ainda não tem nenhum kudosu!",
+                    'empty' => "Esse usuário ainda não recebeu nenhum kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -291,7 +304,7 @@ return [
             'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear este recurso.",
         ],
         'post_count' => [
-            '_' => 'Contribuiu :link',
+            '_' => 'Contribuiu com :link',
             'count' => ':count postagem no fórum|:count postagens no fórum',
         ],
         'rank' => [
@@ -299,11 +312,11 @@ return [
             'global' => 'Ranking global de :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisão de Acertos',
+            'hit_accuracy' => 'Precisão',
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
             'play_count' => 'Vezes Jogadas',
-            'play_time' => 'Tempo Total Jogado',
+            'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',

@@ -34,9 +34,10 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
-            'mapped_by' => 'mapeado por : mapeador',
+            'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado en ',
             'updated' => 'última actualización en ',
+            'updated_timeago' => 'actualizado por última vez el :timeago',
             'ranked' => 'clasificado en ',
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
@@ -50,7 +51,7 @@ return [
             ],
             'favourite' => 'Marcar como favorito este beatmapset',
             'unfavourite' => 'Desmarcar como favorito este beatmapset',
-            'favourited_count' => '+ ¡1 persona más!|+ ¡:count personas más!',
+            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
         ],
         'stats' => [
             'cs' => 'Tamaño del Círculo',

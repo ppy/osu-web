@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when bởi :user',
         'latest_reply_by' => 'trả lời cuối bởi :user',
         'new_topic' => 'Đăng một chủ đề mới',
+        'new_topic_login' => 'Đăng nhập để đăng một chủ đề mới',
         'post_reply' => 'Đăng',
         'reply_box_placeholder' => 'Nhập vào đây để trả lời',
         'started_by' => 'bởi :user',

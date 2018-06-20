@@ -24,6 +24,8 @@ use App\Libraries\Elasticsearch\SearchParams;
 
 class ForumSearchParams extends SearchParams
 {
+    use HasFilteredForums;
+
     // all public because lazy.
 
     /** @var int|null */

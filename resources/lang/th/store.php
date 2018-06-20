@@ -39,7 +39,7 @@ return [
             'text' => 'ไม่มีสินค้าอยู่ในตะกร้าสินค้าของคุณ',
             'return_link' => [
                 '_' => 'กลับไปที่ :link เพื่อดูสินค้าอื่นๆ!',
-                'link_text' => '',
+                'link_text' => 'รายการร้านค้า',
             ],
         ],
     ],
@@ -75,10 +75,10 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
+            'cancelled' => 'คุณไม่สามารถแก้ไขหรือยกเลิกการสั่งซื้อได้',
+            'checkout' => 'คุณไม่สามารถแก้ไขออเดอร์ของคุณได้ในระหว่างที่กำลังประมวลผลอยู่', // checkout and processing should have the same message.
+            'default' => 'สั่งซื้อไม่สามารถปรับเปลี่ยน',
+            'delivered' => 'คุณไม่สามารถแก้ไขออเดอร์ของคุณได้เพราะมันถูกจัดส่งเรียบร้อยแล้ว',
             'paid' => '',
             'processing' => '',
             'shipped' => '',

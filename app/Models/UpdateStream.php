@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class UpdateStream extends Model
 {
     public $timestamps = false;
@@ -36,5 +38,36 @@ class UpdateStream extends Model
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'stream_id', 'stream_id');
+    }
+
+    public function changelogEntries()
+    {
+        return $this->hasManyThrough(
+            ChangelogEntry::class, // target class
+            Repository::class, // bridge class
+            'stream_id', // column name in bridge linking to this
+            'repository', // column name in target linking to bridge
+            null, // column name in this linking to bridge
+            'name' // column name in bridge linking to target
+        );
+    }
+
+    public function createBuild()
+    {
+        $entryIds = model_pluck(
+            $this->changelogEntries()->whereDoesntHave('builds'),
+            'id',
+            ChangelogEntry::class
+        );
+
+        if (empty($entryIds)) {
+            return;
+        }
+
+        $version = Carbon::now()->format('Y.nd.0');
+        $build = $this->builds()->firstOrCreate(compact('version'));
+        $build->changelogEntries()->attach($entryIds);
+
+        return $build;
     }
 }

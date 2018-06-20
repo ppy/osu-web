@@ -40,9 +40,9 @@ return [
         'title' => 'Pesquisar',
 
         'beatmapset' => [
-            'more' => ':count mais resultados de mapas',
-            'more_simple' => 'Veja mais resultados de busca de mapas',
-            'title' => 'Mapas',
+            'more' => ':count mais resultados de beatmaps',
+            'more_simple' => 'Veja mais resultados de busca de beatmaps',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
@@ -61,7 +61,7 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => 'mapa',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
@@ -101,9 +101,9 @@ return [
                 'description' => 'clique no botão acima para baixar o instalador, depois execute-o!',
             ],
             'beatmaps' => [
-                'title' => 'baixar mapas',
+                'title' => 'baixar beatmaps',
                 'description' => [
-                    '_' => ':browse pela vasta coleção de mapas criados por usuários e comece a jogar!',
+                    '_' => ':browse pela vasta coleção de beatmaps criados por usuários e comece a jogar!',
                     'browse' => 'navegue',
                 ],
             ],
@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'painel de controle',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'Notícias',
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
@@ -121,14 +121,14 @@ return [
             'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
             'messages' => 'Você tem :count nova mensagem|Você tem :count novas mensagens',
             'stats' => [
-                'friends' => 'Amigos online',
+                'friends' => 'Amigos Online',
                 'games' => 'Partidas',
-                'online' => 'Usuários online',
+                'online' => 'Usuários Online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos mapas classificados',
-            'popular' => 'Mapas populares',
+            'new' => 'Novos beatmaps ranqueados',
+            'popular' => 'Beatmaps Populares',
             'by' => 'por',
             'plays' => ':count vezes jogadas',
         ],

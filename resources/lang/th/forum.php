@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'เข้าสู่ระบบเพื่อโพสต์หัวเรื่องใหม่',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
         'started_by' => 'โดย :user',

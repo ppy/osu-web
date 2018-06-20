@@ -31,7 +31,7 @@ return [
         'active_users' => 'Usuários Ativos',
         'country' => 'País',
         'play_count' => 'Vezes Jogadas',
-        'performance' => 'Performance',
+        'performance' => 'Desempenho',
         'total_score' => 'Pontuação Total',
         'ranked_score' => 'Pontuação Ranqueada',
         'average_score' => 'Pont. Média',

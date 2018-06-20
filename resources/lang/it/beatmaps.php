@@ -156,7 +156,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Azzeramento processo di nomina :tempo_fa da :utente con nuovo problema :discussione (:messaggio).',
-            'disqualify' => '',
+            'disqualify' => 'Squalificato :time_ago da :user con il nuovo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -181,15 +181,15 @@ return [
                 'played' => 'Giocato',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'titolo',
+                'artist' => 'artista',
+                'difficulty' => 'difficoltà',
+                'updated' => 'aggiornato',
+                'ranked' => 'classificazione',
+                'rating' => 'rankate',
+                'plays' => 'volte giocata',
+                'relevance' => 'rilevanza',
+                'nominations' => 'candidature',
             ],
         ],
         'mode' => 'Modalità',

@@ -31,11 +31,11 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Usuários Online nas últimas 24 Horas',
+            'users' => 'Usuários online nas últimas 24 Horas',
             'score' => 'Pontuações atingidas nas últimas 24 Horas',
         ],
         'current' => 'Usuários Online',
-        'score' => 'Pontuações atingidas por segundo',
+        'score' => 'Pontuações Atingidas por Segundo',
     ],
 
     'recent' => [

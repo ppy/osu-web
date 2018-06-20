@@ -40,7 +40,7 @@ return [
         'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
         'message_placeholder' => 'Digite aqui para postar',
-        'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e não poderá mais ser discutida.',
+        'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
         'reply_placeholder' => 'Digite sua resposta aqui',
@@ -56,7 +56,7 @@ return [
 
         'empty' => [
             'empty' => 'Nenhuma discussão ainda!',
-            'hidden' => 'Nenhuma discussão com o filtro selecionado.',
+            'hidden' => 'Nenhuma discussão encontrada com o filtro selecionado.',
         ],
 
         'message_hint' => [
@@ -68,7 +68,7 @@ return [
             'disqualify' => 'Desqualificar',
             'hype' => 'Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Resetar Nomeação',
+            'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',
@@ -104,7 +104,7 @@ return [
         'stats' => [
             'deleted' => 'Excluído',
             'mapper_notes' => 'Notas',
-            'mine' => 'Meu',
+            'mine' => 'Meus',
             'pending' => 'Pendentes',
             'praises' => 'Elogios',
             'resolved' => 'Resolvidos',
@@ -116,7 +116,7 @@ return [
             'graveyard' => "Esse beatmap não foi atualizado desde :date e provavelmente já foi abandonado pelo seu criador...",
             'loved' => 'Esse beatmap foi adicionado ao loved em :date!',
             'ranked' => 'Esse beatmap foi ranqueado em :date!',
-            'wip' => 'Nota: Esse beatmap ainda não finalizado pelo seu criador.',
+            'wip' => 'Nota: Esse beatmap ainda não foi finalizado pelo seu criador.',
         ],
 
     ],
@@ -167,7 +167,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
-            'options' => 'Mais Opções de Busca',
+            'options' => 'Mais opções de busca',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
@@ -227,7 +227,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Outro',
-        'novelty' => 'Atual',
+        'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
     ],

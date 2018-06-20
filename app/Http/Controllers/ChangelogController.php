@@ -20,10 +20,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
+use App\Models\ChangelogEntry;
+use App\Models\UpdateStream;
 use Cache;
+use Carbon\Carbon;
 
 class ChangelogController extends Controller
 {
@@ -32,13 +36,27 @@ class ChangelogController extends Controller
 
     public function index()
     {
-        $from = Changelog::default()->first();
-        $changelogs = Changelog::default()
+        $from = (max(
+            optional(Changelog::default()->first())->date,
+            optional(ChangelogEntry::default()->first())->created_at
+        ) ?? Carbon::now())->subWeeks(config('osu.changelog.recent_weeks'));
+
+        $legacyChangelogs = Changelog::default()
             ->with('user')
-            ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
+            ->where('date', '>', $from)
             ->get()
+            ->map(function ($item) {
+                return ChangelogEntry::convertLegacy($item);
+            });
+
+        $changelogs = ChangelogEntry::default()
+            ->with('githubUser.user')
+            ->where('created_at', '>', $from)
+            ->get()
+            ->concat($legacyChangelogs)
+            ->sortByDesc('created_at')
             ->groupBy(function ($item) {
-                return i18n_date($item->date);
+                return i18n_date($item->created_at);
             });
 
         $this->getBuilds();
@@ -54,23 +72,64 @@ class ChangelogController extends Controller
         return view('changelog.index', compact('changelogs', 'buildHistory', 'chartOrder'));
     }
 
-    public function show($buildId)
+    public function github()
     {
-        $changelogs = Changelog::default()
-            ->with('user');
+        $token = config('osu.changelog.github_token');
+
+        list($algo, $signature) = explode('=', request()->header('X-Hub-Signature'));
+        $hash = hash_hmac($algo, request()->getContent(), $token);
+
+        if (!hash_equals((string) $hash, (string) $signature)) {
+            abort(403);
+        }
+
+        (new GithubImporter([
+            'eventType' => request()->header('X-GitHub-Event'),
+            'data' => request()->json()->all(),
+        ]))->import();
+
+        return [];
+    }
+
+    public function show($version)
+    {
+        $build = Build::default()->where('version', '=', $version)->firstOrFail();
+
+        if ($build === null) {
+            $normalizedVersion = preg_replace('#[^0-9.]#', '', $normalizedVersion);
+
+            $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
+        }
+
+        return ujs_redirect(build_url($build));
+    }
+
+    public function build($stream, $version)
+    {
+        $activeStream = UpdateStream::where('name', '=', $stream)->firstOrFail();
 
         $activeBuild = Build::default()
             ->with('updateStream')
-            ->where('version', $buildId)
+            ->where('version', '=', $version)
             ->firstOrFail();
 
-        $changelogs = $changelogs
-            ->where('build', $activeBuild->version)
+        $legacyChangelogs = $activeBuild->changelogs()
+            ->default()
+            ->with('user')
             ->visibleOnBuilds()
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                return ChangelogEntry::convertLegacy($item);
+            });
+
+        $changelogs = $activeBuild->changelogEntries()
+            ->default()
+            ->with('githubUser')
+            ->get()
+            ->concat($legacyChangelogs);
 
         if (count($changelogs) === 0) {
-            $changelogs = [Changelog::placeholder()];
+            $changelogs = [ChangelogEntry::placeholder()];
         }
 
         $this->getBuilds();

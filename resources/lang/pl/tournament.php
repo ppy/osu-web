@@ -21,7 +21,7 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Lista aktywnych, oficjalnych turniejów',
+            'subtitle' => 'Lista oficjalnych turniejów osu!',
             'title' => 'Turnieje społeczności',
         ],
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',

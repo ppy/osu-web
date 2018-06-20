@@ -50,7 +50,7 @@ return [
         'state' => [
             'before_registration' => 'As Inscrições para este torneio ainda não foram abertas.',
             'ended' => 'Este torneio foi concluído. Para ver o resultado, verifique a página de informações.',
-            'registration_closed' => 'As inscrições para o torneio foram fechadas. Verifique a página de informações para atualizações mais recentes.',
+            'registration_closed' => 'As inscrições para esse torneio foram encerradas. Verifique a página de informações para atualizações mais recentes.',
             'running' => 'Esse torneio está atualmente em progresso. Verifique a página de informações para mais detalhes.',
         ],
     ],

@@ -84,25 +84,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_interests' => 30,
     ];
 
-    const ES_MAPPINGS = [
-        'is_old' => ['type' => 'boolean'],
-        'user_lastvisit' => ['type' => 'date'],
-        'username' => [
-            'type' => 'text',
-            'analyzer' => 'username_lower',
-            'fields' => [
-                // for exact match
-                'raw' => ['type' => 'keyword'],
-                // try match sloppy search guesses
-                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
-                // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
-            ],
-        ],
-        'user_warnings' => ['type' => 'short'],
-        'user_type' => ['type' => 'short'],
-    ];
-
     private $memoized = [];
 
     private $validateCurrentPassword = false;
@@ -733,6 +714,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserBadge::class, 'user_id');
     }
 
+    public function githubUsers()
+    {
+        return $this->hasMany(GithubUser::class, 'user_id');
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
@@ -1014,6 +1000,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserRelation::class, 'user_id');
     }
 
+    public function blocks()
+    {
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+    }
+
     public function friends()
     {
         // 'cuz hasManyThrough is derp
@@ -1021,9 +1012,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
+    public function maxBlocks()
+    {
+        return ceil($this->maxFriends() / 10);
+    }
+
     public function maxFriends()
     {
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+    }
+
+    public function beatmapsetDownloadAllowance()
+    {
+        return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
     }
 
     public function uncachedFollowerCount()
@@ -1047,11 +1048,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
-    }
-
-    public function foes()
-    {
-        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -1102,6 +1098,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function hasBlocked(self $user)
+    {
+        return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
     }
 
     public function hasFavourited($beatmapset)
@@ -1216,7 +1219,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'friends']);
+        return json_item($this, 'User', ['disqus_auth', 'blocks', 'friends']);
     }
 
     public function supportLength()
@@ -1281,13 +1284,12 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $postsChangeCount = 0;
             }
 
-            // In case user_posts is 0 and $postsChangeCount is -1.
-            $newPostsCount = DB::raw("GREATEST(CAST(user_posts AS SIGNED) + {$postsChangeCount}, 0)");
+            $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
-        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+        $lastPost = $this->forumPosts()->select('post_time')->last();
 
         // FIXME: not null column, hence default 0. Change column to allow null
         $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;

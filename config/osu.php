@@ -28,6 +28,8 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
+        'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
@@ -84,7 +86,11 @@ return [
             'user' => 100,
         ],
     ],
+    'score_replays' => [
+        'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
+    'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
@@ -157,10 +163,11 @@ return [
         'ban_persist_days' => intval(env('BAN_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
-        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
-        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
-        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
+        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];

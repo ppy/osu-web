@@ -54,11 +54,6 @@ trait TopicTrait
         return $values;
     }
 
-    public static function esAnalysisSettings()
-    {
-        return Post::esAnalysisSettings();
-    }
-
     public static function esIndexName()
     {
         return Post::esIndexName();
@@ -71,13 +66,18 @@ trait TopicTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return Post::esMappings();
+        return Post::esSchemaFile();
     }
 
     public static function esType()
     {
         return Post::esType();
+    }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing && !$this->trashed();
     }
 }

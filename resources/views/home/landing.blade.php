@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'title' => 'osu!',
     'blank' => 'true',
-    'body_additional_classes' => 'osu-layout--body-dark'
+    'bodyAdditionalClasses' => 'osu-layout--body-dark'
 ])
 
-@section("content")
+@section('content')
     <nav class="osu-layout__row">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')

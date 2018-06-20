@@ -105,7 +105,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onFocus: @setSticky
                   placeholder:
                     if @canPost()
-                      osu.trans 'beatmaps.discussions.message_placeholder'
+                      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
                     else
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
@@ -222,7 +222,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
       discussions = []
 
-      for discussion in @props.currentDiscussions.timeline
+      for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
         continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
 

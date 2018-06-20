@@ -25,6 +25,8 @@
   display: flex;
   flex-direction: column;
 
+  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
+
   &--body {
     background-color: transparent;
 
@@ -83,6 +85,19 @@
     width: 100%;
   }
 
+  &--masked {
+    position: absolute;
+    filter: brightness(0);
+    opacity: 0.8;
+    pointer-events: none;
+    backface-visibility: hidden; // prevents flashing in some browers on resize/transition start
+
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+      /* IE10+ fallback */
+      opacity: 0;
+    }
+  }
+
   &__col {
     width: calc(100% ~'-' 10px);
     margin: 5px;
@@ -117,6 +132,11 @@
     &--landing-sitemap {
       width: 100%;
     }
+  }
+
+  &__no-scroll {
+    overflow: hidden;
+    flex: 1 0 auto;
   }
 
   &__row {
