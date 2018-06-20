@@ -18,13 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'title' => '비트맵 토론 게시판',
-    ],
+namespace App\Jobs;
 
-    'item' => [
-        'content' => '내용',
-        'modding_history_link' => '모딩 기록 보기',
-    ],
-];
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class UpdateUserForumCache implements ShouldQueue
+{
+    use InteractsWithQueue, Queueable;
+
+    protected $userId;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        optional(User::find($this->userId))->refreshForumCache();
+    }
+}

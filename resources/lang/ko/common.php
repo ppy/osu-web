@@ -65,11 +65,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'YYYY년 MMMM',
+            'php' => 'y년 MMMM',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY년 MMM',
         ],
     ],
 
@@ -99,7 +99,7 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count 일 전',
+        'days_ago' => ':count일 전',
         'hours_ago' => ':count시간 전|:count시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',

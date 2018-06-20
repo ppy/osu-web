@@ -47,7 +47,7 @@ return [
     'checkout' => [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
-        'declined' => '결제 실패했어요',
+        'declined' => '결제가 취소되었습니다.',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
         'pending_checkout' => [
@@ -62,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '저희는 귀하의 osu!store 주문을 받았습니다!',
+            'subject' => '귀하의 osu!store 주문을 받았습니다!',
         ],
     ],
 
@@ -112,7 +112,7 @@ return [
 
     'username_change' => [
         'check' => '사용 가능한 이름인지 확인하려면 입력하세요!',
-        'checking' => ':username의 유효성 검사하는 중...',
+        'checking' => ':username 사용 가능 여부 확인중..',
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
             'link_text' => '로그인',

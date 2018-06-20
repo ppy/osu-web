@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Είστε σίγουρος;',
+    'confirmation' => 'Είστε σίγουροι;',
     'saved' => 'Αποθηκεύτηκε',
 
     'array_and' => [

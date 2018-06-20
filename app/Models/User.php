@@ -1022,6 +1022,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function beatmapsetDownloadAllowance()
+    {
+        return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
+    }
+
     public function uncachedFollowerCount()
     {
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
@@ -1279,8 +1284,7 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $postsChangeCount = 0;
             }
 
-            // In case user_posts is 0 and $postsChangeCount is -1.
-            $newPostsCount = DB::raw("GREATEST(CAST(user_posts AS SIGNED) + {$postsChangeCount}, 0)");
+            $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }

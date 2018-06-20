@@ -31,11 +31,12 @@ class PollOption extends Model
     public $timestamps = false;
     protected $guarded = [];
 
-    // for bbcode_uid
+    // For bbcode_uid, the first post (even if the post is deleted).
     public function post()
     {
         return $this
             ->belongsTo(Post::class, 'topic_id', 'topic_id')
+            ->withTrashed()
             ->orderBy('post_id', 'ASC')
             ->limit(1);
     }

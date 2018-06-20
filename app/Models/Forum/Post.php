@@ -20,7 +20,6 @@
 
 namespace App\Models\Forum;
 
-use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -293,11 +292,7 @@ class Post extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->forum->enable_indexing && !$this->trashed()) {
-            dispatch(new EsIndexDocument($this));
-        } else {
-            dispatch(new EsDeleteDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 
     public function markRead($user)
@@ -306,11 +301,17 @@ class Post extends Model implements AfterCommit
             return;
         }
 
-        $this->topic->markRead($user, $this->post_time);
+        $topic = $this->topic()->withTrashed()->first();
+
+        if ($topic === null) {
+            return;
+        }
+
+        $topic->markRead($user, $this->post_time);
 
         // reset notification status when viewing latest post
-        if ($this->topic->topic_last_post_id === $this->getKey()) {
-            TopicWatch::lookupQuery($this->topic, $user)->update(['notify_status' => false]);
+        if ($topic->topic_last_post_id === $this->getKey()) {
+            TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
         }
     }
 }

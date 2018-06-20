@@ -75,4 +75,9 @@ trait TopicTrait
     {
         return Post::esType();
     }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing && !$this->trashed();
+    }
 }

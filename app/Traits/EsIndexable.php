@@ -67,6 +67,10 @@ trait EsIndexable
 
     public function esIndexDocument(array $options = [])
     {
+        if (method_exists($this, 'esShouldIndex') && !$this->esShouldIndex()) {
+            return $this->esDeleteDocument($options);
+        }
+
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
