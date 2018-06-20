@@ -1022,6 +1022,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function beatmapsetDownloadAllowance()
+    {
+        return $this->isSupporter() ? config('osu.beatmapset.download_limit') : config('osu.beatmapset.download_limit_supporter');
+    }
+
     public function uncachedFollowerCount()
     {
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
