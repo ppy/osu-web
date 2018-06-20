@@ -168,12 +168,7 @@ return [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
-            'supporter-filter' => 'this filter requires supporter',
-            'supporter-filter-quote' => [
-                'before_link' => 'this filter requires an active ',
-                'link_text' => 'supporter tag',
-                'after_link' => '',
-            ],
+            'supporter_filter' => 'this filter requires supporter',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
@@ -196,6 +191,11 @@ return [
                 'plays' => 'plays',
                 'relevance' => 'relevance',
                 'nominations' => 'nominations',
+            ],
+            'supporter_filter_quote' => [
+                'before_link' => 'this filter requires an active ',
+                'link_text' => 'supporter tag',
+                'after_link' => '',
             ],
         ],
         'mode' => 'Mode',

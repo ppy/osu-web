@@ -118,17 +118,17 @@ class Beatmaps.Main extends React.PureComponent
               div className: 'beatmapsets__empty',
                 el Img2x,
                   src: '/images/layout/beatmaps/supporter-required.png'
-                  alt: osu.trans("beatmaps.listing.search.supporter-filter")
-                  title: osu.trans("beatmaps.listing.search.supporter-filter")
+                  alt: osu.trans("beatmaps.listing.search.supporter_filter")
+                  title: osu.trans("beatmaps.listing.search.supporter_filter")
 
                 p {},
                   [
-                    osu.trans 'beatmaps.listing.search.supporter-filter-quote.before_link'
+                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.before_link'
                     a
                       key: ''
                       href: laroute.route('store.products.show', product: 'supporter-tag')
-                      osu.trans 'beatmaps.listing.search.supporter-filter-quote.link_text'
-                    osu.trans 'beatmaps.listing.search.supporter-filter-quote.after_link'
+                      osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'
+                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.after_link'
                   ]
 
             else
