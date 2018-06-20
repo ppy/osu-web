@@ -122,15 +122,7 @@ class Beatmaps.Main extends React.PureComponent
                   alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
                   title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
 
-                p {},
-                  [
-                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.before_link', filters: supporterFilters
-                    a
-                      key: ''
-                      href: laroute.route('store.products.show', product: 'supporter-tag')
-                      osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'
-                    osu.trans 'beatmaps.listing.search.supporter_filter_quote.after_link', filters: supporterFilters
-                  ]
+                @renderLinkToSupporterTag(supporterFilters)
 
             else
               if @state.beatmaps.length > 0
@@ -148,6 +140,17 @@ class Beatmaps.Main extends React.PureComponent
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
                   el(Beatmaps.Paginator, paging: @state.paging)
+
+
+  renderLinkToSupporterTag: (filters) ->
+    url = laroute.route('store.products.show', product: 'supporter-tag')
+    link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
+
+    p
+      dangerouslySetInnerHTML:
+        __html: osu.trans 'beatmaps.listing.search.supporter_filter_quote._',
+          filters: filters
+          link: link
 
 
   buildSearchQuery: =>

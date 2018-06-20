@@ -193,9 +193,8 @@ return [
                 'nominations' => 'nominations',
             ],
             'supporter_filter_quote' => [
-                'before_link' => 'Filtering by :filters requires an active ',
+                '_' => 'Filtering by :filters requires an active :link',
                 'link_text' => 'supporter tag',
-                'after_link' => '',
             ],
         ],
         'mode' => 'Mode',
