@@ -83,6 +83,11 @@ class @ChangelogChart
 
     @data = stack data
 
+    @hasData = @config.buildHistory? &&
+      @config.buildHistory.length > 0 &&
+      _.every(@config.buildHistory, (b) -> b.user_count > 0)
+
+
     @resize()
 
 
@@ -196,18 +201,10 @@ class @ChangelogChart
       .style 'transform', "translateX(#{coord}px)"
 
 
-  hasData: =>
-    @config.buildHistory? &&
-      @config.buildHistory.length > 0 &&
-      _.every(@config.buildHistory, (b) -> b.user_count > 0)
-
-
   resize: =>
-    if @hasData()
-      @area.classed 'hidden', false
-    else
-      @area.classed 'hidden', true
-      return
+    @area.classed 'hidden', !@hasData
+
+    return if !@hasData
 
     @setDimensions()
     @setScalesRange()
