@@ -41,7 +41,7 @@ class ChangelogEntryTransformer extends Fractal\TransformerAbstract
             'type' => $entry->type,
             'category' => $entry->category,
             'title' => $entry->title,
-            'message_html' => present($entry->message) ? Markdown::convertToHtml($entry->message) : null,
+            'message_html' => $entry->messageHTML(),
             'major' => $entry->major,
             'created_at' => json_time($entry->created_at),
         ];

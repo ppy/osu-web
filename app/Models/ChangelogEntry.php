@@ -22,6 +22,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
+use Markdown;
 
 class ChangelogEntry extends Model
 {
@@ -137,5 +138,28 @@ class ChangelogEntry extends Model
         if ($this->hasGithubPR()) {
             return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
         }
+    }
+
+    public function messageHTML()
+    {
+        if (!present($this->message)) {
+            return;
+        }
+
+        static $separator = "\n\n---\n";
+
+        $origMessage = trim(str_replace("\r\n", "\n", $this->message));
+
+        $hiddenSectionEnd = strpos($origMessage, $separator);
+
+        if ($hiddenSectionEnd === false) {
+            $hiddenSectionEnd = 0;
+        } else {
+            $hiddenSectionEnd += strlen($separator);
+        }
+
+        $message = substr($origMessage, $hiddenSectionEnd);
+
+        return Markdown::convertToHtml($message);
     }
 }
