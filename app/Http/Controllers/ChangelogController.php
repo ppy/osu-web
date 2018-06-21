@@ -108,7 +108,9 @@ class ChangelogController extends Controller
     {
         $activeStream = UpdateStream::where('name', '=', $stream)->firstOrFail();
 
-        $activeBuild = Build::default()
+        $activeBuild = $activeStream
+            ->builds()
+            ->default()
             ->with('updateStream')
             ->where('version', '=', $version)
             ->firstOrFail();
