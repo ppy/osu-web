@@ -194,7 +194,7 @@
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
-                    <div class="osu-layout__col osu-layout__col--sm-3">
+                    <div class="osu-layout__col osu-layout__col--sm-4">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
                                 <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
