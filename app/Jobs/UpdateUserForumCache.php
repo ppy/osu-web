@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,26 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-reply {
-  display: flex;
-  align-items: flex-end;
-  flex: 1 0 auto;
+namespace App\Jobs;
 
-  &__form {
-    .own-layer();
-    transition: opacity 120ms;
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
-    background-color: #444;
-    width: 100%;
-    padding-bottom: 20px;
-    padding-top: 10px;
+class UpdateUserForumCache implements ShouldQueue
+{
+    use InteractsWithQueue, Queueable;
 
-    &.js-forum-topic-reply-flash {
-      animation: forum-topic-reply-flash 500ms ease-in-out;
+    protected $userId;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
     }
-  }
 
-  @keyframes forum-topic-reply-flash {
-    50% { background-color: #777; }
-  }
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        optional(User::find($this->userId))->refreshForumCache();
+    }
 }

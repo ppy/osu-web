@@ -520,6 +520,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->userRatings()->delete();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);

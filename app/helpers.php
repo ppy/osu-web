@@ -66,6 +66,18 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     return $result;
 }
 
+function db_unsigned_increment($column, $count)
+{
+    if ($count >= 0) {
+        $value = "{$column} + {$count}";
+    } else {
+        $change = -$count;
+        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+    }
+
+    return DB::raw($value);
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
@@ -506,6 +518,11 @@ function issue_icon($issue)
     }
 }
 
+function build_url($build)
+{
+    return route('changelog.build', [$build->updateStream->name, $build->version]);
+}
+
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
     $postIdParamKey = 'start';
@@ -634,10 +651,6 @@ function footer_landing_links()
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
             'report' => route('forum.topics.create', ['forum_id' => 5]),
-        ],
-        'support' => [
-            'tags' => route('support-the-game'),
-            'merchandise' => action('StoreController@getListing'),
         ],
         'legal' => footer_legal_links(),
     ];

@@ -32,7 +32,7 @@
                     @include('beatmapset_events._item', compact('event'))
                 @endforeach
             </div>
-            @include('forum._pagination', ['object' => $events])
+            @include('objects._pagination_v0', ['object' => $events])
         </div>
     </div>
 @endsection

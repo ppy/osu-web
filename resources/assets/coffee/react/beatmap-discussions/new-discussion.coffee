@@ -105,7 +105,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onFocus: @setSticky
                   placeholder:
                     if @canPost()
-                      osu.trans 'beatmaps.discussions.message_placeholder'
+                      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
                     else
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
