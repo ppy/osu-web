@@ -26,6 +26,10 @@ return [
         'users_online' => ':count_delimited user online|:count_delimited users online',
     ],
 
+    'entry' => [
+        'by' => 'by :user',
+    ],
+
     'index' => [
         'title' => [
             '_' => 'Changelog :info',

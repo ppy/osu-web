@@ -19,28 +19,21 @@
 {div, span, a} = ReactDOMFactories
 el = React.createElement
 
+icon =
+  add: 'fas fa-plus'
+  fix: 'fas fa-check'
+  misc: 'far fa-circle'
+
 @ChangelogEntry = ({entry}) =>
   div
     className: 'changelog-entry'
     key: entry.id
-    div className: 'changelog-entry__col changelog-entry__col--user',
-      if entry.github_user.github_url?
-        a
-          href: entry.github_user.github_url
-          className: 'changelog-entry__user-link js-usercard'
-          'data-user-id': entry.github_user.user_id
-          entry.github_user.display_name
-      else if entry.github_user.user_url?
-        a
-          href: entry.github_user.user_url
-          className: 'changelog-entry__user-link js-usercard'
-          'data-user-id': entry.github_user.user_id
-          entry.github_user.display_name
-      else
-        entry.github_user.display_name
 
-    div className: 'changelog-entry__col',
+    div className: 'changelog-entry__row',
       div className: "changelog-entry__title #{if entry.major then 'changelog-entry__title--major' else ''}",
+        span className: 'changelog-entry__icon-container',
+          span className: "changelog-entry__icon #{icon[entry.type]}"
+
         if entry.url?
           a
             href: entry.url
@@ -56,7 +49,26 @@ el = React.createElement
               href: entry.github_url
               "#{entry.repository.replace /^.*\//, ''}##{entry.github_pull_request_id}"
             ')'
-      if entry.message_html?
-        div
-          className: 'changelog-entry__message'
-          dangerouslySetInnerHTML: __html: entry.message_html
+        do =>
+          user = _.escape(entry.github_user.display_name)
+          url = entry.github_user.github_url ? entry.github_user.user_url
+
+          link =
+            if url?
+              "<a
+                data-user-id='#{entry.github_user.user_id ? ''}'
+                class='changelog-entry__user-link js-usercard'
+                href='#{_.escape(url)}'
+              >#{user}</a>"
+            else
+              user
+
+          span
+            className: 'changelog-entry__user'
+            dangerouslySetInnerHTML:
+              __html: osu.trans('changelog.entry.by', user: link)
+
+    if entry.message_html?
+      div
+        className: 'changelog-entry__row changelog-entry__row--message'
+        dangerouslySetInnerHTML: __html: entry.message_html

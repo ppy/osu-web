@@ -20,12 +20,7 @@
   display: flex;
   font-size: @font-size--title-small-3;
   padding: 5px 0;
-  margin: -5px;
   flex-direction: column;
-
-  @media @desktop {
-    flex-direction: row;
-  }
 
   &__col {
     margin: 5px;
@@ -39,6 +34,29 @@
     }
   }
 
+  &__icon {
+    opacity: 0.5;
+    font-size: 0.7em;
+  }
+
+  &__icon-container {
+    position: absolute;
+    right: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: baseline;
+    padding-right: 5px;
+
+    // to align the icon
+    &::after {
+      content: 'x';
+      width: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
   &__link {
     color: @blue-light;
 
@@ -47,12 +65,17 @@
     }
   }
 
-  &__message {
-    font-size: @font-size--normal;
-    color: @dark-purple-lighter;
+  &__row {
+    word-wrap: break-word;
 
-    * img {
-      max-width: 100%;
+    &--message {
+      font-size: @font-size--normal;
+      color: @dark-purple-lighter;
+      margin-top: 2px;
+
+      * img {
+        max-width: 100%;
+      }
     }
   }
 
@@ -62,7 +85,17 @@
     }
   }
 
+  &__user {
+    font-size: @font-size--normal;
+    font-style: italic;
+    padding-left: 10px;
+  }
+
   &__user-link {
-    .link-white();
+    color: inherit;
+
+    .link-hover({
+      color: inherit;
+    });
   }
 }
