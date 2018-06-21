@@ -54,16 +54,23 @@
 
   &__navs {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   &__nav {
-    flex: 1;
     display: flex;
     align-items: center;
     padding: 20px 10px;
 
+    @media @desktop {
+      flex: 1;
+    }
+
     &--left {
-      justify-content: flex-end;
+      @media @desktop {
+        justify-content: flex-end;
+      }
     }
   }
 
