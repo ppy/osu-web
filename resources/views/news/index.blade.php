@@ -61,7 +61,7 @@
             </div>
 
             <div class="t-forum-category-osu">
-                @include('forum._pagination', ['object' => $posts
+                @include('objects._pagination_v0', ['object' => $posts
                     ->appends([
                         'limit' => Request::input('limit'),
                     ])

@@ -38,46 +38,6 @@ body.community {
 
 }
 
-.forum-pagination {
-  padding: 10px;
-  > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    text-align: center;
-    > li {
-      display: inline-block;
-      span { font-weight: bold; }
-
-      &.active span {
-        background: none;
-        color: @gray;
-      }
-
-      a, span {
-        display: block;
-        padding: 5px;
-        color: @gray;
-        font-size: 12px;
-
-        &, &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-
-    &.forum-pagination-prevnext {
-      font-weight: bold;
-
-      a, span {
-        font-size: 16px;
-        padding: 0 10px;
-      }
-    }
-  }
-}
-
 .forums {
   @_top: forums;
 

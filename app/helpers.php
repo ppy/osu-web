@@ -652,10 +652,6 @@ function footer_landing_links()
             'livestreams' => route('livestreams.index'),
             'report' => route('forum.topics.create', ['forum_id' => 5]),
         ],
-        'support' => [
-            'tags' => route('support-the-game'),
-            'merchandise' => action('StoreController@getListing'),
-        ],
         'legal' => footer_legal_links(),
     ];
 }

@@ -74,6 +74,6 @@
             'row' => 'forum.topic_watches._topic',
         ])
 
-        @include('forum._pagination', ['object' => $topics])
+        @include('objects._pagination_v0', ['object' => $topics])
     </div>
 @endsection

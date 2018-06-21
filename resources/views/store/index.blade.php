@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    @include("store.header")
+    @include('store.header')
 
     <div class="osu-layout__row osu-layout__row--with-gutter">
         <div class="osu-layout__col-container">
