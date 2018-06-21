@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-@include("store.header")
+@include('store.header')
 <style>
 .address {
     border: none;
