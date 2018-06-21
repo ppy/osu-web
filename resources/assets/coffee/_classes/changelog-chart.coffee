@@ -74,7 +74,7 @@ class @ChangelogChart
   loadData: ->
     @config = osu.parseJson 'json-chart-config'
 
-    data = @normalizeData @config.buildHistory
+    data = @normalizeData @config.build_history
 
     stack = d3.stack()
       .keys @config.order
@@ -83,9 +83,9 @@ class @ChangelogChart
 
     @data = stack data
 
-    @hasData = @config.buildHistory? &&
-      @config.buildHistory.length > 0 &&
-      _.some(@config.buildHistory, (b) -> b.user_count > 0)
+    @hasData = @config.build_history? &&
+      @config.build_history.length > 0 &&
+      _.some(@config.build_history, (b) -> b.user_count > 0)
 
 
     @resize()
@@ -121,9 +121,9 @@ class @ChangelogChart
 
     @options.scales.class
       .range _.map @config.order, (d, i) =>
-        # rotate over available build ids (0-11) when the amount of builds
+        # rotate over available build ids (0-6) when the amount of builds
         # exceeds the available amount of colors
-        if @config.isBuild then "build-#{i % 12}" else _.kebabCase d
+        if @config.stream_name? then "#{@config.stream_name}-build-#{i % 7}" else _.kebabCase d
       .domain @config.order
 
 

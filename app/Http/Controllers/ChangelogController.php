@@ -105,7 +105,7 @@ class ChangelogController extends Controller
             "chart_config_{$build['update_stream']['id']}",
             config('osu.changelog.build_history_interval'),
             function () use ($build) {
-                return $this->chartConfig($build['update_stream']['id']);
+                return $this->chartConfig($build['update_stream']);
             });
 
         return view('changelog.build', compact('build', 'chartConfig'));
@@ -127,21 +127,21 @@ class ChangelogController extends Controller
 
     private function chartConfig($stream)
     {
-        $isBuild = $stream !== null;
-        $history = BuildPropagationHistory::changelog($stream, config('osu.changelog.chart_days'))->get();
+        $history = BuildPropagationHistory::changelog($stream['id'] ?? null, config('osu.changelog.chart_days'))->get();
 
-        if ($isBuild) {
-            $chartOrder = $this->buildChartOrder($history);
-        } else {
+        if ($stream === null) {
             $chartOrder = array_map(function ($b) {
                 return $b['update_stream']['display_name'];
             }, $this->latestBuilds);
+        } else {
+            $chartOrder = $this->buildChartOrder($history);
+            $streamName = kebab_case($stream['display_name']);
         }
 
         return [
-            'buildHistory' => json_collection($history, 'BuildHistoryChart'),
+            'build_history' => json_collection($history, 'BuildHistoryChart'),
             'order' => $chartOrder,
-            'isBuild' => $isBuild,
+            'stream_name' => $streamName ?? null,
         ];
     }
 
