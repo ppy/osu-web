@@ -20,6 +20,8 @@
 el = React.createElement
 
 @PlayDetail = ({score}) ->
+  pp = score.best?.pp ? score.pp
+
   modsText =
     if score.mods.length
       " +#{(mod.shortName for mod in score.mods).join(',')} "
@@ -68,8 +70,8 @@ el = React.createElement
                   osu.trans 'users.show.extra.top_ranks.weighted_pp',
                     percentage: "#{Math.round(score.weight.percentage)}%"
                     pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
-              if score.pp > 0
-                osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp).toLocaleString())
+              if pp > 0
+                osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(pp).toLocaleString())
               else
                 span
                   title:

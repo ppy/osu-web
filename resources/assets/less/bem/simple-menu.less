@@ -90,6 +90,13 @@
       max-height: calc(90vh ~'-' (@nav2-menu-height + @_padding-vertical * 2));
       overflow-y: auto;
     }
+
+    .@{_top}--nav2-locales & {
+      // Hopefully wide enough for two columns (ie. no overflown text).
+      width: 440px;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
   &__form {
@@ -157,6 +164,10 @@
 
     &--active {
       .highlight-stripe();
+    }
+
+    .@{_top}--nav2-locales & {
+      width: 50%;
     }
 
     &[disabled], &--disabled {

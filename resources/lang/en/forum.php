@@ -133,6 +133,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
+            'login_reply' => 'Sign in to Reply',
             'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',

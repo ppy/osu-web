@@ -20,7 +20,7 @@
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
         @include('changelog._changelog_header', [
-            'url' => route('changelog.show', ['build' => $activeBuild->version]),
+            'url' => build_url($activeBuild),
             'breadcrumb' => $activeBuild->displayVersion().' ('.$activeBuild->updateStream->pretty_name.')'
         ])
 
@@ -32,7 +32,7 @@
                     @if ($activeBuild->versionPrevious() !== null)
                         <a
                             class="changelog__build-link"
-                            href="{{ route('changelog.show', ['build' => $activeBuild->versionPrevious()->version]) }}"
+                            href="{{ build_url($activeBuild->versionPrevious()) }}"
                             title="{{ $activeBuild->versionPrevious()->displayVersion() }}"
                         >
                             <i class="fas fa-angle-double-left"></i>
@@ -48,7 +48,7 @@
                     @if ($activeBuild->versionNext() !== null)
                         <a
                             class="changelog__build-link"
-                            href="{{ route('changelog.show', ['build' => $activeBuild->versionNext()->version]) }}"
+                            href="{{ build_url($activeBuild->versionNext()) }}"
                             title="{{ $activeBuild->versionNext()->displayVersion() }}"
                         >
                             <i class="fas fa-angle-double-right"></i>
