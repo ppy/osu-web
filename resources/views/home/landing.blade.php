@@ -184,16 +184,6 @@
     <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
-                href="{{ route('support-the-game') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--support"
-            ></a>
-
-            <a
-                href="{{ action('StoreController@getListing') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--store"
-            ></a>
-
-            <a
                 href="https://blog.ppy.sh/"
                 class="landing-middle-buttons__button landing-middle-buttons__button--blog"
             ></a>
