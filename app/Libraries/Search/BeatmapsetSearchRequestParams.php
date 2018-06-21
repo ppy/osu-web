@@ -54,16 +54,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
 
-            if ($this->user->isSupporter()) {
-                $this->rank = array_intersect(
-                    explode('.', $request['r'] ?? null),
-                    $validRanks
-                );
+            $this->rank = array_intersect(
+                explode('.', $request['r'] ?? null),
+                $validRanks
+            );
 
-                $this->playedFilter = $request['played'];
-                if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
-                    $this->playedFilter = null;
-                }
+            $this->playedFilter = $request['played'];
+            if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
+                $this->playedFilter = null;
             }
         }
 
