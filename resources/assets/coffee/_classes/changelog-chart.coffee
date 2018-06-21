@@ -85,7 +85,7 @@ class @ChangelogChart
 
     @hasData = @config.buildHistory? &&
       @config.buildHistory.length > 0 &&
-      _.every(@config.buildHistory, (b) -> b.user_count > 0)
+      _.some(@config.buildHistory, (b) -> b.user_count > 0)
 
 
     @resize()
