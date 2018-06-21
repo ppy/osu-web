@@ -23,7 +23,6 @@ namespace App\Transformers;
 use App\Models\ChangelogEntry;
 use App\Models\GithubUser;
 use League\Fractal;
-use Markdown;
 
 class ChangelogEntryTransformer extends Fractal\TransformerAbstract
 {
