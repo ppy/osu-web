@@ -23,12 +23,18 @@
 .login-box {
   @_top: login-box;
 
-  position: absolute;
-  top: 60px; // match with bootstrap navbar height
   width: 100%;
 
   @media @desktop {
+    position: absolute;
     top: @nav2-height;
+  }
+
+  &--landing {
+    @media @desktop {
+      position: relative;
+      top: initial;
+    }
   }
 
   &__content {
