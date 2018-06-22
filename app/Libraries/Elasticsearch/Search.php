@@ -84,6 +84,10 @@ abstract class Search implements Queryable
         }
 
         if (!isset($this->count)) {
+            if ($this->params->shouldReturnEmptyResponse()) {
+                return $this->count = 0;
+            }
+
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
@@ -198,6 +202,10 @@ abstract class Search implements Queryable
 
     private function fetch()
     {
+        if ($this->params->shouldReturnEmptyResponse()) {
+            return SearchResponse::empty();
+        }
+
         try {
             return datadog_timing(
                 function () {
