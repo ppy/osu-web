@@ -31,7 +31,7 @@ icon =
 
     div className: 'changelog-entry__row',
       div className: "changelog-entry__title #{if entry.major then 'changelog-entry__title--major' else ''}",
-        span className: 'changelog-entry__icon-container',
+        span className: 'changelog-entry__title-icon',
           span className: "changelog-entry__icon #{icon[entry.type]}"
 
         if entry.url?
