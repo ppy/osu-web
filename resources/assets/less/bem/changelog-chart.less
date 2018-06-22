@@ -23,12 +23,12 @@
 
     .color(@stream, @color);
     .color(~"@{stream}-build-0", @color);
-    .color(~"@{stream}-build-1", darken(@color, 10%));
-    .color(~"@{stream}-build-2", darken(@color, 20%));
-    .color(~"@{stream}-build-3", darken(@color, 30%));
-    .color(~"@{stream}-build-4", darken(@color, 40%));
-    .color(~"@{stream}-build-5", darken(@color, 50%));
-    .color(~"@{stream}-build-6", darken(@color, 60%));
+    .color(~"@{stream}-build-1", lighten(@color, 10%));
+    .color(~"@{stream}-build-2", lighten(@color, 20%));
+    .color(~"@{stream}-build-3", lighten(@color, 30%));
+    .color(~"@{stream}-build-4", lighten(@color, 40%));
+    .color(~"@{stream}-build-5", lighten(@color, 50%));
+    .color(~"@{stream}-build-6", lighten(@color, 60%));
   }
 
   height: 100px;
