@@ -55,21 +55,5 @@
       .full-size();
       background-image: linear-gradient(to bottom, @_background-color, transparent);
     }
-
-    // nav menu active overlay
-    &::after {
-      .full-size();
-      transition: all 1000ms;
-      content: '';
-      background-color: fade(#222, 80%);
-      opacity: 0;
-      will-change: opacity;
-    }
-
-    &.js-nav2--overlay-active {
-      &::after {
-        opacity: 1;
-      }
-    }
   }
 }
