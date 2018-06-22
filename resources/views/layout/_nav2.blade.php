@@ -15,7 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav2 js-nav-button">
+@php
+    $legacyNav ?? ($legacyNav = true);
+@endphp
+<div class="nav2 {{ $legacyNav ? 'nav2--legacy' : '' }} js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
             <a href="{{ route('home') }}" class="nav2__logo-link">
@@ -43,7 +46,13 @@
 
                 <div class="nav2__menu-popup">
                     <div
-                        class="simple-menu simple-menu--nav2 simple-menu--nav2-left-aligned js-menu"
+                        class="
+                            simple-menu
+                            simple-menu--nav2
+                            simple-menu--nav2-left-aligned
+                            {{ $legacyNav ? '' : 'simple-menu--nav2-transparent' }}
+                            js-menu
+                        "
                         data-menu-id="nav2-menu-popup-{{ $section }}"
                         data-visibility="hidden"
                     >

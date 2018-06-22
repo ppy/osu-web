@@ -22,6 +22,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
+use Markdown;
 
 class ChangelogEntry extends Model
 {
@@ -80,7 +81,11 @@ class ChangelogEntry extends Model
     {
         return new static([
             'title' => trans('changelog.generic'),
-            'githubUser' => new GithubUser(['username' => 'peppy']),
+            'githubUser' => new GithubUser([
+                'username' => 'peppy',
+                'user_id' => null,
+                'user' => null,
+            ]),
         ]);
     }
 
@@ -97,6 +102,11 @@ class ChangelogEntry extends Model
     public function getTypeAttribute($value)
     {
         return presence($value) ?? 'fix';
+    }
+
+    public function getCategoryAttribute($value)
+    {
+        return presence($value) ?? 'Misc';
     }
 
     public function getUrlAttribute($value)
@@ -128,5 +138,28 @@ class ChangelogEntry extends Model
         if ($this->hasGithubPR()) {
             return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
         }
+    }
+
+    public function messageHTML()
+    {
+        if (!present($this->message)) {
+            return;
+        }
+
+        static $separator = "\n\n---\n";
+
+        $origMessage = trim(str_replace("\r\n", "\n", $this->message));
+
+        $hiddenSectionEnd = strpos($origMessage, $separator);
+
+        if ($hiddenSectionEnd === false) {
+            $hiddenSectionEnd = 0;
+        } else {
+            $hiddenSectionEnd += strlen($separator);
+        }
+
+        $message = trim(substr($origMessage, $hiddenSectionEnd));
+
+        return present($message) ? Markdown::convertToHtml($message) : null;
     }
 }

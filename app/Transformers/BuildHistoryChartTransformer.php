@@ -18,29 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
+namespace App\Transformers;
 
-    'builds' => [
-        'users_online' => ':count_delimited user online|:count_delimited users online',
-    ],
+use App\Models\BuildPropagationHistory;
+use League\Fractal;
 
-    'entry' => [
-        'by' => 'by :user',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Changelog :info',
-            'info' => 'Info',
-        ],
-    ],
-
-    'support' => [
-        'heading' => 'Love this update?',
-        'text_1' => 'Support further development of osu! and :link today!',
-        'text_1_link' => 'become a supporter',
-        'text_2' => 'Not only will you help speed development, but you will also get some extra features and customisations!',
-    ],
-];
+class BuildHistoryChartTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(BuildPropagationHistory $entry)
+    {
+        // $entry is output of ::changelog.
+        return [
+            'created_at' => json_time($entry->created_at),
+            'user_count' => $entry->user_count,
+            'label' => $entry->label,
+        ];
+    }
+}

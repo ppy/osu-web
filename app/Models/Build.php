@@ -78,9 +78,19 @@ class Build extends Model
         return $this->hasMany(Changelog::class, 'build', 'version');
     }
 
+    public function defaultChangelogs()
+    {
+        return $this->changelogs()->default();
+    }
+
     public function changelogEntries()
     {
         return $this->belongsToMany(ChangelogEntry::class, null, 'build_id');
+    }
+
+    public function defaultChangelogEntries()
+    {
+        return $this->changelogEntries()->default();
     }
 
     public function scopeDefault($query)
@@ -152,5 +162,10 @@ class Build extends Model
     public function disqusTitle()
     {
         return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
+    }
+
+    public function isFeatured()
+    {
+        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }

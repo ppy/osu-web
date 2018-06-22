@@ -61,6 +61,6 @@ class BuildsCreate extends Command
         }
 
         $this->info("Created build {$build->displayVersion()}");
-        $this->info('URL: '.route('changelog.show', $build->version));
+        $this->info('URL: '.build_url($build));
     }
 }

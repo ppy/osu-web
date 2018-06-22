@@ -15,21 +15,27 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $legacyNav ?? ($legacyNav = true);
+@endphp
 @include('layout._header_mobile')
-<div class="nav2-header">
-    <div class="bg hidden-xs">
-        <div class="bg__triangles"></div>
-        <div class="bg__gradient-overlay u-section--gradient-down"></div>
-    </div>
+<div class="hidden-xs no-print nav2-header {{ $legacyNav ? 'nav2-header--legacy' : '' }}">
+    @if ($legacyNav)
+        <div class="nav2-header__legacy-triangles"></div>
+        <div class="nav2-header__legacy-gradient-overlay u-section--gradient-down"></div>
+    @else
+        <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
+        <div class="nav2-header__triangles"></div>
+    @endif
 
-    <div class="hidden-xs no-print osu-page">
+    <div class="osu-page">
         @include('layout._nav2')
     </div>
-
-    @if (Auth::user() === null)
-        @include('layout._popup_login')
-    @endif
 </div>
+
+@if (Auth::user() === null)
+    @include('layout._popup_login')
+@endif
 
 <div class="js-user-verification--reference"></div>
 @include('layout._user_verification_popup')

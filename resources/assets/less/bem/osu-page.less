@@ -46,6 +46,12 @@
     margin-bottom: 10px;
   }
 
+  &--changelog {
+    .default-box-shadow();
+    background-color: @dark-purple-dark;
+    color: #fff;
+  }
+
   &--comments {
     .default-box-shadow();
     background-color: #fff;
@@ -179,5 +185,12 @@
   // color overrides goes here
   &--dark-bg {
     background-color: #333;
+  }
+
+  &__header {
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    z-index: @z-index--page-header;
   }
 }
