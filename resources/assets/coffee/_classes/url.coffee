@@ -36,7 +36,7 @@ class @Url
 
   @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
 
-  @build: (build) ->
+  @changelogBuild: (build) ->
     laroute.route 'changelog.build', stream: build.update_stream.name, build: build.version
 
   # external link

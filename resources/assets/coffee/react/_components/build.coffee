@@ -27,7 +27,7 @@ class @Build extends React.PureComponent
 
         a
           className: 'build__version-link'
-          href: Url.build @props.build
+          href: Url.changelogBuild @props.build
           span className: 'build__stream', @props.build.update_stream.display_name
           ' '
           span className: 'u-changelog-stream--text', @props.build.display_version
@@ -55,7 +55,7 @@ class @Build extends React.PureComponent
     if build?
       a
         className: 'build__version-link'
-        href: Url.build build
+        href: Url.changelogBuild build
         title: build.display_version
         i className: icon
     else

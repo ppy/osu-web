@@ -37,7 +37,7 @@ class @ChangelogHeaderBuilds extends React.PureComponent
     mainClass += " t-changelog-stream--#{streamNameClass}"
 
     a
-      href: Url.build build
+      href: Url.changelogBuild build
       key: build.id
       className: mainClass
       div className: 'changelog-builds-v2__bar u-changelog-stream--bg'

@@ -53,7 +53,7 @@ class ChangelogBuild.Main extends React.PureComponent
                 if @props.build.versions.previous?
                   a
                     className: 'builds__nav-link'
-                    href: Url.build @props.build.versions.previous
+                    href: Url.changelogBuild @props.build.versions.previous
                     i className: 'fas fa-chevron-left'
                     span className: 'builds__nav-link-label',
                       @props.build.versions.previous.display_version
@@ -62,7 +62,7 @@ class ChangelogBuild.Main extends React.PureComponent
                 if @props.build.versions.next?
                   a
                     className: 'builds__nav-link'
-                    href: Url.build @props.build.versions.next
+                    href: Url.changelogBuild @props.build.versions.next
                     @props.build.versions.next.display_version
                     span className: 'builds__nav-link-label',
                       i className: 'fas fa-chevron-right'
