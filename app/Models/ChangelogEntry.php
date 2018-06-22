@@ -150,6 +150,10 @@ class ChangelogEntry extends Model
 
         $origMessage = trim(str_replace("\r\n", "\n", $this->message));
 
+        if (ends_with($origMessage, "\n\n---")) {
+            return;
+        }
+
         $hiddenSectionEnd = strpos($origMessage, $separator);
 
         if ($hiddenSectionEnd === false) {

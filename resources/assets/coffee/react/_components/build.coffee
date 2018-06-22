@@ -21,6 +21,9 @@ el = React.createElement
 
 class @Build extends React.PureComponent
   render: =>
+    entries = _.groupBy(@props.build.changelog_entries, 'category')
+    categories = _(entries).keys().sort().value()
+
     div className: "build t-changelog-stream--#{_.kebabCase @props.build.update_stream.display_name}",
       div className: 'build__version',
         @renderNav version: 'previous', icon: 'fas fa-chevron-left'
@@ -34,13 +37,13 @@ class @Build extends React.PureComponent
 
         @renderNav version: 'next', icon: 'fas fa-chevron-right'
 
-      for own category, entries of _.groupBy(@props.build.changelog_entries, 'category')
+      for category in categories
         div
           key: category
           className: 'build__changelog-entries-container'
           div className: 'build__changelog-entries-category', category
           div className: 'build__changelog-entries',
-            for entry in entries
+            for entry in entries[category]
               div
                 key: entry.id
                 className: 'build__changelog-entry'

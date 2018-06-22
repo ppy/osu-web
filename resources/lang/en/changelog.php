@@ -33,7 +33,7 @@ return [
     'index' => [
         'title' => [
             '_' => 'Changelog :info',
-            'info' => 'Info',
+            'info' => 'Listing',
         ],
     ],
 
