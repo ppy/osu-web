@@ -18,7 +18,7 @@
     class="
         changelog-build
         {{ $featured ? 'changelog-build--featured' : '' }}
-        {{ isset($activeBuild) && $activeBuild->version === $build->version ? 'changelog-build--active' : '' }}
+        {{ isset($activeBuild) && $activeBuild->getKey() === $build->getKey() ? 'changelog-build--active' : '' }}
         changelog-build--{{ str_slug($build->updateStream->pretty_name) }}
     "
     href={{ build_url($build) }}
