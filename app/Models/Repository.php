@@ -28,4 +28,9 @@ class Repository extends Model
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
     }
+
+    public function changelogEntries()
+    {
+        return $this->hasMany(ChangelogEntry::class, 'repository', 'name');
+    }
 }

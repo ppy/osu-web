@@ -57,7 +57,6 @@ class Build extends Model
         $changelogEntry = new ChangelogEntry;
 
         $newChangelogEntryIds = $repository
-            ->updateStream
             ->changelogEntries()
             ->whereDoesntHave('builds')
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
