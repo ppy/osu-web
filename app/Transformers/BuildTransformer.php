@@ -60,7 +60,7 @@ class BuildTransformer extends Fractal\TransformerAbstract
 
         $entries = $build
             ->defaultChangelogEntries
-            ->merge($legacyEntries)
+            ->concat($legacyEntries)
             ->sortBy('created_at');
 
         if ($entries->count() === 0) {
