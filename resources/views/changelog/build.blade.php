@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,10 +18,10 @@
 @extends('master', ['legacyNav' => false, 'bodyAdditionalClasses' => 'osu-layout--body-111-plain'])
 
 @section('content')
-    <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
+    <div class="js-react--changelog-build osu-layout osu-layout--full"></div>
 
-    <script id="json-builds" type="application/json">
-        {!! json_encode($builds) !!}
+    <script id="json-build" type="application/json">
+        {!! json_encode($build) !!}
     </script>
 
     <script id="json-latest-builds" type="application/json">
@@ -32,5 +32,5 @@
         {!! json_encode($chartConfig) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/changelog-index.js'])
+    @include('layout._extra_js', ['src' => 'js/react/changelog-build.js'])
 @endsection

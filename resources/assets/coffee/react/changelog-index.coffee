@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,25 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @Fade
-  @isVisible: (el) ->
-    el?.getAttribute('data-visibility') != 'hidden'
-
-
-  @out: (el) ->
-    el?.setAttribute('data-visibility', 'hidden')
-
-
-  @in: (el) ->
-    el?.setAttribute('data-visibility', 'visible')
-
-
-  @toggle: (el, makeVisible) =>
-    return unless el?
-
-    makeVisible ?= !@isVisible el
-
-    if makeVisible
-      @in el
-    else
-      @out el
+reactTurbolinks.registerPersistent 'changelog-index', ChangelogIndex.Main, true, (el) ->
+  container: el
+  latestBuilds: osu.parseJson('json-latest-builds')
+  builds: osu.parseJson('json-builds')

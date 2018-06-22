@@ -18,23 +18,20 @@
 
 .supporter-promo {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  margin: 0 10px 20px;
+  margin: 20px 0;
+  align-items: center;
+  padding: 20px 60px;
 
   @media @desktop {
     flex-direction: row;
+    align-items: stretch;
     padding: 0 75px;
-    margin: 0 55px 20px;
+    margin: 20px 0;
     height: 200px;
   }
 
-  @media @mobile {
-    align-items: center;
-    padding: 20px 60px;
-  }
-
-  background-color: fade(@pink-lighter, 75%);
+  background-color: fade(#000, 30%);
 
   border-radius: @border-radius-large;
   .default-box-shadow;
@@ -45,7 +42,7 @@
     flex-direction: column;
 
     @media @desktop {
-     padding: 50px 0;
+     justify-content: center;
      padding-right: 50px;
      height: 100%;
     }
@@ -59,7 +56,7 @@
     font-size: @font-size--large;
     font-style: italic;
     font-weight: 300;
-    color: @pink-darker;
+    color: #fff;
     margin: 0 0 20px;
   }
 
@@ -100,19 +97,25 @@
 
   &__text {
     font-size: @font-size--title-small;
-    color: @pink-dark;
+    color: @pink-lighter;
+    margin: 0;
 
-    &--link {
-      font-weight: 700;
-
-      &:link, &:visited, &:hover, &:active {
-        color: @pink-dark;
-      }
+    & + & {
+      margin-top: 10px;
     }
 
     &--small {
       font-size: @font-size--normal;
-      margin: 0;
+    }
+  }
+
+  &__link {
+    .link-plain();
+    font-weight: 700;
+    color: @pink-dark;
+
+    &:hover, &:active {
+      color: #fff;
     }
   }
 }

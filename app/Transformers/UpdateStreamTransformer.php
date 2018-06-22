@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,19 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bg {
-  .full-size();
-  height: 100%;
+namespace App\Transformers;
 
-  &__gradient-overlay {
-    .full-size();
-    transition: all 1s ease-in-out;
-  }
+use App\Models\UpdateStream;
+use League\Fractal;
 
-  &__triangles {
-    .full-size();
-    background-size: 640px 360px;
-
-    .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
-  }
+class UpdateStreamTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(UpdateStream $stream)
+    {
+        return [
+            'id' => $stream->getKey(),
+            'name' => $stream->name,
+            'display_name' => $stream->pretty_name,
+        ];
+    }
 }
