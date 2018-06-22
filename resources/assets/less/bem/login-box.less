@@ -23,23 +23,33 @@
 .login-box {
   @_top: login-box;
 
-  .default-box-shadow();
-  .own-layer();
   position: absolute;
-  top: 0;
+  top: 60px; // match with bootstrap navbar height
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  font-size: @font-size--nav-popup-section;
-  z-index: @z-index--nav-float;
-  overflow: hidden;
-  transition: none;
-  color: #999;
 
   @media @desktop {
-    .default-border-radius();
-    width: 300px;
-    margin-top: 5px; // sync with Nav2#centerPopup
+    top: @nav2-height;
+  }
+
+  &__content {
+    .default-box-shadow();
+    .own-layer();
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: @font-size--nav-popup-section;
+    z-index: @z-index--nav-float;
+    overflow: hidden;
+    transition: none;
+    color: #999;
+
+    @media @desktop {
+      .default-border-radius();
+      width: 300px;
+      margin-top: 5px; // sync with Nav2#centerPopup
+    }
   }
 
   &__action {
