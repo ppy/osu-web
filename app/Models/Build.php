@@ -46,9 +46,17 @@ class Build extends Model
             return;
         }
 
-        $version = substr($data['ref'], strlen('refs/tags/'));
+        list($version, $streamName) = explode('-', substr($data['ref'], strlen('refs/tags/')));
 
-        $build = $repository->updateStream->builds()->firstOrCreate([
+        if ($streamName !== null) {
+            $stream = UpdateStream::where('name', '=', $streamName)->first();
+        }
+
+        if (!isset($stream)) {
+            $stream = $repository->mainUpdateStream;
+        }
+
+        $build = $stream->builds()->firstOrCreate([
             'version' => $version,
         ]);
 
@@ -58,7 +66,7 @@ class Build extends Model
 
         $newChangelogEntryIds = $repository
             ->changelogEntries()
-            ->whereDoesntHave('builds')
+            ->orphans($stream->getKey())
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
             ->pluck($changelogEntry->qualifyColumn('id'));
 

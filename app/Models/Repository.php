@@ -24,9 +24,16 @@ class Repository extends Model
 {
     protected $guarded = [];
 
-    public function updateStream()
+    public function mainUpdateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
+    }
+
+    public function updateStreams()
+    {
+        $bridgeTable = config('database.connections.mysql.database').'.repository_update_stream';
+
+        return $this->belongsToMany(UpdateStream::class, $bridgeTable, null, 'stream_id');
     }
 
     public function changelogEntries()
