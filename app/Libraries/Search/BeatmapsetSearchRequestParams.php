@@ -53,22 +53,23 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c']) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
-
-            $this->rank = array_intersect(
-                explode('.', $request['r'] ?? null),
-                $validRanks
-            );
-
-            $this->playedFilter = $request['played'];
-            if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
-                $this->playedFilter = null;
-            }
         }
 
         $sort = explode('_', $request['sort']);
         $this->sort = $this->normalizeSort(
             [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
         );
+
+        // Supporter-only options.
+        $this->rank = array_intersect(
+            explode('.', $request['r'] ?? null),
+            $validRanks
+        );
+
+        $this->playedFilter = $request['played'];
+        if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
+            $this->playedFilter = null;
+        }
     }
 
     /**
