@@ -158,8 +158,8 @@ class ChangelogEntry extends Model
             $hiddenSectionEnd += strlen($separator);
         }
 
-        $message = substr($origMessage, $hiddenSectionEnd);
+        $message = trim(substr($origMessage, $hiddenSectionEnd));
 
-        return Markdown::convertToHtml($message);
+        return present($message) ? Markdown::convertToHtml($message) : null;
     }
 }
