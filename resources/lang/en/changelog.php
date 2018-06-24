@@ -20,7 +20,7 @@
 
 return [
     'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
+    'generic' => 'Bug fixes and minor improvements',
 
     'builds' => [
         'users_online' => ':count_delimited user online|:count_delimited users online',
