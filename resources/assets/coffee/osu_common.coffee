@@ -33,7 +33,7 @@
     ret = className
 
     if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers
+      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
 
     ret
 
@@ -264,7 +264,9 @@
         "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
-  transChoice: (key, count, replacements, locale) ->
+  transChoice: (key, count, replacements = {}, locale) ->
+    replacements.count_delimited ?= count.toLocaleString()
+
     if locale?
       initialLocale = Lang.getLocale()
       Lang.setLocale locale

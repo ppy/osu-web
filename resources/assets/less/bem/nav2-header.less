@@ -17,7 +17,47 @@
  */
 
 .nav2-header {
-  @media @desktop {
-    margin-bottom: -5px;
+  @_top: nav2-header;
+  position: absolute;
+  width: 100%;
+
+  &--legacy {
+    position: relative;
+    width: auto;
+
+    @media @desktop {
+      margin-bottom: -5px;
+    }
+  }
+
+  &__menu-bg {
+    .full-size();
+    height: @nav2-header-image-height;
+    background-color: fade(#000, 70%);
+    transition-duration: 0s;
+
+    &[data-visibility=hidden] {
+      transition-duration: 250ms;
+    }
+  }
+
+  &__legacy-gradient-overlay {
+    .full-size();
+    display: block;
+    transition: all 1s ease-in-out;
+  }
+
+  &__legacy-triangles {
+    .full-size();
+    display: block;
+    background-size: 640px 360px;
+
+    .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
+  }
+
+  &__triangles {
+    .full-size();
+    background-image: url('/images/layout/nav2-background.png');
+    background-position: bottom center;
   }
 }

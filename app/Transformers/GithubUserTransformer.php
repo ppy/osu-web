@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,46 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.changelog {
-  padding: 20px 0;
+namespace App\Transformers;
 
-  &__build-link {
-    display: inline-block;
-    padding: 3px 5px;
-  }
+use App\Models\GithubUser;
+use League\Fractal;
 
-  &__list {
-    margin-bottom: 50px;
-
-    padding: 0 20px;
-
-    @media @desktop {
-      padding: 0 @padding-big;
+class GithubUserTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(GithubUser $githubUser)
+    {
+        return [
+            'id' => $githubUser->getKey(),
+            'display_name' => $githubUser->displayName(),
+            'github_url' => $githubUser->githubUrl(),
+            'osu_username' => optional($githubUser->user)->username,
+            'user_id' => $githubUser->user_id,
+            'user_url' => $githubUser->userUrl(),
+        ];
     }
-  }
-
-  &__disqus {
-    padding: 0 20px;
-
-    @media @desktop {
-      padding: 0 @padding-big;
-    }
-  }
-
-  &__text {
-    text-align: center;
-    padding-bottom: 10px;
-    margin: 0;
-
-    &--build {
-      font-size: @font-size--title-small;
-      font-weight: 700;
-    }
-
-    &--date {
-      font-size: @font-size--title;
-      font-style: italic;
-      color: @pink-darker;
-    }
-  }
 }
