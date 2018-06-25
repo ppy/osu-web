@@ -131,7 +131,7 @@ class @FriendButton extends React.PureComponent
                 i className: 'fas fa-user'
           ]
         else
-          i className: 'fas fa-user-plus'
+          i className: if isFriendLimit then 'fas fa-user' else 'fas fa-user-plus'
 
 
   isVisible: =>
