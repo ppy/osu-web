@@ -127,10 +127,8 @@ class @FriendButton extends React.PureComponent
   isVisible: =>
     # - not a guest
     # - not viewing own card
-    # - already a friend or can add more friends
     # - not blocked
     currentUser.id? &&
       _.isFinite(@props.user_id) &&
       @props.user_id != currentUser.id &&
-      (@state.friend || currentUser.friends.length < currentUser.max_friends) &&
       !_.find(currentUser.blocks, target_id: @props.user_id)
