@@ -12,11 +12,11 @@ class UpdateBeatmapsetDatetimesDatatype extends Migration
     public function up()
     {
         DB::statement('ALTER TABLE osu_beatmapsets
-            MODIFY COLUMN approved_date TIMESTAMP DEFAULT NULL,
-            MODIFY COLUMN submit_date TIMESTAMP DEFAULT NULL,
-            MODIFY COLUMN thread_icon_date TIMESTAMP DEFAULT NULL,
-            MODIFY COLUMN cover_updated_at TIMESTAMP DEFAULT NULL,
-            MODIFY COLUMN queued_at TIMESTAMP DEFAULT NULL
+            MODIFY COLUMN approved_date TIMESTAMP NULL DEFAULT NULL,
+            MODIFY COLUMN submit_date TIMESTAMP NULL DEFAULT NULL,
+            MODIFY COLUMN thread_icon_date TIMESTAMP NULL DEFAULT NULL,
+            MODIFY COLUMN cover_updated_at TIMESTAMP NULL DEFAULT NULL,
+            MODIFY COLUMN queued_at TIMESTAMP NULL DEFAULT NULL
         ');
         // some of the times were in UTC+8
         DB::statement('UPDATE osu_beatmapsets SET
@@ -34,11 +34,11 @@ class UpdateBeatmapsetDatetimesDatatype extends Migration
     public function down()
     {
         DB::statement('ALTER TABLE osu_beatmapsets
-            MODIFY COLUMN approved_date DATETIME DEFAULT NULL,
-            MODIFY COLUMN submit_date DATETIME DEFAULT NULL,
-            MODIFY COLUMN thread_icon_date DATETIME DEFAULT NULL,
-            MODIFY COLUMN cover_updated_at DATETIME DEFAULT NULL,
-            MODIFY COLUMN queued_at DATETIME DEFAULT NULL
+            MODIFY COLUMN approved_date DATETIME NULL DEFAULT NULL,
+            MODIFY COLUMN submit_date DATETIME NULL DEFAULT NULL,
+            MODIFY COLUMN thread_icon_date DATETIME NULL DEFAULT NULL,
+            MODIFY COLUMN cover_updated_at DATETIME NULL DEFAULT NULL,
+            MODIFY COLUMN queued_at DATETIME NULL DEFAULT NULL
         ');
         DB::statement('UPDATE osu_beatmapsets SET
             approved_date = DATE_ADD(approved_date, INTERVAL 8 HOUR),
