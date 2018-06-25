@@ -41,6 +41,8 @@ class @Search
 
   submit: (e) =>
     input = e.currentTarget
+    return if input != document.activeElement
+
     value = input.value.trim()
 
     return if value in ['', input.dataset.searchCurrent?.trim()]
