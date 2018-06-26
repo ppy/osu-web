@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'akış',
     'generic' => 'Hata düzeltmeleri ve küçük geliştirmeler.',
-    'users-online' => '1 kullanıcı çevrimiçi |:users kullanıcı çevrimiçi',
+    'users-online' => '1 kullanıcı çevrim-içi |:users kullanıcı çevrim-içi',
 
     'prefixes' => [
         'add' => 'ekleme',
