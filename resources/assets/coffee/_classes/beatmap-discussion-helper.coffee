@@ -26,15 +26,15 @@ class @BeatmapDiscussionHelper
 
 
   # text should be pre-escaped.
-  @discussionLinkify: (text) ->
+  @discussionLinkify: (text) =>
     currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
+    currentBeatmapsetDiscussions = @urlParse(currentUrl.href)
 
-    text.replace osu.urlRegex, (url) ->
+    text.replace osu.urlRegex, (url) =>
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
+        targetBeatmapsetDiscussions = @urlParse targetUrl.href, null, forceDiscussionId: true
         if targetBeatmapsetDiscussions?.discussionId?
           if currentBeatmapsetDiscussions? &&
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
@@ -197,7 +197,7 @@ class @BeatmapDiscussionHelper
 
 
   # see @url
-  @urlParse: (urlString, discussions, options = {}) ->
+  @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
     url = new URL(urlString ? document.location.href)
