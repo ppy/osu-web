@@ -145,7 +145,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
