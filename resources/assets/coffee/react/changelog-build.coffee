@@ -16,30 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-internal = [
-  'admin'
-  'api/v2'
-  'beatmaps'
-  'beatmapsets'
-  'community'
-  'help'
-  'home'
-  'legal'
-  'oauth'
-  'rankings'
-  'session'
-  'store'
-  'users'
-].join('|')
-
-
-class @TurbolinksDisable
-  constructor: ->
-    addEventListener 'turbolinks:click', @cancelIfExternal
-
-
-  cancelIfExternal: (event) ->
-    prefix = "#{document.location.protocol}//#{document.location.host}/"
-
-    unless RegExp("^(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
-      event.preventDefault()
+reactTurbolinks.registerPersistent 'changelog-build', ChangelogBuild.Main, true, (el) ->
+  container: el
+  latestBuilds: osu.parseJson('json-latest-builds')
+  build: osu.parseJson('json-build')

@@ -18,19 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Transformers;
 
-class Repository extends Model
+use App\Models\BuildPropagationHistory;
+use League\Fractal;
+
+class BuildHistoryChartTransformer extends Fractal\TransformerAbstract
 {
-    protected $guarded = [];
-
-    public function updateStream()
+    public function transform(BuildPropagationHistory $entry)
     {
-        return $this->belongsTo(UpdateStream::class, 'stream_id');
-    }
-
-    public function changelogEntries()
-    {
-        return $this->hasMany(ChangelogEntry::class, 'repository', 'name');
+        // $entry is output of ::changelog.
+        return [
+            'created_at' => json_time($entry->created_at),
+            'user_count' => $entry->user_count,
+            'label' => $entry->label,
+        ];
     }
 }
