@@ -35,7 +35,7 @@ class @BeatmapDiscussionHelper
 
       if targetUrl.host == currentUrl.host
         targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?
+        if targetBeatmapsetDiscussions?.discussionId?
           if currentBeatmapsetDiscussions? &&
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
             # same beatmapset, format: #123
