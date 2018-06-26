@@ -132,11 +132,12 @@
     .link-plain();
     .fade-element(@hover-transition-duration);
     position: absolute;
-    left: @padding;
-    top: @padding / 2;
+    left: 0;
+    top: 0;
     font-size: 40px;
     opacity: 0;
     line-height: 1;
+    padding: (@padding / 2) @padding @padding;
 
     &:hover {
       color: @yellow;
