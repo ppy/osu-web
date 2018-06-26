@@ -74,7 +74,7 @@ class Build extends Model
 
     public function changelogs()
     {
-        return $this->hasMany(Changelog::class, 'build', 'version');
+        return $this->hasMany(Changelog::class, 'build', 'version')->where('stream_id', '=', $this->stream_id);
     }
 
     public function defaultChangelogs()
