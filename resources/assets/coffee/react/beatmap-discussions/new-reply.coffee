@@ -83,7 +83,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton 'reply_resolve'
 
-            if @canResolve() && @props.discussion.resolved
+            if @canReopen() && @props.discussion.resolved
               @renderReplyButton 'reply_reopen'
 
             @renderReplyButton 'reply'
@@ -123,6 +123,10 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           disabled: !@validPost() || @state.posting?
           onClick: @throttledPost
           'data-action': action
+
+
+  canReopen: =>
+    @props.discussion.resolved && @props.discussion.current_user_attributes.can_reopen
 
 
   canResolve: =>
