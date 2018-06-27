@@ -145,7 +145,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -174,6 +174,20 @@ class OsuAuthorize
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
+    }
+
+    public function checkBeatmapDiscussionStore($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->message_type === 'mapper_note') {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isQAT() && !$user->isBNG()) {
+                return 'beatmap_discussion.store.mapper_note_wrong_user';
+            }
+        }
+
+        return 'ok';
     }
 
     public function checkBeatmapDiscussionVote($user, $discussion)
@@ -296,7 +310,7 @@ class OsuAuthorize
         }
     }
 
-    public function checkBeatmapDiscussionPostStore($user, $discussion)
+    public function checkBeatmapDiscussionPostStore($user, $post)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

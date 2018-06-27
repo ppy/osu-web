@@ -40,7 +40,7 @@ return [
     'support' => [
         'heading' => 'Love this update?',
         'text_1' => 'Support further development of osu! and :link today!',
-        'text_1_link' => 'become a supporter',
+        'text_1_link' => 'become an osu!supporter',
         'text_2' => 'Not only will you help speed development, but you will also get some extra features and customisations!',
     ],
 ];
