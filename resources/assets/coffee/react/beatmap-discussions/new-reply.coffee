@@ -126,7 +126,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   canReopen: =>
-    @props.discussion.resolved && @props.discussion.current_user_attributes.can_reopen
+    @props.discussion.current_user_attributes.can_reopen
 
 
   canResolve: =>
