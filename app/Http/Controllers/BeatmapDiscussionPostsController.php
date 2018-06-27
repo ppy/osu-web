@@ -138,9 +138,15 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         if ($discussion->exists && $discussion->isDirty('resolved')) {
-            priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
+            if ($discussion->resolved) {
+                priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
+                $events[] = BeatmapsetEvent::ISSUE_RESOLVE;
+            } else {
+                priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
+                $events[] = BeatmapsetEvent::ISSUE_REOPEN;
+            }
+
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
-            $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
         }
 
         try {
