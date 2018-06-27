@@ -42,11 +42,9 @@ class ChangelogBuild.Main extends React.PureComponent
         div className: 'builds',
           div
             className: 'builds__group',
-            div className: 'builds__date', moment(@props.build.created_at).format('LL')
-
             div
               className: 'builds__item'
-              el Build, build: @props.build
+              el Build, build: @props.build, showDate: true, modifiers: ['build']
 
             div className: 'builds__navs',
               div className: 'builds__nav builds__nav--left',

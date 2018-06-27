@@ -21,10 +21,11 @@ el = React.createElement
 
 class @Build extends React.PureComponent
   render: =>
+    blockClass = osu.classWithModifiers 'build', @props.modifiers
     entries = _.groupBy(@props.build.changelog_entries, 'category')
     categories = _(entries).keys().sort().value()
 
-    div className: "build t-changelog-stream--#{_.kebabCase @props.build.update_stream.display_name}",
+    div className: "#{blockClass} t-changelog-stream--#{_.kebabCase @props.build.update_stream.display_name}",
       div className: 'build__version',
         @renderNav version: 'previous', icon: 'fas fa-chevron-left'
 
@@ -36,6 +37,9 @@ class @Build extends React.PureComponent
           span className: 'u-changelog-stream--text', @props.build.display_version
 
         @renderNav version: 'next', icon: 'fas fa-chevron-right'
+
+      if @props.showDate ? false
+        div className: 'build__date', moment(@props.build.created_at).format('LL')
 
       for category in categories
         div
