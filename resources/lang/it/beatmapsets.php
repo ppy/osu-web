@@ -90,7 +90,7 @@ return [
             'title' => 'Classifica',
 
             'headers' => [
-                'accuracy' => 'Accuratezza',
+                'accuracy' => 'Precisione',
                 'combo' => 'Max Combo',
                 'miss' => 'Errori',
                 'mods' => 'Mod',

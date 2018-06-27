@@ -72,6 +72,7 @@ class Build extends Model
         return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
     }
 
+    // FIXME: Need to match stream_id as well. It's currently checked in transformer.
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'build', 'version');

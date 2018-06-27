@@ -173,7 +173,7 @@ return [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
-            'supporter_filter' => 'Filtering by :filters requires an active supporter tag',
+            'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
@@ -199,7 +199,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtering by :filters requires an active :link',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
         'mode' => 'Mode',

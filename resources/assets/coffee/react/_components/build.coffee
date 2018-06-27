@@ -45,7 +45,7 @@ class @Build extends React.PureComponent
           div className: 'build__changelog-entries',
             for entry in entries[category]
               div
-                key: entry.id
+                key: entry.id ? "#{entry.created_at}-#{entry.title}"
                 className: 'build__changelog-entry'
                 el ChangelogEntry, entry: entry
 
