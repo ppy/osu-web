@@ -73,6 +73,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @props.beatmapset.can_be_hyped &&
       @props.mode == 'generalAll'
 
+    canPostNote =
+      @props.currentUser.id == @props.beatmapset.user_id ||
+      @props.currentUser.is_bng ||
+      @props.currentUser.is_qat
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -158,7 +163,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if canHype
               @submitButton 'hype'
-            if @props.currentUser.id == @props.beatmapset.user_id
+            if canPostNote
               @submitButton 'mapper_note'
             @submitButton 'praise'
             @submitButton 'suggestion'
