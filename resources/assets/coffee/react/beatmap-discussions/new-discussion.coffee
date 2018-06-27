@@ -202,7 +202,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   canPost: =>
-    !@props.currentBeatmap.deleted_at?
+    !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
 
 
   checkStickability: (_e, target) =>
