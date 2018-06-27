@@ -22,6 +22,10 @@ return [
     'feed_title' => 'feed',
     'generic' => 'Bug fixes and minor improvements',
 
+    'build' => [
+        'title' => 'changes in :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited user online|:count_delimited users online',
     ],
