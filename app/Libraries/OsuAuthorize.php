@@ -130,6 +130,14 @@ class OsuAuthorize
         }
     }
 
+    public function checkBeatmapDiscussionReopen($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkBeatmapDiscussionResolve($user, $discussion)
     {
         $prefix = 'beatmap_discussion.resolve.';
