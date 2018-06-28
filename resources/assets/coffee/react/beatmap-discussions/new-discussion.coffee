@@ -104,7 +104,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   key: 'input'
                   disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
-                  value: @state.message
+                  value: if @canPost() then @state.message else ''
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
