@@ -346,7 +346,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge
-          disabled: !@validPost() || @state.posting?
+          disabled: !@validPost() || @state.posting? || !@canPost()
           'data-type': type
           onClick: @post
           extraProps
