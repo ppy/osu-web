@@ -104,7 +104,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   key: 'input'
                   disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
-                  value: @state.message
+                  value: if @canPost() then @state.message else ''
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
@@ -202,7 +202,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   canPost: =>
-    !@props.currentBeatmap.deleted_at?
+    !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
 
 
   checkStickability: (_e, target) =>
@@ -346,7 +346,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge
-          disabled: !@validPost() || @state.posting?
+          disabled: !@validPost() || @state.posting? || !@canPost()
           'data-type': type
           onClick: @post
           extraProps
