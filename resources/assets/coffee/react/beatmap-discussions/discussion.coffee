@@ -92,7 +92,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
               @post reply, 'reply'
 
-          if @hasValidBeatmap()
+          if @canBeRepliedTo()
             el BeatmapDiscussions.NewReply,
               currentUser: @props.currentUser
               beatmapset: @props.beatmapset
@@ -117,7 +117,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    disabled = @isOwner() || (type == 'down' && !@canDownvote()) || !@hasValidBeatmap()
+    disabled = @isOwner() || (type == 'down' && !@canDownvote()) || !@canBeRepliedTo()
 
     button
       className: topClasses
@@ -162,7 +162,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
 
 
-  hasValidBeatmap: =>
+  canBeRepliedTo: =>
     !@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?
 
 
