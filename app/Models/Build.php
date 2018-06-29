@@ -46,7 +46,9 @@ class Build extends Model
             return;
         }
 
-        list($version, $streamName) = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $tag = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $version = $tag[0];
+        $streamName = $tag[1] ?? null;
 
         if ($streamName !== null) {
             $stream = UpdateStream::where('name', '=', $streamName)->first();
