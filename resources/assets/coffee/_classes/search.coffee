@@ -47,6 +47,7 @@ class @Search
 
     return if value in ['', input.dataset.searchCurrent?.trim()]
 
+    input.dataset.searchCurrent = value
     @submit()
 
 
