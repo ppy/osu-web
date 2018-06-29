@@ -453,28 +453,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_id !== null && present($this->user_colour);
     }
 
-    public function getUserBirthdayAttribute($value)
-    {
-        if (presence($value) === null) {
-            return;
-        }
-
-        $date = explode('-', $value);
-        $date = array_map(function ($x) {
-            return (int) trim($x);
-        }, $date);
-        if ($date[2] === 0) {
-            return;
-        }
-
-        return Carbon::create($date[2], $date[1], $date[0]);
-    }
-
-    public function age()
-    {
-        return $this->user_birthday->age ?? null;
-    }
-
     public function cover()
     {
         return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;

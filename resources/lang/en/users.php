@@ -110,8 +110,6 @@ return [
         'joined_at' => 'Joined :date',
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => 'formerly known as',
