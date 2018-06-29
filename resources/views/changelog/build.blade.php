@@ -15,7 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['legacyNav' => false, 'bodyAdditionalClasses' => 'osu-layout--body-111-plain'])
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
+    'legacyNav' => false,
+    'title' => trans('changelog.build.title', ['version' => "{$build['update_stream']['display_name']} {$build['version']}"]),
+])
 
 @section('content')
     <div class="js-react--changelog-build osu-layout osu-layout--full"></div>

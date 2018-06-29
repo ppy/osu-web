@@ -33,8 +33,11 @@ class @Nav2
     $(window).off 'throttled-resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
-      continue if popup.dataset.clickMenuId != @currentMenu
+      if popup.dataset.clickMenuId != @currentMenu
+        popup.classList.add 'hidden'
+        continue
 
+      popup.classList.remove 'hidden'
       currentPopup = popup
       link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}']")
 

@@ -43,7 +43,7 @@ return [
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
             'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
-            'owner' => 'Tidak terdapat hype di beatmap Anda.',
+            'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
         ],
 
         'timestamp' => [

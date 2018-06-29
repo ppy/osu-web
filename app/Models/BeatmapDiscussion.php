@@ -340,11 +340,7 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        if ($this->message_type === 'mapper_note') {
-            if ($this->user_id !== $this->beatmapset->user_id) {
-                $this->validationErrors()->add('message_type', '.mapper_note_wrong_user');
-            }
-        } elseif ($this->message_type === 'hype') {
+        if ($this->message_type === 'hype') {
             if ($this->beatmap_id !== null) {
                 $this->validationErrors()->add('message_type', '.hype_requires_null_beatmap');
             }

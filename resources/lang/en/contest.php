@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Compete in more ways than just clicking circles.',
-        'large' => 'osu! Community Contests',
+        'large' => 'Community Contests',
     ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
