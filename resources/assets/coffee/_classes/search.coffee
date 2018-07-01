@@ -18,48 +18,59 @@
 
 class @Search
   constructor: ->
-    @debouncedSubmit = _.debounce @submit, 500
+    @debouncedSubmitInput = _.debounce @submitInput, 500
 
     $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
-    $(document).on 'input', '.js-search--input', @debouncedSubmit
-    $(document).on 'keydown', '.js-search--input', @maybeSubmit
+    $(document).on 'input', '.js-search--input', @debouncedSubmitInput
+    $(document).on 'keydown', '.js-search--input', @maybeSubmitInput
+    $(document).on 'submit', '.js-search', @submitForm
+    addEventListener 'turbolinks:load', @restoreFocus
 
 
-  forumPostReset: (e) =>
-    $form = $(e.currentTarget).closest('form')
+  forumPostReset: =>
+    $form = $('.js-search')
 
     $form.find('[name=username], [name=forum_id]').val ''
     $form.find('[name=forum_children]').prop 'checked', false
 
 
-  maybeSubmit: (e) =>
+  maybeSubmitInput: (e) =>
     return if e.keyCode != 13
 
     e.preventDefault()
-    @submit()
+    @submitInput(e)
 
 
-  submit: (e) =>
+  submitInput: (e) =>
     input = e.currentTarget
     value = input.value.trim()
 
     return if value in ['', input.dataset.searchCurrent?.trim()]
 
-    @searchingStart()
-    $(document).one 'turbolinks:before-cache', @searchingEnd
-    params = $(e.currentTarget).closest('form').serialize()
     input.dataset.searchCurrent = value
+    @submit()
+
+
+  submitForm: (e) =>
+    e.preventDefault()
+    @submit()
+
+
+  submit: =>
+    @searchingToggle(true)
+    params = $('.js-search').serialize()
+
+    $(document).one 'turbolinks:before-cache', =>
+      @activeElement = document.activeElement
+      @searchingToggle(false)
 
     Turbolinks.visit("?#{params}")
 
 
-  searchingStart: =>
-    @searchingToggle(true)
-
-
-  searchingEnd: =>
-    @searchingToggle(false)
-
-
   searchingToggle: (state) =>
     $('.js-search--header').toggleClass('js-search--searching', state)
+
+
+  restoreFocus: =>
+    @activeElement?.focus()
+    @activeElement = null
