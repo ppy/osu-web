@@ -46,9 +46,19 @@ class Build extends Model
             return;
         }
 
-        $version = substr($data['ref'], strlen('refs/tags/'));
+        $tag = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $version = $tag[0];
+        $streamName = $tag[1] ?? null;
 
-        $build = $repository->updateStream->builds()->firstOrCreate([
+        if ($streamName !== null) {
+            $stream = UpdateStream::where('name', '=', $streamName)->first();
+        }
+
+        if (!isset($stream)) {
+            $stream = $repository->mainUpdateStream;
+        }
+
+        $build = $stream->builds()->firstOrCreate([
             'version' => $version,
         ]);
 
@@ -58,7 +68,7 @@ class Build extends Model
 
         $newChangelogEntryIds = $repository
             ->changelogEntries()
-            ->whereDoesntHave('builds')
+            ->orphans($stream->getKey())
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
             ->pluck($changelogEntry->qualifyColumn('id'));
 
@@ -72,6 +82,7 @@ class Build extends Model
         return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
     }
 
+    // FIXME: Need to match stream_id as well. It's currently checked in transformer.
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'build', 'version');

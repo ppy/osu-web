@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/QAT group member can post mapper notes.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => "Can't vote on own discussion.",
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
     ],

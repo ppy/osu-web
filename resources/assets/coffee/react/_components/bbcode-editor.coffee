@@ -107,6 +107,8 @@ class @BBCodeEditor extends React.Component
 
 
   _cancel: (event) =>
+    return if @body.value != @props.rawValue && !confirm(osu.trans('common.confirmation_unsaved'))
+
     @body.value = @props.rawValue
     @sendOnChange(event: event, type: 'cancel')
 

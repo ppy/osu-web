@@ -121,6 +121,13 @@ class ChangelogEntry extends Model
             ->where('private', false);
     }
 
+    public function scopeOrphans($query, $streamId)
+    {
+        $query->whereDoesntHave('builds', function ($query) use ($streamId) {
+            $query->where('stream_id', '=', $streamId);
+        });
+    }
+
     public function repositoryName()
     {
         if ($this->hasGithubPR()) {

@@ -54,7 +54,9 @@ class BuildTransformer extends Fractal\TransformerAbstract
     {
         $legacyEntries = $build
             ->defaultChangelogs
-            ->map(function ($item) {
+            ->filter(function ($item) use ($build) {
+                return $item->stream_id === $build->stream_id;
+            })->map(function ($item) {
                 return ChangelogEntry::convertLegacy($item);
             });
 

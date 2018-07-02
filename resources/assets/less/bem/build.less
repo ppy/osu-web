@@ -25,6 +25,14 @@
     padding: 35px 0 15px;
   }
 
+  &__date {
+    font-size: @font-size--title-small;
+    font-weight: 300;
+    color: @yellow-light;
+    text-align: center;
+    padding-top: 5px;
+  }
+
   &__stream {
     font-weight: 500;
   }
@@ -35,6 +43,10 @@
     padding: 20px 0 0;
     display: flex;
     justify-content: center;
+
+    .@{_top}--build & {
+      font-size: @font-size--title;
+    }
   }
 
   &__version-link {
