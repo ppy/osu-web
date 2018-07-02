@@ -5,8 +5,6 @@ FROM node:alpine
 RUN apk update && \
     apk add bash;
 
-RUN mkdir -p /data && \
-    mkdir -p /data/osu-web && \
-    chown -R node:node /data && \
+RUN chown -R node:node /data && \
     chmod g+rw /data/*;
     
