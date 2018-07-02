@@ -53,7 +53,7 @@ services:
       - .:/data/osuweb
     user: node
     working_dir: /data/osuweb
-    command: bash -c "yarn && yarn run watch"
+    command: yarn && yarn run watch
   redis:
     image: redis:latest
     container_name: osuweb-redis
