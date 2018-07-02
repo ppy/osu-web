@@ -4,5 +4,5 @@ FROM node:alpine
 
 RUN mkdir -p data && \
     chown -R node:node /data && \
-    chmod g+rw /data/*;
+    chmod g+rw /data;
     
