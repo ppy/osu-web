@@ -34,7 +34,7 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
-    const RANKING_TYPES = ['performance', 'score', 'country'];
+    const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
 
     public function index($mode = 'osu', $type = null)
     {
