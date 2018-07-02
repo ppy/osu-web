@@ -55,7 +55,7 @@ class UpdateStream extends Model
     public function createBuild()
     {
         $entryIds = model_pluck(
-            $this->changelogEntries()->whereDoesntHave('builds'),
+            $this->changelogEntries()->orphans($this->getKey()),
             'id',
             ChangelogEntry::class
         );
