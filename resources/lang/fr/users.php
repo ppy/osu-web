@@ -112,7 +112,7 @@ return [
         'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
         'origin_age' => ':age',
         'origin_country_age' => ':age ans et de :country',
-        'origin_country' => 'Depuis :country',
+        'origin_country' => 'De :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',

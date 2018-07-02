@@ -39,7 +39,6 @@ return [
         'edit' => '編集',
         'edited' => ':editorが:update_timeに編集',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
-        'message_placeholder' => 'ここに入力してください',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除されたのでディスカッションはできません。',
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'エンターキーで送信する',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'これは一般のディスカッションに投稿されます。 この譜面をmodするにはタイムスタンプ（例:　00:12:345）で始まるメッセージを入力してください。',
             'in_timeline' => '複数のタイムスタンプをmodするには複数の投稿に分けてください。',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'キーワードを入力・・・',
             'options' => '検索の詳細設定',
+            'supporter_filter' => '',
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'プレイ数',
                 'relevance' => '関連性',
                 'nominations' => 'ノミネーション',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => 'モード',

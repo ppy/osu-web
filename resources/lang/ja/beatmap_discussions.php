@@ -36,7 +36,10 @@ return [
         'title' => 'ディスカッション',
 
         'form' => [
+            '_' => '',
             'deleted' => '削除されたディスカッションを含む',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => 'ユーザー',

@@ -39,7 +39,6 @@ return [
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
-        'message_placeholder' => 'Pisz tutaj',
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
             'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne posty (po jednym dla każdego znacznika czasu).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Pisz tutaj, aby utworzyć post w Główne (:version)',
+            'generalAll' => 'Pisz tutaj, aby utworzyć post w Główne (Wszystkie poziomy trudności)',
+            'timeline' => 'Pisz tutaj, aby utworzyć post w Oś czasu (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
+            'supporter_filter' => 'Do użycia filtra ":filters:" wymagany jest aktywny status donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'liczba zagrań',
                 'relevance' => 'trafność',
                 'nominations' => 'nominacje',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Do użycia filtra ":filters:" wymagany jest aktywny :link',
+                'link_text' => 'status donatora osu!',
             ],
         ],
         'mode' => 'Tryb gry',

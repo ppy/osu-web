@@ -29,7 +29,7 @@ return [
             'account-edit' => 'pengaturan',
             'friends-index' => 'teman',
             'changelog-index' => 'riwayat perubahan',
-            'changelog-show' => 'versi',
+            'changelog-build' => 'versi',
             'getDownload' => 'unduh',
             'getIcons' => 'ikon',
             'groups-show' => 'grup',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artis unggulan',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
             'beatmapset-watches-index' => 'daftar pengamatan modding',

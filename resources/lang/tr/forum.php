@@ -133,6 +133,7 @@ return [
         '_' => 'Konular',
 
         'actions' => [
+            'login_reply' => 'Cevaplamak için giriş yap',
             'reply' => 'Yanıtla',
             'reply_with_quote' => 'Alıntı yaparak cevap ver',
             'search' => 'Ara',

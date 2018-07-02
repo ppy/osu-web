@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'akış',
     'generic' => 'Hata düzeltmeleri ve küçük geliştirmeler.',
-    'users-online' => '1 kullanıcı çevrim-içi |:users kullanıcı çevrim-içi',
 
-    'prefixes' => [
-        'add' => 'ekleme',
-        'fix' => 'düzeltme',
-        'misc' => 'çeşitli',
+    'builds' => [
+        'users_online' => ':count_delimited kişi çevrimiçi|:count_delimited kişi çevrimiçi',
+    ],
+
+    'entry' => [
+        'by' => ':user tarafından',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Gösteriliyor',
+        ],
     ],
 
     'support' => [

@@ -133,6 +133,7 @@ return [
         '_' => 'Wątki',
 
         'actions' => [
+            'login_reply' => 'Zaloguj się, aby odpowiedzieć',
             'reply' => 'Odpowiedz',
             'reply_with_quote' => 'Zacytuj we własnej odpowiedzi',
             'search' => 'Wyszukaj',

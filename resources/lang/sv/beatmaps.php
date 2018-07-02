@@ -39,7 +39,6 @@ return [
         'edit' => 'redigera',
         'edited' => 'Senast redigerad av :editor :update_time.',
         'kudosu_denied' => 'Kudosu nekad.',
-        'message_placeholder' => 'Tryck här för att svara',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har blivit borttagen så den kan inte längre diskuteras.',
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Detta inlägg kommer läggas upp på allmän beatmapset diskussion. För att modda denna beatmap, börja meddelandet med en tidsstämpel (e.x. 00:12:345).',
             'in_timeline' => 'För att modda flera tidsstämplar, lägg upp flera inlägg (ett inlägg för varje tidsstämpel).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'skriv in nyckelord...',
             'options' => 'Mer Sök Alternativ',
+            'supporter_filter' => '',
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'spelad',
                 'relevance' => 'relevans',
                 'nominations' => 'nomineringar',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => 'Läge',

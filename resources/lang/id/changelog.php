@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'umpan',
     'generic' => 'Perbaikan bug dan perkembangan kecil',
-    'users-online' => ':users pengguna online',
 
-    'prefixes' => [
-        'add' => 'tambahan',
-        'fix' => 'perbaikan',
-        'misc' => 'lainnya',
+    'builds' => [
+        'users_online' => ':count_delimited pengguna online',
+    ],
+
+    'entry' => [
+        'by' => 'oleh :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Catatan Perubahan :info',
+            'info' => 'Daftar',
+        ],
     ],
 
     'support' => [

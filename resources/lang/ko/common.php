@@ -31,7 +31,7 @@ return [
     'buttons' => [
         'cancel' => '취소',
         'change' => '변경',
-        'click_to_copy' => '클립보드에 복사하려면 클릭하기',
+        'click_to_copy' => '클립보드에 복사',
         'click_to_copy_copied' => '클립보드에 복사되었습니다!',
         'delete' => '삭제',
         'hide' => '숨기기',
@@ -53,14 +53,14 @@ return [
 
     'count' => [
         'badges' => ':count개의 배지|:count개의 배지',
-        'days' => ':count일|:count일',
-        'hour_short_unit' => '시간|시간',
-        'hours' => ':count시간|:count시간',
+        'days' => ':count일',
+        'hour_short_unit' => '시간',
+        'hours' => ':count시간',
         'item' => ':count unit|:count units',
-        'minute_short_unit' => '분|분',
-        'months' => ':count달|:count달',
-        'second_short_unit' => '초|초',
-        'years' => ':count년|:count년',
+        'minute_short_unit' => '분',
+        'months' => ':count달',
+        'second_short_unit' => '초',
+        'years' => ':count년',
     ],
 
     'datetime' => [

@@ -35,7 +35,7 @@ return [
         'hype_requires_null_beatmap' => '',
         'invalid_beatmap_id' => '',
         'invalid_beatmapset_id' => '',
-        'locked' => '',
+        'locked' => 'Diskussionen er låst.',
         'mapper_note_wrong_user' => '',
 
         'hype' => [
@@ -85,16 +85,16 @@ return [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
         'invalid_country' => 'Landet er ikke i databasen.',
-        'invalid_discord' => '',
+        'invalid_discord' => 'Discord brugernavn ugyldigt.',
         'invalid_email' => "Dette ligner ikke en email-adresse...",
         'too_short' => 'Den nye adgangskode er for kort.',
         'unknown_duplicate' => 'Brugernavnet eller email-adressen er allerede i brug.',
         'username_available_in' => '',
         'username_available_soon' => '',
-        'username_invalid_characters' => '',
+        'username_invalid_characters' => 'Det anmodede brugernavn indeholder ugyldige tegn.',
         'username_in_use' => 'Navnet er allerede i brug!',
         'username_no_space_userscore_mix' => 'Brug enten understreg eller mellemrum, ikke begge dele!',
-        'username_no_spaces' => "",
+        'username_no_spaces' => "Brugernavn kan ikke starte eller ende med mellemrum!",
         'username_not_allowed' => 'Dette brugernavn er ikke tilladt.',
         'username_too_short' => 'Det anmodede brugernavn er for kort.',
         'username_too_long' => 'Det anmodede brugernavn er for langt.',
@@ -106,7 +106,7 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => '',
+                '_' => 'Du skal have :link for at ændre dit navn!',
                 'link_text' => 'støttede osu!',
             ],
             'username_is_same' => '',

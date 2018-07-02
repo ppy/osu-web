@@ -36,7 +36,10 @@ return [
         'title' => 'Dyskusje',
 
         'form' => [
+            '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'types' => 'Typy wiadomości',
+            'username' => 'Nazwa użytkownika',
 
             'user' => [
                 'label' => 'Użytkownik',

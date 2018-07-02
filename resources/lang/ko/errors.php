@@ -32,7 +32,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => '잘못된 모드 종류입니다.',
-        'standard_converts_only' => '이 난이도에서 선택한 모드에 대한 기록이 없습니다.',
+        'standard_converts_only' => '현재 비트맵에서는 해당 모드로 점수를 기록할 수 없습니다.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => '즐겨찾기한 비트맵이 너무 많습니다! 계속하려면 즐겨찾기를 하나 해제해주세요.',
