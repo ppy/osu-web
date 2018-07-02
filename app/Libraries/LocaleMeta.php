@@ -25,7 +25,7 @@ class LocaleMeta
     const MAPPINGS = [
         'cs' => [
             'name' => 'Česky',
-            'flag' => 'CS',
+            'flag' => 'CZ',
         ],
         'da' => [
             'name' => 'Dansk',
