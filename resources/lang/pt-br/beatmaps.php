@@ -39,7 +39,6 @@ return [
         'edit' => 'editar',
         'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
-        'message_placeholder' => 'Digite aqui para postar',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Esta postagem vai para a discussão geral do beatmap. Para fazer uma sugestão neste beatmap, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
             'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Digite aqui para publicar em Geral (:version)',
+            'generalAll' => 'Digite aqui para publicar em Geral (Todas as dificuldades)',
+            'timeline' => 'Digite aqui para publicar em Linha do Tempo (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'digite palavras-chave...',
             'options' => 'Mais opções de busca',
+            'supporter_filter' => 'Filtrar por :filters requer uma supporter tag ativa',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'vezes jogado',
                 'relevance' => 'relevância',
                 'nominations' => 'nomeações',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtrar por :filters requer uma :link',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Modo',

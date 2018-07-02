@@ -133,6 +133,7 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
+            'login_reply' => 'Conecte-se para Responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicação na resposta',
             'search' => 'Pesquisar',
