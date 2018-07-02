@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmapdiskussion',
 
         'form' => [
+            '_' => '',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => 'Benutzer',

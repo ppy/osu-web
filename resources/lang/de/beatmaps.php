@@ -39,7 +39,6 @@ return [
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
-        'message_placeholder' => 'Beitrag hier eingeben',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
             'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Beiträge erstellen (ein Beitrag pro Timestamp).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'stichwörter eingeben...',
             'options' => 'Mehr Suchoptionen',
+            'supporter_filter' => '',
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'plays',
                 'relevance' => 'relevanz',
                 'nominations' => 'nominierungen',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => 'Modus',

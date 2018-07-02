@@ -71,7 +71,7 @@ return [
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
-            'title' => 'Players',
+            'title' => '플레이어',
         ],
 
         'wiki_page' => [

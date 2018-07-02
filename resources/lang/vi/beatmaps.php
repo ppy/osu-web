@@ -39,7 +39,6 @@ return [
         'edit' => 'chỉnh sửa',
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
-        'message_placeholder' => 'Nhập vào đây để đăng',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Bài đăng này sẽ vào phần thảo luận chung của beatmap, dùng mốc thởi gian để bắt đầu bài đăng (ví dụ 00:12:345) để mod beatmap này.',
             'in_timeline' => 'Để mod nhiều mốc thời gian , hãy đăng nhiều lần (một bài đăng trên một mốc thời gian).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Nhập vào đây để đăng vào Chung (:version)',
+            'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
+            'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'nhập từ khóa...',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
+            'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'lượt chơi',
                 'relevance' => 'độ liên quan',
                 'nominations' => 'số đề cử',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Lọc theo :filters cần một :link đang hoạt động',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Chế Độ',

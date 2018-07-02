@@ -133,6 +133,7 @@ return [
         '_' => 'Threads',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Antworten',
             'reply_with_quote' => 'Post in der Antwort zitieren',
             'search' => 'Suchen',

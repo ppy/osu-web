@@ -29,7 +29,7 @@ return [
             'account-edit' => '설정',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
-            'changelog-show' => '빌드 버전',
+            'changelog-build' => '빌드 버전',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => '비트맵',
-            'artists' => '주요 아티스트',
+            'artists' => '공식 아티스트',
             'beatmap_discussion_posts-index' => '비트맵 토론 글',
             'beatmap_discussions-index' => '비트맵 토론',
             'beatmapset-watches-index' => '모딩 확인 목록',

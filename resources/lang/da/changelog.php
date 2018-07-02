@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Fejlrettelser og små forbedringer.',
-    'users-online' => '1 bruger online|:users brugere online',
 
-    'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'diverse',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

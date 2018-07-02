@@ -133,6 +133,7 @@ return [
         '_' => '主題',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => '回覆',
             'reply_with_quote' => '引用此回覆',
             'search' => '搜尋',

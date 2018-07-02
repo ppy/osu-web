@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'lista',
     'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
-    'users-online' => '1 użytkownik online|:users użytkownicy online|:users użytkowników online',
 
-    'prefixes' => [
-        'add' => 'nowość',
-        'fix' => 'poprawka',
-        'misc' => 'różne',
+    'builds' => [
+        'users_online' => ':count_delimited użytkownik online|:count_delimited użytkownicy online|:count_delimited użytkowników online',
+    ],
+
+    'entry' => [
+        'by' => 'autorstwa :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Lista zmian: :info',
+            'info' => 'Lista',
+        ],
     ],
 
     'support' => [

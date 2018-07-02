@@ -133,6 +133,7 @@ return [
         '_' => 'Témák',
 
         'actions' => [
+            'login_reply' => 'Jelentkezz be a válaszoláshoz',
             'reply' => 'Válasz',
             'reply_with_quote' => 'Poszt idézése válaszhoz',
             'search' => 'Keresés',

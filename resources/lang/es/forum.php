@@ -133,6 +133,7 @@ return [
         '_' => 'Temas',
 
         'actions' => [
+            'login_reply' => 'Inicia sesión para responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicación y responder',
             'search' => 'Buscar',

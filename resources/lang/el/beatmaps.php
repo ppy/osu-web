@@ -39,7 +39,6 @@ return [
         'edit' => 'επεξεργασία',
         'edited' => 'Τελευταία επεξεργασία από: :editor :update_time.',
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
-        'message_placeholder' => 'Πληκτρολογήστε εδώ για δημοσίευση',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Αυτή η δημοσίευση θα πάει στη γενική συζήτηση beatmap. Για να κάνετε μία πρόταση για αυτό το beatmap, ξεκινήστε το μήνυμά σας με μία χρονική σήμανση (π.χ. 00:12:345).',
             'in_timeline' => 'Για να κάνετε πολλαπλές προτάσεις ταυτόχρονα, δημοσιεύστε πολλές φορές (μία δημοσίευση ανά χρονική σήμανση).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (:version)',
+            'generalAll' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (όλες τις δυσκολίες)',
+            'timeline' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο Χρονολόγιο (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'πληκτρολογήστε λέξεις-κλειδιά...',
             'options' => 'Περισσότερες Επιλογές Αναζήτησης',
+            'supporter_filter' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό supporter tag',
             'not-found' => 'κανένα αποτέλεσμα',
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'προσπάθειες',
                 'relevance' => 'σχετικότητα',
                 'nominations' => 'nominations',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Mode',

@@ -39,7 +39,6 @@ return [
         'edit' => 'bewerk',
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
-        'message_placeholder' => 'Typ hier om te posten',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Typ hier om in General te posten (:version)',
+            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheden)',
+            'timeline' => 'Typ hier om naar de tijdlijn te posten (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'typ sleutelwoorden in...',
             'options' => 'Meer Zoekopties',
+            'supporter_filter' => 'Filteren met :filters vereist een supporter tag',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'keren gespeeld',
                 'relevance' => 'relevantie',
                 'nominations' => 'nominaties',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filteren met :filters vereist een :link',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Modus',

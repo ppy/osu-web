@@ -133,6 +133,7 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'login_reply' => 'Accedi per rispondere',
             'reply' => 'Rispondi',
             'reply_with_quote' => 'Quota il post per rispondere',
             'search' => 'Cerca',

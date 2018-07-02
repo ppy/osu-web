@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'ฟีด',
     'generic' => 'แก้ไขข้อผิดพลาดและปรับปรุงการทำงาน.',
-    'users-online' => '1 คนออนไลน์|:users คนออนไลน์',
 
-    'prefixes' => [
-        'add' => 'เพิ่มเติม',
-        'fix' => 'แก้ไข',
-        'misc' => 'อื่นๆ',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

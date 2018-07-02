@@ -39,13 +39,12 @@ return [
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
-        'message_placeholder' => 'Ide írj posztoláshoz',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, így már nem lehet vitatni.',
         'message_type_select' => 'Komment típusának választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
         'require-login' => 'Kérlek jelentkezz be posztoláshoz illetve válaszoláshoz',
-        'resolved' => 'Megoldott',
+        'resolved' => 'Megoldva',
         'restore' => 'visszaállítás',
         'title' => 'Megbeszélések',
 
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Ez a poszt bekerül az általános beatmapszet megbeszélésbe.A beatmap modolásához kezdj egy üzenetet időbélyeggel (pl.: 00:12:345).',
             'in_timeline' => 'Több időbélyeg modolásához, posztolj több időt (egy poszt időbélyegenként).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => 'Írj ide az Idővonalra való posztoláshoz (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'írj kulcsszavakkal...',
             'options' => 'További Keresési Beállítások',
+            'supporter_filter' => ':filters által alvó szűrés támogatói tagot igényel',
             'not-found' => 'nincs találat',
             'not-found-quote' => '... semmit, semmit nem találtam.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'játszottság',
                 'relevance' => 'relevancia',
                 'nominations' => 'kijelölések',
+            ],
+            'supporter_filter_quote' => [
+                '_' => ':filters által alvó szűrés aktiv :linket igényel',
+                'link_text' => 'támogatói cím',
             ],
         ],
         'mode' => 'Mód',

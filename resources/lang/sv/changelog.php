@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'flöde',
     'generic' => 'Bugg fixar och mindre förbättringar.',
-    'users-online' => '1 användare online|:users användare online',
 
-    'prefixes' => [
-        'add' => 'tillägg',
-        'fix' => 'ändring',
-        'misc' => 'diverse',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [
