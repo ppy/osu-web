@@ -36,7 +36,10 @@ return [
         'title' => 'Góc Thảo Luận Beatmap',
 
         'form' => [
+            '_' => 'Tìm kiếm',
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
+            'types' => '',
+            'username' => 'Tên người dùng',
 
             'user' => [
                 'label' => 'Người dùng',

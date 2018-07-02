@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Topics',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [

@@ -77,7 +77,7 @@ return [
         'forgot' => 'Forgotten your password?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'small' => '(osu!supporters will get in soon)',
         ],
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
@@ -110,8 +110,6 @@ return [
         'joined_at' => 'Joined :date',
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => 'formerly known as',

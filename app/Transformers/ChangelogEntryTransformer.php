@@ -37,6 +37,7 @@ class ChangelogEntryTransformer extends Fractal\TransformerAbstract
             'repository' => $entry->repository,
             'github_pull_request_id' => $entry->github_pull_request_id,
             'github_url' => $entry->githubUrl(),
+            'url' => $entry->url,
             'type' => $entry->type,
             'category' => $entry->category,
             'title' => $entry->title,

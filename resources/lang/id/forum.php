@@ -133,6 +133,7 @@ return [
         '_' => 'Topik',
 
         'actions' => [
+            'login_reply' => 'Masuk untuk Membalas',
             'reply' => 'Balas',
             'reply_with_quote' => 'Kutip posting untuk balasan',
             'search' => 'Cari',

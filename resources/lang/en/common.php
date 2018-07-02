@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Are you sure?',
+    'confirmation_unsaved' => 'Unsaved changes will be lost. Are you sure?',
     'saved' => 'Saved',
 
     'array_and' => [

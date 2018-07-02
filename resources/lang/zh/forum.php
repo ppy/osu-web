@@ -133,6 +133,7 @@ return [
         '_' => '主题',
 
         'actions' => [
+            'login_reply' => '登录后回复',
             'reply' => '回复',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',

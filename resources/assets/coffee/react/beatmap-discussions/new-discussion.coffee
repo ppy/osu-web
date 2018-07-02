@@ -73,6 +73,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @props.beatmapset.can_be_hyped &&
       @props.mode == 'generalAll'
 
+    canPostNote =
+      @props.currentUser.id == @props.beatmapset.user_id ||
+      @props.currentUser.is_bng ||
+      @props.currentUser.is_qat
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -99,7 +104,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   key: 'input'
                   disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
-                  value: @state.message
+                  value: if @canPost() then @state.message else ''
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
@@ -158,7 +163,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if canHype
               @submitButton 'hype'
-            if @props.currentUser.id == @props.beatmapset.user_id
+            if canPostNote
               @submitButton 'mapper_note'
             @submitButton 'praise'
             @submitButton 'suggestion'
@@ -197,7 +202,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   canPost: =>
-    !@props.currentBeatmap.deleted_at?
+    !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
 
 
   checkStickability: (_e, target) =>
@@ -341,7 +346,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge
-          disabled: !@validPost() || @state.posting?
+          disabled: !@validPost() || @state.posting? || !@canPost()
           'data-type': type
           onClick: @post
           extraProps

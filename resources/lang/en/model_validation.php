@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Invalid difficulty specified.',
         'invalid_beatmapset_id' => 'Invalid beatmap specified.',
         'locked' => 'Discussion is locked.',
-        'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
 
         'hype' => [
             'guest' => 'Must be signed in to hype.',

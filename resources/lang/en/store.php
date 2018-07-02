@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'gift to player',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
+            '_' => 'You need to be :link to get an osu!supporter tag!',
             'link_text' => 'signed in',
         ],
     ],

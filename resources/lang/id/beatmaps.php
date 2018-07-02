@@ -39,7 +39,6 @@ return [
         'edit' => 'sunting',
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
-        'message_placeholder' => 'Ketik di sini untuk posting',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, mulai pesan Anda dengan keterangan waktu (cth: 00:12:345).',
             'in_timeline' => 'Topik-topik diskusi ini berlaku untuk masing-masing tingkat kesulitan secara spesifik. Untuk memulai topik diskusi baru, salin keterangan waktu dari editor disertai dengan komentar Anda (satu topik per keterangan waktu).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Ketik disini untuk posting ke General (:version)',
+            'generalAll' => 'Ketik disini untuk posting ke General (Semua tingkat kesulitan)',
+            'timeline' => 'Ketik disini untuk posting ke Timeline (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'ketik kata kunci...',
             'options' => 'Opsi Pencarian Lebih Lanjut',
+            'supporter_filter' => 'Penyaringan dengan :filters memerlukan supporter tag aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'jumlah dimainkan',
                 'relevance' => 'relevansi',
                 'nominations' => 'nominasi',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Mode',

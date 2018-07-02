@@ -48,7 +48,7 @@ return [
     'blocks' => [
         'banner_text' => '',
         'blocked_count' => '',
-        'hide_profile' => '',
+        'hide_profile' => 'skjul profil',
         'not_blocked' => '',
         'show_profile' => '',
         'too_many' => '',

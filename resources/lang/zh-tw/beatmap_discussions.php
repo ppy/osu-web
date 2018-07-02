@@ -36,7 +36,10 @@ return [
         'title' => '圖譜討論',
 
         'form' => [
+            '_' => '',
             'deleted' => '包含已經刪除的討論',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => '用戶',

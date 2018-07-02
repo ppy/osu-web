@@ -21,12 +21,20 @@
 return [
     'feed_title' => '详细',
     'generic' => '修复已知问题并做了小改动.',
-    'users-online' => ':users 在线',
 
-    'prefixes' => [
-        'add' => '添加',
-        'fix' => '修复',
-        'misc' => '杂项',
+    'builds' => [
+        'users_online' => ':count_delimited 名用户在线',
+    ],
+
+    'entry' => [
+        'by' => '作者：:user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '更新日志 :info',
+            'info' => '列表',
+        ],
     ],
 
     'support' => [

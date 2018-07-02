@@ -39,7 +39,6 @@ return [
         'edit' => '수정',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
-        'message_placeholder' => '게시할 답글의 내용을 입력하세요.',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => '작성된 글은 일반 비트맵 토론으로 올라가집니다. 비트맵을 모딩하시려면 글의 첫 부분을 타임스탬프로 시작하십시오 (예시, 00:12:345).',
             'in_timeline' => '비트맵의 여러 부분을 수정하려면 글을 여러 번 올리세요 (한 글에 한 타임스탬프만 수정할 수 있습니다).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '일반(:version)에 게시할 답글 내용을 입력하세요.',
+            'generalAll' => '일반(모든 난이도)에 게시할 답글 내용을 입력하세요.',
+            'timeline' => '타임라인(:version)에 게시할 답글 내용을 입력하세요.',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => '검색어를 입력하세요...',
             'options' => '검색 옵션 더 보기',
+            'supporter_filter' => ':filters로 검색하려면 서포터 권한이 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => '플레이된 횟수',
                 'relevance' => '연관성',
                 'nominations' => '지명',
+            ],
+            'supporter_filter_quote' => [
+                '_' => ':filters로 검색하려면 :link이 필요합니다.',
+                'link_text' => '서포터 권한',
             ],
         ],
         'mode' => '모드',

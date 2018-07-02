@@ -90,32 +90,6 @@ class Beatmapset extends Model implements AfterCommit
     const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
-    /*
-    |--------------------------------------------------------------------------
-    | Accesssors
-    |--------------------------------------------------------------------------
-    */
-
-    public function getApprovedDateAttribute($value)
-    {
-        return (new Carbon($value))->subHours(8);
-    }
-
-    public function setApprovedDateAttribute($value)
-    {
-        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
-    }
-
-    public function getSubmitDateAttribute($value)
-    {
-        return (new Carbon($value))->subHours(8);
-    }
-
-    public function setSubmitDateAttribute($value)
-    {
-        $this->attributes['submit_date'] = parse_time_to_carbon($value)->addHours(8);
-    }
-
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
@@ -601,7 +575,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->favourite_count = db_unsigned_increment('favourite_count', -1);
             $this->save();
         });
     }

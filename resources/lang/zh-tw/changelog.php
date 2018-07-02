@@ -21,12 +21,20 @@
 return [
     'feed_title' => '詳細',
     'generic' => '修復已知問題並做了改進.',
-    'users-online' => ':users 在線上',
 
-    'prefixes' => [
-        'add' => '新增',
-        'fix' => '修復',
-        'misc' => '雜項',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

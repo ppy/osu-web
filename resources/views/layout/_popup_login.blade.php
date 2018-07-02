@@ -15,15 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="login-box-container">
-    <div class="js-nav2--login-box-reference"></div>
-
+<div class="
+    login-box js-nav2--login-box-reference
+    @foreach ($modifiers ?? [] as $modifier)
+        login-box--{{ $modifier }}
+    @endforeach
+">
     <div
         class="
-            login-box
-            @foreach ($modifiers ?? [] as $modifier)
-                login-box--{{ $modifier }}
-            @endforeach
+            login-box__content
             js-click-menu
             js-nav2--centered-popup
             js-nav2--login-box
