@@ -46,7 +46,8 @@ services:
     working_dir: /data/osuweb
     command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"
   yarn:
-    image: node:latest
+    build:
+      context: ./docker/yarn
     container_name: osuweb-yarn
     volumes:
       - .:/data/osuweb
