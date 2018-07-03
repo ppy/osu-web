@@ -238,6 +238,23 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_changelog', 'DYNAMIC');
 
+        Schema::create('osu_charts', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedSmallInteger('chart_id', true);
+            $table->string('acronym', 10)->default('');
+            $table->string('name', 50)->default('');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->boolean('mode_specific')->default(0);
+            $table->string('type', 50)->default('monthly');
+            $table->boolean('active')->default(1);
+            $table->unique('acronym', 'acronym');
+            $table->index('end_date', 'enddate');
+        });
+        $this->setRowFormat('osu_charts', 'DYNAMIC');
+
         Schema::create('osu_builds', function ($table) {
             $table->mediumIncrements('build_id');
             $table->string('version', 40)->nullable();
