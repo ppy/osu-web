@@ -94,7 +94,9 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     return if e.button != 0
     e.preventDefault()
 
-    $.publish 'beatmapsetDiscussions:update', beatmapId: parseInt(e.currentTarget.dataset.id, 10)
+    $.publish 'beatmapsetDiscussions:update',
+      beatmapId: parseInt(e.currentTarget.dataset.id, 10)
+      mode: BeatmapDiscussionHelper.DEFAULT_MODE
 
 
   syncBlackout: =>
