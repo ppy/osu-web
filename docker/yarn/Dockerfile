@@ -1,13 +1,8 @@
-FROM alpine:latest
+FROM node:alpine
 
-RUN apk add --update yarn bash shadow
+# Fix permission errors
 
-ARG _uid
-ARG _gid
-
-ENV _uid ${_uid}
-ENV _gid ${_gid}
-
-COPY setup.sh /
-
-RUN /setup.sh
+RUN mkdir -p data && \
+    chown -R node:node /data && \
+    chmod g+rw /data;
+    

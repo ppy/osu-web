@@ -1,23 +1,19 @@
-FROM phpdockerio/php71-fpm:latest
+FROM php:7.1-fpm-alpine
 
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install \
-        php7.1-curl \
-        php7.1-gd \
-        php7.1-intl \
-        php7.1-json \
-        php7.1-mbstring \
-        php7.1-mcrypt \
-        php7.1-mysql \
-        php7.1-xml \
-        php7.1-zip
+RUN apk update && \
+    apk add \
+    php7-curl \
+    php7-gd \
+    php7-intl \
+    php7-json \
+    php7-mbstring \
+    php7-mcrypt \
+    php7-xml \
+    php7-zip;
 
-ARG _uid
-ARG _gid
+# WORKAROUND For https://github.com/docker-library/php/issues/279
+RUN docker-php-ext-install mysqli
 
-ENV _uid ${_uid}
-ENV _gid ${_gid}
 
-COPY setup.sh /data/
-
-RUN ./data/setup.sh
+RUN addgroup -g 1000 php \
+&& adduser -u 1000 -G php -s /bin/sh -D php;
