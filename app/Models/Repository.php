@@ -43,6 +43,11 @@ class Repository extends Model
 
     public function changelogEntries()
     {
-        return $this->hasMany(ChangelogEntry::class, 'repository', 'name');
+        return $this->hasMany(ChangelogEntry::class);
+    }
+
+    public function shortName()
+    {
+        return substr($this->name, 1 + strpos($this->name, '/'));
     }
 }

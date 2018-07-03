@@ -56,7 +56,6 @@ class ChangelogEntry extends Model
         $repository = Repository::importFromGithub($data['repository']);
 
         $entry = $repository->changelogEntries()->make([
-            'category' => $repository->default_category,
             'github_pull_request_id' => $data['pull_request']['number'],
             'title' => $data['pull_request']['title'],
             'message' => $data['pull_request']['body'],
@@ -101,6 +100,11 @@ class ChangelogEntry extends Model
         return $this->belongsTo(GithubUser::class);
     }
 
+    public function repository()
+    {
+        return $this->belongsTo(Repository::class);
+    }
+
     public function getTypeAttribute($value)
     {
         return presence($value) ?? 'fix';
@@ -108,7 +112,7 @@ class ChangelogEntry extends Model
 
     public function getCategoryAttribute($value)
     {
-        return presence($value) ?? 'Misc';
+        return presence($value) ?? optional($this->repository)->default_category ?? 'Misc';
     }
 
     public function getUrlAttribute($value)
@@ -130,22 +134,15 @@ class ChangelogEntry extends Model
         });
     }
 
-    public function repositoryName()
-    {
-        if ($this->hasGithubPR()) {
-            return substr($this->repository, 1 + strpos($this->repository, '/'));
-        }
-    }
-
     public function hasGithubPR()
     {
-        return present($this->repository) && present($this->github_pull_request_id);
+        return $this->repository !== null && present($this->github_pull_request_id);
     }
 
     public function githubUrl()
     {
         if ($this->hasGithubPR()) {
-            return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
+            return "https://github.com/{$this->repository->name}/pull/{$this->github_pull_request_id}";
         }
     }
 
