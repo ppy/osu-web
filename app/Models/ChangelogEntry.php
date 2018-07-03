@@ -55,28 +55,28 @@ class ChangelogEntry extends Model
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
         $repository = Repository::importFromGithub($data['repository']);
 
-        $params = [
-            'repository' => $repository->name,
+        $entry = $repository->changelogEntries()->make([
             'category' => $repository->default_category,
             'github_pull_request_id' => $data['pull_request']['number'],
             'title' => $data['pull_request']['title'],
             'message' => $data['pull_request']['body'],
-            'github_user_id' => $githubUser->getKey(),
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
-        ];
+        ]);
+        $entry->githubUser()->associate($githubUser);
 
         try {
-            return static::create($params);
+            $entry->saveOrExplode();
         } catch (Exception $e) {
             if (!is_sql_unique_exception($e)) {
                 throw $e;
             }
 
-            return static::where([
-                'repository' => $params['repository'],
-                'github_pull_request_id' => $params['github_pull_request_id'],
+            return $repository->changelogEntries()->where([
+                'github_pull_request_id' => $entry->github_pull_request_id,
             ])->first();
         }
+
+        return $entry;
     }
 
     public static function placeholder()
