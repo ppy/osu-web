@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Models\Score\Best as ScoreBest;
 use App\Models\UserStatistics;
+use DB;
 
 class Spotlight extends Model
 {
@@ -37,6 +38,16 @@ class Spotlight extends Model
     ];
 
     protected $dates = ['start_date', 'end_date'];
+
+    public function scores(string $mode)
+    {
+        return DB::connection('mysql-charts')->table($this->bestScoresTableName($mode));
+    }
+
+    public function userStats(string $mode)
+    {
+        return DB::connection('mysql-charts')->table($this->userStatsTableName($mode));
+    }
 
     public function beatmapsetsTableName(string $mode)
     {
