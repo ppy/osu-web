@@ -29,7 +29,7 @@ return [
             'account-edit' => '設定',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
-            'changelog-show' => 'ビルド',
+            'changelog-build' => '',
             'getDownload' => 'ダウンロード',
             'getIcons' => 'アイコン',
             'groups-show' => 'グループ',

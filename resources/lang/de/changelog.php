@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Bugfixes und kleine Verbesserungen.',
-    'users-online' => '1 Benutzer online|:users Benutzer online',
 
-    'prefixes' => [
-        'add' => 'hinzugefügt',
-        'fix' => 'fix',
-        'misc' => 'sonstiges',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

@@ -133,6 +133,7 @@ return [
         '_' => 'Emner',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svar',
             'reply_with_quote' => 'Citér opslag til svar',
             'search' => 'Søg',

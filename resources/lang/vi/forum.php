@@ -133,6 +133,7 @@ return [
         '_' => 'Chủ đề',
 
         'actions' => [
+            'login_reply' => 'Đăng nhập để Trả lời',
             'reply' => 'Trả lời',
             'reply_with_quote' => 'Trích dẫn bài viết để trả lời',
             'search' => 'Tìm kiếm',

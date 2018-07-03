@@ -29,7 +29,7 @@ return [
             'account-edit' => 'ayarlar',
             'friends-index' => 'arkadaşlar',
             'changelog-index' => 'değişiklikler',
-            'changelog-show' => 'sürüm',
+            'changelog-build' => 'sürüm',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
             'groups-show' => 'gruplar',
@@ -166,7 +166,7 @@ return [
         'general' => [
             '_' => 'Genel',
             'home' => 'Anasayfa',
-            'changelog-index' => 'Değişiklikler',
+            'changelog-index' => 'Sürüm notları',
             'beatmaps' => 'Beatmap Listesi',
             'download' => 'osu!\'yu indir!',
             'wiki' => 'Wiki',

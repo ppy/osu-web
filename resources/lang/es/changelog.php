@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'lista',
     'generic' => 'Corrección de errores y mejoras menores.',
-    'users-online' => '1 usuario en línea|:users usuarios en línea',
 
-    'prefixes' => [
-        'add' => 'adición',
-        'fix' => 'corrección',
-        'misc' => 'varios',
+    'builds' => [
+        'users_online' => ':count_delimited usuario en línea|:count_delimited usuarios en línea',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Lista de cambios :info',
+            'info' => 'Listando',
+        ],
     ],
 
     'support' => [

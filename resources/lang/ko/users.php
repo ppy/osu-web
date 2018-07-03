@@ -96,7 +96,7 @@ return [
         'username' => '손님',
         'error' => '계속하려면 로그인하셔야 합니다.',
     ],
-    'logout_confirm' => '정말 로그아웃 하실건가요? :(',
+    'logout_confirm' => '정말 로그아웃하실건가요? :(',
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
@@ -249,7 +249,7 @@ return [
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp' => ':amountpp',
                 'title' => '랭크',
-                'weighted_pp' => '가중치 적용시: :pp (:percentage)',
+                'weighted_pp' => '가중치 적용: :pp (:percentage)',
 
                 'best' => [
                     'title' => '최고 성과',

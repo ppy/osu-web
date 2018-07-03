@@ -39,7 +39,6 @@ return [
         'edit' => '編輯',
         'edited' => '最後由 :editor 編輯於 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
-        'message_placeholder' => '在此處輸入您的內容',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => '這篇貼文將發佈到圖譜討論區中。如需要檢查此圖譜某個特定部分，請在開頭加入時間戳 (例如: 00:12:345)。',
             'in_timeline' => '每篇貼文僅加入一個時間戳，如需要檢查多個時間戳，請將時間戳分別發佈至不同貼文，並寫下發表意見。',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => '輸入關鍵字...',
             'options' => '更多搜尋選項',
+            'supporter_filter' => '',
             'not-found' => '沒有結果',
             'not-found-quote' => '姆....，什麼也沒有。',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => '遊玩次數',
                 'relevance' => '相關性',
                 'nominations' => '提名狀態',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => '模式',

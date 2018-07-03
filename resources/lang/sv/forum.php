@@ -133,6 +133,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',

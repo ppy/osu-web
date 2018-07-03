@@ -81,7 +81,7 @@ return [
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '계속 쓰기',
+            'preview_hide' => '작성',
             'submit' => '게시하기',
 
             'placeholder' => [
@@ -133,6 +133,7 @@ return [
         '_' => '주제',
 
         'actions' => [
+            'login_reply' => '답변하려면 로그인하세요',
             'reply' => '답변',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',

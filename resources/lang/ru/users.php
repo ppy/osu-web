@@ -299,7 +299,7 @@ return [
         ],
         'page' => [
             'description' => '<strong>обо мне!</strong> - это ваше личное редактируемое пространство в профиле.',
-            'edit_big' => 'Измените меня!',
+            'edit_big' => 'редактировать',
             'placeholder' => 'Введите контент страницы сюда',
             'restriction_info' => "Вы должны иметь <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> для разблокировки данной возможности.",
         ],

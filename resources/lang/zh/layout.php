@@ -29,7 +29,7 @@ return [
             'account-edit' => '设置',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
-            'changelog-show' => '版本',
+            'changelog-build' => '版本',
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
