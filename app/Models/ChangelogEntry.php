@@ -53,9 +53,11 @@ class ChangelogEntry extends Model
     public static function importFromGithub($data)
     {
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
+        $repository = Repository::importFromGithub($data['repository']);
 
         $params = [
-            'repository' => $data['repository']['full_name'],
+            'repository' => $repository->name,
+            'category' => $repository->default_category,
             'github_pull_request_id' => $data['pull_request']['number'],
             'title' => $data['pull_request']['title'],
             'message' => $data['pull_request']['body'],

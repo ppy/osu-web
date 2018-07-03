@@ -24,6 +24,11 @@ class Repository extends Model
 {
     protected $guarded = [];
 
+    public static function importFromGithub($data)
+    {
+        return static::firstOrCreate(['name' => $data['full_name']]);
+    }
+
     public function mainUpdateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
