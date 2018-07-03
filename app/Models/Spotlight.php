@@ -20,6 +20,9 @@
 
 namespace App\Models;
 
+use App\Models\Score\Best as ScoreBest;
+use App\Models\UserStatistics;
+
 class Spotlight extends Model
 {
     protected $table = 'osu_charts';
@@ -34,4 +37,31 @@ class Spotlight extends Model
     ];
 
     protected $dates = ['start_date', 'end_date'];
+
+    public function beatmapsetsTableName(string $mode)
+    {
+        if ($mode === 'osu' || !$this->mode_specific) {
+            return "{$this->acronym}_beatmapsets";
+        } else {
+            return "{$this->acronym}_beatmapsets_{$mode}";
+        }
+    }
+
+    public function bestScoresTableName(string $mode)
+    {
+        if ($mode === 'osu') {
+            return "{$this->acronym}_scores_high";
+        } else {
+            return "{$this->acronym}_scores_{$mode}_high";
+        }
+    }
+
+    public function userStatsTableName(string $mode)
+    {
+        if ($mode === 'osu') {
+            return "{$this->acronym}_user_stats";
+        } else {
+            return "{$this->acronym}_user_stats_{$mode}";
+        }
+    }
 }
