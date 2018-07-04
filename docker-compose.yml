@@ -50,7 +50,7 @@ services:
     user: $UID
     environment:
       <<: *x-env
-    command: sh -c "(test -f .env || cp .env.example .env) && ./build.sh && php-fpm7 -y /data/osuweb/docker/php/php-fpm.conf"
+    command: ./docker/php/start
   yarn:
     image: node:8-alpine
     container_name: osuweb-yarn
