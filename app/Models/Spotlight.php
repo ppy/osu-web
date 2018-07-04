@@ -39,14 +39,38 @@ class Spotlight extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+    /**
+     * Returns a builder for best scores.
+     * IMPORTANT: The models returned by the query will have the incorrect table set.
+     *
+     * @param string $mode
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scores(string $mode)
     {
-        return DB::connection('mysql-charts')->table($this->bestScoresTableName($mode));
+        $clazz = '\App\Models\Score\Best\\'.studly_case($mode);
+        $model = new $clazz;
+        $model->setTable($this->bestScoresTableName($mode));
+        $model->setConnection('mysql-charts');
+
+        return $model->newQuery();
     }
 
+    /**
+     * Returns a builder for user_stats.
+     * IMPORTANT: The models returned by the query will have the incorrect table set.
+     *
+     * @param string $mode
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function userStats(string $mode)
     {
-        return DB::connection('mysql-charts')->table($this->userStatsTableName($mode));
+        $clazz = UserStatistics\Model::getClass($mode);
+        $model = new $clazz;
+        $model->setTable($this->userStatsTableName($mode));
+        $model->setConnection('mysql-charts');
+
+        return $model->newQuery();
     }
 
     public function beatmapsetsTableName(string $mode)

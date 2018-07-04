@@ -142,16 +142,17 @@ class RankingController extends Controller
 
         $spotlight = Spotlight::first();
 
-        $rows = $spotlight->userStats('osu')
+        // These models will not have the correct table name set on them
+        // as they get overriden when Laravel hydrates them.
+        $stats = $spotlight->userStats('osu')
+            ->with(['user', 'user.country'])
             ->orderBy('ranked_score', 'desc')
             ->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1));
 
+        $total = min($stats->count(), $maxPages * static::PAGE_SIZE);
 
-        $stats = \App\Models\UserStatistics\Osu::hydrate($rows->get()->all());
-        $total = min($rows->count(), $maxPages * static::PAGE_SIZE);
-
-        $scores = new LengthAwarePaginator($stats, $total, static::PAGE_SIZE, $page, [
+        $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
