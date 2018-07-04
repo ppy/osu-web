@@ -1,22 +1,15 @@
-version: '3'
+version: '3.4'
+
+x-env: &x-env
+  CACHE_DRIVER: redis
+  COMPOSER_HOME: /data/osuweb/.composer
+  DB_HOST: osuweb-mysql
+  ES_HOST: osuweb-es:9200
+  HOME: /data/osuweb
+  REDIS_HOST: osuweb-redis
+  YARN_CACHE_FOLDER: /data/osuweb/.yarn
 
 services:
-  php:
-    build:
-      context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
-    container_name: osuweb-php
-    working_dir: /data/osuweb
-    volumes:
-      - .:/data/osuweb
-      - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
-    environment:
-      DB_HOST: osuweb-mysql
-      CACHE_DRIVER: redis
-      REDIS_HOST: osuweb-redis
-      ES_HOST: osuweb-es:9200
   nginx:
     image: nginx:latest
     container_name: osuweb-nginx
@@ -35,36 +28,6 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ONETIME_PASSWORD: "yes"
-  composer:
-    build:
-      context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
-    depends_on:
-      - db
-    container_name: osuweb-composer
-    volumes:
-      - .:/data/osuweb
-      - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
-    environment:
-      DB_HOST: osuweb-mysql
-      APP_DEBUG:
-    user: osuweb
-    working_dir: /data/osuweb
-    command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"
-  yarn:
-    build:
-      context: ./docker/yarn
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
-    container_name: osuweb-yarn
-    volumes:
-      - .:/data/osuweb
-    user: osuweb
-    working_dir: /data/osuweb
-    command: bash -c "yarn && yarn run watch"
   redis:
     image: redis:latest
     container_name: osuweb-redis
@@ -75,6 +38,29 @@ services:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
       discovery.type: single-node
+  php:
+    build:
+      context: ./docker/php
+    container_name: osuweb-php
+    depends_on:
+      - db
+    working_dir: /data/osuweb
+    volumes:
+      - .:/data/osuweb
+    user: $UID
+    environment:
+      <<: *x-env
+    command: sh -c "(test -f .env || cp .env.example .env) && ./build.sh && php-fpm7 -y /data/osuweb/docker/php/php-fpm.conf"
+  yarn:
+    image: node:8-alpine
+    container_name: osuweb-yarn
+    volumes:
+      - .:/data/osuweb
+    environment:
+      <<: *x-env
+    user: $UID
+    working_dir: /data/osuweb
+    command: sh -c "yarn && yarn run watch"
 
 volumes:
   database:
