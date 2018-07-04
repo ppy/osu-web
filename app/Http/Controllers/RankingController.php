@@ -35,6 +35,7 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
+    const SPOTLIGHT_MAX_RESULTS = 40;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
 
     public function index($mode = 'osu', $type = null)
@@ -135,8 +136,7 @@ class RankingController extends Controller
         $type = 'charts';
         $country = null;
 
-        $maxResults = static::MAX_RESULTS;
-        $maxPages = ceil($maxResults / static::PAGE_SIZE);
+        $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         $spotlight = Spotlight::first();
@@ -146,10 +146,9 @@ class RankingController extends Controller
         $stats = $spotlight->userStats($mode)
             ->with(['user', 'user.country'])
             ->orderBy('ranked_score', 'desc')
-            ->limit(static::PAGE_SIZE)
-            ->offset(static::PAGE_SIZE * ($page - 1));
+            ->limit(static::SPOTLIGHT_MAX_RESULTS);
 
-        $total = min($stats->count(), $maxPages * static::PAGE_SIZE);
+        $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
 
         $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
