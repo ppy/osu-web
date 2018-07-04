@@ -8,7 +8,7 @@ server {
     # error_log /vagrant/logs/nginx.log;
 
     root /data/osuweb/public;
-    index index.php index.hh index.html;
+    index index.php index.html;
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
@@ -18,7 +18,7 @@ server {
         error_page 404 /images/flags/__.png;
     }
 
-    location ~ \.(hh|php)$ {
+    location ~ \.php$ {
         fastcgi_keep_conn on;
         fastcgi_pass   php:9000;
         fastcgi_index  index.php;
