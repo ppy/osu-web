@@ -44,7 +44,7 @@ services:
     working_dir: /data/osuweb
     volumes:
       - .:/data/osuweb
-    user: $UID
+    user: ${UID:?err}
     environment:
       <<: *x-env
     command: ./docker/php/start
@@ -54,7 +54,7 @@ services:
       - .:/data/osuweb
     environment:
       <<: *x-env
-    user: $UID
+    user: ${UID:?err}
     working_dir: /data/osuweb
     command: sh -c "yarn && yarn run watch"
 
