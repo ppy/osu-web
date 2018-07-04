@@ -4,7 +4,7 @@ x-env: &x-env
   CACHE_DRIVER: redis
   COMPOSER_HOME: /data/osuweb/.composer
   DB_HOST: db
-  ES_HOST: es:9200
+  ES_HOST: elasticsearch:9200
   HOME: /data/osuweb
   REDIS_HOST: redis
   YARN_CACHE_FOLDER: /data/osuweb/.yarn
