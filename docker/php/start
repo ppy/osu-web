@@ -8,7 +8,8 @@ cd "$(dirname "${0}")/../.."
 test -f .env || cp .env.example .env
 ./build.sh
 
-# undo config caching by the script above
+# undo config and route caching by the script above
 php artisan config:clear
+php artisan route:clear
 
 php-fpm7 -y "$PWD/docker/php/php-fpm.conf"
