@@ -64,7 +64,7 @@ class RankingController extends Controller
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
         } elseif ($type === 'charts') {
-            return $this->spotlight();
+            return $this->spotlight($mode);
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
@@ -130,9 +130,8 @@ class RankingController extends Controller
         }
     }
 
-    public function spotlight()
+    public function spotlight($mode)
     {
-        $mode = 'osu';
         $type = 'charts';
         $country = null;
 
@@ -144,7 +143,7 @@ class RankingController extends Controller
 
         // These models will not have the correct table name set on them
         // as they get overriden when Laravel hydrates them.
-        $stats = $spotlight->userStats('osu')
+        $stats = $spotlight->userStats($mode)
             ->with(['user', 'user.country'])
             ->orderBy('ranked_score', 'desc')
             ->limit(static::PAGE_SIZE)
