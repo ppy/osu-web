@@ -17,7 +17,17 @@
 --}}
 @extends('rankings.index')
 
-@section("scores")
+@section('ranking-header')
+    <div>
+        <select>
+            @foreach ($spotlights as $spotlight)
+                <option value="{{ $spotlight->chart_id }}">{{ $spotlight->name }}</option>
+            @endforeach
+        </select>
+    </div>
+@endsection
+
+@section('scores')
     <table class="ranking-page-table">
         <thead>
             <tr>
