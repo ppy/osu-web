@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
+use App\Models\Spotlight;
 use App\Models\UserStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Redirect;
@@ -62,6 +63,8 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
+        } elseif ($type === 'charts') {
+            return $this->spotlight();
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
@@ -125,5 +128,33 @@ class RankingController extends Controller
 
             return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction'));
         }
+    }
+
+    public function spotlight()
+    {
+        $mode = 'osu';
+        $type = 'charts';
+        $country = null;
+
+        $maxResults = static::MAX_RESULTS;
+        $maxPages = ceil($maxResults / static::PAGE_SIZE);
+        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
+
+        $spotlight = Spotlight::first();
+
+        $rows = $spotlight->userStats('osu')
+            ->orderBy('ranked_score', 'desc')
+            ->limit(static::PAGE_SIZE)
+            ->offset(static::PAGE_SIZE * ($page - 1));
+
+
+        $stats = \App\Models\UserStatistics\Osu::hydrate($rows->get()->all());
+        $total = min($rows->count(), $maxPages * static::PAGE_SIZE);
+
+        $scores = new LengthAwarePaginator($stats, $total, static::PAGE_SIZE, $page, [
+            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
+        ]);
+
+        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction'));
     }
 }
