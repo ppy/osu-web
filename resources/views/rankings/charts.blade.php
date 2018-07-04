@@ -18,13 +18,10 @@
 @extends('rankings.index')
 
 @section('ranking-header')
-    <div>
-        <select>
-            @foreach ($spotlights as $spotlight)
-                <option value="{{ $spotlight->chart_id }}">{{ $spotlight->name }}</option>
-            @endforeach
-        </select>
-    </div>
+    <div
+        class="js-react--spotlight-select"
+        data-select-options="{{ json_encode($selectOptions) }}"
+    ></div>
 @endsection
 
 @section('scores')

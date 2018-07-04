@@ -140,7 +140,16 @@ class RankingController extends Controller
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         $spotlight = Spotlight::first();
-        $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
+        $spotlights = Spotlight::orderBy('chart_id', 'desc')
+            ->get()
+            ->map(function ($s) {
+                return ['id' => $s->chart_id, 'text' => $s->name];
+            });
+
+        $selectOptions = [
+            'selected' => ['id' => $spotlight->chart_id, 'text' => $spotlight->name],
+            'options' => $spotlights,
+        ];
 
         // These models will not have the correct table name set on them
         // as they get overriden when Laravel hydrates them.
@@ -155,6 +164,6 @@ class RankingController extends Controller
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction', 'spotlights'));
+        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions'));
     }
 }
