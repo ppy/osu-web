@@ -39,6 +39,15 @@ class Spotlight extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+    public function beatmapsets(string $mode)
+    {
+        $beatmapsetIds = DB::connection('mysql-charts')
+            ->table($this->beatmapsetsTableName($mode))
+            ->pluck('beatmapset_id');
+
+        return Beatmapset::whereIn('beatmapset_id', $beatmapsetIds);
+    }
+
     /**
      * Returns a builder for best scores.
      * IMPORTANT: The models returned by the query will have the incorrect table set.
