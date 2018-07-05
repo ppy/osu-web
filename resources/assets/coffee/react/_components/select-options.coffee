@@ -20,10 +20,10 @@
 el = React.createElement
 
 
-class @SpotlightSelect extends React.PureComponent
+class @SelectOptions extends React.PureComponent
   constructor: (props) ->
     super props
-    @bn = @props.bn ? 'beatmap-discussions-user-filter'
+    @bn = @props.bn ? 'select-options'
 
     @state =
       showingSelector: false

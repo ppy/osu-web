@@ -113,7 +113,7 @@ reactTurbolinks.register 'blockButton', BlockButton, (target) ->
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
-reactTurbolinks.register 'spotlight-select', SpotlightSelect, (el) ->
+reactTurbolinks.register 'select-options', SelectOptions, (el) ->
   obj = JSON.parse(el.dataset.selectOptions)
   obj.bn = el.dataset.bn
   obj.onItemSelected = (item) ->
