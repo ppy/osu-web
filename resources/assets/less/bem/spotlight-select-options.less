@@ -17,5 +17,8 @@
  */
 
 .spotlight-select-options {
-  .select-options(spotlight-select-options);
+  .select-options(
+    @this: spotlight-select-options;
+    @background-color: rgba(27, 27, 27, 0.5)
+  );
 }

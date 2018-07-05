@@ -16,7 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- .select-options(@this: select-options) {
+ .select-options(
+   @this: select-options;
+   @background-color: @gray-blue;
+   @hover-color: #000;
+   @selected-color: #111
+) {
   &--selecting {
     z-index: @z-index--blackout-visible;
   }
@@ -36,11 +41,11 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: #000;
+      background-color: @hover-color;
     }
 
     &--selected {
-      background-color: #111;
+      background-color: @selected-color;
     }
 
     .@{this}__select & {
@@ -53,11 +58,11 @@
     .default-border-radius();
 
     font-size: 15px;
-    background-color: @gray-blue;
+    background-color: @background-color;
     box-shadow: 0 0 0 2px fade(#000, 25%);
 
     &:hover {
-      background-color: #000;
+      background-color: @hover-color;
     }
   }
 
@@ -71,7 +76,7 @@
     left: 0;
     margin-top: 5px;
     font-size: 12px;
-    background-color: @gray-blue;
+    background-color: @background-color;
 
     .@{this}--selecting & {
       display: block;
