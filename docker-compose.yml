@@ -18,7 +18,7 @@ services:
       - ./docker/nginx/nginx-osu-next:/etc/nginx/conf.d/default.conf
       - .:/data/osuweb
     ports:
-      - "8080:80"
+      - "${NGINX_PORT:-8080}:80"
   db:
     image: mysql:5.7
     volumes:
