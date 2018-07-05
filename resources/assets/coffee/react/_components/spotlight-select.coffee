@@ -91,8 +91,8 @@ class @SpotlightSelect extends React.PureComponent
     return if event.button != 0
     event.preventDefault()
 
-    # $.publish 'beatmapsetDiscussions:update', selectedUserId: user.id
     @setState showingSelector: false
+    @props.onItemSelected?(item)
 
 
   selectedItem: =>
