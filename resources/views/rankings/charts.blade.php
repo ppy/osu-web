@@ -20,6 +20,7 @@
 @section('ranking-header')
     <div
         class="js-react--select-options"
+        data-bn="spotlight-select-options"
         data-select-options="{{ json_encode($selectOptions) }}"
     ></div>
 @endsection
