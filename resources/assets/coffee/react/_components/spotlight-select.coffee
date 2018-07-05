@@ -19,29 +19,36 @@
 {a, i, div} = ReactDOMFactories
 el = React.createElement
 
-bn = 'beatmap-discussions-user-filter'
-
 
 class @SpotlightSelect extends React.PureComponent
   constructor: (props) ->
     super props
+    @bn = @props.bn ? 'beatmap-discussions-user-filter'
 
     @state =
       showingSelector: false
+
+
+  componentDidMount: =>
+    $(document).on "click.#{@bn}", @hideSelector
 
 
   componentDidUpdate: (_prevProps, prevState) =>
     Blackout.toggle(@state.showingSelector, 0.5) unless prevState.showingSelector == @state.showingSelector
 
 
+  componentWillUnmount: ->
+    $(document).off ".#{@bn}"
+
+
   render: =>
-    classNames = "#{bn} js-#{bn}"
-    classNames += " #{bn}--selecting" if @state.showingSelector
+    classNames = "#{@bn} js-#{@bn}"
+    classNames += " #{@bn}--selecting" if @state.showingSelector
 
     div
       className: classNames
       div
-        className: "#{bn}__select"
+        className: "#{@bn}__select"
         @renderItem
           children: [
             div
@@ -51,13 +58,13 @@ class @SpotlightSelect extends React.PureComponent
 
             div
               key: 'decoration'
-              className: "#{bn}__decoration",
+              className: "#{@bn}__decoration",
               i className: "fas fa-chevron-down"
           ]
           onClick: @toggleSelector
 
       div
-        className: "#{bn}__selector"
+        className: "#{@bn}__selector"
         for item in @props.options
           @renderOption item
 
@@ -76,8 +83,8 @@ class @SpotlightSelect extends React.PureComponent
 
 
   renderItem: ({ children, key, onClick, selected = false }) ->
-    classNames = "#{bn}__item"
-    classNames += " #{bn}__item--selected" if selected
+    classNames = "#{@bn}__item"
+    classNames += " #{@bn}__item--selected" if selected
 
     a
       children: children
@@ -85,6 +92,14 @@ class @SpotlightSelect extends React.PureComponent
       href: '#'
       key: key
       onClick: onClick
+
+
+  hideSelector: (e) =>
+    return if e.button != 0
+    return unless @state.showingSelector
+    return if $(e.target).closest(".js-#{@bn}").length
+
+    @setState showingSelector: false
 
 
   itemSelected: (event, item) ->

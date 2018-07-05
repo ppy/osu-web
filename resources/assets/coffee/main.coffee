@@ -115,6 +115,7 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 
 reactTurbolinks.register 'spotlight-select', SpotlightSelect, (el) ->
   obj = JSON.parse(el.dataset.selectOptions)
+  obj.bn = el.dataset.bn
   obj.onItemSelected = (item) ->
     params = "spotlight=#{item.id}"
     Turbolinks.visit("?#{params}")
