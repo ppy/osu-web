@@ -139,15 +139,15 @@ class RankingController extends Controller
         $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
-        $spotlight = Spotlight::first();
+        $spotlight = $this->getCurrentSpotlight();
         $spotlights = Spotlight::orderBy('chart_id', 'desc')
             ->get()
             ->map(function ($s) {
-                return ['id' => $s->chart_id, 'text' => $s->name];
+                return $this->optionFromSpotlight($s);
             });
 
         $selectOptions = [
-            'selected' => ['id' => $spotlight->chart_id, 'text' => $spotlight->name],
+            'selected' => $this->optionFromSpotlight($spotlight),
             'options' => $spotlights,
         ];
 
@@ -165,5 +165,18 @@ class RankingController extends Controller
         ]);
 
         return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions'));
+    }
+
+    private function getCurrentSpotlight() : Spotlight
+    {
+        $chartId = request('spotlight');
+        return presence($chartId)
+            ? Spotlight::findOrFail($chartId)
+            : Spotlight::orderBy('chart_id', 'desc')->first();
+    }
+
+    private function optionFromSpotlight(Spotlight $spotlight) : array
+    {
+        return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }
 }
