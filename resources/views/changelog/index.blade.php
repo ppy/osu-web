@@ -21,7 +21,7 @@
     <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
 
     <script id="json-builds" type="application/json">
-        {!! json_encode($builds) !!}
+        {!! json_encode($buildsJson) !!}
     </script>
 
     <script id="json-latest-builds" type="application/json">

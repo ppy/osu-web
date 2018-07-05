@@ -45,7 +45,7 @@ class ChangelogController extends Controller
                 return $this->chartConfig(null);
             });
 
-        $builds = json_collection(
+        $buildsJson = json_collection(
             Build::with([
                 'updateStream',
                 'defaultChangelogs.user',
@@ -55,7 +55,7 @@ class ChangelogController extends Controller
             ['changelog_entries', 'changelog_entries.github_user']
         );
 
-        return view('changelog.index', compact('chartConfig', 'builds'));
+        return view('changelog.index', compact('chartConfig', 'buildsJson'));
     }
 
     public function github()
