@@ -46,9 +46,9 @@ class UpdateStream extends Model
             ChangelogEntry::class, // target class
             Repository::class, // bridge class
             'stream_id', // column name in bridge linking to this
-            'repository', // column name in target linking to bridge
+            'repository_id', // column name in target linking to bridge
             null, // column name in this linking to bridge
-            'name' // column name in bridge linking to target
+            'id' // column name in bridge linking to target
         );
     }
 
