@@ -35,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'changelog listing',
+            '_from' => 'changes since :from',
+            '_from_to' => 'changes between :from and :to',
+            '_stream' => 'changes in :stream',
+            '_stream_from' => 'changes in :stream since :from',
+            '_stream_from_to' => 'changes in :stream between :from and :to',
+            '_stream_to' => 'changes in :stream up to :to',
+            '_to' => 'changes upto :to',
+        ],
+
         'title' => [
             '_' => 'Changelog :info',
             'info' => 'Listing',

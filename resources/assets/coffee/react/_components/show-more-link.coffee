@@ -20,13 +20,15 @@ el = React.createElement
 
 class @ShowMoreLink extends React.PureComponent
   render: =>
+    blockClass = osu.classWithModifiers('show-more-link', @props.modifiers)
+
     if @props.loading
-      div className: 'show-more-link', el Spinner
+      div className: blockClass, el Spinner
 
     else
       return null unless @props.hasMore
 
-      div className: 'show-more-link',
+      div className: blockClass,
         button
           type: 'button'
           onClick: @showMore
