@@ -24,7 +24,7 @@ use Cache;
 
 class LivestreamCollection
 {
-    const FEATURED_CACHE_KEY = 'featuredStream:arr';
+    const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
 
     private $streams;
 
@@ -36,8 +36,10 @@ class LivestreamCollection
     public function all()
     {
         if ($this->streams === null) {
-            $this->streams = Cache::remember('livestreams:arr', 5, function () {
-                return $this->download()['streams'] ?? [];
+            $this->streams = Cache::remember('livestreams:arr:v2', 5, function () {
+                return array_map(function ($rawStream) {
+                    return new Twitch\Stream($rawStream);
+                }, $this->download()['data'] ?? []);
             });
         }
 
@@ -46,7 +48,7 @@ class LivestreamCollection
 
     public function download()
     {
-        $streamsApi = 'https://api.twitch.tv/kraken/streams?stream_type=live&limit=40&offset=0&game=Osu!';
+        $streamsApi = 'https://api.twitch.tv/helix/streams?first=40&game_id=21465';
         $clientId = config('osu.twitch_client_id');
         $ch = curl_init();
 
@@ -79,7 +81,7 @@ class LivestreamCollection
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {
-                if ((string) $stream['_id'] !== $featuredStreamId) {
+                if ($stream->data['id'] !== $featuredStreamId) {
                     continue;
                 }
 

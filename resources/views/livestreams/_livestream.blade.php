@@ -16,18 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="livestream-item">
-    <a class="livestream-item__content" href="{{ $stream['channel']['url'] }}">
+    <a class="livestream-item__content" href="{{ $stream->url() }}">
         <div
             class="livestream-item__image"
-            style="background-image: url('{{ $stream['preview']['medium'] }}');"
+            style="background-image: url('{{ $stream->preview(640, 360) }}');"
         ></div>
 
         <p class="livestream-item__text livestream-item__text--name">
-            {{ $stream['channel']['name'] }}
+            {{ $stream->username() }}
         </p>
 
         <p class="livestream-item__text livestream-item__text--detail">
-            {{ $stream['viewers'] }} <i class="fas fa-eye"></i>
+            {{ $stream->data['viewer_count'] }} <i class="fas fa-eye"></i>
         </p>
     </a>
 
@@ -38,7 +38,7 @@
                 class="btn-circle"
                 data-remote="1"
                 data-method="POST"
-                data-url="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
+                data-url="{{ route('livestreams.promote', ['id' => $stream->data['id']]) }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-thumbs-up"></i>
