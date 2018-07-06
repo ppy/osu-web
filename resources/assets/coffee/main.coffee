@@ -75,7 +75,6 @@ $(document).on 'turbolinks:load', ->
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
-@twitchPlayer ?= new TwitchPlayer
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
@@ -87,6 +86,7 @@ $(document).on 'turbolinks:load', ->
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
+@twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
