@@ -22,7 +22,7 @@
     <div
         id="{{ $playerId }}"
         class="js-twitch-player livestream-featured__content hidden"
-        data-channel="{{ $featuredStream->username() }}"
+        data-channel="{{ $featuredStream->user['login'] }}"
     ></div>
 
     <a
@@ -34,7 +34,7 @@
     >
         <div class="livestream-featured__info">
             <h3 class="livestream-featured__text livestream-featured__text--name">
-                {{ $featuredStream->username() }}
+                {{ $featuredStream->user['display_name'] }}
             </h3>
 
             <p class="livestream-featured__text livestream-featured__text--detail">

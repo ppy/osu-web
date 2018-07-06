@@ -23,26 +23,17 @@ namespace App\Models\Twitch;
 class Stream
 {
     public $data = null;
-    private $username = null;
+    public $user = null;
 
-    public function __construct($data)
+    public function __construct($data, $user)
     {
         $this->data = $data;
-    }
-
-    public function username()
-    {
-        if ($this->username === null) {
-            // FIXME: shady method of getting username without fetching user object
-            $this->username = preg_replace('/(^.*live_user_|-\{width\}x.*$)/', '', $this->data['thumbnail_url']);
-        }
-
-        return $this->username;
+        $this->user = $user;
     }
 
     public function url()
     {
-        return "https://twitch.tv/{$this->username()}";
+        return "https://twitch.tv/{$this->user['login']}";
     }
 
     public function preview($width, $height)

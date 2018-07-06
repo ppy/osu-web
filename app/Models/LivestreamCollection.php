@@ -37,18 +37,49 @@ class LivestreamCollection
     {
         if ($this->streams === null) {
             $this->streams = Cache::remember('livestreams:arr:v2', 5, function () {
-                return array_map(function ($rawStream) {
-                    return new Twitch\Stream($rawStream);
-                }, $this->download()['data'] ?? []);
+                $streams = $this->downloadStreams()['data'] ?? [];
+
+                $userIds = array_map(function ($stream) {
+                    return $stream['user_id'];
+                }, $streams);
+
+                $users = [];
+
+                foreach ($this->downloadUsers($userIds)['data'] ?? [] as $user) {
+                    $users[$user['id']] = $user;
+                }
+
+                return array_map(function ($stream) use ($users) {
+                    return new Twitch\Stream($stream, $users[$stream['user_id']]);
+                }, $streams);
             });
         }
 
         return $this->streams;
     }
 
-    public function download()
+    public function downloadStreams()
     {
-        $streamsApi = 'https://api.twitch.tv/helix/streams?first=40&game_id=21465';
+        return $this->download('streams?first=40&game_id=21465');
+    }
+
+    public function downloadUsers($userIds)
+    {
+        if (count($userIds) === 0) {
+        }
+
+        $paramString = '';
+
+        foreach ($userIds as $id) {
+            $paramString .= "&id={$id}";
+        }
+
+        return $this->download("users?{$paramString}");
+    }
+
+    public function download($api)
+    {
+        $url = "https://api.twitch.tv/helix/{$api}";
         $clientId = config('osu.twitch_client_id');
         $ch = curl_init();
 
@@ -57,7 +88,7 @@ class LivestreamCollection
                 "Client-ID: {$clientId}",
             ],
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL => $streamsApi,
+            CURLOPT_URL => $url,
             CURLOPT_FAILONERROR => true,
         ]);
 
