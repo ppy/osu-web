@@ -158,13 +158,18 @@ class RankingController extends Controller
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
 
+        $beatmapsets = $spotlight->beatmapsets($mode)->get();
+
         $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
 
         $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions'));
+        return view(
+            "rankings.{$type}",
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'beatmapsets')
+        );
     }
 
     private function getCurrentSpotlight() : Spotlight
