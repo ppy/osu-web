@@ -81,15 +81,10 @@ class LivestreamCollection
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {
-                if ($stream->data['id'] !== $featuredStreamId) {
-                    continue;
+                if ($stream->data['id'] === $featuredStreamId) {
+                    return $stream;
                 }
-
-                $featuredStream = $stream;
-                break;
             }
         }
-
-        return $featuredStream ?? null;
     }
 }
