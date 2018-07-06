@@ -58,6 +58,10 @@ class Build extends Model
             $stream = $repository->mainUpdateStream;
         }
 
+        if (!isset($stream)) {
+            return;
+        }
+
         $build = $stream->builds()->firstOrCreate([
             'version' => $version,
         ]);
