@@ -298,30 +298,26 @@ class ProfilePage.Main extends React.PureComponent
         component: ProfilePage.AccountStanding
 
 
-  showMore: (e, {showMoreLink}) =>
-    propertyName = showMoreLink.dataset.showMore
-    url = showMoreLink.dataset.showMoreUrl
-    offset = @state[propertyName].length
-    perPage = parseInt(showMoreLink.dataset.showMorePerPage)
-    maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
+  showMore: (e, {name, url, perPage}) =>
+    offset = @state[name].length
 
     paginationState = _.cloneDeep @state.showMorePagination
-    paginationState[propertyName] ?= {}
-    paginationState[propertyName].loading = true
+    paginationState[name] ?= {}
+    paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[propertyName]).concat(data)
+        state = _.cloneDeep(@state[name]).concat(data)
         hasMore = data.length > perPage
 
         state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = hasMore
+        paginationState[name].loading = false
+        paginationState[name].hasMore = hasMore
 
         @setState
-          "#{propertyName}": state
+          "#{name}": state
           showMorePagination: paginationState
 
 

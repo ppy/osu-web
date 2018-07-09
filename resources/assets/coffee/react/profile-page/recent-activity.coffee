@@ -32,11 +32,12 @@ class ProfilePage.RecentActivity extends React.PureComponent
             @props.recentActivity.map @_renderEntry
           div
             className: 'profile-extra-entries__item'
-            el ProfilePage.ShowMoreLink,
-              collection: @props.recentActivity
-              propertyName: 'recentActivity'
-              pagination: @props.pagination['recentActivity']
-              route: laroute.route 'users.recent-activity', user: @props.user.id
+            el ShowMoreLink,
+              event: 'profile:showMore'
+              name: 'recentActivity'
+              hasMore: @props.pagination.recentActivity.hasMore
+              loading: @props.pagination.recentActivity.loading
+              url: laroute.route 'users.recent-activity', user: @props.user.id
       else
         p className: 'profile-extra-entries', osu.trans('events.empty')
 

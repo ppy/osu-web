@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,21 @@
 .show-more-link {
   display: block;
   width: 100%;
-  text-align: center;
   padding-top: 10px;
+  text-align: center;
+
+  &__link {
+    .reset-input();
+    display: block;
+    color: @link-color;
+    text-align: center;
+    width: 100%;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @link-hover-color;
+      text-decoration: underline;
+    }
+  }
 }
