@@ -15,13 +15,22 @@ $factory->define(App\Models\Spotlight::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'month', function (Faker\Generator $faker) {
-    $startDate = $faker->dateTimeBetween('-6 years', 'now');
+$factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
+    $startDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'));
     $endDate = Carbon\Carbon::instance($startDate)->addMonths(1);
 
     return  [
-        'acronym' => "MONTH{$endDate->format('ym')}",
-        'name' => "Spotlight {$endDate->format('F Y')}",
+        // Monthly Spotlight is generated for the previous month.
+        'acronym' => function (array $self) {
+            $date = $self['start_date']->copy()->subMonths(1);
+
+            return "MONTH{$date->format('ym')}";
+        },
+        'name' => function (array $self) {
+            $date = $self['start_date']->copy()->subMonths(1);
+
+            return "Spotlight {$date->format('F Y')}";
+        },
         'start_date' => $startDate,
         'end_date' => $endDate,
         'mode_specific' => true,
