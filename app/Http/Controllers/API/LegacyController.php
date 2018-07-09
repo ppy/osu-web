@@ -185,11 +185,13 @@ class LegacyController extends BaseController
         $mode = intval(Request::input('m', 0));
         $type = Request::input('type', 'id');
 
-        $scores = $best === true ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
+        $scoresClass = $best === true ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
 
-        if ($scores === null) {
+        if ($scoresClass === null) {
             return;
         }
+
+        $scores = $scoresClass::query();
 
         if (present($user_id)) {
             $user = User::lookup($user_id, $type);
