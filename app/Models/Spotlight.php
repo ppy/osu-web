@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Models\Beatmap;
 use App\Models\Score\Best as ScoreBest;
 use App\Models\UserStatistics;
 use DB;
@@ -116,7 +117,7 @@ class Spotlight extends Model
         \Log::debug('creating tables');
         // create tables
         DB::connection('mysql-charts')->transaction(function () {
-            $modes = ['osu', 'fruits', 'taiko', 'mania'];
+            $modes = array_keys(Beatmap::MODES);
             // beatmapsets
             if ($this->mode_specific) {
                 foreach ($modes as $mode) {
