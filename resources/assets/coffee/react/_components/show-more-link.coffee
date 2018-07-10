@@ -28,12 +28,11 @@ class @ShowMoreLink extends React.PureComponent
     else
       return null unless @props.hasMore
 
-      div className: blockClass,
-        button
-          type: 'button'
-          onClick: @showMore
-          className: 'show-more-link__link'
-          osu.trans('common.buttons.show_more')
+      button
+        type: 'button'
+        onClick: @showMore
+        className: "#{blockClass} show-more-link--link"
+        osu.trans('common.buttons.show_more')
 
 
   showMore: (e) =>

@@ -17,35 +17,28 @@
  */
 
 .show-more-link {
-  @_top: show-more-link;
-
+  .reset-input();
   display: block;
   width: 100%;
   padding-top: 10px;
   text-align: center;
 
-  &--changelog-index {
-    padding: 40px 0;
-  }
-
-  &__link {
-    .reset-input();
-    display: block;
+  // Declared early so color and other styles can be overridden by other modifiers.
+  &--link {
     color: @link-color;
-    text-align: center;
-    width: 100%;
 
     .link-hover({
       color: @link-hover-color;
       text-decoration: underline;
     });
+  }
 
-    .@{_top}--changelog-index & {
+  &--changelog-index {
+    padding: 40px 0;
+    color: #fff;
+
+    .link-hover({
       color: #fff;
-
-      .link-hover({
-        color: #fff;
-      });
-    }
+    });
   }
 }

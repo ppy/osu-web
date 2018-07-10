@@ -43,7 +43,7 @@ return [
             '_stream_from' => 'changes in :stream since :from',
             '_stream_from_to' => 'changes in :stream between :from and :to',
             '_stream_to' => 'changes in :stream up to :to',
-            '_to' => 'changes upto :to',
+            '_to' => 'changes up to :to',
         ],
 
         'title' => [
