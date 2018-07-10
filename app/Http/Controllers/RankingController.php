@@ -37,7 +37,8 @@ class RankingController extends Controller
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
     const SPOTLIGHT_MAX_RESULTS = 40;
-    const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
+    const RANKING_TYPES = ['performance', 'monthly', 'charts', 'score', 'country'];
+    const SPOTLIGHT_TYPES = ['charts', 'monthly'];
 
     public function index($mode = 'osu', $type = null)
     {
@@ -65,8 +66,8 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
-        } elseif ($type === 'charts') {
-            return $this->spotlight($mode);
+        } elseif (in_array($type, static::SPOTLIGHT_TYPES, true)) {
+            return $this->spotlight($mode, $type);
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
@@ -132,16 +133,16 @@ class RankingController extends Controller
         }
     }
 
-    public function spotlight($mode)
+    public function spotlight($mode, $type)
     {
-        $type = 'charts';
         $country = null;
 
         $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         $spotlight = $this->getCurrentSpotlight();
-        $spotlights = Spotlight::notMonthly()->orderBy('chart_id', 'desc')
+        $spotlights = $this->spotlightQueryBase()
+            ->orderBy('chart_id', 'desc')
             ->get()
             ->map(function ($s) {
                 return $this->optionFromSpotlight($s);
@@ -174,7 +175,7 @@ class RankingController extends Controller
         ]);
 
         return view(
-            "rankings.{$type}",
+            "rankings.charts",
             compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'beatmapsets')
         );
     }
@@ -182,9 +183,15 @@ class RankingController extends Controller
     private function getCurrentSpotlight() : Spotlight
     {
         $chartId = request('spotlight');
+
         return presence($chartId)
-            ? Spotlight::notMonthly()->findOrFail($chartId)
-            : Spotlight::notMonthly()->orderBy('chart_id', 'desc')->first();
+            ? $this->spotlightQueryBase()->findOrFail($chartId)
+            : $this->spotlightQueryBase()->orderBy('chart_id', 'desc')->first();
+    }
+
+    private function spotlightQueryBase()
+    {
+        return request('type') === 'monthly' ? Spotlight::monthly() : Spotlight::notMonthly();
     }
 
     private function optionFromSpotlight(Spotlight $spotlight) : array
