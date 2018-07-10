@@ -24,6 +24,7 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
+use App\Models\User;
 use App\Models\UserStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Redirect;
@@ -155,6 +156,12 @@ class RankingController extends Controller
         // as they get overriden when Laravel hydrates them.
         $stats = $spotlight->userStats($mode)
             ->with(['user', 'user.country'])
+            ->whereHas('user', function ($userQuery) {
+                $dummy = new User;
+                $userQuery
+                    ->from("{$dummy->getConnection()->getDatabaseName()}.{$dummy->getTable()}")
+                    ->default();
+            })
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
 
