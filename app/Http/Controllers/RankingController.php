@@ -141,7 +141,7 @@ class RankingController extends Controller
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         $spotlight = $this->getCurrentSpotlight();
-        $spotlights = Spotlight::orderBy('chart_id', 'desc')
+        $spotlights = Spotlight::notMonthly()->orderBy('chart_id', 'desc')
             ->get()
             ->map(function ($s) {
                 return $this->optionFromSpotlight($s);
@@ -183,8 +183,8 @@ class RankingController extends Controller
     {
         $chartId = request('spotlight');
         return presence($chartId)
-            ? Spotlight::findOrFail($chartId)
-            : Spotlight::orderBy('chart_id', 'desc')->first();
+            ? Spotlight::notMonthly()->findOrFail($chartId)
+            : Spotlight::notMonthly()->orderBy('chart_id', 'desc')->first();
     }
 
     private function optionFromSpotlight(Spotlight $spotlight) : array

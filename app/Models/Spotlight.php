@@ -42,6 +42,16 @@ class Spotlight extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+    public function scopeMonthly($query)
+    {
+        return $query->where('type', 'monthly');
+    }
+
+    public function scopeNotMonthly($query)
+    {
+        return $query->where('type', '!=', 'monthly');
+    }
+
     public function beatmapsets(string $mode)
     {
         $beatmapsetIds = DB::connection('mysql-charts')
