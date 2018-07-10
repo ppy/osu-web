@@ -158,9 +158,14 @@
 
   timeago: (time) ->
     el = document.createElement('time')
-    el.classList.add 'timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
+
+    if moment(0).isSame(time)
+      el.textContent = osu.trans('common.time.never')
+    else
+      el.classList.add 'timeago'
+      el.setAttribute 'datetime', time
+      el.textContent = time
+
     el.outerHTML
 
 

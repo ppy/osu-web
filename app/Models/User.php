@@ -626,6 +626,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
+    public function isNeverOnline()
+    {
+        return Carbon::createFromTimestampUTC(0)->diffInSeconds($this->user_lastvisit) === 0;
+    }
+
     public function isPrivileged()
     {
         return $this->isAdmin()
