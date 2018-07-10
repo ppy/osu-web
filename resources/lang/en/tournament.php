@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'There are no tournaments running at the moment, please check back later!',
+        'registration_period' => 'Registration: :start to :end',
+
         'header' => [
             'subtitle' => 'A listing of active, officially-recognised tournaments',
             'title' => 'Community Tournaments',
         ],
-        'none_running' => 'There are no tournaments running at the moment, please check back later!',
-        'registration_period' => 'Registration: :start to :end',
+
+        'item' => [
+            'registered' => 'Registered players',
+        ],
 
         'state' => [
             'current' => 'Active Tournaments',
