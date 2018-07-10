@@ -19,7 +19,7 @@
 {button, div, h1, p, span} = ReactDOMFactories
 el = React.createElement
 
-changelogBuildGrouping = (builds) ->
+groupChangelogBuilds = (builds) ->
   _.groupBy builds, (build) ->
     # Assumes created_at an iso8601 datetime string and removes the time portion.
     # Example: 2018-07-06T05:43:21+00:00
@@ -64,7 +64,7 @@ class ChangelogIndex.Main extends React.PureComponent
         div className: 'js-changelog-chart'
 
         div className: 'builds',
-          for own date, builds of changelogBuildGrouping(@state.builds)
+          for own date, builds of groupChangelogBuilds(@state.builds)
             div
               key: date
               className: 'builds__group',
