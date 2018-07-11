@@ -23,6 +23,7 @@ namespace App\Models;
 use App\Models\Beatmap;
 use App\Models\Score\Best as ScoreBest;
 use App\Models\UserStatistics;
+use Carbon\Carbon;
 use DB;
 use Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -136,13 +137,20 @@ class Spotlight extends Model
         }
     }
 
+    public function scopeInYearRange($query, $year)
+    {
+        $period = (new Carbon)->year($year);
+
+        return $query
+            ->where('start_date', '>=', $period->startOfYear()->copy()->addMonth(1))
+            ->where('start_date', '<=', $period->endOfYear()->copy()->addMonth(1));
+    }
+
     public function getSpotlightsInYearRange()
     {
         $period = $this->getPeriod();
         if ($period !== null) {
-            return Spotlight::monthly()
-                ->where('start_date', '>=', $this->getPeriod()->startOfYear()->addMonth(1))
-                ->where('start_date', '<=', $this->getPeriod()->endOfYear()->addMonth(1));
+            return Spotlight::monthly()->inYearRange($period->year);
         }
     }
 

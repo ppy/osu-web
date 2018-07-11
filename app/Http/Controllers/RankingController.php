@@ -140,7 +140,8 @@ class RankingController extends Controller
         $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
-        $spotlight = $this->getCurrentSpotlight();
+        list($spotlight, $range) = $this->getSpotlightAndRange();
+
         $spotlights = $this->spotlightQueryBase()
             ->orderBy('chart_id', 'desc')
             ->get();
@@ -173,21 +174,33 @@ class RankingController extends Controller
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        $range = $spotlight->getSpotlightsInYearRange()->get();
-
         return view(
             "rankings.{$type}",
             compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'range', 'spotlight', 'spotlights', 'beatmapsets')
         );
     }
 
-    private function getCurrentSpotlight() : Spotlight
+    private function getSpotlightAndRange()
     {
-        $chartId = request('spotlight');
+        $chartId = get_int(request('spotlight'));
+        $before = get_int(request('before'));
+        $after = get_int(request('after'));
 
-        return presence($chartId)
-            ? $this->spotlightQueryBase()->findOrFail($chartId)
-            : $this->spotlightQueryBase()->orderBy('chart_id', 'desc')->first();
+        if ($chartId !== null) {
+            $spotlight = $this->spotlightQueryBase()->findOrFail($chartId);
+            $range = $spotlight->getSpotlightsInYearRange()->get();
+        } elseif ($before !== null) {
+            $range = $this->spotlightQueryBase()->inYearRange($before - 1)->get();
+            $spotlight = $range->last();
+        } elseif ($after !== null) {
+            $range = $this->spotlightQueryBase()->inYearRange($after + 1)->get();
+            $spotlight = $range->first();
+        } else {
+            $spotlight = $this->spotlightQueryBase()->orderBy('chart_id', 'desc')->first();
+            $range = $spotlight->getSpotlightsInYearRange()->get();
+        }
+
+        return [$spotlight, $range];
     }
 
     private function spotlightQueryBase()

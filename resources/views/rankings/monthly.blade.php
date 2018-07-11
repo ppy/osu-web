@@ -19,9 +19,21 @@
 
 @section('ranking-header')
     <div class="spotlight-period-pager">
+        @php
+            $prevUrl = route('rankings', [
+                'type' => 'monthly',
+                'mode' => request('mode'),
+                'before' => $spotlight->getPeriod()->year,
+            ]);
+            $nextUrl = route('rankings', [
+                'type' => 'monthly',
+                'mode' => request('mode'),
+                'after' => $spotlight->getPeriod()->year,
+            ]);
+        @endphp
         <a
             class="spotlight-period-pager__more"
-            href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'year' => $spotlight->getPeriod()->year - 1]) }}"
+            href="{{ $prevUrl }}"
         >
             <span class="fas fa-angle-left"></span>
         </a>
@@ -40,7 +52,7 @@
         @endforeach
         <a
             class="spotlight-period-pager__more"
-            href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'year' => $spotlight->getPeriod()->year + 1]) }}"
+            href="{{ $nextUrl }}"
         >
             <span class="fas fa-angle-right"></span>
         </a>
