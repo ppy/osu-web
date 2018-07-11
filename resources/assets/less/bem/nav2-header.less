@@ -35,6 +35,7 @@
     height: @nav2-header-image-height;
     background-color: fade(#000, 70%);
     transition-duration: 0s;
+    z-index: @z-index--menu-bg;
 
     &[data-visibility=hidden] {
       transition-duration: 250ms;
@@ -60,5 +61,19 @@
     background-image: url('/images/layout/nav2-background.png');
     background-position: bottom center;
     background-repeat: repeat-x;
+    z-index: @z-index--menu-bg;
+
+    .@{_top}--restricted & {
+      .at2x-simple('/images/layout/nav2-bg/red.png');
+
+      &::before {
+        content: '';
+        .full-size();
+        height: 5px;
+        background-image: url('/images/layout/caution-bar.png');
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
