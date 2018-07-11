@@ -143,14 +143,13 @@ class RankingController extends Controller
         $spotlight = $this->getCurrentSpotlight();
         $spotlights = $this->spotlightQueryBase()
             ->orderBy('chart_id', 'desc')
-            ->get()
-            ->map(function ($s) {
-                return $this->optionFromSpotlight($s);
-            });
+            ->get();
 
         $selectOptions = [
             'selected' => $this->optionFromSpotlight($spotlight),
-            'options' => $spotlights,
+            'options' => $spotlights->map(function ($s) {
+                return $this->optionFromSpotlight($s);
+            }),
         ];
 
         // These models will not have the correct table name set on them
@@ -175,8 +174,8 @@ class RankingController extends Controller
         ]);
 
         return view(
-            "rankings.charts",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'beatmapsets')
+            "rankings.{$type}",
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlights', 'beatmapsets')
         );
     }
 

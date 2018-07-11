@@ -122,6 +122,18 @@ class Spotlight extends Model
         }
     }
 
+    /**
+     * Gets the period the monthly spotlight is for.
+     * This is not the same as the spotlight's running duration.
+     *
+     * @return Carbon\Carbon
+     */
+    public function getPeriod()
+    {
+        // or maybe parse acronym?
+        return $this->start_date->copy()->subMonth(1)->startOfMonth();
+    }
+
     public function createTables()
     {
         \Log::debug('creating tables');
