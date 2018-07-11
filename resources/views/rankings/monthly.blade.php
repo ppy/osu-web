@@ -19,10 +19,17 @@
 
 @section('ranking-header')
     <div class="spotlight-period-pager">
-        @foreach ($spotlights as $s)
+        <a
+            class="spotlight-period-pager__more"
+            href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'year' => $spotlight->getPeriod()->year - 1]) }}"
+        >
+            <span class="fas fa-angle-left"></span>
+        </a>
+        @foreach ($range as $s)
             <a
                 class="spotlight-period-pager__item {{ $spotlight->chart_id === $s->chart_id ? 'spotlight-period-pager__item--selected' : '' }}"
-                href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'spotlight' => $s->chart_id]) }}">
+                href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'spotlight' => $s->chart_id]) }}"
+            >
                 <div class="spotlight-period-pager__month">
                     {{ $s->getPeriod()->format('m') }}
                 </div>
@@ -31,6 +38,12 @@
                 </div>
             </a>
         @endforeach
+        <a
+            class="spotlight-period-pager__more"
+            href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'year' => $spotlight->getPeriod()->year + 1]) }}"
+        >
+            <span class="fas fa-angle-right"></span>
+        </a>
     </div>
 @endsection
 

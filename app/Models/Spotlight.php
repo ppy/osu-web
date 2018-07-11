@@ -131,7 +131,19 @@ class Spotlight extends Model
     public function getPeriod()
     {
         // or maybe parse acronym?
-        return $this->start_date->copy()->subMonth(1)->startOfMonth();
+        if ($this->start_date !== null) {
+            return $this->start_date->copy()->subMonth(1)->startOfMonth();
+        }
+    }
+
+    public function getSpotlightsInYearRange()
+    {
+        $period = $this->getPeriod();
+        if ($period !== null) {
+            return Spotlight::monthly()
+                ->where('start_date', '>=', $this->getPeriod()->startOfYear()->addMonth(1))
+                ->where('start_date', '<=', $this->getPeriod()->endOfYear()->addMonth(1));
+        }
     }
 
     public function createTables()

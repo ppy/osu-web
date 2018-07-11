@@ -173,9 +173,11 @@ class RankingController extends Controller
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
+        $range = $spotlight->getSpotlightsInYearRange()->get();
+
         return view(
             "rankings.{$type}",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlight', 'spotlights', 'beatmapsets')
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'range', 'spotlight', 'spotlights', 'beatmapsets')
         );
     }
 
