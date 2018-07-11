@@ -175,7 +175,7 @@ class RankingController extends Controller
 
         return view(
             "rankings.{$type}",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlights', 'beatmapsets')
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlight', 'spotlights', 'beatmapsets')
         );
     }
 

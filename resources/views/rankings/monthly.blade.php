@@ -19,12 +19,16 @@
 
 @section('ranking-header')
     <div class="spotlight-period-pager">
-        @foreach ($spotlights as $spotlight)
+        @foreach ($spotlights as $s)
             <a
-                class="spotlight-period-pager__item"
-                href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'spotlight' => $spotlight->chart_id]) }}">
-                <div class="spotlight-period-pager__month">{{ $spotlight->getPeriod()->format('m') }}</div>
-                <div class="spotlight-period-pager__year">{{ $spotlight->getPeriod()->format('Y') }}</div>
+                class="spotlight-period-pager__item {{ $spotlight->chart_id === $s->chart_id ? 'spotlight-period-pager__item--selected' : '' }}"
+                href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'spotlight' => $s->chart_id]) }}">
+                <div class="spotlight-period-pager__month">
+                    {{ $s->getPeriod()->format('m') }}
+                </div>
+                <div class="spotlight-period-pager__year">
+                    {{ $s->getPeriod()->format('Y') }}
+                </div>
             </a>
         @endforeach
     </div>
