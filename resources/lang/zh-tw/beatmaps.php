@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => '在此處輸入以發佈至整體 (:version)',
+            'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
+            'timeline' => '在此處輸入以發佈至時間線 (:version)',
         ],
 
         'message_type' => [
@@ -173,7 +173,7 @@ return [
         'search' => [
             'prompt' => '輸入關鍵字...',
             'options' => '更多搜尋選項',
-            'supporter_filter' => '',
+            'supporter_filter' => '按 :filters 篩選需要擁有有效的贊助者標籤',
             'not-found' => '沒有結果',
             'not-found-quote' => '姆....，什麼也沒有。',
             'filters' => [
@@ -198,8 +198,8 @@ return [
                 'nominations' => '提名狀態',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => '按 :filters 篩選需先成為 :link',
+                'link_text' => '贊助者',
             ],
         ],
         'mode' => '模式',

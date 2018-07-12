@@ -23,17 +23,17 @@ return [
     'generic' => '修復已知問題並做了改進.',
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited 名用戶上線',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => '作者：:user',
     ],
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => '更新記錄 :info',
+            'info' => '列表',
         ],
     ],
 

@@ -32,8 +32,8 @@ return [
 
     'index' => [
         'title' => [
-            '_' => 'Changelog :info',
-            'info' => 'Gösteriliyor',
+            '_' => 'Değişiklikler :info',
+            'info' => 'Listesi',
         ],
     ],
 

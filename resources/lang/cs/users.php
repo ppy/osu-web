@@ -46,12 +46,12 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
+        'banner_text' => 'Uživatel byl zablokován.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'skrýt profil',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'zobrazit profil',
-        'too_many' => '',
+        'too_many' => 'Dosažen limit blockovaných uživatelů.',
         'button' => [
             'block' => 'blokovat',
             'unblock' => 'odblokovat',
@@ -109,7 +109,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Členem od {date}',
         'lastvisit' => 'Naposledy viděn :date',
-        'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zablokován)',
+        'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_age' => ':age',
         'origin_country_age' => ':age z :country',
         'origin_country' => 'Z :country',

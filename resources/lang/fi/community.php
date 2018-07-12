@@ -25,25 +25,33 @@ return [
             'big_description' => 'Rakastatko osu!:a?<br/>
                                 Tue osu!:n kehittäjää :D',
             'small_description' => '',
-            'support_button' => 'Haluan tukea peliä osu!',
+            'support_button' => 'Haluan tukea osu!:a',
         ],
 
-        'dev_quote' => '',
+        'dev_quote' => 'osu! on täysin ilmainen peli, mutta sen pystyssä pitäminen ei todellakaan ole ilmaista.
+        Palvelimien järjestämisen ja korkealaatuisen kansainvälisen kaistan lisäksi järjestelmän -ja yhteisön ylläpito,  
+        palkintojen tarjoaminen kilpailuihin, tukipyyntöihin vastaaminen ja yleisesti porukan pitäminen tyytyväisenä kuluttaa huomattavan summan rahaa!
+        Äläkä unohda, teemme tämän kaiken ilman mainoksia, työkalupalkkeja tai vastaavia.
+            <br/><br/>Minä, joka yleisimmin tunnetaan nimellä "peppy" pitää osun! toiminnassa suurilta osin yksinään.
+            Jouduin Lopettamaan päivätyöni pysyäkseni osun! mukana
+            ja silti itse asettamieni laatuvaatimusten pitäminen on ajoittain hankalaa.
+            Haluaisin henkilökohtaisesti kiittää kaikkia, jotka ovat tukeneet osun! toimintaa tähän mennessä 
+            kuten myös heitä, jotka tukevat tätä loistavaa peliä ja yhteisöä tulevaisuudessa :).',
 
         'supporter_status' => [
-            'contribution' => 'Kiitos sinun tuesta tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tagi ostoksillasi!',
-            'gifted' => ':giftedTags tagiostoksistasi lahjoitettiin (kokonaisuudesta :giftedDollars lahjoitettu), kuinka anteliasta!',
-            'not_yet' => "Sinulla ei ole tukijan merkkiä vielä :(",
+            'contribution' => 'Kiitos tuestasi tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tukijaostoksella!',
+            'gifted' => 'Tagiostoksistasi :giftedTags on lahjoitettu (yhteensä :giftedDollars), kuinka anteliasta!',
+            'not_yet' => "Et vielä ole Tukija :(",
             'title' => 'Nykyinen tukija-tila',
-            'valid_until' => 'Sinun nykyinen tukijan tagi on voimassa :date asti!',
-            'was_valid_until' => 'Sinun nykyinen tukijan tagi on voimassa :date asti.',
+            'valid_until' => 'Nykyinen tukijatagi on voimassa :date asti!',
+            'was_valid_until' => 'Tukijatagisi oli voimassa :date asti.',
         ],
 
         'why_support' => [
-            'title' => 'Miksi tukea peliä osu!?',
+            'title' => 'Miksi tukisin osu!:a?',
             'blocks' => [
                 'dev' => 'Kehitetty ja ylläpidetty yhden australialaisen henkilön voimin',
-                'time' => 'Vie niin paljon aikaa ylläpitää, että sitä ei voi kutsua enään "harrastukseksi".',
+                'time' => 'Ylläpito on niin aikaavievää, että osu!:a ei voi kutsua enään "harrastukseksi".',
                 'ads' => 'Mainoksia ei ole missään. <br/><br/>
  Toisin kuin 99.95% verkosta, me emme tee voittoa tunkemalla asioita naamallesi.',
                 'goodies' => 'Sinä saat ylimääräisiä ominaisuuksia käyttöösi!',
@@ -51,25 +59,25 @@ return [
         ],
 
         'perks' => [
-            'title' => 'Oh? Mitä minä saan?!',
+            'title' => 'Ai? Mitä saan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'nopea ja helppo tapa etsiä rytmikarttoja ilman pelistä poistumista.',
+                'description' => 'nopea ja helppo tapa etsiä beatmappejä ilman tarvetta poistua pelistä.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Automaattiset lataukset',
-                'description' => 'Automaattiset lataukset pelatessa moninpeliä, katsoessa muita pelaajia tai klikatessa linkkiä keskustelussa!',
+                'title' => 'Automaattilataukset',
+                'description' => 'Automaattilataus moninpelissä, katsoessa muita pelaajia tai klikatessa linkkejä keskusteluissa!',
             ],
 
             'upload_more' => [
                 'title' => 'Lähetä lisää',
-                'description' => '',
+                'description' => 'Lisäpaikkoja vireillä oleville beatmapeille jokaista hyväksyttyä beatmappiä vastaan. (Max. 10)',
             ],
 
             'early_access' => [
                 'title' => 'Ennakkojulkaisu',
-                'description' => 'Ennenaikaisiin päivityksiin käsiksi pääseminen, missä sinä voit kokeilla uusia toimintoja ennen niiden julkaisua kaikille!',
+                'description' => 'Pääsy uusimpiin versioihin, joissa voit kokeilla uusia ominaisuuksia ennen päivitysten julkaisua!',
             ],
 
             'customisation' => [
@@ -78,13 +86,13 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Rytmikarttojen suodattimet',
-                'description' => 'Suodata beatmappeja pelattujen ja pelaamattomien ja ansaitsemansa sjoituksen mukaan.',
+                'title' => 'Beatmappien Suodatus',
+                'description' => 'Suodata beatmappien hakua pelatun, pelaamattoman sekä kartassa saavutetun luokituksen mukaan.',
             ],
 
             'yellow_fellow' => [
                 'title' => 'Keltainen Kaveri',
-                'description' => 'Ole tunnistettavissa pelissä sinun uudella kirkkalla keltaisella käyttäjänimen värillä.',
+                'description' => 'Sinut tunnistaa pelinsisäisissä keskusteluissa kirkkaankeltaisesta käyttäjänimen väristä.',
             ],
 
             'speedy_downloads' => [
@@ -94,22 +102,22 @@ return [
 
             'change_username' => [
                 'title' => 'Vaihda käyttäjänimeä',
-                'description' => 'Kyky vaihtaa sisnun käyttäjänimeäsi ilman lisämaksuja. (kerran maksimissaan)',
+                'description' => 'Voit vaihtaa käyttäjänimesi ilman ylimääräisiä kuluja. (vain kerran)',
             ],
 
             'skinnables' => [
-                'title' => 'Ulkonäön vaihdettavuus',
-                'description' => 'Pystyt vaihtamaan pelissä ylimääräisiä asioita, kuten päävalikon taustakuvan.',
+                'title' => 'Ulkonäöllisyyksiä',
+                'description' => 'Lisää muokattavia pelinsisäisiä kohteita, kuten päävalikon tausta.',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature äänestyksiä',
-                'description' => 'Ääniä feature pyyntöihin. ( 2 kuukaudessa )',
+                'title' => 'Äänestä ominaisuuksista',
+                'description' => 'Äänestä kahdesti kuukaudessa uusista ominaisuuksista.',
             ],
 
             'sort_options' => [
-                'title' => 'Lajitteluasetukset',
-                'description' => 'Kyky nähdä beatmapin tuloslista maan / ystävien / modin perusteella pelissä.',
+                'title' => 'Lajitteluasetuksia',
+                'description' => 'Näet beatmapin maa-, ystävä- ja modikohtaiset sijoitukset pelissä.',
             ],
 
             'feel_special' => [
@@ -124,10 +132,10 @@ return [
         ],
 
         'convinced' => [
-            'title' => 'Olen vakuuttunut! :D',
-            'support' => 'tue osua!',
-            'gift' => 'tai lahjoita supporter ominaisuus toisille pelaajille',
-            'instructions' => 'paina sydännappia jatkaaksesi osu!kauppaan',
+            'title' => 'Vakuutuin! :D',
+            'support' => 'tue osu!:a',
+            'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
+            'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],
     ],
 ];
