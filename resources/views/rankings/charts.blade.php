@@ -58,7 +58,7 @@
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
-                        #{{ $scores->firstItem() + $index }}
+                        #{{ $index + 1 }}
                     </td>
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">

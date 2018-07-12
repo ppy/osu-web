@@ -146,38 +146,26 @@ class RankingController extends Controller
     public function monthly($mode)
     {
         $country = null;
-        $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
-        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         list($spotlight, $range) = $this->getSpotlightAndRange();
 
-        $stats = $this->getUserStats($spotlight, $mode);
-
+        $scores = $this->getUserStats($spotlight, $mode)->get();
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
-
-        $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
-
-        $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => 'monthly']),
-        ]);
-
-        $type = 'monthly';
 
         // should use whatever attribute we're ordering by; for now chart_id is assumed.
         $earliest = Spotlight::monthly()->orderBy('chart_id', 'asc')->first();
         $latest = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
+        $noPager = true;
 
         return view(
             "rankings.monthly",
-            compact('scores', 'country', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
+            compact('scores', 'country', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest', 'noPager')
         );
     }
 
     public function spotlight($mode)
     {
         $country = null;
-        $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
-        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         $chartId = get_int(request('spotlight'));
 
@@ -195,20 +183,14 @@ class RankingController extends Controller
             }),
         ];
 
-        $stats = $this->getUserStats($spotlight, $mode);
+        $scores = $this->getUserStats($spotlight, $mode)->get();
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
 
-        $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
-
-        $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => 'charts']),
-        ]);
-
-        $type = 'charts';
+        $noPager = true;
 
         return view(
             "rankings.charts",
-            compact('scores', 'country', 'selectOptions', 'spotlight', 'beatmapsets')
+            compact('scores', 'country', 'selectOptions', 'spotlight', 'beatmapsets', 'noPager')
         );
     }
 
