@@ -22,6 +22,7 @@ return [
     'header' => ':type Ranking',
     'type' => [
         'performance' => 'Performance',
+        'monthly' => 'Monthly',
         'charts' => 'Spotlights',
         'score' => 'Score',
         'country' => 'Country',
