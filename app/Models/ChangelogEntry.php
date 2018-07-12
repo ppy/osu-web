@@ -47,6 +47,7 @@ class ChangelogEntry extends Model
                 'user_id' => $changelog->user_id,
                 'user' => $changelog->user,
             ]),
+            'repository' => null,
         ]);
     }
 
@@ -87,6 +88,7 @@ class ChangelogEntry extends Model
                 'user_id' => null,
                 'user' => null,
             ]),
+            'repository' => null,
         ]);
     }
 
