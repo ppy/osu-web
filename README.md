@@ -24,7 +24,7 @@ Contributing
 
 We welcome all contributions, but keep in mind that we already have the full site designed (mock-ups). If you wish to work on a new section, please open a ticket and we will give you what you need from a design perspective to proceed. If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
 
-Contributions can be made via pull requests to this repository. We hope to credit and reward larger contributions via a [bounty system](https://www.bountysource.com/teams/ppy). If you want to contribute to localization, feel free to update our strings on [Crowdin Translation Syetem](https://crowdin.com/project/osu-web). If you're unsure of what you can help with, check out the [list of open issues](https://github.com/ppy/osu-web/issues).
+Contributions can be made via pull requests to this repository. We hope to credit and reward larger contributions via a [bounty system](https://www.bountysource.com/teams/ppy). If you want to contribute to localization, feel free to update our strings on [Crowdin Translation System](https://crowdin.com/project/osu-web). If you're unsure of what you can help with, check out the [list of open issues](https://github.com/ppy/osu-web/issues).
 
 Note that while we already have certain standards in place, nothing is set in stone. If you have an issue with the way code is structured; with any libraries we are using; with any processes involved with contributing, *please* bring it up. I welcome all feedback so we can make contributing to this project as pain-free as possible.
 
