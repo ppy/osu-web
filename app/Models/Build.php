@@ -73,7 +73,7 @@ class Build extends Model
 
         $changelogEntry = new ChangelogEntry;
 
-        $newChangelogEntryIds = $repository
+        $newChangelogEntryIds = $stream
             ->changelogEntries()
             ->orphans($stream->getKey())
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
