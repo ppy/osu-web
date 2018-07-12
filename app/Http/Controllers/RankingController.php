@@ -40,6 +40,15 @@ class RankingController extends Controller
     const RANKING_TYPES = ['performance', 'monthly', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts', 'monthly'];
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        view()->share('currentAction', request('type'));
+        view()->share('mode', request('mode'));
+        view()->share('type', request('type'));
+    }
+
     public function index($mode = 'osu', $type = null)
     {
         if (!array_key_exists($mode, Beatmap::MODES)) {
@@ -129,9 +138,8 @@ class RankingController extends Controller
             $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
                 'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
             ]);
-            $currentAction = $type;
 
-            return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction'));
+            return view("rankings.{$type}", compact('scores', 'country'));
         }
     }
 
@@ -161,7 +169,7 @@ class RankingController extends Controller
 
         return view(
             "rankings.monthly",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
+            compact('scores', 'country', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
         );
     }
 
@@ -200,7 +208,7 @@ class RankingController extends Controller
 
         return view(
             "rankings.charts",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlight', 'beatmapsets')
+            compact('scores', 'country', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 
