@@ -205,16 +205,16 @@ class RankingController extends Controller
         $after = get_int(request('after'));
 
         if ($chartId !== null) {
-            $spotlight = $this->spotlightQueryBase()->findOrFail($chartId);
+            $spotlight = Spotlight::monthly()->findOrFail($chartId);
             $range = $spotlight->getSpotlightsInYearRange()->get();
         } elseif ($before !== null) {
-            $range = $this->spotlightQueryBase()->inYearRange($before - 1)->get();
+            $range = Spotlight::monthly()->inYearRange($before - 1)->get();
             $spotlight = $range->last();
         } elseif ($after !== null) {
-            $range = $this->spotlightQueryBase()->inYearRange($after + 1)->get();
+            $range = Spotlight::monthly()->inYearRange($after + 1)->get();
             $spotlight = $range->first();
         } else {
-            $spotlight = $this->spotlightQueryBase()->orderBy('chart_id', 'desc')->first();
+            $spotlight = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
             $range = $spotlight->getSpotlightsInYearRange()->get();
         }
 
@@ -235,11 +235,6 @@ class RankingController extends Controller
             })
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
-    }
-
-    private function spotlightQueryBase()
-    {
-        return request('type') === 'monthly' ? Spotlight::monthly() : Spotlight::notMonthly();
     }
 
     private function optionFromSpotlight(Spotlight $spotlight) : array
