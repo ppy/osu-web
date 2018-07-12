@@ -34,6 +34,8 @@ class RankingController extends Controller
 {
     protected $section = 'rankings';
 
+    private $country;
+
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
     const SPOTLIGHT_MAX_RESULTS = 40;
@@ -47,6 +49,24 @@ class RankingController extends Controller
         view()->share('currentAction', request('type'));
         view()->share('mode', request('mode'));
         view()->share('type', request('type'));
+
+        $this->middleware(function ($request, $next) {
+            if (Request::has('country')) {
+                $countryStats = CountryStatistics::where('display', 1)
+                    ->where('country_code', Request::input('country'))
+                    ->first();
+
+                if ($countryStats === null) {
+                    return Redirect::route('rankings', ['mode' => request('mode'), 'type' => request('type')]);
+                }
+
+                $this->country = $countryStats->country;
+            }
+
+            view()->share('country', $this->country);
+
+            return $next($request);
+        });
     }
 
     public function index($mode = 'osu', $type = null)
@@ -63,7 +83,6 @@ class RankingController extends Controller
             abort(404);
         }
 
-        $country = null;
         $modeInt = Beatmap::modeInt($mode);
 
         if ($type === 'country') {
@@ -79,20 +98,11 @@ class RankingController extends Controller
             return $this->spotlight($mode);
         } elseif ($type === 'monthly') {
             return $this->monthly($mode);
-        } else { // if $type == 'performance' || $type == 'score'
-            if (Request::has('country')) {
-                $countryStats = CountryStatistics::where('display', 1)
-                    ->where('country_code', Request::input('country'))
-                    ->first();
-
-                if (!$countryStats) {
-                    return Redirect::route('rankings', ['mode' => $mode, 'type' => $type]);
-                } else {
-                    $country = $countryStats->country;
-                }
-            }
-
-            $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
+        } else {
+            $maxResults = min(
+                $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
+                static::MAX_RESULTS
+            );
 
             $stats = UserStatistics\Model::getClass($mode)
                 ::on('mysql-readonly')
@@ -101,8 +111,8 @@ class RankingController extends Controller
                     $userQuery->default();
                 });
 
-            if ($country) {
-                $stats->where('country_acronym', $country['acronym']);
+            if ($this->country !== null) {
+                $stats->where('country_acronym', $this->country['acronym']);
             }
 
             if ($type === 'performance') {
@@ -139,14 +149,12 @@ class RankingController extends Controller
                 'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
             ]);
 
-            return view("rankings.{$type}", compact('scores', 'country'));
+            return view("rankings.{$type}", compact('scores'));
         }
     }
 
     public function monthly($mode)
     {
-        $country = null;
-
         list($spotlight, $range) = $this->getSpotlightAndRange();
 
         $scores = $this->getUserStats($spotlight, $mode)->get();
@@ -159,14 +167,12 @@ class RankingController extends Controller
 
         return view(
             "rankings.monthly",
-            compact('scores', 'country', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest', 'noPager')
+            compact('scores', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest', 'noPager')
         );
     }
 
     public function spotlight($mode)
     {
-        $country = null;
-
         $chartId = get_int(request('spotlight'));
 
         $spotlights = Spotlight::notMonthly()->orderBy('chart_id', 'desc')->get();
@@ -190,7 +196,7 @@ class RankingController extends Controller
 
         return view(
             "rankings.charts",
-            compact('scores', 'country', 'selectOptions', 'spotlight', 'beatmapsets', 'noPager')
+            compact('scores', 'selectOptions', 'spotlight', 'beatmapsets', 'noPager')
         );
     }
 
