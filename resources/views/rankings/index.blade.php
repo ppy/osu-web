@@ -50,8 +50,8 @@
                 {!! trans('rankings.header', [
                     'type' => "<span class='ranking-page-header__title-type'>".trans("rankings.type.{$type}")."</span>"
                 ]) !!}
-                @yield('ranking-header')
             </div>
+            @yield('ranking-header')
         </div>
     </div>
     <div class="osu-page osu-page--small osu-page--rankings">
