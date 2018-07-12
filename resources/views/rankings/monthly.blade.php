@@ -35,7 +35,9 @@
             class="spotlight-period-pager__more"
             href="{{ $prevUrl }}"
         >
-            <span class="fas fa-angle-left"></span>
+            @if (!$range->first()->is($earliest))
+                <span class="fas fa-angle-left"></span>
+            @endif
         </a>
         @foreach ($range as $s)
             <a
@@ -54,7 +56,9 @@
             class="spotlight-period-pager__more"
             href="{{ $nextUrl }}"
         >
-            <span class="fas fa-angle-right"></span>
+            @if (!$range->last()->is($latest))
+                <span class="fas fa-angle-right"></span>
+            @endif
         </a>
     </div>
 @endsection

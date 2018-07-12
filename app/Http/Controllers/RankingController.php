@@ -155,9 +155,13 @@ class RankingController extends Controller
 
         $type = 'monthly';
 
+        // should use whatever attribute we're ordering by; for now chart_id is assumed.
+        $earliest = Spotlight::monthly()->orderBy('chart_id', 'asc')->first();
+        $latest = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
+
         return view(
             "rankings.monthly",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'range', 'spotlight', 'beatmapsets')
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
         );
     }
 
