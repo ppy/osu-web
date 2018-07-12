@@ -66,8 +66,10 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
-        } elseif (in_array($type, static::SPOTLIGHT_TYPES, true)) {
-            return $this->spotlight($mode, $type);
+        } elseif ($type === 'charts') {
+            return $this->spotlight($mode);
+        } elseif ($type === 'monthly') {
+            return $this->monthly($mode);
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
@@ -133,18 +135,46 @@ class RankingController extends Controller
         }
     }
 
-    public function spotlight($mode, $type)
+    public function monthly($mode)
     {
         $country = null;
-
         $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
         list($spotlight, $range) = $this->getSpotlightAndRange();
 
-        $spotlights = $this->spotlightQueryBase()
-            ->orderBy('chart_id', 'desc')
-            ->get();
+        $stats = $this->getUserStats($spotlight, $mode);
+
+        $beatmapsets = $spotlight->beatmapsets($mode)->get();
+
+        $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
+
+        $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
+            'path' => route('rankings', ['mode' => $mode, 'type' => 'monthly']),
+        ]);
+
+        $type = 'monthly';
+
+        return view(
+            "rankings.monthly",
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'range', 'spotlight', 'beatmapsets')
+        );
+    }
+
+    public function spotlight($mode)
+    {
+        $country = null;
+        $maxPages = ceil(static::SPOTLIGHT_MAX_RESULTS / static::PAGE_SIZE);
+        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
+
+        $chartId = get_int(request('spotlight'));
+
+        $spotlights = Spotlight::notMonthly()->orderBy('chart_id', 'desc')->get();
+        if ($chartId === null) {
+            $spotlight = $spotlights->first();
+        } else {
+            $spotlight = Spotlight::notMonthly()->findOrFail($chartId);
+        }
 
         $selectOptions = [
             'selected' => $this->optionFromSpotlight($spotlight),
@@ -153,30 +183,20 @@ class RankingController extends Controller
             }),
         ];
 
-        // These models will not have the correct table name set on them
-        // as they get overriden when Laravel hydrates them.
-        $stats = $spotlight->userStats($mode)
-            ->with(['user', 'user.country'])
-            ->whereHas('user', function ($userQuery) {
-                $dummy = new User;
-                $userQuery
-                    ->from("{$dummy->getConnection()->getDatabaseName()}.{$dummy->getTable()}")
-                    ->default();
-            })
-            ->orderBy('ranked_score', 'desc')
-            ->limit(static::SPOTLIGHT_MAX_RESULTS);
-
+        $stats = $this->getUserStats($spotlight, $mode);
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
 
         $total = min($stats->count(), static::SPOTLIGHT_MAX_RESULTS);
 
         $scores = new LengthAwarePaginator($stats->get(), $total, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
+            'path' => route('rankings', ['mode' => $mode, 'type' => 'charts']),
         ]);
 
+        $type = 'charts';
+
         return view(
-            "rankings.{$type}",
-            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'range', 'spotlight', 'spotlights', 'beatmapsets')
+            "rankings.charts",
+            compact('scores', 'mode', 'type', 'country', 'currentAction', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 
@@ -201,6 +221,22 @@ class RankingController extends Controller
         }
 
         return [$spotlight, $range];
+    }
+
+    private function getUserStats($spotlight, $mode)
+    {
+        // These models will not have the correct table name set on them
+        // as they get overriden when Laravel hydrates them.
+        return $spotlight->userStats($mode)
+            ->with(['user', 'user.country'])
+            ->whereHas('user', function ($userQuery) {
+                $dummy = new User;
+                $userQuery
+                    ->from("{$dummy->getConnection()->getDatabaseName()}.{$dummy->getTable()}")
+                    ->default();
+            })
+            ->orderBy('ranked_score', 'desc')
+            ->limit(static::SPOTLIGHT_MAX_RESULTS);
     }
 
     private function spotlightQueryBase()
