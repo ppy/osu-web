@@ -16,32 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.header-bg {
+.header-v3 {
+  @_top: header-v3;
   @_background-side-overflow: 200px;
   @_background-color: #222;
 
-  background-color: @_background-color;
-  background-position: center;
-  background-size: (@container-sm + @_background-side-overflow * 2) auto;
-  background-repeat: no-repeat;
-
   width: 100%;
   margin-bottom: -20px;
-  z-index: @z-index--header-bg;
-  // FIXME: should follow content size for mobile
-  height: 150px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: flex-end;
 
   @media @desktop {
-    height: 310px;
+    min-height: @nav2-header-image-height;
   }
 
-  &--changelog {
-    .at2x-simple('/images/headers/changelog.jpg');
+  &__bg {
+    .full-size();
+    background-color: @_background-color;
+    background-position: center;
+    background-size: (@container-sm + @_background-side-overflow * 2) auto;
+    background-repeat: no-repeat;
+    z-index: @z-index--header-bg;
+
+    .@{_top}--changelog & {
+      .at2x-simple('/images/headers/changelog.jpg');
+    }
   }
 
   &__overlay {
     // side overflow
     .full-size();
+    z-index: @z-index--header-bg;
     background-position: center;
     background-size: (@container-sm + @_background-side-overflow * 2) 100%;
     background-image: linear-gradient(to right,
