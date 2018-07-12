@@ -141,20 +141,17 @@ class RankingController extends Controller
             switch ($type) {
                 case 'country':
                     return json_collection($stats, 'CountryStatistics', ['country']);
-                break;
 
-                case 'performance':
-                case 'score':
+                default:
                     return json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
-                    break;
             }
-        } else {
-            $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
-                'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
-            ]);
-
-            return view("rankings.{$type}", compact('scores'));
         }
+
+        $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
+            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
+        ]);
+
+        return view("rankings.{$type}", compact('scores'));
     }
 
     public function monthly($mode)
