@@ -44,12 +44,27 @@ class RankingController extends Controller
     {
         parent::__construct();
 
+        $mode = request('mode');
+        $type = request('type');
+
         view()->share('hasPager', !in_array(request('type'), static::SPOTLIGHT_TYPES, true));
         view()->share('currentAction', request('type'));
-        view()->share('mode', request('mode'));
-        view()->share('type', request('type'));
+        view()->share('mode', $mode);
+        view()->share('type', $type);
 
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function ($request, $next) use ($mode, $type) {
+            if (!array_key_exists($mode, Beatmap::MODES)) {
+                abort(404);
+            }
+
+            if ($type === null) {
+                return ujs_redirect(route('rankings', ['mode' => $mode, 'type' => 'performance']));
+            }
+
+            if (!in_array($type, static::RANKING_TYPES, true)) {
+                abort(404);
+            }
+
             if (request()->has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', request('country'))
@@ -70,16 +85,10 @@ class RankingController extends Controller
 
     public function index($mode = 'osu', $type = null)
     {
-        if (!array_key_exists($mode, Beatmap::MODES)) {
-            abort(404);
-        }
-
-        if ($type === null) {
-            return ujs_redirect(route('rankings', ['mode' => $mode, 'type' => 'performance']));
-        }
-
-        if (!in_array($type, static::RANKING_TYPES, true)) {
-            abort(404);
+        if ($type === 'charts') {
+            return $this->spotlight($mode);
+        } elseif ($type === 'monthly') {
+            return $this->monthly($mode);
         }
 
         $modeInt = Beatmap::modeInt($mode);
@@ -93,10 +102,6 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
-        } elseif ($type === 'charts') {
-            return $this->spotlight($mode);
-        } elseif ($type === 'monthly') {
-            return $this->monthly($mode);
         } else {
             $maxResults = min(
                 $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
