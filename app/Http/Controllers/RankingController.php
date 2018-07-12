@@ -27,8 +27,6 @@ use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Redirect;
-use Request;
 
 class RankingController extends Controller
 {
@@ -51,13 +49,13 @@ class RankingController extends Controller
         view()->share('type', request('type'));
 
         $this->middleware(function ($request, $next) {
-            if (Request::has('country')) {
+            if (request()->has('country')) {
                 $countryStats = CountryStatistics::where('display', 1)
-                    ->where('country_code', Request::input('country'))
+                    ->where('country_code', request('country'))
                     ->first();
 
                 if ($countryStats === null) {
-                    return Redirect::route('rankings', ['mode' => request('mode'), 'type' => request('type')]);
+                    return redirect(route('rankings', ['mode' => request('mode'), 'type' => request('type')]));
                 }
 
                 $this->country = $countryStats->country;
@@ -123,7 +121,7 @@ class RankingController extends Controller
         }
 
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
+        $page = clamp(get_int(request('page')), 1, $maxPages);
 
         if (is_api_request()) {
             $stats->with(['user.userProfileCustomization']);
