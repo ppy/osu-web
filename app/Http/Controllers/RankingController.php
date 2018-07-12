@@ -44,6 +44,7 @@ class RankingController extends Controller
     {
         parent::__construct();
 
+        view()->share('hasPager', !in_array(request('type'), static::SPOTLIGHT_TYPES, true));
         view()->share('currentAction', request('type'));
         view()->share('mode', request('mode'));
         view()->share('type', request('type'));
@@ -161,11 +162,10 @@ class RankingController extends Controller
         // should use whatever attribute we're ordering by; for now chart_id is assumed.
         $earliest = Spotlight::monthly()->orderBy('chart_id', 'asc')->first();
         $latest = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
-        $noPager = true;
 
         return view(
             "rankings.monthly",
-            compact('scores', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest', 'noPager')
+            compact('scores', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
         );
     }
 
@@ -190,11 +190,9 @@ class RankingController extends Controller
         $scores = $this->getUserStats($spotlight, $mode)->get();
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
 
-        $noPager = true;
-
         return view(
             "rankings.charts",
-            compact('scores', 'selectOptions', 'spotlight', 'beatmapsets', 'noPager')
+            compact('scores', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 

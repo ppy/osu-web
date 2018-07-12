@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="osu-page osu-page--small osu-page--rankings">
-        @if (!isset($noPager))
+        @if ($hasPager)
             @include('objects._pagination', [
                 'object' => $scores
                     ->appends(['country' => $country['acronym']])
@@ -68,7 +68,7 @@
             @yield('scores')
         </div>
 
-        @if (!isset($noPager))
+        @if ($hasPager)
             @include('objects._pagination', [
                 'object' => $scores
                     ->appends(['country' => $country['acronym']])
