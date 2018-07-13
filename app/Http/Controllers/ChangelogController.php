@@ -115,7 +115,9 @@ class ChangelogController extends Controller
     private function getUpdateStreams()
     {
         $this->updateStreams = json_collection(
-            UpdateStream::whereHasBuilds()->find(config('osu.changelog.update_streams'))
+            UpdateStream::whereHasBuilds()
+                ->orderByField('stream_id', config('osu.changelog.update_streams'))
+                ->find(config('osu.changelog.update_streams'))
                 ->sortBy(function ($i) {
                     return $i->isFeatured() ? 0 : 1;
                 }),
