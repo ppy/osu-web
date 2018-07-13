@@ -490,8 +490,8 @@ function current_action()
 function link_to_user($user_id, $user_name = null, $user_color = null)
 {
     if ($user_id instanceof App\Models\User) {
-        $user_name = $user_id->username;
-        $user_color = $user_id->user_colour;
+        $user_name ?? ($user_name = $user_id->username);
+        $user_color ?? ($user_color = $user_id->user_colour);
         $user_id = $user_id->getKey();
     }
     $user_name = e($user_name);
