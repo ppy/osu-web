@@ -100,7 +100,9 @@
             @endforeach
         </tbody>
     </table>
+@endsection
 
+@section('ranking-footer')
     <div class="spotlight-ranking-beatmapsets">
         <div class="osu-layout__col-container osu-layout__col-container--with-gutter">
             @foreach ($beatmapsets as $beatmapset)

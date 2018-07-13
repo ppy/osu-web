@@ -68,6 +68,8 @@
             @yield('scores')
         </div>
 
+        @yield('ranking-footer')
+
         @if ($hasPager)
             @include('objects._pagination', [
                 'object' => $scores
