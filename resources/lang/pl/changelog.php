@@ -27,7 +27,7 @@ return [
     ],
 
     'entry' => [
-        'by' => 'autorstwa :user',
+        'by' => ':user',
     ],
 
     'index' => [

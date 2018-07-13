@@ -21,9 +21,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Sinun on kirjauduttava sisään muokataksesi.',
+            'null_user' => 'Kirjaudu sisään muokataksesi.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
-            'wrong_user' => 'Vain lähettäjä voi muokata viestiä.',
+            'wrong_user' => 'Vain aiheen omistaja pystyy muokkaamaan.',
         ],
     ],
 
@@ -33,10 +33,13 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
-        'title' => 'Rytmikarttojen keskustelut',
+        'title' => 'Beatmap Keskustelu',
 
         'form' => [
+            '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
+            'types' => 'Viestityypit',
+            'username' => 'Käyttäjänimi',
 
             'user' => [
                 'label' => 'Käyttäjä',
@@ -46,15 +49,15 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Lähetyspäivä',
-        'deleted_at' => 'Poistopäivä',
+        'created_at' => 'Lähetetty',
+        'deleted_at' => 'Poistettu',
         'message_type' => 'Tyyppi',
         'permalink' => 'Pysyvä linkki',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Mikään viesteistä ei käsittele asiaani',
-        'notice' => 'On olemassa viestejä ajalta :timestamp (:existing_timestamps). Tarkista ne ennen viestin lähettämistä.',
+        'confirm' => 'Mikään viesteistä ei käsittele aihettani',
+        'notice' => 'Aikajanalta :timestamp (:existing_timestamps) löytyy viestejä. Tarkista ne ennen viestin lähettämistä.',
     ],
 
     'reply' => [
@@ -67,19 +70,19 @@ return [
     'system' => [
         'resolved' => [
             'true' => ':user on merkinnyt ratkaistuksi',
-            'false' => ':user on avannut uudelleen',
+            'false' => ':user avasi uudelleen',
         ],
     ],
 
     'user' => [
         'admin' => 'ylläpitäjä',
-        'bng' => 'ehdolle asettaja',
-        'owner' => 'kartoittaja',
+        'bng' => 'suosittelija',
+        'owner' => 'kartanluoja',
         'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => 'Kaikki',
-        'label' => 'Suodata käyttäjän mukaan',
+        'everyone' => 'Jokainen',
+        'label' => 'Suodata käyttäjien mukaan',
     ],
 ];

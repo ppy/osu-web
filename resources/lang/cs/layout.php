@@ -57,7 +57,7 @@ return [
             'beatmap_discussions-index' => 'diskuse o beatmapě',
             'beatmapset-watches-index' => '',
             'beatmapset_discussion_votes-index' => '',
-            'beatmapset_events-index' => '',
+            'beatmapset_events-index' => 'Eventy Beatmapsetů',
             'index' => 'Výpis',
             'packs' => 'balíčky',
             'show' => 'Informace',

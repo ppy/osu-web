@@ -32,15 +32,15 @@ return [
     'online' => [
         'title' => [
             'users' => 'Paikalla olevia käyttäjiä viimeisen 24 tunnin aikana',
-            'score' => '',
+            'score' => 'Pelaukset viimeisen 24 tunnin aikana',
         ],
         'current' => 'Tällä hetkellä paikalla olevat käyttäjät',
-        'score' => '',
+        'score' => 'Pelausta Joka Sekunti',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Viimeaikaiset tapahtumat',
+            'title' => 'Viimeisimmät Tapahtumat',
             'state' => [
                 'resolved' => 'Ratkaistu',
                 'resolving' => 'Ratkaistaan',
@@ -60,7 +60,7 @@ return [
             'today' => 'tänään',
             'week' => 'viikko',
             'month' => 'kuukausi',
-            'all_time' => 'koko ajalta',
+            'all_time' => 'koko aika',
             'last_week' => 'viime viikko',
             'weeks_ago' => ':count viikko sitten|:count viikkoa sitten',
         ],

@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => 'Hier tippen um auf General zu posten (:version)',
+            'generalAll' => 'Hier tippen um auf General zu posten (Alle Schwierigkeitsstufen)',
+            'timeline' => 'Hier tippen um auf die Timeline zu posten (:version)',
         ],
 
         'message_type' => [
@@ -173,7 +173,7 @@ return [
         'search' => [
             'prompt' => 'stichwörter eingeben...',
             'options' => 'Mehr Suchoptionen',
-            'supporter_filter' => '',
+            'supporter_filter' => 'Du benötigst einen supporter-tag, um nach :filters zu filtern',
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
@@ -198,8 +198,8 @@ return [
                 'nominations' => 'nominierungen',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
+                'link_text' => 'supporter-tag',
             ],
         ],
         'mode' => 'Modus',

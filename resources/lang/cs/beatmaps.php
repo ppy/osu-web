@@ -199,7 +199,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => '',
-                'link_text' => '',
+                'link_text' => 'stítek podporovatele',
             ],
         ],
         'mode' => 'Mód',
