@@ -36,7 +36,7 @@ return [
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
         'nominate' => 'Nominated by :user.',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
-        'qualify' => 'Qualified.',
+        'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
     ],
 
