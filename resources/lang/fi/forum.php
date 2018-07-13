@@ -28,7 +28,7 @@ return [
         'create' => [
             '_' => 'Aseta kansikuva',
             'button' => 'Lataa kuva',
-            'info' => '',
+            'info' => 'Kansikuvan koko kuuluisi olla :dimensions. Voit upottaa kuvan myös tähän.',
         ],
 
         'destroy' => [
@@ -38,7 +38,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '',
+        'new_reply' => '[osu!] Uusi vastaus aiheessa ":title"',
     ],
 
     'forums' => [
@@ -50,7 +50,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Haluatko varmasti poistaa viestin?',
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
-        'edited' => '',
+        'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
 
         'actions' => [
@@ -69,11 +69,11 @@ return [
     'topic' => [
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'katso viimeisin viesti',
-        'latest_post' => '',
+        'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
-        'new_topic_login' => '',
-        'post_reply' => 'Viesti',
+        'new_topic_login' => 'Kirjaudu sisään lähettääksesi uuden aiheen',
+        'post_reply' => 'Vastaa',
         'reply_box_placeholder' => 'Kirjoita vastauksesi tähän',
         'started_by' => 'tehnyt :user',
 
@@ -85,17 +85,17 @@ return [
             'submit' => 'Lähetä',
 
             'placeholder' => [
-                'body' => 'Kirjoita viestin sisältö tähän',
+                'body' => 'Kirjoita aiheen sisältö tähän',
                 'title' => 'Määritä otsikko napsauttamalla tätä',
             ],
         ],
 
         'jump' => [
-            'enter' => '',
+            'enter' => 'paina siirtyäksesi haluamaasi viestin numeroon',
             'first' => 'siirry ensimmäiseen viestiin',
             'last' => 'siirry viimeisimpään viestiin',
-            'next' => '',
-            'previous' => '',
+            'next' => 'ohita seuraavat 10 viestiä',
+            'previous' => 'mene 10 viestiä takaisin',
         ],
 
         'post_edit' => [
@@ -106,25 +106,25 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forumin tilaukset',
-            'title_compact' => '',
-            'title_main' => '',
+            'title' => 'Foorumilla Seuratut',
+            'title_compact' => 'foorumilla seuratut',
+            'title_main' => 'foorumilla <strong>Seuratut</strong>',
 
             'box' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Seurattuja aiheita',
+                'unread' => 'Aiheita uusilla vastauksilla',
             ],
 
             'info' => [
-                'total' => '',
-                'unread' => '',
+                'total' => 'Olet seurannut :total aihetta.',
+                'unread' => 'Sinulla on :unread lukematonta vastausta seuratuissa aiheissa.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '',
-                'title' => 'Peru tilaus',
+                'confirmation' => 'Lopeta aiheen seuraaminen?',
+                'title' => 'Lopeta seuraaminen',
             ],
         ],
     ],
@@ -133,6 +133,7 @@ return [
         '_' => 'Aiheet',
 
         'actions' => [
+            'login_reply' => 'Kirjaudu sisään Vastataksesi',
             'reply' => 'Vastaa',
             'reply_with_quote' => 'Lainaa viestiä vastaukseen',
             'search' => 'Hae',
@@ -147,16 +148,16 @@ return [
             ],
 
             'poll' => [
-                'length' => '',
+                'length' => 'Pidä äänestystä auki',
                 'length_days_suffix' => 'päivää',
-                'length_info' => '',
-                'max_options' => '',
-                'max_options_info' => '',
+                'length_info' => 'Jätä tyhjä jos haluat loputtoman kyselyn',
+                'max_options' => 'Vastauksia per käyttäjä',
+                'max_options_info' => 'Määrä vaihtoehtoja, joita käyttäjä voi valita äänestyksen aikana.',
                 'options' => 'Asetukset',
-                'options_info' => '',
+                'options_info' => 'Jokaiselle valinnalle tulee uusi rivi. Vaihtoehtoja on korkeintaan 10.',
                 'title' => 'Kysymys',
-                'vote_change' => 'Salli uudelleen äänestäminen.',
-                'vote_change_info' => '',
+                'vote_change' => 'Salli uudelleenäänestys.',
+                'vote_change_info' => 'Vastaajat voivat vaihtaa ääniään, jos tämä on käytössä.',
             ],
         ],
 
@@ -170,45 +171,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "lisätty" ',
+            'to_0_done' => 'Tunniste "lisätty" poistettu',
+            'to_1' => 'Lisää tunniste "lisätty"',
+            'to_1_done' => 'Tunniste "lisätty" lisätty',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "siirretty"',
+            'to_0_done' => 'Tunniste "siirretty" poistettu',
+            'to_1' => 'Lisää tunniste "siirretty"',
+            'to_1_done' => 'Tunniste "siirretty" lisätty',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "vahvistettu"',
+            'to_0_done' => 'Tunniste "vahvistettu" poistettu',
+            'to_1' => 'Lisää tunniste "vahvistettu"',
+            'to_1_done' => 'Tunniste "vahvistettu" lisätty',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "duplikaatti"',
+            'to_0_done' => 'Tunniste "duplikaatti" poistettu',
+            'to_1' => 'Lisää tunniste "duplikaatti"',
+            'to_1_done' => 'Tunniste "duplikaatti" lisätty',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "virheellinen"',
+            'to_0_done' => 'Tunniste "virheellinen" poistettu',
+            'to_1' => 'Lisää tunniste "virheellinen"',
+            'to_1_done' => 'Lisää tunniste "virheellinen"',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_0' => 'Poista tunniste "selvitetty"',
+            'to_0_done' => 'Tunniste "selvitetty" poistettu',
+            'to_1' => 'Lisää tunniste "selvitetty"',
+            'to_1_done' => 'Lisää tunniste "selvitetty"',
         ],
 
         'lock' => [
@@ -228,20 +229,20 @@ return [
             'to_0_done' => 'Aihe on irrotettu',
             'to_1' => 'Kiinnitä aihe',
             'to_1_done' => 'Aihe on kiinnitetty',
-            'to_2' => '',
-            'to_2_done' => '',
+            'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
+            'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
         'show' => [
-            'deleted-posts' => 'Poistetut viestit',
-            'total_posts' => '',
+            'deleted-posts' => 'Poistetut aiheet',
+            'total_posts' => 'Vastauksia',
 
             'feature_vote' => [
-                'current' => '',
-                'do' => '',
+                'current' => 'Tärkeys tällä hetkellä: +:count',
+                'do' => 'Ehdota tätä pyyntöä',
 
                 'user' => [
-                    'count' => '',
+                    'count' => '{0} ei ääniä |{1}:count ääni|[2,*]:count ääntä',
                     'current' => 'Sinulla on :votes jäljellä.',
                     'not_enough' => "Sinulla ei ole enään ääniä jäljellä",
                 ],
@@ -251,18 +252,18 @@ return [
                 'vote' => 'Äänestä',
 
                 'detail' => [
-                    'end_time' => '',
-                    'ended' => '',
-                    'total' => '',
+                    'end_time' => 'Kysely loppuu :time',
+                    'ended' => 'Kysely on loppunut :time',
+                    'total' => 'Ääniä yhteensä: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
+            'to_watching' => 'Kirjanmerkkeihin',
+            'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
+            'mail_disable' => 'Poista ilmoitukset käytöstä',
         ],
     ],
 ];

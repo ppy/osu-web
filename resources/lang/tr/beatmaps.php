@@ -222,7 +222,7 @@ return [
         'any' => 'Hepsi',
         'ranked-approved' => 'Dereceli & Onaylı',
         'approved' => 'Onaylı',
-        'qualified' => 'Qualified',
+        'qualified' => 'Nitelikli',
         'loved' => 'Sevilen',
         'faves' => 'Favoriler',
         'pending' => 'Beklemede',

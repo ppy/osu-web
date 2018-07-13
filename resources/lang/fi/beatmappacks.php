@@ -24,37 +24,37 @@ return [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
             'instruction' => [
                 '_' => "Asennus: Kun paketti on ladattu, pura .rar tiedosto osu! Songs kansioon.
-                 Kappaleet ovat vielä .zip ja/tai .osz muodossa paketin sisällä, joten osu! purkaa rytmikartat itse seuraavan kerran kun pelaat.
-                 :scary pura .zip/.osz tiedostot itse,
-                 tai rytmikartat eivät näy oikein osu!:ssa eivätkä toimi kunnolla.",
+                 Kappaleet ovat vielä .zip ja/tai .osz muodossa paketin sisällä, joten osu! purkaa beatmapit seuraavalla pelikerrallla.
+                 :scary pura .zip/.osz tiedostoja itse,
+                 tai beatmapit eivät näy oikein pelissä eivätkä toimi kunnolla.",
                 'scary' => 'ÄLÄ',
             ],
             'note' => [
                 '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhimmat kappaleet ovat paljon huonompia kuin viimeaikaiset kappaleet.',
-                'scary' => 'lataa pakkaukset viimeisistä aikaisempiin päin',
+                'scary' => 'ladata kokoelmat viimeisimmästä aikaisimpaan',
             ],
         ],
-        'title' => 'Rytmikarttapaketit',
-        'description' => 'Valmiiksi pakattuja rytmikarttakokoelmia tietyn aiheen ympäriltä.',
+        'title' => 'Beatmap Kokoelmat',
+        'description' => 'Valmiiksi pakattuja beatmap kokoelmia perustuen yleisiin teemoihin.',
     ],
 
     'show' => [
         'download' => 'Lataa',
         'item' => [
-            'cleared' => 'selvitetty',
+            'cleared' => 'läpäisty',
             'not_cleared' => 'ei selvitetty',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Esijttäjä/Albumi',
+        'artist' => 'Esittäjä/Albumi',
         'chart' => 'Parrasvalo',
-        'standard' => 'Standardi',
+        'standard' => 'Tavallinen',
         'theme' => 'Teema',
     ],
 
     'require_login' => [
-        '_' => 'Sinun täytyy olla :link lataaksesi',
+        '_' => 'Sinun täytyy olla :link ladataksesi',
         'link_text' => 'kirjautunut sisään',
     ],
 ];

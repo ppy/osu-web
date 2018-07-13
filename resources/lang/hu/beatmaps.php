@@ -64,7 +64,7 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
+            'general' => 'Írj ide az Általános (:version) részleghez való posztoláshoz',
             'generalAll' => '',
             'timeline' => 'Írj ide az Idővonalra való posztoláshoz (:version)',
         ],

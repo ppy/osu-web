@@ -31,16 +31,16 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Časová značka je specifikována, ale chybí beatmapa.',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
+        'beatmapset_no_hype' => "Tato beatmapa nemůže být hypovana.",
+        'hype_requires_null_beatmap' => 'Hype musí být proveden v Generalu (všech obtížností).',
         'invalid_beatmap_id' => 'Zadaná neplatná obtížnost.',
         'invalid_beatmapset_id' => 'Zadaná neplatná beatmapa.',
         'locked' => 'Diskuze je uzamčená.',
         'mapper_note_wrong_user' => 'Pouze autor beatmapy může přidávat maperské poznámky.',
 
         'hype' => [
-            'guest' => '',
-            'hyped' => '',
+            'guest' => 'Musíš být přihlášek k Hypování.',
+            'hyped' => 'Tuto beatmapu již si nahypoval.',
             'limit_exceeded' => 'Využil jsi všechny svoje hypy.',
             'not_hypeable' => 'Tato beatmapa nemůže být vyhypovaná',
             'owner' => 'Nemůžeš vyhypovat svojí beatmapu.',
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
+            'beatmapset_post_no_delete' => 'Mazání metadat post Beatmapy není povoleno.',
+            'beatmapset_post_no_edit' => 'Editace metadat post beatmapy není povoleno.',
         ],
 
         'topic_poll' => [
