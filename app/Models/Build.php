@@ -121,19 +121,6 @@ class Build extends Model
         return $this->hasMany(BuildPropagationHistory::class, 'build_id');
     }
 
-    public function scopeLatestByStream($query, $streamIds)
-    {
-        $latestBuildIds = static::default()
-            ->selectRaw('MAX(build_id) latest_build_id')
-            ->whereIn('stream_id', $streamIds)
-            ->groupBy('stream_id')
-            ->pluck('latest_build_id');
-
-        $query->whereIn('build_id', $latestBuildIds)
-            ->orderByField('stream_id', $streamIds)
-            ->with('updateStream');
-    }
-
     public function scopePropagationHistory($query)
     {
         $query->default()->where('allow_bancho', true);
