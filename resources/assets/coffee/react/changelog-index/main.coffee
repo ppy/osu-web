@@ -34,7 +34,7 @@ class ChangelogIndex.Main extends React.PureComponent
           @renderHeaderTitle()
           @renderHeaderTabs()
 
-        el ChangelogHeaderBuilds, latestBuilds: @props.latestBuilds
+        el ChangelogHeaderStreams, updateStreams: @props.updateStreams
 
         div className: 'js-changelog-chart'
 

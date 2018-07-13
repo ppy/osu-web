@@ -33,6 +33,10 @@ class Build extends Model
         'date',
     ];
 
+    protected $casts = [
+        'allow_bancho' => 'boolean',
+    ];
+
     protected $guarded = [];
 
     private $cache = [];
@@ -176,10 +180,5 @@ class Build extends Model
     public function disqusTitle()
     {
         return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
-    }
-
-    public function isFeatured()
-    {
-        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }

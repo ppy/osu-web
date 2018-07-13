@@ -128,6 +128,14 @@ abstract class Model extends BaseModel
         });
     }
 
+    public function dbName()
+    {
+        $connection = $this->connection;
+        $connection ?? ($connection = config('database.default'));
+
+        return config("database.connections.{$connection}.database");
+    }
+
     private function enlistCallbacks($model, $connection)
     {
         $transaction = resolve(TransactionStateManager::class)->current($connection);

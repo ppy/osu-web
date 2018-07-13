@@ -24,8 +24,8 @@
         {!! json_encode($builds) !!}
     </script>
 
-    <script id="json-latest-builds" type="application/json">
-        {!! json_encode($latestBuilds) !!}
+    <script id="json-update-streams" type="application/json">
+        {!! json_encode($updateStreams) !!}
     </script>
 
     <script id="json-chart-config" type="application/json">

@@ -32,11 +32,11 @@ class ChangelogController extends Controller
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
-    private $latestBuilds = null;
+    private $updateStreams = null;
 
     public function index()
     {
-        $this->getBuilds();
+        $this->getUpdateStreams();
 
         $chartConfig = Cache::remember(
             'chart_config_global',
@@ -93,7 +93,7 @@ class ChangelogController extends Controller
 
     public function build($streamName, $version)
     {
-        $this->getBuilds();
+        $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
         $build = json_item(
@@ -112,18 +112,18 @@ class ChangelogController extends Controller
         return view('changelog.build', compact('build', 'chartConfig'));
     }
 
-    private function getBuilds()
+    private function getUpdateStreams()
     {
-        $this->latestBuilds = json_collection(
-            Build::latestByStream(config('osu.changelog.update_streams'))
-                ->get()
+        $this->updateStreams = json_collection(
+            UpdateStream::whereHasBuilds()->find(config('osu.changelog.update_streams'))
                 ->sortBy(function ($i) {
                     return $i->isFeatured() ? 0 : 1;
                 }),
-            'Build'
+            'UpdateStream',
+            ['latest_build', 'user_count']
         );
 
-        view()->share('latestBuilds', $this->latestBuilds);
+        view()->share('updateStreams', $this->updateStreams);
     }
 
     private function chartConfig($stream)
@@ -132,8 +132,8 @@ class ChangelogController extends Controller
 
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {
-                return $b['update_stream']['display_name'];
-            }, $this->latestBuilds);
+                return $b['display_name'];
+            }, $this->updateStreams);
         } else {
             $chartOrder = $this->buildChartOrder($history);
             $streamName = kebab_case($stream['display_name']);
