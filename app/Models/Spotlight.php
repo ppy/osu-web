@@ -178,6 +178,11 @@ class Spotlight extends Model
         });
     }
 
+    public static function getBestOf($year)
+    {
+        return static::where('acronym', "BEST{$year}")->first();
+    }
+
     public static function newSpotlight(string $acronym, string $name, bool $modeSpecific, string $type = 'monthly')
     {
         /** @var self $spotlight */
