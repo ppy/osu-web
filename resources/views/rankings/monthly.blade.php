@@ -44,9 +44,11 @@
                 class="spotlight-period-pager__item {{ $spotlight->chart_id === $s->chart_id ? 'spotlight-period-pager__item--selected' : '' }}"
                 href="{{ route('rankings', ['type' => 'monthly', 'mode' => request('mode'), 'spotlight' => $s->chart_id]) }}"
             >
-                <div class="spotlight-period-pager__month">
-                    {{ $s->getPeriod()->format('m') }}
-                </div>
+                @if ($s->type === 'monthly')
+                    <div class="spotlight-period-pager__month">
+                        {{ $s->getPeriod()->format('m') }}
+                    </div>
+                @endif
                 <div class="spotlight-period-pager__year">
                     {{ $s->getPeriod()->format('Y') }}
                 </div>

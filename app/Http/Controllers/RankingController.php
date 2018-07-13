@@ -162,8 +162,8 @@ class RankingController extends Controller
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
 
         // should use whatever attribute we're ordering by; for now chart_id is assumed.
-        $earliest = Spotlight::monthly()->orderBy('chart_id', 'asc')->first();
-        $latest = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
+        $earliest = Spotlight::periodic()->orderBy('chart_id', 'asc')->first();
+        $latest = Spotlight::periodic()->orderBy('chart_id', 'desc')->first();
 
         return view(
             "rankings.monthly",
@@ -175,11 +175,11 @@ class RankingController extends Controller
     {
         $chartId = get_int(request('spotlight'));
 
-        $spotlights = Spotlight::notMonthly()->orderBy('chart_id', 'desc')->get();
+        $spotlights = Spotlight::notPeriodic()->orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
             $spotlight = $spotlights->first();
         } else {
-            $spotlight = Spotlight::notMonthly()->findOrFail($chartId);
+            $spotlight = Spotlight::notPeriodic()->findOrFail($chartId);
         }
 
         $selectOptions = [
@@ -205,17 +205,17 @@ class RankingController extends Controller
         $after = get_int(request('after'));
 
         if ($chartId !== null) {
-            $spotlight = Spotlight::monthly()->findOrFail($chartId);
-            $range = $spotlight->getSpotlightsInYearRange()->get();
+            $spotlight = Spotlight::periodic()->findOrFail($chartId);
+            $range = $spotlight->getPeriodicSpotlightsInSameYear();
         } elseif ($before !== null) {
-            $range = Spotlight::monthly()->inYearRange($before - 1)->get();
+            $range = Spotlight::getPeriodicSpotlightsInYear($before - 1);
             $spotlight = $range->last();
         } elseif ($after !== null) {
-            $range = Spotlight::monthly()->inYearRange($after + 1)->get();
+            $range = Spotlight::getPeriodicSpotlightsInYear($after + 1);
             $spotlight = $range->first();
         } else {
-            $spotlight = Spotlight::monthly()->orderBy('chart_id', 'desc')->first();
-            $range = $spotlight->getSpotlightsInYearRange()->get();
+            $spotlight = Spotlight::periodic()->orderBy('chart_id', 'desc')->first();
+            $range = $spotlight->getPeriodicSpotlightsInSameYear();
         }
 
         return [$spotlight, $range];

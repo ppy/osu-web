@@ -43,14 +43,14 @@ class Spotlight extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
-    public function scopeMonthly($query)
+    public function scopeNotPeriodic($query)
     {
-        return $query->where('type', 'monthly');
+        return $query->whereNotIn('type', ['monthly', 'yearly']);
     }
 
-    public function scopeNotMonthly($query)
+    public function scopePeriodic($query)
     {
-        return $query->where('type', '!=', 'monthly');
+        return $query->whereIn('type', ['monthly', 'yearly']);
     }
 
     public function beatmapsets(string $mode)
@@ -132,12 +132,16 @@ class Spotlight extends Model
     public function getPeriod()
     {
         // or maybe parse acronym?
-        if ($this->start_date !== null) {
+        if ($this->type === 'monthly' && $this->start_date !== null) {
             return $this->start_date->copy()->subMonth(1)->startOfMonth();
+        } elseif ($this->type === 'yearly') {
+            $year = mb_substr($this->acronym, 4);
+
+            return $this->start_date->copy()->year($year)->startOfYear();
         }
     }
 
-    public function scopeInYearRange($query, $year)
+    public function scopeInYear($query, $year)
     {
         $period = (new Carbon)->year($year);
 
@@ -146,11 +150,11 @@ class Spotlight extends Model
             ->where('start_date', '<=', $period->endOfYear()->copy()->addMonth(1));
     }
 
-    public function getSpotlightsInYearRange()
+    public function getPeriodicSpotlightsInSameYear()
     {
         $period = $this->getPeriod();
         if ($period !== null) {
-            return Spotlight::monthly()->inYearRange($period->year);
+            return static::getPeriodicSpotlightsInYear($period->year);
         }
     }
 
@@ -181,6 +185,18 @@ class Spotlight extends Model
     public static function getBestOf($year)
     {
         return static::where('acronym', "BEST{$year}")->first();
+    }
+
+    public static function getPeriodicSpotlightsInYear($year)
+    {
+        $range = Spotlight::where('type', 'monthly')->inYear($year)->get();
+
+        $bestOf = Spotlight::getBestOf($year);
+        if ($bestOf !== null) {
+            $range = $range->merge(collect([$bestOf]));
+        }
+
+        return $range;
     }
 
     public static function newSpotlight(string $acronym, string $name, bool $modeSpecific, string $type = 'monthly')
