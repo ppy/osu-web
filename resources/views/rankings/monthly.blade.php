@@ -141,16 +141,5 @@
 @endsection
 
 @section('ranking-footer')
-    <div class="spotlight-ranking-beatmapsets">
-        <div class="osu-layout__col-container osu-layout__col-container--with-gutter">
-            @foreach ($beatmapsets as $beatmapset)
-                <div class="osu-layout__col osu-layout__col--sm-6">
-                    <div
-                        class="js-react--beatmapset-panel"
-                        data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($beatmapset, 'Beatmapset', ['beatmaps'])]) }}"
-                    ></div>
-                </div>
-            @endforeach
-        </div>
-    </div>
+    @include('rankings._beatmapsets', compact('beatmapsets'))
 @endsection
