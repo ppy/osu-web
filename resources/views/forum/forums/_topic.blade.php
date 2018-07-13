@@ -112,12 +112,14 @@
 
         <div class="forum-topic-entry__content forum-topic-entry__content--right">
             <div class="u-ellipsis-overflow">
-                {!! trans("forum.topic.latest_reply_by", [
-                    "user" => link_to_user(
+                {!! trans(
+                    $topic->topic_replies === 0 ? 'forum.topic.started_by_verbose' : 'forum.topic.latest_reply_by',
+                    ['user' => link_to_user(
                         $topic->topic_last_poster_id,
                         $topic->topic_last_poster_name,
                         $topic->topic_last_poster_colour
-                )]) !!}
+                    )]
+                ) !!}
             </div>
 
             <div>
