@@ -23,6 +23,10 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'bg' => [
+            'name' => 'Български',
+            'flag' => 'BG',
+        ],
         'cs' => [
             'name' => 'Česky',
             'flag' => 'CZ',
