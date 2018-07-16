@@ -95,12 +95,10 @@ class Index
                 function () {
                     $content = array_reverse(OsuWiki::fetch('news'));
 
-                    Cache::remember(
+                    Cache::put(
                         static::cacheKey().'-long',
-                        static::CACHE_DURATION_LONG,
-                        function () use ($content) {
-                            return $content;
-                        }
+                        $content,
+                        static::CACHE_DURATION_LONG
                     );
 
                     return $content;
