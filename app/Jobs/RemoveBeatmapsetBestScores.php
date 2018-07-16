@@ -23,6 +23,7 @@ namespace App\Jobs;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score\Best as ScoreBest;
+use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -63,9 +64,12 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $beatmapIds = model_pluck($this->beatmapset->beatmaps(), 'beatmap_id');
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
-            static::scoreClass($mode)::whereIn('beatmap_id', $beatmapIds)
+            $class = static::scoreClass($mode);
+            $table = (new $class)->getTable();
+            $class::whereIn('beatmap_id', $beatmapIds)
                 ->orderBy('score_id')
                 ->where('score_id', '<=', $this->maxScoreIds[$mode])
+                ->from(DB::raw("{$table} FORCE INDEX (beatmap_score_lookup)"))
                 ->chunkById(100, function ($scores) {
                     $scores->each->delete();
                 });
