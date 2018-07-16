@@ -22,6 +22,7 @@ namespace App\Models\News;
 
 use App\Libraries\OsuWiki;
 use Cache;
+use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class Index
