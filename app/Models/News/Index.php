@@ -84,14 +84,40 @@ class Index
         return 'news:index:'.static::VERSION;
     }
 
+    public static function cacheKeyFallback()
+    {
+        return 'news:index:'.static::VERSION."-fallback";
+    }
+
     public static function index()
     {
-        return Cache::remember(
-            static::cacheKey(),
-            static::CACHE_DURATION,
-            function () {
-                return array_reverse(OsuWiki::fetch('news'));
-            }
-        );
+        $firstCache = null;
+
+        try {
+            $firstCache = Cache::remember(
+                static::cacheKey(),
+                static::CACHE_DURATION,
+                function () {
+                    return array_reverse(OsuWiki::fetch('news'));
+                }
+            );
+
+            // store a second copy with a longer duration.
+            // this can be used as a fallback lookup if the first cache expires but
+            // re-fetch is not possible.
+            Cache::put(
+                static::cacheKeyFallback(),
+                static::CACHE_DURATION * 100,
+                $firstCache
+            );
+        } catch (Exception $e) {
+        }
+
+        if ($firstCache) {
+            return $firstCache;
+        }
+
+        // use backup cache on null.
+        return Cache::get(static::cacheKeyFallback());
     }
 }
