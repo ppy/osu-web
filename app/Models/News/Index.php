@@ -28,6 +28,7 @@ class Index
 {
     const VERSION = 2;
     const CACHE_DURATION = 5;
+    const CACHE_DURATION_LONG = 43200; // 30 days
 
     public static function all($page = null, $limit = null)
     {
@@ -86,12 +87,26 @@ class Index
 
     public static function index()
     {
-        return Cache::remember(
-            static::cacheKey(),
-            static::CACHE_DURATION,
-            function () {
-                return array_reverse(OsuWiki::fetch('news'));
-            }
-        );
+        try {
+            return Cache::remember(
+                static::cacheKey(),
+                static::CACHE_DURATION,
+                function () {
+                    $content = array_reverse(OsuWiki::fetch('news'));
+
+                    Cache::remember(
+                        static::cacheKey().'-long',
+                        static::CACHE_DURATION_LONG,
+                        function () use ($content) {
+                            return $content;
+                        }
+                    );
+
+                    return $content;
+                }
+            );
+        } catch (Exception $e) {
+            return Cache::get(static::cacheKey().'-long');
+        }
     }
 }
