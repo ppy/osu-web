@@ -210,6 +210,8 @@ class Page
                         $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
                     } catch (Exception $e) {
                         if (!$e instanceof GitHubNotFoundException) {
+                            $index = false;
+
                             log_error($e);
                         }
 
@@ -225,7 +227,7 @@ class Page
 
                 $this->cache['page'] = $page;
 
-                if ($fetch) {
+                if ($fetch && ($index ?? true)) {
                     dispatch(new EsIndexDocument($this));
                 }
 
