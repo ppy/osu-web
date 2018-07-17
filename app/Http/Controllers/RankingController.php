@@ -206,16 +206,16 @@ class RankingController extends Controller
 
         if ($chartId !== null) {
             $spotlight = Spotlight::periodic()->findOrFail($chartId);
-            $range = $spotlight->getPeriodicSpotlightsInSameYear();
+            $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_date->year)->get();
         } elseif ($before !== null) {
-            $range = Spotlight::getPeriodicSpotlightsInYear($before - 1);
+            $range = Spotlight::getPeriodicSpotlightsInYear($before - 1)->get();
             $spotlight = $range->last();
         } elseif ($after !== null) {
-            $range = Spotlight::getPeriodicSpotlightsInYear($after + 1);
+            $range = Spotlight::getPeriodicSpotlightsInYear($after + 1)->get();
             $spotlight = $range->first();
         } else {
             $spotlight = Spotlight::periodic()->orderBy('chart_id', 'desc')->first();
-            $range = $spotlight->getPeriodicSpotlightsInSameYear();
+            $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_date->year)->get();
         }
 
         return [$spotlight, $range];

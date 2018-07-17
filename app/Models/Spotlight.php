@@ -30,6 +30,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class Spotlight extends Model
 {
+    public const PERIODIC_TYPES = ['bestof', 'monthly'];
+
     protected $table = 'osu_charts';
     protected $primaryKey = 'chart_id';
     protected $guarded = [];
@@ -41,16 +43,16 @@ class Spotlight extends Model
         'mode_specific' => 'boolean',
     ];
 
-    protected $dates = ['start_date', 'end_date'];
+    protected $dates = ['chart_date', 'end_date', 'start_date'];
 
     public function scopeNotPeriodic($query)
     {
-        return $query->whereNotIn('type', ['monthly', 'yearly']);
+        return $query->whereNotIn('type', static::PERIODIC_TYPES);
     }
 
     public function scopePeriodic($query)
     {
-        return $query->whereIn('type', ['monthly', 'yearly']);
+        return $query->whereIn('type', static::PERIODIC_TYPES);
     }
 
     public function beatmapsets(string $mode)
@@ -123,39 +125,13 @@ class Spotlight extends Model
         }
     }
 
-    /**
-     * Gets the period the monthly spotlight is for.
-     * This is not the same as the spotlight's running duration.
-     *
-     * @return Carbon\Carbon
-     */
-    public function getPeriod()
-    {
-        // or maybe parse acronym?
-        if ($this->type === 'monthly' && $this->start_date !== null) {
-            return $this->start_date->copy()->subMonth(1)->startOfMonth();
-        } elseif ($this->type === 'yearly') {
-            $year = mb_substr($this->acronym, 4);
-
-            return $this->start_date->copy()->year($year)->startOfYear();
-        }
-    }
-
     public function scopeInYear($query, $year)
     {
         $period = (new Carbon)->year($year);
 
         return $query
-            ->where('start_date', '>=', $period->startOfYear()->copy()->addMonth(1))
-            ->where('start_date', '<=', $period->endOfYear()->copy()->addMonth(1));
-    }
-
-    public function getPeriodicSpotlightsInSameYear()
-    {
-        $period = $this->getPeriod();
-        if ($period !== null) {
-            return static::getPeriodicSpotlightsInYear($period->year);
-        }
+            ->where('chart_date', '>=', $period->copy()->startOfYear())
+            ->where('chart_date', '<=', $period->copy()->endOfYear());
     }
 
     public function createTables()
@@ -182,21 +158,9 @@ class Spotlight extends Model
         });
     }
 
-    public static function getBestOf($year)
-    {
-        return static::where('acronym', "BEST{$year}")->first();
-    }
-
     public static function getPeriodicSpotlightsInYear($year)
     {
-        $range = Spotlight::where('type', 'monthly')->inYear($year)->get();
-
-        $bestOf = Spotlight::getBestOf($year);
-        if ($bestOf !== null) {
-            $range = $range->merge(collect([$bestOf]));
-        }
-
-        return $range;
+        return Spotlight::periodic()->inYear($year)->orderBy('type', 'desc')->orderBy('chart_date', 'asc');
     }
 
     public static function newSpotlight(string $acronym, string $name, bool $modeSpecific, string $type = 'monthly')

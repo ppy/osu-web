@@ -23,12 +23,12 @@
             $prevUrl = route('rankings', [
                 'type' => 'monthly',
                 'mode' => request('mode'),
-                'before' => $spotlight->getPeriod()->year,
+                'before' => $spotlight->chart_date->year,
             ]);
             $nextUrl = route('rankings', [
                 'type' => 'monthly',
                 'mode' => request('mode'),
-                'after' => $spotlight->getPeriod()->year,
+                'after' => $spotlight->chart_date->year,
             ]);
         @endphp
         <a
@@ -46,11 +46,11 @@
             >
                 @if ($s->type === 'monthly')
                     <div class="spotlight-period-pager__month">
-                        {{ $s->getPeriod()->format('m') }}
+                        {{ $s->chart_date->format('m') }}
                     </div>
                 @endif
                 <div class="spotlight-period-pager__year">
-                    {{ $s->getPeriod()->format('Y') }}
+                    {{ $s->chart_date->format('Y') }}
                 </div>
             </a>
         @endforeach
