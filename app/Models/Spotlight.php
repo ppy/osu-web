@@ -55,6 +55,15 @@ class Spotlight extends Model
         return $query->whereIn('type', static::PERIODIC_TYPES);
     }
 
+    public function scopePeriodicOrder($query, $direction = 'asc')
+    {
+        if ($direction === 'asc') {
+            return $query->orderBy('chart_date', 'asc')->orderBy('type', 'desc');
+        }
+
+        return $query->orderBy('chart_date', 'desc')->orderBy('type', 'asc');
+    }
+
     public function beatmapsets(string $mode)
     {
         $beatmapsetIds = DB::connection('mysql-charts')
@@ -160,7 +169,7 @@ class Spotlight extends Model
 
     public static function getPeriodicSpotlightsInYear($year)
     {
-        return Spotlight::periodic()->inYear($year)->orderBy('type', 'desc')->orderBy('chart_date', 'asc');
+        return Spotlight::periodic()->inYear($year)->periodicOrder('asc');
     }
 
     public static function newSpotlight(string $acronym, string $name, bool $modeSpecific, string $type = 'monthly')
