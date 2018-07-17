@@ -58,6 +58,8 @@ function beatmap_timestamp_format($ms)
  */
 function cache_remember_with_fallback($key, $minutes, $callback)
 {
+    static $oneMonthInMinutes = 30 * 24 * 60;
+
     $fullKey = "{$key}:with_fallback";
 
     $data = Cache::get($fullKey);
@@ -69,7 +71,7 @@ function cache_remember_with_fallback($key, $minutes, $callback)
                 'value' => $callback(),
             ];
 
-            Cache::put($fullKey, $data, max(60 * 24 * 30, $minutes * 10));
+            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
         } catch (Exception $e) {
             // Log and continue with data from the first ::get.
             log_error($e);
