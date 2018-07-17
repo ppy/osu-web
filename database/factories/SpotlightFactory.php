@@ -39,7 +39,7 @@ $factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Gener
 });
 
 $factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
-    $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear()->startOfMonth();
+    $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear();
 
     return  [
         'acronym' => function (array $self) {
@@ -49,10 +49,10 @@ $factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Genera
             return "Best of {$self['chart_date']->format('Y')}";
         },
         'start_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(1)->addDays(rand(0, 27));
+            return ($self['chart_date'] ?? $chartDate)->copy()->startOfMonth()->addMonths(1)->addDays(rand(0, 27));
         },
         'end_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(2)->addDays(rand(0, 27));
+            return ($self['chart_date'] ?? $chartDate)->copy()->startOfMonth()->addMonths(2)->addDays(rand(0, 27));
         },
         'mode_specific' => true,
         'type' => 'bestof',

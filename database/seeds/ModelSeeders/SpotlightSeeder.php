@@ -21,8 +21,8 @@ class SpotlightSeeder extends Seeder
         $now = Carbon::now()->startOfMonth();
         while ($date <= $now) {
             $this->seedMonthly($date);
-            if ($date->month === 1) {
-                $this->seedBestOf($date->copy()->subYears(1));
+            if ($date->month === 12) {
+                $this->seedBestOf($date);
             }
 
             $date->addMonth(1);
@@ -47,7 +47,7 @@ class SpotlightSeeder extends Seeder
     {
         DB::transaction(function () use ($date) {
             $spotlight = factory(Spotlight::class, 'bestof')->make([
-                'chart_date' => $date,
+                'chart_date' => $date->copy()->endOfYear(),
             ]);
 
             $spotlight->saveOrExplode();

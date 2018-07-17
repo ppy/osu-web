@@ -161,8 +161,8 @@ class RankingController extends Controller
         $scores = $this->getUserStats($spotlight, $mode)->get();
         $beatmapsets = $spotlight->beatmapsets($mode)->get();
 
-        $earliest = Spotlight::periodic()->periodicOrder('asc')->first();
-        $latest = Spotlight::periodic()->periodicOrder('desc')->first();
+        $earliest = Spotlight::periodic()->orderBy('chart_date', 'asc')->first();
+        $latest = Spotlight::periodic()->orderBy('chart_date', 'desc')->first();
 
         return view(
             "rankings.monthly",
@@ -213,7 +213,7 @@ class RankingController extends Controller
             $range = Spotlight::getPeriodicSpotlightsInYear($after + 1)->get();
             $spotlight = $range->first();
         } else {
-            $spotlight = Spotlight::periodic()->periodicOrder('desc')->first();
+            $spotlight = Spotlight::periodic()->orderBy('chart_date', 'desc')->first();
             $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_date->year)->get();
         }
 
