@@ -22,7 +22,7 @@ class SpotlightSeeder extends Seeder
         while ($date <= $now) {
             $this->seedMonthly($date);
             if ($date->month === 1) {
-                $this->seedYearly($date);
+                $this->seedBestOf($date->copy()->subYears(1));
             }
 
             $date->addMonth(1);
@@ -34,8 +34,7 @@ class SpotlightSeeder extends Seeder
         // note: this does result in spotlights with beatmaps from the future.
         DB::transaction(function () use ($date) {
             $spotlight = factory(Spotlight::class, 'monthly')->make([
-                'start_date' => $date->copy()->addDays(rand(0, 27)),
-                'end_date' => $date->copy()->addMonth(1)->addDays(rand(0, 27)),
+                'chart_date' => $date,
             ]);
 
             $spotlight->saveOrExplode();
@@ -44,12 +43,11 @@ class SpotlightSeeder extends Seeder
         });
     }
 
-    public function seedYearly($date)
+    public function seedBestOf($date)
     {
         DB::transaction(function () use ($date) {
-            $spotlight = factory(Spotlight::class, 'yearly')->make([
-                'start_date' => $date->copy()->addDays(rand(0, 27)),
-                'end_date' => $date->copy()->addMonth(1)->addDays(rand(0, 27)),
+            $spotlight = factory(Spotlight::class, 'bestof')->make([
+                'chart_date' => $date,
             ]);
 
             $spotlight->saveOrExplode();

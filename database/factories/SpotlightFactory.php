@@ -16,49 +16,47 @@ $factory->define(App\Models\Spotlight::class, function (Faker\Generator $faker) 
 });
 
 $factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
-    $startDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'));
-    $endDate = Carbon\Carbon::instance($startDate)->addMonths(1);
+    $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->startOfMonth();
 
     return  [
-        // Monthly Spotlight is generated for the previous month.
         'acronym' => function (array $self) {
-            $date = $self['start_date']->copy()->subMonths(1);
-
-            return "MONTH{$date->format('ym')}";
+            return "MONTH{$self['chart_date']->format('ym')}";
         },
         'name' => function (array $self) {
-            $date = $self['start_date']->copy()->subMonths(1);
-
-            return "Spotlight {$date->format('F Y')}";
+            return "Spotlight {$self['chart_date']->format('F Y')}";
         },
-        'start_date' => $startDate,
-        'end_date' => $endDate,
+        'start_date' => function (array $self) {
+            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(1)->addDays(rand(0, 27));
+        },
+        'end_date' => function (array $self) {
+            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(2)->addDays(rand(0, 27));
+        },
         'mode_specific' => true,
         'type' => 'monthly',
         'active' => true,
+        'chart_date' => $chartDate,
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'yearly', function (Faker\Generator $faker) {
-    $startDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear()->addMonths(1);
-    $endDate = $startDate->copy()->addMonths(1);
+$factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
+    $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear()->startOfMonth();
 
     return  [
-        // Monthly Spotlight is generated for the previous month.
         'acronym' => function (array $self) {
-            $date = $self['start_date']->copy()->subYears(1);
-
-            return "BEST{$date->format('Y')}";
+            return "BEST{$self['chart_date']->format('Y')}";
         },
         'name' => function (array $self) {
-            $date = $self['start_date']->copy()->subYears(1);
-
-            return "Best of {$date->format('Y')}";
+            return "Best of {$self['chart_date']->format('Y')}";
         },
-        'start_date' => $startDate,
-        'end_date' => $endDate,
+        'start_date' => function (array $self) {
+            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(1)->addDays(rand(0, 27));
+        },
+        'end_date' => function (array $self) {
+            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(2)->addDays(rand(0, 27));
+        },
         'mode_specific' => true,
-        'type' => 'yearly',
+        'type' => 'bestof',
         'active' => true,
+        'chart_date' => $chartDate,
     ];
 });
