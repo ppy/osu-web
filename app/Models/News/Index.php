@@ -86,7 +86,7 @@ class Index
 
     public static function index()
     {
-        return Cache::remember(
+        return cache_remember_with_fallback(
             static::cacheKey(),
             static::CACHE_DURATION,
             function () {
