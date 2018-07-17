@@ -212,7 +212,9 @@ class RankingController extends Controller
         } elseif ($after !== null) {
             $range = Spotlight::getPeriodicSpotlightsInYear($after + 1)->get();
             $spotlight = $range->first();
-        } else {
+        }
+
+        if (!isset($spotlight)) {
             $spotlight = Spotlight::periodic()->orderBy('chart_date', 'desc')->first();
             $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_date->year)->get();
         }
