@@ -32,7 +32,6 @@ use Exception;
 use Illuminate\Http\Request as HttpRequest;
 use Log;
 use Request;
-use Sentry;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
 

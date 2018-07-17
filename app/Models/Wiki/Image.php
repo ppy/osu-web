@@ -22,7 +22,6 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
-use Cache;
 
 class Image
 {

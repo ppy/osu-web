@@ -20,7 +20,6 @@
 
 namespace App\Models\News;
 
-use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Cache;
