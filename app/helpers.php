@@ -243,6 +243,15 @@ function locale_for_timeago($locale)
     return $locale;
 }
 
+function log_error($exception)
+{
+    Log::error($exception);
+
+    if (config('sentry.dsn')) {
+        Sentry::captureException($exception);
+    }
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
