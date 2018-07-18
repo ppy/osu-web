@@ -136,11 +136,8 @@ class Spotlight extends Model
 
     public function createTables()
     {
-        \Log::debug('creating tables');
-        // create tables
         DB::connection('mysql-charts')->transaction(function () {
             $modes = array_keys(Beatmap::MODES);
-            // beatmapsets
             if ($this->mode_specific) {
                 foreach ($modes as $mode) {
                     static::createBeatmapsetTable($this->beatmapsetsTableName($mode));
@@ -150,9 +147,7 @@ class Spotlight extends Model
             }
 
             foreach ($modes as $mode) {
-                // scores
                 static::createBestScoresTable($this->bestScoresTableName($mode));
-                // user_stats
                 static::createUserStatsTable($this->userStatsTableName($mode));
             }
         });
