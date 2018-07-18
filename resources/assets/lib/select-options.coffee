@@ -16,11 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, i, div} = ReactDOMFactories
-el = React.createElement
+import { a, i, div } from 'react-dom-factories'
+import { PureComponent } from 'react'
 
-
-class @SelectOptions extends React.PureComponent
+export class SelectOptions extends PureComponent
   constructor: (props) ->
     super props
     @bn = @props.bn ? 'select-options'
