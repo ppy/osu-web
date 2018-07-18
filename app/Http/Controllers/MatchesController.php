@@ -67,7 +67,7 @@ class MatchesController extends Controller
         } else {
             $events
                 ->orderBy('event_id', 'desc')
-                ->take(config('osu.mp-history.event-count'));
+                ->limit(500);
         }
 
         $events = $events->get();
