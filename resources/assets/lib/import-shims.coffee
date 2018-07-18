@@ -28,8 +28,7 @@ import VirtualList from 'react-virtual-list'
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
-window.SelectOptions = SelectOptions
-window.SpotlightSelectOptions = SpotlightSelectOptions
+window._exported = { SelectOptions, SpotlightSelectOptions }
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize
 window.VirtualList = VirtualList

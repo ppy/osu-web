@@ -34,7 +34,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
                else
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
-    el SelectOptions,
+    el _exported.SelectOptions,
       bn: 'beatmap-discussions-user-filter'
       onItemSelected: @onItemSelected
       options: options

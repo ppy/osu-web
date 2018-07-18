@@ -113,7 +113,7 @@ reactTurbolinks.register 'blockButton', BlockButton, (target) ->
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
-reactTurbolinks.register 'spotlight-select-options', SpotlightSelectOptions, (el) ->
+reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, (el) ->
   JSON.parse(el.dataset.selectOptions)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
