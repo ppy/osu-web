@@ -73,7 +73,7 @@ class Spotlight extends Model
      */
     public function scores(string $mode)
     {
-        $clazz = '\App\Models\Score\Best\\'.studly_case($mode);
+        $clazz = ScoreBest::getClass(Beatmap::MODES[$mode]);
         $model = new $clazz;
         $model->setTable($this->bestScoresTableName($mode));
         $model->setConnection('mysql-charts');
