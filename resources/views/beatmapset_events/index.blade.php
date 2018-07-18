@@ -26,6 +26,82 @@
             @endif
 
             <h3>{{ trans('beatmapset_events.index.title') }}</h3>
+
+            <form class="simple-form simple-form--search-box">
+                <h2 class="simple-form__row simple-form__row--title">
+                    {{ trans('beatmap_discussions.index.form._') }}
+                </h2>
+
+                @if ($showUserSearch ?? true)
+                    <label class="simple-form__row">
+                        <div class="simple-form__label">
+                            {{ trans('beatmap_discussions.index.form.username') }}
+                        </div>
+
+                        <input
+                            class="simple-form__input"
+                            name="user"
+                            value="{{ $search['params']['user'] ?? '' }}"
+                        >
+                    </label>
+                @endif
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmapset_events.index.form.types') }}
+                    </div>
+                    <div class="simple-form__checkboxes-overflow">
+                        @foreach (App\Models\BeatmapsetEvent::publicTypes() as $type)
+                            <label class="simple-form__checkbox simple-form__checkbox--overflow">
+                                @include('objects._checkbox', [
+                                    'name' => 'types[]',
+                                    'value' => $type,
+                                    'checked' => in_array($type, $search['params']['types'], true),
+                                ])
+                                {{ trans("beatmapset_events.type.{$type}") }}
+                            </label>
+                        @endforeach
+                    </div>
+                </div>
+
+                <label class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmapset_events.index.form.period') }}
+                    </div>
+
+                    <input
+                        class="simple-form__input"
+                        name="min_date"
+                        type="date"
+                        value="{{ $search['params']['min_date'] ?? '' }}"
+                    >
+
+                    <span class="simple-form__input-arrow-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+
+                    <input
+                        class="simple-form__input"
+                        name="max_date"
+                        type="date"
+                        value="{{ $search['params']['max_date'] ?? '' }}"
+                    >
+                </label>
+
+                <div class="simple-form__row simple-form__row--no-label">
+                    <button class="btn-osu-big btn-osu-big--rounded" type="submit">
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                {{ trans('common.buttons.search') }}
+                            </span>
+                            <span class="btn-osu-big__icon btn-osu-big__icon--normal">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+
             <div class='beatmapset-events'>
                 <div class='beatmapset-events__title'></div>
                 @foreach ($events as $event)

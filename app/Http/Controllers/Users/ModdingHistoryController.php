@@ -72,7 +72,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $this->searchParams['limit'] = 10;
-        $this->searchParams['sort'] = 'id-desc';
+        $this->searchParams['sort'] = 'id_desc';
         $this->searchParams['with_deleted'] = $this->isModerator;
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
@@ -164,7 +164,9 @@ class ModdingHistoryController extends Controller
             ]
         );
 
-        return view('beatmapset_events.index', compact('events', 'user'));
+        $showUserSearch = false;
+
+        return view('beatmapset_events.index', compact('events', 'user', 'search', 'showUserSearch'));
     }
 
     public function posts()

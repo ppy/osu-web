@@ -37,12 +37,37 @@
       flex: none;
       margin: 5px 10px;
     }
+
+    &--overflow {
+      flex: none;
+      margin: 0;
+      padding: 5px 10px;
+
+      @media @desktop {
+        width: 33%;
+      }
+    }
   }
 
   &__checkboxes-inline {
     display: flex;
     flex-wrap: wrap;
     margin: -5px -10px;
+  }
+
+  &__checkboxes-overflow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: -5px -10px;
+    width: 100%;
+
+    @media @desktop {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
   &__info {
@@ -81,6 +106,21 @@
 
     &--full-height {
       align-self: stretch;
+    }
+  }
+
+  &__input-arrow-right {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    transform: rotate(90deg);
+
+    @media @desktop {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+      transform: rotate(0deg);
     }
   }
 
