@@ -43,7 +43,7 @@ abstract class Search implements Queryable
      *
      * @var string|null
      */
-    public $statTag = 'search';
+    public $loggingTag = 'search';
 
     protected $aggregations;
     protected $index;
@@ -238,8 +238,8 @@ abstract class Search implements Queryable
                 function () {
                     return new SearchResponse($this->client()->search($this->toArray()));
                 },
-                config('datadog-helper.prefix_web').".{$this->statTag}.fetch",
-                ['type' => get_called_class()]
+                config('datadog-helper.prefix_web').'.search.fetch',
+                ['type' => get_called_class(), 'name' => $this->loggingTag]
             );
         } catch (NoNodesAvailableException $e) {
             // all servers down
@@ -256,9 +256,9 @@ abstract class Search implements Queryable
 
         if (config('datadog-helper.enabled')) {
             Datadog::increment(
-                config('datadog-helper.prefix_web').".{$this->statTag}.errors",
+                config('datadog-helper.prefix_web').'.search.errors',
                 1,
-                ['class' => get_class($this->error)]
+                ['class' => get_class($this->error), 'name' => $this->loggingTag]
             );
         }
 

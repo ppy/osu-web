@@ -33,7 +33,7 @@ trait UserScoreable
 
         $search = new BasicSearch($index);
         $search->connectionName = 'scores';
-        $search->statTag = "aggregatedScoresBest_{$mode}";
+        $search->loggingTag = "aggregatedScoresBest_{$mode}";
         $search
             ->size(0) // don't care about hits
             ->query(
