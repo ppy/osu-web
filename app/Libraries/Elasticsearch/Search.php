@@ -252,6 +252,8 @@ abstract class Search implements Queryable
             $this->error = $e;
         }
 
+        log_error($this->error);
+
         if (config('datadog-helper.enabled')) {
             Datadog::increment(
                 config('datadog-helper.prefix_web').".{$this->statTag}.errors",
