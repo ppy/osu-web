@@ -69,13 +69,7 @@ class LivestreamCollection
             return;
         }
 
-        $paramString = '';
-
-        foreach ($userIds as $id) {
-            $paramString .= "&id={$id}";
-        }
-
-        return $this->download("users?{$paramString}");
+        return $this->download('users?id='.implode('&id=', $userIds));
     }
 
     public function download($api)
