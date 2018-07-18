@@ -66,6 +66,7 @@ class LivestreamCollection
     public function downloadUsers($userIds)
     {
         if (count($userIds) === 0) {
+            return;
         }
 
         $paramString = '';
