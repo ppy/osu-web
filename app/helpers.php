@@ -83,9 +83,17 @@ function cache_remember_with_fallback($key, $minutes, $callback)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
+    $uid = uniqid($stat);
+    // spaces used so clockwork doesn't run across the whole screen.
+    $description = $stat
+                   .' '.($tag['type'] ?? null)
+                   .' '.($tag['name'] ?? null);
+
     $start = microtime(true);
 
+    clock()->startEvent($uid, $description);
     $result = $callable();
+    clock()->endEvent($uid);
 
     if (config('datadog-helper.enabled')) {
         $duration = microtime(true) - $start;
