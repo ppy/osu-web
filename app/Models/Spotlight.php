@@ -163,26 +163,6 @@ class Spotlight extends Model
         return Spotlight::periodic()->inYear($year)->orderBy('chart_date', 'asc');
     }
 
-    public static function newSpotlight(string $acronym, string $name, bool $modeSpecific, string $type = 'monthly')
-    {
-        /** @var self $spotlight */
-        $spotlight = new Spotlight([
-            'acronym' => $acronym,
-            'name' => $name,
-            'mode_specific' => $modeSpecific,
-            'type' => $type,
-        ]);
-
-        DB::transaction(function () use ($spotlight) {
-            $spotlight->createTables();
-            $spotlight->saveOrExplode();
-        });
-
-        $spotlight->fresh();
-
-        return $spotlight;
-    }
-
     private static function createBeatmapsetTable($name)
     {
         \Log::debug("create table {$name}");
