@@ -29,7 +29,7 @@ return [
             'account-edit' => 'ustawienia',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
-            'changelog-show' => 'kompilacja',
+            'changelog-build' => 'wersja',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',

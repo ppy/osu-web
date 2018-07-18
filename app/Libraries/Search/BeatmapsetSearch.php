@@ -59,7 +59,10 @@ class BeatmapsetSearch extends RecordSearch
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
-            $query->must(QueryHelper::queryString($this->params->queryString));
+            $terms = explode(' ', $this->params->queryString);
+            // results must contain at least one of the terms and boosted by containing all of them.
+            $query->must(QueryHelper::queryString($this->params->queryString, [], 'or', 1 / count($terms)));
+            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
         }
 
         $this->addModeFilter($query);
@@ -220,9 +223,8 @@ class BeatmapsetSearch extends RecordSearch
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
+            $newQuery = Score\Best\Model::getClass($mode)
+                ::forUser($this->params->user)
                 ->select('beatmap_id');
 
             if ($rank !== null) {

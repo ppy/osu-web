@@ -39,7 +39,6 @@ return [
         'edit' => '수정',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
-        'message_placeholder' => '게시할 답글의 내용을 입력하세요.',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => '작성된 글은 일반 비트맵 토론으로 올라가집니다. 비트맵을 모딩하시려면 글의 첫 부분을 타임스탬프로 시작하십시오 (예시, 00:12:345).',
             'in_timeline' => '비트맵의 여러 부분을 수정하려면 글을 여러 번 올리세요 (한 글에 한 타임스탬프만 수정할 수 있습니다).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '일반(:version)에 게시할 답글 내용을 입력하세요.',
+            'generalAll' => '일반(모든 난이도)에 게시할 답글 내용을 입력하세요.',
+            'timeline' => '타임라인(:version)에 게시할 답글 내용을 입력하세요.',
         ],
 
         'message_type' => [
@@ -107,7 +112,7 @@ return [
             'mine' => '내 글',
             'pending' => '토론중',
             'praises' => '칭찬',
-            'resolved' => '토론 완료',
+            'resolved' => '해결됨',
             'total' => '모두',
         ],
 
@@ -125,9 +130,9 @@ return [
         'button' => '비트맵 Hype!',
         'button_done' => '이미 Hype했습니다!',
         'confirm' => "확실한가요? 이 작업은 남아있는 :n개의 Hype를 사용하고, 취소할 수 없습니다.",
-        'explanation' => 'Hype로 이 비트맵의 노출 순위를 올릴 수 있습니다. 빠르게 랭크맵이 되길 원한다면 Hype!',
-        'explanation_guest' => 'Hype로 이 비트맵의 노출 순위를 올릴 수 있습니다. 빠르게 랭크맵이 되길 원한다면 로그인 후 Hype!',
-        'new_time' => ":new_time 새로운 hype를 받을 수 있습니다.",
+        'explanation' => 'Hype로 이 비트맵의 노출 순위를 올릴 수 있습니다. 빠르게 랭크맵이 되길 원한다면 Hype 하세요!',
+        'explanation_guest' => 'Hype로 이 비트맵의 노출 순위를 올릴 수 있습니다. 빠르게 랭크맵이 되길 원한다면 로그인 후 Hype 하세요!',
+        'new_time' => ":new_time에 새로운 hype를 받을 수 있습니다.",
         'remaining' => 'hype가 :remaining개 남았습니다.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -139,9 +144,9 @@ return [
     ],
 
     'nominations' => [
-        'disqualification_prompt' => 'DQ 사유는 무엇입니까?',
-        'disqualified_at' => 'Disqualified :time_ago (:reason).',
-        'disqualified_no_reason' => '사유가 명시되지 않았습니다',
+        'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
+        'disqualified_at' => ':time_ago (:reason).에 disqualify되었습니다.',
+        'disqualified_no_reason' => '이유가 명시되지 않았습니다',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'nominate' => '지명',
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => '검색어를 입력하세요...',
             'options' => '검색 옵션 더 보기',
+            'supporter_filter' => ':filters로 검색하려면 서포터 권한이 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
@@ -175,8 +181,8 @@ return [
                 'mode' => '모드',
                 'status' => '등록 상태',
                 'genre' => '장르',
-                'language' => '언어 분류',
-                'extra' => '부가 기능',
+                'language' => '언어',
+                'extra' => '추가 기능',
                 'rank' => '순위 기록됨',
                 'played' => '플레이함',
             ],
@@ -189,11 +195,15 @@ return [
                 'rating' => '평점',
                 'plays' => '플레이된 횟수',
                 'relevance' => '연관성',
-                'nominations' => '지명 / Hype',
+                'nominations' => '지명',
+            ],
+            'supporter_filter_quote' => [
+                '_' => ':filters로 검색하려면 :link이 필요합니다.',
+                'link_text' => '서포터 권한',
             ],
         ],
         'mode' => '모드',
-        'status' => '등록 상태',
+        'status' => '랭크 상태',
         'source' => '원작: :source',
         'load-more' => '더 불러오기...',
     ],
@@ -266,7 +276,7 @@ return [
         'korean' => '한국어',
         'spanish' => '스페인어',
         'swedish' => '스웨덴어',
-        'instrumental' => 'Instrumental',
+        'instrumental' => '가사 없음',
         'other' => '기타',
     ],
     'played' => [
@@ -280,9 +290,9 @@ return [
     ],
     'rank' => [
         'any' => '모두',
-        'XH' => '은장 SS',
+        'XH' => '실버 SS',
         'X' => 'SS',
-        'SH' => '은장 S',
+        'SH' => '실버 S',
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',

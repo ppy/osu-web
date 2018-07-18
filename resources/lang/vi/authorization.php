@@ -27,7 +27,7 @@ return [
         'nominate' => [
             'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
-            'owner' => "Bạn không thể đề cử chính beatmap của bạn.",
+            'owner' => "Bạn không thể đề cử beatmap của bạn.",
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
@@ -35,7 +35,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
-            'owner' => "Không thể bình chọn cuộc thảo luận của chính bạn.",
+            'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap đang chờ.',
         ],
     ],

@@ -29,7 +29,7 @@ return [
             'account-edit' => 'beállítások',
             'friends-index' => 'barátok',
             'changelog-index' => 'változások listája',
-            'changelog-show' => 'verzió',
+            'changelog-build' => 'verzió',
             'getDownload' => 'letöltés',
             'getIcons' => 'ikonok',
             'groups-show' => 'csoportok',

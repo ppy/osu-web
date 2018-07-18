@@ -39,7 +39,6 @@ return [
         'edit' => 'ændr',
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
-        'message_placeholder' => 'Skriv here for at slå op',
         'message_placeholder_deleted_beatmap' => 'Den her sværhedsgrad er blevet slettet så den må ikke blive diskuteret.',
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Dette opslag vil lande i general beatmapset diskussionen. For at modde dette beatmap, start beskeden med et tidsstempel (f.eks. 00:12:345).',
             'in_timeline' => 'For at modde flere tidsstempler, slå flere tidsstempler op (kun et opslag pr. tidsstempel).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'skriv nøgleord...',
             'options' => 'Flere søgefunktioner',
+            'supporter_filter' => '',
             'not-found' => 'ingen resultater',
             'not-found-quote' => '... desværre, intet fundet.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => '',
                 'relevance' => '',
                 'nominations' => '',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => 'Mode',

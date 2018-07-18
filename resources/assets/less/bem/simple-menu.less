@@ -79,6 +79,11 @@
     left: (-@_gutter + -@_item-padding-horizontal);
   }
 
+  &--nav2-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
   &__content {
     margin: 0 -@_gutter;
     padding: 0 @_gutter;
@@ -87,8 +92,15 @@
 
     .@{_top}--nav2 & {
       min-height: 100px;
-      max-height: calc(90vh ~'-' (@nav2-menu-height + @_padding-vertical * 2));
+      max-height: calc(100vh ~'-' (@nav2-height + @_padding-vertical * 2));
       overflow-y: auto;
+    }
+
+    .@{_top}--nav2-locales & {
+      // Hopefully wide enough for two columns (ie. no overflown text).
+      width: 440px;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 
@@ -157,6 +169,10 @@
 
     &--active {
       .highlight-stripe();
+    }
+
+    .@{_top}--nav2-locales & {
+      width: 50%;
     }
 
     &[disabled], &--disabled {

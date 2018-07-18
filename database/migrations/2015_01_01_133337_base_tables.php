@@ -440,6 +440,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -608,6 +609,7 @@ class BaseTables extends Migration
             $table->integer('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -639,6 +641,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -698,6 +701,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });

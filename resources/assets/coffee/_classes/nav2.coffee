@@ -18,8 +18,12 @@
 
 class @Nav2
   constructor: ->
+    @headerTitle = document.getElementsByClassName('js-nav2--header-title')
+    @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
+
     addEventListener 'turbolinks:load', @setLoginBoxElements
     $.subscribe 'click-menu:current', @autoCenterPopup
+    $.subscribe 'menu:current', @adjustElementsVisibility
     $(window).on 'throttled-resize, throttled-scroll', @stickLogin
 
 
@@ -29,8 +33,11 @@ class @Nav2
     $(window).off 'throttled-resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
-      continue if popup.dataset.clickMenuId != @currentMenu
+      if popup.dataset.clickMenuId != @currentMenu
+        popup.classList.add 'hidden'
+        continue
 
+      popup.classList.remove 'hidden'
       currentPopup = popup
       link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}']")
 
@@ -72,6 +79,13 @@ class @Nav2
           popupLeftForCentered
 
     popup.style.transform = "translateX(#{finalLeft}px)"
+
+
+  adjustElementsVisibility: (_e, currentMenu) =>
+    shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
+
+    Fade.toggle @headerTitle[0], !shown
+    Fade.toggle @menuBg[0], shown
 
 
   loginBoxVisible: =>

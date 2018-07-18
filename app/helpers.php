@@ -52,6 +52,35 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
+ * and return old value if failed getting the value after it expires.
+ */
+function cache_remember_with_fallback($key, $minutes, $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        try {
+            $data = [
+                'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                'value' => $callback(),
+            ];
+
+            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+        } catch (Exception $e) {
+            // Log and continue with data from the first ::get.
+            log_error($e);
+        }
+    }
+
+    return $data['value'] ?? null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
@@ -68,6 +97,18 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     }
 
     return $result;
+}
+
+function db_unsigned_increment($column, $count)
+{
+    if ($count >= 0) {
+        $value = "{$column} + {$count}";
+    } else {
+        $change = -$count;
+        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+    }
+
+    return DB::raw($value);
 }
 
 function es_query_and_words($words)
@@ -233,6 +274,15 @@ function locale_for_timeago($locale)
     }
 
     return $locale;
+}
+
+function log_error($exception)
+{
+    Log::error($exception);
+
+    if (config('sentry.dsn')) {
+        Sentry::captureException($exception);
+    }
 }
 
 function mysql_escape_like($string)
@@ -482,8 +532,8 @@ function current_action()
 function link_to_user($user_id, $user_name = null, $user_color = null)
 {
     if ($user_id instanceof App\Models\User) {
-        $user_name = $user_id->username;
-        $user_color = $user_id->user_colour;
+        $user_name ?? ($user_name = $user_id->username);
+        $user_color ?? ($user_color = $user_id->user_colour);
         $user_id = $user_id->getKey();
     }
     $user_name = e($user_name);
@@ -508,6 +558,11 @@ function issue_icon($issue)
         case 'duplicate': return 'fas fa-copy';
         case 'invalid': return 'far fa-times-circle';
     }
+}
+
+function build_url($build)
+{
+    return route('changelog.build', [$build->updateStream->name, $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
@@ -639,10 +694,6 @@ function footer_landing_links()
             'livestreams' => route('livestreams.index'),
             'report' => route('forum.topics.create', ['forum_id' => 5]),
         ],
-        'support' => [
-            'tags' => route('support-the-game'),
-            'merchandise' => action('StoreController@getListing'),
-        ],
         'legal' => footer_legal_links(),
     ];
 }
@@ -699,14 +750,16 @@ function display_regdate($user)
         return;
     }
 
+    $tooltipDate = i18n_date($user->user_regdate);
+
     $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
+        return '<div title="'.$tooltipDate.'">'.trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => "<strong>{$formattedDate}</strong>",
+        'date' => "<strong title='{$tooltipDate}'>{$formattedDate}</strong>",
     ]);
 }
 

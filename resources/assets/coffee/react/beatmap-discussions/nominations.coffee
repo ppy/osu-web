@@ -278,11 +278,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     if discussion?
       url = BeatmapDiscussionHelper.url discussion: discussion
-      message = _.truncate(discussion.posts[0].message, 100)
-      message = BeatmapDiscussionHelper.format message, newlines: false
 
       link = osu.link url, "##{discussion.id}", classNames: ['js-beatmap-discussion--jump']
-      message = message
+      message = BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = osu.trans('beatmaps.nominations.reset_message_deleted')

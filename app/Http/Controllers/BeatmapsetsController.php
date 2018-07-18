@@ -213,6 +213,14 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
+        $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
+            ->where('timestamp', '>', Carbon::now()->subHour()->getTimestamp())
+            ->count();
+
+        if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
+            abort(403);
+        }
+
         $noVideo = get_bool(Request::input('noVideo', false));
         $mirror = BeatmapMirror::getRandomForRegion(request_country(request()));
 

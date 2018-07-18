@@ -15,25 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false, 'bodyAdditionalClasses' => 'osu-layout--body-111-plain'])
 
 @section('content')
-    <div class="osu-layout__section osu-layout__section--full">
-        @include('changelog._changelog_header', [
-            'url' => route('changelog.index'),
-            'breadcrumb' => trans('changelog.feed_title')
-        ])
+    <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
 
-        <div class="osu-layout__row osu-layout__row--page-compact">
-            <div class="changelog">
-                @foreach($changelogs as $date => $logs)
-                    <p class="changelog__text changelog__text--date">{{ $date }}</p>
+    <script id="json-builds" type="application/json">
+        {!! json_encode($builds) !!}
+    </script>
 
-                    <div class="changelog__list">
-                        @each('changelog._changelog_change', $logs, 'log')
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <script id="json-latest-builds" type="application/json">
+        {!! json_encode($latestBuilds) !!}
+    </script>
+
+    <script id="json-chart-config" type="application/json">
+        {!! json_encode($chartConfig) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/changelog-index.js'])
 @endsection

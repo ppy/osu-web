@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
+            '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
+            'types' => 'Mesaj türü',
+            'username' => 'Kullanıcı adı',
 
             'user' => [
                 'label' => 'Kullanıcı',

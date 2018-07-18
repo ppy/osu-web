@@ -29,7 +29,7 @@ return [
             'account-edit' => 'настройки',
             'friends-index' => 'друзья',
             'changelog-index' => 'список изменений',
-            'changelog-show' => 'сборка',
+            'changelog-build' => 'сборка',
             'getDownload' => 'скачать игру',
             'getIcons' => 'иконки',
             'groups-show' => 'группы',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'избранные исполнители',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset-watches-index' => 'подписки на карты',

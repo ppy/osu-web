@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Kirjaudu sisään jatkaaksesi.',
         'http-403' => 'Pääsy evätty.',
+        'http-404' => 'Ei löytynyt.',
         'http-429' => 'Liian monta kirjautumisyritystä, yritä uudelleen myöhemmin.',
     ],
     'account' => [
@@ -31,13 +32,13 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Virheellinen pelimoodi annettu.',
-        'standard_converts_only' => 'Ei tuloksia saatavissa valitulle moodille tässä kentän vaikeusasteessa.',
+        'standard_converts_only' => 'Tuloksia valitulle pelimuodolle ei löydy tässä vaikeustasossa.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Sinulla on liian monta suosikkikenttää! Ole ystävällinen ja ota yksi pois suosikeista ennen jatkamista.',
     ],
     'logged_out' => 'Sinut on kirjattu ulos. Kirjaudu sisään ja yritä uudelleen.',
-    'supporter_only' => 'Sinun täytyy olla tukija käyttääksesi tätä ominaisuutta.',
+    'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
     'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
     'unknown' => 'Tuntematon virhe.',
 ];

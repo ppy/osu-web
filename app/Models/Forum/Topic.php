@@ -21,8 +21,8 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\UpdateUserForumCache;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
@@ -83,15 +83,15 @@ class Topic extends Model implements AfterCommit
     public static function createNew($forum, $params, $poll = null)
     {
         $topic = new static([
-            'forum_id' => $forum->forum_id,
             'topic_time' => Carbon::now(),
             'topic_title' => $params['title'] ?? null,
             'topic_poster' => $params['user']->user_id,
             'topic_first_poster_name' => $params['user']->username,
             'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
+        $topic->forum()->associate($forum);
 
-        DB::transaction(function () use ($forum, $topic, $params, $poll) {
+        $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
             $topic->addPostOrExplode($params['user'], $params['body']);
 
@@ -119,14 +119,11 @@ class Topic extends Model implements AfterCommit
             'post_time' => Carbon::now(),
         ]);
 
-        DB::transaction(function () use ($post) {
+        $this->getConnection()->transaction(function () use ($post) {
             $post->saveOrExplode();
 
-            $this->refreshCache();
-
-            if ($this->forum !== null) {
-                $this->forum->refreshCache();
-            }
+            $this->postsAdded(1);
+            optional($this->forum)->postsAdded(1);
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
@@ -140,7 +137,7 @@ class Topic extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
-        return DB::transaction(function () use ($post) {
+        return $this->getConnection()->transaction(function () use ($post) {
             if ($post->delete() === false) {
                 $message = $post->validationErrors()->toSentence();
                 $this->validationErrors()->addTranslated('post', $message);
@@ -149,14 +146,13 @@ class Topic extends Model implements AfterCommit
             }
 
             if ($this->posts()->exists() === true) {
-                $this->refreshCache();
+                $this->postsAdded(-1);
             } else {
                 $this->delete();
+                optional($this->forum)->topicsAdded(-1);
             }
 
-            if ($this->forum !== null) {
-                $this->forum->refreshCache();
-            }
+            optional($this->forum)->postsAdded(-1);
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
@@ -168,22 +164,17 @@ class Topic extends Model implements AfterCommit
 
     public function restorePost($post)
     {
-        DB::transaction(function () use ($post) {
+        $this->getConnection()->transaction(function () use ($post) {
             $post->restore();
+
+            $this->postsAdded(1);
+            optional($this->forum)->postsAdded(1);
 
             if ($this->trashed()) {
                 $this->restore();
             }
 
-            $this->refreshCache();
-
-            if ($this->forum !== null) {
-                $this->forum->refreshCache();
-            }
-
-            if ($post->user !== null) {
-                $post->user->refreshForumCache($this->forum, 1);
-            }
+            optional($post->user)->refreshForumCache($this->forum, 1);
         });
 
         return true;
@@ -199,28 +190,31 @@ class Topic extends Model implements AfterCommit
             return false;
         }
 
-        return DB::transaction(function () use ($destinationForum) {
+        return $this->getConnection()->transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
             $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->posts()->withTrashed()->update(['forum_id' => $this->forum_id]);
+
             $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
             $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
-            if ($originForum !== null) {
-                $originForum->refreshCache();
-            }
+            $visiblePostsCount = $this->posts()->count();
+            optional($originForum)->topicsAdded(-1);
+            optional($originForum)->postsAdded($visiblePostsCount * -1);
+            optional($this->forum)->topicsAdded(1);
+            optional($this->forum)->postsAdded($visiblePostsCount);
 
-            if ($this->forum !== null) {
-                $this->forum->refreshCache();
-            }
-
-            $users = User::whereIn('user_id', model_pluck($this->posts(), 'poster_id'))->get();
-
-            foreach ($users as $user) {
-                $user->refreshForumCache();
-            }
+            $this
+                ->posts()
+                ->withTrashed()
+                // this relies on dispatcher always reloading the model
+                ->select(['poster_id', 'post_id'])
+                ->each(function ($post) {
+                    dispatch(new UpdateUserForumCache($post->poster_id));
+                    dispatch(new EsIndexDocument($post));
+                });
 
             return true;
         });
@@ -379,7 +373,19 @@ class Topic extends Model implements AfterCommit
             return false;
         }
 
-        return parent::save($options);
+        return $this->getConnection()->transaction(function () use ($options) {
+            // creating new topic
+            if (!$this->exists && $this->forum !== null) {
+                $this->forum->topicsAdded(1);
+            }
+
+            // restoring topic
+            if ($this->isDirty('deleted_at') && $this->deleted_at === null) {
+                $this->forum->topicsAdded(1);
+            }
+
+            return parent::save($options);
+        });
     }
 
     public function isValid()
@@ -526,7 +532,7 @@ class Topic extends Model implements AfterCommit
 
     public function pollTitleHTML()
     {
-        return bbcode($this->poll_title, $this->posts->first()->bbcode_uid);
+        return bbcode($this->poll_title, $this->posts()->withTrashed()->first()->bbcode_uid);
     }
 
     public function pollEnd()
@@ -616,9 +622,23 @@ class Topic extends Model implements AfterCommit
         return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
     }
 
+    public function postsAdded($count)
+    {
+        $this->getConnection()->transaction(function () use ($count) {
+            $this->fill([
+                'topic_replies' => db_unsigned_increment('topic_replies', $count),
+                'topic_replies_real' => db_unsigned_increment('topic_replies_real', $count),
+            ]);
+            $this->setFirstPostCache();
+            $this->setLastPostCache();
+
+            $this->save();
+        });
+    }
+
     public function refreshCache()
     {
-        DB::transaction(function () {
+        $this->getConnection()->transaction(function () {
             $this->setPostsCountCache();
             $this->setFirstPostCache();
             $this->setLastPostCache();
@@ -810,10 +830,6 @@ class Topic extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->trashed()) {
-            dispatch(new EsDeleteDocument($this));
-        } else {
-            dispatch(new EsIndexDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 }

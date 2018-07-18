@@ -46,17 +46,12 @@ class BeatmapDiscussions.Event extends React.PureComponent
     if discussionId?
       discussion = @props.discussions[discussionId]
 
-      url =
-        if discussion?
-          BeatmapDiscussionHelper.url discussion: discussion
-        else
-          laroute.route 'beatmap-discussions.show', beatmap_discussion: discussionId
-
-      text =
-        if discussion?
-          BeatmapDiscussionHelper.format(_.truncate(discussion.posts[0].message, 100), newlines: false)
-        else
-          osu.trans('beatmapset_events.item.discussion_deleted')
+      if discussion?
+        url = BeatmapDiscussionHelper.url discussion: discussion
+        text = BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
+      else
+        url = laroute.route 'beatmap-discussions.show', beatmap_discussion: discussionId
+        text = osu.trans('beatmapset_events.item.discussion_deleted')
 
       discussionLink = osu.link(url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump'])
     else

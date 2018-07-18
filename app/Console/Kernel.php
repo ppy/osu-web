@@ -43,6 +43,9 @@ class Kernel extends ConsoleKernel
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
+
+        // builds
+        Commands\BuildsCreate::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
         // leaderboard recalculation

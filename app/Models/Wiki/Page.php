@@ -30,6 +30,7 @@ use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
+use Exception;
 
 class Page
 {
@@ -207,7 +208,13 @@ class Page
                 if ($fetch) {
                     try {
                         $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-                    } catch (GitHubNotFoundException $_e) {
+                    } catch (Exception $e) {
+                        if (!$e instanceof GitHubNotFoundException) {
+                            $index = false;
+
+                            log_error($e);
+                        }
+
                         $body = null;
                     }
 
@@ -220,7 +227,7 @@ class Page
 
                 $this->cache['page'] = $page;
 
-                if ($fetch) {
+                if ($fetch && ($index ?? true)) {
                     dispatch(new EsIndexDocument($this));
                 }
 

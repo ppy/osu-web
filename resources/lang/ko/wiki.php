@@ -26,7 +26,7 @@ return [
         'missing_title' => '찾을 수 없음',
         'missing_translation' => '현재 사용하시는 언어로 된 요청하신 페이지를 찾을 수 없습니다.',
         'search' => ':link에 해당하는 페이지',
-        'toc' => 'Contents',
+        'toc' => '내용',
 
         'edit' => [
             'link' => 'GitHub에서 보기',

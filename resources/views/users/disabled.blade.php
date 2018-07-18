@@ -19,6 +19,6 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        @include(i18n_view("users._disabled_message"))
+        @include(i18n_view('users._disabled_message'))
     </div>
 @endsection

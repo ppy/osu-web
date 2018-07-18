@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+{a, div, p} = ReactDOMFactories
 el = React.createElement
 VirtualList = window.VirtualList
 
@@ -97,6 +97,7 @@ class Beatmaps.Main extends React.PureComponent
 
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
+    supporterFilters = @supporterFiltersTrans()
 
     div className: 'osu-layout__section',
       el Beatmaps.SearchPanel,
@@ -114,21 +115,42 @@ class Beatmaps.Main extends React.PureComponent
 
           div
             className: 'beatmapsets__content'
-            if @state.beatmaps.length > 0
-              el BeatmapList,
-                items: _.chunk(@state.beatmaps, @state.columnCount)
-                itemBuffer: 5
-                itemHeight: ITEM_HEIGHT
-
-            else
+            if @isSupporterMissing()
               div className: 'beatmapsets__empty',
                 el Img2x,
-                  src: '/images/layout/beatmaps/not-found.png'
-                  alt: osu.trans("beatmaps.listing.search.not-found")
-                  title: osu.trans("beatmaps.listing.search.not-found")
-                osu.trans("beatmaps.listing.search.not-found-quote")
+                  src: '/images/layout/beatmaps/supporter-required.png'
+                  alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
+                  title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
 
-          el(Beatmaps.Paginator, paging: @state.paging)
+                @renderLinkToSupporterTag(supporterFilters)
+
+            else
+              if @state.beatmaps.length > 0
+                el BeatmapList,
+                  items: _.chunk(@state.beatmaps, @state.columnCount)
+                  itemBuffer: 5
+                  itemHeight: ITEM_HEIGHT
+
+              else
+                div className: 'beatmapsets__empty',
+                  el Img2x,
+                    src: '/images/layout/beatmaps/not-found.png'
+                    alt: osu.trans("beatmaps.listing.search.not-found")
+                    title: osu.trans("beatmaps.listing.search.not-found")
+                  osu.trans("beatmaps.listing.search.not-found-quote")
+
+          el(Beatmaps.Paginator, paging: @state.paging) unless @isSupporterMissing()
+
+
+  renderLinkToSupporterTag: (filters) ->
+    url = laroute.route('store.products.show', product: 'supporter-tag')
+    link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
+
+    p
+      dangerouslySetInnerHTML:
+        __html: osu.trans 'beatmaps.listing.search.supporter_filter_quote._',
+          filters: filters
+          link: link
 
 
   buildSearchQuery: =>
@@ -143,8 +165,6 @@ class Beatmaps.Main extends React.PureComponent
       if value? && BeatmapsetFilter.getDefault(params, key) != value
         charParams[keyToChar[key]] = value
 
-    delete charParams[keyToChar['rank']] if !currentUser.is_supporter
-
     charParams
 
 
@@ -156,6 +176,10 @@ class Beatmaps.Main extends React.PureComponent
 
   hideLoader: =>
     @setState loading: false
+
+
+  isSupporterMissing: =>
+    !currentUser.is_supporter && @supporterFilters().length > 0
 
 
   loadMore: =>
@@ -198,7 +222,7 @@ class Beatmaps.Main extends React.PureComponent
     params = @buildSearchQuery()
     newUrl = laroute.route 'beatmapsets.index', params
 
-    return if "#{location.pathname}#{location.search}" == newUrl
+    return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
 
     @showLoader()
     @xhr.search = $.ajax @state.paging.url,
@@ -250,6 +274,16 @@ class Beatmaps.Main extends React.PureComponent
 
     filters: BeatmapsetFilter.fillDefaults(filters)
     isExpanded: expand
+
+
+  supporterFilters: =>
+    _.reject ['played', 'rank'], (name) =>
+      _.isEmpty @state.filters[name]
+
+
+  supporterFiltersTrans: =>
+    osu.transArray _.map @supporterFilters(), (name) ->
+      osu.trans "beatmaps.listing.search.filters.#{name}"
 
 
   updateFilters: (_e, newFilters) =>

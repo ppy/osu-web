@@ -19,23 +19,23 @@
  */
 
 return [
-    'header' => ':type sijoitus',
+    'header' => ':type Tilasto',
     'type' => [
         'performance' => 'Suorituskyky',
-        'charts' => 'Parrasvalot',
-        'score' => 'Pisteet',
+        'charts' => 'Valokeilassa',
+        'score' => 'Piste',
         'country' => 'Maa',
     ],
     'stat' => [
         'accuracy' => 'Tarkkuus',
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
-        'play_count' => 'Pelausten määrä',
-        'performance' => 'Tulokset',
+        'play_count' => 'Pelaukset',
+        'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Rankatut pisteet',
+        'ranked_score' => 'Pisteet (hyväksytyt)',
         'average_score' => 'Keskim. pisteet',
-        'average_performance' => 'Keskim. Tulokset',
+        'average_performance' => 'Keskim. PP',
         'ss' => '',
         's' => '',
         'a' => '',

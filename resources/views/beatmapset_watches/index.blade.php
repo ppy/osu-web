@@ -95,7 +95,7 @@
                                     data-confirm="{{ trans('common.confirmation') }}"
                                     title="{{ trans('beatmapset_watches.button.action.to_0') }}"
                                 >
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-eye-slash"></i>
                                 </button>
                             </td>
                         </tr>
@@ -109,7 +109,7 @@
                 @endif
             </table>
 
-            @include('forum._pagination', ['object' => $watches])
+            @include('objects._pagination_v0', ['object' => $watches])
         </div>
     </div>
 @endsection

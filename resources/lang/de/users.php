@@ -37,11 +37,24 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Meiste Stimmen von (3 Monate)',
+            'title_most' => 'Meiste Stimmen von (letzten 3 Monate)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Meiste Stimmen (3 Monate)',
+            'title_most' => 'Meiste Stimmen (letzten 3 Monate)',
+        ],
+    ],
+
+    'blocks' => [
+        'banner_text' => 'Du hast diesen Benutzer geblockt.',
+        'blocked_count' => '(:count) geblockte Benutzer ',
+        'hide_profile' => 'Profil verbergen',
+        'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
+        'show_profile' => 'Profil anzeigen',
+        'too_many' => 'Block-Limit erreicht.',
+        'button' => [
+            'block' => 'blocken',
+            'unblock' => 'entblocken',
         ],
     ],
 

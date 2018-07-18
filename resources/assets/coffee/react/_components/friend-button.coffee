@@ -86,6 +86,16 @@ class @FriendButton extends React.PureComponent
 
     blockClass = bn
 
+    isFriendLimit = currentUser.friends.length >= currentUser.max_friends
+    title = if @state.friend
+              osu.trans('friends.buttons.remove')
+            else if isFriendLimit
+              osu.trans('friends.too_many')
+            else
+              osu.trans('friends.buttons.add')
+
+    disabled = @state.loading || isFriendLimit && !@state.friend
+
     if @state.friend && !@state.loading
       if @state.friend.mutual
         blockClass += " #{bn}--mutual"
@@ -97,8 +107,8 @@ class @FriendButton extends React.PureComponent
       className: blockClass
       onClick: @clicked
       ref: (el) => @button = el
-      title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
-      disabled: @state.loading
+      title: title
+      disabled: disabled
       if @state.loading
         el Spinner
       else
@@ -121,16 +131,14 @@ class @FriendButton extends React.PureComponent
                 i className: 'fas fa-user'
           ]
         else
-          i className: 'fas fa-user-plus'
+          i className: if isFriendLimit then 'fas fa-user' else 'fas fa-user-plus'
 
 
   isVisible: =>
     # - not a guest
     # - not viewing own card
-    # - already a friend or can add more friends
     # - not blocked
     currentUser.id? &&
       _.isFinite(@props.user_id) &&
       @props.user_id != currentUser.id &&
-      (@state.friend || currentUser.friends.length < currentUser.max_friends) &&
       !_.find(currentUser.blocks, target_id: @props.user_id)

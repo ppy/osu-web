@@ -184,6 +184,14 @@ mix
   'resources/assets/coffee/react/beatmapset-page.coffee',
 ], 'js/react/beatmapset-page.js')
 .js([
+  ...glob.sync('resources/assets/coffee/react/changelog-index/*.coffee'),
+  'resources/assets/coffee/react/changelog-index.coffee',
+], 'js/react/changelog-index.js')
+.js([
+  ...glob.sync('resources/assets/coffee/react/changelog-build/*.coffee'),
+  'resources/assets/coffee/react/changelog-build.coffee',
+], 'js/react/changelog-build.js')
+.js([
   ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
   'resources/assets/coffee/react/mp-history.coffee',
 ], 'js/react/mp-history.js')

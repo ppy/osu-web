@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Bugfixes en kleine verbeteringen.',
-    'users-online' => '1 gebruiker online|:users gebruikers online',
 
-    'prefixes' => [
-        'add' => 'toevoeging',
-        'fix' => 'fix',
-        'misc' => 'overige',
+    'builds' => [
+        'users_online' => ':count_delimited gebruiker online|:count_delimited gebruikers online',
+    ],
+
+    'entry' => [
+        'by' => 'door :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Index',
+        ],
     ],
 
     'support' => [

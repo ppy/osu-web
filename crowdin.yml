@@ -3,10 +3,13 @@ files:
     translation: /resources/lang/%locale%/**/%original_file_name%
     languages_mapping:
       locale:
+        bg-BG: bg
         zh-CN: zh
         zh-TW: zh-tw
+        cs-CZ: cs
         da: da
         nl: nl
+        fi-FI: fi
         fr: fr
         id: id
         it: it

@@ -33,6 +33,9 @@ $(document).on 'turbolinks:load', ->
   StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
+# ensure currentUser is updated early enough.
+@currentUserObserver ?= new CurrentUserObserver
+
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditPlaystyle ?= new AccountEditPlaystyle
@@ -41,7 +44,6 @@ $(document).on 'turbolinks:load', ->
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new ClickMenu
-@currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -84,7 +86,6 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 
 

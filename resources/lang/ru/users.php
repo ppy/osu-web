@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'пользователь добавлен в ваш чёрный список',
+        'blocked_count' => 'чёрный список (:count)',
+        'hide_profile' => 'скрыть профиль',
+        'not_blocked' => 'Этот пользователь заблокирован.',
+        'show_profile' => 'показать профиль',
+        'too_many' => 'Достигнут лимит кол-ва заблокированных.',
+        'button' => [
+            'block' => 'в чёрный список',
+            'unblock' => 'удалить',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Загрузка...',
         'send_message' => 'отправить сообщение',
@@ -98,8 +111,8 @@ return [
         'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age, из :country',
-        'origin_country' => 'Из :country',
+        'origin_country_age' => ':age, проживает в :country',
+        'origin_country' => 'Проживает в :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
         'plays_with' => 'Играет с :devices',
@@ -286,7 +299,7 @@ return [
         ],
         'page' => [
             'description' => '<strong>обо мне!</strong> - это ваше личное редактируемое пространство в профиле.',
-            'edit_big' => 'Измените меня!',
+            'edit_big' => 'редактировать',
             'placeholder' => 'Введите контент страницы сюда',
             'restriction_info' => "Вы должны иметь <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> для разблокировки данной возможности.",
         ],

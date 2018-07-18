@@ -22,6 +22,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
+use Markdown;
 
 class ChangelogEntry extends Model
 {
@@ -46,45 +47,48 @@ class ChangelogEntry extends Model
                 'user_id' => $changelog->user_id,
                 'user' => $changelog->user,
             ]),
+            'repository' => null,
         ]);
     }
 
     public static function importFromGithub($data)
     {
-        if (!(isset($data['pull_request']) && $data['action'] === 'closed' && $data['pull_request']['merged'])) {
-            return;
-        }
-
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
+        $repository = Repository::importFromGithub($data['repository']);
 
-        $params = [
-            'repository' => $data['repository']['full_name'],
+        $entry = $repository->changelogEntries()->make([
             'github_pull_request_id' => $data['pull_request']['number'],
             'title' => $data['pull_request']['title'],
             'message' => $data['pull_request']['body'],
-            'github_user_id' => $githubUser->getKey(),
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
-        ];
+        ]);
+        $entry->githubUser()->associate($githubUser);
 
         try {
-            return static::create($params);
+            $entry->saveOrExplode();
         } catch (Exception $e) {
             if (!is_sql_unique_exception($e)) {
                 throw $e;
             }
 
-            return static::where([
-                'repository' => $params['repository'],
-                'github_pull_request_id' => $params['github_pull_request_id'],
+            return $repository->changelogEntries()->where([
+                'github_pull_request_id' => $entry->github_pull_request_id,
             ])->first();
         }
+
+        return $entry;
     }
 
     public static function placeholder()
     {
         return new static([
             'title' => trans('changelog.generic'),
-            'githubUser' => new GithubUser(['username' => 'peppy']),
+            'githubUser' => new GithubUser([
+                'username' => 'peppy',
+                'user_id' => null,
+                'user' => null,
+            ]),
+            'repository' => null,
         ]);
     }
 
@@ -98,9 +102,19 @@ class ChangelogEntry extends Model
         return $this->belongsTo(GithubUser::class);
     }
 
+    public function repository()
+    {
+        return $this->belongsTo(Repository::class);
+    }
+
     public function getTypeAttribute($value)
     {
         return presence($value) ?? 'fix';
+    }
+
+    public function getCategoryAttribute($value)
+    {
+        return presence($value) ?? optional($this->repository)->default_category ?? 'Misc';
     }
 
     public function getUrlAttribute($value)
@@ -115,27 +129,49 @@ class ChangelogEntry extends Model
             ->where('private', false);
     }
 
-    public function repositoryName()
+    public function scopeOrphans($query, $streamId)
     {
-        if ($this->hasGithubPR()) {
-            return substr($this->repository, 1 + strpos($this->repository, '/'));
-        }
+        $query->whereDoesntHave('builds', function ($query) use ($streamId) {
+            $query->where('stream_id', '=', $streamId);
+        });
     }
 
     public function hasGithubPR()
     {
-        return present($this->repository) && present($this->github_pull_request_id);
+        return $this->repository !== null && present($this->github_pull_request_id);
     }
 
     public function githubUrl()
     {
         if ($this->hasGithubPR()) {
-            return "https://github.com/{$this->repository}/pull/{$this->github_pull_request_id}";
+            return "https://github.com/{$this->repository->name}/pull/{$this->github_pull_request_id}";
         }
     }
 
-    public function anyUrl()
+    public function messageHTML()
     {
-        return $this->githubUrl() ?? $this->url;
+        if (!present($this->message)) {
+            return;
+        }
+
+        static $separator = "\n\n---\n";
+
+        $origMessage = trim(str_replace("\r\n", "\n", $this->message));
+
+        if (ends_with($origMessage, "\n\n---")) {
+            return;
+        }
+
+        $hiddenSectionEnd = strpos($origMessage, $separator);
+
+        if ($hiddenSectionEnd === false) {
+            $hiddenSectionEnd = 0;
+        } else {
+            $hiddenSectionEnd += strlen($separator);
+        }
+
+        $message = trim(substr($origMessage, $hiddenSectionEnd));
+
+        return present($message) ? Markdown::convertToHtml($message) : null;
     }
 }

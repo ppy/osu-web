@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'flux',
     'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => ':users utilisateur en ligne|:users utilisateurs en ligne',
 
-    'prefixes' => [
-        'add' => 'ajout',
-        'fix' => 'correction',
-        'misc' => 'divers',
+    'builds' => [
+        'users_online' => ':count_delimited utilisateur en ligne|:count_delimited utilisateurs en ligne',
+    ],
+
+    'entry' => [
+        'by' => 'par :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Listage',
+        ],
     ],
 
     'support' => [

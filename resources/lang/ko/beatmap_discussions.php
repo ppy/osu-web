@@ -22,7 +22,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => '로그인하셔야 수정하실 수 있습니다.',
-            'system_generated' => '시스템에서 자동으로 만든 답글은 수정할 수 없습니다.',
+            'system_generated' => '시스템이 작성한 글은 수정할 수 없습니다.',
             'wrong_user' => '답글을 쓴 사람만 수정할 수 있습니다.',
         ],
     ],
@@ -36,7 +36,10 @@ return [
         'title' => '비트맵 토론',
 
         'form' => [
+            '_' => '검색',
             'deleted' => '삭제된 토론 포함',
+            'types' => '메시지 종류',
+            'username' => '사용자 이름',
 
             'user' => [
                 'label' => '사용자',

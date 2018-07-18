@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class Build extends Model
 {
     public $timestamps = false;
@@ -31,21 +33,81 @@ class Build extends Model
         'date',
     ];
 
+    protected $guarded = [];
+
     private $cache = [];
+
+    public static function importFromGithubNewTag($data)
+    {
+        $repository = Repository::where([
+            'name' => $data['repository']['full_name'],
+            'build_on_tag' => true,
+        ])->first();
+
+        // abort on unknown or non-auto build repository
+        if ($repository === null) {
+            return;
+        }
+
+        $tag = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $version = $tag[0];
+        $streamName = $tag[1] ?? null;
+
+        if ($streamName !== null) {
+            $stream = UpdateStream::where('name', '=', $streamName)->first();
+        }
+
+        if (!isset($stream)) {
+            $stream = $repository->mainUpdateStream;
+        }
+
+        if (!isset($stream)) {
+            return;
+        }
+
+        $build = $stream->builds()->firstOrCreate([
+            'version' => $version,
+        ]);
+
+        $lastChange = Carbon::parse($data['head_commit']['timestamp']);
+
+        $changelogEntry = new ChangelogEntry;
+
+        $newChangelogEntryIds = $stream
+            ->changelogEntries()
+            ->orphans($stream->getKey())
+            ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
+            ->pluck($changelogEntry->qualifyColumn('id'));
+
+        $build->changelogEntries()->attach($newChangelogEntryIds);
+
+        return $build;
+    }
 
     public function updateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
     }
 
+    // FIXME: Need to match stream_id as well. It's currently checked in transformer.
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'build', 'version');
     }
 
+    public function defaultChangelogs()
+    {
+        return $this->changelogs()->default();
+    }
+
     public function changelogEntries()
     {
         return $this->belongsToMany(ChangelogEntry::class, null, 'build_id');
+    }
+
+    public function defaultChangelogEntries()
+    {
+        return $this->changelogEntries()->default();
     }
 
     public function scopeDefault($query)
@@ -117,5 +179,10 @@ class Build extends Model
     public function disqusTitle()
     {
         return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
+    }
+
+    public function isFeatured()
+    {
+        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }

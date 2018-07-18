@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'lähetetty :time',
+        'posted' => 'julkaistu :time',
 
         'nav' => [
             'newer' => 'Uudempi viesti',

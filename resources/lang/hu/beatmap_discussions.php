@@ -22,8 +22,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'A szerkesztéshez be kell lépni.',
-            'system_generated' => 'Rendszer által generált posztot szerkeszteni nem lehet.',
-            'wrong_user' => 'A poszt szerkesztéséhez neked kell lenned a tulaja.',
+            'system_generated' => 'Rendszer által generált posztot nem lehet szerkeszteni.',
+            'wrong_user' => 'A poszt szerkesztéséhez a tulajának kell lenned.',
         ],
     ],
 
@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap Megbeszélés',
 
         'form' => [
-            'deleted' => 'Törölt megbeszélések tartalmazása',
+            '_' => 'Keresés',
+            'deleted' => 'Tartalmazza a törölt megbeszéléseket',
+            'types' => 'Üzenet típusok',
+            'username' => 'Felhasználónév',
 
             'user' => [
                 'label' => 'Felhasználó',
@@ -53,7 +56,7 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Egyik poszt sem segít a problémámon',
+        'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
         'notice' => 'Ezek a posztok :timestamp (:existing_timestamps) körüliek.Kérlek posztolás előtt nézd meg őket.',
     ],
 
@@ -67,7 +70,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'Megoldott ként ként megjelölt :user felhasználó által',
-            'false' => 'Újranyitott :user felhasználó által',
+            'false' => 'Újranyitva :user által',
         ],
     ],
 

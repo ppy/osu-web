@@ -88,4 +88,14 @@ class BeatmapsetSearchParams extends SearchParams
             || $this->playedFilter !== null
         );
     }
+
+    public function hasSupporterFeatures() : bool
+    {
+        return $this->playedFilter !== null || !empty($this->rank);
+    }
+
+    public function shouldReturnEmptyResponse() : bool
+    {
+        return !optional($this->user)->isSupporter() && $this->hasSupporterFeatures();
+    }
 }
