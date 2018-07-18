@@ -38,14 +38,9 @@ class Stream
 
     public function preview($width, $height)
     {
-        return str_replace(
-            '{height}',
-            $height,
-            str_replace(
-                '{width}',
-                $width,
-                $this->data['thumbnail_url']
-            )
-        );
+        return strtr($this->data['thumbnail_url'], [
+            '{height}' => $height,
+            '{width}' => $width,
+        ]);
     }
 }
