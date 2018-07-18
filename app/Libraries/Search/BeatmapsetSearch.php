@@ -223,9 +223,8 @@ class BeatmapsetSearch extends RecordSearch
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
+            $newQuery = Score\Best\Model::getClass($mode)
+                ::forUser($this->params->user)
                 ->select('beatmap_id');
 
             if ($rank !== null) {

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Rytmikarttojen keskustelujen äänet',
+        'title' => 'Äänet Beatmap-Keskusteluissa',
     ],
 
     'item' => [

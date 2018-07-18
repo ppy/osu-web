@@ -22,7 +22,6 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
-use Cache;
 
 class Image
 {
@@ -50,7 +49,7 @@ class Image
     public function data()
     {
         if (!array_key_exists('data', $this->cache)) {
-            $this->cache['data'] = Cache::remember($this->cacheKeyData(), static::CACHE_DURATION, function () {
+            $this->cache['data'] = cache_remember_with_fallback($this->cacheKeyData(), static::CACHE_DURATION, function () {
                 try {
                     $data = OsuWiki::fetchContent('wiki/'.$this->path);
                     $type = image_type_to_mime_type(

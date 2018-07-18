@@ -24,6 +24,15 @@ class Repository extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'build_on_tag' => 'boolean',
+    ];
+
+    public static function importFromGithub($data)
+    {
+        return static::firstOrCreate(['name' => $data['full_name']]);
+    }
+
     public function mainUpdateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
@@ -38,6 +47,11 @@ class Repository extends Model
 
     public function changelogEntries()
     {
-        return $this->hasMany(ChangelogEntry::class, 'repository', 'name');
+        return $this->hasMany(ChangelogEntry::class);
+    }
+
+    public function shortName()
+    {
+        return substr($this->name, 1 + strpos($this->name, '/'));
     }
 }

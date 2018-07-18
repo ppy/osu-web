@@ -38,7 +38,7 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'types' => 'Typy wiadomości',
+            'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
 
             'user' => [
