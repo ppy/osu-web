@@ -29,5 +29,6 @@ export class SpotlightSelectOptions extends PureComponent
 
 
   onItemSelected: (item) ->
-    params = "spotlight=#{item.id}"
-    Turbolinks.visit("?#{params}")
+    url = new URL(window.location)
+    url.searchParams.set 'spotlight', item.id
+    Turbolinks.visit(url)
