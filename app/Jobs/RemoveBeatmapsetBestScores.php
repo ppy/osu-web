@@ -20,6 +20,8 @@
 
 namespace App\Jobs;
 
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Es;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score\Best as ScoreBest;
@@ -64,6 +66,16 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $beatmapIds = model_pluck($this->beatmapset->beatmaps(), 'beatmap_id');
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
+            $query = new BoolQuery;
+            $query->filter(['terms' => ['beatmap_id' => $beatmapIds]]);
+            $query->filter(['range' => ['score_id' => ['lte' => $this->maxScoreIds[$mode]]]]);
+
+            // TODO: do something with response?
+            Es::getClient('scores')->deleteByQuery([
+                'index' => config('osu.elasticsearch.prefix')."high_scores_{$mode}",
+                'body' => ['query' => $query->toArray()],
+            ]);
+
             $class = static::scoreClass($mode);
             $table = (new $class)->getTable();
             $class::whereIn('beatmap_id', $beatmapIds)
