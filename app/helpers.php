@@ -52,6 +52,35 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
+ * and return old value if failed getting the value after it expires.
+ */
+function cache_remember_with_fallback($key, $minutes, $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        try {
+            $data = [
+                'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                'value' => $callback(),
+            ];
+
+            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+        } catch (Exception $e) {
+            // Log and continue with data from the first ::get.
+            log_error($e);
+        }
+    }
+
+    return $data['value'] ?? null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $start = microtime(true);
@@ -241,6 +270,15 @@ function locale_for_timeago($locale)
     }
 
     return $locale;
+}
+
+function log_error($exception)
+{
+    Log::error($exception);
+
+    if (config('sentry.dsn')) {
+        Sentry::captureException($exception);
+    }
 }
 
 function mysql_escape_like($string)
