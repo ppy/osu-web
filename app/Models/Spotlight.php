@@ -125,7 +125,7 @@ class Spotlight extends Model
         }
     }
 
-    public function scopeInYear($query, $year)
+    public function scopeInYear($query, int $year)
     {
         $period = (new Carbon)->year($year);
 
@@ -158,12 +158,12 @@ class Spotlight extends Model
         });
     }
 
-    public static function getPeriodicSpotlightsInYear($year)
+    public static function getPeriodicSpotlightsInYear(int $year)
     {
         return Spotlight::periodic()->inYear($year)->orderBy('chart_date', 'asc');
     }
 
-    private static function createBeatmapsetTable($name)
+    private static function createBeatmapsetTable(string $name)
     {
         \Log::debug("create table {$name}");
 
@@ -175,7 +175,7 @@ class Spotlight extends Model
         });
     }
 
-    private static function createBestScoresTable($name)
+    private static function createBestScoresTable(string $name)
     {
         \Log::debug("create table {$name}");
 
@@ -205,7 +205,7 @@ class Spotlight extends Model
         });
     }
 
-    private static function createUserStatsTable($name)
+    private static function createUserStatsTable(string $name)
     {
         \Log::debug("create table {$name}");
 
