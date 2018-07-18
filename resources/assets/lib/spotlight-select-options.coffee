@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,20 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# Import shim so that globally declared scripts can work without changes.
-
+import { createElement as el, PureComponent } from 'react'
 import { SelectOptions } from 'select-options'
-import { SpotlightSelectOptions } from 'spotlight-select-options'
-import { StoreCheckout } from 'store-checkout'
-import Promise from 'promise-polyfill'
-import TextareaAutosize from 'react-autosize-textarea'
-import VirtualList from 'react-virtual-list'
 
-# polyfill non-Edge IE
-window.Promise ?= Promise
+export class SpotlightSelectOptions extends PureComponent
+  render: =>
+    el SelectOptions,
+      bn: 'spotlight-select-options'
+      onItemSelected: @onItemSelected
+      options: @props.options
+      selected: @props.selected
 
-window.SelectOptions = SelectOptions
-window.SpotlightSelectOptions = SpotlightSelectOptions
-window.StoreCheckout = StoreCheckout
-window.TextareaAutosize = TextareaAutosize
-window.VirtualList = VirtualList
+
+  onItemSelected: (item) ->
+    params = "spotlight=#{item.id}"
+    Turbolinks.visit("?#{params}")
