@@ -229,10 +229,14 @@ class RankingController extends Controller
         return $spotlight->userStats($mode)
             ->with(['user', 'user.country'])
             ->whereHas('user', function ($userQuery) {
-                $dummy = new User;
+                $model = new User;
                 $userQuery
-                    ->from("{$dummy->getConnection()->getDatabaseName()}.{$dummy->getTable()}")
+                    ->from("{$model->getConnection()->getDatabaseName()}.{$model->getTable()}")
                     ->default();
+
+                if ($this->country !== null) {
+                    $userQuery->where('country_acronym', $this->country->acronym);
+                }
             })
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
