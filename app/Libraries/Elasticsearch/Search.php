@@ -22,10 +22,7 @@ namespace App\Libraries\Elasticsearch;
 
 use Datadog;
 use Elasticsearch\Client;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
-use Elasticsearch\Common\Exceptions\ServerErrorResponseException;
+use Elasticsearch\Common\Exceptions\ElasticsearchException;
 
 abstract class Search implements Queryable
 {
@@ -242,19 +239,8 @@ abstract class Search implements Queryable
                 config('datadog-helper.prefix_web').'.search.fetch',
                 ['type' => get_called_class(), 'name' => $this->loggingTag]
             );
-        } catch (NoNodesAvailableException $e) {
-            // all servers down
+        } catch (ElasticsearchException $e) {
             $this->error = $e;
-        } catch (BadRequest400Exception $e) {
-            // invalid query
-            $this->error = $e;
-        } catch (Missing404Exception $e) {
-            // index is missing ?_?
-            $this->error = $e;
-        } catch (ServerErrorResponseException $e) {
-            $this->error = $e;
-            $error = json_decode($e->getMessage(), true);
-            \Log::debug(data_get($error, 'error.failed_shards.*.reason.reason'));
         }
 
         log_error($this->error);
