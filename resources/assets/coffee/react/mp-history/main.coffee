@@ -37,13 +37,16 @@ class MPHistory.Main extends React.Component
 
     @loadHistory @state.since
 
+
   componentDidUpdate: (prevProps, prevState) ->
     if osu.bottomPageDistance() < 300 || prevState.lastGameId != @state.lastGameId
       target = $('.js-mp-history--event-box')[0]
       $(window).stop().scrollTo target.scrollHeight, 500
 
+
   componentWillUnmount: ->
     clearTimeout @timeout
+
 
   loadHistory: =>
     return if _.last(@state.events)?.detail.type == 'match-disbanded'
@@ -74,6 +77,7 @@ class MPHistory.Main extends React.Component
     .always =>
       @timeout = setTimeout @loadHistory, @refreshTimeout
 
+
   minNextEventId: =>
     lastGame = _.findLast @state.events, (o) -> o.game?
 
@@ -82,8 +86,10 @@ class MPHistory.Main extends React.Component
     else
       _.last(@state.events)?.id ? 0
 
+
   lookupUser: (id) =>
     @state.users[id]
+
 
   render: ->
     div className: 'osu-layout__section',
