@@ -20,27 +20,7 @@
 el = React.createElement
 
 class MPHistory.Content extends React.Component
-  teamScores: (eventIndex) ->
-    return if !@props.events[eventIndex].game?
-
-    @scoresCache ?= {}
-
-    if !@scoresCache[eventIndex]?
-      scores =
-        blue: 0
-        red: 0
-
-      return scores if !@props.events[eventIndex].game.end_time?
-
-      for score in @props.events[eventIndex].game.scores
-        continue if !score.multiplayer.pass
-        scores[score.multiplayer.team] += score.score
-
-      @scoresCache[eventIndex] = scores
-
-    return @scoresCache[eventIndex]
-
-  render: ->
+  render: =>
     if _.isEmpty @props.events
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
         osu.trans 'multiplayer.match.loading-events'
@@ -73,3 +53,26 @@ class MPHistory.Content extends React.Component
                   event: event
                   lookupUser: @props.lookupUser
                   key: event.id
+
+
+  teamScores: (eventIndex) =>
+    game = @props.events[eventIndex].game
+
+    return if !game?
+
+    @scoresCache ?= {}
+
+    if !@scoresCache[eventIndex]?
+      scores =
+        blue: 0
+        red: 0
+
+      return scores if !game.end_time?
+
+      for score in game.scores
+        continue if !score.multiplayer.pass
+        scores[score.multiplayer.team] += score.score
+
+      @scoresCache[eventIndex] = scores
+
+    @scoresCache[eventIndex]
