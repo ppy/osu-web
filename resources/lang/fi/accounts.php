@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! sähköpostin muutoksen vahvistaminen',
+        'email_subject' => 'osu!-sähköpostin muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! salasanan muutoksen vahvistaminen',
+        'email_subject' => 'osu!-salasanan muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 
@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => 'Yksityisyys',
-        'friends_only' => 'Estä yksityiset viestit käyttäjiltä jotka eivät ole kavereissasi',
+        'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
     ],
 ];

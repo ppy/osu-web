@@ -21,6 +21,7 @@
 namespace App\Libraries\Elasticsearch;
 
 use Datadog;
+use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
@@ -33,6 +34,18 @@ abstract class Search implements Queryable
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
+    /** @var string */
+    public $connectionName = 'default';
+
+    /**
+     * A tag to use when logging timing of fetches.
+     * FIXME: context-based tagging would be nicer.
+     *
+     * @var string|null
+     */
+    public $loggingTag = 'search';
+
+    protected $aggregations;
     protected $index;
     protected $params;
     protected $queryString;
@@ -71,6 +84,11 @@ abstract class Search implements Queryable
      */
     abstract public function getQuery();
 
+    public function client() : Client
+    {
+        return Es::getClient($this->connectionName);
+    }
+
     /**
      * Gets the numner of matches for the query.
      *
@@ -97,7 +115,7 @@ abstract class Search implements Queryable
 
             $query['body'] = $body;
 
-            $this->count = Es::count($query)['count'];
+            $this->count = $this->client()->count($query)['count'];
         }
 
         return $this->count;
@@ -146,6 +164,11 @@ abstract class Search implements Queryable
         return $this->response;
     }
 
+    public function setAggregations(array $aggregations)
+    {
+        $this->aggregations = $aggregations;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,6 +190,10 @@ abstract class Search implements Queryable
 
         if (isset($this->source)) {
             $body['_source'] = $this->source;
+        }
+
+        if (isset($this->aggregations)) {
+            $body['aggs'] = $this->aggregations;
         }
 
         $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
@@ -209,10 +236,10 @@ abstract class Search implements Queryable
         try {
             return datadog_timing(
                 function () {
-                    return new SearchResponse(Es::search($this->toArray()));
+                    return new SearchResponse($this->client()->search($this->toArray()));
                 },
                 config('datadog-helper.prefix_web').'.search.fetch',
-                ['type' => get_called_class()]
+                ['type' => get_called_class(), 'name' => $this->loggingTag]
             );
         } catch (NoNodesAvailableException $e) {
             // all servers down
@@ -225,11 +252,13 @@ abstract class Search implements Queryable
             $this->error = $e;
         }
 
+        log_error($this->error);
+
         if (config('datadog-helper.enabled')) {
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
-                ['class' => get_class($this->error)]
+                ['class' => get_class($this->error), 'name' => $this->loggingTag]
             );
         }
 

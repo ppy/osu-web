@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Pisz tutaj, aby utworzyć post w Główne (:version)',
-            'generalAll' => 'Pisz tutaj, aby utworzyć post w Główne (Wszystkie poziomy trudności)',
-            'timeline' => 'Pisz tutaj, aby utworzyć post w Oś czasu (:version)',
+            'general' => 'Utwórz post w ogólnej dyskusji (:version)',
+            'generalAll' => 'Utwórz post w ogólnej dyskusji (wszystkie poziomy trudności)',
+            'timeline' => 'Utwórz post dla osi czasu (:version)',
         ],
 
         'message_type' => [
@@ -133,7 +133,7 @@ return [
         'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
         'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
         'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
-        'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
+        'remaining' => 'Możesz nagłośnić jeszcze :remaining beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
         'title' => 'Priorytet',
@@ -173,7 +173,7 @@ return [
         'search' => [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
-            'supporter_filter' => 'Do użycia filtra ":filters:" wymagany jest aktywny status donatora osu!',
+            'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
@@ -198,7 +198,7 @@ return [
                 'nominations' => 'nominacje',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Do użycia filtra ":filters:" wymagany jest aktywny :link',
+                '_' => 'Do użycia filtra „:filters:” wymagany jest aktywny :link',
                 'link_text' => 'status donatora osu!',
             ],
         ],

@@ -20,9 +20,12 @@
 
 namespace App\Jobs;
 
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Es;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score\Best as ScoreBest;
+use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -63,9 +66,22 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $beatmapIds = model_pluck($this->beatmapset->beatmaps(), 'beatmap_id');
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
-            static::scoreClass($mode)::whereIn('beatmap_id', $beatmapIds)
+            $query = new BoolQuery;
+            $query->filter(['terms' => ['beatmap_id' => $beatmapIds]]);
+            $query->filter(['range' => ['score_id' => ['lte' => $this->maxScoreIds[$mode]]]]);
+
+            // TODO: do something with response?
+            Es::getClient('scores')->deleteByQuery([
+                'index' => config('osu.elasticsearch.prefix')."high_scores_{$mode}",
+                'body' => ['query' => $query->toArray()],
+            ]);
+
+            $class = static::scoreClass($mode);
+            $table = (new $class)->getTable();
+            $class::whereIn('beatmap_id', $beatmapIds)
                 ->orderBy('score_id')
                 ->where('score_id', '<=', $this->maxScoreIds[$mode])
+                ->from(DB::raw("{$table} FORCE INDEX (beatmap_score_lookup)")) // TODO: fixes an issue with MySQL 5.6; remove after updating.
                 ->chunkById(100, function ($scores) {
                     $scores->each->delete();
                 });
