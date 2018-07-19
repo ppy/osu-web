@@ -126,16 +126,15 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        $page = $this->getPaginationParams();
-        if (!isset($page['page'])) {
+        if (isset($this->from)) {
             // no laravel paginator if offset-only paging is used
             return;
         }
 
         return new SearchPaginator(
             $this,
-            $page['size'],
-            $page['page'],
+            $this->getSize(),
+            $this->getPage(),
             $options
         );
     }
@@ -172,11 +171,9 @@ abstract class Search implements Queryable
      */
     public function toArray() : array
     {
-        $pageParams = $this->getPaginationParams();
-
         $body = [
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
+            'from' => $this->getFrom(),
+            'size' => $this->getSize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),

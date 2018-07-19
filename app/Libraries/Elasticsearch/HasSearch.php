@@ -139,24 +139,13 @@ trait HasSearch
     }
 
     /**
-     * page is not returned if using offset query.
+     *  Gets the actual offset to use in queries.
      *
-     * @return array
+     * @return int actual offset to use.
      */
-    protected function getPaginationParams()
+    protected function getFrom() : int
     {
-        $size = $this->getSize();
-        $params = ['size' => $size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page ?? 1);
-            $params['from'] = ($params['page'] - 1) * $size;
-        }
-
-        return $params;
+        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
     }
 
     /**
@@ -174,5 +163,10 @@ trait HasSearch
         if (!$sort->isBlank()) {
             $this->sorts[] = $sort;
         }
+    }
+
+    private function getPage() : int
+    {
+        return max(1, $this->page ?? 1);
     }
 }
