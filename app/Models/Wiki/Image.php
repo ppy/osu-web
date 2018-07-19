@@ -22,6 +22,7 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
+use Exception;
 
 class Image
 {
@@ -57,14 +58,23 @@ class Image
                     );
 
                     return compact('data', 'type');
-                } catch (GitHubNotFoundException $e) {
-                    if ($this->url !== null && $this->referrer !== null && starts_with($this->url, $this->referrer)) {
-                        $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
+                } catch (Exception $e) {
+                    if ($e instanceof GitHubNotFoundException) {
+                        // try alternative path
+                        if (
+                            $this->url !== null &&
+                            $this->referrer !== null &&
+                            starts_with($this->url, $this->referrer)
+                        ) {
+                            $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
 
-                        return (new static($newPath))->data();
+                            return (new static($newPath))->data();
+                        }
+                        // return nothing otherwise
+                    } else {
+                        // throw everything else
+                        throw $e;
                     }
-
-                    throw $e;
                 }
             });
         }

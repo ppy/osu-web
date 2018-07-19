@@ -112,6 +112,11 @@
     margin-bottom: 10px;
   }
 
+  &--header-v3 {
+    align-self: auto;
+    z-index: @z-index--page-header;
+  }
+
   &--landing-buttons {
     flex: 1 0 auto;
   }
@@ -185,12 +190,5 @@
   // color overrides goes here
   &--dark-bg {
     background-color: #333;
-  }
-
-  &__header {
-    position: absolute;
-    bottom: 100%;
-    width: 100%;
-    z-index: @z-index--page-header;
   }
 }
