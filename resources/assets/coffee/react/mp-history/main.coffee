@@ -20,78 +20,40 @@
 el = React.createElement
 
 class MPHistory.Main extends React.Component
-  refreshTimeout: 10000
+  FETCH_LIMIT = 100
+  MAXIMUM_EVENTS = 500
+  REFRESH_TIMEOUT = 10000
+
+  findLastGame = (events) ->
+    _.findLast events, (e) -> e.game?
+
 
   constructor: (props) ->
     super props
 
-    @timeout = null
+    events = props.events.events
+
+    @timeouts = {}
 
     @state =
-      events: []
-      allEventsCount: 0 # amount of all events in the database (including ones that aren't currently shown)
-      users: {}
-      lastGameId: 0
-      teamType: ''
-      initialLoaded: false
+      events: events
+      users: _.keyBy props.events.users, 'id'
+      currentGameId: props.events.current_game_id
+      latestEventId: props.events.latest_event_id
+      loadingPrevious: false
 
-    @loadHistory @state.since
+
+  componentDidMount: =>
+    @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
 
 
   componentDidUpdate: (prevProps, prevState) ->
-    if osu.bottomPageDistance() < 300 || prevState.lastGameId != @state.lastGameId
-      target = $('.js-mp-history--event-box')[0]
-      $(window).stop().scrollTo target.scrollHeight, 500
+    #if osu.bottomPageDistance() < 300 || prevState.lastGameId != @state.lastGameId
+    #  target = $('.js-mp-history--event-box')[0]
+    #  $(window).stop().scrollTo target.scrollHeight, 500
 
 
-  componentWillUnmount: ->
-    clearTimeout @timeout
-
-
-  loadHistory: =>
-    return if _.last(@state.events)?.detail.type == 'match-disbanded'
-
-    $.ajax laroute.route('matches.history', match: @props.match.id, full: @props.full),
-      method: 'GET'
-      dataType: 'JSON'
-      data:
-        since: @minNextEventId()
-
-    .done (data) =>
-      return if _.isEmpty data.events
-
-      lastIndex = _.findLastIndex @state.events, (e) -> e.id < data.events[0].id
-      newEvents = _.concat @state.events[..lastIndex], data.events
-
-      newUsers = _(data.users)
-        .keyBy (o) -> o.id
-        .assign @state.users
-        .value()
-
-      @setState
-        events: newEvents
-        allEventsCount: data.all_events_count
-        users: newUsers
-        lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id
-
-    .always =>
-      @timeout = setTimeout @loadHistory, @refreshTimeout
-
-
-  minNextEventId: =>
-    lastGame = _.findLast @state.events, (o) -> o.game?
-
-    if lastGame? && !lastGame.game.end_time?
-      lastGame.id - 1
-    else
-      _.last(@state.events)?.id ? 0
-
-
-  lookupUser: (id) =>
-    @state.users[id]
-
-
-  render: ->
+  render: =>
     div className: 'osu-layout__section',
       el MPHistory.Header,
         name: @props.match.name
@@ -99,7 +61,116 @@ class MPHistory.Main extends React.Component
       el MPHistory.Content,
         id: @props.match.id
         events: @state.events
-        lastGameId: @state.lastGameId
+        currentGameId: @state.currentGameId
         allEventsCount: @state.allEventsCount
-        full: @props.full
-        lookupUser: @lookupUser
+        users: @state.users
+        hasNext: @hasNext()
+        hasPrevious: @hasPrevious()
+        loadingNext: @state.loadingNext
+        loadingPrevious: @state.loadingPrevious
+        loadNext: @loadNext
+        loadPrevious: @loadPrevious
+        isAutoloading: @isAutoloading()
+
+
+  componentWillUnmount: ->
+    Timeout.clear timeout for _name, timeout of @timeouts
+
+
+  isAutoloading: =>
+    @state.latestEventId == _.last(@state.events)?.id
+
+
+  autoload: =>
+    return if !@isAutoloading()
+
+    @loadNext()
+
+
+  delayedAutoload: =>
+    @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
+
+
+  hasNext: =>
+    _.last(@state.events)?.detail.type != 'match-disbanded'
+
+
+  loadNext: =>
+    return if !@hasNext()
+
+    Timeout.clear @timeouts.autoload
+    @setState loadingNext: true
+
+    $.ajax laroute.route('matches.history', match: @props.match.id),
+      method: 'GET'
+      dataType: 'JSON'
+      data:
+        after: @minNextEventId()
+        limit: FETCH_LIMIT
+
+    .done (data) =>
+      return if _.isEmpty data.events
+
+      startEventId = data.events[0]?.id ? 0
+
+      newEvents = _.dropRightWhile @state.events, (e) -> e.id >= startEventId
+        .concat(data.events)[-MAXIMUM_EVENTS..]
+      newUsers = @newUsersHash data.users
+
+      @setState
+        events: newEvents
+        users: newUsers
+        currentGameId: data.current_game_id
+        latestEventId: data.latest_event_id
+
+    .always =>
+      @setState loadingNext: false
+      @delayedAutoload()
+
+
+  minNextEventId: =>
+    if @state.currentGameId?
+      currentGame = _.find(@state.events, game_id: @state.currentGameId)
+
+      id = currentGame.id - 1 if currentGame?
+
+    id ? _.last(@state.events)?.id
+
+
+  hasPrevious: =>
+    @state.events[0].detail.type != 'match-created'
+
+
+  loadPrevious: =>
+    return if !@hasPrevious()
+
+    @setState loadingPrevious: true
+
+    $.ajax laroute.route('matches.history', match: @props.match.id),
+      method: 'GET'
+      dataType: 'JSON'
+      data:
+        before: @state.events[0]?.id
+        limit: FETCH_LIMIT
+
+    .done (data) =>
+      return if _.isEmpty data.events
+
+      newEvents = data.events.concat(@state.events)[..MAXIMUM_EVENTS]
+      newUsers = @newUsersHash data.users
+
+      @setState
+        events: newEvents
+        users: newUsers
+        currentGameId: data.current_game_id
+        latestEventId: data.latest_event_id
+
+    .always =>
+      @setState loadingPrevious: false
+
+
+  newUsersHash: (users) =>
+    _({})
+      .assign @state.users
+      .assign _.keyBy(users, 'id')
+      .value()
