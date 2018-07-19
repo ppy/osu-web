@@ -224,7 +224,7 @@ abstract class Search implements Queryable
 
     private function fetch()
     {
-        if ($this->params->shouldReturnEmptyResponse()) {
+        if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
             return SearchResponse::empty();
         }
 
@@ -251,5 +251,11 @@ abstract class Search implements Queryable
         }
 
         return SearchResponse::failed($this->error);
+    }
+
+    private function isSearchWindowExceeded()
+    {
+        // compare using the fixed value for MAX_RESULTS, not the overridable one.
+        return $this->getSize() + $this->getFrom() > self::MAX_RESULTS;
     }
 }
