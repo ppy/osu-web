@@ -60,5 +60,18 @@
     background-image: url('/images/layout/nav2-background.png');
     background-position: bottom center;
     background-repeat: repeat-x;
+
+    .@{_top}--restricted & {
+      .at2x-simple('/images/layout/nav2-bg/red.png');
+
+      &::before {
+        content: '';
+        .full-size();
+        height: 5px;
+        background-image: url('/images/layout/caution-bar.png');
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
