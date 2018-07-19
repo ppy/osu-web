@@ -29,8 +29,6 @@ abstract class Search implements Queryable
     use HasSearch;
 
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
-    // maximum number of total results allowed when not using the scroll API.
-    const MAX_RESULTS = 10000;
 
     /** @var string */
     public $connectionName = 'default';
@@ -173,7 +171,7 @@ abstract class Search implements Queryable
     {
         $body = [
             'from' => $this->getFrom(),
-            'size' => $this->getSize(),
+            'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),
@@ -217,11 +215,6 @@ abstract class Search implements Queryable
         return 50;
     }
 
-    protected function maxResults() : int
-    {
-        return static::MAX_RESULTS;
-    }
-
     private function fetch()
     {
         if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
@@ -256,6 +249,6 @@ abstract class Search implements Queryable
     private function isSearchWindowExceeded()
     {
         // compare using the fixed value for MAX_RESULTS, not the overridable one.
-        return $this->getSize() + $this->getFrom() > self::MAX_RESULTS;
+        return $this->getQuerySize() <= 0;
     }
 }

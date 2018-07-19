@@ -53,7 +53,7 @@ class HasChildQuery implements Queryable
         $inner = [
             'name' => $this->name,
             'from' => $this->getFrom(),
-            'size' => $this->getSize(),
+            'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),

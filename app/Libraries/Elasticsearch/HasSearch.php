@@ -153,9 +153,25 @@ trait HasSearch
      *
      * @return int actual size to use.
      */
+    protected function getQuerySize() : int
+    {
+        return min($this->maxResults() - $this->getFrom(), $this->getSize());
+    }
+
+    /**
+     *  Gets the size or default size if none was give..
+     *
+     * @return int size.
+     */
     protected function getSize() : int
     {
         return $this->size ?? $this->getDefaultSize();
+    }
+
+    protected function maxResults() : int
+    {
+        // the default is the maximum number of total results allowed when not using the scroll API.
+        return 10000;
     }
 
     private function addSort(Sort $sort)
