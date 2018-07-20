@@ -91,7 +91,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Max combo',
+                'combo' => 'Max Combo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
                 'player' => 'Pelaaja',

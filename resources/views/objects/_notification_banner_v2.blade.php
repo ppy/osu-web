@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $class = 'avatar
-        avatar--nav2
-        js-current-user-avatar
-        js-click-menu
-        js-user-login--menu
-        js-user-header';
-@endphp
-@if (Auth::user() === null)
-    <button
-        class="{{ $class }} avatar--guest"
-        data-click-menu-target="nav2-login-box"
-        title="{{ trans('users.anonymous.login_link') }}"
-    ></button>
-@else
-    <a
-        class="{{ $class }} {{ Auth::user()->isRestricted() ? 'avatar--restricted' : '' }}"
-        data-click-menu-target="nav2-user-popup"
-        href="{{ route('users.show', Auth::user()) }}"
-        {!! background_image(Auth::user()->user_avatar, false) !!}
-    ></a>
-@endif
+<div class="notification-banner-v2 notification-banner-v2--{{ $type }} js-nav2--hidden-on-menu-access">
+    <div class="notification-banner-v2__col notification-banner-v2__col--icon"></div>
+
+    <div class="notification-banner-v2__col notification-banner-v2__col--label">
+        <div class="notification-banner-v2__type">{{ $type }}</div>
+        <div class="notification-banner-v2__text">{{ $title }}</div>
+    </div>
+
+    <div class="notification-banner-v2__col">
+        <div class="notification-banner-v2__text">
+            {!! $message !!}
+        </div>
+    </div>
+</div>

@@ -20,14 +20,14 @@
 
 return [
     'landing' => [
-        'download' => 'Transfere agora',
-        'online' => '<strong>:players</strong> currently actualmente online em <strong>:games</strong> jogos',
+        'download' => 'Descarregar agora',
+        'online' => '<strong>:players</strong> actualmente online em <strong>:games</strong> jogos',
         'peak' => 'Pico, :count utilizadores online',
         'players' => '<strong>:count</strong> jogadores registados',
 
         'slogan' => [
             'main' => 'o melhor grátis-para-ganhar jogo de ritmo',
-            'sub' => 'ritmo está a um clique de distância',
+            'sub' => 'o ritmo está a um clique de distância',
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'button' => 'Pesquisar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Uma palavra-chave de pesquisa com um mínimo de :n caracteres é exigida',
-        'placeholder' => 'digita para procurar',
+        'placeholder' => 'escreve para procurar',
         'title' => 'Procurar',
 
         'beatmapset' => [
@@ -53,7 +53,7 @@ return [
 
             'label' => [
                 'forum' => 'procurar nos fóruns',
-                'forum_children' => 'incluir subfóruns',
+                'forum_children' => 'incluir sub-fóruns',
                 'topic_id' => 'tópico #',
                 'username' => 'autor',
             ],
@@ -68,15 +68,15 @@ return [
         ],
 
         'user' => [
-            'more' => 'Há mais :count resultados de pesquisa de resultados',
+            'more' => 'Há mais :count resultados de pesquisa de jogador',
             'more_simple' => 'Ver mais resultados de pesquisa de jogador',
-            'more_hidden' => 'A procura de jogador está limitada a :max jogadores. Tenta redefinir a questão de procura.',
+            'more_hidden' => 'A pesquisa de jogador está limitada a :max jogadores. Tenta redefinir a questão de pesquisa.',
             'title' => 'Jogadores',
         ],
 
         'wiki_page' => [
-            'link' => 'Pesquisar a wiki',
-            'more_simple' => 'Ver mais resultados de pesquisa de wiki',
+            'link' => 'Pesquisar na wiki',
+            'more_simple' => 'Ver mais resultados de pesquisa da wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -89,7 +89,7 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'espelho',
+        'mirror' => 'link alternativo',
         'macos-fallback' => 'utilizadores de macOS',
         'steps' => [
             'register' => [
@@ -98,7 +98,7 @@ return [
             ],
             'download' => [
                 'title' => 'descarrega o jogo',
-                'description' => 'clica o botão acima para transferir o instalador, e depois abre-o!',
+                'description' => 'clica no botão acima para transferir o instalador, e depois abre-o!',
             ],
             'beatmaps' => [
                 'title' => 'obtém beatmaps',
@@ -134,7 +134,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Transfere o osu!',
-            'support' => 'Apoia o osu!',
+            'support' => 'Suporta o osu!',
             'store' => 'osu!store',
         ],
     ],
@@ -144,7 +144,7 @@ return [
         'subtitle' => 'Pareces estar a ter um momento agradável! :D',
         'body' => [
             'part-1' => 'Sabias que o osu! corre sem nenhuma publicidade, e que depende de jogadores para apoiar o seu desenvolvimento e custos de execução?',
-            'part-2' => 'Também sabias que ao apoiar osu! recebes um monte de funcionalidades úteis, tal como <strong>transferências dentro do jogo</strong> que acciona automaticamente em jogos de espectador e multijogador?',
+            'part-2' => 'Também sabias que ao apoiar o osu! recebes um monte de funcionalidades úteis, tal como <strong>downloads dentro do jogo</strong> que acciona automaticamente em jogos de espectador e multijogador?',
         ],
         'find-out-more' => 'Clica aqui para descobrir mais!',
         'download-starting' => "Ah, e não te preocupes - a tua transferência já foi iniciada para ti ;)",

@@ -19,7 +19,7 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> desbloqueou a medalha "<strong>:achievement</strong>" !',
+    'achievement' => '<strong><em>:user</em></strong> desbloqueou a medalha "<strong>:achievement</strong>"!',
     'beatmap_playcount' => ':beatmap foi jogado :count vezes!',
     'beatmapset_approve' => ':beatmapset por <strong>:user</strong> foi :approval!',
     'beatmapset_delete' => ':beatmapset foi eliminado.',
@@ -28,8 +28,8 @@ return [
     'beatmapset_upload' => '<strong><em>:user</em></strong> submeteu um novo beatmap ":beatmapset"',
     'empty' => "Este utilizador, recentemente, não fez nada notável!",
     'rank' => '<strong><em>:user</em></strong> alcançou a categoria de #:rank no <em>:beatmap</em> (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> perdeu o primeiro lugar no <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> escolheu mais uma vez suportar o osu! - obrigado pela tua generosidade!',
+    'rank_lost' => '<strong><em>:user</em></strong> perdeu o primeiro lugar em <em>:beatmap</em> (:mode)',
+    'user_support_again' => '<strong>:user</strong> escolheu mais uma vez apoiar o osu! - obrigado pela tua generosidade!',
     'user_support_first' => '<strong>:user</strong> tornou-se num apoiante do osu! - obrigado pela tua generosidade!',
     'user_support_gift' => '<strong>:user</strong> recebeu o presente de apoiante do osu!',
     'username_change' => '<strong>:previousUsername</strong> mudou o seu nome de utilizador para <strong><em>:user</strong></em>!',

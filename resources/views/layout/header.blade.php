@@ -19,7 +19,13 @@
     $legacyNav ?? ($legacyNav = true);
 @endphp
 @include('layout._header_mobile')
-<div class="hidden-xs no-print nav2-header {{ $legacyNav ? 'nav2-header--legacy' : '' }}">
+<div class="
+    hidden-xs
+    no-print
+    nav2-header
+    {{ $legacyNav ? 'nav2-header--legacy' : '' }}
+    {{ optional(Auth::user())->isRestricted() ? 'nav2-header--restricted' : '' }}
+">
     @if ($legacyNav)
         <div class="nav2-header__legacy-triangles"></div>
         <div class="nav2-header__legacy-gradient-overlay u-section--gradient-down"></div>

@@ -22,7 +22,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Tens que ter sessão iniciada para editar.',
-            'system_generated' => 'Publicação gerada pelo sistema não pode ser editada.',
+            'system_generated' => 'Uma publicação gerada pelo sistema não pode ser editada.',
             'wrong_user' => 'Tens que ser dono da publicação para editar.',
         ],
     ],
@@ -33,10 +33,13 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'apagado',
-        'title' => 'Discussões Beatmap',
+        'title' => 'Discussões do Beatmap',
 
         'form' => [
+            '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões eliminadas',
+            'types' => 'Tipos de mensagem',
+            'username' => 'Nome de utilizador',
 
             'user' => [
                 'label' => 'Utilizador',
@@ -49,12 +52,12 @@ return [
         'created_at' => 'Data da publicação',
         'deleted_at' => 'Data de eliminação',
         'message_type' => 'Tipo',
-        'permalink' => 'Ligação permanente',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Nenhum das publicações abordam a minha preocupação',
-        'notice' => 'Há publicações à volta :timestamp (:existing_timestamps). Por favor, confere-as antes de publicar.',
+        'confirm' => 'Nenhuma das publicações abordam a minha preocupação',
+        'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Por favor, consulta-as antes de publicar.',
     ],
 
     'reply' => [
