@@ -87,7 +87,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     // spaces used so clockwork doesn't run across the whole screen.
     $description = $stat
                    .' '.($tag['type'] ?? null)
-                   .' '.($tag['name'] ?? null);
+                   .' '.($tag['index'] ?? null);
 
     $start = microtime(true);
 
