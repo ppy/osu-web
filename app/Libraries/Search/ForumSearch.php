@@ -58,7 +58,6 @@ class ForumSearch extends Search
     public function getQuery()
     {
         $query = (new BoolQuery())
-            ->must(static::firstPostQuery())
             ->should($this->childQuery())
             ->shouldMatch(1)
             ->filter(['term' => ['type' => 'topics']]);
@@ -103,18 +102,34 @@ class ForumSearch extends Search
             )->query($query);
     }
 
-    private static function firstPostQuery() : HasChildQuery
-    {
-        return (new HasChildQuery('posts', 'first_post'))
-            ->size(1)
-            ->sort(new Sort('post_id', 'asc'))
-            ->query(['match_all' => new \stdClass()])
-            ->source('search_content');
-    }
-
     public function data()
     {
         return $this->response();
+    }
+
+    /**
+     * Returns a mapping of the topic first posts keyed by topic_id.
+     *
+     * @return array
+     */
+    public function firstPostsMap() : array
+    {
+        $ids = $this->response()->ids('post_id');
+
+        $search = (new BasicSearch(Post::esIndexName()))
+            ->size(count($ids))
+            ->query(
+                (new BoolQuery)
+                    ->filter(['term' => ['type' => 'posts']])
+                    ->filter(['terms' => ['post_id' => $ids]])
+            )->source(['topic_id', 'search_content']);
+
+        $map = [];
+        foreach ($search->response() as $post) {
+            $map[$post->source('topic_id')] = $post;
+        }
+
+        return $map;
     }
 
     public function response() : SearchResponse
