@@ -21,13 +21,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Ukládání příspěvku se nezdařilo',
+            'error' => 'Nastala chyba během ukládání příspěvku',
         ],
     ],
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Aktualizace hlasování se nezdařila',
+            'error' => 'Nastala chyba během hlasování',
         ],
     ],
 
@@ -38,12 +38,12 @@ return [
         'deny_kudosu' => 'odepřít kudosu',
         'edit' => 'upravit',
         'edited' => 'Naposledy upravil :editor v :update_time.',
-        'kudosu_denied' => 'Odepřeno získání kudosu.',
+        'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_type_select' => 'Vybrat typ komentáře',
-        'reply_notice' => 'Stiskněte enter pro odpověď.',
-        'reply_placeholder' => 'Napište svou odpověď sem',
-        'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlašte',
+        'reply_notice' => 'Stiskni enter pro odpověď.',
+        'reply_placeholder' => 'Napiš svou odpověď sem',
+        'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlaš',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'title' => 'Diskuze',
@@ -54,27 +54,27 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Žádné diskuse!',
+            'empty' => 'Zatím žádné diskuse!',
             'hidden' => 'Žádná diskuze neodpovídá zvolenému filtru.',
         ],
 
         'message_hint' => [
-            'in_general' => 'Tento příspěvek bude zveřejněn na generální diskuzi mapy. Pokud chcete mapu modifikovat, začněte zprávu časovým razítkem (např. 00:12:345).',
-            'in_timeline' => 'Pro modifikaci více časových razítek, přidejte více příspěvků (jeden příspěvek na razítko).',
+            'in_general' => 'Tento příspěvek bude zveřejněn na generální diskuzi beatmapy. Pokud chcete beatmapu módovat, začněte zprávu časovou sekvencí (např. 00:12:345).',
+            'in_timeline' => 'Pro módování více časových sekvencí přidejte více příspěvků (jeden příspěvek na každou sekvenci).',
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
+            'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
+            'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Vyřadit',
-            'hype' => 'Nadšení!',
+            'hype' => 'Nadchnout!',
             'mapper_note' => 'Poznámka',
             'nomination_reset' => 'Obnovit nominace',
-            'praise' => 'Chvála',
+            'praise' => 'Chválit',
             'problem' => 'Problém',
             'suggestion' => 'Návrh',
         ],
@@ -90,13 +90,13 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'Časové razítko',
-            'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do zprávy pro přidání časového razítka!',
-            'title' => 'Nová Diskuse',
+            'timestamp' => 'Časová sekvence',
+            'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do zprávy pro přidání časové sekvence!',
+            'title' => 'Nová diskuze',
         ],
 
         'show' => [
-            'title' => ':title vytvořena hráčem :mapper',
+            'title' => ':title zmapovaná hráčem :mapper',
         ],
 
         'sort' => [
@@ -118,40 +118,40 @@ return [
 
         'status-messages' => [
             'approved' => 'Tato mapa byla schválena dne :date!',
-            'graveyard' => "Tato beatmapa nebyla aktualizována od :date a pravděpodobně ji tvůrce opustil...",
-            'loved' => 'Tato beatmapa byla oblíbená komunitou dne :date!',
+            'graveyard' => "Tato beatmapa nebyla aktualizována od :date a pravděpodobně ji tvůrce odbyl...",
+            'loved' => 'Tato beatmapa byla přidána do kategorie Oblíbené dne :date!',
             'ranked' => 'Tato beatmapa začala být hodnocena dne :date!',
-            'wip' => 'Tato beatmapa byla označena, že se na ní pracuje jejím tvůrcem.',
+            'wip' => 'Tato beatmapa byla označena jako Rozpracovaná jejím autorem.',
         ],
 
     ],
 
     'hype' => [
-        'button' => 'Podpořit beatmapu!',
-        'button_done' => 'Již jak tuto mapu podpořil!',
-        'confirm' => "Jsi si jist? Toto o ti odebere jeden z tvých :n podpoření a nedá se to vrátit.",
-        'explanation' => 'Podpoř tuto beatmapu a udělej ji více viditelnou pro nominátory a hodnocení!',
-        'explanation_guest' => 'Přihlaš se a podpoř tuto beatmapu - udělej ji více viditelnou pro nominátory a hodnocení!',
-        'new_time' => "Další body podpory dostaneš až :new_time.",
-        'remaining' => 'Již ti zbývá :remaining bodů podpory.',
-        'required_text' => 'Body podpory: :current/:required',
+        'button' => 'Nadchnout beatmapu!',
+        'button_done' => 'Již jsi tuto mapu nadchnul!',
+        'confirm' => "Jsi si jist? Toto ti odebere jeden z tvých :n nadšení a nedá se to vrátit.",
+        'explanation' => 'Nadchni tuto beatmapu a udělej ji více viditelnou pro nominátory a hodnocení!',
+        'explanation_guest' => 'Přihlaš se a nadchni tuto beatmapu - udělej ji více viditelnou pro nominátory a hodnocení!',
+        'new_time' => "Další nadšení získáš až :new_time.",
+        'remaining' => 'Již ti zbývá :remaining nadšení.',
+        'required_text' => 'Nadšení: :current/:required',
         'section_title' => 'Natěšení',
-        'title' => 'Podpoření',
+        'title' => 'Nadšení',
     ],
 
     'feedback' => [
-        'button' => 'Zanechat odezvu',
+        'button' => 'Zanechat zpětnou vazbu',
     ],
 
     'nominations' => [
         'disqualification_prompt' => 'Důvod pro diskvalifikaci?',
         'disqualified_at' => 'Diskvalifikována před :time_ago (:reason).',
-        'disqualified_no_reason' => 'bezdůvodně',
+        'disqualified_no_reason' => 'žádný důvod nebyl určen',
         'disqualify' => 'Diskvalifikovat',
-        'incorrect_state' => 'Chyba při vykonávání akce, prosím, načtete stránku znovu.',
+        'incorrect_state' => 'Chyba při vykonávání akce. Prosím načtete stránku znovu.',
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
-        'nominated_by' => 'nominováno :users',
+        'nominated_by' => 'nominováno od :users',
         'qualified' => 'Předpokládané datum zhodnocení této mapy je :date, pokud se nenaleznou žádné chyby.',
         'qualified_soon' => 'Již brzy bude tato mapa hodnocená, pokud se nenaleznou žádné chyby.',
         'required_text' => 'Nominace: :current/:required',
@@ -160,7 +160,7 @@ return [
         'unresolved_issues' => 'Existují stále nevyřešené problémy, které musí být řešeny jako první.',
 
         'reset_at' => [
-            'nomination_reset' => 'Proces nominace byl resetován před :time_ago uživatelem :user, kvůli nalezení nového problému :discussion (:message).',
+            'nomination_reset' => 'Proces nominace byl resetován před :time_ago nominátorem :user, kvůli nalezení nového problému :discussion (:message).',
             'disqualify' => 'Diskvalifikováno před :time_ago uživatelem :user kvůli nalezení nového problému :discussion (:message).',
         ],
 
@@ -173,22 +173,22 @@ return [
         'search' => [
             'prompt' => 'zadej klíčová slova...',
             'options' => 'Další možnosti hledání',
-            'supporter_filter' => '',
+            'supporter_filter' => 'Filtrování podle :filters vyžaduje aktivní osu!supporter titul',
             'not-found' => 'bez výsledků',
-            'not-found-quote' => '... ups, nic jsem nenalezla.',
+            'not-found-quote' => '... ups, nic nebylo nalezeno.',
             'filters' => [
                 'general' => 'Obecné',
                 'mode' => 'Mód',
-                'status' => 'Stav',
+                'status' => 'Stav hodnocení',
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
-                'extra' => 'další',
-                'rank' => 'Dle získané známky',
-                'played' => 'Již hrány',
+                'extra' => 'extra',
+                'rank' => 'Dle získaného písmene',
+                'played' => 'Již hrané',
             ],
             'sorting' => [
                 'title' => 'název',
-                'artist' => 'umělec',
+                'artist' => 'interpret',
                 'difficulty' => 'obtížnost',
                 'updated' => 'aktualizováno',
                 'ranked' => 'ohodnocené',
@@ -198,8 +198,8 @@ return [
                 'nominations' => 'nominace',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
+                'link_text' => 'stítek podporovatele',
             ],
         ],
         'mode' => 'Mód',
@@ -209,7 +209,7 @@ return [
     ],
     'general' => [
         'recommended' => 'Doporučená obtížnost',
-        'converts' => 'Zahrň překonvertované beatmapy',
+        'converts' => 'Zahrň konvertované beatmapy',
     ],
     'mode' => [
         'any' => 'Jakékoliv',
@@ -223,8 +223,8 @@ return [
         'ranked-approved' => 'Hodnocené & Schválené',
         'approved' => 'Schválené',
         'qualified' => 'Kvalifikované',
-        'loved' => 'Oblíbené komunitou',
-        'faves' => 'Oblíbené',
+        'loved' => 'Oblíbené',
+        'faves' => 'Mé oblíbené',
         'pending' => 'Čekající',
         'graveyard' => 'Hřbitov',
         'my-maps' => 'Mé mapy',
@@ -237,7 +237,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Jiné',
-        'novelty' => 'Originální',
+        'novelty' => 'Novinka',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronická',
     ],
@@ -286,7 +286,7 @@ return [
     ],
     'extra' => [
         'video' => 'S videem',
-        'storyboard' => 'Bez videa',
+        'storyboard' => 'Se storyboardem',
     ],
     'rank' => [
         'any' => 'Jakékoliv',

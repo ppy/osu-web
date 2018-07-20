@@ -19,26 +19,26 @@
  */
 
 return [
-    'page_description' => 'Suositellut osu! artistit',
-    'title' => 'Suositellut Artistit',
+    'page_description' => 'osu! Featured artistit',
+    'title' => 'Featured Artistit',
 
     'admin' => [
         'hidden' => 'ARTISTI ON TÄLLÄ HETKELLÄ PIILOTETTU',
     ],
 
     'beatmaps' => [
-        '_' => 'Rytmikartat',
-        'download' => 'Lataa rytmikarttapohja',
-        'download-na' => 'Rytmikarttapohja ei ole vielä saatavilla',
+        '_' => 'Beatmapit',
+        'download' => 'Lataa Beatmap-Pohja',
+        'download-na' => 'Beatmap-Pohja ei ole vielä saatavilla',
     ],
 
     'index' => [
-        'description' => 'Suositellut artistit ovat artisteja, joiden kanssa teemme yhteistyötä tuodaksemme uutta ja alkuperäistä musiikkia osu! peliin. osu!-tiimi on käsin valinnut nämä artistit ja valikoiman heidän musiikistaan, koska ne ovat mahtavia ja hyvin kartoitettavia. Osa suositelluista artisteista on myös säveltänyt uusia kappalaita pelkästään osu!:n käyttöön.<br><br>Kaikki kappaleet tässä osiossa tarjotaan valmiiksi ajoitettuina .osz tiedostoina ja ovat virallisesti lisensoitu käyttöön osu!:ssa ja siihen liittyvässä sisällössä.',
+        'description' => 'Featured artistit ovat artisteja, jotka toimivat kanssamme yhteistyössä tuoden peliin uutta ja alkuperäistä musiikkia. osu!-tiimi on varta vasten valinnut nämä artistit ja valikoiman heidän kappaleitaan soveltuvaksi beatmappien tekemiseen. Jotkut näistä artisteista ovat myös luoneet kappaleita yksinomaan käyttöön osu!:ssa.<br><br>Kaikki kappaleet tässä osiossa tarjotaan valmiiksi ajoitettuina .osz tiedostoina ja ovat virallisesti lisensoitu käytettäväksi pelissä ja siihen liittyvässä sisällössä.',
     ],
 
     'links' => [
         'osu' => 'osu! profiili',
-        'site' => 'Virallinen Kotisivu',
+        'site' => 'Virallinen Nettisivu',
     ],
 
     'songs' => [

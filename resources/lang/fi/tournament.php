@@ -24,7 +24,7 @@ return [
             'subtitle' => 'Luettelo aktiivisista, virallisesti tunnustetuista turnauksista',
             'title' => 'Yhteisöturnaukset',
         ],
-        'none_running' => 'Ei turnauksia käynnissä juuri nyt, tarkista myöhemmin uudelleen!',
+        'none_running' => 'Turnauksia ei juuri nyt ole käynnissä, tarkista myöhemmin uudestaan!',
         'registration_period' => 'Rekisteröinti: :start:sta :end:een',
 
         'state' => [
@@ -35,7 +35,7 @@ return [
 
     'show' => [
         'banner' => 'Tue Joukkuettasi',
-        'entered' => 'Olet rekisteröitynyt tähän turnaukseen.<br><br>Huomaa, että tämä ei tarkoita, että olet asetettuna joukkueeseen.<br><br>Saat enemmän ohjeita sähköpostitse lähempänä turnauksen alkamista, joten varmista, että osu!-tilisi sähköpostitili pitää paikkansa!',
+        'entered' => 'Olet rekisteröitynyt tähän turnaukseen.<br><br>Tämä ei tarkoita että olet sijoitettu joukkueeseen.<br><br>Lisäohjeet lähetetään sähköpostilla myöhemmin turnauspäivän lähestyessä, joten varmista että käyttäjäsi sähköpostiosoite on oikea!',
         'info_page' => 'Tietosivu',
         'login_to_register' => 'Ole ystävällinen ja :login nähdäksesi yksityiskohtia rekisteröitymiselle!',
         'not_yet_entered' => 'Et ole rekisteröitynyt tähän turnaukseen.',
@@ -49,8 +49,8 @@ return [
 
         'state' => [
             'before_registration' => 'Tähän turnaukseen rekisteröityminen ei ole vielä alkanut.',
-            'ended' => 'Tämä turnaus on loppunut. Tarkista tietosivu tuloksien näkemiseksi.',
-            'registration_closed' => 'Tämän turnauksen rekisteröitymisaika on loppunut. Viimeaikaisten päivitysten tarkistamiseksi, tarkista tietosivu.',
+            'ended' => 'Tämä turnaus on loppunut. Tulokset löytyvät infosivulta.',
+            'registration_closed' => 'Rekisteröinti tähän turnaukseen on loppunut. Tarkista infosivu pysyäksesi ajan tasalla.',
             'running' => 'Tämä turnaus on juuri nyt käynnissä. Lue tietosivulta lisätietoja.',
         ],
     ],

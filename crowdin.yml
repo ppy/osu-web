@@ -3,6 +3,7 @@ files:
     translation: /resources/lang/%locale%/**/%original_file_name%
     languages_mapping:
       locale:
+        bg-BG: bg
         zh-CN: zh
         zh-TW: zh-tw
         cs-CZ: cs

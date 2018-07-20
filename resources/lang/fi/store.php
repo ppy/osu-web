@@ -25,21 +25,21 @@ return [
 
     'cart' => [
         'checkout' => 'Kassa',
-        'more_goodies' => '',
+        'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
         'title' => 'Ostoskori',
         'total' => 'yhteensä',
 
         'errors_no_checkout' => [
-            'line_1' => '',
+            'line_1' => 'Jassoo... kassalle ei pääse, sillä ostoskorissasi on ongelmia!',
             'line_2' => 'Poista tai päivitä ylläolevat tavarat jatkaaksesi.',
         ],
 
         'empty' => [
             'text' => 'Ostoskorisi on tyhjä.',
             'return_link' => [
-                '_' => '',
-                'link_text' => 'kaupan listaus',
+                '_' => 'Palaa takaisin :link tehdäksesi löytöjä!',
+                'link_text' => 'kauppasivulle',
             ],
         ],
     ],
@@ -69,19 +69,19 @@ return [
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name käyttäjälle :username (:duration)',
             ],
             'quantity' => 'Määrä',
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Et voi muokata tilaustasi, sillä se on peruuntunut.',
+            'checkout' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.', // checkout and processing should have the same message.
+            'default' => 'Tilaus ei ole muokattavissa',
+            'delivered' => 'Et voi muokata tilaustasi, sillä se on jo toimitettu.',
+            'paid' => 'Et voi muokata tilaustasi, sillä se on jo maksettu.',
+            'processing' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.',
+            'shipped' => 'Et voi muokata tilaustasi, sillä se on jo matkalla.',
         ],
     ],
 
@@ -90,7 +90,7 @@ return [
 
         'stock' => [
             'out' => 'Tätä tavaraa ei ole tällä hetkellä saatavissa. Tarkista myöhemmin uudelleen!',
-            'out_with_alternative' => 'Valitettavasti tätä tavaraa ei ole saatavissa. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
+            'out_with_alternative' => 'Valitettavasti tämä tuote ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
         ],
 
         'add_to_cart' => 'Lisää koriin',
@@ -105,8 +105,8 @@ return [
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
         'require_login' => [
-            '_' => 'Sinun on oltava :link ollaksesi tukija!',
-            'link_text' => 'kirjauduttu sisään',
+            '_' => 'Ollaksesi Tukija sinun täytyy olla :link!',
+            'link_text' => 'kirjautunut sisään',
         ],
     ],
 
@@ -115,7 +115,7 @@ return [
         'checking' => 'Tarkistetaan saatavuutta nimelle :username...',
         'require_login' => [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',
-            'link_text' => 'kirjauduttu sisään',
+            'link_text' => 'kirjautunut sisään',
         ],
     ],
 ];

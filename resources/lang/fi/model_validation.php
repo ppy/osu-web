@@ -21,7 +21,7 @@
 return [
     'not_negative' => ':attribute ei voi olla negatiivinen.',
     'required' => ':attribute on pakollinen.',
-    'too_long' => ':attribute ylittää maksimipituuden - voi ylimillään olla :limit merkkiä.',
+    'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmap_discussion_post' => [
@@ -30,84 +30,84 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Aikaleima on määritelty, mutta rytmikartta puuttuu.',
-        'beatmapset_no_hype' => "Rytmikarttaa ei voi hypettää.",
-        'hype_requires_null_beatmap' => 'Hypetys täytyy tehdä Yleiset -osiossa (kaikki vaikeusasteet).',
-        'invalid_beatmap_id' => 'Virheellinen vaikeusaste määritelty.',
-        'invalid_beatmapset_id' => 'Epäkelpo rytmikartta määritelty.',
+        'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
+        'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
+        'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset -osiossa (kaikki vaikeusasteet).',
+        'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
+        'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
         'locked' => 'Keskustelu on lukittu.',
-        'mapper_note_wrong_user' => 'Vain rytmikartan omistaja voi lisätä kartoittajan muistiinpanoja.',
+        'mapper_note_wrong_user' => 'Vain beatmapin omistaja voi lähettää kartanluojan muistiinpanoja.',
 
         'hype' => [
-            'guest' => 'Sinun täytyy olla kirjautunut sisään jotta voit hypettää.',
-            'hyped' => 'Olet jo hypettänyt tätä rytmikarttaa.',
-            'limit_exceeded' => 'Olet käyttänyt kaiken hypesi.',
-            'not_hypeable' => 'Tätä rytmikarttaa ei voi hypettää',
-            'owner' => 'Ei omien rytmikarttojen hypettämistä.',
+            'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
+            'hyped' => 'Hurrasit jo tätä beatmappia.',
+            'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
+            'not_hypeable' => 'Tätä beatmappia ei voi hurrata',
+            'owner' => 'Ei omien beatmappien hurraamista.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Määritelty aikaleima on rytmikartan pituuden ulkopuolella.',
+            'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
+            'not_feature_topic' => 'Voi äänestää vain ominaisuutta.',
             'not_enough_feature_votes' => 'Ei tarpeeksi ääniä.',
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Virheellinen valinta määritelty.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Rytmikartan metatietoviesin poistaminen ei ole sallittua.',
-            'beatmapset_post_no_edit' => 'Rytmikartan metatietoviesin muokkaaminen ei ole sallittua.',
+            'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voi poistaa.',
+            'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voi muokata.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
-            'minimum_two_options' => '',
-            'too_many_options' => '',
+            'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
+            'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
+            'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
+            'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
+            'too_many_options' => 'Sallittujen valintojen määrä ylittyi.',
         ],
 
         'topic_vote' => [
-            'required' => '',
-            'too_many' => '',
+            'required' => 'Valitse jotain äänestäessäsi.',
+            'too_many' => 'Enemmän valintoja kuin sallittu.',
         ],
     ],
 
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
-        'email_already_used' => 'Tälle sähköpostille on jo luotu tunnus.',
+        'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
         'invalid_country' => 'Maa ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
-        'invalid_email' => "Ei näytä olevan kelvollinen sähköpostiosoite.",
+        'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
         'too_short' => 'Uusi salasana on liian lyhyt.',
-        'unknown_duplicate' => 'Käyttäjätunnus tai sähköposti osoite on jo käytössä.',
-        'username_available_in' => '',
-        'username_available_soon' => '',
+        'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
+        'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',
+        'username_available_soon' => 'Tämä nimi on käytössä millä hetkellä hyvänsä!',
         'username_invalid_characters' => 'Käyttäjätunnus sisältää virheellisiä merkkejä.',
         'username_in_use' => 'Käyttäjätunnus on jo käytössä!',
-        'username_no_space_userscore_mix' => 'Käytä joko alaviivoja tai välilyöntehä, ei molempia!',
+        'username_no_space_userscore_mix' => 'Käytä joko alaviivoja tai välilyöntejä, ei molempia!',
         'username_no_spaces' => "Käyttäjätunnus ei voi alkaa tai loppua välilyönneillä!",
         'username_not_allowed' => 'Tätä käyttäjätunnusta ei ole sallittu.',
-        'username_too_short' => 'Pyydetty käyttäjätunnus on liian lyhyt.',
-        'username_too_long' => 'Pyydetty käyttäjätunnus on liian pitkä.',
+        'username_too_short' => 'Haluamasi käyttäjätunnus on liian lyhyt.',
+        'username_too_long' => 'Haluamasi käyttäjätunnus on liian pitkä.',
         'weak' => 'Mustalla listalla oleva salasana.',
         'wrong_current_password' => 'Nykyinen salasanasi on virheellinen.',
-        'wrong_email_confirmation' => 'Salasanat eivät vastaa toisiaan.',
+        'wrong_email_confirmation' => 'Sähköpostivahvistus ei täsmää.',
         'wrong_password_confirmation' => 'Salasanat eivät vastaa toisiaan.',
-        'too_long' => '',
+        'too_long' => 'Liian pitkä - Kirjaimia voi olla enintään :limit.',
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Sinulla pitöö olla :link jotta voit muuttaa nimeäsi!',
-                'link_text' => '',
+                '_' => 'Sinun pitää olla :link, jotta voit muuttaa nimeäsi!',
+                'link_text' => 'tukenut osua!',
             ],
             'username_is_same' => 'Tämä on jo käyttäjänimesi, höpsö!',
         ],

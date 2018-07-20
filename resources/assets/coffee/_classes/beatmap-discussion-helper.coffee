@@ -20,6 +20,7 @@ class @BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
+  @MAX_MESSAGE_PREVIEW_LENGTH: 100
 
   @MODES = ['events', 'general', 'generalAll', 'timeline']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
@@ -128,6 +129,16 @@ class @BeatmapDiscussionHelper
         when user.is_admin then 'admin'
         when user.is_qat then 'qat'
         when user.is_bng then 'bng'
+
+
+  @previewMessage = (message) =>
+    if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
+      _.chain(message)
+      .truncate length: @MAX_MESSAGE_PREVIEW_LENGTH
+      .escape()
+      .value()
+    else
+      @format message, newlines: false
 
 
   @stateFromDiscussion: (discussion) =>

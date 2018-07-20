@@ -23,17 +23,17 @@ return [
     'generic' => 'Bugfixes und kleine Verbesserungen.',
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited user online |:count_delimited user online',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'von :user',
     ],
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Changelog :info',
+            'info' => 'Liste',
         ],
     ],
 

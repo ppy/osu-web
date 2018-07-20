@@ -24,6 +24,10 @@ class Repository extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'build_on_tag' => 'boolean',
+    ];
+
     public static function importFromGithub($data)
     {
         return static::firstOrCreate(['name' => $data['full_name']]);

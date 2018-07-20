@@ -38,7 +38,7 @@ return [
         'form' => [
             '_' => 'Tìm kiếm',
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
-            'types' => '',
+            'types' => 'Kiểu thư',
             'username' => 'Tên người dùng',
 
             'user' => [

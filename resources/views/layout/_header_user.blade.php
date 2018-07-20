@@ -31,7 +31,7 @@
     ></button>
 @else
     <a
-        class="{{ $class }}"
+        class="{{ $class }} {{ Auth::user()->isRestricted() ? 'avatar--restricted' : '' }}"
         data-click-menu-target="nav2-user-popup"
         href="{{ route('users.show', Auth::user()) }}"
         {!! background_image(Auth::user()->user_avatar, false) !!}

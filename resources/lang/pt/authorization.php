@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Não é possível anular a publicitação.',
+            'is_hype' => 'Não é possível anular o hyping.',
             'has_reply' => 'Não é possível apagar a discussão com respostas',
         ],
         'nominate' => [
@@ -30,19 +30,19 @@ return [
             'owner' => "Não é possível nomear o próprio beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Só quem começou um segmento de mensagens ou o proprietário do beatmap é que consegue decompor uma discussão.',
+            'not_owner' => 'Só quem começou um segmento de mensagens ou o proprietário do beatmap é que consegue resolver uma discussão.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Por favor espera um momento antes de lançares mais votos',
             'owner' => "Não é possível votar na própria discussão.",
-            'wrong_beatmapset_state' => 'Só é possível votar em discussões com beatmaps que estão a aguardar.',
+            'wrong_beatmapset_state' => 'Só é possível votar em discussões com beatmaps que estão a aguardar aprovação.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Publicação gerada automaticamente não pode ser editada.',
+            'system_generated' => 'Uma publicação gerada automaticamente não pode ser editada.',
             'not_owner' => 'Só o publicador é que pode editar uma publicação.',
         ],
     ],
@@ -56,7 +56,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'É obrigatório o acesso ao canal alvo.',
+                    'no_access' => 'É necessário o acesso ao canal alvo.',
                     'moderated' => 'Canal actualmente monitorizado.',
                     'not_lazer' => 'Só podes falar em #lazer de momento.',
                 ],
@@ -67,7 +67,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Não podes mudar o teu voto depois do período de votação deste concurso ter acabado.',
+        'voting_over' => 'Tu não podes mudar o teu voto depois do período de votação deste concurso ter acabado.',
     ],
 
     'forum' => [
@@ -89,7 +89,7 @@ return [
 
             'store' => [
                 'play_more' => 'Tenta jogar o jogo antes de publicar nos fóruns, por favor! Se tiveres um problema ao jogar, por favor publica no fórum de Ajuda e Suporte.',
-                'too_many_help_posts' => "Precisas de jogar ainda mais o jogo antes de criares publicações adicionais. Se ainda estiveres a problemas enquanto jogares o jogo, envia um e-mail para support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas enquanto jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -110,12 +110,12 @@ return [
             'store' => [
                 'no_forum_access' => 'Acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Sem permissão para criar novo tópico.',
-                'forum_closed' => 'O fórum está fechado e não pode ser publicado nele.',
+                'forum_closed' => 'O fórum está fechado e não se pode publicar nele.',
             ],
 
             'vote' => [
                 'no_forum_access' => 'Acesso ao fórum solicitado é obrigatório.',
-                'over' => 'A sondagem acabou e não pode ser mais votada.',
+                'over' => 'A sondagem acabou e não se pode votar mais nela.',
                 'voted' => 'A troca de voto não é permitida.',
 
                 'user' => [

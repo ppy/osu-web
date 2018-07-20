@@ -30,31 +30,31 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Časová značka je specifikována, ale chybí beatmapa.',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => 'Zadaná neplatná obtížnost.',
-        'invalid_beatmapset_id' => 'Zadaná neplatná beatmapa.',
+        'beatmap_missing' => 'Časová sekvence je specifikována, ale chybí beatmapa.',
+        'beatmapset_no_hype' => "Tato beatmapa nemůže být nadchnutá.",
+        'hype_requires_null_beatmap' => 'Nadšení musí být provedeno v General (všech obtížností).',
+        'invalid_beatmap_id' => 'Byla zadaná neplatná obtížnost.',
+        'invalid_beatmapset_id' => 'Byla zadaná neplatná beatmapa.',
         'locked' => 'Diskuze je uzamčená.',
         'mapper_note_wrong_user' => 'Pouze autor beatmapy může přidávat maperské poznámky.',
 
         'hype' => [
-            'guest' => '',
-            'hyped' => '',
-            'limit_exceeded' => 'Využil jsi všechny svoje hypy.',
-            'not_hypeable' => 'Tato beatmapa nemůže být vyhypovaná',
-            'owner' => 'Nemůžeš vyhypovat svojí beatmapu.',
+            'guest' => 'Musíš být přihlášek k nadšení.',
+            'hyped' => 'Tuto beatmapu již si nadchnul.',
+            'limit_exceeded' => 'Využil jsi všechny svoje nadšení.',
+            'not_hypeable' => 'Tato beatmapa nemůže být nadchnutá',
+            'owner' => 'Nemůžeš nadchnout svojí beatmapu.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "Časová značka nemůže být záporná.",
+            'exceeds_beatmapset_length' => 'Upřesněná sekvence času přesahuje délku beatmapy.',
+            'negative' => "Časová sekvence nemůže být záporná.",
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
+            'not_feature_topic' => 'Lze hlasovat pouze o funkcích.',
             'not_enough_feature_votes' => 'Nedostatek hlasů.',
         ],
 
@@ -63,16 +63,16 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
+            'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
+            'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je požadována.',
-            'minimum_two_options' => 'Jsou potřeba alespoň dvě možnosti.',
-            'too_many_options' => 'Překročen limit povolených možností.',
+            'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
+            'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
+            'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
+            'too_many_options' => 'Byl překročen limit povolených možností.',
         ],
 
         'topic_vote' => [
@@ -83,15 +83,15 @@ return [
 
     'user' => [
         'contains_username' => 'Heslo nesmí obsahovat uživatelské jméno.',
-        'email_already_used' => 'Emailová adresa už byla použita.',
+        'email_already_used' => 'E-mailová adresa už byla použita.',
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
-        'invalid_email' => "Vypadá to na neplatnou emailovou adresu.",
+        'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",
         'too_short' => 'Nové heslo je příliš krátké.',
         'unknown_duplicate' => 'Uživatelské jméno nebo e-mailová adresa je již použita.',
         'username_available_in' => 'Toto uživatelské jméno bude k dispozici za :duration.',
         'username_available_soon' => 'Toto uživatelské jméno bude k dispozici pro použití každou chvíli!',
-        'username_invalid_characters' => 'Dotaz obsahuje neplatné znaky.',
+        'username_invalid_characters' => 'Žádané uživatelské jméno obsahuje neplatné znaky.',
         'username_in_use' => 'Uživatelské jméno je již používáno!',
         'username_no_space_userscore_mix' => 'Použijte prosím podtržítka nebo mezery, ne obojí!',
         'username_no_spaces' => "Uživatelské jméno nesmí začínat nebo končit mezerou!",

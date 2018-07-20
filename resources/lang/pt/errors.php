@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Por favor inicia sessão para proceder.',
         'http-403' => 'Acesso negado.',
+        'http-404' => 'Não encontrado.',
         'http-429' => 'Demasiadas tentativas. Tenta novamente mais tarde.',
     ],
     'account' => [
@@ -36,7 +37,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'Tu tens demasiados beatmaps preferidos! Por favor retira um antes de continuar.',
     ],
-    'logged_out' => 'Tu foste desconectado. Por favor inicia sessão e tenta outra vez.',
+    'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
     'supporter_only' => 'Tu tens de ser um apoiante para usar esta funcionalidade.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta acção enquanto a tua conta estiver num estado restrito.',
     'unknown' => 'Ocorreu um erro desconhecido.',

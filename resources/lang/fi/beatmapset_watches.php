@@ -27,12 +27,12 @@ return [
     ],
 
     'index' => [
-        'description' => 'Seuraat näiden rytmikarttojen keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
-        'title_compact' => 'modauslista',
-        'title_main' => 'Modauslista',
+        'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
+        'title_compact' => 'modiseuranta',
+        'title_main' => 'Modiseuranta',
 
         'table' => [
-            'empty' => 'Rytmikarttojen keskusteluja ei seurata.',
+            'empty' => 'Ei seurattuja keskusteluja.',
             'open_issues' => 'Avoimet ongelmat',
             'state' => 'Tila',
             'title' => 'Nimi',
@@ -40,11 +40,11 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Uusi päivitys rytmikarttaan ":title"',
+        'update' => 'Uusi päivitys beatmappiin ":title"',
     ],
 
     'status' => [
-        'read' => 'Luettu',
-        'unread' => 'Lukematon',
+        'read' => 'Luetut',
+        'unread' => 'Lukemattomat',
     ],
 ];

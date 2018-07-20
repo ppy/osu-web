@@ -57,7 +57,7 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Podpis',
+            'title' => 'Header',
             'update' => 'aktualizovat',
         ],
     ],
@@ -75,13 +75,13 @@ return [
     'playstyles' => [
         'title' => 'Styly hraní',
         'mouse' => 'myš',
-        'keyboard' => 'klávesnice',
+        'keyboard' => 'klávesnicí',
         'tablet' => 'tablet',
         'touch' => 'dotyk',
     ],
 
     'privacy' => [
         'title' => 'Soukromí',
-        'friends_only' => 'Blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
+        'friends_only' => 'blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
     ],
 ];

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Rytmikarttojen keskustelujen viestit',
+        'title' => 'Beatmappien Keskusteluviestit',
     ],
 
     'item' => [

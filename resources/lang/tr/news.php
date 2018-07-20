@@ -20,7 +20,7 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listeleme',
+        'news-index' => 'Başlıklar',
         'news-show' => 'gönderi',
     ],
 

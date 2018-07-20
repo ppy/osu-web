@@ -40,8 +40,8 @@ return [
         'title' => 'Caută',
 
         'beatmapset' => [
-            'more' => '',
-            'more_simple' => '',
+            'more' => ':count mai multe rezultate de căutare pentru acest beatmap',
+            'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest beatmap',
             'title' => 'Beatmaps',
         ],
 
@@ -53,24 +53,24 @@ return [
 
             'label' => [
                 'forum' => 'căutare în forumuri',
-                'forum_children' => '',
-                'topic_id' => '',
+                'forum_children' => 'include subforumuri',
+                'topic_id' => 'subiect #',
                 'username' => 'autor',
             ],
         ],
 
         'mode' => [
             'all' => 'tot',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
+            'user' => 'jucător',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => '',
-            'more_simple' => '',
-            'more_hidden' => '',
+            'more' => ':count mai multe rezultate de căutare pentru acest jucător',
+            'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest jucător',
+            'more_hidden' => 'Căutarea jucătorului este limitată la :max jucători. Încearcă să îți redefinești căutarea.',
             'title' => 'Jucători',
         ],
 

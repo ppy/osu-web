@@ -60,6 +60,7 @@ class ChangelogController extends Controller
                 'updateStream',
                 'defaultChangelogs.user',
                 'defaultChangelogEntries.githubUser.user',
+                'defaultChangelogEntries.repository',
             ])->orderBy('build_id', 'DESC')
             ->get();
 
