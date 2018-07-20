@@ -12,10 +12,14 @@
     {
       "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/nekodex/laravel-datadog-helper"
     }
   ],
   "require": {
-    "chaseconey/laravel-datadog-helper": "*",
+    "chaseconey/laravel-datadog-helper": "dev-disable-middleware-tag",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "~6.0",
