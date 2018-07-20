@@ -23,15 +23,15 @@ return [
         'blurb' => [
             'important' => 'CITEȘTE ASTA ÎNAINTE DE A DESCĂRCA',
             'instruction' => [
-                '_' => "Instalare: Odată ce un pachet s-a instalat, extrage .rar în folderul de melodii osu!.
-                    Toate melodiile încă sunt .zip și/sau .osz înăuntrul pachetului, deci osu! va trebui să extragă beatmap-urile de unul singur data viitoare când jucați.
-                    :scary extrage zip-urile/osz-urile de unul singur,
+                '_' => "Instalare: Odată ce un pachet a fost instalat, extrage fișierul .rar în folderul de melodii osu!.
+                    Toate melodiile încă sunt de formă .zip și/sau .osz înăuntrul pachetului, deci osu! va trebui să extragă beatmap-urile de unul singur data viitoare când joci.
+                    :scary extragi fișierele zip/osz de unul singur,
                     sau beatmap-urile vor fi afișate incorect în osu! și nu vor funcționa bine.",
                 'scary' => 'Să NU',
             ],
             'note' => [
                 '_' => 'De asemenea, reține că este foarte recomandat să :scary, din moment ce cele mai vechi mape sunt mult mai scăzute calitativ decât cele mai noi.',
-                'scary' => 'descarci pachetele de la cele mai vechi la cele mai noi',
+                'scary' => 'descarci pachetele de la cele mai noi la cele mai vechi',
             ],
         ],
         'title' => 'Pachete beatmap',

@@ -20,12 +20,12 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Pagina solicitată nu este tradusă încă in limba selectată (:language). Se afișează versiunea în limba engleză.',
+        'fallback_translation' => 'Pagina solicitată nu este încă tradusă în limba selectată (:language). Se afișează versiunea în limba engleză.',
         'languages' => 'Limbi',
         'missing' => 'Pagina solicitată ":keyword" nu a putut fi găsită.',
         'missing_title' => 'Nu a fost găsit',
-        'missing_translation' => 'Pagina solicitată nu a putu fi găsită pentru limba selectată momentan.',
-        'search' => 'Căutați pagini existente pentru :link.',
+        'missing_translation' => 'Pagina solicitată nu a putut fi găsită pentru limba selectată momentan.',
+        'search' => 'Căută pagini existente pentru :link.',
         'toc' => 'Conținut',
 
         'edit' => [

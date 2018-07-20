@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem seleccionada (:language). A exibir versão em Inglês.',
+        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem seleccionada (:language). A exibir a versão em Inglês.',
         'languages' => 'Linguagens',
         'missing' => 'A página requisitada ":keyword" não pôde ser encontrada.',
         'missing_title' => 'Não encontrada',

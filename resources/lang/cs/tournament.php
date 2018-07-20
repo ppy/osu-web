@@ -28,7 +28,7 @@ return [
         'registration_period' => 'Registrace: :start do :end',
 
         'state' => [
-            'current' => 'Nadcházející turnaje',
+            'current' => 'Probíhající turnaje',
             'previous' => 'Minulé zápasy',
         ],
     ],

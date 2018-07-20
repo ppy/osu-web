@@ -89,6 +89,9 @@ return [
     'score_replays' => [
         'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
     ],
+    'scores' => [
+        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
+    ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [

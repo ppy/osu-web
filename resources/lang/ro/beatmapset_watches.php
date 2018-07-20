@@ -28,8 +28,8 @@ return [
 
     'index' => [
         'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. O să fii notificat atunci când apar noi postări sau actualizări.',
-        'title_compact' => 'listă de urmărire a modificărilor',
-        'title_main' => 'Listă de urmărire a modificărilor',
+        'title_compact' => 'jurnalul modificărilor',
+        'title_main' => 'Jurnalul modificărilor',
 
         'table' => [
             'empty' => 'Nicio discuție beatmap urmărită.',
@@ -40,7 +40,7 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Actualizare noua pentru beatmap-ul ":title"',
+        'update' => 'Actualizare nouă pentru beatmapul ":title"',
     ],
 
     'status' => [

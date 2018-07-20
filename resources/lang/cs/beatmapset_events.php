@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Události Beatmapsetu',
+        'title' => 'Události beatmapsetu',
     ],
 
     'item' => [

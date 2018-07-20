@@ -60,7 +60,7 @@ return [
             'today' => 'dnes',
             'week' => 'týden',
             'month' => 'měsíc',
-            'all_time' => 'celkem',
+            'all_time' => 'za celou dobu',
             'last_week' => 'poslední týden',
             'weeks_ago' => 'před :count týdnem|před :count týdny',
         ],

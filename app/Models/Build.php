@@ -43,9 +43,12 @@ class Build extends Model
 
     public static function importFromGithubNewTag($data)
     {
-        $repository = Repository::where('name', '=', $data['repository']['full_name'])->first();
+        $repository = Repository::where([
+            'name' => $data['repository']['full_name'],
+            'build_on_tag' => true,
+        ])->first();
 
-        // abort on unknown repository
+        // abort on unknown or non-auto build repository
         if ($repository === null) {
             return;
         }
@@ -74,7 +77,7 @@ class Build extends Model
 
         $changelogEntry = new ChangelogEntry;
 
-        $newChangelogEntryIds = $repository
+        $newChangelogEntryIds = $stream
             ->changelogEntries()
             ->orphans($stream->getKey())
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)

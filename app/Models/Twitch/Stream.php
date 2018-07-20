@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,31 +18,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
+namespace App\Models\Twitch;
 
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class ElasticsearchServiceProvider extends ServiceProvider
+class Stream
 {
-    public function boot()
+    public $data = null;
+    public $user = null;
+
+    public function __construct($data, $user)
     {
+        $this->data = $data;
+        $this->user = $user;
     }
 
-    public function provides()
+    public function url()
     {
-        return ['elasticsearch'];
+        return "https://twitch.tv/{$this->user['login']}";
     }
 
-    public function register()
+    public function preview($width, $height)
     {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
+        return strtr($this->data['thumbnail_url'], [
+            '{height}' => $height,
+            '{width}' => $width,
+        ]);
     }
 }

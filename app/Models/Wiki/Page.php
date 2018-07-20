@@ -25,11 +25,12 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
-use Es;
+use Exception;
 
 class Page
 {
@@ -155,12 +156,12 @@ class Page
         $params['body']['indexed_at'] = json_time(Carbon::now());
         $params['body']['version'] = static::VERSION;
 
-        return Es::index($params);
+        return Es::getClient()->index($params);
     }
 
     public function esDeleteDocument()
     {
-        return Es::delete(static::searchIndexConfig([
+        return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
@@ -207,7 +208,13 @@ class Page
                 if ($fetch) {
                     try {
                         $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-                    } catch (GitHubNotFoundException $_e) {
+                    } catch (Exception $e) {
+                        if (!$e instanceof GitHubNotFoundException) {
+                            $index = false;
+
+                            log_error($e);
+                        }
+
                         $body = null;
                     }
 
@@ -220,7 +227,7 @@ class Page
 
                 $this->cache['page'] = $page;
 
-                if ($fetch) {
+                if ($fetch && ($index ?? true)) {
                     dispatch(new EsIndexDocument($this));
                 }
 

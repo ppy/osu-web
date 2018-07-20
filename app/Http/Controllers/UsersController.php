@@ -27,7 +27,6 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
@@ -419,10 +418,7 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->scoresBest($options['mode'], true)
-                    ->orderBy('pp', 'DESC')
-                    ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
-                $withScoresPosition = true;
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
@@ -441,11 +437,6 @@ class UsersController extends Controller
 
         if (!isset($collection)) {
             $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        if (isset($withScoresPosition)) {
-            // for scores which require pp ('weight' include).
-            ScoreBestModel::fillInPosition($collection);
         }
 
         return json_collection($collection, $transformer, $includes ?? []);
