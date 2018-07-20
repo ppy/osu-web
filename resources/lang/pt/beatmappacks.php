@@ -23,14 +23,14 @@ return [
         'blurb' => [
             'important' => 'LÊ ISTO ANTES DE TRANSFERIR',
             'instruction' => [
-                '_' => "Instalação: Uma vez transferido um pacote, extrai o .rar para o teu Directório de canções do osu!.
+                '_' => "Instalação: Uma vez transferido um pacote, extrai o .rar para o teu Directório de Canções do osu!.
                     Todas as canções estão .ZIPadas e/ou .OSZadas dentro do pacote, por isso o osu! irá precisar de extrair, por ele próprio, os beatmaps da próxima vez que fores para o Modo de jogo.
                     :scary extrai os ZIPs/OSZs por ti próprio,
                     ou os beatmaps vão-se apresentar de forma incorrecta no osu! e não irão funcionar correctamente.",
                 'scary' => 'NÃO',
             ],
             'note' => [
-                '_' => 'Toma nota de que também é altamente recomendado de :scary, já que os mapas mais velhos são de menor qualidade do que os mapas mais recentes.',
+                '_' => 'Toma nota de que também é altamente recomendado :scary, já que os mapas mais velhos são de menor qualidade do que os mapas mais recentes.',
                 'scary' => 'transferir os pacotes do mais velho para o mais novo',
             ],
         ],
@@ -54,7 +54,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Precisas de ser :link para transferir',
+        '_' => 'Tu precisas de estar :link para transferir',
         'link_text' => 'autenticado',
     ],
 ];

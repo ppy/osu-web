@@ -21,7 +21,7 @@
 return [
     'top-headers' => [
         'headline' => 'Živá vysílání',
-        'description' => 'Data o vysílajích jsou načítána každých pět minut z osu! kategorie stránky twitch.tv. Nebojte se začít vysílat sami a může tu být i Váš stream! Pro více informací jak na to se prosím podívejte na wiki stránku o živém vysílání.',
+        'description' => 'Data o vysílajích jsou načítáná každých pět minut z osu! kategorie stránky twitch.tv. Neboj se začít vysílat. Může tu být i tvůj stream! Pro více informací jak na to se prosím podívej na wiki stránku o živém vysílání.',
     ],
     'headers' => [
         'regular' => 'Právě probíhající vysílání',

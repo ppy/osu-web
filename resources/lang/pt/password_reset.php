@@ -23,9 +23,9 @@ return [
 
     'button' => [
         'cancel' => 'Cancelar',
-        'resend' => 'Reenviar e-mail de verificação',
+        'resend' => 'Reenviar email de verificação',
         'set' => 'Definir palavra-passe',
-        'start' => 'Início',
+        'start' => 'Começar',
     ],
 
     'email' => [
@@ -33,7 +33,7 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Por favor contacta o suporte para recuperar a conta.',
+        'contact_support' => 'Por favor contacta a assistência para recuperar a conta.',
         'is_privileged' => 'Contacta o peppy lel.',
         'missing_key' => 'Necessário.',
         'too_many_tries' => 'Demasiadas tentativas falhadas.',
@@ -42,7 +42,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Verifica o teu e-mail para o código de verificação.',
+        'sent' => 'Verifica o teu email para o código de verificação.',
         'saved' => 'Nova palavra-passe guardada!',
     ],
 
@@ -54,6 +54,6 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Introduz um endereço de e-mail ou um nome de utilizador',
+        'username' => 'Introduz um endereço de email ou um nome de utilizador',
     ],
 ];

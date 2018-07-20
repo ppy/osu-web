@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'Diskuzní Příspěvky Mapy',
+        'title' => 'Diskuze o beatmapě',
     ],
 
     'item' => [
         'content' => 'Obsah',
-        'modding_history_link' => 'Zobrazit historii modifikací',
+        'modding_history_link' => 'Zobrazit historii módování',
     ],
 ];
