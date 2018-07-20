@@ -139,24 +139,13 @@ trait HasSearch
     }
 
     /**
-     * page is not returned if using offset query.
+     *  Gets the actual offset to use in queries.
      *
-     * @return array
+     * @return int actual offset to use.
      */
-    protected function getPaginationParams()
+    protected function getFrom() : int
     {
-        $size = $this->getSize();
-        $params = ['size' => $size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page ?? 1);
-            $params['from'] = ($params['page'] - 1) * $size;
-        }
-
-        return $params;
+        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
     }
 
     /**
@@ -164,9 +153,25 @@ trait HasSearch
      *
      * @return int actual size to use.
      */
+    protected function getQuerySize() : int
+    {
+        return min($this->maxResults() - $this->getFrom(), $this->getSize());
+    }
+
+    /**
+     *  Gets the size or default size if none was give..
+     *
+     * @return int size.
+     */
     protected function getSize() : int
     {
         return $this->size ?? $this->getDefaultSize();
+    }
+
+    protected function maxResults() : int
+    {
+        // the default is the maximum number of total results allowed when not using the scroll API.
+        return 10000;
     }
 
     private function addSort(Sort $sort)
@@ -174,5 +179,10 @@ trait HasSearch
         if (!$sort->isBlank()) {
             $this->sorts[] = $sort;
         }
+    }
+
+    private function getPage() : int
+    {
+        return max(1, $this->page ?? 1);
     }
 }

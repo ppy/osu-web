@@ -50,13 +50,10 @@ class HasChildQuery implements Queryable
     {
         // some of the parameters that normally go in body get moved into
         // inner_hits in join queries.
-
-        $pageParams = $this->getPaginationParams();
-
         $inner = [
             'name' => $this->name,
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
+            'from' => $this->getFrom(),
+            'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),
