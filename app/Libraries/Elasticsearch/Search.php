@@ -249,6 +249,6 @@ abstract class Search implements Queryable
     private function isSearchWindowExceeded()
     {
         // compare using the fixed value for MAX_RESULTS, not the overridable one.
-        return $this->getQuerySize() <= 0;
+        return $this->getQuerySize() < 0;
     }
 }
