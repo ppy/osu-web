@@ -198,8 +198,8 @@ return [
                 'nominations' => 'nominacje',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Do użycia filtra „:filters:” wymagany jest aktywny :link',
-                'link_text' => 'status donatora osu!',
+                '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
+                'link_text' => 'statusu donatora osu!',
             ],
         ],
         'mode' => 'Tryb gry',

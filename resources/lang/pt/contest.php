@@ -39,11 +39,11 @@ return [
         'limit_reached' => 'Chegaste ao limite de inscrições para este concurso',
         'drop_here' => 'Larga a tua inscrição aqui',
         'wrong_type' => [
-            'art' => 'Só ficheiros .jpg e .png são aceitados para este concurso.',
-            'beatmap' => 'Só ficheiros .osu são aceitados para este concurso.',
-            'music' => 'Só ficheiros .mp3 são aceitados para este concurso.',
+            'art' => 'Somente ficheiros .jpg e .png são aceites para este concurso.',
+            'beatmap' => 'Somente ficheiros .osu são aceites para este concurso.',
+            'music' => 'Somente ficheiros .mp3 são aceites para este concurso.',
         ],
-        'too_big' => 'Inscrições para este concurso só podem ser até :limit.',
+        'too_big' => 'As inscrições para este concurso só podem ser até :limit.',
     ],
     'beatmaps' => [
         'download' => 'Transferir Inscrição',

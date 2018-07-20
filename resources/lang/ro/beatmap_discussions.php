@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Trebuie să fii conectat pentru a edita.',
+            'null_user' => 'Trebuie să fii autentificat pentru a edita.',
             'system_generated' => 'Postările generate de sistem nu pot fi editate.',
             'wrong_user' => 'Trebuie să fii proprietarul postării pentru a o edita.',
         ],
@@ -33,10 +33,13 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'șters',
-        'title' => 'Discuții beatmap',
+        'title' => 'Discuții despre beatmap',
 
         'form' => [
+            '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
+            'types' => 'Tipuri de mesaje',
+            'username' => 'Nume de utilizator',
 
             'user' => [
                 'label' => 'Utilizator',
@@ -60,7 +63,7 @@ return [
     'reply' => [
         'open' => [
             'guest' => 'Conectează-te pentru a răspunde',
-            'user' => 'Răsounde',
+            'user' => 'Răspunde',
         ],
     ],
 
@@ -73,7 +76,7 @@ return [
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'propunător',
+        'bng' => 'nominalizator',
         'owner' => 'mapper',
         'qat' => 'qat',
     ],

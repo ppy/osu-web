@@ -42,8 +42,8 @@ return [
         'incidents' => [
             'title' => 'Incidentes Recentes',
             'state' => [
-                'resolved' => 'Decomposto',
-                'resolving' => 'A Decompor',
+                'resolved' => 'Solucionados',
+                'resolving' => 'A Solucionar',
                 'unknown' => 'Desconhecido',
             ],
         ],

@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Opravdu?',
+    'confirmation' => 'Jsi si jist/á?',
     'saved' => 'Uloženo',
 
     'array_and' => [
@@ -38,14 +38,14 @@ return [
         'permalink' => 'trvalý odkaz',
         'permalink_copied' => 'odkaz zkopírován',
         'post' => 'Přidat příspěvek',
-        'reply' => 'Odpověděť',
-        'reply_reopen' => 'Odpovědět a Znovu otevřít',
-        'reply_resolve' => 'Odpovědět a Archivovat',
+        'reply' => 'Odpovědět',
+        'reply_reopen' => 'Odpovědět a znovu otevřít',
+        'reply_resolve' => 'Odpovědět a archivovat',
         'reset' => 'Resetovat',
         'save' => 'Uložit',
         'saving' => 'Ukládání...',
         'search' => 'Hledat',
-        'see_more' => 'další',
+        'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
         'show_more' => 'zobrazit více',
         'upload_image' => 'nahrát obrázek',
@@ -56,7 +56,7 @@ return [
         'days' => ':count den|:count dnů',
         'hour_short_unit' => 'h',
         'hours' => ':count hodina|:count hodin',
-        'item' => ':count jednotka|:count jednotky',
+        'item' => ':count jednotka|:count jednotek',
         'minute_short_unit' => 'min',
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
@@ -74,10 +74,10 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Klávesnice',
-        'mouse' => 'Myš',
-        'tablet' => 'Tablet',
-        'touch' => 'Dotyková obrazovka',
+        'keyboard' => 'Klávesnicí',
+        'mouse' => 'Myší',
+        'tablet' => 'Tabletem',
+        'touch' => 'Dotykem',
     ],
 
     'dropzone' => [
@@ -99,8 +99,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'před :count dnem|před:count dny',
-        'hours_ago' => 'před :count hodinou|před :count hodinami',
+        'days_ago' => 'před:count dnem|před:count dny',
+        'hours_ago' => 'před:count hodinou|před:count hodinami',
         'now' => 'nyní',
         'remaining' => 'Zbývající čas',
     ],
