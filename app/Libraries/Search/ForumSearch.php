@@ -27,7 +27,6 @@ use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
-use App\Libraries\Elasticsearch\Sort;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
