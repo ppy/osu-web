@@ -130,8 +130,7 @@ abstract class Model extends BaseModel
 
     public function dbName()
     {
-        $connection = $this->connection;
-        $connection ?? ($connection = config('database.default'));
+        $connection = $this->connection ?? config('database.default');
 
         return config("database.connections.{$connection}.database");
     }
