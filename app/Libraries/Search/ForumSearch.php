@@ -123,6 +123,8 @@ class ForumSearch extends Search
                     ->filter(['terms' => ['post_id' => $ids]])
             )->source(['topic_id', 'search_content']);
 
+        $search->loggingTag = get_called_class().'-firstPosts';
+
         $map = [];
         foreach ($search->response() as $post) {
             $map[$post->source('topic_id')] = $post;
