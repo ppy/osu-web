@@ -34,13 +34,14 @@ class ProfilePage.TopRanks extends React.PureComponent
             li className: 'profile-extra-entries__item',
               el ShowMoreLink,
                 event: 'profile:showMore'
-                name: 'scoresBest'
                 hasMore: @props.pagination.scoresBest.hasMore
                 loading: @props.pagination.scoresBest.loading
-                url: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'best'
-                  mode: @props.currentMode
+                data:
+                  name: 'scoresBest'
+                  url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'best'
+                    mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
@@ -55,12 +56,13 @@ class ProfilePage.TopRanks extends React.PureComponent
             li className: 'profile-extra-entries__item',
               el ShowMoreLink,
                 event: 'profile:showMore'
-                name: 'scoresFirsts'
                 hasMore: @props.pagination.scoresFirsts.hasMore
                 loading: @props.pagination.scoresFirsts.loading
-                url: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'firsts'
-                  mode: @props.currentMode
+                data:
+                  name: 'scoresFirsts'
+                  url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'firsts'
+                    mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')

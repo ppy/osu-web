@@ -71,10 +71,11 @@ class ProfilePage.Kudosu extends React.Component
             li className: 'profile-extra-entries__item',
               el ShowMoreLink,
                 event: 'profile:showMore'
-                name: 'recentlyReceivedKudosu'
                 hasMore: @props.pagination.recentlyReceivedKudosu.hasMore
                 loading: @props.pagination.recentlyReceivedKudosu.loading
-                url: laroute.route 'users.kudosu', user: @props.user.id
+                data:
+                  name: 'recentlyReceivedKudosu'
+                  url: laroute.route 'users.kudosu', user: @props.user.id
 
         else
           div className: 'profile-extra-entries', osu.trans('users.show.extra.kudosu.entry.empty')

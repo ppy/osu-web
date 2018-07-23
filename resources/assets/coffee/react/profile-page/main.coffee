@@ -298,7 +298,7 @@ class ProfilePage.Main extends React.PureComponent
         component: ProfilePage.AccountStanding
 
 
-  showMore: (e, {name, url, perPage}) =>
+  showMore: (e, {name, url, perPage = 20}) =>
     offset = @state[name].length
 
     paginationState = _.cloneDeep @state.showMorePagination

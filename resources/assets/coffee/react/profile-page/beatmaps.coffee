@@ -51,12 +51,13 @@ class ProfilePage.Beatmaps extends React.PureComponent
                 className: 'osu-layout__col',
                 el ShowMoreLink,
                   event: 'profile:showMore'
-                  name: section
                   hasMore: @props.pagination[section].hasMore
                   loading: @props.pagination[section].loading
-                  url: laroute.route 'users.beatmapsets',
-                    user: @props.user.id
-                    type: sectionSnaked
+                  data:
+                    name: section
+                    url: laroute.route 'users.beatmapsets',
+                      user: @props.user.id
+                      type: sectionSnaked
 
           else
             p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')

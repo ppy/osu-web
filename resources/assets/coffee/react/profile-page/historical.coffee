@@ -83,12 +83,13 @@ class ProfilePage.Historical extends React.PureComponent
             className: 'beatmapset-row beatmapset-row--more'
             el ShowMoreLink,
               event: 'profile:showMore'
-              name: 'beatmapPlaycounts'
               hasMore: @props.pagination.beatmapPlaycounts.hasMore
               loading: @props.pagination.beatmapPlaycounts.loading
-              url: laroute.route 'users.beatmapsets',
-                  user: @props.user.id
-                  type: 'most_played'
+              data:
+                name: 'beatmapPlaycounts'
+                url: laroute.route 'users.beatmapsets',
+                    user: @props.user.id
+                    type: 'most_played'
         ]
 
       else
@@ -108,13 +109,14 @@ class ProfilePage.Historical extends React.PureComponent
             className: 'beatmapset-row beatmapset-row--more'
             el ShowMoreLink,
               event: 'profile:showMore'
-              name: 'scoresRecent'
               hasMore: @props.pagination.scoresRecent.hasMore
               loading: @props.pagination.scoresRecent.loading
-              url: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'recent'
-                  mode: @props.currentMode
+              data:
+                name: 'scoresRecent'
+                url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'recent'
+                    mode: @props.currentMode
         ]
 
       else

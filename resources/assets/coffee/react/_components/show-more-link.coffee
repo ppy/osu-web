@@ -36,8 +36,4 @@ class @ShowMoreLink extends React.PureComponent
 
 
   showMore: =>
-    $.publish @props.event,
-      name: @props.name
-      perPage: @props.perPage ? 20
-      url: @props.url
-      extras: @props.extras
+    $.publish @props.event, @props.data
