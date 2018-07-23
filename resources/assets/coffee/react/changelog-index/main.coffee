@@ -30,14 +30,8 @@ class ChangelogIndex.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    builds = props.data.builds
-    hasMore = builds.length == props.data.search.limit
-
-    @state =
-      # remove one so there's at least one more to be loaded
-      builds: osu.jsonClone(if hasMore then builds[..-2] else builds)
-      hasMore: hasMore
-      loading: false
+    @state = @newStateFromData(props.data)
+    @state.loading = false
 
 
   componentDidMount: =>
@@ -111,8 +105,15 @@ class ChangelogIndex.Main extends React.PureComponent
 
     $.get laroute.route('changelog.index'), search
     .done (data) =>
-      @setState
-        builds: @state.builds.concat(data.builds[..-2])
-        hasMore: data.search.limit == data.builds.length
+      @setState @newStateFromData(data)
     .always =>
       @setState loading: false
+
+
+  newStateFromData: (data) =>
+    hasMore = data.builds.length == data.search.limit
+    builds = (@state?.builds ? []).concat data.builds
+    # remove one so there's at least one more to be loaded
+    builds.pop() if hasMore
+
+    {hasMore, builds}
