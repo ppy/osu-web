@@ -30,12 +30,12 @@ class @ShowMoreLink extends React.PureComponent
 
       button
         type: 'button'
-        onClick: @showMore
+        onClick: @props.callback ? @showMore
         className: "#{blockClass} show-more-link--link"
         osu.trans('common.buttons.show_more')
 
 
-  showMore: (e) =>
+  showMore: =>
     $.publish @props.event,
       name: @props.name
       perPage: @props.perPage ? 20

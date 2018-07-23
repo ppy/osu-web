@@ -36,11 +36,6 @@ class ChangelogIndex.Main extends React.PureComponent
 
   componentDidMount: =>
     changelogChartLoader.initialize()
-    $.subscribe 'changelog-index:showMore.changelogIndex', @showMore
-
-
-  componentWillUnmount: =>
-    $.unsubscribe '.changelogIndex'
 
 
   render: =>
@@ -71,7 +66,7 @@ class ChangelogIndex.Main extends React.PureComponent
                   el Build, build: build
 
         el ShowMoreLink,
-          event: 'changelog-index:showMore'
+          callback: @showMore
           hasMore: @state.hasMore
           loading: @state.loading
           modifiers: ['changelog-index']
