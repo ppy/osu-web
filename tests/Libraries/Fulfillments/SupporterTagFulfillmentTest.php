@@ -66,7 +66,40 @@ class SupporterTagFulfillmentTest extends TestCase
 
     public function testDonateSupporterTagToOthers()
     {
-        Mail::fake(); // also suppresses mail output which is not ideal.
+        $today = Carbon::today();
+
+        $donor = $this->user;
+        $giftee = factory(User::class)->create([
+            'osu_featurevotes' => 0,
+            'osu_subscriptionexpiry' => $today->copy(),
+            'user_sig' => '',
+        ]);
+        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
+
+        $this->createDonationOrderItem($this->order, $giftee, false, false);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        $donor->refresh();
+        $giftee->refresh();
+
+        // giftee gets subscription, not donor.
+        $this->assertFalse($donor->osu_subscriber);
+        $this->assertTrue($giftee->osu_subscriber);
+
+        // donor's expiry should not change.
+        $this->assertEquals($expectedExpiry, $giftee->osu_subscriptionexpiry);
+        $this->assertEquals($today, $donor->osu_subscriptionexpiry);
+
+        // votes go to donor.
+        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertEquals(0, $giftee->osu_featurevotes);
+    }
+
+    public function testMailDonateSupporterTagToOthers()
+    {
+        Mail::fake();
         $today = Carbon::today();
 
         $donor = $this->user;
@@ -81,37 +114,22 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $today->copy(),
             'user_sig' => '',
         ]);
-        $expectedExpiry = $giftee1->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
+        $this->createDonationOrderItem($this->order, $giftee1, false, false);
         $this->createDonationOrderItem($this->order, $giftee1, false, false);
         $this->createDonationOrderItem($this->order, $giftee2, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
 
-        $donor->refresh();
-        $giftee1->refresh();
-        $giftee2->refresh();
-
-        // giftee gets subscription, not donor.
-        $this->assertFalse($donor->osu_subscriber);
-        $this->assertTrue($giftee1->osu_subscriber);
-        $this->assertTrue($giftee2->osu_subscriber);
-
-        // donor's expiry should not change.
-        $this->assertEquals($expectedExpiry, $giftee1->osu_subscriptionexpiry);
-        $this->assertEquals($expectedExpiry, $giftee2->osu_subscriptionexpiry);
-        $this->assertEquals($today, $donor->osu_subscriptionexpiry);
-
-        // votes go to donor.
-        $this->assertEquals(4, $donor->osu_featurevotes);
-        $this->assertEquals(0, $giftee1->osu_featurevotes);
-        $this->assertEquals(0, $giftee2->osu_featurevotes);
-
-        Mail::assertQueued(SupporterGift::class, function ($mail) {
+        Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
             $params = $this->invokeProperty($mail, 'params');
 
-            return $params['duration'] === SupporterTag::getDurationText(1);
+            if ($params['giftee']->is($giftee1)) {
+                return $params['duration'] === SupporterTag::getDurationText(2);
+            } elseif ($params['giftee']->is($giftee2)) {
+                return $params['duration'] === SupporterTag::getDurationText(1);
+            }
         });
 
         Mail::assertQueued(SupporterGift::class, 2);
