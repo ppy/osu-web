@@ -57,11 +57,11 @@ class Spotlight extends Model
 
     public function beatmapsets(string $mode)
     {
-        $beatmapsetIds = DB::connection('mysql-charts')
-            ->table($this->beatmapsetsTableName($mode))
-            ->pluck('beatmapset_id');
+        $tableName = DB::connection('mysql-charts')->getDatabaseName().'.'.$this->beatmapsetsTableName($mode);
 
-        return Beatmapset::whereIn('beatmapset_id', $beatmapsetIds);
+        return Beatmapset::whereIn('beatmapset_id', function ($q) use ($tableName) {
+            return $q->from($tableName)->select('beatmapset_id');
+        });
     }
 
     /**
