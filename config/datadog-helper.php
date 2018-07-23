@@ -28,4 +28,5 @@ return [
     'datadog_host' => env('DATADOG_HOST', 'https://app.datadoghq.com'),
     'statsd_server' => env('DATADOG_STATSD_HOST', 'localhost'),
     'statsd_port' => env('DATADOG_STATSD_PORT', 8125),
+    'middleware_disable_url_tag' => true,
 ];

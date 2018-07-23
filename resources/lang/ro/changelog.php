@@ -19,20 +19,28 @@
  */
 
 return [
-    'feed_title' => 'Flux',
+    'feed_title' => 'flux',
     'generic' => 'Remedierea bug-urilor și îmbunătățiri minore.',
-    'users-online' => '1 utilizator online|:users utilizatori online',
 
-    'prefixes' => [
-        'add' => 'noutate',
-        'fix' => 'corecție',
-        'misc' => 'diverse',
+    'builds' => [
+        'users_online' => ':count_delimited utilizator online|:count_delimited utilizatori online',
+    ],
+
+    'entry' => [
+        'by' => 'de :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Jurnalul modificărilor :info',
+            'info' => 'Listare',
+        ],
     ],
 
     'support' => [
         'heading' => 'Îți place această actualizare?',
         'text_1' => 'Susține dezvoltarea osu! și :link astăzi!',
         'text_1_link' => 'devino un suporter',
-        'text_2' => 'Nu doar că vei ajuta la accelerarea dezvoltării, dar vei primi, de asemenea, niște avantaje suplementare și personalizări!',
+        'text_2' => 'Nu doar că vei ajuta la accelerarea dezvoltării, dar vei primi, de asemenea, niște avantaje suplimentare și personalizări!',
     ],
 ];

@@ -46,6 +46,9 @@
                                 class="forums__forum-topic-link u-forum--link u-ellipsis-overflow"
                                 href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
                             >
+                                @if ($lastTopic->topic_replies > 0)
+                                    {{ trans('forum.topic.reply_title_prefix') }}:
+                                @endif
                                 {{ $lastTopic->topic_title }}
                             </a>
 

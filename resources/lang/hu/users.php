@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Blokkoltad ezt a felhasználót.',
+        'blocked_count' => '(:count) letiltott fehasználó',
+        'hide_profile' => 'profil elrejtése',
+        'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
+        'show_profile' => 'profil megjelenítése',
+        'too_many' => 'Blokkolási korlát elérve.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'tiltás',
+            'unblock' => 'tiltás feloldása',
         ],
     ],
 

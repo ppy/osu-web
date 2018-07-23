@@ -20,37 +20,37 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => 'osu!-yhteisön kilpailut',
+        'small' => 'Kilpaile muillakin tavoilla kuin klikkailemalla ympyröitä.',
+        'large' => 'osu! Yhteisön Kilpailut',
     ],
     'voting' => [
-        'over' => 'Äänestäminen tälle kilpailulle on loppunut',
+        'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Näyttäisi siltä, ettet pelannut tähän kilpailuun kelpuutettuja karttoja!",
         ],
     ],
     'entry' => [
-        '_' => '',
+        '_' => 'tuotos',
         'login_required' => 'Kirjaudu sisään osallistuaksesi kilpailuun.',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'over' => '',
-        'limit_reached' => '',
-        'drop_here' => '',
+        'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
+        'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
+        'over' => 'Kiitos lähetämistänne töistä! Osallistumiset kilpailuun on suljettu ja äänestys aukeaa pian.',
+        'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
+        'drop_here' => 'Pudota tuotoksesi tähän',
         'wrong_type' => [
             'art' => 'Kilpailuun hyväksytään vain .jpg tai .png tiedostoja.',
             'beatmap' => 'Kilpailuun hyväksytään vain .osu tiedostoja.',
             'music' => 'Kilpailuun hyväksytään vain .mp3 tiedostoja.',
         ],
-        'too_big' => '',
+        'too_big' => 'Lähetettyjen töiden määrä on tässä kilpailussa korkeintaan :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Lataa tuotos',
     ],
     'vote' => [
         'list' => 'äänet',
-        'count' => '',
+        'count' => '1 ääni |:count äänestä',
     ],
     'dates' => [
         'ended' => 'Loppui :date',
@@ -61,8 +61,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => '',
+        'entry' => 'Osallistuminen Avoinna',
         'voting' => 'Äänestys on alkanut',
-        'results' => '',
+        'results' => 'Tulokset Julkistettu',
     ],
 ];

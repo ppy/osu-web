@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Избранные исполнители osu!',
-    'title' => 'Избранные исполнители',
+    'page_description' => 'Featured artists в osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'ИСПОЛНИТЕЛЬ СЕЙЧАС СКРЫТ',

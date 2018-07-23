@@ -89,6 +89,8 @@ return [
         'en',
 
         // sort by name
+        'bg',
+        'cs',
         'da',
         'de',
         'el',
@@ -216,7 +218,6 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\ElasticsearchServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         /*

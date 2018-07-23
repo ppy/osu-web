@@ -77,7 +77,7 @@ return [
         'mouse' => 'mouse',
         'keyboard' => 'tastiera',
         'tablet' => 'tablet',
-        'touch' => 'touchscreen',
+        'touch' => 'schermo touch',
     ],
 
     'privacy' => [

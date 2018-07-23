@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
-        'modding_history_link' => 'Ver registo de modificação',
+        'modding_history_link' => 'Ver historial de modificação',
     ],
 ];

@@ -20,8 +20,8 @@
 
 namespace App\Traits;
 
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
-use Es;
 use Log;
 
 trait EsIndexable
@@ -62,7 +62,7 @@ trait EsIndexable
             'client' => ['ignore' => 404],
         ], $options);
 
-        return Es::delete($document);
+        return Es::getClient()->delete($document);
     }
 
     public function esIndexDocument(array $options = [])
@@ -79,7 +79,7 @@ trait EsIndexable
             'body' => $this->toEsJson(),
         ], $options);
 
-        return Es::index($document);
+        return Es::getClient()->index($document);
     }
 
     public static function esCreateIndex(string $name = null)
@@ -90,7 +90,7 @@ trait EsIndexable
             'body' => static::esSchemaConfig(),
         ];
 
-        return Es::indices()->create($params);
+        return Es::getClient()->indices()->create($params);
     }
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
@@ -144,7 +144,7 @@ trait EsIndexable
             }
 
             if ($actions !== []) {
-                $result = Es::bulk([
+                $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,

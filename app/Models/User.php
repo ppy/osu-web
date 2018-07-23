@@ -42,7 +42,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';

@@ -58,7 +58,10 @@ class Index
                 continue;
             }
 
-            $posts[] = new Post(Post::nameId($file['name']), $files);
+            $post = new Post(Post::nameId($file['name']), $files);
+            if ($post->page() !== null) {
+                $posts[] = $post;
+            }
         }
 
         if ($start > 0) {
@@ -86,7 +89,7 @@ class Index
 
     public static function index()
     {
-        return Cache::remember(
+        return cache_remember_with_fallback(
             static::cacheKey(),
             static::CACHE_DURATION,
             function () {

@@ -133,6 +133,7 @@ return [
         '_' => 'Onderwerpen',
 
         'actions' => [
+            'login_reply' => 'Log in om te antwoorden',
             'reply' => 'Beantwoorden',
             'reply_with_quote' => 'Citeer post voor antwoord',
             'search' => 'Zoek',

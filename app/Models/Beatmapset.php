@@ -575,7 +575,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->favourite_count = db_unsigned_increment('favourite_count', -1);
             $this->save();
         });
     }

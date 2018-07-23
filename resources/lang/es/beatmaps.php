@@ -39,7 +39,6 @@ return [
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
-        'message_placeholder' => 'Escribe aquí para publicar',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad se ha eliminado, por lo que ya puede ser discutida.',
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Esta publicación irá a la discusión general del Beatmapset. Para modificar este Beatmap, comienca el mensaje con una marca de tiempo (Ej: 00:12:345).',
             'in_timeline' => 'Para modificar varias marcas de tiempo, publíca varias veces (una publicación por marca de tiempo).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Escribe aquí para publicar en General (:version)',
+            'generalAll' => 'Escribe aquí para publicar en General (todas las dificultades)',
+            'timeline' => 'Escribe aquí para publicar en la Línea de tiempo (:version)',
         ],
 
         'message_type' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
             'options' => 'Más opciones de búsqueda',
+            'supporter_filter' => 'Necesitas ser supporter para filtrar por :filters',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '...nop, nada encontrado.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'veces jugadas',
                 'relevance' => 'relevancia',
                 'nominations' => 'nominaciones',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Necesitas un :link activo para filtrar por :filters',
+                'link_text' => 'tag de supporter',
             ],
         ],
         'mode' => 'Modo',

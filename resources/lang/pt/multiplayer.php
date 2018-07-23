@@ -20,12 +20,12 @@
 
 return [
     'match' => [
-        'header' => 'Jogos de Multijogador',
+        'header' => 'Batalhas de Multijogador',
         'team-types' => [
             'head-to-head' => 'Frente-a-frente',
-            'tag-coop' => 'Cooperação em Alternância',
-            'team-vs' => 'Contra Equipa',
-            'tag-team-vs' => 'Contra Equipa em Alternância',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Equipa VS',
+            'tag-team-vs' => 'Equipa Tag VS',
         ],
         'events' => [
             'player-left' => ':user abandonou a partida',

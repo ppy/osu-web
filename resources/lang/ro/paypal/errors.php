@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'Metoda pe plată selectată a fost respinsă de Paypal.',
+    'instrument_declined' => 'Metoda pe plată selectată a fost respinsă de către Paypal.',
     'invalid_resource_id' => 'Nu s-a găsit nicio informație de plată.',
     'unknown' => "Plata a fost respinsă, dar nu suntem siguri de ce.",
 ];

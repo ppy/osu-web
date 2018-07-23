@@ -39,7 +39,6 @@ return [
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
-        'message_placeholder' => 'Pisz tutaj',
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
             'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne posty (po jednym dla każdego znacznika czasu).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Utwórz post w ogólnej dyskusji (:version)',
+            'generalAll' => 'Utwórz post w ogólnej dyskusji (wszystkie poziomy trudności)',
+            'timeline' => 'Utwórz post dla osi czasu (:version)',
         ],
 
         'message_type' => [
@@ -128,7 +133,7 @@ return [
         'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
         'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
         'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
-        'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
+        'remaining' => 'Możesz nagłośnić jeszcze :remaining beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
         'title' => 'Priorytet',
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
+            'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
@@ -190,6 +196,10 @@ return [
                 'plays' => 'liczba zagrań',
                 'relevance' => 'trafność',
                 'nominations' => 'nominacje',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
+                'link_text' => 'statusu donatora osu!',
             ],
         ],
         'mode' => 'Tryb gry',

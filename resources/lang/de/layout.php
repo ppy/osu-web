@@ -29,7 +29,7 @@ return [
             'account-edit' => 'einstellungen',
             'friends-index' => 'freunde',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'version',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'gruppen',
@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'community',
             'dev' => 'entwicklung',
-            'getForum' => 'forum',
+            'getForum' => 'foren',
             'getChat' => 'chat',
             'getLive' => 'live',
             'contests' => 'wettbewerbe',

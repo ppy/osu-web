@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Kérlek jelentkezz be a folytatáshoz.',
         'http-403' => 'Hozzáférés megtagadva.',
-        'http-404' => '',
+        'http-404' => 'Nem található.',
         'http-429' => 'Túl sok próbálkozás. Próbáld újra később.',
     ],
     'account' => [

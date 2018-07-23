@@ -133,6 +133,7 @@ return [
         '_' => 'トピック',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => '返信',
             'reply_with_quote' => '引用して返信',
             'search' => '検索',

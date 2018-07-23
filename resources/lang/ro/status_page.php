@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'ce se întamplă, omule?',
+        'description' => 'ce se întamplă, omul meu?',
     ],
 
     'incidents' => [

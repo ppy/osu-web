@@ -133,6 +133,7 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
+            'login_reply' => 'Connectez-vous pour Répondre',
             'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
             'search' => 'Rechercher',

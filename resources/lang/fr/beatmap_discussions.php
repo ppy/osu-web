@@ -36,7 +36,10 @@ return [
         'title' => 'Discussions de Beatmap',
 
         'form' => [
+            '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
+            'types' => 'Types de message',
+            'username' => 'Nom d’utilisateur',
 
             'user' => [
                 'label' => 'Utilisateur',

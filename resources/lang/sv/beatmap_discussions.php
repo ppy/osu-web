@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap diskussioner',
 
         'form' => [
+            '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
+            'types' => '',
+            'username' => 'Användarnamn',
 
             'user' => [
                 'label' => 'Användare',

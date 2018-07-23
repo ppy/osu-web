@@ -36,7 +36,10 @@ return [
         'title' => 'การสนทนาเกี่ยวกับ Beatmap',
 
         'form' => [
+            '_' => '',
             'deleted' => 'รวมการสนทนาที่ถูกลบ',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => 'ผู้ใช้',
