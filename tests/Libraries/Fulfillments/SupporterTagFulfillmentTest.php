@@ -65,32 +65,43 @@ class SupporterTagFulfillmentTest extends TestCase
         $today = Carbon::today();
 
         $donor = $this->user;
-        $giftee = factory(User::class)->create([
+        $giftee1 = factory(User::class)->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => $today->copy(),
             'user_sig' => '',
         ]);
-        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
-        $this->createDonationOrderItem($this->order, $giftee, false, false);
+        $giftee2 = factory(User::class)->create([
+            'osu_featurevotes' => 0,
+            'osu_subscriptionexpiry' => $today->copy(),
+            'user_sig' => '',
+        ]);
+        $expectedExpiry = $giftee1->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
+
+        $this->createDonationOrderItem($this->order, $giftee1, false, false);
+        $this->createDonationOrderItem($this->order, $giftee2, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
 
         $donor->refresh();
-        $giftee->refresh();
+        $giftee1->refresh();
+        $giftee2->refresh();
 
         // giftee gets subscription, not donor.
         $this->assertFalse($donor->osu_subscriber);
-        $this->assertTrue($giftee->osu_subscriber);
+        $this->assertTrue($giftee1->osu_subscriber);
+        $this->assertTrue($giftee2->osu_subscriber);
 
         // donor's expiry should not change.
-        $this->assertEquals($expectedExpiry, $giftee->osu_subscriptionexpiry);
+        $this->assertEquals($expectedExpiry, $giftee1->osu_subscriptionexpiry);
+        $this->assertEquals($expectedExpiry, $giftee2->osu_subscriptionexpiry);
         $this->assertEquals($today, $donor->osu_subscriptionexpiry);
 
         // votes go to donor.
-        $this->assertEquals(2, $donor->osu_featurevotes);
-        $this->assertEquals(0, $giftee->osu_featurevotes);
+        $this->assertEquals(4, $donor->osu_featurevotes);
+        $this->assertEquals(0, $giftee1->osu_featurevotes);
+        $this->assertEquals(0, $giftee2->osu_featurevotes);
     }
 
     public function testPartiallyFulfilledOrder()
