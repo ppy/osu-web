@@ -96,7 +96,7 @@ class ChangelogIndex.Main extends React.PureComponent
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('changelog.index.title.info')}</span>"
 
 
-  showMore: (e) =>
+  showMore: =>
     return if !@state.hasMore
 
     search = osu.jsonClone @props.data.search
