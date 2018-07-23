@@ -21,11 +21,15 @@
 namespace Tests;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
+use App\Mail\DonationThanks;
+use App\Mail\SupporterGift;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
+use App\Models\SupporterTag;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
+use Mail;
 use TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
@@ -62,6 +66,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
     public function testDonateSupporterTagToOthers()
     {
+        Mail::fake(); // also suppresses mail output which is not ideal.
         $today = Carbon::today();
 
         $donor = $this->user;
@@ -102,6 +107,15 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertEquals(4, $donor->osu_featurevotes);
         $this->assertEquals(0, $giftee1->osu_featurevotes);
         $this->assertEquals(0, $giftee2->osu_featurevotes);
+
+        Mail::assertQueued(SupporterGift::class, function ($mail) {
+            $params = $this->invokeProperty($mail, 'params');
+
+            return $params['duration'] === SupporterTag::getDurationText(1);
+        });
+
+        Mail::assertQueued(SupporterGift::class, 2);
+        Mail::assertQueued(DonationThanks::class, 1);
     }
 
     public function testPartiallyFulfilledOrder()
