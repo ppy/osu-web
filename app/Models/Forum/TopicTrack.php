@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,26 +33,38 @@ class TopicTrack extends Model
 
     public static function readStatus($user, ...$topicsArrays)
     {
-        if (!$user) {
+        if ($user === null) {
             return [];
         }
 
-        $topicData = [];
-        foreach ($topicsArrays as $topics) {
-            foreach ($topics as $topic) {
-                $topicData[$topic->topic_id] = $topic->topic_last_post_time;
+        $topics = [];
+
+        foreach ($topicsArrays as $topicsArray) {
+            foreach ($topicsArray as $topic) {
+                $topics[] = $topic;
             }
         }
-        $readStatus = self::where('user_id', $user->user_id)
-            ->whereIn('topic_id', array_keys($topicData))
-            ->select('topic_id', 'mark_time')
-            ->get();
+
+        $readStatus = static::where('user_id', '=', $user->getKey())
+            ->whereIn('topic_id', array_pluck($topics, 'topic_id'))
+            ->get()
+            ->keyBy('topic_id');
+
+        $forumReadStatus = ForumTrack::where('user_id', '=', $user->getKey())
+            ->whereIn('forum_id', array_pluck($topics, 'forum_id'))
+            ->get()
+            ->keyBy('forum_id');
 
         $result = [];
-        foreach ($readStatus as $r) {
-            if ($r->mark_time >= $topicData[$r->topic_id]) {
-                $result[$r->topic_id] = true;
-            }
+
+        foreach ($topics as $topic) {
+            $topicTime = $topic->topic_last_post_time;
+            $topicId = $topic->getKey();
+            $forumId = $topic->forum_id;
+
+            $result[$topicId] =
+                (isset($readStatus[$topicId]) && $topicTime <= $readStatus[$topicId]->mark_time) ||
+                (isset($forumReadStatus[$forumId]) && $topicTime <= $forumReadStatus[$forumId]->mark_time);
         }
 
         return $result;

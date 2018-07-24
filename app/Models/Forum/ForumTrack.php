@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,29 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.show-more-link {
-  .reset-input();
-  display: block;
-  width: 100%;
-  padding-top: 10px;
-  text-align: center;
+namespace App\Models\Forum;
 
-  // Declared early so color and other styles can be overridden by other modifiers.
-  &--link {
-    color: @link-color;
+use Illuminate\Database\Eloquent\Builder;
 
-    .link-hover({
-      color: @link-hover-color;
-      text-decoration: underline;
-    });
-  }
+class ForumTrack extends Model
+{
+    protected $table = 'phpbb_forums_track';
+    protected $guarded = [];
 
-  &--changelog-index {
-    padding: 40px 0;
-    color: #fff;
+    public $timestamps = false;
+    protected $dates = ['mark_time'];
+    protected $dateFormat = 'U';
 
-    .link-hover({
-      color: #fff;
-    });
-  }
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->where([
+            'forum_id' => $this->forum_id,
+            'user_id' => $this->user_id,
+        ]);
+    }
 }

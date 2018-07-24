@@ -1164,6 +1164,17 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_forums', 'DYNAMIC');
 
+        Schema::create('phpbb_forums_track', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumInteger('user_id')->unsigned()->default(0);
+            $table->mediumInteger('forum_id')->unsigned()->default(0);
+            $table->integer('mark_time')->unsigned()->default(0);
+            $table->primary(['user_id', 'forum_id']);
+        });
+        $this->setRowFormat('phpbb_forums_track', 'DYNAMIC');
+
         Schema::create('phpbb_posts', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
