@@ -103,17 +103,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $today = Carbon::today();
 
         $donor = $this->user;
-        $giftee1 = factory(User::class)->create([
-            'osu_featurevotes' => 0,
-            'osu_subscriptionexpiry' => $today->copy(),
-            'user_sig' => '',
-        ]);
-
-        $giftee2 = factory(User::class)->create([
-            'osu_featurevotes' => 0,
-            'osu_subscriptionexpiry' => $today->copy(),
-            'user_sig' => '',
-        ]);
+        $giftee1 = factory(User::class)->create(['user_sig' => '']); // prevent factory from generating user_sig
+        $giftee2 = factory(User::class)->create(['user_sig' => '']);
 
         $this->createDonationOrderItem($this->order, $giftee1, false, false);
         $this->createDonationOrderItem($this->order, $giftee1, false, false);
