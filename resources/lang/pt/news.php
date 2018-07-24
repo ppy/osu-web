@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'notícias osu!',
+        'title' => 'osu!news',
 
         'nav' => [
             'newer' => 'Publicações mais recentes',
@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'Publicado há :time',
+        'posted' => 'publicado há :time',
 
         'nav' => [
             'newer' => 'Publicação mais recente',

@@ -72,9 +72,9 @@ return [
         'latest_post' => ':when uživatelem :user',
         'latest_reply_by' => 'poslední odpověd od :user',
         'new_topic' => 'Založit nové téma',
-        'new_topic_login' => 'Přihlaste se k vytvoření nového téma',
+        'new_topic_login' => 'Přihlaš se k vytvoření nového téma',
         'post_reply' => 'Přidat příspěvek',
-        'reply_box_placeholder' => 'Pro zodpovězení klikněte sem',
+        'reply_box_placeholder' => 'Pro zodpovězení klikni sem',
         'started_by' => 'od :user',
 
         'create' => [
@@ -86,12 +86,12 @@ return [
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
-                'title' => 'Klikněte sem pro nastavení názvu',
+                'title' => 'Klikni sem pro nastavení názvu',
             ],
         ],
 
         'jump' => [
-            'enter' => 'klikněte pro zadání přesného čísla příspěvku',
+            'enter' => 'klikni pro zadání přesného čísla příspěvku',
             'first' => 'přejít na první příspěvek',
             'last' => 'přejít na poslední příspěvek',
             'next' => 'přeskočit 10 příspěvků',
@@ -133,9 +133,9 @@ return [
         '_' => 'Témata',
 
         'actions' => [
-            'login_reply' => '',
+            'login_reply' => 'Pro přidání odpovědi se musíte přihlásit',
             'reply' => 'Odpovědět',
-            'reply_with_quote' => 'Citovaat příspěvek v odpovědi',
+            'reply_with_quote' => 'Citovat příspěvek v odpovědi',
             'search' => 'Vyhledat',
         ],
 
@@ -178,10 +178,10 @@ return [
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Odstranit označení "přidáno"',
-            'to_0_done' => 'Odstraněno označení "zadáno"',
-            'to_1' => 'Přidat označení "zadáno"',
-            'to_1_done' => 'Přidáno označení "zadáno"',
+            'to_0' => 'Odstranit označení "přiděleno"',
+            'to_0_done' => 'Odstraněno označení "přiděleno"',
+            'to_1' => 'Přidat označení "přiděleno"',
+            'to_1_done' => 'Přidáno označení "přiděleno"',
         ],
 
         'issue_tag_confirmed' => [
@@ -239,7 +239,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Aktuální priorita: +:count',
-                'do' => 'Podpořit tento požadavek',
+                'do' => 'Promovat tento požadavek',
 
                 'user' => [
                     'count' => '{0} žádné hlasy | {1} :count hlas | [2,*] :count hlasů',
@@ -260,10 +260,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => 'Nesledováno',
+            'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'mail_disable' => 'Vypnout upozornění',
+            'mail_disable' => 'Vypnout oznámení',
         ],
     ],
 ];

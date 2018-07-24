@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Zápasy pro více hráčů',
+        'header' => 'Multiplayer zápasy',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -40,13 +40,13 @@ return [
             'player-kicked-no-user' => 'hráč byl ze zápasu vyhozen',
             'match-created-no-user' => 'zápas byl vytvořen',
             'match-disbanded-no-user' => 'zápas byl zrušen',
-            'host-changed-no-user' => 'změna hostitele',
+            'host-changed-no-user' => 'hostitel byl změněn',
         ],
         'in-progress' => '(zápas probíhá)',
         'score' => [
             'stats' => [
                 'accuracy' => 'Přesnost',
-                'combo' => 'Kombo',
+                'combo' => 'Combo',
                 'score' => 'Skóre',
             ],
         ],
@@ -63,9 +63,9 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Nejvyšší Skóre',
-            'accuracy' => 'Nejvyšší Přesnost',
-            'combo' => 'Nejvyšší Kombo',
+            'score' => 'Nejvyšší skóre',
+            'accuracy' => 'Nejvyšší přesnost',
+            'combo' => 'Nejvyšší combo',
             'scorev2' => 'Score V2',
         ],
     ],

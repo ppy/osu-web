@@ -26,15 +26,15 @@ return [
         'players' => '<strong>:count</strong> registrovaných hráčů',
 
         'slogan' => [
-            'main' => 'nejlepšejšejší free-to-win rytmická hra',
-            'sub' => 'rytmus je na dosah ruky',
+            'main' => 'nejlepší free-to-win rytmická hra',
+            'sub' => 'rytmus je jen o klkání',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Pokročilé vyhledávání',
         'button' => 'Hledat',
-        'empty_result' => 'Nic nenalezeno!',
+        'empty_result' => 'Nebylo nic nenalezeno!',
         'missing_query' => 'Hledané klíčové slovo musí být minimálně :n znaky dlouhé',
         'placeholder' => 'zadejte hledaný výraz',
         'title' => 'Hledat',
@@ -70,7 +70,7 @@ return [
         'user' => [
             'more' => ':count dalších výsledků vyhledávání hráčů',
             'more_simple' => 'Zobrazit další výsledky vyhledávání hráčů',
-            'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkuste upravit Vaše vyhledávání.',
+            'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkus upravit tvé vyhledávání.',
             'title' => 'Hráči',
         ],
 
@@ -94,14 +94,14 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'založte si účet',
-                'description' => 'při zpuštění hry postupujte podle pokynů pro přihlášení nebo vytvoření nového účtu',
+                'description' => 'při spuštění hry postupuj podle pokynů pro přihlášení nebo vytvoření nového účtu',
             ],
             'download' => [
-                'title' => 'stáhněte hru',
-                'description' => 'klikněte na tlačítko výše a stáhněte instalační program, potom ho spusťte!',
+                'title' => 'stáhni hru',
+                'description' => 'klikni na tlačítko výše a stáhni instalační program, potom ho spusť!',
             ],
             'beatmaps' => [
-                'title' => 'získejte beatmapy',
+                'title' => 'získej beatmapy',
                 'description' => [
                     '_' => 'pak už zbývá jen :browse rozsáhlou knihovnu uživateli tvořených map a pustit se do hraní!',
                     'browse' => 'projít',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nové hodnocené beatmapa',
+            'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární Beatmapy',
             'by' => 'od',
             'plays' => ':count zahrání',
@@ -140,13 +140,13 @@ return [
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => 'Woah!',
         'subtitle' => 'Vypadá to, že se dobře bavíš! :D',
         'body' => [
-            'part-1' => 'Věděli jste, že osu! běží bez reklam a spoléhá pouze na hráčích aby podpořili rozvoj a provozní náklady?',
-            'part-2' => 'Věděli jste také, že podpořením osu! získáte spoustu užitečných výhod, jako třeba <strong>in-game stahování</strong> které se automaticky spustí při pozorování a multiplayer hrách?',
+            'part-1' => 'Věděl jsi, že osu! běží bez reklam a spoléhá se pouze na hráčích, aby podpořili rozvoj a provozní náklady?',
+            'part-2' => 'Věděl jsi také, že podpořením osu! získáš spoustu užitečných výhod, jako třeba <strong>in-game stahování</strong> které se automaticky spustí při pozorování a multiplayer hrách?',
         ],
-        'find-out-more' => 'Klikněte zde abyste zjistili víc!',
-        'download-starting' => "Ou, a není se čeho bát - Váše stahování již bylo zahájeno :)",
+        'find-out-more' => 'Klikni zde abyste zjistili víc!',
+        'download-starting' => "Ou, a není se čeho bát - Tvé stahování již bylo zahájeno :)",
     ],
 ];

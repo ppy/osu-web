@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'community',
             'dev' => 'entwicklung',
-            'getForum' => 'forum',
+            'getForum' => 'foren',
             'getChat' => 'chat',
             'getLive' => 'live',
             'contests' => 'wettbewerbe',

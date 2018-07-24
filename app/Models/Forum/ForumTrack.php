@@ -18,26 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'header' => ':type Classificação',
-    'type' => [
-        'performance' => 'Desempenho',
-        'charts' => 'Em Destaque',
-        'score' => 'Pontuação',
-        'country' => 'País',
-    ],
-    'stat' => [
-        'accuracy' => 'Precisão',
-        'active_users' => 'Utilizadores Activos',
-        'country' => 'País',
-        'play_count' => 'Contador de Partidas',
-        'performance' => 'Desempenho',
-        'total_score' => 'Pontuação Total',
-        'ranked_score' => 'Pontuação Classificada',
-        'average_score' => 'Pontuação Média',
-        'average_performance' => 'Desempenho Médio',
-        'ss' => '',
-        's' => '',
-        'a' => '',
-    ],
-];
+namespace App\Models\Forum;
+
+use Illuminate\Database\Eloquent\Builder;
+
+class ForumTrack extends Model
+{
+    protected $table = 'phpbb_forums_track';
+    protected $guarded = [];
+
+    public $timestamps = false;
+    protected $dates = ['mark_time'];
+    protected $dateFormat = 'U';
+
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->where([
+            'forum_id' => $this->forum_id,
+            'user_id' => $this->user_id,
+        ]);
+    }
+}
