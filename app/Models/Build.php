@@ -138,6 +138,55 @@ class Build extends Model
         $query->default()->where('allow_bancho', true);
     }
 
+    public function scopeSearch($query, $params)
+    {
+        if (isset($params['stream'])) {
+            $stream = UpdateStream::where('name', '=', $params['stream'])->first();
+
+            if ($stream === null) {
+                return $query->none();
+            }
+
+            $query->where('stream_id', '=', $stream->getKey());
+        } else {
+            $stream = null;
+        }
+
+        if (isset($params['from'])) {
+            $query->where('build_id', '>=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['from'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['to'])) {
+            $query->where('build_id', '<=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['to'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['max_id'])) {
+            $query->where('build_id', '<=', $params['max_id']);
+        }
+
+        if (isset($params['limit'])) {
+            $query->limit($params['limit']);
+        }
+    }
+
     public function versionNext()
     {
         if (!array_key_exists('versionNext', $this->cache)) {
