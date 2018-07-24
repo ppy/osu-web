@@ -29,7 +29,7 @@ allUsers =
 class BeatmapDiscussions.UserFilter extends React.PureComponent
   constructor: (props) ->
     super props
-
+    console.log @props.users
     @state =
       showingSelector: false
 
@@ -93,12 +93,14 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       ],
       key: user.id
       selected: @selectedUser().id == user.id
+      userBadge: BeatmapDiscussionHelper.moderationGroup(user)
       onClick: (event) => @userSelected(event, user)
 
 
-  renderItem: ({ children, key, onClick, selected = false }) ->
+  renderItem: ({ children, key, onClick, selected = false, userBadge = null }) ->
     classNames = "#{bn}__item"
     classNames += " #{bn}__item--selected" if selected
+    classNames += " #{bn}__item--#{userBadge}" if userBadge?
 
     a
       children: children
