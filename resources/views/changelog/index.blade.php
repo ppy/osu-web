@@ -15,13 +15,36 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['legacyNav' => false, 'bodyAdditionalClasses' => 'osu-layout--body-111-plain'])
+@php
+    $keys = [];
+
+    foreach (['stream', 'from', 'to'] as $key) {
+        if (isset($indexJson['search'][$key])) {
+            if ($key === 'stream') {
+                $value = $indexJson['builds'][0]['update_stream']['display_name'] ?? null;
+            }
+
+            if (!isset($value)) {
+                $value = $indexJson['search'][$key];
+            }
+
+            $keys[$key] = $value;
+        }
+    }
+
+    $title = trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys);
+@endphp
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
+    'legacyNav' => false,
+    'title' => $title,
+])
 
 @section('content')
     <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
 
-    <script id="json-builds" type="application/json">
-        {!! json_encode($builds) !!}
+    <script id="json-index" type="application/json">
+        {!! json_encode($indexJson) !!}
     </script>
 
     <script id="json-latest-builds" type="application/json">

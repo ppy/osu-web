@@ -103,6 +103,11 @@
     JSON.parse document.getElementById(id)?.text ? null
 
 
+  # make a clone of json-like object (object with simple values)
+  jsonClone: (object) ->
+    JSON.parse JSON.stringify(object)
+
+
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
 
