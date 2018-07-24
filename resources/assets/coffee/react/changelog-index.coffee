@@ -19,4 +19,4 @@
 reactTurbolinks.registerPersistent 'changelog-index', ChangelogIndex.Main, true, (el) ->
   container: el
   updateStreams: osu.parseJson('json-update-streams')
-  builds: osu.parseJson('json-builds')
+  data: osu.parseJson('json-index')

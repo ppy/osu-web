@@ -43,20 +43,46 @@ class ChangelogController extends Controller
             config('osu.changelog.build_history_interval'),
             function () {
                 return $this->chartConfig(null);
-            });
+            }
+        );
 
-        $builds = json_collection(
-            Build::with([
+        $search = [
+            'stream' => presence(request('stream')),
+            'from' => presence(request('from')),
+            'to' => presence(request('to')),
+            'max_id' => get_int(request('max_id')),
+            'limit' => 21,
+        ];
+
+        $builds = Build::search($search)
+            ->default()
+            ->with([
                 'updateStream',
                 'defaultChangelogs.user',
                 'defaultChangelogEntries.githubUser.user',
                 'defaultChangelogEntries.repository',
-            ])->orderBy('build_id', 'DESC')->paginate(),
-            'Build',
-            ['changelog_entries', 'changelog_entries.github_user']
-        );
+            ])->orderBy('build_id', 'DESC')
+            ->get();
 
-        return view('changelog.index', compact('chartConfig', 'builds'));
+        if (!request()->expectsJson() && count($builds) === 1 && request('no_redirect') !== '1') {
+            return ujs_redirect(build_url($builds[0]));
+        }
+
+        $buildsJson = json_collection($builds, 'Build', [
+            'changelog_entries',
+            'changelog_entries.github_user',
+        ]);
+
+        $indexJson = [
+            'builds' => $buildsJson,
+            'search' => $search,
+        ];
+
+        if (request()->expectsJson()) {
+            return $indexJson;
+        } else {
+            return view('changelog.index', compact('chartConfig', 'indexJson'));
+        }
     }
 
     public function github()
