@@ -64,7 +64,7 @@ class ChangelogController extends Controller
             ])->orderBy('build_id', 'DESC')
             ->get();
 
-        if (count($builds) === 1 && request('no_redirect') !== '1') {
+        if (!request()->expectsJson() && count($builds) === 1 && request('no_redirect') !== '1') {
             return ujs_redirect(build_url($builds[0]));
         }
 
