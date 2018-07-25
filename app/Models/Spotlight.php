@@ -20,13 +20,11 @@
 
 namespace App\Models;
 
-use App\Models\Beatmap;
 use App\Models\Score\Best as ScoreBest;
-use App\Models\UserStatistics;
 use Carbon\Carbon;
 use DB;
-use Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Schema;
 
 class Spotlight extends Model
 {
@@ -155,7 +153,7 @@ class Spotlight extends Model
 
     public static function getPeriodicSpotlightsInYear(int $year)
     {
-        return Spotlight::periodic()->inYear($year)->orderBy('chart_month', 'asc');
+        return static::periodic()->inYear($year)->orderBy('chart_month', 'asc');
     }
 
     private static function createBeatmapsetTable(string $name)

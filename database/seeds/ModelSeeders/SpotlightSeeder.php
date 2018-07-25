@@ -58,7 +58,6 @@ class SpotlightSeeder extends Seeder
 
     private function seedData($spotlight)
     {
-
         DB::connection('mysql-charts')->transaction(function () use ($spotlight) {
             $spotlight->createTables();
 

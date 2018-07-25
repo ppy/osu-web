@@ -165,7 +165,7 @@ class RankingController extends Controller
         $latest = Spotlight::periodic()->orderBy('chart_month', 'desc')->first();
 
         return view(
-            "rankings.monthly",
+            'rankings.monthly',
             compact('scores', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
         );
     }
@@ -192,7 +192,7 @@ class RankingController extends Controller
         $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
 
         return view(
-            "rankings.charts",
+            'rankings.charts',
             compact('scores', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }

@@ -20,7 +20,6 @@
 
 namespace App\Models\UserStatistics\Spotlight;
 
-use App\Models\User;
 use App\Models\UserStatistics\Model as BaseModel;
 
 abstract class Model extends BaseModel
