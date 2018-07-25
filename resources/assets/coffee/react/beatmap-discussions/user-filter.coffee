@@ -29,7 +29,7 @@ allUsers =
 class BeatmapDiscussions.UserFilter extends React.PureComponent
   constructor: (props) ->
     super props
-    console.log @props.users
+
     @state =
       showingSelector: false
 
@@ -74,6 +74,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
               className: "#{bn}__decoration",
               i className: "fas fa-chevron-down"
           ],
+          user: @selectedUser()
           onClick: @toggleSelector
 
       div
@@ -91,13 +92,14 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
           key: user.id
           user.username
       ],
-      key: user.id
       selected: @selectedUser().id == user.id
-      userBadge: @userGroup(user)
+      user: user
       onClick: (event) => @userSelected(event, user)
 
 
-  renderItem: ({ children, key, onClick, selected = false, userBadge = null }) ->
+  renderItem: ({ children, key, onClick, user, selected = false }) =>
+    userBadge = @userGroup(user)
+
     classNames = "#{bn}__item"
     classNames += " #{bn}__item--selected" if selected
     classNames += " #{bn}__item--#{userBadge}" if userBadge?
@@ -105,8 +107,8 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     a
       children: children
       className: classNames
-      href: BeatmapDiscussionHelper.url user: key, true
-      key: key
+      href: BeatmapDiscussionHelper.url user: user.id, true
+      key: user.id
       onClick: onClick
 
 
