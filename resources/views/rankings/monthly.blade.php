@@ -24,13 +24,13 @@
                 'type' => 'monthly',
                 'mode' => request('mode'),
                 'country' => request('country'),
-                'before' => $spotlight->chart_date->year,
+                'before' => $spotlight->chart_month->year,
             ]);
             $nextUrl = route('rankings', [
                 'type' => 'monthly',
                 'mode' => request('mode'),
                 'country' => request('country'),
-                'after' => $spotlight->chart_date->year,
+                'after' => $spotlight->chart_month->year,
             ]);
         @endphp
         <a
@@ -48,11 +48,11 @@
             >
                 @if ($s->type === 'monthly')
                     <div class="spotlight-period-pager__month">
-                        {{ $s->chart_date->format('m') }}
+                        {{ $s->chart_month->format('m') }}
                     </div>
                 @endif
                 <div class="spotlight-period-pager__year">
-                    {{ $s->chart_date->format('Y') }}
+                    {{ $s->chart_month->format('Y') }}
                 </div>
             </a>
         @endforeach

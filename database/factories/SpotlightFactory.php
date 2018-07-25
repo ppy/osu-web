@@ -20,21 +20,21 @@ $factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Gener
 
     return  [
         'acronym' => function (array $self) {
-            return "MONTH{$self['chart_date']->format('ym')}";
+            return "MONTH{$self['chart_month']->format('ym')}";
         },
         'name' => function (array $self) {
-            return "Spotlight {$self['chart_date']->format('F Y')}";
+            return "Spotlight {$self['chart_month']->format('F Y')}";
         },
         'start_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(1)->addDays(rand(0, 27));
+            return ($self['chart_month'] ?? $chartDate)->copy()->addMonths(1)->addDays(rand(0, 27));
         },
         'end_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->addMonths(2)->addDays(rand(0, 27));
+            return ($self['chart_month'] ?? $chartDate)->copy()->addMonths(2)->addDays(rand(0, 27));
         },
         'mode_specific' => true,
         'type' => 'monthly',
         'active' => true,
-        'chart_date' => $chartDate,
+        'chart_month' => $chartDate,
     ];
 });
 
@@ -43,20 +43,20 @@ $factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Genera
 
     return  [
         'acronym' => function (array $self) {
-            return "BEST{$self['chart_date']->format('Y')}";
+            return "BEST{$self['chart_month']->format('Y')}";
         },
         'name' => function (array $self) {
-            return "Best of {$self['chart_date']->format('Y')}";
+            return "Best of {$self['chart_month']->format('Y')}";
         },
         'start_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->startOfMonth()->addMonths(1)->addDays(rand(0, 27));
+            return ($self['chart_month'] ?? $chartDate)->copy()->startOfMonth()->addMonths(1)->addDays(rand(0, 27));
         },
         'end_date' => function (array $self) {
-            return ($self['chart_date'] ?? $chartDate)->copy()->startOfMonth()->addMonths(2)->addDays(rand(0, 27));
+            return ($self['chart_month'] ?? $chartDate)->copy()->startOfMonth()->addMonths(2)->addDays(rand(0, 27));
         },
         'mode_specific' => true,
         'type' => 'bestof',
         'active' => true,
-        'chart_date' => $chartDate,
+        'chart_month' => $chartDate,
     ];
 });

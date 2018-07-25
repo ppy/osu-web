@@ -43,7 +43,7 @@ class Spotlight extends Model
         'mode_specific' => 'boolean',
     ];
 
-    protected $dates = ['chart_date', 'end_date', 'start_date'];
+    protected $dates = ['chart_month', 'end_date', 'start_date'];
 
     public function scopeNotPeriodic($query)
     {
@@ -130,8 +130,8 @@ class Spotlight extends Model
         $period = (new Carbon)->year($year);
 
         return $query
-            ->where('chart_date', '>=', $period->copy()->startOfYear())
-            ->where('chart_date', '<=', $period->copy()->endOfYear());
+            ->where('chart_month', '>=', $period->copy()->startOfYear())
+            ->where('chart_month', '<=', $period->copy()->endOfYear());
     }
 
     public function createTables()
@@ -155,7 +155,7 @@ class Spotlight extends Model
 
     public static function getPeriodicSpotlightsInYear(int $year)
     {
-        return Spotlight::periodic()->inYear($year)->orderBy('chart_date', 'asc');
+        return Spotlight::periodic()->inYear($year)->orderBy('chart_month', 'asc');
     }
 
     private static function createBeatmapsetTable(string $name)

@@ -250,10 +250,10 @@ class BaseTables extends Migration
             $table->boolean('mode_specific')->default(0);
             $table->string('type', 50)->default('monthly');
             $table->boolean('active')->default(1);
-            $table->date('chart_date')->nullable();
+            $table->date('chart_month')->nullable();
             $table->unique('acronym', 'acronym');
             $table->index('end_date', 'enddate');
-            $table->index(['type', 'chart_date'], 'type');
+            $table->index(['type', 'chart_month'], 'type');
         });
         $this->setRowFormat('osu_charts', 'DYNAMIC');
 
