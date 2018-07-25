@@ -17,18 +17,39 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
+import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
+
+bn = 'spotlight-select-options'
 
 export class SpotlightSelectOptions extends PureComponent
   render: =>
     el SelectOptions,
-      bn: 'spotlight-select-options'
+      bn: bn
+      renderItem: @renderItem
       onItemSelected: @onItemSelected
       options: @props.options
       selected: @props.selected
 
 
-  onItemSelected: (item) ->
+  renderItem: ({ children, key, onClick, selected }) =>
+    classNames = "#{bn}__item"
+    classNames += " #{bn}__item--selected" if selected
+
+    a
+      children: children
+      className: classNames
+      href: @href(key)
+      key: key
+      onClick: onClick
+
+
+  href: (key) ->
     url = new URL(window.location)
-    url.searchParams.set 'spotlight', item.id
-    Turbolinks.visit(url)
+    url.searchParams.set 'spotlight', key if key?
+
+    url
+
+
+  onItemSelected: (item) =>
+    Turbolinks.visit @href(item.id)
