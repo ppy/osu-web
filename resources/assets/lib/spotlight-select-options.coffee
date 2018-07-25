@@ -20,25 +20,20 @@ import { createElement as el, PureComponent } from 'react'
 import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
-bn = 'spotlight-select-options'
-
 export class SpotlightSelectOptions extends PureComponent
   render: =>
     el SelectOptions,
-      bn: bn
+      bn: 'spotlight-select-options'
       renderItem: @renderItem
       onItemSelected: @onItemSelected
       options: @props.options
       selected: @props.selected
 
 
-  renderItem: ({ children, key, onClick, selected }) =>
-    classNames = "#{bn}__item"
-    classNames += " #{bn}__item--selected" if selected
-
+  renderItem: ({ cssClasses, children, key, onClick }) =>
     a
       children: children
-      className: classNames
+      className: cssClasses
       href: @href(key)
       key: key
       onClick: onClick

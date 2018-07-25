@@ -82,14 +82,14 @@ export class SelectOptions extends PureComponent
 
 
   renderItem: ({ children, key, onClick, selected = false }) ->
-    return @props.renderItem({ children, key, onClick, selected }) if @props.renderItem?
+    cssClasses = "#{@bn}__item"
+    cssClasses += " #{@bn}__item--selected" if selected
 
-    classNames = "#{@bn}__item"
-    classNames += " #{@bn}__item--selected" if selected
+    return @props.renderItem({ children, key, onClick, cssClasses }) if @props.renderItem?
 
     a
       children: children
-      className: classNames
+      className: cssClasses
       href: '#'
       key: key
       onClick: onClick

@@ -23,8 +23,6 @@ allUsers =
   id: null,
   text: osu.trans('beatmap_discussions.user_filter.everyone')
 
-bn = 'beatmap-discussions-user-filter'
-
 class BeatmapDiscussions.UserFilter extends React.PureComponent
   render: =>
     options = [allUsers]
@@ -37,20 +35,17 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
     el _exported.SelectOptions,
-      bn: bn
+      bn: 'beatmap-discussions-user-filter'
       renderItem: @renderItem
       onItemSelected: @onItemSelected
       options: options
       selected: selected
 
 
-  renderItem: ({ children, key, onClick, selected }) ->
-    classNames = "#{bn}__item"
-    classNames += " #{bn}__item--selected" if selected
-
+  renderItem: ({ cssClasses, children, key, onClick }) ->
     a
       children: children
-      className: classNames
+      className: cssClasses
       href: BeatmapDiscussionHelper.url user: key, true
       key: key
       onClick: onClick
