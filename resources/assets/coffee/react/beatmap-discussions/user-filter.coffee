@@ -93,7 +93,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       ],
       key: user.id
       selected: @selectedUser().id == user.id
-      userBadge: BeatmapDiscussionHelper.moderationGroup(user)
+      userBadge: @userGroup(user)
       onClick: (event) => @userSelected(event, user)
 
 
@@ -119,6 +119,13 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
     event.preventDefault()
 
     @setState showingSelector: !@state.showingSelector
+
+
+  userGroup: (user) =>
+    if user.id == @props.ownerId
+      'owner'
+    else
+      BeatmapDiscussionHelper.moderationGroup(user)
 
 
   userSelected: (event, user) ->
