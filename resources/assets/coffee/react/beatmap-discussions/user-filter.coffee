@@ -97,7 +97,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       onClick: (event) => @userSelected(event, user)
 
 
-  renderItem: ({ children, key, onClick, user, selected = false }) =>
+  renderItem: ({ children, onClick, selected = false, user }) =>
     userBadge = @userGroup(user)
 
     classNames = "#{bn}__item"
