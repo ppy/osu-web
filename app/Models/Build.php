@@ -33,6 +33,10 @@ class Build extends Model
         'date',
     ];
 
+    protected $casts = [
+        'allow_bancho' => 'boolean',
+    ];
+
     protected $guarded = [];
 
     private $cache = [];
@@ -118,19 +122,6 @@ class Build extends Model
     public function propagationHistories()
     {
         return $this->hasMany(BuildPropagationHistory::class, 'build_id');
-    }
-
-    public function scopeLatestByStream($query, $streamIds)
-    {
-        $latestBuildIds = static::default()
-            ->selectRaw('MAX(build_id) latest_build_id')
-            ->whereIn('stream_id', $streamIds)
-            ->groupBy('stream_id')
-            ->pluck('latest_build_id');
-
-        $query->whereIn('build_id', $latestBuildIds)
-            ->orderByField('stream_id', $streamIds)
-            ->with('updateStream');
     }
 
     public function scopePropagationHistory($query)
@@ -228,10 +219,5 @@ class Build extends Model
     public function disqusTitle()
     {
         return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
-    }
-
-    public function isFeatured()
-    {
-        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }
