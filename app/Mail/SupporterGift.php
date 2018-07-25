@@ -39,12 +39,12 @@ class SupporterGift extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($donor, $giftee, $length)
+    public function __construct($donor, $giftee, $duration)
     {
         $this->params = [
             'donor' => $donor,
             'giftee' => $giftee,
-            'duration' => SupporterTag::getDurationText($length),
+            'duration' => SupporterTag::getDurationText($duration),
         ];
     }
 

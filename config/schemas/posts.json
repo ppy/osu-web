@@ -42,7 +42,8 @@
         "analyzer": {
           "post_text_analyzer": {
             "filter": [
-              "lowercase"
+              "lowercase",
+              "unique"
             ],
             "char_filter": [
               "html_filter"
