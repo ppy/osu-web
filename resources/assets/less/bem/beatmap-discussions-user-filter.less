@@ -19,9 +19,6 @@
 .beatmap-discussions-user-filter {
   @_top: beatmap-discussions-user-filter;
 
-  @_moderator-bg: @yellow-dark;
-  @_owner-bg: @green-dark;
-
   @media @desktop {
     width: 200px;
   }
@@ -49,19 +46,19 @@
     }
 
     &--admin {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
 
     &--bng {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
 
     &--owner {
-      color: @_owner-bg;
+      color: @beatmap-discussion--user-color-owner;
     }
 
     &--qat {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
 
     &--selected {
