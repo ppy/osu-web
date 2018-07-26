@@ -544,6 +544,26 @@ class Beatmapset extends Model implements AfterCommit
         ];
     }
 
+    public function love(User $user)
+    {
+        if (!$this->isPending() || !$this->isWIP() || !$this->isGraveyard()) {
+            $message = trans('beatmaps.nominations.incorrect_state');
+        }
+
+        DB::transaction(function () use ($user) {
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+            if (!$nomination->exists()) {
+                $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+                $this->qualify($user);
+            }
+            $this->refreshCache();
+        });
+
+        return [
+            'result' => true,
+        ];
+    }
+
     public function favourite($user)
     {
         DB::transaction(function () use ($user) {
