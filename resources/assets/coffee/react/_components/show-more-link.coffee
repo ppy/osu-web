@@ -15,32 +15,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, i} = ReactDOMFactories
+{button, div} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.ShowMoreLink extends React.PureComponent
+class @ShowMoreLink extends React.PureComponent
   render: =>
-    if @props.pagination?.loading
-      div className: 'show-more-link',
-        el Spinner
+    blockClass = osu.classWithModifiers('show-more-link', @props.modifiers)
+
+    if @props.loading
+      div className: blockClass, el Spinner
 
     else
-      firstLoad = !@props.pagination?
-      perPage = @props.perPage ? 20
-      hasMore = (firstLoad && !@props.collection?) || @props.pagination?.hasMore
+      return null unless @props.hasMore
 
-      return null unless hasMore
-
-      a
-        href: '#'
-        'data-show-more': @props.propertyName
-        'data-show-more-per-page': perPage
-        'data-show-more-url': @props.route
-        onClick: @showMore
-        className: 'show-more-link'
+      button
+        type: 'button'
+        onClick: @props.callback ? @showMore
+        className: "#{blockClass} show-more-link--link"
         osu.trans('common.buttons.show_more')
 
 
-  showMore: (e) ->
-    e.preventDefault()
-    $.publish 'profile:showMore', showMoreLink: e.currentTarget
+  showMore: =>
+    $.publish @props.event, @props.data

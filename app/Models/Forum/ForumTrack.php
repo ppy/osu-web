@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,31 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
+namespace App\Models\Forum;
 
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 
-class ElasticsearchServiceProvider extends ServiceProvider
+class ForumTrack extends Model
 {
-    public function boot()
-    {
-    }
+    protected $table = 'phpbb_forums_track';
+    protected $guarded = [];
 
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
+    public $timestamps = false;
+    protected $dates = ['mark_time'];
+    protected $dateFormat = 'U';
 
-    public function register()
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
     {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
+        return $query->where([
+            'forum_id' => $this->forum_id,
+            'user_id' => $this->user_id,
+        ]);
     }
 }

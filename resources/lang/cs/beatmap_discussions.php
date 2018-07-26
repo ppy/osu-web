@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'odstraněno',
-        'title' => 'Diskuze Mapy',
+        'title' => 'Diskuze o beatmapě',
 
         'form' => [
             '_' => 'Hledat',
@@ -43,26 +43,26 @@ return [
 
             'user' => [
                 'label' => 'Uživatel',
-                'overview' => 'Přehled aktivit',
+                'overview' => 'Přehled činností',
             ],
         ],
     ],
 
     'item' => [
         'created_at' => 'Datum zveřejnění',
-        'deleted_at' => 'Datum smazání',
+        'deleted_at' => 'Datum odstranění',
         'message_type' => 'Typ',
         'permalink' => 'Trvalý odkaz',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Žádný z příspěvků neřeší mé obavy',
-        'notice' => 'Poblíž :timestamp (:existing_timestamps) se už nějaké příspěvky nacházejí. Prosím zkontrolujte je před zveřejněním Vašeho přispěvku.',
+        'notice' => 'Poblíž :timestamp (:existing_timestamps) se už nějaké příspěvky nacházejí. Prosím zkontroluj je před zveřejněním tvého přispěvku.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Pro odpovídání se musíte přihlásit',
+            'guest' => 'Pro přidání odpovědi se musíš přihlásit',
             'user' => 'Odpovědět',
         ],
     ],
@@ -75,9 +75,9 @@ return [
     ],
 
     'user' => [
-        'admin' => 'správce',
+        'admin' => 'admin',
         'bng' => 'nominátor',
-        'owner' => 'mapper',
+        'owner' => 'mappér',
         'qat' => 'qat',
     ],
 

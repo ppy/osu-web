@@ -23,17 +23,17 @@ return [
     'generic' => 'Opravy chyb a drobná vylepšení.',
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited uživatelé online|:count_delimited uživatelé online',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'od :user',
     ],
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Seznam změn :info',
+            'info' => 'Výpis',
         ],
     ],
 

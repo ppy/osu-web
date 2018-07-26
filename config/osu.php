@@ -48,6 +48,7 @@ return [
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
+        'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
@@ -88,6 +89,9 @@ return [
     ],
     'score_replays' => [
         'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
+    'scores' => [
+        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
     ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),

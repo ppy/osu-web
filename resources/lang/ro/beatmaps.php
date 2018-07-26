@@ -21,13 +21,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Salvarea postării nu a reușit',
+            'error' => 'Salvarea postării a eșuat',
         ],
     ],
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Actualizarea votului nu a reușit',
+            'error' => 'Actualizarea votului a eșuat',
         ],
     ],
 
@@ -39,18 +39,17 @@ return [
         'edit' => 'editează',
         'edited' => 'Ultima dată editat de :editor :update_time.',
         'kudosu_denied' => 'A refuzat să primească kudosu.',
-        'message_placeholder' => 'Scrie aici pentru a posta',
         'message_placeholder_deleted_beatmap' => 'Această dificultate a fost ștearsă, deci e posibil să nu mai fie discutată.',
         'message_type_select' => 'Selectează tipul comentariului',
         'reply_notice' => 'Apasă enter pentru a răspunde.',
         'reply_placeholder' => 'Scrie-ți răspunsul aici',
-        'require-login' => 'Te rugăm să te autentifici pentru a posta sau a răspunde',
+        'require-login' => 'Te rugăm să te conectezi pentru a posta sau a răspunde',
         'resolved' => 'Rezolvat',
         'restore' => 'restabilește',
         'title' => 'Discuții',
 
         'collapse' => [
-            'all-collapse' => 'Strânge tot',
+            'all-collapse' => 'Restrânge tot',
             'all-expand' => 'Extinde tot',
         ],
 
@@ -60,13 +59,19 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Această postare va merge la discuția generală beatmapset. Pentru a modifica acest beatmap, începeți mesajul cu marca temporală (ex: 00:12:345).',
-            'in_timeline' => 'Pentru a modifica mai multe marcaje de timp, postează de mai multe ori (o postare pe marcaj temporal).',
+            'in_general' => 'Această postare va merge la discuția beatmapset generală. Pentru a modifica acest beatmap, începe mesajul cu un marcaj temporal (ex: 00:12:345).',
+            'in_timeline' => 'Pentru a modifica mai multe mărcaje de timp, postează de mai multe ori (o postare per marcaj temporal).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Scrie aici pentru a posta în General (:version)',
+            'generalAll' => 'Scrie aici pentru a posta în General (toate dificultățile)',
+            'timeline' => 'Scrie aici pentru a posta în Cronologie (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Descalifică',
-            'hype' => 'Entuziasm!',
+            'hype' => 'Hype!',
             'mapper_note' => 'Notă',
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
@@ -95,7 +100,7 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordonat după:',
+            '_' => 'Sortat după:',
             'created_at' => 'data creării',
             'timeline' => 'cronologie',
             'updated_at' => 'ultima actualizare',
@@ -122,13 +127,13 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
-        'button_done' => 'Deja Hyped!',
-        'confirm' => "Ești sigur? Acest lucru îți va folosi una din restul tău de :n hype rămase și nu poate fi anulat.",
-        'explanation' => 'Hype acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
-        'explanation_guest' => 'Conectează-te și hype acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
-        'new_time' => "O să primești alt hype pe :new_time.",
-        'remaining' => 'Tu mai ai :remaining hype rămase.',
+        'button' => '\'Hype\' acest beatmap!',
+        'button_done' => 'Deja entuziasmat!',
+        'confirm' => "Ești sigur? Acest lucru îți va folosi unul din restul tău de :n 'hype' rămași și nu poate fi anulat.",
+        'explanation' => '\'Hype\' acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
+        'explanation_guest' => 'Conectează-te și \'hype\' acest beatmap pentru a-l face mai vizibil pentru nominalizare și clasament!',
+        'new_time' => "O să primești alt 'hype' pe :new_time.",
+        'remaining' => 'Mai ai :remaining \'hype\' rămași.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Trenul Hype',
         'title' => 'Hype',
@@ -143,7 +148,7 @@ return [
         'disqualified_at' => 'Descalificat :time_ago (:reason).',
         'disqualified_no_reason' => 'niciun răspuns specificat',
         'disqualify' => 'Descalificare',
-        'incorrect_state' => 'Eroare la efectuarea acestei acțiuni, încearcă să reîncarci pagina.',
+        'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'scrieți cuvinte cheie...',
             'options' => 'Mai multe opțiuni de căutare',
+            'supporter_filter' => 'Trebuie să fii un suporter pentru a filtra prin :filters',
             'not-found' => 'niciun rezultat',
             'not-found-quote' => '... nup, nimic găsit.',
             'filters' => [
@@ -187,13 +193,17 @@ return [
                 'updated' => 'actualizat',
                 'ranked' => 'clasat',
                 'rating' => 'evaluare',
-                'plays' => 'numărul de jocuri',
+                'plays' => 'numărul de jucări',
                 'relevance' => 'relevanță',
                 'nominations' => 'nominalizări',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Ai nevoie de un :link activ pentru a filtra prin :filters',
+                'link_text' => 'etichetă de suporter',
+            ],
         ],
         'mode' => 'Mod',
-        'status' => 'Statutul de clasament',
+        'status' => 'Statut de clasificare',
         'source' => 'de la :source',
         'load-more' => 'Încarcă mai multe...',
     ],
@@ -216,7 +226,7 @@ return [
         'loved' => 'Loved',
         'faves' => 'Favorite',
         'pending' => 'În așteptare',
-        'graveyard' => 'Cimitir',
+        'graveyard' => 'Graveyard',
         'my-maps' => 'Mapele mele',
     ],
     'genre' => [
@@ -229,7 +239,7 @@ return [
         'other' => 'Altul',
         'novelty' => 'Noutate',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronică',
+        'electronic' => 'Electronic',
     ],
     'mods' => [
         '4K' => '',
@@ -266,7 +276,7 @@ return [
         'korean' => 'Coreeană',
         'spanish' => 'Spaniolă',
         'swedish' => 'Suedeză',
-        'instrumental' => 'Instrumentală',
+        'instrumental' => 'Instrumental',
         'other' => 'Altul',
     ],
     'played' => [
@@ -275,8 +285,8 @@ return [
         'unplayed' => 'Nejucat',
     ],
     'extra' => [
-        'video' => 'Are video',
-        'storyboard' => 'Are stroyboard',
+        'video' => 'Cu videoclip',
+        'storyboard' => 'Cu storyboard',
     ],
     'rank' => [
         'any' => 'Oricare',

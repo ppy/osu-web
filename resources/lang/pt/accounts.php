@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'email actual',
             'new' => 'novo email',
-            'new_confirmation' => 'confirmar email',
+            'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
         ],
 
         'password' => [
             'current' => 'palavra-passe actual',
             'new' => 'nova palavra-passe',
-            'new_confirmation' => 'confirmar palavra-passe',
+            'new_confirmation' => 'confirmação da palavra-passe',
             'title' => 'Palavra-passe',
         ],
 
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! Confirmação da alteração de email',
+        'email_subject' => 'osu! confirmação da alteração de email',
         'update' => 'actualizar',
     ],
 
@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => 'Privacidade',
-        'friends_only' => 'Bloquear mensagens privadas de pessoas que não estejam na tua lista de amigos',
+        'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na tua lista de amigos',
     ],
 ];

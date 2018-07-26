@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Toto jsou diskuse beatmap, které sledujete. Všechny nové příspěvky a aktualizace vám budou oznámeny.',
+        'description' => 'Toto jsou diskuze beatmap, které sledujete. Všechny nové příspěvky a aktualizace vám budou oznámeny.',
         'title_compact' => 'sledování moddingu',
         'title_main' => 'Sledování moddingu',
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'status' => [
-        'read' => 'Přečtené',
+        'read' => 'Číst',
         'unread' => 'Nepřečtené',
     ],
 ];

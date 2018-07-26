@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Setările</strong>contului',
+        'title' => '<strong>Setările</strong> contului',
         'title_compact' => 'setări',
         'username' => 'nume de utilizator',
 
@@ -31,7 +31,7 @@ return [
         'email' => [
             'current' => 'e-mail curent',
             'new' => 'e-mail nou',
-            'new_confirmation' => 'confirmarea e-mailului',
+            'new_confirmation' => 'confirmare e-mail',
             'title' => 'E-mail',
         ],
 

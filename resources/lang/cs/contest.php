@@ -20,33 +20,33 @@
 
 return [
     'header' => [
-        'small' => 'Soutěžte i jinak než jen klikáním kruhů.',
-        'large' => 'osu! Komunitní Soutěže',
+        'small' => 'Soutěž i jinak, než jen klikáním kruhů.',
+        'large' => 'osu! komunitní soutěže',
     ],
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
-        'login_required' => 'Pro hlasování se prosím přihlašte.',
+        'login_required' => 'Pro hlasování se prosím přihlaš.',
         'best_of' => [
-            'none_played' => "Vypadá to že nemáté zahranou žádnou mapu která je kvalifikovaná na tuto soutěž!",
+            'none_played' => "Vypadá to, že nemáš zahranou žádnou mapu, která je kvalifikovaná na tuto soutěž!",
         ],
     ],
     'entry' => [
         '_' => 'vstup',
-        'login_required' => 'Přihlašte se prosím pro vstup do soutěže.',
-        'silenced_or_restricted' => 'Nemůžete se zůčastnit soutěže když je váš účet v omezeném režimu nebo ztlumený.',
-        'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekejte trpělivě!',
+        'login_required' => 'Přihlaš se prosím pro vstup do soutěže.',
+        'silenced_or_restricted' => 'Nemůžeš se zůčastnit soutěže, když je tvůj účet v omezeném režimu nebo ztlumený.',
+        'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekej trpělivě!',
         'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
-        'limit_reached' => 'Dosáhli jste limitu vstupů pro tuto soutěž',
-        'drop_here' => 'Svůj vstup přetáhněte sem',
+        'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
+        'drop_here' => 'Tvůj vstup přetáhni sem',
         'wrong_type' => [
             'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
             'music' => 'Pouze .mp3 soubory jsou přijímány pro tuto soutěž.',
         ],
-        'too_big' => 'Položky pro tuto soutěž můžou mít maximálně :limit.',
+        'too_big' => 'Možné vstupy pro tuto soutěž jsou :limit-krát.',
     ],
     'beatmaps' => [
-        'download' => 'Stáhnout Vstup',
+        'download' => 'Stáhnout vstup',
     ],
     'vote' => [
         'list' => 'hlasy',
@@ -57,12 +57,12 @@ return [
 
         'starts' => [
             '_' => 'Začíná :date',
-            'soon' => 'brzy™',
+            'soon' => 'soon™',
         ],
     ],
     'states' => [
-        'entry' => 'Vstup Otevřen',
-        'voting' => 'Hlasování Začalo',
-        'results' => 'Výsledky Vyhlášeny',
+        'entry' => 'Vstup otevřen',
+        'voting' => 'Hlasování začalo',
+        'results' => 'Výsledky vyhlášeny',
     ],
 ];
