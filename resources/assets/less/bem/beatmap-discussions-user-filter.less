@@ -22,4 +22,30 @@
   @media @desktop {
     width: 200px;
   }
+
+  &__decoration {
+    color: #fff;
+  }
+
+  &__item {
+    &--admin {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
+    }
+
+    &--bng {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
+    }
+
+    &--owner {
+      .link-hover({ color: @beatmap-discussion--user-color-owner });
+      color: @beatmap-discussion--user-color-owner;
+    }
+
+    &--qat {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
+    }
+  }
 }
