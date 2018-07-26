@@ -43,8 +43,7 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::showDeleted(priv_check('ForumTopicModerate')->can())
-            ->findOrFail($id);
+        $post = Post::withTrashed()->findOrFail($id);
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
