@@ -52,14 +52,19 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderGuest: =>
     div
-      className: 'osu-page-header osu-page-header--beatmapsets-header-guest'
+      className: 'beatmapsets-search'
       div
         className: 'osu-page-header__background'
         style:
           backgroundImage: "url(#{@props.background})"
-      h1
-        className: 'osu-page-header__title'
-        'Beatmaps'
+      div className: 'fancy-search fancy-search--beatmapsets',
+        input
+          className: 'fancy-search__input'
+          type: 'textbox'
+          disabled: true
+          placeholder: osu.trans('beatmaps.listing.search.login_required')
+        div className: 'fancy-search__icon',
+          i className: 'fas fa-search'
 
 
   renderUser: =>
