@@ -19,10 +19,10 @@
  */
 
 return [
-    'deleted' => '[Utilizator șters]',
+    'deleted' => '[utilizator șters]',
 
     'beatmapset_activities' => [
-        'title' => "Istoria modificărilor lui :user",
+        'title' => "Istoricul modificărilor lui :user",
 
         'discussions' => [
             'title_recent' => 'Discuții începute recent',
@@ -42,6 +42,19 @@ return [
 
         'votes_made' => [
             'title_most' => 'Cele mai apreciate (ultimele 3 luni)',
+        ],
+    ],
+
+    'blocks' => [
+        'banner_text' => 'Ai blocat acest utilizator.',
+        'blocked_count' => 'utilizatori blocați (:count)',
+        'hide_profile' => 'ascunde profilul',
+        'not_blocked' => 'Acest utilizator nu este blocat.',
+        'show_profile' => 'arată profilul',
+        'too_many' => 'A fost atinsă limita de blocare.',
+        'button' => [
+            'block' => 'blochează',
+            'unblock' => 'deblochează',
         ],
     ],
 
@@ -94,8 +107,8 @@ return [
         'first_members' => 'Aici încă de la început',
         'is_developer' => 'dezvoltator osu!',
         'is_supporter' => 'suporter osu!',
-        'joined_at' => 'Încris pe :date',
-        'lastvisit' => 'Văzut ultima dată pe :date',
+        'joined_at' => 'Încris :date',
+        'lastvisit' => 'Văzut ultima dată :date',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_age' => ':age',
         'origin_country_age' => ':age din :country',
@@ -114,7 +127,7 @@ return [
                     'button' => 'Încarcă imaginea',
                     'dropzone' => 'Plasați fișiere aici pentru a le încărca',
                     'dropzone_info' => 'Poți, de asemenea, să-ți plasezi imaginea aici pentru a o încărca',
-                    'restriction_info' => "Încărcare disponibilă pentru <a href='".route('store.products.show', 'supporter-tag')."",
+                    'restriction_info' => "Încărcare disponibilă pentru <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>numai</a>suporteri osu!",
                     'size_info' => 'Dimensiunea coperții trebuie să fie de 2000x700',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
@@ -160,10 +173,10 @@ return [
                 'title' => 'Istoric',
 
                 'monthly_playcounts' => [
-                    'title' => 'Istoria jocurilor',
+                    'title' => 'Istoricul jocurilor',
                 ],
                 'most_played' => [
-                    'count' => '',
+                    'count' => 'jucat de',
                     'title' => 'Cele mai jucate beatmaps',
                 ],
                 'recent_plays' => [
@@ -171,16 +184,16 @@ return [
                     'title' => 'Jocuri recente (24 de ore)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Istoria reluărilor vizionate',
+                    'title' => 'Istoricul reluărilor vizionate',
                 ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu avabili',
-                'available_info' => "",
-                'recent_entries' => 'Istoria recentă Kudosu',
+                'available_info' => "Kudosu poate fi tranzicționate pentru stele kudosu, ce pot ajuta ca beatmapul tău să obțină mai multă atenție. Acesta este numărul de kudosu ce nu a fost tranzicționat încă.",
+                'recent_entries' => 'Istoricul Kudosu recent',
                 'title' => 'Kudosu!',
                 'total' => 'Suma totală de Kudosu câștigați',
-                'total_info' => ''.osu_url('user.kudosu').'',
+                'total_info' => 'Bazat pe cât de mult a contribuit utilizatorul la moderarea unui beatmap. Vezi <a href="'.osu_url('user.kudosu').'">această pagină</a> pentru mai multe informații.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -188,34 +201,34 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'A primit :amount de la respringerea revocării de kudosu la postarea :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'A refuzat :amount de la postarea :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'A pierdut :amount de la ștergerea postării :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'A primit :amount de la restaurarea postării :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'A primit :amount de la obținerea de voturi în postarea din :post',
+                            'reset' => 'A pierdut :amount de la pierderea de voturi în postarea din :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'S-a primit :amount de la recalcularea voturilor în postarea din :post',
-                            'reset' => 'S-a pierdut :amount de la recalucarea voturilor în postarea din :post',
+                            'give' => 'A primit :amount de la recalcularea voturilor în postarea din :post',
+                            'reset' => 'A pierdut :amount de la recalucarea voturilor în postarea din :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'S-a primit :amount de la :giver pentru o postare la :post',
+                        'give' => 'A primit :amount de la :giver pentru o postare la :post',
                         'reset' => 'Kudosu resetați de :giver pentru postarea :post',
                         'revoke' => 'Kudosu respinși de :giver pentru postarea :post',
                     ],

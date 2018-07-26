@@ -22,17 +22,13 @@ namespace App\Libraries\Elasticsearch;
 
 use Datadog;
 use Elasticsearch\Client;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
+use Elasticsearch\Common\Exceptions\ElasticsearchException;
 
 abstract class Search implements Queryable
 {
     use HasSearch;
 
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
-    // maximum number of total results allowed when not using the scroll API.
-    const MAX_RESULTS = 10000;
 
     /** @var string */
     public $connectionName = 'default';
@@ -43,7 +39,7 @@ abstract class Search implements Queryable
      *
      * @var string|null
      */
-    public $loggingTag = 'search';
+    public $loggingTag;
 
     protected $aggregations;
     protected $index;
@@ -128,16 +124,15 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        $page = $this->getPaginationParams();
-        if (!isset($page['page'])) {
+        if (isset($this->from)) {
             // no laravel paginator if offset-only paging is used
             return;
         }
 
         return new SearchPaginator(
             $this,
-            $page['size'],
-            $page['page'],
+            $this->getSize(),
+            $this->getPage(),
             $options
         );
     }
@@ -174,11 +169,9 @@ abstract class Search implements Queryable
      */
     public function toArray() : array
     {
-        $pageParams = $this->getPaginationParams();
-
         $body = [
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
+            'from' => $this->getFrom(),
+            'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),
@@ -223,14 +216,9 @@ abstract class Search implements Queryable
         return 50;
     }
 
-    protected function maxResults() : int
-    {
-        return static::MAX_RESULTS;
-    }
-
     private function fetch()
     {
-        if ($this->params->shouldReturnEmptyResponse()) {
+        if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
             return SearchResponse::empty();
         }
 
@@ -240,29 +228,38 @@ abstract class Search implements Queryable
                     return new SearchResponse($this->client()->search($this->toArray()));
                 },
                 config('datadog-helper.prefix_web').'.search.fetch',
-                ['type' => get_called_class(), 'name' => $this->loggingTag]
+                $this->getDatadogTags()
             );
-        } catch (NoNodesAvailableException $e) {
-            // all servers down
-            $this->error = $e;
-        } catch (BadRequest400Exception $e) {
-            // invalid query
-            $this->error = $e;
-        } catch (Missing404Exception $e) {
-            // index is missing ?_?
+        } catch (ElasticsearchException $e) {
             $this->error = $e;
         }
 
         log_error($this->error);
 
         if (config('datadog-helper.enabled')) {
+            $tags = $this->getDatadogTags();
+            $tags['class'] = get_class($this->error);
+
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
-                ['class' => get_class($this->error), 'name' => $this->loggingTag]
+                $tags
             );
         }
 
         return SearchResponse::failed($this->error);
+    }
+
+    private function getDatadogTags()
+    {
+        return [
+            'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
+            'index' => $this->index,
+        ];
+    }
+
+    private function isSearchWindowExceeded()
+    {
+        return $this->getQuerySize() < 0;
     }
 }

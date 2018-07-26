@@ -22,7 +22,7 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Nadšení nelze vrátit zpět.',
-            'has_reply' => 'Nelze odstranit diskusi s odpověďmi',
+            'has_reply' => 'Nelze odstranit diskuzi s odpověďmi',
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
@@ -30,20 +30,20 @@ return [
             'owner' => "Nelze nominovat vlastní beatmapu.",
         ],
         'resolve' => [
-            'not_owner' => 'Pouze zakladatel tématu a vlastník beatmapy může označit diskusi za vyřešenou.',
+            'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Chvíli počkej, než budeš zasílat další hlasy',
             'owner' => "Ve vlastní diskusi nemůžeš hlasovat.",
-            'wrong_beatmapset_state' => 'Hlasovat lze pouze v diskusích čekajících beatmap.',
+            'wrong_beatmapset_state' => 'Hlasovat lze pouze v diskuzích čekajících beatmap.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automaticky generovaný příspěvek nelze upravovat.',
-            'not_owner' => 'Pouze odesílatel může příspěvek spravovat.',
+            'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
+            'not_owner' => 'Pouze autor může příspěvek spravovat.',
         ],
     ],
 
@@ -56,7 +56,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Je požadován přístup k vybranému kanálu.',
+                    'no_access' => 'Přístup je vyžadován k vybranému kanálu.',
                     'moderated' => 'Kanál je v současné době moderován.',
                     'not_lazer' => 'V tuto chvíli můžete mluvit pouze v #lazer.',
                 ],
@@ -67,7 +67,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Po skončení doby hlasování pro tuto soutěž, již nemůžeš změnit svůj hlas.',
+        'voting_over' => 'Nemůžeš změnit svůj hlas po ukončení soutěže.',
     ],
 
     'forum' => [
@@ -75,70 +75,70 @@ return [
             'delete' => [
                 'only_last_post' => 'Lze odstranit pouze poslední příspěvek.',
                 'locked' => 'Nelze odstranit příspěvek pro uzamčené téma.',
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'not_owner' => 'Pouze odesílatel může odstranit příspěvek.',
             ],
 
             'edit' => [
-                'deleted' => 'Odstraněný příspěvek nelze upravovat.',
+                'deleted' => 'Nelze upravovat odstraněný příspěvek.',
                 'locked' => 'Příspěvek je uzamčen od upravování.',
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'not_owner' => 'Pouze odesílatel může příspěvek upravit.',
                 'topic_locked' => 'Nelze upravit příspěvek pro uzamčené téma.',
             ],
 
             'store' => [
-                'play_more' => 'Předtím než přidáte příspěvek na fórech zkuste si hru zahrát prosím! Pokud máte problém s hraním, prosím zeptejte se na fóru nápověda a podpora.',
-                'too_many_help_posts' => "Aby jsi mohl psát další příspěvky, musíš víc hrát hru. Jestli stále máš potíže při hraní, napiš na email support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Předtím, než přidáte příspěvek na fórech zkuste si hru zahrát prosím! Pokud máte problém s hraním, prosím zeptejte se na fóru Pomoc a Podpora.',
+                'too_many_help_posts' => "Musíš víc hrát hru, aby jsi mohl psát další příspěvky. Jestli stále máš potíže při hraní, napiš na email support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Právě jste napsali příspěvek. Chvíli počkejte nebo upravte poslední příspěvek.',
+                'double_post' => 'Právě jste napsali příspěvek. Chvíli vyčkejte nebo upravte poslední příspěvek.',
                 'locked' => 'Na uzamčené vlákno nelze odpovědět.',
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'no_permission' => 'Nemáte oprávnění odpovědět.',
 
                 'user' => [
                     'require_login' => 'Prosím přihlaste se, abyste mohl odpovědět.',
-                    'restricted' => "Nelze odpovědět když jste omezeni.",
-                    'silenced' => "Nelze odpovědět když jste umlčeni.",
+                    'restricted' => "Nelze odpovědět, když jste omezeni.",
+                    'silenced' => "Nelze odpovědět, když jste umlčeni.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
-                'no_permission' => 'Bez oprávnění k vytvoření nového téma.',
-                'forum_closed' => 'Fórum je uzavřen a další příspěvky se už nesmí přidávat.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
+                'no_permission' => 'Žádná oprávnění k vytvoření nového tématu.',
+                'forum_closed' => 'Fórum je uzavřeno a další příspěvky se už nesmí přidávat.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'over' => 'Hlasování je ukončeno a už nelze hlasovat.',
-                'voted' => 'Změnit hlas není povoleno.',
+                'voted' => 'Změna hlasu není povolena.',
 
                 'user' => [
                     'require_login' => 'Pro hlasování se prosím přihlašte.',
-                    'restricted' => "Nelze hlasovat když jste omezeni.",
-                    'silenced' => "Nelze hlasovat když jste umlčeni.",
+                    'restricted' => "Nelze hlasovat, když jste omezeni.",
+                    'silenced' => "Nelze hlasovat, když jste umlčeni.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'K vybranému fóru je požadován přístup.',
+                'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Neplatný obal.',
-                'not_owner' => 'Pouze majitel může upravovat obal.',
+                'uneditable' => 'Neplatné záhlaví.',
+                'not_owner' => 'Pouze vlastník může upravit záhlaví.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Pouze admin může zobrazit tohle fórum.',
+            'admin_only' => 'Pouze admin může zobrazit toto fórum.',
         ],
     ],
 
@@ -146,15 +146,15 @@ return [
 
     'unauthorized' => 'Přístup odepřen.',
 
-    'silenced' => "Nelze provést když jste umlčeni.",
+    'silenced' => "Toto nelze provést, když jste umlčeni.",
 
-    'restricted' => "Nelze provést když jste omezeni.",
+    'restricted' => "Toto nelze provést, když jste omezeni.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Uživatelská stránka je uzamčena.',
-                'not_owner' => 'Můžete upravit pouze svou vlastní uživatelskou stránku.',
+                'locked' => 'Uživatelská stránka je uzamčená.',
+                'not_owner' => 'Lze upravit pouze svou vlastní uživatelskou stránku.',
                 'require_supporter_tag' => 'Supporter tag je vyžadován.',
             ],
         ],

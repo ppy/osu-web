@@ -21,10 +21,10 @@
 return [
     'event' => [
         'approve' => 'Aprovado.',
-        'discussion_delete' => 'Um moderador eliminou a discussão :discussion.',
-        'discussion_post_delete' => 'Um moderador eliminou uma publicação da discussão :discussion.',
-        'discussion_post_restore' => 'Um moderador restaurou uma publicação da discussão :discussion.',
-        'discussion_restore' => 'Um moderador restaurou a discussão :discussion.',
+        'discussion_delete' => 'O moderador eliminou a discussão :discussion.',
+        'discussion_post_delete' => 'O moderador eliminou uma publicação da discussão :discussion.',
+        'discussion_post_restore' => 'O moderador restaurou uma publicação da discussão :discussion.',
+        'discussion_restore' => 'O moderador restaurou a discussão :discussion.',
         'disqualify' => 'Desqualificado por :user. Motivo: :discussion (:text).',
         'disqualify_legacy' => 'Desqualificado por :user. Motivo: :text.',
         'issue_reopen' => 'Problema resolvido :discussion reaberto.',
@@ -35,7 +35,7 @@ return [
         'kudosu_lost' => 'A discussão :discussion por :user perdeu votos e kudosu concedido foi removido.',
         'kudosu_recalculate' => 'A discussão :discussion teve o seu kudosu concedido recalculado.',
         'nominate' => 'Nomeado por :user.',
-        'nomination_reset' => 'Um novo problema :discussion (:text) accionou um reinício de nomeação.',
+        'nomination_reset' => 'Novo problema :discussion (:text) accionou um reinício de nomeação.',
         'qualify' => 'Qualificado.',
         'rank' => 'Classificado.',
     ],
@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => 'Conteúdo',
-        'discussion_deleted' => '[deleted]',
+        'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
     ],
 ];

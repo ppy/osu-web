@@ -27,15 +27,15 @@ class ChangelogBuild.Main extends React.PureComponent
 
   render: =>
     div null,
-      div className: 'header-bg header-bg--changelog',
-        div className: 'header-bg__overlay'
-
-      div className: 'osu-page osu-page--changelog',
-        div className: 'osu-page__header',
+      div className: 'header-v3 header-v3--changelog',
+        div className: 'header-v3__bg'
+        div className: 'header-v3__overlay'
+        div className: 'osu-page osu-page--header-v3',
           @renderHeaderTitle()
           @renderHeaderTabs()
 
-        el ChangelogHeaderBuilds, latestBuilds: @props.latestBuilds, currentStreamId: @props.build.update_stream.id
+      div className: 'osu-page osu-page--changelog',
+        el ChangelogHeaderStreams, updateStreams: @props.updateStreams, currentStreamId: @props.build.update_stream.id
 
         div className: 'js-changelog-chart', style: height: '100px'
 
@@ -94,7 +94,7 @@ class ChangelogBuild.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title js-nav2--header-title',
+      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1

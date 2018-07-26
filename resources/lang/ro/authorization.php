@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Nu se poate anula entuziasmul.',
+            'is_hype' => 'Nu îți poți anula hype-ul.',
             'has_reply' => 'Nu se poate șterge o discuție cu răspunsuri',
         ],
         'nominate' => [
@@ -30,20 +30,20 @@ return [
             'owner' => "Nu îți poți nominaliza propriul beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Numai cel ce a început discuția sau proprietarul acestui beatmap pot rezolva o discuție.',
+            'not_owner' => 'Numai cel ce a început subiectul sau proprietarul acestui beatmap pot rezolva o discuție.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Te rugăm să aștepți un timp înainte să acorzi mai multe voturi',
             'owner' => "Nu îți poți vota propria discuție.",
-            'wrong_beatmapset_state' => 'Poți vota doar discuțiile despre beatmaps în așteptare.',
+            'wrong_beatmapset_state' => 'Poți vota doar discuțiile despre beatmapuri în așteptare.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Postările generate automat nu pot fi editate.',
-            'not_owner' => 'Doar autorul acestei postări o poate edita.',
+            'not_owner' => 'Doar proprietarul poate edita această postare.',
         ],
     ],
 
@@ -56,7 +56,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Accesul la canalul dorit este necesar.',
+                    'no_access' => 'Accesul la canalul solicitat este necesar.',
                     'moderated' => 'Acest canal este moderat în prezent.',
                     'not_lazer' => 'În prezent poți vorbi doar în #lazer.',
                 ],
@@ -67,35 +67,35 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Nu-ți poți schimba votul după ce perioada de vot pentru această competiție s-a încheiat.',
+        'voting_over' => 'Nu îți poți schimba votul după ce perioada de vot pentru această competiție s-a încheiat.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Doar ultima postare poate fi ștearsă.',
-                'locked' => 'Nu se poate șterge o postare al unui subiect închis.',
+                'locked' => 'Nu poți șterge o postare al unui subiect închis.',
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
-                'not_owner' => 'Doar proprietarul acestei postări o poate șterge.',
+                'not_owner' => 'Doar proprietarul poate șterge această postare.',
             ],
 
             'edit' => [
                 'deleted' => 'Această postare nu poate fi editată.',
-                'locked' => 'Postarea este blocată de la editare.',
+                'locked' => 'Postarea nu poate fi editată.',
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
                 'not_owner' => 'Doar proprietarul poate edita această postare.',
-                'topic_locked' => 'Nu se poate edita o postare al unui subiect închis.',
+                'topic_locked' => 'Nu poți edita o postare al unui subiect închis.',
             ],
 
             'store' => [
-                'play_more' => 'Încearcă să te joci înainte de a posta pe forum, te rugăm! Dacă ai o problemă în ceea ce privește jocul, te rugăm să o postezi pe forumul de ajutor și asistență.',
-                'too_many_help_posts' => "Trebuie să joci înainte de a putea face postări suplimentare. Dacă ai o problemă legată de joc, trimite un e-mail la support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Te rugăm să te joci înainte de a posta pe forum. Dacă ai o problemă în ceea ce privește jocul, te rugăm să o postezi pe forumul de ajutor și asistență.',
+                'too_many_help_posts' => "Trebuie să te joci înainte de a putea face postări suplimentare. Dacă ai o problemă legată de joc, trimite un e-mail la support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Tocmai ce ai postat. Așteaptă puțin sau editează-ți ultima postare.',
+                'double_post' => 'Tocmai ce ai postat ceva. Așteaptă puțin sau editează-ți ultima postare.',
                 'locked' => 'Nu se poate răspunde la o discuție închisă.',
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
                 'no_permission' => 'Nu ai permisiunea de a răspunde.',
@@ -138,11 +138,11 @@ return [
         ],
 
         'view' => [
-            'admin_only' => 'Numai adminul poate vizualiza acest forum.',
+            'admin_only' => 'Numai administratorul poate vizualiza acest forum.',
         ],
     ],
 
-    'require_login' => 'Te rog autentifică-te pentru a continua.',
+    'require_login' => 'Te rugăm să te autentifici pentru a continua.',
 
     'unauthorized' => 'Acces respins.',
 
@@ -154,7 +154,7 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'Pagina utilizatorului este închisă.',
-                'not_owner' => 'Poți edita doar propria ta pagină de utilizator.',
+                'not_owner' => 'Îți poți edita doar propria pagină de utilizator.',
                 'require_supporter_tag' => 'Eticheta de suporter este necesară.',
             ],
         ],

@@ -32,14 +32,16 @@ class ProfilePage.TopRanks extends React.PureComponent
             @props.scoresBest.map (score, i) =>
               el PlayDetail, key: i, score: score
             li className: 'profile-extra-entries__item',
-              el ProfilePage.ShowMoreLink,
-                collection: @props.scoresBest
-                propertyName: 'scoresBest'
-                pagination: @props.pagination['scoresBest']
-                route: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'best'
-                  mode: @props.currentMode
+              el ShowMoreLink,
+                event: 'profile:showMore'
+                hasMore: @props.pagination.scoresBest.hasMore
+                loading: @props.pagination.scoresBest.loading
+                data:
+                  name: 'scoresBest'
+                  url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'best'
+                    mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
@@ -52,13 +54,15 @@ class ProfilePage.TopRanks extends React.PureComponent
             @props.scoresFirsts.map (score, i) =>
               el PlayDetail, key: i, score: score
             li className: 'profile-extra-entries__item',
-              el ProfilePage.ShowMoreLink,
-                collection: @props.scoresFirsts
-                propertyName: 'scoresFirsts'
-                pagination: @props.pagination['scoresFirsts']
-                route: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'firsts'
-                  mode: @props.currentMode
+              el ShowMoreLink,
+                event: 'profile:showMore'
+                hasMore: @props.pagination.scoresFirsts.hasMore
+                loading: @props.pagination.scoresFirsts.loading
+                data:
+                  name: 'scoresFirsts'
+                  url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'firsts'
+                    mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
