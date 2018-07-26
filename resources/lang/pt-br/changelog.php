@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'painel de registros',
     'generic' => 'Correção de erros e aperfeiçoamentos.',
-    'users-online' => '1 usuário online|:users usuários online',
 
-    'prefixes' => [
-        'add' => 'adição',
-        'fix' => 'correção',
-        'misc' => 'outro',
+    'builds' => [
+        'users_online' => ':count_delimited usuário online|:count_delimited usuários online',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Registro de Alterações :info',
+            'info' => 'Listagem',
+        ],
     ],
 
     'support' => [

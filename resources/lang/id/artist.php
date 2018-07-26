@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Artis unggulan di osu!',
-    'title' => 'Artis Unggulan',
+    'page_description' => 'Featured artists di osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'ARTIS SAAT INI TERSEMBUNYI',

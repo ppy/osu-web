@@ -34,7 +34,7 @@ class CountryStatistics extends Model
     public static function recalculate($countryAcronym, $modeInt)
     {
         $stats = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
-            ->where('country_acronym', $countryAcronym)
+            ::where('country_acronym', $countryAcronym)
             ->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
             ->first();
 

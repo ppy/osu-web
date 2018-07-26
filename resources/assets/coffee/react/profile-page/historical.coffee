@@ -81,13 +81,15 @@ class ProfilePage.Historical extends React.PureComponent
           span
             key: 'show-more-row'
             className: 'beatmapset-row beatmapset-row--more'
-            el ProfilePage.ShowMoreLink,
-              collection: @props.beatmapPlaycounts
-              propertyName: 'beatmapPlaycounts'
-              pagination: @props.pagination['beatmapPlaycounts']
-              route: laroute.route 'users.beatmapsets',
-                  user: @props.user.id
-                  type: 'most_played'
+            el ShowMoreLink,
+              event: 'profile:showMore'
+              hasMore: @props.pagination.beatmapPlaycounts.hasMore
+              loading: @props.pagination.beatmapPlaycounts.loading
+              data:
+                name: 'beatmapPlaycounts'
+                url: laroute.route 'users.beatmapsets',
+                    user: @props.user.id
+                    type: 'most_played'
         ]
 
       else
@@ -105,14 +107,16 @@ class ProfilePage.Historical extends React.PureComponent
           span
             key: 'show-more-row'
             className: 'beatmapset-row beatmapset-row--more'
-            el ProfilePage.ShowMoreLink,
-              collection: @props.scoresRecent
-              propertyName: 'scoresRecent'
-              pagination: @props.pagination['scoresRecent']
-              route: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'recent'
-                  mode: @props.currentMode
+            el ShowMoreLink,
+              event: 'profile:showMore'
+              hasMore: @props.pagination.scoresRecent.hasMore
+              loading: @props.pagination.scoresRecent.loading
+              data:
+                name: 'scoresRecent'
+                url: laroute.route 'users.scores',
+                    user: @props.user.id
+                    type: 'recent'
+                    mode: @props.currentMode
         ]
 
       else
@@ -159,7 +163,7 @@ class ProfilePage.Historical extends React.PureComponent
           div
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             span dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.listing.mapped-by',
+                __html: osu.trans 'beatmapsets.show.details.mapped_by',
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
                     { user: bmset.user_id }

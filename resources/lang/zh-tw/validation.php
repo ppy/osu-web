@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute 少了一個字母或數字',
+    'mixture' => ':attribute 缺少數字或字母',
     'required' => ':attribute 是必填的',
 ];

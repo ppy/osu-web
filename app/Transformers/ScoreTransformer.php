@@ -28,6 +28,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
+        'best',
         'weight',
         'user',
         'multiplayer',
@@ -78,6 +79,19 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
     }
 
+    public function includeBest($score)
+    {
+        if (($score instanceof ScoreBest) === true) {
+            return;
+        }
+
+        return $this->item($score, function ($score) {
+            return [
+                'pp' => optional($score->best)->pp,
+            ];
+        });
+    }
+
     public function includeWeight($score)
     {
         if (($score instanceof ScoreBest) === false) {
@@ -86,7 +100,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
         return $this->item($score, function ($score) {
             return [
-                'percentage' => $score->weight() * 100,
+                'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
             ];
         });

@@ -47,7 +47,7 @@ return [
 
             'user' => [
                 'user_from' => '目前所在地',
-                'user_interests' => '興趣愛好',
+                'user_interests' => '喜好',
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
@@ -78,5 +78,10 @@ return [
         'keyboard' => '鍵盤',
         'tablet' => '繪圖板',
         'touch' => '觸控螢幕',
+    ],
+
+    'privacy' => [
+        'title' => '隱私政策',
+        'friends_only' => '過濾來自好友以外的訊息',
     ],
 ];

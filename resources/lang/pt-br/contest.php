@@ -57,11 +57,11 @@ return [
 
         'starts' => [
             '_' => 'Começa em :date',
-            'soon' => 'breve™',
+            'soon' => 'em breve™',
         ],
     ],
     'states' => [
-        'entry' => 'Entrada Aberta',
+        'entry' => 'Inscrição Aberta',
         'voting' => 'Votação Iniciada',
         'results' => 'Resultados',
     ],

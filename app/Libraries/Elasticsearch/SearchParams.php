@@ -75,4 +75,9 @@ abstract class SearchParams
      * @return bool true if the parameters are eligible for caching; false, otherwise.
      */
     abstract public function isCacheable() : bool;
+
+    public function shouldReturnEmptyResponse() : bool
+    {
+        return false;
+    }
 }

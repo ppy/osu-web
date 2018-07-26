@@ -27,7 +27,7 @@ return [
 
         'slogan' => [
             'main' => '무료 리듬 게임',
-            'sub' => '리듬은 단순한 클릭만으로도 만들어질 수 있습니다',
+            'sub' => '리듬은 이미, 그 손끝에',
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
         'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
-        'placeholder' => '검색하기 위해 입력하세요',
+        'placeholder' => '검색어를 입력해주세요',
         'title' => '검색',
 
         'beatmapset' => [
@@ -71,7 +71,7 @@ return [
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
-            'title' => 'Players',
+            'title' => '플레이어',
         ],
 
         'wiki_page' => [
@@ -98,12 +98,12 @@ return [
             ],
             'download' => [
                 'title' => '게임 다운로드!',
-                'description' => '위 버튼을 눌러 설치기를 내려받고, 실행하세요!',
+                'description' => '위 버튼을 눌러 설치 프로그램을 다운받고, 실행하세요!',
             ],
             'beatmaps' => [
                 'title' => '비트맵 받기',
                 'description' => [
-                    '_' => '사용자가 만든 비트맵의 광대한 라이브러리를 :browse하고 시작해 보세요!',
+                    '_' => '유저들이 만든 비트맵의 광대한 라이브러리를:browse하고 시작해 보세요!',
                     'browse' => '탐색',
                 ],
             ],
@@ -112,14 +112,14 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => '대시보드',
         'news' => [
-            'title' => '뉴스',
-            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
+            'title' => '소식',
+            'error' => '소식을 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
             'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메세지 :count건이 있습니다',
+            'messages' => '새로 받은 메시지 :count건이 있습니다',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '새로 Approved된 비트맵',
+            'new' => '새로 Ranked된 비트맵',
             'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',

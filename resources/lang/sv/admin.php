@@ -21,13 +21,13 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '',
-            'regenerating' => '',
-            'remove' => '',
-            'removing' => '',
+            'regenerate' => 'Regenerera',
+            'regenerating' => 'Regenererar...',
+            'remove' => 'Ta bort',
+            'removing' => 'Tar bort...',
         ],
         'show' => [
-            'covers' => '',
+            'covers' => 'Hantera Beatmapsetomslag',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'aktivera',
@@ -52,11 +52,11 @@ return [
                     'update' => 'Uppdatera',
                 ],
 
-                'title' => 'Forum Omslag Lista',
+                'title' => 'Forumomslagslista',
 
                 'type-title' => [
                     'default-topic' => 'Ordinarie Ämne Omslag',
-                    'main' => 'Forum Omslag',
+                    'main' => 'Forumomslag',
                 ],
             ],
         ],
@@ -64,13 +64,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logg Visare',
+            'title' => 'Logg',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Konsol Sak',
+            'title' => 'Administrativ Konsolsak',
 
             'sections' => [
                 'forum' => 'Forum',
@@ -83,15 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Lista',
+                'title' => 'Orderlista',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Denna användare är begränsad.',
-            'message' => '(endast admins kan se detta)',
+            'title' => 'Denna användare är för närvarande avstängd.',
+            'message' => '(endast administratörer kan se detta)',
         ],
     ],
 

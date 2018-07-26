@@ -53,14 +53,19 @@ abstract class Model extends BaseModel
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
+    public function best()
+    {
+        $basename = get_class_basename(static::class);
+
+        return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
+    }
+
     public static function getClass($modeInt)
     {
         $modeStr = Beatmap::modeStr($modeInt);
 
         if ($modeStr !== null) {
-            $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
-
-            return new $klass;
+            return get_class_namespace(static::class).'\\'.studly_case($modeStr);
         }
     }
 

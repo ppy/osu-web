@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+            'wrong_user' => 'Precisa ser o dono da postagem para editá-la.',
         ],
     ],
 
@@ -36,7 +36,10 @@ return [
         'title' => 'Discussão do Beatmap',
 
         'form' => [
+            '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões excluídas',
+            'types' => 'Tipos de mensagem',
+            'username' => 'Nome de Usuário',
 
             'user' => [
                 'label' => 'Usuário',
@@ -46,10 +49,10 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Data de postagem',
+        'created_at' => 'Data de publicação',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
-        'permalink' => 'Permalink',
+        'permalink' => 'Copiar link da postagem',
     ],
 
     'nearby_posts' => [
@@ -66,7 +69,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Marcada como resolvida por :user',
+            'true' => 'Marcado como resolvido por :user',
             'false' => 'Reaberto por :user',
         ],
     ],

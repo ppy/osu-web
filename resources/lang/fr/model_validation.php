@@ -47,7 +47,7 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'L\'horodotage spécifié dépasse la longeur de la beatmap',
+            'exceeds_beatmapset_length' => 'L\'horodotage spécifié dépasse la longueur de la beatmap',
             'negative' => "L'horodotage ne peut pas être négatif",
         ],
     ],
@@ -76,7 +76,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => 'Séléctionner une option pour voter.',
+            'required' => 'Séléctionnez une option pour voter.',
             'too_many' => 'Vous avez choisi trop de réponses.',
         ],
     ],
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'Adresse email déjà utilisée.',
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
-        'invalid_email' => "Ça ne semble pas être une adresse email.",
+        'invalid_email' => "Ça ne semble pas être une adresse email valide.",
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
         'username_available_in' => 'Ce nom d\'utilisateur sera disponible dans :duration.',
@@ -102,7 +102,7 @@ return [
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
         'wrong_email_confirmation' => 'La confirmation de l\'email ne correspond pas.',
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
-        'too_long' => 'Longeur maximale atteinte - elle est de :limit caractères.',
+        'too_long' => 'Longueur maximale atteinte - elle est de :limit caractères.',
 
         'change_username' => [
             'supporter_required' => [

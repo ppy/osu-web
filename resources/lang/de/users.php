@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '[gelöschter benutzer]',
+    'deleted' => '[gelöschter Benutzer]',
 
     'beatmapset_activities' => [
         'title' => ":users Moddingverlauf",
@@ -37,11 +37,24 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Meiste Stimmen von (3 Monate)',
+            'title_most' => 'Meiste Stimmen von (letzten 3 Monate)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Meiste Stimmen (3 Monate)',
+            'title_most' => 'Meiste Stimmen (letzten 3 Monate)',
+        ],
+    ],
+
+    'blocks' => [
+        'banner_text' => 'Du hast diesen Benutzer geblockt.',
+        'blocked_count' => '(:count) geblockte Benutzer ',
+        'hide_profile' => 'Profil verbergen',
+        'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
+        'show_profile' => 'Profil anzeigen',
+        'too_many' => 'Block-Limit erreicht.',
+        'button' => [
+            'block' => 'blocken',
+            'unblock' => 'entblocken',
         ],
     ],
 
@@ -71,14 +84,14 @@ return [
     ],
 
     'posts' => [
-        'title' => ':usernames Beiträge',
+        'title' => 'Posts von :username',
     ],
 
     'signup' => [
         '_' => 'Registrieren',
     ],
     'anonymous' => [
-        'login_link' => 'zum einloggen klicken',
+        'login_link' => 'zum Einloggen klicken',
         'login_text' => 'einloggen',
         'username' => 'Gast',
         'error' => 'Dafür musst du eingeloggt sein.',
@@ -101,9 +114,9 @@ return [
         'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
-        'previous_usernames' => 'vorher bekannt als',
+        'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
-        'title' => ":usernames Profil",
+        'title' => "Profil von :username",
 
         'edit' => [
             'cover' => [
@@ -144,6 +157,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Loved Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
@@ -244,13 +260,13 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "<strong>:usernames</strong> Account ist zurzeit",
-                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen',
+                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
                     'date' => 'datum',
-                    'action' => 'verstoß',
+                    'action' => 'maßnahme',
                     'length' => 'länge',
                     'length_permanent' => 'Permanent',
                     'description' => 'beschreibung',
@@ -258,7 +274,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Bann',
-                        'silence' => 'Stummschaltung',
+                        'silence' => 'Silence',
                         'note' => 'Warnung',
                     ],
                 ],

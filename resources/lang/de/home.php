@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> registrierte Spieler',
 
         'slogan' => [
-            'main' => 'free-to-play rhythmusspiel',
+            'main' => 'das allerbeste free-to-play rhythmusspiel',
             'sub' => 'der rhythmus ist nur einen klick entfernt',
         ],
     ],
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Neue Approved Beatmaps',
+            'new' => 'Neue Ranked Beatmaps',
             'popular' => 'Beliebte Beatmaps',
             'by' => 'von',
             'plays' => ':count plays',

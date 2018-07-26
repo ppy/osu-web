@@ -21,18 +21,26 @@
 return [
     'feed_title' => '피드',
     'generic' => '버그 수정 및 소소한 사항 개선.',
-    'users-online' => ':users 명 접속 중',
 
-    'prefixes' => [
-        'add' => '추가 사항',
-        'fix' => '수정 사항',
-        'misc' => '기타 ',
+    'builds' => [
+        'users_online' => '접속중인 사용자: :count_delimited명',
+    ],
+
+    'entry' => [
+        'by' => ':user 님이 구현',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '변경 사항 :info',
+            'info' => '목록',
+        ],
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => '이 업데이트가 맘에 드세요?',
+        'text_1' => 'osu!의 개발을 지원하고 :link!',
+        'text_1_link' => '서포터가 되세요',
+        'text_2' => '빠른 개발을 도울 뿐만 아니라 몇 가지 추가 기능과 맞춤 설정을 할 수 있어요!',
     ],
 ];

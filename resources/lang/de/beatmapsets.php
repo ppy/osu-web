@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => 'Diese Beatmap steht momentan nicht zum Download zur Verfügung.',
+        'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
         'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
     ],
@@ -34,16 +34,17 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'erstellt von ',
+            'mapped_by' => 'erstellt von :mapper',
             'submitted' => 'eingereicht am ',
             'updated' => 'letztes update am ',
+            'updated_timeago' => 'zuletzt aktualisiert :timeago',
             'ranked' => 'ranked am ',
             'approved' => 'approved am ',
             'qualified' => 'qualifziert am ',
             'loved' => 'loved am ',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'download' => [
-                '_' => 'Download',
+                '_' => 'Herunterladen',
                 'video' => 'mit Video',
                 'no-video' => 'ohne Video',
                 'direct' => 'osu!direct',

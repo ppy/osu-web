@@ -22,6 +22,11 @@ el = React.createElement
 bn = 'beatmap-discussion-post'
 
 class BeatmapDiscussions.NewReply extends React.PureComponent
+  ACTION_ICONS =
+    reply_resolve: 'fas fa-check'
+    reply_reopen: 'fas fa-exclamation-circle'
+    reply: 'fas fa-reply'
+
   constructor: (props) ->
     super props
 
@@ -76,22 +81,12 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
             if @canResolve() && !@props.discussion.resolved
-              @renderReplyButton
-                text: osu.trans('common.buttons.reply_resolve')
-                icon: 'fas fa-check'
-                extraProps:
-                  'data-action': 'resolve'
+              @renderReplyButton 'reply_resolve'
 
-            if @canResolve() && @props.discussion.resolved
-              @renderReplyButton
-                text: osu.trans('common.buttons.reply_reopen')
-                icon: 'fas fa-exclamation-circle'
-                extraProps:
-                  'data-action': 'reopen'
+            if @canReopen() && @props.discussion.resolved
+              @renderReplyButton 'reply_reopen'
 
-            @renderReplyButton
-              text: osu.trans('common.buttons.reply')
-              icon: 'fas fa-reply'
+            @renderReplyButton 'reply'
 
 
   renderCancelButton: =>
@@ -119,18 +114,19 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           onClick: @editStart
 
 
-  renderReplyButton: ({ text, icon, extraProps = {} }) =>
-    props = _.extend
-      disabled: !@validPost() || @state.posting?
-      onClick: @throttledPost,
-      extraProps
-
+  renderReplyButton: (action) =>
     div className: "#{bn}__action",
       el BigButton,
-        text: text
-        # wobbles if using spinner
-        icon: if @state.posting then 'fas fa-ellipsis-h' else icon
-        props: props
+        text: osu.trans("common.buttons.#{action}")
+        icon: if @state.posting == action then '_spinner' else ACTION_ICONS[action]
+        props:
+          disabled: !@validPost() || @state.posting?
+          onClick: @throttledPost
+          'data-action': action
+
+
+  canReopen: =>
+    @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_reopen
 
 
   canResolve: =>
@@ -159,11 +155,13 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     LoadingOverlay.show()
 
     @postXhr?.abort()
-    @setState posting: true
 
-    resolved = switch event.currentTarget.dataset.action
-               when 'resolve' then true
-               when 'reopen' then false
+    action = event.currentTarget.dataset.action
+    @setState posting: action
+
+    resolved = switch action
+               when 'reply_resolve' then true
+               when 'reply_reopen' then false
                else @props.discussion.resolved
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),

@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
     'search' => [
         'params' => [
             'forum_id' => $forum->forum_id,
@@ -27,7 +27,7 @@
     'pageDescription' => $forum->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
             @include('forum._header_breadcrumb')
@@ -81,9 +81,10 @@
                     'title' => trans('forum.topics._'),
                     'topics' => $topics,
                     'withNewTopicLink' => $forum->isOpen(),
+                    'forum' => $forum,
                 ])
 
-                @include('forum._pagination', ['object' => $topics
+                @include('objects._pagination_v0', ['object' => $topics
                     ->fragment('topics')
                     ->appends([
                         'sort' => Request::input('sort'),

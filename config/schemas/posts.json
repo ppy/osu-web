@@ -1,0 +1,64 @@
+{
+  "mappings": {
+    "posts": {
+      "dynamic": false,
+      "properties": {
+        "forum_id": {
+          "type": "long"
+        },
+        "post_id": {
+          "type": "long"
+        },
+        "post_text": {
+          "type": "text",
+          "analyzer": "post_text_analyzer"
+        },
+        "post_time": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
+        },
+        "poster_id": {
+          "type": "long"
+        },
+        "search_content": {
+          "type": "text",
+          "analyzer": "post_text_analyzer"
+        },
+        "topic_id": {
+          "type": "long"
+        },
+        "type": {
+          "type": "join",
+          "relations": {
+            "topics": "posts"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "post_text_analyzer": {
+            "filter": [
+              "lowercase",
+              "unique"
+            ],
+            "char_filter": [
+              "html_filter"
+            ],
+            "tokenizer": "standard"
+          }
+        },
+        "char_filter": {
+          "html_filter": {
+            "type": "html_strip"
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    }
+  }
+}

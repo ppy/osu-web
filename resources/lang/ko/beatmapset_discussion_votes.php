@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => '비트맵 토론 투표',
     ],
 
     'item' => [

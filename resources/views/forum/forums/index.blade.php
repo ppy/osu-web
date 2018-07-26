@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'search' => [
         'url' => route('forum.forums.search'),
     ],
     'pageDescription' => trans('forum.title')
 ])
 
-@section("content")
+@section('content')
     <div class="osu-page">
         <div class="osu-page-header osu-page-header--forum-index">
             <div class="osu-page-header__title-box">

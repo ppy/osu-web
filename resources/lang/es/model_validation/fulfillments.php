@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => 'solo se permite un cambio de nombre de usuario por cumplimiento de orden.',
-        'insufficient_paid' => 'El costo del cambio de nombre de usuario excede la cantidad pagada (:expected > :actual)',
-        'reverting_username_mismatch' => 'El nombre de usuario actual (:current) no es el mismo que el cambio a revocar (:username)',
+        'only_one' => 'Sólo se permite un cambio de nombre de usuario por cada orden.',
+        'insufficient_paid' => 'El coste del cambio de nombre de usuario excede la cantidad pagada (:expected > :actual)',
+        'reverting_username_mismatch' => 'El nombre de usuario actual (:current) no es el mismo nombre de usuario que se está intentando revocar (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'La donación es menor a la requerida para el regalo de una tag de supporter (:actual > :expected)',
+        'insufficient_paid' => 'La donación es menor a la mínima necesitada para el regalo de una tag de supporter (:actual > :expected)',
     ],
 ];

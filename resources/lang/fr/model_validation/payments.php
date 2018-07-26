@@ -26,10 +26,10 @@ return [
     'order' => [
         'invalid' => 'La commande n\'est pas valide',
         'items' => [
-            'virtual_only' => 'La paiement par `:provider` n\'est pas valide pour les produits physiques.',
+            'virtual_only' => 'Le paiement par `:provider` n\'est pas disponible pour les produits physiques.',
         ],
         'status' => [
-            'not_checkout' => 'Tentative d\'accepter le paiement pour une commande dans un état invalide `:state`.',
+            'not_checkout' => 'Vous essayez d\'accepter le paiement d\'une commande dans un état incorrect `:state`.',
             'not_paid' => 'Tentative de remboursement du paiement pour une commande dans un état invalide `:state`.',
         ],
     ],

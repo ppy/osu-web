@@ -19,10 +19,10 @@
  */
 
 return [
-    'months' => '',
+    'months' => '월(달)',
 
     'user_search' => [
         'searching' => '찾는 중...',
-        'not_found' => "검색하신 사용자를 찾을 수 없습니다.",
+        'not_found' => "사용자가 존재하지 않습니다.",
     ],
 ];

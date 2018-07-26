@@ -15,9 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'community',
-    'current_action' => 'profile',
+@extends('master', [
+    'currentSection' => 'community',
+    'currentAction' => 'profile',
     'title' => trans('users.posts.title', ['username' => $user->username]),
 ])
 

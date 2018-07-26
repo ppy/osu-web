@@ -22,26 +22,26 @@ return [
     'event' => [
         'approve' => 'Aprobado.',
         'discussion_delete' => 'Un moderador eliminó la discusión :discussion.',
-        'discussion_post_delete' => 'Un moderador eliminó un post en la discusión :discussion.',
-        'discussion_post_restore' => 'Un moderador restauró un post de la discusión :discussion.',
+        'discussion_post_delete' => 'Un moderador eliminó un publicación en la discusión :discussion.',
+        'discussion_post_restore' => 'Un moderador restauró una publicación de la discusión :discussion.',
         'discussion_restore' => 'Un moderador restauró la discusión :discussion.',
-        'disqualify' => 'Descalificado por :user. Razón: :discussion (:text).',
-        'disqualify_legacy' => 'Descalificado por :user. Razón: :text.',
+        'disqualify' => 'Descalificado por :user. Motivo: :discussion (:text).',
+        'disqualify_legacy' => 'Descalificado por :user. Motivo: :text.',
         'issue_reopen' => 'El problema resuelto :discussion ha sido reabierto.',
         'issue_resolve' => 'El problema :discussion ha sido marcado como resuelto.',
         'kudosu_allow' => 'La negación de kudosu para la discusión :discussion ha sido eliminada.',
         'kudosu_deny' => 'La discusión :discussion ha sido negada para kudosu.',
         'kudosu_gain' => 'La discusión :discussion por :user ha obtenido suficientes votos para kudosu.',
         'kudosu_lost' => 'La discusión :discussion por :user ha perdido votos y su kudosu ganado ha sido removido.',
-        'kudosu_recalculate' => 'A la discusión :discussion se le han recalculado los kudosu ganados.',
+        'kudosu_recalculate' => 'A la discusión :discussion se le han recalculado los kudosu otorgados.',
         'nominate' => 'Nominado por :user.',
-        'nomination_reset' => 'El nuevo problema :discussion ha reiniciado las nominaciones.',
+        'nomination_reset' => 'Un nuevo problema :discussion (:text) ha reiniciado las nominaciones.',
         'qualify' => 'Calificado.',
         'rank' => 'Rankeado.',
     ],
 
     'index' => [
-        'title' => 'Eventos del beatmap',
+        'title' => 'Eventos del Beatmapset',
     ],
 
     'item' => [

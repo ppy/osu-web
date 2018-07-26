@@ -35,13 +35,13 @@ class TournamentsController extends Controller
 
         parent::__construct();
 
-        view()->share('current_action', 'tournaments-'.current_action());
+        view()->share('currentAction', 'tournaments-'.current_action());
     }
 
     public function index()
     {
         return view('tournaments.index')
-            ->with('tournaments', Tournament::getRegistrationStage());
+            ->with('listing', Tournament::getGroupedListing());
     }
 
     public function show($id)

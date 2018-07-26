@@ -23,7 +23,7 @@ return [
     'title' => 'Artisti in primo piano',
 
     'admin' => [
-        'hidden' => '',
+        'hidden' => 'L\'ARTISTA È ATTUALMENTE NASCOSTO',
     ],
 
     'beatmaps' => [
@@ -33,17 +33,17 @@ return [
     ],
 
     'index' => [
-        'description' => '',
+        'description' => 'Gli artisti in primo piano sono artisti con i quali stiamo collaborando con lo scopo di portare musica nuova ed originale su osu!. Questi artisti e alcuni dei loro brani sono stati scelti dal team di osu! per essere adatti e sfiziosi per il mapping. Alcuni di questi artisti in primo piano hanno creato inoltre nuovi brani esclusivi per osu!. <br><br>Tutti i brani in questa sezione vengono forniti come file .osz prefatti e sono stati ufficialmente autorizzati per essere utilizzati su osu! e tutto ciò che ne concerne.',
     ],
 
     'links' => [
-        'osu' => '',
+        'osu' => 'osu! profilo',
         'site' => 'Sito Ufficiale',
     ],
 
     'songs' => [
-        '_' => '',
-        'count' => '',
-        'exclusive' => '',
+        '_' => 'Brani',
+        'count' => ':count brano |:count brani',
+        'exclusive' => 'osu! esclusiva',
     ],
 ];

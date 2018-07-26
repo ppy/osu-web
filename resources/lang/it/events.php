@@ -20,8 +20,8 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> ha sbloccato l\'obiettivo "<strong>:achievement</strong>" !',
-    'beatmap_playcount' => '',
-    'beatmapset_approve' => '',
+    'beatmap_playcount' => ':beatmap è stata giocata :count volte!',
+    'beatmapset_approve' => ':beatmapset di <strong>:user</strong> è stata approvata!',
     'beatmapset_delete' => ':beatmapset è stata eliminata.',
     'beatmapset_revive' => ':beatmapset è stata risvegliata dal sonno eterno da <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ha aggiornato la beatmap "<em>:beatmapset</em>"',

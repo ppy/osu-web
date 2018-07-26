@@ -20,12 +20,12 @@
 
 return [
     'bold' => 'Negrita',
-    'heading' => 'Cabecera',
+    'heading' => 'Encabezado',
     'image' => 'Imagen',
     'italic' => 'Cursiva',
     'link' => 'Enlace',
     'list' => 'Lista',
-    'list_numbered' => 'Lista enumerada',
+    'list_numbered' => 'Lista numerada',
     'size' => [
         '_' => 'Tamaño de fuente',
         'tiny' => 'Diminuto',

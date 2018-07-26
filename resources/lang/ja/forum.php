@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => '最新の投稿 by :user',
         'new_topic' => 'トピックを新規で作成する',
+        'new_topic_login' => '',
         'post_reply' => '投稿',
         'reply_box_placeholder' => '返信をここに入力',
         'started_by' => 'by :user',
@@ -132,6 +133,7 @@ return [
         '_' => 'トピック',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => '返信',
             'reply_with_quote' => '引用して返信',
             'search' => '検索',

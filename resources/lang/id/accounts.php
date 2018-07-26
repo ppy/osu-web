@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Pengaturan</strong> Akun',
+        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'konfirmasi penggantian email osu!',
+        'email_subject' => 'konfirmasi perubahan email osu!',
         'update' => 'perbarui',
     ],
 
     'update_password' => [
-        'email_subject' => 'konfirmasi penggantian kata sandi osu!',
+        'email_subject' => 'konfirmasi perubahan kata sandi osu!',
         'update' => 'perbarui',
     ],
 
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'keyboard',
         'tablet' => 'tablet',
         'touch' => 'layar sentuh',
+    ],
+
+    'privacy' => [
+        'title' => 'Kebijakan Privasi',
+        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
     ],
 ];

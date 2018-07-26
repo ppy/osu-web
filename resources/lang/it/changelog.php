@@ -19,20 +19,28 @@
  */
 
 return [
-    'feed_title' => '',
-    'generic' => '',
-    'users-online' => '',
+    'feed_title' => 'feed',
+    'generic' => 'Correzione di bug e piccoli miglioramenti.',
 
-    'prefixes' => [
-        'add' => '',
-        'fix' => '',
-        'misc' => '',
+    'builds' => [
+        'users_online' => ':count_delimited utente online|:count_delimited utenti online',
+    ],
+
+    'entry' => [
+        'by' => 'da :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Note di rilascio :info',
+            'info' => 'Lista',
+        ],
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => 'Adori questo aggiornamento?',
+        'text_1' => 'Sostieni gli sviluppi futuri di osu! e :link oggi!',
+        'text_1_link' => 'diventa un sostenitore',
+        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai inoltre nuove funzionalità e opzioni!',
     ],
 ];

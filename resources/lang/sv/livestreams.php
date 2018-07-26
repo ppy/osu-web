@@ -20,8 +20,8 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Strömmar',
-        'description' => 'Data är hämtad från twitch.tv varje femte minut baserad på kataloglista. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wiki sidan om live strömning.',
+        'headline' => 'Direktsändningar',
+        'description' => 'Data hämtas från twitch.tv var femte minut baserad på kataloglistan. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wikisidan om liveströmning.',
     ],
     'headers' => [
         'regular' => 'Strömmar Nu',

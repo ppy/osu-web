@@ -21,11 +21,16 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'Lista aktywnych, oficjalnych turniejów',
+            'subtitle' => 'Lista oficjalnych turniejów osu!',
             'title' => 'Turnieje społeczności',
         ],
         'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
         'registration_period' => 'Rejestracja: od :start do :end',
+
+        'state' => [
+            'current' => 'Aktualne turnieje',
+            'previous' => 'Zakończone turnieje',
+        ],
     ],
 
     'show' => [

@@ -118,8 +118,7 @@ class BeatmapsetPage.Header extends React.Component
                   className: 'js-usercard beatmapset-favourites__user'
                   key: user.id
                   'data-user-id': user.id
-                  style:
-                    backgroundImage: "url(#{user.avatar_url})"
+                  el UserAvatar, user: user, modifiers: ['full']
               if @props.favcount > @favouritesToShow
                 div className: 'beatmapset-favourites__remainder-count',
                   osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()

@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => '添加好友',
+      'add' => '新增好友',
       'remove' => '刪除好友',
     ],
 
     'state' => [
-      'friends' => '已關注',
-      'mutual' => '互相關注',
+      'friends' => '已加好友',
+      'mutual' => '互為好友',
     ],
 
     'title' => '好友',
     'title_compact' => '好友',
 
-    'too_many' => '好友數量達到最大限制。',
+    'too_many' => '好友數量達到最大上限。',
 ];

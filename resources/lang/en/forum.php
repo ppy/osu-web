@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Topics',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -72,9 +72,12 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
+        'started_by_verbose' => 'started by :user',
 
         'create' => [
             'preview' => 'Preview',
@@ -132,6 +135,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
+            'login_reply' => 'Sign in to Reply',
             'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',

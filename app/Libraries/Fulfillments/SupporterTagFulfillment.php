@@ -21,6 +21,7 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\OrderFulfillerEvent;
+use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -65,33 +66,46 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;
-        $giftees = [];
+        $gifts = [];
         $donationTotal = $items->sum('cost');
-        $length = 0;
+        $totalDuration = 0;
 
         foreach ($items as $item) {
-            $length += (int) $item['extra_data']['duration'];
+            $duration = (int) $item['extra_data']['duration'];
+            $totalDuration += $duration;
             $targetId = $item['extra_data']['target_id'];
             $target = User::find($targetId);
             // TODO: warn if user doesn't exist, but don't explode.
             if ($donor->getKey() !== $target->getKey()) {
-                $giftees[$targetId] = $target;
+                if (($gifts[$targetId] ?? null) === null) {
+                    $gifts[$targetId] = ['target' => $target, 'duration' => $duration];
+                } else {
+                    $gifts[$targetId]['duration'] += $duration;
+                }
             }
         }
 
-        $isGift = count($giftees) !== 0;
+        $isGift = count($gifts) !== 0;
+
+        Event::generate(
+            $donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst',
+            ['user' => $donor, 'date' => $this->order->paid_at]
+        );
 
         if (present($donor->user_email)) {
             Mail::to($donor->user_email)
-                ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
+                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($giftees as $giftee) {
+        foreach ($gifts as $_key => $value) {
+            $giftee = $value['target'];
+            Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
+
             if (present($giftee->user_email)) {
                 Mail::to($giftee->user_email)
-                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));
+                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $value['duration']));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
             }

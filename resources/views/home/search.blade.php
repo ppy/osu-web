@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}" data-loading-overlay="0">
+    <form action="{{ route('search') }}" data-loading-overlay="0" class="js-search">
         <input type="hidden" name="mode" value="{{ request('mode') }}">
 
         <div class="osu-page">
@@ -44,7 +44,7 @@
                     </button>
 
                     <button class="search-header__icon search-header__icon--searching">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                        {!! spinner() !!}
                     </button>
                 </div>
             </div>

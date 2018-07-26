@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '',
+        'blocked_count' => '',
+        'hide_profile' => '',
+        'not_blocked' => '',
+        'show_profile' => '',
+        'too_many' => '',
+        'button' => [
+            'block' => '',
+            'unblock' => '',
+        ],
+    ],
+
     'card' => [
         'loading' => '読み込み中・・・',
         'send_message' => 'メッセージの送信',
@@ -144,6 +157,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Graveyardの譜面 (:count)',
+                ],
+                'loved' => [
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'RankedかApprovedの譜面 (:count)',

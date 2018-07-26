@@ -28,39 +28,42 @@ return [
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Non è successo nulla... per ora.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'title' => '',
+        'deleted_beatmap' => 'eliminato',
+        'title' => 'Discussioni di beatmap',
 
         'form' => [
-            'deleted' => '',
+            '_' => 'Cerca',
+            'deleted' => 'Includi discussioni eliminate',
+            'types' => 'Tipo di messaggio',
+            'username' => 'Nome Utente',
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Utente',
+                'overview' => 'Panoramica delle attività',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Data del Post',
+        'deleted_at' => 'Data di eliminazione',
+        'message_type' => 'Tipo',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
+        'confirm' => 'Nessuno dei post riguarda il mio problema',
+        'notice' => 'Ci sono già post a :timestamp (:existing_timestamps). Si prega di controllare prima di postare.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Registrati per Rispondere',
+            'user' => 'Rispondi',
         ],
     ],
 
@@ -72,14 +75,14 @@ return [
     ],
 
     'user' => [
-        'admin' => '',
-        'bng' => '',
-        'owner' => '',
-        'qat' => '',
+        'admin' => 'amministratore',
+        'bng' => 'nominatore',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Tutti',
+        'label' => 'Filtra per utente',
     ],
 ];

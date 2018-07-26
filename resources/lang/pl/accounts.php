@@ -32,7 +32,7 @@ return [
             'current' => 'obecny e-mail',
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
-            'title' => 'Adres e-mail',
+            'title' => 'E-mail',
         ],
 
         'password' => [
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'klawiatura',
         'tablet' => 'tablet',
         'touch' => 'ekran dotykowy',
+    ],
+
+    'privacy' => [
+        'title' => 'Prywatność',
+        'friends_only' => 'Blokuj prywatne wiadomości od osób spoza listy znajomych',
     ],
 ];

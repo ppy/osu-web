@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Apa Anda yakin?',
+    'confirmation' => 'Apakah Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -34,6 +34,7 @@ return [
         'click_to_copy' => 'klik untuk menyalin',
         'click_to_copy_copied' => 'tersalin!',
         'delete' => 'Hapus',
+        'hide' => 'sembunyikan',
         'permalink' => 'tautan',
         'permalink_copied' => 'tautan tersalin',
         'post' => 'Posting',
@@ -43,7 +44,9 @@ return [
         'reset' => 'Atur Ulang',
         'save' => 'Simpan',
         'saving' => 'Menyimpan...',
+        'search' => 'Cari',
         'see_more' => 'perlihatkan lebih banyak',
+        'show' => 'tampilkan',
         'show_more' => 'tampilkan lebih banyak',
         'upload_image' => 'unggah gambar',
     ],

@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => '고정된 주제',
+    'pinned_topics' => '고정된 토픽',
     'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
     'title' => 'osu!커뮤니티',
@@ -28,12 +28,12 @@ return [
         'create' => [
             '_' => '표지 이미지 설정',
             'button' => '이미지 업로드',
-            'info' => '표지 이미지의 크기는 :dimensions여야 합니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
+            'info' => '표지 이미지의 해상도는 최대 :dimensions입니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
         ],
 
         'destroy' => [
-            '_' => '표지 이미지 제거',
-            'confirm' => '정말 표지 이미지를 제거하실 건가요?',
+            '_' => '표지 이미지 삭제',
+            'confirm' => '정말 표지 이미지를 삭제하실 건가요?',
         ],
     ],
 
@@ -50,7 +50,7 @@ return [
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => '마지막으로 :user님이 :when에 수정하여, 총 :count회 수정되었습니다.',
+        'edited' => '마지막으로 :user님이 :when에 수정하여 총 :count회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
 
         'actions' => [
@@ -63,24 +63,25 @@ return [
     'search' => [
         'go_to_post' => '게시글로 이동',
         'post_number_input' => '글 번호를 입력하세요',
-        'total_posts' => '총 :posts_count개 글 발견',
+        'total_posts' => '총 :posts_count개의 글',
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => '새 주제글 작성',
+        'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
         'post_reply' => '게시하기',
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
-        'started_by' => ':user님이 작성함',
+        'started_by' => 'by :user',
 
         'create' => [
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '계속 쓰기',
+            'preview_hide' => '작성',
             'submit' => '게시하기',
 
             'placeholder' => [
@@ -107,16 +108,16 @@ return [
         'index' => [
             'title' => '구독한 주제글',
             'title_compact' => '구독',
-            'title_main' => '<strong>구독</strong>한 주제글',
+            'title_main' => '포럼 <strong>구독</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '구독한 주제글',
+                'unread' => '새로운 답변이 있는 주제글',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '총 :total개의 주제글을 구독했습니다.',
+                'unread' => '구독한 주제글에 :unread개의 읽지 않은 답변이 있습니다.',
             ],
         ],
 
@@ -132,22 +133,23 @@ return [
         '_' => '주제',
 
         'actions' => [
-            'reply' => '',
+            'login_reply' => '답변하려면 로그인하세요',
+            'reply' => '답변',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',
         ],
 
         'create' => [
-            'create_poll' => '여론 투표 생성',
+            'create_poll' => '투표 만들기',
 
             'create_poll_button' => [
                 'add' => '투표 만들기',
-                'remove' => '투표 생성 ',
+                'remove' => '투표 생성 취소',
             ],
 
             'poll' => [
-                'length' => '여론 투표를',
-                'length_days_suffix' => '일 동안 진행',
+                'length' => '투표 진행 기간',
+                'length_days_suffix' => '일',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
                 'max_options' => '투표가능 항목 수',
                 'max_options_info' => '중복으로 선택 가능한 항목 수를 나타냅니다.',
@@ -211,7 +213,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => '주제글이 잠겨있어 답글을 게시할 수 없습니다.',
+            'is_locked' => '주제글이 잠겨있어 답글을 달 수 없습니다.',
             'to_0' => '주제글 잠금 풀기',
             'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
             'to_1' => '주제글 잠그기',
@@ -242,7 +244,7 @@ return [
                 'user' => [
                     'count' => '{0} 표 없음|{1,*} :count 표',
                     'current' => '투표 횟수가 :votes회 남았습니다.',
-                    'not_enough' => "투표를 모두 사용하여 더이상 투표할 수 없습니다.",
+                    'not_enough' => "투표 횟수를 모두 사용하여 더이상 투표할 수 없습니다.",
                 ],
             ],
 
@@ -250,18 +252,18 @@ return [
                 'vote' => '투표',
 
                 'detail' => [
-                    'end_time' => '여론 투표가 :time에 종료됩니다.',
-                    'ended' => '여론 투표가 :time에 종료되었습니다.',
+                    'end_time' => '투표가 :time에 종료됩니다.',
+                    'ended' => '투표가 :time에 종료되었습니다.',
                     'total' => '총 투표 수: :count회',
                 ],
             ],
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => '즐겨찾기 등록 안됨',
+            'to_watching' => '즐겨찾기',
+            'to_watching_mail' => '알림과 함께 즐겨찾기',
+            'mail_disable' => '알림 사용 안 함',
         ],
     ],
 ];

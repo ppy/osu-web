@@ -20,27 +20,28 @@
 
 return [
     'availability' => [
-        'disabled' => '',
-        'parts-removed' => '',
-        'more-info' => '',
+        'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
+        'parts-removed' => 'Porzioni di questa beatmap sono stati rimossi su richiesta del creatore o per motivi di copyright di terze parti.',
+        'more-info' => 'Clicca qui per maggiori informazioni.',
     ],
 
     'index' => [
-        'title' => '',
-        'guest_title' => '',
+        'title' => 'Lista Beatmap',
+        'guest_title' => 'Beatmap',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Discussione',
 
         'details' => [
-            'made-by' => 'creata da ',
+            'mapped_by' => 'mappata da :mapper',
             'submitted' => 'inviata il ',
-            'updated' => '',
+            'updated' => 'ultimo aggiornamento il ',
+            'updated_timeago' => 'ultimo aggiornamento :timeago',
             'ranked' => 'rankata il ',
-            'approved' => '',
-            'qualified' => '',
-            'loved' => '',
+            'approved' => 'approvato il ',
+            'qualified' => 'qualificato il ',
+            'loved' => 'loved il ',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'download' => [
                 '_' => 'Scarica',
@@ -48,9 +49,9 @@ return [
                 'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
             ],
-            'favourite' => '',
-            'unfavourite' => '',
-            'favourited_count' => '',
+            'favourite' => 'Mi piace questa lista di mappe',
+            'unfavourite' => 'Non mi piace questa lista di mappe',
+            'favourited_count' => '+ 1 altro!|+ :count altri!',
         ],
         'stats' => [
             'cs' => 'Dimensione dei Cerchi',
@@ -65,19 +66,19 @@ return [
             'count_sliders' => 'Numero di Slider',
             'user-rating' => 'Voto degli Utenti',
             'rating-spread' => 'Diffusione della Valutazione',
-            'nominations' => '',
-            'playcount' => '',
+            'nominations' => 'Nomine',
+            'playcount' => 'Volte giocato',
         ],
         'info' => [
             'description' => 'Descrizione',
-            'genre' => '',
-            'language' => '',
-            'no_scores' => '',
+            'genre' => 'Genere',
+            'language' => 'Lingua',
+            'no_scores' => 'Dati ancora da calcolare...',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
-            'unranked' => '',
+            'unranked' => 'Beatmap non classificata',
         ],
         'scoreboard' => [
             'achieved' => 'raggiunto :when',
@@ -89,15 +90,15 @@ return [
             'title' => 'Classifica',
 
             'headers' => [
-                'accuracy' => '',
-                'combo' => '',
-                'miss' => '',
-                'mods' => '',
-                'player' => '',
+                'accuracy' => 'Precisione',
+                'combo' => 'Max Combo',
+                'miss' => 'Errori',
+                'mods' => 'Mod',
+                'player' => 'Giocatore',
                 'pp' => '',
-                'rank' => '',
-                'score_total' => '',
-                'score' => '',
+                'rank' => 'Rank',
+                'score_total' => 'Punteggio Totale',
+                'score' => 'Punteggio',
             ],
 
             'no_scores' => [
@@ -105,11 +106,11 @@ return [
                 'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
-                'unranked' => '',
+                'unranked' => 'Beatmap non classificata.',
             ],
             'score' => [
-                'first' => '',
-                'own' => '',
+                'first' => 'In testa',
+                'own' => 'Il tuo miglior punteggio',
             ],
         ],
     ],

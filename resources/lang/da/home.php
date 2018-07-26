@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nye Godkendte Beatmaps',
+            'new' => '',
             'popular' => 'Populære Beatmaps',
             'by' => 'af',
             'plays' => ':count afspilninger',

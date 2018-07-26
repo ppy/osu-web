@@ -22,7 +22,7 @@ return [
     'show' => [
         'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
         'languages' => 'Języki',
-        'missing' => 'Poszukiwana strona nie została odnaleziona.',
+        'missing' => 'Poszukiwana strona ":keyword" nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
         'missing_translation' => 'Poszukiwana strona nie została odnaleziona dla obecnie ustawionego języka.',
         'search' => 'Przeszukaj istniejące strony używając frazy :link.',

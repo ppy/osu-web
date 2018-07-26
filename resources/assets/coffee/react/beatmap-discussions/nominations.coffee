@@ -98,7 +98,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 text: osu.trans 'beatmaps.feedback.button'
                 icon: 'fas fa-bullhorn'
                 props:
-                  onClick: @focusNewDiscussion
+                  onClick: @focusNewDiscussionWithModeSwitch
 
       # show hype meter and nominations when beatmapset is: wip, pending or qualified
       else
@@ -156,7 +156,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                       text: osu.trans 'beatmaps.nominations.disqualify'
                       icon: 'fas fa-thumbs-down'
                       props:
-                        onClick: @focusNewDiscussionForDisqualification
+                        onClick: @focusNewDiscussionWithModeSwitch
                   else if mapCanBeNominated && @userCanNominate()
                     if @props.currentDiscussions.unresolvedIssues > 0
                       # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
@@ -263,7 +263,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       onAfter: callback
 
 
-  focusNewDiscussionForDisqualification: =>
+  focusNewDiscussionWithModeSwitch: =>
     # Switch to generalAll tab just in case currently in event tab
     # and thus new discussion box isn't visible.
     $.publish 'beatmapsetDiscussions:update',
@@ -278,11 +278,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     if discussion?
       url = BeatmapDiscussionHelper.url discussion: discussion
-      message = _.truncate(discussion.posts[0].message, 100)
-      message = BeatmapDiscussionHelper.format message, newlines: false
 
       link = osu.link url, "##{discussion.id}", classNames: ['js-beatmap-discussion--jump']
-      message = message
+      message = BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = osu.trans('beatmaps.nominations.reset_message_deleted')

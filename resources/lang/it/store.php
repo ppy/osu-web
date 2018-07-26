@@ -23,35 +23,65 @@ return [
         'warehouse' => 'Magazzino',
     ],
 
+    'cart' => [
+        'checkout' => 'Pagamento',
+        'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
+        'shipping_fees' => 'costi di spedizione',
+        'title' => 'Carrello della spesa',
+        'total' => 'totale',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, ci sono problemi con il vostro carrello che stanno impedendo il check-out!',
+            'line_2' => 'Rimuovere o aggiornare gli elementi di sopra per continuare.',
+        ],
+
+        'empty' => [
+            'text' => 'Il tuo carrello è vuoto.',
+            'return_link' => [
+                '_' => 'Ritorna al :link per trovare alcuni elementi!',
+                'link_text' => 'listino',
+            ],
+        ],
+    ],
+
     'checkout' => [
-        'cart_problems' => '',
-        'cart_problems_edit' => '',
-        'declined' => '',
-        'error' => '',
-        'old_cart' => '',
+        'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
+        'cart_problems_edit' => 'Clicca qui per modificarlo.',
+        'declined' => 'Il pagamento è annullato.',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, si prega di riprovare.',
         'pay' => 'Acquista con Paypal',
         'pending_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
-            'link_text' => '',
+            'line_1' => 'Un precedente check-out è stato iniziato ma non è stato portato a termine.',
+            'line_2' => 'Riprendi il tuo checkout selezionando un metodo di pagamento, o :link to annullare.',
+            'link_text' => 'clicca qui',
         ],
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
     ],
 
-    'discount' => '',
+    'discount' => 'risparmi :percent%',
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Abbiamo ricevuto il tuo ordine di osu!store!',
         ],
     ],
 
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name per :username(:duration)',
             ],
             'quantity' => 'Quantità',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Non è possibile modificare il vostro ordine in quanto è stato cancellato.',
+            'checkout' => 'Non è possibile modificare il vostro ordine mentre è processato.', // checkout and processing should have the same message.
+            'default' => 'L\'ordine non è modificabile',
+            'delivered' => 'Non è possibile modificare il vostro ordine in quanto è stato consegnato.',
+            'paid' => 'Non è possibile modificare il vostro ordine in quanto è stato già pagato.',
+            'processing' => 'Non è possibile modificare il vostro ordine mentre è processato.',
+            'shipped' => 'Non è possibile modificare il vostro ordine in quanto è stato inviato.',
         ],
     ],
 
@@ -73,19 +103,19 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => '',
+        'gift' => 'regalo ad un giocatore',
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Devi essere :link per ottenere un tag sostenitore!',
+            'link_text' => 'accesso effettuato',
         ],
     ],
 
     'username_change' => [
-        'check' => '',
-        'checking' => '',
+        'check' => 'Inserisci un nome utente per controllare la disponibilità!',
+        'checking' => 'Controllando la disponibilità di :username...',
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Devi essere :link per cambiare il tuo nome!',
+            'link_text' => 'accesso effettuato',
         ],
     ],
 ];

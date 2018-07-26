@@ -34,14 +34,15 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'made-by' => 'créée par ',
+            'mapped_by' => 'mappée par :mapper',
             'submitted' => 'envoyée le ',
             'updated' => 'dernière mise à jour le ',
-            'ranked' => 'classifiée le ',
+            'updated_timeago' => 'dernière mise à jour :timeago',
+            'ranked' => 'classée le ',
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !',
+            'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
@@ -59,7 +60,7 @@ return [
             'accuracy' => 'Précision',
             'ar' => 'Niveau d\'approche',
             'stars' => 'Difficulté en étoiles',
-            'total_length' => 'Longeur',
+            'total_length' => 'Longueur',
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
@@ -77,7 +78,7 @@ return [
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap non classifiée',
+            'unranked' => 'Beatmap non classée',
         ],
         'scoreboard' => [
             'achieved' => 'atteint :when',
@@ -102,7 +103,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Personnne de vos amis n\'a encore fait un score !',
+                'friend' => 'Aucun de vos amis n\'a de score sur cette map !',
                 'global' => 'Pas de scores. Peut-être vous dans le classement ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',

@@ -34,9 +34,10 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
-            'made-by' => 'карту сделал ',
+            'mapped_by' => 'сделана :mapper',
             'submitted' => 'опубликован ',
             'updated' => 'обновлён ',
+            'updated_timeago' => 'обновлён :timeago',
             'ranked' => 'ранкнут ',
             'approved' => 'одобрен ',
             'qualified' => 'квалифицирован ',
@@ -55,7 +56,7 @@ return [
         'stats' => [
             'cs' => 'Размер нот',
             'cs-mania' => 'Количество нот',
-            'drain' => 'HP Drain',
+            'drain' => 'Потеря HP',
             'accuracy' => 'Точность',
             'ar' => 'Скорость подхода',
             'stars' => 'Сложность',
@@ -95,7 +96,7 @@ return [
                 'mods' => 'Моды',
                 'player' => 'Игрок',
                 'pp' => 'pp',
-                'rank' => 'Рейтинг',
+                'rank' => 'Ранг',
                 'score_total' => 'Всего очков',
                 'score' => 'Очки',
             ],

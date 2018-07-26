@@ -29,7 +29,7 @@ return [
             'account-edit' => 'einstellungen',
             'friends-index' => 'freunde',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'version',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'gruppen',
@@ -39,7 +39,7 @@ return [
             'news-show' => 'news',
             'password-reset-index' => 'passwort zurücksetzen',
             'search' => 'suche',
-            'supportTheGame' => 'das spiel unterstützen',
+            'supportTheGame' => 'Das Spiel unterstützen',
             'team' => 'team',
         ],
         'help' => [
@@ -53,7 +53,7 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'featured artists',
-            'beatmap_discussion_posts-index' => 'beatmapdiskussion: beiträge',
+            'beatmap_discussion_posts-index' => 'beatmapdiskussion: posts',
             'beatmap_discussions-index' => 'beatmapdiskussion',
             'beatmapset-watches-index' => 'modding watchlist',
             'beatmapset_discussion_votes-index' => 'beatmapdiskussion: abstimmungen',
@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'community',
             'dev' => 'entwicklung',
-            'getForum' => 'forum',
+            'getForum' => 'foren',
             'getChat' => 'chat',
             'getLive' => 'live',
             'contests' => 'wettbewerbe',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Rechtliches & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privatsphäre',
             'server_status' => 'Serverstatus',
+            'source_code' => 'Quellcode',
             'terms' => 'Nutzungsbedingungen',
         ],
     ],

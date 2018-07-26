@@ -22,10 +22,12 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
-            'has_reply' => '無法刪除有回覆的討論',
+            'has_reply' => '有回應的討論無法刪除',
         ],
         'nominate' => [
-            'exhausted' => '你今天的提名次數已達上限，請明天再試。',
+            'exhausted' => '您今天提名的次數已達上限，請明天再試。',
+            'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
+            'owner' => "不能提名自己的圖譜。",
         ],
         'resolve' => [
             'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',

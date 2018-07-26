@@ -23,13 +23,13 @@ return [
     'title' => 'Nghệ Sĩ Tiêu Biểu',
 
     'admin' => [
-        'hidden' => 'NGHỆ SĨ ĐÃ ĐƯỢC ẨN',
+        'hidden' => 'NGHỆ SĨ ĐANG BỊ ẨN',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Tải Beatmap Mẫu',
-        'download-na' => 'Chưa có Beatmap Mẫu',
+        'download' => 'Tải mẫu Beatmap',
+        'download-na' => 'Chưa có mẫu Beatmap',
     ],
 
     'index' => [
@@ -37,13 +37,13 @@ return [
     ],
 
     'links' => [
-        'osu' => 'trang cá nhân osu!',
-        'site' => 'Trang Web Chính Thức',
+        'osu' => 'trang cá nhân',
+        'site' => 'Website chính thức',
     ],
 
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'exclusive' => 'độc quyền của osu!',
+        'exclusive' => 'độc quyền cho osu',
     ],
 ];

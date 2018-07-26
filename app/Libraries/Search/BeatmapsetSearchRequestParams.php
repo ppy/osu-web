@@ -53,30 +53,29 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c']) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
-
-            if ($this->user->isSupporter()) {
-                $this->rank = array_intersect(
-                    explode('.', $request['r'] ?? null),
-                    $validRanks
-                );
-
-                $this->playedFilter = $request['played'];
-                if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
-                    $this->playedFilter = null;
-                }
-            }
         }
 
         $sort = explode('_', $request['sort']);
-        $this->sort = static::normalizeSort(
+        $this->sort = $this->normalizeSort(
             [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
         );
+
+        // Supporter-only options.
+        $this->rank = array_intersect(
+            explode('.', $request['r'] ?? null),
+            $validRanks
+        );
+
+        $this->playedFilter = $request['played'];
+        if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
+            $this->playedFilter = null;
+        }
     }
 
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private static function normalizeSort($sorts)
+    private function normalizeSort($sorts)
     {
         // additional options
         static $orderOptions = [
@@ -92,6 +91,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $newSort = [];
         foreach ($sorts as $sort) {
+            // assign sort modes if any.
             $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
             if ($options !== []) {
                 $sort->mode = $options['mode'];
@@ -99,8 +99,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $newSort[] = $sort;
 
+            // append/prepend extra sort orders.
             if ($sort->field === 'nominations') {
                 $newSort[] = new Sort('hype', $sort->order);
+            } elseif ($sort->field === 'approved_date' && $this->status === 3) {
+                array_unshift($newSort, new Sort('queued_at', $sort->order));
             }
         }
 

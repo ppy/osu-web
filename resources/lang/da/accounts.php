@@ -22,7 +22,7 @@ return [
     'edit' => [
         'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
-        'username' => '',
+        'username' => 'brugernavn',
 
         'avatar' => [
             'title' => 'Ændr Avatar',
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'tastatur',
         'tablet' => 'tablet',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacy',
+        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
     ],
 ];

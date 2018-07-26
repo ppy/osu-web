@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Are you sure?',
+    'confirmation_unsaved' => 'Unsaved changes will be lost. Are you sure?',
     'saved' => 'Saved',
 
     'array_and' => [
@@ -34,6 +35,7 @@ return [
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Delete',
+        'hide' => 'hide',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copied',
         'post' => 'Post',
@@ -43,7 +45,9 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'search' => 'Search',
         'see_more' => 'see more',
+        'show' => 'show',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],

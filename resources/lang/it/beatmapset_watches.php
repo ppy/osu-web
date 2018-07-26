@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Non guardare',
+            'to_1' => 'Guarda',
         ],
     ],
 
     'index' => [
-        'description' => '',
-        'title_compact' => '',
-        'title_main' => '',
+        'description' => 'Queste sono le discussion di beatmap che stai seguendo. Verrai avvisato quando ci saranno nuovi post o aggiornamenti.',
+        'title_compact' => 'lista modding',
+        'title_main' => 'Lista Modding',
 
         'table' => [
-            'empty' => '',
-            'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'empty' => 'Nessuna discussione di beatmap guardata.',
+            'open_issues' => 'Problemi aperti',
+            'state' => 'Stato',
+            'title' => 'Titolo',
         ],
     ],
 
     'mail' => [
-        'update' => '',
+        'update' => 'Nuovo aggiornamento per la beatmap ":title"',
     ],
 
     'status' => [
-        'read' => '',
-        'unread' => '',
+        'read' => 'Leggi',
+        'unread' => 'Non leggere',
     ],
 ];

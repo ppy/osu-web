@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> 名已注册玩家',
 
         'slogan' => [
-            'main' => '免费音乐游戏',
+            'main' => '棒到不行的免费音乐游戏',
             'sub' => '节奏跃然指上',
         ],
     ],
@@ -119,7 +119,7 @@ return [
         ],
         'header' => [
             'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息|{0}',
+            'messages' => '你有 :count 条新消息',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Approved 谱面',
+            'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
             'by' => '作者：',
             'plays' => ':count 次游玩',

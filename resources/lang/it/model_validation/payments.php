@@ -20,13 +20,13 @@
 
 return [
     'signature' => [
-        'not_match' => '',
+        'not_match' => 'Le firme non corrispondono',
     ],
-    'notification_type' => '',
+    'notification_type' => 'notification_type non è un tipo :type valido',
     'order' => [
-        'invalid' => '',
+        'invalid' => 'L\'ordine non è valido',
         'items' => [
-            'virtual_only' => '',
+            'virtual_only' => 'Il pagamento con `:provider` non è valido per prodotti fisici.',
         ],
         'status' => [
             'not_checkout' => '',
@@ -34,15 +34,15 @@ return [
         ],
     ],
     'param' => [
-        'invalid' => '',
+        'invalid' => 'Il parametro \':param\' non corrisponde',
     ],
     'paypal' => [
         'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '',
-            'currency' => '',
+            'amount' => 'L\'importo del pagamento non corrisponde: :actual != :expected',
+            'currency' => 'Il pagamento non è in USD. (:type)',
         ],
     ],
     'order_number' => [

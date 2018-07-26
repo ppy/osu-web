@@ -20,7 +20,7 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listning',
+        'news-index' => 'lista',
         'news-show' => 'inlägg',
     ],
 
@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'posted' => 'uppladdad :time',
+        'posted' => 'upplagd :time',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
@@ -44,7 +44,7 @@ return [
 
     'store' => [
         'button' => 'Uppdatera',
-        'ok' => 'Listning uppdaterat.',
+        'ok' => 'Lista uppdaterad.',
     ],
 
     'update' => [

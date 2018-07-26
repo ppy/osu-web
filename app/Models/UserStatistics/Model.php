@@ -79,9 +79,7 @@ abstract class Model extends BaseModel
             return;
         }
 
-        $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
-
-        return new $klass;
+        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)

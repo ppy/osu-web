@@ -32,14 +32,13 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'kudosu verteilen',
+        'allow_kudosu' => 'kudosu erlauben',
         'delete' => 'löschen',
         'deleted' => 'Von :editor gelöscht (:delete_time).',
         'deny_kudosu' => 'kudosu verweigern',
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
-        'message_placeholder' => 'Beitrag hier eingeben',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
             'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Beiträge erstellen (ein Beitrag pro Timestamp).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Hier tippen um auf General zu posten (:version)',
+            'generalAll' => 'Hier tippen um auf General zu posten (Alle Schwierigkeitsstufen)',
+            'timeline' => 'Hier tippen um auf die Timeline zu posten (:version)',
         ],
 
         'message_type' => [
@@ -113,7 +118,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
-            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...",
+            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
             'loved' => 'Diese Beatmap wurde am :date loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
@@ -140,7 +145,7 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
-        'disqualified_at' => 'Disqualifiziert vor :time_ago (:reason).',
+        'disqualified_at' => 'Disqualifiziert :time_ago (:reason).',
         'disqualified_no_reason' => 'kein grund angegeben',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
@@ -156,7 +161,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
-            'disqualify' => 'Disqualifiziert vor :time_ago von :user mit dem Problem :discussion (:message).',
+            'disqualify' => 'Disqualifiziert :time_ago von :user mit der Erstellung des Problems :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'stichwörter eingeben...',
             'options' => 'Mehr Suchoptionen',
+            'supporter_filter' => 'Du benötigst einen supporter-tag, um nach :filters zu filtern',
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
@@ -180,10 +186,24 @@ return [
                 'rank' => 'Erreichter Rang',
                 'played' => 'Gespielt',
             ],
+            'sorting' => [
+                'title' => 'titel',
+                'artist' => 'künstler',
+                'difficulty' => 'schwierigkeit',
+                'updated' => 'zuletzt aktualisiert',
+                'ranked' => 'ranked',
+                'rating' => 'bewertung',
+                'plays' => 'plays',
+                'relevance' => 'relevanz',
+                'nominations' => 'nominierungen',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
+                'link_text' => 'supporter-tag',
+            ],
         ],
         'mode' => 'Modus',
         'status' => 'Ranking-Status',
-        'mapped-by' => 'Von :mapper erstellt',
         'source' => 'von/aus :source',
         'load-more' => 'Mehr laden...',
     ],

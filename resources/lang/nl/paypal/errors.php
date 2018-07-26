@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => '',
-    'invalid_resource_id' => '',
-    'unknown' => "Een onbekende fout trad op.",
+    'instrument_declined' => 'De geselecteerde betaling was geweigerd door Paypal.',
+    'invalid_resource_id' => 'Geen betalingsinformatie gevonden.',
+    'unknown' => "De betaling was afgewezen, maar we weten niet waarom.",
 ];

@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Lagerhaus',
     ],
 
+    'cart' => [
+        'checkout' => 'Zur Kasse',
+        'more_goodies' => 'Ich möchte mich vor meiner Bestellung noch etwas umschauen',
+        'shipping_fees' => 'Versandkosten',
+        'title' => 'Warenkorb',
+        'total' => 'insgesamt',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Ups, irgendetwas im Warenkorb verhindert die Buchung!',
+            'line_2' => 'Entfernen oder aktualisieren Sie Ihre Artikel, bevor Sie fortfahren.',
+        ],
+
+        'empty' => [
+            'text' => 'Dein Warenkorb ist leer.',
+            'return_link' => [
+                '_' => 'Geh\' doch zurück zum :link und such\' dir ein paar Goodies aus!',
+                'link_text' => 'Shop',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Es gibt Probleme in deinem Warenkorb!',
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
-        'error' => 'Es gab ein Problem beim Bezahlvorgang :(',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
         'pending_checkout' => [
@@ -38,7 +58,7 @@ return [
         'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
     ],
 
-    'discount' => 'spar :percent%',
+    'discount' => 'spare :percent%',
 
     'mail' => [
         'payment_completed' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name für :username (:duration)',
             ],
             'quantity' => 'Menge',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Du kannst deine Bestellung nicht ändern, da diese storniert wurde.',
+            'checkout' => 'Du kannst deine Bestellung nicht ändern, während diese bearbeitet wird.', // checkout and processing should have the same message.
+            'default' => 'Bestellung kann nicht bearbeitet werden',
+            'delivered' => 'Du kannst deine Bestellung nicht ändern, da diese bereits zugestellt wurde.',
+            'paid' => 'Du kannst deine Bestellung nicht ändern, da diese bereits bezahlt wurde.',
+            'processing' => 'Du kannst deine Bestellung nicht ändern, während diese bearbeitet wird.',
+            'shipped' => 'Du kannst deine Bestellung nicht ändern, da diese bereits versandt wurde.',
         ],
     ],
 

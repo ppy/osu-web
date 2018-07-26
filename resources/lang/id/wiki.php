@@ -20,21 +20,21 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Halaman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
+        'fallback_translation' => 'Laman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
         'languages' => 'Bahasa',
-        'missing' => 'Halaman ":keyword" yang diminta tidak dapat ditemukan.',
+        'missing' => 'Laman ":keyword" yang diminta tidak dapat ditemukan.',
         'missing_title' => 'Tidak Ditemukan',
-        'missing_translation' => 'Halaman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
+        'missing_translation' => 'Laman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
         'search' => 'Cari halaman yang ada untuk :link.',
         'toc' => 'Konten',
 
         'edit' => [
             'link' => 'Lihat di GitHub',
-            'refresh' => 'Perbarui',
+            'refresh' => 'Muat Ulang',
         ],
 
         'outdated' => [
-            '_' => 'Halaman ini berisi terjemahan konten yang menggunakan versi lama. Silakan periksa :default untuk informasi paling akurat (dan pertimbangkan memperbarui terjemahan jika Anda dapat membantu)!',
+            '_' => 'Laman ini berisi konten dengan terjemahan yang belum diperbarui. Silahkan periksa :default untuk informasi selengkapnya (dan mohon pertimbangkan untuk memperbarui terjemahan bila anda dapat membantu)!',
             'default' => 'Versi Bahasa Inggris',
         ],
     ],

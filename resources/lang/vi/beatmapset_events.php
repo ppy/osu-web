@@ -26,7 +26,7 @@ return [
         'discussion_post_restore' => 'Moderator đã phục hồi bài viết từ cuộc thảo luận :discussion.',
         'discussion_restore' => 'Moderator đã phục hồi cuộc thảo luận :discussion.',
         'disqualify' => 'Disqualified bởi :user. Reason: :text.',
-        'disqualify_legacy' => '',
+        'disqualify_legacy' => 'Disqualified bởi :user. Lí do: :text.',
         'issue_reopen' => 'Vấn đề đã giải quyết :discussion được mở lại.',
         'issue_resolve' => 'Vấn đề :discussion đã được giải quyết.',
         'kudosu_allow' => 'Kudosu của cuộc thảo luận :discussion đã không còn bị từ chối nữa.',
@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => 'Nội dung',
-        'discussion_deleted' => '',
+        'discussion_deleted' => '[đã xóa]',
         'type' => 'Loại',
     ],
 ];

@@ -21,20 +21,22 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
-            'has_reply' => '',
+            'is_hype' => 'Non è possibile annullare l\'hyping.',
+            'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
+            'incorrect_state' => 'Errore nel eseguire l\'azione, prova a ricaricare la pagina.',
+            'owner' => "Non possono nominare i propri beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono rispolvere una discussione.',
         ],
 
         'vote' => [
-            'limit_exceeded' => '',
-            'owner' => "",
-            'wrong_beatmapset_state' => '',
+            'limit_exceeded' => 'Si prega di attendere un po\' prima di esprimere altri voti',
+            'owner' => "Impossibile votare la propria discussione.",
+            'wrong_beatmapset_state' => 'Possibile votare solo su discussioni di mappe in attesa.',
         ],
     ],
 
@@ -56,7 +58,7 @@ return [
                 'channel' => [
                     'no_access' => 'È richiesto l\'accesso al canale di destinazione.',
                     'moderated' => 'Il canale è momentaneamente moderato.',
-                    'not_lazer' => '',
+                    'not_lazer' => 'Puoi parlare solo in #lazer al momento.',
                 ],
 
                 'not_allowed' => 'Non puoi inviare un messaggio mentre sei bannato/ristretto/silenziato.',
@@ -78,7 +80,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => '',
+                'deleted' => 'Impossibile modificare un post cancellato.',
                 'locked' => 'Il post è bloccato dall\'effettuare modifiche.',
                 'no_forum_access' => 'È richiesto l\'accesso al forum.',
                 'not_owner' => 'Solo l\'autore del post lo può modificare.',
@@ -86,8 +88,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => '',
-                'too_many_help_posts' => "", // FIXME: unhardcode email address.
+                'play_more' => 'Prova a giocare prima di postare nei forum, per favore! Se hai problemi a giocare, posta nel forum Aiuto e Supporto.',
+                'too_many_help_posts' => "Devi giocare di più prima di poter fare ulteriori post. Se hai ancora problemi a giocare, invia un email a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

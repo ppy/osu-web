@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => '',
-      'remove' => '',
+      'add' => 'voeg vriend toe',
+      'remove' => 'verwijder vriend',
     ],
 
     'state' => [
-      'friends' => '',
-      'mutual' => '',
+      'friends' => 'vrienden',
+      'mutual' => 'wederzijdse',
     ],
 
-    'title' => '',
-    'title_compact' => '',
+    'title' => 'Vrienden',
+    'title_compact' => 'vrienden',
 
-    'too_many' => '',
+    'too_many' => 'Vrienden limiet bereikt.',
 ];

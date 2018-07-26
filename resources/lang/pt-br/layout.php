@@ -29,7 +29,7 @@ return [
             'account-edit' => 'configurações',
             'friends-index' => 'amigos',
             'changelog-index' => 'registro de alterações',
-            'changelog-show' => 'build',
+            'changelog-build' => 'versão',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
@@ -53,7 +53,7 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'artistas em destaque',
-            'beatmap_discussion_posts-index' => 'postagens de discussão de beatmaps',
+            'beatmap_discussion_posts-index' => 'postagens de discussão sobre beatmaps',
             'beatmap_discussions-index' => 'discussões de beatmaps',
             'beatmapset-watches-index' => 'supervisão de modding',
             'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
@@ -70,14 +70,14 @@ return [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'tabelas',
+            'charts' => 'destaques',
             'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidade',
-            'dev' => '',
+            'dev' => 'desenvolvimento',
             'getForum' => 'fóruns',
             'getChat' => 'chat',
             'getLive' => 'transmissões',
@@ -93,7 +93,7 @@ return [
             'forum-forums-show' => 'fóruns',
         ],
         'multiplayer' => [
-            '_' => 'multijogador',
+            '_' => 'multiplayer',
             'show' => 'partida',
         ],
         'error' => [
@@ -120,8 +120,8 @@ return [
             'help' => 'Ajuda',
             'modding-history-discussions' => 'discussões de modding',
             'modding-history-events' => 'eventos de modding',
-            'modding-history-index' => 'atividades de beatmap de usuário',
-            'modding-history-posts' => 'posts de modding',
+            'modding-history-index' => 'histórico de modding do usuário',
+            'modding-history-posts' => 'postagens de modding do usuário',
             'modding-history-votesGiven' => 'votos de modding dados',
             'modding-history-votesReceived' => 'votos de modding recebidos',
         ],
@@ -174,9 +174,9 @@ return [
         'help' => [
             '_' => 'Ajuda & Comunidade',
             'faq' => 'Perguntas Frequentes',
-            'forum' => 'Fóruns da Comunidade',
+            'forum' => 'Fóruns da comunidade',
             'livestreams' => 'Transmissões Ao Vivo',
-            'report' => 'Relatar um Problema',
+            'report' => 'Relatar um problema',
         ],
         'support' => [
             '_' => 'Apoiar osu!',
@@ -186,14 +186,16 @@ return [
         'legal' => [
             '_' => 'Informações Legais & Estado',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacidade',
             'server_status' => 'Estado dos Servidores',
+            'source_code' => 'Código-fonte',
             'terms' => 'Termos de Serviço',
         ],
     ],
 
     'errors' => [
         '404' => [
-            'error' => 'Página Não Encontrada',
+            'error' => 'Página não encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '403' => [
@@ -205,7 +207,7 @@ return [
             'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
         ],
         '405' => [
-            'error' => 'Página Não Encontrada',
+            'error' => 'Página não encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '500' => [
@@ -233,7 +235,7 @@ return [
             'email' => 'endereço de e-mail',
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
-            'title' => 'Inicie a Sessão Para Continuar',
+            'title' => 'Inicie a sessão para continuar',
 
             'error' => [
                 'email' => "O nome de usuário ou o endereço de e-mail não existe",

@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => '开始于 :date',
-            'soon' => '',
+            'soon' => '马上就到',
         ],
     ],
     'states' => [

@@ -21,15 +21,15 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Remover Supervisão',
-            'to_1' => 'Supervisionar',
+            'to_0' => 'Remover notificação',
+            'to_1' => 'Notificar',
         ],
     ],
 
     'index' => [
         'description' => 'Estas são as discussões de beatmap que você está acompanhando. Você será notificado quando o beatmap receber atualizações ou postagens novas.',
-        'title_compact' => 'supervisão de modding',
-        'title_main' => 'Lista de Supervisão de Modding',
+        'title_compact' => 'notificações de modding',
+        'title_main' => 'Lista de notificações de modding',
 
         'table' => [
             'empty' => 'Nenhuma discussão de beatmap supervisionada.',

@@ -19,10 +19,10 @@
  */
 
 return [
-    'months' => '',
+    'months' => 'mesi',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'ricerca in corso...',
+        'not_found' => "Questo utente non esiste",
     ],
 ];

@@ -81,6 +81,10 @@
       width: 25px;
     }
 
+    &--player {
+      width: 180px;
+    }
+
     &--maxcombo {
       width: 100px;
     }
@@ -127,8 +131,10 @@
     }
 
     &:hover {
+      color: #fff;
+
       > td {
-        background-color: #ccc;
+        background-color: #555;
       }
     }
 
@@ -147,6 +153,10 @@
 
   &__perfect {
     color: @green;
+
+    .@{_top}__body-row:hover & {
+      color: @green-lighter;
+    }
   }
 
   &__rank {
@@ -164,8 +174,18 @@
 
   &__user-link {
     color: #555;
-  }
+    transition: none;
 
+    &:hover {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .@{_top}__body-row:hover & {
+      color: #fff;
+    }
+  }
+  
   &__zero {
     color: #aaa;
   }

@@ -32,7 +32,7 @@ return [
             'player-joined' => ':user entrou na partida',
             'player-kicked' => ':user foi expulso da partida',
             'match-created' => ':user criou a partida',
-            'match-disbanded' => ':the partida foi desfeita',
+            'match-disbanded' => 'a partida foi desfeita',
             'host-changed' => ':user tornou-se o líder',
 
             'player-left-no-user' => 'um jogador deixou a partida',

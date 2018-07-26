@@ -57,10 +57,6 @@ class ProfilePage.HeaderExtra extends React.Component
 
     friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
 
-    originKeys = []
-    originKeys.push 'country' if @props.user.country.name?
-    originKeys.push 'age' if @props.user.age?
-
     playsWith =
       (@props.user.playstyle || []).map (s) ->
         osu.trans "common.device.#{s}"
@@ -68,6 +64,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
+    isBlocked = _.find(currentUser.blocks, target_id: @props.user.id)
 
     div
       className:
@@ -90,16 +87,14 @@ class ProfilePage.HeaderExtra extends React.Component
 
       div className: bn,
         div className: "#{bn}__column #{bn}__column--text",
-          if originKeys.length != 0 || @props.user.title?
+          if @props.user.country.name?
             div className: "#{bn}__rows",
-              if originKeys.length != 0
-                div
-                  className: "#{bn}__row",
-                  dangerouslySetInnerHTML:
-                    __html:
-                      osu.trans "users.show.origin_#{originKeys.join('_')}",
-                        country: rowValue @props.user.country.name
-                        age: rowValue osu.trans('users.show.age', age: @props.user.age)
+              div
+                className: "#{bn}__row"
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'users.show.origin_country',
+                      country: rowValue @props.user.country.name
 
           div className: "#{bn}__rows",
             if joinDate.isBefore moment('2008-01-01')
@@ -131,13 +126,15 @@ class ProfilePage.HeaderExtra extends React.Component
                       devices: rowValue playsWith
             @renderPostCount()
 
-          if !currentUser.id? || currentUser.id != @props.user.id
+          if !currentUser.id? || currentUser.id != @props.user.id && !isBlocked
             div className: "#{bn}__rows #{bn}__rows--actions",
               a
-                className: 'user-action-button user-action-button--message'
+                className: 'user-action-button user-action-button--message user-action-button--right-margin'
                 href: laroute.route 'messages.users.show', user: @props.user.id
                 title: osu.trans('users.card.send_message')
                 i className: 'fas fa-envelope'
+
+              el BlockButton, user_id: @props.user.id
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",

@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'limit_exceeded' => '您發送消息的頻率太快了，坐下來泡杯茶休息會兒吧。',
+            'limit_exceeded' => '您發送訊息的速度太快了，請稍後再試。',
         ],
     ],
 ];

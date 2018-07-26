@@ -32,11 +32,14 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'usunięte',
+        'deleted_beatmap' => 'usunięta',
         'title' => 'Dyskusje',
 
         'form' => [
+            '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'types' => 'Rodzaj wiadomości',
+            'username' => 'Nazwa użytkownika',
 
             'user' => [
                 'label' => 'Użytkownik',
@@ -74,7 +77,7 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'owner' => 'mapper',
+        'owner' => 'twórca',
         'qat' => 'qat',
     ],
 

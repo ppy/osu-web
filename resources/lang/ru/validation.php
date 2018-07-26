@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute содержит неправильное число или букву',
+    'mixture' => ':attribute должен содержать числа и буквы',
     'required' => ':attribute является необходимым',
 ];

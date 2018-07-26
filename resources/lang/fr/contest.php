@@ -39,9 +39,9 @@ return [
         'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
         'drop_here' => '"Droppez" votre entrée ici',
         'wrong_type' => [
-            'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
-            'beatmap' => 'Uniquement les fichiers .osu sont admis pour ce concours.',
-            'music' => 'Uniquement les fichiers .mp3 sont admis pour ce concours.',
+            'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
+            'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
+            'music' => 'Seuls les fichiers .mp3 sont acceptés pour ce concours.',
         ],
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
@@ -57,7 +57,7 @@ return [
 
         'starts' => [
             '_' => 'Démarre le :date',
-            'soon' => 'bientôt™',
+            'soon' => 'soon™',
         ],
     ],
     'states' => [

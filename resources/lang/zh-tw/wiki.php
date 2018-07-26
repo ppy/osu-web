@@ -20,11 +20,11 @@
 
 return [
     'show' => [
-        'fallback_translation' => '請求的頁面還沒有沒有被翻譯為選中語言 (:language). 正在顯示英文版本.',
+        'fallback_translation' => '請求的頁面還未被翻譯為選中語言 (:language)，現在正顯示英文版本。',
         'languages' => '語言',
         'missing' => '請求的頁面未找到',
         'missing_title' => '未找到',
-        'missing_translation' => '請求的頁面沒有當前語言的版本',
+        'missing_translation' => '請求的頁面沒有當前語言的版本。',
         'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目錄',
 

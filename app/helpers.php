@@ -52,11 +52,48 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
+ * and return old value if failed getting the value after it expires.
+ */
+function cache_remember_with_fallback($key, $minutes, $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        try {
+            $data = [
+                'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                'value' => $callback(),
+            ];
+
+            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+        } catch (Exception $e) {
+            // Log and continue with data from the first ::get.
+            log_error($e);
+        }
+    }
+
+    return $data['value'] ?? null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
+    $uid = uniqid($stat);
+    // spaces used so clockwork doesn't run across the whole screen.
+    $description = $stat
+                   .' '.($tag['type'] ?? null)
+                   .' '.($tag['index'] ?? null);
+
     $start = microtime(true);
 
+    clock()->startEvent($uid, $description);
     $result = $callable();
+    clock()->endEvent($uid);
 
     if (config('datadog-helper.enabled')) {
         $duration = microtime(true) - $start;
@@ -64,6 +101,18 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     }
 
     return $result;
+}
+
+function db_unsigned_increment($column, $count)
+{
+    if ($count >= 0) {
+        $value = "{$column} + {$count}";
+    } else {
+        $change = -$count;
+        $value = "IF({$column} < {$change}, 0, {$column} - {$change})";
+    }
+
+    return DB::raw($value);
 }
 
 function es_query_and_words($words)
@@ -231,6 +280,15 @@ function locale_for_timeago($locale)
     return $locale;
 }
 
+function log_error($exception)
+{
+    Log::error($exception);
+
+    if (config('sentry.dsn')) {
+        Sentry::captureException($exception);
+    }
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
@@ -256,16 +314,22 @@ function param_string_simple($value)
     return presence($value);
 }
 
-function product_quantity_options($product)
+function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
         $max = $product->max_quantity;
     } else {
         $max = min($product->max_quantity, $product->stock);
     }
+
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
         $opts[$i] = trans_choice('common.count.item', $i);
+    }
+
+    // include selected value separately if it's out of range.
+    if ($selected > $max) {
+        $opts[$selected] = trans_choice('common.count.item', $selected);
     }
 
     return $opts;
@@ -322,6 +386,11 @@ function require_login($text_key, $link_text_key)
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
+}
+
+function spinner()
+{
+    return '<div class="la-ball-clip-rotate"></div>';
 }
 
 function strip_utf8_bom($input)
@@ -467,8 +536,8 @@ function current_action()
 function link_to_user($user_id, $user_name = null, $user_color = null)
 {
     if ($user_id instanceof App\Models\User) {
-        $user_name = $user_id->username;
-        $user_color = $user_id->user_colour;
+        $user_name ?? ($user_name = $user_id->username);
+        $user_color ?? ($user_color = $user_id->user_colour);
         $user_id = $user_id->getKey();
     }
     $user_name = e($user_name);
@@ -493,6 +562,11 @@ function issue_icon($issue)
         case 'duplicate': return 'fas fa-copy';
         case 'invalid': return 'far fa-times-circle';
     }
+}
+
+function build_url($build)
+{
+    return route('changelog.build', [$build->updateStream->name, $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
@@ -624,10 +698,6 @@ function footer_landing_links()
             'livestreams' => route('livestreams.index'),
             'report' => route('forum.topics.create', ['forum_id' => 5]),
         ],
-        'support' => [
-            'tags' => route('support-the-game'),
-            'merchandise' => action('StoreController@getListing'),
-        ],
         'legal' => footer_legal_links(),
     ];
 }
@@ -636,8 +706,10 @@ function footer_legal_links()
 {
     return [
         'terms' => route('legal', 'terms'),
+        'privacy' => route('legal', 'privacy'),
         'copyright' => route('legal', 'copyright'),
         'server_status' => osu_url('server_status'),
+        'source_code' => osu_url('source_code'),
     ];
 }
 
@@ -682,14 +754,16 @@ function display_regdate($user)
         return;
     }
 
+    $tooltipDate = i18n_date($user->user_regdate);
+
     $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
+        return '<div title="'.$tooltipDate.'">'.trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => "<strong>{$formattedDate}</strong>",
+        'date' => "<strong title='{$tooltipDate}'>{$formattedDate}</strong>",
     ]);
 }
 
@@ -963,9 +1037,9 @@ function get_params($input, $namespace, $keys)
         $key = $keyAndType[0];
         $type = $keyAndType[1] ?? null;
 
-        $value = get_param_value(array_get($input, $key), $type);
+        if (array_has($input, $key)) {
+            $value = get_param_value(array_get($input, $key), $type);
 
-        if ($value !== null) {
             array_set($params, $key, $value);
         }
     }

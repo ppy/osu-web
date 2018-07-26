@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'Không thể sử dụng phương thức thanh toán này trong Paypal.',
+    'instrument_declined' => 'Paypal từ chối phương thức thanh toán này.',
     'invalid_resource_id' => 'Không tìm thấy thông tin thanh toán.',
     'unknown' => "Thanh toán đã bị từ chối, nhưng chúng tôi không biết tại sao.",
 ];

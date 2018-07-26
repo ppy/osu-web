@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap Diskussioner',
 
         'form' => [
+            '_' => '',
             'deleted' => 'Inkluder slettede diskussioner',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => 'Bruger',
@@ -47,9 +50,9 @@ return [
 
     'item' => [
         'created_at' => '',
-        'deleted_at' => '',
+        'deleted_at' => 'Sletnings dato',
         'message_type' => '',
-        'permalink' => '',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -79,7 +82,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Alle',
+        'label' => 'Filtrer efter bruger',
     ],
 ];

@@ -34,9 +34,10 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'made-by' => '作者: ',
+            'mapped_by' => '作者: :mapper',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
+            'updated_timeago' => '上次更新于 :timeago',
             'ranked' => 'ranked 于 ',
             'approved' => 'approved 于 ',
             'qualified' => 'qualified 于 ',
@@ -53,7 +54,7 @@ return [
             'favourited_count' => '还有很多人...',
         ],
         'stats' => [
-            'cs' => '缩圈大小',
+            'cs' => '圆圈大小',
             'cs-mania' => '键位数量',
             'drain' => '掉血速度',
             'accuracy' => '准确率',
@@ -65,7 +66,7 @@ return [
             'count_sliders' => '滑条总数',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
-            'nominations' => '',
+            'nominations' => '提名状态',
             'playcount' => '游玩次数',
         ],
         'info' => [

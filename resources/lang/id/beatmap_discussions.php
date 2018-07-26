@@ -21,8 +21,8 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Anda Harus Masuk Telebih Dahulu Untuk Menyunting.',
-            'system_generated' => 'Kiriman yang dibuat oleh sistem tidak dapat disuting.',
+            'null_user' => 'Silakan masuk untuk menyunting.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
@@ -32,11 +32,14 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'telah dihapus',
+        'deleted_beatmap' => 'terhapus',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
+            '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'types' => 'Tipe pesan',
+            'username' => 'Nama Pengguna',
 
             'user' => [
                 'label' => 'Pengguna',
@@ -46,20 +49,20 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Tanggal post',
+        'created_at' => 'Tanggal kiriman',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
         'permalink' => 'Tautan',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada kiriman yang menarik perhatian saya',
-        'notice' => 'Terdapat kiriman pada :timestamp (:existing_timestamps). Silakan periksa kembali sebelum memposting.',
+        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
+        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Masuk untuk menanggapi',
+            'guest' => 'Masuk untuk Menanggapi',
             'user' => 'Tanggapi',
         ],
     ],
@@ -80,6 +83,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Di Saring berdasarkan pengguna',
+        'label' => 'Filter berdasarkan pengguna',
     ],
 ];

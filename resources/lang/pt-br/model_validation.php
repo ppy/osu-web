@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussão está trancada.',
-        'first_post' => 'Não é possível deletar a postagem inicial.',
+        'first_post' => 'Não é possível excluir a publicação inicial.',
     ],
 
     'beatmapset_discussion' => [
@@ -82,22 +82,22 @@ return [
     ],
 
     'user' => [
-        'contains_username' => 'Senha não deve conter seu username.',
+        'contains_username' => 'Senha não deve conter seu nome de usuário.',
         'email_already_used' => 'Email já utilizado.',
         'invalid_country' => 'País não presente no banco de dados.',
         'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",
         'too_short' => 'Nova senha curta demais.',
-        'unknown_duplicate' => 'Username ou email já utilizado.',
-        'username_available_in' => 'Este username estará disponível em :duration.',
-        'username_available_soon' => 'Este username estará disponível a qualquer momento!',
-        'username_invalid_characters' => 'O username contém caracteres inválidos.',
-        'username_in_use' => 'Username já está em uso!',
+        'unknown_duplicate' => 'Nome de usuário ou email já utilizado.',
+        'username_available_in' => 'Este nome de usuário estará disponível em :duration.',
+        'username_available_soon' => 'Este nome de usuário estará disponível a qualquer momento!',
+        'username_invalid_characters' => 'O nome de usuário contém caracteres inválidos.',
+        'username_in_use' => 'Nome de usuário já está em uso!',
         'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
-        'username_no_spaces' => "Username não pode comeaçr ou terminar com espaços!",
-        'username_not_allowed' => 'Esta escolha de username não é permitida.',
-        'username_too_short' => 'O username é muito curto.',
-        'username_too_long' => 'O username é muito longo.',
+        'username_no_spaces' => "Nome de usuário não pode começar ou terminar com espaços!",
+        'username_not_allowed' => 'Nome de usuário não permitido.',
+        'username_too_short' => 'O nome de usuário é muito curto.',
+        'username_too_long' => 'O nome de usuário é muito longo.',
         'weak' => 'Senha proibida.',
         'wrong_current_password' => 'Senha atual incorreta.',
         'wrong_email_confirmation' => 'Confirmação de email não confere.',
@@ -106,10 +106,10 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Você precisa ser um :link para mudar seu username!',
+                '_' => 'Você precisa ser um :link para mudar seu nome de usuário!',
                 'link_text' => 'osu!supporter',
             ],
-            'username_is_same' => 'Este já é seu username, bobinho!',
+            'username_is_same' => 'Este já é seu nome de usuário, bobinho!',
         ],
     ],
 ];

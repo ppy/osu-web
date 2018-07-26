@@ -27,37 +27,60 @@
 
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
-            <form>
-                <div>
-                    @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="message_types[]"
-                                value="{{ $type }}"
-                                {{ in_array($type, $search['params']['message_types'], true) ? 'checked' : '' }}
-                            >
-                            {{ $type }}
-                        </label>
-                    @endforeach
+            <form class="simple-form simple-form--search-box">
+                <h2 class="simple-form__row simple-form__row--title">
+                    {{ trans('beatmap_discussions.index.form._') }}
+                </h2>
+                @if ($showUserSearch ?? true)
+                    <label class="simple-form__row">
+                        <div class="simple-form__label">
+                            {{ trans('beatmap_discussions.index.form.username') }}
+                        </div>
+
+                        <input
+                            class="simple-form__input"
+                            name="user"
+                            value="{{ $search['params']['user'] ?? '' }}"
+                        >
+                    </label>
+                @endif
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.types') }}
+                    </div>
+                    <div class="simple-form__checkboxes-inline">
+                        @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
+                            <label class="simple-form__checkbox simple-form__checkbox--inline">
+                                @include('objects._checkbox', [
+                                    'name' => 'message_types[]',
+                                    'value' => $type,
+                                    'checked' => in_array($type, $search['params']['message_types'], true),
+                                ])
+                                {{ trans("beatmaps.discussions.message_type.{$type}") }}
+                            </label>
+                        @endforeach
+                    </div>
                 </div>
 
                 @if (priv_check('BeatmapDiscussionModerate')->can())
-                    <div>
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="with_deleted"
-                                value="1"
-                                {{ $search['params']['with_deleted'] ? 'checked' : '' }}
-                            >
-
+                    <div class="simple-form__row simple-form__row--no-label">
+                        <label class="simple-form__checkbox">
+                            @include('objects._checkbox', [
+                                'name' => 'with_deleted',
+                                'value' => 1,
+                                'checked' => $search['params']['with_deleted']
+                            ])
                             {{ trans('beatmap_discussions.index.form.deleted') }}
                         </label>
                     </div>
                 @endif
 
-                <input type="submit">
+                <div class="simple-form__row simple-form__row--no-label">
+                    <button class="btn-osu-lite btn-osu-lite--default" type="submit">
+                        {{ trans('common.buttons.search') }}
+                    </button>
+                </div>
             </form>
 
             <div class="beatmap-discussions__discussion">
@@ -66,7 +89,7 @@
                 @endforeach
             </div>
 
-            @include('forum._pagination', ['object' => $discussions])
+            @include('objects._pagination_v0', ['object' => $discussions])
         </div>
     </div>
 @endsection

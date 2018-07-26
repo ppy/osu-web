@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie posta nie powiodło się',
+            'error' => 'Zapisywanie postu nie powiodło się',
         ],
     ],
 
@@ -39,14 +39,13 @@ return [
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
-        'message_placeholder' => 'Pisz tutaj',
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
-        'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
-        'restore' => 'odzyskaj',
+        'restore' => 'przywróć',
         'title' => 'Dyskusje',
 
         'collapse' => [
@@ -61,7 +60,13 @@ return [
 
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego zestawu beatmap. Aby zmodować tę beatmapę, zacznij wiadomość od znacznika czasu (np. 00:12:345).',
-            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne komentarze (po jednym dla każdego znacznika czasu).',
+            'in_timeline' => 'Aby zgłosić uwagi dla kilku różnych znaczników czasu, utwórz dla nich odrębne posty (po jednym dla każdego znacznika czasu).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Utwórz post w ogólnej dyskusji (:version)',
+            'generalAll' => 'Utwórz post w ogólnej dyskusji (wszystkie poziomy trudności)',
+            'timeline' => 'Utwórz post dla osi czasu (:version)',
         ],
 
         'message_type' => [
@@ -125,10 +130,10 @@ return [
         'button' => 'Nagłośnij beatmapę!',
         'button_done' => 'Już nagłośniono!',
         'confirm' => "Na pewno? Zużyje to jedno z twoich możliwych nagłośnień. Tej czynności nie można cofnąć.",
-        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'new_time' => "Nagłośnienie kolejnej mapy będzie możliwe za :new_time.",
-        'remaining' => 'Możesz nagłośnić jeszcze :remaining. beatmap(y).',
+        'explanation' => 'Nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nagłośnij tę beatmapę, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => "Nagłośnienie kolejnej beatmapy będzie możliwe za :new_time.",
+        'remaining' => 'Możesz nagłośnić jeszcze :remaining beatmap(y).',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
         'title' => 'Priorytet',
@@ -160,7 +165,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje liczbę nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
         ],
     ],
 
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'options' => 'Więcej opcji wyszukiwania',
+            'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
@@ -180,10 +186,24 @@ return [
                 'rank' => 'Uzyskana ocena',
                 'played' => 'Ukończenie',
             ],
+            'sorting' => [
+                'title' => 'tytuł',
+                'artist' => 'wykonawca',
+                'difficulty' => 'poziom trudności',
+                'updated' => 'data modyfikacji',
+                'ranked' => 'data',
+                'rating' => 'ocena',
+                'plays' => 'liczba zagrań',
+                'relevance' => 'trafność',
+                'nominations' => 'nominacje',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
+                'link_text' => 'statusu donatora osu!',
+            ],
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status beatmapy',
-        'mapped-by' => 'autorstwa :mapper',
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],
@@ -212,7 +232,7 @@ return [
     'genre' => [
         'any' => 'Jakikolwiek',
         'unspecified' => 'Nieokreślony',
-        'video-game' => 'Gra',
+        'video-game' => 'Gra wideo',
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',

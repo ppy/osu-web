@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => 'Weet je dat zeker?',
-    'saved' => 'Opgeslaan',
+    'saved' => 'Opgeslagen',
 
     'array_and' => [
         'words_connector' => ', ',
@@ -34,6 +34,7 @@ return [
         'click_to_copy' => 'klik op naar klembord kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
         'delete' => 'Verwijder',
+        'hide' => 'verbergen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link gekopieerd',
         'post' => 'Post',
@@ -43,7 +44,9 @@ return [
         'reset' => 'Herstel',
         'save' => 'Opslaan',
         'saving' => 'Opslaan...',
+        'search' => 'Zoeken',
         'see_more' => 'toon meer',
+        'show' => 'weergeven',
         'show_more' => 'toon meer',
         'upload_image' => 'upload afbeelding',
     ],
@@ -57,7 +60,7 @@ return [
         'minute_short_unit' => 'minuut|minuten',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
-        'years' => '',
+        'years' => ':count jaar|:count jaar',
     ],
 
     'datetime' => [

@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'blocked_count' => 'pengguna yang diblokir (:count)',
+        'hide_profile' => 'sembunyikan profil',
+        'not_blocked' => 'Pengguna tidak diblokir.',
+        'show_profile' => 'tampilkan profil',
+        'too_many' => 'Batas blokir tercapai.',
+        'button' => [
+            'block' => 'blokir',
+            'unblock' => 'buka blokir',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Memuat...',
         'send_message' => 'kirim pesan',
@@ -60,7 +73,7 @@ return [
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'failed' => 'Gagal masuk',
-        'register' => "Belum memiliki akun osu!? Buat yang baru",
+        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
@@ -114,7 +127,7 @@ return [
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
-                    'restriction_info' => "Layanan untuk mengunggah gambar sampul hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
+                    'restriction_info' => "Layanan untuk mengunggah gambar sampul hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> saja",
                     'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2000x700',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -136,7 +149,7 @@ return [
                 'achieved-on' => 'Dicapai pada :date',
             ],
             'beatmaps' => [
-                'none' => 'Saat ini tidak ada...',
+                'none' => 'Saat ini belum ada...',
                 'title' => 'Beatmap',
 
                 'favourite' => [
@@ -144,6 +157,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap Graveyarded (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Beatmap Favorit (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Ranked & Approved (:count)',
@@ -168,16 +184,16 @@ return [
                     'title' => 'Permainan Terbaru (24 jam)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Riwayat Tayangan Ulang yang Ditonton',
+                    'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Tersedia',
+                'available' => 'Jumlah Kudosu Tersedia',
                 'available_info' => "Kudosu yang Anda miliki dapat ditukarkan menjadi bintang-bintang kudosu (kudosu stars) yang dapat membantu beatmap Anda untuk mendapatkan lebih banyak perhatian. Berikut jumlah kudosu yang belum Anda tukarkan.",
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
-                'total' => 'Jumlah Kudosu yang diperoleh',
-                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">halaman ini</a> untuk informasi lebih lanjut.',
+                'total' => 'Jumlah Kudosu yang Diperoleh',
+                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">laman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -201,8 +217,8 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => 'Menerima :amount atas dasar mendapatkan vote positif di post modding :post',
-                            'reset' => 'Kehilangan :amount atas dasar kehilangan vote positif di post modding :post',
+                            'give' => 'Menerima :amount karena mendapatkan vote positif di post modding :post',
+                            'reset' => 'Kehilangan :amount karena kehilangan vote positif di post modding :post',
                         ],
 
                         'recalculate' => [
@@ -250,7 +266,7 @@ return [
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terbaru',
                     'date' => 'tanggal',
-                    'action' => 'aksi',
+                    'action' => 'tindakan',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',
                     'description' => 'deskripsi',
@@ -282,9 +298,9 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di halaman profil Anda.',
+            'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
-            'placeholder' => 'Ketik konten halaman di sini',
+            'placeholder' => 'Ketik konten laman di sini',
             'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
         ],
         'post_count' => [
@@ -302,7 +318,7 @@ return [
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
-            'replays_watched_by_others' => 'Tayangan Ulang Ditonton',
+            'replays_watched_by_others' => 'Jumlah Tayangan Ulang yang Ditonton',
             'score_ranks' => 'Peringkat Skor',
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',

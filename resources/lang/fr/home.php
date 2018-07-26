@@ -26,14 +26,14 @@ return [
         'players' => '<strong>:count</strong> joueurs inscrits',
 
         'slogan' => [
-            'main' => 'jeu de rythme free-to-win',
+            'main' => 'le meilleur jeu de rythme free-to-win',
             'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'button' => 'rechercher',
+        'button' => 'Rechercher',
         'empty_result' => 'Aucun résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'placeholder' => 'tapez pour rechercher',

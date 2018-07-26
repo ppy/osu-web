@@ -67,11 +67,12 @@ return [
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
         'post_reply' => 'Lägg upp',
         'reply_box_placeholder' => 'Tryck här för att svara',
         'started_by' => 'av :user',
@@ -132,6 +133,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',
@@ -258,10 +260,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => 'Inte bokmärkt',
+            'to_watching' => 'Bokmärk',
+            'to_watching_mail' => 'Bokmärke med notifikation',
+            'mail_disable' => 'Stäng av notifikationer',
         ],
     ],
 ];

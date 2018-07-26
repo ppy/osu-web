@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
+        'http-404' => 'Nie znaleziono.',
         'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
     ],
     'account' => [
@@ -38,6 +39,6 @@ return [
     ],
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
-    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli posiadasz blokadę konta.',
+    'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',
 ];

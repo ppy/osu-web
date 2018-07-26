@@ -62,7 +62,11 @@
     flex: none;
     width: @section-width;
     padding: 20px;
-    padding-left: 40px;
+    padding-bottom: 0px;
+
+    @media @desktop {
+      padding-left: 40px;
+    }
   }
 
   &__section-title {

@@ -25,16 +25,17 @@ return [
     'array_and' => [
         'words_connector' => ', ',
         'two_words_connector' => ' y ',
-        'last_word_connector' => ' y ',
+        'last_word_connector' => ', y ',
     ],
 
     'buttons' => [
         'cancel' => 'Cancelar',
-        'change' => 'Cambiar',
-        'click_to_copy' => 'Clic para copiar al portapapeles',
-        'click_to_copy_copied' => 'copiado al portapapeles!',
+        'change' => 'cambiar',
+        'click_to_copy' => 'haz clic para copiarlo al portapapeles',
+        'click_to_copy_copied' => '¡copiado al portapapeles!',
         'delete' => 'Eliminar',
-        'permalink' => 'enlace permanente',
+        'hide' => 'ocultar',
+        'permalink' => 'permalink',
         'permalink_copied' => 'enlace copiado',
         'post' => 'Publicar',
         'reply' => 'Responder',
@@ -43,7 +44,9 @@ return [
         'reset' => 'Reiniciar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
+        'search' => 'Buscar',
         'see_more' => 'ver más',
+        'show' => 'mostrar',
         'show_more' => 'mostrar más',
         'upload_image' => 'subir imagen',
     ],
@@ -63,7 +66,7 @@ return [
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM [de] YYYY',
-            'php' => 'MMMM \\d\\e y',
+            'php' => 'MMMM y',
         ],
         'year_month_short' => [
             'moment' => 'MMMM [de] YYYY',
@@ -78,7 +81,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'suelta aquí para cargar',
+        'target' => 'suelta aquí para subirlo',
     ],
 
     'pagination' => [

@@ -34,12 +34,12 @@ Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb 
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
 
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => '',
-            'not_yet' => "",
-            'title' => '',
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'contribution' => 'Bedankt voor je hulp tot nu toe! Je hebt in totaal :dollars toegedragen in :tags supporter aankopen!',
+            'gifted' => ':giftedTags van je aankopen waren een cadeau voor iemand anders (een totaal van :giftedDollars), hoe vrijgevig!',
+            'not_yet' => "Je hebt nog geen supporter tag :(",
+            'title' => 'Huidige supporter status',
+            'valid_until' => 'Je huidige supporter tag is geldig tot :date!',
+            'was_valid_until' => 'Je supporter tag was geldig tot :date.',
         ],
 
         'why_support' => [

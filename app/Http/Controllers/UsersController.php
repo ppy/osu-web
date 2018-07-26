@@ -27,7 +27,6 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
@@ -144,6 +143,7 @@ class UsersController extends Controller
         static $mapping = [
             'favourite' => 'favouriteBeatmapsets',
             'graveyard' => 'graveyardBeatmapsets',
+            'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
             'ranked_and_approved' => 'rankedAndApprovedBeatmapsets',
             'unranked' => 'unrankedBeatmapsets',
@@ -230,6 +230,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',
@@ -279,6 +280,7 @@ class UsersController extends Controller
                 'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
                 'rankedAndApprovedBeatmapsets' => 6,
+                'lovedBeatmapsets' => 6,
                 'unrankedBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
 
@@ -379,6 +381,12 @@ class UsersController extends Controller
                 $query = $user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
+            case 'lovedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsLoved()
+                    ->orderBy('approved_date', 'desc');
+                break;
             case 'rankedAndApprovedBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
@@ -410,10 +418,7 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->scoresBest($options['mode'], true)
-                    ->orderBy('pp', 'DESC')
-                    ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
-                $withScoresPosition = true;
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
@@ -424,19 +429,14 @@ class UsersController extends Controller
                 break;
             case 'scoresRecent':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
+                $includes = ['beatmap', 'beatmapset', 'best'];
                 $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset');
+                    ->with('beatmap', 'beatmap.beatmapset', 'best');
                 break;
         }
 
         if (!isset($collection)) {
             $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        if (isset($withScoresPosition)) {
-            // for scores which require pp ('weight' include).
-            ScoreBestModel::fillInPosition($collection);
         }
 
         return json_collection($collection, $transformer, $includes ?? []);

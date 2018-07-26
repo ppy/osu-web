@@ -22,10 +22,10 @@ return [
     'match' => [
         'header' => 'Partidas Multijugador',
         'team-types' => [
-            'head-to-head' => 'Uno a uno',
+            'head-to-head' => 'Cabeza a cabeza',
             'tag-coop' => 'Tag Cooperativo',
-            'team-vs' => 'Equipos',
-            'tag-team-vs' => 'Tag Equipos',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user abandonó la partida',

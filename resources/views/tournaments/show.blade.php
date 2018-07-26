@@ -16,13 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'tournaments',
+    'currentSection' => 'community',
+    'currentAction' => 'tournaments',
     'title' => $tournament->name,
-    'body_additional_classes' => 'osu-layout--body-darker'
+    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
 
     <div class="osu-layout__row">

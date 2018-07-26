@@ -21,11 +21,16 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
-            'title' => 'Community Tournaments',
+            'subtitle' => 'รายชื่อทัวร์นาเมนต์ที่ได้รับการยอมรับอย่างเป็นทางการ',
+            'title' => 'คอมมูนิตี้ ทัวร์นาเมนต์',
         ],
         'none_running' => 'ไม่มีทัวร์นาเมนต์ในขณะนี้ โปรดตรวจสอบในภายหลัง',
         'registration_period' => 'Registration: :start to :end',
+
+        'state' => [
+            'current' => 'ทัวร์นาเมนต์ที่กำลังดำเนินอยู่',
+            'previous' => 'ทัวร์นาเมนต์ที่เสร็จสิ้นลงแล้ว',
+        ],
     ],
 
     'show' => [

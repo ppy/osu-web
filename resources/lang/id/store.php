@@ -23,13 +23,33 @@ return [
         'warehouse' => 'Gudang',
     ],
 
+    'cart' => [
+        'checkout' => 'Checkout',
+        'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
+        'shipping_fees' => 'biaya pengiriman',
+        'title' => 'Keranjang Belanja',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Aduh, ada masalah dengan pemesanan anda yang mencegah proses pembayaran!',
+            'line_2' => 'Hapus atau perbarui item-item di atas untuk melanjutkan.',
+        ],
+
+        'empty' => [
+            'text' => 'Keranjang anda masih kosong.',
+            'return_link' => [
+                '_' => 'Kembali ke tautan :link untuk mencari merchandise!',
+                'link_text' => 'etalase toko',
+            ],
+        ],
+    ],
+
     'checkout' => [
-        'cart_problems' => 'Aduh, ada masalah dengan keranjang Anda!',
+        'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'error' => 'Terjadi masalah saat menyelesaikan pembayaran :(',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
-        'pay' => 'Bayar via Paypal',
+        'pay' => 'Bayar lewat Paypal',
         'pending_checkout' => [
             'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
             'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
@@ -53,18 +73,28 @@ return [
             ],
             'quantity' => 'Jumlah',
         ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Anda tidak dapat menyunting pesanan yang telah dibatalkan.',
+            'checkout' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.', // checkout and processing should have the same message.
+            'default' => 'Pesanan tidak dapat diubah',
+            'delivered' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
+            'paid' => 'Anda tidak dapat menyunting pesanan yang telah dibayar.',
+            'processing' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.',
+            'shipped' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
+        ],
     ],
 
     'product' => [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Barang saat ini kehabisan stok. Periksa kembali nanti!',
-            'out_with_alternative' => 'Sayangnya barang ini kehabisan stok. Gunakan dropdown untuk memilih jenis yang lain atau periksa kembali nanti!',
+            'out' => 'Stok untuk barang ini habis. Silahkan Periksa kembali nanti!',
+            'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
         ],
 
         'add_to_cart' => 'Tambahkan ke Keranjang',
-        'notify' => 'Beri tahu saya bila tersedia!',
+        'notify' => 'Beri tahu saya bila telah tersedia!',
 
         'notification_success' => 'Anda akan diberitahu saat kami punya stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',

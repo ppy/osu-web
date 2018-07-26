@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when :user',
         'latest_reply_by' => '最后回复: :user',
         'new_topic' => '发表新主题',
+        'new_topic_login' => '登录以发表新主题',
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
         'started_by' => '发帖人： :user',
@@ -132,6 +133,7 @@ return [
         '_' => '主题',
 
         'actions' => [
+            'login_reply' => '登录后回复',
             'reply' => '回复',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',

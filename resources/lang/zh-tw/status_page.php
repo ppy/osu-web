@@ -31,11 +31,11 @@ return [
 
     'online' => [
         'title' => [
-            'users' => '最近 24 小時的在線用戶',
-            'score' => '最近 24 小時的分數上傳',
+            'users' => '最近24小時內在線的使用者',
+            'score' => '最近 24 小時內上傳的分數',
         ],
-        'current' => '當前在線用戶',
-        'score' => '每秒提交分數',
+        'current' => '目前在線的使用者',
+        'score' => '每秒提交的分數',
     ],
 
     'recent' => [
@@ -49,9 +49,9 @@ return [
         ],
 
         'uptime' => [
-            'title' => '運行時間',
+            'title' => '在線時間',
             'graphs' => [
-                'server' => '服務器',
+                'server' => '伺服器',
                 'web' => '網頁',
             ],
         ],
@@ -62,7 +62,7 @@ return [
             'month' => '本月',
             'all_time' => '所有時間',
             'last_week' => '上週',
-            'weeks_ago' => ':count 周前',
+            'weeks_ago' => ': count 週前',
         ],
     ],
 ];

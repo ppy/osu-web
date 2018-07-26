@@ -43,7 +43,7 @@ return [
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
             'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
-            'owner' => 'Tidak terdapat hype di beatmap Anda.',
+            'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
         ],
 
         'timestamp' => [
@@ -83,7 +83,7 @@ return [
 
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
-        'email_already_used' => 'Alamat email sudah digunakan',
+        'email_already_used' => 'Alamat email sudah digunakan.',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",

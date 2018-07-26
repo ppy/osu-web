@@ -1,10 +1,12 @@
 <?php
 
+use App\Libraries\UserVerification;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Models\UserGroup;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
@@ -55,6 +57,75 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
+    public function testPostStoreNewDiscussionNoteByMapper()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->mapper)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'mapper_note',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewDiscussionNoteByNominator()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this->user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+
+        $this
+            ->actingAs($this->user)
+            ->withSession(['verified' => UserVerification::VERIFIED])
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'mapper_note',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewDiscussionNoteByOtherUser()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'mapper_note',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
+    }
+
     public function testPostStoreNewReply()
     {
         $currentDiscussions = BeatmapDiscussion::count();
@@ -72,6 +143,102 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewReplyReopenByMapper()
+    {
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->beatmapset->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => false,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        // reopen adds system post
+        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+    }
+
+    public function testPostStoreNewReplyReopenByNominator()
+    {
+        $user = factory(User::class)->create();
+        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($user)
+            ->withSession(['verified' => UserVerification::VERIFIED])
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => false,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        // reopen adds system post
+        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+    }
+
+    public function testPostStoreNewReplyReopenByOtherUser()
+    {
+        $user = factory(User::class)->create();
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => false,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        // reopen adds system post
+        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+    }
+
+    public function testPostStoreNewReplyReopenByStarter()
+    {
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->beatmapDiscussion->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => false,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(200);
+
+        // reopen adds system post
+        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
     }
 
     public function testPostStoreNewReplyResolve()
@@ -120,6 +287,29 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
             $this->assertSame(!$lastResolved, $this->beatmapDiscussion->fresh()->resolved);
         }
+    }
+
+    public function testPostStoreNewReplyResolveByOtherUser()
+    {
+        $user = factory(User::class)->create();
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => false]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => true,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($lastDiscussionPosts, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
     }
 
     public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()

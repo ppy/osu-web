@@ -34,9 +34,10 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
-            'made-by' => 'feito por ',
+            'mapped_by' => 'mapeado por :mapper',
             'submitted' => 'enviado em ',
             'updated' => 'última atualização em ',
+            'updated_timeago' => 'última vez atualizado :timeago',
             'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
@@ -63,7 +64,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
-            'user-rating' => 'Avaliação de Usuários',
+            'user-rating' => 'Avaliação',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
             'playcount' => 'Vezes Jogadas',
@@ -80,7 +81,7 @@ return [
             'unranked' => 'Beatmap não ranqueado',
         ],
         'scoreboard' => [
-            'achieved' => 'conquistado em :when',
+            'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
@@ -91,7 +92,7 @@ return [
             'headers' => [
                 'accuracy' => 'Precisão',
                 'combo' => 'Combo Máximo',
-                'miss' => 'Erro',
+                'miss' => 'Erros',
                 'mods' => 'Mods',
                 'player' => 'Jogador',
                 'pp' => 'pp',

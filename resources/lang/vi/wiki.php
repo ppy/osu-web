@@ -22,15 +22,15 @@ return [
     'show' => [
         'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
         'languages' => 'Ngôn ngữ',
-        'missing' => 'Không thể tìm thấy trang ":keyword" đã yêu cầu.',
+        'missing' => 'Không thể tìm thấy trang ":keyword".',
         'missing_title' => 'Không Tìm Thấy',
-        'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ đã chọn.',
+        'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ bạn đã chọn.',
         'search' => 'Tìm kiếm trang có sẵn cho :link.',
         'toc' => 'Nội dung',
 
         'edit' => [
             'link' => 'Hiển thị trên GitHub',
-            'refresh' => 'Làm mới',
+            'refresh' => 'Tải lại',
         ],
 
         'outdated' => [

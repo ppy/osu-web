@@ -20,19 +20,42 @@
 
 return [
     'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'generic' => 'Bug fixes and minor improvements',
 
-    'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellanous',
+    'build' => [
+        'title' => 'changes in :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited user online|:count_delimited users online',
+    ],
+
+    'entry' => [
+        'by' => 'by :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'changelog listing',
+            '_from' => 'changes since :from',
+            '_from_to' => 'changes between :from and :to',
+            '_stream' => 'changes in :stream',
+            '_stream_from' => 'changes in :stream since :from',
+            '_stream_from_to' => 'changes in :stream between :from and :to',
+            '_stream_to' => 'changes in :stream up to :to',
+            '_to' => 'changes up to :to',
+        ],
+
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Listing',
+        ],
     ],
 
     'support' => [
         'heading' => 'Love this update?',
         'text_1' => 'Support further development of osu! and :link today!',
-        'text_1_link' => 'become a supporter',
+        'text_1_link' => 'become an osu!supporter',
         'text_2' => 'Not only will you help speed development, but you will also get some extra features and customisations!',
     ],
 ];

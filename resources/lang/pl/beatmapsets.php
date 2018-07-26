@@ -34,9 +34,10 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'stworzona przez ',
+            'mapped_by' => 'autorstwa :mapper',
             'submitted' => 'dodana ',
             'updated' => 'ostatnio aktualizowana ',
+            'updated_timeago' => 'ostatnio zaktualizowana :timeago',
             'ranked' => 'rankingowa od ',
             'approved' => 'zatwierdzona od ',
             'qualified' => 'zakwalifikowana od ',
@@ -62,11 +63,11 @@ return [
             'total_length' => 'Długość',
             'bpm' => 'BPM',
             'count_circles' => 'Ilość kółek',
-            'count_sliders' => 'Ilość sliderów',
+            'count_sliders' => 'Liczba sliderów',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
-            'playcount' => 'Ilość zagrań',
+            'playcount' => 'Liczba zagrań',
         ],
         'info' => [
             'description' => 'Opis',

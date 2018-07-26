@@ -19,8 +19,8 @@
  */
 
 return [
-    'bold' => 'Fet',
-    'heading' => 'Huvud',
+    'bold' => 'Fetstil',
+    'heading' => 'Rubrik',
     'image' => 'Bild',
     'italic' => 'Kursiv',
     'link' => 'Länk',
@@ -30,9 +30,9 @@ return [
         '_' => 'Teckenstorlek',
         'tiny' => 'Mycket liten',
         'small' => 'Liten',
-        'normal' => '',
+        'normal' => 'Normal',
         'large' => 'Stor',
     ],
-    'spoilerbox' => 'Spoiler Låda',
-    'strikethrough' => 'Igenom struken',
+    'spoilerbox' => 'Spoilerlåda',
+    'strikethrough' => 'Genomstruken',
 ];

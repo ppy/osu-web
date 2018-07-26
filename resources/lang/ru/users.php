@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'пользователь добавлен в ваш чёрный список',
+        'blocked_count' => 'чёрный список (:count)',
+        'hide_profile' => 'скрыть профиль',
+        'not_blocked' => 'Этот пользователь заблокирован.',
+        'show_profile' => 'показать профиль',
+        'too_many' => 'Достигнут лимит кол-ва заблокированных.',
+        'button' => [
+            'block' => 'в чёрный список',
+            'unblock' => 'удалить',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Загрузка...',
         'send_message' => 'отправить сообщение',
@@ -94,15 +107,15 @@ return [
         'first_members' => 'Здесь с самого начала',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Присоединился :date',
-        'lastvisit' => 'Последний вход :date',
+        'joined_at' => 'Дата регистрации: :date',
+        'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age, из :country',
-        'origin_country' => 'Из :country',
+        'origin_country_age' => ':age, проживает в :country',
+        'origin_country' => 'Проживает в :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'также известен как',
-        'plays_with' => 'Играет на :devices',
+        'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
         'edit' => [
@@ -144,6 +157,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Заброшенные карты (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Любимые карты (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ранкнутые и одобренные карты (:count)',
@@ -275,21 +291,21 @@ return [
             'website' => 'Веб-сайт',
         ],
         'not_found' => [
-            'reason_1' => 'Они могли изменить их псевдонимы.',
-            'reason_2' => 'Этот аккаунт может быть временно недоступен по причинам проблем с безопасностью или злоупотребления.',
+            'reason_1' => 'Они могли изменить свои псевдонимы.',
+            'reason_2' => 'Учетная запись может быть временно недоступна в связи с жалобами или проблемами безопасности.',
             'reason_3' => 'Возможно, вы сделали опечатку!',
             'reason_header' => 'Есть несколько возможных причин:',
             'title' => 'Игрок не найден! ;_;',
         ],
         'page' => [
             'description' => '<strong>обо мне!</strong> - это ваше личное редактируемое пространство в профиле.',
-            'edit_big' => 'Измените меня!',
+            'edit_big' => 'редактировать',
             'placeholder' => 'Введите контент страницы сюда',
             'restriction_info' => "Вы должны иметь <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> для разблокировки данной возможности.",
         ],
         'post_count' => [
             '_' => 'Написал :link',
-            'count' => ':count постов|:count постов',
+            'count' => ':count пост|:count поста|:count постов',
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',

@@ -36,6 +36,7 @@ abstract class Model extends BaseModel
     {
         $macros = $this->macros ?? [];
         $macros[] = 'realCount';
+        $macros[] = 'last';
 
         return $macros;
     }
@@ -48,6 +49,15 @@ abstract class Model extends BaseModel
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroLast()
+    {
+        return function ($baseQuery, $column = null) {
+            $query = clone $baseQuery;
+
+            return $query->orderBy($column ?? $this->getKeyName(), 'DESC')->first();
+        };
     }
 
     public function macroRealCount()
@@ -116,6 +126,13 @@ abstract class Model extends BaseModel
 
             return $result;
         });
+    }
+
+    public function dbName()
+    {
+        $connection = $this->connection ?? config('database.default');
+
+        return config("database.connections.{$connection}.database");
     }
 
     private function enlistCallbacks($model, $connection)

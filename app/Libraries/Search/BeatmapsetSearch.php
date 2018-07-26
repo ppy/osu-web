@@ -59,7 +59,10 @@ class BeatmapsetSearch extends RecordSearch
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
-            $query->must(QueryHelper::queryString($this->params->queryString));
+            $terms = explode(' ', $this->params->queryString);
+            // results must contain at least one of the terms and boosted by containing all of them.
+            $query->must(QueryHelper::queryString($this->params->queryString, [], 'or', 1 / count($terms)));
+            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
         }
 
         $this->addModeFilter($query);
@@ -134,7 +137,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($this->params->mode ?? Beatmap::MODES['osu']);
+            $mode = Beatmap::modeStr($this->params->mode) ?? $this->params->user->playmode;
             $difficulty = $this->params->user->recommendedStarDifficulty($mode);
             $query->filter([
                 'range' => [
@@ -202,6 +205,13 @@ class BeatmapsetSearch extends RecordSearch
             return [new Sort('_score', 'desc')];
         }
 
+        if ($this->params->status === 3) {
+            return [
+                new Sort('queued_at', 'desc'),
+                new Sort('approved_date', 'desc'), // fallback
+            ];
+        }
+
         if (in_array($this->params->status, [4, 5, 6], true)) {
             return [new Sort('last_update', 'desc')];
         }
@@ -213,9 +223,8 @@ class BeatmapsetSearch extends RecordSearch
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
+            $newQuery = Score\Best\Model::getClass($mode)
+                ::forUser($this->params->user)
                 ->select('beatmap_id');
 
             if ($rank !== null) {

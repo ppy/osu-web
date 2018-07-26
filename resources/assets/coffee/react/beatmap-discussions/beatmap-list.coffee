@@ -31,6 +31,11 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
   componentDidMount: =>
     $(document).on 'click.beatmapList', @hideSelector
+    @syncBlackout()
+
+
+  componentDidUpdate: =>
+    @syncBlackout()
 
 
   componentWillUnmount: =>
@@ -82,8 +87,6 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
   setSelector: (state) =>
     return if @state.showingSelector == state
 
-    Blackout.toggle(state, 0.5)
-
     @setState showingSelector: state
 
 
@@ -91,7 +94,13 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     return if e.button != 0
     e.preventDefault()
 
-    $.publish 'beatmapsetDiscussions:update', beatmapId: parseInt(e.currentTarget.dataset.id, 10)
+    $.publish 'beatmapsetDiscussions:update',
+      beatmapId: parseInt(e.currentTarget.dataset.id, 10)
+      mode: BeatmapDiscussionHelper.DEFAULT_MODE
+
+
+  syncBlackout: =>
+    Blackout.toggle(@state.showingSelector, 0.5)
 
 
   toggleSelector: (e) =>

@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'estado',
-        'description' => 'o que tá acontecendo?',
+        'description' => 'que que tá acontecendo, meu parsa?',
     ],
 
     'incidents' => [
@@ -31,8 +31,8 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Usuários Online nas últimas 24 Horas',
-            'score' => 'Pontuações Atingidas nas últimas 24 Horas',
+            'users' => 'Usuários online nas últimas 24 Horas',
+            'score' => 'Pontuações atingidas nas últimas 24 Horas',
         ],
         'current' => 'Usuários Online',
         'score' => 'Pontuações Atingidas por Segundo',

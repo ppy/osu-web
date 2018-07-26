@@ -16,11 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'contests',
+    'currentSection' => 'community',
+    'currentAction' => 'contests',
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(Markdown::convertToHtml($contestMeta->currentDescription())),
-    'body_additional_classes' => 'osu-layout--body-darker'
+    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

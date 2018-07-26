@@ -27,7 +27,7 @@ return [
             'removing' => 'Eliminando...',
         ],
         'show' => [
-            'covers' => 'Administrar Portadas de los Beatmap',
+            'covers' => 'Administrar las portadas de los Beatmap',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activar',
@@ -43,7 +43,7 @@ return [
             'index' => [
                 'delete' => 'Eliminar',
 
-                'forum-name' => 'Foro #:id: : nombre',
+                'forum-name' => 'Foro #:id: :name',
 
                 'no-cover' => 'Portada no definida',
 
@@ -52,10 +52,10 @@ return [
                     'update' => 'Actualizar',
                 ],
 
-                'title' => 'Lista de portadas',
+                'title' => 'Lista de portadas del foro',
 
                 'type-title' => [
-                    'default-topic' => 'Portada del tema por defecto',
+                    'default-topic' => 'Portada por defecto del tema ',
                     'main' => 'Portada de foro',
                 ],
             ],
@@ -64,13 +64,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Observador de Registro',
+            'title' => 'Visualizador del Registro',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Consola de Administración',
+            'title' => 'Consola de administración',
 
             'sections' => [
                 'forum' => 'Foro',
@@ -83,7 +83,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Lista de Pedidos',
+                'title' => 'Listado de pedidos',
             ],
         ],
     ],

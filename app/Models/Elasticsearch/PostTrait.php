@@ -41,7 +41,7 @@ trait PostTrait
 
     public function toEsJson()
     {
-        $mappings = static::ES_MAPPINGS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -61,26 +61,6 @@ trait PostTrait
         return $values;
     }
 
-    public static function esAnalysisSettings()
-    {
-        static $settings = [
-            'analyzer' => [
-                'post_text_analyzer' => [
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase'],
-                    'char_filter' => ['html_filter'],
-                ],
-            ],
-            'char_filter' => [
-                'html_filter' => [
-                    'type' => 'html_strip',
-                ],
-            ],
-        ];
-
-        return $settings;
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'posts';
@@ -93,13 +73,18 @@ trait PostTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return static::ES_MAPPINGS;
+        return config_path('schemas/posts.json');
     }
 
     public static function esType()
     {
         return 'posts';
+    }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing && !$this->trashed();
     }
 }

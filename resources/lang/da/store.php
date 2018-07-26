@@ -23,12 +23,32 @@ return [
         'warehouse' => 'Varehus',
     ],
 
+    'cart' => [
+        'checkout' => '',
+        'more_goodies' => '',
+        'shipping_fees' => '',
+        'title' => '',
+        'total' => '',
+
+        'errors_no_checkout' => [
+            'line_1' => '',
+            'line_2' => '',
+        ],
+
+        'empty' => [
+            'text' => '',
+            'return_link' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Åh åh, der er problemer med din indkøbskurv!',
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
-        'error' => 'Der opstod et problem under betalingen :(',
-        'old_cart' => '',
+        'old_cart' => 'Din indkøbskurv ser ud til at være forældet og er blevet genindlæst, prøv venligst igen.',
         'pay' => 'Betal med PayPal',
         'pending_checkout' => [
             'line_1' => '',
@@ -42,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Vi har modtaget din osu!store bestilling!',
         ],
     ],
 
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => 'Kvantitet',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => '',
+            'checkout' => '', // checkout and processing should have the same message.
+            'default' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

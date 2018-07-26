@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
         'new_topic' => 'Создать новую тему',
+        'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Начинайте вводить тут',
         'started_by' => 'от :user',
@@ -106,7 +107,7 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Темы, на которые вы подписаны',
-            'title_compact' => 'подписки',
+            'title_compact' => 'подписки на темы',
             'title_main' => '<strong>Подписки</strong> на темы',
 
             'box' => [
@@ -132,6 +133,7 @@ return [
         '_' => 'Темы',
 
         'actions' => [
+            'login_reply' => 'Войдите, чтобы ответить',
             'reply' => 'Ответить',
             'reply_with_quote' => 'Ответить с цитированием',
             'search' => 'Найти',
@@ -258,9 +260,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
+            'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
-            'to_watching_mail' => '',
+            'to_watching_mail' => 'В закладки с оповещением',
             'mail_disable' => 'Отключить уведомления',
         ],
     ],

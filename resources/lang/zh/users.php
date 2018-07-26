@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => '你已经屏蔽此用户。',
+        'blocked_count' => '被屏蔽的用户 (:count)',
+        'hide_profile' => '隐藏用户资料',
+        'not_blocked' => '此用户未被屏蔽。',
+        'show_profile' => '显示用户资料',
+        'too_many' => '屏蔽用户数量达到最大限制。',
+        'button' => [
+            'block' => '屏蔽',
+            'unblock' => '解除屏蔽',
+        ],
+    ],
+
     'card' => [
         'loading' => '加载中...',
         'send_message' => '发送消息',
@@ -144,6 +157,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '坟场里的谱面 (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Loved 的谱面 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',

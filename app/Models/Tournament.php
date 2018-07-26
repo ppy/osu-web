@@ -28,14 +28,18 @@ class Tournament extends Model
 
     protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
 
-    public static function getRegistrationStage()
+    public static function getGroupedListing()
     {
-        return self::query()
-            ->where('signup_open', '<', Carbon::now())
-            ->where('signup_close', '>', Carbon::now())
-            ->orderBy('play_mode', 'desc')
+        $tournaments = static::query()
             ->orderBy('tournament_id', 'desc')
             ->get();
+
+        $now = Carbon::now();
+
+        return [
+            'current' => $tournaments->where('end_date', '>', $now),
+            'previous' => $tournaments->where('end_date', '<=', $now),
+        ];
     }
 
     public function profileBanners()

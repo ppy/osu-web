@@ -19,7 +19,7 @@
     <ol class="page-mode page-mode--breadcrumb">
         <li class="page-mode__item">
             <a class="page-mode-link" href="{{ route('news.index') }}">
-                {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+                {{ trans("layout.menu.{$currentSection}.{$currentAction}") }}
 
                 <span class="page-mode-link__stripe">
                 </span>
@@ -28,7 +28,7 @@
 
         <li class="page-mode__item">
             <a class="page-mode-link page-mode-link--is-active" href="{{ Request::url() }}">
-                {{ trans("news.breadcrumbs.{$current_action}") }}
+                {{ trans("news.breadcrumbs.{$currentAction}") }}
 
                 <span class="page-mode-link__stripe">
                 </span>

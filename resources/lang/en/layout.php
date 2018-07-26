@@ -29,7 +29,7 @@ return [
             'account-edit' => 'settings',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
@@ -178,16 +178,13 @@ return [
             'livestreams' => 'Live Streams',
             'report' => 'Report an Issue',
         ],
-        'support' => [
-            '_' => 'Support osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
-        ],
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Server Status',
-            'terms' => 'Terms of Service',
+            'source_code' => 'Source Code',
+            'terms' => 'Terms',
         ],
     ],
 

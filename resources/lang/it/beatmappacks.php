@@ -21,37 +21,40 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => '',
+            'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
-                '_' => "",
-                'scary' => '',
+                '_' => "Installazione: Una volta che il pacchetto è stato scaricato, estrai il .rar nella directory delle canzoni di osu!.
+                    Tutte le canzoni saranno dei file .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap la prossima volta che entri in modalità Play.
+                    :scary estrai i zip/osz da te,
+                    oppure le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
+                'scary' => 'NON',
             ],
             'note' => [
-                '_' => '',
-                'scary' => '',
+                '_' => 'Nota inoltre che è altamente consigliabile :scary, visto che le mappe più vecchie sono di qualità nettamente inferiore rispetto alle più recenti.',
+                'scary' => 'scarica i pacchetti dal più recente al più vecchio',
             ],
         ],
-        'title' => '',
-        'description' => '',
+        'title' => 'Pacchetto Beatmap',
+        'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Download',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'completato',
+            'not_cleared' => 'non completate',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'Artista/Album',
+        'chart' => 'Spotlight',
+        'standard' => 'Standard',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'Devi essere :link per scaricare',
+        'link_text' => 'accesso effettuato',
     ],
 ];
