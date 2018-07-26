@@ -27,10 +27,10 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
   render: =>
     options = [allUsers]
     for own _id, user of @props.users
-      options.push id: user.id, text: user.username
+      options.push id: user.id, colour: user.profile_colour, text: user.username
 
     selected = if @props.selectedUser?
-                 id: @props.selectedUser.id, text: @props.selectedUser.username
+                 id: @props.selectedUser.id, colour: user.profile_colour, text: @props.selectedUser.username
                else
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
@@ -52,12 +52,18 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       href: BeatmapDiscussionHelper.url user: item?.id, true
       key: item?.id
       onClick: onClick
+      style:
+        color: item.colour if !@isOwner(item)
+
+
+  isOwner: (user) =>
+    user? && user.id == @props.ownerId
 
 
   userGroup: (user) =>
     return unless user?
 
-    if user.id == @props.ownerId
+    if @isOwner(user)
       'owner'
     else
       BeatmapDiscussionHelper.moderationGroup(user)
