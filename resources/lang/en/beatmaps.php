@@ -179,7 +179,7 @@ return [
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
