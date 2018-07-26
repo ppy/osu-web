@@ -225,7 +225,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
     ],
