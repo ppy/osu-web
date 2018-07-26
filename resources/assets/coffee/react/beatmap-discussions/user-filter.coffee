@@ -27,10 +27,10 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
   render: =>
     options = [allUsers]
     for own _id, user of @props.users
-      options.push id: user.id, colour: user.profile_colour, text: user.username
+      options.push @mapUserProperties(user)
 
     selected = if @props.selectedUser?
-                 id: @props.selectedUser.id, colour: @props.selectedUser.profile_colour, text: @props.selectedUser.username
+                 @mapUserProperties(@props.selectedUser)
                else
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
@@ -40,6 +40,13 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       onItemSelected: @onItemSelected
       options: options
       selected: selected
+
+
+  mapUserProperties: (user) ->
+    id: user.id
+    colour: user.profile_colour
+    groups: user.groups
+    text: user.username
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
