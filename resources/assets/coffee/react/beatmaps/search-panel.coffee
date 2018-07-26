@@ -57,11 +57,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
         className: 'osu-page-header__background'
         style:
           backgroundImage: "url(#{@props.background})"
-      div className: 'fancy-search fancy-search--beatmapsets',
+      div className: 'fancy-search fancy-search--beatmapsets js-user-link',
         input
           className: 'fancy-search__input'
           type: 'textbox'
-          disabled: true
           placeholder: osu.trans('beatmaps.listing.search.login_required')
         div className: 'fancy-search__icon',
           i className: 'fas fa-search'
