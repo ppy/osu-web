@@ -72,6 +72,7 @@ class BeatmapsetEvent extends Model
         'discussion_post_restore',
 
         'nomination_reset',
+        'love',
     ];
 
     public static function log($type, $user, $object, $extraData = [])
