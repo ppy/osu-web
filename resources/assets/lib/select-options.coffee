@@ -60,6 +60,7 @@ export class SelectOptions extends PureComponent
               className: "#{@bn}__decoration",
               i className: "fas fa-chevron-down"
           ]
+          item: selectedItem()
           onClick: @toggleSelector
 
       div
@@ -76,22 +77,22 @@ export class SelectOptions extends PureComponent
           key: item.id
           item.text
       ],
-      key: item.id
+      item: item
       selected: @selectedItem()?.id == item.id
       onClick: (event) => @itemSelected(event, item)
 
 
-  renderItem: ({ children, key, onClick, selected = false }) ->
+  renderItem: ({ children, item, onClick, selected = false }) ->
     cssClasses = "#{@bn}__item"
     cssClasses += " #{@bn}__item--selected" if selected
 
-    return @props.renderItem({ children, key, onClick, cssClasses }) if @props.renderItem?
+    return @props.renderItem({ children, item, onClick, cssClasses }) if @props.renderItem?
 
     a
       children: children
       className: cssClasses
       href: '#'
-      key: key
+      key: item.id
       onClick: onClick
 
 

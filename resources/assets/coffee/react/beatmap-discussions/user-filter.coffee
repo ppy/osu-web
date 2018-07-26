@@ -42,12 +42,12 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       selected: selected
 
 
-  renderItem: ({ cssClasses, children, key, onClick }) ->
+  renderItem: ({ cssClasses, children, item, onClick }) ->
     a
       children: children
       className: cssClasses
-      href: BeatmapDiscussionHelper.url user: key, true
-      key: key
+      href: BeatmapDiscussionHelper.url user: item?.id, true
+      key: item?.id
       onClick: onClick
 
 
