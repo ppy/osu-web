@@ -202,10 +202,6 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Rank Status',
-        'source' => 'from :source',
-        'load-more' => 'Load more...',
     ],
     'general' => [
         'recommended' => 'Recommended difficulty',
