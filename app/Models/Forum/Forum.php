@@ -139,6 +139,18 @@ class Forum extends Model
         $query->orderBy('left_id');
     }
 
+    public function getModeratorGroupsAttribute($value)
+    {
+        if (present($value)) {
+            return unserialize($value);
+        }
+    }
+
+    public function setModeratorGroupsAttribute($value)
+    {
+        $this->attributes['moderator_groups'] = ($value === null || count($value) === 0) ? '' : serialize($value);
+    }
+
     public function setForumParentsAttribute($value)
     {
         $this->attributes['forum_parents'] = ($value === null || count($value) === 0) ? '' : serialize($value);
