@@ -85,7 +85,7 @@ class Page
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_searchpath'))
             ->source('path')
             ->query($query);
 
@@ -178,7 +178,7 @@ class Page
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [
