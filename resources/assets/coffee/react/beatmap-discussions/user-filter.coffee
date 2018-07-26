@@ -30,7 +30,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
       options.push id: user.id, colour: user.profile_colour, text: user.username
 
     selected = if @props.selectedUser?
-                 id: @props.selectedUser.id, colour: user.profile_colour, text: @props.selectedUser.username
+                 id: @props.selectedUser.id, colour: @props.selectedUser.profile_colour, text: @props.selectedUser.username
                else
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
