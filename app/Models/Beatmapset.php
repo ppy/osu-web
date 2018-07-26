@@ -550,13 +550,9 @@ class Beatmapset extends Model implements AfterCommit
             $message = trans('beatmaps.nominations.incorrect_state');
         }
 
-        DB::transaction(function () use ($user) {
-            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
-            if (!$nomination->exists()) {
-                $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
-                $this->qualify($user);
-            }
-            $this->refreshCache();
+        $this->getConnection()->transaction(function () use ($user) {
+            $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+            $this->update(['approved' => static::STATES['loved']]);
         });
 
         return [
