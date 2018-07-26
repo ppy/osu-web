@@ -105,7 +105,7 @@ abstract class Search implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort', '_source'] as $key) {
+            foreach (['from', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 
@@ -175,6 +175,7 @@ abstract class Search implements Queryable
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),
+            'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
 
         if (isset($this->highlight)) {

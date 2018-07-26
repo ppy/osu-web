@@ -48,6 +48,7 @@ return [
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
+        'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
