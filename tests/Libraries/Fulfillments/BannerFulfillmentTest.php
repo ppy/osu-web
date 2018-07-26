@@ -43,9 +43,8 @@ class BannerFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
 
-        $this->order = factory(Order::class)->create([
+        $this->order = factory(Order::class, 'paid')->create([
             'user_id' => $this->user->user_id,
-            'transaction_id' => 'test-'.time(),
         ]);
 
         // crap test
