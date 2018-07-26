@@ -149,6 +149,8 @@ return [
         'disqualified_no_reason' => 'no reason specified',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Error performing that action, try refreshing the page.',
+        'love' => 'Love',
+        'love_confirm' => 'Love this beatmap?',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Nominate this beatmap?',
         'nominated_by' => 'nominated by :users',
