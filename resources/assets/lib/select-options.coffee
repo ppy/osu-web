@@ -53,14 +53,14 @@ export class SelectOptions extends PureComponent
             div
               className: 'u-ellipsis-overflow'
               key: 'current'
-              @selectedItem()?.text
+              @props.selected?.text
 
             div
               key: 'decoration'
               className: "#{@bn}__decoration",
               i className: "fas fa-chevron-down"
           ]
-          item: selectedItem()
+          item: @props.selected
           onClick: @toggleSelector
 
       div
@@ -78,7 +78,7 @@ export class SelectOptions extends PureComponent
           item.text
       ],
       item: item
-      selected: @selectedItem()?.id == item.id
+      selected: @props.selected?.id == item.id
       onClick: (event) => @itemSelected(event, item)
 
 
@@ -110,10 +110,6 @@ export class SelectOptions extends PureComponent
 
     @setState showingSelector: false
     @props.onItemSelected?(item)
-
-
-  selectedItem: =>
-    @props.selected
 
 
   toggleSelector: (event) =>
