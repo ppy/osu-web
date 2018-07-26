@@ -33,6 +33,10 @@ class Build extends Model
         'date',
     ];
 
+    protected $casts = [
+        'allow_bancho' => 'boolean',
+    ];
+
     protected $guarded = [];
 
     private $cache = [];
@@ -120,22 +124,58 @@ class Build extends Model
         return $this->hasMany(BuildPropagationHistory::class, 'build_id');
     }
 
-    public function scopeLatestByStream($query, $streamIds)
-    {
-        $latestBuildIds = static::default()
-            ->selectRaw('MAX(build_id) latest_build_id')
-            ->whereIn('stream_id', $streamIds)
-            ->groupBy('stream_id')
-            ->pluck('latest_build_id');
-
-        $query->whereIn('build_id', $latestBuildIds)
-            ->orderByField('stream_id', $streamIds)
-            ->with('updateStream');
-    }
-
     public function scopePropagationHistory($query)
     {
         $query->default()->where('allow_bancho', true);
+    }
+
+    public function scopeSearch($query, $params)
+    {
+        if (isset($params['stream'])) {
+            $stream = UpdateStream::where('name', '=', $params['stream'])->first();
+
+            if ($stream === null) {
+                return $query->none();
+            }
+
+            $query->where('stream_id', '=', $stream->getKey());
+        } else {
+            $stream = null;
+        }
+
+        if (isset($params['from'])) {
+            $query->where('build_id', '>=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['from'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['to'])) {
+            $query->where('build_id', '<=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['to'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['max_id'])) {
+            $query->where('build_id', '<=', $params['max_id']);
+        }
+
+        if (isset($params['limit'])) {
+            $query->limit($params['limit']);
+        }
     }
 
     public function versionNext()
@@ -179,10 +219,5 @@ class Build extends Model
     public function disqusTitle()
     {
         return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
-    }
-
-    public function isFeatured()
-    {
-        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }
