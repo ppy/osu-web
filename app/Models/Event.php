@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Sentry;
 
 class Event extends Model
@@ -126,13 +127,7 @@ class Event extends Model
 
         if (isset($params)) {
             if (!isset($params['date'])) {
-                // Prevent inserting null to the column.
-                // MySQL behaves differently when inserting null to a
-                // timestamp column with current_timestamp default based on
-                // the deprecated `explicit_defaults_for_timestamp` settings.
-                // Also the default has changed from `off` to `on` starting
-                // version 8.0.2.
-                unset($params['date']);
+                $params['date'] = Carbon::now();
             }
 
             return static::create($params);
