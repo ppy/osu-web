@@ -45,16 +45,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         onClick: @nominate
 
 
-  lovedButton: (disabled = false) =>
-    el BigButton,
-      modifiers: ['full']
-      text: osu.trans 'beatmaps.nominations.love'
-      icon: 'fas fa-heart'
-      props:
-        disabled: disabled
-        onClick: @love
-
-
   render: =>
     showHype = @props.beatmapset.can_be_hyped
 
@@ -64,6 +54,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       hype = _.min([requiredHype, hypeRaw])
       userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
+    mapCanBeLoved = _.includes(['pending', 'wip', 'graveyard'],  @props.beatmapset.status)
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
@@ -177,11 +168,18 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                         else
                           @nominationButton @props.beatmapset.nominations.nominated
 
-              div
-                className: "#{bn}__row"
-                div className: "#{bn}__row-left"
-                div className: "#{bn}__row-right",
-                  @lovedButton false
+          if mapCanBeLoved
+            div
+              className: "#{bn}__row"
+              div className: "#{bn}__row-left"
+              div className: "#{bn}__row-right",
+                el BigButton,
+                  modifiers: ['full']
+                  text: osu.trans 'beatmaps.nominations.love'
+                  icon: 'fas fa-heart'
+                  props:
+                    onClick: @love
+
 
           div
             className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
