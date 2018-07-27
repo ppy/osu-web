@@ -14,7 +14,7 @@ class AddModeratingGroupsToForums extends Migration
     public function up()
     {
         Schema::table('phpbb_forums', function (Blueprint $table) {
-            $column = $table->binary('moderator_groups')->nullable();
+            $column = $table->text('moderator_groups')->nullable();
         });
     }
 
