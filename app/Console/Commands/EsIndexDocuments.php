@@ -116,6 +116,7 @@ class EsIndexDocuments extends Command
     private function indexGroup($name)
     {
         $indices = [];
+        $newIndices = [];
         $types = static::ALLOWED_TYPES[$name];
 
         foreach ($types as $i => $type) {
@@ -129,11 +130,12 @@ class EsIndexDocuments extends Command
             if (!$this->inplace && $i === 0) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $newIndices[] = $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
-                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
+                $options = ['index' => $indexName];
+                $type::esReindexAll(static::BATCH_SIZE, 0, $options, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             }
@@ -144,6 +146,10 @@ class EsIndexDocuments extends Command
 
             $bar->finish();
             $this->line("\n");
+        }
+
+        if (!$this->inplace && !empty($newIndices)) {
+            Indexing::updateAlias($types[0]::esIndexName(), $newIndices);
         }
 
         return $indices;
