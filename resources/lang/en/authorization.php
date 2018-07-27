@@ -99,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Edit your last post instead of posting again.',
+                'double_post' => 'Please edit your last post instead of posting again.',
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
