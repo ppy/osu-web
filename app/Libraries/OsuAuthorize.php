@@ -23,6 +23,7 @@ namespace App\Libraries;
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\UserGroup;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
@@ -322,6 +323,27 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetLove($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        static $prefix = 'beatmap_discussion.nominate.';
+
+        if (!$user->isGMT() && !$user->isQAT() && !$user->isGroup(UserGroup::GROUPS['loved'])) {
+            return 'unauthorized';
+        }
+
+        if (!$beatmapset->isLoveable()) {
+            return $prefix.'incorrect_state';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            return $prefix.'owner';
+        }
 
         return 'ok';
     }

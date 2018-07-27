@@ -257,6 +257,16 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved === self::STATES['qualified'];
     }
 
+    public function isLoved()
+    {
+        return $this->approved === self::STATES['loved'];
+    }
+
+    public function isLoveable()
+    {
+        return $this->approved <= 0;
+    }
+
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;
@@ -546,7 +556,7 @@ class Beatmapset extends Model implements AfterCommit
 
     public function love(User $user)
     {
-        if (!($this->isPending() || $this->isWIP() || $this->isGraveyard())) {
+        if (!$this->isLoveable()) {
             return [
                 'result' => false,
                 'message' => trans('beatmaps.nominations.incorrect_state'),

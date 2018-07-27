@@ -259,7 +259,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+        priv_check('BeatmapsetLove', $beatmapset)->ensureCan();
 
         $nomination = $beatmapset->love(Auth::user());
         if (!$nomination['result']) {
