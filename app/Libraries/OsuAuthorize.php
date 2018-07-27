@@ -333,7 +333,7 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isGMT() && !$user->isQAT() && !$user->isGroup(UserGroup::GROUPS['loved'])) {
+        if (!$beatmapset->canBeLovedBy($user)) {
             return 'unauthorized';
         }
 
