@@ -546,8 +546,11 @@ class Beatmapset extends Model implements AfterCommit
 
     public function love(User $user)
     {
-        if (!$this->isPending() || !$this->isWIP() || !$this->isGraveyard()) {
-            $message = trans('beatmaps.nominations.incorrect_state');
+        if (!($this->isPending() || $this->isWIP() || $this->isGraveyard())) {
+            return [
+                'result' => false,
+                'message' => trans('beatmaps.nominations.incorrect_state'),
+            ];
         }
 
         $this->getConnection()->transaction(function () use ($user) {
