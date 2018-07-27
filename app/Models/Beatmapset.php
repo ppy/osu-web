@@ -566,6 +566,7 @@ class Beatmapset extends Model implements AfterCommit
         $this->getConnection()->transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
             $this->update(['approved' => static::STATES['loved']]);
+            $this->beatmaps()->update(['approved' => static::STATES['loved']]);
         });
 
         return [
