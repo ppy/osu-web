@@ -117,20 +117,34 @@ class EsIndexDocuments extends Command
     {
         $indices = [];
         $newIndices = [];
-        $types = static::ALLOWED_TYPES[$name];
+        $types = collect(static::ALLOWED_TYPES[$name]);
 
-        foreach ($types as $i => $type) {
+        $allSame = $types->every(function ($type) use ($types) {
+            return $type::esIndexName() === $types->first()::esIndexName();
+        });
+
+        if (!$allSame) {
+            $this->error("All types in group {$name} must have the same index.");
+
+            return [];
+        }
+
+        $first = $types->first();
+        $last = $types->last();
+        $alias = $first::esIndexName();
+        $indexName = "{$first::esIndexName()}{$this->suffix}";
+        $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
+
+        foreach ($types as $type) {
             $count = $type::esIndexingQuery()->count();
             $bar = $this->output->createProgressBar($count);
 
-            $indexName = "{$type::esIndexName()}{$this->suffix}";
-            $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
             $this->info("{$pretext} {$type} into {$indexName}");
 
-            if (!$this->inplace && $i === 0) {
+            if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $newIndices[] = $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
@@ -140,19 +154,20 @@ class EsIndexDocuments extends Command
                 });
             }
 
-            if ($i === 0) {
-                $indices[] = $type::esIndexName();
+            $bar->finish();
+
+            if (!$this->inplace
+                && $type === $last
+                && $alias !== $indexName) {
+                $this->line("\n");
+                $this->info("Aliasing {$alias} to {$indexName}");
+                Indexing::updateAlias($alias, [$indexName]);
             }
 
-            $bar->finish();
             $this->line("\n");
         }
 
-        if (!$this->inplace && !empty($newIndices)) {
-            Indexing::updateAlias($types[0]::esIndexName(), $newIndices);
-        }
-
-        return $indices;
+        return [$indexName];
     }
 
     protected function readOptions()
