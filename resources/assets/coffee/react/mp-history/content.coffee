@@ -97,7 +97,13 @@ class MPHistory.Content extends React.PureComponent
 
       if @props.hasNext
         div className: 'mp-history-content__show-more-box',
-          if @props.isAutoloading || @props.loadingNext
+          if @props.isAutoloading
+            div className: 'mp-history-content__spinner',
+              div
+                className: 'mp-history-content__spinner-label'
+                osu.trans 'multiplayer.match.in_progress_spinner_label'
+              el Spinner
+          else if @props.loadingNext
             el Spinner
           else
             button

@@ -17,6 +17,14 @@
  */
 
 .mp-history-content {
+  &__show-more {
+    .reset-input();
+
+    cursor: pointer;
+
+    text-align: center;
+  }
+
   &__show-more-box {
     display: flex;
     justify-content: center;
@@ -27,11 +35,11 @@
     margin-bottom: 10px;
   }
 
-  &__show-more {
-    .reset-input();
-
-    cursor: pointer;
-
+  &__spinner {
     text-align: center;
+  }
+
+  &__spinner-label {
+    padding-bottom: 15px;
   }
 }
