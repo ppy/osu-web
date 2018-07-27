@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Sentry;
 
 class Event extends Model
@@ -125,6 +126,10 @@ class Event extends Model
         }
 
         if (isset($params)) {
+            if (!isset($params['date'])) {
+                $params['date'] = Carbon::now();
+            }
+
             return static::create($params);
         }
     }
