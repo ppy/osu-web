@@ -254,6 +254,26 @@ class BeatmapsetsController extends Controller
         return $beatmapset->defaultDiscussionJson();
     }
 
+    public function love($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetLove', $beatmapset)->ensureCan();
+
+        $nomination = $beatmapset->love(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
+        }
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        (new NotifyBeatmapsetUpdate([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]))->delayedDispatch();
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
     public function update($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
