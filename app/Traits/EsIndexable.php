@@ -21,7 +21,6 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\Elasticsearch\Indexing;
 use Log;
 
 trait EsIndexable
