@@ -137,86 +137,86 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     onClick: @focusHypeInput
 
           if mapCanBeNominated || mapIsQualified
-            div null,
-              div
-                className: "#{bn}__row"
-                key: 'nominations',
-                div className: "#{bn}__row-left",
-                  div className: "#{bn}__header",
-                    span
-                      className: "#{bn}__title"
-                      osu.trans 'beatmaps.nominations.title'
-                    span null,
-                      " #{nominations.current}/#{nominations.required}"
-                  @renderLights(nominations.current, nominations.required)
-
-                if @props.currentUser.id? && !@userIsOwner()
-                  div className: "#{bn}__row-right",
-                    if mapIsQualified && @userCanDisqualify()
-                      el BigButton,
-                        modifiers: ['full']
-                        text: osu.trans 'beatmaps.nominations.disqualify'
-                        icon: 'fas fa-thumbs-down'
-                        props:
-                          onClick: @focusNewDiscussionWithModeSwitch
-                    else if mapCanBeNominated && @userCanNominate()
-                      div null,
-                        if @props.currentDiscussions.unresolvedIssues > 0
-                          # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
-                          div title: osu.trans('beatmaps.nominations.unresolved_issues'),
-                            @nominationButton true
-                        else
-                          @nominationButton @props.beatmapset.nominations.nominated
-
-          if mapCanBeLoved
             div
               className: "#{bn}__row"
-              div className: "#{bn}__row-left"
-              div className: "#{bn}__row-right",
-                el BigButton,
-                  modifiers: ['full']
-                  text: osu.trans 'beatmaps.nominations.love'
-                  icon: 'fas fa-heart'
-                  props:
-                    onClick: @love
-
-
-          div
-            className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
-            key: 'footer'
-            div className: "#{bn}__note #{bn}__note--disqualification",
-              if mapIsQualified
-                if rankingETA
+              key: 'nominations',
+              div className: "#{bn}__row-left",
+                div className: "#{bn}__header",
+                  span
+                    className: "#{bn}__title"
+                    osu.trans 'beatmaps.nominations.title'
                   span null,
-                    osu.trans 'beatmaps.nominations.qualified',
-                      date: moment(rankingETA).format(dateFormat)
-                else
-                  span null, osu.trans 'beatmaps.nominations.qualified_soon'
+                    " #{nominations.current}/#{nominations.required}"
+                @renderLights(nominations.current, nominations.required)
 
-              # implies mapCanBeNominated
-              else
+              if @props.currentUser.id? && !@userIsOwner()
+                div className: "#{bn}__row-right",
+                  if mapIsQualified && @userCanDisqualify()
+                    el BigButton,
+                      modifiers: ['full']
+                      text: osu.trans 'beatmaps.nominations.disqualify'
+                      icon: 'fas fa-thumbs-down'
+                      props:
+                        onClick: @focusNewDiscussionWithModeSwitch
+                  else if mapCanBeNominated && @userCanNominate()
+                    div null,
+                      if @props.currentDiscussions.unresolvedIssues > 0
+                        # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
+                        div title: osu.trans('beatmaps.nominations.unresolved_issues'),
+                          @nominationButton true
+                      else
+                        @nominationButton @props.beatmapset.nominations.nominated
+        ]
+
+      if mapCanBeLoved
+        div
+          className: "#{bn}__row"
+          key: 'love'
+          div className: "#{bn}__row-left"
+          div className: "#{bn}__row-right",
+            el BigButton,
+              modifiers: ['full']
+              text: osu.trans 'beatmaps.nominations.love'
+              icon: 'fas fa-heart'
+              props:
+                onClick: @love
+
+      if showHype
+        div
+          className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
+          key: 'footer'
+          div className: "#{bn}__note #{bn}__note--disqualification",
+            if mapIsQualified
+              if rankingETA
                 span null,
-                  if disqualification?
-                    span null,
-                      span
-                        dangerouslySetInnerHTML:
-                          __html: @resetReason(disqualification)
-                      ' ' # spacer
-                  if nominationReset?
+                  osu.trans 'beatmaps.nominations.qualified',
+                    date: moment(rankingETA).format(dateFormat)
+              else
+                span null, osu.trans 'beatmaps.nominations.qualified_soon'
+
+            # implies mapCanBeNominated
+            else
+              span null,
+                if disqualification?
+                  span null,
                     span
                       dangerouslySetInnerHTML:
-                        __html: @resetReason(nominationReset)
-            if nominators.length > 0
-              div
-                className: "#{bn}__note #{bn}__note--nominators"
-                dangerouslySetInnerHTML:
-                  __html: osu.trans 'beatmaps.nominations.nominated_by',
-                    users: osu.transArray nominators.map (user) ->
-                        osu.link laroute.route('users.show', user: user.id), user.username,
-                          classNames: ['js-usercard']
-                          props:
-                            'data-user-id': user.id
-        ]
+                        __html: @resetReason(disqualification)
+                    ' ' # spacer
+                if nominationReset?
+                  span
+                    dangerouslySetInnerHTML:
+                      __html: @resetReason(nominationReset)
+          if nominators.length > 0
+            div
+              className: "#{bn}__note #{bn}__note--nominators"
+              dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmaps.nominations.nominated_by',
+                  users: osu.transArray nominators.map (user) ->
+                      osu.link laroute.route('users.show', user: user.id), user.username,
+                        classNames: ['js-usercard']
+                        props:
+                          'data-user-id': user.id
 
 
   renderLights: (lightsOn, lightsTotal) ->
