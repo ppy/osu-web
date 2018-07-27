@@ -578,6 +578,9 @@ class Beatmapset extends Model implements AfterCommit
         $this->getConnection()->transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
             $this->setApproved('loved', $user);
+
+            $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
+            dispatch($job);
         });
 
         return [
