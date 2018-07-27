@@ -18,5 +18,5 @@
 
 reactTurbolinks.registerPersistent 'changelog-build', ChangelogBuild.Main, true, (el) ->
   container: el
-  latestBuilds: osu.parseJson('json-latest-builds')
+  updateStreams: osu.parseJson('json-update-streams')
   build: osu.parseJson('json-build')

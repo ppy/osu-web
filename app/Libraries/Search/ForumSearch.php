@@ -115,15 +115,13 @@ class ForumSearch extends Search
     {
         $ids = $this->response()->ids('post_id');
 
-        $search = (new BasicSearch(Post::esIndexName()))
+        $search = (new BasicSearch(Post::esIndexName(), 'forumsearch_firstposts'))
             ->size(count($ids))
             ->query(
                 (new BoolQuery)
                     ->filter(['term' => ['type' => 'posts']])
                     ->filter(['terms' => ['post_id' => $ids]])
             )->source(['topic_id', 'search_content']);
-
-        $search->loggingTag = get_called_class().'-firstPosts';
 
         $map = [];
         foreach ($search->response() as $post) {

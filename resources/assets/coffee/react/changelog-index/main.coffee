@@ -48,7 +48,7 @@ class ChangelogIndex.Main extends React.PureComponent
           @renderHeaderTabs()
 
       div className: 'osu-page osu-page--changelog',
-        el ChangelogHeaderBuilds, latestBuilds: @props.latestBuilds
+        el ChangelogHeaderStreams, updateStreams: @props.updateStreams
 
         div className: 'js-changelog-chart'
 
