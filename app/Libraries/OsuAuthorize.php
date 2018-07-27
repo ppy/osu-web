@@ -558,19 +558,17 @@ class OsuAuthorize
 
     public function checkForumModerate($user, $forum)
     {
-        $prefix = 'forum.moderate.';
-
         $this->ensureLoggedIn($user);
 
         if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
-        if ($forum->moderator_groups === null || empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
-            return $prefix.'no_permission';
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+            return 'ok';
         }
 
-        return 'ok';
+        return 'forum.moderate.no_permission';
     }
 
     public function checkForumView($user, $forum)
