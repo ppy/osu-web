@@ -33,6 +33,7 @@ class Forum extends Model
     protected $casts = [
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
+        'moderator_groups' => 'array',
     ];
 
     public static function lastTopics($forum = null)
@@ -137,18 +138,6 @@ class Forum extends Model
     public function scopeDisplayList($query)
     {
         $query->orderBy('left_id');
-    }
-
-    public function getModeratorGroupsAttribute($value)
-    {
-        if (present($value)) {
-            return unserialize($value);
-        }
-    }
-
-    public function setModeratorGroupsAttribute($value)
-    {
-        $this->attributes['moderator_groups'] = ($value === null || count($value) === 0) ? '' : serialize($value);
     }
 
     public function setForumParentsAttribute($value)
