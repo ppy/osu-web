@@ -580,6 +580,8 @@ class Beatmapset extends Model implements AfterCommit
             $this->setApproved('loved', $user);
             $this->userRatings()->delete();
 
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
             dispatch(new RemoveBeatmapsetBestScores($this));
         });
