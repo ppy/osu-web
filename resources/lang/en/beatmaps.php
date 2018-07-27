@@ -179,7 +179,7 @@ return [
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
@@ -202,10 +202,6 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Rank Status',
-        'source' => 'from :source',
-        'load-more' => 'Load more...',
     ],
     'general' => [
         'recommended' => 'Recommended difficulty',
@@ -225,7 +221,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
     ],
