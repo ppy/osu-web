@@ -60,6 +60,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div className: 'fancy-search fancy-search--beatmapsets js-user-link',
         input
           className: 'fancy-search__input'
+          disabled: true
           type: 'textbox'
           placeholder: osu.trans('beatmaps.listing.search.login_required')
         div className: 'fancy-search__icon',
