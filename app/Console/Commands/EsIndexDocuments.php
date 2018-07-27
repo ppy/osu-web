@@ -82,13 +82,15 @@ class EsIndexDocuments extends Command
 
         $start = time();
 
-        $indices = $this->index();
+        foreach ($this->groups as $name) {
+            $this->indexGroup($name);
+        }
 
-        $this->finish($indices, $oldIndices);
+        $this->finish($oldIndices);
         $this->warn("\nIndexing completed in ".(time() - $start).'s');
     }
 
-    protected function finish(array $indices, array $oldIndices)
+    protected function finish(array $oldIndices)
     {
         if (!$this->inplace && $this->cleanup) {
             foreach ($oldIndices as $index) {
@@ -96,21 +98,6 @@ class EsIndexDocuments extends Command
                 Indexing::deleteIndex($index);
             }
         }
-    }
-
-    /**
-     * Indexes and returns the names of the indices.
-     *
-     * @return array names of the indices indexed to.
-     */
-    protected function index()
-    {
-        $indices = [];
-        foreach ($this->groups as $name) {
-            $indices = array_merge($indices, $this->indexGroup($name));
-        }
-
-        return $indices;
     }
 
     private function indexGroup($name)
@@ -166,8 +153,6 @@ class EsIndexDocuments extends Command
 
             $this->line("\n");
         }
-
-        return [$indexName];
     }
 
     protected function readOptions()
