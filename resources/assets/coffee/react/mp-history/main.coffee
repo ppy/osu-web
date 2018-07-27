@@ -47,12 +47,6 @@ class MPHistory.Main extends React.Component
     @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
 
 
-  componentDidUpdate: (prevProps, prevState) ->
-    #if osu.bottomPageDistance() < 300 || prevState.lastGameId != @state.lastGameId
-    #  target = $('.js-mp-history--event-box')[0]
-    #  $(window).stop().scrollTo target.scrollHeight, 500
-
-
   render: =>
     div className: 'osu-layout__section',
       el MPHistory.Header,
