@@ -27,6 +27,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\UserContestEntry;
+use App\Models\UserGroup;
 use Carbon\Carbon;
 
 class OsuAuthorize
@@ -332,12 +333,8 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$beatmapset->canBeLovedBy($user)) {
+        if (!($user->isGMT() || $user->isQAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
             return 'unauthorized';
-        }
-
-        if (!$beatmapset->isLoveable()) {
-            return $prefix.'incorrect_state';
         }
 
         if ($user->getKey() === $beatmapset->user_id) {

@@ -225,18 +225,6 @@ class Beatmapset extends Model implements AfterCommit
         return $query->where('active', '=', true);
     }
 
-    public function canBeLovedBy(?User $user)
-    {
-        if ($user === null) {
-            return false;
-        }
-
-        return $user->isAdmin()
-            || $user->isGMT()
-            || $user->isQAT()
-            || $user->isGroup(UserGroup::GROUPS['loved']);
-    }
-
     // one-time checks
 
     public function isGraveyard()
