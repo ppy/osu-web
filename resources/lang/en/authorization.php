@@ -75,6 +75,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'No permission to moderate this forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Only last post can be deleted.',
@@ -98,10 +102,6 @@ return [
         ],
 
         'topic' => [
-            'moderate' => [
-                'no_permission' => 'No permission to moderate this topic.',
-            ],
-
             'reply' => [
                 'double_post' => 'You just posted. Wait a bit or edit your last post.',
                 'locked' => 'Can not reply to a locked thread.',

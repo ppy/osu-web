@@ -556,6 +556,23 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumModerate($user, $forum)
+    {
+        $prefix = 'forum.moderate.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        if ($forum->moderator_groups === null || empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+            return $prefix.'no_permission';
+        }
+
+        return 'ok';
+    }
+
     public function checkForumView($user, $forum)
     {
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
@@ -663,23 +680,6 @@ class OsuAuthorize
     public function checkForumTopicEdit($user, $topic)
     {
         return $this->checkForumPostEdit($user, $topic->posts()->first());
-    }
-
-    public function checkForumTopicModerate($user, $forum)
-    {
-        $prefix = 'forum.topic.moderate.';
-
-        $this->ensureLoggedIn($user);
-
-        if ($user->isGMT() || $user->isQAT()) {
-            return 'ok';
-        }
-
-        if ($forum->moderator_groups === null || empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
-            return $prefix.'no_permission';
-        }
-
-        return 'ok';
     }
 
     public function checkForumTopicReply($user, $topic)

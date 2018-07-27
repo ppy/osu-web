@@ -79,7 +79,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
@@ -102,7 +102,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $type = 'lock';
         $state = get_bool(Request::input('lock'));
@@ -118,8 +118,8 @@ class TopicsController extends Controller
         $originForum = $topic->forum;
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicModerate', $originForum)->ensureCan();
-        priv_check('ForumTopicModerate', $destinationForum)->ensureCan();
+        priv_check('ForumModerate', $originForum)->ensureCan();
+        priv_check('ForumModerate', $destinationForum)->ensureCan();
 
         $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
@@ -133,7 +133,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
@@ -192,11 +192,11 @@ class TopicsController extends Controller
                 'pollOptions.post',
             ])->withTrashed()->findOrFail($id);
 
-        $topicModerateCheck = priv_check('ForumTopicModerate', $topic->forum);
-        $showDeleted = $topicModerateCheck->can();
+        $forumModerateCheck = priv_check('ForumModerate', $topic->forum);
+        $showDeleted = $forumModerateCheck->can();
 
         if ($topic->trashed()) {
-            $topicModerateCheck->ensureCan();
+            $forumModerateCheck->ensureCan();
         }
 
         if ($topic->forum === null) {

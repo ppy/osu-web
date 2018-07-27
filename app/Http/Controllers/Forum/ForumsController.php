@@ -84,7 +84,7 @@ class ForumsController extends Controller
             new ForumCoverTransformer()
         );
 
-        $showDeleted = priv_check('ForumTopicModerate', $forum)->can();
+        $showDeleted = priv_check('ForumModerate', $forum)->can();
 
         $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
         $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(30);

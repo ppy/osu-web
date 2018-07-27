@@ -78,7 +78,7 @@ class PostsController extends Controller
     {
         $post = Post::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+        priv_check('ForumModerate', $post->forum)->ensureCan();
 
         $topic = $post->topic()->withTrashed()->first();
 
@@ -146,7 +146,7 @@ class PostsController extends Controller
         $post = Post::withTrashed()->findOrFail($id);
 
         if ($post->trashed()) {
-            priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+            priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
         if ($post->forum === null) {
@@ -169,7 +169,7 @@ class PostsController extends Controller
         $post = Post::withTrashed()->findOrFail($id);
 
         if ($post->trashed()) {
-            priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+            priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
         if ($post->forum === null) {
