@@ -518,7 +518,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function getOsuSubscriptionexpiryAttribute($value)
     {
         if (present($value)) {
-            return Carbon::parse($value);
+            return Carbon::parse($value)->addDays(1);
         }
     }
 
