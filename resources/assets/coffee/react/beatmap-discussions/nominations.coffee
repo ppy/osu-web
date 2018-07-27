@@ -54,7 +54,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       hype = _.min([requiredHype, hypeRaw])
       userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
-    mapCanBeLoved = _.includes(['pending', 'wip', 'graveyard'],  @props.beatmapset.status)
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
@@ -168,7 +167,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                         @nominationButton @props.beatmapset.nominations.nominated
         ]
 
-      if mapCanBeLoved
+      if @props.beatmapset.current_user_attributes?.can_love
         div
           className: "#{bn}__row"
           key: 'love'

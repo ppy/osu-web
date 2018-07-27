@@ -121,6 +121,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         $ret = [
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
+            'can_love' => $beatmapset->isLoveable() && ($currentUser->isAdmin() || $currentUser->isGMT() || $currentUser->isQAT),
             'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
             'remaining_hype' => $currentUser->remainingHype(),
