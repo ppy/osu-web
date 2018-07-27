@@ -79,7 +79,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
@@ -102,7 +102,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
 
         $type = 'lock';
         $state = get_bool(Request::input('lock'));
@@ -118,7 +118,8 @@ class TopicsController extends Controller
         $originForum = $topic->forum;
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $originForum)->ensureCan();
+        priv_check('ForumTopicModerate', $destinationForum)->ensureCan();
 
         $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
@@ -132,7 +133,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic->forum)->ensureCan();
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
@@ -184,14 +185,19 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
-        $showDeleted = priv_check('ForumTopicModerate')->can();
-
         $topic = Topic
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
-            ])->showDeleted($showDeleted)->findOrFail($id);
+            ])->withTrashed()->findOrFail($id);
+
+        $topicModerateCheck = priv_check('ForumTopicModerate', $topic->forum);
+        $showDeleted = $topicModerateCheck->can();
+
+        if ($topic->trashed()) {
+            $topicModerateCheck->ensureCan();
+        }
 
         if ($topic->forum === null) {
             abort(404);

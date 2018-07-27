@@ -62,7 +62,7 @@
                     @include('forum.topics._header_total_counter')
                 </div>
 
-                @if(!$newTopic && priv_check('ForumTopicModerate', $topic)->can())
+                @if(!$newTopic && priv_check('ForumTopicModerate', $forum ?? $topic->forum)->can())
                     <div class="forum-category-header__counter">
                         @include('forum.topics._header_deleted_counter')
                     </div>

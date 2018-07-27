@@ -76,9 +76,10 @@ class PostsController extends Controller
 
     public function restore($id)
     {
-        priv_check('ForumTopicModerate')->ensureCan();
-
         $post = Post::withTrashed()->findOrFail($id);
+
+        priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+
         $topic = $post->topic()->withTrashed()->first();
 
         $this->logModerate(
@@ -142,9 +143,11 @@ class PostsController extends Controller
 
     public function raw($id)
     {
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $post = Post::withTrashed()->findOrFail($id);
 
-        $post = Post::showDeleted($showDeleted)->findOrFail($id);
+        if ($post->trashed()) {
+            priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+        }
 
         if ($post->forum === null) {
             abort(404);
@@ -163,9 +166,11 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $post = Post::withTrashed()->findOrFail($id);
 
-        $post = Post::showDeleted($showDeleted)->findOrFail($id);
+        if ($post->trashed()) {
+            priv_check('ForumTopicModerate', $post->forum)->ensureCan();
+        }
 
         if ($post->forum === null) {
             abort(404);
