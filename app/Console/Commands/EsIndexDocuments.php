@@ -117,7 +117,6 @@ class EsIndexDocuments extends Command
         }
 
         $first = $types->first();
-        $last = $types->last();
         $alias = $first::esIndexName();
         $indexName = "{$first::esIndexName()}{$this->suffix}";
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
@@ -142,16 +141,13 @@ class EsIndexDocuments extends Command
             }
 
             $bar->finish();
-
-            if (!$this->inplace
-                && $type === $last
-                && $alias !== $indexName) {
-                $this->line("\n");
-                $this->info("Aliasing {$alias} to {$indexName}");
-                Indexing::updateAlias($alias, [$indexName]);
-            }
-
             $this->line("\n");
+        }
+
+        if (!$this->inplace && $alias !== $indexName) {
+            $this->info("Aliasing {$alias} to {$indexName}");
+            Indexing::updateAlias($alias, [$indexName]);
+            $this->line('');
         }
     }
 
