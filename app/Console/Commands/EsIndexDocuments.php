@@ -144,7 +144,7 @@ class EsIndexDocuments extends Command
             $this->line("\n");
         }
 
-        if (!$this->inplace && $alias !== $indexName) {
+        if ($alias !== $indexName) {
             $this->info("Aliasing {$alias} to {$indexName}");
             Indexing::updateAlias($alias, [$indexName]);
             $this->line('');
