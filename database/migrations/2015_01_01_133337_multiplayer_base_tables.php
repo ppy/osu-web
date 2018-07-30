@@ -64,7 +64,7 @@ class MultiplayerBaseTables extends Migration
             $table->unsignedTinyInteger('match_type')->nullable();
             $table->unsignedTinyInteger('scoring_type')->nullable();
             $table->unsignedTinyInteger('team_type')->nullable();
-            $table->unsignedMediumInteger('mods')->nullable();
+            $table->unsignedBigInteger('mods')->nullable();
 
             $table->index('match_id', 'match_lookup');
         });
