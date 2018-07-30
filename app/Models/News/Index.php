@@ -21,7 +21,6 @@
 namespace App\Models\News;
 
 use App\Libraries\OsuWiki;
-use Cache;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class Index
@@ -79,7 +78,7 @@ class Index
 
     public static function cacheClear()
     {
-        Cache::forget(static::cacheKey());
+        cache_forget_with_fallback(static::cacheKey());
     }
 
     public static function cacheKey()

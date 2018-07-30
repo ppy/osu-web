@@ -22,7 +22,6 @@ namespace App\Models\News;
 
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
-use Cache;
 use Carbon\Carbon;
 
 class Post
@@ -58,7 +57,7 @@ class Post
 
     public function cacheClear()
     {
-        Cache::forget($this->cacheKey());
+        cache_forget_with_fallback($this->cacheKey());
     }
 
     public function cacheKey()
