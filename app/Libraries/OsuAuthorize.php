@@ -440,6 +440,7 @@ class OsuAuthorize
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
+            BeatmapsetEvent::LOVE,
             BeatmapsetEvent::KUDOSU_GAIN,
             BeatmapsetEvent::KUDOSU_LOST,
         ];
