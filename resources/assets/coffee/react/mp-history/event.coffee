@@ -29,7 +29,7 @@ class MPHistory.Event extends React.Component
     'host-changed': ['fas fa-exchange-alt']
 
   render: ->
-    user = @props.lookupUser @props.event.user_id
+    user = @props.users[@props.event.user_id]
 
     event_type = @props.event.detail.type
 
