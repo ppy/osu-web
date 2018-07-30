@@ -44,7 +44,7 @@ class Match extends Model
     {
         $game = $this->games()->last();
 
-        if ($game->end_time === null) {
+        if ($game !== null && $game->end_time === null) {
             return $game;
         }
     }
