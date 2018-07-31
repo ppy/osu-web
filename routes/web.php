@@ -235,6 +235,8 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
         Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
 
+        Route::resource('orders', 'OrdersController', ['only' => ['index', 'show']]);
+
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
     });
