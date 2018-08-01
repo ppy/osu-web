@@ -17,5 +17,47 @@
  */
 
 .store-order {
+  @store-order--status-cancelled: grey;
+  @store-order--status-checkout: green;
+  @store-order--status-delivered: green;
+  @store-order--status-paid: yellow;
+  @store-order--status-shipped: green;
+
+  .default-box-shadow();
+  .default-border-radius();
+
   margin-bottom: 10px;
+  padding: 10px;
+
+  .colors(@status) {
+    @color-name: "store-order--status-@{status}";
+    @color: @@color-name;
+
+    &--status-@{status} {
+      .store-order__status {
+        color: @color;
+      }
+    }
+  }
+
+  .colors(cancelled);
+  .colors(checkout);
+  .colors(delivered);
+  .colors(paid);
+  .colors(shipped);
+
+  &__amount {
+    font-size: 14px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 20px;
+  }
+
+  &__status {
+
+  }
 }

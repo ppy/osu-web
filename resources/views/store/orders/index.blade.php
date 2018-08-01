@@ -21,16 +21,31 @@
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row">
+    <div class="osu-layout__row osu-layout__row--page">
         <div class="store-orders">
             @foreach ($orders as $order)
-                <div class="store-order">
-                    <div>
-                        {{ $order->getKey() }}
+                <div class="store-order store-order--status-{{ $order->status }}">
+                    <div class="store-order__header">
+                        <div>
+                            <div>
+                                #{{ $order->getKey() }}
+                            </div>
+                            <div class="store-order__amount">
+                                {{ currency($order->getTotal()) }}
+                            </div>
+                        </div>
+
+                        <div class="store-order__status">
+                            {{ $order->getStatusText() }}
+                        </div>
                     </div>
 
-                    <div class="store-order__status">
-                        {{ $order->status }}
+                    <div class="store-order__items">
+                        <ul>
+                            @foreach ($order->items as $item)
+                                <li>{{ $item->getDisplayName() }}
+                            @endforeach
+                        </ul>
                     </div>
 
                     <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">View invoice</a>
