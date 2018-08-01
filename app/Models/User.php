@@ -1308,7 +1308,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scopeOnline($query)
     {
-        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+        return $query
+            ->where('user_allow_viewonline', 1)
+            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function checkPassword($password)
