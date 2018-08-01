@@ -41,7 +41,6 @@ class Kernel extends HttpKernel
         Middleware\VerifyPrivilegedUser::class,
         Middleware\CheckUserBanStatus::class,
         Middleware\UpdateUserLastvisit::class,
-        \Clockwork\Support\Laravel\ClockworkMiddleware::class,
         Middleware\TurbolinksSupport::class,
         \ChaseConey\LaravelDatadogHelper\Middleware\LaravelDatadogMiddleware::class,
     ];
