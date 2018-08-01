@@ -18,46 +18,6 @@
 		.sh10{fill:#FFCC22;}
 		.sh11{fill:#FF66AA;}
 
-		svg .L1 {
-			animation: RotateR 10.0s infinite linear;
-			-webkit-animation: RotateR 10.0s infinite linear;
-		}
-
-		svg .L2 {
-			animation: RotateR 15.0s infinite linear;
-			-webkit-animation: RotateR 15.0s infinite linear;
-		}
-
-		svg .L3 {
-			animation: RotateR 20.0s infinite linear;
-			-webkit-animation: RotateR 20.0s infinite linear;
-		}
-
-		svg .L4 {
-			animation: RotateR 25.0s infinite linear;
-			-webkit-animation: RotateR 25.0s infinite linear;
-		}
-
-		svg .L5 {
-			animation: RotateR 30.0s infinite linear;
-			-webkit-animation: RotateR 30.0s infinite linear;
-		}
-
-		svg .L6 {
-			animation: RotateR 35.0s infinite linear;
-			-webkit-animation: RotateR 35.0s infinite linear;
-		}
-
-		svg .L7 {
-			animation: RotateR 40.0s infinite linear;
-			-webkit-animation: RotateR 40.0s infinite linear;
-		}
-
-		svg .L8 {
-			animation: RotateR 45.0s infinite linear;
-			-webkit-animation: RotateR 45.0s infinite linear;
-		}
-
 		svg .correct {
 		-webkit-transform: translate(128px,128px);
 		-moz-transform: translate(128px,128px);
@@ -72,26 +32,6 @@
 		-webkit-transform-origin: 0 0;
 		-moz-transform-origin: 0 0;
 		transform-origin: 0 0;
-		}
-
-		@keyframes RotateR {
-			0% {
-			transform: rotate(0deg);
-			}
-
-			100% {
-			transform: rotate(360deg);
-			}
-		}
-
-		@-webkit-keyframes RotateR {
-			0% {
-			-webkit-transform: rotate(0deg);
-			}
-
-			100% {
-			-webkit-transform: rotate(360deg);
-			}
 		}
 		]]>
 	</style>
