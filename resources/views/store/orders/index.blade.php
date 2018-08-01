@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="store-order__status">
-                            {{ $order->getStatusText() }}
+                            {{ trans("store.order.status.{$order->status}") }}
                         </div>
                     </div>
 

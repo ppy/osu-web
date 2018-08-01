@@ -158,6 +158,25 @@ class Order extends Model
         return studly_case(explode('-', $this->transaction_id)[0]);
     }
 
+    public function getPaymentStatusText()
+    {
+        switch ($this->status) {
+            case 'cancelled':
+                return 'Cancelled';
+            case 'checkout':
+            case 'processing':
+                return 'Awaiting Payment';
+            case 'incart':
+                return '';
+            case 'paid':
+            case 'shipped':
+            case 'delivered':
+                return 'Paid';
+            default:
+                return 'Unknown';
+        }
+    }
+
     public function getSubtotal($forShipping = false)
     {
         $total = 0;
@@ -219,25 +238,6 @@ class Order extends Model
         }
 
         return (float) $total * $rate;
-    }
-
-    public function getStatusText()
-    {
-        switch ($this->status) {
-            case 'cancelled':
-                return 'Cancelled';
-            case 'checkout':
-            case 'processing':
-                return 'Awaiting Payment';
-            case 'incart':
-                return '';
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
-                return 'Paid';
-            default:
-                return 'Unknown';
-        }
     }
 
     public function getTotal()

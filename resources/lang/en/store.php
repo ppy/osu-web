@@ -83,6 +83,15 @@ return [
             'processing' => 'You cannot modify your order while it is being processed.',
             'shipped' => 'You cannot modify your order as it has already been shipped.',
         ],
+
+        'status' => [
+            'cancelled' => 'Cancelled',
+            'checkout' => 'Waiting for payment',
+            'delivered' => 'Delivered',
+            'paid' => 'Paid',
+            'processing' => 'Waiting for payment confirmation',
+            'shipped' => 'In Transit',
+        ]
     ],
 
     'product' => [
