@@ -20,35 +20,31 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
 use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
-use Illuminate\Session\TokenMismatchException;
 
-class VerifyCsrfToken extends BaseVerifier
+class DisableSessionCookiesForAPI
 {
-    protected $except = [
+    protected $apiRoutes = [
         'api/*',
-        'oauth/authorize',
-        'oauth/access_token',
     ];
 
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
+     * @return mixed
+     */
     public function handle($request, Closure $next)
     {
-        try {
-            foreach ($this->except as $except) {
-                if ($request->is($except)) {
-                    return $next($request);
-                }
+        foreach ($this->apiRoutes as $route) {
+            if ($request->is($route)) {
+                // set session driver to array so session isn't persisted beyond request (and cookie isn't sent)
+                config()->set('session.driver', 'array');
             }
-
-            return parent::handle($request, $next);
-        } catch (TokenMismatchException $_e) {
-            $request->session()->flush();
-            Auth::logout();
-            session(['_skip' => true]);
-
-            return $next($request);
         }
+
+        return $next($request);
     }
 }
