@@ -174,6 +174,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
+            'login_required' => 'Sign in to search.',
             'options' => 'More Search Options',
             'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',
