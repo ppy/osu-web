@@ -559,6 +559,7 @@ class OsuAuthorize
     public function checkForumModerate($user, $forum)
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
