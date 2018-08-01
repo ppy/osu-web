@@ -36,12 +36,6 @@ class VerifyCsrfToken extends BaseVerifier
     public function handle($request, Closure $next)
     {
         try {
-            foreach ($this->except as $except) {
-                if ($request->is($except)) {
-                    return $next($request);
-                }
-            }
-
             return parent::handle($request, $next);
         } catch (TokenMismatchException $_e) {
             $request->session()->flush();

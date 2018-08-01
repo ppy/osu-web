@@ -40,11 +40,22 @@ class DisableSessionCookiesForAPI
     {
         foreach ($this->apiRoutes as $route) {
             if ($request->is($route)) {
-                // set session driver to array so session isn't persisted beyond request (and cookie isn't sent)
+                // set session driver to array so session isn't persisted
                 config()->set('session.driver', 'array');
+                $stripCookies = true;
+                break;
             }
         }
 
-        return $next($request);
+        $result = $next($request);
+
+        if ($stripCookies ?? false) {
+            // strip all cookies from response
+            foreach ($result->headers->getCookies() as $cookie) {
+                $result->headers->removeCookie($cookie->getName());
+            }
+        }
+
+        return $result;
     }
 }
