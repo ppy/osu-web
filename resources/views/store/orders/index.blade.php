@@ -43,7 +43,9 @@
                     <div class="store-order__items">
                         <ul>
                             @foreach ($order->items as $item)
-                                <li>{{ $item->getDisplayName() }}
+                                <li class="store-order__item">
+                                    <span>{{ $item->getDisplayName() }}</span>
+                                    <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                             @endforeach
                         </ul>
                     </div>
