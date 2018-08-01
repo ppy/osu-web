@@ -44,7 +44,13 @@ class NewsController extends Controller
             abort(404);
         }
 
-        return view('news.show', compact('post'));
+        $commentsJson = json_collection(
+            $post->comments()->with(['editor', 'user'])->get(),
+            'Comment',
+            ['editor', 'user']
+        );
+
+        return view('news.show', compact('post', 'commentsJson'));
     }
 
     public function store()

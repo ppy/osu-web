@@ -524,6 +524,58 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
+    public function checkCommentDestroy($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentModerate($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentRestore($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentShow($user, $comment)
+    {
+        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentUpdate($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return 'ok';
+        }
+    }
+
     public function checkContestEntryStore($user, $contest)
     {
         $this->ensureLoggedIn($user);

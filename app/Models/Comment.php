@@ -1,0 +1,143 @@
+<?php
+
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace App\Models;
+
+use App\Traits\Validatable;
+use Carbon\Carbon;
+
+class Comment extends Model
+{
+    use Validatable;
+
+    const COMMENTABLES = [
+        'beatmapset' => Beatmapset::class,
+        'build' => Build::class,
+        'news_post' => NewsPost::class,
+    ];
+
+    // FIXME: decide on good number.
+    // some people seem to put song lyrics in comment which inflated the size.
+    const MESSAGE_LIMIT = 10000;
+
+    protected $guarded = [];
+
+    protected $dates = ['deleted_at', 'edited_at'];
+
+    protected $casts = [
+        'legacy_user_data' => 'array',
+    ];
+
+    public static function isValidType($type)
+    {
+        return array_key_exists($type, static::COMMENTABLES);
+    }
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'edited_by_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(static::class, 'parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function setCommentableTypeAttribute($value)
+    {
+        if (!static::isValidType($value)) {
+            $value = null;
+        }
+
+        $this->attributes['commentable_type'] = $value;
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if (mb_strlen($this->message) > static::MESSAGE_LIMIT) {
+            $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'comment';
+    }
+
+    public function save(array $options = [])
+    {
+        if ($this->parent !== null) {
+            $this->commentable_id = $this->parent->commentable_id;
+            $this->commentable_type = $this->parent->commentable_type;
+        }
+
+        return $this->getConnection()->transaction(function () use ($options) {
+            if (!$this->exists && $this->parent !== null) {
+                $this->parent->update([
+                    'replies_count_cache' => db_unsigned_increment('replies_count_cache', 1),
+                ]);
+            }
+
+            return parent::save($options);
+        });
+    }
+
+    public function legacyUsername()
+    {
+        return $this->legacy_user_data['username'] ?? null;
+    }
+
+    public function isDeleted()
+    {
+        return $this->deleted_at !== null;
+    }
+
+    public function softDelete($deletedBy)
+    {
+        return $this->update([
+            'deleted_by_id' => $deletedBy->getKey(),
+            'deleted_at' => Carbon::now(),
+        ]);
+    }
+
+    public function restore()
+    {
+        return $this->update(['deleted_at' => null]);
+    }
+}

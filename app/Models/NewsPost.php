@@ -122,6 +122,11 @@ class NewsPost extends Model
         Cache::put($cacheKey, 'ok', 5);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');

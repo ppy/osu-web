@@ -128,10 +128,11 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
+            $comments = json_collection($beatmapset->comments()->with(['user', 'editor'])->get(), 'Comment', ['user', 'editor']);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'comments'));
         }
     }
 

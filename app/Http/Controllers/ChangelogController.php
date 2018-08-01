@@ -122,10 +122,14 @@ class ChangelogController extends Controller
         $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = json_item(
-            $stream->builds()->default()->where('version', $version)->firstOrFail(),
-            'Build',
-            ['changelog_entries', 'changelog_entries.github_user', 'versions']
+        $build = $stream->builds()->default()->where('version', $version)->firstOrFail();
+        $buildJson = json_item($build, 'Build', [
+            'changelog_entries', 'changelog_entries.github_user', 'versions',
+        ]);
+        $commentsJson = json_collection(
+            $build->comments()->with('editor', 'user')->get(),
+            'Comment',
+            ['editor', 'user']
         );
 
         $chartConfig = Cache::remember(
@@ -135,7 +139,7 @@ class ChangelogController extends Controller
                 return $this->chartConfig($build['update_stream']);
             });
 
-        return view('changelog.build', compact('build', 'chartConfig'));
+        return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentsJson'));
     }
 
     private function getUpdateStreams()

@@ -116,6 +116,9 @@ reactTurbolinks.register 'blockButton', BlockButton, (target) ->
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
+reactTurbolinks.register 'comments', Comments, (el) ->
+  JSON.parse(el.dataset.comments)
+
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'

@@ -98,14 +98,17 @@
                     </a>
                 @endif
             </div>
-
-            <div
-                class="js-turbolinks-disqus"
-                data-turbolinks-disqus="{{ json_encode([
-                    'identifier' => $post->disqusId(),
-                    'title' => $post->title(),
-                ]) }}"
-            ></div>
         </div>
+    </div>
+
+    <div class="osu-page osu-page--generic-compact">
+        <div
+            class="js-react--comments"
+            data-comments="{{ json_encode([
+                'commentableType' => 'news_post',
+                'commentableId' => $post->getKey(),
+                'comments' => $commentsJson,
+            ]) }}"
+        ></div>
     </div>
 @endsection

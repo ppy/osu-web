@@ -114,6 +114,11 @@ class Build extends Model
         return $this->changelogEntries()->default();
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('stream_id');
