@@ -66,17 +66,19 @@ class @Nav2
     popupLeftForCentered = referenceRect.left + referenceHalfWidth - popupLeft - popupHalfWidth
     popupLeftWhenCentered = popupLeft + popupLeftForCentered
 
-    if popupLeftWhenCentered < 0
-      finalLeft = Math.floor(referenceRect.left) * -1
-    else
-      popupRightWhenCentered = popupLeftWhenCentered + popupRect.width
-      popupRightOverflow = Math.round(popupRightWhenCentered - bodyWidth)
+    finalLeft =
+      if popupLeftWhenCentered < 0
+        referenceRect.left * -1
+      else
+        popupRightWhenCentered = popupLeftWhenCentered + popupRect.width
+        popupRightOverflow = Math.round(popupRightWhenCentered - bodyWidth)
 
-      finalLeft =
         if popupRightOverflow > 0
           popupLeftForCentered - popupRightOverflow
         else
           popupLeftForCentered
+
+    finalLeft = Math.floor(finalLeft)
 
     popup.style.transform = "translateX(#{finalLeft}px)"
 

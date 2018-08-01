@@ -153,7 +153,7 @@ class HomeController extends Controller
             $user = Auth::user();
 
             // current status
-            $expiration = $user->osu_subscriptionexpiry;
+            $expiration = optional($user->osu_subscriptionexpiry)->addDays(1);
             $current = $expiration !== null ? $expiration->isFuture() : false;
 
             // purchased

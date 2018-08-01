@@ -155,22 +155,23 @@ class ChangelogEntry extends Model
         }
 
         static $separator = "\n\n---\n";
+        static $openingSeparator = "---\n";
 
         $origMessage = trim(str_replace("\r\n", "\n", $this->message));
 
-        if (ends_with($origMessage, "\n\n---")) {
-            return;
-        }
-
-        $hiddenSectionEnd = strpos($origMessage, $separator);
-
-        if ($hiddenSectionEnd === false) {
-            $hiddenSectionEnd = 0;
+        if (starts_with($origMessage, $openingSeparator)) {
+            $publicMessageStart = strlen($openingSeparator);
         } else {
-            $hiddenSectionEnd += strlen($separator);
+            $publicMessageStart = strpos($origMessage, $separator);
+
+            if ($publicMessageStart === false) {
+                return;
+            } else {
+                $publicMessageStart += strlen($separator);
+            }
         }
 
-        $message = trim(substr($origMessage, $hiddenSectionEnd));
+        $message = trim(substr($origMessage, $publicMessageStart));
 
         return present($message) ? Markdown::convertToHtml($message) : null;
     }

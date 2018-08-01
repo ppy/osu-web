@@ -18,4 +18,4 @@
 
 reactTurbolinks.register 'mp-history', MPHistory.Main, ->
   match: osu.parseJson('json-match')
-  full: full
+  events: osu.parseJson('json-events')
