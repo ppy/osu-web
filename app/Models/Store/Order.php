@@ -262,6 +262,11 @@ class Order extends Model
         return in_array($this->status, ['incart', 'processing'], true);
     }
 
+    public function hasInvoice()
+    {
+        return !in_array($this->status, ['incart', 'processing'], true);
+    }
+
     public function isEmpty()
     {
         return !$this->items()->exists();
