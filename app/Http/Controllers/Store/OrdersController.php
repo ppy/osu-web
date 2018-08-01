@@ -40,10 +40,13 @@ class OrdersController extends Controller
 
     public function index()
     {
-        return Auth::user()
+        $orders = Auth::user()
             ->orders()
+            ->orderBy('order_id', 'desc')
             ->with('items.product')
             ->get();
+
+        return view('store.orders.index', compact('orders'));
     }
 
     public function show($id)
