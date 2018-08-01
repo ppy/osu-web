@@ -192,11 +192,10 @@ class TopicsController extends Controller
                 'pollOptions.post',
             ])->withTrashed()->findOrFail($id);
 
-        $forumModerateCheck = priv_check('ForumModerate', $topic->forum);
-        $showDeleted = $forumModerateCheck->can();
+        $showDeleted = priv_check('ForumModerate', $topic->forum)->can();
 
-        if ($topic->trashed()) {
-            $forumModerateCheck->ensureCan();
+        if ($topic->trashed() && !$showDeleted) {
+            abort(404);
         }
 
         if ($topic->forum === null) {
