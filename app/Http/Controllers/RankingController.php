@@ -65,7 +65,7 @@ class RankingController extends Controller
                 abort(404);
             }
 
-            if (request()->has('country')) {
+            if (request()->has('country') && !in_array($type, static::SPOTLIGHT_TYPES, true)) {
                 $countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', request('country'))
                     ->first();
@@ -233,10 +233,6 @@ class RankingController extends Controller
                 $userQuery
                     ->from("{$model->getConnection()->getDatabaseName()}.{$model->getTable()}")
                     ->default();
-
-                if ($this->country !== null) {
-                    $userQuery->where('country_acronym', $this->country->acronym);
-                }
             })
             ->orderBy('ranked_score', 'desc')
             ->limit(static::SPOTLIGHT_MAX_RESULTS);
