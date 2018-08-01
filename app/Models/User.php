@@ -450,6 +450,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->username_clean = static::cleanUsername($value);
     }
 
+    public function getDisplayedLastVisitAttribute($value)
+    {
+        return $this->user_allow_viewonline ? $this->user_lastvisit : null;
+    }
+
     public function isSpecial()
     {
         return $this->user_id !== null && present($this->user_colour);
