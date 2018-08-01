@@ -57,6 +57,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     protected $casts = [
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
+        'user_allow_viewonline' => 'boolean',
         'user_timezone', 'float',
     ];
 
@@ -624,7 +625,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isOnline()
     {
-        return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+        return $this->user_allow_viewonline
+            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
     public function isPrivileged()

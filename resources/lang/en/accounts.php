@@ -83,5 +83,6 @@ return [
     'privacy' => [
         'title' => 'Privacy',
         'friends_only' => 'block private messages from people not on your friends list',
+        'view_online' => 'show other people when you are online',
     ],
 ];
