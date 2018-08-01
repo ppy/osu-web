@@ -81,6 +81,12 @@ function cache_remember_with_fallback($key, $minutes, $callback)
     return $data['value'] ?? null;
 }
 
+// Just normal Cache::forget but with the suffix.
+function cache_forget_with_fallback($key)
+{
+    return Cache::forget("{$key}:with_fallback");
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);

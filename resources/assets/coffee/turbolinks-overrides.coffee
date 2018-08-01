@@ -16,10 +16,6 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
-  @progressBarTimeout = Timeout.set 0, @showProgressBar
-
-
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->

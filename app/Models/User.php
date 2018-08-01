@@ -182,6 +182,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $history = new UsernameChangeHistory();
             $history->username = $newUsername;
             $history->username_last = $oldUsername;
+            $history->timestamp = Carbon::now();
             $history->type = $type;
 
             if (!$this->usernameChangeHistory()->save($history)) {

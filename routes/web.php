@@ -76,6 +76,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
+Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
