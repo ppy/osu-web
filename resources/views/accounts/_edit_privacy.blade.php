@@ -55,10 +55,10 @@
                 <label class="account-edit-entry__checkbox">
                     <div class="osu-checkbox">
                         <input
-                            name="user[user_allow_viewonline]"
+                            name="user[hide_presence]"
                             class="osu-checkbox__input js-account-edit__input"
                             type="checkbox"
-                            @if (Auth::user()->user_allow_viewonline)
+                            @if (Auth::user()->hide_presence)
                                 checked
                             @endif
                         >
@@ -69,7 +69,7 @@
                     </div>
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.privacy.view_online') }}
+                        {{ trans('accounts.privacy.hide_online') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

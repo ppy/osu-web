@@ -444,6 +444,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->user_allow_pm = !$value;
     }
 
+    public function getHidePresenceAttribute($value)
+    {
+        return !$this->user_allow_viewonline;
+    }
+
+    public function setHidePresenceAttribute($value)
+    {
+        $this->user_allow_viewonline = !$value;
+    }
+
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
@@ -452,7 +462,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getDisplayedLastVisitAttribute($value)
     {
-        return $this->user_allow_viewonline ? $this->user_lastvisit : null;
+        return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
     public function isSpecial()
@@ -630,7 +640,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isOnline()
     {
-        return $this->user_allow_viewonline
+        return !$this->hide_presence
             && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 

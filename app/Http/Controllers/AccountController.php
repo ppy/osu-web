@@ -122,10 +122,10 @@ class AccountController extends Controller
             request(),
             'user',
             [
+                'hide_presence:bool',
                 'osu_playstyle:string[]',
                 'playmode:string',
                 'pm_friends_only:bool',
-                'user_allow_viewonline:bool',
                 'user_from:string',
                 'user_interests:string',
                 'user_msnm:string',
