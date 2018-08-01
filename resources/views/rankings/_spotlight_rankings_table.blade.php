@@ -51,12 +51,10 @@
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
-                        <a href="{{route('rankings', ['mode' => request('mode'), 'type' => request('type'), 'country' => $score->user->country->acronym])}}">
-                            @include('objects._country_flag', [
-                                'country_name' => $score->user->country->name,
-                                'country_code' => $score->user->country->acronym,
-                            ])
-                        </a>
+                        @include('objects._country_flag', [
+                            'country_name' => $score->user->country->name,
+                            'country_code' => $score->user->country->acronym,
+                        ])
                         <a href="{{route('users.show', $score->user_id)}}">
                             <span class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
                                 {{ $score->user->username }}
