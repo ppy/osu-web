@@ -113,6 +113,7 @@ class OrderCheckout
 
             $order->status = 'processing';
             $order->transaction_id = $this->provider;
+            // FIXME: need to fix this after multicart changes
             if ($order->isDirty('status')) {
                 $order->reserveItems();
             }
@@ -154,8 +155,8 @@ class OrderCheckout
                 );
             }
 
-            $order->status = 'incart';
             $order->transaction_id = "{$this->provider}-failed";
+            // FIXME: need to fix this after multicart changes
             $order->releaseItems();
 
             $order->saveorExplode();
