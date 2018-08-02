@@ -63,10 +63,10 @@ class CheckoutController extends Controller
         return ujs_redirect(route('store.products.index'));
     }
 
-    public function show()
+    public function show($id)
     {
-        $order = $this->userCart();
-        if (!$order || $order->isEmpty()) {
+        $order = $this->orderForCheckout($id);
+        if ($order === null || $order->isEmpty()) {
             return ujs_redirect(route('store.cart.show'));
         }
 

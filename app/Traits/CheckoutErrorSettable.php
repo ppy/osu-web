@@ -31,6 +31,6 @@ trait CheckoutErrorSettable
         Session::flash('checkout.error.errors', $errors);
 
         // TODO: what to do if order is null?
-        return ujs_redirect(route('store.orders.show', $order), 422);
+        return ujs_redirect(route('store.checkout.show', $order), 422);
     }
 }

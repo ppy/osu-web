@@ -232,8 +232,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::resource('cart', 'CartController', ['only' => ['store']]);
 
         Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
-        Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
-        Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
+        Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
 
         Route::resource('orders', 'OrdersController', ['only' => ['index', 'show']]);
 

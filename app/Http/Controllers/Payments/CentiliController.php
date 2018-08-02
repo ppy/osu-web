@@ -71,6 +71,7 @@ class CentiliController extends Controller
         // FIXME: show a message to the user
         Request::session()->flash('status', 'An error occured while processing the payment.');
 
+        // TODO: ..how?
         return redirect(route('store.checkout.show'));
     }
 }
