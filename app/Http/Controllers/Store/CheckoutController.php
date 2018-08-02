@@ -84,21 +84,13 @@ class CheckoutController extends Controller
 
     public function store()
     {
-        $order = $this->userCart();
         $orderId = get_int(request('orderId'));
         $provider = request('provider');
 
-        if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart.show'));
-        }
+        $order = $this->orderForCheckout($orderId);
 
-        // check that we aren't checking out using some ancient cart;
-        // otherwise the Xsolla client will use the stale cart.
-        if ($order->order_id !== $orderId) {
-            return $this->setAndRedirectCheckoutError(
-                $order,
-                trans('store.checkout.old_cart')
-            );
+        if ($order === null || $order->isEmpty()) {
+            return ujs_redirect(route('store.cart.show'));
         }
 
         $checkout = new OrderCheckout($order, $provider);

@@ -28,6 +28,11 @@ abstract class Controller extends BaseController
 {
     protected $section = 'store';
 
+    protected function orderForCheckout($id)
+    {
+        return Auth::user()->orders()->whereIn('status', ['incart', 'processing'])->find($id);
+    }
+
     /**
      * Gets the cart of the currently logged in user.
      *
