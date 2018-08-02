@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Libraries\OrderCheckout;
 use App\Models\Store\Order;
 use App\Models\User;
 use Auth;
@@ -51,9 +52,20 @@ class OrdersController extends Controller
 
     public function show($id)
     {
-        return Auth::user()
-            ->orders()
-            ->with('items.product')
-            ->findOrFail($id);
+        $order = $this->pendingCheckouts()->with('items.product')->findOrFail($id);
+        if ($order->isEmpty()) {
+            return ujs_redirect(route('store.cart.show'));
+        }
+
+        // TODO: should be able to notify user that items were changed due to stock/price changes.
+        $order->refreshCost();
+        $checkout = new OrderCheckout($order);
+        $addresses = Auth::user()->storeAddresses()->with('country')->get();
+
+        // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
+        // an array and will cause issues in shared views.
+        $validationErrors = session('checkout.error.errors') ?? $checkout->validate();
+
+        return view('store.checkout', compact('order', 'addresses', 'checkout', 'validationErrors'));
     }
 }

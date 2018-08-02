@@ -52,8 +52,7 @@ return [
         'pay' => 'Checkout with Paypal',
         'pending_checkout' => [
             'line_1' => 'A previous checkout was started but did not finish.',
-            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
-            'link_text' => 'click here',
+            'line_2' => 'Resume your checkout by selecting a payment method.',
         ],
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
