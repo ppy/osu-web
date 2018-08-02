@@ -28,7 +28,6 @@ use Illuminate\Session\TokenMismatchException;
 class VerifyCsrfToken extends BaseVerifier
 {
     protected $except = [
-        'api/*',
         'oauth/authorize',
         'oauth/access_token',
     ];
