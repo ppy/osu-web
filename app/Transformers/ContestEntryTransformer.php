@@ -60,7 +60,12 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item($entry, function ($entry) {
-            $size = fast_imagesize($entry->entry_url);
+            // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
+            if ($entry->contest->visible) {
+                $urlSuffix = str_contains($entry->entry_url, '?') ? '&live' : '?live';
+            }
+
+            $size = fast_imagesize($entry->entry_url.($urlSuffix ?? ''));
             $thumb = $entry->entry_url;
 
             if (present(config('osu.assets.mini_url')) && present(config('osu.assets.mini_url'))) {
