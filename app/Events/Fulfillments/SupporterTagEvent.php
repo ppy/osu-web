@@ -27,7 +27,6 @@ use Sentry;
 
 class SupporterTagEvent implements HasOrder, MessageableEvent
 {
-
     /** @var Order */
     protected $order;
 
