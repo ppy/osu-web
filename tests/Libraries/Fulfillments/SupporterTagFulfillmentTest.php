@@ -298,6 +298,7 @@ class SupporterTagFulfillmentTest extends TestCase
             'cost' => $amount,
             'extra_data' => [
                 'target_id' => $user->user_id,
+                'username' => $user->username,
                 'duration' => $duration,
             ],
         ]);
