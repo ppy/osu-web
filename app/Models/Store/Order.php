@@ -485,16 +485,7 @@ class Order extends Model
 
     private function removeOrderItem(array $params)
     {
-        $itemId = $params['id'];
-        $item = $this->items()->find($itemId);
-
-        if ($item) {
-            $item->delete();
-        }
-
-        if ($this->items()->count() === 0) {
-            $this->delete();
-        }
+        optional($this->items()->find($params['id']))->delete();
     }
 
     private function newOrderItem(array $params)
