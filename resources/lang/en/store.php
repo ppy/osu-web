@@ -85,10 +85,10 @@ return [
 
         'status' => [
             'cancelled' => 'Cancelled',
-            'checkout' => 'Waiting for payment',
+            'checkout' => 'Waiting for payment confirmation',
             'delivered' => 'Delivered',
             'paid' => 'Paid',
-            'processing' => 'Waiting for payment confirmation',
+            'processing' => 'Waiting for payment',
             'shipped' => 'In Transit',
         ]
     ],
