@@ -82,7 +82,7 @@ class Order extends Model
 
     public function scopeInCart($query)
     {
-        return $query->whereIn('status', ['incart', 'processing']);
+        return $query->where('status', 'incart');
     }
 
     public function scopeProcessing($query)
