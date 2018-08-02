@@ -96,6 +96,7 @@ class CheckoutController extends Controller
         // otherwise the Xsolla client will use the stale cart.
         if ($order->order_id !== $orderId) {
             return $this->setAndRedirectCheckoutError(
+                $order,
                 trans('store.checkout.old_cart')
             );
         }
@@ -105,6 +106,7 @@ class CheckoutController extends Controller
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
+                $order,
                 trans('store.checkout.cart_problems'),
                 $validationErrors
             );
