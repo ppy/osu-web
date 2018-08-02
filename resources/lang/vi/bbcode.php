@@ -19,18 +19,18 @@
  */
 
 return [
-    'bold' => 'Đậm',
+    'bold' => 'In đậm',
     'heading' => 'Tiêu Đề',
     'image' => 'Hình Ảnh',
     'italic' => 'Nghiêng',
-    'link' => 'Link',
+    'link' => 'Liên kết',
     'list' => 'Danh Sách',
     'list_numbered' => 'Danh Sách Đánh Số',
     'size' => [
         '_' => 'Cỡ Font',
         'tiny' => 'Rất Nhỏ',
         'small' => 'Nhỏ',
-        'normal' => 'Bình Thường',
+        'normal' => 'Vừa',
         'large' => 'Lớn',
     ],
     'spoilerbox' => 'Hộp Spoiler',

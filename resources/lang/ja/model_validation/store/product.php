@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '',
-    'too_many' => '',
+    'insufficient_stock' => 'このアイテムは残っていません！',
+    'not_available' => 'このアイテムは利用可能ではありません．',
+    'too_many' => '注文できるのは、注文ごとにこの商品の:count個のみです。',
 ];

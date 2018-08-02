@@ -261,7 +261,7 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
             ],
             'account_standing' => [
                 'title' => 'Stato dell\'account',
-                'bad_standing' => "<strong>:username's</strong>l'account non ha una buona reputazione :(",
+                'bad_standing' => "L'account di <strong>:username</strong> non ha una buona reputazione :(",
                 'remaining_silence' => '<strong>:username</strong> potrà parlare di nuovo tra :duration.',
 
                 'recent_infringements' => [
