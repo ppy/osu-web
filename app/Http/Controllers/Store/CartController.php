@@ -43,11 +43,6 @@ class CartController extends Controller
 
     public function show()
     {
-        $pendingCheckout = $this->pendingCheckouts()->first();
-        if ($pendingCheckout !== null) {
-            return ujs_redirect(route('store.orders.show', $pendingCheckout));
-        }
-
         $order = $this->userCart();
         $validationErrors = $order !== null ? (new OrderCheckout($order))->validate() : [];
 

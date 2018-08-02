@@ -28,6 +28,20 @@ abstract class Controller extends BaseController
 {
     protected $section = 'store';
 
+    protected $pendingCheckout;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->pendingCheckout = $this->pendingCheckouts()->first();
+            view()->share('pendingCheckout', $this->pendingCheckout);
+
+            return $next($request);
+        });
+
+        parent::__construct();
+    }
+
     protected function orderForCheckout($id)
     {
         return Auth::user()->orders()->whereIn('status', ['incart', 'processing'])->find($id);
