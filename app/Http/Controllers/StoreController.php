@@ -67,8 +67,9 @@ class StoreController extends Controller
 
     public function getListing()
     {
-        if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.show'));
+        $pendingCheckout = $this->pendingCheckouts()->first();
+        if ($pendingCheckout !== null) {
+            return ujs_redirect(route('store.orders.show', $pendingCheckout));
         }
 
         return view('store.index')

@@ -43,12 +43,12 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * @return bool
+     * Gets the pending checkouts of the current user.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder pending checkouts of the current user.
      */
-    protected function hasPendingCheckout()
+    protected function pendingCheckouts()
     {
-        $cart = $this->userCart();
-
-        return $cart === null ? false : $cart->isProcessing();
+        return Order::where('user_id', Auth::user()->getKey())->processing();
     }
 }

@@ -30,8 +30,9 @@ class ProductsController extends Controller
 
     public function show($id)
     {
-        if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.show'));
+        $pendingCheckout = $this->pendingCheckouts()->first();
+        if ($pendingCheckout !== null) {
+            return ujs_redirect(route('store.orders.show', $pendingCheckout));
         }
 
         $product = $this->getProduct($id);
