@@ -25,7 +25,7 @@ return [
             'has_reply' => 'Không thể xóa cuộc thảo luận có trả lời trong đó',
         ],
         'nominate' => [
-            'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
+            'exhausted' => 'Bạn đã đạt giới hạn đề cử của hôm nay, hãy thử lại vào ngày mai.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
             'owner' => "Bạn không thể đề cử beatmap của bạn.",
         ],
@@ -146,7 +146,7 @@ return [
 
     'unauthorized' => 'Truy cập bị từ chối.',
 
-    'silenced' => "Không thể làm việc đó trong khi bị im lặng.",
+    'silenced' => "Không thể làm việc đó trong khi bị cấm nói.",
 
     'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
 
@@ -155,7 +155,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'Yêu cầu supporter tag.',
+                'require_supporter_tag' => 'Phải có osu!supporter.',
             ],
         ],
     ],
