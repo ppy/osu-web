@@ -48,5 +48,15 @@
                 </div>
             </div>
         @endif
+
+        {{-- TODO: make nicer --}}
+        {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
+        @if(isset($pendingCheckout) && optional(request()->route())->getName() !== 'store.checkout.show')
+            <div class="">
+                <div class="store-header__notice-text">
+                    You have an incomplete checkout, click <a href="{{ route('store.checkout.show', $pendingCheckout) }}">here</a> to complete it.
+                </div>
+            </div>
+        @endif
     </div>
 </div>
