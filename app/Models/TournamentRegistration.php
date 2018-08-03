@@ -22,7 +22,7 @@ namespace App\Models;
 
 class TournamentRegistration extends Model
 {
-    protected $table = 'osu.tournament_registrations';
+    protected $table = 'tournament_registrations';
     protected $primaryKey = 'registration_id';
 
     public function getDates()
