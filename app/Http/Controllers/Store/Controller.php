@@ -44,7 +44,11 @@ abstract class Controller extends BaseController
 
     protected function orderForCheckout($id)
     {
-        return Auth::user()->orders()->whereIn('status', ['incart', 'processing'])->find($id);
+        return Auth::user()
+            ->orders()
+            ->whereIn('status', ['incart', 'processing'])
+            ->with('items.product')
+            ->find($id);
     }
 
     /**
