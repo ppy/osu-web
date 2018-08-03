@@ -44,6 +44,7 @@ class OrdersController extends Controller
         $orders = Auth::user()
             ->orders()
             ->orderBy('order_id', 'desc')
+            ->where('status', '!=', 'incart')
             ->with('items.product')
             ->get();
 
