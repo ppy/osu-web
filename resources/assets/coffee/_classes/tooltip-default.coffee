@@ -18,7 +18,7 @@
 
 class @TooltipDefault
   constructor: ->
-    $(document).on 'mouseover', '[title]:not(iframe)', @onMouseOver
+    $(document).on 'mouseover touchstart', '[title]:not(iframe)', @onMouseOver
     $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow, .u-ellipsis-overflow-desktop', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
 
@@ -69,13 +69,14 @@ class @TooltipDefault
       show:
         event: event.type
         ready: true
-      hide:
-        inactive: 3000
       style:
         classes: classes
         tip:
           width: 10
           height: 8
+
+    if event.type == 'touchstart'
+      options['hide'] = inactive: 3000
 
     # if enabled, prevents tooltip from changing position
     if el.dataset.tooltipPinPosition
