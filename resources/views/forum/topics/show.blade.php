@@ -195,18 +195,16 @@
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
                 @include('forum.topics._lock', compact('topic'))
-                @if (priv_check('ForumModerate', $topic->forum)->can())
+
+                @if ($userCanModerate)
                     @include('forum.topics._moderate_pin', compact('topic'))
-                @endif
-
-                @if (priv_check('ForumModerate', $topic->forum)->can())
                     @include('forum.topics._moderate_move', compact('topic'))
-                @endif
 
-                @if ($topic->isIssue() && priv_check('ForumModerate', $topic->forum)->can())
-                    @foreach ($topic::ISSUE_TAGS as $type)
-                        @include("forum.topics._issue_tag_{$type}")
-                    @endforeach
+                    @if ($topic->isIssue())
+                        @foreach ($topic::ISSUE_TAGS as $type)
+                            @include("forum.topics._issue_tag_{$type}")
+                        @endforeach
+                    @endif
                 @endif
 
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])

@@ -192,9 +192,9 @@ class TopicsController extends Controller
                 'pollOptions.post',
             ])->withTrashed()->findOrFail($id);
 
-        $showDeleted = priv_check('ForumModerate', $topic->forum)->can();
+        $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
-        if ($topic->trashed() && !$showDeleted) {
+        if ($topic->trashed() && !$userCanModerate) {
             abort(404);
         }
 
@@ -204,7 +204,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted);
+        $posts = $topic->posts()->showDeleted($userCanModerate);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -261,7 +261,7 @@ class TopicsController extends Controller
         }
 
         $firstPostId = $topic->posts()
-            ->showDeleted($showDeleted)
+            ->showDeleted($userCanModerate)
             ->orderBy('post_id', 'asc')
             ->select('post_id')
             ->first()
@@ -296,7 +296,8 @@ class TopicsController extends Controller
                 'posts',
                 'firstPostPosition',
                 'firstPostId',
-                'topic'
+                'topic',
+                'userCanModerate'
             )
         );
     }
