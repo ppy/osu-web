@@ -38,12 +38,14 @@ Timeout.set(0, function () {
         $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,
         ])) !!});
+        osu.pageChange();
     @else
         $el.css({
             minHeight: "0px",
             height: $el.css("height")
         }).slideUp(null, function () {
-            return $el.remove();
+            $el.remove();
+            osu.pageChange();
         });
     @endif
 
