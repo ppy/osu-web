@@ -17,17 +17,107 @@
 ###
 
 el = React.createElement
-{button, i} = ReactDOMFactories
+{button, div, i, option, select, textarea} = ReactDOMFactories
 
-bn = 'report-button'
+bn = 'report-form'
 
 class @ReportButton extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @ref = React.createRef()
+    @textarea = React.createRef()
+
+    @state =
+      showingModal: false
+
+
+  hideModal: (e) =>
+    return if e.button != 0 || e.target != @ref.current
+    e.preventDefault()
+    @setState showingModal: false
+
+
   render: =>
-    return unless currentUser.id? && @props.user?.id != currentUser.id
+    return null unless currentUser.id? && @props.user?.id != currentUser.id
 
-    button
-      type: 'button'
-      className: 'user-action-button user-action-button--message user-action-button--right-margin'
-      title: 'report user'
-      i className: 'fas fa-exclamation-triangle'
+    [
+      button
+        className: 'user-action-button user-action-button--message user-action-button--right-margin',
+        key: 'button'
+        type: 'button'
+        onClick: @showModal
+        title: 'report user'
+        i className: 'fas fa-exclamation-triangle',
 
+      @renderForm() if @state.showingModal
+    ]
+
+
+  renderForm: =>
+    div
+      className: bn
+      key: 'form'
+      onClick: @hideModal
+      ref: @ref
+      div
+        className: "#{bn}__form"
+        div
+          className: "#{bn}__row"
+          i className: 'fas fa-exclamation-triangle'
+
+        div
+          className: "#{bn}__row"
+          "Report #{@props.user.username}?"
+
+        div
+          className: "#{bn}__row"
+          i className: 'fas fa-exclamation-triangle'
+
+        div
+          className: "#{bn}__row"
+          'Reason'
+
+        div
+          className: "#{bn}__row"
+          select
+            className: "#{bn}__select"
+            type: 'dropdown'
+            option value: 'Cheating', 'Foul play / Cheating'
+            option value: 'Insults', 'Insulting me / others'
+            option value: 'Spam', 'Spamming'
+            option value: 'UnwantedContent', 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)'
+            option value: 'Nonsense', 'Nonsense'
+            option value: 'Other', 'Other (type below)'
+
+        div
+          className: "#{bn}__row"
+          'Additional Comments'
+
+        div
+          className: "#{bn}__row"
+          textarea
+            className: "#{bn}__textarea"
+            placeholder: 'Please provide any information you believe could be useful.'
+            ref: @textarea
+
+        div
+          className: "#{bn}__row"
+          button
+            className: "#{bn}__button #{bn}__button--report"
+            type: 'button'
+            'Send Report'
+
+        div
+          className: "#{bn}__row"
+          button
+            className: "#{bn}__button"
+            type: 'button'
+            onClick: () => @setState showingModal: false
+            'Cancel'
+
+
+  showModal: (e) =>
+    return if e.button != 0
+    e.preventDefault()
+    @setState showingModal: true
