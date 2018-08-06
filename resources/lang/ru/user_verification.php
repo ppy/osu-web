@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,12 +26,12 @@ return [
         'issuing' => 'Отправка другого письма...',
 
         'info' => [
-            'check_spam' => 'Проверьте папку спам, если вы не можете найти письмо',
-            'recover' => 'Если вы потеряли доступ к своей почте или забыли его, пройдите :link.',
+            'check_spam' => "Проверьте папку спам, если вы не можете найти письмо",
+            'recover' => "Если вы потеряли доступ к своей почте или забыли его, пройдите :link.",
             'recover_link' => 'процедуру восстановления',
             'reissue' => 'Также, вы можете :reissue_link или :logout_link.',
             'reissue_link' => 'запросить другой код',
-            'logout_link' => 'выйти', // Base text changed from "log" to "sign"
+            'logout_link' => 'выйти',
         ],
     ],
 

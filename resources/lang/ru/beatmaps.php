@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,12 +39,11 @@ return [
         'edit' => 'изменить',
         'edited' => 'Последний раз изменён :editor в :update_time',
         'kudosu_denied' => 'Отказано в получении кудосу.',
-        'message_placeholder' => 'Начинайте вводить здесь',
         'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена и отзываться о ней нельзя.',
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter для ответа.',
         'reply_placeholder' => 'Введите тут ответ',
-        'require-login' => 'Войди для публикации или ответа', // Base text changed from "log" to "sign"
+        'require-login' => 'Войди для публикации или ответа',
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'title' => 'Отзывы',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Этот пост пойдет в общую ветку отзывов. Чтобы изменить эту карту, начните своё сообщение с временной отметкой (к примеру 00:12:345).',
             'in_timeline' => 'Для изменения нескольких отметок, опубликуйте несколько отметок (одна публикация на отметку).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Введите здесь, чтобы запостить в Общий (:version)',
+            'generalAll' => 'Введите здесь, чтобы запостить в Общий (Все сложности)',
+            'timeline' => 'Введите здесь, чтобы запостить в временную шкалу (:version)',
         ],
 
         'message_type' => [
@@ -113,7 +118,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Эта карта была одобрена :date!',
-            'graveyard' => 'Эта карта не обновлялась с :date и похоже, что автор её забросил...',
+            'graveyard' => "Эта карта не обновлялась с :date и похоже, что автор её забросил...",
             'loved' => 'Эта карта была признана "любимой" :date!',
             'ranked' => 'Эта карта была ранкнута :date!',
             'wip' => 'Заметьте: Эта карта была помечена создателем как незавершённая.',
@@ -124,10 +129,10 @@ return [
     'hype' => [
         'button' => 'Хайпануть карту!',
         'button_done' => 'Уже хайпанута!',
-        'confirm' => 'Вы уверены? Это действие отберёт один из :n хайпов и не может быть отменено.',
+        'confirm' => "Вы уверены? Это действие отберёт один из :n хайпов и не может быть отменено.",
         'explanation' => 'Это сделает карту доступной для номинирования!',
         'explanation_guest' => 'Войдите в аккаунт, чтобы сделать карту доступной для номинирования!',
-        'new_time' => 'Вы получите другой хайп :new_time.',
+        'new_time' => "Вы получите другой хайп :new_time.",
         'remaining' => 'У вас осталось :remaining хайпа.',
         'required_text' => 'Хайп: :current/:required',
         'section_title' => 'Прогресс хайпа',
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'начните вводить ключевые слова ...',
             'options' => 'Больше настроек поиска',
+            'supporter_filter' => 'Фильтрация по :filters требует активного тега Саппорта',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
@@ -178,11 +184,26 @@ return [
                 'language' => 'Язык',
                 'extra' => 'Дополнительно',
                 'rank' => 'Рейтинг',
+                'played' => 'Сыграно',
+            ],
+            'sorting' => [
+                'title' => 'название',
+                'artist' => 'исполнитель',
+                'difficulty' => 'сложность',
+                'updated' => 'обновлено',
+                'ranked' => 'рейтинговые',
+                'rating' => 'рейтинг',
+                'plays' => 'количество игр',
+                'relevance' => 'релевантность',
+                'nominations' => 'номинации',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Фильтрация по :filters требует :link',
+                'link_text' => 'тег "помощника"',
             ],
         ],
         'mode' => 'Режим игры',
         'status' => 'Статус одобрения',
-        'mapped-by' => 'автор :mapper',
         'source' => 'от :source',
         'load-more' => 'Загрузить ещё...',
     ],
@@ -205,7 +226,7 @@ return [
         'loved' => 'Любимые',
         'faves' => 'Избранные',
         'pending' => 'Ожидающие',
-        'graveyard' => 'Заброшенные', // TODO: найти перевод лучше
+        'graveyard' => 'Заброшенные',
         'my-maps' => 'Мои карты',
     ],
     'genre' => [
@@ -258,9 +279,14 @@ return [
         'instrumental' => 'Инструментальный',
         'other' => 'Другой',
     ],
+    'played' => [
+        'any' => 'Все',
+        'played' => 'Сыграно',
+        'unplayed' => 'Не сыграно',
+    ],
     'extra' => [
         'video' => 'Есть видео',
-        'storyboard' => 'Есть сторибоард',
+        'storyboard' => 'Есть сториборд',
     ],
     'rank' => [
         'any' => 'Все',

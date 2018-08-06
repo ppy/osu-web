@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'フィード',
     'generic' => 'バグ修正と細かい調整',
-    'users-online' => ':users人オンライン',
 
-    'prefixes' => [
-        'add' => '追加要素',
-        'fix' => '修正',
-        'misc' => 'その他',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

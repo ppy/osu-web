@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}" data-loading-overlay="0">
+    <form action="{{ route('search') }}" data-loading-overlay="0" class="js-search">
         <input type="hidden" name="mode" value="{{ request('mode') }}">
 
         <div class="osu-page">
@@ -44,7 +44,7 @@
                     </button>
 
                     <button class="search-header__icon search-header__icon--searching">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                        {!! spinner() !!}
                     </button>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 @else
                     <div class="search-result">
                         <div class="search-result__row search-result__row--notice">
-                            @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
+                            {{ trans('home.search.missing_query', ['n' => config('osu.search.minimum_length')]) }}
                         </div>
                     </div>
                 @endif

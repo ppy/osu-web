@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,9 +26,15 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'incorrect_state' => 'Error performing that action, try refreshing the page.',
+            'owner' => "Can't nominate own beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+        ],
+
+        'store' => [
+            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/QAT group member can post mapper notes.',
         ],
 
         'vote' => [
@@ -93,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'double_post' => 'Please edit your last post instead of posting again.',
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
@@ -153,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
     ],

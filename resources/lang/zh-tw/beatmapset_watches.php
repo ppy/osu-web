@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => '這裡是你關注的譜面，你會在它們更新或者有新討論的時候收到通知。',
+        'description' => '這裡是你關注的圖譜，您將會在它們更新或有新討論的時候收到通知。',
         'title_compact' => '摸圖',
         'title_main' => '摸圖',
 

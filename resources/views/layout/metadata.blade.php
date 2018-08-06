@@ -15,13 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<link rel="shortcut icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
-<link rel="icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config('osu.static') }}/apple-touch-icon.png">
+<link rel="icon" sizes="32x32" href="{{ config('osu.static') }}/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="{{ config('osu.static') }}/favicon-16x16.png">
+<link rel="manifest" href="{{ config('osu.static') }}/site.webmanifest">
+<link rel="mask-icon" href="{{ config('osu.static') }}/safari-pinned-tab.svg" color="#e2609a">
+<meta name="msapplication-TileColor" content="#603cba">
+<meta name="theme-color" content="#cc5288">
+
 <meta charset="utf-8">
 <meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#cc5288">
 
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,6 +40,14 @@
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 
+@if (App::getLocale() === 'vi')
+    <link href='//fonts.googleapis.com/css?family=Exo:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+    <style>
+        :root {
+            --font-default-override: var(--font-default-vi);
+        }
+    </style>
+@endif
 <link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 

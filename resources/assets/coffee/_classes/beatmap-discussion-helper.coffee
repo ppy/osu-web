@@ -20,37 +20,34 @@ class @BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
+  @MAX_MESSAGE_PREVIEW_LENGTH: 100
 
   @MODES = ['events', 'general', 'generalAll', 'timeline']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
+  # text should be pre-escaped.
   @discussionLinkify: (text) =>
-    matches = text.match osu.urlRegex
     currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
+    currentBeatmapsetDiscussions = @urlParse(currentUrl.href)
 
-    _.each matches, (url) ->
+    text.replace osu.urlRegex, (url) =>
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?
+        targetBeatmapsetDiscussions = @urlParse targetUrl.href, null, forceDiscussionId: true
+        if targetBeatmapsetDiscussions?.discussionId?
           if currentBeatmapsetDiscussions? &&
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
             # same beatmapset, format: #123
             linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+            attrs = 'class="js-beatmap-discussion--jump"'
           else
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
 
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
+      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
 
-    text
 
 
   @discussionMode: (discussion) ->
@@ -100,8 +97,8 @@ class @BeatmapDiscussionHelper
 
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
-        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
+        osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @maxlength: 750
@@ -132,6 +129,16 @@ class @BeatmapDiscussionHelper
         when user.is_admin then 'admin'
         when user.is_qat then 'qat'
         when user.is_bng then 'bng'
+
+
+  @previewMessage = (message) =>
+    if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
+      _.chain(message)
+      .truncate length: @MAX_MESSAGE_PREVIEW_LENGTH
+      .escape()
+      .value()
+    else
+      @format message, newlines: false
 
 
   @stateFromDiscussion: (discussion) =>
@@ -201,7 +208,7 @@ class @BeatmapDiscussionHelper
 
 
   # see @url
-  @urlParse: (urlString, discussions, options = {}) ->
+  @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
     url = new URL(urlString ? document.location.href)

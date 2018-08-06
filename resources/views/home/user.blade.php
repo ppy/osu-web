@@ -19,7 +19,11 @@
 
 @section('content')
     @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
+        'title' => trans('home.user.header.welcome', ['username' => link_to(
+            route('users.show', Auth::user()),
+            Auth::user()->username,
+            ['class' => 'link link--white']
+        )])
     ])
 
     <div class="osu-page osu-page--small-desktop">

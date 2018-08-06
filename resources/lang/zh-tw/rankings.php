@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,21 +21,21 @@
 return [
     'header' => ':type 排名',
     'type' => [
-        'performance' => '表現',
-        'charts' => '月賽', // Base text has changed, please check.
+        'performance' => '成績',
+        'charts' => '月賽',
         'score' => '總分',
         'country' => '國家',
     ],
     'stat' => [
         'accuracy' => '準確率',
-        'active_users' => '活躍用戶',
+        'active_users' => '活躍的使用者',
         'country' => '國家',
         'play_count' => '遊戲次數',
-        'performance' => '表現',
+        'performance' => '成績',
         'total_score' => '總分',
         'ranked_score' => 'Ranked 總分',
-        'average_score' => '平均得分',
-        'average_performance' => '平均表現',
+        'average_score' => '平均總分',
+        'average_performance' => '平均成績',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

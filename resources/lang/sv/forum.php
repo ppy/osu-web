@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'pinned_topics' => 'Nålade Ämnen',
-    'slogan' => 'det är farligt att spela ensam.',
+    'slogan' => "det är farligt att spela ensam.",
     'subforums' => 'Subforums',
     'title' => 'osu!community',
 
@@ -67,10 +67,12 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
         'post_reply' => 'Lägg upp',
         'reply_box_placeholder' => 'Tryck här för att svara',
         'started_by' => 'av :user',
@@ -131,6 +133,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',
@@ -146,7 +149,6 @@ return [
 
             'poll' => [
                 'length' => 'Kör enkät i',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dagar',
                 'length_info' => 'Lämna tom för inget avslut av enkät',
                 'max_options' => 'Val per användare',
@@ -164,8 +166,8 @@ return [
         ],
 
         'index' => [
-            'replies' => 'svar',
             'views' => 'visningar',
+            'replies' => 'svar',
         ],
 
         'issue_tag_added' => [
@@ -242,7 +244,7 @@ return [
                 'user' => [
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
                     'current' => 'Du har :votes kvar.',
-                    'not_enough' => 'Du har inga röster kvar',
+                    'not_enough' => "Du har inga röster kvar",
                 ],
             ],
 
@@ -258,8 +260,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Prenumeration sades upp från ämne',
-            'to_watching_done' => 'Prenumererade på ämne',
+            'to_not_watching' => 'Inte bokmärkt',
+            'to_watching' => 'Bokmärk',
+            'to_watching_mail' => 'Bokmärke med notifikation',
+            'mail_disable' => 'Stäng av notifikationer',
         ],
     ],
 ];

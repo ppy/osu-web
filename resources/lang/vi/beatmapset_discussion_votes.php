@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Bình Chọn Cuộc Thảo Luận Beatmap', //TL note: Chỗ này không chắc lắm vì không biết là nó hiện ở đâu
+        'title' => 'Bình Chọn Cuộc Thảo Luận Beatmap',
     ],
 
     'item' => [

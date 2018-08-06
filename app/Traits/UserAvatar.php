@@ -40,10 +40,15 @@ trait UserAvatar
     public function getUserAvatarAttribute($value)
     {
         if (!present($value)) {
-            return 'https://s.ppy.sh/images/blank.jpg';
+            return config('osu.avatar.default');
         }
 
         return $this->avatarStorage()->url(str_replace('_', '?', $value));
+    }
+
+    public function setUserAvatarAttribute($value)
+    {
+        $this->attributes['user_avatar'] = presence($value) ?? '';
     }
 
     public function setAvatar($file)

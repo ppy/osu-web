@@ -20,15 +20,15 @@
 
 return [
     'pinned_topics' => 'Temas Fijados',
-    'slogan' => 'es peligroso jugar solo.',
+    'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'osu!community',
+    'title' => 'comunidad de osu!',
 
     'covers' => [
         'create' => [
-            '_' => 'Definir imagen de portada',
+            '_' => 'Establecer imagen de portada',
             'button' => 'Subir imagen',
-            'info' => 'El tamaño debe ser :dimensions. También puedes soltar tu imagen aquí para subirla.',
+            'info' => 'El tamaño de la portada debe ser de: dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
 
         'destroy' => [
@@ -38,7 +38,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Nueva respuesta en ":title"',
+        'new_reply' => '[osu!] Nueva respuesta para el tema ":title"',
     ],
 
     'forums' => [
@@ -48,8 +48,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '¿Eliminar publicación?',
-        'confirm_restore' => '¿Restaurar publicación?',
+        'confirm_destroy' => '¿Realmente quieres eliminar la publicación?',
+        'confirm_restore' => '¿Realmente quieres restaurar la publicación?',
         'edited' => 'Última edición por :user el :when, editado :count veces en total.',
         'posted_at' => 'publicado :when',
 
@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Escribir nuevo tema',
+        'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
         'started_by' => 'por :user',
@@ -106,8 +107,8 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Suscripciones a Temas',
-            'title_compact' => 'suscripciones',
-            'title_main' => '<strong>Suscripciones</strong> de temas',
+            'title_compact' => 'suscripciones a foros',
+            'title_main' => '<strong>Suscripciones</strong> de foros',
 
             'box' => [
                 'total' => 'Temas suscritos',
@@ -132,13 +133,14 @@ return [
         '_' => 'Temas',
 
         'actions' => [
+            'login_reply' => 'Inicia sesión para responder',
             'reply' => 'Responder',
-            'reply_with_quote' => 'Citar y responder',
+            'reply_with_quote' => 'Citar publicación y responder',
             'search' => 'Buscar',
         ],
 
         'create' => [
-            'create_poll' => 'Crear una encuesta',
+            'create_poll' => 'Creación de encuestas',
 
             'create_poll_button' => [
                 'add' => 'Crear una encuesta',
@@ -147,7 +149,6 @@ return [
 
             'poll' => [
                 'length' => 'Duración de la encuesta',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'días',
                 'length_info' => 'Deja en blanco para una encuesta sin fin',
                 'max_options' => 'Opciones por usuario',
@@ -212,7 +213,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Este tema está bloqueado y no se puede responder',
+            'is_locked' => 'Este tema está cerrado y no se puede responder',
             'to_0' => 'Abrir tema',
             'to_0_done' => 'El tema ha sido abierto',
             'to_1' => 'Cerrar tema',
@@ -224,7 +225,7 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
+            'to_0' => 'Desfijar tema',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
             'to_1_done' => 'El tema ya ha sido fijado',
@@ -243,7 +244,7 @@ return [
                 'user' => [
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Tienes :votes restantes.',
-                    'not_enough' => 'No te quedan más votos',
+                    'not_enough' => "No tienes más votos restantes",
                 ],
             ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,14 +34,15 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'gjord av ',
-            'submitted' => 'inkommen den ',
+            'mapped_by' => 'skapad av :mapper',
+            'submitted' => 'uppladdad den ',
             'updated' => 'senast uppdaterad den ',
+            'updated_timeago' => 'senast ändrad :timeago',
             'ranked' => 'rankad den ',
             'approved' => 'godkänd den ',
             'qualified' => 'kvalificerad den ',
             'loved' => 'älskad den ',
-            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'download' => [
                 '_' => 'Ladda Ner',
                 'video' => 'med Video',
@@ -65,30 +66,41 @@ return [
             'count_sliders' => 'Antal Sliders',
             'user-rating' => 'Användar Betyg',
             'rating-spread' => 'Betyg Spridning',
+            'nominations' => 'Nomineringar',
+            'playcount' => 'Speltid',
         ],
         'info' => [
-            'points-of-failure' => 'Punkter av Misslyckande',
-            'success-rate' => 'Genomsnittig Succe',
             'description' => 'Beskrivning',
+            'genre' => 'Genre',
+            'language' => 'Språk',
+            'no_scores' => 'Data beräknas...',
+            'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
+            'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
             'unranked' => 'Ej rankad beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'uppnått :when',
-            'country' => 'Land Ranking',
-            'friend' => 'Vän Ranking',
-            'global' => 'Global Ranking',
+            'country' => 'Nationell rankning',
+            'friend' => 'Rankning bland vänner',
+            'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
             'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
             'title' => 'Resultattavla',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precision',
-                'player-header' => 'Spelare',
-                'rank-header' => 'Rank',
+                'combo' => 'Högsta Kombo',
+                'miss' => 'Missar',
+                'mods' => 'Tillägg',
+                'player' => 'Spelare',
+                'pp' => '',
+                'rank' => 'Rank',
+                'score_total' => 'Total Poäng',
                 'score' => 'Poäng',
             ],
+
             'no_scores' => [
                 'country' => 'Ingen från ditt land har satt ett poäng på denna map än!',
                 'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',

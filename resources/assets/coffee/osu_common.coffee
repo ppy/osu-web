@@ -33,7 +33,7 @@
     ret = className
 
     if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers
+      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
 
     ret
 
@@ -101,6 +101,11 @@
 
   parseJson: (id) ->
     JSON.parse document.getElementById(id)?.text ? null
+
+
+  # make a clone of json-like object (object with simple values)
+  jsonClone: (object) ->
+    JSON.parse JSON.stringify(object)
 
 
   isInputElement: (el) ->
@@ -234,8 +239,22 @@
     $('#overlay').is(':visible')
 
 
-  trans: (key, replacements) ->
-    Lang.get key, replacements
+  presence: (string) ->
+    if string? && string != '' then string else null
+
+
+  trans: (key, replacements, locale) ->
+    if locale?
+      initialLocale = Lang.getLocale()
+      Lang.setLocale locale
+      translated = Lang.get(key, replacements)
+      Lang.setLocale initialLocale
+
+      translated
+    else
+      translated = Lang.get(key, replacements) if Lang.has(key)
+
+      osu.presence(translated) ? osu.trans(key, replacements, fallbackLocale)
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -250,8 +269,20 @@
         "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
-  transChoice: (key, count, replacements) ->
-    Lang.choice key, count, replacements
+  transChoice: (key, count, replacements = {}, locale) ->
+    replacements.count_delimited ?= count.toLocaleString()
+
+    if locale?
+      initialLocale = Lang.getLocale()
+      Lang.setLocale locale
+      translated = Lang.choice(key, count, replacements)
+      Lang.setLocale initialLocale
+
+      translated
+    else
+      translated = Lang.choice(key, count, replacements) if Lang.has(key)
+
+      osu.presence(translated) ? osu.transChoice(key, count, replacements, fallbackLocale)
 
 
   uuid: ->

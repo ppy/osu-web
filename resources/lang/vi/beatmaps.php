@@ -36,10 +36,9 @@ return [
         'delete' => 'xóa',
         'deleted' => 'Đã xóa bởi :editor :delete_time.',
         'deny_kudosu' => 'từ chối kudosu',
-        'edit' => 'sửa',
+        'edit' => 'chỉnh sửa',
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
-        'message_placeholder' => 'Nhập vào đây để đăng',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Bài đăng này sẽ vào phần thảo luận chung của beatmap, dùng mốc thởi gian để bắt đầu bài đăng (ví dụ 00:12:345) để mod beatmap này.',
             'in_timeline' => 'Để mod nhiều mốc thời gian , hãy đăng nhiều lần (một bài đăng trên một mốc thời gian).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Nhập vào đây để đăng vào Chung (:version)',
+            'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
+            'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
         ],
 
         'message_type' => [
@@ -113,7 +118,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
-            'graveyard' => 'Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...',
+            'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...",
             'loved' => 'Beatmap này đã được love vào :date!',
             'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
@@ -123,11 +128,11 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Đã Được Hype!',
-        'confirm' => 'Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn và không thể hủy bỏ.',
+        'button_done' => 'Đã Được Hype!',
+        'confirm' => "Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn và không thể hủy bỏ.",
         'explanation' => 'Hype beatmap này để làm nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'explanation_guest' => 'Đăng nhập và hype beatmap này để nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
-        'new_time' => 'Bạn sẽ nhận được đợt hype khác vào :new_time.',
+        'new_time' => "Bạn sẽ nhận được đợt hype khác vào :new_time.",
         'remaining' => 'Bạn còn :remaining hype.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -139,39 +144,36 @@ return [
     ],
 
     'nominations' => [
-        'disqualification-prompt' => 'Lí do để qualify?',
-        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'không đưa ra lí do',
+        'disqualification_prompt' => 'Lí do để qualify?',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
+        'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'nominate' => 'Đề Cử',
-        'nominate-confirm' => 'Đề cử (nominate) beatmap này?',
-        'nominated-by' => 'được đề cử (nomimated) bởi :users',
+        'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
+        'nominated_by' => 'Được :users đề cử',
         'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified-soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
-        'required-text' => 'Trạng thái đề cử: :current/:required',
-        'reset_message_deleted' => 'deleted',
+        'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
+        'required_text' => 'Trạng thái đề cử: :current/:required',
+        'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
-    ],
 
-    'reset_at' => [
-            'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào  :time_ago bởi :user với vấn đề mới :discussion (:message).',
+        'reset_at' => [
+            'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',
             'disqualify' => 'Disqualified :time_ago bởi :user với vấn đề mới :discussion (:message).',
         ],
-    /*
-    *   TL note:
-    *   Rank = xếp hạng
-    *   Nominate = đề cử
-    *   Love = <giữ nguyên>
-    *   Qualify = <giữ nguyên>
-    *   Disqualify = <giữ nguyên>
-    *   Approved = được chấp nhận
-    */
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
+        ],
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'nhập từ khóa...',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
+            'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
@@ -184,10 +186,24 @@ return [
                 'rank' => 'Thứ Hạng Đạt Được',
                 'played' => 'Đã chơi',
             ],
+            'sorting' => [
+                'title' => 'tiêu đề',
+                'artist' => 'nghệ sĩ',
+                'difficulty' => 'độ khó',
+                'updated' => 'ngày cập nhật',
+                'ranked' => 'ngày xếp hạng',
+                'rating' => 'đánh giá',
+                'plays' => 'lượt chơi',
+                'relevance' => 'độ liên quan',
+                'nominations' => 'số đề cử',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Lọc theo :filters cần một :link đang hoạt động',
+                'link_text' => 'supporter tag',
+            ],
         ],
         'mode' => 'Chế Độ',
         'status' => 'Trạng Thái Xếp Hạng',
-        'mapped-by' => 'được tạo bởi :mapper',
         'source' => 'từ :source',
         'load-more' => 'Tải thêm...',
     ],
@@ -207,7 +223,7 @@ return [
         'ranked-approved' => 'Được Xếp Hạng & Được Chấp Nhận',
         'approved' => 'Được Chấp Nhận',
         'qualified' => 'Qualified',
-        'loved' => 'Được Love',
+        'loved' => 'Loved',
         'faves' => 'Yêu Thích',
         'pending' => 'Đang Chờ',
         'graveyard' => 'Graveyard',

@@ -36,14 +36,14 @@
                 </div>
             </div>
 
-            <label class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
+            <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <textarea
                     class="account-edit-entry__input js-post-preview--auto js-bbcode-body"
                     name="user[user_sig]"
                     rows=6
                 >{{ bbcode_for_editor(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) }}</textarea>
 
-            </label>
+            </div>
 
             <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <div class="account-edit-entry__misc-info">

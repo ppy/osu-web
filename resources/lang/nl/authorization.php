@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,23 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'is_hype' => 'Hyping kan niet ongedaan gemaakt worden.',
+            'has_reply' => 'Je kan geen discussie met reacties verwijderen',
+        ],
+        'nominate' => [
+            'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer het morgen opnieuw.',
+            'incorrect_state' => 'Fout tijdens het uitvoeren van deze actie, probeer de pagina te herladen.',
+            'owner' => "Je kan je eigen beatmap niet nomineren.",
+        ],
         'resolve' => [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Wacht even voor je meer stemmen indient',
+            'owner' => "Je kan niet stemmen op je eigen discussie.",
+            'wrong_beatmapset_state' => 'Je kan alleen stemmen op discussies van beatmaps die in afwachting zijn.',
         ],
     ],
 
@@ -43,42 +58,75 @@ return [
                 'channel' => [
                     'no_access' => 'Toegang tot dit kanaal is vereist.',
                     'moderated' => 'Kanaal wordt op het moment gemodereerd.',
+                    'not_lazer' => 'Je kan op dit moment enkel in #lazer praten.',
                 ],
 
-                'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
+                'not_allowed' => 'Je kunt geen berichten sturen terwijl je verbannen/gerestricteerd/gesilenced bent.',
             ],
         ],
+    ],
+
+    'contest' => [
+        'voting_over' => 'Je kan je stem niet meer veranderen nadat de stemperiode van deze wedstrijd is afgelopen.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Alleen de laatste post kan worden verwijderd.',
-                'locked' => 'Kan geen post in een gesloten onderwerp verwijderen.',
+                'locked' => 'Je kan geen posts in een gesloten onderwerp verwijderen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan deze post verwijderen.',
             ],
 
             'edit' => [
+                'deleted' => 'Je kan een verwijderde post niet bewerken.',
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
                 'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
             ],
+
+            'store' => [
+                'play_more' => 'Probeer eerst de game te spelen voor je op de forums post! Als je een probleem hebt met te spelen, post dan alstublieft in de Help en Support forum.',
+                'too_many_help_posts' => "Je moet eerst de game spelen voor je extra posts kan maken. Als je nog steeds problemen ondervindt, e-mail dan support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Je hebt zojuist gepost. Wacht even voordat je een nieuwe maakt of bewerk je vorige post.',
+                'double_post' => 'Je hebt net gepost. Wacht even voor je een nieuwe maakt of bewerk je vorige post.',
                 'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om te antwoorden.',
+
+                'user' => [
+                    'require_login' => 'Log in om te antwoorden.',
+                    'restricted' => "Je kan niet reageren terwijl je gerestricteerd bent.",
+                    'silenced' => "Je kan niet antwoorden wanneer je gesilenced bent.",
+                ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'no_permission' => 'Geen toestemming om een onderwerp te starten.',
+                'no_permission' => 'Geen toestemming om een topic te starten.',
                 'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => 'Toegang tot deze forum is nodig.',
+                'over' => 'De stemperiode is voorbij en er kan niet meer gestemd worden.',
+                'voted' => 'Je stem veranderen is niet toegestaan.',
+
+                'user' => [
+                    'require_login' => 'Log in om te stemmen.',
+                    'restricted' => "Je kan niet stemmen als je gerestricteerd bent.",
+                    'silenced' => "Je kan niet stemmen wanneer je gesilenced bent.",
+                ],
+            ],
+
+            'watch' => [
+                'no_forum_access' => 'Toegang tot deze forum is nodig.',
             ],
         ],
 
@@ -94,19 +142,19 @@ return [
         ],
     ],
 
-    'require_login' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
+    'require_login' => 'Log in om verder te gaan.',
 
     'unauthorized' => 'Toegang geweigerd.',
 
-    'silenced' => 'Je kunt dit niet doen terwijl je silenced bent.',
+    'silenced' => "Je kunt dit niet doen terwijl je silenced bent.",
 
-    'restricted' => 'Je kunt dit niet doen terwijl je restricted bent.',
+    'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
 
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => 'Gebruikerspagina is gesloten.',
-                'not_owner' => 'Je kunt alleen je eigen gebruikerspagina bewerken.',
+                'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
                 'require_supporter_tag' => 'Supporter tag is nodig.',
             ],
         ],

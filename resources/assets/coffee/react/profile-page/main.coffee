@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, li, ul} = ReactDOMFactories
+{a, button, div, i, li, span, ul} = ReactDOMFactories
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -55,6 +55,7 @@ class ProfilePage.Main extends React.PureComponent
         beatmapPlaycounts: @props.extras.beatmapPlaycounts
         favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
         rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        lovedBeatmapsets: @props.extras.lovedBeatmapsets
         unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
@@ -131,51 +132,77 @@ class ProfilePage.Main extends React.PureComponent
     if @state.userPage.initialRaw.trim() == '' && !@props.withEdit
       _.pull profileOrder, 'me'
 
-    div className: 'osu-layout osu-layout--full',
-      el ProfilePage.Header,
-        user: @state.user
-        stats: @state.user.statistics
-        currentMode: @state.currentMode
-        withEdit: @props.withEdit
-        rankHistory: @props.rankHistory
+    isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-      div
-        className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+    div className: 'osu-layout__no-scroll',
+      if isBlocked
+        div className: 'osu-page',
+          el NotificationBanner,
+            type: 'warning'
+            title: osu.trans('users.blocks.banner_text')
+            message:
+              div className: 'notification-banner__button-group',
+                div className: 'notification-banner__button',
+                  el BlockButton, user_id: @props.user.id
+                div className: 'notification-banner__button',
+                  button
+                    type: 'button'
+                    className: 'textual-button'
+                    onClick: =>
+                      @setState forceShow: !@state.forceShow
+                    span {},
+                      i className: 'textual-button__icon fas fa-low-vision'
+                      " "
+                      if @state.forceShow
+                        osu.trans('users.blocks.hide_profile')
+                      else
+                        osu.trans('users.blocks.show_profile')
+
+      div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
+        el ProfilePage.Header,
+          user: @state.user
+          stats: @state.user.statistics
+          currentMode: @state.currentMode
+          withEdit: @props.withEdit
+          rankHistory: @props.rankHistory
 
         div
-          className: 'js-sticky-header'
-          'data-sticky-header-target': 'page-extra-tabs'
+          className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+
+          div
+            className: 'js-sticky-header'
+            'data-sticky-header-target': 'page-extra-tabs'
+
+          div
+            className: 'page-extra-tabs__padding js-sync-height--target'
+            'data-sync-height-id': 'page-extra-tabs'
+
+          div
+            className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
+            'data-sync-height-target': 'page-extra-tabs'
+            if profileOrder.length > 1
+              div className: 'osu-page',
+                div
+                  className: 'page-mode page-mode--page-extra-tabs'
+                  ref: (el) => @tabs = el
+                  for m in profileOrder
+                    a
+                      className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                      key: m
+                      'data-page-id': m
+                      onClick: @tabClick
+                      href: "##{m}"
+                      el ProfilePage.ExtraTab,
+                        page: m
+                        currentPage: @state.currentPage
+                        currentMode: @state.currentMode
 
         div
-          className: 'page-extra-tabs__padding js-sync-height--target'
-          'data-sync-height-id': 'page-extra-tabs'
-
-        div
-          className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
-          'data-sync-height-target': 'page-extra-tabs'
-          if profileOrder.length > 1
-            div className: 'osu-page',
-              div
-                className: 'page-mode page-mode--page-extra-tabs'
-                ref: (el) => @tabs = el
-                for m in profileOrder
-                  a
-                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                    key: m
-                    'data-page-id': m
-                    onClick: @tabClick
-                    href: "##{m}"
-                    el ProfilePage.ExtraTab,
-                      page: m
-                      currentPage: @state.currentPage
-                      currentMode: @state.currentMode
-
-      div
-        className: 'osu-layout__section osu-layout__section--extra'
-        div
-          className: 'osu-layout__row'
-          ref: (el) => @pages = el
-          @extraPage name for name in profileOrder
+          className: 'osu-layout__section osu-layout__section--extra'
+          div
+            className: 'osu-layout__row'
+            ref: (el) => @pages = el
+            @extraPage name for name in profileOrder
 
 
   _tabsStick: (_e, target) =>
@@ -236,11 +263,13 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           favouriteBeatmapsets: @state.favouriteBeatmapsets
           rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          lovedBeatmapsets: @state.lovedBeatmapsets
           unrankedBeatmapsets: @state.unrankedBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
             favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
             rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
+            lovedBeatmapsets: @state.user.loved_beatmapset_count[0]
             unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
             graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
           pagination: @state.showMorePagination
@@ -269,30 +298,26 @@ class ProfilePage.Main extends React.PureComponent
         component: ProfilePage.AccountStanding
 
 
-  showMore: (e, {showMoreLink}) =>
-    propertyName = showMoreLink.dataset.showMore
-    url = showMoreLink.dataset.showMoreUrl
-    offset = @state[propertyName].length
-    perPage = parseInt(showMoreLink.dataset.showMorePerPage)
-    maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
+  showMore: (e, {name, url, perPage = 20}) =>
+    offset = @state[name].length
 
     paginationState = _.cloneDeep @state.showMorePagination
-    paginationState[propertyName] ?= {}
-    paginationState[propertyName].loading = true
+    paginationState[name] ?= {}
+    paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[propertyName]).concat(data)
+        state = _.cloneDeep(@state[name]).concat(data)
         hasMore = data.length > perPage
 
         state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = hasMore
+        paginationState[name].loading = false
+        paginationState[name].hasMore = hasMore
 
         @setState
-          "#{propertyName}": state
+          "#{name}": state
           showMorePagination: paginationState
 
 
@@ -403,7 +428,8 @@ class ProfilePage.Main extends React.PureComponent
 
 
   userUpdate: (_e, user) =>
-    return if user?.id != @state.user.id
+    return @forceUpdate() if user?.id != @state.user.id
+
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
 

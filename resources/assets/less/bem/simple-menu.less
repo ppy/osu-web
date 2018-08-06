@@ -79,6 +79,31 @@
     left: (-@_gutter + -@_item-padding-horizontal);
   }
 
+  &--nav2-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &__content {
+    margin: 0 -@_gutter;
+    padding: 0 @_gutter;
+    display: flex;
+    flex-direction: column;
+
+    .@{_top}--nav2 & {
+      min-height: 100px;
+      max-height: calc(100vh ~'-' (@nav2-height + @_padding-vertical * 2));
+      overflow-y: auto;
+    }
+
+    .@{_top}--nav2-locales & {
+      // Hopefully wide enough for two columns (ie. no overflown text).
+      width: 440px;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
   &__form {
     margin: -@_padding-vertical -@_gutter;
   }
@@ -135,6 +160,7 @@
     color: #fff;
     cursor: pointer;
     text-align: left;
+    flex: none;
 
     &:hover {
       background-color: #111;
@@ -143,6 +169,10 @@
 
     &--active {
       .highlight-stripe();
+    }
+
+    .@{_top}--nav2-locales & {
+      width: 50%;
     }
 
     &[disabled], &--disabled {

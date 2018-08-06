@@ -22,7 +22,15 @@
 
     <ul class="forum-topics__entries js-forum-topic-entries">
         @if ($withNewTopicLink ?? false)
-            @include('forum.forums._new_topic')
+            @php
+                $newTopicAuth = priv_check('ForumTopicStore', $forum);
+                $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
+            @endphp
+
+            @include('forum.forums._new_topic', [
+                'disabled' => !$newTopicEnabled,
+                'disabledReason' => $newTopicAuth->message(),
+            ])
         @endif
 
         @if (count($topics) === 0)

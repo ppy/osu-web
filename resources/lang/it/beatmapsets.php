@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,18 +19,39 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
+        'parts-removed' => 'Porzioni di questa beatmap sono stati rimossi su richiesta del creatore o per motivi di copyright di terze parti.',
+        'more-info' => 'Clicca qui per maggiori informazioni.',
+    ],
+
+    'index' => [
+        'title' => 'Lista Beatmap',
+        'guest_title' => 'Beatmap',
+    ],
+
     'show' => [
+        'discussion' => 'Discussione',
+
         'details' => [
-            'made-by' => 'creata da ',
+            'mapped_by' => 'mappata da :mapper',
             'submitted' => 'inviata il ',
+            'updated' => 'ultimo aggiornamento il ',
+            'updated_timeago' => 'ultimo aggiornamento :timeago',
             'ranked' => 'rankata il ',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!', // Base text changed from "log" to "sign"
+            'approved' => 'approvato il ',
+            'qualified' => 'qualificato il ',
+            'loved' => 'loved il ',
+            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'download' => [
                 '_' => 'Scarica',
                 'video' => 'con Video',
                 'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
             ],
+            'favourite' => 'Mi piace questa lista di mappe',
+            'unfavourite' => 'Non mi piace questa lista di mappe',
+            'favourited_count' => '+ 1 altro!|+ :count altri!',
         ],
         'stats' => [
             'cs' => 'Dimensione dei Cerchi',
@@ -43,26 +64,21 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',
             'count_sliders' => 'Numero di Slider',
-
-            'chart' => [
-                'cs' => 'CS',
-                'hp' => 'HP',
-                'od' => 'OD',
-                'ar' => 'AR',
-                'sd' => 'SD',
-            ],
-
             'user-rating' => 'Voto degli Utenti',
             'rating-spread' => 'Diffusione della Valutazione',
+            'nominations' => 'Nomine',
+            'playcount' => 'Volte giocato',
         ],
         'info' => [
-            'success-rate' => 'Rateo di Successo',
-            'points-of-failure' => 'Punti di Fallimento',
-
             'description' => 'Descrizione',
-
+            'genre' => 'Genere',
+            'language' => 'Lingua',
+            'no_scores' => 'Dati ancora da calcolare...',
+            'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'unranked' => 'Beatmap non classificata',
         ],
         'scoreboard' => [
             'achieved' => 'raggiunto :when',
@@ -73,17 +89,28 @@ return [
             'supporter-only' => 'Devi essere un supporter per accedere alle classifiche amici e paese!',
             'title' => 'Classifica',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precisione',
-                'player-header' => 'Giocatore',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Errori',
+                'mods' => 'Mod',
+                'player' => 'Giocatore',
+                'pp' => '',
+                'rank' => 'Rank',
+                'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
             ],
+
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
                 'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'unranked' => 'Beatmap non classificata.',
+            ],
+            'score' => [
+                'first' => 'In testa',
+                'own' => 'Il tuo miglior punteggio',
             ],
         ],
     ],

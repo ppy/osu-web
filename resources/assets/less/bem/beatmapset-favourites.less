@@ -36,12 +36,12 @@
   }
 
   &__user {
+    .default-border-radius();
     display: inline-block;
     width: @avatar-size;
     height: @avatar-size;
     margin: 0px @avatar-margin;
-    background-size: cover;
-    .default-border-radius();
+    overflow: hidden;
   }
 
   &__remainder-count {

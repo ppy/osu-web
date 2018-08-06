@@ -27,6 +27,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\UserContestEntry;
+use App\Models\UserGroup;
 use Carbon\Carbon;
 
 class OsuAuthorize
@@ -130,6 +131,14 @@ class OsuAuthorize
         }
     }
 
+    public function checkBeatmapDiscussionReopen($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkBeatmapDiscussionResolve($user, $discussion)
     {
         $prefix = 'beatmap_discussion.resolve.';
@@ -145,7 +154,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -174,6 +183,20 @@ class OsuAuthorize
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
+    }
+
+    public function checkBeatmapDiscussionStore($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->message_type === 'mapper_note') {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isQAT() && !$user->isBNG()) {
+                return 'beatmap_discussion.store.mapper_note_wrong_user';
+            }
+        }
+
+        return 'ok';
     }
 
     public function checkBeatmapDiscussionVote($user, $discussion)
@@ -296,10 +319,27 @@ class OsuAuthorize
         }
     }
 
-    public function checkBeatmapDiscussionPostStore($user, $discussion)
+    public function checkBeatmapDiscussionPostStore($user, $post)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetLove($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        static $prefix = 'beatmap_discussion.nominate.';
+
+        if (!($user->isGMT() || $user->isQAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
+            return 'unauthorized';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            return $prefix.'owner';
+        }
 
         return 'ok';
     }
@@ -308,16 +348,22 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
+        static $prefix = 'beatmap_discussion.nominate.';
+
         if (!$user->isBNG() && !$user->isQAT()) {
             return 'unauthorized';
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
-            return 'beatmap_discussion.nominate.incorrect-state';
+            return $prefix.'incorrect_state';
         }
 
         if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
-            return 'beatmap_discussion.nominate.exhausted';
+            return $prefix.'exhausted';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            return $prefix.'owner';
         }
 
         return 'ok';
@@ -332,7 +378,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
-            return 'beatmap_discussion.nominate.incorrect-state';
+            return 'beatmap_discussion.nominate.incorrect_state';
         }
 
         return 'ok';
@@ -375,7 +421,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
-            return 'beatmap_discussion.disqualify.incorrect-state';
+            return 'beatmap_discussion.nominate.incorrect_state';
         }
 
         return 'ok';
@@ -394,6 +440,7 @@ class OsuAuthorize
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
+            BeatmapsetEvent::LOVE,
             BeatmapsetEvent::KUDOSU_GAIN,
             BeatmapsetEvent::KUDOSU_LOST,
         ];
@@ -815,7 +862,8 @@ class OsuAuthorize
                 return $prefix.'not_owner';
             }
 
-            if ($page->post_edit_locked || $page->topic->isLocked()) {
+            // Some user pages (posts) are orphaned and don't have parent topic.
+            if ($page->post_edit_locked || optional($page->topic)->isLocked() ?? false) {
                 return $prefix.'locked';
             }
         }

@@ -15,15 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="login-box-container">
-    <div class="js-nav2--login-box-reference"></div>
-
+<div class="
+    login-box js-nav2--login-box-reference
+    @foreach ($modifiers ?? [] as $modifier)
+        login-box--{{ $modifier }}
+    @endforeach
+">
     <div
         class="
-            login-box
-            @foreach ($modifiers ?? [] as $modifier)
-                login-box--{{ $modifier }}
-            @endforeach
+            login-box__content
             js-click-menu
             js-nav2--centered-popup
             js-nav2--login-box
@@ -45,13 +45,13 @@
 
             <div class="login-box__row login-box__row--inputs">
                 <input
-                    class="login-box__form-input js-nav2--autofocus"
+                    class="login-box__form-input js-login-form-input js-nav2--autofocus"
                     name="username"
                     placeholder="{{ trans('layout.popup_login.login.email') }}"
                     required
                 />
                 <input
-                    class="login-box__form-input"
+                    class="login-box__form-input js-login-form-input"
                     name="password"
                     type="password"
                     placeholder="{{ trans('layout.popup_login.login.password') }}"

@@ -76,6 +76,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
+Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
@@ -146,6 +147,8 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
+    route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
+    Route::post('changelog/github', 'ChangelogController@github');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::get('icons', 'HomeController@getIcons');
@@ -160,6 +163,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
+    Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 
@@ -215,7 +219,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
 
-    Route::post('update-cart', 'Store\CartController@store'); // temporarily to avoid 404ing after deploy
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');

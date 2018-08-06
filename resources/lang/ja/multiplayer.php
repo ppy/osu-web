@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,8 +23,9 @@ return [
         'header' => 'マルチ部屋',
         'team-types' => [
             'head-to-head' => '個人戦',
-            'tag-coop' => 'チームVS',
-            'tag-team-vs' => 'タッグチームVS',
+            'tag-coop' => '協力モード',
+            'team-vs' => 'チーム戦',
+            'tag-team-vs' => 'タッグチーム戦',
         ],
         'events' => [
             'player-left' => ':userが退室しました',

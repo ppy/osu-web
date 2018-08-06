@@ -26,8 +26,8 @@ return [
         'issuing' => 'Đang lấy mã mới...',
 
         'info' => [
-            'check_spam' => 'Hãy kiểm tra thư mục spam nếu bạn không thể tìm thấy email.',
-            'recover' => 'Nếu bạn không thể truy cập vào email hoặc đã quên email bạn đã dùng, vui lòng làm theo :link.',
+            'check_spam' => "Hãy kiểm tra thư mục spam nếu bạn không thể tìm thấy email.",
+            'recover' => "Nếu bạn không thể truy cập vào email hoặc đã quên email bạn đã dùng, vui lòng làm theo :link.",
             'recover_link' => 'phục hồi email tại đây',
             'reissue' => 'Bạn cũng có thể :reissue_link hoặc :logout_link.',
             'reissue_link' => 'yêu cầu mã mới',

@@ -198,17 +198,13 @@ class BeatmapDiscussions.Main extends React.PureComponent
       praises: {}
       resolved: {}
       total: {}
+    timelineAllUsers = []
 
     for own mode, _items of byMode
       for own _filter, modes of byFilter
         modes[mode] = {}
 
-    for d in @state.beatmapset.discussions
-      # skipped discussion
-      # - not privileged (deleted discussion)
-      # - deleted beatmap
-      continue if _.isEmpty(d)
-
+    for own _id, d of @discussions()
       if !d.deleted_at?
         totalHype++ if d.message_type == 'hype'
 
@@ -226,21 +222,23 @@ class BeatmapDiscussions.Main extends React.PureComponent
               countsByPlaymode[beatmap.mode] ?= 0
               countsByPlaymode[beatmap.mode]++
 
-      # skip if filtering users
-      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
-
-      mode =
-        if d.beatmap_id?
-          if d.beatmap_id == @currentBeatmap().id
-            if d.timestamp?
-              'timeline'
-            else
-              'general'
+      if d.beatmap_id?
+        if d.beatmap_id == @currentBeatmap().id
+          if d.timestamp?
+            mode = 'timeline'
+            timelineAllUsers.push d
+          else
+            mode = 'general'
         else
-          'generalAll'
+          mode = null
+      else
+        mode = 'generalAll'
 
       # belongs to different beatmap, excluded
       continue unless mode?
+
+      # skip if filtering users
+      continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
       filters = ['total']
 
@@ -272,20 +270,25 @@ class BeatmapDiscussions.Main extends React.PureComponent
     general = byMode.general
     generalAll = byMode.generalAll
 
-    @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
+    @cache.currentDiscussions = {general, generalAll, timeline, timelineAllUsers, byFilter, countsByBeatmap, countsByPlaymode, totalHype, unresolvedIssues}
 
 
   discussions: =>
-    @cache.discussions ?= _.keyBy @state.beatmapset.discussions, 'id'
+    # skipped discussions
+    # - not privileged (deleted discussion)
+    # - deleted beatmap
+    @cache.discussions ?= _ @state.beatmapset.discussions
+                            .filter (d) -> !_.isEmpty(d)
+                            .keyBy 'id'
+                            .value()
 
 
   discussionStarters: =>
     _ @discussions()
       .map 'user_id'
       .uniq()
-      .map (user_id) =>
-        @users()[user_id]
-      .sortBy 'username'
+      .map (user_id) => @users()[user_id]
+      .orderBy (user) -> user.username.toLocaleLowerCase()
       .value()
 
 
@@ -311,6 +314,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
         @state.currentFilter
       else
         BeatmapDiscussionHelper.DEFAULT_FILTER
+
+    if @state.selectedUserId? && @state.selectedUserId != discussion.user_id
+      newState.selectedUserId = null
 
     newState.callback = =>
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id

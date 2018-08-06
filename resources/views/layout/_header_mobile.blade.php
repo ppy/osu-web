@@ -31,7 +31,7 @@
                 <div class="navbar-mobile__header-section">
                     <a class="navbar-mobile__logo" href="{{ route('home') }}"></a>
                     <span class="navbar-mobile__brand navbar-brand u-ellipsis-overflow">
-                        {{ trans("layout.menu.$current_section.$current_action") }}
+                        {{ trans("layout.menu.$currentSection.$currentAction") }}
                     </span>
                 </div>
 
@@ -83,7 +83,7 @@
         </ul>
     </div>
 
-    @if (Auth::check() && !($current_section === 'home' && $current_action === 'search'))
+    @if (Auth::check() && !($currentSection === 'home' && $currentAction === 'search'))
         <form action="{{ route('search') }}" class="navbar-mobile-search">
             <input class="navbar-mobile-search__input" name="query" />
             <button class="navbar-mobile-search__icon">

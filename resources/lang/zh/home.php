@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> 名已注册玩家',
 
         'slogan' => [
-            'main' => '免费音乐游戏',
+            'main' => '棒到不行的免费音乐游戏',
             'sub' => '节奏跃然指上',
         ],
     ],
@@ -36,6 +36,8 @@ return [
         'button' => '搜索',
         'empty_result' => '没有结果！',
         'missing_query' => '搜索内容不少于 :n 个字符',
+        'placeholder' => '输入以搜索',
+        'title' => '搜索',
 
         'beatmapset' => [
             'more' => '搜索到 :count 张谱面',
@@ -80,14 +82,14 @@ return [
     ],
 
     'download' => [
-        'tagline' => '让我们<br>开始吧！',
+        'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
         'os' => [
             'windows' => 'Windows 版',
             'macos' => 'macOS 版',
             'linux' => 'Linux 版',
         ],
-        'mirror' => '镜像',
+        'mirror' => '从镜像服务器下载',
         'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
@@ -110,13 +112,14 @@ return [
     ],
 
     'user' => [
+        'title' => '总览',
         'news' => [
             'title' => '新闻',
             'error' => '载入新闻失败，刷新页面试试看？...',
         ],
         'header' => [
             'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息|{0}',
+            'messages' => '你有 :count 条新消息',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',
@@ -124,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Approved 谱面',
+            'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
             'by' => '作者：',
             'plays' => ':count 次游玩',
@@ -144,6 +147,6 @@ return [
             'part-2' => '如果你选择给 osu! 捐赠，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
         ],
         'find-out-more' => '点击这里以了解更多',
-        'download-starting' => '对了，别担心 - 下载已经开始了 ;)',
+        'download-starting' => "对了，别担心 - 下载已经开始了 ;)",
     ],
 ];

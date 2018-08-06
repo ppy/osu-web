@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +21,26 @@
 return [
     'feed_title' => '详细',
     'generic' => '修复已知问题并做了小改动.',
-    'users-online' => ':users 在线',
 
-    'prefixes' => [
-        'add' => '添加',
-        'fix' => '修复',
-        'misc' => '杂项',
+    'builds' => [
+        'users_online' => ':count_delimited 名用户在线',
+    ],
+
+    'entry' => [
+        'by' => '作者：:user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '更新日志 :info',
+            'info' => '列表',
+        ],
+    ],
+
+    'support' => [
+        'heading' => '喜欢这次更新吗？',
+        'text_1' => '支持 osu! 的后续开发并 :link 吧！',
+        'text_1_link' => '成为 Supporter',
+        'text_2' => '你不仅仅能加快开发进度，还能获得一些额外的功能及定制化内容！',
     ],
 ];

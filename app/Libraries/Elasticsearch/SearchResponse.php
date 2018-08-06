@@ -38,6 +38,13 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->index = 0;
     }
 
+    public function aggregations(string $name = null)
+    {
+        return $name === null
+            ? $this->raw['aggregations'] ?? []
+            : $this->raw['aggregations'][$name] ?? [];
+    }
+
     public function count()
     {
         return count($this->hits());
@@ -188,6 +195,16 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
     public function valid()
     {
         return $this->offsetExists($this->index);
+    }
+
+    public static function empty()
+    {
+        return new static([
+            'hits' => [
+                'hits' => [],
+                'total' => 0,
+            ],
+        ]);
     }
 
     public static function failed($exception)

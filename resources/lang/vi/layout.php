@@ -29,7 +29,7 @@ return [
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'bản dựng',
+            'changelog-build' => 'build',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -45,7 +45,7 @@ return [
         'help' => [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
-            'getRules' => 'rules',
+            'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -70,14 +70,14 @@ return [
             '_' => 'xếp hạng',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'spotlights',
+            'charts' => 'tiêu điểm',
             'score' => 'điểm',
             'country' => 'quốc gia',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'dev' => 'osu!dev',
+            'dev' => 'phát triển',
             'getForum' => 'diễn đàn',
             'getChat' => 'chat',
             'getLive' => 'live stream',
@@ -101,7 +101,7 @@ return [
             '404' => 'không tìm thấy',
             '403' => 'cấm',
             '401' => 'trái phép',
-            '405' => 'không tìm thấy', //giống 404?
+            '405' => 'không tìm thấy',
             '500' => 'có gì đó bị hỏng',
             '503' => 'bảo trì',
         ],
@@ -118,11 +118,16 @@ return [
             'settings' => 'Cài Đặt',
             'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
-            'beatmapset_activities' => 'hoạt động beatmapset của người dùng',
+            'modding-history-discussions' => 'thảo luận modding của người dùng',
+            'modding-history-events' => 'sự kiện modding của người dùng',
+            'modding-history-index' => 'lịch sử modding của người dùng',
+            'modding-history-posts' => 'bài đăng modding của người dùng',
+            'modding-history-votesGiven' => 'modding votes đã cho của người dùng',
+            'modding-history-votesReceived' => 'modding votes đã nhận của người dùng',
         ],
         'store' => [
-            '_' => 'store',
-            'checkout-index' => 'thanh toán',
+            '_' => 'cửa hàng',
+            'checkout-show' => 'thanh toán',
             'getListing' => 'danh sách',
             'cart-show' => 'giỏ hàng',
 
@@ -159,7 +164,7 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'Chung',
+            '_' => 'Tổng quát',
             'home' => 'Trang Chủ',
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
@@ -181,8 +186,9 @@ return [
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
-            'osu_status' => '@osustatus',
+            'privacy' => 'Quyền Riêng Tư',
             'server_status' => 'Trạng Thái Server',
+            'source_code' => 'Mã Nguồn',
             'terms' => 'Điều Khoản Và Điều Kiện',
         ],
     ],
@@ -190,62 +196,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Không Tìm Thấy Trang',
-            'description' => 'Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!',
-            'link' => false,
+            'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '403' => [
-            'error' => 'Bạn không nên ở đây.',
+            'error' => "Bạn không nên ở đây.",
             'description' => 'Nhưng bạn vẫn có thể thử quay trở lại mà.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Bạn không nên ở đây.',
+            'error' => "Bạn không nên ở đây.",
             'description' => 'Nhưng bạn vẫn có thể thử quay trở lại mà. Hoặc có thể đăng nhập vào.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Không Tìm Thấy Trang',
-            'description' => 'Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!',
-            'link' => false,
+            'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '500' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng! ;_;',
-            'description' => 'Chúng tôi sẽ được tự động thông báo về mọi lỗi.',
-            'link' => false,
+            'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
         ],
         'fatal' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng (rất tệ)! ;_;',
-            'description' => 'Chúng tôi sẽ được tự động thông báo về mọi lỗi.',
-            'link' => false,
+            'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
         ],
         '503' => [
             'error' => 'Đang bảo trì!',
-            'description' => 'Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.',
+            'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Khi cần thiết, đây là một đoạn code bạn có thể cung cấp để được hỗ trợ!',
+        'reference' => "Khi cần thiết, đây là một đoạn code bạn có thể cung cấp để được hỗ trợ!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'địa chỉ email',
-            'forgot' => 'Quên mật khẩu',
+            'forgot' => "Quên mật khẩu",
             'password' => 'password',
             'title' => 'Đăng Nhập Để Tiếp Tục',
 
             'error' => [
-                'email' => 'Không tồn tại tên tài khoản hoặc địa chỉ email',
+                'email' => "Tài khoản hoặc địa chỉ email không tồn tại",
                 'password' => 'Sai mật khẩu',
             ],
         ],
 
         'register' => [
-            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
-            'title' => 'Chưa có tài khoản?',
+            'info' => "Bạn cần một tài khoản. Tại sao bạn lại không có chứ?",
+            'title' => "Chưa có tài khoản?",
         ],
     ],
 

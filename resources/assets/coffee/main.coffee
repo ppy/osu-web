@@ -17,8 +17,10 @@
 ###
 
 @polyfills ?= new Polyfills
+
+Turbolinks.setProgressBarDelay(0)
+
 Lang.setLocale(currentLocale)
-Lang.setFallback(fallbackLocale)
 jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
@@ -34,14 +36,17 @@ $(document).on 'turbolinks:load', ->
   StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
+# ensure currentUser is updated early enough.
+@currentUserObserver ?= new CurrentUserObserver
+
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditPlaystyle ?= new AccountEditPlaystyle
+@accountEditBlocklist ?= new AccountEditBlocklist
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new ClickMenu
-@currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -57,6 +62,7 @@ $(document).on 'turbolinks:load', ->
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
 @nav2 ?= new Nav2
+@navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
@@ -72,7 +78,6 @@ $(document).on 'turbolinks:load', ->
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
-@twitchPlayer ?= new TwitchPlayer
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
@@ -83,8 +88,8 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
+@twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -100,6 +105,11 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  container: target
+  user_id: parseInt(target.dataset.target)
+
+# Globally init block buttons
+reactTurbolinks.register 'blockButton', BlockButton, (target) ->
   container: target
   user_id: parseInt(target.dataset.target)
 

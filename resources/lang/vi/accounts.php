@@ -20,16 +20,16 @@
 
 return [
     'edit' => [
-        'title' => 'Cài Đặt <strong>Tài Khoản</strong>',
+        'title' => 'Cài đặt <strong>Tài khoản</strong>',
         'title_compact' => 'cài đặt',
-        'username' => 'tên tài khoản',
+        'username' => 'tên người dùng',
 
         'avatar' => [
-            'title' => 'Ảnh Đại Diện',
+            'title' => 'Ảnh đại diện',
         ],
 
         'email' => [
-            'current' => 'email hiện tại',
+            'current' => 'Email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -43,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Trang Cá Nhân',
+            'title' => 'Trang cá nhân',
 
             'user' => [
                 'user_from' => 'vị trí hiện tại',
@@ -57,7 +57,7 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Chữ Kí',
+            'title' => 'Chữ kí',
             'update' => 'cập nhật',
         ],
     ],
@@ -77,6 +77,11 @@ return [
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
         'tablet' => 'tablet',
-        'touch' => 'cảm ứng',
+        'touch' => 'touchscreen',
+    ],
+
+    'privacy' => [
+        'title' => 'Quyền Riêng Tư',
+        'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
     ],
 ];

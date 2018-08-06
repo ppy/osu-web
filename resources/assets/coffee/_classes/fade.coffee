@@ -18,18 +18,20 @@
 
 class @Fade
   @isVisible: (el) ->
-    el.getAttribute('data-visibility') != 'hidden'
+    el?.getAttribute('data-visibility') != 'hidden'
 
 
   @out: (el) ->
-    el.setAttribute('data-visibility', 'hidden')
+    el?.setAttribute('data-visibility', 'hidden')
 
 
   @in: (el) ->
-    el.setAttribute('data-visibility', '')
+    el?.setAttribute('data-visibility', 'visible')
 
 
   @toggle: (el, makeVisible) =>
+    return unless el?
+
     makeVisible ?= !@isVisible el
 
     if makeVisible

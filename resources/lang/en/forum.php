@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Topics',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -72,9 +72,12 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
+        'started_by_verbose' => 'started by :user',
 
         'create' => [
             'preview' => 'Preview',
@@ -132,6 +135,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
+            'login_reply' => 'Sign in to Reply',
             'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',
@@ -147,7 +151,6 @@ return [
 
             'poll' => [
                 'length' => 'Run poll for',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',
                 'max_options' => 'Options per user',

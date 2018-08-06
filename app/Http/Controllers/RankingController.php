@@ -78,7 +78,7 @@ class RankingController extends Controller
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
 
             $stats = UserStatistics\Model::getClass($mode)
-                ->on('mysql-readonly')
+                ::on('mysql-readonly')
                 ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
@@ -121,8 +121,9 @@ class RankingController extends Controller
             $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
                 'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
             ]);
+            $currentAction = $type;
 
-            return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country'));
+            return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country', 'currentAction'));
         }
     }
 }

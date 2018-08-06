@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'username_change' => [
         'only_one' => 'apenas 1 troca de nome de usuário é permitida por compra.',
-        'insufficient_paid' => 'O custo para trocar de nome de usuário ultrapassa a quantia oferecida (:expected > :actual)',
+        'insufficient_paid' => 'O custo para trocar de nome de usuário ultrapassa a quantia paga (:expected > :actual)',
         'reverting_username_mismatch' => 'O atual nome de usuário (:current) não é o mesmo escolhido ao revogar (:username)',
     ],
     'supporter_tag' => [

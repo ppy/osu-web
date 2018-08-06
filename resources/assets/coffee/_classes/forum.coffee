@@ -210,7 +210,7 @@ class @Forum
     "#{document.location.pathname}?n=#{postN}"
 
 
-  stickHeader: (_, target) =>
+  stickHeader: (_e, target) =>
     return unless @_stickyHeaderTopic.length
 
     if target == 'forum-topic-headernav'

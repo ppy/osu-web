@@ -47,6 +47,8 @@ class ChangeUsername
     {
         $this->validationErrors()->reset();
 
+        // FIXME: move username the same validation here.
+
         $errors = User::validateUsername($this->newUsername, $this->user->username);
         if (count($errors) > 0) {
             foreach ($errors as $error) {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,8 +21,8 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '編輯前請先登錄。',
-            'system_generated' => '無法編輯系統回覆。',
+            'null_user' => '編輯前請先登入。',
+            'system_generated' => '無法編輯系統發佈的貼文。',
             'wrong_user' => '只有作者可以編輯。',
         ],
     ],
@@ -33,12 +33,15 @@ return [
 
     'index' => [
         'deleted_beatmap' => '刪除',
-        'title' => '譜面討論',
+        'title' => '圖譜討論',
 
         'form' => [
+            '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
+            'types' => '訊息類別',
+            'username' => '使用者名稱',
 
-            'user' => [ //上下文
+            'user' => [
                 'label' => '用戶',
                 'overview' => '活動總覽',
             ],
@@ -46,10 +49,10 @@ return [
     ],
 
     'item' => [
-        'created_at' => '發帖時間',
-        'deleted_at' => '刪帖時間',
+        'created_at' => '發佈日期',
+        'deleted_at' => '刪除日期',
         'message_type' => '類型',
-        'permalink' => '靜態鏈接',
+        'permalink' => '永久連結',
     ],
 
     'nearby_posts' => [
@@ -59,7 +62,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => '登錄以回覆',
+            'guest' => '登入以回覆',
             'user' => '回覆',
         ],
     ],
@@ -73,8 +76,13 @@ return [
 
     'user' => [
         'admin' => '管理員',
-        'bng' => '譜面管理團隊',
-        'owner' => '譜面作者',
-        'qat' => '質量保證團隊',
+        'bng' => 'nominator',
+        'owner' => '作圖者',
+        'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => '所有人',
+        'label' => '按使用者篩選',
     ],
 ];

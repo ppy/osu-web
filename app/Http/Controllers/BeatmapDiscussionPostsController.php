@@ -103,11 +103,18 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $discussion = $this->prepareDiscussion(request());
 
-        priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
+        if (!$discussion->exists) {
+            priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
+        }
 
         $postParams = get_params(request(), 'beatmap_discussion_post', ['message']);
         $postParams['user_id'] = Auth::user()->user_id;
-        $posts = [new BeatmapDiscussionPost($postParams)];
+        $post = new BeatmapDiscussionPost($postParams);
+        $post->beatmapDiscussion()->associate($discussion);
+
+        priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
+
+        $posts = [$post];
         $events = [];
 
         $resetNominations = false;
@@ -131,9 +138,15 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         if ($discussion->exists && $discussion->isDirty('resolved')) {
-            priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
+            if ($discussion->resolved) {
+                priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
+                $events[] = BeatmapsetEvent::ISSUE_RESOLVE;
+            } else {
+                priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
+                $events[] = BeatmapsetEvent::ISSUE_REOPEN;
+            }
+
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
-            $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
         }
 
         try {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,7 +30,11 @@ return [
 
     'buttons' => [
         'cancel' => '取消',
+        'change' => '更改',
+        'click_to_copy' => '点击以复制到剪贴板',
+        'click_to_copy_copied' => '已经复制到剪贴板！',
         'delete' => '删除',
+        'hide' => '隐藏',
         'permalink' => '静态链接',
         'permalink_copied' => '链接已复制',
         'post' => '发送',
@@ -40,12 +44,18 @@ return [
         'reset' => '重置',
         'save' => '保存',
         'saving' => '保存中...',
+        'search' => '搜索',
+        'see_more' => '查看更多',
+        'show' => '显示',
         'show_more' => '显示更多',
         'upload_image' => '上传图片',
     ],
 
     'count' => [
+        'badges' => ':count 枚徽章',
+        'days' => ':count 天',
         'hour_short_unit' => '小时',
+        'hours' => ':count 小时',
         'item' => ':count 个',
         'minute_short_unit' => '分钟',
         'months' => ':count 个月',
@@ -57,6 +67,9 @@ return [
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',
+        ],
+        'year_month_short' => [
+            'moment' => 'YYYY年 MMM',
         ],
     ],
 

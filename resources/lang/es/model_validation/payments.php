@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'signature' => [
         'not_match' => 'Las firmas no coinciden',
@@ -35,16 +37,16 @@ return [
         'invalid' => 'El parámetro `:param` no coincide',
     ],
     'paypal' => [
-        'not_echeck' => 'El pago pendiente no es un chequeo electrónico. (:actual)',
+        'not_echeck' => 'El pago pendiente no es un cheque electrónico. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
             'amount' => 'La cantidad a pagar no coincide: :actual != :expected',
-            'currency' => 'El pago no es en USD. (:type)',
+            'currency' => 'El pago no se ha realizado en USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'La ID de la transacción de la orden recibida está malformada',
+        'malformed' => 'El ID recibido de la transacción de la orden está malformado',
         'user_id_mismatch' => 'external_id contiene un ID de usuario equivocado',
     ],
 ];

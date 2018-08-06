@@ -20,8 +20,7 @@
 
 namespace App\Traits;
 
-use App\Libraries\Elasticsearch\Indexing;
-use Es;
+use App\Libraries\Elasticsearch\Es;
 use Log;
 
 trait EsIndexable
@@ -30,7 +29,7 @@ trait EsIndexable
 
     abstract public static function esIndexingQuery();
 
-    abstract public static function esMappings();
+    abstract public static function esSchemaFile();
 
     abstract public static function esType();
 
@@ -62,11 +61,15 @@ trait EsIndexable
             'client' => ['ignore' => 404],
         ], $options);
 
-        return Es::delete($document);
+        return Es::getClient()->delete($document);
     }
 
     public function esIndexDocument(array $options = [])
     {
+        if (method_exists($this, 'esShouldIndex') && !$this->esShouldIndex()) {
+            return $this->esDeleteDocument($options);
+        }
+
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
@@ -75,37 +78,18 @@ trait EsIndexable
             'body' => $this->toEsJson(),
         ], $options);
 
-        return Es::index($document);
+        return Es::getClient()->index($document);
     }
 
     public static function esCreateIndex(string $name = null)
     {
-        $settings = [
-            'index' => [
-                'number_of_shards' => config('osu.elasticsearch.number_of_shards'),
-            ],
-        ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings['analysis'] = static::esAnalysisSettings();
-        }
-
-        $type = static::esType();
-        $body = [
-            'mappings' => [
-                $type => [
-                    'properties' => static::esMappings(),
-                ],
-            ],
-            'settings' => $settings,
-        ];
-
+        // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
-            'body' => $body,
+            'body' => static::esSchemaConfig(),
         ];
 
-        return Es::indices()->create($params);
+        return Es::getClient()->indices()->create($params);
     }
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
@@ -119,9 +103,13 @@ trait EsIndexable
         ];
 
         static::esReindexAll($batchSize, 0, $options, $progress);
-        Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
+    }
+
+    public static function esMappings()
+    {
+        return static::esSchemaConfig()['mappings'][static::esType()]['properties'];
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
@@ -154,7 +142,7 @@ trait EsIndexable
             }
 
             if ($actions !== []) {
-                $result = Es::bulk([
+                $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,
@@ -172,5 +160,15 @@ trait EsIndexable
 
         $duration = time() - $startTime;
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
+    public static function esSchemaConfig()
+    {
+        static $schema;
+        if (!isset($schema)) {
+            $schema = json_decode(file_get_contents(static::esSchemaFile()), true);
+        }
+
+        return $schema;
     }
 }

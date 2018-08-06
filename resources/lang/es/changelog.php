@@ -19,20 +19,28 @@
  */
 
 return [
-    'feed_title' => 'feed',
+    'feed_title' => 'lista',
     'generic' => 'Corrección de errores y mejoras menores.',
-    'users-online' => '1 usuario en línea|:users usuarios en línea',
 
-    'prefixes' => [
-        'add' => 'adición',
-        'fix' => 'corrección',
-        'misc' => 'misceláneo',
+    'builds' => [
+        'users_online' => ':count_delimited usuario en línea|:count_delimited usuarios en línea',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Lista de cambios :info',
+            'info' => 'Listando',
+        ],
     ],
 
     'support' => [
-        'heading' => '¿Adoras esta actualización?',
-        'text_1' => '¡Apoya el desarrollo de osu! y :link hoy!',
+        'heading' => '¿Amas esta actualización?',
+        'text_1' => '¡Apoyar a un mayor desarrollo de osu! y: :link hoy!',
         'text_1_link' => 'vuélvete un supporter',
-        'text_2' => 'No solo ayudarás a acelerar el desarrollo, ¡también obtendrás funciones extra y demás personalizaciones!',
+        'text_2' => 'No solo ayudará a acelerar el desarrollo,!también obtendrás algunas características adicionales y personalizaciones!',
     ],
 ];

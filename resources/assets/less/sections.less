@@ -74,3 +74,26 @@
     }
   }
 }
+
+.fn-changelog-stream(stable);
+.fn-changelog-stream(stable-fallback);
+.fn-changelog-stream(beta);
+.fn-changelog-stream(cutting-edge);
+.fn-changelog-stream(lazer);
+.fn-changelog-stream(lazer-experimental);
+.fn-changelog-stream(web);
+.fn-changelog-stream(wiki);
+
+.fn-changelog-stream(@stream) {
+  @color-name: "changelog-stream--@{stream}";
+
+  .t-changelog-stream--@{stream} {
+    .u-changelog-stream--bg {
+      background-color: @@color-name;
+    }
+
+    .u-changelog-stream--text {
+      color: @@color-name;
+    }
+  }
+}

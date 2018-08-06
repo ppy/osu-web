@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,7 @@ return [
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
         'delete' => 'Usuń',
+        'hide' => 'ukryj',
         'permalink' => 'odnośnik bezpośredni',
         'permalink_copied' => 'odnośnik skopiowany',
         'post' => 'Opublikuj',
@@ -43,7 +44,9 @@ return [
         'reset' => 'Zresetuj',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
+        'search' => 'Szukaj',
         'see_more' => 'zobacz więcej',
+        'show' => 'pokaż',
         'show_more' => 'pokaż więcej',
         'upload_image' => 'prześlij zdjęcie',
     ],

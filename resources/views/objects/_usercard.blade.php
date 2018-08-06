@@ -44,7 +44,7 @@
             <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
-                        <i class="fas fa-fw fa-sync fa-spin"></i>
+                        {!! spinner() !!}
                     </div>
                     @if (!isset($loading))
                         <img class="usercard__avatar usercard__avatar--main" src="{{$user->user_avatar}}">
@@ -71,24 +71,23 @@
                             @if ($user->isSupporter())
                                 <div class="usercard__icon">
                                     <a class="usercard__link-wrapper" href="{{route('support-the-game')}}">
-                                        @include('objects._supporter_icon', [
-                                            'background' => true,
-                                            'smaller' => true,
-                                        ])
+                                        @include('objects._supporter_icon', ['smaller' => true])
                                     </a>
                                 </div>
                             @endif
                             <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
 
-                            <div class="usercard__icon">
-                                <a
-                                    class="user-action-button user-action-button--message"
-                                    href="{{ route('messages.users.show', $user->getKey()) }}"
-                                    title="{{ trans('users.card.send_message') }}"
-                                >
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
+                            @if ($user->exists && (!Auth::check() || !Auth::user()->hasBlocked($user)))
+                                <div class="usercard__icon">
+                                    <a
+                                        class="user-action-button user-action-button--message"
+                                        href="{{ route('messages.users.show', $user->getKey()) }}"
+                                        title="{{ trans('users.card.send_message') }}"
+                                    >
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            @endif
                         @endif
                     </div>
                 </div>

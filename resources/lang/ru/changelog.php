@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'лента',
     'generic' => 'Исправления ошибок и мелкие улучшения.',
-    'users-online' => ':users пользователь в сети|:users пользователя в сети|:users пользователей в сети',
 
-    'prefixes' => [
-        'add' => 'дополнение',
-        'fix' => 'исправление',
-        'misc' => 'другое',
+    'builds' => [
+        'users_online' => ':count_delimited игрок в сети|:count_delimited игрока в сети|:count_delimited игроков в сети',
+    ],
+
+    'entry' => [
+        'by' => 'от :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'История изменений :info',
+            'info' => 'Список',
+        ],
     ],
 
     'support' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Invalid difficulty specified.',
         'invalid_beatmapset_id' => 'Invalid beatmap specified.',
         'locked' => 'Discussion is locked.',
-        'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
 
         'hype' => [
             'guest' => 'Must be signed in to hype.',

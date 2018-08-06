@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Склад',
     ],
 
+    'cart' => [
+        'checkout' => 'Проверка',
+        'more_goodies' => 'Я хочу посмотреть другие товары перед завершением заказа',
+        'shipping_fees' => 'стоимость доставки',
+        'title' => 'Корзина',
+        'total' => 'итого',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Ой ой, у вас проблемы с корзиной!',
+            'line_2' => 'Удалите или обновите товары ниже для продолжения.',
+        ],
+
+        'empty' => [
+            'text' => 'Ваша корзина пуста.',
+            'return_link' => [
+                '_' => 'Вернитесь в :link чтобы найти другие товары!',
+                'link_text' => 'магазин',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Ой-ой, у нас проблемы с вашей картой!',
         'cart_problems_edit' => 'Нажмите здесь, чтобы изменить это.',
         'declined' => 'Ваш платеж был отменен.',
-        'error' => 'Возникла проблема с вашей покупкой :(',
         'old_cart' => 'Ваша корзина, кажется, устарела и была перезагружена, пожалуйста попробуйте еще раз.',
         'pay' => 'Оплатить с PayPal',
         'pending_checkout' => [
@@ -53,6 +73,16 @@ return [
             ],
             'quantity' => 'Количество',
         ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Вы не можете изменить свой заказ, так как он был отменён.',
+            'checkout' => 'Вы не можете изменить свой заказ, пока он обрабатывается.', // checkout and processing should have the same message.
+            'default' => 'Заказ невозможно изменить',
+            'delivered' => 'Вы не можете изменить свой заказ, так как он уже доставлен.',
+            'paid' => 'Вы не можете изменить свой заказ, поскольку он уже оплачен.',
+            'processing' => 'Вы не можете изменить свой заказ, пока он обрабатывается.',
+            'shipped' => 'Вы не можете изменить свой заказ, так как он уже отправлен.',
+        ],
     ],
 
     'product' => [
@@ -76,7 +106,7 @@ return [
         'gift' => 'подарок для игрока',
         'require_login' => [
             '_' => 'Вы должны :link для покупки osu!supporter тега!',
-            'link_text' => 'войти', // Base text changed from "log" to "sign"
+            'link_text' => 'войти',
         ],
     ],
 
@@ -85,7 +115,7 @@ return [
         'checking' => 'Проверяем доступность имени :username...',
         'require_login' => [
             '_' => 'Вы должны :link для смены ника!',
-            'link_text' => 'войти', // Base text changed from "log" to "sign"
+            'link_text' => 'войти',
         ],
     ],
 ];

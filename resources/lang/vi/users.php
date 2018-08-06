@@ -22,7 +22,7 @@ return [
     'deleted' => '[người dùng đã bị xóa]',
 
     'beatmapset_activities' => [
-        'title' => 'Lịch Sử Modding Của :user',
+        'title' => "Lịch Sử Modding Của :user",
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -45,13 +45,26 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Bạn đã chặn người dùng này.',
+        'blocked_count' => 'người dùng đã bị chặn (:count)',
+        'hide_profile' => 'ẩn trang cá nhân',
+        'not_blocked' => 'Người dùng này chưa bị chặn.',
+        'show_profile' => 'hiển thị trang cá nhân',
+        'too_many' => 'Đã đạt giới hạn số người bị chặn.',
+        'button' => [
+            'block' => 'chặn',
+            'unblock' => 'bỏ chặn',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Đang tải...',
         'send_message' => 'gửi tin nhắn',
     ],
 
     'login' => [
-        '_' => 'Sign in',
+        '_' => 'Đăng nhập',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'username' => 'Tên tài khoản',
         'password' => 'Mật khẩu',
@@ -60,7 +73,7 @@ return [
         'remember' => 'Nhớ máy tính này',
         'title' => 'Vui lòng đăng nhập để tiếp tục',
         'failed' => 'Đăng nhập không chính xác',
-        'register' => 'Không có tài khoản osu!? Tạo một tài khoản mới',
+        'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
         'forgot' => 'Quên mật khẩu?',
         'beta' => [
             'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
@@ -91,19 +104,19 @@ return [
     'show' => [
         'age' => ':age tuổi',
         'change_avatar' => 'đổi ảnh đại diện!',
-        'first_members' => 'Tại đây từ thuở xa xưa',
+        'first_members' => 'Ở đây kể từ khi bắt đầu',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_age' => ':age',
-        'origin_country_age' => ':age từ :country',
+        'origin_country_age' => ':age đến từ :country',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
-        'plays_with' => 'Chơi với :devices',
-        'title' => 'Trang cá nhân của :username',
+        'plays_with' => 'Chơi bằng :devices',
+        'title' => "Trang cá nhân của :username",
 
         'edit' => [
             'cover' => [
@@ -145,6 +158,9 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps (:count)',
                 ],
+                'loved' => [
+                    'title' => 'Loved Beatmaps (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',
                 ],
@@ -173,7 +189,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Có Sẵn',
-                'available_info' => 'Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.',
+                'available_info' => "Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.",
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
                 'total' => 'Tông Số Kudosu Nhận Được',
@@ -181,7 +197,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Người dùng này chưa nhận kudosu nào!',
+                    'empty' => "Người dùng này chưa nhận kudosu nào!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -222,7 +238,7 @@ return [
                 'title' => 'tôi!',
             ],
             'medals' => [
-                'empty' => 'Người dùng này chưa có huy chương nào cả. ;_;',
+                'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
@@ -244,7 +260,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
-                'bad_standing' => 'Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(',
+                'bad_standing' => "Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(",
                 'remaining_silence' => '<strong>:username</strong> sẽ được nói trở lại vào :duration.',
 
                 'recent_infringements' => [

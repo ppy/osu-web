@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Are you sure?',
+    'confirmation_unsaved' => 'Unsaved changes will be lost. Are you sure?',
     'saved' => 'Saved',
 
     'array_and' => [
@@ -34,6 +35,7 @@ return [
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Delete',
+        'hide' => 'hide',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copied',
         'post' => 'Post',
@@ -43,7 +45,9 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'search' => 'Search',
         'see_more' => 'see more',
+        'show' => 'show',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],

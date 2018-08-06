@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Временная отметка указана, но карта не найдена.',
-        'beatmapset_no_hype' => 'К карте нельзя применить функции хайпа.',
+        'beatmapset_no_hype' => "К карте нельзя применить функции хайпа.",
         'hype_requires_null_beatmap' => 'Хайп может быть применен только в Общей (все сложности) секции.',
         'invalid_beatmap_id' => 'Указана неверная сложность.',
         'invalid_beatmapset_id' => 'Указана неправильная карта.',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Указанная временная отметка выходит за рамки её длины.',
-            'negative' => 'Временная отметка не может быть отрицательной.',
+            'negative' => "Временная отметка не может быть отрицательной.",
         ],
     ],
 
@@ -69,8 +69,8 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Повторение вариантов недопустимо.',
-            'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.', // wut
-            'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.', // wut
+            'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.',
+            'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
             'minimum_two_options' => 'Нужно как минимум два варианта.',
             'too_many_options' => 'Превышено максимальное количество вариантов.',
         ],
@@ -86,7 +86,7 @@ return [
         'email_already_used' => 'Почта уже использована.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Это не похоже на DiscordTag.',
-        'invalid_email' => 'Это не похоже на адрес электронной почты.',
+        'invalid_email' => "Это не похоже на адрес электронной почты.",
         'too_short' => 'Новый пароль слишком короткий.',
         'unknown_duplicate' => 'Имя пользователя или почта уже занята.',
         'username_available_in' => 'Это имя будет доступно только спустя :duration.',
@@ -94,7 +94,7 @@ return [
         'username_invalid_characters' => 'Выбранное имя содержит недопустимые символы.',
         'username_in_use' => 'Это имя уже используется!',
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
-        'username_no_spaces' => 'Имя не может начинаться и заканчиваться пробелами!',
+        'username_no_spaces' => "Имя не может начинаться и заканчиваться пробелами!",
         'username_not_allowed' => 'Это имя недоступно.',
         'username_too_short' => 'Выбранное имя слишком короткое.',
         'username_too_long' => 'Выбранное имя слишком длинное.',
@@ -109,7 +109,7 @@ return [
                 '_' => 'Вы должны :link , чтобы изменить свое имя!',
                 'link_text' => 'поддержать osu!',
             ],
-            'username_is_same' => 'Это имя уже используется!', // Можно смягчить
+            'username_is_same' => 'Это имя уже используется!',
         ],
     ],
 ];

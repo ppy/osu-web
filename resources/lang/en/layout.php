@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,7 +29,7 @@ return [
             'account-edit' => 'settings',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
@@ -77,7 +77,7 @@ return [
         ],
         'community' => [
             '_' => 'community',
-            'dev' => 'osu!dev',
+            'dev' => 'development',
             'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'live',
@@ -178,16 +178,13 @@ return [
             'livestreams' => 'Live Streams',
             'report' => 'Report an Issue',
         ],
-        'support' => [
-            '_' => 'Support osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
-        ],
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Server Status',
-            'terms' => 'Terms of Service',
+            'source_code' => 'Source Code',
+            'terms' => 'Terms',
         ],
     ],
 

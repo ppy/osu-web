@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Sentry;
 
 class Event extends Model
@@ -29,7 +30,7 @@ class Event extends Model
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
-        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
         'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
@@ -57,7 +58,7 @@ class Event extends Model
                 $beatmapset = $options['beatmapset'];
 
                 $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->title);
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
                 $userName = e($beatmapset->user->username);
                 $userUrl = e(route('users.show', $beatmapset->user, false));
                 $approval = e($beatmapset->status());
@@ -70,9 +71,65 @@ class Event extends Model
                     'private' => false,
                     'epicfactor' => 8,
                 ];
+
+                break;
+
+            case 'usernameChange':
+                $user = static::userParams($options['user']);
+                $oldUsername = e($options['history']->username_last);
+                $newUsername = e($options['history']->username);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
+                    'user_id' => $user['id'],
+                    'date' => $options['history']->timestamp,
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
+            case 'userSupportGift':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportFirst':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportAgain':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
         }
 
         if (isset($params)) {
+            if (!isset($params['date'])) {
+                $params['date'] = Carbon::now();
+            }
+
             return static::create($params);
         }
     }
@@ -312,5 +369,14 @@ class Event extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('date', 'desc')->limit(5);
+    }
+
+    private static function userParams($user)
+    {
+        return [
+            'id' => $user->getKey(),
+            'username' => e($user->username),
+            'url' => e(route('users.show', $user, false)),
+        ];
     }
 }

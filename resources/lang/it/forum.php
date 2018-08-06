@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'pinned_topics' => 'Topic Fissati',
+    'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
     'title' => 'comunità osu!',
 
@@ -47,12 +48,14 @@ return [
     ],
 
     'post' => [
-        'confirm_delete' => 'Vuoi veramente eliminare il post?',
+        'confirm_destroy' => 'Vuoi veramente eliminare il post?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
-            'delete' => 'Elimina post',
+            'destroy' => 'Elimina post',
+            'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
         ],
     ],
@@ -64,16 +67,21 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda gli ultimi post',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Scrivi nuovo topic',
+        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
         'post_reply' => 'Invia',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'started_by' => 'da :user',
 
         'create' => [
             'preview' => 'Anteprima',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Scrivi',
             'submit' => 'Invia',
 
             'placeholder' => [
@@ -93,11 +101,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
-
-            'zoom' => [
-                'start' => 'Schermo intero',
-                'end' => 'Esci da Schermo Intero',
-            ],
         ],
     ],
 
@@ -105,6 +108,7 @@ return [
         'index' => [
             'title' => 'Iscrizioni ai Topic',
             'title_compact' => 'iscrizioni',
+            'title_main' => 'Forum <strong>Sottoiscrizioni</strong>',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -129,7 +133,10 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'login_reply' => 'Accedi per rispondere',
+            'reply' => 'Rispondi',
             'reply_with_quote' => 'Quota il post per rispondere',
+            'search' => 'Cerca',
         ],
 
         'create' => [
@@ -142,7 +149,6 @@ return [
 
             'poll' => [
                 'length' => 'Durata del sondaggio:',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
                 'max_options' => 'Opzioni per Utente',
@@ -155,9 +161,55 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Modifica titolo',
+        ],
+
         'index' => [
             'views' => 'visualizzazioni',
             'replies' => 'risposte',
+        ],
+
+        'issue_tag_added' => [
+            'to_0' => 'Rimuovi tag "aggiunto"',
+            'to_0_done' => 'Rimosso tag "aggiunto"',
+            'to_1' => 'Aggiungi tag "aggiunto"',
+            'to_1_done' => 'Aggiunto tag "aggiunto"',
+        ],
+
+        'issue_tag_assigned' => [
+            'to_0' => 'Rimuovi tag "assegnato"',
+            'to_0_done' => 'Rimosso tag "assegnato"',
+            'to_1' => 'Aggiungi tag "assegnato"',
+            'to_1_done' => 'Aggiunto tag "assegnato"',
+        ],
+
+        'issue_tag_confirmed' => [
+            'to_0' => 'Rimuovi tag "confermato"',
+            'to_0_done' => 'Rimosso tag "confermato"',
+            'to_1' => 'Aggiungi tag "confermato"',
+            'to_1_done' => 'Aggiunto tag "confermato"',
+        ],
+
+        'issue_tag_duplicate' => [
+            'to_0' => 'Rimuovi tag "duplicato"',
+            'to_0_done' => 'Rimosso tag "duplicato"',
+            'to_1' => 'Aggiungi tag "duplicato"',
+            'to_1_done' => 'Aggiunto tag "duplicato"',
+        ],
+
+        'issue_tag_invalid' => [
+            'to_0' => 'Rimuovi tag "invalido"',
+            'to_0_done' => 'Rimosso tag "invalido"',
+            'to_1' => 'Aggiungi tag "invalido"',
+            'to_1_done' => 'Aggiunto tag "invalido"',
+        ],
+
+        'issue_tag_resolved' => [
+            'to_0' => 'Rimuovi tag "risolto"',
+            'to_0_done' => 'Rimosso tag "risolto"',
+            'to_1' => 'Aggiungi tag "risolto"',
+            'to_1_done' => 'Aggiunto tag "risolto"',
         ],
 
         'lock' => [
@@ -177,9 +229,14 @@ return [
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
             'to_1' => 'Fissa topic',
             'to_1_done' => 'Il topic è stato fissato',
+            'to_2' => 'Fissa discussione e segna come annuncio',
+            'to_2_done' => 'La discussione è stata fissata e segnata come annuncio',
         ],
 
         'show' => [
+            'deleted-posts' => 'Post cancellati',
+            'total_posts' => 'Post totali',
+
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
@@ -187,7 +244,7 @@ return [
                 'user' => [
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'current' => 'Hai :votes rimanenti.',
-                    'not_enough' => 'Non hai altri voti rimanenti',
+                    'not_enough' => "Non hai altri voti rimanenti",
                 ],
             ],
 
@@ -203,8 +260,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Disiscritto dal topic',
-            'to_watching_done' => 'Iscritto al topic',
+            'to_not_watching' => 'Non preferito',
+            'to_watching' => 'Preferito',
+            'to_watching_mail' => 'Preferito con notifica',
+            'mail_disable' => 'Disabilita notifiche',
         ],
     ],
 ];

@@ -59,8 +59,12 @@
                     @foreach ($watches as $watch)
                         <tr>
                             <td class="beatmapset-watches__col beatmapset-watches__col--cover">
-                                <div {!! background_image($watch->beatmapset->coverURL('list'), false) !!} class="beatmapset-watches__cover">
-                                </div>
+                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                    <div
+                                        {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
+                                        class="beatmapset-watches__cover"
+                                    ></div>
+                                </a>
                             </td>
                             <td class="beatmapset-watches__col">
                                 <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
@@ -91,7 +95,7 @@
                                     data-confirm="{{ trans('common.confirmation') }}"
                                     title="{{ trans('beatmapset_watches.button.action.to_0') }}"
                                 >
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-eye-slash"></i>
                                 </button>
                             </td>
                         </tr>
@@ -105,7 +109,7 @@
                 @endif
             </table>
 
-            @include('forum._pagination', ['object' => $watches])
+            @include('objects._pagination_v0', ['object' => $watches])
         </div>
     </div>
 @endsection

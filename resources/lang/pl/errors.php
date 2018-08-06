@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,9 @@
 
 return [
     'codes' => [
-        'http-403' => 'Odmowa dostępu.',
         'http-401' => 'Zaloguj się, aby kontynuować.',
+        'http-403' => 'Odmowa dostępu.',
+        'http-404' => 'Nie znaleziono.',
         'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
     ],
     'account' => [
@@ -38,6 +39,6 @@ return [
     ],
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
-    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli posiadasz blokadę konta.',
+    'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',
 ];

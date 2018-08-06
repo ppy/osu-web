@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'beatmaps',
+@extends('master', [
+    'currentSection' => 'beatmaps',
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->title} - {$beatmapset->artist}",
 ])
 
-@section("content")
+@section('content')
     <div class="js-react--beatmapset-page osu-layout osu-layout--full"></div>
 @endsection
 

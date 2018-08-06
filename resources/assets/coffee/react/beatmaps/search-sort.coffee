@@ -31,7 +31,7 @@ class Beatmaps.SearchSort extends React.PureComponent
           className: "beatmapsets-sorting__item #{'beatmapsets-sorting__item--selected' if selected}"
           onClick: @select
           'data-field': field
-          field
+          osu.trans "beatmaps.listing.search.sorting.#{field}"
           span
             className: 'beatmapsets-sorting__item-arrow'
             'data-visibility': ('hidden' if !selected)

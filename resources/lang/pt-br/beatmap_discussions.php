@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,9 +21,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Precisa estar conectado para editar.', // Base text changed from "log" to "sign"
+            'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+            'wrong_user' => 'Precisa ser o dono da postagem para editá-la.',
         ],
     ],
 
@@ -36,7 +36,10 @@ return [
         'title' => 'Discussão do Beatmap',
 
         'form' => [
+            '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões excluídas',
+            'types' => 'Tipos de mensagem',
+            'username' => 'Nome de Usuário',
 
             'user' => [
                 'label' => 'Usuário',
@@ -46,7 +49,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Data de postagem',
+        'created_at' => 'Data de publicação',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
         'permalink' => 'Copiar link da postagem',
@@ -59,14 +62,14 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conecte-se para Responder', // Base text changed from "log" to "sign"
+            'guest' => 'Conecte-se para Responder',
             'user' => 'Responder',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marcada como resolvida por :user',
+            'true' => 'Marcado como resolvido por :user',
             'false' => 'Reaberto por :user',
         ],
     ],
@@ -76,5 +79,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Todos',
+        'label' => 'Filtrar por usuário',
     ],
 ];

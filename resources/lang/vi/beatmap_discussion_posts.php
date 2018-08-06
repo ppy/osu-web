@@ -20,10 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'Bài Đăng Góc Thảo Luận Beatmap',
+        'title' => 'Bài Đăng Thảo Luận Beatmap',
     ],
 
     'item' => [
         'content' => 'Nội dung',
+        'modding_history_link' => 'Xem lịch sử thay đổi',
     ],
 ];

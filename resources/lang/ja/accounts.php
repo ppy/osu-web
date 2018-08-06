@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>アカウント</strong>設定',
         'title_compact' => '設定',
+        'username' => 'ユーザー名',
 
         'avatar' => [
-            'title' => 'アバターの変更',
+            'title' => 'プロフィール画像',
         ],
 
         'email' => [
@@ -50,12 +51,13 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'ウェブサイト',
+                'user_discord' => 'discord',
             ],
         ],
 
         'signature' => [
-            'title' => 'シグネチャー',
+            'title' => '署名',
             'update' => '適用',
         ],
     ],
@@ -75,6 +77,11 @@ return [
         'mouse' => 'マウス',
         'keyboard' => 'キーボード',
         'tablet' => 'ペンタブ',
-        'touch' => 'タッチ',
+        'touch' => 'タッチスクリーン',
+    ],
+
+    'privacy' => [
+        'title' => '',
+        'friends_only' => '友達リストにいない人からプライベートメッセージをブロックする',
     ],
 ];

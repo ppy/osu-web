@@ -77,7 +77,7 @@ class BBCodeFromDB
         $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('collapsed text'), $text);
+        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('SPOILER'), $text);
         $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
         return $text;

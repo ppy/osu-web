@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,7 +30,11 @@ return [
 
     'buttons' => [
         'cancel' => 'Annuler',
+        'change' => 'changer',
+        'click_to_copy' => 'cliquez pour copier dans le presse-papiers',
+        'click_to_copy_copied' => 'copié dans le presse-papiers !',
         'delete' => 'Supprimer',
+        'hide' => 'masquer',
         'permalink' => 'permalien',
         'permalink_copied' => 'lien copié',
         'post' => 'Poster',
@@ -40,7 +44,9 @@ return [
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
+        'search' => 'Rechercher',
         'see_more' => 'voir plus',
+        'show' => 'afficher',
         'show_more' => 'Plus de résultats',
         'upload_image' => 'mettre en ligne une image',
     ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,9 +23,9 @@ return [
         'blurb' => [
             'important' => 'ダウンロード前に必ず読んでください',
             'instruction' => [
-                '_' => 'インストールするには：ダウンロードが完了次第.rarファイルをosu!のSongsフォルダに中身を解凍してください。
+                '_' => "インストールするには：ダウンロードが完了次第.rarファイルをosu!のSongsフォルダに中身を解凍してください。
                     osu!が次回譜面の読み込みを開始する時に圧縮されている譜面ファイル(zip/osz)を自動的に取り込みます。
-                    :scaryにzip/oszファイルを手動で解凍しないでください。譜面の取り込みに失敗して正常に譜面が表示されなくなります。',
+                    :scaryにzip/oszファイルを手動で解凍しないでください。譜面の取り込みに失敗して正常に譜面が表示されなくなります。",
                 'scary' => '絶対',
             ],
             'note' => [
@@ -47,7 +47,7 @@ return [
 
     'mode' => [
         'artist' => 'アーティスト/アルバム',
-        'chart' => 'チャート', // Base text has changed, please check.
+        'chart' => 'チャート',
         'standard' => '基本パック',
         'theme' => 'テーマ',
     ],

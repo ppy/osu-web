@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,21 +28,30 @@ return [
             'support_button' => 'Quero ajudar o osu!',
         ],
 
-        'dev_quote' => 'O osu! é um jogo totalmente grátis para jogar, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, o tempo gasto mantendo o sistema e a comunidade, disponibilizando prêmios para torneios, respondendo perguntas no suporte e, de maneira geral mantendo pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça de que fazemos tudo isso sem qualquer tipo de anúncios ou contratos com barras de ferramentas e tudo mais!
+        'dev_quote' => 'O osu! é um jogo totalmente grátis para jogar, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, tempo gasto mantendo o sistema e a comunidade, disponibilizando prêmios para torneios, respondendo perguntas no suporte e, de maneira geral mantendo as pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça do fato de que fazemos tudo isso sem qualquer tipo de anúncio ou coisa do tipo!
             <br/><br/>O osu! é, no fim das contas principalmente desenvolvido por mim, que você talvez conheça por "peppy".
-            Tive que deixar meu trabalho normal para manter o osu!,
-            e às vezes é difícil manter os padrões que desejo.
+            Tive que deixar meu trabalho para continuar com o osu!,
+            e às vezes tenho dificuldades em manter os padrões que desejo.
             Gostaria de agradecer pessoalmente a todos que ajudaram o osu! até agora,
-            e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
+            e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosa no futuro :).',
+
+        'supporter_status' => [
+            'contribution' => 'Obrigado pelo o seu apoio! Você contribuiu com um total de :dollars em :tags compras de tags!',
+            'gifted' => ':giftedTags de suas compras de tag foram presenteadas (um total de :giftedDollars presenteados), que generoso!',
+            'not_yet' => "Você ainda não tem uma supporter tag :(",
+            'title' => 'Estado atual do supporter',
+            'valid_until' => 'Sua supporter tag atual é válida até :date!',
+            'was_valid_until' => 'Sua supporter tag era válida :date.',
+        ],
 
         'why_support' => [
             'title' => 'Por que devo ajudar o osu!?',
             'blocks' => [
                 'dev' => 'Desenvolvido e mantido principalmente por um cara na Austrália',
-                'time' => 'Leva tanto tempo para manter que não é mais possível considerar apenas um "hobby".',
-                'ads' => 'Sem anúncios em lugar algum.<br/><br/>
+                'time' => 'Leva tanto tempo para manter tudo funcionando que não é mais possível considerar apenas um "hobby".',
+                'ads' => 'Sem anúncios em todo lugar.<br/><br/>
                         Diferente de 99.95% da internet, nós não ganhamos dinheiro jogando coisas na sua cara.',
-                'goodies' => 'Você ganha algumas outras coisas!',
+                'goodies' => 'Você ganha algumas coisas extras!',
             ],
         ],
 
@@ -50,12 +59,12 @@ return [
             'title' => 'Hã? O que eu ganho?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'acesso fácil e rápido a beatmaps sem sair do jogo.',
+                'description' => 'Acesso fácil e rápido a beatmaps sem sair do jogo.',
             ],
 
             'auto_downloads' => [
                 'title' => 'Downloads Automáticos',
-                'description' => 'Downloads automáticos quando jogando no multijogador, assistindo outros jogadores ou clicando em links no chat!',
+                'description' => 'Downloads automáticos quando jogando no multiplayer, assistindo outros jogadores ou clicando em links no chat!',
             ],
 
             'upload_more' => [
@@ -94,18 +103,18 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
+                'title' => 'Customização',
                 'description' => 'Maior função para skins, como a habilidade de alterar o fundo do menu principal.',
             ],
 
             'feature_votes' => [
-                'title' => 'Votos para Solicitar Recursos',
-                'description' => 'Votos para solicitações de recursos. (2 por mês)',
+                'title' => 'Votos de Recursos',
+                'description' => 'Ganhe votos todo mês para votar em novas funcionalidades. (2 por mês)',
             ],
 
             'sort_options' => [
                 'title' => 'Opções de Organização',
-                'description' => 'A capacidade de ver rankings de país/amigos/certas modificações dentro do jogo.',
+                'description' => 'A capacidade de ver classificações por país / amigos / mods específicos dentro do jogo.',
             ],
 
             'feel_special' => [

@@ -23,11 +23,31 @@ return [
         'warehouse' => 'Kho hàng',
     ],
 
+    'cart' => [
+        'checkout' => 'Thanh Toán',
+        'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
+        'shipping_fees' => 'phí vận chuyển',
+        'title' => 'Giỏ Hàng',
+        'total' => 'tổng cộng',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, đã có vấn đề với giỏ hàng của bạn làm ngăn cản việc thanh toán!',
+            'line_2' => 'Loại bỏ hoặc cập nhật các mặt hàng phía trên để tiếp tục.',
+        ],
+
+        'empty' => [
+            'text' => 'Giỏ hàng của bạn không có gì cả.',
+            'return_link' => [
+                '_' => 'Trở về :link để tìm thêm nhiều mặt hàng khác!',
+                'link_text' => 'danh sách',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, có vấn đề với giỏ hàng của bạn!',
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
-        'error' => 'Đã xảy ra sự cố khi hoàn thành thanh toán của bạn  :(',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
         'pending_checkout' => [
@@ -52,6 +72,16 @@ return [
                 'supporter_tag' => ':name cho :username (:duration)',
             ],
             'quantity' => 'Số lượng',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã bị hủy bỏ.',
+            'checkout' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.', // checkout and processing should have the same message.
+            'default' => 'Đơn hàng không thể sửa đổi',
+            'delivered' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được giao.',
+            'paid' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được thanh toán.',
+            'processing' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.',
+            'shipped' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được vận chuyển.',
         ],
     ],
 
@@ -81,6 +111,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Nhập tên người dùng để kiểm tra tính khả dụng!',
+        'checking' => 'Đang kiểm tra tính khả dụng của :username...',
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',
             'link_text' => 'đăng nhập',

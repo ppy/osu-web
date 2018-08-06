@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Du skal være logget ind for at kunne redigere.', // Base text changed from "log" to "sign"
+            'null_user' => 'Du skal være logget ind for at kunne redigere.',
             'system_generated' => 'System-genererede opslag kan ikke redigeres.',
             'wrong_user' => 'Du skal være ejer af dette opslag for at kunne redigere.',
         ],
@@ -36,13 +36,23 @@ return [
         'title' => 'Beatmap Diskussioner',
 
         'form' => [
+            '_' => '',
             'deleted' => 'Inkluder slettede diskussioner',
+            'types' => '',
+            'username' => '',
 
             'user' => [
                 'label' => 'Bruger',
                 'overview' => 'Aktivitets oversigt',
             ],
         ],
+    ],
+
+    'item' => [
+        'created_at' => '',
+        'deleted_at' => 'Sletnings dato',
+        'message_type' => '',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -52,7 +62,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Log ind for at svare', // Base text changed from "log" to "sign"
+            'guest' => 'Log ind for at svare',
             'user' => 'Svar',
         ],
     ],
@@ -69,5 +79,10 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Alle',
+        'label' => 'Filtrer efter bruger',
     ],
 ];

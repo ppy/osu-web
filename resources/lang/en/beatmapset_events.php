@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Discussion :discussion by :user obtained enough votes for kudosu.',
         'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
+        'love' => 'Loved by :user',
         'nominate' => 'Nominated by :user.',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
-        'qualify' => 'Qualified.',
+        'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
     ],
 

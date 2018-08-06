@@ -15,20 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
-@section("content")
+@section('content')
     <div class="js-react--mp-history"></div>
 @endsection
 
 @section("script")
     @parent
     <script id="json-match" type="application/json">
-        {!! json_encode($match) !!}
+        {!! json_encode($matchJson) !!}
     </script>
 
-    <script>
-        var full = {!! json_encode($full) !!};
+    <script id="json-events" type="application/json">
+        {!! json_encode($eventsJson) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/mp-history.js'])

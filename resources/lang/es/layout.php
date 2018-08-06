@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'menu' => [
@@ -28,15 +28,15 @@ return [
             '_' => 'inicio',
             'account-edit' => 'ajustes',
             'friends-index' => 'amigos',
-            'changelog-index' => 'listado de cambios',
-            'changelog-show' => 'compilación',
+            'changelog-index' => 'lista de Cambios',
+            'changelog-build' => 'compilación',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'groups-show' => 'grupos',
             'index' => 'panel',
             'legal-show' => 'información',
-            'news-index' => 'novedades',
-            'news-show' => 'novedades',
+            'news-index' => 'noticias',
+            'news-show' => 'noticias',
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
@@ -46,16 +46,16 @@ return [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
-            'getSupport' => 'en serio, ¡necesito ayuda!',
+            'getSupport' => 'no, en serio, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'artistas destacados',
-            'beatmap_discussion_posts-index' => 'posts de discusión del beatmap',
+            'beatmap_discussion_posts-index' => 'publicaciones de discusión del beatmap',
             'beatmap_discussions-index' => 'discusiones del beatmap',
-            'beatmapset-watches-index' => 'seguimiento de modding',
+            'beatmapset-watches-index' => 'lista de seguimiento del modding',
             'beatmapset_discussion_votes-index' => 'votos de la discusión del beatmap',
             'beatmapset_events-index' => 'eventos del beatmap',
             'index' => 'listado',
@@ -70,15 +70,15 @@ return [
             '_' => 'rankings',
             'index' => 'rendimiento',
             'performance' => 'rendimiento',
-            'charts' => 'charts', // Base text has changed, please check.
+            'charts' => 'charts',
             'score' => 'puntuación',
             'country' => 'país',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidad',
-            'dev' => 'osu!dev',
-            'getForum' => 'foro', // Base text changed to plural, please check.
+            'dev' => 'desarrollo',
+            'getForum' => 'foros',
             'getChat' => 'chat',
             'getLive' => 'en vivo',
             'contests' => 'concursos',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
             'forum-topic-watches-index' => 'suscripciones',
-            'forum-topics-create' => 'foro', // Base text changed to plural, please check.
-            'forum-topics-show' => 'foro', // Base text changed to plural, please check.
-            'forum-forums-index' => 'foro', // Base text changed to plural, please check.
-            'forum-forums-show' => 'foro', // Base text changed to plural, please check.
+            'forum-topics-create' => 'foros',
+            'forum-topics-show' => 'foros',
+            'forum-forums-index' => 'foros',
+            'forum-forums-show' => 'foros',
         ],
         'multiplayer' => [
             '_' => 'multijugador',
@@ -102,27 +102,32 @@ return [
             '403' => 'prohibido',
             '401' => 'no autorizado',
             '405' => 'página faltante',
-            '500' => 'algo va mal',
+            '500' => 'algo se rompió',
             '503' => 'mantenimiento',
         ],
         'user' => [
             '_' => 'usuario',
-            'getLogin' => 'iniciar sesión', // Base text changed from "log" to "sign"
+            'getLogin' => 'iniciar sesión',
             'disabled' => 'desactivado',
 
             'register' => 'registrarse',
-            'reset' => 'reiniciar',
+            'reset' => 'recuperar',
             'new' => 'nuevo',
 
             'messages' => 'Mensajes',
-            'settings' => 'Opciones',
+            'settings' => 'Ajustes',
             'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
-            'modding-history-index' => 'actividades del usuario en el beatmap', // needs update
+            'modding-history-discussions' => 'discusiones sobre modding',
+            'modding-history-events' => 'eventos sobre modding',
+            'modding-history-index' => 'historial de moddding del usuario',
+            'modding-history-posts' => 'publicaciones de modding del usuario',
+            'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
+            'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
         ],
         'store' => [
             '_' => 'tienda',
-            'checkout-show' => 'factura',
+            'checkout-show' => 'caja',
             'getListing' => 'listado',
             'cart-show' => 'carrito',
 
@@ -136,19 +141,20 @@ return [
             'thanks' => 'gracias',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => 'administrador::foro',
             'forum-covers-index' => 'portadas del foro',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => 'administrador::tienda',
             'orders-index' => 'órdenes',
             'orders-show' => 'órden',
         ],
         'admin' => [
-            '_' => 'admin',
+            '_' => 'administrador',
             'beatmapsets-covers' => 'portadas de los beatmap',
-            'root' => 'índice',
             'logs-index' => 'registro',
+            'root' => 'índice',
+
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',
                 'show' => 'detalles',
@@ -162,7 +168,7 @@ return [
             'home' => 'Inicio',
             'changelog-index' => 'Lista de Cambios',
             'beatmaps' => 'Lista de Beatmaps',
-            'download' => 'Descarga osu!',
+            'download' => 'Descargar osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
@@ -173,14 +179,16 @@ return [
             'report' => 'Reportar un Error',
         ],
         'support' => [
-            '_' => 'Apoyar osu!',
-            'tags' => 'Supporter',
+            '_' => 'Apoyar a osu!',
+            'tags' => 'Tags de Supporter',
             'merchandise' => 'Mercancías',
         ],
         'legal' => [
             '_' => 'Estatus Legal',
-            'copyright' => 'Drechos de autor (DMCA)',
+            'copyright' => 'Derechos de autor (DMCA)',
+            'privacy' => 'Privacidad',
             'server_status' => 'Estado del Servidor',
+            'source_code' => 'Código Fuente',
             'terms' => 'Términos de Servicio',
         ],
     ],
@@ -188,56 +196,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '403' => [
-            'error' => 'No deberías estar aquí.',
+            'error' => "No deberías estar aquí.",
             'description' => 'Aunque podrías intentar volver atrás.',
         ],
         '401' => [
-            'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.', // Base text changed from "log" to "sign"
+            'error' => "No deberías estar aquí.",
+            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.',
         ],
         '405' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Hemos sido notificados del error.',
+            'description' => "Somos notificados automáticamente de cada error.",
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Hemos sido notificados del error.',
+            'description' => "Somos notificados automáticamente de cada error.",
         ],
         '503' => [
-            'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, síguenos en :link para más información.',
+            'error' => '¡Fuera de servicio por mantenimiento!',
+            'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, ve :link para más información.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!',
+        'reference' => "¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'correo electrónico',
-            'forgot' => 'He olvidado mis datos',
+            'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Regístrate para continuar',
+            'title' => 'Iniciar sesión para continuar',
 
             'error' => [
-                'email' => 'El nombre de usuario o correo electrónico no existe',
+                'email' => "El nombre de usuario o correo electrónico no existe",
                 'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
-            'info' => 'Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?',
-            'title' => '¿No tienes una cuenta?',
+            'info' => "Necesita una cuenta, señor. ¿Por qué aún no tiene una?",
+            'title' => "¿No tienes una cuenta?",
         ],
     ],
 
@@ -252,6 +260,6 @@ return [
 
     'popup_search' => [
         'initial' => '¡Escribe para buscar!',
-        'retry' => 'Búsqueda fallida. Clic para reintentar.',
+        'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

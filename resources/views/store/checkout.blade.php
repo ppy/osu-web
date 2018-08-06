@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
 @php
     // always ignore empty keys.
     $hasErrors = count(array_flatten($validationErrors)) > 0
 @endphp
 
-@section("content")
+@section('content')
     @include("store.header")
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
@@ -31,10 +31,7 @@
             @if (session()->has('checkout.error.message') || $hasErrors)
                 <div class="alert alert-danger">
                     <p>
-                        @lang('store.checkout.error')
-                    </p>
-                    <p>
-                        {{ session('checkout.error.message') }}
+                        {{ session('checkout.error.message') ?? trans('store.checkout.cart_problems') }}
                     </p>
                 </div>
             @endif
@@ -53,8 +50,8 @@
                 @endphp
                 <div class="alert alert-danger">
                     <p>
-                        @lang('store.checkout.pending_checkout.line_1')<br>
-                        @lang('store.checkout.pending_checkout.line_2', ['link' => $cancelLink])
+                        {{ trans('store.checkout.pending_checkout.line_1') }}<br>
+                        {!! trans('store.checkout.pending_checkout.line_2', ['link' => $cancelLink]) !!}
                     </p>
                 </div>
             @endif
@@ -108,9 +105,9 @@
                 @if ($hasErrors)
                     {{-- Remove checkout options if there are cart errors --}}
                     <div class="store-checkout-text--error">
-                        <p>@lang('store.checkout.cart_problems')</p>
+                        <p>{{ trans('store.checkout.cart_problems') }}</p>
                         <p>
-                            <a href="{{ route('store.cart.show') }}">@lang('store.checkout.cart_problems_edit')</a>
+                            <a href="{{ route('store.cart.show') }}">{{ trans('store.checkout.cart_problems_edit') }}</a>
                         </p>
                     </div>
                 @else

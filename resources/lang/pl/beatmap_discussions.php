@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,11 +32,14 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'usunięte',
+        'deleted_beatmap' => 'usunięta',
         'title' => 'Dyskusje',
 
         'form' => [
+            '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'types' => 'Rodzaj wiadomości',
+            'username' => 'Nazwa użytkownika',
 
             'user' => [
                 'label' => 'Użytkownik',
@@ -74,7 +77,12 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominator',
-        'owner' => 'mapper',
+        'owner' => 'twórca',
         'qat' => 'qat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Wszyscy',
+        'label' => 'Filtruj według użytkownika',
     ],
 ];

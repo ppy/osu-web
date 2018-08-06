@@ -23,6 +23,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -88,106 +89,6 @@ class Beatmapset extends Model implements AfterCommit
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
-
-    /*
-    |--------------------------------------------------------------------------
-    | Elasticsearch mappings; can't put in a Trait.
-    |--------------------------------------------------------------------------
-    */
-    const ES_MAPPINGS_BEATMAPS = [
-        'approved' => ['type' => 'long'],
-        'beatmap_id' => ['type' => 'long'],
-        'countNormal' => ['type' => 'long'],
-        'countSlider' => ['type' => 'long'],
-        'countSpinner' => ['type' => 'long'],
-        'countTotal' => ['type' => 'long'],
-        'diff_approach' => ['type' => 'double'],
-        'diff_drain' => ['type' => 'double'],
-        'diff_overall' => ['type' => 'double'],
-        'diff_size' => ['type' => 'double'],
-        'difficultyrating' => ['type' => 'double'],
-        'hit_length' => ['type' => 'long'],
-        'passcount' => ['type' => 'long'],
-        'playcount' => ['type' => 'long'],
-        'playmode' => ['type' => 'long'],
-        'total_length' => ['type' => 'long'],
-        'version' => ['type' => 'text'],
-    ];
-
-    const ES_MAPPINGS_BEATMAPSETS = [
-        'approved' => ['type' => 'long'],
-        'approved_date' => ['type' => 'date'],
-        'artist' => [
-            'type' => 'text',
-            'fields' => [
-                'raw' => ['type' => 'keyword'],
-            ],
-        ],
-        'artist_unicode' => ['type' => 'text'],
-        'bpm' => ['type' => 'double'],
-        'creator' => [
-            'type' => 'text',
-            'fields' => [
-                'raw' => ['type' => 'keyword'],
-            ],
-        ],
-        'difficulty_names' => ['type' => 'text'],
-        'download_disabled' => ['type' => 'boolean'],
-        'epilepsy' => ['type' => 'boolean'],
-        'favourite_count' => ['type' => 'long'],
-        'filename' => ['type' => 'text'],
-        'filesize' => ['type' => 'long'],
-        'filesize_novideo' => ['type' => 'long'],
-        'genre_id' => ['type' => 'long'],
-        'hype' => ['type' => 'long'],
-        'language_id' => ['type' => 'long'],
-        'last_update' => ['type' => 'date'],
-        'nominations' => ['type' => 'long'],
-        'offset' => ['type' => 'long'],
-        'play_count' => ['type' => 'long'],
-        'rating' => ['type' => 'double'],
-        'source' => ['type' => 'text'],
-        'star_priority' => ['type' => 'long'],
-        'storyboard' => ['type' => 'boolean'],
-        'submit_date' => ['type' => 'date'],
-        'tags' => ['type' => 'text'],
-        'thread_id' => ['type' => 'long'],
-        'title' => [
-            'type' => 'text',
-            'fields' => [
-                'raw' => ['type' => 'keyword'],
-            ],
-        ],
-        'title_unicode' => ['type' => 'text'],
-        'user_id' => ['type' => 'long'],
-        'video' => ['type' => 'boolean'],
-    ];
-
-    /*
-    |--------------------------------------------------------------------------
-    | Accesssors
-    |--------------------------------------------------------------------------
-    */
-
-    public function getApprovedDateAttribute($value)
-    {
-        return (new Carbon($value))->subHours(8);
-    }
-
-    public function setApprovedDateAttribute($value)
-    {
-        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
-    }
-
-    public function getSubmitDateAttribute($value)
-    {
-        return (new Carbon($value))->subHours(8);
-    }
-
-    public function setSubmitDateAttribute($value)
-    {
-        $this->attributes['submit_date'] = parse_time_to_carbon($value)->addHours(8);
-    }
 
     public function beatmapDiscussions()
     {
@@ -281,6 +182,11 @@ class Beatmapset extends Model implements AfterCommit
         return $query->where('approved', '=', self::STATES['graveyard']);
     }
 
+    public function scopeLoved($query)
+    {
+        return $query->where('approved', '=', self::STATES['loved']);
+    }
+
     public function scopeWip($query)
     {
         return $query->where('approved', '=', self::STATES['wip']);
@@ -349,6 +255,16 @@ class Beatmapset extends Model implements AfterCommit
     public function isQualified()
     {
         return $this->approved === self::STATES['qualified'];
+    }
+
+    public function isLoved()
+    {
+        return $this->approved === self::STATES['loved'];
+    }
+
+    public function isLoveable()
+    {
+        return $this->approved <= 0;
     }
 
     public function hasScores()
@@ -588,6 +504,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+            $this->userRatings()->delete();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -595,6 +512,9 @@ class Beatmapset extends Model implements AfterCommit
             // enqueue a cover check job to ensure cover images are all present
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
+
+            // remove current scores
+            dispatch(new RemoveBeatmapsetBestScores($this));
         });
 
         return true;
@@ -634,6 +554,31 @@ class Beatmapset extends Model implements AfterCommit
         ];
     }
 
+    public function love(User $user)
+    {
+        if (!$this->isLoveable()) {
+            return [
+                'result' => false,
+                'message' => trans('beatmaps.nominations.incorrect_state'),
+            ];
+        }
+
+        $this->getConnection()->transaction(function () use ($user) {
+            $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+            $this->setApproved('loved', $user);
+            $this->userRatings()->delete();
+
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
+            dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        });
+
+        return [
+            'result' => true,
+        ];
+    }
+
     public function favourite($user)
     {
         DB::transaction(function () use ($user) {
@@ -665,7 +610,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->favourite_count = db_unsigned_increment('favourite_count', -1);
             $this->save();
         });
     }

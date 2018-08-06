@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
         'over' => 'このコンテストの投票期間は終了しました。',
         'login_required' => '投票するにはログインが必要です。',
         'best_of' => [
-            'none_played' => 'このコンテストに該当する譜面をプレイした事がない様です！',
+            'none_played' => "このコンテストに該当する譜面をプレイした事がない様です！",
         ],
     ],
     'entry' => [

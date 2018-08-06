@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'You have blocked this user.',
+        'blocked_count' => 'blocked users (:count)',
+        'hide_profile' => 'hide profile',
+        'not_blocked' => 'That user is not blocked.',
+        'show_profile' => 'show profile',
+        'too_many' => 'Block limit reached.',
+        'button' => [
+            'block' => 'block',
+            'unblock' => 'unblock',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Loading...',
         'send_message' => 'send message',
@@ -64,7 +77,7 @@ return [
         'forgot' => 'Forgotten your password?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'small' => '(osu!supporters will get in soon)',
         ],
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,8 +110,6 @@ return [
         'joined_at' => 'Joined :date',
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => 'formerly known as',
@@ -144,6 +155,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps (:count)',
+                ],
+                'loved' => [
+                    'title' => 'Loved Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',

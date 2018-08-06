@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@section("content")
+@section('content')
     <div class="row">
         <center>
             <h1>Are you sure you want to log out?</h1>

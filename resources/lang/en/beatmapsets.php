@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,9 +34,10 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'made-by' => 'made by ',
+            'mapped_by' => 'mapped by :mapper',
             'submitted' => 'submitted on ',
             'updated' => 'last updated on ',
+            'updated_timeago' => 'last updated :timeago',
             'ranked' => 'ranked on ',
             'approved' => 'approved on ',
             'qualified' => 'qualified on ',
@@ -85,7 +86,7 @@ return [
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
             'headers' => [
