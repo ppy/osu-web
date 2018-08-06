@@ -893,6 +893,25 @@ class BaseTables extends Migration
         DB::statement("ALTER TABLE `osu_user_performance_rank` PARTITION BY RANGE (mode) ({$partitions});");
         $this->setRowFormat('osu_user_performance_rank', 'DYNAMIC');
 
+        Schema::create('osu_user_reports', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->increments('report_id');
+            $table->integer('user_id');
+            $table->unsignedInteger('score_id')->default(0);
+            $table->tinyInteger('mode')->default(0);
+            $table->enum('reason', ['Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other'])->default('Cheating');
+            $table->text('comments');
+            $table->timestamp('timestamp')->useCurrent();
+
+            $table->unique(['reporter_id', 'user_id', 'score_id'], 'unique');
+            $table->index('timestamp', 'timestamp');
+            $table->index('user_id', 'user_lookup');
+        });
+
+        $this->setRowFormat('osu_user_reports', 'DYNAMIC');
+
         Schema::create('osu_user_replayswatched', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1588,6 +1607,7 @@ class BaseTables extends Migration
         Schema::drop('osu_user_month_playcount');
         Schema::drop('osu_user_performance_rank');
         Schema::drop('osu_user_replayswatched');
+        Schema::drop('osu_user_reports');
         Schema::drop('osu_user_stats_fruits');
         Schema::drop('osu_user_stats_mania');
         Schema::drop('osu_user_stats');
