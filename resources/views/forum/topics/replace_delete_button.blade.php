@@ -35,7 +35,7 @@ Timeout.set(0, function () {
 
         var $toggle = $el.find(".js-post-delete-toggle");
 
-        $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
+        $toggle.html({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,
         ])) !!});
         osu.pageChange();
