@@ -26,6 +26,7 @@ class @ReportButton extends React.PureComponent
     super props
 
     @ref = React.createRef()
+    @reason = React.createRef()
     @textarea = React.createRef()
 
     @state =
@@ -82,6 +83,7 @@ class @ReportButton extends React.PureComponent
           className: "#{bn}__row"
           select
             className: "#{bn}__select"
+            ref: @reason
             type: 'dropdown'
             option value: 'Cheating', 'Foul play / Cheating'
             option value: 'Insults', 'Insulting me / others'
@@ -106,6 +108,7 @@ class @ReportButton extends React.PureComponent
           button
             className: "#{bn}__button #{bn}__button--report"
             type: 'button'
+            onClick: @sendReport
             'Send Report'
 
         div
@@ -121,3 +124,19 @@ class @ReportButton extends React.PureComponent
     return if e.button != 0
     e.preventDefault()
     @setState showingModal: true
+
+
+  sendReport: (e) =>
+    data =
+      reason: @reason.current.value
+      comments: @textarea.current.value
+
+    $.ajax
+      type: 'POST'
+      url: laroute.route 'users.report', user: @props.user.id
+      data: data
+
+    .done () =>
+      @setState showingModal: false
+
+    .fail osu.ajaxError
