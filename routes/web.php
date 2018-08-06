@@ -189,6 +189,7 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');

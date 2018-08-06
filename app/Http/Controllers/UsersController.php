@@ -178,6 +178,16 @@ class UsersController extends Controller
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
+    public function report($id)
+    {
+        $user = User::lookup($id);
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            return response()->json([], 404);
+        }
+
+        return [];
+    }
+
     public function scores($_userId, $type)
     {
         static $mapping = [
