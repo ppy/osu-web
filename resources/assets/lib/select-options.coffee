@@ -17,13 +17,12 @@
 ###
 
 import { a, i, div } from 'react-dom-factories'
-import { createRef, PureComponent } from 'react'
+import { PureComponent } from 'react'
 
 export class SelectOptions extends PureComponent
   constructor: (props) ->
     super props
     @bn = @props.bn ? 'select-options'
-    @ref = createRef()
 
     @state =
       showingSelector: false
@@ -47,7 +46,6 @@ export class SelectOptions extends PureComponent
 
     div
       className: classNames
-      ref: @ref
       div
         className: "#{@bn}__select"
         @renderItem
