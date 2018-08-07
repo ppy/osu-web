@@ -145,13 +145,13 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
-        'disqualified_at' => ':time_ago (:reason).에 disqualify되었습니다.',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
-        'nominated_by' => ':users가 지명함',
+        'nominated_by' => ':users님이 지명함',
         'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
         'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '지명 수: :current/:required',
@@ -276,7 +276,7 @@ return [
         'korean' => '한국어',
         'spanish' => '스페인어',
         'swedish' => '스웨덴어',
-        'instrumental' => '가사 없음',
+        'instrumental' => 'Instrumental',
         'other' => '기타',
     ],
     'played' => [

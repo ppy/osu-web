@@ -64,7 +64,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Počet koleček',
             'count_sliders' => 'Počet sliderů',
-            'user-rating' => 'Hodnocení uživatelů',
+            'user-rating' => 'Uživatelské hodnocení',
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
             'playcount' => 'Počet zahrání',
