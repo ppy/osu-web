@@ -47,6 +47,12 @@
             --font-default-override: var(--font-default-vi);
         }
     </style>
+@elseif (App::getLocale() === 'zh' || App::getLocale() === 'zh-tw')
+    <style>
+        :root {
+            --font-default-override: var(--font-default-zh);
+        }
+    </style>
 @endif
 <link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
