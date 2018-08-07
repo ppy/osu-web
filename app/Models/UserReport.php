@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Models\Score\Best\Model as BestModel;
+
 class UserReport extends Model
 {
     const CREATED_AT = 'timestamp';
@@ -35,6 +37,11 @@ class UserReport extends Model
     public function reporter()
     {
         return $this->belongsTo(User::class, 'reporter_id');
+    }
+
+    public function score()
+    {
+        return $this->belongsTo(BestModel::getClass($this->mode), 'score_id');
     }
 
     public function user()
