@@ -30,7 +30,7 @@ export class SelectOptions extends PureComponent
 
 
   componentDidMount: =>
-    $(document).on "click.#{@bn}", @hideSelector
+    document.addEventListener 'click', @hideSelector
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -38,7 +38,7 @@ export class SelectOptions extends PureComponent
 
 
   componentWillUnmount: ->
-    $(document).off ".#{@bn}"
+    document.removeEventListener 'click', @hideSelector
 
 
   render: =>
