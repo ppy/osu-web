@@ -17,12 +17,13 @@
 ###
 
 import { a, i, div } from 'react-dom-factories'
-import { PureComponent } from 'react'
+import { createRef, PureComponent } from 'react'
 
 export class SelectOptions extends PureComponent
   constructor: (props) ->
     super props
     @bn = @props.bn ? 'select-options'
+    @ref = createRef()
 
     @state =
       showingSelector: false
@@ -41,11 +42,12 @@ export class SelectOptions extends PureComponent
 
 
   render: =>
-    classNames = "#{@bn} js-#{@bn}"
+    classNames = "#{@bn}"
     classNames += " #{@bn}--selecting" if @state.showingSelector
 
     div
       className: classNames
+      ref: @ref
       div
         className: "#{@bn}__select"
         @renderItem
@@ -99,7 +101,7 @@ export class SelectOptions extends PureComponent
   hideSelector: (e) =>
     return if e.button != 0
     return unless @state.showingSelector
-    return if $(e.target).closest(".js-#{@bn}").length
+    return if $(e.target).closest(@ref.current).length
 
     @setState showingSelector: false
 
