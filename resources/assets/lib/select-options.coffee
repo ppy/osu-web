@@ -91,11 +91,11 @@ export class SelectOptions extends PureComponent
     return @props.renderItem({ children, item, onClick, cssClasses }) if @props.renderItem?
 
     a
-      children: children
       className: cssClasses
       href: '#'
       key: item.id
       onClick: onClick
+      children
 
 
   hideSelector: (e) =>
