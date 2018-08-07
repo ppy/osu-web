@@ -43,9 +43,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => Carbon::today(),
         ]);
 
-        $this->order = factory(Order::class)->create([
+        $this->order = factory(Order::class, 'paid')->create([
             'user_id' => $this->user->user_id,
-            'transaction_id' => 'test-'.time(),
         ]);
     }
 
@@ -299,6 +298,7 @@ class SupporterTagFulfillmentTest extends TestCase
             'cost' => $amount,
             'extra_data' => [
                 'target_id' => $user->user_id,
+                'username' => $user->username,
                 'duration' => $duration,
             ],
         ]);

@@ -71,9 +71,6 @@ return [
         ],
     ],
     'git-sha' => env('GIT_SHA', 'unknown-version'),
-    'mp-history' => [
-        'event-count' => 500,
-    ],
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],

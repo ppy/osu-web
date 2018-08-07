@@ -51,7 +51,7 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'trang web',
                 'user_discord' => 'discord',
             ],
         ],
@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Kiểu chơi',
+        'title' => 'Lối Chơi',
         'mouse' => 'chuột',
         'keyboard' => 'bàn phím',
         'tablet' => 'tablet',
@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => 'Quyền Riêng Tư',
-        'friends_only' => 'Chặn tin nhắn từ những người không có trong danh sách bạn bè',
+        'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
     ],
 ];

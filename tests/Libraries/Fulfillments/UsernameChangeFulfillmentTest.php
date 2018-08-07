@@ -34,7 +34,7 @@ class UsernameChangeFulfillmentTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->order = factory(Order::class)->create(['user_id' => $this->user->user_id]);
+        $this->order = factory(Order::class, 'paid')->create(['user_id' => $this->user->user_id]);
     }
 
     public function testRun()
