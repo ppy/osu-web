@@ -905,7 +905,7 @@ class BaseTables extends Migration
             $table->text('comments');
             $table->timestamp('timestamp')->useCurrent();
 
-            $table->unique(['reporter_id', 'user_id', 'score_id'], 'unique');
+            $table->unique(['reporter_id', 'user_id', 'mode', 'score_id'], 'unique-new');
             $table->index('timestamp', 'timestamp');
             $table->index('user_id', 'user_lookup');
         });
