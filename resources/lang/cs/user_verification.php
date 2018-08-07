@@ -26,8 +26,8 @@ return [
         'issuing' => 'Vydávání nového kódu...',
 
         'info' => [
-            'check_spam' => "Pokud email nevidíte, zkus se podívat do složky se spamem.",
-            'recover' => "Pokud nemáš přístup ke svému emailu nebo jsi zapomněli jaký jste použili, prosím postupujte podle :link.",
+            'check_spam' => "Pokud email nevidíš, zkus se podívat do složky se spamem.",
+            'recover' => "Pokud nemáš přístup ke svému emailu nebo jsi zapomněl jaký jsi použil, prosím postupuj podle :link.",
             'recover_link' => 'proces pro obnovení emailu zde',
             'reissue' => 'Můžeš také :reissue_link nebo :logout_link.',
             'reissue_link' => 'vyžádat další kód',

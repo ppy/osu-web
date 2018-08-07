@@ -122,8 +122,8 @@ return [
             'modding-history-events' => '유저 모딩 활동',
             'modding-history-index' => '유저 모딩 기록',
             'modding-history-posts' => '유저 모딩 글',
-            'modding-history-votesGiven' => '준 유저 모딩 투표',
-            'modding-history-votesReceived' => '받은 유저 모딩 투표',
+            'modding-history-votesGiven' => '유저가 준 모딩 투표',
+            'modding-history-votesReceived' => '유저가 받은 모딩 투표',
         ],
         'store' => [
             '_' => '상점',
