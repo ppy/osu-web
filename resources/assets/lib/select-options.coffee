@@ -30,7 +30,7 @@ export class SelectOptions extends PureComponent
 
 
   componentDidMount: =>
-    document.addEventListener 'click', @hideSelector
+    element.addEventListener 'click', @hideSelector for element in Blackout.el
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -38,7 +38,7 @@ export class SelectOptions extends PureComponent
 
 
   componentWillUnmount: ->
-    document.removeEventListener 'click', @hideSelector
+    element.removeEventListener 'click', @hideSelector for element in Blackout.el
 
 
   render: =>
@@ -99,11 +99,7 @@ export class SelectOptions extends PureComponent
 
 
   hideSelector: (e) =>
-    return if e.button != 0
-    return unless @state.showingSelector
-    return if $(e.target).closest(@ref.current).length
-
-    @setState showingSelector: false
+    @setState showingSelector: false if e.button == 0
 
 
   itemSelected: (event, item) ->
