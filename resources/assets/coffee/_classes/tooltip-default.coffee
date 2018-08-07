@@ -76,7 +76,7 @@ class @TooltipDefault
           height: 8
 
     if event.type == 'touchstart'
-      options['hide'] = inactive: 3000
+      options.hide = inactive: 3000
 
     # if enabled, prevents tooltip from changing position
     if el.dataset.tooltipPinPosition
