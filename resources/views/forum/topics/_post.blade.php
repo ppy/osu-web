@@ -92,7 +92,7 @@
                 @endif
 
                 @if ($options["deleteLink"] === true)
-                    <div class="forum-post-actions__action">
+                    <div class="forum-post-actions__action js-post-delete-toggle">
                         @include('forum.topics._post_hide_action')
                     </div>
                 @endif
