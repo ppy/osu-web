@@ -902,6 +902,7 @@ class BaseTables extends Migration
             $table->unsignedInteger('score_id')->default(0);
             $table->tinyInteger('mode')->default(0);
             $table->enum('reason', ['Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other'])->default('Cheating');
+            $table->integer('reporter_id');
             $table->text('comments');
             $table->timestamp('timestamp')->useCurrent();
 
