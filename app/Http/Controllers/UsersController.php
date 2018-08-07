@@ -29,8 +29,10 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
 use App\Models\UserNotFound;
+use App\Models\UserReport;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PDOException;
 use Request;
 
 class UsersController extends Controller
@@ -184,6 +186,22 @@ class UsersController extends Controller
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return response()->json([], 404);
         }
+
+        $report = Auth::user()->reportsMade()->make([
+            'user_id' => $user->getKey(),
+            'comments' => trim(request('comments')),
+            'reason' => trim(request('reason')),
+        ]);
+
+        try {
+            $report->saveOrExplode();
+        } catch (PDOException $ex) {
+            // ignore duplicate reports;
+            if (!is_sql_unique_exception($ex)) {
+                throw $ex;
+            }
+        }
+
 
         return [];
     }
