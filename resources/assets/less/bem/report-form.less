@@ -41,8 +41,25 @@
     background-color: @_background-color;
     border-radius: 200px;
 
+    &[disabled] {
+      &::before {
+        .full-size();
+        content: '';
+        border-radius: inherit;
+        background-color: fade(#fff, 50%);
+      }
+    }
+
+    &:focus, &:hover, &:active {
+      background-color: lighten(@_background-color, 20%);
+    }
+
     &--report {
-      background-color: @red;
+      background-color: @red-dark;
+
+      &:focus, &:hover, &:active {
+        background-color: @red;
+      }
     }
   }
 
