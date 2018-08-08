@@ -60,7 +60,7 @@ export class ReportForm extends PureComponent
 
     [
       button
-        className: 'user-action-button user-action-button--message user-action-button--right-margin',
+        className: 'user-action-button user-action-button--report user-action-button--right-margin',
         key: 'button'
         type: 'button'
         onClick: @showModal
