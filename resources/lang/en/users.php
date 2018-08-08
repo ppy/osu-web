@@ -97,6 +97,26 @@ return [
         'error' => 'You need to be signed in to do this.',
     ],
     'logout_confirm' => 'Are you sure you want to sign out? :(',
+    'report' => [
+        'comments' => 'Additional Comments',
+        'placeholder' => 'Please provide any information you believe could be useful.',
+        'reason' => 'Reason',
+        'title' => 'Report :username?',
+
+        'actions' => [
+            'send' => 'Send Report',
+            'cancel' => 'Cancel',
+        ],
+
+        'options' => [
+            'cheating' => 'Foul play / Cheating',
+            'insults' => 'Insulting me / others',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)',
+            'nonsense' => 'Nonsense',
+            'other' => 'Other (type below)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Your account has been restricted!',
         'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',

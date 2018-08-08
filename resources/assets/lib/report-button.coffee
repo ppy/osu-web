@@ -22,12 +22,12 @@ import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
 options = [
-  { id: 'Cheating', text: 'Foul play / Cheating' },
-  { id: 'Insults', text: 'Insulting me / others' },
-  { id: 'Spam', text: 'Spamming' },
-  { id: 'UnwantedContent', text: 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)' },
-  { id: 'Nonsense', text: 'Nonsense' },
-  { id: 'Other', text: 'Other (type below)' },
+  { id: 'Cheating', text: osu.trans 'users.report.options.cheating' },
+  { id: 'Insults', text: osu.trans 'users.report.options.insults' },
+  { id: 'Spam', text: osu.trans 'users.report.options.spam' },
+  { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
+  { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
+  { id: 'Other', text: osu.trans 'users.report.options.other' },
 ]
 
 export class ReportButton extends PureComponent
@@ -87,11 +87,11 @@ export class ReportButton extends PureComponent
 
           div
             className: "#{bn}__row"
-            "Report #{@props.user.username}?"
+            osu.trans 'users.report.title', username: @props.user.username
 
         div
           className: "#{bn}__row"
-          'Reason'
+          osu.trans 'users.report.reason'
 
         div
           className: "#{bn}__row"
@@ -104,13 +104,13 @@ export class ReportButton extends PureComponent
 
         div
           className: "#{bn}__row"
-          'Additional Comments'
+          osu.trans 'users.report.comments'
 
         div
           className: "#{bn}__row"
           textarea
             className: "#{bn}__textarea"
-            placeholder: 'Please provide any information you believe could be useful.'
+            placeholder: osu.trans 'users.report.placeholder'
             ref: @textarea
 
         div
@@ -120,7 +120,7 @@ export class ReportButton extends PureComponent
             disabled: @state.loading
             type: 'button'
             onClick: @sendReport
-            'Send Report'
+            osu.trans 'users.report.actions.send'
 
         div
           className: "#{bn}__row"
@@ -129,7 +129,7 @@ export class ReportButton extends PureComponent
             disabled: @state.loading
             type: 'button'
             onClick: () => @setState showingModal: false
-            'Cancel'
+            osu.trans 'users.report.actions.cancel'
 
 
   showModal: (e) =>
