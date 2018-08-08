@@ -108,6 +108,7 @@ export class ReportButton extends PureComponent
       div
         className: "#{bn}__row"
         el SelectOptions,
+          blackout: false
           bn: "#{bn}-select-options"
           onItemSelected: @onItemSelected
           options: options
