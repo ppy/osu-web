@@ -36,7 +36,7 @@ class @ReportButton extends React.PureComponent
   hideModal: (e) =>
     return if e.button != 0 || e.target != @ref.current
     e.preventDefault()
-    @setState showingModal: false
+    @setState () -> showingModal: false
 
 
   render: =>
@@ -107,6 +107,7 @@ class @ReportButton extends React.PureComponent
           className: "#{bn}__row"
           button
             className: "#{bn}__button #{bn}__button--report"
+            disabled: @state.loading
             type: 'button'
             onClick: @sendReport
             'Send Report'
@@ -115,6 +116,7 @@ class @ReportButton extends React.PureComponent
           className: "#{bn}__row"
           button
             className: "#{bn}__button"
+            disabled: @state.loading
             type: 'button'
             onClick: () => @setState showingModal: false
             'Cancel'
@@ -123,10 +125,12 @@ class @ReportButton extends React.PureComponent
   showModal: (e) =>
     return if e.button != 0
     e.preventDefault()
-    @setState showingModal: true
+    @setState () -> showingModal: true
 
 
   sendReport: (e) =>
+    @setState () -> loading: true
+
     data =
       reason: @reason.current.value
       comments: @textarea.current.value
@@ -137,6 +141,8 @@ class @ReportButton extends React.PureComponent
       data: data
 
     .done () =>
-      @setState showingModal: false
+      @setState () -> showingModal: false
 
     .fail osu.ajaxError
+    .always () =>
+      @setState () -> loading: false
