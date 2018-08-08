@@ -134,7 +134,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 title: osu.trans('users.card.send_message')
                 i className: 'fas fa-envelope'
 
-              el _exported.ReportButton, user: @props.user
+              el _exported.ReportForm, user: @props.user
 
               el BlockButton, user_id: @props.user.id
 

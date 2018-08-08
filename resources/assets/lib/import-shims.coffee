@@ -18,7 +18,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import { ReportButton } from 'report-button'
+import { ReportForm } from 'report-form'
 import { SelectOptions } from 'select-options'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
@@ -29,7 +29,7 @@ import VirtualList from 'react-virtual-list'
 window.Promise ?= Promise
 
 window._exported = {
-  ReportButton
+  ReportForm
   SelectOptions
 }
 

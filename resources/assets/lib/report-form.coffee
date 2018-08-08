@@ -30,7 +30,7 @@ options = [
   { id: 'Other', text: osu.trans 'users.report.options.other' },
 ]
 
-export class ReportButton extends PureComponent
+export class ReportForm extends PureComponent
   constructor: (props) ->
     super props
 
