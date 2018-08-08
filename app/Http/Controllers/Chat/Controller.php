@@ -18,40 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Chat;
+namespace App\Http\Controllers\Chat;
 
-use App\Models\User;
+use App\Http\Controllers\Controller as BaseController;
 
-class PrivateMessage extends Model
+abstract class Controller extends BaseController
 {
-    protected $table = 'messages_private';
-    protected $primaryKey = 'message_id';
-    protected $dates = [
-        'timestamp',
-    ];
-
-    public function getTargetTypeAttribute()
+    public function __construct()
     {
-        return 'user';
-    }
+        $this->middleware('auth');
+        $this->middleware('verify-user');
 
-    public function sender()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function receiver()
-    {
-        return $this->belongsTo(User::class, 'target_id');
-    }
-
-    public function scopeToOrFrom($query, $user_id)
-    {
-        return $query->where(
-            function ($q) use ($user_id) {
-                $q->where('user_id', '=', $user_id)
-                    ->orWhere('target_id', '=', $user_id);
-            }
-        );
+        return parent::__construct();
     }
 }

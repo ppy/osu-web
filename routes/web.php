@@ -82,8 +82,6 @@ Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
 
 Route::group(['prefix' => 'community'], function () {
-    Route::get('chat', 'CommunityController@getChat')->name('chat');
-
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
@@ -162,6 +160,20 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
+
+    Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+        Route::post('new', 'ChatController@newConversation')->name('new');
+        Route::get('updates', 'ChatController@updates')->name('updates');
+
+        Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
+            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
+            Route::post('{channel_id}/messages', 'ChannelsController@send')->name('send');
+            Route::post('{channel_id}/mark-as-read', 'ChannelsController@markAsRead')->name('mark-as-read');
+        });
+        Route::resource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
+    });
+    Route::resource('chat', 'Chat\ChatController', ['only' => ['index']]);
 
     Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
@@ -265,17 +277,6 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
-        Route::group(['prefix' => 'chat'], function () {
-            //  GET /api/v2/chat/channels
-            Route::get('channels', 'ChatController@channels');
-            //  GET /api/v2/chat/messages
-            Route::get('messages', 'ChatController@messages');
-            //  GET /api/v2/chat/messages/private
-            Route::get('messages/private', 'ChatController@privateMessages');
-            // POST /api/v2/chat/messages/new
-            Route::post('messages', 'ChatController@postMessage');
-        });
-
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {

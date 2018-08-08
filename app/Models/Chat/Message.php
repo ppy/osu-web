@@ -25,9 +25,13 @@ use App\Models\User;
 class Message extends Model
 {
     protected $primaryKey = 'message_id';
+    protected $casts = [
+        'is_action' => 'boolean',
+    ];
     protected $dates = [
         'timestamp',
     ];
+    protected $guarded = [];
 
     public function getTargetTypeAttribute()
     {

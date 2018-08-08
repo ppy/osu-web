@@ -22,9 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
-use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -40,7 +38,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
@@ -1277,18 +1275,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
-    }
-
-    public function receiveMessage(self $sender, $body, $isAction = false)
-    {
-        $message = new PrivateMessage();
-        $message->user_id = $sender->user_id;
-        $message->target_id = $this->user_id;
-        $message->content = $body;
-        $message->is_action = $isAction;
-        $message->save();
-
-        return $message->fresh();
     }
 
     public function scopeDefault($query)

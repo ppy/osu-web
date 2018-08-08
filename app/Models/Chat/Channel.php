@@ -20,10 +20,10 @@
 
 namespace App\Models\Chat;
 
-use App\Interfaces\Messageable;
 use App\Models\User;
+use App\Models\Chat\UserChannel;
 
-class Channel extends Model implements Messageable
+class Channel extends Model
 {
     protected $primaryKey = 'channel_id';
     protected $dates = [
@@ -32,7 +32,7 @@ class Channel extends Model implements Messageable
 
     public function messages()
     {
-        $this->hasMany(Message::class, 'channel_id');
+        return $this->hasMany(Message::class, 'channel_id');
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)
@@ -53,7 +53,18 @@ class Channel extends Model implements Messageable
         $message->is_action = $isAction;
         $message->channel()->associate($this);
         $message->save();
+        $message = $message->fresh();
 
-        return $message->fresh();
+        $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id]);
+        if ($userChannel) {
+            $userChannel->update(['last_read_id' => $message->message_id]);
+        }
+
+        return $message;
+    }
+
+    public function users()
+    {
+        return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
     }
 }

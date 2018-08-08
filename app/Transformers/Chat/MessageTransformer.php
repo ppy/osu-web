@@ -18,20 +18,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\API\Chat;
+namespace App\Transformers\Chat;
 
-use App\Models\Chat\Channel;
+use App\Models\DeletedUser;
+use App\Transformers\UserCompactTransformer;
 use League\Fractal;
 
-class ChannelTransformer extends Fractal\TransformerAbstract
+class MessageTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Channel $channel)
+    protected $availableIncludes = [
+        'sender',
+    ];
+
+    public function transform($message)
     {
         return [
-            'channel_id' => $channel->channel_id,
-            'name' => $channel->name,
-            'description' => $channel->description,
-            'type' => $channel->type,
+            'message_id' => $message->message_id,
+            'sender_id' => $message->user_id,
+            'channel_id' => $message->target_id,
+            'timestamp' => json_time($message->timestamp),
+            'content' => $message->content,
+            'is_action' => $message->is_action,
         ];
+    }
+
+    public function includeSender($message)
+    {
+        return $this->item(
+            $message->sender ?? (new DeletedUser),
+            new UserCompactTransformer
+        );
     }
 }

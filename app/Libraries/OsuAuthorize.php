@@ -24,6 +24,7 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Chat\Channel as ChatChannel;
+use App\Models\Chat\UserChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\UserContestEntry;
@@ -469,23 +470,21 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkChatMessageSend($user, $target)
+    public function checkChatChannelSend($user, $channel)
     {
         $prefix = 'chat.message.send.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($target instanceof ChatChannel) {
-            if (!$this->doCheckUser($user, 'ChatChannelRead', $target)->can()) {
-                return $prefix.'channel.no_access';
-            }
+        if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
+            return $prefix.'channel.no_access';
+        }
 
-            if ($target->moderated) {
-                return $prefix.'channel.moderated';
-            }
-        } elseif ($target instanceof User) {
-            // TODO: blocklist/ignore, etc
+        // TODO: CHECK BLOCKS/ETC
+
+        if ($channel->moderated) {
+            return $prefix.'channel.moderated';
         }
 
         return 'ok';
@@ -506,6 +505,10 @@ class OsuAuthorize
                 );
 
                 if (count($commonGroupIds) > 0) {
+                    return 'ok';
+                }
+
+                if (UserChannel::where(['user_id' => $user->user_id, 'channel_id' => $channel->channel_id])->exists()) {
                     return 'ok';
                 }
                 break;
