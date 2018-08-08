@@ -16,18 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-el = React.createElement
-{button, div, i, option, select, textarea} = ReactDOMFactories
+import { createElement as el, createRef, PureComponent } from 'react'
+import { button, div, i, option, select, textarea } from 'react-dom-factories'
 
 bn = 'report-form'
 
-class @ReportButton extends React.PureComponent
+export class ReportButton extends PureComponent
   constructor: (props) ->
     super props
 
-    @ref = React.createRef()
-    @reason = React.createRef()
-    @textarea = React.createRef()
+    @ref = createRef()
+    @reason = createRef()
+    @textarea = createRef()
 
     @state =
       showingModal: false

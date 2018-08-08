@@ -18,6 +18,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import { ReportButton } from 'report-button'
 import { SelectOptions } from 'select-options'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
@@ -27,7 +28,11 @@ import VirtualList from 'react-virtual-list'
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
-window._exported = { SelectOptions }
+window._exported = {
+  ReportButton
+  SelectOptions
+}
+
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize
 window.VirtualList = VirtualList
