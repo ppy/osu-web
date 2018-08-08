@@ -34,7 +34,6 @@ export class ReportButton extends PureComponent
   constructor: (props) ->
     super props
 
-    @ref = createRef()
     @textarea = createRef()
 
     @state =
@@ -42,10 +41,21 @@ export class ReportButton extends PureComponent
       showingModal: false
 
 
+  componentDidMount: =>
+    element.addEventListener 'click', @hideModal for element in Blackout.el
+
+
+  componentDidUpdate: (_prevProps, prevState) =>
+    Blackout.toggle(@state.showingModal, 0.5) unless prevState.showingModal == @state.showingModal
+
+
+  componentWillUnmount: ->
+    element.removeEventListener 'click', @hideModal for element in Blackout.el
+
+
   hideModal: (e) =>
-    return if e.button != 0 || e.target != @ref.current
-    e.preventDefault()
-    @setState () -> showingModal: false
+    if e.button == 0
+      @setState () -> showingModal: false
 
 
   onItemSelected: (item) =>
@@ -81,60 +91,56 @@ export class ReportButton extends PureComponent
     div
       className: bn
       key: 'form'
-      onClick: @hideModal
-      ref: @ref
       div
-        className: "#{bn}__form"
+        className: "#{bn}__header"
         div
-          className: "#{bn}__header"
-          div
-            className: "#{bn}__row"
-            i className: 'fas fa-exclamation-triangle'
-
-          div
-            className: "#{bn}__row"
-            "Report #{@props.user.username}?"
+          className: "#{bn}__row"
+          i className: 'fas fa-exclamation-triangle'
 
         div
           className: "#{bn}__row"
-          'Reason'
+          "Report #{@props.user.username}?"
 
-        div
-          className: "#{bn}__row"
-          el SelectOptions,
-            bn: "#{bn}-select-options"
-            onItemSelected: @onItemSelected
-            options: options
-            selected: @state.selectedReason
+      div
+        className: "#{bn}__row"
+        'Reason'
 
-        div
-          className: "#{bn}__row"
-          'Additional Comments'
+      div
+        className: "#{bn}__row"
+        el SelectOptions,
+          bn: "#{bn}-select-options"
+          onItemSelected: @onItemSelected
+          options: options
+          selected: @state.selectedReason
 
-        div
-          className: "#{bn}__row"
-          textarea
-            className: "#{bn}__textarea"
-            placeholder: 'Please provide any information you believe could be useful.'
-            ref: @textarea
+      div
+        className: "#{bn}__row"
+        'Additional Comments'
 
-        div
-          className: "#{bn}__row"
-          button
-            className: "#{bn}__button #{bn}__button--report"
-            disabled: @state.loading
-            type: 'button'
-            onClick: @sendReport
-            'Send Report'
+      div
+        className: "#{bn}__row"
+        textarea
+          className: "#{bn}__textarea"
+          placeholder: 'Please provide any information you believe could be useful.'
+          ref: @textarea
 
-        div
-          className: "#{bn}__row"
-          button
-            className: "#{bn}__button"
-            disabled: @state.loading
-            type: 'button'
-            onClick: () => @setState showingModal: false
-            'Cancel'
+      div
+        className: "#{bn}__row"
+        button
+          className: "#{bn}__button #{bn}__button--report"
+          disabled: @state.loading
+          type: 'button'
+          onClick: @sendReport
+          'Send Report'
+
+      div
+        className: "#{bn}__row"
+        button
+          className: "#{bn}__button"
+          disabled: @state.loading
+          type: 'button'
+          onClick: () => @setState showingModal: false
+          'Cancel'
 
 
   showModal: (e) =>
