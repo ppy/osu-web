@@ -64,16 +64,14 @@ class @ReportButton extends React.PureComponent
       div
         className: "#{bn}__form"
         div
-          className: "#{bn}__row"
-          i className: 'fas fa-exclamation-triangle'
+          className: "#{bn}__header"
+          div
+            className: "#{bn}__row"
+            i className: 'fas fa-exclamation-triangle'
 
-        div
-          className: "#{bn}__row"
-          "Report #{@props.user.username}?"
-
-        div
-          className: "#{bn}__row"
-          i className: 'fas fa-exclamation-triangle'
+          div
+            className: "#{bn}__row"
+            "Report #{@props.user.username}?"
 
         div
           className: "#{bn}__row"

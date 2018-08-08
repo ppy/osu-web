@@ -79,6 +79,12 @@
     background-color: @_form-color;
   }
 
+  &__header {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
   &__row {
     display: flex;
     justify-content: center;
@@ -98,9 +104,11 @@
     padding: @_padding;
     font-size: 14px;
     width: 100%;
-    height: 300px;
-    background-color: @_background-color;
+    height: 200px;
+    max-height: 400px; // don't resize too much...
     resize: vertical;
+
+    background-color: @_background-color;
 
     &::placeholder {
       color: mix(@_background-color, #fff);
