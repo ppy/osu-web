@@ -17,6 +17,9 @@
 ###
 
 @polyfills ?= new Polyfills
+
+Turbolinks.setProgressBarDelay(0)
+
 Lang.setLocale(currentLocale)
 jQuery.timeago.settings.allowFuture = true
 

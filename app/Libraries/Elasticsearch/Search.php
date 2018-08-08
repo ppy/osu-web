@@ -39,7 +39,7 @@ abstract class Search implements Queryable
      *
      * @var string|null
      */
-    public $loggingTag = 'search';
+    public $loggingTag;
 
     protected $aggregations;
     protected $index;
@@ -105,7 +105,7 @@ abstract class Search implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort', '_source'] as $key) {
+            foreach (['from', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 
@@ -175,6 +175,7 @@ abstract class Search implements Queryable
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->sorts),
+            'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
 
         if (isset($this->highlight)) {
@@ -227,7 +228,7 @@ abstract class Search implements Queryable
                     return new SearchResponse($this->client()->search($this->toArray()));
                 },
                 config('datadog-helper.prefix_web').'.search.fetch',
-                ['type' => get_called_class(), 'name' => $this->loggingTag]
+                $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {
             $this->error = $e;
@@ -236,19 +237,29 @@ abstract class Search implements Queryable
         log_error($this->error);
 
         if (config('datadog-helper.enabled')) {
+            $tags = $this->getDatadogTags();
+            $tags['class'] = get_class($this->error);
+
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
-                ['class' => get_class($this->error), 'name' => $this->loggingTag]
+                $tags
             );
         }
 
         return SearchResponse::failed($this->error);
     }
 
+    private function getDatadogTags()
+    {
+        return [
+            'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
+            'index' => $this->index,
+        ];
+    }
+
     private function isSearchWindowExceeded()
     {
-        // compare using the fixed value for MAX_RESULTS, not the overridable one.
         return $this->getQuerySize() < 0;
     }
 }

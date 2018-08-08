@@ -203,7 +203,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,

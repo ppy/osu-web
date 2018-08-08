@@ -46,7 +46,7 @@ return [
 
     'item' => [
         'content' => '',
-        'discussion_deleted' => '',
+        'discussion_deleted' => '[slettet]',
         'type' => '',
     ],
 ];

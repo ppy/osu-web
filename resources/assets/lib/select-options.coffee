@@ -29,7 +29,7 @@ export class SelectOptions extends PureComponent
 
 
   componentDidMount: =>
-    $(document).on "click.#{@bn}", @hideSelector
+    element.addEventListener 'click', @hideSelector for element in Blackout.el
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -37,11 +37,11 @@ export class SelectOptions extends PureComponent
 
 
   componentWillUnmount: ->
-    $(document).off ".#{@bn}"
+    element.removeEventListener 'click', @hideSelector for element in Blackout.el
 
 
   render: =>
-    classNames = "#{@bn} js-#{@bn}"
+    classNames = "#{@bn}"
     classNames += " #{@bn}--selecting" if @state.showingSelector
 
     div
@@ -89,19 +89,15 @@ export class SelectOptions extends PureComponent
     return @props.renderItem({ children, item, onClick, cssClasses }) if @props.renderItem?
 
     a
-      children: children
       className: cssClasses
       href: '#'
       key: item.id
       onClick: onClick
+      children
 
 
   hideSelector: (e) =>
-    return if e.button != 0
-    return unless @state.showingSelector
-    return if $(e.target).closest(".js-#{@bn}").length
-
-    @setState showingSelector: false
+    @setState showingSelector: false if e.button == 0
 
 
   itemSelected: (event, item) ->

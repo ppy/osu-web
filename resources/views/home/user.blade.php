@@ -22,7 +22,7 @@
         'title' => trans('home.user.header.welcome', ['username' => link_to(
             route('users.show', Auth::user()),
             Auth::user()->username,
-            ['class' => 'link link--white link--no-underline']
+            ['class' => 'link link--white']
         )])
     ])
 

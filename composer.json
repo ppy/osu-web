@@ -12,14 +12,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/nekodex/laravel-datadog-helper"
     }
   ],
   "require": {
-    "chaseconey/laravel-datadog-helper": "dev-disable-middleware-tag",
+    "chaseconey/laravel-datadog-helper": "*",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "~6.0",
@@ -27,7 +23,7 @@
     "graham-campbell/github": "*",
     "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
-    "itsgoingd/clockwork": "~1.14",
+    "itsgoingd/clockwork": ">=3.0",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",

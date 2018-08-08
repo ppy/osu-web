@@ -24,7 +24,7 @@ class MPHistory.Score extends React.Component
   secondRow: ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss']
 
   render: ->
-    user = @props.lookupUser @props.score.user_id
+    user = @props.users[@props.score.user_id]
 
     div className: 'mp-history-game__player-score mp-history-player-score',
       div

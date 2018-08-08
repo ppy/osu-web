@@ -57,7 +57,7 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Header',
+            'title' => 'Podpis',
             'update' => 'aktualizovat',
         ],
     ],
@@ -75,7 +75,7 @@ return [
     'playstyles' => [
         'title' => 'Styly hraní',
         'mouse' => 'myš',
-        'keyboard' => 'klávesnicí',
+        'keyboard' => 'klávesnice',
         'tablet' => 'tablet',
         'touch' => 'dotyk',
     ],

@@ -81,13 +81,19 @@ function cache_remember_with_fallback($key, $minutes, $callback)
     return $data['value'] ?? null;
 }
 
+// Just normal Cache::forget but with the suffix.
+function cache_forget_with_fallback($key)
+{
+    return Cache::forget("{$key}:with_fallback");
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
     // spaces used so clockwork doesn't run across the whole screen.
     $description = $stat
                    .' '.($tag['type'] ?? null)
-                   .' '.($tag['name'] ?? null);
+                   .' '.($tag['index'] ?? null);
 
     $start = microtime(true);
 
