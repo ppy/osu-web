@@ -18,18 +18,27 @@
 
 import { createElement as el, createRef, PureComponent } from 'react'
 import { button, div, i, option, select, textarea } from 'react-dom-factories'
+import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
+options = [
+  { id: 'Cheating', text: 'Foul play / Cheating' },
+  { id: 'Insults', text: 'Insulting me / others' },
+  { id: 'Spam', text: 'Spamming' },
+  { id: 'UnwantedContent', text: 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)' },
+  { id: 'Nonsense', text: 'Nonsense' },
+  { id: 'Other', text: 'Other (type below)' },
+]
 
 export class ReportButton extends PureComponent
   constructor: (props) ->
     super props
 
     @ref = createRef()
-    @reason = createRef()
     @textarea = createRef()
 
     @state =
+      selectedReason: options[0]
       showingModal: false
 
 
@@ -37,6 +46,10 @@ export class ReportButton extends PureComponent
     return if e.button != 0 || e.target != @ref.current
     e.preventDefault()
     @setState () -> showingModal: false
+
+
+  onItemSelected: (item) =>
+    @setState () -> selectedReason: item
 
 
   render: =>
@@ -56,6 +69,15 @@ export class ReportButton extends PureComponent
 
 
   renderForm: =>
+    options = [
+      { id: 'Cheating', text: 'Foul play / Cheating' },
+      { id: 'Insults', text: 'Insulting me / others' },
+      { id: 'Spam', text: 'Spamming' },
+      { id: 'UnwantedContent', text: 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)' },
+      { id: 'Nonsense', text: 'Nonsense' },
+      { id: 'Other', text: 'Other (type below)' },
+    ]
+
     div
       className: bn
       key: 'form'
@@ -79,16 +101,11 @@ export class ReportButton extends PureComponent
 
         div
           className: "#{bn}__row"
-          select
-            className: "#{bn}__select"
-            ref: @reason
-            type: 'dropdown'
-            option value: 'Cheating', 'Foul play / Cheating'
-            option value: 'Insults', 'Insulting me / others'
-            option value: 'Spam', 'Spamming'
-            option value: 'UnwantedContent', 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)'
-            option value: 'Nonsense', 'Nonsense'
-            option value: 'Other', 'Other (type below)'
+          el SelectOptions,
+            bn: "#{bn}-select-options"
+            onItemSelected: @onItemSelected
+            options: options
+            selected: @state.selectedReason
 
         div
           className: "#{bn}__row"
@@ -130,7 +147,7 @@ export class ReportButton extends PureComponent
     @setState () -> loading: true
 
     data =
-      reason: @reason.current.value
+      reason: @state.selectedReason.id
       comments: @textarea.current.value
 
     $.ajax
