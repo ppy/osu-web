@@ -72,15 +72,6 @@ export class ReportButton extends PureComponent
 
 
   renderForm: =>
-    options = [
-      { id: 'Cheating', text: 'Foul play / Cheating' },
-      { id: 'Insults', text: 'Insulting me / others' },
-      { id: 'Spam', text: 'Spamming' },
-      { id: 'UnwantedContent', text: 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)' },
-      { id: 'Nonsense', text: 'Nonsense' },
-      { id: 'Other', text: 'Other (type below)' },
-    ]
-
     div
       className: bn
       onClick: @hideModal
