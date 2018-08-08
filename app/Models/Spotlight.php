@@ -99,28 +99,34 @@ class Spotlight extends Model
     public function beatmapsetsTableName(string $mode)
     {
         if ($mode === 'osu' || !$this->mode_specific) {
-            return "{$this->acronym}_beatmapsets";
+            $name = "{$this->acronym}_beatmapsets";
         } else {
-            return "{$this->acronym}_beatmapsets_{$mode}";
+            $name = "{$this->acronym}_beatmapsets_{$mode}";
         }
+
+        return mb_strtolower($name);
     }
 
     public function bestScoresTableName(string $mode)
     {
         if ($mode === 'osu') {
-            return "{$this->acronym}_scores_high";
+            $name = "{$this->acronym}_scores_high";
         } else {
-            return "{$this->acronym}_scores_{$mode}_high";
+            $name = "{$this->acronym}_scores_{$mode}_high";
         }
+
+        return mb_strtolower($name);
     }
 
     public function userStatsTableName(string $mode)
     {
         if ($mode === 'osu') {
-            return "{$this->acronym}_user_stats";
+            $name = "{$this->acronym}_user_stats";
         } else {
-            return "{$this->acronym}_user_stats_{$mode}";
+            $name = "{$this->acronym}_user_stats_{$mode}";
         }
+
+        return mb_strtolower($name);
     }
 
     public function scopeInYear($query, int $year)
