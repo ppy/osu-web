@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\AuthorizationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -187,6 +188,13 @@ class UsersController extends Controller
             return response()->json([], 404);
         }
 
+        // ignore reports from users without a clean record.
+        try {
+            priv_check('UserReport', Auth::user())->ensureCan();
+        } catch (AuthorizationException $ex) {
+            return [];
+        }
+
         $report = Auth::user()->reportsMade()->make([
             'user_id' => $user->getKey(),
             'comments' => trim(request('comments')),
@@ -201,7 +209,6 @@ class UsersController extends Controller
                 throw $ex;
             }
         }
-
 
         return [];
     }
