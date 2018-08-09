@@ -77,6 +77,11 @@
     flex-direction: column;
 
     background-color: @_form-color;
+
+    @media @mobile {
+      // force content to fit into window, especially the dropdown.
+      max-width: 100vw;
+    }
   }
 
   &__header {
