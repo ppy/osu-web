@@ -528,6 +528,13 @@ class OsuAuthorize
                     }
                 }
                 break;
+
+            case 'pm':
+            case 'group':
+                if (UserChannel::where(['user_id' => $user->user_id, 'channel_id' => $channel->channel_id])->exists()) {
+                    return 'ok';
+                }
+                break;
         }
 
         return $prefix.'no_access';

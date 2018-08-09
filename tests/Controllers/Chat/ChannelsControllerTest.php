@@ -37,10 +37,7 @@ class ChannelsControllerTest extends TestCase
         $this->anotherUser = factory(User::class)->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
-        // $this->userChannel = factory(UserChannel::class)->create([
-        //     'user_id' => $this->user->user_id,
-        //     'channel_id' => $this->publicChannel->channel_id,
-        // ]);
+        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
     }
 
     #region GET /chat/channels - Get Channel List
@@ -54,16 +51,17 @@ class ChannelsControllerTest extends TestCase
     {
         $this->actingAs($this->user)
             ->json('GET', route('chat.channels.index'))
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id])
+            ->assertJsonMissing(['channel_id' => $this->privateChannel->channel_id])
+            ->assertJsonMissing(['channel_id' => $this->pmChannel->channel_id]);
     }
     #endregion
 
     #region PUT /chat/channels/[channel_id]/users/[user_id] - Join Channel (public)
     public function testChannelJoinPublicWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
-        $this->actingAs($this->user)
-            ->json('PUT', route('chat.channels.join', [
+        $this->json('PUT', route('chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id
             ]))
@@ -72,35 +70,82 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinPublicWhenDifferentUser() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
         $this->actingAs($this->user)
             ->json('PUT', route('chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->anotherUser->user_id
             ]))
-            ->assertStatus(401);
+            ->assertStatus(403);
     }
 
     public function testChannelJoinNonPublic() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
         $this->actingAs($this->user)
             ->json('PUT', route('chat.channels.join', [
                 'channel_id' => $this->privateChannel->channel_id,
                 'user_id' => $this->user->user_id
             ]))
-            ->assertStatus(401);
+            ->assertStatus(404);
     }
 
     public function testChannelJoinPublic() // succeed
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        // ensure not in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
+
+        // join channel
         $this->actingAs($this->user)
             ->json('PUT', route('chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id
             ]))
-            ->assertStatus(200);
+            ->assertStatus(204);
+
+        // ensure now in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
+    }
+
+    public function testChannelJoinPublicWhenAlreadyJoined() // succeed
+    {
+        // ensure not in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
+
+        // join channel
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(204);
+
+        // ensure now in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
+
+        // attempt to join channel again
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(204);
+
+        // ensure still in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
     #endregion
 
@@ -113,22 +158,23 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelShowPublicWhenUnjoined() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
         $this->actingAs($this->user)
             ->json('GET', route('chat.channels.show', ['channel_id' => $this->publicChannel->channel_id]))
-            ->assertStatus(401);
+            ->assertStatus(404);
     }
 
-    public function testChannelShowPublic() // success
+    public function testChannelShowPublicWhenJoined() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]));
+
         $this->actingAs($this->user)
             ->json('GET', route('chat.channels.show', ['channel_id' => $this->publicChannel->channel_id]))
-            ->assertStatus(200)
-            ->assertJson([]);
-
-        // fwrite(STDERR, json_encode($this->userChannel));
-        // fwrite(STDERR, $derp->content());
+            ->assertStatus(200);
+            // TODO: Add check for messages being present?
     }
     #endregion
 
@@ -139,40 +185,52 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(401);
     }
 
-    public function testChannelShowPrivateWhenUnauthorized() // fail
+    public function testChannelShowPrivateWhenNotJoined() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
-        $this->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
-            ->assertStatus(401);
-    }
-
-    public function testChannelShowPrivate() // success
-    {
-        $this->markTestIncomplete('This test has not been implemented yet.');
         $this->actingAs($this->user)
             ->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
-            ->assertStatus(200)
-            ->assertJson([]);
+            ->assertStatus(404);
+    }
 
-        // fwrite(STDERR, json_encode($this->userChannel));
-        // fwrite(STDERR, $derp->content());
+    public function testChannelShowPrivateWhenJoined() // success
+    {
+        $this->userChannel = factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $this->privateChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
+            ->assertStatus(200);
     }
     #endregion
 
     #region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json('GET', route('chat.channels.show', ['channel_id' => $this->pmChannel->channel_id]))
+            ->assertStatus(401);
     }
 
-    public function testChannelShowPMWhenUnjoined() // fail
+    public function testChannelShowPMWhenNotJoined() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.channels.show', ['channel_id' => $this->pmChannel->channel_id]))
+            ->assertStatus(404);
     }
 
     public function testChannelShowPM() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.channels.show', ['channel_id' => $pmChannel->channel_id]))
+            ->assertStatus(200);
+            // TODO: Add check for messages being present?
     }
     #endregion
 
@@ -223,22 +281,78 @@ class ChannelsControllerTest extends TestCase
     #region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
     public function testChannelLeaveWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json('DELETE', route('chat.channels.part', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(401);
     }
 
     public function testChannelLeaveWhenNotPublic() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json('DELETE', route('chat.channels.part', [
+                'channel_id' => $this->privateChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(404);
     }
 
-    public function testChannelLeaveWhenNotJoined() // fail
+    public function testChannelLeaveWhenNotJoined() // success ?
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
+
+        $this->actingAs($this->user)
+            ->json('DELETE', route('chat.channels.part', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
 
-    public function testChannelLeave() // success
+    public function testChannelLeaveWhenJoined() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        // ensure not in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
+
+        // join channel
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(204);
+
+        // ensure now in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
+
+        // leave channel
+        $this->actingAs($this->user)
+            ->json('DELETE', route('chat.channels.part', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]))
+            ->assertStatus(204);
+
+        // ensure no longer in channel
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
     #endregion
 }
