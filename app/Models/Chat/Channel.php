@@ -67,4 +67,30 @@ class Channel extends Model
     {
         return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
     }
+
+    public function addUser(User $user)
+    {
+        if ($this->type != 'public') {
+            return;
+        }
+
+        $userChannel = new UserChannel();
+        $userChannel->user()->associate($user);
+        $userChannel->channel()->associate($this);
+        $userChannel->save();
+    }
+
+    public function removeUser(User $user)
+    {
+        if ($this->type != 'public') {
+            return;
+        }
+
+        $userChannel = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $user->user_id,
+        ]);
+
+        $userChannel->delete();
+    }
 }

@@ -74,6 +74,38 @@ class ChannelsController extends Controller
         );
     }
 
+    public function join($channel_id, $user_id)
+    {
+        if (UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->exists()) {
+            abort(204);
+        }
+
+        // FIXME: Update this to proper permission check when public-only restriction is lifted
+        $channel = Channel::where(['channel_id' => $channel_id, 'type' => 'public'])->firstOrFail();
+
+        if (Auth::user()->user_id !== get_int($user_id)) {
+            abort(403);
+        }
+
+        $channel->addUser(Auth::user());
+
+        abort(204);
+    }
+
+    public function part($channel_id, $user_id)
+    {
+        // FIXME: Update this to proper permission check when public-only restriction is lifted
+        $channel = Channel::where(['channel_id' => $channel_id, 'type' => 'public'])->firstOrFail();
+
+        if (Auth::user()->user_id !== get_int($user_id)) {
+            abort(403);
+        }
+
+        $channel->removeUser(Auth::user());
+
+        abort(204);
+    }
+
     public function markAsRead($channel_id)
     {
         $userChannelQuery = UserChannel::where(['user_id' => Auth::user()->user_id, 'channel_id' => $channel_id]);
