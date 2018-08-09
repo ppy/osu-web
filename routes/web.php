@@ -164,7 +164,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
         Route::post('new', 'ChatController@newConversation')->name('new');
         Route::get('updates', 'ChatController@updates')->name('updates');
-
+        Route::get('presence', 'ChatController@presence')->name('presence');
         Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
             Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
             Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
@@ -277,6 +277,19 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
+            Route::get('updates', '\App\Http\Controllers\Chat\ChatController@updates')->name('updates');
+            Route::get('presence', '\App\Http\Controllers\Chat\ChatController@presence')->name('presence');
+            Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+                Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
+                Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
+                Route::post('{channel_id}/messages', '\App\Http\Controllers\Chat\ChannelsController@send')->name('send');
+                Route::post('{channel_id}/mark-as-read', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
+            });
+            Route::resource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index', 'show']]);
+        });
+
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
