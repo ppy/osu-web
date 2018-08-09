@@ -84,7 +84,7 @@ export class ReportForm extends PureComponent
         div
           className: "#{bn}__header"
           div
-            className: "#{bn}__row"
+            className: "#{bn}__row #{bn}__row--exclamation"
             i className: 'fas fa-exclamation-triangle'
 
           div

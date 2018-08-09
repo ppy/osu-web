@@ -28,13 +28,11 @@
   height: 100%;
 
   display: flex;
-  flex-direction: column;
-  align-content: center;
   align-items: center;
   justify-content: center;
 
   z-index: @z-index--blackout;
-  font-size: 14px;
+  font-size: @font-size--title-small;
   color: #fff;
 
   &__button {
@@ -71,9 +69,10 @@
   &__content {
     .default-border-radius();
 
-    padding: @_padding;
+    padding: 30px @_padding @_padding;
 
     display: flex;
+    flex: 0 1 400px;
     flex-direction: column;
 
     background-color: @_form-color;
@@ -86,8 +85,7 @@
 
   &__header {
     margin-bottom: 10px;
-    font-size: 24px;
-    font-weight: 300;
+    font-size: @font-size--title;
   }
 
   &__row {
@@ -97,13 +95,17 @@
     & + & {
       margin-top: 10px;
     }
+
+    &--exclamation {
+      font-size: @font-size--large-2;
+    }
   }
 
   &__textarea {
     .reset-input();
     .default-border-radius();
     padding: @_padding;
-    font-size: 14px;
+    font-size: @font-size--normal;
     width: 100%;
     height: 200px;
     max-height: 400px; // don't resize too much...
