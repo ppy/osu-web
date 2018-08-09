@@ -72,6 +72,8 @@ export class ReportForm extends PureComponent
 
 
   renderForm: =>
+    title = osu.trans 'users.report.title', username: "<strong>#{@props.user.username}</strong>"
+
     div
       className: bn
       onClick: @hideModal
@@ -87,7 +89,8 @@ export class ReportForm extends PureComponent
 
           div
             className: "#{bn}__row"
-            osu.trans 'users.report.title', username: @props.user.username
+            dangerouslySetInnerHTML:
+              __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
 
         div
           className: "#{bn}__row"
