@@ -25,6 +25,7 @@ use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
+use App\Models\Store\Order;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -68,10 +69,9 @@ class CentiliController extends Controller
 
     public function failed()
     {
-        // FIXME: show a message to the user
+        $order = Order::whereOrderNumber(request()->input('reference'))->firstOrFail();
         Request::session()->flash('status', 'An error occured while processing the payment.');
 
-        // TODO: ..how?
-        return redirect(route('store.checkout.show'));
+        return redirect(route('store.checkout.show', $order));
     }
 }
