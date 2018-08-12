@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => 'Acest beatmap nu este disponibil pentru descărcare momentan.',
-        'parts-removed' => 'Porțiuni din acest beatmap au fost eliminate la cererea creatorului sau a unui deținător de drepturi de autor.',
-        'more-info' => 'Verifică aici pentru mai multe informații.',
+        'disabled' => 'Acest beatmap nu poate fi descărcat momentan.',
+        'parts-removed' => 'Unele porțiuni din acest beatmap au fost eliminate la cererea creatorului sau al unui deținător de drepturi de autor.',
+        'more-info' => 'Vezi aici pentru mai multe informații.',
     ],
 
     'index' => [
-        'title' => 'Listarea beatmaps',
+        'title' => 'Listarea beatmapurilor',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -36,21 +36,21 @@ return [
         'details' => [
             'mapped_by' => 'mapat de :mapper',
             'submitted' => 'trimis pe ',
-            'updated' => 'ultima dată actualizat pe ',
-            'updated_timeago' => 'ultima dată actualizat pe :timeago',
+            'updated' => 'ultima dată actualizat ',
+            'updated_timeago' => 'ultima dată actualizat :timeago',
             'ranked' => 'clasat pe ',
             'approved' => 'aprobat pe ',
             'qualified' => 'calificat pe ',
             'loved' => 'loved pe ',
-            'logged-out' => 'Trebuie să te autentifici înainte de a descărca orice beatmap!',
+            'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'download' => [
                 '_' => 'Descarcă',
-                'video' => 'cu video',
-                'no-video' => 'fără video',
+                'video' => 'cu videoclip',
+                'no-video' => 'fără videoclip',
                 'direct' => '',
             ],
-            'favourite' => 'Adăugați acest beatmapset la favorite',
-            'unfavourite' => 'Elimnă acest beatmapset de la favorite',
+            'favourite' => 'Adaugă acest beatmapset la favorite',
+            'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'favourited_count' => '+ 1 alta!|+ :count alte!',
         ],
         'stats' => [
@@ -85,8 +85,8 @@ return [
             'country' => 'Clasament pe țară',
             'friend' => 'Clasamentul prietenilor',
             'global' => 'Clasament global',
-            'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele extravagante pe care le obții!',
-            'supporter-only' => 'Trebuie să fi un suporter pentru a accesa clasamentul prietenilor și pe țară!',
+            'supporter-link' => 'Click <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
+            'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentul prietenilor și pe țară!',
             'title' => 'Tabela de scor',
 
             'headers' => [

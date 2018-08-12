@@ -21,7 +21,6 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\Elasticsearch\Indexing;
 use Log;
 
 trait EsIndexable
@@ -104,7 +103,6 @@ trait EsIndexable
         ];
 
         static::esReindexAll($batchSize, 0, $options, $progress);
-        Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
     }

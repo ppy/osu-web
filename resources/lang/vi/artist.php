@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Nghệ sĩ tiêu biểu của osu!',
-    'title' => 'Nghệ Sĩ Tiêu Biểu',
+    'page_description' => 'Nghệ sĩ nổi bật của osu!',
+    'title' => 'Nghệ sĩ nổi bật',
 
     'admin' => [
         'hidden' => 'NGHỆ SĨ ĐANG BỊ ẨN',

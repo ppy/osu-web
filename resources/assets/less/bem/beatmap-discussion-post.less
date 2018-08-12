@@ -24,12 +24,6 @@
   @_discussion-text-size: @font-size--title-small-2;
   @_reply-text-size: @font-size--normal-2;
 
-  @_moderator-bg: @yellow-dark;
-  @_moderator-bg-hover: @yellow-darker;
-
-  @_owner-bg: @green-dark;
-  @_owner-bg-hover: @green-darker;
-
   @_content-gutter-base: 15px;
 
   &--discussion {
@@ -275,19 +269,19 @@
     text-transform: uppercase;
 
     .@{_top}--admin & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--bng & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--owner & {
-      background-color: @_owner-bg;
+      background-color: @beatmap-discussion--user-color-owner;
     }
 
     .@{_top}--qat & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
   }
 
@@ -333,19 +327,19 @@
     width: 2px;
 
     .@{_top}--admin & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--bng & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--owner & {
-      background-color: @_owner-bg;
+      background-color: @beatmap-discussion--user-color-owner;
     }
 
     .@{_top}--qat & {
-      background-color: @_moderator-bg;
+      background-color: @beatmap-discussion--user-color-moderator;
     }
   }
 
@@ -356,19 +350,19 @@
     max-width: 120px;
 
     .@{_top}--admin & {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--bng & {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
 
     .@{_top}--owner & {
-      color: @_owner-bg;
+      color: @beatmap-discussion--user-color-owner;
     }
 
     .@{_top}--qat & {
-      color: @_moderator-bg;
+      color: @beatmap-discussion--user-color-moderator;
     }
   }
 }

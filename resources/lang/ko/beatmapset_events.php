@@ -29,7 +29,7 @@ return [
         'disqualify_legacy' => 'Disqualified by :user. 이유: :text.',
         'issue_reopen' => '마무리된 토론 :discussion이 재개되었습니다.',
         'issue_resolve' => '토론 :discussion이 마무리되었습니다.',
-        'kudosu_allow' => '토론 :discussion의 kudosu 획득 자격 박탈이 취소되었습니다.',
+        'kudosu_allow' => '토론 :discussion이 다시 kudosu 획득 자격을 얻었습니다.',
         'kudosu_deny' => '토론 :discussion에서 kudosu 획득이 박탈당했습니다.',
         'kudosu_gain' => '토론 :discussion에서 :user님이 kudosu를 받을 만큼 충분한 표를 얻었습니다.',
         'kudosu_lost' => '토론 :discussion에서 :user님이 표를 잃어 획득한 kudosu가 사라졌습니다.',

@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87569f1f280af105c239512262a0f6a9",
+    "content-hash": "362348dac82eab0fba6ab926584cc276",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1584,20 +1584,20 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v1.14.5",
+            "version": "v3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "55ec557cc8cc60944de0eefbe27f905d538a8f70"
+                "reference": "8a489bf1f701bcdd6f65be1369bd4dffb0aabda2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/55ec557cc8cc60944de0eefbe27f905d538a8f70",
-                "reference": "55ec557cc8cc60944de0eefbe27f905d538a8f70",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/8a489bf1f701bcdd6f65be1369bd4dffb0aabda2",
+                "reference": "8a489bf1f701bcdd6f65be1369bd4dffb0aabda2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9",
+                "php": ">=5.5",
                 "psr/log": "1.*"
             },
             "type": "library",
@@ -1624,18 +1624,21 @@
                 {
                     "name": "itsgoingd",
                     "email": "itsgoingd@luzer.sk",
-                    "homepage": "http://twitter.com/itsgoingd"
+                    "homepage": "https://twitter.com/itsgoingd"
                 }
             ],
-            "description": "Server-side component of Clockwork, a Chrome extension for PHP development",
-            "homepage": "http://github.com/itsgoingd/clockwork",
+            "description": "php dev tools integrated to your browser",
+            "homepage": "https://underground.works/clockwork",
             "keywords": [
+                "Devtools",
                 "debugging",
                 "laravel",
                 "logging",
-                "profiling"
+                "lumen",
+                "profiling",
+                "slim"
             ],
-            "time": "2017-09-15T14:50:14+00:00"
+            "time": "2018-07-30T22:51:45+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2664,9 +2667,9 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
+                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
             },
-            "time": "2017-02-16 06:27:23"
+            "time": "2017-02-16T06:27:23+00:00"
         },
         {
             "name": "mariuzzo/laravel-js-localization",

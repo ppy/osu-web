@@ -221,7 +221,12 @@
 }
 
 .content-font() {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: @font-content;
   line-height: 1.35;
   color: #444;
+}
+
+.default-font() {
+  font-family: @font-default;
+  font-family: var(--font-default-override, var(--font-default));
 }
