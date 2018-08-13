@@ -17,7 +17,7 @@
 ###
 
 import { createElement as el, createRef, PureComponent } from 'react'
-import { button, div, i, option, select, textarea } from 'react-dom-factories'
+import { button, div, i, textarea } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
