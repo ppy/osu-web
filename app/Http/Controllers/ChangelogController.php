@@ -106,10 +106,10 @@ class ChangelogController extends Controller
 
     public function show($version)
     {
-        $build = Build::default()->where('version', '=', $version)->firstOrFail();
+        $build = Build::default()->where('version', '=', $version)->first();
 
         if ($build === null) {
-            $normalizedVersion = preg_replace('#[^0-9.]#', '', $normalizedVersion);
+            $normalizedVersion = preg_replace('#[^0-9.]#', '', $version);
 
             $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
         }
