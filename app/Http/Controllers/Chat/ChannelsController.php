@@ -76,10 +76,6 @@ class ChannelsController extends Controller
 
     public function join($channel_id, $user_id)
     {
-        if (UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->exists()) {
-            abort(204);
-        }
-
         // FIXME: Update this to proper permission check when public-only restriction is lifted
         $channel = Channel::where(['channel_id' => $channel_id, 'type' => 'public'])->firstOrFail();
 
@@ -87,7 +83,9 @@ class ChannelsController extends Controller
             abort(403);
         }
 
-        $channel->addUser(Auth::user());
+        if (!$channel->hasUser(Auth::user())) {
+            $channel->addUser(Auth::user());
+        }
 
         abort(204);
     }
@@ -124,7 +122,7 @@ class ChannelsController extends Controller
 
     public function send($channel_id)
     {
-        if (mb_strlen(Request::input('message'), 'UTF-8') >= MESSAGE_LENGTH_LIMIT) {
+        if (mb_strlen(Request::input('message'), 'UTF-8') >= self::MESSAGE_LENGTH_LIMIT) {
             abort(422);
         }
 
@@ -135,14 +133,14 @@ class ChannelsController extends Controller
         $query = Message::where('user_id', Auth::user()->user_id)
             ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
 
-        if ($channel->type == 'PM') {
+        if ($channel->type === 'pm') {
             $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
             $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
-            $query->where('type', 'PM');
+            $query->where('type', 'pm');
         } else {
             $limit = self::PUBLIC_CHAT_LIMIT_MESSAGES;
             $window = self::PUBLIC_CHAT_LIMIT_WINDOW;
-            $query->where('type', '!=', 'PM');
+            $query->where('type', '!=', 'pm');
         }
 
         $query->where('timestamp', '>=', Carbon::now()->subSecond($window));

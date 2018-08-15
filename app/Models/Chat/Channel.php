@@ -82,7 +82,7 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        if ($this->type != 'public') {
+        if ($this->type !== 'public') {
             return;
         }
 
@@ -92,5 +92,10 @@ class Channel extends Model
         ]);
 
         $userChannel->delete();
+    }
+
+    public function hasUser(User $user)
+    {
+        return UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $user->user_id])->exists();
     }
 }

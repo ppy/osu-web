@@ -29,6 +29,7 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\UserContestEntry;
 use App\Models\UserGroup;
+use App\Models\User;
 use Carbon\Carbon;
 
 class OsuAuthorize
@@ -470,31 +471,44 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkChatChannelSend($user, $channel)
+    public function checkChatChannelSend(User $user, ChatChannel $channel)
     {
-        $prefix = 'chat.message.send.';
+        $prefix = 'chat.channel.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
-            return $prefix.'channel.no_access';
+            return $prefix.'no_access';
         }
 
         // TODO: CHECK BLOCKS/ETC
 
         if ($channel->moderated) {
-            return $prefix.'channel.moderated';
+            return $prefix.'moderated';
         }
 
         return 'ok';
     }
 
-    public function checkChatChannelRead($user, $channel)
+    public function checkChatChannelRead(User $user, ChatChannel $channel)
     {
-        $prefix = 'chat.channel.read.';
+        $prefix = 'chat.channel.';
 
-        switch (strtolower($channel->type)) {
+        $this->ensureLoggedIn($user);
+
+        if ($channel->hasUser($user)) {
+            return 'ok';
+        }
+
+        return $prefix.'no_access';
+    }
+
+    public function checkChatChannelJoin(User $user, ChatChannel $channel)
+    {
+        $prefix = 'chat.channel.';
+
+        switch ($channel->type) {
             case 'public':
                 return 'ok';
 
@@ -505,10 +519,6 @@ class OsuAuthorize
                 );
 
                 if (count($commonGroupIds) > 0) {
-                    return 'ok';
-                }
-
-                if (UserChannel::where(['user_id' => $user->user_id, 'channel_id' => $channel->channel_id])->exists()) {
                     return 'ok';
                 }
                 break;
@@ -526,13 +536,6 @@ class OsuAuthorize
                     if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
                         return 'ok';
                     }
-                }
-                break;
-
-            case 'pm':
-            case 'group':
-                if (UserChannel::where(['user_id' => $user->user_id, 'channel_id' => $channel->channel_id])->exists()) {
-                    return 'ok';
                 }
                 break;
         }
