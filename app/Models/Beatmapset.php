@@ -952,6 +952,24 @@ class Beatmapset extends Model implements AfterCommit
         dispatch(new EsIndexDocument($this));
     }
 
+    public function delete()
+    {
+        return $this->getConnection()->transaction(function () {
+            $this->beatmaps()->delete();
+
+            return parent::delete();
+        });
+    }
+
+    public function restore()
+    {
+        return $this->getConnection()->transaction(function () {
+            $this->beatmaps()->restore();
+
+            return parent::restore();
+        });
+    }
+
     public static function removeMetadataText($text)
     {
         // TODO: see if can be combined with description extraction thingy without

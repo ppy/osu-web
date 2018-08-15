@@ -247,7 +247,20 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   delete: =>
+    return unless confirm(osu.trans('beatmaps.nominations.delete_confirm'))
 
+    LoadingOverlay.show()
+
+    @xhr?.abort()
+
+    url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
+    params = method: 'DELETE'
+
+    @xhr = $.ajax(url, params)
+      .done (response) =>
+        $.publish 'beatmapsetDiscussions:update', beatmapset: response
+      .fail osu.ajaxError
+      .always LoadingOverlay.hide
 
   love: =>
     return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))

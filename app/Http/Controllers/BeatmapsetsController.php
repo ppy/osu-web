@@ -41,6 +41,19 @@ class BeatmapsetsController extends Controller
 {
     protected $section = 'beatmapsets';
 
+    public function destroy($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDelete', $beatmapset)->ensureCan();
+
+        $beatmapset->delete();
+        // TODO:
+        // update post
+        // delete file
+        // event
+    }
+
     public function index()
     {
         $languages = Language::listing();
