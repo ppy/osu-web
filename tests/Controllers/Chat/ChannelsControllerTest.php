@@ -21,6 +21,7 @@ use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Chat\UserChannel;
+use App\Models\UserRelation;
 
 class ChannelsControllerTest extends TestCase
 {
@@ -244,22 +245,105 @@ class ChannelsControllerTest extends TestCase
     #region POST /chat/channels/[channel_id]/messages - Send Message to Channel
     public function testChannelSendWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json(
+            'POST',
+            route('chat.channels.send', ['channel_id' => $this->publicChannel->channel_id]),
+            ['message' => 'test']
+        )->assertStatus(401);
     }
 
     public function testChannelSendWhenUnjoined() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $this->publicChannel->channel_id]),
+                ['message' => 'test']
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenJoined() // success
+    {
+        $message = self::$faker->sentence();
+
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]));
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $this->publicChannel->channel_id]),
+                ['message' => $message]
+            )
+            ->assertStatus(200)
+            ->assertJsonFragment(['content' => $message]);
+    }
+
+    public function testChannelSendWhenModerated() // fail
+    {
+        $moderatedChannel = factory(Chat\Channel::class)->states('public')->create(['moderated' => true]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $moderatedChannel->channel_id]),
+                ['message' => 'test']
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenBlocking() // fail
+    {
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->anotherUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserRelation::class)->states('block')->create([
+            'user_id' => $this->user->user_id,
+            'zebra_id' => $this->anotherUser->user_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => 'test']
+            )
+            ->assertStatus(403);
     }
 
     public function testChannelSendWhenBlocked() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
-    }
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->anotherUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserRelation::class)->states('block')->create([
+            'user_id' => $this->anotherUser->user_id,
+            'zebra_id' => $this->user->user_id,
+        ]);
 
-    public function testChannelSend() // success
-    {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => 'test']
+            )
+            ->assertStatus(403);
     }
     #endregion
 

@@ -482,7 +482,12 @@ class OsuAuthorize
             return $prefix.'no_access';
         }
 
-        // TODO: CHECK BLOCKS/ETC
+        if ($channel->type === 'pm') {
+            $target = $channel->pmTargetFor($user);
+            if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
+                return $prefix.'blocked';
+            }
+        }
 
         if ($channel->moderated) {
             return $prefix.'moderated';

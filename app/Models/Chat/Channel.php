@@ -45,6 +45,20 @@ class Channel extends Model
         return strtolower($type);
     }
 
+    public function isPM()
+    {
+        return $this->type === 'pm';
+    }
+
+    public function pmTargetFor(User $user)
+    {
+        if (!$user || !$this->isPM()) {
+            return;
+        }
+
+        return $this->users()->where('user_id', '<>', $user->user_id)->first();
+    }
+
     public function receiveMessage(User $sender, $body, $isAction = false)
     {
         $message = new Message();
