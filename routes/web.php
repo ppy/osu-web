@@ -169,7 +169,7 @@ Route::group(['prefix' => 'home'], function () {
             Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
             Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
             Route::post('{channel_id}/messages', 'ChannelsController@send')->name('send');
-            Route::post('{channel_id}/mark-as-read', 'ChannelsController@markAsRead')->name('mark-as-read');
+            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
         });
         Route::resource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
     });
@@ -285,7 +285,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
                 Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
                 Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
                 Route::post('{channel_id}/messages', '\App\Http\Controllers\Chat\ChannelsController@send')->name('send');
-                Route::post('{channel_id}/mark-as-read', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
+                Route::put('{channel_id}/mark-as-read/{message_id}', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
             });
             Route::resource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index', 'show']]);
         });

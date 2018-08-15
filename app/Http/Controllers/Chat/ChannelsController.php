@@ -104,18 +104,14 @@ class ChannelsController extends Controller
         abort(204);
     }
 
-    public function markAsRead($channel_id)
+    public function markAsRead($channel_id, $message_id)
     {
         $userChannelQuery = UserChannel::where(['user_id' => Auth::user()->user_id, 'channel_id' => $channel_id]);
         $userChannel = $userChannelQuery->firstOrFail();
+        $message_id = get_int($message_id);
 
-        if (!Request::has('message_id')) {
-            abort(422);
-        }
-
-        $marker = intval(Request::input('message_id'));
         // this prevents the read marker going backwards
-        $userChannelQuery->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $marker)")]);
+        $userChannelQuery->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $message_id)")]);
 
         abort(204);
     }

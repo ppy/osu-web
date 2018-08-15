@@ -18,9 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\Beatmap;
-use App\Models\User;
 use App\Models\Chat;
+use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
+use App\Models\User;
 use App\Models\UserRelation;
 
 class ChannelsControllerTest extends TestCase
@@ -46,6 +47,7 @@ class ChannelsControllerTest extends TestCase
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
     }
 
     #region GET /chat/channels - Get Channel List
@@ -350,22 +352,103 @@ class ChannelsControllerTest extends TestCase
     #region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
     public function testChannelMarkAsReadWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json(
+            'PUT',
+            route('chat.channels.mark-as-read', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'message_id' => $this->publicMessage->message_id
+            ])
+        )
+        ->assertStatus(401);
     }
 
     public function testChannelMarkAsReadWhenUnjoined() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json(
+                'PUT',
+                route('chat.channels.mark-as-read', [
+                    'channel_id' => $this->publicChannel->channel_id,
+                    'message_id' => $this->publicMessage->message_id
+                ])
+            )
+            ->assertStatus(404);
     }
 
-    public function testChannelMarkAsReadBackwards() // fail
+    public function testChannelMarkAsReadWhenJoined() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]));
+
+        $this->actingAs($this->user)
+            ->json(
+                'PUT',
+                route('chat.channels.mark-as-read', [
+                    'channel_id' => $this->publicChannel->channel_id,
+                    'message_id' => $this->publicMessage->message_id
+                ])
+            )
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'channel_id' => $this->publicChannel->channel_id,
+                'last_read_id' => $this->publicMessage->message_id
+            ]);
     }
 
-    public function testChannelMarkAsRead() // success
+    public function testChannelMarkAsReadBackwards() // success (with no change)
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $newerPublicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
+
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id
+            ]));
+
+        // mark as read to $newerPublicMessage->message_id
+        $this->actingAs($this->user)
+            ->json(
+                'PUT',
+                route('chat.channels.mark-as-read', [
+                    'channel_id' => $this->publicChannel->channel_id,
+                    'message_id' => $newerPublicMessage->message_id
+                ])
+            )
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'channel_id' => $this->publicChannel->channel_id,
+                'last_read_id' => $newerPublicMessage->message_id
+            ]);
+
+        // attempt to mark as read to the older $this->publicMessage->message_id
+        $this->actingAs($this->user)
+            ->json(
+                'PUT',
+                route('chat.channels.mark-as-read', [
+                    'channel_id' => $this->publicChannel->channel_id,
+                    'message_id' => $this->publicMessage->message_id
+                ])
+            )
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'channel_id' => $this->publicChannel->channel_id,
+                'last_read_id' => $newerPublicMessage->message_id
+            ]);
     }
     #endregion
 
