@@ -180,6 +180,19 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               props:
                 onClick: @love
 
+      if @props.beatmapset.current_user_attributes?.can_delete
+        div
+          className: "#{bn}__row"
+          key: 'delete'
+          div className: "#{bn}__row-left"
+          div className: "#{bn}__row-right",
+            el BigButton,
+              modifiers: ['full']
+              text: osu.trans 'beatmaps.nominations.delete'
+              icon: 'fas fa-trash'
+              props:
+                onClick: @delete
+
       if showHype
         div
           className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
@@ -231,6 +244,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         div
           key: lightsOn + n
           className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+
+
+  delete: =>
 
 
   love: =>
