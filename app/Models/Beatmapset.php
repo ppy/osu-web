@@ -919,7 +919,7 @@ class Beatmapset extends Model implements AfterCommit
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    private function getPost()
+    public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);
 

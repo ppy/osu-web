@@ -46,9 +46,14 @@ class BeatmapsetDelete
                 ['beatmapset' => $this->beatmapset, 'user' => $this->user]
             );
 
+            $post = $this->beatmapset->getPost();
+            if ($post !== null) {
+                $post->post_text = 'This map has been deleted on the request of its creator. It is no longer available.';
+                $post->skipBeatmapPostRestrictions()->saveOrExplode();
+            }
+
             $this->beatmapset->delete();
             // TODO:
-            // update post
             // delete file?
         });
     }
