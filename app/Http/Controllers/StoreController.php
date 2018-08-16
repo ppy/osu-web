@@ -168,12 +168,8 @@ class StoreController extends Controller
 
     public function postAddToCart()
     {
-        $error = $this->userCart()->updateItem(Request::input('item', []), true);
-
-        if ($error === null) {
-            return ujs_redirect(route('store.cart.show'));
-        } else {
-            return error_popup($error);
-        }
+        // FIXME: remove after deploy; this is just to stop 'omg can't add items'
+        // old route, force reload to get updated view.
+        return js_view('layout.ujs-reload');
     }
 }
