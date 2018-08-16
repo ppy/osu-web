@@ -984,9 +984,7 @@ class User extends Model implements AuthenticatableContract
 
     public function friends()
     {
-        // 'cuz hasManyThrough is derp
-
-        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
     }
 
     public function maxBlocks()
@@ -1080,6 +1078,13 @@ class User extends Model implements AuthenticatableContract
     public function hasBlocked(self $user)
     {
         return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
+    }
+
+    public function hasFriended(self $user)
+    {
+        return $this->friends()
             ->where('zebra_id', $user->user_id)
             ->exists();
     }

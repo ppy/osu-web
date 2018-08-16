@@ -21,7 +21,6 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use App\Models\Chat\UserChannel;
 
 class Channel extends Model
 {

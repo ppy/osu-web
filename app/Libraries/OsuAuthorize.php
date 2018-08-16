@@ -470,6 +470,24 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkChatStart(User $user, User $target)
+    {
+        $prefix = 'chat.channel.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
+            return $prefix.'blocked';
+        }
+
+        if ($target->pm_friends_only && !$target->hasFriended($user)) {
+            return $prefix.'friends_only';
+        }
+
+        return 'ok';
+    }
+
     public function checkChatChannelSend(User $user, ChatChannel $channel)
     {
         $prefix = 'chat.channel.';
@@ -482,9 +500,9 @@ class OsuAuthorize
         }
 
         if ($channel->type === 'pm') {
-            $target = $channel->pmTargetFor($user);
-            if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
-                return $prefix.'blocked';
+            $chatStartPermission = $this->doCheckUser($user, 'ChatStart', $channel->pmTargetFor($user));
+            if (!$chatStartPermission->can()) {
+                return $chatStartPermission->rawMessage();
             }
         }
 

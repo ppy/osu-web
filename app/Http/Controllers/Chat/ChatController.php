@@ -142,19 +142,11 @@ class ChatController extends Controller
 
         $targetUser = User::lookup(Request::input('target_id'), 'id');
 
-        if ($targetUser) {
-            $canMessage = true;
-            if (!$targetUser->user_allow_pm) {
-                $canMessage = $targetUser->friends()->pluck('user_id')->contains(Auth::user()->user_id);
-            }
-            if ($targetUser->isRestricted() || Auth::user()->isRestricted()) {
-                $canMessage = false;
-            }
+        if (!$targetUser) {
+            abort(422);
         }
 
-        if (!$canMessage) {
-            abort(403);
-        }
+        priv_check('ChatStart', $targetUser)->ensureCan();
 
         $ids = [Auth::user()->user_id, $targetUser->user_id];
         sort($ids);
@@ -167,6 +159,7 @@ class ChatController extends Controller
                 $channel = new Channel();
                 $channel->name = $channelName;
                 $channel->type = 'PM';
+                $channel->description = ''; // description is not nullable
                 $channel->save();
                 $channel->fresh();
 
@@ -196,28 +189,5 @@ class ChatController extends Controller
         $response['presence'] = self::presence();
 
         return $response;
-    }
-
-    public function index()
-    {
-        $presence = self::presence();
-
-        $json = [];
-
-        $targetUser = User::lookup(Request::input('sendto'), 'id');
-        if ($targetUser) {
-            $sendto = json_item($targetUser, 'UserCompact');
-            $canMessage = true;
-            if (!$targetUser->user_allow_pm) {
-                $canMessage = $targetUser->friends()->pluck('user_id')->contains(Auth::user()->user_id);
-            }
-            if ($targetUser->isRestricted() || Auth::user()->isRestricted()) {
-                $canMessage = false;
-            }
-            $json['target'] = $sendto;
-            $json['can_message'] = $canMessage;
-        }
-
-        return view('messages.index', compact('presence', 'messages', 'json'));
     }
 }

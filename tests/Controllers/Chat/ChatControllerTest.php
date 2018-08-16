@@ -16,25 +16,105 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\User;
+use App\Models\UserRelation;
+
 class ChatControllerTest extends TestCase
 {
+    protected static $faker;
+
+    public static function setUpBeforeClass()
+    {
+        self::$faker = Faker\Factory::create();
+    }
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
+    }
+
     //region POST /chat/new - Create New PM
     public function testCreatePMWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json(
+            'POST',
+            route('chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus(401);
     }
 
     public function testCreatePMWhenBlocked() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        factory(UserRelation::class)->states('block')->create([
+            'user_id' => $this->anotherUser->user_id,
+            'zebra_id' => $this->user->user_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(403);
     }
 
-    public function testCreatePMWhenAlreadyExists() // fail?
+    public function testCreatePMWhenFriendsOnlyAndNotFriended() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $privateUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(403);
+    }
+
+    public function testCreatePMWhenFriendsOnlyAndFriended() // success
+    {
+        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+        factory(UserRelation::class)->states('friend')->create([
+            'user_id' => $privateUser->user_id,
+            'zebra_id' => $this->user->user_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $privateUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
     }
 
     public function testCreatePM() // success
+    {
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
+    }
+
+    public function testCreatePMWhenAlreadyExists() // fail?
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
     }
