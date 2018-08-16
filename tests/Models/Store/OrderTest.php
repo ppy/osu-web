@@ -20,7 +20,6 @@
 
 namespace Tests;
 
-use App\Exceptions\InsufficientStockException;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use TestCase;

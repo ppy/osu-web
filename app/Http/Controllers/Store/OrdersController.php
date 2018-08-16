@@ -20,12 +20,8 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Libraries\OrderCheckout;
-use App\Models\Store\Order;
 use App\Models\User;
 use Auth;
-use DB;
-use Exception;
 
 class OrdersController extends Controller
 {

@@ -90,7 +90,7 @@ return [
             'paid' => 'Paid',
             'processing' => 'Waiting for payment',
             'shipped' => 'In Transit',
-        ]
+        ],
     ],
 
     'product' => [
