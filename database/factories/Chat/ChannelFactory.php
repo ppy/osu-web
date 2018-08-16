@@ -16,7 +16,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 use App\Models\Chat\Channel;
 
 $factory->define(Channel::class, function (Faker\Generator $faker) {

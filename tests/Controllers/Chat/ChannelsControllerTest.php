@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,7 +16,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Models\Beatmap;
 use App\Models\Chat;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -50,7 +48,7 @@ class ChannelsControllerTest extends TestCase
         $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
     }
 
-    #region GET /chat/channels - Get Channel List
+    //region GET /chat/channels - Get Channel List
     public function testChannelIndexWhenGuest()
     {
         $this->json('GET', route('chat.channels.index'))
@@ -66,9 +64,9 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonMissing(['channel_id' => $this->privateChannel->channel_id])
             ->assertJsonMissing(['channel_id' => $this->pmChannel->channel_id]);
     }
-    #endregion
+    //endregion
 
-    #region PUT /chat/channels/[channel_id]/users/[user_id] - Join Channel (public)
+    //region PUT /chat/channels/[channel_id]/users/[user_id] - Join Channel (public)
     public function testChannelJoinPublicWhenGuest() // fail
     {
         $this->json('PUT', route('chat.channels.join', [
@@ -157,9 +155,9 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
-    #endregion
+    //endregion
 
-    #region GET /chat/channels/[channel_id] - Get Channel Messages (public)
+    //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
     public function testChannelShowPublicWhenGuest() // fail
     {
         $this->json('GET', route('chat.channels.show', ['channel_id' => $this->publicChannel->channel_id]))
@@ -186,9 +184,9 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200);
             // TODO: Add check for messages being present?
     }
-    #endregion
+    //endregion
 
-    #region GET /chat/channels/[channel_id] - Get Channel Messages (private)
+    //region GET /chat/channels/[channel_id] - Get Channel Messages (private)
     public function testChannelShowPrivateWhenGuest() // fail
     {
         $this->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
@@ -213,9 +211,9 @@ class ChannelsControllerTest extends TestCase
             ->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
             ->assertStatus(200);
     }
-    #endregion
+    //endregion
 
-    #region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
+    //region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
         $this->json('GET', route('chat.channels.show', ['channel_id' => $this->pmChannel->channel_id]))
@@ -242,9 +240,9 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200);
             // TODO: Add check for messages being present?
     }
-    #endregion
+    //endregion
 
-    #region POST /chat/channels/[channel_id]/messages - Send Message to Channel
+    //region POST /chat/channels/[channel_id]/messages - Send Message to Channel
     public function testChannelSendWhenGuest() // fail
     {
         $this->json(
@@ -347,9 +345,9 @@ class ChannelsControllerTest extends TestCase
             )
             ->assertStatus(403);
     }
-    #endregion
+    //endregion
 
-    #region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
+    //region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
     public function testChannelMarkAsReadWhenGuest() // fail
     {
         $this->json(
@@ -450,9 +448,9 @@ class ChannelsControllerTest extends TestCase
                 'last_read_id' => $newerPublicMessage->message_id
             ]);
     }
-    #endregion
+    //endregion
 
-    #region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
+    //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
     public function testChannelLeaveWhenGuest() // fail
     {
         $this->json('DELETE', route('chat.channels.part', [
@@ -528,5 +526,5 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
-    #endregion
+    //endregion
 }

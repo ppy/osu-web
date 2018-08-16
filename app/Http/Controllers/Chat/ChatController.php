@@ -24,9 +24,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
-use App\Models\UserRelation;
 use Auth;
-use Carbon\Carbon;
 use DB;
 use Request;
 
@@ -109,21 +107,21 @@ class ChatController extends Controller
                     'type' => $channel->type,
                     'name' => $channel->name,
                     'description' => presence($channel->description),
-                    'icon' => "/images/layout/artist-noavatar@2x.jpg",
+                    'icon' => '/images/layout/artist-noavatar@2x.jpg',
                     'last_read_id' => $channel->last_read_id,
-                    'last_message_id' => $channel->last_message_id
+                    'last_message_id' => $channel->last_message_id,
                 ];
 
-                if ($channel->type != 'PUBLIC') {
+                if ($channel->type !== 'public') {
                     $channelMembers = array_map('intval', explode(',', $channel->member_ids));
                     $presence['users'] = $channelMembers;
                 }
 
-                if ($channel->type == 'PM') {
+                if ($channel->type === 'pm') {
                     // if this is a pm
                     $users = array_filter($channelMembers, function ($k) {
                         // remove current user, leaving only the other party
-                        return $k != Auth::user()->user_id;
+                        return $k !== Auth::user()->user_id;
                     });
                     $targetUser = User::find(array_shift($users));
 

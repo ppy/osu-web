@@ -24,12 +24,11 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Chat\Channel as ChatChannel;
-use App\Models\Chat\UserChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\User;
 use App\Models\UserContestEntry;
 use App\Models\UserGroup;
-use App\Models\User;
 use Carbon\Carbon;
 
 class OsuAuthorize

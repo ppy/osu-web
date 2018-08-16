@@ -21,7 +21,6 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use Carbon\Carbon;
 
 class UserChannel extends Model
 {

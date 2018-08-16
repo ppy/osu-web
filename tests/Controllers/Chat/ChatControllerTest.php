@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,10 +16,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 class ChatControllerTest extends TestCase
 {
-    #region POST /chat/new - Create New PM
+    //region POST /chat/new - Create New PM
     public function testCreatePMWhenGuest() // fail
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
@@ -40,9 +38,9 @@ class ChatControllerTest extends TestCase
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
     }
-    #endregion
+    //endregion
 
-    #region GET /chat/updates?since=[message_id] - Get Updates
+    //region GET /chat/updates?since=[message_id] - Get Updates
     public function testChatUpdatesWhenGuest() // fail
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
@@ -52,5 +50,5 @@ class ChatControllerTest extends TestCase
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
     }
-    #endregion
+    //endregion
 }

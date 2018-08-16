@@ -84,7 +84,8 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        if ($this->type != 'public') {
+        // TODO: Remove this when join restriction is lifted
+        if ($this->type !== 'public') {
             return;
         }
 
@@ -96,6 +97,7 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
+        // TODO: Remove this when join restriction is lifted
         if ($this->type !== 'public') {
             return;
         }
