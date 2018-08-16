@@ -393,9 +393,7 @@ class Order extends Model
         $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
-            foreach ($items as $item) {
-                $item->product->release($item->quantity);
-            }
+            $items->each->releaseProduct();
         });
     }
 
@@ -404,10 +402,7 @@ class Order extends Model
         // locking bottleneck
         $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
-
-            foreach ($items as $item) {
-                $item->product->reserve($item->quantity);
-            }
+            $items->each->reserveProduct();
         });
     }
 
@@ -417,9 +412,9 @@ class Order extends Model
             $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
 
             $quantity = $orderItem->quantity;
-            $orderItem->product->release($quantity);
+            $orderItem->releaseProduct();
             $orderItem->product()->associate($newProduct);
-            $newProduct->reserve($quantity);
+            $orderItem->reserveProduct();
 
             $orderItem->saveOrExplode();
         });

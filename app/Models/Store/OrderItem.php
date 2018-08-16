@@ -146,6 +146,24 @@ class OrderItem extends Model
         }
     }
 
+    public function releaseProduct()
+    {
+        if ($this->reserved) {
+            $this->product->release($this->quantity);
+            $this->reserved = false;
+            $this->saveOrExplode();
+        }
+    }
+
+    public function reserveProduct()
+    {
+        if (!$this->reserved) {
+            $this->product->reserve($this->quantity);
+            $this->reserved = true;
+            $this->saveOrExplode();
+        }
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'store/order_item';
