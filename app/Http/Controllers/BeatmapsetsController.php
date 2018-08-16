@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\BeatmapsetDelete;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
@@ -47,11 +48,7 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDelete', $beatmapset)->ensureCan();
 
-        $beatmapset->delete();
-        // TODO:
-        // update post
-        // delete file
-        // event
+        (new BeatmapsetDelete($beatmapset, Auth::user))->run();
     }
 
     public function index()

@@ -954,6 +954,7 @@ class Beatmapset extends Model implements AfterCommit
 
     public function delete()
     {
+        // kinda pointless since laravel doesn't error on delete
         return $this->getConnection()->transaction(function () {
             $this->beatmaps()->delete();
 
