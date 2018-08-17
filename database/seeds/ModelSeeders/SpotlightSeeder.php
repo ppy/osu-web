@@ -27,6 +27,10 @@ class SpotlightSeeder extends Seeder
 
             $date->addMonth(1);
         }
+
+        collect(range(1, 10))->each(function () {
+            $this->seedNonPeriodic();
+        });
     }
 
     public function seedMonthly($date)
@@ -39,7 +43,7 @@ class SpotlightSeeder extends Seeder
 
             $spotlight->saveOrExplode();
 
-            $this->seedData($spotlight);
+            static::seedData($spotlight);
         });
     }
 
@@ -52,11 +56,21 @@ class SpotlightSeeder extends Seeder
 
             $spotlight->saveOrExplode();
 
-            $this->seedData($spotlight);
+            static::seedData($spotlight);
         });
     }
 
-    private function seedData($spotlight)
+    public function seedNonPeriodic()
+    {
+        DB::transaction(function () {
+            $spotlight = factory(Spotlight::class)->make();
+            $spotlight->saveOrExplode();
+
+            static::seedData($spotlight);
+        });
+    }
+
+    private static function seedData($spotlight)
     {
         DB::connection('mysql-charts')->transaction(function () use ($spotlight) {
             $spotlight->createTables();
