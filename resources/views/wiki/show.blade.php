@@ -85,7 +85,7 @@
 
         @if ($page->isLegalTranslation())
             <div class="wiki-notice">
-                <div class="wiki-notice__box">
+                <div class="wiki-notice__box wiki-notice__box--important">
                     {!! trans('wiki.show.translation.legal', [
                         'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
                     ]) !!}
