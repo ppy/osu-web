@@ -47,8 +47,8 @@ class RankingController extends Controller
         $mode = request('mode');
         $type = request('type');
 
-        view()->share('hasPager', !in_array(request('type'), static::SPOTLIGHT_TYPES, true));
-        view()->share('currentAction', request('type'));
+        view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
+        view()->share('currentAction', $type);
         view()->share('mode', $mode);
         view()->share('type', $type);
 
@@ -71,7 +71,7 @@ class RankingController extends Controller
                     ->first();
 
                 if ($countryStats === null) {
-                    return redirect(route('rankings', ['mode' => request('mode'), 'type' => request('type')]));
+                    return redirect(route('rankings', ['mode' => $mode, 'type' => $type]));
                 }
 
                 $this->country = $countryStats->country;
