@@ -68,14 +68,15 @@ class ChatController extends Controller
     public function messages()
     {
         $user_id = Auth::user()->user_id;
-        $since = Request::input('since', 0);
+        $since = get_int(Request::input('since', 0));
+        $limit = clamp(get_int(Request::input('limit', 50)), 1, 50);
 
         $channels = UserChannel::where('user_id', $user_id)->pluck('channel_id');
         $messages = Message::whereIn('channel_id', $channels);
 
         $messages = $messages->where('message_id', '>', $since)
             ->orderBy('message_id', 'asc')
-            ->limit(50)
+            ->limit($limit)
             ->get();
 
         return json_collection(

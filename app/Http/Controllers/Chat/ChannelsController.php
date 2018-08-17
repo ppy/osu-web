@@ -51,6 +51,7 @@ class ChannelsController extends Controller
     {
         $user_id = Auth::user()->user_id;
         $since = Request::input('since');
+        $limit = clamp(Request::input('limit', 50), 1, 50);
 
         $channel = UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->firstOrFail();
         $messages = $channel->messages();
@@ -58,11 +59,11 @@ class ChannelsController extends Controller
         if (presence($since)) {
             $messages = $messages->where('message_id', '>', $since)
                 ->orderBy('message_id', 'asc')
-                ->limit(50)
+                ->limit($limit)
                 ->get();
         } else {
             $messages = $messages->orderBy('message_id', 'desc')
-                ->limit(50)
+                ->limit($limit)
                 ->get()
                 ->reverse();
         }
