@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Chat;
 use App\Models\User;
 use App\Models\UserRelation;
 
@@ -114,21 +115,99 @@ class ChatControllerTest extends TestCase
             )->assertStatus(200);
     }
 
-    public function testCreatePMWhenAlreadyExists() // fail?
+    public function testCreatePMWhenAlreadyExists() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
+
+        // should return existing conversation and not error
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
+    }
+    //endregion
+
+    //region GET /chat/presence - Get Presence
+    public function testChatPresenceWhenGuest() // fail
+    {
+        $this->json('GET', route('chat.presence'))
+            ->assertStatus(401);
+    }
+
+    public function testChatPresence() // success
+    {
+        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
+
+        // join the channel
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $publicChannel->channel_id,
+                'user_id' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $publicChannel->channel_id]);
     }
     //endregion
 
     //region GET /chat/updates?since=[message_id] - Get Updates
     public function testChatUpdatesWhenGuest() // fail
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->json('GET', route('chat.updates'))
+            ->assertStatus(401);
     }
 
-    public function testChatUpdates() // fail
+    public function testChatUpdatesWithNoNewMessages() // success
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+
+        // join the channel
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $publicChannel->channel_id,
+                'user_id' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.updates'), ['since' => $publicMessage->message_id])
+            ->assertStatus(204);
+    }
+
+    public function testChatUpdates() // success
+    {
+        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+
+        // join channel
+        $this->actingAs($this->user)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $publicChannel->channel_id,
+                'user_id' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.updates'), ['since' => 0])
+            ->assertStatus(200)
+            ->assertJsonFragment(['content' => $publicMessage->content]);
     }
     //endregion
 }
