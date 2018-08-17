@@ -17,11 +17,12 @@
  */
 
 .store-order {
-  @store-order--status-cancelled: grey;
-  @store-order--status-checkout: green;
-  @store-order--status-delivered: green;
-  @store-order--status-paid: yellow;
-  @store-order--status-shipped: green;
+  @store-order--status-cancelled: @gray-light;
+  @store-order--status-checkout: @yellow-darker;
+  @store-order--status-delivered: @green-dark;
+  @store-order--status-paid: @blue-dark;
+  @store-order--status-processing: @yellow-dark;
+  @store-order--status-shipped: @green-dark;
 
   .default-box-shadow();
   .default-border-radius();
@@ -44,6 +45,7 @@
   .colors(checkout);
   .colors(delivered);
   .colors(paid);
+  .colors(processing);
   .colors(shipped);
 
   &__amount {
