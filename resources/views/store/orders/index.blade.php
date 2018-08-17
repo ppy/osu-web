@@ -57,6 +57,8 @@
                     @endif
                 </div>
             @endforeach
+
+            @include('objects._pagination_v0', ['object' => $orders])
         </div>
     </div>
 @endsection

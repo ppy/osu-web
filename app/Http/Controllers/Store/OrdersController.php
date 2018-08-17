@@ -42,7 +42,7 @@ class OrdersController extends Controller
             ->orderBy('order_id', 'desc')
             ->where('status', '!=', 'incart')
             ->with('items.product')
-            ->get();
+            ->paginate(20);
 
         return view('store.orders.index', compact('orders'));
     }
