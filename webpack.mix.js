@@ -82,6 +82,7 @@ let webpackConfig = {
   externals: {
     "react": "React",
     "react-dom": "ReactDOM",
+    "react-dom-factories": "ReactDOMFactories",
     "prop-types": "PropTypes",
   },
   plugins: [

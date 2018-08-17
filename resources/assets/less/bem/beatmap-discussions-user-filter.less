@@ -17,70 +17,35 @@
  */
 
 .beatmap-discussions-user-filter {
-  @_top: beatmap-discussions-user-filter;
+  .select-options(beatmap-discussions-user-filter);
 
   @media @desktop {
     width: 200px;
   }
 
-  &--selecting {
-    z-index: @z-index--blackout-visible;
-  }
-
   &__decoration {
-    margin-left: 10px;
+    color: #fff;
   }
 
   &__item {
-    .reset-input();
-    .link-plain();
-    .link-white();
-
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    white-space: nowrap;
-
-    &:hover {
-      background-color: #000;
+    &--admin {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
     }
 
-    &--selected {
-      background-color: #111;
+    &--bng {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
     }
 
-    .@{_top}__select & {
-      padding: 15px 10px;
+    &--owner {
+      .link-hover({ color: @beatmap-discussion--user-color-owner });
+      color: @beatmap-discussion--user-color-owner;
     }
-  }
 
-  &__select {
-    .default-box-shadow();
-    .default-border-radius();
-
-    font-size: 15px;
-    background-color: @gray-blue;
-    box-shadow: 0 0 0 2px fade(#000, 25%);
-
-    &:hover {
-      background-color: #000;
-    }
-  }
-
-  &__selector {
-    .default-box-shadow();
-
-    position: absolute;
-    width: 100%;
-    display: none;
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-    font-size: 12px;
-    background-color: @gray-blue;
-
-    .@{_top}--selecting & {
-      display: block;
+    &--qat {
+      .link-hover({ color: @beatmap-discussion--user-color-moderator });
+      color: @beatmap-discussion--user-color-moderator;
     }
   }
 }
