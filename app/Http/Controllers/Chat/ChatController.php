@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -36,7 +37,6 @@ class ChatController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('verify-user');
 
         return parent::__construct();
     }
@@ -141,21 +141,19 @@ class ChatController extends Controller
         }
 
         $targetUser = User::lookup(Request::input('target_id'), 'id');
-
         if (!$targetUser) {
             abort(422);
         }
 
         priv_check('ChatStart', $targetUser)->ensureCan();
 
-        $ids = [Auth::user()->user_id, $targetUser->user_id];
-        sort($ids);
-        $channelName = '#pm_'.implode('-', $ids);
-
+        $userIds = [Auth::user()->user_id, $targetUser->user_id];
+        sort($userIds);
+        $channelName = '#pm_'.implode('-', $userIds);
         $channel = Channel::where('name', $channelName)->first();
 
         if (!$channel) {
-            DB::transaction(function () use ($ids, $channelName) {
+            DB::transaction(function () use ($userIds, $channelName) {
                 $channel = new Channel();
                 $channel->name = $channelName;
                 $channel->type = 'PM';
@@ -163,31 +161,36 @@ class ChatController extends Controller
                 $channel->save();
                 $channel->fresh();
 
-                foreach ($ids as $id) {
-                    $uc = new UserChannel();
-                    $uc->user_id = $id;
-                    $uc->channel_id = $channel->channel_id;
-                    $uc->save();
+                foreach ($userIds as $id) {
+                    $userChannel = new UserChannel();
+                    $userChannel->user_id = $id;
+                    $userChannel->channel_id = $channel->channel_id;
+                    $userChannel->save();
                 }
             });
             $channel = Channel::where('name', $channelName)->first();
         }
 
-        $message = $channel->receiveMessage(
-            Auth::user(),
-            Request::input('message'),
-            get_bool(Request::input('is_action', false))
-        );
+        try {
+            $message = $channel->receiveMessage(
+                Auth::user(),
+                Request::input('message'),
+                get_bool(Request::input('is_action', false))
+            );
+        } catch (ChatMessageTooLongException $e) {
+            return error_popup($e->getMessage(), 422);
+        } catch (ExcessiveChatMessagesException $e) {
+            return error_popup($e->getMessage(), 429);
+        }
 
-        $response = [];
-        $response['new_channel_id'] = $channel->channel_id;
-        $response['message'] = json_item(
-            $message,
-            'Chat/Message',
-            ['sender']
-        );
-        $response['presence'] = self::presence();
-
-        return $response;
+        return [
+            'new_channel_id' => $channel->channel_id,
+            'message' => json_item(
+                $message,
+                'Chat/Message',
+                ['sender']
+            ),
+            'presence' => self::presence(),
+        ];
     }
 }

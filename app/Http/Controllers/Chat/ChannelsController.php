@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -117,38 +118,21 @@ class ChannelsController extends Controller
 
     public function send($channel_id)
     {
-        if (mb_strlen(Request::input('message'), 'UTF-8') >= self::MESSAGE_LENGTH_LIMIT) {
-            abort(422);
-        }
-
         $channel = Channel::findOrFail($channel_id);
 
         priv_check('ChatChannelSend', $channel)->ensureCan();
 
-        $query = Message::where('user_id', Auth::user()->user_id)
-            ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
-
-        if ($channel->type === 'pm') {
-            $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
-            $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
-            $query->where('type', 'pm');
-        } else {
-            $limit = self::PUBLIC_CHAT_LIMIT_MESSAGES;
-            $window = self::PUBLIC_CHAT_LIMIT_WINDOW;
-            $query->where('type', '!=', 'pm');
+        try {
+            $message = $channel->receiveMessage(
+                Auth::user(),
+                Request::input('message'),
+                get_bool(Request::input('is_action', false))
+            );
+        } catch (ChatMessageTooLongException $e) {
+            return error_popup($e->getMessage(), 422);
+        } catch (ExcessiveChatMessagesException $e) {
+            return error_popup($e->getMessage(), 429);
         }
-
-        $query->where('timestamp', '>=', Carbon::now()->subSecond($window));
-
-        if ($query->count() > $limit) {
-            return error_popup(trans('api.error.chat.limit_exceeded'), 429);
-        }
-
-        $message = $channel->receiveMessage(
-            Auth::user(),
-            Request::input('message'),
-            get_bool(Request::input('is_action', false))
-        );
 
         return json_item(
             $message,

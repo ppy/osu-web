@@ -39,6 +39,19 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'chat' => [
+        'message_length_limit' => env('CHAT_MESSAGE_LENGTH_LIMIT', 100),
+        'rate_limits' => [
+            'public' => [
+                'limit' => env('CHAT_PUBLIC_LIMIT', 1),
+                'window' => env('CHAT_PUBLIC_WINDOW', 1),
+            ],
+            'private' => [
+                'limit' => env('CHAT_PRIVATE_LIMIT', 1),
+                'window' => env('CHAT_PRIVATE_WINDOW', 1),
+            ],
+        ]
+    ],
     'client' => [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],

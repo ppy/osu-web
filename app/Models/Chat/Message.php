@@ -33,16 +33,6 @@ class Message extends Model
     ];
     protected $guarded = [];
 
-    public function getTargetTypeAttribute()
-    {
-        return 'channel';
-    }
-
-    public function getTargetIdAttribute()
-    {
-        return $this->channel_id;
-    }
-
     public function channel()
     {
         return $this->belongsTo(Channel::class, 'channel_id');

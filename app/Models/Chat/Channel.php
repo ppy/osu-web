@@ -21,6 +21,8 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
+use App\Exceptions\API;
+use Carbon\Carbon;
 
 class Channel extends Model
 {
@@ -58,11 +60,34 @@ class Channel extends Model
         return $this->users()->where('user_id', '<>', $user->user_id)->first();
     }
 
-    public function receiveMessage(User $sender, $body, $isAction = false)
+    public function receiveMessage(User $sender, string $content, bool $isAction = false)
     {
+        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+            throw new ChatMessageTooLongException(trans('api.error.chat.too_long'));
+        }
+
+        $sentMessages = Message::where('user_id', $sender->user_id)
+            ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
+
+        if ($this->type === 'pm') {
+            $limit = config('osu.chat.rate_limits.private.limit');
+            $window = config('osu.chat.rate_limits.private.window');
+            $sentMessages->where('type', 'pm');
+        } else {
+            $limit = config('osu.chat.rate_limits.public.limit');
+            $window = config('osu.chat.rate_limits.public.window');
+            $sentMessages->where('type', '!=', 'pm');
+        }
+
+        $sentMessages->where('timestamp', '>=', Carbon::now()->subSecond($window));
+
+        if ($sentMessages->count() > $limit) {
+            throw new ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
+        }
+
         $message = new Message();
         $message->user_id = $sender->user_id;
-        $message->content = $body;
+        $message->content = $content;
         $message->is_action = $isAction;
         $message->channel()->associate($this);
         $message->save();
