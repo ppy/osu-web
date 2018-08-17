@@ -40,10 +40,7 @@ export class SpotlightSelectOptions extends PureComponent
 
 
   href: (key) ->
-    url = new URL(window.location)
-    url.searchParams.set 'spotlight', key if key?
-
-    url
+    window.osu.updateQueryString(null, spotlight: key)
 
 
   onItemSelected: (item) =>
