@@ -26,17 +26,25 @@
             @foreach ($orders as $order)
                 <div class="store-order store-order--status-{{ $order->status }}">
                     <div class="store-order__header">
-                        <div>
+                        <div class="store-order__header-left">
                             <div>
                                 #{{ $order->getKey() }}
                             </div>
-                            <div class="store-order__amount">
+                            <div class="store-order__header-subtext">
                                 {{ currency($order->getTotal()) }}
                             </div>
                         </div>
 
-                        <div class="store-order__status">
-                            {{ trans("store.order.status.{$order->status}") }}
+                        <div class="store-order__header-right">
+                            <div class="store-order__status">
+                                {{ trans("store.order.status.{$order->status}") }}
+                            </div>
+
+                            <div class="store-order__header-subtext">
+                                @if ($order->paid_at !== null)
+                                    {!! trans('store.order.paid_on', ['date' => timeago($order->paid_at)]) !!}
+                                @endif
+                            </div>
                         </div>
                     </div>
 
