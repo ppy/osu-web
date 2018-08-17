@@ -63,7 +63,7 @@
                     </div>
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ format_percentage($score->accuracy) }}
+                    {{ format_percentage($score->accuracy * 100) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ number_format($score->playcount) }}

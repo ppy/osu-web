@@ -18,7 +18,7 @@ if (!function_exists('generateStats')) {
           'countMiss' => rand(10000, 1000000), // 10k to 1mil
           'accuracy_total' => rand(1000, 250000), // 1k to 250k. unsure what field is for
           'accuracy_count' => rand(1000, 250000), // 1k to 250k. unsure what field is for
-          'accuracy' => $acc,
+          'accuracy' => $acc / 100,
           'accuracy_new' => $acc,
           'playcount' => $playcount,
           'fail_count' => rand($playcount * 0.1, $playcount * 0.2),
