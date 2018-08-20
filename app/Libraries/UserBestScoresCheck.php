@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\Es;
 use App\Models\User;
+use App\Models\Score\Best;
 
 class UserBestScoresCheck
 {
@@ -35,7 +36,7 @@ class UserBestScoresCheck
 
     public function check(string $mode)
     {
-        $clazz = 'App\Models\Score\Best\\'.studly_case($mode);
+        $clazz = Best\Model::getClassByString($mode);
 
         $esIds = $this->user->beatmapBestScoreIds($mode, 100);
         $dbIds = $clazz::whereIn('score_id', $esIds)->pluck('score_id')->all();
