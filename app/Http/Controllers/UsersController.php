@@ -189,11 +189,7 @@ class UsersController extends Controller
         }
 
         // ignore reports from users without a clean record.
-        try {
-            priv_check('UserReport', Auth::user())->ensureCan();
-        } catch (AuthorizationException $ex) {
-            return [];
-        }
+        priv_check('UserReport', Auth::user())->ensureCan();
 
         $report = Auth::user()->reportsMade()->make([
             'user_id' => $user->getKey(),

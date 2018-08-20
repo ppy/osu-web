@@ -893,7 +893,7 @@ class OsuAuthorize
 
     public function checkUserReport($user)
     {
-        $this->ensureCleanRecord($user);
+        $this->ensureLoggedIn($user);
 
         return 'ok';
     }
