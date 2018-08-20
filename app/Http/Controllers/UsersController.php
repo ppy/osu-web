@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\AuthorizationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
