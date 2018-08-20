@@ -35,6 +35,10 @@
     @color: @@color-name;
 
     &--status-@{status} {
+      &::before {
+        background-color: @color;
+      }
+
       .store-order__status {
         color: @color;
       }
@@ -47,6 +51,16 @@
   .colors(paid);
   .colors(processing);
   .colors(shipped);
+
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: @border-radius-base;
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+  }
 
   &__amount {
     font-size: 14px;
