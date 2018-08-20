@@ -21,8 +21,8 @@
 namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\Es;
-use App\Models\User;
 use App\Models\Score\Best;
+use App\Models\User;
 
 class UserBestScoresCheck
 {
