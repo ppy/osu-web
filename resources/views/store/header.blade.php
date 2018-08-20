@@ -54,7 +54,13 @@
         @if(isset($pendingCheckout) && optional(request()->route())->getName() !== 'store.checkout.show')
             <div class="">
                 <div class="store-header__notice-text">
-                    You have an incomplete checkout, click <a href="{{ route('store.checkout.show', $pendingCheckout) }}">here</a> to complete it.
+                    @php
+                        $pendingCheckoutLink = Html::link(
+                            route('store.checkout.show', $pendingCheckout),
+                            trans('store.checkout.has_pending.link_text')
+                        )
+                    @endphp
+                    {!! trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
                 </div>
             </div>
         @endif

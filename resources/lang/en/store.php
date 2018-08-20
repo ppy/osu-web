@@ -50,6 +50,10 @@ return [
         'declined' => 'The payment was cancelled.',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
+        'has_pending' => [
+            '_' => 'You have an incomplete checkout, click :link to complete it.',
+            'link_text' => 'here',
+        ],
         'pending_checkout' => [
             'line_1' => 'A previous checkout was started but did not finish.',
             'line_2' => 'Resume your checkout by selecting a payment method.',
