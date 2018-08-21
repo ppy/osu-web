@@ -23,6 +23,7 @@ namespace App\Libraries;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
+use Storage;
 
 class BeatmapsetDelete
 {
@@ -52,9 +53,9 @@ class BeatmapsetDelete
                 $post->skipBeatmapPostRestrictions()->saveOrExplode();
             }
 
-            $this->beatmapset->delete();
-            // TODO:
-            // delete file?
+            if ($this->beatmapset->delete()) {
+                Storage::disk('s3-beatmap')->delete($this->beatmapset->getKey());
+            }
         });
     }
 }
