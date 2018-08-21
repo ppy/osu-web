@@ -87,7 +87,7 @@ return [
             'submit' => 'Post',
 
             'necropost' => [
-                '_' => 'This topic has been inactive for a while. Only post here if you have a specific reason to do so.',
+                'default' => 'This topic has been inactive for a while. Only post here if you have a specific reason to do so.',
 
                 'new_topic' => [
                     '_' => "This topic has been inactive for a while. If you don't have a specific reason to post here, please :create instead.",

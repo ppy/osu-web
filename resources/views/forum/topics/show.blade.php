@@ -114,7 +114,7 @@
                                     ]) !!}
                                 </span>
                             @else
-                                {{ trans('forum.topic.create.necropost._') }}
+                                {{ trans('forum.topic.create.necropost.default') }}
                             @endif
                         </div>
                     @endif
