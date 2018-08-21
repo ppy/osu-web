@@ -187,7 +187,6 @@ class UsersController extends Controller
             return response()->json([], 404);
         }
 
-        // ignore reports from users without a clean record.
         priv_check('UserReport', Auth::user())->ensureCan();
 
         $report = Auth::user()->reportsMade()->make([
