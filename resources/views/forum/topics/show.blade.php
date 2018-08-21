@@ -106,7 +106,11 @@
                             @if (priv_check('ForumTopicStore', $topic->forum)->can())
                                 <span>
                                     {!! trans('forum.topic.create.necropost.new_topic._', [
-                                        'create' => '<a href="'.e(route('forum.topics.create', ['forum_id' => $topic->forum])).'">'.e(trans('forum.topic.create.necropost.new_topic.create')).'</a>',
+                                        'create' => link_to_route(
+                                            'forum.topics.create',
+                                            trans('forum.topic.create.necropost.new_topic.create'),
+                                            ['forum_id' => $topic->forum],
+                                        ),
                                     ]) !!}
                                 </span>
                             @else
