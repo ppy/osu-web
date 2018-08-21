@@ -331,11 +331,17 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!($user->isGMT() || $user->isQAT() || $user->getKey() === $beatmapset->user_id)) {
-            return 'unauthorized';
+        if ($beatmapset->isGraveyard() && $user->getKey() === $beatmapset->user_id) {
+            return 'ok';
         }
 
-        return 'ok';
+        // same approved state as beatmaps that can be loved.
+        // TODO: method should be renamed.
+        if ($beatmapset->isLoveable() && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     public function checkBeatmapsetLove($user)
