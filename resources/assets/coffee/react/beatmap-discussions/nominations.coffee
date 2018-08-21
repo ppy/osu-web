@@ -247,7 +247,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   delete: =>
-    return unless confirm(osu.trans('beatmaps.nominations.delete_confirm'))
+    message = if @userIsOwner()
+                osu.trans('beatmaps.nominations.delete_own_confirm')
+              else
+                osu.trans('beatmaps.nominations.delete_other_confirm')
+
+    return unless confirm(message)
 
     LoadingOverlay.show()
 
@@ -258,7 +263,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     @xhr = $.ajax(url, params)
       .done ->
-        Turbolinks.visit laroute.route('users.show', user: currentUser.id)
+        Turbolinks.visit laroute.route('users.show', user: @props.beatmapset.user_id)
       .fail osu.ajaxError
       .always LoadingOverlay.hide
 
