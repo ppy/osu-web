@@ -97,7 +97,7 @@ return [
             'secret' => env('S3_BEATMAPSET_SECRET'),
             'region' => env('S3_BEATMAPSET_REGION'),
             'bucket' => env('S3_BEATMAPSET_BUCKET'),
-        ]
+        ],
     ],
 
 ];
