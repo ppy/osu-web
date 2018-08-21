@@ -567,6 +567,15 @@ class Topic extends Model implements AfterCommit
         return $this->topic_status !== static::STATUS_UNLOCKED;
     }
 
+    public function isActive()
+    {
+        return $this
+            ->topic_last_post_time
+            ->copy()
+            ->addMonths(config('osu.forum.necropost_months'))
+            ->isFuture();
+    }
+
     public function markRead($user, $markTime)
     {
         if ($user === null) {

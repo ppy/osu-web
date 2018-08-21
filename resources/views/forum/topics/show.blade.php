@@ -97,7 +97,7 @@
         ]) !!}
             @if (priv_check('ForumTopicReply', $topic)->can())
                 <div class="osu-page osu-page--small-desktop">
-                    @if ($topic->topic_last_post_time->copy()->addMonths(config('osu.forum.necropost_months'))->isPast())
+                    @if (!$topic->isActive())
                         <div class="warning-box">
                             <div class="warning-box__icon">
                                 <i class="fas fa-exclamation-triangle"></i>
