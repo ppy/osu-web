@@ -48,7 +48,7 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDelete', $beatmapset)->ensureCan();
 
-        (new BeatmapsetDelete($beatmapset, Auth::user))->run();
+        (new BeatmapsetDelete($beatmapset, Auth::user()))->run();
     }
 
     public function index()
