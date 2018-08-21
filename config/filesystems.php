@@ -93,10 +93,10 @@ return [
 
         's3-beatmap' => [
             'driver' => 's3',
-            'key' => env('S3_BEATMAP_KEY'),
-            'secret' => env('S3_BEATMAP_SECRET'),
-            'region' => env('S3_BEATMAP_REGION'),
-            'bucket' => env('S3_BEATMAP_BUCKET'),
+            'key' => env('S3_BEATMAPSET_KEY'),
+            'secret' => env('S3_BEATMAPSET_SECRET'),
+            'region' => env('S3_BEATMAPSET_REGION'),
+            'bucket' => env('S3_BEATMAPSET_BUCKET'),
         ]
     ],
 
