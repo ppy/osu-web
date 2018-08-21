@@ -54,7 +54,7 @@ class BeatmapsetDelete
             }
 
             if ($this->beatmapset->delete()) {
-                Storage::disk('s3-beatmap')->delete($this->beatmapset->getKey());
+                Storage::disk(config('osu.beatmapset.storage'))->delete($this->beatmapset->getKey());
             }
         });
     }
