@@ -257,8 +257,8 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     params = method: 'DELETE'
 
     @xhr = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
+      .done ->
+        Turbolinks.visit laroute.route('users.show', user: currentUser.id)
       .fail osu.ajaxError
       .always LoadingOverlay.hide
 
