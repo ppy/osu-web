@@ -47,7 +47,7 @@ export class ReportForm extends PureComponent
 
 
   hideModal: (e) =>
-    if e.button == 0 && e.target == @ref.current
+    if !e? || (e.button == 0 && e.target == @ref.current)
       @setState () -> showingModal: false
 
 
@@ -74,7 +74,10 @@ export class ReportForm extends PureComponent
 
 
   renderForm: =>
-    title = osu.trans 'users.report.title', username: "<strong>#{@props.user.username}</strong>"
+    title = if @state.completed
+              osu.trans 'users.report.thanks'
+            else
+              osu.trans 'users.report.title', username: "<strong>#{@props.user.username}</strong>"
 
     div
       className: bn
@@ -94,54 +97,63 @@ export class ReportForm extends PureComponent
             dangerouslySetInnerHTML:
               __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
 
-        div
-          className: "#{bn}__row"
-          osu.trans 'users.report.reason'
+        @renderFormContent() if !@state.completed
 
-        div
-          className: "#{bn}__row"
-          el SelectOptions,
-            blackout: false
-            bn: "#{bn}-select-options"
-            onItemSelected: @onItemSelected
-            options: options
-            selected: @state.selectedReason
 
-        div
-          className: "#{bn}__row"
-          osu.trans 'users.report.comments'
+  renderFormContent: =>
+    div null,
+      div
+        className: "#{bn}__row"
+        osu.trans 'users.report.reason'
 
-        div
-          className: "#{bn}__row"
-          textarea
-            className: "#{bn}__textarea"
-            placeholder: osu.trans 'users.report.placeholder'
-            ref: @textarea
+      div
+        className: "#{bn}__row"
+        el SelectOptions,
+          blackout: false
+          bn: "#{bn}-select-options"
+          onItemSelected: @onItemSelected
+          options: options
+          selected: @state.selectedReason
 
-        div
-          className: "#{bn}__row #{bn}__row--buttons"
-          [
-            button
-              className: "#{bn}__button #{bn}__button--report"
-              disabled: @state.loading
-              key: 'report'
-              type: 'button'
-              onClick: @sendReport
-              osu.trans 'users.report.actions.send'
+      div
+        className: "#{bn}__row"
+        osu.trans 'users.report.comments'
 
-            button
-              className: "#{bn}__button"
-              disabled: @state.loading
-              key: 'cancel'
-              type: 'button'
-              onClick: () => @setState showingModal: false
-              osu.trans 'users.report.actions.cancel'
-          ]
+      div
+        className: "#{bn}__row"
+        textarea
+          className: "#{bn}__textarea"
+          placeholder: osu.trans 'users.report.placeholder'
+          ref: @textarea
+
+      div
+        className: "#{bn}__row #{bn}__row--buttons"
+        [
+          button
+            className: "#{bn}__button #{bn}__button--report"
+            disabled: @state.loading
+            key: 'report'
+            type: 'button'
+            onClick: @sendReport
+            osu.trans 'users.report.actions.send'
+
+          button
+            className: "#{bn}__button"
+            disabled: @state.loading
+            key: 'cancel'
+            type: 'button'
+            onClick: () => @setState showingModal: false
+            osu.trans 'users.report.actions.cancel'
+        ]
+
 
   showModal: (e) =>
     return if e.button != 0
     e.preventDefault()
-    @setState () -> showingModal: true
+    Timeout.clear @timeout
+    @setState () ->
+      completed: false
+      showingModal: true
 
 
   sendReport: (e) =>
@@ -158,7 +170,10 @@ export class ReportForm extends PureComponent
       dataType: 'json'
 
     .done () =>
-      @setState () -> showingModal: false
+      @setState () =>
+        @timeout = Timeout.set 1000, @hideModal
+
+        completed: true
 
     .fail osu.ajaxError
     .always () =>

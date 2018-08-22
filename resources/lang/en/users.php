@@ -102,6 +102,7 @@ return [
         'comments' => 'Additional Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
+        'thanks' => 'Thanks for your report!',
         'title' => 'Report :username?',
 
         'actions' => [
