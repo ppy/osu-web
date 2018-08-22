@@ -51,6 +51,7 @@ class RankingController extends Controller
         view()->share('currentAction', $type);
         view()->share('mode', $mode);
         view()->share('type', $type);
+        view()->share('spotlight', null); // so variable capture in selector function doesn't die.
 
         $this->middleware(function ($request, $next) use ($mode, $type) {
             if (!array_key_exists($mode, Beatmap::MODES)) {
