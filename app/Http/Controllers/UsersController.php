@@ -204,7 +204,7 @@ class UsersController extends Controller
             }
         }
 
-        return [];
+        return response(null, 204);
     }
 
     public function scores($_userId, $type)

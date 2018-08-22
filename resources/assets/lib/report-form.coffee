@@ -152,6 +152,7 @@ export class ReportForm extends PureComponent
       type: 'POST'
       url: laroute.route 'users.report', user: @props.user.id
       data: data
+      dataType: 'json'
 
     .done () =>
       @setState () -> showingModal: false
