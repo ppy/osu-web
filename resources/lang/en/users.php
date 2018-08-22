@@ -112,7 +112,7 @@ return [
             'cheating' => 'Foul play / Cheating',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
-            'unwanted_content' => 'Linking inappropriate content (NSFW, screamers, reflinks, viruses)',
+            'unwanted_content' => 'Linking inappropriate content',
             'nonsense' => 'Nonsense',
             'other' => 'Other (type below)',
         ],
