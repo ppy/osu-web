@@ -119,23 +119,24 @@ export class ReportForm extends PureComponent
             ref: @textarea
 
         div
-          className: "#{bn}__row"
-          button
-            className: "#{bn}__button #{bn}__button--report"
-            disabled: @state.loading
-            type: 'button'
-            onClick: @sendReport
-            osu.trans 'users.report.actions.send'
+          className: "#{bn}__row #{bn}__row--buttons"
+          [
+            button
+              className: "#{bn}__button #{bn}__button--report"
+              disabled: @state.loading
+              key: 'report'
+              type: 'button'
+              onClick: @sendReport
+              osu.trans 'users.report.actions.send'
 
-        div
-          className: "#{bn}__row"
-          button
-            className: "#{bn}__button"
-            disabled: @state.loading
-            type: 'button'
-            onClick: () => @setState showingModal: false
-            osu.trans 'users.report.actions.cancel'
-
+            button
+              className: "#{bn}__button"
+              disabled: @state.loading
+              key: 'cancel'
+              type: 'button'
+              onClick: () => @setState showingModal: false
+              osu.trans 'users.report.actions.cancel'
+          ]
 
   showModal: (e) =>
     return if e.button != 0

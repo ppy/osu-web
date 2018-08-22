@@ -57,6 +57,10 @@
       background-color: lighten(@_background-color, 20%);
     }
 
+    & + & {
+      margin-top: 8px;
+    }
+
     &--report {
       background-color: @red-dark;
 
@@ -94,6 +98,14 @@
 
     & + & {
       margin-top: 10px;
+      &--buttons {
+        margin-top: 15px;
+      }
+    }
+
+    &--buttons {
+      flex-direction: column;
+      align-items: center;
     }
 
     &--exclamation {
