@@ -17,7 +17,7 @@
 ###
 
 import { createElement as el, createRef, PureComponent } from 'react'
-import { button, div, i, textarea } from 'react-dom-factories'
+import { button, div, i, span, textarea } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
@@ -60,12 +60,14 @@ export class ReportForm extends PureComponent
 
     [
       button
-        className: 'user-action-button user-action-button--report user-action-button--right-margin',
+        className: 'textual-button textual-button--report',
         key: 'button'
         type: 'button'
         onClick: @showModal
         title: 'report user'
-        i className: 'fas fa-exclamation-triangle',
+        span null,
+          i className: 'textual-button__icon fas fa-exclamation-triangle'
+          " #{osu.trans 'users.report.button_text'}"
 
       @renderForm() if @state.showingModal
     ]

@@ -98,6 +98,7 @@ return [
     ],
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
+        'button_text' => 'report',
         'comments' => 'Additional Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
