@@ -70,7 +70,6 @@ return [
             '_' => 'rankings',
             'index' => 'performance',
             'performance' => 'performance',
-            'monthly' => 'monthly',
             'charts' => 'spotlights',
             'score' => 'score',
             'country' => 'country',

@@ -37,8 +37,8 @@ class RankingController extends Controller
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
     const SPOTLIGHT_MAX_RESULTS = 40;
-    const RANKING_TYPES = ['performance', 'monthly', 'charts', 'score', 'country'];
-    const SPOTLIGHT_TYPES = ['charts', 'monthly'];
+    const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
+    const SPOTLIGHT_TYPES = ['charts'];
 
     public function __construct()
     {
@@ -87,8 +87,6 @@ class RankingController extends Controller
     {
         if ($type === 'charts') {
             return $this->spotlight($mode);
-        } elseif ($type === 'monthly') {
-            return $this->monthly($mode);
         }
 
         $modeInt = Beatmap::modeInt($mode);
@@ -154,31 +152,15 @@ class RankingController extends Controller
         return view("rankings.{$type}", compact('scores'));
     }
 
-    public function monthly($mode)
-    {
-        list($spotlight, $range) = $this->getSpotlightAndRange();
-
-        $scores = $this->getUserStats($spotlight, $mode)->get();
-        $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
-
-        $earliest = Spotlight::periodic()->orderBy('chart_month', 'asc')->first();
-        $latest = Spotlight::periodic()->orderBy('chart_month', 'desc')->first();
-
-        return view(
-            'rankings.monthly',
-            compact('scores', 'range', 'spotlight', 'beatmapsets', 'earliest', 'latest')
-        );
-    }
-
     public function spotlight($mode)
     {
         $chartId = get_int(request('spotlight'));
 
-        $spotlights = Spotlight::notPeriodic()->orderBy('chart_id', 'desc')->get();
+        $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
             $spotlight = $spotlights->first();
         } else {
-            $spotlight = Spotlight::notPeriodic()->findOrFail($chartId);
+            $spotlight = Spotlight::findOrFail($chartId);
         }
 
         $selectOptions = [
@@ -195,31 +177,6 @@ class RankingController extends Controller
             'rankings.charts',
             compact('scores', 'selectOptions', 'spotlight', 'beatmapsets')
         );
-    }
-
-    private function getSpotlightAndRange()
-    {
-        $chartId = get_int(request('spotlight'));
-        $before = get_int(request('before'));
-        $after = get_int(request('after'));
-
-        if ($chartId !== null) {
-            $spotlight = Spotlight::periodic()->findOrFail($chartId);
-            $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_month->year)->get();
-        } elseif ($before !== null) {
-            $range = Spotlight::getPeriodicSpotlightsInYear($before - 1)->get();
-            $spotlight = $range->last();
-        } elseif ($after !== null) {
-            $range = Spotlight::getPeriodicSpotlightsInYear($after + 1)->get();
-            $spotlight = $range->first();
-        }
-
-        if (!isset($spotlight)) {
-            $spotlight = Spotlight::periodic()->orderBy('chart_month', 'desc')->first();
-            $range = Spotlight::getPeriodicSpotlightsInYear($spotlight->chart_month->year)->get();
-        }
-
-        return [$spotlight, $range];
     }
 
     private function getUserStats($spotlight, $mode)

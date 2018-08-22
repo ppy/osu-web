@@ -17,7 +17,7 @@
 --}}
 
 <ul class="page-mode page-mode--ranking-page-mode-tabs">
-    @foreach (['performance', 'monthly', 'charts', 'score', 'country'] as $tab)
+    @foreach (['performance', 'charts', 'score', 'country'] as $tab)
         <li class="page-mode__item">
             <a class="page-mode-link page-mode-link--white{{$type == $tab ? ' page-mode-link--is-active' : ''}}"
                 href="{{$tab == 'country' ? route('rankings', ['mode' => $mode, 'type' => $tab]) : $route($mode, $tab)}}"
