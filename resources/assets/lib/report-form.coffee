@@ -60,7 +60,7 @@ export class ReportForm extends PureComponent
 
     [
       button
-        className: 'textual-button textual-button--report',
+        className: 'textual-button',
         key: 'button'
         type: 'button'
         onClick: @showModal

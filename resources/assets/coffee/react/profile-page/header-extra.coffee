@@ -134,9 +134,9 @@ class ProfilePage.HeaderExtra extends React.Component
                 title: osu.trans('users.card.send_message')
                 i className: 'fas fa-envelope'
 
-              el _exported.ReportForm, user: @props.user
-
               el BlockButton, user_id: @props.user.id
+
+              el _exported.ReportForm, user: @props.user
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
