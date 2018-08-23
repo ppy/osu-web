@@ -30,25 +30,25 @@
         <div class="spotlight-info__items">
             <div class="spotlight-info__item">
                 <div class="spotlight-info__item-header">
-                    Start Date
+                    {{ trans('rankings.spotlight.start_date') }}
                 </div>
                 {{ $spotlight->start_date->formatLocalized('%Y-%m-%d') }}
             </div>
             <div class="spotlight-info__item">
                 <div class="spotlight-info__item-header">
-                    End Date
+                    {{ trans('rankings.spotlight.end_date') }}
                 </div>
                 {{ $spotlight->end_date->formatLocalized('%Y-%m-%d') }}
             </div>
             <div class="spotlight-info__item">
                 <div class="spotlight-info__item-header">
-                    Map Count
+                    {{ trans('rankings.spotlight.map_count') }}
                 </div>
                 {{ count($beatmapsets) }}
             </div>
             <div class="spotlight-info__item">
                 <div class="spotlight-info__item-header">
-                    Participants
+                    {{ trans('rankings.spotlight.participants') }}
                 </div>
                 {{ number_format($scoreCount) }}
             </div>
