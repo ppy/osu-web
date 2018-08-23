@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,24 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-class HelpController extends Controller
+use App\Models\Score\Best\Model as BestModel;
+
+class UserReport extends Model
 {
-    protected $section = 'help';
+    const CREATED_AT = 'timestamp';
 
-    public function getFaq()
+    protected $table = 'osu_user_reports';
+    protected $primaryKey = 'report_id';
+    protected $guarded = [];
+
+    protected $dates = ['timestamp'];
+
+    public $timestamps = false;
+
+    public function reporter()
     {
-        return view('help.faq');
+        return $this->belongsTo(User::class, 'reporter_id');
     }
 
-    public function getWiki()
+    public function score()
     {
-        return view('help.wiki');
+        return $this->belongsTo(BestModel::getClass($this->mode), 'score_id');
     }
 
-    public function getSupport()
+    public function user()
     {
-        return view('help.support');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

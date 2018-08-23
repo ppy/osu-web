@@ -25,6 +25,7 @@ use App\Libraries\ReplayFile;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
+use App\Models\UserReport;
 use DB;
 
 abstract class Model extends BaseModel
@@ -279,6 +280,11 @@ abstract class Model extends BaseModel
         $userIds[] = $user->getKey();
 
         return $query->whereIn('user_id', $userIds);
+    }
+
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'score_id');
     }
 
     public function replayViewCount()
