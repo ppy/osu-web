@@ -245,6 +245,13 @@ class Page
         return $this->path.'/'.$this->locale.'.md';
     }
 
+    public function parentPath()
+    {
+        if (($pos = strpos($this->path, '/')) !== false) {
+            return substr($this->path, 0, $pos);
+        }
+    }
+
     public function refresh()
     {
         dispatch(new EsDeleteDocument($this));
