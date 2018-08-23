@@ -42,8 +42,21 @@ export class ReportForm extends PureComponent
       showingModal: false
 
 
+  componentDidMount: =>
+    document.addEventListener 'keydown', @handleEsc
+
+
   componentDidUpdate: (_prevProps, prevState) =>
     Blackout.toggle(@state.showingModal, 0.5) unless prevState.showingModal == @state.showingModal
+
+
+  componentWillUnmount: =>
+    document.removeEventListener 'keydown', @handleEsc
+
+
+  handleEsc: (e) =>
+    if e.keyCode == 27
+      @setState showingModal: false
 
 
   hideModal: (e) =>
