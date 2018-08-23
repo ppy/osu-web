@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Models\Score\Best as ScoreBest;
-use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Schema\Blueprint;
 use Schema;
