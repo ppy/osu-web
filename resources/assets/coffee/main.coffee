@@ -116,8 +116,8 @@ reactTurbolinks.register 'blockButton', BlockButton, (target) ->
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
-reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, (el) ->
-  JSON.parse(el.dataset.selectOptions)
+reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
+  osu.parseJson 'json-spotlight-select-options'
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

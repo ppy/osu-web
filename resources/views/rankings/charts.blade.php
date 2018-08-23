@@ -20,8 +20,12 @@
 @section('ranking-header')
     <div
         class="js-react--spotlight-select-options"
-        data-select-options="{{ json_encode($selectOptions) }}"
     ></div>
+
+    <script id="json-spotlight-select-options" type="application/json">
+        {!! json_encode($selectOptions) !!}
+    </script>
+
     <div class="spotlight-info">
         <div class="spotlight-info__items">
             <div class="spotlight-info__item">
