@@ -88,7 +88,7 @@ class ChannelsController extends Controller
             $channel->addUser(Auth::user());
         }
 
-        abort(204);
+        return response([], 204);
     }
 
     public function part($channel_id, $user_id)
@@ -102,7 +102,7 @@ class ChannelsController extends Controller
 
         $channel->removeUser(Auth::user());
 
-        abort(204);
+        return response([], 204);
     }
 
     public function markAsRead($channel_id, $message_id)
@@ -114,7 +114,7 @@ class ChannelsController extends Controller
         // this prevents the read marker going backwards
         $userChannelQuery->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $message_id)")]);
 
-        abort(204);
+        return response([], 204);
     }
 
     public function send($channel_id)
