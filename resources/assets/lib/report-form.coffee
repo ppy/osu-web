@@ -48,11 +48,11 @@ export class ReportForm extends PureComponent
 
   hideModal: (e) =>
     if !e? || (e.button == 0 && e.target == @ref.current)
-      @setState () -> showingModal: false
+      @setState showingModal: false
 
 
   onItemSelected: (item) =>
-    @setState () -> selectedReason: item
+    @setState selectedReason: item
 
 
   render: =>
@@ -150,13 +150,13 @@ export class ReportForm extends PureComponent
     return if e.button != 0
     e.preventDefault()
     Timeout.clear @timeout
-    @setState () ->
+    @setState
       completed: false
       showingModal: true
 
 
   sendReport: (e) =>
-    @setState () -> loading: true
+    @setState loading: true
 
     data =
       reason: @state.selectedReason.id
@@ -169,11 +169,9 @@ export class ReportForm extends PureComponent
       dataType: 'json'
 
     .done () =>
-      @setState () =>
-        @timeout = Timeout.set 1000, @hideModal
-
-        completed: true
+      @timeout = Timeout.set 1000, @hideModal
+      @setState completed: true
 
     .fail osu.ajaxError
     .always () =>
-      @setState () -> loading: false
+      @setState loading: false
