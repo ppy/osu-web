@@ -64,7 +64,6 @@ export class ReportForm extends PureComponent
         key: 'button'
         type: 'button'
         onClick: @showModal
-        title: 'report user'
         span null,
           i className: 'textual-button__icon fas fa-exclamation-triangle'
           " #{osu.trans 'users.report.button_text'}"
