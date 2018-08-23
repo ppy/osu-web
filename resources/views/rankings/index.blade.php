@@ -33,7 +33,7 @@
         ];
     @endphp
     <div class="osu-page">
-        @include('objects._mode_selector', $selectorParams)
+        @include('rankings._mode_selector', $selectorParams)
         <div class="ranking-page-header">
             @include('rankings._type_selector', $selectorParams)
             <hr class="page-mode__underline">
