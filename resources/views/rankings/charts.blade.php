@@ -46,7 +46,7 @@
                 <div class="spotlight-info__item-header">
                     Participants
                 </div>
-                {{ $scoreCount }}
+                {{ number_format($scoreCount) }}
             </div>
         </div>
     </div>
