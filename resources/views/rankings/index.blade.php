@@ -22,12 +22,12 @@
         $selectorParams = [
             'type' => $type,
             'mode' => $mode,
-            'route' => function($mode, $type) use ($country, $spotlight) {
+            'route' => function($routeMode, $routeType) use ($country, $spotlight) {
                 return trim(route('rankings', [
-                    'mode' => $mode,
-                    'type' => $type,
-                    'spotlight' => $type === 'charts' ? $spotlight ?? null : null,
-                    'country' => $type !== 'charts' ? $country['acronym'] : null,
+                    'mode' => $routeMode,
+                    'type' => $routeType,
+                    'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
+                    'country' => $routeType !== 'charts' ? $country['acronym'] : null,
                 ]), '?');
             }
         ];
