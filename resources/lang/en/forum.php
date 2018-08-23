@@ -86,6 +86,15 @@ return [
             'preview_hide' => 'Write',
             'submit' => 'Post',
 
+            'necropost' => [
+                'default' => 'This topic has been inactive for a while. Only post here if you have a specific reason to do so.',
+
+                'new_topic' => [
+                    '_' => "This topic has been inactive for a while. If you don't have a specific reason to post here, please :create instead.",
+                    'create' => 'create a new topic',
+                ],
+            ],
+
             'placeholder' => [
                 'body' => 'Type post content here',
                 'title' => 'Click here to set title',
