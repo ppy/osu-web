@@ -43,16 +43,6 @@ class Spotlight extends Model
 
     protected $dates = ['chart_month', 'end_date', 'start_date'];
 
-    public function scopeNotPeriodic($query)
-    {
-        return $query->whereNotIn('type', static::PERIODIC_TYPES);
-    }
-
-    public function scopePeriodic($query)
-    {
-        return $query->whereIn('type', static::PERIODIC_TYPES);
-    }
-
     public function beatmapsets(string $mode)
     {
         $tableName = DB::connection('mysql-charts')->getDatabaseName().'.'.$this->beatmapsetsTableName($mode);
@@ -129,15 +119,6 @@ class Spotlight extends Model
         return mb_strtolower($name);
     }
 
-    public function scopeInYear($query, int $year)
-    {
-        $period = (new Carbon)->year($year);
-
-        return $query
-            ->where('chart_month', '>=', $period->copy()->startOfYear())
-            ->where('chart_month', '<=', $period->copy()->endOfYear());
-    }
-
     public function createTables()
     {
         DB::connection('mysql-charts')->transaction(function () {
@@ -155,11 +136,6 @@ class Spotlight extends Model
                 static::createUserStatsTable($this->userStatsTableName($mode));
             }
         });
-    }
-
-    public static function getPeriodicSpotlightsInYear(int $year)
-    {
-        return static::periodic()->inYear($year)->orderBy('chart_month', 'asc');
     }
 
     private static function createBeatmapsetTable(string $name)
