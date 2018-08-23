@@ -126,15 +126,17 @@ class ProfilePage.HeaderExtra extends React.Component
                       devices: rowValue playsWith
             @renderPostCount()
 
-          if !currentUser.id? || currentUser.id != @props.user.id && !isBlocked
+          if !currentUser.id? || currentUser.id != @props.user.id
             div className: "#{bn}__rows #{bn}__rows--actions",
-              a
-                className: 'user-action-button user-action-button--message user-action-button--right-margin'
-                href: laroute.route 'messages.users.show', user: @props.user.id
-                title: osu.trans('users.card.send_message')
-                i className: 'fas fa-envelope'
+              if !isBlocked
+                span null,
+                  a
+                    className: 'user-action-button user-action-button--message user-action-button--right-margin'
+                    href: laroute.route 'messages.users.show', user: @props.user.id
+                    title: osu.trans('users.card.send_message')
+                    i className: 'fas fa-envelope'
 
-              el BlockButton, user_id: @props.user.id
+                  el BlockButton, user_id: @props.user.id
 
               el _exported.ReportForm, user: @props.user
 
