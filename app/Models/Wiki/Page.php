@@ -247,7 +247,7 @@ class Page
 
     public function parentPath()
     {
-        if (($pos = strpos($this->path, '/')) !== false) {
+        if (($pos = strrpos($this->path, '/')) !== false) {
             return substr($this->path, 0, $pos);
         }
     }
