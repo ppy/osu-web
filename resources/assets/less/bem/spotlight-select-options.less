@@ -19,6 +19,12 @@
 .spotlight-select-options {
   .select-options(
     @this: spotlight-select-options;
-    @background-color: rgba(27, 27, 27, 0.5)
+    @background-color: fade(#333, 50%);
   );
+
+  &__selector {
+    max-height: 400px; // arbritary.
+    overflow-y: scroll;
+    background-color: #333;
+  }
 }
