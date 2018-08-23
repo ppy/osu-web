@@ -173,15 +173,17 @@ class RankingController extends Controller
 
         if ($spotlight->hasMode($mode)) {
             $scores = $this->getUserStats($spotlight, $mode)->get();
+            $scoreCount = $spotlight->userStats($mode)->count();
             $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
         } else {
             $scores = collect();
+            $scoreCount = 0;
             $beatmapsets = collect();
         }
 
         return view(
             'rankings.charts',
-            compact('scores', 'selectOptions', 'spotlight', 'beatmapsets')
+            compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 

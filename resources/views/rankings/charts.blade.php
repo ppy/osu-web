@@ -22,6 +22,34 @@
         class="js-react--spotlight-select-options"
         data-select-options="{{ json_encode($selectOptions) }}"
     ></div>
+    <div class="spotlight-info">
+        <div class="spotlight-info__items">
+            <div class="spotlight-info__item">
+                <div class="spotlight-info__item-header">
+                    Start Date
+                </div>
+                {{ $spotlight->start_date->formatLocalized('%Y-%m-%d') }}
+            </div>
+            <div class="spotlight-info__item">
+                <div class="spotlight-info__item-header">
+                    End Date
+                </div>
+                {{ $spotlight->end_date->formatLocalized('%Y-%m-%d') }}
+            </div>
+            <div class="spotlight-info__item">
+                <div class="spotlight-info__item-header">
+                    Map Count
+                </div>
+                {{ count($beatmapsets) }}
+            </div>
+            <div class="spotlight-info__item">
+                <div class="spotlight-info__item-header">
+                    Participants
+                </div>
+                {{ $scoreCount }}
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scores')
