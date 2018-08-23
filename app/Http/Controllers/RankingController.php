@@ -171,8 +171,13 @@ class RankingController extends Controller
             }),
         ];
 
-        $scores = $this->getUserStats($spotlight, $mode)->get();
-        $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
+        if ($spotlight->hasMode($mode)) {
+            $scores = $this->getUserStats($spotlight, $mode)->get();
+            $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
+        } else {
+            $scores = collect();
+            $beatmapsets = collect();
+        }
 
         return view(
             'rankings.charts',

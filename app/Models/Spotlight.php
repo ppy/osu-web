@@ -86,6 +86,15 @@ class Spotlight extends Model
         return $model->newQuery();
     }
 
+    public function hasMode(string $mode)
+    {
+        return Schema::connection('mysql-charts')->hasTable($this->userStatsTableName($mode));
+    }
+
+    //=========================
+    // Table helpers
+    //=========================
+
     public function beatmapsetsTableName(string $mode)
     {
         if ($mode === 'osu' || !$this->mode_specific) {
