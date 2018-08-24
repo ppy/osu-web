@@ -208,9 +208,6 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
-
-    Route::get('support', 'HelpController@getSupport')->name('support');
-    Route::get('faq', 'HelpController@getFaq')->name('faq');
 });
 
 // FIXME: someone split this crap up into proper controllers
