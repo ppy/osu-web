@@ -138,6 +138,7 @@ class ChatControllerTest extends TestCase
                 ]
             )->assertStatus(200);
     }
+
     //endregion
 
     //region GET /chat/presence - Get Presence
@@ -164,6 +165,7 @@ class ChatControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $publicChannel->channel_id]);
     }
+
     //endregion
 
     //region GET /chat/updates?since=[message_id] - Get Updates
@@ -209,5 +211,6 @@ class ChatControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $publicMessage->content]);
     }
+
     //endregion
 }

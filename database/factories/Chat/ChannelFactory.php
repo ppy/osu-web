@@ -26,13 +26,13 @@ $factory->define(Channel::class, function (Faker\Generator $faker) {
 });
 
 $factory->state(Channel::class, 'public', function (Faker\Generator $faker) {
-    return ['type' => 'public'];
+    return ['type' => Channel::TYPES['public']];
 });
 
 $factory->state(Channel::class, 'private', function (Faker\Generator $faker) {
-    return ['type' => 'private'];
+    return ['type' => Channel::TYPES['private']];
 });
 
 $factory->state(Channel::class, 'pm', function (Faker\Generator $faker) {
-    return ['type' => 'pm'];
+    return ['type' => Channel::TYPES['pm']];
 });

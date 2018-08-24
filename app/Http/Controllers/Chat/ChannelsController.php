@@ -20,29 +20,20 @@
 
 namespace App\Http\Controllers\Chat;
 
-use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
-use Carbon\Carbon;
 use DB;
 use Request;
 
 class ChannelsController extends Controller
 {
-    // Limits for chatting, throttles after CHAT_LIMIT_MESSAGES messages in CHAT_LIMIT_WINDOW seconds
-    const PUBLIC_CHAT_LIMIT_MESSAGES = 5;
-    const PUBLIC_CHAT_LIMIT_WINDOW = 4;
-    const PRIVATE_CHAT_LIMIT_MESSAGES = 10;
-    const PRIVATE_CHAT_LIMIT_WINDOW = 5;
-    const MESSAGE_LENGTH_LIMIT = 1024;
-
     public function index()
     {
         return json_collection(
-            Channel::where('type', 'public')->get(),
+            Channel::public()->get(),
             'Chat/Channel'
         );
     }
@@ -53,8 +44,10 @@ class ChannelsController extends Controller
         $since = Request::input('since');
         $limit = clamp(Request::input('limit', 50), 1, 50);
 
-        $channel = UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->firstOrFail();
-        $messages = $channel->messages();
+        $userChannel = UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->firstOrFail();
+        $messages = $userChannel->channel
+            ->messages()
+            ->with('sender');
 
         if (presence($since)) {
             $messages = $messages->where('message_id', '>', $since)
@@ -78,7 +71,7 @@ class ChannelsController extends Controller
     public function join($channel_id, $user_id)
     {
         // FIXME: Update this to proper permission check when public-only restriction is lifted
-        $channel = Channel::where(['channel_id' => $channel_id, 'type' => 'public'])->firstOrFail();
+        $channel = Channel::public()->where('channel_id', $channel_id)->firstOrFail();
 
         if (Auth::user()->user_id !== get_int($user_id)) {
             abort(403);
@@ -94,7 +87,7 @@ class ChannelsController extends Controller
     public function part($channel_id, $user_id)
     {
         // FIXME: Update this to proper permission check when public-only restriction is lifted
-        $channel = Channel::where(['channel_id' => $channel_id, 'type' => 'public'])->firstOrFail();
+        $channel = Channel::public()->where('channel_id', $channel_id)->firstOrFail();
 
         if (Auth::user()->user_id !== get_int($user_id)) {
             abort(403);

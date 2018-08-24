@@ -41,6 +41,7 @@ return [
     ],
     'chat' => [
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
+        'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
@@ -50,7 +51,7 @@ return [
                 'limit' => get_int(env('CHAT_PRIVATE_LIMIT')) ?? 1,
                 'window' => get_int(env('CHAT_PRIVATE_WINDOW')) ?? 1,
             ],
-        ]
+        ],
     ],
     'client' => [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),

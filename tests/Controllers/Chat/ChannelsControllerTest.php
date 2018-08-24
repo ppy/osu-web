@@ -59,6 +59,7 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonMissing(['channel_id' => $this->privateChannel->channel_id])
             ->assertJsonMissing(['channel_id' => $this->pmChannel->channel_id]);
     }
+
     //endregion
 
     //region PUT /chat/channels/[channel_id]/users/[user_id] - Join Channel (public)
@@ -150,6 +151,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
+
     //endregion
 
     //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
@@ -179,6 +181,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200);
         // TODO: Add check for messages being present?
     }
+
     //endregion
 
     //region GET /chat/channels/[channel_id] - Get Channel Messages (private)
@@ -206,6 +209,7 @@ class ChannelsControllerTest extends TestCase
             ->json('GET', route('chat.channels.show', ['channel_id' => $this->privateChannel->channel_id]))
             ->assertStatus(200);
     }
+
     //endregion
 
     //region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
@@ -235,6 +239,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200);
         // TODO: Add check for messages being present?
     }
+
     //endregion
 
     //region POST /chat/channels/[channel_id]/messages - Send Message to Channel
@@ -340,6 +345,7 @@ class ChannelsControllerTest extends TestCase
             )
             ->assertStatus(403);
     }
+
     //endregion
 
     //region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
@@ -443,6 +449,7 @@ class ChannelsControllerTest extends TestCase
                 'last_read_id' => $newerPublicMessage->message_id,
             ]);
     }
+
     //endregion
 
     //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
@@ -521,5 +528,6 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
+
     //endregion
 }

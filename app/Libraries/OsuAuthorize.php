@@ -23,7 +23,7 @@ namespace App\Libraries;
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
-use App\Models\Chat\Channel as ChatChannel;
+use App\Models\Chat\Channel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\User;
@@ -488,7 +488,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkChatChannelSend(User $user, ChatChannel $channel)
+    public function checkChatChannelSend(User $user, Channel $channel)
     {
         $prefix = 'chat.channel.';
 
@@ -499,7 +499,7 @@ class OsuAuthorize
             return $prefix.'no_access';
         }
 
-        if ($channel->type === 'pm') {
+        if ($channel->type === Channel::TYPES['pm']) {
             $chatStartPermission = $this->doCheckUser($user, 'ChatStart', $channel->pmTargetFor($user));
             if (!$chatStartPermission->can()) {
                 return $chatStartPermission->rawMessage();
@@ -513,7 +513,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkChatChannelRead(User $user, ChatChannel $channel)
+    public function checkChatChannelRead(User $user, Channel $channel)
     {
         $prefix = 'chat.channel.';
 
@@ -526,15 +526,15 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
-    public function checkChatChannelJoin(User $user, ChatChannel $channel)
+    public function checkChatChannelJoin(User $user, Channel $channel)
     {
         $prefix = 'chat.channel.';
 
         switch ($channel->type) {
-            case 'public':
+            case Channel::TYPES['public']:
                 return 'ok';
 
-            case 'private':
+            case Channel::TYPES['private']:
                 $commonGroupIds = array_intersect(
                     $user->groupIds(),
                     $channel->allowed_groups
@@ -545,9 +545,9 @@ class OsuAuthorize
                 }
                 break;
 
-            case 'spectator':
-            case 'multiplayer':
-            case 'temporary': // this and the comparisons below are needed until bancho is updated to use the new channel types
+            case Channel::TYPES['spectator']:
+            case Channel::TYPES['multiplayer']:
+            case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
                 if (starts_with($channel->name, '#spect_')) {
                     return 'ok';
                 }

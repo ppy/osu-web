@@ -987,6 +987,18 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
     }
 
+    public function channels()
+    {
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
+    }
+
     public function maxBlocks()
     {
         return ceil($this->maxFriends() / 10);

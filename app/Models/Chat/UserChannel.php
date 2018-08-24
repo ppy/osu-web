@@ -35,9 +35,4 @@ class UserChannel extends Model
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
-
-    public function messages()
-    {
-        return $this->hasManyThrough(Message::class, Channel::class, 'channel_id', 'channel_id', 'channel_id', 'channel_id');
-    }
 }

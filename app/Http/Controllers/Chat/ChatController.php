@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\Chat;
 
-use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -48,42 +47,33 @@ class ChatController extends Controller
         }
 
         $since = Request::input('since');
+        $limit = clamp(get_int(Request::input('limit', 50)), 1, 50);
 
-        $channels = UserChannel::where('user_id', Auth::user()->user_id)->pluck('channel_id');
-        $messages = self::messages();
-        $last_message_id = end($messages)['message_id'];
+        $messages = Message::forUser(Auth::user())
+            ->with('sender')
+            ->since($since)
+            ->limit($limit);
 
-        if ($since >= $last_message_id) {
-            abort(204);
+        if (Request::has('channel_id')) {
+            $messages->where('channel_id', get_int(Request::input('channel_id')));
+        }
+
+        $messages = $messages->get()->reverse();
+
+        if ($messages->isEmpty() || $since >= $messages->last()->message_id) {
+            return response([], 204);
         }
 
         $response = [
             'presence' => self::presence(),
-            'messages' => $messages,
+            'messages' => json_collection(
+                $messages,
+                'Chat\Message',
+                ['sender']
+            ),
         ];
 
         return $response;
-    }
-
-    public function messages()
-    {
-        $user_id = Auth::user()->user_id;
-        $since = get_int(Request::input('since', 0));
-        $limit = clamp(get_int(Request::input('limit', 50)), 1, 50);
-
-        $channels = UserChannel::where('user_id', $user_id)->pluck('channel_id');
-        $messages = Message::whereIn('channel_id', $channels);
-
-        $messages = $messages->where('message_id', '>', $since)
-            ->orderBy('message_id', 'asc')
-            ->limit($limit)
-            ->get();
-
-        return json_collection(
-            $messages,
-            'Chat\Message',
-            ['sender']
-        );
     }
 
     public function presence()
@@ -92,14 +82,13 @@ class ChatController extends Controller
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->join('user_channels as uc2', 'uc2.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
-            ->selectRaw("GROUP_CONCAT(uc2.user_id SEPARATOR ',') as member_ids")
+            ->selectRaw("group_concat(uc2.user_id SEPARATOR ',') as member_ids")
             ->selectRaw('user_channels.last_read_id')
             ->selectRaw('(select max(messages.message_id) from messages where messages.channel_id = user_channels.channel_id) as last_message_id')
             ->groupBy('user_channels.channel_id')
             ->groupBy('user_channels.user_id')
             ->get();
 
-        // TODO: convert to transformer(?)
         return json_collection(
             $userChannels,
             function ($channel) {
@@ -108,17 +97,16 @@ class ChatController extends Controller
                     'type' => $channel->type,
                     'name' => $channel->name,
                     'description' => presence($channel->description),
-                    'icon' => '/images/layout/artist-noavatar@2x.jpg',
                     'last_read_id' => $channel->last_read_id,
                     'last_message_id' => $channel->last_message_id,
                 ];
 
-                if ($channel->type !== 'public') {
+                if ($channel->type !== Channel::TYPES['public']) {
                     $channelMembers = array_map('intval', explode(',', $channel->member_ids));
                     $presence['users'] = $channelMembers;
                 }
 
-                if ($channel->type === 'pm') {
+                if ($channel->type === Channel::TYPES['pm']) {
                     // if this is a pm
                     $users = array_filter($channelMembers, function ($k) {
                         // remove current user, leaving only the other party
@@ -157,7 +145,7 @@ class ChatController extends Controller
             DB::transaction(function () use ($userIds, $channelName) {
                 $channel = new Channel();
                 $channel->name = $channelName;
-                $channel->type = 'PM';
+                $channel->type = Channel::TYPES['pm'];
                 $channel->description = ''; // description is not nullable
                 $channel->save();
                 $channel->fresh();

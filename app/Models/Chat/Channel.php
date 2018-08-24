@@ -20,8 +20,8 @@
 
 namespace App\Models\Chat;
 
-use App\Models\User;
 use App\Exceptions\API;
+use App\Models\User;
 use Carbon\Carbon;
 
 class Channel extends Model
@@ -31,9 +31,41 @@ class Channel extends Model
         'creation_time',
     ];
 
+    const TYPES = [
+        'public' => 'PUBLIC',
+        'private' => 'PRIVATE',
+        'multiplayer' => 'MULTIPLAYER',
+        'spectator' => 'SPECTATOR',
+        'temporary' => 'TEMPORARY',
+        'pm' => 'PM',
+        'group' => 'GROUP',
+    ];
+
     public function messages()
     {
-        return $this->hasMany(Message::class, 'channel_id');
+        $messages = $this->hasMany(Message::class, 'channel_id');
+
+        if ($this->type === self::TYPES['public']) {
+            $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
+        }
+
+        return $messages;
+    }
+
+    public function users()
+    {
+        // This isn't a has-many-through because the relationship is cross-database.
+        return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
+    }
+
+    public function scopePublic($query)
+    {
+        return $query->where('type', self::TYPES['public']);
+    }
+
+    public function scopePM($query)
+    {
+        return $query->where('type', self::TYPES['pm']);
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)
@@ -41,14 +73,9 @@ class Channel extends Model
         return array_map('intval', explode(',', $allowed_groups));
     }
 
-    public function getTypeAttribute($type)
-    {
-        return strtolower($type);
-    }
-
     public function isPM()
     {
-        return $this->type === 'pm';
+        return $this->type === self::TYPES['pm'];
     }
 
     public function pmTargetFor(User $user)
@@ -69,14 +96,14 @@ class Channel extends Model
         $sentMessages = Message::where('user_id', $sender->user_id)
             ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
 
-        if ($this->type === 'pm') {
+        if ($this->type === self::TYPES['pm']) {
             $limit = config('osu.chat.rate_limits.private.limit');
             $window = config('osu.chat.rate_limits.private.window');
-            $sentMessages->where('type', 'pm');
+            $sentMessages->where('type', self::TYPES['pm']);
         } else {
             $limit = config('osu.chat.rate_limits.public.limit');
             $window = config('osu.chat.rate_limits.public.window');
-            $sentMessages->where('type', '!=', 'pm');
+            $sentMessages->where('type', '!=', self::TYPES['pm']);
         }
 
         $sentMessages->where('timestamp', '>=', Carbon::now()->subSecond($window));
@@ -101,15 +128,10 @@ class Channel extends Model
         return $message;
     }
 
-    public function users()
-    {
-        return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
-    }
-
     public function addUser(User $user)
     {
         // TODO: Remove this when join restriction is lifted
-        if ($this->type !== 'public') {
+        if ($this->type !== self::TYPES['public']) {
             return;
         }
 
@@ -122,16 +144,14 @@ class Channel extends Model
     public function removeUser(User $user)
     {
         // TODO: Remove this when join restriction is lifted
-        if ($this->type !== 'public') {
+        if ($this->type !== self::TYPES['public']) {
             return;
         }
 
-        $userChannel = UserChannel::where([
+        UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-        ]);
-
-        $userChannel->delete();
+        ])->delete();
     }
 
     public function hasUser(User $user)
