@@ -885,6 +885,13 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkUserReport($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
     public function checkUserShow($user, $owner)
     {
         $prefix = 'user.show.';

@@ -16,19 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.textual-button {
-  .reset-input();
-  .center-content();
-  .link-plain();
-  .link-gray-light();
-  font-size: @font-size--normal;
+.report-form-select-options {
+  .select-options(
+    report-form-select-options,
+    #555
+  );
 
-  &--block {
-    margin-right: 10px;
-  }
-
-  &__icon {
-    display: inline-block;
-    font-size: 0.85em;
-  }
+  width: 100%;
 }

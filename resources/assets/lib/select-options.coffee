@@ -17,27 +17,29 @@
 ###
 
 import { a, i, div } from 'react-dom-factories'
-import { PureComponent } from 'react'
+import { createRef, PureComponent } from 'react'
 
 export class SelectOptions extends PureComponent
   constructor: (props) ->
     super props
     @bn = @props.bn ? 'select-options'
+    @hasBlackout = @props.blackout || @props.blackout == undefined
+    @ref = createRef()
 
     @state =
       showingSelector: false
 
 
   componentDidMount: =>
-    element.addEventListener 'click', @hideSelector for element in Blackout.el
+    document.addEventListener 'click', @hideSelector
 
 
   componentDidUpdate: (_prevProps, prevState) =>
-    Blackout.toggle(@state.showingSelector, 0.5) unless prevState.showingSelector == @state.showingSelector
+    Blackout.toggle(@state.showingSelector, 0.5) if @hasBlackout && prevState.showingSelector != @state.showingSelector
 
 
   componentWillUnmount: ->
-    element.removeEventListener 'click', @hideSelector for element in Blackout.el
+    document.removeEventListener 'click', @hideSelector
 
 
   render: =>
@@ -46,6 +48,7 @@ export class SelectOptions extends PureComponent
 
     div
       className: classNames
+      ref: @ref
       div
         className: "#{@bn}__select"
         @renderItem
@@ -96,8 +99,9 @@ export class SelectOptions extends PureComponent
       children
 
 
+  # dismiss the selector if clicking anywhere outside of it.
   hideSelector: (e) =>
-    @setState showingSelector: false if e.button == 0
+    @setState showingSelector: false if e.button == 0 && !(@ref.current in e.composedPath())
 
 
   itemSelected: (event, item) ->
