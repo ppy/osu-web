@@ -26,11 +26,6 @@ class ChannelsControllerTest extends TestCase
 {
     protected static $faker;
 
-    private function log($thing)
-    {
-        fwrite(STDERR, json_encode($thing));
-    }
-
     public static function setUpBeforeClass()
     {
         self::$faker = Faker\Factory::create();
