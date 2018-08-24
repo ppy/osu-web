@@ -706,6 +706,16 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
     }
 
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'user_id');
+    }
+
+    public function reportsMade()
+    {
+        return $this->hasMany(UserReport::class, 'reporter_id');
+    }
+
     public function userGroups()
     {
         return $this->hasMany(UserGroup::class, 'user_id');

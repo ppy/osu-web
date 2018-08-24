@@ -52,6 +52,11 @@ class BeatmapMirror extends Model
         return self::randomUsable()->first();
     }
 
+    public static function getRandomFromList(array $mirrorIds)
+    {
+        return self::whereIn('mirror_id', $mirrorIds)->randomUsable()->first();
+    }
+
     public static function getRandomForRegion($region = null)
     {
         if (presence($region)) {
