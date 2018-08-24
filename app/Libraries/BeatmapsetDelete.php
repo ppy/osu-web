@@ -43,7 +43,7 @@ class BeatmapsetDelete
     public function run()
     {
         // Extra check that doesn't get bypassed by admin permissions.
-        if (!$this->beatmapset->isLoveable()) {
+        if ($this->beatmapset->isScoreable()) {
             throw new AuthorizationException('This beatmap is no longer deleteable.');
         }
 

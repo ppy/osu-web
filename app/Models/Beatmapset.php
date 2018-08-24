@@ -267,6 +267,11 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved <= 0;
     }
 
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;

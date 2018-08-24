@@ -337,7 +337,7 @@ class OsuAuthorize
 
         // same approved state as beatmaps that can be loved.
         // TODO: method should be renamed.
-        if ($beatmapset->isLoveable() && ($user->isGMT() || $user->isQAT())) {
+        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
 
