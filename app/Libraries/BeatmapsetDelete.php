@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
@@ -41,6 +42,11 @@ class BeatmapsetDelete
 
     public function run()
     {
+        // Extra check that doesn't get bypassed by admin permissions.
+        if (!$this->beatmapset->isLoveable()) {
+            throw new AuthorizationException('This beatmap is no longer deleteable.');
+        }
+
         $this->beatmapset->getConnection()->transaction(function () {
             Event::generate(
                 'beatmapsetDelete',

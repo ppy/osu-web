@@ -119,7 +119,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
         $ret = [
-            'can_delete' => priv_check('BeatmapsetDelete', $beatmapset)->can(),
+            'can_delete' => !$beatmapset->isLoveable() && priv_check('BeatmapsetDelete', $beatmapset)->can(),
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
             'can_love' => $beatmapset->isLoveable() && priv_check('BeatmapsetLove')->can(),
