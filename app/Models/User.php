@@ -444,7 +444,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->user_allow_pm = !$value;
     }
 
-    public function getHidePresenceAttribute($value)
+    public function getHidePresenceAttribute()
     {
         return !$this->user_allow_viewonline;
     }
@@ -460,7 +460,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->username_clean = static::cleanUsername($value);
     }
 
-    public function getDisplayedLastVisitAttribute($value)
+    public function getDisplayedLastVisitAttribute()
     {
         return $this->hide_presence ? null : $this->user_lastvisit;
     }
@@ -1319,7 +1319,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function scopeOnline($query)
     {
         return $query
-            ->where('user_allow_viewonline', 1)
+            ->where('user_allow_viewonline', true)
             ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
