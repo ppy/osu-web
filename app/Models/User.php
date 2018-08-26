@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
-        'user_timezone', 'float',
+        'user_timezone' => 'float',
     ];
 
     const PLAYSTYLES = [
