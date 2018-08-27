@@ -84,13 +84,23 @@
                     'forum' => $forum,
                 ])
 
-                @include('objects._pagination_v0', ['object' => $topics
-                    ->fragment('topics')
-                    ->appends([
-                        'sort' => Request::input('sort'),
-                        'with_replies' => Request::input('with_replies'),
-                    ])
-                ])
+                <div class="forum-topics-pager">
+                    <div class="forum-topics-pager__column">
+                        @include('forum.forums._new_topic')
+                    </div>
+
+                    <div class="forum-topics-pager__column">
+                        @include('objects._pagination_v0', ['object' => $topics
+                            ->fragment('topics')
+                            ->appends([
+                                'sort' => Request::input('sort'),
+                                'with_replies' => Request::input('with_replies'),
+                            ])
+                        ])
+                    </div>
+
+                    <div class="forum-topics-pager__column"></div>
+                </div>
             @endif
         </div>
     </div>
