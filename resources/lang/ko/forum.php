@@ -70,7 +70,7 @@ return [
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
+        'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',
         'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
         'post_reply' => '게시하기',

@@ -48,6 +48,7 @@ return [
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
+        'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
@@ -58,6 +59,8 @@ return [
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+
+        'necropost_months' => 6,
 
         'double_post_time' => [
             'author' => 24,
@@ -70,9 +73,6 @@ return [
         ],
     ],
     'git-sha' => env('GIT_SHA', 'unknown-version'),
-    'mp-history' => [
-        'event-count' => 500,
-    ],
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
@@ -88,6 +88,9 @@ return [
     ],
     'score_replays' => [
         'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
+    'scores' => [
+        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
     ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),

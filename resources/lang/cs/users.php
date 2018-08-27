@@ -25,7 +25,7 @@ return [
         'title' => ":user's modding historie",
 
         'discussions' => [
-            'title_recent' => 'Nedávno zahájená diskuse',
+            'title_recent' => 'Nedávno zahájená diskuze',
         ],
 
         'events' => [
@@ -46,12 +46,12 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
+        'banner_text' => 'Uživatel byl zablokován.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'skrýt profil',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'zobrazit profil',
-        'too_many' => '',
+        'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
             'block' => 'blokovat',
             'unblock' => 'odblokovat',
@@ -73,8 +73,8 @@ return [
         'remember' => 'Pamatovat si tento počítač',
         'title' => 'Pro pokračování se prosím přihlašte',
         'failed' => 'Nesprávné přihlášení',
-        'register' => "Nemáte osu! účet? Vytvořte si ho",
-        'forgot' => 'Zapoměli jste heslo?',
+        'register' => "Nemáš osu! účet? Vytvoř si ho",
+        'forgot' => 'Zapoměl jsi heslo?',
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
             'small' => '(brzy pro supportery)',
@@ -96,20 +96,20 @@ return [
         'username' => 'Návštěvník',
         'error' => 'Pro tuto akci musíte být přihlášeni.',
     ],
-    'logout_confirm' => 'Opravdu se chcete odhlásit? :(',
+    'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
-        'message' => 'Zatímco jste omezen, nebudete moci komunikovat s ostatními hráči a vaše skóre budou viditelná pouze pro vás. Toto je obvykle výsledkem automatického procesu a bude obvykle vyřešen do 24 hodin. Pokud si přejete odvolat vaše omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
+        'message' => 'Zatímco jsi v omezeném režimu, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu který by se měl sám vyřešit do nejpozději 24 hodin. Pokud si přeješ odvolat tvé omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
     ],
     'show' => [
         'age' => ':age let',
-        'change_avatar' => 'změňte si avatara!',
+        'change_avatar' => 'změňte si avatar!',
         'first_members' => 'Zde od počátku',
         'is_developer' => 'osu!vývojář',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Členem od {date}',
-        'lastvisit' => 'Naposledy viděn :date',
-        'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zablokován)',
+        'joined_at' => 'Členem od :date',
+        'lastvisit' => 'Naposledy spatřen :date',
+        'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_age' => ':age',
         'origin_country_age' => ':age z :country',
         'origin_country' => 'Z :country',
@@ -123,10 +123,10 @@ return [
                 'button' => 'Změnit záhlaví profilu',
                 'defaults_info' => 'Více možností záhlaví bude k dispozici v budoucnu',
                 'upload' => [
-                    'broken_file' => 'Zpracování obrázku selhalo. Ověřte obrázek a zkuste to znovu.',
+                    'broken_file' => 'Zpracování obrázku selhalo. Ověř si obrázek a zkus to znovu.',
                     'button' => 'Nahrát obrázek',
-                    'dropzone' => 'Přetáhněte sem pro nahrání',
-                    'dropzone_info' => 'Můžete také přetánout sem pro nahrání',
+                    'dropzone' => 'Přetáhni sem pro nahrání',
+                    'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
                     'restriction_info' => "Nahrání k dispozici pro <a href='".route('store.products.show', 'supporter-tag')."pouze ' target='_blank'>osu!supporteři</a>",
                     'size_info' => 'Velikost záhlaví by měla být 2000x700',
                     'too_large' => 'Nahraný soubor je příliš velký.',
@@ -201,7 +201,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Obdržel jsi :amount kudosu z kudosu odmítnutí, z módding příspěvku :post',
                         ],
 
                         'deny_kudosu' => [
@@ -229,7 +229,7 @@ return [
 
                     'forum_post' => [
                         'give' => 'Obdrženo :amount od :giver za příspěvek u :post',
-                        'reset' => 'Odepřeno kudosu od :giver za příspěvek :post',
+                        'reset' => 'Kudosu bylo obnoveno od :giver za příspěvek :post',
                         'revoke' => 'Odepřeno kudosu od :giver za příspěvek :post',
                     ],
                 ],
@@ -249,7 +249,7 @@ return [
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp' => '',
                 'title' => 'Umístění',
-                'weighted_pp' => 'váha: :pp (:percentage)',
+                'weighted_pp' => 'stržil: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Nejlepší výkon',
@@ -291,7 +291,7 @@ return [
             'website' => 'Webové stránky',
         ],
         'not_found' => [
-            'reason_1' => 'Možná si změnili uživatelské jméno.',
+            'reason_1' => 'Možná si změnil uživatelské jméno.',
             'reason_2' => 'Účet může být dočasně nedostupný z důvodu problémů s bezpečností, nebo zneužitím.',
             'reason_3' => 'Možná jste se přepsal!',
             'reason_header' => 'Existuje několik možných důvodů:',

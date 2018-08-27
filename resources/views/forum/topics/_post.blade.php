@@ -56,10 +56,10 @@
             @if($post->post_edit_count > 0)
                 <div class="forum-post__content forum-post__content--footer">
                     {!!
-                        trans("forum.post.edited", [
-                            "count" => $post->post_edit_count,
-                            "user" => $post->lastEditorNormalized()->username,
-                            "when" => timeago($post->post_edit_time),
+                        trans('forum.post.edited', [
+                            'count' => $post->post_edit_count,
+                            'user' => link_to_user($post->lastEditorNormalized(), null, ''),
+                            'when' => timeago($post->post_edit_time),
                         ])
                     !!}
                 </div>
@@ -92,7 +92,7 @@
                 @endif
 
                 @if ($options["deleteLink"] === true)
-                    <div class="forum-post-actions__action">
+                    <div class="forum-post-actions__action js-post-delete-toggle">
                         @include('forum.topics._post_hide_action')
                     </div>
                 @endif

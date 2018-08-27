@@ -76,6 +76,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
+Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
@@ -188,6 +189,7 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -206,9 +208,6 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
-
-    Route::get('support', 'HelpController@getSupport')->name('support');
-    Route::get('faq', 'HelpController@getFaq')->name('faq');
 });
 
 // FIXME: someone split this crap up into proper controllers

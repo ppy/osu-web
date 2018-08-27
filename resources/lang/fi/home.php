@@ -21,12 +21,12 @@
 return [
     'landing' => [
         'download' => 'Lataa nyt',
-        'online' => '<strong>:players</strong> juuri nyt online-tilassa <strong>:games</strong> peleissä',
-        'peak' => 'Huippu, :count online users',
+        'online' => '<strong>:players</strong> online-tilassa <strong>:games</strong> pelaamassa',
+        'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
 
         'slogan' => [
-            'main' => 'kaikista parhain ilmainen rytmipeli',
+            'main' => 'parastakin parempi ilmainen rytmipeli',
             'sub' => 'rytmi on vain klikkauksen päässä',
         ],
     ],
@@ -37,39 +37,39 @@ return [
         'empty_result' => 'Mitään ei löytynyt!',
         'missing_query' => 'Tarvitaan vähintään :n merkin pituinen hakusana',
         'placeholder' => 'kirjoita etsiäksesi',
-        'title' => 'Hae',
+        'title' => 'Etsi',
 
         'beatmapset' => [
             'more' => ':count lisää hakutulosta',
             'more_simple' => 'Katso lisää hakutuloksia',
-            'title' => 'Rytmikartat',
+            'title' => 'Beatmapit',
         ],
 
         'forum_post' => [
             'all' => 'Kaikki foorumit',
-            'link' => 'Etsi foorumista',
+            'link' => 'Etsi foorumilta',
             'more_simple' => 'Katso lisää foorumien hakutuloksia',
             'title' => 'Foorumi',
 
             'label' => [
                 'forum' => 'etsi foorumeista',
-                'forum_children' => 'sisällytä subfoorumit',
+                'forum_children' => 'etsi myös alafoorumit',
                 'topic_id' => 'aihe #',
-                'username' => 'kirjoittaja',
+                'username' => 'luoja',
             ],
         ],
 
         'mode' => [
             'all' => 'kaikki',
-            'beatmapset' => 'rytmikartta',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'foorumi',
             'user' => 'pelaaja',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count lisää pelaaja-hakutulosta',
-            'more_simple' => 'Katso lisää pelaaja-hakutuloksia',
+            'more' => ':count hakutulosta lisää',
+            'more_simple' => 'Näytä enemmän pelaajia hakutuloksista',
             'more_hidden' => 'Pelaajien etsintä on rajoitettu :max pelaajalle. Kokeile tarkentaa hakua.',
             'title' => 'Pelaajat',
         ],
@@ -89,16 +89,16 @@ return [
             'macos' => 'macOS:lle',
             'linux' => 'Linuxille',
         ],
-        'mirror' => 'mirrori',
+        'mirror' => 'vaihtoehtoinen lataus',
         'macos-fallback' => 'macOS-käyttäjät',
         'steps' => [
             'register' => [
                 'title' => 'luo tili',
-                'description' => 'kun käynnistät pelin, seuraa ohjeita sisäänkirjautumiseen tai luo uusi tili',
+                'description' => 'käynnistäessäsi pelin, seuraa ohjeita kirjautuaksesi sisään tai luo uusi tili',
             ],
             'download' => [
                 'title' => 'lataa peli',
-                'description' => 'napsauta painiketta ylhäällä ladataksesi asennusohjelma ja suorita se!',
+                'description' => 'klikkaa ylläolevaa painiketta ladataksesi asennusohjelman ja suorita se!',
             ],
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
@@ -112,7 +112,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'hallintapaneeli',
+        'title' => 'hallinta',
         'news' => [
             'title' => 'Uutiset',
             'error' => 'Virhe ladattaessa uutisia, yritä päivittää sivu?...',
@@ -121,14 +121,14 @@ return [
             'welcome' => 'Hei, <strong>:username</strong>!',
             'messages' => 'Sinulla on :count uusi viesti|Sinulla on :count uutta viestiä',
             'stats' => [
-                'friends' => 'Paikalla olevat ystävät',
-                'games' => 'Pelit',
+                'friends' => 'Ystäviä Paikalla',
+                'games' => 'Pelejä',
                 'online' => 'Käyttäjiä paikalla',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Uudet rankatut beatmapit',
-            'popular' => 'Suositut rytmikartat',
+            'new' => 'Uudet Hyväksytyt Beatmapit',
+            'popular' => 'Suositut Beatmapit',
             'by' => 'luonut',
             'plays' => ':count pelikertaa',
         ],
@@ -144,7 +144,7 @@ return [
         'subtitle' => 'Sinulla taitaa olla hauskaa! :D',
         'body' => [
             'part-1' => 'Tiesitkö että osu! toimii ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
-            'part-2' => '',
+            'part-2' => 'Tiesitkö myös että osua! tukemalla saat kasan hyödyllisiä ominaisuuksia, kuten <strong>pelinsisäisen beatmappien lataamisen</strong> joka aktivoituu automaattisesti moninpelissä ja katsojatilassa?',
         ],
         'find-out-more' => 'Klikkaa tästä lisätietoja!',
         'download-starting' => "Ai, ja älä huoli - latauksesi on jo aloitettu ;)",

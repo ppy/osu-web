@@ -47,7 +47,7 @@ return [
         'search' => 'Suchen',
         'see_more' => 'mehr anzeigen',
         'show' => 'anzeigen',
-        'show_more' => 'mehr zeigen',
+        'show_more' => 'mehr anzeigen',
         'upload_image' => 'bild hochladen',
     ],
 

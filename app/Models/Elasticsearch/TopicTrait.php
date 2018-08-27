@@ -78,6 +78,8 @@ trait TopicTrait
 
     public function esShouldIndex()
     {
-        return $this->forum->enable_indexing && !$this->trashed();
+        return $this->forum->enable_indexing
+            && !$this->trashed()
+            && $this->topic_moved_id === 0;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,24 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+namespace App\Models\Forum;
 
-class HelpController extends Controller
+use Illuminate\Database\Eloquent\Builder;
+
+class ForumTrack extends Model
 {
-    protected $section = 'help';
+    protected $table = 'phpbb_forums_track';
+    protected $guarded = [];
 
-    public function getFaq()
-    {
-        return view('help.faq');
-    }
+    public $timestamps = false;
+    protected $dates = ['mark_time'];
+    protected $dateFormat = 'U';
 
-    public function getWiki()
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
     {
-        return view('help.wiki');
-    }
-
-    public function getSupport()
-    {
-        return view('help.support');
+        return $query->where([
+            'forum_id' => $this->forum_id,
+            'user_id' => $this->user_id,
+        ]);
     }
 }

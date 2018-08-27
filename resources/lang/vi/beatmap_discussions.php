@@ -21,14 +21,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa.',
-            'system_generated' => 'Không thể sửa bài đăng của hệ thống.',
+            'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
+            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Chưa có gì... cả.',
+        'empty' => 'Chưa có gì xảy ra cả.',
     ],
 
     'index' => [
@@ -38,7 +38,7 @@ return [
         'form' => [
             '_' => 'Tìm kiếm',
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
-            'types' => '',
+            'types' => 'Kiểu thư',
             'username' => 'Tên người dùng',
 
             'user' => [
@@ -57,7 +57,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
-        'notice' => 'Có một vài bài đăng xung quanh :timestamp (:existing_timestamps). Hãy kiểm tra trước khi đăng.',
+        'notice' => 'Có một vài bài đăng vào khoảng :timestamp (:existing_timestamps). Hãy xem chúng trước khi đăng.',
     ],
 
     'reply' => [
@@ -69,7 +69,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Đã được giải quyết bởi :user',
+            'true' => 'Đã đánh dấu là được giải quyết bởi :user',
             'false' => 'Đã mở lại bởi :user',
         ],
     ],

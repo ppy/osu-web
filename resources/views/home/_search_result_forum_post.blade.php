@@ -18,17 +18,15 @@
 {{-- more code than template in this view :best: --}}
 @php
     $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
+    $firstPostsMap = $search->firstPostsMap();
 @endphp
 
 @foreach ($search->data() as $entry)
     @php
         // $entry should be of type App\Libraries\Elasticsearch\Hit
         $innerHits = $entry->innerHits('posts');
-        $firstPost = $entry->innerHits('first_post'); // instance of App\Libraries\Elasticsearch\SearchResponse
         $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
-        $excerpt = implode('', array_map(function ($post) {
-            return html_excerpt($post->source('search_content'));
-        }, iterator_to_array($firstPost)));
+        $excerpt = html_excerpt(optional($firstPostsMap[$entry->source('topic_id')] ?? null)->source('search_content'));
 
         $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
     @endphp

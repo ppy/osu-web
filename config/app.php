@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'bg',
         'cs',
         'da',
         'de',
@@ -202,7 +203,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
@@ -217,7 +217,6 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\ElasticsearchServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         /*

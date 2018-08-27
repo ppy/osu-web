@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Vyžadovaná stránka ještě nebyla přeložena do vybraného jazyka (:language). Zobrazována Anglická verze.',
+        'fallback_translation' => 'Vyžadovaná stránka ještě nebyla přeložena do vybraného jazyka (:language). Zobrazuji Anglickou verzi.',
         'languages' => 'Jazyky',
         'missing' => 'Požadovaná stránka ":keyword" nebyla nalezena.',
         'missing_title' => 'Nenalezeno',
@@ -29,12 +29,12 @@ return [
         'toc' => 'Obsah',
 
         'edit' => [
-            'link' => 'Zobrazit na GitHub',
+            'link' => 'Zobrazit na GitHubu',
             'refresh' => 'Aktualizovat',
         ],
 
         'outdated' => [
-            '_' => 'Tati stránka obsahuje zastaralý překlad původního obsahu. Zkontrolujte prosím :default pro nejpřesnější informace (a jestli můžete, zkuste prosím tento překlad aktualizovat sami)!',
+            '_' => 'Tato stránka obsahuje zastaralý překlad původního obsahu. Zkontrolujte prosím :default pro nejpřesnější informace (a jestli můžete, zkuste prosím tento překlad aktualizovat sami)!',
             'default' => 'Anglická verze',
         ],
     ],

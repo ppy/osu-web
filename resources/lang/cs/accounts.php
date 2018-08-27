@@ -82,6 +82,6 @@ return [
 
     'privacy' => [
         'title' => 'Soukromí',
-        'friends_only' => 'Blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
+        'friends_only' => 'blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
     ],
 ];

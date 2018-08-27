@@ -25,44 +25,44 @@ return [
 
     'cart' => [
         'checkout' => 'Zaplatit',
-        'more_goodies' => 'Chci se ještě na něco podívat než dokončím objednávku',
+        'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupní košík',
         'total' => 'celkem',
 
         'errors_no_checkout' => [
-            'line_1' => 'Ale ne! Nastaly problémy s vaším košíkem, které zabraňují zaplacení.',
+            'line_1' => 'Ale né! Nastaly problémy s vaším košíkem, které zabraňují zaplacení!',
             'line_2' => 'Pro pokračování odstraňte nebo aktualizujte předměty nahoře.',
         ],
 
         'empty' => [
             'text' => 'Váš košík je prázdný.',
             'return_link' => [
-                '_' => 'Vrať se :link, abys našel další skvělé věci!',
+                '_' => 'Vrať se na :link, abys našel nějaké skvělé věci!',
                 'link_text' => 'věci v obchodě',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => 'Ale ne, s Vaším košíkem se vyskytly nějaké potíže!',
-        'cart_problems_edit' => 'Pro editaci klikněte sem.',
-        'declined' => 'Vaše platba byla zrušena.',
-        'old_cart' => 'Obsah Vašeho košíku se zdá být zastaralý a proto byl znovu načten, zkuste to prosím znovu.',
-        'pay' => 'Zaplatit přes Paypal',
+        'cart_problems' => 'Ale né, s tvým košíkem se vyskytly nějaké potíže!',
+        'cart_problems_edit' => 'Pro editaci klikni sem.',
+        'declined' => 'Tvá platba byla zrušena.',
+        'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
+        'pay' => 'Zaplatit přes PayPal',
         'pending_checkout' => [
             'line_1' => 'Předchozí nákup nebyl dokončen.',
-            'line_2' => 'Pokračujte v platbě vybráním platební metody, nebo :link ke zrušení.',
-            'link_text' => 'klikněte zde',
+            'line_2' => 'Pokračuj v platbě vybráním platební metody, nebo :link ke zrušení.',
+            'link_text' => 'klikni zde',
         ],
-        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžete umístit, ale počítejte prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
+        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
     ],
 
-    'discount' => 'ušetřete :percent%',
+    'discount' => 'ušetři :percent%',
 
     'mail' => [
         'payment_completed' => [
-            'subject' => 'Obdrželi jsme Vaši osu!store objednávku!',
+            'subject' => 'Obdrželi jsme tvou osu!store objednávku!',
         ],
     ],
 
@@ -77,7 +77,7 @@ return [
         'not_modifiable_exception' => [
             'cancelled' => 'Nemůžeš upravit svou objednávku, jelikož byla stornována.',
             'checkout' => 'Nemůžeš upravit svou objednávku, jelikož se již zpracovává.', // checkout and processing should have the same message.
-            'default' => 'Objednávka se nedá upravit',
+            'default' => 'Objednávka je neupravitelná',
             'delivered' => 'Nemůžeš upravit svou objednávku, jelikož již byla doručena.',
             'paid' => 'Nemůžeš upravit svou objednávku, jelikož jsi za ni již zaplatil.',
             'processing' => 'Nemůžeš upravit svou objednávku, jelikož se již zpracovává.',
@@ -89,14 +89,14 @@ return [
         'name' => 'Název',
 
         'stock' => [
-            'out' => 'Tato položka je momentálně vyprodána. Vraťte se prosím později!',
-            'out_with_alternative' => 'Tohle zboží bohužel není na skladě. Můžete použít rozevírací seznam pro výběr jiného druhu nebo to zkusit později!',
+            'out' => 'Tato položka je momentálně vyprodána. Vrať se prosím později!',
+            'out_with_alternative' => 'Tohle zboží bohužel není na skladě. Můžeš použít rozevírací seznam pro výběr jiného druhu nebo to zkusit později!',
         ],
 
         'add_to_cart' => 'Přidat do košíku',
         'notify' => 'Informujte mě, až bude k dispozici!',
 
-        'notification_success' => 'dáme Vám vědět až produkt znovu naskladníme. klikněte :link pro zrušení',
+        'notification_success' => 'dáme ti vědět, až produkt znovu naskladníme. klikněte :link pro zrušení',
         'notification_remove_text' => 'zde',
 
         'notification_in_stock' => 'Tento produkt je už na skladě!',
@@ -105,17 +105,17 @@ return [
     'supporter_tag' => [
         'gift' => 'darovat hráči',
         'require_login' => [
-            '_' => 'Pro obdržení supporter tagu se musíte :link!',
-            'link_text' => 'přihlásit',
+            '_' => 'Pro obdržení supporter tagu se musíš :link!',
+            'link_text' => 'přihlášený',
         ],
     ],
 
     'username_change' => [
-        'check' => 'Zadejte uživatelské jméno pro kontrolu dostupnosti!',
-        'checking' => 'Probíha kontrola dostupnosti jména :username...',
+        'check' => 'Zadej uživatelské jméno pro kontrolu dostupnosti!',
+        'checking' => 'Probíhá kontrola dostupnosti uživatelského jména :username...',
         'require_login' => [
-            '_' => 'Pro změnu uživatelského jména se musíte :link!',
-            'link_text' => 'přihlásit',
+            '_' => 'Pro změnu uživatelského jména se musíš :link!',
+            'link_text' => 'přihlášený',
         ],
     ],
 ];

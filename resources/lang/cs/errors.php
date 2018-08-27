@@ -20,25 +20,25 @@
 
 return [
     'codes' => [
-        'http-401' => 'Pro pokračování se prosím přihlašte.',
+        'http-401' => 'Pro pokračování se prosím přihlaš.',
         'http-403' => 'Přístup odepřen.',
         'http-404' => 'Nenalezeno.',
-        'http-429' => 'Příliš mnoho pokusů. Zkuste to znovu později.',
+        'http-429' => 'Příliš mnoho pokusů. Zkus to znovu později.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Došlo k chybě. Zkuste stránku obnovit.',
+            'generic' => 'Došlo k chybě. Zkus stránku obnovit.',
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Specifikován neplatný mód.',
+        'invalid_mode' => 'Byl specifikován neplatný mód.',
         'standard_converts_only' => 'Není dostupné žádné score pro zvolený mód na této obtížnosti.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Máte příliš mnoho oblíbených beatmap! Než budete pokračovat jednu odstraňte.',
     ],
-    'logged_out' => 'Byli jste odhlášeni. Přihlaste se prosím a zkuste to znovu.',
-    'supporter_only' => 'Pro použití této funkce musíte mít osu! supporter tag.',
-    'no_restricted_access' => 'Tuto akci nemůžete provést když je Váš účet v omezeném režimu.',
+    'logged_out' => 'Byl jsi odhlášen. Přihlas se prosím a zkus to znovu.',
+    'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
+    'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
     'unknown' => 'Vyskytla se neznámá chyba.',
 ];

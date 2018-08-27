@@ -29,7 +29,7 @@ return [
             'account-edit' => 'setări',
             'friends-index' => 'prieteni',
             'changelog-index' => 'jurnalul modificărilor',
-            'changelog-show' => 'versiune',
+            'changelog-build' => 'versiune',
             'getDownload' => 'descarcă',
             'getIcons' => 'pictograme',
             'groups-show' => 'grupuri',

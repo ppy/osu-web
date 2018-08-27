@@ -62,7 +62,6 @@ class BeatmapsetsController extends Controller
         $statuses = [
             ['id' => 7, 'name' => trans('beatmaps.status.any')],
             ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
             ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
             ['id' => 8, 'name' => trans('beatmaps.status.loved')],
             ['id' => 2, 'name' => trans('beatmaps.status.faves')],
@@ -242,6 +241,26 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
         $nomination = $beatmapset->nominate(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
+        }
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        (new NotifyBeatmapsetUpdate([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]))->delayedDispatch();
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
+    public function love($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetLove')->ensureCan();
+
+        $nomination = $beatmapset->love(Auth::user());
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }

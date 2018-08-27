@@ -27,12 +27,12 @@ return [
     ],
 
     'entry' => [
-        'by' => 'autorstwa :user',
+        'by' => ':user',
     ],
 
     'index' => [
         'title' => [
-            '_' => 'Lista zmian: :info',
+            '_' => 'Zmiany (:info)',
             'info' => 'Lista',
         ],
     ],

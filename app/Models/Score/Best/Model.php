@@ -25,6 +25,7 @@ use App\Libraries\ReplayFile;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
+use App\Models\UserReport;
 use DB;
 
 abstract class Model extends BaseModel
@@ -52,53 +53,9 @@ abstract class Model extends BaseModel
         }
     }
 
-    public function position()
-    {
-        if ($this->position === null) {
-            /*
-             * pp is float and comparing floats is inaccurate thanks to
-             * all the castings involved and thus it's better to obtain the
-             * number directly from database. The result is this fancy query.
-             */
-            $this->position = static::where('user_id', $this->user_id)
-                ->where('pp', '>', function ($q) {
-                    $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
-                })
-                ->count();
-        }
-
-        return $this->position;
-    }
-
-    public function weight()
-    {
-        if ($this->weight === null) {
-            $this->weight = pow(0.95, $this->position());
-        }
-
-        return $this->weight;
-    }
-
     public function weightedPp()
     {
-        return $this->weight() * $this->pp;
-    }
-
-    /**
-     * $scores shall be pre-sorted by pp (or whatever default scoring order).
-     */
-    public static function fillInPosition($scores)
-    {
-        if (!isset($scores[0])) {
-            return;
-        }
-
-        $position = $scores[0]->position();
-
-        foreach ($scores as $score) {
-            $score->position = $position;
-            $position++;
-        }
+        return $this->weight * $this->pp;
     }
 
     public function macroForListing()
@@ -323,6 +280,11 @@ abstract class Model extends BaseModel
         $userIds[] = $user->getKey();
 
         return $query->whereIn('user_id', $userIds);
+    }
+
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'score_id');
     }
 
     public function replayViewCount()

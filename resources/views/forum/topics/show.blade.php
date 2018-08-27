@@ -97,6 +97,27 @@
         ]) !!}
             @if (priv_check('ForumTopicReply', $topic)->can())
                 <div class="osu-page osu-page--small-desktop">
+                    @if (!$topic->isActive())
+                        <div class="warning-box">
+                            <div class="warning-box__icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+
+                            @if (priv_check('ForumTopicStore', $topic->forum)->can())
+                                <span>
+                                    {!! trans('forum.topic.create.necropost.new_topic._', [
+                                        'create' => link_to_route(
+                                            'forum.topics.create',
+                                            trans('forum.topic.create.necropost.new_topic.create'),
+                                            ['forum_id' => $topic->forum]
+                                        ),
+                                    ]) !!}
+                                </span>
+                            @else
+                                {{ trans('forum.topic.create.necropost.default') }}
+                            @endif
+                        </div>
+                    @endif
                     <div class="forum-post forum-post--reply js-forum-topic-reply--block">
                         <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
                             @if (Auth::check() === true)

@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'lista',
     'generic' => 'Correcções de bugs e melhorias menores.',
-    'users-online' => '1 utilizador online|:users utilizadores online',
 
-    'prefixes' => [
-        'add' => 'adição',
-        'fix' => 'conserto',
-        'misc' => 'diversos',
+    'builds' => [
+        'users_online' => ':count_delimited utilizador online|:count_delimited utilizadores online',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Registro de Alterações :info',
+            'info' => 'Listagem',
+        ],
     ],
 
     'support' => [

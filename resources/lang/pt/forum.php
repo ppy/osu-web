@@ -54,7 +54,7 @@ return [
         'posted_at' => 'publicado :when',
 
         'actions' => [
-            'destroy' => 'Publicação apagada',
+            'destroy' => 'Eliminar publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
         ],
@@ -116,14 +116,14 @@ return [
             ],
 
             'info' => [
-                'total' => 'Subscreveste a :total tópico(s).',
+                'total' => 'Subscreveste a :total tópicos.',
                 'unread' => 'Tu tens :unread respostas não-lidas a tópicos subscritos.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Anular subscrição do tópico?',
+                'confirmation' => 'Anular a subscrição do tópico?',
                 'title' => 'Anular subscrição',
             ],
         ],
@@ -133,6 +133,7 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
+            'login_reply' => 'Inicia sessão para Responder',
             'reply' => 'Resposta',
             'reply_with_quote' => 'Publicação de citação para resposta',
             'search' => 'Procurar',
@@ -147,7 +148,7 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Correr sondagem por',
+                'length' => 'Manter a sondagem por',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixa em branco para uma sondagem interminável',
                 'max_options' => 'Opções por utilizador',
@@ -224,12 +225,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Desanexar tópico',
-            'to_0_done' => 'O tópico foi desanexado',
-            'to_1' => 'Anexar tópico',
+            'to_0' => 'Despegar tópico',
+            'to_0_done' => 'O tópico foi despegado',
+            'to_1' => 'Afixar tópico',
             'to_1_done' => 'O tópico foi afixado',
-            'to_2' => 'Anexar tópico e marcar como uma declaração',
-            'to_2_done' => 'O tópico foi anexado e marcado como uma declaração',
+            'to_2' => 'Afixar tópico e marcar como uma declaração pública',
+            'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
         ],
 
         'show' => [

@@ -18,6 +18,11 @@
 
 @import "app";
 
+@font-content: 'Noto Sans', sans-serif;
+@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
@@ -47,6 +52,7 @@
 
 // here be z-indexes
 @z-index--header-bg: -1;
+
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
 
@@ -55,6 +61,7 @@
 @z-index--download-header: 1;
 @z-index--page-header: 1;
 @z-index--tournament-header: 1;
+@z-index--notification-banner-v2: 1;
 
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
@@ -205,6 +212,9 @@
 @beatmap-discussion--color-problem: @pink-dark;
 @beatmap-discussion--color-resolved: @green;
 @beatmap-discussion--color-suggestion: @yellow-dark;
+
+@beatmap-discussion--user-color-moderator: @yellow-dark;
+@beatmap-discussion--user-color-owner: @green-dark;
 
 @beatmappack-listing--gutter: 20px;
 

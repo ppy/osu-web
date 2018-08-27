@@ -32,31 +32,57 @@ class ChangelogController extends Controller
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
-    private $latestBuilds = null;
+    private $updateStreams = null;
 
     public function index()
     {
-        $this->getBuilds();
+        $this->getUpdateStreams();
 
         $chartConfig = Cache::remember(
             'chart_config_global',
             config('osu.changelog.build_history_interval'),
             function () {
                 return $this->chartConfig(null);
-            });
+            }
+        );
 
-        $builds = json_collection(
-            Build::with([
+        $search = [
+            'stream' => presence(request('stream')),
+            'from' => presence(request('from')),
+            'to' => presence(request('to')),
+            'max_id' => get_int(request('max_id')),
+            'limit' => 21,
+        ];
+
+        $builds = Build::search($search)
+            ->default()
+            ->with([
                 'updateStream',
                 'defaultChangelogs.user',
                 'defaultChangelogEntries.githubUser.user',
                 'defaultChangelogEntries.repository',
-            ])->orderBy('build_id', 'DESC')->paginate(),
-            'Build',
-            ['changelog_entries', 'changelog_entries.github_user']
-        );
+            ])->orderBy('build_id', 'DESC')
+            ->get();
 
-        return view('changelog.index', compact('chartConfig', 'builds'));
+        if (!request()->expectsJson() && count($builds) === 1 && request('no_redirect') !== '1') {
+            return ujs_redirect(build_url($builds[0]));
+        }
+
+        $buildsJson = json_collection($builds, 'Build', [
+            'changelog_entries',
+            'changelog_entries.github_user',
+        ]);
+
+        $indexJson = [
+            'builds' => $buildsJson,
+            'search' => $search,
+        ];
+
+        if (request()->expectsJson()) {
+            return $indexJson;
+        } else {
+            return view('changelog.index', compact('chartConfig', 'indexJson'));
+        }
     }
 
     public function github()
@@ -93,7 +119,7 @@ class ChangelogController extends Controller
 
     public function build($streamName, $version)
     {
-        $this->getBuilds();
+        $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
         $build = json_item(
@@ -112,18 +138,20 @@ class ChangelogController extends Controller
         return view('changelog.build', compact('build', 'chartConfig'));
     }
 
-    private function getBuilds()
+    private function getUpdateStreams()
     {
-        $this->latestBuilds = json_collection(
-            Build::latestByStream(config('osu.changelog.update_streams'))
-                ->get()
+        $this->updateStreams = json_collection(
+            UpdateStream::whereHasBuilds()
+                ->orderByField('stream_id', config('osu.changelog.update_streams'))
+                ->find(config('osu.changelog.update_streams'))
                 ->sortBy(function ($i) {
                     return $i->isFeatured() ? 0 : 1;
                 }),
-            'Build'
+            'UpdateStream',
+            ['latest_build', 'user_count']
         );
 
-        view()->share('latestBuilds', $this->latestBuilds);
+        view()->share('updateStreams', $this->updateStreams);
     }
 
     private function chartConfig($stream)
@@ -132,8 +160,8 @@ class ChangelogController extends Controller
 
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {
-                return $b['update_stream']['display_name'];
-            }, $this->latestBuilds);
+                return $b['display_name'];
+            }, $this->updateStreams);
         } else {
             $chartOrder = $this->buildChartOrder($history);
             $streamName = kebab_case($stream['display_name']);

@@ -30,20 +30,22 @@ Timeout.set(0, function () {
 
     var $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]");
 
-    var $toggle = $el.find(".js-post-delete-toggle");
-
     @if (priv_check('ForumTopicModerate')->can())
         @yield("moderatorAction")
 
-        $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
+        var $toggle = $el.find(".js-post-delete-toggle");
+
+        $toggle.html({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,
         ])) !!});
+        osu.pageChange();
     @else
         $el.css({
             minHeight: "0px",
             height: $el.css("height")
         }).slideUp(null, function () {
-            return $el.remove();
+            $el.remove();
+            osu.pageChange();
         });
     @endif
 

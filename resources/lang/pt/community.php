@@ -22,38 +22,38 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Adoras osu!?<br/>
-                                Suporta o dev do osu! :D',
+            'big_description' => 'Adoras o osu!?<br/>
+                                Suporta o desenvolvedor do osu! :D',
             'small_description' => '',
             'support_button' => 'Eu quero ajudar o osu!',
         ],
 
-        'dev_quote' => 'osu! é um jogo completamente grátis, mas mantê-lo é definitivamente não tão grátis.
+        'dev_quote' => 'osu! é um jogo completamente grátis, mas mante-lo já não é assim tão grátis. 
         Entre o custo de servidores de aluguer e banda-larga internacional de alta qualidade, o tempo gasto em manutenção do sistema e da comunidade,  -----
-        providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money!
-        Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
+        fornecer prémios para competições, responder a questões de suporte e geralmente manter as pessoas felizes, osu! consome uma boa quantidade pesada de dinheiro!
+        Ah, e não te esqueças do facto que nós o fazemos sem qualquer tipo anúncio ou parcerias com barras de ferramentas tontas e do género!
+            <br/><br/>osu! é no final do dia maioritariamente gerido por mim, o qual talvez devas conhecer melhor por "peppy".
+            Eu tive que desistir do meu trabalho do dia de forma a conseguir acompanhar com o osu!,
+            e às vezes esforço-me para manter os princípios pelos quais eu luto.
+            Eu gostaria de oferecer o meu obrigado pessoal àqueles que apoiaram o osu! até agora,
+            e tanto quanto àqueles que continuam a apoiar este jogo estupendo e comunidade no futuro :).',
 
         'supporter_status' => [
             'contribution' => 'Obrigado pelo teu apoio até agora! Contribuíste para um total de :dollars sobre compras de :tags etiquetas!',
-            'gifted' => ':giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars dados), que generoso!',
-            'not_yet' => "Ainda não tens uma etiqueta de suporte :(",
+            'gifted' => ':giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars oferecidos), que generoso!',
+            'not_yet' => "Ainda não tens uma etiqueta de apoiante :(",
             'title' => 'Estado actual de apoiante',
             'valid_until' => 'A tua etiqueta actual de apoiante é válida até :date!',
             'was_valid_until' => 'A tua etiqueta de apoiante é válida até :date.',
         ],
 
         'why_support' => [
-            'title' => 'Porque é que deveria apoiar o osu!?',
+            'title' => 'Porque é que deveria ajudar o osu!?',
             'blocks' => [
                 'dev' => 'Desenvolvido e preservado predominantemente por um tipo na Austrália',
-                'time' => 'Leva muito tempo para continuar a executar, que já não é possível chamá-lo um "hobby".',
-                'ads' => 'Sem qualquer publicidade. <br/><br/>
-                        Ao contrário dos 99.95% da web, nós não lucramos ao atirar-te cenas na tua cara.',
+                'time' => 'Leva tanto tempo para continuar a executar, que já não é possível chamá-lo um "hobby".',
+                'ads' => 'Sem quaisquer anúncios. <br/><br/>
+                        Ao contrário dos 99.95% da web, nós não lucramos ao atirar-te cenas para a tua cara.',
                 'goodies' => 'Recebes umas coisinhas boas!',
             ],
         ],
@@ -66,8 +66,8 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Transferências Automáticas',
-                'description' => 'Transferências automáticas ao jogar em multijogador, observar outros, ou clicar em ligações em chat!',
+                'title' => 'Downloads Automáticos',
+                'description' => 'Downloads automáticos ao jogar em multijogador, observar outros, ou clicar em links no chat!',
             ],
 
             'upload_more' => [
@@ -96,7 +96,7 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Transferências Velozes',
+                'title' => 'Downloads Velozes',
                 'description' => 'Mais restrições de transferências brandas, especialmente ao usar o osu!direct.',
             ],
 
@@ -117,7 +117,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Ordenar Opções',
-                'description' => 'A habilidade de ver classificações nacional / amigo / mod-específico dum beatmap dentro do jogo.',
+                'description' => 'A habilidade de ver as classificações nacional / amigo / mod-específico dum beatmap dentro do jogo.',
             ],
 
             'feel_special' => [
@@ -126,14 +126,14 @@ return [
             ],
 
             'more_to_come' => [
-                'title' => 'Mais p\'ra vir',
+                'title' => 'Mais por vir',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
             'title' => 'Estou convencido! :D',
-            'support' => 'apoia o osu!',
+            'support' => 'ajuda o osu!',
             'gift' => 'ou dá apoio a outros jogadores',
             'instructions' => 'clica no botão do coração para proceder à osu!store',
         ],

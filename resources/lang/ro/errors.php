@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Te rugăm să te autentifici pentru a continua.',
         'http-403' => 'Acces respins.',
+        'http-404' => 'Negăsit.',
         'http-429' => 'Prea multe încercări. Încearcă din nou mai târziu.',
     ],
     'account' => [

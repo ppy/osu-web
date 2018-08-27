@@ -42,7 +42,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -182,6 +182,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $history = new UsernameChangeHistory();
             $history->username = $newUsername;
             $history->username_last = $oldUsername;
+            $history->timestamp = Carbon::now();
             $history->type = $type;
 
             if (!$this->usernameChangeHistory()->save($history)) {
@@ -705,6 +706,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+    }
+
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'user_id');
+    }
+
+    public function reportsMade()
+    {
+        return $this->hasMany(UserReport::class, 'reporter_id');
     }
 
     public function userGroups()

@@ -20,16 +20,16 @@
 
 return [
     'box' => [
-        'sent' => 'Na email :mail jsme poslali ověřovací kód. Zadejte ho prosím.',
+        'sent' => 'Na email :mail jsme poslali ověřovací kód. Zadej ho prosím.',
         'title' => 'Ověření účtu',
         'verifying' => 'Probíhá ověřování...',
         'issuing' => 'Vydávání nového kódu...',
 
         'info' => [
-            'check_spam' => "Pokud email nevidíte, zkuste se podívat do složky se spamem.",
-            'recover' => "Pokud nemáte přístup ke svému emailu nebo jste zapomněli jaký jste použili, prosím postupujte podle :link.",
-            'recover_link' => 'procesu pro obnovení emailu zde',
-            'reissue' => 'Můžete také :reissue_link nebo :logout_link.',
+            'check_spam' => "Pokud email nevidíš, zkus se podívat do složky se spamem.",
+            'recover' => "Pokud nemáš přístup ke svému emailu nebo jsi zapomněl jaký jsi použil, prosím postupuj podle :link.",
+            'recover_link' => 'proces pro obnovení emailu zde',
+            'reissue' => 'Můžeš také :reissue_link nebo :logout_link.',
             'reissue_link' => 'vyžádat další kód',
             'logout_link' => 'odhlásit se',
         ],

@@ -100,7 +100,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
         return $this->item($score, function ($score) {
             return [
-                'percentage' => $score->weight() * 100,
+                'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
             ];
         });

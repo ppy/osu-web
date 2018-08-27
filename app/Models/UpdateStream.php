@@ -49,6 +49,18 @@ class UpdateStream extends Model
         );
     }
 
+    public function scopeWhereHasBuilds($query)
+    {
+        $query->whereHas('builds', function ($q) {
+            $buildInstance = new Build;
+            $table = $buildInstance->getTable();
+            $database = $buildInstance->dbName();
+            $qualifiedTable = "{$database}.{$table}";
+
+            $q->from($qualifiedTable)->default()->whereRaw("{$qualifiedTable}.stream_id = stream_id");
+        });
+    }
+
     public function createBuild()
     {
         $entryIds = model_pluck(
@@ -66,5 +78,20 @@ class UpdateStream extends Model
         $build->changelogEntries()->attach($entryIds);
 
         return $build;
+    }
+
+    public function latestBuild()
+    {
+        return $this->builds()->orderBy('build_id', 'DESC')->first();
+    }
+
+    public function userCount()
+    {
+        return (int) $this->builds()->where('allow_bancho', '=', true)->sum('users');
+    }
+
+    public function isFeatured()
+    {
+        return $this->getKey() === config('osu.changelog.featured_stream');
     }
 }
