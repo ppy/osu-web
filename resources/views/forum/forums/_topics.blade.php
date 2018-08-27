@@ -16,12 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="forum-topics">
-    @if (isset($forum))
-        <div class="forum-topics__new-topic">
-            @include('forum.forums._new_topic', compact('forum'))
-        </div>
-    @endif
-
     <h2 class="forum-topics__title">
         {{ $title }}
     </h2>

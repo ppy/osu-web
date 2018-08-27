@@ -72,17 +72,18 @@
             @include('forum.forums._topics', [
                 'title' => trans('forum.pinned_topics'),
                 'topics' => $pinnedTopics,
-                'forum' => null,
             ])
         @endif
 
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
+                <div class="forum-topics__new-topic">
+                    @include('forum.forums._new_topic', compact('forum'))
+                </div>
+
                 @include('forum.forums._topics', [
                     'title' => trans('forum.topics._'),
                     'topics' => $topics,
-                    'withNewTopicLink' => $forum->isOpen(),
-                    'forum' => $forum,
                 ])
 
                 <div class="forum-topics-pager">
