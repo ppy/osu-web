@@ -60,6 +60,8 @@ return [
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
 
+        'necropost_months' => 6,
+
         'double_post_time' => [
             'author' => 24,
             'normal' => 72,

@@ -83,7 +83,7 @@ class @BlockButton extends React.PureComponent
 
     button
       type: 'button'
-      className: bn
+      className: "#{bn} #{bn}--block"
       onClick: @clicked
       ref: @setButton
       disabled: @state.loading
