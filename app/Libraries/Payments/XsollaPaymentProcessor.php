@@ -30,6 +30,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
     const PAYMENT_NOTIFICATION_TYPES = ['payment', 'refund'];
     const USER_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
+    public function getCountryCode()
+    {
+        return $this['user.country'];
+    }
+
     public function getOrderNumber()
     {
         return $this['transaction.external_id'];

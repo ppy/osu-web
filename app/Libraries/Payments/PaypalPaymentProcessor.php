@@ -25,6 +25,11 @@ use Carbon\Carbon;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
+    public function getCountryCode()
+    {
+        return $this['residence_country'];
+    }
+
     public function getOrderNumber()
     {
         // If refund, there might not be an invoice id in production.
