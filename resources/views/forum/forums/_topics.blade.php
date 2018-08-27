@@ -16,17 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="forum-topics">
-    @if ($withNewTopicLink ?? false)
-        @php
-            $newTopicAuth = priv_check('ForumTopicStore', $forum);
-            $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
-        @endphp
-
+    @if (isset($forum))
         <div class="forum-topics__new-topic">
-            @include('forum.forums._new_topic', [
-                'disabled' => !$newTopicEnabled,
-                'disabledReason' => $newTopicAuth->message(),
-            ])
+            @include('forum.forums._new_topic', compact('forum'))
         </div>
     @endif
 

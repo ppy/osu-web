@@ -72,6 +72,7 @@
             @include('forum.forums._topics', [
                 'title' => trans('forum.pinned_topics'),
                 'topics' => $pinnedTopics,
+                'forum' => null,
             ])
         @endif
 
@@ -86,7 +87,7 @@
 
                 <div class="forum-topics-pager">
                     <div class="forum-topics-pager__column">
-                        @include('forum.forums._new_topic')
+                        @include('forum.forums._new_topic', compact('forum'))
                     </div>
 
                     <div class="forum-topics-pager__column">
