@@ -16,7 +16,15 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<a class="btn-osu-big btn-osu-big--forum-new-topic js-user-link"
+@php
+    $newTopicAuth = priv_check('ForumTopicStore', $forum);
+    $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
+
+    $disabled = !$newTopicEnabled;
+    $disabledReason = $newTopicAuth->message();
+@endphp
+
+<a class="btn-osu-big btn-osu-big--forum-new-topic js-login-required--click"
     href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
     @if (Auth::check())
         <span class="btn-osu-big__content">
