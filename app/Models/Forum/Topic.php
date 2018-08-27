@@ -567,6 +567,11 @@ class Topic extends Model implements AfterCommit
         return $this->topic_status !== static::STATUS_UNLOCKED;
     }
 
+    public function isActive()
+    {
+        return $this->topic_last_post_time > Carbon::now()->subMonths(config('osu.forum.necropost_months'));
+    }
+
     public function markRead($user, $markTime)
     {
         if ($user === null) {
@@ -761,11 +766,7 @@ class Topic extends Model implements AfterCommit
             $minHours = config('osu.forum.double_post_time.normal');
         }
 
-        return $this
-            ->topic_last_post_time
-            ->copy()
-            ->addHours($minHours)
-            ->isFuture();
+        return $this->topic_last_post_time > Carbon::now()->subHours($minHours);
     }
 
     public function isFeatureTopic()

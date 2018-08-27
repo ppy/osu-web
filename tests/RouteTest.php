@@ -63,16 +63,6 @@ class RouteTest extends TestCase
     }
 
     /**
-     * Test the support page doesn't error.
-     *
-     * @return void
-     */
-    public function testSupportRoutes()
-    {
-        $this->assertGetRoutes(['/help/support']);
-    }
-
-    /**
      * Test the ranking pages don't error.
      *
      * @return void

@@ -327,18 +327,12 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkBeatmapsetLove($user, $beatmapset)
+    public function checkBeatmapsetLove($user)
     {
         $this->ensureLoggedIn($user);
 
-        static $prefix = 'beatmap_discussion.nominate.';
-
         if (!($user->isGMT() || $user->isQAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
             return 'unauthorized';
-        }
-
-        if ($user->getKey() === $beatmapset->user_id) {
-            return $prefix.'owner';
         }
 
         return 'ok';
@@ -885,6 +879,13 @@ class OsuAuthorize
     }
 
     public function checkUserFavouriteRemove($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
+    public function checkUserReport($user)
     {
         $this->ensureLoggedIn($user);
 
