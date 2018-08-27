@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<a class="btn-osu-big btn-osu-big--forum-new-topic"
+<a class="btn-osu-big btn-osu-big--forum-new-topic js-user-link"
     href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
     @if (Auth::check())
         <span class="btn-osu-big__content">
