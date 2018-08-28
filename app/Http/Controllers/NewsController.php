@@ -20,8 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
-use Request;
+use App\Models\NewsPost;
 
 class NewsController extends Controller
 {
@@ -30,19 +29,18 @@ class NewsController extends Controller
 
     public function index()
     {
-        $page = get_int(Request::input('page'));
-        $limit = get_int(Request::input('limit'));
+        NewsPost::syncAll();
 
         return view('news.index', [
-            'posts' => News\Index::all($page, $limit),
+            'posts' => NewsPost::default()->paginate(),
         ]);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = (new News\Post($id));
+        $post = NewsPost::lookupAndSync($slug);
 
-        if ($post->page() === null) {
+        if ($post === null || $post->published_at === null) {
             abort(404);
         }
 
@@ -53,7 +51,7 @@ class NewsController extends Controller
     {
         priv_check('NewsIndexUpdate')->ensureCan();
 
-        News\Index::cacheClear();
+        NewsPost::syncAll(true);
 
         return ['message' => trans('news.store.ok')];
     }
@@ -62,7 +60,7 @@ class NewsController extends Controller
     {
         priv_check('NewsPostUpdate')->ensureCan();
 
-        (new News\Post($id))->cacheClear();
+        NewsPost::findOrFail($id)->sync(true);
 
         return ['message' => trans('news.update.ok')];
     }
