@@ -142,15 +142,18 @@ class ProfilePage.HeaderExtra extends React.Component
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
-            @fancyLink
+            div
+              className: "#{bn}__row"
               key: 'location'
               icon: 'fas fa-map-marker-alt'
 
-            @fancyLink
+            div
+              className: "#{bn}__row"
               key: 'interests'
               icon: 'far fa-heart'
 
-            @fancyLink
+            div
+              className: "#{bn}__row"
               key: 'occupation'
               icon: 'fas fa-suitcase'
 
