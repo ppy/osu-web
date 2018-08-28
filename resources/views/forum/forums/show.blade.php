@@ -77,7 +77,7 @@
 
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
-                <div class="forum-topics__new-topic">
+                <div class="forum-topics forum-topics--new-topic">
                     @include('forum.forums._new_topic', compact('forum'))
                 </div>
 

@@ -18,10 +18,18 @@
 
 .forum-topics-pager {
   display: flex;
-  margin: 0px 40px;
   align-items: center;
+  margin: 0px 40px;
+  min-height: 4em; // don't look too silly if there's no pager.
+
+  @media @mobile {
+    // so the pager doesn't get squashed.
+    // some reordering magic will probably be required if a right side button gets added.
+    flex-direction: column;
+  }
 
   &__column {
     flex: 1 1 0;
+    width: 100%;
   }
 }
