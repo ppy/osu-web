@@ -81,7 +81,7 @@
                         <span class="fas fa-chevron-circle-left"></span>
                     </a>
                 @endif
-                @if ($post->newer() === null)
+                @if ($post->older() === null)
                     <span
                         class="news__nav-button"
                         title="{{ trans('news.show.nav.older') }}"
