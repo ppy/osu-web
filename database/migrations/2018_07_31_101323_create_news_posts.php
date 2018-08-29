@@ -23,7 +23,6 @@ class CreateNewsPosts extends Migration
             $table->timestampsTz();
             $table->timestampTz('published_at')->nullable();
 
-            $table->index('slug');
             $table->index('published_at');
         });
     }
