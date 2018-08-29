@@ -145,7 +145,11 @@
       display: flex;
       font-style: italic;
       max-width: 400px;
-      color: @blue;
+
+      :not(a) {
+        color: @blue;
+      }
+
     }
 
     // halp
