@@ -145,9 +145,11 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'location'
               icon: 'fas fa-map-marker-alt'
+
             @fancyLink
               key: 'interests'
               icon: 'far fa-heart'
+
             @fancyLink
               key: 'occupation'
               icon: 'fas fa-suitcase'
