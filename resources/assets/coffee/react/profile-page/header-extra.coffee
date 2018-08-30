@@ -226,6 +226,7 @@ class ProfilePage.HeaderExtra extends React.Component
         __html:
           osu.trans 'users.show.post_count._',
             link: link
+            style: fontStyle: 'color: @blue'
 
 
   fancyLink: ({key, url, icon, text, title}) =>
