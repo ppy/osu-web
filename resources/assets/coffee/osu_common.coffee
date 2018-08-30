@@ -194,7 +194,7 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
-  maybeUrl: (url) ->
+  urlPresence: (url) ->
     "url(#{url})" if url?
 
 

@@ -56,7 +56,7 @@ class ProfilePage.Badges extends React.Component
         div className: 'profile-badges__stripe',
           div
             className: 'profile-badges__badge'
-            style: backgroundImage: osu.maybeUrl(badge.image_url)
+            style: backgroundImage: osu.urlPresence(badge.image_url)
             title: badge.description
     else
       div
@@ -72,7 +72,7 @@ class ProfilePage.Badges extends React.Component
             div
               key: badge.image_url
               className: 'profile-badges__badge'
-              style: backgroundImage: osu.maybeUrl(badge.image_url)
+              style: backgroundImage: osu.urlPresence(badge.image_url)
               title: badge.description
         div className: 'profile-badges__counter',
           osu.transChoice('common.count.badges', @props.badges.length)

@@ -69,7 +69,7 @@ class BeatmapsetPage.Header extends React.Component
       div
         className: 'beatmapset-header__content'
         style:
-          backgroundImage: osu.maybeUrl(@props.beatmapset.covers.cover)
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
         div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 

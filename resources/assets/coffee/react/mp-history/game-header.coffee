@@ -40,7 +40,7 @@ class MPHistory.GameHeader extends React.Component
       className: 'mp-history-game__header'
       href: (laroute.route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
       style:
-        backgroundImage: osu.maybeUrl(@props.beatmapset.covers.cover)
+        backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
       div
         className: 'mp-history-game__header-overlay'
