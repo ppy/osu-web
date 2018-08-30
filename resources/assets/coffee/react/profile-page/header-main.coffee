@@ -61,7 +61,7 @@ class ProfilePage.HeaderMain extends React.Component
     div
       className: mainClasses
       style:
-        backgroundImage: "url('#{@state.coverUrl}')"
+        backgroundImage: osu.urlPresence(@state.coverUrl)
 
       @renderTournamentBanner modifiers: ['top']
 
