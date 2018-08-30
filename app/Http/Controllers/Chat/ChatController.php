@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -30,9 +31,6 @@ use Request;
 
 class ChatController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'messages-';
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -42,19 +40,19 @@ class ChatController extends Controller
 
     public function updates()
     {
-        if (!Request::has('since')) {
+        if (!present(Request::input('since'))) {
             abort(422);
         }
 
         $since = Request::input('since');
-        $limit = clamp(get_int(Request::input('limit', 50)), 1, 50);
+        $limit = clamp(get_int(Request::input('limit')) || 50, 1, 50);
 
         $messages = Message::forUser(Auth::user())
             ->with('sender')
             ->since($since)
             ->limit($limit);
 
-        if (Request::has('channel_id')) {
+        if (present(Request::input('channel_id'))) {
             $messages->where('channel_id', get_int(Request::input('channel_id')));
         }
 
@@ -142,13 +140,12 @@ class ChatController extends Controller
         $channel = Channel::where('name', $channelName)->first();
 
         if (!$channel) {
-            DB::transaction(function () use ($userIds, $channelName) {
+            $channel = DB::transaction(function () use ($userIds, $channelName) {
                 $channel = new Channel();
                 $channel->name = $channelName;
                 $channel->type = Channel::TYPES['pm'];
                 $channel->description = ''; // description is not nullable
                 $channel->save();
-                $channel->fresh();
 
                 foreach ($userIds as $id) {
                     $userChannel = new UserChannel();
@@ -156,8 +153,9 @@ class ChatController extends Controller
                     $userChannel->channel_id = $channel->channel_id;
                     $userChannel->save();
                 }
+
+                return $channel;
             });
-            $channel = Channel::where('name', $channelName)->first();
         }
 
         try {
@@ -166,9 +164,9 @@ class ChatController extends Controller
                 Request::input('message'),
                 get_bool(Request::input('is_action', false))
             );
-        } catch (ChatMessageTooLongException $e) {
+        } catch (API\ChatMessageTooLongException $e) {
             return error_popup($e->getMessage(), 422);
-        } catch (ExcessiveChatMessagesException $e) {
+        } catch (API\ExcessiveChatMessagesException $e) {
             return error_popup($e->getMessage(), 429);
         }
 

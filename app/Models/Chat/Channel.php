@@ -80,7 +80,7 @@ class Channel extends Model
 
     public function pmTargetFor(User $user)
     {
-        if (!$user || !$this->isPM()) {
+        if (!$this->isPM()) {
             return;
         }
 
@@ -90,7 +90,7 @@ class Channel extends Model
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
     {
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
-            throw new ChatMessageTooLongException(trans('api.error.chat.too_long'));
+            throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
         }
 
         $sentMessages = Message::where('user_id', $sender->user_id)
@@ -109,18 +109,18 @@ class Channel extends Model
         $sentMessages->where('timestamp', '>=', Carbon::now()->subSecond($window));
 
         if ($sentMessages->count() > $limit) {
-            throw new ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
+            throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
         }
 
         $message = new Message();
         $message->user_id = $sender->user_id;
         $message->content = $content;
         $message->is_action = $isAction;
+        $message->timestamp = Carbon::now();
         $message->channel()->associate($this);
         $message->save();
-        $message = $message->fresh();
 
-        $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id]);
+        $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id])->first();
         if ($userChannel) {
             $userChannel->update(['last_read_id' => $message->message_id]);
         }

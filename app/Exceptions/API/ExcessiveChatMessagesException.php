@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Exceptions;
+namespace App\Exceptions\API;
 
 use Exception;
 
