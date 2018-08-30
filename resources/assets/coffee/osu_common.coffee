@@ -194,6 +194,10 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
+  maybeUrl: (url) ->
+    "url(#{url})" if url?
+
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action

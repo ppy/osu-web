@@ -31,7 +31,7 @@ class @BeatmapsetMapping extends React.PureComponent
         href: laroute.route 'users.show', user: user.id
         className: 'avatar avatar--beatmapset'
         style:
-          backgroundImage: "url(#{user.avatar_url})"
+          backgroundImage: osu.maybeUrl(user.avatar_url)
 
       div className: "#{bn}__content",
         div
