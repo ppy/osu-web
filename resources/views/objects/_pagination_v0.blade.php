@@ -17,7 +17,11 @@
 --}}
 @if ($object->lastPage() > 1)
     @php
-        $currentPage = min($object->currentPage(), $object->lastPage());
+        if ($object->currentPage() > $object->lastPage()) {
+            $currentPage = $object->lastPage() + 1;
+        } else {
+            $currentPage = $object->currentPage();
+        }
     @endphp
 
     <nav class="pagination-v0">
@@ -78,7 +82,7 @@
                 @endif
             </li>
             <li class="pagination-v0__item">
-                @if ($currentPage === $object->lastPage())
+                @if ($currentPage >= $object->lastPage())
                     <span class="pagination-v0__link pagination-v0__link--big">
                         {{ trans("common.pagination.next") }}
                         <i class="fas fa-angle-right"></i>
