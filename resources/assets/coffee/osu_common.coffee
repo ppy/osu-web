@@ -195,7 +195,7 @@
 
 
   urlPresence: (url) ->
-    "url(#{url})" if osu.presence(url)
+    "url(#{url})" if osu.presence(url)?
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
