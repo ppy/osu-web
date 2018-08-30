@@ -100,11 +100,11 @@
 
   &__fancy-link-icon {
     margin-right: 5px;
-    color: @blue-light;
+    color: #fff;
   }
 
   &__fancy-link-text {
-    .link-white();
+    .link-blue();
   }
 
   &__rank-box {
@@ -139,12 +139,21 @@
 
   &__row {
     display: block;
-    color: @blue-light;
+    color: #fff;
 
     &--fancy-link {
       display: flex;
       font-style: italic;
       max-width: 400px;
+      color: @blue;
+
+      :not(a) {
+        color: #fff;
+      }
+
+      span {
+        color: @blue;
+      }
     }
 
     // halp
