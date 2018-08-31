@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,31 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topics {
-  @_top: forum-topics;
+.forum-topics-pager {
+  display: flex;
+  align-items: center;
+  margin: 0px 40px;
+  min-height: 4em; // don't look too silly if there's no pager.
 
-  &--new-topic {
-    margin: 30px 40px;
+  @media @mobile {
+    // so the pager doesn't get squashed.
+    // some reordering magic will probably be required if a right side button gets added.
+    flex-direction: column;
   }
 
-  &--subforums {
-    margin: 0 20px;
-  }
-
-  &__entries {
-    margin: 0 0 20px;
-    padding: 0;
-  }
-
-  &__title {
-    color: @gray;
-    font-size: @font-size--title-small-3;
-    margin: 30px 0 0;
-    padding: 0 40px 5px;
-
-    .@{_top}--subforums & {
-      padding-left: 0;
-      padding-right: 0;
+  &__buttons {
+    min-width: 150px;
+    @media @mobile {
+      width: 100%;
     }
+  }
+
+  &__pager {
+    width: 100%;
   }
 }

@@ -77,20 +77,32 @@
 
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
+                <div class="forum-topics forum-topics--new-topic">
+                    @include('forum.forums._new_topic', compact('forum'))
+                </div>
+
                 @include('forum.forums._topics', [
                     'title' => trans('forum.topics._'),
                     'topics' => $topics,
-                    'withNewTopicLink' => $forum->isOpen(),
-                    'forum' => $forum,
                 ])
 
-                @include('objects._pagination_v0', ['object' => $topics
-                    ->fragment('topics')
-                    ->appends([
-                        'sort' => Request::input('sort'),
-                        'with_replies' => Request::input('with_replies'),
-                    ])
-                ])
+                <div class="forum-topics-pager">
+                    <div class="forum-topics-pager__buttons">
+                        @include('forum.forums._new_topic', compact('forum'))
+                    </div>
+
+                    <div class="forum-topics-pager__pager">
+                        @include('objects._pagination_v0', ['object' => $topics
+                            ->fragment('topics')
+                            ->appends([
+                                'sort' => Request::input('sort'),
+                                'with_replies' => Request::input('with_replies'),
+                            ])
+                        ])
+                    </div>
+
+                    <div class="forum-topics-pager__buttons">{{-- keeps pager centred --}}</div>
+                </div>
             @endif
         </div>
     </div>
