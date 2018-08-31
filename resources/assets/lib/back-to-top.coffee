@@ -19,8 +19,6 @@
 import { createElement as el, PureComponent } from 'react'
 import { div, i } from 'react-dom-factories'
 
-bn = 'back-to-top'
-
 export class BackToTop extends PureComponent
   constructor: (props) ->
     super props
@@ -34,8 +32,9 @@ export class BackToTop extends PureComponent
       window.scrollTo(window.scrollX, @state.lastScrollY)
       @setState lastScrollY: null
     else
+      scrollY = if @props.anchor? then $(@props.anchor.current).offset().top else 0
       @setState lastScrollY: window.scrollY
-      window.scrollTo(window.scrollX, 0)
+      window.scrollTo(window.scrollX, scrollY)
 
 
   render: =>

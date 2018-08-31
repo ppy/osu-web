@@ -66,6 +66,7 @@ class Beatmaps.Main extends React.PureComponent
     @state.columnCount = @columnCount()
 
     @backToTop = React.createRef()
+    @backToTopAnchor = React.createRef()
 
 
   columnCount: () ->
@@ -101,7 +102,9 @@ class Beatmaps.Main extends React.PureComponent
     searchBackground = @state.beatmaps[0]?.covers?.cover
     supporterFilters = @supporterFiltersTrans()
 
-    div className: 'osu-layout__section',
+    div
+      className: 'osu-layout__section'
+      ref: @backToTopAnchor
       el Beatmaps.SearchPanel,
         background: searchBackground
         availableFilters: @props.availableFilters
@@ -143,7 +146,9 @@ class Beatmaps.Main extends React.PureComponent
 
           el(Beatmaps.Paginator, paging: @state.paging) unless @isSupporterMissing()
 
-      el window._exported.BackToTop, ref: @backToTop
+      el window._exported.BackToTop,
+        anchor: @backToTopAnchor
+        ref: @backToTop
 
 
   renderLinkToSupporterTag: (filters) ->
