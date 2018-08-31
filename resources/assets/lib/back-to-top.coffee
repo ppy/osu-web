@@ -16,27 +16,40 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { createElement as el, PureComponent } from 'react'
+import { createElement as el, createRef, PureComponent } from 'react'
 import { div, i } from 'react-dom-factories'
 
 export class BackToTop extends PureComponent
   constructor: (props) ->
     super props
+
+    @container = createRef()
+
     @state =
       lastScrollY: null
 
 
-  onClick: (e) =>
-    console.log @state
+  # remove qtip so it doesn't spaz on scrollTo
+  destroyTooltip: =>
+    if @container.current._tooltip
+      $(@container.current).qtip('api')?.destroy()
+      @container.current._tooltip = false
+
+
+  onClick: (_e) =>
     if @state.lastScrollY?
+      @destroyTooltip()
       window.scrollTo(window.scrollX, @state.lastScrollY)
+
       @setState lastScrollY: null
     else
       scrollY = if @props.anchor? then $(@props.anchor.current).offset().top else 0
       if window.scrollY > scrollY
         @setState lastScrollY: window.scrollY
 
+        @destroyTooltip()
         window.scrollTo(window.scrollX, scrollY)
+
         Timeout.set 0, () =>
           document.addEventListener 'scroll', @onScroll
 
@@ -45,10 +58,13 @@ export class BackToTop extends PureComponent
     @setState lastScrollY: null
     document.removeEventListener 'scroll', @onScroll
 
+
   render: =>
     div
       className: 'back-to-top'
       onClick: @onClick
+      title: if @state.lastScrollY? then 'back to previous position' else 'back to top'
+      ref: @container
       i className: if @state.lastScrollY? then 'fas fa-angle-down' else 'fas fa-angle-up'
 
 
