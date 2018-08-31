@@ -68,6 +68,19 @@ class ChatControllerTest extends TestCase
             )->assertStatus(403);
     }
 
+    public function testCreatePMWithSelf() // fail
+    {
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->user->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(422);
+    }
+
     public function testCreatePMWhenFriendsOnlyAndNotFriended() // fail
     {
         $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
