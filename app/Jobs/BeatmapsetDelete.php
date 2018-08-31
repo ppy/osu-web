@@ -18,16 +18,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Jobs;
 
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Storage;
 
-class BeatmapsetDelete
+class BeatmapsetDelete implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     /** @var Beatmapset */
     private $beatmapset;
 
@@ -40,7 +47,7 @@ class BeatmapsetDelete
         $this->beatmapset = $beatmapset;
     }
 
-    public function run()
+    public function handle()
     {
         // Extra check that doesn't get bypassed by admin permissions.
         if ($this->beatmapset->isScoreable()) {
