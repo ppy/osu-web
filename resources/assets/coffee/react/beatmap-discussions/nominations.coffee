@@ -258,12 +258,13 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     @xhr?.abort()
 
+    user = @props.beatmapset.user_id
     url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
     params = method: 'DELETE'
 
     @xhr = $.ajax(url, params)
       .done ->
-        Turbolinks.visit laroute.route('users.show', user: @props.beatmapset.user_id)
+        Turbolinks.visit laroute.route('users.show', { user })
       .fail osu.ajaxError
       .always LoadingOverlay.hide
 
