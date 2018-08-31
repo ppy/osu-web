@@ -30,6 +30,8 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Back to top',
+        'back_to_previous' => 'Return to previous position',
         'cancel' => 'Cancel',
         'change' => 'change',
         'click_to_copy' => 'click to copy to clipboard',

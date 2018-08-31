@@ -63,7 +63,7 @@ export class BackToTop extends PureComponent
     div
       className: 'back-to-top'
       onClick: @onClick
-      title: if @state.lastScrollY? then 'back to previous position' else 'back to top'
+      title: if @state.lastScrollY? then osu.trans('common.buttons.back_to_previous') else osu.trans('common.buttons.back_to_top')
       ref: @container
       i className: if @state.lastScrollY? then 'fas fa-angle-down' else 'fas fa-angle-up'
 
