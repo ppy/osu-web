@@ -28,7 +28,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 {
     public function getCountryCode()
     {
-        return $this['countryCode'];
+        return $this['country'] ?? $this['countryCode'];
     }
 
     public function getOrderNumber()
