@@ -28,8 +28,14 @@
     flex-direction: column;
   }
 
-  &__column {
-    flex: 1 1 0;
+  &__buttons {
+    min-width: 150px;
+    @media @mobile {
+      width: 100%;
+    }
+  }
+
+  &__pager {
     width: 100%;
   }
 }

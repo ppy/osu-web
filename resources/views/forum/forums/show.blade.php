@@ -87,11 +87,11 @@
                 ])
 
                 <div class="forum-topics-pager">
-                    <div class="forum-topics-pager__column">
+                    <div class="forum-topics-pager__buttons">
                         @include('forum.forums._new_topic', compact('forum'))
                     </div>
 
-                    <div class="forum-topics-pager__column">
+                    <div class="forum-topics-pager__pager">
                         @include('objects._pagination_v0', ['object' => $topics
                             ->fragment('topics')
                             ->appends([
@@ -101,7 +101,7 @@
                         ])
                     </div>
 
-                    <div class="forum-topics-pager__column"></div>
+                    <div class="forum-topics-pager__buttons">{{-- keeps pager centred --}}</div>
                 </div>
             @endif
         </div>
