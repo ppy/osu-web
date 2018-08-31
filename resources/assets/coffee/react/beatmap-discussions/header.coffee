@@ -79,7 +79,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       div
         className: "#{bn}__content"
         style:
-          backgroundImage: "url('#{@props.beatmapset.covers.cover}')"
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
         a
           className: "#{bn}__title-container"
