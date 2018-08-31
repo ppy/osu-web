@@ -152,6 +152,8 @@ class Beatmaps.SearchPanel extends React.PureComponent
           default: @props.filterDefaults.played
           selected: @props.filters.played
 
+      el window._exported.BackToTop
+
 
   submit: (e) =>
     text = e.target.value.trim()
