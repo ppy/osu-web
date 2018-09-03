@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, img, small, span} = ReactDOMFactories
+{a, div, i, img, small, span} = ReactDOMFactories
 el = React.createElement
 
 @PlayDetail = ({score}) ->
@@ -84,3 +84,9 @@ el = React.createElement
               className: 'detail-row__text-score'
               osu.trans 'users.show.extra.historical.recent_plays.accuracy',
                 percentage: "#{(score.accuracy * 100).toFixed(2)}%"
+
+      div
+        className: 'detail-row__detail-column detail-row__detail-column--more'
+        div
+          className: 'detail-row__more'
+          i className: 'fas fa-ellipsis-v'

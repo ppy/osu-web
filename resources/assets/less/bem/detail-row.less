@@ -63,6 +63,11 @@
       flex: 1;
     }
 
+    &--more {
+      display: flex;
+      align-self: stretch;
+    }
+
     &--score-data {
       display: flex;
       flex-direction: column;
@@ -88,6 +93,10 @@
     }
   }
 
+  &__more {
+    .center-content();
+    padding: 5px;
+  }
 
   &__score-data {
     display: inline-flex;
