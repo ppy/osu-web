@@ -16,16 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topics-pager {
+.forum-topics-spacer {
   display: flex;
   align-items: center;
   margin: 0px 40px;
-  min-height: 4em; // don't look too silly if there's no pager.
 
   @media @mobile {
     // so the pager doesn't get squashed.
     // some reordering magic will probably be required if a right side button gets added.
     flex-direction: column;
+  }
+
+  &--pager {
+    min-height: 4em; // don't look too silly if there's no pager.
   }
 
   &__buttons {
