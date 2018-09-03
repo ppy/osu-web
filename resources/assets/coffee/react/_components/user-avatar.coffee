@@ -25,6 +25,6 @@ bn = 'avatar'
     div
       className: osu.classWithModifiers(bn, props.modifiers)
       style:
-        backgroundImage: "url('#{props.user.avatar_url}')"
+        backgroundImage: osu.urlPresence(props.user.avatar_url)
   else
     div className: osu.classWithModifiers(bn, _.concat(props.modifiers, 'guest'))

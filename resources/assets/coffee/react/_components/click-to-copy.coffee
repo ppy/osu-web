@@ -53,7 +53,7 @@ class @ClickToCopy extends React.PureComponent
     return span() if !@props.value
 
     a
-      className: bn
+      className: osu.classWithModifiers bn, @props.modifiers ? []
       'data-tooltip-pin-position': true
       'data-tooltip-position': 'bottom center'
       href: '#'

@@ -43,7 +43,7 @@ $ ./bin/db_setup.sh
 $ ./build.sh
 ```
 
-At this point you should be access the site via whatever webserver you configured
+At this point you should be able to access the site via whatever webserver you configured
 
 ## 2. Automated setup for Ubuntu
 

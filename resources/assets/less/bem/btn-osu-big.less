@@ -138,6 +138,20 @@
     .center-content();
   }
 
+  &--forum-new-topic {
+    border-radius: 18px;
+    padding: 0 10px;
+    height: 36px;
+    width: 100%;
+    // remove line descenders on <a>; should probably go on the block if
+    // the existing doesn't magically break.
+    vertical-align: middle;
+
+    .@{top}__icon {
+      font-size: 120%;
+    }
+  }
+
   &--forum-reply {
     border-radius: (@btn-circle-diameter / 2);
     padding: 0 5px;
