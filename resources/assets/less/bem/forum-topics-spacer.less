@@ -19,7 +19,7 @@
 .forum-topics-spacer {
   display: flex;
   align-items: center;
-  margin: 30px 40px;
+  margin: 30px @forum-topic-entry--main-margin;
 
   @media @mobile {
     // so the pager doesn't get squashed.
@@ -34,7 +34,7 @@
   }
 
   &__buttons {
-    min-width: 150px;
+    min-width: @forum-topic-new-topic-button--width;
 
     @media @mobile {
       width: 100%;
