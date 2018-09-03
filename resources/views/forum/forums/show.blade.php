@@ -102,6 +102,8 @@
                             ])
                         ])
                     </div>
+
+                    <div class="forum-topics-spacer__buttons">{{-- keeps pager centred --}}</div>
                 </div>
             @endif
         </div>

@@ -35,29 +35,14 @@
 
   &__buttons {
     min-width: @forum-topic-new-topic-button--width;
+    flex: 1;
 
     @media @mobile {
       width: 100%;
     }
-
-    // needs to:
-    // - expand to fit text.
-    // - not affect pager layout.
-    // - be the same width in blocks with no pager.
-    // - not expand to fill up space.
-    // - have minimum width.
-    // won't work if text is way too long.
-    .forum-topics-spacer--pager & {
-      position: absolute;
-      z-index: 1;
-
-      @media @mobile {
-        position: relative;
-      }
-    }
   }
 
   &__pager {
-    width: 100%;
+    flex: none;
   }
 }
