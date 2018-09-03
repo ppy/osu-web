@@ -77,8 +77,10 @@
 
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
-                <div class="forum-topics forum-topics--new-topic">
-                    @include('forum.forums._new_topic', compact('forum'))
+                <div class="forum-topics-spacer">
+                    <div class="forum-topics-spacer__buttons">
+                        @include('forum.forums._new_topic', compact('forum'))
+                    </div>
                 </div>
 
                 @include('forum.forums._topics', [
@@ -86,12 +88,12 @@
                     'topics' => $topics,
                 ])
 
-                <div class="forum-topics-pager">
-                    <div class="forum-topics-pager__buttons">
+                <div class="forum-topics-spacer forum-topics-spacer--pager">
+                    <div class="forum-topics-spacer__buttons">
                         @include('forum.forums._new_topic', compact('forum'))
                     </div>
 
-                    <div class="forum-topics-pager__pager">
+                    <div class="forum-topics-spacer__pager">
                         @include('objects._pagination_v0', ['object' => $topics
                             ->fragment('topics')
                             ->appends([
@@ -101,7 +103,7 @@
                         ])
                     </div>
 
-                    <div class="forum-topics-pager__buttons">{{-- keeps pager centred --}}</div>
+                    <div class="forum-topics-spacer__buttons">{{-- keeps pager centred --}}</div>
                 </div>
             @endif
         </div>
