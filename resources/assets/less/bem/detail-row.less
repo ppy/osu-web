@@ -17,31 +17,53 @@
  */
 
 .detail-row {
+  @top: detail-row;
+  @content-spill: 10px;
+  @handle: 16px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin-right: -(@content-spill + @handle);
 
-  border-bottom: 1px solid #eee;
-  margin: 0;
-  padding: 2px 0;
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    margin-right: @content-spill;
+    padding: 2px 0;
 
-  &::before {
-    .full-size();
-    content: ' ';
-    margin: 0 -10px;
-    width: calc(100% ~'+' 20px);
-    pointer-events: none;
-    will-change: opacity;
-    transition: all 25ms ease-out;
-    opacity: 0;
+    &::before {
+      .full-size();
+      content: '';
+      margin: 0 -@content-spill;
+      width: calc(100% ~'+' @content-spill * 2);
+      pointer-events: none;
+      will-change: opacity;
+      transition: all 25ms ease-out;
+      opacity: 0;
 
-    background-color: #eee;
-    .default-box-shadow();
+      background-color: #eee;
+      .default-box-shadow();
+    }
+
+    .@{top}:hover &::before {
+      opacity: 1;
+      transition: all 50ms ease-out;
+    }
   }
 
-  &:hover::before {
-    opacity: 1;
-    transition: all 50ms ease-out;
+  &__more {
+    .center-content();
+    opacity: 0;
+    will-change: opacity;
+    width: @handle; // fixed width for less mind-bendingness
+
+    .@{top}:hover & {
+      opacity: 1;
+    }
   }
 
   &__detail {
@@ -91,11 +113,6 @@
       min-height: @detail-row--bottom-min-height;
       align-items: flex-start;
     }
-  }
-
-  &__more {
-    .center-content();
-    padding: 5px;
   }
 
   &__score-data {

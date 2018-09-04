@@ -31,68 +31,70 @@ el = React.createElement
   div
     className: 'detail-row'
     div
-      className: 'detail-row__icon'
-      div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"
+      className: 'detail-row__content'
+      div
+        className: 'detail-row__icon'
+        div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"
 
-    div className: 'detail-row__detail',
-      div
-        className: 'detail-row__detail-column detail-row__detail-column--full'
+      div className: 'detail-row__detail',
         div
-          className: 'detail-row__detail-row detail-row__detail-row--main'
-          a
-            href: score.beatmap.url
-            className: 'detail-row__text-score detail-row__text-score--title'
-            title: "#{score.beatmapset.artist} - #{score.beatmapset.title} "
-            "#{score.beatmapset.title} [#{score.beatmap.version}]"
-            ' '
-            small
-              className: 'detail-row__text-score detail-row__text-score--artist'
-              score.beatmapset.artist
-        div
-          className: 'detail-row__detail-row detail-row__detail-row--bottom'
-          span
-            className: 'detail-row__text-score detail-row__text-score--time'
-            dangerouslySetInnerHTML:
-              __html: osu.timeago score.created_at
-      div
-        className: 'detail-row__detail-column detail-row__detail-column--score-data'
-        div
-          className: 'detail-row__score-data detail-row__score-data--mods'
-          el Mods, mods: score.mods
-        div
-          className: 'detail-row__score-data detail-row__score-data--main'
+          className: 'detail-row__detail-column detail-row__detail-column--full'
           div
             className: 'detail-row__detail-row detail-row__detail-row--main'
-            span
-              className: 'detail-row__text-score detail-row__text-score--pp'
-              title:
-                if score.weight
-                  osu.trans 'users.show.extra.top_ranks.weighted_pp',
-                    percentage: "#{Math.round(score.weight.percentage)}%"
-                    pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
-              if pp > 0
-                osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(pp).toLocaleString())
-              else
-                span
-                  title:
-                    if score.beatmapset.status not in ['ranked', 'approved']
-                      osu.trans('users.show.extra.top_ranks.not_ranked')
-                  '-'
+            a
+              href: score.beatmap.url
+              className: 'detail-row__text-score detail-row__text-score--title'
+              title: "#{score.beatmapset.artist} - #{score.beatmapset.title} "
+              "#{score.beatmapset.title} [#{score.beatmap.version}]"
+              ' '
+              small
+                className: 'detail-row__text-score detail-row__text-score--artist'
+                score.beatmapset.artist
           div
-            className: 'detail-row__score-details'
-            div
-              className: 'detail-row__text-score'
-              osu.trans 'users.show.extra.historical.recent_plays.accuracy',
-                percentage: "#{(score.accuracy * 100).toFixed(2)}%"
-
-      if score.replay
+            className: 'detail-row__detail-row detail-row__detail-row--bottom'
+            span
+              className: 'detail-row__text-score detail-row__text-score--time'
+              dangerouslySetInnerHTML:
+                __html: osu.timeago score.created_at
         div
-          className: 'detail-row__detail-column detail-row__detail-column--more'
-          a
-            className: 'detail-row__more'
-            href: laroute.route 'users.replay',
-                    beatmap: score.beatmap.id
-                    mode: score.beatmap.mode
-                    user: score.user_id
-            'data-turbolinks': false
-            i className: 'fas fa-ellipsis-v'
+          className: 'detail-row__detail-column detail-row__detail-column--score-data'
+          div
+            className: 'detail-row__score-data detail-row__score-data--mods'
+            el Mods, mods: score.mods
+          div
+            className: 'detail-row__score-data detail-row__score-data--main'
+            div
+              className: 'detail-row__detail-row detail-row__detail-row--main'
+              span
+                className: 'detail-row__text-score detail-row__text-score--pp'
+                title:
+                  if score.weight
+                    osu.trans 'users.show.extra.top_ranks.weighted_pp',
+                      percentage: "#{Math.round(score.weight.percentage)}%"
+                      pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
+                if pp > 0
+                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(pp).toLocaleString())
+                else
+                  span
+                    title:
+                      if score.beatmapset.status not in ['ranked', 'approved']
+                        osu.trans('users.show.extra.top_ranks.not_ranked')
+                    '-'
+            div
+              className: 'detail-row__score-details'
+              div
+                className: 'detail-row__text-score'
+                osu.trans 'users.show.extra.historical.recent_plays.accuracy',
+                  percentage: "#{(score.accuracy * 100).toFixed(2)}%"
+
+    # if score.replay
+    div
+      className: 'detail-row__more'
+      a
+        # className: 'detail-row__more'
+        href: laroute.route 'users.replay',
+                beatmap: score.beatmap.id
+                mode: score.beatmap.mode
+                user: score.user_id
+        'data-turbolinks': false
+        i className: 'fas fa-ellipsis-v'
