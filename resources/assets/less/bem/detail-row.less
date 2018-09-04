@@ -57,8 +57,9 @@
 
   &__more {
     .center-content();
-    opacity: 0;
-    will-change: opacity;
+    align-self: stretch;
+    opacity: 1;
+    // will-change: opacity; // bugged in chrome?
     width: @handle; // fixed width for less mind-bendingness
 
     .@{top}:hover & {
