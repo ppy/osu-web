@@ -85,8 +85,14 @@ el = React.createElement
               osu.trans 'users.show.extra.historical.recent_plays.accuracy',
                 percentage: "#{(score.accuracy * 100).toFixed(2)}%"
 
-      div
-        className: 'detail-row__detail-column detail-row__detail-column--more'
+      if score.replay
         div
-          className: 'detail-row__more'
-          i className: 'fas fa-ellipsis-v'
+          className: 'detail-row__detail-column detail-row__detail-column--more'
+          a
+            className: 'detail-row__more'
+            href: laroute.route 'users.replay',
+                    beatmap: score.beatmap.id
+                    mode: score.beatmap.mode
+                    user: score.user_id
+            'data-turbolinks': false
+            i className: 'fas fa-ellipsis-v'
