@@ -557,6 +557,10 @@ class OsuAuthorize
 
     public function checkCommentShow($user, $comment)
     {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
         if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
             return 'ok';
         }
