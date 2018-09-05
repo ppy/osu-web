@@ -122,6 +122,10 @@
     height: calc(100% ~'-' (@_avatar + @_line-margin * 2));
     background-color: #999;
     border-radius: 10000px;
+
+    .@{_top}--changelog & {
+      background-color: @dark-purple-light;
+    }
   }
 
   &__link {
