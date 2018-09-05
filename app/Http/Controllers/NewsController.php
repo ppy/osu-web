@@ -29,8 +29,6 @@ class NewsController extends Controller
 
     public function index()
     {
-        NewsPost::syncAll();
-
         return view('news.index', [
             'posts' => NewsPost::default()->paginate(),
         ]);
@@ -57,7 +55,7 @@ class NewsController extends Controller
     {
         priv_check('NewsIndexUpdate')->ensureCan();
 
-        NewsPost::syncAll(true);
+        NewsPost::syncAll();
 
         return ['message' => trans('news.store.ok')];
     }

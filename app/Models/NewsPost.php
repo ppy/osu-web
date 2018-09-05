@@ -23,7 +23,6 @@ namespace App\Models;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
-use Cache;
 use Carbon\Carbon;
 use Exception;
 
@@ -65,14 +64,8 @@ class NewsPost extends Model
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
-    public static function syncAll($force = false)
+    public static function syncAll()
     {
-        $cacheKey = 'news_post:index:'.static::VERSION;
-
-        if (!$force && Cache::get($cacheKey) === 'ok') {
-            return;
-        }
-
         try {
             $entries = OsuWiki::fetch('news');
         } catch (Exception $e) {
@@ -97,8 +90,6 @@ class NewsPost extends Model
                 if ($latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 } else {
-                    // prevent time-based expiration
-                    $post->touch();
                 }
 
                 unset($latestSlugs[$post->slug]);
@@ -106,6 +97,9 @@ class NewsPost extends Model
                 $post->update(['published_at' => null]);
             }
         }
+
+        // prevent time-based expiration
+        static::select()->update(['updated_at' => Carbon::now()]);
 
         foreach (array_keys($latestSlugs) as $newSlug) {
             try {
@@ -118,8 +112,6 @@ class NewsPost extends Model
                 throw $e;
             }
         }
-
-        Cache::put($cacheKey, 'ok', 5);
     }
 
     public function comments()
@@ -168,8 +160,10 @@ class NewsPost extends Model
     {
         if (!array_key_exists('newer', $this->adjacent)) {
             $this->adjacent['newer'] = static::select('slug')
-                ->where('published_at', '>', $this->published_at)
+                ->where('published_at', '>=', $this->published_at)
+                ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'ASC')
+                ->orderBy('id', 'ASC')
                 ->first() ?? null;
         }
 
@@ -180,8 +174,10 @@ class NewsPost extends Model
     {
         if (!array_key_exists('older', $this->adjacent)) {
             $this->adjacent['older'] = static::select('slug')
-                ->where('published_at', '<', $this->published_at)
+                ->where('published_at', '<=', $this->published_at)
+                ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'DESC')
+                ->orderBy('id', 'DESC')
                 ->first() ?? null;
         }
 

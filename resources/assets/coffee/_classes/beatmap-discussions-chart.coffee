@@ -140,7 +140,9 @@ class @BeatmapDiscussionsChart
         BeatmapDiscussionHelper.url discussion: d
       .attr 'class', (d) ->
         type = if d.resolved then 'resolved' else _.kebabCase(d.message_type)
-        "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"
+        classes = "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"
+        classes += " #{bn}__point--deleted" if d.deleted_at?
+        classes
       .attr 'title', (d) ->
         BeatmapDiscussionHelper.formatTimestamp d.timestamp
       .attr 'data-tooltip-position', 'bottom center'

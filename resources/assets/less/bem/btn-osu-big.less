@@ -147,10 +147,14 @@
     border-radius: 18px;
     padding: 0 10px;
     height: 36px;
-    width: 100%;
+    min-width: @forum-topic-new-topic-button--width;
     // remove line descenders on <a>; should probably go on the block if
     // the existing doesn't magically break.
     vertical-align: middle;
+
+    @media @mobile {
+      width: 100%;
+    }
 
     .@{top}__icon {
       font-size: 120%;
