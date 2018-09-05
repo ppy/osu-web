@@ -23,7 +23,6 @@ namespace App\Models;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
-use Cache;
 use Carbon\Carbon;
 use Exception;
 
