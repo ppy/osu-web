@@ -102,8 +102,6 @@ class NewsPost extends Model
                 if ($latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 } else {
-                    // prevent time-based expiration
-                    $post->touch();
                 }
 
                 unset($latestSlugs[$post->slug]);
@@ -111,6 +109,9 @@ class NewsPost extends Model
                 $post->update(['published_at' => null]);
             }
         }
+
+        // prevent time-based expiration
+        static::select()->update(['updated_at' => Carbon::now()]);
 
         foreach (array_keys($latestSlugs) as $newSlug) {
             try {
