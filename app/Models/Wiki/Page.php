@@ -248,7 +248,7 @@ class Page
     public function hasParent()
     {
         return $this->parentPath() !== null
-            && (new Page($this->parentPath(), $this->requestedLocale))->page() !== null;
+            && (new self($this->parentPath(), $this->requestedLocale))->page() !== null;
     }
 
     public function parentPath()
