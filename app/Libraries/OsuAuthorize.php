@@ -466,7 +466,7 @@ class OsuAuthorize
 
     public function checkChatStart(User $user, User $target)
     {
-        $prefix = 'chat.channel.';
+        $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -484,7 +484,7 @@ class OsuAuthorize
 
     public function checkChatChannelSend(User $user, Channel $channel)
     {
-        $prefix = 'chat.channel.';
+        $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -509,7 +509,7 @@ class OsuAuthorize
 
     public function checkChatChannelRead(User $user, Channel $channel)
     {
-        $prefix = 'chat.channel.';
+        $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
 
@@ -522,7 +522,7 @@ class OsuAuthorize
 
     public function checkChatChannelJoin(User $user, Channel $channel)
     {
-        $prefix = 'chat.channel.';
+        $prefix = 'chat.';
 
         switch ($channel->type) {
             case Channel::TYPES['public']:
