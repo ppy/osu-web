@@ -162,7 +162,6 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
-    $.publish 'turbolinksDisqusReload'
     $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
 
     @setHash()

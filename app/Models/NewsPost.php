@@ -141,11 +141,6 @@ class NewsPost extends Model
         return $this->page['output'];
     }
 
-    public function disqusId()
-    {
-        return 'news_'.($this->tumblr_id ?? $this->slug);
-    }
-
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();

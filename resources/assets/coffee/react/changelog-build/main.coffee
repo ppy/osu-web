@@ -22,7 +22,6 @@ el = React.createElement
 class ChangelogBuild.Main extends React.PureComponent
   componentDidMount: =>
     changelogChartLoader.initialize()
-    $.publish 'turbolinksDisqusReload'
 
 
   render: =>

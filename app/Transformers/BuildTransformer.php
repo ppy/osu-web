@@ -44,8 +44,6 @@ class BuildTransformer extends Fractal\TransformerAbstract
             'display_version' => $build->displayVersion(),
             'users' => $build->users ?? 0,
             'created_at' => json_time($build->date),
-            'disqus_id' => $build->disqusId(),
-            'disqus_title' => $build->disqusTitle(),
         ];
     }
 

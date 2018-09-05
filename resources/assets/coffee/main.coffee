@@ -88,7 +88,6 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 

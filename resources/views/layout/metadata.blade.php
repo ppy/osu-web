@@ -77,8 +77,6 @@
                 /extensions\//i,
                 /^chrome:\/\//i,
                 /^resource:\/\//i,
-                // Disqus
-                /embed\.js$/i,
                 // Errors caused by spyware/adware junk
                 /^\/loaders\//i
             ]
