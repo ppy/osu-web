@@ -23,6 +23,16 @@ class @PlayDetail extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @state = {}
+
+
+  onMenuShown: =>
+    @setState menuActive: true
+
+
+  onMenuHidden: =>
+    @setState menuActive: false
+
 
   render: =>
     score = @props.score
@@ -35,7 +45,7 @@ class @PlayDetail extends React.PureComponent
         ' '
 
     div
-      className: 'detail-row'
+      className: if @state.menuActive then 'detail-row detail-row--menu-active' else 'detail-row'
       div
         className: 'detail-row__content'
         div
@@ -96,4 +106,7 @@ class @PlayDetail extends React.PureComponent
       div
         className: 'detail-row__more'
         if score.replay
-          el window._exported.PlayDetailMenu, { score }
+          el window._exported.PlayDetailMenu,
+            onHide: @onMenuHidden
+            onShow: @onMenuShown
+            score: score

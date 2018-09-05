@@ -47,6 +47,10 @@
 
       background-color: #eee;
       .default-box-shadow();
+
+      .@{top}--menu-active & {
+        opacity: 1;
+      }
     }
 
     .@{top}:hover &::before {
@@ -62,6 +66,10 @@
     width: @handle; // fixed width for less mind-bendingness
 
     .@{top}:hover & {
+      opacity: 1;
+    }
+
+    .@{top}--menu-active & {
       opacity: 1;
     }
   }
