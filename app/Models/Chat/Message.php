@@ -43,9 +43,9 @@ class Message extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public static function forUser(User $user)
+    public function scopeForUser($query, User $user)
     {
-        return self::whereIn('channel_id', $user->channels->pluck('channel_id'))
+        return $query->whereIn('channel_id', $user->channels->pluck('channel_id'))
             ->orderBy('message_id', 'desc');
     }
 
