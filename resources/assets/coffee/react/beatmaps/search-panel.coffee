@@ -56,7 +56,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div
         className: 'osu-page-header__background'
         style:
-          backgroundImage: @props.background ? "url(#{@props.background})" : ""
+          backgroundImage: "url(#{@props.background})"
       div className: 'fancy-search fancy-search--beatmapsets js-user-link',
         input
           className: 'fancy-search__input'
@@ -75,7 +75,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div
         className: 'beatmapsets-search__background'
         style:
-          backgroundImage: @props.background ? "url(#{@props.background})" : ""
+          backgroundImage: "url(#{@props.background})"
       div className: 'fancy-search fancy-search--beatmapsets',
         input
           className: 'fancy-search__input js-beatmapsets-search-input'
