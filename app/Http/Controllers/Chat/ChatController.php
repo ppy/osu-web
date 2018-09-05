@@ -106,11 +106,15 @@ class ChatController extends Controller
 
                 if ($channel->type === Channel::TYPES['pm']) {
                     // if this is a pm
-                    $users = array_filter($channelMembers, function ($k) {
+                    $users = array_filter($channelMembers, function ($key) {
                         // remove current user, leaving only the other party
-                        return $k !== Auth::user()->user_id;
+                        return $key !== Auth::user()->user_id;
                     });
-                    $targetUser = User::find(array_shift($users));
+                    $targetUser = User::lookup(array_shift($users), 'id');
+
+                    if (!$targetUser->exists()) {
+                        return;
+                    }
 
                     $presence['icon'] = $targetUser->user_avatar;
                     $presence['name'] = $targetUser->username;
