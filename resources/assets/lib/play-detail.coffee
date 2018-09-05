@@ -29,10 +29,12 @@ export class PlayDetail extends PureComponent
 
   onMenuShown: =>
     @setState menuActive: true
+    @props.onMenuActive?(true)
 
 
   onMenuHidden: =>
     @setState menuActive: false
+    @props.onMenuActive?(false)
 
 
   render: =>

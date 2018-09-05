@@ -56,6 +56,10 @@
     .@{top}:hover &::before {
       opacity: 1;
       transition: all 50ms ease-out;
+
+      .play-detail-list--menu-active & {
+        opacity: 0;
+      }
     }
   }
 

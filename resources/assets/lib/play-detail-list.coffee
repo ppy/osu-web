@@ -18,9 +18,25 @@
 
 import { PlayDetail } from 'play-detail'
 import { createElement as el, PureComponent } from 'react'
+import { div } from 'react-dom-factories'
 
 export class PlayDetailList extends PureComponent
+  constructor: (props) ->
+    super props
+
+    @state = {}
+
+
+  onMenuActive: (flag) =>
+    @setState menuActive: flag
+
+
   render: =>
-    @props.scores.map (score, i) ->
-      el PlayDetail, key: i, score: score
+    div
+      className: if @state.menuActive then 'play-detail-list play-detail-list--menu-active' else 'play-detail-list'
+      @props.scores.map (score, i) =>
+        el PlayDetail,
+          key: i
+          onMenuActive: @onMenuActive
+          score: score
 
