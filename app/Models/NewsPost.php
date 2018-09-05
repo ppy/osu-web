@@ -155,8 +155,10 @@ class NewsPost extends Model
     {
         if (!array_key_exists('newer', $this->adjacent)) {
             $this->adjacent['newer'] = static::select('slug')
-                ->where('published_at', '>', $this->published_at)
+                ->where('published_at', '>=', $this->published_at)
+                ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'ASC')
+                ->orderBy('id', 'ASC')
                 ->first() ?? null;
         }
 
@@ -167,8 +169,10 @@ class NewsPost extends Model
     {
         if (!array_key_exists('older', $this->adjacent)) {
             $this->adjacent['older'] = static::select('slug')
-                ->where('published_at', '<', $this->published_at)
+                ->where('published_at', '<=', $this->published_at)
+                ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'DESC')
+                ->orderBy('id', 'DESC')
                 ->first() ?? null;
         }
 
