@@ -20,11 +20,48 @@ import { createElement as el, createRef, PureComponent } from 'react'
 import { a, button, div, i } from 'react-dom-factories'
 
 export class PlayDetailMenu extends PureComponent
+  #region Shared handler for picking up clicks ouside the element
+  # TODO: extract for sharing with other components
+  refs = {}
+  document.addEventListener 'click', (event) ->
+    console.log 'click'
+    for own _uuid, ref of refs
+      ref event
+
+
+  @register: (uuid, ref) ->
+    refs[uuid] = ref
+
+
+  @unregister: (uuid) ->
+    delete refs[uuid]
+
+  #endregion
+
   constructor: (props) ->
     super props
 
+    @uuid = osu.uuid()
+    @menu = createRef()
+
     @state =
       active: false
+
+
+  componentDidMount: =>
+    PlayDetailMenu.register @uuid, @hide
+
+
+  componentWillUnmount: =>
+    PlayDetailMenu.unregister @uuid
+
+
+  hide: (e) =>
+    @setState active: false if event.button == 0 && !(@menu.current in event.composedPath())
+
+
+  onClick: =>
+    @setState active: !@state.active
 
 
   render: =>
@@ -36,12 +73,14 @@ export class PlayDetailMenu extends PureComponent
 
 
   renderMenu: =>
+    # using Fade.in causes rendering glitches with the layers under it (Safari, Chrome, more?)
     return null unless @state.active
 
     div
       className: "play-detail-menu__menu"
       div
         className: 'simple-menu'
+        ref: @menu
         a
           className: 'simple-menu__item'
           href: laroute.route 'users.replay',
@@ -50,7 +89,3 @@ export class PlayDetailMenu extends PureComponent
                   user: @props.score.user_id
           'data-turbolinks': false
           'Download Replay'
-
-
-  onClick: =>
-    @setState active: !@state.active
