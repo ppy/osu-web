@@ -60,9 +60,7 @@ class CommentsController extends Controller
 
     public function show($id)
     {
-        $comment = Comment::findOrFail($id);
-
-        return $comment;
+        return json_item(Comment::findOrFail($id), 'Comment', ['editor', 'user']);
     }
 
     public function store()
