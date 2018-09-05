@@ -31,6 +31,9 @@ class OsuWiki
     const REPOSITORY = 'osu-wiki';
     const USER = 'ppy';
 
+    public $path;
+    public $data;
+
     public static function cleanPath($path)
     {
         return preg_replace('|//+|', '/', trim($path, '/'));
@@ -57,6 +60,17 @@ class OsuWiki
 
     public static function fetchContent($path)
     {
-        return base64_decode(static::fetch($path)['content'], true);
+        return (new static($path))->content();
+    }
+
+    public function __construct($path)
+    {
+        $this->path = $path;
+        $this->data = static::fetch($this->path);
+    }
+
+    public function content()
+    {
+        return base64_decode($this->data['content'], true);
     }
 }
