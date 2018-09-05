@@ -40,8 +40,6 @@ class @Comment extends React.PureComponent
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
     repliesClass += ' comment__replies--hidden' if !@state.showReplies
 
-    parentMessage = _.truncate(@props.parent.message ? osu.trans('comments.deleted'), length: 100)
-
     div
       className: osu.classWithModifiers 'comment', @props.modifiers
 
@@ -75,7 +73,7 @@ class @Comment extends React.PureComponent
             if @props.parent?
               div
                 className: 'comment__header-item comment__header-item--parent'
-                title: parentMessage
+                title: _.truncate(@props.parent.message ? osu.trans('comments.deleted'), length: 100)
                 span className: 'fas fa-reply'
                 ' '
                 @userFor(@props.parent).username
