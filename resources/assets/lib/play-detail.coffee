@@ -27,16 +27,6 @@ export class PlayDetail extends PureComponent
     @state = {}
 
 
-  onMenuShown: =>
-    @setState menuActive: true
-    @props.onMenuActive?(true)
-
-
-  onMenuHidden: =>
-    @setState menuActive: false
-    @props.onMenuActive?(false)
-
-
   render: =>
     score = @props.score
     pp = score.best?.pp ? score.pp
@@ -48,7 +38,7 @@ export class PlayDetail extends PureComponent
         ' '
 
     div
-      className: if @state.menuActive then 'detail-row detail-row--menu-active' else 'detail-row'
+      className: if @props.activated then 'detail-row detail-row--menu-active' else 'detail-row'
       div
         className: 'detail-row__content'
         div
@@ -110,6 +100,6 @@ export class PlayDetail extends PureComponent
         className: 'detail-row__more'
         if score.replay
           el PlayDetailMenu,
-            onHide: @onMenuHidden
-            onShow: @onMenuShown
+            onHide: () => @props.onMenuActive?(state: false, index: @props.index)
+            onShow: () => @props.onMenuActive?(state: true, index: @props.index)
             score: score

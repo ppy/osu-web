@@ -27,15 +27,18 @@ export class PlayDetailList extends PureComponent
     @state = {}
 
 
-  onMenuActive: (flag) =>
-    @setState menuActive: flag
+  onMenuActive: ({ index, state }) =>
+    @setState "#{index}": state
 
 
   render: =>
+    console.log @state
     div
-      className: if @state.menuActive then 'play-detail-list play-detail-list--menu-active' else 'play-detail-list'
+      className: 'play-detail-list'
       @props.scores.map (score, i) =>
         el PlayDetail,
+          activated: @state[i]
+          index: i
           key: i
           onMenuActive: @onMenuActive
           score: score
