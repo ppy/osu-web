@@ -245,6 +245,12 @@ class Page
         return $this->path.'/'.$this->locale.'.md';
     }
 
+    public function hasParent()
+    {
+        return $this->parentPath() !== null
+            && (new Page($this->parentPath(), $this->requestedLocale))->page() !== null;
+    }
+
     public function parentPath()
     {
         if (($pos = strrpos($this->path, '/')) !== false) {
