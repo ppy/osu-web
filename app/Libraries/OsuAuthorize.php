@@ -469,7 +469,7 @@ class OsuAuthorize
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+        $this->ensureCleanRecord($user, $prefix);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -487,7 +487,7 @@ class OsuAuthorize
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+        $this->ensureCleanRecord($user, $prefix);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -523,6 +523,9 @@ class OsuAuthorize
     public function checkChatChannelJoin(User $user, Channel $channel)
     {
         $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
 
         switch ($channel->type) {
             case Channel::TYPES['public']:

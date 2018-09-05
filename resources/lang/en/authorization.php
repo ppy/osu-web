@@ -52,10 +52,11 @@ return [
     ],
 
     'chat' => [
-        'blocked' => 'Can not send message while banned, restricted or silenced.',
-        'friends_only' => 'User is blocking private messages from people not on their friends list.',
-        'moderated' => 'The channel is currently moderated.',
+        'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
+        'friends_only' => 'User is blocking messages from people not on their friends list.',
+        'moderated' => 'That channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
+        'restricted' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'contest' => [
