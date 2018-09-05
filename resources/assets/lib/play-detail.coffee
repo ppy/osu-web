@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, i, img, small, span} = ReactDOMFactories
-el = React.createElement
+import { PlayDetailMenu } from 'play-detail-menu'
+import { createElement as el, PureComponent } from 'react'
+import { a, div, i, img, small, span } from 'react-dom-factories'
 
-class @PlayDetail extends React.PureComponent
+export class PlayDetail extends PureComponent
   constructor: (props) ->
     super props
 
@@ -106,7 +107,7 @@ class @PlayDetail extends React.PureComponent
       div
         className: 'detail-row__more'
         if score.replay
-          el window._exported.PlayDetailMenu,
+          el PlayDetailMenu,
             onHide: @onMenuHidden
             onShow: @onMenuShown
             score: score

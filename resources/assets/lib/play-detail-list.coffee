@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,25 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# Import shim so that globally declared scripts can work without changes.
+import { PlayDetail } from 'play-detail'
+import { createElement as el, PureComponent } from 'react'
 
-import { PlayDetailList } from 'play-detail-list'
-import { ReportForm } from 'report-form'
-import { SelectOptions } from 'select-options'
-import { StoreCheckout } from 'store-checkout'
-import Promise from 'promise-polyfill'
-import TextareaAutosize from 'react-autosize-textarea'
-import VirtualList from 'react-virtual-list'
+export class PlayDetailList extends PureComponent
+  render: =>
+    @props.scores.map (score, i) ->
+      el PlayDetail, key: i, score: score
 
-# polyfill non-Edge IE
-window.Promise ?= Promise
-
-window._exported = {
-  PlayDetailList
-  ReportForm
-  SelectOptions
-}
-
-window.StoreCheckout = StoreCheckout
-window.TextareaAutosize = TextareaAutosize
-window.VirtualList = VirtualList
