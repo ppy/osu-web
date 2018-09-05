@@ -47,7 +47,7 @@ class ChannelsController extends Controller
 
         $userChannel = UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->firstOrFail();
         $messages = $userChannel->channel
-            ->messages()
+            ->filteredMessages()
             ->with('sender');
 
         if (presence($since)) {
