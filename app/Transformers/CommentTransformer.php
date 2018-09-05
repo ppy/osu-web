@@ -33,8 +33,12 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
     public function transform(Comment $comment)
     {
-        $message = priv_check('CommentShow', $comment)->can()
+        $message = priv_check('CommentUpdate', $comment)->can()
             ? $comment->message
+            : null;
+
+        $messageHtml = priv_check('CommentShow', $comment)->can()
+            ? Markdown::convertToHtml($comment->message)
             : null;
 
         return [
@@ -42,7 +46,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'parent_id' => $comment->parent_id,
             'user_id' => $comment->user_id,
             'message' => $message,
-            'message_html' => Markdown::convertToHtml($message),
+            'message_html' => $messageHtml,
 
             'commentable_type' => $comment->commentable_type,
             'commentable_id' => $comment->commentable_id,
