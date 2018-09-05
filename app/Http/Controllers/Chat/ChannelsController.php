@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
@@ -122,9 +123,9 @@ class ChannelsController extends Controller
                 Request::input('message'),
                 get_bool(Request::input('is_action', false))
             );
-        } catch (ChatMessageTooLongException $e) {
+        } catch (API\ChatMessageTooLongException $e) {
             return error_popup($e->getMessage(), 422);
-        } catch (ExcessiveChatMessagesException $e) {
+        } catch (API\ExcessiveChatMessagesException $e) {
             return error_popup($e->getMessage(), 429);
         }
 
