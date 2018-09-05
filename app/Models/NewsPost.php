@@ -65,22 +65,11 @@ class NewsPost extends Model
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
-    public static function syncAll($force = false)
+    public static function syncAll()
     {
-        $cacheKey = 'news_post:index:'.static::VERSION;
-
-        if (!$force && Cache::get($cacheKey) === 'ok') {
-            return;
-        }
-
-        // Pretend everything will work fine to prevent multiple syncAll
-        // running at same time.
-        Cache::put($cacheKey, 'ok', 5);
-
         try {
             $entries = OsuWiki::fetch('news');
         } catch (Exception $e) {
-            Cache::delete($cacheKey);
             log_error($e);
 
             return;

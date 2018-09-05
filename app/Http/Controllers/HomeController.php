@@ -91,7 +91,6 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            NewsPost::syncAll();
             $news = NewsPost::default()->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
