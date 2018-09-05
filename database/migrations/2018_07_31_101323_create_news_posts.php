@@ -16,7 +16,7 @@ class CreateNewsPosts extends Migration
         Schema::create('news_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('version')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug', 150)->unique();
             $table->string('hash')->unique()->nullable();
             $table->string('tumblr_id')->nullable();
             $table->text('page')->nullable();
