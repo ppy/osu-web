@@ -73,9 +73,14 @@ class NewsPost extends Model
             return;
         }
 
+        // Pretend everything will work fine to prevent multiple syncAll
+        // running at same time.
+        Cache::put($cacheKey, 'ok', 5);
+
         try {
             $entries = OsuWiki::fetch('news');
         } catch (Exception $e) {
+            Cache::delete($cacheKey);
             log_error($e);
 
             return;
@@ -118,8 +123,6 @@ class NewsPost extends Model
                 throw $e;
             }
         }
-
-        Cache::put($cacheKey, 'ok', 5);
     }
 
     public function scopeDefault($query)
