@@ -25,11 +25,8 @@ class @Comments extends React.PureComponent
     super props
 
     comments = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
-    initialLoad = comments?
 
-    @state =
-      comments: comments
-      initialLoad: initialLoad
+    @state = {comments}
 
 
   componentDidMount: =>
