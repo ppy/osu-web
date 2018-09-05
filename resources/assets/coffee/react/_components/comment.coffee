@@ -40,6 +40,8 @@ class @Comment extends React.PureComponent
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
     repliesClass += ' comment__replies--hidden' if !@state.showReplies
 
+    parentMessage = _.truncate(@props.parent.message ? osu.trans('comments.deleted'), length: 100)
+
     div
       className: osu.classWithModifiers 'comment', @props.modifiers
 
@@ -61,19 +63,19 @@ class @Comment extends React.PureComponent
           div className: 'comment__header',
             if user.id?
               a
-                className: 'comment__header-item comment__header-item--username comment__header-item--username-link js-usercard u-ellipsis-overflow'
+                className: 'comment__header-item comment__header-item--username comment__header-item--username-link js-usercard'
                 'data-user-id': user.id
                 href: laroute.route('users.show', user: user.id)
                 user.username
             else
               span
-                className: 'comment__header-item comment__header-item--username u-ellipsis-overflow'
+                className: 'comment__header-item comment__header-item--username'
                 user.username
 
             if @props.parent?
               div
-                className: 'comment__header-item comment__header-item--parent u-ellipsis-overflow'
-                title: _.truncate(@props.parent.message, length: 100)
+                className: 'comment__header-item comment__header-item--parent'
+                title: parentMessage
                 span className: 'fas fa-reply'
                 ' '
                 @userFor(@props.parent).username
