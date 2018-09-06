@@ -23,6 +23,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Score\Best;
 use App\Models\User;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ReplaysController extends Controller
 {
@@ -40,7 +41,13 @@ class ReplaysController extends Controller
             ->where('replay', true)
             ->firstOrFail();
 
-        $replay = optional($score->replayFile())->get();
+        try {
+            $replay = optional($score->replayFile())->get();
+        } catch (FileNotFoundException $e) {
+            log_error($e);
+            abort(404);
+        }
+
         if ($replay === null) {
             abort(404);
         }
