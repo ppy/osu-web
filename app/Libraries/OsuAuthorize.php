@@ -566,6 +566,14 @@ class OsuAuthorize
         }
     }
 
+    public function checkCommentStore($user, $comment)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkCommentUpdate($user, $comment)
     {
         if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {

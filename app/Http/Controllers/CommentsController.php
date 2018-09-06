@@ -67,6 +67,8 @@ class CommentsController extends Controller
     {
         $parentId = get_int(request('parent_id'));
 
+        priv_check('CommentStore', $comment)->ensureCan();
+
         if (isset($parentId)) {
             $comment = Comment::findOrFail($parentId)->replies()->make();
         } else {
