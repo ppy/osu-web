@@ -35,7 +35,6 @@ export class PlayDetailList extends PureComponent
 
 
   render: =>
-    console.log @state
     classMods = ['menu-active'] if @state.activeMenu?
 
     div

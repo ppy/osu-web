@@ -51,15 +51,18 @@
       transition: all 25ms ease-out;
       opacity: 0;
 
+      // normal behaviour; highlights on hover.
       .@{passive-row}:hover & {
         opacity: 1;
         transition: all 50ms ease-out;
 
+        // when menu is active, only the active row is highlighted.
         .play-detail-list--menu-active & {
           opacity: 0;
         }
       }
 
+      // when menu is active; always highlighted.
       .@{activated-row} & {
         opacity: 1;
         transition: all 50ms ease-out;
@@ -77,12 +80,23 @@
     opacity: 0;
     width: @handle; // fixed width for less mind-bendingness
 
-    .@{top}:hover & {
+    // normal behaviour; highlights on hover.
+    .@{passive-row}:hover & {
       opacity: 1;
+
+      // when menu is active, only the active row is highlighted.
+      .play-detail-list--menu-active & {
+        opacity: 0;
+      }
     }
 
+    // when menu is active; always highlighted.
     .@{activated-row} & {
       opacity: 1;
+
+      .play-detail-list--menu-active & {
+        opacity: 1;
+      }
     }
   }
 

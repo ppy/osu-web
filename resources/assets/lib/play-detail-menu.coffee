@@ -66,15 +66,16 @@ export class PlayDetailMenu extends PureComponent
 
 
   render: =>
-    div
+    button
       className: 'play-detail-menu'
+      type: 'button'
       onClick: @onClick
       i className: 'fas fa-ellipsis-v'
       @renderMenu()
 
 
   renderMenu: =>
-    # using Fade.in causes rendering glitches with the layers under it (Safari, Chrome, more?)
+    # using Fade.in causes rendering glitches from the stacking context due to will-change
     return null unless @state.active
 
     div
@@ -89,4 +90,4 @@ export class PlayDetailMenu extends PureComponent
                   mode: @props.score.beatmap.mode
                   user: @props.score.user_id
           'data-turbolinks': false
-          'Download Replay'
+          osu.trans 'users.show.extra.top_ranks.download_replay'
