@@ -135,7 +135,7 @@ class ProfilePage.HeaderExtra extends React.Component
                       devices: rowValue playsWith
             @renderPostCount()
 
-          if !currentUser.id? || currentUser.id != @props.user.id
+          if currentUser.id? && currentUser.id != @props.user.id
             div className: "#{bn}__rows #{bn}__rows--actions",
               if !isBlocked
                 span null,

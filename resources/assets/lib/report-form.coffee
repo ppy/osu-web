@@ -69,8 +69,6 @@ export class ReportForm extends PureComponent
 
 
   render: =>
-    return null unless currentUser.id? && @props.user?.id != currentUser.id
-
     [
       button
         className: 'textual-button',
