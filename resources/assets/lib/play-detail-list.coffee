@@ -29,8 +29,8 @@ export class PlayDetailList extends PureComponent
     @state = {}
 
 
-  onMenuActive: ({ index, state }) =>
-    activeMenu = index if state
+  onMenuActive: ({ index, active }) =>
+    activeMenu = index if active
     @setState { activeMenu }
 
 

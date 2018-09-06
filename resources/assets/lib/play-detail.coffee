@@ -97,6 +97,6 @@ export PlayDetail = (props) ->
       className: 'detail-row__more'
       if score.replay
         el PlayDetailMenu,
-          onHide: () -> props.onMenuActive?(state: false, index: props.index)
-          onShow: () -> props.onMenuActive?(state: true, index: props.index)
+          onHide: () -> props.onMenuActive?(active: false, index: props.index)
+          onShow: () -> props.onMenuActive?(active: true, index: props.index)
           score: score
