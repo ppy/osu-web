@@ -67,8 +67,6 @@ class CommentsController extends Controller
     {
         $parentId = get_int(request('parent_id'));
 
-        priv_check('CommentStore', $comment)->ensureCan();
-
         if (isset($parentId)) {
             $comment = Comment::findOrFail($parentId)->replies()->make();
         } else {
@@ -79,6 +77,8 @@ class CommentsController extends Controller
         $params['user_id'] = auth()->user()->getKey();
 
         $comment->fill($params);
+
+        priv_check('CommentStore', $comment)->ensureCan();
 
         if ($comment->save()) {
             return json_item($comment, 'Comment', ['editor', 'user']);
