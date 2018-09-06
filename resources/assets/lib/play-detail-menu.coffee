@@ -24,7 +24,6 @@ export class PlayDetailMenu extends PureComponent
   # TODO: extract for sharing with other components
   refs = {}
   document.addEventListener 'click', (event) ->
-    console.log 'click'
     for own _uuid, ref of refs
       ref event
 
