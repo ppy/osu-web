@@ -106,17 +106,19 @@ class @CommentEditor extends React.PureComponent
 
         onDone = (data) =>
           @setState message: ''
-          @props.close?()
           $.publish 'comment:added', comment: data
       when 'edit'
         url = laroute.route 'comments.update', comment: @props.id
         method = 'PUT'
 
-        onDone = (data) =>
-          @props.close?()
+        onDone = (data) ->
           $.publish 'comment:updated', comment: data
 
     @xhr = $.ajax url, {method, data}
-    .done onDone
-    .always =>
+    .done (data) =>
+      onDone(data)
+      @setState posting: false, =>
+        @props.close?()
+    .fail (xhr, status) =>
       @setState posting: false
+      osu.ajaxError(xhr, status)
