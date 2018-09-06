@@ -29,25 +29,20 @@ export class PlayDetailList extends PureComponent
     @state = {}
 
 
-  isActive: =>
-    for own _, active of @state
-      return true if active
-
-    false
-
-
   onMenuActive: ({ index, state }) =>
-    @setState "#{index}": state
+    activeMenu = index if state
+    @setState { activeMenu }
 
 
   render: =>
-    classMods = if @isActive() then ['menu-active'] else []
+    console.log @state
+    classMods = ['menu-active'] if @state.activeMenu?
 
     div
       className: osu.classWithModifiers('play-detail-list', classMods)
       @props.scores.map (score, i) =>
         el PlayDetail,
-          activated: @state[i]
+          activated: @state.activeMenu == i
           index: i
           key: i
           onMenuActive: @onMenuActive
