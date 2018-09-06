@@ -71,9 +71,14 @@ class @Comment extends React.PureComponent
                 user.username
 
             if @props.parent?
+              message =
+                if @props.parent.deleted_at?
+                  osu.trans('comments.deleted')
+                else
+                  _.truncate $(@props.parent.message_html).text(), length: 100
               div
                 className: 'comment__header-item comment__header-item--parent'
-                title: _.truncate(@props.parent.message ? osu.trans('comments.deleted'), length: 100)
+                title: message
                 span className: 'fas fa-reply'
                 ' '
                 @userFor(@props.parent).username
