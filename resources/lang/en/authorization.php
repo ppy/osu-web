@@ -75,6 +75,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'No permission to moderate this forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Only last post can be deleted.',

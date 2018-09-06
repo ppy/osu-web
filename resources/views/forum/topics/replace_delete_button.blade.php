@@ -30,7 +30,7 @@ Timeout.set(0, function () {
 
     var $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]");
 
-    @if (priv_check('ForumTopicModerate')->can())
+    @if (priv_check('ForumModerate', $post->forum)->can())
         @yield("moderatorAction")
 
         var $toggle = $el.find(".js-post-delete-toggle");
