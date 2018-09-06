@@ -26,7 +26,7 @@ use App\Models\User;
 
 /**
  * Used to check the best scores for a user if it exists in elasticsearch but not longer
- * exists in the database. A mistach tends to break the current pager, so this can be run to
+ * exists in the database. A mismatch tends to break the current pager, so this can be run to
  * fix it by deleting the invalid score from elasticsearch.
  *
  * e.g.
