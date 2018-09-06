@@ -18,6 +18,8 @@
 
 .detail-row {
   @top: detail-row;
+  @activated-row: detail-row--menu-active;
+  @passive-row: detail-row--highlightable;
   @content-spill: 10px;
   @handle: 16px;
 
@@ -36,29 +38,35 @@
     padding: 2px 0;
 
     &::before {
+      .default-box-shadow();
       .full-size();
+
       content: '';
       margin: 0 -@content-spill;
       width: calc(100% ~'+' @content-spill * 2);
       pointer-events: none;
+      background-color: #eee;
+
       will-change: opacity;
       transition: all 25ms ease-out;
       opacity: 0;
 
-      background-color: #eee;
-      .default-box-shadow();
-
-      .@{top}--menu-active & {
+      .@{passive-row}:hover & {
         opacity: 1;
+        transition: all 50ms ease-out;
+
+        .play-detail-list--menu-active & {
+          opacity: 0;
+        }
       }
-    }
 
-    .@{top}:hover &::before {
-      opacity: 1;
-      transition: all 50ms ease-out;
+      .@{activated-row} & {
+        opacity: 1;
+        transition: all 50ms ease-out;
 
-      .play-detail-list--menu-active & {
-        opacity: 0;
+        .play-detail-list--menu-active & {
+          opacity: 1;
+        }
       }
     }
   }
@@ -73,7 +81,7 @@
       opacity: 1;
     }
 
-    .@{top}--menu-active & {
+    .@{activated-row} & {
       opacity: 1;
     }
   }

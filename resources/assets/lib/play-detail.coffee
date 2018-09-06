@@ -20,6 +20,8 @@ import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import { a, div, i, img, small, span } from 'react-dom-factories'
 
+osu = window.osu
+
 export class PlayDetail extends PureComponent
   constructor: (props) ->
     super props
@@ -37,8 +39,10 @@ export class PlayDetail extends PureComponent
       else
         ' '
 
+    classMods = if @props.activated then ['menu-active'] else ['highlightable']
+
     div
-      className: if @props.activated then 'detail-row detail-row--menu-active' else 'detail-row'
+      className: osu.classWithModifiers('detail-row', classMods)
       div
         className: 'detail-row__content'
         div
