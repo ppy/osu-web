@@ -80,9 +80,24 @@ class Channel extends Model
         return array_map('intval', explode(',', $allowed_groups));
     }
 
+    public function isPublic()
+    {
+        return $this->type === self::TYPES['public'];
+    }
+
+    public function isPrivate()
+    {
+        return $this->type === self::TYPES['private'];
+    }
+
     public function isPM()
     {
         return $this->type === self::TYPES['pm'];
+    }
+
+    public function isGroup()
+    {
+        return $this->type === self::TYPES['group'];
     }
 
     public function pmTargetFor(User $user)

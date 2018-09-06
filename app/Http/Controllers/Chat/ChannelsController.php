@@ -46,6 +46,14 @@ class ChannelsController extends Controller
         $limit = clamp(Request::input('limit', 50), 1, 50);
 
         $userChannel = UserChannel::where(['user_id' => $user_id, 'channel_id' => $channel_id])->firstOrFail();
+
+        if ($userChannel->channel->isPM()) {
+            // restricted users should be treated as if they do not exist
+            if (optional($userChannel->channel->pmTargetFor(Auth::user()))->isRestricted()) {
+                abort(404);
+            }
+        }
+
         $messages = $userChannel->channel
             ->filteredMessages()
             ->with('sender');
@@ -115,6 +123,13 @@ class ChannelsController extends Controller
     {
         $channel = Channel::findOrFail($channel_id);
 
+        if ($channel->isPM()) {
+            // restricted users should be treated as if they do not exist
+            if (optional($channel->pmTargetFor(Auth::user()))->isRestricted()) {
+                abort(404);
+            }
+        }
+
         priv_check('ChatChannelSend', $channel)->ensureCan();
 
         try {
@@ -124,9 +139,9 @@ class ChannelsController extends Controller
                 get_bool(Request::input('is_action', false))
             );
         } catch (API\ChatMessageTooLongException $e) {
-            return error_popup($e->getMessage(), 422);
+            abort(422, $e->getMessage());
         } catch (API\ExcessiveChatMessagesException $e) {
-            return error_popup($e->getMessage(), 429);
+            abort(429, $e->getMessage());
         }
 
         return json_item(

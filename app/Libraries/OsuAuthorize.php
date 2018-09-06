@@ -493,7 +493,7 @@ class OsuAuthorize
             return $prefix.'no_access';
         }
 
-        if ($channel->type === Channel::TYPES['pm']) {
+        if ($channel->isPM()) {
             $chatStartPermission = $this->doCheckUser($user, 'ChatStart', $channel->pmTargetFor($user));
             if (!$chatStartPermission->can()) {
                 return $chatStartPermission->rawMessage();

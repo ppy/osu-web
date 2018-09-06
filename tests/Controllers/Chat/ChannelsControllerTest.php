@@ -37,6 +37,12 @@ class ChannelsControllerTest extends TestCase
 
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
+        $this->restrictedUser = factory(User::class)->states('restricted')->create();
+        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
+        $this->silencedUser = factory(User::class)->create();
+        $this->silencedUser->accountHistories()->save(
+            factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+        );
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
@@ -226,6 +232,24 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
+    public function testChannelShowPMWhenTargetRestricted() // fail
+    {
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+
+        factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->restrictedUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.channels.show', ['channel_id' => $pmChannel->channel_id]))
+            ->assertStatus(404);
+    }
+
     public function testChannelShowPM() // success
     {
         $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
@@ -341,6 +365,106 @@ class ChannelsControllerTest extends TestCase
             ->json(
                 'POST',
                 route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => self::$faker->sentence()]
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenRestrictedToPM() // fail
+    {
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+
+        factory(UserChannel::class)->create([
+            'user_id' => $this->restrictedUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->anotherUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->restrictedUser)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => self::$faker->sentence()]
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenRestrictedToPublic() // fail
+    {
+        $this->actingAs($this->restrictedUser)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->restrictedUser->user_id,
+            ]));
+
+        $this->actingAs($this->restrictedUser)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $this->publicChannel->channel_id]),
+                ['message' => self::$faker->sentence()]
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenTargetRestricted() // fail
+    {
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+
+        factory(UserChannel::class)->create([
+            'user_id' => $this->user->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->restrictedUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => self::$faker->sentence()]
+            )
+            ->assertStatus(404);
+    }
+
+    public function testChannelSendWhenSilencedToPM() // fail
+    {
+        $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+
+        factory(UserChannel::class)->create([
+            'user_id' => $this->silencedUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+        factory(UserChannel::class)->create([
+            'user_id' => $this->anotherUser->user_id,
+            'channel_id' => $pmChannel->channel_id,
+        ]);
+
+        $this->actingAs($this->silencedUser)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $pmChannel->channel_id]),
+                ['message' => self::$faker->sentence()]
+            )
+            ->assertStatus(403);
+    }
+
+    public function testChannelSendWhenSilencedToPublic() // fail
+    {
+        $this->actingAs($this->silencedUser)
+            ->json('PUT', route('chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->silencedUser->user_id,
+            ]));
+
+        $this->actingAs($this->silencedUser)
+            ->json(
+                'POST',
+                route('chat.channels.send', ['channel_id' => $this->publicChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);

@@ -87,24 +87,25 @@ class ChatController extends Controller
             ->groupBy('user_channels.user_id')
             ->get();
 
-        return json_collection(
+        $collection = json_collection(
             $userChannels,
-            function ($channel) {
+            function ($userChannel) {
+                $channel = $userChannel->channel;
                 $presence = [
                     'channel_id' => $channel->channel_id,
                     'type' => $channel->type,
                     'name' => $channel->name,
                     'description' => presence($channel->description),
-                    'last_read_id' => $channel->last_read_id,
-                    'last_message_id' => $channel->last_message_id,
+                    'last_read_id' => $userChannel->last_read_id,
+                    'last_message_id' => $userChannel->last_message_id,
                 ];
 
-                if ($channel->type !== Channel::TYPES['public']) {
-                    $channelMembers = array_map('intval', explode(',', $channel->member_ids));
+                if (!$channel->isPublic()) {
+                    $channelMembers = array_map('intval', explode(',', $userChannel->member_ids));
                     $presence['users'] = $channelMembers;
                 }
 
-                if ($channel->type === Channel::TYPES['pm']) {
+                if ($channel->isPM()) {
                     // if this is a pm
                     $users = array_filter($channelMembers, function ($key) {
                         // remove current user, leaving only the other party
@@ -112,8 +113,8 @@ class ChatController extends Controller
                     });
                     $targetUser = User::lookup(array_shift($users), 'id');
 
-                    if (!$targetUser->exists()) {
-                        return;
+                    if (!$targetUser || Auth::user()->hasBlocked($targetUser)) {
+                        return [];
                     }
 
                     $presence['icon'] = $targetUser->user_avatar;
@@ -123,6 +124,9 @@ class ChatController extends Controller
                 return $presence;
             }
         );
+
+        // strip out the [] elements from restricted/blocked users
+        return array_values(array_filter($collection));
     }
 
     public function newConversation()
@@ -133,7 +137,8 @@ class ChatController extends Controller
 
         $targetUser = User::lookup(Request::input('target_id'), 'id');
         if (!$targetUser) {
-            abort(422);
+            // restricted users should be treated as if they do not exist
+            abort(404);
         }
 
         priv_check('ChatStart', $targetUser)->ensureCan();
@@ -169,9 +174,9 @@ class ChatController extends Controller
                 get_bool(Request::input('is_action', false))
             );
         } catch (API\ChatMessageTooLongException $e) {
-            return error_popup($e->getMessage(), 422);
+            abort(422, $e->getMessage());
         } catch (API\ExcessiveChatMessagesException $e) {
-            return error_popup($e->getMessage(), 429);
+            abort(429, $e->getMessage());
         }
 
         return [

@@ -68,6 +68,36 @@ class ChatControllerTest extends TestCase
             )->assertStatus(403);
     }
 
+    public function testCreatePMWhenRestricted() // fail
+    {
+        $restrictedUser = factory(User::class)->states('restricted')->create();
+
+        $this->actingAs($restrictedUser)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(403);
+    }
+
+    public function testCreatePMWhenTargetRestricted() // fail
+    {
+        $restrictedUser = factory(User::class)->states('restricted')->create();
+
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $restrictedUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(404);
+    }
+
     public function testCreatePMWithSelf() // fail
     {
         $this->actingAs($this->user)
@@ -177,6 +207,85 @@ class ChatControllerTest extends TestCase
             ->json('GET', route('chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $publicChannel->channel_id]);
+    }
+
+    public function testChatPresenceHidingBlocked() // success
+    {
+        // start conversation with $this->anotherUser
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
+
+        // block $this->anotherUser
+        $block = factory(UserRelation::class)->states('block')->create([
+            'user_id' => $this->user->user_id,
+            'zebra_id' => $this->anotherUser->user_id,
+        ]);
+
+        // ensure conversation with $this->anotherUser isn't visible
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['users' => [
+                $this->user->user_id,
+                $this->anotherUser->user_id,
+            ]]);
+
+        // unblock $this->anotherUser
+        $block->delete();
+
+        // ensure conversation with $this->anotherUser is visible again
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['users' => [
+                $this->user->user_id,
+                $this->anotherUser->user_id,
+            ]]);
+    }
+
+    public function testChatPresenceHidingRestricted() // success
+    {
+        // start conversation with $this->anotherUser
+        $this->actingAs($this->user)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(200);
+
+        // restrict $this->anotherUser
+        $this->anotherUser->update(['user_warnings' => 1]);
+
+        // ensure conversation with $this->anotherUser isn't visible
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['users' => [
+                $this->user->user_id,
+                $this->anotherUser->user_id,
+            ]]);
+
+        // unrestrict $this->anotherUser
+        $this->anotherUser->update(['user_warnings' => 0]);
+
+        // ensure conversation with $this->anotherUser is visible again
+        $this->actingAs($this->user)
+            ->json('GET', route('chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['users' => [
+                $this->user->user_id,
+                $this->anotherUser->user_id,
+            ]]);
     }
 
     //endregion
