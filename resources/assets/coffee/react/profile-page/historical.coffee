@@ -140,7 +140,7 @@ class ProfilePage.Historical extends React.PureComponent
       div
         className: 'beatmapset-row__cover'
         style:
-          backgroundImage: "url('#{bmset.covers.list}')"
+          backgroundImage: osu.urlPresence(bmset.covers.list)
       div
         className: 'beatmapset-row__detail'
         div

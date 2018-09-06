@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,22 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.click-to-copy {
-  @top: click-to-copy;
-  .link-white();
+.report-form-select-options {
+  .select-options(
+    report-form-select-options,
+    #555
+  );
 
-  &--profile-header-extra {
-    .link-blue-light();
-  }
-
-  &__icon {
-    opacity: 0;
-    padding-left: 5px;
-    color: #999;
-    cursor: pointer;
-
-    .@{top}:hover & {
-      opacity: 1;
-    }
-  }
+  width: 100%;
 }

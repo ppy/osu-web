@@ -18,10 +18,9 @@ matrix:
 addons:
   apt:
     sources:
-      - sourceline: 'deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7'
-        key_url: 'https://gist.githubusercontent.com/nanaya/8c435175aa56da449f7ca485efdbac0f/raw/aac9f8352a91323fee72d8417fccaf8b3027f813/mysql-2017.key'
+      - mysql-5.7-trusty
     packages:
-      - mysql-community-server
+      - mysql-server
 
 env:
   global:
