@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,22 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.click-to-copy {
-  @top: click-to-copy;
-  .link-white();
+namespace App\Models;
 
-  &--profile-header-extra {
-    .link-blue-light();
-  }
+use App\Models\Score\Best\Model as BestModel;
 
-  &__icon {
-    opacity: 0;
-    padding-left: 5px;
-    color: #999;
-    cursor: pointer;
+class UserReport extends Model
+{
+    const CREATED_AT = 'timestamp';
 
-    .@{top}:hover & {
-      opacity: 1;
+    protected $table = 'osu_user_reports';
+    protected $primaryKey = 'report_id';
+    protected $guarded = [];
+
+    protected $dates = ['timestamp'];
+
+    public $timestamps = false;
+
+    public function reporter()
+    {
+        return $this->belongsTo(User::class, 'reporter_id');
     }
-  }
+
+    public function score()
+    {
+        return $this->belongsTo(BestModel::getClass($this->mode), 'score_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

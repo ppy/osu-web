@@ -236,6 +236,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
             a
               href: BeatmapDiscussionHelper.url discussion: @props.discussion
               onClick: @permalink
+              rel: 'nofollow'
               className: "#{bn}__action #{bn}__action--button"
 
               if @state.permalinkTimer?

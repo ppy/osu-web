@@ -1584,16 +1584,16 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v3.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "8a489bf1f701bcdd6f65be1369bd4dffb0aabda2"
+                "reference": "6632a54a273e74fa6c7f1ffa5a87925716a83b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/8a489bf1f701bcdd6f65be1369bd4dffb0aabda2",
-                "reference": "8a489bf1f701bcdd6f65be1369bd4dffb0aabda2",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/6632a54a273e74fa6c7f1ffa5a87925716a83b0e",
+                "reference": "6632a54a273e74fa6c7f1ffa5a87925716a83b0e",
                 "shasum": ""
             },
             "require": {
@@ -1638,7 +1638,7 @@
                 "profiling",
                 "slim"
             ],
-            "time": "2018-07-30T22:51:45+00:00"
+            "time": "2018-08-01T14:38:23+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2667,7 +2667,7 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
             "time": "2017-02-16T06:27:23+00:00"
         },

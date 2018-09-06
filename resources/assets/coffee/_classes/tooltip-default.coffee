@@ -69,6 +69,8 @@ class @TooltipDefault
       show:
         event: event.type
         ready: true
+      hide:
+        event: 'click mouseleave'
       style:
         classes: classes
         tip:
