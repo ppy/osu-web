@@ -46,7 +46,7 @@ class DisqusImport extends Command
      *
      * @var string
      */
-    protected $description = 'Indexes documents into Elasticsearch.';
+    protected $description = 'Imports osu! website disqus dump.';
 
     private $threads = [];
     private $usersDBPath;
