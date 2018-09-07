@@ -144,15 +144,11 @@ class BeatmapsetPage.Main extends React.Component
 
 
   setScoreReportPresence: (_e, scoreId) =>
-    scores = @state.scores
-    scoreIndex = scores.findIndex((s) => s.id == scoreId)
-
-    newScore = scores[scoreIndex]
-    newScore.userReportPresence.reported = true
-
-    scores.splice(scoreIndex, 1, newScore)
-
-    @setState scores: scores
+    @setState (state) ->
+      scores = [state.scores...]
+      index = scores.findIndex (s) -> s.id == scoreId
+      scores[index].userReportPresence.reported = true
+      scores: scores
 
 
   toggleFavourite: =>
