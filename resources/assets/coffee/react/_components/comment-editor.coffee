@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span, textarea} = ReactDOMFactories
+{button, div, span} = ReactDOMFactories
+
+el = React.createElement
 
 bn = 'comment-editor'
 
@@ -24,7 +26,7 @@ class @CommentEditor extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @textareaRef = React.createRef()
+    @textarea = null
 
     @state =
       message: @props.message ? ''
@@ -32,8 +34,8 @@ class @CommentEditor extends React.PureComponent
 
 
   componentDidMount: =>
-    @textareaRef.current.selectionStart = -1
-    @textareaRef.current.focus() if (@props.focus ? true)
+    @textarea.selectionStart = -1
+    @textarea.focus() if (@props.focus ? true)
 
 
   componentWillUnmount: =>
@@ -45,9 +47,9 @@ class @CommentEditor extends React.PureComponent
     blockClass += " #{bn}--compact" if @mode() == 'new'
 
     div className: blockClass,
-      textarea
+      el TextareaAutosize,
         className: "#{bn}__message"
-        ref: @textareaRef
+        innerRef: @setTextarea
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange
@@ -129,3 +131,7 @@ class @CommentEditor extends React.PureComponent
     .fail (xhr, status) =>
       @setState posting: false
       osu.ajaxError(xhr, status)
+
+
+  setTextarea: (ref) =>
+    @textarea = ref
