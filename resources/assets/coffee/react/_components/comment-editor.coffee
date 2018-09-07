@@ -51,15 +51,21 @@ class @CommentEditor extends React.PureComponent
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange
-        disabled: @state.posting
+        disabled: !currentUser.id? || @state.posting
       div
         className: "#{bn}__footer"
-        button
-          className: 'btn-osu-big btn-osu-big--comment-editor'
-          onClick: @post
-          disabled: @state.posting || !@isValid()
-          span className: 'btn-osu-big__content',
-            @buttonText()
+        if currentUser.id?
+          button
+            className: 'btn-osu-big btn-osu-big--comment-editor'
+            onClick: @post
+            disabled: @state.posting || !@isValid()
+            span className: 'btn-osu-big__content',
+              @buttonText()
+        else
+          button
+            className: 'btn-osu-big btn-osu-big--comment-editor js-user-link'
+            span className: 'btn-osu-big__content',
+              osu.trans("comments.guest_button.#{@mode()}")
 
 
   buttonText: =>

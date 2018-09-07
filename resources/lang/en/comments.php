@@ -24,6 +24,11 @@ return [
     'replies' => 'Replies',
     'title' => 'Comments',
 
+    'guest_button' => [
+        'new' => 'Login to comment',
+        'reply' => 'Login to reply',
+    ],
+
     'placeholder' => [
         'reply' => 'Type your response here',
         'new' => 'Type new comment here',
