@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, i, span, table, tr, td, th, thead, tbody} = ReactDOMFactories
+{a, button, div, i, span, table, tr, td, th, thead, tbody} = ReactDOMFactories
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
