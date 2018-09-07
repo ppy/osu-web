@@ -73,47 +73,6 @@
     padding: 10px 0;
   }
 
-  &__footer {
-    display: flex;
-    margin: -10px;
-    font-size: @font-size--normal;
-  }
-
-  &__footer-item {
-    margin: 10px;
-  }
-
-  &__header {
-    margin: -10px;
-    display: flex;
-    align-items: baseline;
-  }
-
-  &__header-item {
-    margin: 10px;
-    white-space: nowrap;
-
-    &--username {
-      font-size: @font-size--title-small-3;
-      font-style: italic;
-      font-weight: bold;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    &--username-link {
-      .@{_top}--changelog & {
-        .link-blue-light();
-      }
-    }
-
-    &--parent {
-      font-size: @font-size--title-small-3;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
-
   &__line {
     position: absolute;
     top: (@_avatar + @_line-margin);
@@ -215,5 +174,36 @@
 
   &__reply-box {
     padding-top: 10px;
+  }
+
+  &__row {
+    margin: -2px -10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    &--footer {
+      font-size: @font-size--normal;
+    }
+  }
+
+  &__row-item {
+    margin: 2px 10px;
+
+    &--parent {
+      font-size: @font-size--title-small-3;
+    }
+
+    &--username {
+      font-size: @font-size--title-small-3;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    &--username-link {
+      .@{_top}--changelog & {
+        .link-blue-light();
+      }
+    }
   }
 }

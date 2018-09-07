@@ -58,16 +58,16 @@ class @Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
-          div className: 'comment__header',
+          div className: 'comment__row',
             if user.id?
               a
-                className: 'comment__header-item comment__header-item--username comment__header-item--username-link js-usercard'
+                className: 'comment__row-item comment__row-item--username comment__row-item--username-link js-usercard'
                 'data-user-id': user.id
                 href: laroute.route('users.show', user: user.id)
                 user.username
             else
               span
-                className: 'comment__header-item comment__header-item--username'
+                className: 'comment__row-item comment__row-item--username'
                 user.username
 
             if @props.parent?
@@ -77,14 +77,14 @@ class @Comment extends React.PureComponent
                 else
                   _.truncate $(@props.parent.message_html).text(), length: 100
               div
-                className: 'comment__header-item comment__header-item--parent'
+                className: 'comment__row-item comment__row-item--parent'
                 title: message
                 span className: 'fas fa-reply'
                 ' '
                 @userFor(@props.parent).username
 
             span
-              className: 'comment__header-item'
+              className: 'comment__row-item'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
           if @state.editing
             div className: 'comment__editor',
@@ -105,8 +105,8 @@ class @Comment extends React.PureComponent
                   dangerouslySetInnerHTML:
                     __html: @props.comment.message_html
 
-          div className: 'comment__footer',
-            div className: 'comment__footer-item',
+          div className: 'comment__row comment__row--footer',
+            div className: 'comment__row-item',
               button
                 type: 'button'
                 className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
@@ -114,7 +114,7 @@ class @Comment extends React.PureComponent
                 osu.trans('common.buttons.reply')
 
             if @canEdit()
-              div className: 'comment__footer-item',
+              div className: 'comment__row-item',
                 button
                   type: 'button'
                   className: "comment__action #{if @state.editing then 'comment__action--active' else ''}"
@@ -122,7 +122,7 @@ class @Comment extends React.PureComponent
                   osu.trans('common.buttons.edit')
 
             if @isDeleted() && @canRestore()
-              div className: 'comment__footer-item',
+              div className: 'comment__row-item',
                 button
                   type: 'button'
                   className: 'comment__action'
@@ -130,7 +130,7 @@ class @Comment extends React.PureComponent
                   osu.trans('common.buttons.restore')
 
             if !@isDeleted() && @canDelete()
-              div className: 'comment__footer-item',
+              div className: 'comment__row-item',
                 button
                   type: 'button'
                   className: 'comment__action'
@@ -138,7 +138,7 @@ class @Comment extends React.PureComponent
                   osu.trans('common.buttons.delete')
 
             if children.length > 0
-              div className: 'comment__footer-item',
+              div className: 'comment__row-item',
                 button
                   type: 'button'
                   className: 'comment__action'
@@ -150,7 +150,7 @@ class @Comment extends React.PureComponent
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.comment.editor ? deletedUser
               div
-                className: 'comment__footer-item'
+                className: 'comment__row-item'
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'comments.edited',
                     timeago: osu.timeago(@props.comment.edited_at)
