@@ -22,29 +22,30 @@ bn = 'beatmap-scoreboard-table'
 
 BeatmapsetPage.ScoreboardTable = (props) ->
   props.scores = props.scores.map (score) ->
-    score.reportButton =
-      if score.userReportPresence.reported
-        span className: 'report-button',
-          span null,
-            i className: 'fas fa-exclamation-triangle'
-            span className: 'report-button__text',
-              osu.trans('beatmapsets.show.scoreboard.score.reported')
-      else
-        button
-          className: 'report-button report-button--enabled'
-          key: 'button'
-          type: 'button'
-          onClick: (e) ->
-            return if e.button != 0
-            e.preventDefault()
+    unless !currentUser.id? || score.user.id == currentUser.id
+      score.reportButton =
+        if score.userReportPresence.reported
+          span className: 'report-button',
+            span null,
+              i className: 'fas fa-exclamation-triangle'
+              span className: 'report-button__text',
+                osu.trans('beatmapsets.show.scoreboard.score.reported')
+        else
+          button
+            className: 'report-button report-button--enabled'
+            key: 'button'
+            type: 'button'
+            onClick: (e) ->
+              return if e.button != 0
+              e.preventDefault()
 
-            $.publish 'user:report',
-              score: score
-              mode: props.beatmap.mode
-          span null,
-            i className: 'fas fa-exclamation-triangle'
-            span className: 'report-button__text',
-              osu.trans('beatmapsets.show.scoreboard.score.report')
+              $.publish 'user:report',
+                score: score
+                mode: props.beatmap.mode
+            span null,
+              i className: 'fas fa-exclamation-triangle'
+              span className: 'report-button__text',
+                osu.trans('beatmapsets.show.scoreboard.score.report')
     score
 
   div className: "#{bn}",
@@ -64,7 +65,8 @@ BeatmapsetPage.ScoreboardTable = (props) ->
           th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
           th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
           th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
-          th className: "#{bn}__header #{bn}__header--report", ''
+          if currentUser.id?
+            th className: "#{bn}__header #{bn}__header--report", ''
 
       tbody className: "#{bn}__body",
         for score, index in props.scores
@@ -128,6 +130,6 @@ BeatmapsetPage.ScoreboardTable = (props) ->
             td className: "#{bn}__mods",
               el Mods, modifiers: ['scoreboard'], mods: score.mods
 
-            td {},
-              unless score.user.id == currentUser.id
+            if currentUser.id?
+              td {},
                 score.reportButton
