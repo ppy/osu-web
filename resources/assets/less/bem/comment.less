@@ -129,7 +129,9 @@
   }
 
   &__link {
-    .link-blue-light();
+    .@{_top}--changelog & {
+      .link-blue-light();
+    }
   }
 
   &__main {
