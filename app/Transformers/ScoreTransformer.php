@@ -22,7 +22,6 @@ namespace App\Transformers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use League\Fractal;
-use League\Fractal\ParamBag;
 
 class ScoreTransformer extends Fractal\TransformerAbstract
 {
@@ -33,7 +32,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'weight',
         'user',
         'multiplayer',
-        'userReportPresence'
+        'userReportPresence',
     ];
 
     public function transform($score)
