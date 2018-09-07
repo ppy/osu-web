@@ -56,18 +56,28 @@ class @CommentEditor extends React.PureComponent
         disabled: !currentUser.id? || @state.posting
       div
         className: "#{bn}__footer"
+        if @props.close?
+          div className: "#{bn}__footer-item",
+            button
+              className: 'btn-osu-big btn-osu-big--comment-editor'
+              onClick: @props.close
+              disabled: @state.posting
+              osu.trans('common.buttons.cancel')
+
         if currentUser.id?
-          button
-            className: 'btn-osu-big btn-osu-big--comment-editor'
-            onClick: @post
-            disabled: @state.posting || !@isValid()
-            span className: 'btn-osu-big__content',
-              @buttonText()
+          div className: "#{bn}__footer-item",
+            button
+              className: 'btn-osu-big btn-osu-big--comment-editor'
+              onClick: @post
+              disabled: @state.posting || !@isValid()
+              span className: 'btn-osu-big__content',
+                @buttonText()
         else
-          button
-            className: 'btn-osu-big btn-osu-big--comment-editor js-user-link'
-            span className: 'btn-osu-big__content',
-              osu.trans("comments.guest_button.#{@mode()}")
+          div className: "#{bn}__footer-item",
+            button
+              className: 'btn-osu-big btn-osu-big--comment-editor js-user-link'
+              span className: 'btn-osu-big__content',
+                osu.trans("comments.guest_button.#{@mode()}")
 
 
   buttonText: =>
