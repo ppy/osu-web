@@ -30,8 +30,8 @@ return [
     ],
 
     'placeholder' => [
-        'reply' => 'Type your response here',
-        'new' => 'Type new comment here',
         'edit' => 'Edit the comment here',
+        'new' => 'Type new comment here',
+        'reply' => 'Type your response here',
     ],
 ];
