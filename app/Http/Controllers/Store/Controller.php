@@ -33,8 +33,7 @@ abstract class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->pendingCheckout = $this->pendingCheckouts()->first();
-            view()->share('pendingCheckout', $this->pendingCheckout);
+            view()->share('pendingCheckout', optional($this->pendingCheckouts())->first());
 
             return $next($request);
         });
@@ -72,6 +71,8 @@ abstract class Controller extends BaseController
      */
     protected function pendingCheckouts()
     {
-        return Order::where('user_id', Auth::user()->getKey())->processing();
+        if (Auth::check()) {
+            return Order::where('user_id', Auth::user()->getKey())->processing();
+        }
     }
 }
