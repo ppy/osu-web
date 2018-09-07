@@ -59,6 +59,7 @@ class Kernel extends ConsoleKernel
         // fix username change fail :D
         Commands\FixUsernameChangeTopicCache::class,
 
+        Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
 
         Commands\LocaleCheck::class,
