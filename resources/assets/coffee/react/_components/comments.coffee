@@ -26,12 +26,18 @@ class @Comments extends React.PureComponent
 
     comments = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
+    @id = "comments-#{osu.uuid()}"
+
     @state = {comments}
 
 
   componentDidMount: =>
-    $.subscribe 'comment:added', @append
-    $.subscribe 'comment:updated', @update
+    $.subscribe "comment:added.#{@id}", @append
+    $.subscribe "comment:updated.#{@id}", @update
+
+
+  componentWillUnmount: =>
+    $.unsubscribe ".#{@id}"
 
 
   render: =>
