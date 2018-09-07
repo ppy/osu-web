@@ -32,9 +32,8 @@ class @CommentEditor extends React.PureComponent
 
 
   componentDidMount: =>
-    if @textareaRef.current?
-      @textareaRef.current.selectionStart = -1
-      @textareaRef.current.focus() if (@props.focus ? true)
+    @textareaRef.current.selectionStart = -1
+    @textareaRef.current.focus() if (@props.focus ? true)
 
 
   componentWillUnmount: =>
