@@ -17,7 +17,7 @@
 ###
 
 import { createElement as el, createRef, PureComponent } from 'react'
-import { div, i } from 'react-dom-factories'
+import { button, div, i } from 'react-dom-factories'
 
 export class BackToTop extends PureComponent
   constructor: (props) ->
@@ -60,7 +60,7 @@ export class BackToTop extends PureComponent
 
 
   render: =>
-    div
+    button
       className: 'back-to-top'
       onClick: @onClick
       title: if @state.lastScrollY? then osu.trans('common.buttons.back_to_previous') else osu.trans('common.buttons.back_to_top')
