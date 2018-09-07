@@ -42,7 +42,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
               score: score
               mode: props.beatmap.mode
           span null,
-            i className: 'far fa-exclamation-triangle'
+            i className: 'fas fa-exclamation-triangle'
             span className: 'report-button__text',
               osu.trans('beatmapsets.show.scoreboard.score.report')
     score
