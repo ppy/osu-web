@@ -158,6 +158,13 @@ return [
 
     'restricted' => "Can't do that while restricted.",
 
+    'score' => [
+        'report' => [
+            'already_reported' => 'You have already reported this score.',
+            'self' => "You can't report your own score.",
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [

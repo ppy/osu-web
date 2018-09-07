@@ -111,6 +111,8 @@ return [
             'score' => [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
+                'report' => 'Report',
+                'reported' => 'Reported',
             ],
         ],
     ],

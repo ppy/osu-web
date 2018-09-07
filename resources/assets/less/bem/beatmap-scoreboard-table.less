@@ -106,6 +106,10 @@
       min-width: 50px;
       padding-left: 5px;
     }
+
+    &--report {
+      width: 90px;
+    }
   }
 
   &__body-row {
@@ -185,8 +189,38 @@
       color: #fff;
     }
   }
-  
+
   &__zero {
     color: #aaa;
+  }
+
+  .report-button {
+    @_report: report-button;
+
+    .reset-input();
+    .center-content();
+    .link-plain();
+
+    color: @red;
+
+    &__text {
+      padding-left: 3px;
+    }
+
+    &--enabled {
+      color: #555;
+
+      & .@{_report}__text {
+        opacity: 0;
+      }
+
+      &:hover .@{_report}__text {
+        opacity: 1;
+      }
+    }
+  }
+
+  .@{_top}__body-row:hover .report-button {
+    color: #fff;
   }
 }

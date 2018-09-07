@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, i, span} = ReactDOMFactories
+{a, button, div, i, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'profile-header-extra'
@@ -147,7 +147,20 @@ class ProfilePage.HeaderExtra extends React.Component
 
                   el BlockButton, user_id: @props.user.id
 
-              el _exported.ReportForm, user: @props.user
+              button
+                className: 'textual-button'
+                key: 'button'
+                type: 'button'
+                onClick: (e) =>
+                  return if e.button != 0
+                  e.preventDefault()
+
+                  $.publish 'user:report', user: @props.user
+                span null,
+                  i className: 'textual-button__icon fas fa-exclamation-triangle'
+                  " #{osu.trans 'users.report.button_text'}"
+
+              el _exported.ReportForm
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",

@@ -143,6 +143,18 @@ class BeatmapsetPage.Main extends React.Component
     @setState hoveredBeatmap: hoveredBeatmap
 
 
+  setScoreReportPresence: (_e, scoreId) =>
+    scores = @state.scores
+    scoreIndex = scores.findIndex((s) => s.id == scoreId)
+
+    newScore = scores[scoreIndex]
+    newScore.userReportPresence.reported = true
+
+    scores.splice(scoreIndex, 1, newScore)
+
+    @setState scores: scores
+
+
   toggleFavourite: =>
     @favouriteXhr = $.ajax
       url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
@@ -161,6 +173,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
+    $.subscribe 'score:report-presence:set.beatmapsetPage', @setScoreReportPresence
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
     $.publish 'turbolinksDisqusReload'
     $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer

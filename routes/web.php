@@ -54,6 +54,8 @@ Route::group(['prefix' => 'beatmaps'], function () {
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
+Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+
 Route::group(['prefix' => 'beatmapsets'], function () {
     Route::put('beatmap-discussions/{beatmap_discussion}/vote', 'BeatmapDiscussionsController@vote')->name('beatmap-discussions.vote');
     Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');

@@ -31,9 +31,7 @@ options = [
 ]
 
 export class ReportForm extends PureComponent
-  constructor: (props) ->
-    super props
-
+  constructor: ->
     @ref = createRef()
     @textarea = createRef()
 
@@ -44,6 +42,7 @@ export class ReportForm extends PureComponent
 
   componentDidMount: =>
     document.addEventListener 'keydown', @handleEsc
+    $.subscribe 'user:report', @startReport
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -52,6 +51,7 @@ export class ReportForm extends PureComponent
 
   componentWillUnmount: =>
     document.removeEventListener 'keydown', @handleEsc
+    $.unsubscribe 'user:report'
 
 
   handleEsc: (e) =>
@@ -69,25 +69,15 @@ export class ReportForm extends PureComponent
 
 
   render: =>
-    [
-      button
-        className: 'textual-button',
-        key: 'button'
-        type: 'button'
-        onClick: @showModal
-        span null,
-          i className: 'textual-button__icon fas fa-exclamation-triangle'
-          " #{osu.trans 'users.report.button_text'}"
+    return null unless @state.showingModal
 
-      @renderForm() if @state.showingModal
-    ]
-
-
-  renderForm: =>
     title = if @state.completed
               osu.trans 'users.report.thanks'
             else
-              osu.trans 'users.report.title', username: "<strong>#{@props.user.username}</strong>"
+              if @state.user?
+                osu.trans 'users.report.title', username: "<strong>#{@state.user.username}</strong>"
+              else
+                osu.trans 'users.report.scores.title', username: "<strong>#{@state.score.user.username}</strong>"
 
     div
       className: bn
@@ -112,18 +102,19 @@ export class ReportForm extends PureComponent
 
   renderFormContent: =>
     div null,
-      div
-        className: "#{bn}__row"
-        osu.trans 'users.report.reason'
+      if @state.user?
+        div
+          className: "#{bn}__row"
+          osu.trans 'users.report.reason'
 
-      div
-        className: "#{bn}__row"
-        el SelectOptions,
-          blackout: false
-          bn: "#{bn}-select-options"
-          onItemSelected: @onItemSelected
-          options: options
-          selected: @state.selectedReason
+        div
+          className: "#{bn}__row"
+          el SelectOptions,
+            blackout: false
+            bn: "#{bn}-select-options"
+            onItemSelected: @onItemSelected
+            options: options
+            selected: @state.selectedReason
 
       div
         className: "#{bn}__row"
@@ -157,9 +148,15 @@ export class ReportForm extends PureComponent
         ]
 
 
-  showModal: (e) =>
-    return if e.button != 0
-    e.preventDefault()
+  startReport: (_e, {user, score, mode}) =>
+    if user?
+      @state.user = user
+    else if score?
+      @state.score = score
+      @state.score.mode = mode
+    else
+      return
+
     Timeout.clear @timeout
     @setState
       completed: false
@@ -169,17 +166,25 @@ export class ReportForm extends PureComponent
   sendReport: (e) =>
     @setState loading: true
 
-    data =
-      reason: @state.selectedReason.id
-      comments: @textarea.current.value
+    data = comments: @textarea.current.value
+    if @state.user?
+      url = laroute.route 'users.report', user: @state.user.id
+      data.reason = @state.selectedReason.id
+    else
+      url = laroute.route 'scores.report',
+              mode: @state.score.mode
+              score: @state.score.id
 
     $.ajax
       type: 'POST'
-      url: laroute.route 'users.report', user: @props.user.id
+      url: url
       data: data
       dataType: 'json'
 
     .done () =>
+      if @state.score?
+        $.publish 'score:report-presence:set', @state.score.id
+
       @timeout = Timeout.set 1000, @hideModal
       @setState completed: true
 

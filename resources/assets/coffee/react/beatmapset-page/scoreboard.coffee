@@ -73,6 +73,8 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
       DEFAULT_MODS
 
     div className: 'beatmapset-scoreboard',
+      el _exported.ReportForm
+
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
           el BeatmapsetPage.ScoreboardTab,

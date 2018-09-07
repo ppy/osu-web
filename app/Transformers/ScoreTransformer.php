@@ -22,6 +22,7 @@ namespace App\Transformers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use League\Fractal;
+use League\Fractal\ParamBag;
 
 class ScoreTransformer extends Fractal\TransformerAbstract
 {
@@ -32,11 +33,13 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'weight',
         'user',
         'multiplayer',
+        'userReportPresence'
     ];
 
     public function transform($score)
     {
         return [
+            'id' => $score->score_id,
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
             'mods' => $score->enabled_mods,
@@ -109,5 +112,25 @@ class ScoreTransformer extends Fractal\TransformerAbstract
     public function includeUser($score)
     {
         return $this->item($score->user, new UserCompactTransformer);
+    }
+
+    public function includeUserReportPresence($score, $params)
+    {
+        $userId = $params->get('user_id');
+
+        if ($userId === null) {
+            throw new \Exception('No user specified.');
+        }
+
+        $reportPresence = $score
+            ->reportedIn()
+            ->where('reporter_id', $userId)
+            ->exists();
+
+        return $this->item($score, function ($score) use ($reportPresence) {
+            return [
+                'reported' => $reportPresence,
+            ];
+        });
     }
 }

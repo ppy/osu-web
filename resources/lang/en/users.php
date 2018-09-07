@@ -110,6 +110,10 @@ return [
             'cancel' => 'Cancel',
         ],
 
+        'scores' => [
+            'title' => "Report :username's score?",
+        ],
+
         'options' => [
             'cheating' => 'Foul play / Cheating',
             'insults' => 'Insulting me / others',
