@@ -166,5 +166,10 @@ return [
                 'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
+
+        'report' => [
+            'already_reported' => 'You have already reported this user.',
+            'self' => "You can't report yourself.",
+        ],
     ],
 ];

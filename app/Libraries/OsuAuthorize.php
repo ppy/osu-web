@@ -890,9 +890,19 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkUserReport($user)
+    public function checkUserReport($user, $owner)
     {
+        $prefix = 'user.report.';
+
         $this->ensureLoggedIn($user);
+
+        if ($user->getKey() === $owner->getKey()) {
+            return $prefix.'self';
+        }
+
+        if ($user->reportsMade()->where('user_id', $owner->getKey())->exists()) {
+            return $prefix.'already_reported';
+        }
 
         return 'ok';
     }

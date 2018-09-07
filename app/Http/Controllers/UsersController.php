@@ -187,22 +187,13 @@ class UsersController extends Controller
             return response()->json([], 404);
         }
 
-        priv_check('UserReport', Auth::user())->ensureCan();
+        priv_check('UserReport', $user)->ensureCan();
 
-        $report = Auth::user()->reportsMade()->make([
+        $report = Auth::user()->reportsMade()->create([
             'user_id' => $user->getKey(),
             'comments' => trim(request('comments')),
             'reason' => trim(request('reason')),
         ]);
-
-        try {
-            $report->saveOrExplode();
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
-        }
 
         return response(null, 204);
     }
