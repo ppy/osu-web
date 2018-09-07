@@ -21,6 +21,7 @@
 return [
     'deleted' => 'deleted',
     'edited' => 'edited :timeago by :user',
+    'empty' => 'No comments yet.',
     'replies' => 'Replies',
     'title' => 'Comments',
 
