@@ -90,6 +90,8 @@ class @CommentEditor extends React.PureComponent
 
 
   post: =>
+    return @props.close?() if @mode() == 'edit' && @state.message == @props.message
+
     @setState posting: true
 
     data =
