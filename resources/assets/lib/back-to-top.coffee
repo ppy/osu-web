@@ -29,6 +29,10 @@ export class BackToTop extends PureComponent
       lastScrollY: null
 
 
+  componentWillUnmount: =>
+    document.removeEventListener 'scroll', @onScroll
+
+
   # remove qtip so it doesn't spaz on scrollTo
   destroyTooltip: =>
     if @container.current._tooltip
