@@ -37,6 +37,11 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
+    'forums' => [
+        'posts' => [
+            'only_quote' => 'Your reply contains only a quote.',
+        ],
+    ],
     'logged_out' => 'You have been signed out. Please sign in and retry.',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
