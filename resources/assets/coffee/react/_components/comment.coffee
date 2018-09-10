@@ -207,9 +207,7 @@ class @Comment extends React.PureComponent
 
 
   toggleEdit: =>
-    @setState
-      editing: !@state.editing
-      message: @props.comment.message
+    @setState editing: !@state.editing
 
 
   closeEdit: =>
@@ -234,10 +232,6 @@ class @Comment extends React.PureComponent
       method: 'POST'
     .done (data) =>
       $.publish 'comment:updated', comment: data
-
-
-  setMessage: (event) =>
-    @setState message: event.target.value
 
 
   toggleNewReply: =>
