@@ -65,18 +65,15 @@ class CommentsController extends Controller
 
     public function store()
     {
-        $parentId = get_int(request('parent_id'));
-
-        if (isset($parentId)) {
-            $comment = Comment::findOrFail($parentId)->replies()->make();
-        } else {
-            $comment = $this->getCommentable()->comments()->make();
-        }
-
-        $params = get_params(request(), 'comment', ['message']);
+        $params = get_params(request(), 'comment', [
+            'commentable_id:int',
+            'commentable_type',
+            'message',
+            'parent_id:int',
+        ]);
         $params['user_id'] = optional(auth()->user())->getKey();
 
-        $comment->fill($params);
+        $comment = new Comment($params);
 
         priv_check('CommentStore', $comment)->ensureCan();
 

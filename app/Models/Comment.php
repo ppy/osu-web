@@ -45,6 +45,8 @@ class Comment extends Model
         'legacy_user_data' => 'array',
     ];
 
+    public $allowEmptyCommentable = false;
+
     public static function isValidType($type)
     {
         return array_key_exists($type, static::COMMENTABLES);
@@ -92,6 +94,14 @@ class Comment extends Model
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
+        if ($this->parent_id !== null && $this->parent === null) {
+            $this->validationErrors()->add('parent_id', 'invalid');
+        }
+
+        if ($this->commentable === null && !$this->allowEmptyCommentable) {
+            $this->validationErrors()->add('commentable', 'required');
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
@@ -105,6 +115,10 @@ class Comment extends Model
         if ($this->parent !== null) {
             $this->commentable_id = $this->parent->commentable_id;
             $this->commentable_type = $this->parent->commentable_type;
+        }
+
+        if (!$this->isValid()) {
+            return false;
         }
 
         return $this->getConnection()->transaction(function () use ($options) {

@@ -112,16 +112,15 @@ class @CommentEditor extends React.PureComponent
 
     @setState posting: true
 
-    data =
-      comment: message: @state.message
+    data = comment: message: @state.message
 
     switch @mode()
       when 'reply', 'new'
         url = laroute.route 'comments.store'
         method = 'POST'
-        data.commentable_type = @props.commentableType
-        data.commentable_id = @props.commentableId
-        data.parent_id = @props.parent?.id
+        data.comment.commentable_type = @props.commentableType
+        data.comment.commentable_id = @props.commentableId
+        data.comment.parent_id = @props.parent?.id
 
         onDone = (data) =>
           @setState message: ''

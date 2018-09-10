@@ -216,7 +216,7 @@ class DisqusImport extends Command
         $threadId = (int) $post->thread->attributes('dsq', true)->id;
         $threadData = $this->threads[$threadId] ?? null;
 
-        Comment::create([
+        $comment = new Comment([
             'id' => $id,
             'user_id' => $userId,
             'message' => $message,
@@ -228,6 +228,9 @@ class DisqusImport extends Command
             'commentable_id' => $threadData['commentableId'],
             'commentable_type' => $threadData['commentableType'],
         ]);
+
+        $comment->allowEmptyCommentable = true;
+        $comment->save();
     }
 
     private function prepareUsersDB()

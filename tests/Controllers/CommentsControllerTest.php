@@ -19,9 +19,9 @@ class CommentsControllerTest extends TestCase
         $this
             ->actingAs($user)
             ->post(route('comments.store'), [
-                'commentable_type' => $commentableType,
-                'commentable_id' => $commentableId,
                 'comment' => [
+                    'commentable_type' => $commentableType,
+                    'commentable_id' => $commentableId,
                     'message' => 'Hello.',
                 ],
             ])
