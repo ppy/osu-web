@@ -74,7 +74,7 @@ class CommentsController extends Controller
         }
 
         $params = get_params(request(), 'comment', ['message']);
-        $params['user_id'] = auth()->user()->getKey();
+        $params['user_id'] = optional(auth()->user())->getKey();
 
         $comment->fill($params);
 
