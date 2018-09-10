@@ -11,7 +11,7 @@ class CommentsControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $beatmapset = factory(Beatmapset::class)->create();
-        $commentableType = array_search_null(get_class($beatmapset), Comment::COMMENTABLES);
+        $commentableType = 'beatmapset';
         $commentableId = $beatmapset->getKey();
 
         $currentComments = Comment::count();
