@@ -63,16 +63,15 @@
   }
 
   &__amount {
-    font-size: 14px;
+    font-size: @font-size--title-small;
   }
 
   &__header {
     display: flex;
     justify-content: space-between;
 
-    font-size: 20px;
+    font-size: @font-size--large;
     line-height: 1.5;
-    margin-bottom: 10px;
   }
 
   &__header-left {
@@ -88,12 +87,13 @@
   }
 
   &__header-subtext {
-    font-size: 12px;
+    font-size: @font-size--normal;
   }
 
-  &__item {
+  &__items {
     list-style: none;
-    font-size: 12px;
+    font-size: @font-size--normal;
+    margin: 10px 0;
   }
 
   &__item-quantity {

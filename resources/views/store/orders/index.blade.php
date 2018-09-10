@@ -48,15 +48,13 @@
                         </div>
                     </div>
 
-                    <div class="store-order__items">
-                        <ul>
-                            @foreach ($order->items as $item)
-                                <li class="store-order__item">
-                                    <span>{{ $item->getDisplayName() }}</span>
-                                    <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <ul class="store-order__items">
+                        @foreach ($order->items as $item)
+                            <li>
+                                <span>{{ $item->getDisplayName() }}</span>
+                                <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
+                        @endforeach
+                    </ul>
                     @if ($order->hasInvoice())
                         <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">View invoice</a>
                     @endif
