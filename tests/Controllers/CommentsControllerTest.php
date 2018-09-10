@@ -45,8 +45,8 @@ class CommentsControllerTest extends TestCase
         $this
             ->actingAs($user)
             ->post(route('comments.store'), [
-                'parent_id' => $parent->getKey(),
                 'comment' => [
+                    'parent_id' => $parent->getKey(),
                     'message' => 'This is a reply.',
                 ],
             ])
