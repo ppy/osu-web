@@ -90,7 +90,13 @@ class Comment extends Model
     {
         $this->validationErrors()->reset();
 
-        if (mb_strlen($this->message) > static::MESSAGE_LIMIT) {
+        $messageLength = mb_strlen(trim($this->message));
+
+        if ($messageLength === 0) {
+            $this->validationErrors()->add('message', 'required');
+        }
+
+        if ($messageLength > static::MESSAGE_LIMIT) {
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
