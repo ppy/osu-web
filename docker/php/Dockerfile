@@ -15,6 +15,7 @@ RUN apk update && \
     php7-mcrypt \
     php7-mysqli \
     php7-pdo_mysql \
+    php7-sqlite3 \
     php7-phar \
     php7-session \
     php7-simplexml \
