@@ -234,7 +234,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
         Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
 
-        Route::resource('orders', 'OrdersController', ['only' => ['index', 'show']]);
+        Route::resource('orders', 'OrdersController', ['only' => ['index']]);
 
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
