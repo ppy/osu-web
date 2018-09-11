@@ -122,7 +122,7 @@ class @BeatmapDiscussionHelper
 
 
   @moderationGroup: (user) =>
-    _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
+    _.intersection(user.groups, ['qat', 'bng'])[0]
 
 
   @previewMessage = (message) =>
