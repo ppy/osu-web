@@ -22,6 +22,7 @@ class @Url
     'api/v2'
     'beatmaps'
     'beatmapsets'
+    'comments'
     'community'
     'help'
     'home'
