@@ -139,7 +139,7 @@ class Comment extends Model
 
     public function legacyUsername()
     {
-        return $this->disqus_user_data['username'] ?? null;
+        return presence($this->disqus_user_data['username'] ?? null);
     }
 
     public function isDeleted()
