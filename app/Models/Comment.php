@@ -42,7 +42,7 @@ class Comment extends Model
     protected $dates = ['deleted_at', 'edited_at'];
 
     protected $casts = [
-        'legacy_user_data' => 'array',
+        'disqus_user_data' => 'array',
     ];
 
     public $allowEmptyCommentable = false;
@@ -140,7 +140,7 @@ class Comment extends Model
 
     public function legacyUsername()
     {
-        return $this->legacy_user_data['username'] ?? null;
+        return $this->disqus_user_data['username'] ?? null;
     }
 
     public function isDeleted()

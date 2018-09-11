@@ -198,30 +198,32 @@ class DisqusImport extends Command
 
     private function createComment($post)
     {
-        $id = (int) $post->attributes('dsq', true)->id;
+        $disqusId = (int) $post->attributes('dsq', true)->id;
         $messageHtml = (string) $post->message;
         $message = mb_substr($this->converter->convert($messageHtml), 0, Comment::MESSAGE_LIMIT);
         $createdAt = Carbon::parse($post->createdAt);
         $deleted = ((string) $post->isDeleted) === 'true';
         $spam = ((string) $post->isSpam) === 'true';
         $deletedAt = $deleted || $spam ? $createdAt : null;
-        $legacyUserData = [
+        $disqusUserData = [
             'username' => (string) $post->author->username,
             'name' => (string) $post->author->name,
         ];
-        $userId = $this->lookupUserId($legacyUserData);
+        $userId = $this->lookupUserId($disqusUserData);
         if ($post->parent->getName() === 'parent') {
-            $parentId = (int) $post->parent->attributes('dsq', true)->id;
+            $disqusParentId = (int) $post->parent->attributes('dsq', true)->id;
+            $parentId = optional(Comment::where(['disqus_id' => $disqusParentId])->first())->getKey();
         }
         $threadId = (int) $post->thread->attributes('dsq', true)->id;
         $threadData = $this->threads[$threadId] ?? null;
 
         $comment = new Comment([
-            'id' => $id,
             'user_id' => $userId,
             'message' => $message,
-            'legacy_id' => $threadData['id'] ?? null,
-            'legacy_user_data' => $legacyUserData,
+            'disqus_id' => $disqusId ?? null,
+            'disqus_parent_id' => $disqusParentId ?? null,
+            'disqus_thread_id' => $threadData['id'] ?? null,
+            'disqus_user_data' => $disqusUserData,
             'deleted_at' => $deletedAt,
             'created_at' => $createdAt,
             'parent_id' => $parentId ?? null,

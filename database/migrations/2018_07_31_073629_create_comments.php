@@ -25,8 +25,10 @@ class CreateComments extends Migration
 
             $table->unsignedBigInteger('replies_count_cache')->default(0);
 
-            $table->string('legacy_id')->nullable();
-            $table->text('legacy_user_data')->nullable();
+            $table->unsignedBigInteger('disqus_id')->nullable();
+            $table->unsignedBigInteger('disqus_parent_id')->nullable();
+            $table->string('disqus_thread_id')->nullable();
+            $table->text('disqus_user_data')->nullable();
 
             $table->timestampTz('edited_at')->nullable();
             $table->unsignedMediumInteger('edited_by_id')->nullable();
@@ -38,6 +40,7 @@ class CreateComments extends Migration
 
             $table->index(['commentable_type', 'commentable_id']);
             $table->index('parent_id');
+            $table->index('disqus_id');
         });
     }
 
