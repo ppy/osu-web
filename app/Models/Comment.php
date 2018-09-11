@@ -118,7 +118,7 @@ class Comment extends Model
 
     public function save(array $options = [])
     {
-        if ($this->parent !== null) {
+        if ($this->parent_id !== null && $this->parent !== null) {
             $this->commentable_id = $this->parent->commentable_id;
             $this->commentable_type = $this->parent->commentable_type;
         }
