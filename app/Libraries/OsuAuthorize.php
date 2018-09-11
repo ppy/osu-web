@@ -759,7 +759,9 @@ class OsuAuthorize
 
     public function checkForumTopicEdit($user, $topic)
     {
-        return $this->checkForumPostEdit($user, $topic->posts()->first());
+        $firstPost = $topic->posts()->first() ?? $topic->posts()->withTrashed()->first();
+
+        return $this->checkForumPostEdit($user, $firstPost);
     }
 
     public function checkForumTopicReply($user, $topic)
