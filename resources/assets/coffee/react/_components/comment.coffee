@@ -221,8 +221,8 @@ class @Comment extends React.PureComponent
   userFor: (comment) =>
     if comment.user?
       comment.user
-    else if comment.legacy_username?
-      username: comment.legacy_username
+    else if comment.legacy_name?
+      username: comment.legacy_name
     else
       username: osu.trans('users.deleted')
 
