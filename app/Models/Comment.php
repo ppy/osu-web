@@ -137,9 +137,9 @@ class Comment extends Model
         });
     }
 
-    public function legacyUsername()
+    public function legacyName()
     {
-        return presence($this->disqus_user_data['username'] ?? null);
+        return presence($this->disqus_user_data['name'] ?? null);
     }
 
     public function isDeleted()
