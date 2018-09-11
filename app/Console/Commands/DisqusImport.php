@@ -212,7 +212,7 @@ class DisqusImport extends Command
         $userId = $this->lookupUserId($disqusUserData);
         if ($post->parent->getName() === 'parent') {
             $disqusParentId = (int) $post->parent->attributes('dsq', true)->id;
-            $parentId = optional(Comment::where(['disqus_id' => $disqusParentId])->first())->getKey();
+            $parentId = optional(Comment::where(['disqus_id' => $disqusParentId])->select('id')->first())->getKey();
         }
         $threadId = (int) $post->thread->attributes('dsq', true)->id;
         $threadData = $this->threads[$threadId] ?? null;
