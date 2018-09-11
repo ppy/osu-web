@@ -130,7 +130,7 @@ class Comment extends Model
         return $this->getConnection()->transaction(function () use ($options) {
             if (!$this->exists && $this->parent_id !== null) {
                 // skips validation and everything
-                $this->parent()->increment('replies_count_cache', 1);
+                $this->parent()->increment('replies_count_cache');
             }
 
             return parent::save($options);
