@@ -100,11 +100,11 @@ class Comment extends Model
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
-        if ($this->parent_id !== null && $this->parent === null) {
+        if ($this->parent_id !== null && !$this->parent()->exists()) {
             $this->validationErrors()->add('parent_id', 'invalid');
         }
 
-        if ($this->commentable === null && !$this->allowEmptyCommentable) {
+        if (!$this->allowEmptyCommentable && !$this->commentable()->exists()) {
             $this->validationErrors()->add('commentable', 'required');
         }
 
