@@ -114,6 +114,11 @@ class NewsPost extends Model
         }
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');
@@ -134,11 +139,6 @@ class NewsPost extends Model
     public function bodyHtml()
     {
         return $this->page['output'];
-    }
-
-    public function disqusId()
-    {
-        return 'news_'.($this->tumblr_id ?? $this->slug);
     }
 
     public function editUrl()

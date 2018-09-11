@@ -1223,7 +1223,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'blocks', 'friends', 'is_admin']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
     }
 
     public function supportLength()
