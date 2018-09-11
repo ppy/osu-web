@@ -26,6 +26,7 @@ use App\Models\NewsPost;
 use App\Models\UpdateStream;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 use League\HTMLToMarkdown\HtmlConverter;
 use SQLite3;
@@ -232,7 +233,14 @@ class DisqusImport extends Command
         ]);
 
         $comment->allowEmptyCommentable = true;
-        $comment->save();
+
+        try {
+            $comment->save();
+        } catch (Exception $e) {
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
+        }
     }
 
     private function prepareUsersDB()

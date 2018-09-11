@@ -40,7 +40,7 @@ class CreateComments extends Migration
 
             $table->index(['commentable_type', 'commentable_id']);
             $table->index('parent_id');
-            $table->index('disqus_id');
+            $table->unique('disqus_id');
         });
     }
 
