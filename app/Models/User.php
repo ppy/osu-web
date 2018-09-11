@@ -669,6 +669,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->memoized[__FUNCTION__];
     }
 
+    /**
+     * User group to be displayed in preference over other groups.
+     *
+     * @return string
+     */
+    public function defaultGroup()
+    {
+        if ($this->group_id === UserGroup::GROUPS['admin']) {
+            return 'default';
+        }
+
+        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+    }
+
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
@@ -1206,9 +1220,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_unread_privmsg;
     }
 
+    // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
     }
 
     public function supportLength()

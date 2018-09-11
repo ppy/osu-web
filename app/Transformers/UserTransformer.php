@@ -35,6 +35,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -60,7 +61,6 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'name' => $user->countryName(),
             ],
             'avatar_url' => $user->user_avatar,
-            'is_admin' => $user->isAdmin(),
             'is_supporter' => $user->osu_subscriber,
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
@@ -172,6 +172,13 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsGraveyard()->count(),
             ];
+        });
+    }
+
+    public function includeIsAdmin(User $user)
+    {
+        return $this->primitive($user->isAdmin(), function ($flag) {
+            return $flag;
         });
     }
 
