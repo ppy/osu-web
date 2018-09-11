@@ -128,9 +128,11 @@ class Comment extends Model
         }
 
         return $this->getConnection()->transaction(function () use ($options) {
-            if (!$this->exists && $this->parent !== null) {
-                $this->parent->update([
+            if (!$this->exists && $this->parent_id !== null) {
+                // skips validation and everything
+                static::where(['id' => $this->parent_id])->update([
                     'replies_count_cache' => db_unsigned_increment('replies_count_cache', 1),
+                    'updated_at' => Carbon::now(),
                 ]);
             }
 
