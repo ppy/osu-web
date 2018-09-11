@@ -669,6 +669,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->memoized[__FUNCTION__];
     }
 
+    /**
+     * User group to be displayed in preference over other groups.
+     *
+     * @return string
+     */
+    public function defaultGroup()
+    {
+        if ($this->group_id === UserGroup::GROUPS['admin']) {
+            return 'default';
+        }
+
+        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+    }
+
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
