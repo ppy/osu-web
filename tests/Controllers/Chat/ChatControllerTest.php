@@ -102,6 +102,25 @@ class ChatControllerTest extends TestCase
             )->assertStatus(403);
     }
 
+    public function testCreatePMWhenSilenced() // fail
+    {
+        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
+        $silencedUser = factory(User::class)->create();
+        $silencedUser->accountHistories()->save(
+            factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+        );
+
+        $this->actingAs($silencedUser)
+            ->json(
+                'POST',
+                route('chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertStatus(403);
+    }
+
     public function testCreatePMWhenTargetRestricted() // fail
     {
         $restrictedUser = factory(User::class)->states('restricted')->create();
