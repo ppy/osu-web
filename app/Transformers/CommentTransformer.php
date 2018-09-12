@@ -51,7 +51,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'commentable_type' => $comment->commentable_type,
             'commentable_id' => $comment->commentable_id,
 
-            'legacy_username' => $comment->legacyUsername(),
+            'legacy_name' => $comment->legacyName(),
 
             'created_at' => json_time($comment->created_at),
             'updated_at' => json_time($comment->updated_at),
