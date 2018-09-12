@@ -22,6 +22,9 @@ use App\Models\UserRelation;
 
 class ChatControllerTest extends TestCase
 {
+    // Need to disable transactions for these tests otherwise the cross-database queries being used fail.
+    protected $connectionsToTransact = [];
+
     protected static $faker;
 
     public static function setUpBeforeClass()
@@ -35,6 +38,22 @@ class ChatControllerTest extends TestCase
 
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
+    }
+
+
+    public function tearDown()
+    {
+        // Ideally this cleanup would be in `tearDownAfterClass` as to not run after *every* individual
+        // test, but Laravel in its infinite wisdom nukes app() during `tearDown` (which runs before
+        // `tearDownAfterClass`)... so here we are.
+
+        DB::statement("SET foreign_key_checks=0");
+        Chat\Message::truncate();
+        Chat\UserChannel::truncate();
+        Chat\Channel::truncate();
+        UserRelation::truncate();
+        User::truncate();
+        DB::statement("SET foreign_key_checks=1");
     }
 
     //region POST /chat/new - Create New PM

@@ -25,6 +25,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
+use App\Models\UserRelation;
 use Auth;
 use DB;
 use Request;
@@ -76,56 +77,73 @@ class ChatController extends Controller
 
     public function presence()
     {
+        // retrieve all the channels the user is in and the metadata for each
         $userChannels = UserChannel::where('user_channels.user_id', Auth::user()->user_id)
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
-            ->join('user_channels as uc2', 'uc2.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
-            ->selectRaw("group_concat(uc2.user_id SEPARATOR ',') as member_ids")
             ->selectRaw('user_channels.last_read_id')
             ->selectRaw('(select max(messages.message_id) from messages where messages.channel_id = user_channels.channel_id) as last_message_id')
             ->groupBy('user_channels.channel_id')
             ->groupBy('user_channels.user_id')
             ->get();
 
+        // fetch the users in each of the channels (and whether they're restricted and/or blocked)
+        $userRelationTableName = (new UserRelation)->tableName(true);
+        $userChannelMembers = UserChannel::whereIn('channel_id', $userChannels->pluck('channel_id'))
+            ->selectRaw('user_channels.*')
+            ->selectRaw('phpbb_zebra.foe')
+            ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName) {
+                $join->on("$userRelationTableName.zebra_id", 'user_channels.user_id')
+                    ->where("$userRelationTableName.user_id", Auth::user()->user_id);
+            })
+            ->with('userScoped')
+            ->get();
+
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) {
-                $channel = $userChannel->channel;
+            function ($userChannel) use ($userChannelMembers) {
                 $presence = [
-                    'channel_id' => $channel->channel_id,
-                    'type' => $channel->type,
-                    'name' => $channel->name,
-                    'description' => presence($channel->description),
+                    'channel_id' => $userChannel->channel_id,
+                    'type' => $userChannel->type,
+                    'name' => $userChannel->name,
+                    'description' => presence($userChannel->description),
                     'last_read_id' => $userChannel->last_read_id,
                     'last_message_id' => $userChannel->last_message_id,
                 ];
 
-                if (!$channel->isPublic()) {
-                    $channelMembers = array_map('intval', explode(',', $userChannel->member_ids));
-                    $presence['users'] = $channelMembers;
+                if ($userChannel->type !== Channel::TYPES['public']) {
+                    // filter out restricted users from the listing
+                    $filteredChannelMembers = $userChannelMembers->where('channel_id', $userChannel->channel_id)
+                        ->map(function ($userChannel, $key) {
+                            return $userChannel->userScoped ? $userChannel->user_id : null;
+                        });
+
+                    // TODO: Decided whether we want to return user objects everywhere or just user_ids
+                    $filteredChannelMembers = array_values($filteredChannelMembers->toArray());
+                    $presence['users'] = $filteredChannelMembers;
                 }
 
-                if ($channel->isPM()) {
-                    // if this is a pm
-                    $users = array_filter($channelMembers, function ($key) {
-                        // remove current user, leaving only the other party
-                        return $key !== Auth::user()->user_id;
-                    });
-                    $targetUser = User::lookup(array_shift($users), 'id');
+                if ($userChannel->type == Channel::TYPES['pm']) {
+                    // remove ourselves from $membersArray, leaving only the other party
+                    $members = array_diff($filteredChannelMembers, [Auth::user()->user_id]);
+                    $targetUser = $userChannelMembers->where('user_id', array_shift($members))->first();
 
-                    if (!$targetUser || Auth::user()->hasBlocked($targetUser)) {
+                    // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
+                    if (!$targetUser || $targetUser->foe) {
                         return [];
                     }
 
-                    $presence['icon'] = $targetUser->user_avatar;
-                    $presence['name'] = $targetUser->username;
+                    // override channel icon and display name in PMs to always show the other party
+                    $userActual = $targetUser->userScoped;
+                    $presence['icon'] = $userActual->user_avatar;
+                    $presence['name'] = $userActual->username;
                 }
 
                 return $presence;
             }
         );
 
-        // strip out the [] elements from restricted/blocked users
+        // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
     }
 

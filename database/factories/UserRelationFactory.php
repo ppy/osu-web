@@ -23,9 +23,9 @@ $factory->define(UserRelation::class, function (Faker\Generator $faker) {
 });
 
 $factory->state(UserRelation::class, 'friend', function (Faker\Generator $faker) {
-    return ['friend' => 1];
+    return ['friend' => true];
 });
 
 $factory->state(UserRelation::class, 'block', function (Faker\Generator $faker) {
-    return ['foe' => 1];
+    return ['foe' => true];
 });
