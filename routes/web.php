@@ -269,12 +269,12 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::get('updates', '\App\Http\Controllers\Chat\ChatController@updates')->name('updates');
             Route::get('presence', '\App\Http\Controllers\Chat\ChatController@presence')->name('presence');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+                Route::apiResource('{channel_id}/messages', '\App\Http\Controllers\Chat\Channels\MessagesController', ['only' => ['index', 'store']]);
                 Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
                 Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
-                Route::post('{channel_id}/messages', '\App\Http\Controllers\Chat\ChannelsController@send')->name('send');
                 Route::put('{channel_id}/mark-as-read/{message_id}', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::resource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index', 'show']]);
+            Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
