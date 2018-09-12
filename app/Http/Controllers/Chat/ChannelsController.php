@@ -34,6 +34,7 @@ class ChannelsController extends Controller
             'Chat/Channel'
         );
     }
+
     public function join($channel_id, $user_id)
     {
         // FIXME: Update this to proper permission check when public-only restriction is lifted

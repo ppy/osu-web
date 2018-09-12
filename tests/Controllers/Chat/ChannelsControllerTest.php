@@ -16,13 +16,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace Tests\Chat;
 
 use App\Models\Chat;
-use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
-use App\Models\UserRelation;
 use Faker;
 use TestCase;
 
