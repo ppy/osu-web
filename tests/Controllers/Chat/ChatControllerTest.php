@@ -40,20 +40,19 @@ class ChatControllerTest extends TestCase
         $this->anotherUser = factory(User::class)->create();
     }
 
-
     public function tearDown()
     {
         // Ideally this cleanup would be in `tearDownAfterClass` as to not run after *every* individual
         // test, but Laravel in its infinite wisdom nukes app() during `tearDown` (which runs before
         // `tearDownAfterClass`)... so here we are.
 
-        DB::statement("SET foreign_key_checks=0");
+        DB::statement('SET foreign_key_checks=0');
         Chat\Message::truncate();
         Chat\UserChannel::truncate();
         Chat\Channel::truncate();
         UserRelation::truncate();
         User::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        DB::statement('SET foreign_key_checks=1');
     }
 
     //region POST /chat/new - Create New PM

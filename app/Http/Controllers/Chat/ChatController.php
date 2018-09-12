@@ -123,7 +123,7 @@ class ChatController extends Controller
                     $presence['users'] = $filteredChannelMembers;
                 }
 
-                if ($userChannel->type == Channel::TYPES['pm']) {
+                if ($userChannel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [Auth::user()->user_id]);
                     $targetUser = $userChannelMembers->where('user_id', array_shift($members))->first();
