@@ -526,7 +526,7 @@ class OsuAuthorize
 
     public function checkCommentDestroy($user, $comment)
     {
-        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment)->can()) {
             return 'ok';
         }
 
