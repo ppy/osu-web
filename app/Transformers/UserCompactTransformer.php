@@ -40,6 +40,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'profile_colour' => $user->user_colour,
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
+            'default_group' => $user->defaultGroup(),
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
             'is_online' => $user->isOnline(),
@@ -72,7 +73,8 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             $groups = [];
 
             foreach ($user->groupIds() as $id) {
-                if (($name = array_search_null($id, UserGroup::GROUPS)) !== null) {
+                $name = array_search_null($id, UserGroup::GROUPS);
+                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
                     $groups[] = $name;
                 }
             }

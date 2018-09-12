@@ -41,6 +41,16 @@
   transition: @property @duration @function;
 }
 
+.default-gutter() {
+  padding-left: @gutter;
+  padding-right: @gutter;
+
+  @media @desktop {
+    padding-left: @gutter-desktop;
+    padding-right: @gutter-desktop;
+  }
+}
+
 .default-header-overlay() {
   &::before {
     .full-size();
@@ -55,6 +65,14 @@
 
 .inset-box-shadow() {
   box-shadow: inset 0 1px 3px fade(#000, 30%);
+}
+
+.link-blue-light() {
+  color: @blue-light;
+
+  .link-hover({
+    color: @blue-light;
+  });
 }
 
 .link-default() {

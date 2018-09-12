@@ -33,6 +33,7 @@ class Forum extends Model
     protected $casts = [
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
+        'moderator_groups' => 'array',
     ];
 
     public static function lastTopics($forum = null)

@@ -562,6 +562,70 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
+    public function checkCommentDestroy($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentModerate($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentRestore($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentShow($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
+        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+            return 'ok';
+        }
+    }
+
+    public function checkCommentStore($user, $comment)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkCommentUpdate($user, $comment)
+    {
+        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return 'ok';
+        }
+    }
+
     public function checkContestEntryStore($user, $contest)
     {
         $this->ensureLoggedIn($user);
@@ -607,9 +671,25 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumModerate($user, $forum)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+            return 'ok';
+        }
+
+        return 'forum.moderate.no_permission';
+    }
+
     public function checkForumView($user, $forum)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
             return 'ok';
         }
 
@@ -624,14 +704,14 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.delete.';
 
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($this->doCheckUser($user, 'ForumModerate', $post->forum)->can()) {
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$this->doCheckUser($user, 'ForumView', $post->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -657,14 +737,14 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.edit.';
 
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($this->doCheckUser($user, 'ForumModerate', $post->forum)->can()) {
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$this->doCheckUser($user, 'ForumView', $post->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -687,16 +767,20 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumPostStore($user, $post)
+    public function checkForumPostStore($user, $forum)
     {
         $prefix = 'forum.post.store.';
+
+        if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
+            return 'ok';
+        }
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
         $plays = (int) $user->monthlyPlaycounts()->sum('playcount');
         $posts = $user->user_posts;
-        $forInitialHelpForum = in_array($post->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+        $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
         if ($forInitialHelpForum) {
             if ($plays < 10 && $posts > 10) {
@@ -713,34 +797,27 @@ class OsuAuthorize
 
     public function checkForumTopicEdit($user, $topic)
     {
-        return $this->checkForumPostEdit($user, $topic->posts()->first());
-    }
+        $firstPost = $topic->posts()->first() ?? $topic->posts()->withTrashed()->first();
 
-    public function checkForumTopicModerate($user, $topic)
-    {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
-            return 'ok';
-        }
+        return $this->checkForumPostEdit($user, $firstPost);
     }
 
     public function checkForumTopicReply($user, $topic)
     {
         $prefix = 'forum.topic.reply.';
 
-        $this->ensureLoggedIn($user, $prefix.'user.');
-        $this->ensureCleanRecord($user, $prefix.'user.');
-
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
             return 'ok';
         }
+
+        $this->ensureLoggedIn($user, $prefix.'user.');
+        $this->ensureCleanRecord($user, $prefix.'user.');
 
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
-        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->posts([
-            'forum_id' => $topic->forum_id,
-        ])->make());
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $topic->forum);
 
         if (!$postStorePermission->can()) {
             return $postStorePermission->rawMessage();
@@ -765,20 +842,18 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.store.';
 
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
             return 'ok';
         }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
-        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum->topics()->make()->posts()->make([
-            'forum_id' => $forum->getKey(),
-        ]));
+        $postStorePermission = $this->doCheckUser($user, 'ForumPostStore', $forum);
 
         if (!$postStorePermission->can()) {
             return $postStorePermission->rawMessage();
@@ -813,10 +888,6 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-
-        if ($user->isGMT() || $user->isQAT()) {
-            return 'ok';
-        }
 
         if ($cover->topic !== null) {
             return $this->checkForumTopicEdit($user, $cover->topic);
@@ -917,6 +988,13 @@ class OsuAuthorize
     }
 
     public function checkUserFavouriteRemove($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
+    public function checkUserReport($user)
     {
         $this->ensureLoggedIn($user);
 

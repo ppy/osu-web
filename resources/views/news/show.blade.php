@@ -40,7 +40,7 @@
                             type="button"
                             class="btn-circle"
                             data-remote="true"
-                            data-url="{{ route('news.show', [$post->getKey()])}}"
+                            data-url="{{ route('news.update', $post)}}"
                             data-method="PUT"
                             data-reload-on-success="1"
                             title="{{ trans('news.update.button') }}"
@@ -59,13 +59,13 @@
     <div class="osu-page osu-page--generic">
         <div class="news">
             <div class="news__time">
-                {!! trans('news.show.posted', ['time' => timeago($post->createdAt())]) !!}
+                {!! trans('news.show.posted', ['time' => timeago($post->published_at)]) !!}
             </div>
 
             {!! $post->bodyHtml() !!}
 
             <div class="news__nav">
-                @if ($post->navNewerId() === null)
+                @if ($post->newer() === null)
                     <span
                         class="news__nav-button"
                         title="{{ trans('news.show.nav.newer') }}"
@@ -75,13 +75,13 @@
                 @else
                     <a
                         class="news__nav-button news__nav-button--link"
-                        href="{{ route('news.show', $post->navNewerId()) }}"
+                        href="{{ route('news.show', $post->newer()->slug) }}"
                         title="{{ trans('news.show.nav.newer') }}"
                     >
                         <span class="fas fa-chevron-circle-left"></span>
                     </a>
                 @endif
-                @if ($post->navOlderId() === null)
+                @if ($post->older() === null)
                     <span
                         class="news__nav-button"
                         title="{{ trans('news.show.nav.older') }}"
@@ -90,7 +90,7 @@
                     </span>
                 @else
                     <a
-                        href="{{ route('news.show', $post->navOlderId()) }}"
+                        href="{{ route('news.show', $post->older()->slug) }}"
                         class="news__nav-button news__nav-button--link"
                         title="{{ trans('news.show.nav.older') }}"
                     >
@@ -98,14 +98,17 @@
                     </a>
                 @endif
             </div>
-
-            <div
-                class="js-turbolinks-disqus"
-                data-turbolinks-disqus="{{ json_encode([
-                    'identifier' => $post->disqusId(),
-                    'title' => $post->title(),
-                ]) }}"
-            ></div>
         </div>
+    </div>
+
+    <div class="osu-page osu-page--generic-compact">
+        <div
+            class="js-react--comments"
+            data-comments="{{ json_encode([
+                'commentableType' => 'news_post',
+                'commentableId' => $post->getKey(),
+                'comments' => $commentsJson,
+            ]) }}"
+        ></div>
     </div>
 @endsection
