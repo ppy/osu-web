@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use Carbon\Carbon;
 
@@ -40,11 +41,27 @@ class CommentsController extends Controller
 
     public function index()
     {
-        return json_collection(
-            $this->getCommentable()->comments()->with('editor', 'user')->get(),
-            'Comment',
-            ['editor', 'user']
-        );
+        $type = request('commentable_type');
+        $id = request('commentable_id');
+
+        if (isset($type) && isset($id)) {
+            $class = Comment::COMMENTABLES[$type] ?? null;
+
+            if ($class === null) {
+                abort(404);
+            }
+
+            $commentable = $class::findOrFail($id);
+        } else {
+            abort(404);
+        }
+
+        return (new CommentBundle(
+            $commentable,
+            get_int(request('parent_id')),
+            get_int(request('after')),
+            get_string(request('order'))
+        ))->toArray();
     }
 
     public function restore($id)
@@ -78,7 +95,7 @@ class CommentsController extends Controller
         priv_check('CommentStore', $comment)->ensureCan();
 
         if ($comment->save()) {
-            return json_item($comment, 'Comment', ['editor', 'user']);
+            return (new CommentBundle($comment->commentable, $comment->parent_id))->toArray();
         } else {
             abort(422);
         }
@@ -100,15 +117,5 @@ class CommentsController extends Controller
 
     private function getCommentable()
     {
-        $type = request('commentable_type');
-        $id = request('commentable_id');
-
-        $class = Comment::COMMENTABLES[$type] ?? null;
-
-        if ($class === null) {
-            abort(404);
-        }
-
-        return $class::findOrFail($id);
     }
 }

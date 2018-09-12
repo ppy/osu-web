@@ -24,15 +24,18 @@ class @Comments extends React.PureComponent
   constructor: (props) ->
     super props
 
-    comments = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
+    commentBundle = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
     @id = "comments-#{osu.uuid()}"
 
-    @state = {comments}
+    @state =
+      comments: commentBundle.comments
+      users: commentBundle.users
+      topLevelCount: commentBundle.top_level_count
 
 
   componentDidMount: =>
-    $.subscribe "comment:added.#{@id}", @append
+    $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comment:updated.#{@id}", @update
 
 
@@ -41,7 +44,8 @@ class @Comments extends React.PureComponent
 
 
   render: =>
-    commentsByParentId = _.groupBy(@state.comments ? [], 'parent_id')
+    commentsByParentId = _.groupBy(_.uniqBy(@state.comments ? [], 'id'), 'parent_id')
+    usersById = _.keyBy(@state.users ? [], 'id')
     # comments sorting goes here. Or somewhere to account for children. Idk.
 
     comments = commentsByParentId[null]
@@ -53,6 +57,7 @@ class @Comments extends React.PureComponent
             key: comment.id
             comment: comment
             commentsByParentId: commentsByParentId
+            usersById: usersById
             depth: 0
             modifiers: @props.modifiers
       else
@@ -66,20 +71,44 @@ class @Comments extends React.PureComponent
           commentableId: @props.commentableId
           focus: false
           modifiers: @props.modifiers
-      div className: 'comments__items', items
+      div className: 'comments__items',
+        items
+        if comments? && comments.length < @state.topLevelCount
+          lastCommentId = _.last(comments)?.id
+          el CommentShowMore,
+            key: "show-more:#{lastCommentId}"
+            commentableType: @props.commentableType
+            commentableId: @props.commentableId
+            after: lastCommentId
+            modifiers: _.concat 'top', @props.modifiers
 
 
-  append: (_event, {comment}) =>
-    return if comment.commentable_type != @props.commentableType || comment.commentable_id != @props.commentableId
-
-    @setState comments: @state.comments.concat comment
+  appendBundle: (_event, {comments}) =>
+    @setState
+      comments:
+        _(@state.comments)
+          .concat(comments.comments)
+          .reverse()
+          .uniqBy('id')
+          .reverse()
+          .value()
+      users:
+        _(@state.users)
+          .concat(comments.users)
+          .reverse()
+          .uniqBy('id')
+          .reverse()
+          .value()
 
 
   update: (_event, {comment}) =>
-    return if comment.commentable_type != @props.commentableType || comment.commentable_id != @props.commentableId
-
-    newComments = osu.jsonClone(@state.comments)
+    newComments = @state.comments[..]
     replacementIndex = _.findIndex newComments, (c) -> c.id == comment.id
-    newComments[replacementIndex] = comment if replacementIndex != -1
 
-    @setState comments: newComments
+    return if replacementIndex == -1
+
+    newComments[replacementIndex] = comment
+
+    @setState
+      comments: newComments
+      users: _.concat comment.user, comment.editor, @state.users

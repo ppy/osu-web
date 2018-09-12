@@ -37,7 +37,7 @@
     </script>
 
     <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
-        {!! json_encode($comments) !!}
+        {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
