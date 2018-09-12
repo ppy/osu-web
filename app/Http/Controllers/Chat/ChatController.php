@@ -149,7 +149,7 @@ class ChatController extends Controller
 
     public function newConversation()
     {
-        if (!present(Request::has('target_id')) || !present(Request::has('message')) || get_int(Request::input('target_id')) === Auth::user()->user_id) {
+        if (!present(Request::input('target_id')) || !present(Request::input('message')) || get_int(Request::input('target_id')) === Auth::user()->user_id) {
             abort(422);
         }
 
