@@ -164,20 +164,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
-    Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
-        Route::post('new', 'ChatController@newConversation')->name('new');
-        Route::get('updates', 'ChatController@updates')->name('updates');
-        Route::get('presence', 'ChatController@presence')->name('presence');
-        Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
-            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
-            Route::post('{channel_id}/messages', 'ChannelsController@send')->name('send');
-            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
-        });
-        Route::resource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
-    });
-    Route::resource('chat', 'Chat\ChatController', ['only' => ['index']]);
-
     Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
