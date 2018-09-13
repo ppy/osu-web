@@ -56,12 +56,11 @@ class CommentsController extends Controller
             abort(404);
         }
 
-        return (new CommentBundle(
-            $commentable,
-            get_int(request('parent_id')),
-            get_int(request('after')),
-            get_string(request('order'))
-        ))->toArray();
+        return (new CommentBundle($commentable, [
+            'parentId' => get_int(request('parent_id')),
+            'lastLoadedId' => get_int(request('after')),
+            'order' => get_string(request('order'))
+        ]))->toArray();
     }
 
     public function restore($id)
@@ -95,7 +94,9 @@ class CommentsController extends Controller
         priv_check('CommentStore', $comment)->ensureCan();
 
         if ($comment->save()) {
-            return (new CommentBundle($comment->commentable, $comment->parent_id))->toArray();
+            return (new CommentBundle($comment->commentable, [
+                'comments' => collect([$comment, $comment->parent->fresh()])
+            ]))->toArray();
         } else {
             abort(422);
         }

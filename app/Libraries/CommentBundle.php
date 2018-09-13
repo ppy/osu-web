@@ -26,41 +26,55 @@ use App\Models\User;
 class CommentBundle
 {
     private $commentable;
+    private $comments;
     private $parentId;
     private $lastLoadedId;
     private $order;
 
-    public function __construct($commentable, $parentId = null, $lastLoadedId = null, $order = null)
+    public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
-        $this->parentId = $parentId;
-        $this->lastLoadedId = $lastLoadedId;
-        $this->order = $order;
+
+        $this->parentId = $options['parentId'] ?? null;
+        $this->lastLoadedId = $options['lastLoadedId'] ?? null;
+        $this->order = $options['order'] ?? null;
+        $this->comments = $options['comments'] ?? null;
     }
 
     public function toArray()
     {
-        $comments = $this->getComments(
-            $this->commentable->comments()->where(['parent_id' => $this->parentId]),
-            $this->lastLoadedId
-        );
+        if (isset($this->comments)) {
+            $comments = $this->comments;
+        } else {
+            $comments = $this->getComments(
+                $this->commentable->comments()->where(['parent_id' => $this->parentId]),
+                $this->lastLoadedId
+            );
 
-        $firstReplies = $this->getComments(Comment::whereIn('parent_id', $comments->pluck('id')), null, 50);
-        $secondReplies = $this->getComments(Comment::whereIn('parent_id', $firstReplies->pluck('id')), null, 50);
+            $nestedComments = null;
 
-        $allComments = $comments
-            ->concat($firstReplies)
-            ->concat($secondReplies);
+            for ($i = 0; $i < 2; $i++) {
+                if ($i === 0) {
+                    $parentIds = $comments->pluck('id');
+                } else {
+                    $parentIds = $nestedComments->pluck('id');
+                }
 
-        $userIds = $allComments->pluck('user_id')
-            ->concat($allComments->pluck('edited_by_id'));
+                $nestedComments = $this->getComments(Comment::whereIn('parent_id', $parentIds), null, 50);
+                $comments = $comments->concat($nestedComments);
+            }
+        }
 
-        $allUsers = User::whereIn('user_id', $userIds)->get();
+        $userIds = $comments->pluck('user_id')
+            ->concat($comments->pluck('edited_by_id'));
+
+        $users = User::whereIn('user_id', $userIds)->get();
 
         $result = [
-            'comments' => json_collection($allComments, 'Comment'),
-            'users' => json_collection($allUsers, 'UserCompact'),
+            'comments' => json_collection($comments, 'Comment'),
+            'users' => json_collection($users, 'UserCompact'),
         ];
+
         if ($this->parentId === null) {
             $result['top_level_count'] = $this->commentable->comments()->whereNull('parent_id')->count();
         }
