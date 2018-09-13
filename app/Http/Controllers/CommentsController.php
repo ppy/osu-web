@@ -59,7 +59,7 @@ class CommentsController extends Controller
         return (new CommentBundle($commentable, [
             'parentId' => get_int(request('parent_id')),
             'lastLoadedId' => get_int(request('after')),
-            'order' => get_string(request('order'))
+            'order' => get_string(request('order')),
         ]))->toArray();
     }
 
@@ -95,7 +95,7 @@ class CommentsController extends Controller
 
         if ($comment->save()) {
             return (new CommentBundle($comment->commentable, [
-                'comments' => collect([$comment, $comment->parent->fresh()])
+                'comments' => collect([$comment, $comment->parent->fresh()]),
             ]))->toArray();
         } else {
             abort(422);
