@@ -94,8 +94,14 @@ class CommentsController extends Controller
         priv_check('CommentStore', $comment)->ensureCan();
 
         if ($comment->save()) {
+            $comments = collect([$comment]);
+
+            if ($comments->parent !== null) {
+                $comments->push($comments->parent->fresh());
+            }
+
             return (new CommentBundle($comment->commentable, [
-                'comments' => collect([$comment, $comment->parent->fresh()]),
+                'comments' => $comments,
             ]))->toArray();
         } else {
             abort(422);
