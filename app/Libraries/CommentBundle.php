@@ -29,7 +29,6 @@ class CommentBundle
     private $comments;
     private $parentId;
     private $lastLoadedId;
-    private $order;
 
     public function __construct($commentable, $options = [])
     {
@@ -37,7 +36,6 @@ class CommentBundle
 
         $this->parentId = $options['parentId'] ?? null;
         $this->lastLoadedId = $options['lastLoadedId'] ?? null;
-        $this->order = $options['order'] ?? null;
         $this->comments = $options['comments'] ?? null;
     }
 
