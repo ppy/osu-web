@@ -58,7 +58,7 @@ class CommentBundle
                     $parentIds = $nestedComments->pluck('id');
                 }
 
-                $nestedComments = $this->getComments(Comment::whereIn('parent_id', $parentIds), null, 50);
+                $nestedComments = $this->getComments(Comment::whereIn('parent_id', $parentIds));
                 $comments = $comments->concat($nestedComments);
             }
         }
@@ -80,7 +80,7 @@ class CommentBundle
         return $result;
     }
 
-    private function getComments($query, $lastLoadedId = null, $limit = 20)
+    private function getComments($query, $lastLoadedId = null, $limit = 50)
     {
         if ($lastLoadedId !== null) {
             $query->where('id', '<', $lastLoadedId);
