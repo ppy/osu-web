@@ -115,8 +115,4 @@ class CommentsController extends Controller
 
         return json_item($comment, 'Comment', ['editor', 'user']);
     }
-
-    private function getCommentable()
-    {
-    }
 }
