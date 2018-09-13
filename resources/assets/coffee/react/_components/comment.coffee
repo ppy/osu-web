@@ -40,6 +40,9 @@ class @Comment extends React.PureComponent
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
     repliesClass += ' comment__replies--hidden' if !@state.showReplies
 
+    if @isDeleted() && children.length == 0 && @props.depth == 0 && !@canRestore()
+      return div()
+
     div
       className: osu.classWithModifiers 'comment', @props.modifiers
 
