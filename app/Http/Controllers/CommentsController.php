@@ -97,7 +97,7 @@ class CommentsController extends Controller
             $comments = collect([$comment]);
 
             if ($comment->parent !== null) {
-                $comments->push($comment->parent->fresh());
+                $comments->push($comment->parent);
             }
 
             return (new CommentBundle($comment->commentable, [

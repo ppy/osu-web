@@ -128,9 +128,9 @@ class Comment extends Model
         }
 
         return $this->getConnection()->transaction(function () use ($options) {
-            if (!$this->exists && $this->parent_id !== null) {
+            if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent()->increment('replies_count_cache');
+                $this->parent->increment('replies_count_cache');
             }
 
             return parent::save($options);
