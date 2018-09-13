@@ -44,9 +44,18 @@ class @Comments extends React.PureComponent
 
 
   render: =>
-    commentsByParentId = _.groupBy(_.uniqBy(@state.comments ? [], 'id'), 'parent_id')
+    # When implementing other type of order, don't forget to take care
+    # how replying and show more interacts. It's currently fine* because
+    # it's ordered by created_at descending which means the reply will
+    # always be at the top and doesn't affect loading older posts.
+    # Also handling new replies will need to be fixed as well for newest
+    # first because it currently just doesn't.
+    commentsByParentId = _(@state.comments ? [])
+      .uniqBy('id')
+      .orderBy(['created_at', 'id'], ['desc', 'desc'])
+      .groupBy('parent_id')
+      .value()
     usersById = _.keyBy(@state.users ? [], 'id')
-    # comments sorting goes here. Or somewhere to account for children. Idk.
 
     comments = commentsByParentId[null]
 
@@ -85,19 +94,16 @@ class @Comments extends React.PureComponent
 
   appendBundle: (_event, {comments}) =>
     @setState
+      # remove old objects included in new bundle by relying on uniqBy keeping first item
       comments:
-        _(@state.comments)
-          .concat(comments.comments)
-          .reverse()
+        _(comments.comments)
+          .concat(@state.comments)
           .uniqBy('id')
-          .reverse()
           .value()
       users:
-        _(@state.users)
-          .concat(comments.users)
-          .reverse()
+        _(comments.users)
+          .concat(@state.users)
           .uniqBy('id')
-          .reverse()
           .value()
 
 
