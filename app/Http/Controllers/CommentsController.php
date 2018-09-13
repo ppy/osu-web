@@ -59,7 +59,6 @@ class CommentsController extends Controller
         return (new CommentBundle($commentable, [
             'parentId' => get_int(request('parent_id')),
             'lastLoadedId' => get_int(request('after')),
-            'order' => get_string(request('order')),
         ]))->toArray();
     }
 
