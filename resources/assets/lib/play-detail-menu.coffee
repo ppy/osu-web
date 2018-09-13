@@ -32,6 +32,7 @@ export class PlayDetailMenu extends PureComponent
 
   componentDidMount: =>
     $(document).on "click.#{@uuid}", @hide
+    $(document).on "keyup.#{@uuid}", @hide
 
 
   componentWillUnmount: =>
@@ -40,7 +41,9 @@ export class PlayDetailMenu extends PureComponent
 
   hide: (e) =>
     event = e.originalEvent
-    @setState active: false if event.button == 0 && !(@menu.current in event.composedPath())
+    if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
+      @setState active: false
+
     @props.onHide?()
 
 
