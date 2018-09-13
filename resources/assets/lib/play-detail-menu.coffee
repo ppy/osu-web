@@ -20,23 +20,6 @@ import { createElement as el, createRef, PureComponent } from 'react'
 import { a, button, div, i } from 'react-dom-factories'
 
 export class PlayDetailMenu extends PureComponent
-  #region Shared handler for picking up clicks ouside the element
-  # TODO: extract for sharing with other components
-  refs = {}
-  document.addEventListener 'click', (event) ->
-    for own _uuid, ref of refs
-      ref event
-
-
-  @register: (uuid, ref) ->
-    refs[uuid] = ref
-
-
-  @unregister: (uuid) ->
-    delete refs[uuid]
-
-  #endregion
-
   constructor: (props) ->
     super props
 
@@ -48,11 +31,11 @@ export class PlayDetailMenu extends PureComponent
 
 
   componentDidMount: =>
-    PlayDetailMenu.register @uuid, @hide
+    $(document).on "click.#{@uuid}", @hide
 
 
   componentWillUnmount: =>
-    PlayDetailMenu.unregister @uuid
+    $(document).off ".#{@uuid}", @hide
 
 
   hide: (e) =>
