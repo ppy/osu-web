@@ -25,7 +25,10 @@
 
   display: flex;
   align-items: center;
-  margin-right: -(@content-spill + @handle);
+
+  @media @desktop {
+    margin-right: -(@content-spill + @handle);
+  }
 
   &__content {
     display: flex;
@@ -34,7 +37,6 @@
     flex: 1;
     border-bottom: 1px solid #eee;
     margin: 0;
-    margin-right: @content-spill;
     padding: 2px 0;
 
     &::before {
@@ -75,10 +77,17 @@
   }
 
   &__more {
-    .center-content();
+    display: none;
+    justify-content: center;
+    align-items: center;
     align-self: stretch;
     opacity: 0;
+    margin-left: @content-spill;
     width: @handle; // fixed width for less mind-bendingness
+
+    @media @desktop {
+      display: inline-flex;
+    }
 
     // normal behaviour; highlights on hover.
     .@{passive-row}:hover & {
