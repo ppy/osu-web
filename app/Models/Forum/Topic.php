@@ -266,11 +266,6 @@ class Topic extends Model implements AfterCommit
         return $this->hasMany(TopicTrack::class, 'topic_id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'topic_poster');
-    }
-
     public function logs()
     {
         return $this->hasMany(Log::class, 'topic_id');
