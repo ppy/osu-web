@@ -53,6 +53,42 @@ abstract class Model extends BaseModel
         }
     }
 
+    public function headerChunk()
+    {
+        $beatmap = $this->beatmap;
+        $user = $this->user;
+        $md5 = md5("{$this->maxcombo}osu{$user->username}{$beatmap->checksum}{$this->score}{$this->rank}");
+        $mode = 0;
+
+        // easier debugging with array and implode instead of plain string concatenation.
+        $components = [
+            pack('c', $mode),
+            pack('i', '20151228'), //osu! version
+            packStr($beatmap->checksum),
+            packStr($user->username),
+            packStr($md5),
+            pack('S', $this->count300),
+            pack('S', $this->count100),
+            pack('S', $this->count50),
+            pack('S', $this->countgeki),
+            pack('S', $this->countkatu),
+            pack('S', $this->countmiss),
+            pack('i', $this->score),
+            pack('S', $this->maxcombo),
+            pack('c', $this->perfect),
+            pack('i', ModsHelper::toBitset($this->enabled_mods)),
+            packStr(''), // 0b00 here, 00 if lazer.
+            pack('q', $this->date->timestamp * 10000000 + 621355968000000000),
+        ];
+
+        return implode('', $components);
+    }
+
+    public function endChunk()
+    {
+        return pack('q', $this->score_id);
+    }
+
     public function weightedPp()
     {
         return $this->weight * $this->pp;
