@@ -36,6 +36,7 @@ abstract class Model extends BaseModel
         'replay' => 'boolean',
     ];
     protected $dates = ['date'];
+    protected $guarded = [];
     public $timestamps = false;
 
     public function scopeForUser($query, User $user)
