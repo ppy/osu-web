@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\ForumUpdateNotifier;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
