@@ -56,7 +56,7 @@ class ReplaysController extends Controller
                 echo $replayFile->endChunk();
             });
             $stream->headers->set('Content-Disposition', $disposition);
-            $stream->headers->set('Content-Type', 'application/zip');
+            $stream->headers->set('Content-Type', 'application/octet-stream');
 
             return $stream;
         } catch (FileNotFoundException $e) {
