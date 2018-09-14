@@ -313,10 +313,6 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $this->validate($request, [
-            'body' => 'required',
-        ]);
-
         if (get_bool($request->get('with_poll'))) {
             $pollParams = get_params($request, 'forum_topic_poll', [
                 'length_days:int',
