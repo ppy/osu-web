@@ -43,8 +43,7 @@ export class PlayDetailMenu extends PureComponent
     event = e.originalEvent
     if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
       @setState active: false
-
-    @props.onHide?()
+      @props.onHide?()
 
 
   onClick: =>
