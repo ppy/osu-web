@@ -313,7 +313,7 @@ function osu_url($key)
 
 function packStr($str)
 {
-    return pack("ccH*", 0x0b, strlen($str), bin2hex($str));
+    return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
 function param_string_simple($value)
