@@ -17,11 +17,16 @@
  */
 
 .play-detail-menu {
-  .reset-input();
   .full-size();
+
+  &__button {
+    .full-size();
+    .reset-input();
+  }
 
   &__menu {
     position: absolute;
-    right: -20px;
+    top: calc(100% ~'-' 10px);
+    right: -10px;
   }
 }

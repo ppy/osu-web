@@ -52,11 +52,14 @@ export class PlayDetailMenu extends PureComponent
 
 
   render: =>
-    button
+    div
       className: 'play-detail-menu'
-      type: 'button'
-      onClick: @onClick
-      i className: 'fas fa-ellipsis-v'
+      button
+        className: 'play-detail-menu__button'
+        type: 'button'
+        onClick: @onClick
+        i className: 'fas fa-ellipsis-v'
+
       @renderMenu()
 
 
