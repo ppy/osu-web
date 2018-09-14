@@ -39,7 +39,7 @@
                 @endif
 
                 <h1 class="osu-page-header__title osu-page-header__title--main">
-                    <a class="osu-page-header__link" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
+                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
                         {{ $page->title() }}
                     </a>
                 </h1>
