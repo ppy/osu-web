@@ -20,6 +20,8 @@
 
 el = React.createElement
 
+deletedUser = username: osu.trans('users.deleted')
+
 class @Comment extends React.PureComponent
   MAX_DEPTH = 3
 
@@ -137,7 +139,7 @@ class @Comment extends React.PureComponent
                   onClick: @delete
                   osu.trans('common.buttons.delete')
 
-            if children.length > 0
+            if @props.comment.replies_count > 0
               div className: 'comment__row-item',
                 button
                   type: 'button'
@@ -145,10 +147,10 @@ class @Comment extends React.PureComponent
                   onClick: @toggleReplies
                   "[#{if @state.showReplies then '-' else '+'}] "
                   osu.trans('comments.replies')
-                  " (#{children.length.toLocaleString()})"
+                  " (#{@props.comment.replies_count.toLocaleString()})"
 
             if !@isDeleted() && @props.comment.edited_at?
-              editor = @props.comment.editor ? deletedUser
+              editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
               div
                 className: 'comment__row-item'
                 dangerouslySetInnerHTML:
@@ -174,8 +176,17 @@ class @Comment extends React.PureComponent
             key: comment.id
             comment: comment
             commentsByParentId: @props.commentsByParentId
+            usersById: @props.usersById
             depth: @props.depth + 1
             parent: @props.comment
+            modifiers: @props.modifiers
+
+        if children.length < @props.comment.replies_count
+          lastCommentId = _.last(children)?.id
+          el CommentShowMore,
+            key: "show-more:#{lastCommentId}"
+            parent: @props.comment
+            after: lastCommentId
             modifiers: @props.modifiers
 
 
@@ -200,6 +211,8 @@ class @Comment extends React.PureComponent
 
 
   delete: =>
+    return unless confirm(osu.trans('common.confirmation'))
+
     $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
@@ -219,12 +232,14 @@ class @Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    if comment.user?
-      comment.user
+    user = @props.usersById[comment.user_id]
+
+    if user?
+      user
     else if comment.legacy_name?
       username: comment.legacy_name
     else
-      username: osu.trans('users.deleted')
+      deletedUser
 
 
   restore: =>
