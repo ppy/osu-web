@@ -133,6 +133,45 @@ class ForumTopicsControllerTest extends TestCase
         $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
     }
 
+    public function testUpdate()
+    {
+        $forum = factory(Forum\Forum::class, 'parent')->create([
+            'forum_type' => 1,
+        ]);
+        $user = factory(User::class)->create();
+        $userGroup = $this->defaultUserGroup($user);
+        $initialTitle = 'New topic';
+        $topic = Forum\Topic::createNew($forum, [
+            'title' => $initialTitle,
+            'user' => $user,
+            'body' => 'This is a new topic',
+        ]);
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => null,
+                ],
+            ])
+            ->assertStatus(422);
+
+        $this->assertSame($initialTitle, $topic->fresh()->topic_title);
+
+        $newTitle = 'A different title';
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => $newTitle,
+                ],
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($newTitle, $topic->fresh()->topic_title);
+    }
+
     private function defaultUserGroup($user)
     {
         $table = (new UserGroup)->getTable();

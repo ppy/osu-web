@@ -266,6 +266,11 @@ class Topic extends Model implements AfterCommit
         return $this->hasMany(TopicTrack::class, 'topic_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'topic_poster');
+    }
+
     public function logs()
     {
         return $this->hasMany(Log::class, 'topic_id');
@@ -391,6 +396,10 @@ class Topic extends Model implements AfterCommit
     public function isValid()
     {
         $this->validationErrors()->reset();
+
+        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
+            $this->validationErrors()->add('topic_title', 'required');
+        }
 
         foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
             if ($this->isDirty($field)) {
