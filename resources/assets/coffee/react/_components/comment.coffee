@@ -137,6 +137,7 @@ class @Comment extends React.PureComponent
                   type: 'button'
                   className: 'comment__action'
                   onClick: @delete
+                  'data-confirm': osu.trans('common.confirmation')
                   osu.trans('common.buttons.delete')
 
             if @props.comment.replies_count > 0
