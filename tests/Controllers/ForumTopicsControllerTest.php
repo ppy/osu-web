@@ -17,9 +17,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testReply()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -67,7 +65,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create();
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -83,9 +81,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testStore()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create()->fresh();
         $userGroup = $this->defaultUserGroup($user);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -135,9 +131,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create();
         $userGroup = $this->defaultUserGroup($user);
         $initialTitle = 'New topic';
