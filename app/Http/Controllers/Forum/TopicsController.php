@@ -314,7 +314,6 @@ class TopicsController extends Controller
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $this->validate($request, [
-            'title' => 'required',
             'body' => 'required',
         ]);
 
