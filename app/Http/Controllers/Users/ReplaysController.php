@@ -41,18 +41,20 @@ class ReplaysController extends Controller
             ->where('replay', true)
             ->firstOrFail();
 
+        $replayFile = $score->replayFile();
+        if ($replayFile === null) {
+            abort(404);
+        }
+
         try {
-            $replay = optional($score->replayFile())->get();
+            $replay = $replayFile->get();
         } catch (FileNotFoundException $e) {
+            // missing from storage.
             log_error($e);
             abort(404);
         }
 
-        if ($replay === null) {
-            abort(404);
-        }
-
-        return response($replay)
+        return response($replayFile->headerChunk().$replay.$replayFile->endChunk())
             ->header('Content-Disposition', "attachment; filename=replay-{$mode}_{$beatmapId}_{$score->getKey()}.osr")
             ->header('Content-Type', 'application/zip');
     }
