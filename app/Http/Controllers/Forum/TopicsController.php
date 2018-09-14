@@ -160,11 +160,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $this->validate($request, [
-            'body' => 'required',
-        ]);
-
-        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
+        try {
+            $post = $topic->addPostOrExplode(Auth::user(), request('body'));
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
