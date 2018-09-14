@@ -71,6 +71,7 @@ class ReplayFile
         $user = $score->user;
 
         $md5 = md5("{$score->maxcombo}osu{$user->username}{$beatmap->checksum}{$score->score}{$score->rank}");
+        $ticks = $score->date->timestamp * 10000000 + 621355968000000000; // Conversion to dotnet DateTime.Ticks.
 
         // easier debugging with array and implode instead of plain string concatenation.
         $components = [
@@ -90,7 +91,7 @@ class ReplayFile
             pack('c', $score->perfect),
             pack('i', ModsHelper::toBitset($score->enabled_mods)),
             packStr(''), // 0b00 here, 00 if lazer.
-            pack('q', $score->date->timestamp * 10000000 + 621355968000000000),
+            pack('q', $ticks),
         ];
 
         return implode('', $components);
