@@ -112,24 +112,4 @@ class ScoreTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($score->user, new UserCompactTransformer);
     }
-
-    public function includeUserReportPresence($score, $params)
-    {
-        $userId = $params->get('user_id');
-
-        if ($userId === null) {
-            throw new \Exception('No user specified.');
-        }
-
-        $reportPresence = $score
-            ->reportedIn()
-            ->where('reporter_id', $userId)
-            ->exists();
-
-        return $this->item($score, function ($score) use ($reportPresence) {
-            return [
-                'reported' => $reportPresence,
-            ];
-        });
-    }
 }

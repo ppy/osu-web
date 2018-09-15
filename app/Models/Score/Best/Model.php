@@ -267,6 +267,13 @@ abstract class Model extends BaseModel
         }
     }
 
+    public function scopeWithReportBy($query, $user)
+    {
+        return $query->whereHas('reportedIn', function ($q) use ($user) {
+            $q->where('reporter_id', $user->getKey());
+        });
+    }
+
     public function scopeFromCountry($query, $countryAcronym)
     {
         return $query->whereHas('user', function ($q) use ($countryAcronym) {

@@ -67,16 +67,13 @@ class BeatmapsController extends Controller
         $query->withMods($mods);
         $query->withType($type, compact('user'));
 
-        $includes = ['user', 'user.country'];
-        if ($user !== null) {
-            $includes[] = "userReportPresence:user_id($user->user_id)";
-        }
-
         $results = [
-            'scores' => json_collection($query->forListing(), 'Score', $includes),
+            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
         ];
 
         if ($user !== null) {
+            $results['reportedScores'] = (clone $query)->withReportBy($user)->pluck('score_id');
+
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
