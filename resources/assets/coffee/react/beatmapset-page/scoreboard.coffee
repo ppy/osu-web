@@ -73,7 +73,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
       DEFAULT_MODS
 
     div className: 'beatmapset-scoreboard',
-      el _exported.ReportForm
+      el _exported.ScoreReportForm
 
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
@@ -108,6 +108,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
               countries: @props.countries
               hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
+              reportedScores: @props.reportedScores
 
         else if !@props.hasScores
           p

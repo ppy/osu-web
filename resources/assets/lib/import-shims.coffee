@@ -19,8 +19,10 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import { ReportForm } from 'report-form'
+import { ScoreReportForm } from 'score-report-form'
 import { SelectOptions } from 'select-options'
 import { StoreCheckout } from 'store-checkout'
+import { UserReportForm } from 'user-report-form'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
@@ -30,7 +32,9 @@ window.Promise ?= Promise
 
 window._exported = {
   ReportForm
+  ScoreReportForm
   SelectOptions
+  UserReportForm
 }
 
 window.StoreCheckout = StoreCheckout

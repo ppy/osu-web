@@ -16,38 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, i, span, table, tr, td, th, thead, tbody} = ReactDOMFactories
+{a, div, table, tr, td, th, thead, tbody} = ReactDOMFactories
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 BeatmapsetPage.ScoreboardTable = (props) ->
-  props.scores = props.scores.map (score) ->
-    unless !currentUser.id? || score.user.id == currentUser.id
-      score.reportButton =
-        if score.userReportPresence.reported
-          span className: 'report-button',
-            span null,
-              i className: 'fas fa-exclamation-triangle'
-              span className: 'report-button__text',
-                osu.trans('beatmapsets.show.scoreboard.score.reported')
-        else
-          button
-            className: 'report-button report-button--enabled'
-            key: 'button'
-            type: 'button'
-            onClick: (e) ->
-              return if e.button != 0
-              e.preventDefault()
-
-              $.publish 'user:report',
-                score: score
-                mode: props.beatmap.mode
-            span null,
-              i className: 'fas fa-exclamation-triangle'
-              span className: 'report-button__text',
-                osu.trans('beatmapsets.show.scoreboard.score.report')
-    score
-
   div className: "#{bn}",
     table
       className: "#{bn}__table"
@@ -132,4 +105,8 @@ BeatmapsetPage.ScoreboardTable = (props) ->
 
             if currentUser.id?
               td {},
-                score.reportButton
+                unless score.user.id == currentUser.id
+                  el BeatmapsetPage.ScoreboardReportButton,
+                    score: score
+                    mode: props.beatmap.mode
+                    reported: _.includes props.reportedScores, score.id

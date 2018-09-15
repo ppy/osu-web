@@ -54,6 +54,7 @@ class BeatmapsetPage.Main extends React.Component
         enabledMods: []
         scores: []
         userScore: null
+        reportedScores: []
 
 
   setCurrentScoreboard: (_e, {
@@ -88,6 +89,7 @@ class BeatmapsetPage.Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         enabledMods: enabledMods
+        reportedScores: @scoresCache[cacheKey].reportedScores if @scoresCache[cacheKey].reportedScores?
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -141,12 +143,9 @@ class BeatmapsetPage.Main extends React.Component
     @setState hoveredBeatmap: hoveredBeatmap
 
 
-  setScoreReportPresence: (_e, scoreId) =>
+  addReportedScore: (_e, scoreId) =>
     @setState (state) ->
-      scores = [state.scores...]
-      index = scores.findIndex (s) -> s.id == scoreId
-      scores[index].userReportPresence.reported = true
-      scores: scores
+      reportedScores: [state.reportedScores..., scoreId]
 
 
   toggleFavourite: =>
@@ -167,7 +166,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
-    $.subscribe 'score:report-presence:set.beatmapsetPage', @setScoreReportPresence
+    $.subscribe 'score:report-presence:set.beatmapsetPage', @addReportedScore
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
     $.publish 'turbolinksDisqusReload'
     $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
@@ -211,6 +210,7 @@ class BeatmapsetPage.Main extends React.Component
             countries: @props.countries
             loading: @state.loading
             hasScores: @props.beatmapset.has_scores
+            reportedScores: @state.reportedScores
 
         if @props.beatmapset.ranked > 0
           div

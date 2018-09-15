@@ -16,19 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { createElement as el, createRef, PureComponent } from 'react'
-import { button, div, i, span, textarea } from 'react-dom-factories'
-import { SelectOptions } from 'select-options'
+import { createRef, PureComponent } from 'react'
+import { button, div, i, textarea } from 'react-dom-factories'
 
 bn = 'report-form'
-options = [
-  { id: 'Cheating', text: osu.trans 'users.report.options.cheating' },
-  { id: 'Insults', text: osu.trans 'users.report.options.insults' },
-  { id: 'Spam', text: osu.trans 'users.report.options.spam' },
-  { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
-  { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
-  { id: 'Other', text: osu.trans 'users.report.options.other' },
-]
 
 export class ReportForm extends PureComponent
   constructor: ->
@@ -36,48 +27,43 @@ export class ReportForm extends PureComponent
     @textarea = createRef()
 
     @state =
-      selectedReason: options[0]
-      showingModal: false
+      completed: false
 
 
   componentDidMount: =>
     document.addEventListener 'keydown', @handleEsc
-    $.subscribe 'user:report', @startReport
 
 
-  componentDidUpdate: (_prevProps, prevState) =>
-    Blackout.toggle(@state.showingModal, 0.5) unless prevState.showingModal == @state.showingModal
+  componentDidUpdate: (prevProps) =>
+    unless prevProps.showingModal == @props.showingModal
+      Blackout.toggle(@props.showingModal, 0.5)
+
+      if @props.showingModal
+        Timeout.clear @timeout
+        @setState completed: false
 
 
   componentWillUnmount: =>
     document.removeEventListener 'keydown', @handleEsc
-    $.unsubscribe 'user:report'
 
 
   handleEsc: (e) =>
     if e.keyCode == 27
-      @setState showingModal: false
+      $.publish 'report:close'
 
 
   hideModal: (e) =>
     if !e? || (e.button == 0 && e.target == @ref.current)
-      @setState showingModal: false
-
-
-  onItemSelected: (item) =>
-    @setState selectedReason: item
+      $.publish 'report:close'
 
 
   render: =>
-    return null unless @state.showingModal
+    return null unless @props.showingModal
 
     title = if @state.completed
               osu.trans 'users.report.thanks'
             else
-              if @state.user?
-                osu.trans 'users.report.title', username: "<strong>#{@state.user.username}</strong>"
-              else
-                osu.trans 'users.report.scores.title', username: "<strong>#{@state.score.user.username}</strong>"
+              @props.title
 
     div
       className: bn
@@ -102,19 +88,7 @@ export class ReportForm extends PureComponent
 
   renderFormContent: =>
     div null,
-      if @state.user?
-        div
-          className: "#{bn}__row"
-          osu.trans 'users.report.reason'
-
-        div
-          className: "#{bn}__row"
-          el SelectOptions,
-            blackout: false
-            bn: "#{bn}-select-options"
-            onItemSelected: @onItemSelected
-            options: options
-            selected: @state.selectedReason
+      @props.children
 
       div
         className: "#{bn}__row"
@@ -143,48 +117,25 @@ export class ReportForm extends PureComponent
             disabled: @state.loading
             key: 'cancel'
             type: 'button'
-            onClick: () => @setState showingModal: false
+            onClick: (e) -> $.publish 'report:close' if e.button == 0
             osu.trans 'users.report.actions.cancel'
         ]
 
 
-  startReport: (_e, {user, score, mode}) =>
-    if user?
-      @state.user = user
-    else if score?
-      @state.score = score
-      @state.score.mode = mode
-    else
-      return
-
-    Timeout.clear @timeout
-    @setState
-      completed: false
-      showingModal: true
-
-
-  sendReport: (e) =>
+  sendReport: =>
     @setState loading: true
 
     data = comments: @textarea.current.value
-    if @state.user?
-      url = laroute.route 'users.report', user: @state.user.id
-      data.reason = @state.selectedReason.id
-    else
-      url = laroute.route 'scores.report',
-              mode: @state.score.mode
-              score: @state.score.id
+    _.extend data, @props.reportData if @props.reportData?
 
     $.ajax
       type: 'POST'
-      url: url
+      url: @props.reportUrl
       data: data
       dataType: 'json'
 
     .done () =>
-      if @state.score?
-        $.publish 'score:report-presence:set', @state.score.id
-
+      @props.afterReport() if @props.afterReport?
       @timeout = Timeout.set 1000, @hideModal
       @setState completed: true
 

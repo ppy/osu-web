@@ -155,12 +155,12 @@ class ProfilePage.HeaderExtra extends React.Component
                   return if e.button != 0
                   e.preventDefault()
 
-                  $.publish 'user:report', user: @props.user
+                  $.publish 'user:report', @props.user
                 span null,
                   i className: 'textual-button__icon fas fa-exclamation-triangle'
                   " #{osu.trans 'users.report.button_text'}"
 
-              el _exported.ReportForm
+              el _exported.UserReportForm
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
