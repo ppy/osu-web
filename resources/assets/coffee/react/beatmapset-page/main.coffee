@@ -54,7 +54,6 @@ class BeatmapsetPage.Main extends React.Component
         enabledMods: []
         scores: []
         userScore: null
-        userScorePosition: -1
 
 
   setCurrentScoreboard: (_e, {
@@ -88,7 +87,6 @@ class BeatmapsetPage.Main extends React.Component
       @setState
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
-        userScorePosition: @scoresCache[cacheKey].userScorePosition
         enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
