@@ -233,6 +233,14 @@ class Post extends Model implements AfterCommit
             }
         }
 
+        $trimmedBody = trim($this->body_raw);
+        while (preg_match('/^\[quote(?:=".+?")?\].+?\[\/quote\]/s', $trimmedBody, $matches)) {
+            if (empty($trimmedBody = trim(substr($trimmedBody, strlen($matches[0]))))) {
+                $this->validationErrors()->add('base', '.only_quote');
+                break;
+            }
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 

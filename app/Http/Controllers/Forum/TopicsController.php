@@ -160,13 +160,6 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        $trimmedBody = trim(Request::input('body'));
-
-        if (preg_match('/^\[quote(?:=".+?")?\].+?\[\/quote\]/s', $trimmedBody, $matches)
-            && $matches[0] === $trimmedBody) {
-            return error_popup(trans('errors.forums.posts.only_quote'));
-        }
-
         $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
 
         if ($post->post_id !== null) {
