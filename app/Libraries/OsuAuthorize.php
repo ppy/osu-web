@@ -293,7 +293,7 @@ class OsuAuthorize
         if ($post->system) {
             return $prefix.'system_generated';
         }
-        
+
         if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
