@@ -81,6 +81,9 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
 
+Route::resource('comments', 'CommentsController');
+Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
+
 Route::group(['prefix' => 'community'], function () {
     Route::get('chat', 'CommunityController@getChat')->name('chat');
 
@@ -189,6 +192,7 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -207,9 +211,6 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
-
-    Route::get('support', 'HelpController@getSupport')->name('support');
-    Route::get('faq', 'HelpController@getFaq')->name('faq');
 });
 
 // FIXME: someone split this crap up into proper controllers

@@ -26,6 +26,11 @@ use Carbon\Carbon;
 // FIXME: rename?
 class CentiliPaymentProcessor extends PaymentProcessor
 {
+    public function getCountryCode()
+    {
+        return $this['country'] ?? $this['countryCode'];
+    }
+
     public function getOrderNumber()
     {
         return $this['reference'] ?? $this['clientid'];

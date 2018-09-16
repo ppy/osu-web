@@ -45,7 +45,7 @@ class ProfilePage.CoverSelection extends React.Component
     el 'div',
       className: 'profile-cover-change-popup__selection'
       style:
-        backgroundImage: "url('#{@props.thumbUrl}')"
+        backgroundImage: osu.urlPresence(@props.thumbUrl)
       onClick: @onClick
       onMouseEnter: @onMouseEnter
       onMouseLeave: @onMouseLeave

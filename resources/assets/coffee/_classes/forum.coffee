@@ -29,6 +29,7 @@ class @Forum
     @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
     @_deletedPostsDiv = document.getElementsByClassName('js-forum__deleted-count')
     @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
+    @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
@@ -46,6 +47,10 @@ class @Forum
     $(document).on 'keyup', @keyboardNavigation
 
     $.subscribe 'stickyHeader', @stickHeader
+
+
+  userCanModerate: ->
+    @_userCanModerateDiv[0].getAttribute('data-user-can-moderate') == '1'
 
 
   postPosition: (el) =>
@@ -113,7 +118,7 @@ class @Forum
       .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
-    if !(currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat)
+    if !@userCanModerate()
       $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded

@@ -172,6 +172,12 @@ class Page
         return $this->page()['header']['outdated'] ?? false;
     }
 
+    public function isLegalTranslation()
+    {
+        return $this->locale !== config('app.fallback_locale')
+            && ($this->page()['header']['legal'] ?? false);
+    }
+
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {

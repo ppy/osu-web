@@ -18,7 +18,7 @@
 
 @import "app";
 
-@font-content: 'Noto Sans', sans-serif;
+@font-content: 'Open Sans', sans-serif;
 @font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
@@ -46,6 +46,7 @@
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+@comment-nest-margin: 70px;
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
@@ -58,6 +59,7 @@
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
+@z-index--comment-parent-preview: 1;
 @z-index--download-header: 1;
 @z-index--page-header: 1;
 @z-index--tournament-header: 1;
@@ -202,6 +204,9 @@
 
 @forum-post--xs-avatar: 50px;
 
+@forum-topic-new-topic-button--width: 150px;
+@forum-topic-entry--main-margin: 40px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -240,6 +245,10 @@
 @changelog-stream--lazer-experimental: @red;
 @changelog-stream--web: @purple;
 @changelog-stream--wiki: #999;
+
+@changelog-bg: @dark-purple-dark;
+@changelog-bg-extra: @dark-purple-darker;
+@changelog-fg: #fff;
 
 @page-extra-side-padding--small: 10px;
 @page-extra-side-padding--large: 30px;

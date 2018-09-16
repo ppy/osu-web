@@ -34,7 +34,7 @@ class @CurrentUserObserver
   setAvatars: (elements) =>
     elements ?= @avatars
 
-    bgImage = if currentUser.id? then "url('#{currentUser.avatar_url}')" else ''
+    bgImage = osu.urlPresence(currentUser.avatar_url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -42,7 +42,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = if currentUser.id? then "url('#{currentUser.cover_url}')" else ''
+    bgImage = osu.urlPresence(currentUser.cover_url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 

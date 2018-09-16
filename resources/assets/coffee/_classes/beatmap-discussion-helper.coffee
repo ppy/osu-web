@@ -122,13 +122,7 @@ class @BeatmapDiscussionHelper
 
 
   @moderationGroup: (user) =>
-    if user.groups?
-      _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
-    else
-      switch
-        when user.is_admin then 'admin'
-        when user.is_qat then 'qat'
-        when user.is_bng then 'bng'
+    _.intersection(_.concat(user.default_group, user.groups), ['qat', 'bng'])[0]
 
 
   @previewMessage = (message) =>
