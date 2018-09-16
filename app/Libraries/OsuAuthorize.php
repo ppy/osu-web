@@ -293,6 +293,10 @@ class OsuAuthorize
         if ($post->system) {
             return $prefix.'system_generated';
         }
+        
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
 
         if ($user->user_id !== $post->user_id) {
             return $prefix.'not_owner';
