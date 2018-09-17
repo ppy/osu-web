@@ -24,15 +24,18 @@ class @Comments extends React.PureComponent
   constructor: (props) ->
     super props
 
-    comments = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
+    commentBundle = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
     @id = "comments-#{osu.uuid()}"
 
-    @state = {comments}
+    @state =
+      comments: commentBundle.comments
+      users: commentBundle.users
+      topLevelCount: commentBundle.top_level_count
 
 
   componentDidMount: =>
-    $.subscribe "comment:added.#{@id}", @append
+    $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comment:updated.#{@id}", @update
 
 
@@ -41,8 +44,18 @@ class @Comments extends React.PureComponent
 
 
   render: =>
-    commentsByParentId = _.groupBy(@state.comments ? [], 'parent_id')
-    # comments sorting goes here. Or somewhere to account for children. Idk.
+    # When implementing other type of order, don't forget to take care
+    # how replying and show more interacts. It's currently fine* because
+    # it's ordered by created_at descending which means the reply will
+    # always be at the top and doesn't affect loading older posts.
+    # Also handling new replies will need to be fixed as well for newest
+    # first because it currently just doesn't.
+    commentsByParentId = _(@state.comments ? [])
+      .uniqBy('id')
+      .orderBy(['created_at', 'id'], ['desc', 'desc'])
+      .groupBy('parent_id')
+      .value()
+    usersById = _.keyBy(@state.users ? [], 'id')
 
     comments = commentsByParentId[null]
 
@@ -53,6 +66,7 @@ class @Comments extends React.PureComponent
             key: comment.id
             comment: comment
             commentsByParentId: commentsByParentId
+            usersById: usersById
             depth: 0
             modifiers: @props.modifiers
       else
@@ -66,20 +80,41 @@ class @Comments extends React.PureComponent
           commentableId: @props.commentableId
           focus: false
           modifiers: @props.modifiers
-      div className: 'comments__items', items
+      div className: 'comments__items',
+        items
+        if comments? && comments.length < @state.topLevelCount
+          lastCommentId = _.last(comments)?.id
+          el CommentShowMore,
+            key: "show-more:#{lastCommentId}"
+            commentableType: @props.commentableType
+            commentableId: @props.commentableId
+            after: lastCommentId
+            modifiers: _.concat 'top', @props.modifiers
 
 
-  append: (_event, {comment}) =>
-    return if comment.commentable_type != @props.commentableType || comment.commentable_id != @props.commentableId
-
-    @setState comments: @state.comments.concat comment
+  appendBundle: (_event, {comments}) =>
+    @setState
+      # remove old objects included in new bundle by relying on uniqBy keeping first item
+      comments:
+        _(comments.comments)
+          .concat(@state.comments)
+          .uniqBy('id')
+          .value()
+      users:
+        _(comments.users)
+          .concat(@state.users)
+          .uniqBy('id')
+          .value()
 
 
   update: (_event, {comment}) =>
-    return if comment.commentable_type != @props.commentableType || comment.commentable_id != @props.commentableId
-
-    newComments = osu.jsonClone(@state.comments)
+    newComments = @state.comments[..]
     replacementIndex = _.findIndex newComments, (c) -> c.id == comment.id
-    newComments[replacementIndex] = comment if replacementIndex != -1
 
-    @setState comments: newComments
+    return if replacementIndex == -1
+
+    newComments[replacementIndex] = comment
+
+    @setState
+      comments: newComments
+      users: _.concat comment.user, comment.editor, @state.users
