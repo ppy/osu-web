@@ -40,9 +40,15 @@ class OrdersController extends Controller
         $orders = Auth::user()
             ->orders()
             ->orderBy('order_id', 'desc')
-            ->where('status', '!=', 'incart')
-            ->with('items.product')
-            ->paginate(20);
+            ->with('items.product');
+
+        if (request('type') === 'processing') {
+            $orders->where('status', 'processing');
+        } else {
+            $orders->where('status', '<>', 'incart');
+        }
+
+        $orders = $orders->paginate(20);
 
         return view('store.orders.index', compact('orders'));
     }

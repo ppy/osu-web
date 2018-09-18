@@ -56,7 +56,7 @@
                 <div class="store-header__notice-text">
                     @php
                         $pendingCheckoutLink = Html::link(
-                            route('store.checkout.show', $pendingCheckout),
+                            route('store.orders.index', ['type' => 'processing']),
                             trans('store.checkout.has_pending.link_text')
                         )
                     @endphp

@@ -53,7 +53,7 @@ return [
         'pay' => 'Checkout with Paypal',
 
         'has_pending' => [
-            '_' => 'You have an incomplete checkout, click :link to complete it.',
+            '_' => 'You have incomplete checkouts, click :link to view them.',
             'link_text' => 'here',
         ],
 
