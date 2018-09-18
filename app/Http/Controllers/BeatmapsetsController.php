@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
@@ -128,11 +129,11 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
-            $comments = json_collection($beatmapset->comments()->with(['user', 'editor'])->get(), 'Comment', ['user', 'editor']);
+            $commentBundle = new CommentBundle($beatmapset);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'comments'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
         }
     }
 

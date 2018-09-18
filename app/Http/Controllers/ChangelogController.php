@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\CommentBundle;
 use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
@@ -126,11 +127,7 @@ class ChangelogController extends Controller
         $buildJson = json_item($build, 'Build', [
             'changelog_entries', 'changelog_entries.github_user', 'versions',
         ]);
-        $commentsJson = json_collection(
-            $build->comments()->with('editor', 'user')->get(),
-            'Comment',
-            ['editor', 'user']
-        );
+        $commentBundle = new CommentBundle($build);
 
         $chartConfig = Cache::remember(
             "chart_config_{$build['update_stream']['id']}",
@@ -139,7 +136,7 @@ class ChangelogController extends Controller
                 return $this->chartConfig($build['update_stream']);
             });
 
-        return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentsJson'));
+        return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
     }
 
     private function getUpdateStreams()

@@ -51,4 +51,4 @@ class @Url
 
 
   @isInternal: (location) ->
-    RegExp("^/(?:#{internal})(?:$|/)").test location.getPath()
+    RegExp("^/(?:#{internal})(?:$|/|#)").test location.getPath()

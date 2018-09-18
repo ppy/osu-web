@@ -37,7 +37,7 @@
     </script>
 
     <script id="json-comments-build-{{ $build->getKey() }}" type="application/json">
-        {!! json_encode($commentsJson) !!}
+        {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/changelog-build.js'])
