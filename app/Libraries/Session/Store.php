@@ -85,6 +85,7 @@ class Store extends \Illuminate\Session\Store
                 $sessionMeta[$id] = $meta;
                 $sessionMeta[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
                 $sessionMeta[$id]['device'] = $agent->device();
+                $sessionMeta[$id]['platform'] = $agent->platform();
                 $sessionMeta[$id]['browser'] = $agent->browser();
                 $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
             }

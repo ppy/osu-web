@@ -91,6 +91,6 @@ return [
         'end_session_confirmation' => 'This will immedietely end your session on that device. Are you sure?',
         'last_active' => 'Last active:',
         'title' => 'Security',
-        'web_sessions' => 'Web Sessions',
+        'web_sessions' => 'web sessions',
     ],
 ];
