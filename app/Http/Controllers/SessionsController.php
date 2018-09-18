@@ -78,7 +78,7 @@ class SessionsController extends Controller
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
         }
 
-        Request::session()->flush();
+        Request::session()->invalidate();
 
         return [];
     }
