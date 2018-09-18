@@ -264,7 +264,7 @@ class Order extends Model
 
     public function hasInvoice()
     {
-        return in_array($this->status, ['checkout', 'paid', 'shipped', 'cancelled', 'delivered'], true);
+        return in_array($this->status, ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'], true);
     }
 
     public function isEmpty()
