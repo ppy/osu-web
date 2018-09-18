@@ -160,10 +160,14 @@ window.onload = function() {
             <p>
                 If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
             </p>
-        @elseif ($order->status == 'incart')
+        @elseif ($order->isProcessing())
             <p><strong>Your payment has not yet been confirmed!</strong></p>
             <p>
                 If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!
+            </p>
+            <p>
+                If you encountered a problem during checkout,
+                <a class="store-order__link" href="{{ route('store.checkout.show', $order) }}">click here to resume your checkout</a>.
             </p>
         @elseif ($order->status == 'cancelled')
             <p><strong>Your order has been cancelled</strong></p>

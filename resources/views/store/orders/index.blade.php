@@ -56,10 +56,7 @@
                         @endforeach
                     </ul>
                     @if ($order->hasInvoice())
-                        <div><a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">View invoice</a></div>
-                    @endif
-                    @if ($order->isProcessing())
-                        <div><a class="store-order__link" href="{{ route('store.checkout.show', $order) }}">Resume checkout</a></div>
+                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">View invoice</a>
                     @endif
                 </div>
             @endforeach
