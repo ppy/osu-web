@@ -20,7 +20,12 @@
 
 namespace App\Libraries\Session;
 
+use App\Libraries\UserVerification;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
+use Redis;
 
 class Store extends \Illuminate\Session\Store
 {
@@ -29,6 +34,63 @@ class Store extends \Illuminate\Session\Store
         $userId = $userId ?? 'guest';
 
         return "sessions:{$userId}:";
+    }
+
+    public function destroyUserSession($sessionId)
+    {
+        if (Auth::check()) {
+            $userId = Auth::user()->user_id;
+            $this->handler->destroy($this->keyPrefix($userId).$sessionId);
+        }
+    }
+
+    public function isCurrentSession($sessionId)
+    {
+        $prefix = Auth::check() ? Auth::user()->user_id : null;
+
+        return $this->keyPrefix($prefix).$sessionId == $this->getId();
+    }
+
+    public function currentUserSessions()
+    {
+        if (Auth::check()) {
+            $userId = Auth::user()->user_id;
+
+            // flush the current session data to redis early, otherwise the scan below will get stale metadata for the current session
+            $this->save();
+
+            $sessionIds = [];
+            $cursor = 0;
+            $keyPrefix = config('cache.prefix').':'.$this->keyPrefix($userId);
+            do {
+                list($cursor, $keys) = Redis::scan($cursor, 'match', "{$keyPrefix}*");
+                $sessionIds = array_merge($sessionIds, $keys);
+            } while ($cursor);
+            $sessions = array_combine($sessionIds, Redis::mget($keys));
+
+            $userSessions = [];
+            $agent = new Agent();
+            foreach ($sessions as $id => $session) {
+                // Sessions are stored in redis double-serialized for some reason...
+                $session = unserialize(unserialize($session));
+
+                $meta = $session['meta'];
+                $agent->setUserAgent($meta['agent']);
+                // strip keyPrefix
+                $id = substr($id, -40);
+
+                $userSessions[$id] = $meta;
+                $userSessions[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
+                $userSessions[$id]['device'] = $agent->device();
+                $userSessions[$id]['browser'] = $agent->browser();
+                $userSessions[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
+            }
+
+            // returns sessions sorted from most to least recently active
+            return array_reverse(array_sort($userSessions, function ($value) {
+                return $value['last_visit'];
+            }), true);
+        }
     }
 
     /**
@@ -54,6 +116,11 @@ class Store extends \Illuminate\Session\Store
         // Overriden to allow namespacing the session id (used as the redis key)
 
         return $this->keyPrefix($userId).Str::random(40);
+    }
+
+    public function getIdWithoutPrefix()
+    {
+        return substr($this->getId(), -40);
     }
 
     /**

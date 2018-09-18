@@ -211,6 +211,7 @@ return [
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -291,6 +292,7 @@ return [
         'Slack' => Maknz\Slack\Facades\Slack::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
     ],
 
 ];

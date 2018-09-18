@@ -300,6 +300,19 @@ function mysql_escape_like($string)
     return addcslashes($string, '%_\\');
 }
 
+function mask_ip(string $ip)
+{
+    if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+        return;
+    }
+
+    $parts = explode('.', $ip);
+    $parts[2] = str_repeat('*', strlen($parts[2]));
+    $parts[3] = str_repeat('*', strlen($parts[3]));
+
+    return join('.', $parts);
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
