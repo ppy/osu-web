@@ -372,7 +372,7 @@ class TopicsController extends Controller
 
             return [];
         } else {
-            abort(422);
+            return error_popup($topic->validationErrors()->toSentence());
         }
     }
 
