@@ -54,6 +54,10 @@ class Store extends \Illuminate\Session\Store
     public function currentUserSessions()
     {
         if (Auth::check()) {
+            if (config('session.driver') !== 'redis') {
+                return [];
+            }
+
             $userId = Auth::user()->user_id;
 
             // flush the current session data to redis early, otherwise the scan below will get stale metadata for the current session
