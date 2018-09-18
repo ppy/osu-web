@@ -40,6 +40,7 @@ class AutologinFromLegacyCookie
             $session = LegacySession::loadFromRequest($request);
 
             if ($session !== null) {
+                $request->session()->flush();
                 $this->auth->loginUsingId($session->session_user_id, $session->session_autologin);
                 $request->session()->migrate(true, $session->session_user_id);
             }
