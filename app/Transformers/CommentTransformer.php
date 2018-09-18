@@ -47,16 +47,20 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'user_id' => $comment->user_id,
             'message' => $message,
             'message_html' => $messageHtml,
+            'replies_count' => $comment->replies_count_cache,
 
             'commentable_type' => $comment->commentable_type,
             'commentable_id' => $comment->commentable_id,
 
-            'legacy_username' => $comment->legacyUsername(),
+            'legacy_name' => $comment->legacyName(),
 
             'created_at' => json_time($comment->created_at),
             'updated_at' => json_time($comment->updated_at),
+
             'deleted_at' => json_time($comment->deleted_at),
+
             'edited_at' => json_time($comment->edited_at),
+            'edited_by_id' => $comment->edited_by_id,
         ];
     }
 

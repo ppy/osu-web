@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
 
 class NewsController extends Controller
@@ -42,13 +43,9 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $commentsJson = json_collection(
-            $post->comments()->with(['editor', 'user'])->get(),
-            'Comment',
-            ['editor', 'user']
-        );
+        $commentBundle = new CommentBundle($post);
 
-        return view('news.show', compact('post', 'commentsJson'));
+        return view('news.show', compact('post', 'commentBundle'));
     }
 
     public function store()

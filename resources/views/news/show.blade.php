@@ -107,7 +107,7 @@
             data-comments="{{ json_encode([
                 'commentableType' => 'news_post',
                 'commentableId' => $post->getKey(),
-                'comments' => $commentsJson,
+                'comments' => $commentBundle->toArray(),
             ]) }}"
         ></div>
     </div>
