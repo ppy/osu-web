@@ -49,6 +49,8 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
+    const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
+
     protected $fillable = ['user_id'];
 
     protected $primaryKey = 'order_id';
@@ -78,6 +80,11 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeWhereHasInvoice($query)
+    {
+        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
     }
 
     public function scopeInCart($query)
@@ -264,7 +271,7 @@ class Order extends Model
 
     public function hasInvoice()
     {
-        return in_array($this->status, ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'], true);
+        return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
     public function isEmpty()

@@ -74,7 +74,7 @@ class StoreController extends Controller
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::where('status', '<>', 'incart')
+        $order = Store\Order::whereHasInvoice()
             ->with('items.product')
             ->findOrFail($id);
 
