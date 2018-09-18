@@ -50,7 +50,7 @@ class UpdateUserLastvisit
                     'name' => optional(Country::where('acronym', $countryCode)->pluck('name')->first())->name ?? 'Unknown',
                 ],
                 'ip' => $request->ip(),
-                'last_visit' => Carbon::now()
+                'last_visit' => Carbon::now(),
             ]);
         }
 

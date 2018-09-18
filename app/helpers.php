@@ -310,7 +310,7 @@ function mask_ip(string $ip)
     $parts[2] = str_repeat('*', strlen($parts[2]));
     $parts[3] = str_repeat('*', strlen($parts[3]));
 
-    return join('.', $parts);
+    return implode('.', $parts);
 }
 
 function osu_url($key)

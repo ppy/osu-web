@@ -22,7 +22,6 @@ namespace App\Libraries\Session;
 
 use App\Libraries\UserVerification;
 use Auth;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
 use Redis;
@@ -48,7 +47,7 @@ class Store extends \Illuminate\Session\Store
     {
         $prefix = Auth::check() ? Auth::user()->user_id : null;
 
-        return $this->keyPrefix($prefix).$sessionId == $this->getId();
+        return $this->keyPrefix($prefix).$sessionId === $this->getId();
     }
 
     public function currentUserSessions()
