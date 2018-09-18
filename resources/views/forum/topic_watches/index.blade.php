@@ -23,6 +23,12 @@
             @include('home._user_header_nav')
 
             <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
+                <div class="osu-page-header__box">
+                    <h1 class="osu-page-header__title">
+                        {!! trans('forum.topic_watches.index.title_main') !!}
+                    </h1>
+                </div>
+                
                 <div class="osu-page-header__box osu-page-header__box--status">
                     <div class="osu-page-header__status">
                         <div class="osu-page-header__status-label">
