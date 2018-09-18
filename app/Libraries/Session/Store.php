@@ -72,7 +72,7 @@ class Store extends \Illuminate\Session\Store
             } while ($cursor);
             $sessions = array_combine($sessionIds, Redis::mget($keys));
 
-            $userSessions = [];
+            $sessionMeta = [];
             $agent = new Agent();
             foreach ($sessions as $id => $session) {
                 // Sessions are stored in redis double-serialized for some reason...
@@ -83,15 +83,15 @@ class Store extends \Illuminate\Session\Store
                 // strip keyPrefix
                 $id = substr($id, -40);
 
-                $userSessions[$id] = $meta;
-                $userSessions[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
-                $userSessions[$id]['device'] = $agent->device();
-                $userSessions[$id]['browser'] = $agent->browser();
-                $userSessions[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
+                $sessionMeta[$id] = $meta;
+                $sessionMeta[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
+                $sessionMeta[$id]['device'] = $agent->device();
+                $sessionMeta[$id]['browser'] = $agent->browser();
+                $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
             }
 
             // returns sessions sorted from most to least recently active
-            return array_reverse(array_sort($userSessions, function ($value) {
+            return array_reverse(array_sort($sessionMeta, function ($value) {
                 return $value['last_visit'];
             }), true);
         }
