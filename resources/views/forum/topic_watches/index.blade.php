@@ -28,7 +28,7 @@
                         {!! trans('forum.topic_watches.index.title_main') !!}
                     </h1>
                 </div>
-                
+
                 <div class="osu-page-header__box osu-page-header__box--status">
                     <div class="osu-page-header__status">
                         <div class="osu-page-header__status-label">
