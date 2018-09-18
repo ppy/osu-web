@@ -69,7 +69,7 @@ class Store extends \Illuminate\Session\Store
                 list($cursor, $keys) = Redis::scan($cursor, 'match', "{$keyPrefix}*");
                 $sessionIds = array_merge($sessionIds, $keys);
             } while ($cursor);
-            $sessions = array_combine($sessionIds, Redis::mget($keys));
+            $sessions = array_combine($sessionIds, Redis::mget($sessionIds));
 
             $sessionMeta = [];
             $agent = new Agent();
