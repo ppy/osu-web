@@ -55,7 +55,8 @@ export class StoreCheckout
   @startPayment: (params) ->
     switch params.provider
       when 'centili'
-        window.location = params.url
+        new Promise (resolve) ->
+          window.location = params.url
 
       when 'free'
         $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
@@ -65,9 +66,11 @@ export class StoreCheckout
           window.location = link
 
       when 'xsolla'
-        # FIXME: flickering when transitioning to widget
-        XPayStationWidget.open()
-        LoadingOverlay.hide()
+        new Promise (resolve) ->
+          # FIXME: flickering when transitioning to widget
+          XPayStationWidget.open()
+          LoadingOverlay.hide()
+          resolve()
 
 
   @handleError: (error) ->
