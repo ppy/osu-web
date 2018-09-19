@@ -114,11 +114,6 @@ return [
                 'total' => 'Topic a cui sei iscritto',
                 'unread' => 'Topic con nuove risposte',
             ],
-
-            'info' => [
-                'total' => 'Sei iscritto a :total topic.',
-                'unread' => 'Hai :unread risposte non lette nei topic a cui sei iscritto.',
-            ],
         ],
 
         'topic_buttons' => [
