@@ -22,6 +22,7 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
+use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
@@ -284,7 +285,7 @@ abstract class Model extends BaseModel
 
     public function reportedIn()
     {
-        return $this->hasMany(UserReport::class, 'score_id');
+        return $this->morphMany(UserReport::class, 'score', 'mode');
     }
 
     public function replayViewCount()
@@ -297,6 +298,11 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getMorphClass()
+    {
+        return Beatmap::modeInt(snake_case(get_class_basename(static::class)));
     }
 
     public function delete()
