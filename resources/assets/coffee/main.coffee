@@ -88,7 +88,6 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 
@@ -118,6 +117,9 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 
 reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
+
+reactTurbolinks.register 'comments', Comments, (el) ->
+  JSON.parse(el.dataset.comments)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

@@ -42,7 +42,7 @@
 
         <div class="forum-post__body">
             <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--gray" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
+                <a class="js-post-url link link--gray" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                     {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
                 </a>
             </div>

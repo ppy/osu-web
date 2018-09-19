@@ -392,6 +392,10 @@ class Topic extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
+        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
+            $this->validationErrors()->add('topic_title', 'required');
+        }
+
         foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
             if ($this->isDirty($field)) {
                 $val = $this->$field;

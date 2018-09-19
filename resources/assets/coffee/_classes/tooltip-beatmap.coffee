@@ -50,6 +50,8 @@ class @TooltipBeatmap
       show:
         event: event.type
         ready: true
+      hide:
+        event: 'click mouseleave'
       style:
         classes: 'qtip tooltip-beatmap'
         tip:

@@ -1,0 +1,217 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comment {
+  @_avatar-margin: 10px;
+  @_avatar: @comment-nest-margin - @_avatar-margin;
+  @_line-width: 5px;
+  @_line-margin: 10px;
+  @_top: comment;
+
+  margin-bottom: 20px;
+  font-size: @font-size--title-small;
+  color: #555;
+
+  &--changelog {
+    color: @changelog-fg;
+  }
+
+  &__action {
+    .reset-input();
+    .link-default();
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--active {
+      font-weight: bold;
+    }
+
+    .@{_top}--changelog & {
+      .link-blue-light();
+    }
+  }
+
+  &__avatar {
+    width: @_avatar;
+    height: @_avatar;
+    margin-right: @_avatar-margin;
+    flex: none;
+  }
+
+  &__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__deleted {
+    font-weight: bold;
+    font-style: italic;
+    margin: 10px 0;
+  }
+
+  &__editor {
+    padding: 10px 0;
+  }
+
+  &__line {
+    position: absolute;
+    top: (@_avatar + @_line-margin);
+    left: (floor((@_avatar - @_line-width) / 2));
+    width: @_line-width;
+    height: calc(100% ~'-' (@_avatar + @_line-margin * 2));
+    background-color: #999;
+    border-radius: 10000px;
+
+    .@{_top}--changelog & {
+      background-color: @dark-purple-light;
+    }
+  }
+
+  &__link {
+    .@{_top}--changelog & {
+      .link-blue-light();
+    }
+  }
+
+  &__main {
+    display: flex;
+
+    &--deleted {
+      opacity: 0.5;
+    }
+  }
+
+  &__message {
+    .content-font();
+    margin: 10px 0;
+    word-wrap: break-word;
+
+    h1 {
+      color: inherit;
+      font-size: 1.2em;
+    }
+
+    h2 {
+      color: inherit;
+      font-size: 1.1em;
+    }
+
+    h3 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h4 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h5 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h6 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    .@{_top}--changelog & {
+      color: @changelog-fg;
+
+      a {
+        .link-blue-light();
+      }
+    }
+  }
+
+  &__parent-preview {
+    .default-border-radius();
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    left: 0;
+    padding: 10px;
+    background-color: fade(#000, 75%);
+    color: #fff;
+    z-index: @z-index--comment-parent-preview;
+    width: 200px;
+    max-width: 80vw;
+    font-size: @font-size--normal;
+
+    .@{_top}__parent:hover & {
+      display: block;
+    }
+  }
+
+  &__replies {
+    margin-top: 10px;
+
+    &--hidden {
+      display: none;
+    }
+
+    &--indented {
+      padding-left: 0;
+
+      @media @desktop {
+        padding-left: @comment-nest-margin;
+      }
+    }
+  }
+
+  &__reply-box {
+    padding-top: 10px;
+  }
+
+  &__row {
+    margin: -2px -10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    &--footer {
+      font-size: @font-size--normal;
+    }
+  }
+
+  &__row-item {
+    margin: 2px 10px;
+
+    &--parent {
+      font-size: @font-size--title-small-3;
+    }
+
+    &--username {
+      font-size: @font-size--title-small-3;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    &--username-link {
+      .@{_top}--changelog & {
+        .link-blue-light();
+      }
+    }
+  }
+}

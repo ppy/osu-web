@@ -172,6 +172,12 @@ class Page
         return $this->page()['header']['outdated'] ?? false;
     }
 
+    public function isLegalTranslation()
+    {
+        return $this->locale !== config('app.fallback_locale')
+            && ($this->page()['header']['legal'] ?? false);
+    }
+
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {
@@ -243,6 +249,19 @@ class Page
     public function pagePath()
     {
         return $this->path.'/'.$this->locale.'.md';
+    }
+
+    public function hasParent()
+    {
+        return $this->parentPath() !== null
+            && (new static($this->parentPath(), $this->requestedLocale))->page() !== null;
+    }
+
+    public function parentPath()
+    {
+        if (($pos = strrpos($this->path, '/')) !== false) {
+            return substr($this->path, 0, $pos);
+        }
     }
 
     public function refresh()
