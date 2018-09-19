@@ -47,7 +47,7 @@ class UpdateUserLastvisit
                 'agent' => $request->header('User-Agent'),
                 'country' => [
                     'code' => $countryCode,
-                    'name' => optional(Country::where('acronym', $countryCode)->pluck('name')->first())->name ?? 'Unknown',
+                    'name' => presence(Country::where('acronym', $countryCode)->pluck('name')->first()) ?? 'Unknown',
                 ],
                 'ip' => $request->ip(),
                 'last_visit' => Carbon::now(),

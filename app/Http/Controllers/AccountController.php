@@ -106,7 +106,8 @@ class AccountController extends Controller
         $sessions = Request::session()
             ->currentUserSessions();
 
-        $currentSessionId = Request::session()->getIdWithoutPrefix();
+        $currentSessionId = Request::session()
+            ->getIdWithoutPrefix();
 
         return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
     }
