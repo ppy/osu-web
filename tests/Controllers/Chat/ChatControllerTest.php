@@ -36,23 +36,25 @@ class ChatControllerTest extends TestCase
     {
         parent::setUp();
 
+        $trx = [];
+        $db = $this->app->make('db');
+        foreach (array_keys(config('database.connections')) as $name) {
+            $connection = $db->connection($name);
+
+            // connections with different names but to the same database share the same pdo connection.
+            $id = $connection->select('SELECT CONNECTION_ID() as connection_id')[0]->connection_id;
+            // Avoid setting isolation level or starting transaction more than once on a pdo connection.
+            if (!in_array($id, $trx, true)) {
+                $trx[] = $id;
+
+                // allow uncommitted changes be visible across connections.
+                $connection->statement('SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED');
+                $connection->beginTransaction();
+            }
+        }
+
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
-    }
-
-    public function tearDown()
-    {
-        // Ideally this cleanup would be in `tearDownAfterClass` as to not run after *every* individual
-        // test, but Laravel in its infinite wisdom nukes app() during `tearDown` (which runs before
-        // `tearDownAfterClass`)... so here we are.
-
-        DB::statement('SET foreign_key_checks=0');
-        Chat\Message::truncate();
-        Chat\UserChannel::truncate();
-        Chat\Channel::truncate();
-        UserRelation::truncate();
-        User::truncate();
-        DB::statement('SET foreign_key_checks=1');
     }
 
     //region POST /chat/new - Create New PM
