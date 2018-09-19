@@ -114,11 +114,6 @@ return [
                 'total' => 'Sujets suivis',
                 'unread' => 'Sujets avec nouvelles réponses',
             ],
-
-            'info' => [
-                'total' => 'Vous suivez un total de :total sujets.',
-                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
-            ],
         ],
 
         'topic_buttons' => [
