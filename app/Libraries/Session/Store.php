@@ -28,6 +28,8 @@ use Redis;
 
 class Store extends \Illuminate\Session\Store
 {
+    const SESSION_ID_LENGTH = 40;
+
     public function keyPrefix(int $userId = null)
     {
         $userId = $userId ?? 'guest';
@@ -45,56 +47,57 @@ class Store extends \Illuminate\Session\Store
 
     public function isCurrentSession($sessionId)
     {
-        $prefix = Auth::check() ? Auth::user()->user_id : null;
-
-        return $this->keyPrefix($prefix).$sessionId === $this->getId();
+        return $this->getIdWithoutPrefix() === $this->stripPrefix($sessionId);
     }
 
     public function currentUserSessions()
     {
-        if (Auth::check()) {
-            if (config('session.driver') !== 'redis') {
-                return [];
-            }
-
-            $userId = Auth::user()->user_id;
-
-            // flush the current session data to redis early, otherwise the scan below will get stale metadata for the current session
-            $this->save();
-
-            $sessionIds = [];
-            $cursor = 0;
-            $keyPrefix = config('cache.prefix').':'.$this->keyPrefix($userId);
-            do {
-                list($cursor, $keys) = Redis::scan($cursor, 'match', "{$keyPrefix}*");
-                $sessionIds = array_merge($sessionIds, $keys);
-            } while ($cursor);
-            $sessions = array_combine($sessionIds, Redis::mget($sessionIds));
-
-            $sessionMeta = [];
-            $agent = new Agent();
-            foreach ($sessions as $id => $session) {
-                // Sessions are stored in redis double-serialized for some reason...
-                $session = unserialize(unserialize($session));
-
-                $meta = $session['meta'];
-                $agent->setUserAgent($meta['agent']);
-                // strip keyPrefix
-                $id = substr($id, -40);
-
-                $sessionMeta[$id] = $meta;
-                $sessionMeta[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
-                $sessionMeta[$id]['device'] = $agent->device();
-                $sessionMeta[$id]['platform'] = $agent->platform();
-                $sessionMeta[$id]['browser'] = $agent->browser();
-                $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
-            }
-
-            // returns sessions sorted from most to least recently active
-            return array_reverse(array_sort($sessionMeta, function ($value) {
-                return $value['last_visit'];
-            }), true);
+        if (!Auth::check()) {
+            return;
         }
+
+        if (config('session.driver') !== 'redis') {
+            return [];
+        }
+
+        $userId = Auth::user()->user_id;
+
+        // flush the current session data to redis early, otherwise the scan below will get stale metadata for the current session
+        $this->save();
+
+        $sessionIds = [];
+        $cursor = 0;
+        // TODO: When(if?) the session driver config is decoupled from the cache driver config, update the prefix below:
+        $keyPattern = config('cache.prefix').':'.$this->keyPrefix($userId).'*';
+        do {
+            list($cursor, $keys) = Redis::scan($cursor, 'match', $keyPattern);
+            $sessionIds = array_merge($sessionIds, $keys);
+        } while ($cursor);
+        $sessions = array_combine($sessionIds, Redis::mget($sessionIds));
+
+        $sessionMeta = [];
+        $agent = new Agent();
+        foreach ($sessions as $id => $session) {
+            // Sessions are stored in redis double-serialized for some reason...
+            $session = unserialize(unserialize($session));
+
+            $meta = $session['meta'];
+            $agent->setUserAgent($meta['agent']);
+            // strip keyPrefix
+            $id = $this->stripPrefix($id);
+
+            $sessionMeta[$id] = $meta;
+            $sessionMeta[$id]['mobile'] = $agent->isMobile() || $agent->isTablet();
+            $sessionMeta[$id]['device'] = $agent->device();
+            $sessionMeta[$id]['platform'] = $agent->platform();
+            $sessionMeta[$id]['browser'] = $agent->browser();
+            $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
+        }
+
+        // returns sessions sorted from most to least recently active
+        return array_reverse(array_sort($sessionMeta, function ($value) {
+            return $value['last_visit'];
+        }), true);
     }
 
     /**
@@ -119,12 +122,17 @@ class Store extends \Illuminate\Session\Store
     {
         // Overriden to allow namespacing the session id (used as the redis key)
 
-        return $this->keyPrefix($userId).Str::random(40);
+        return $this->keyPrefix($userId).Str::random(static::SESSION_ID_LENGTH);
     }
 
     public function getIdWithoutPrefix()
     {
-        return substr($this->getId(), -40);
+        return $this->stripPrefix($this->getId());
+    }
+
+    public function stripPrefix($sessionId)
+    {
+        return substr($sessionId, -static::SESSION_ID_LENGTH);
     }
 
     /**
