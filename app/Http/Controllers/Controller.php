@@ -67,6 +67,21 @@ abstract class Controller extends BaseController
         Request::session()->migrate(true, Auth::user()->user_id);
     }
 
+    protected function logout()
+    {
+        Auth::logout();
+
+        // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+        unset($_COOKIE['phpbb3_2cjk5_sid']);
+        unset($_COOKIE['phpbb3_2cjk5_sid_check']);
+        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+
+        Request::session()->invalidate();
+    }
+
     protected function locale()
     {
         return LocaleMeta::sanitizeCode(request('locale')) ?? App::getLocale();

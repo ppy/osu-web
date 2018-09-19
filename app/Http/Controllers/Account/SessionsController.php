@@ -42,8 +42,7 @@ class SessionsController extends Controller
 
         if (Request::session()->isCurrentSession($id)) {
             // current session
-            Auth::logout();
-            Request::session()->invalidate();
+            $this->logout();
         } else {
             Request::session()->destroyUserSession($id);
         }
