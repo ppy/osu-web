@@ -54,6 +54,10 @@ class RankingController extends Controller
         view()->share('spotlight', null); // so variable capture in selector function doesn't die.
 
         $this->middleware(function ($request, $next) use ($mode, $type) {
+            if ($mode === null) {
+                return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+            }
+
             if (!array_key_exists($mode, Beatmap::MODES)) {
                 abort(404);
             }
@@ -84,7 +88,7 @@ class RankingController extends Controller
         });
     }
 
-    public function index($mode = 'osu', $type = null)
+    public function index($mode, $type)
     {
         if ($type === 'charts') {
             return $this->spotlight($mode);
