@@ -662,7 +662,7 @@ function nav_links()
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
-        'charts' => osu_url('rankings.charts'),
+        'charts' => route('rankings', ['mode' => 'osu', 'type' => 'charts']),
         'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
         'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
@@ -1137,14 +1137,14 @@ function retinaify($url)
     return preg_replace('/(\.[^.]+)$/', '@2x\1', $url);
 }
 
-function priv_check($ability, $args = null)
+function priv_check($ability, $object = null)
 {
-    return priv_check_user(Auth::user(), $ability, $args);
+    return priv_check_user(Auth::user(), $ability, $object);
 }
 
-function priv_check_user($user, $ability, $args = null)
+function priv_check_user($user, $ability, $object = null)
 {
-    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $object);
 }
 
 // Used to generate x,y pairs for fancy-chart.coffee

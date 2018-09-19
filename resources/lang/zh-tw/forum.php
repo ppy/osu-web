@@ -114,11 +114,6 @@ return [
                 'total' => '訂閱的主題',
                 'unread' => '主題有新回覆',
             ],
-
-            'info' => [
-                'total' => '共訂閱了 :total 個主題',
-                'unread' => '有 :unread 個未讀回覆',
-            ],
         ],
 
         'topic_buttons' => [

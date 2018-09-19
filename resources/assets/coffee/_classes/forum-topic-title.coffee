@@ -30,9 +30,9 @@ class @ForumTopicTitle
     addEventListener 'turbolinks:before-cache', @abort
     $(document).on 'click', '.js-forum-topic-title--edit-start', @editShow
     $(document).on 'click', '.js-forum-topic-title--save', @save
-    $(document).on 'keyup', '.js-forum-topic-title--input', @onInput
+    $(document).on 'keyup', '.js-forum-topic-title--input', @onKeyup
     $(document).on 'click', '.js-forum-topic-title--cancel', @cancel
-    $(document).on 'input', '.js-forum-topic-title--input', @syncPadding
+    $(document).on 'input', '.js-forum-topic-title--input', @onInput
 
 
   abort: =>
@@ -65,7 +65,12 @@ class @ForumTopicTitle
     @main[0].classList.remove 'hidden'
 
 
-  onInput: (e) =>
+  onInput: =>
+    @saveButton[0].disabled = !osu.presence(@input[0].value)?
+    @syncPadding()
+
+
+  onKeyup: (e) =>
     switch e.keyCode
       # enter
       when 13 then @save()
@@ -76,6 +81,8 @@ class @ForumTopicTitle
   save: =>
     input = @input[0]
     newTitle = input.value
+
+    return if !osu.presence(newTitle)?
 
     return @cancel() if newTitle == @current()
 

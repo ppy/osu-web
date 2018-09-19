@@ -40,7 +40,7 @@ class OsuAuthorize
         $this->cache = [];
     }
 
-    public function doCheckUser($user, $ability, $object)
+    public function doCheckUser($user, $ability, $object = null)
     {
         $cacheKey = serialize([
             $ability,
@@ -564,7 +564,7 @@ class OsuAuthorize
 
     public function checkCommentDestroy($user, $comment)
     {
-        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+        if ($this->doCheckUser($user, 'CommentModerate')->can()) {
             return 'ok';
         }
 
@@ -588,14 +588,14 @@ class OsuAuthorize
 
     public function checkCommentRestore($user, $comment)
     {
-        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+        if ($this->doCheckUser($user, 'CommentModerate')->can()) {
             return 'ok';
         }
     }
 
     public function checkCommentShow($user, $comment)
     {
-        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+        if ($this->doCheckUser($user, 'CommentModerate')->can()) {
             return 'ok';
         }
 
@@ -614,7 +614,7 @@ class OsuAuthorize
 
     public function checkCommentUpdate($user, $comment)
     {
-        if ($this->doCheckUser($user, 'CommentModerate', $comment->commentable)->can()) {
+        if ($this->doCheckUser($user, 'CommentModerate')->can()) {
             return 'ok';
         }
 

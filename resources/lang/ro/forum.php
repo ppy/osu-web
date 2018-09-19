@@ -114,11 +114,6 @@ return [
                 'total' => 'Subiecte la care te-ai abonat',
                 'unread' => 'Subiecte cu răspunsuri noi',
             ],
-
-            'info' => [
-                'total' => 'Tu ești abonat la :total subiecte.',
-                'unread' => 'Tu ai :unread răspunsuri necitite la subiectele la care te-ai abonat.',
-            ],
         ],
 
         'topic_buttons' => [
