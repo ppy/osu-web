@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,21 +16,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\UserRelation;
 
-namespace App\Transformers\API\Chat;
+$factory->define(UserRelation::class, function (Faker\Generator $faker) {
+    return [];
+});
 
-use App\Models\Chat\Channel;
-use League\Fractal;
+$factory->state(UserRelation::class, 'friend', function (Faker\Generator $faker) {
+    return ['friend' => true];
+});
 
-class ChannelTransformer extends Fractal\TransformerAbstract
-{
-    public function transform(Channel $channel)
-    {
-        return [
-            'channel_id' => $channel->channel_id,
-            'name' => $channel->name,
-            'description' => $channel->description,
-            'type' => $channel->type,
-        ];
-    }
-}
+$factory->state(UserRelation::class, 'block', function (Faker\Generator $faker) {
+    return ['foe' => true];
+});

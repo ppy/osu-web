@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,12 +16,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Chat\Channel;
 
-return [
-    'error' => [
-        'chat' => [
-            'limit_exceeded' => 'You are sending messages too quickly, please wait a bit before trying again.',
-            'too_long' => 'The message you are trying to send is too long.',
-        ],
-    ],
-];
+$factory->define(Channel::class, function (Faker\Generator $faker) {
+    return [
+        'name' => '#'.$faker->colorName,
+        'description' => $faker->bs,
+    ];
+});
+
+$factory->state(Channel::class, 'public', function (Faker\Generator $faker) {
+    return ['type' => Channel::TYPES['public']];
+});
+
+$factory->state(Channel::class, 'private', function (Faker\Generator $faker) {
+    return ['type' => Channel::TYPES['private']];
+});
+
+$factory->state(Channel::class, 'pm', function (Faker\Generator $faker) {
+    return ['type' => Channel::TYPES['pm']];
+});

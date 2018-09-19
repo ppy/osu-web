@@ -18,11 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Interfaces;
+namespace App\Models\Chat;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
-interface Messageable
+class UserChannel extends Model
 {
-    public function receiveMessage(User $sender, $message);
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function userScoped()
+    {
+        return $this->belongsTo(User::class, 'user_id')->default();
+    }
+
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class, 'channel_id');
+    }
+
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->where([
+            'user_id' => $this->user_id,
+            'channel_id' => $this->channel_id,
+        ]);
+    }
 }

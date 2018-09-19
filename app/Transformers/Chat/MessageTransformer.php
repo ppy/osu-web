@@ -18,39 +18,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Chat;
+namespace App\Transformers\Chat;
 
-use App\Models\User;
+use App\Models\DeletedUser;
+use App\Transformers\UserCompactTransformer;
+use League\Fractal;
 
-class Message extends Model
+class MessageTransformer extends Fractal\TransformerAbstract
 {
-    protected $primaryKey = 'message_id';
-    protected $casts = [
-        'is_action' => 'boolean',
+    protected $availableIncludes = [
+        'sender',
     ];
-    protected $dates = [
-        'timestamp',
-    ];
-    protected $guarded = [];
 
-    public function channel()
+    public function transform($message)
     {
-        return $this->belongsTo(Channel::class, 'channel_id');
+        return [
+            'message_id' => $message->message_id,
+            'sender_id' => $message->user_id,
+            'channel_id' => $message->channel_id,
+            'timestamp' => json_time($message->timestamp),
+            'content' => $message->content,
+            'is_action' => $message->is_action,
+        ];
     }
 
-    public function sender()
+    public function includeSender($message)
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function scopeForUser($query, User $user)
-    {
-        return $query->whereIn('channel_id', $user->channels->pluck('channel_id'))
-            ->orderBy('message_id', 'desc');
-    }
-
-    public function scopeSince($query, $messageId)
-    {
-        return $query->where('message_id', '>', $messageId);
+        return $this->item(
+            $message->sender ?? (new DeletedUser),
+            new UserCompactTransformer
+        );
     }
 }
