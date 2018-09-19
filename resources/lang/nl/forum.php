@@ -114,11 +114,6 @@ return [
                 'total' => 'Geabonneerde topics',
                 'unread' => 'Topics met nieuwe berichten',
             ],
-
-            'info' => [
-                'total' => 'Je bent geabonneerd op :total topics.',
-                'unread' => 'Je hebt :unread ongelezen berichten in geabonneerde berichten.',
-            ],
         ],
 
         'topic_buttons' => [

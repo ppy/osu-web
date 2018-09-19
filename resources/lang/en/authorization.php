@@ -52,22 +52,11 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
-                ],
-
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
-            ],
-        ],
+        'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
+        'friends_only' => 'User is blocking messages from people not on their friends list.',
+        'moderated' => 'That channel is currently moderated.',
+        'no_access' => 'You do not have access to that channel.',
+        'restricted' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'contest' => [
