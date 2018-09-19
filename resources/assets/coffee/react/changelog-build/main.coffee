@@ -22,7 +22,6 @@ el = React.createElement
 class ChangelogBuild.Main extends React.PureComponent
   componentDidMount: =>
     changelogChartLoader.initialize()
-    $.publish 'turbolinksDisqusReload'
 
 
   render: =>
@@ -69,10 +68,11 @@ class ChangelogBuild.Main extends React.PureComponent
             div className: 'builds__group', @renderSupporterPromo()
 
           div
-            className: 'builds__group builds__group--discussions js-turbolinks-disqus'
-            'data-turbolinks-disqus': JSON.stringify
-              identifier: @props.build.disqus_id
-              title: @props.build.disqus_title
+            className: 'builds__group builds__group--discussions'
+            el Comments,
+              commentableType: 'build'
+              commentableId: @props.build.id
+              modifiers: ['changelog']
 
 
   renderHeaderTabs: =>

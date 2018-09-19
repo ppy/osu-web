@@ -81,6 +81,9 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
 
+Route::resource('comments', 'CommentsController');
+Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
+
 Route::group(['prefix' => 'community'], function () {
     Route::get('chat', 'CommunityController@getChat')->name('chat');
 

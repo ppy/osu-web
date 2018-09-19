@@ -652,6 +652,11 @@ class Beatmapset extends Model implements AfterCommit
         return $this->belongsTo(Language::class, 'language_id');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');

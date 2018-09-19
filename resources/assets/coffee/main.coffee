@@ -88,7 +88,6 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 
@@ -115,6 +114,9 @@ reactTurbolinks.register 'blockButton', BlockButton, (target) ->
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
+
+reactTurbolinks.register 'comments', Comments, (el) ->
+  JSON.parse(el.dataset.comments)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

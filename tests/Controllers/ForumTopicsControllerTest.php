@@ -17,9 +17,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testReply()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -67,7 +65,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create();
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -83,9 +81,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testStore()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create()->fresh();
         $userGroup = $this->defaultUserGroup($user);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -131,6 +127,56 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount + 1, Forum\Post::count());
         $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
+    }
+
+    public function testUpdateTitle()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $user = factory(User::class)->create();
+        $userGroup = $this->defaultUserGroup($user);
+        $initialTitle = 'New topic';
+        $topic = Forum\Topic::createNew($forum, [
+            'title' => $initialTitle,
+            'user' => $user,
+            'body' => 'This is a new topic',
+        ]);
+
+        $newTitle = 'A different title';
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => $newTitle,
+                ],
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($newTitle, $topic->fresh()->topic_title);
+    }
+
+    public function testUpdateTitleBlank()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $user = factory(User::class)->create();
+        $userGroup = $this->defaultUserGroup($user);
+        $initialTitle = 'New topic';
+        $topic = Forum\Topic::createNew($forum, [
+            'title' => $initialTitle,
+            'user' => $user,
+            'body' => 'This is a new topic',
+        ]);
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => null,
+                ],
+            ])
+            ->assertStatus(422);
+
+        $this->assertSame($initialTitle, $topic->fresh()->topic_title);
     }
 
     private function defaultUserGroup($user)

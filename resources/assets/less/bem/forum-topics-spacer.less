@@ -16,11 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topics-pager {
+.forum-topics-spacer {
   display: flex;
   align-items: center;
-  margin: 0px 40px;
-  min-height: 4em; // don't look too silly if there's no pager.
+  margin: 30px @forum-topic-entry--main-margin;
 
   @media @mobile {
     // so the pager doesn't get squashed.
@@ -28,14 +27,22 @@
     flex-direction: column;
   }
 
+  &--pager {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 4em; // don't look too silly if there's no pager.
+  }
+
   &__buttons {
-    min-width: 150px;
+    min-width: @forum-topic-new-topic-button--width;
+    flex: 1;
+
     @media @mobile {
       width: 100%;
     }
   }
 
   &__pager {
-    width: 100%;
+    flex: none;
   }
 }

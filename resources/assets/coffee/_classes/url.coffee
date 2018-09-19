@@ -22,6 +22,7 @@ class @Url
     'api/v2'
     'beatmaps'
     'beatmapsets'
+    'comments'
     'community'
     'help'
     'home'
@@ -50,4 +51,4 @@ class @Url
 
 
   @isInternal: (location) ->
-    RegExp("^/(?:#{internal})(?:$|/)").test location.getPath()
+    RegExp("^/(?:#{internal})(?:$|/|#)").test location.getPath()
