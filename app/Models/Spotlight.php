@@ -102,7 +102,7 @@ class Spotlight extends Model
             $name = "{$this->acronym}_beatmapsets_{$mode}";
         }
 
-        return mb_strtolower($name);
+        return $name;
     }
 
     public function bestScoresTableName(string $mode)
@@ -113,7 +113,7 @@ class Spotlight extends Model
             $name = "{$this->acronym}_scores_{$mode}_high";
         }
 
-        return mb_strtolower($name);
+        return $name;
     }
 
     public function userStatsTableName(string $mode)
@@ -124,7 +124,7 @@ class Spotlight extends Model
             $name = "{$this->acronym}_user_stats_{$mode}";
         }
 
-        return mb_strtolower($name);
+        return $name;
     }
 
     public function createTables()
