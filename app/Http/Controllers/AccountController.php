@@ -103,7 +103,13 @@ class AccountController extends Controller
             ->orderBy('username')
             ->get();
 
-        return view('accounts.edit', compact('blocks'));
+        $sessions = Request::session()
+            ->currentUserSessions();
+
+        $currentSessionId = Request::session()
+            ->getIdWithoutPrefix();
+
+        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()

@@ -133,18 +133,21 @@ Route::group(['prefix' => 'community'], function () {
 Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'home'], function () {
-    Route::get('account/edit', 'AccountController@edit')->name('account.edit');
-    // Uploading file doesn't quite work with PUT/PATCH.
-    // Reference: https://bugs.php.net/bug.php?id=55815
-    // Note that hhvm behaves differently (the same as POST).
-    Route::post('account/avatar', 'AccountController@avatar')->name('account.avatar');
-    Route::post('account/cover', 'AccountController@cover')->name('account.cover');
-    Route::put('account/email', 'AccountController@updateEmail')->name('account.email');
-    Route::put('account/page', 'AccountController@updatePage')->name('account.page');
-    Route::put('account/password', 'AccountController@updatePassword')->name('account.password');
-    Route::post('account/reissue-code', 'AccountController@reissueCode')->name('account.reissue-code');
-    Route::post('account/verify', 'AccountController@verify')->name('account.verify');
-    Route::put('account', 'AccountController@update')->name('account.update');
+    Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
+        Route::get('edit', 'AccountController@edit')->name('edit');
+        // Uploading file doesn't quite work with PUT/PATCH.
+        // Reference: https://bugs.php.net/bug.php?id=55815
+        // Note that hhvm behaves differently (the same as POST).
+        Route::post('avatar', 'AccountController@avatar')->name('avatar');
+        Route::post('cover', 'AccountController@cover')->name('cover');
+        Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('page', 'AccountController@updatePage')->name('page');
+        Route::put('password', 'AccountController@updatePassword')->name('password');
+        Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
+        Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::post('verify', 'AccountController@verify')->name('verify');
+        Route::put('/', 'AccountController@update')->name('update');
+    });
 
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
