@@ -41,7 +41,6 @@ class Beatmapset extends Model implements AfterCommit
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
-    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',

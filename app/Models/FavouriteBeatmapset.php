@@ -29,7 +29,6 @@ class FavouriteBeatmapset extends Model
         'dateadded',
     ];
 
-    protected $guarded = [];
 
     public function user()
     {

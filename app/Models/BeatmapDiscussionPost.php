@@ -31,7 +31,6 @@ class BeatmapDiscussionPost extends Model
 
     const MESSAGE_LIMIT = 750;
 
-    protected $guarded = [];
 
     protected $touches = ['beatmapDiscussion'];
 

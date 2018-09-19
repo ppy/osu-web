@@ -46,7 +46,6 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';

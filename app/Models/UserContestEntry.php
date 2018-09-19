@@ -28,7 +28,6 @@ class UserContestEntry extends Model
 {
     use Uploadable;
 
-    protected $guarded = [];
 
     public function getFileRoot()
     {

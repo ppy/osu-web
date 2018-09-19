@@ -22,7 +22,6 @@ namespace App\Models;
 
 class BeatmapsetEvent extends Model
 {
-    protected $guarded = [];
 
     const NOMINATE = 'nominate';
     const LOVE = 'love';

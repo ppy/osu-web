@@ -22,7 +22,6 @@ namespace App\Models;
 
 class GithubUser extends Model
 {
-    protected $guarded = [];
 
     public static function importFromGithub($data)
     {

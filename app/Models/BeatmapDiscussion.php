@@ -29,7 +29,6 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
-    protected $guarded = [];
 
     protected $casts = [
         'kudosu_denied' => 'boolean',

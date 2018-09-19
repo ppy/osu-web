@@ -27,5 +27,4 @@ class AuthOption extends Model
     protected $primaryKey = 'auth_option_id';
     public $timestamps = false;
 
-    protected $guarded = [];
 }

@@ -41,7 +41,6 @@ class UserProfileCustomization extends Model
         'cover_json' => 'array',
     ];
 
-    protected $guarded = [];
 
     private $cover;
 
