@@ -43,12 +43,10 @@ export class StoreCheckout
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
-      init[provider]?.then =>
-        $.post laroute.route('store.checkout.store'), { provider, orderId }
-        .done =>
-          @startPayment(event.target.dataset)
-          .catch @handleError
-
+      init[provider]?.then ->
+        window.osu.promisify $.post(laroute.route('store.checkout.store'), { provider, orderId })
+      .then =>
+        @startPayment(event.target.dataset)
       .catch @handleError
 
 
@@ -59,7 +57,7 @@ export class StoreCheckout
           window.location = params.url
 
       when 'free'
-        $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
+        window.osu.promisify $.post(laroute.route('store.checkout.store', orderId: params.orderId, completed: '1'))
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
