@@ -140,7 +140,16 @@ class StoreController extends Controller
             'address' => Request::input('address'),
         ]));
 
-        $addressInput = Request::all()['address'];
+        $addressInput = get_params(request(), 'address', [
+            'first_name',
+            'last_name',
+            'street',
+            'city',
+            'state',
+            'zip',
+            'country_code',
+            'phone',
+        ]);
 
         $validator = Validator::make($addressInput, [
             'first_name' => ['required'],
