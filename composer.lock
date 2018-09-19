@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "808990d8b704b7d33941600e8aff6968",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.67.13",
+            "version": "3.67.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "10ad46f74bab23b8004bd337d131ec25072c8320"
+                "reference": "f620d3abfb582f648e09456dbdf50ab11d4ec19d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/10ad46f74bab23b8004bd337d131ec25072c8320",
-                "reference": "10ad46f74bab23b8004bd337d131ec25072c8320",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f620d3abfb582f648e09456dbdf50ab11d4ec19d",
+                "reference": "f620d3abfb582f648e09456dbdf50ab11d4ec19d",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-09-17T20:34:45+00:00"
+            "time": "2018-09-18T21:32:51+00:00"
         },
         {
             "name": "chaseconey/laravel-datadog-helper",
@@ -2522,16 +2522,16 @@
         },
         {
             "name": "league/html-to-markdown",
-            "version": "4.7.0",
+            "version": "4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/html-to-markdown.git",
-                "reference": "76c076483cef89860d32a3fd25312f5a42848a8c"
+                "reference": "f9a879a068c68ff47b722de63f58bec79e448f9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/76c076483cef89860d32a3fd25312f5a42848a8c",
-                "reference": "76c076483cef89860d32a3fd25312f5a42848a8c",
+                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/f9a879a068c68ff47b722de63f58bec79e448f9d",
+                "reference": "f9a879a068c68ff47b722de63f58bec79e448f9d",
                 "shasum": ""
             },
             "require": {
@@ -2550,7 +2550,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.8-dev"
+                    "dev-master": "4.9-dev"
                 }
             },
             "autoload": {
@@ -2564,16 +2564,16 @@
             ],
             "authors": [
                 {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "http://www.colinodell.com",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Nick Cernis",
                     "email": "nick@cern.is",
                     "homepage": "http://modernnerd.net",
                     "role": "Original Author"
+                },
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "An HTML-to-markdown conversion helper for PHP",
@@ -2582,7 +2582,7 @@
                 "html",
                 "markdown"
             ],
-            "time": "2018-05-19T23:47:12+00:00"
+            "time": "2018-09-18T12:18:08+00:00"
         },
         {
             "name": "league/oauth2-server",
@@ -2750,9 +2750,9 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
-            "time": "2017-02-16 06:27:23"
+            "time": "2017-02-16T06:27:23+00:00"
         },
         {
             "name": "mariuzzo/laravel-js-localization",
@@ -5758,16 +5758,16 @@
         },
         {
             "name": "xsolla/xsolla-sdk-php",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xsolla/xsolla-sdk-php.git",
-                "reference": "2769afdd7343d7cea1c8cf113ce5161bc63fefff"
+                "reference": "a33bd5853e024f8763db96cca09abaa9dd5f3f15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/2769afdd7343d7cea1c8cf113ce5161bc63fefff",
-                "reference": "2769afdd7343d7cea1c8cf113ce5161bc63fefff",
+                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/a33bd5853e024f8763db96cca09abaa9dd5f3f15",
+                "reference": "a33bd5853e024f8763db96cca09abaa9dd5f3f15",
                 "shasum": ""
             },
             "require": {
@@ -5802,7 +5802,7 @@
                 "sdk",
                 "xsolla"
             ],
-            "time": "2018-09-14T12:16:39+00:00"
+            "time": "2018-09-18T07:59:40+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
