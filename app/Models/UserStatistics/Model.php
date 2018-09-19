@@ -29,7 +29,6 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-
     const UPDATED_AT = 'last_update';
 
     public function user()

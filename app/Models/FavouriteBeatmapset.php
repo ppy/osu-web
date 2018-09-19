@@ -29,7 +29,6 @@ class FavouriteBeatmapset extends Model
         'dateadded',
     ];
 
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -38,7 +38,6 @@ class OrderItem extends Model
         'extra_data' => 'array',
     ];
 
-
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',

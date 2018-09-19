@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuildPropagationHistory extends Model
 {
-
     public $timestamps = false;
     protected $dates = [
         'created_at',

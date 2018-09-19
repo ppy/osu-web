@@ -24,7 +24,6 @@ use Carbon\Carbon;
 
 class BeatmapDiscussionVote extends Model
 {
-
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
         $query = static::with('user')->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));

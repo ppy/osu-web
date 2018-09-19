@@ -22,7 +22,6 @@ namespace App\Models;
 
 class Repository extends Model
 {
-
     protected $casts = [
         'build_on_tag' => 'boolean',
     ];

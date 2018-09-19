@@ -22,7 +22,6 @@ namespace App\Models;
 
 class BeatmapsetEvent extends Model
 {
-
     const NOMINATE = 'nominate';
     const LOVE = 'love';
     const QUALIFY = 'qualify';

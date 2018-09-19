@@ -24,7 +24,6 @@ use DB;
 
 class CountryStatistics extends Model
 {
-
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_code', 'acronym');

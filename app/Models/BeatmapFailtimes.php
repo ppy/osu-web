@@ -26,7 +26,6 @@ class BeatmapFailtimes extends Model
 
     public $timestamps = false;
 
-
     public function getDataAttribute()
     {
         $data = [];

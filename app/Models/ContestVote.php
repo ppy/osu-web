@@ -22,7 +22,6 @@ namespace App\Models;
 
 class ContestVote extends Model
 {
-
     public function entry()
     {
         return $this->belongsTo(ContestEntry::class);

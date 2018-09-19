@@ -28,7 +28,6 @@ class UserContestEntry extends Model
 {
     use Uploadable;
 
-
     public function getFileRoot()
     {
         return 'user-contest-entries';
