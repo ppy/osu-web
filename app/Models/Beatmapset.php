@@ -272,6 +272,7 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved > 0;
     }
 
+    // TODO: remove this and update the coffee side names to match isScoreable.
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;
