@@ -66,6 +66,13 @@ return [
         'years' => ':count year|:count years',
     ],
 
+    'countdown' => [
+        'days' => 'days',
+        'hours' => 'hours',
+        'minutes' => 'minutes',
+        'seconds' => 'seconds',
+    ],
+
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
