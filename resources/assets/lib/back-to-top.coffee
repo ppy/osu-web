@@ -65,7 +65,7 @@ export class BackToTop extends PureComponent
 
       callback = (entries) =>
         for entry in entries
-          if entry.target == @props.anchor.current && entry.intersectionRatio == 1
+          if entry.target == @props.anchor.current && entry.boundingClientRect.top == 0
             # also gets attached when scrolling downwards, but should be fine in this case.
             document.addEventListener 'scroll', @onScroll
             break
