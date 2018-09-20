@@ -107,10 +107,10 @@ return [
 
         'status' => [
             'cancelled' => 'Cancelled',
-            'checkout' => 'Pending confirmation',
+            'checkout' => 'Preparing',
             'delivered' => 'Delivered',
             'paid' => 'Paid',
-            'processing' => 'Unpaid',
+            'processing' => 'Pending confirmation',
             'shipped' => 'In Transit',
         ],
     ],
