@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
         'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
         'locked' => 'Tartışma kilitli.',
-        'mapper_note_wrong_user' => 'Sadece beatmap sahibi mapper notu düşebilir.',
 
         'hype' => [
             'guest' => 'Destek oyu vermek için giriş yapmalısın.',

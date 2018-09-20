@@ -20,23 +20,28 @@
 
 return [
     'index' => [
+        'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
+        'registration_period' => 'Tilmelding: :start til :end',
+
         'header' => [
             'subtitle' => 'En liste over alle aktive officielle turneringer',
             'title' => 'Fællesskabsturnerninger',
         ],
-        'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
-        'registration_period' => 'Tilmelding: :start til :end',
+
+        'item' => [
+            'registered' => 'Registrerede spillere',
+        ],
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Aktive Turneringer',
+            'previous' => 'Tidligere Turneringer',
         ],
     ],
 
     'show' => [
         'banner' => '',
         'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
-        'info_page' => '',
+        'info_page' => 'Informationsside',
         'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
         'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
         'rank_too_low' => 'Beklager, du opfylder ikke rang kravene til denne turnering!',
@@ -48,9 +53,9 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
-            'ended' => '',
-            'registration_closed' => '',
+            'before_registration' => 'Registrering til denne turnering er ikke åbnet endnu.',
+            'ended' => 'Denne turnering er konkluderet. Tjek informationssiden for resultater.',
+            'registration_closed' => 'Registrering til denne turnering er lukket. Tjek informationssiden for seneste opdateringer.',
             'running' => '',
         ],
     ],

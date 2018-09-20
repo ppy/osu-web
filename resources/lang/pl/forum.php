@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Przypięte wątki',
     'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
-    'title' => 'Społeczność osu!',
+    'title' => 'forum osu!',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Zaloguj się, aby utworzyć nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
+        'reply_title_prefix' => 'Odp.',
         'started_by' => 'przez :user',
+        'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
             'preview' => 'Podgląd',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Napisz',
             'submit' => 'Opublikuj',
+
+            'necropost' => [
+                'default' => 'Ten wątek jest nieaktywny od dłuższego czasu. Opublikuj nowy post, tylko jeżeli masz do tego odpowiedni powód.',
+
+                'new_topic' => [
+                    '_' => "Ten wątek jest nieaktywny od dłuższego czasu. Jeżeli nie masz odpowiedniego powodu do pisania tutaj, :create.",
+                    'create' => 'utwórz nowy wątek',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Tutaj wpisz zawartość posta',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
+            ],
+
+            'info' => [
+                'total' => 'Liczba zasubskrybowanych wątków: :total.',
+                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
             ],
         ],
 

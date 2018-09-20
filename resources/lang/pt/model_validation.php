@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido.',
         'locked' => 'A discussão está bloqueada.',
-        'mapper_note_wrong_user' => 'Só o proprietário do beatmap é que pode publicar as notas do mapper.',
 
         'hype' => [
             'guest' => 'Tens que estar com a sessão iniciada para hypear.',

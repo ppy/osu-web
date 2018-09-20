@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定的難度無效。',
         'invalid_beatmapset_id' => '指定的譜面無效。',
         'locked' => '討論被鎖定。',
-        'mapper_note_wrong_user' => '只有譜面作者可以釘上便籤。',
 
         'hype' => [
             'guest' => '登錄後才能推薦',

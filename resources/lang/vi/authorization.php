@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Chỉ chủ beatmap hoặc người đề cử/thành viên QAT mới có thể đăng ghi chú mapper.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Bạn vừa đăng. Đợi một lát hoặc chỉnh sửa bài đăng cuối cùng của bạn.',
+                'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
                 'locked' => 'Không thể trả lời một thread bị khóa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'no_permission' => 'Không được phép trả lời.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'Phải có osu!supporter.',
+                'require_supporter_tag' => 'phải có osu!supporter.',
             ],
         ],
     ],

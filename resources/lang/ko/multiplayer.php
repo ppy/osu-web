@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => '삭제된 비트맵',
+        'difference' => '(점수 차: :difference)',
+        'failed' => '실패',
         'header' => '멀티플레이 게임',
-        'team-types' => [
-            'head-to-head' => '개인전',
-            'tag-coop' => '태그 협동전',
-            'team-vs' => '팀 대전',
-            'tag-team-vs' => '팀 태그 대전',
-        ],
+        'in-progress' => '(게임이 진행중입니다.)',
+        'in_progress_spinner_label' => '게임이 진행중입니다',
+        'loading-events' => '기록 불러오는 중...',
+        'winner' => ':team 승리',
+
         'events' => [
             'player-left' => ':user님이 게임을 떠났습니다.',
             'player-joined' => ':user님이 게임에 참가했습니다.',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => '게임이 해체되었습니다.',
             'host-changed-no-user' => '방장이 변경되었습니다.',
         ],
-        'in-progress' => '(게임이 진행중입니다.)',
+
         'score' => [
             'stats' => [
                 'accuracy' => '정확도',
@@ -50,16 +52,18 @@ return [
                 'score' => '점수',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => '개인전',
+            'tag-coop' => '태그 협동전',
+            'team-vs' => '팀 대전',
+            'tag-team-vs' => '팀 태그 대전',
+        ],
+
         'teams' => [
             'blue' => 'Blue 팀',
             'red' => 'Red 팀',
         ],
-        'winner' => ':team 승리',
-        'difference' => '(점수 차: :difference)',
-        'loading-events' => '기록 불러오는 중...',
-        'more-events' => '모두 보기...',
-        'beatmap-deleted' => '삭제된 비트맵',
     ],
     'game' => [
         'scoring-type' => [

@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Tritt gegen mehr als nur Kreise an.',
-        'large' => 'osu! Community Wettbewerbe',
+        'large' => 'Community Wettbewerbe',
     ],
     'voting' => [
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',

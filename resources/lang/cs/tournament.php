@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Zrovna neprobíhají žádné turnaje, vrať se prosím později!',
+        'registration_period' => 'Registrace: :start do :end',
+
         'header' => [
             'subtitle' => 'Seznam aktivních, oficiálně uznaných turnajů',
             'title' => 'Komunitní turnaje',
         ],
-        'none_running' => 'Zrovna neprobíhají žádné turnaje, vrať se prosím později!',
-        'registration_period' => 'Registrace: :start do :end',
+
+        'item' => [
+            'registered' => 'Registrovaní hráči',
+        ],
 
         'state' => [
             'current' => 'Probíhající turnaje',

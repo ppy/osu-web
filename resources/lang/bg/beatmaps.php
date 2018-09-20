@@ -149,6 +149,8 @@ return [
         'disqualified_no_reason' => 'няма определена причина',
         'disqualify' => 'Дисквалифицирайте',
         'incorrect_state' => 'Грешка при извършване на това действие, опитайте да презаредите страницата.',
+        'love' => '',
+        'love_confirm' => '',
         'nominate' => 'Номинирай',
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
@@ -172,6 +174,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'въведи ключови думи...',
+            'login_required' => '',
             'options' => 'Повече опции за търсене',
             'supporter_filter' => '',
             'not-found' => 'няма намерени резултати',
@@ -179,7 +182,7 @@ return [
             'filters' => [
                 'general' => 'Общо',
                 'mode' => 'Игра',
-                'status' => 'Класиран Статус',
+                'status' => '',
                 'genre' => 'Жанр',
                 'language' => 'Език',
                 'extra' => 'екстра',
@@ -202,10 +205,6 @@ return [
                 'link_text' => '',
             ],
         ],
-        'mode' => 'Игра',
-        'status' => 'Класиран Статус',
-        'source' => 'от :source',
-        'load-more' => 'Зареди още...',
     ],
     'general' => [
         'recommended' => 'Препоръчана трудност',
@@ -225,7 +224,7 @@ return [
         'qualified' => 'Квалифицирани',
         'loved' => 'Обичани',
         'faves' => 'Фаворити',
-        'pending' => 'Чакащи',
+        'pending' => '',
         'graveyard' => 'Гробище',
         'my-maps' => 'Моите Мапове',
     ],

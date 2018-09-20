@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Oletko varma?',
+    'confirmation_unsaved' => 'Tallentamattomat muutokset menetetään. Oletko aivan varma?',
     'saved' => 'Tallennettu',
 
     'array_and' => [

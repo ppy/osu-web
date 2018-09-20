@@ -77,7 +77,7 @@ return [
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'beta' => [
             'main' => 'Beta erişimi ayrıcalıklı üyelere kısıtlandırılmıştır.',
-            'small' => '(supporterlar yakında gelecek)',
+            'small' => '(osu!supporterlar yakında erişebilecekler)',
         ],
 
         'here' => 'buraya', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Bunu yapmak için giriş yapmalısınız.',
     ],
     'logout_confirm' => 'Çıkış yapmak istediğinize emin misiniz? :(',
+    'report' => [
+        'button_text' => 'şikayet et',
+        'comments' => 'Ek yorumlar',
+        'placeholder' => 'Lütfen kullanışlı olabileceğini düşündüğünüz her türlü bilgiyi iletin.',
+        'reason' => 'Gerekçe',
+        'thanks' => 'Bildirdiğiniz için teşekkürler!',
+        'title' => ':username şikayet edilsin mi?',
+
+        'actions' => [
+            'send' => 'Rapor Et',
+            'cancel' => 'İptal',
+        ],
+
+        'options' => [
+            'cheating' => 'Kuraldışı oyun / Hile',
+            'insults' => 'Bana / başkalarına hakaret',
+            'spam' => 'Spam yapmak',
+            'unwanted_content' => 'Uygunsuz içerik paylaşma',
+            'nonsense' => 'Saçmalık',
+            'other' => 'Diğer (aşağıda belirtin)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => ':date tarihinde katıldı',
         'lastvisit' => 'Son görülme :date',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age ülke: :country',
         'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
         'previous_usernames' => 'nâm-ı diğer',
@@ -141,7 +161,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count takipçi',
+            'followers' => '1 takipçi|:count takipçi',
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [

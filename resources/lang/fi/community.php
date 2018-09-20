@@ -22,8 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Rakastatko osu!:a?<br/>
-                                Tue osu!:n kehittäjää :D',
+            'big_description' => '',
             'small_description' => '',
             'support_button' => 'Haluan tukea osu!:a',
         ],

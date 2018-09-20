@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Turnauksia ei juuri nyt ole käynnissä, tarkista myöhemmin uudestaan!',
+        'registration_period' => 'Rekisteröinti: :start:sta :end:een',
+
         'header' => [
             'subtitle' => 'Luettelo aktiivisista, virallisesti tunnustetuista turnauksista',
             'title' => 'Yhteisöturnaukset',
         ],
-        'none_running' => 'Turnauksia ei juuri nyt ole käynnissä, tarkista myöhemmin uudestaan!',
-        'registration_period' => 'Rekisteröinti: :start:sta :end:een',
+
+        'item' => [
+            'registered' => 'Rekistöröityneet pelaajat',
+        ],
 
         'state' => [
             'current' => 'Aktiiviset turnaukset',

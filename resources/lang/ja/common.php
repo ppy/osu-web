@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '本当にいいですか？',
+    'confirmation_unsaved' => '保存されていない変更は残りません。よろしいですか？',
     'saved' => '保存完了',
 
     'array_and' => [
@@ -34,7 +35,7 @@ return [
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'delete' => '削除',
-        'hide' => '',
+        'hide' => '隠す',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',
         'post' => '投稿',
@@ -44,9 +45,9 @@ return [
         'reset' => 'リセット',
         'save' => '保存',
         'saving' => '保存中・・・',
-        'search' => '',
+        'search' => '検索',
         'see_more' => 'もっと見る',
-        'show' => '',
+        'show' => '表示',
         'show_more' => '展開する',
         'upload_image' => '画像をアップロード',
     ],

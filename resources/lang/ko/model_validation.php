@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
         'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
         'locked' => '토론이 잠겨있습니다.',
-        'mapper_note_wrong_user' => '비트맵 소유자만이 매퍼 노트를 수정할 수 있습니다.',
 
         'hype' => [
             'guest' => '로그인하셔야 Hype하실 수 있습니다.',

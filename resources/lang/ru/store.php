@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'подарок для игрока',
         'require_login' => [
-            '_' => 'Вы должны :link для покупки osu!supporter тега!',
+            '_' => 'Вы должны быть :link для покупки osu!supporter!',
             'link_text' => 'войти',
         ],
     ],

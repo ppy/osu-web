@@ -22,18 +22,33 @@ return [
     'feed_title' => 'ฟีด',
     'generic' => 'แก้ไขข้อผิดพลาดและปรับปรุงการทำงาน.',
 
+    'build' => [
+        'title' => 'การเปลี่ยนแปลงใน :version',
+    ],
+
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited ผู้ใช้ออนไลน์|:count_delimited ผู้ใช้ออนไลน์',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'โดย :user',
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'รายการเปลี่ยนแปลง',
+            '_from' => 'เปลี่ยนแปลงตั้งแต่ :from',
+            '_from_to' => 'เปลี่ยนแปลงระหว่าง :from และ :to',
+            '_stream' => 'เปลี่ยนแปลงใน :stream',
+            '_stream_from' => 'เปลี่ยนแปลงที่ :stream ตั้งแต่ :from',
+            '_stream_from_to' => 'เปลี่ยนแปลงระหว่าง :from และ :to ใน :stream',
+            '_stream_to' => 'เปลี่ยนแปลงที่ :stream จนถึง :to',
+            '_to' => 'เปลี่ยนแปลงที่ จนถึง :to',
+        ],
+
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'เปลี่ยนแปลง :info',
+            'info' => 'รายการ',
         ],
     ],
 

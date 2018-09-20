@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du har lige lavet et opslag! Vent et stykke tid, eller rediger dit seneste opslag.',
+                'double_post' => '',
                 'locked' => 'Kan ikke svare en låst tråd.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
-                'require_supporter_tag' => 'Supporter tag er nødvendigt.',
+                'require_supporter_tag' => '',
             ],
         ],
     ],

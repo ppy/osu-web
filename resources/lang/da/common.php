@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Er du sikker?',
+    'confirmation_unsaved' => '',
     'saved' => 'Gemt',
 
     'array_and' => [
