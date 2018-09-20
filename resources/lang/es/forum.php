@@ -114,11 +114,6 @@ return [
                 'total' => 'Temas suscritos',
                 'unread' => 'Temas con nuevas respuestas',
             ],
-
-            'info' => [
-                'total' => 'Te has suscrito a :total temas.',
-                'unread' => 'Tienes :unread respuestas sin leer a temas suscritos.',
-            ],
         ],
 
         'topic_buttons' => [

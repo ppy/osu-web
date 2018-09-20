@@ -1,7 +1,5 @@
-<?php
-
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,11 +16,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Interfaces;
+.forum-topics-spacer {
+  display: flex;
+  align-items: center;
+  margin: 30px @forum-topic-entry--main-margin;
 
-use App\Models\User;
+  @media @mobile {
+    // so the pager doesn't get squashed.
+    // some reordering magic will probably be required if a right side button gets added.
+    flex-direction: column;
+  }
 
-interface Messageable
-{
-    public function receiveMessage(User $sender, $message);
+  &--pager {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 4em; // don't look too silly if there's no pager.
+  }
+
+  &__buttons {
+    min-width: @forum-topic-new-topic-button--width;
+    flex: 1;
+
+    @media @mobile {
+      width: 100%;
+    }
+  }
+
+  &__pager {
+    flex: none;
+  }
 }

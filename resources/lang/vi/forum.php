@@ -114,11 +114,6 @@ return [
                 'total' => 'Chủ đề đã đăng kí',
                 'unread' => 'Chủ đề có trả lời mới',
             ],
-
-            'info' => [
-                'total' => 'Bạn đã đăng kí :total chủ đề.',
-                'unread' => 'Bạn chưa đọc :unread trả lời của những chủ đề đã đăng kí.',
-            ],
         ],
 
         'topic_buttons' => [

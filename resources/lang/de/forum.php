@@ -114,11 +114,6 @@ return [
                 'total' => 'Abonnierte Threads',
                 'unread' => 'Threads mit ungelesenen Antworten',
             ],
-
-            'info' => [
-                'total' => 'Du hast :total Threads abonniert.',
-                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
-            ],
         ],
 
         'topic_buttons' => [

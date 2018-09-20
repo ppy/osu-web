@@ -36,5 +36,9 @@
         {!! json_encode($countries) !!}
     </script>
 
+    <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
+        {!! json_encode($commentBundle->toArray()) !!}
+    </script>
+
     @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
 @endsection

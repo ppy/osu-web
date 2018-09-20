@@ -90,6 +90,22 @@ return [
             ],
         ],
 
+        'mysql-charts' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'database' => env('DB_DATABASE_CHARTS', 'osu_charts'),
+            'username' => env('DB_USERNAME', 'osuweb'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_general_ci',
+            'prefix' => '',
+            'strict' => true,
+            'options' => [
+                PDO::ATTR_PERSISTENT => true,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
+            ],
+        ],
+
         'mysql-chat' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),

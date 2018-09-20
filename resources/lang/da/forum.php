@@ -114,11 +114,6 @@ return [
                 'total' => 'Emner Abonneret',
                 'unread' => 'Emner med nye svar',
             ],
-
-            'info' => [
-                'total' => 'Du abonnerer i alt på :total emner.',
-                'unread' => 'Du har :unread ulæste svar til abonnerede emner.',
-            ],
         ],
 
         'topic_buttons' => [

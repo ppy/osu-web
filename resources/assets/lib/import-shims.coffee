@@ -21,6 +21,7 @@
 import { BackToTop } from 'back-to-top'
 import { ReportForm } from 'report-form'
 import { SelectOptions } from 'select-options'
+import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -33,6 +34,7 @@ window._exported = {
   BackToTop
   ReportForm
   SelectOptions
+  SpotlightSelectOptions
 }
 
 window.StoreCheckout = StoreCheckout
