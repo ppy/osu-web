@@ -23,8 +23,6 @@ export class BackToTop extends PureComponent
   constructor: (props) ->
     super props
 
-    @container = createRef()
-
     @state =
       lastScrollY: null
 
@@ -83,7 +81,6 @@ export class BackToTop extends PureComponent
       'data-tooltip-float': 'fixed'
       onClick: @onClick
       title: if @state.lastScrollY? then osu.trans('common.buttons.back_to_previous') else osu.trans('common.buttons.back_to_top')
-      ref: @container
       i className: if @state.lastScrollY? then 'fas fa-angle-down' else 'fas fa-angle-up'
 
 
