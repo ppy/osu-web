@@ -65,6 +65,9 @@ class Beatmaps.Main extends React.PureComponent
 
     @state.columnCount = @columnCount()
 
+    @backToTop = React.createRef()
+    @backToTopAnchor = React.createRef()
+
 
   columnCount: () ->
     if osu.isDesktop() then 2 else 1
@@ -99,8 +102,10 @@ class Beatmaps.Main extends React.PureComponent
     searchBackground = @state.beatmaps[0]?.covers?.cover
     supporterFilters = @supporterFiltersTrans()
 
-    div className: 'osu-layout__section',
+    div
+      className: 'osu-layout__section'
       el Beatmaps.SearchPanel,
+        innerRef: @backToTopAnchor
         background: searchBackground
         availableFilters: @props.availableFilters
         filters: @state.filters
@@ -140,6 +145,10 @@ class Beatmaps.Main extends React.PureComponent
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
           el(Beatmaps.Paginator, paging: @state.paging) unless @isSupporterMissing()
+
+      el window._exported.BackToTop,
+        anchor: @backToTopAnchor
+        ref: @backToTop
 
 
   renderLinkToSupporterTag: (filters) ->
@@ -225,6 +234,8 @@ class Beatmaps.Main extends React.PureComponent
     return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
 
     @showLoader()
+    @backToTop.current.reset()
+
     @xhr.search = $.ajax @state.paging.url,
       method: 'get'
       dataType: 'json'
@@ -240,7 +251,7 @@ class Beatmaps.Main extends React.PureComponent
         loading: false
 
       @setState newState, ->
-          $(document).trigger 'beatmap:search:done'
+        $(document).trigger 'beatmap:search:done'
 
 
   showLoader: =>
