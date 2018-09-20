@@ -20,6 +20,7 @@
 
 import { ReportForm } from 'report-form'
 import { SelectOptions } from 'select-options'
+import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -31,6 +32,7 @@ window.Promise ?= Promise
 window._exported = {
   ReportForm
   SelectOptions
+  SpotlightSelectOptions
 }
 
 window.StoreCheckout = StoreCheckout

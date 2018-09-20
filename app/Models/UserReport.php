@@ -41,7 +41,12 @@ class UserReport extends Model
 
     public function score()
     {
-        return $this->belongsTo(BestModel::getClass($this->mode), 'score_id');
+        return $this->morphTo();
+    }
+
+    public function getScoreTypeAttribute()
+    {
+        return BestModel::getClass($this->mode);
     }
 
     public function user()

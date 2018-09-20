@@ -85,8 +85,6 @@ Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 
 Route::group(['prefix' => 'community'], function () {
-    Route::get('chat', 'CommunityController@getChat')->name('chat');
-
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
@@ -135,18 +133,21 @@ Route::group(['prefix' => 'community'], function () {
 Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'home'], function () {
-    Route::get('account/edit', 'AccountController@edit')->name('account.edit');
-    // Uploading file doesn't quite work with PUT/PATCH.
-    // Reference: https://bugs.php.net/bug.php?id=55815
-    // Note that hhvm behaves differently (the same as POST).
-    Route::post('account/avatar', 'AccountController@avatar')->name('account.avatar');
-    Route::post('account/cover', 'AccountController@cover')->name('account.cover');
-    Route::put('account/email', 'AccountController@updateEmail')->name('account.email');
-    Route::put('account/page', 'AccountController@updatePage')->name('account.page');
-    Route::put('account/password', 'AccountController@updatePassword')->name('account.password');
-    Route::post('account/reissue-code', 'AccountController@reissueCode')->name('account.reissue-code');
-    Route::post('account/verify', 'AccountController@verify')->name('account.verify');
-    Route::put('account', 'AccountController@update')->name('account.update');
+    Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
+        Route::get('edit', 'AccountController@edit')->name('edit');
+        // Uploading file doesn't quite work with PUT/PATCH.
+        // Reference: https://bugs.php.net/bug.php?id=55815
+        // Note that hhvm behaves differently (the same as POST).
+        Route::post('avatar', 'AccountController@avatar')->name('avatar');
+        Route::post('cover', 'AccountController@cover')->name('cover');
+        Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('page', 'AccountController@updatePage')->name('page');
+        Route::put('password', 'AccountController@updatePassword')->name('password');
+        Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
+        Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::post('verify', 'AccountController@verify')->name('verify');
+        Route::put('/', 'AccountController@update')->name('update');
+    });
 
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
@@ -266,15 +267,17 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
-        Route::group(['prefix' => 'chat'], function () {
-            //  GET /api/v2/chat/channels
-            Route::get('channels', 'ChatController@channels');
-            //  GET /api/v2/chat/messages
-            Route::get('messages', 'ChatController@messages');
-            //  GET /api/v2/chat/messages/private
-            Route::get('messages/private', 'ChatController@privateMessages');
-            // POST /api/v2/chat/messages/new
-            Route::post('messages', 'ChatController@postMessage');
+        Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
+            Route::get('updates', '\App\Http\Controllers\Chat\ChatController@updates')->name('updates');
+            Route::get('presence', '\App\Http\Controllers\Chat\ChatController@presence')->name('presence');
+            Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+                Route::apiResource('{channel_id}/messages', '\App\Http\Controllers\Chat\Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
+                Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
+                Route::put('{channel_id}/mark-as-read/{message_id}', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
+            });
+            Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);

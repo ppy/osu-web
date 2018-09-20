@@ -194,7 +194,8 @@ return [
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
+        // We're using our own SessionServiceProvider so we can override the session id naming (for redis key namespacing)
+        App\Providers\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,

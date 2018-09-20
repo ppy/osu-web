@@ -45,6 +45,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'is_bot' => $user->isBot(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
+            'pm_friends_only' => $user->pm_friends_only,
         ];
     }
 
