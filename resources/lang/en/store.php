@@ -73,7 +73,7 @@ return [
                 'line_1' => 'If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!',
                 'line_2' => [
                     '_' => 'If you encountered a problem during checkout, :link',
-                    'link_text' => 'click here to resume your checkout'
+                    'link_text' => 'click here to resume your checkout',
                 ],
             ],
         ],
