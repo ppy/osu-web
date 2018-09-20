@@ -49,10 +49,10 @@ class @CountdownTimer extends React.Component
     diff = @state.diff / 1000
 
     fields =
-      osu.trans('common.countdown.days'): Math.floor(diff / (60 * 60 * 24))
-      osu.trans('common.countdown.hours'): Math.floor((diff / (60 * 60)) % 24)
-      osu.trans('common.countdown.minutes'): Math.floor((diff / 60) % 60)
-      osu.trans('common.countdown.seconds'): Math.floor(diff % 60)
+      days: Math.floor(diff / (60 * 60 * 24))
+      hours: Math.floor((diff / (60 * 60)) % 24)
+      minutes: Math.floor((diff / 60) % 60)
+      seconds: Math.floor(diff % 60)
 
     div className: bn,
       div className: "#{bn}__header", "#{osu.trans('common.time.remaining')}:"
@@ -60,5 +60,5 @@ class @CountdownTimer extends React.Component
         div key: field, className: "#{bn}__field",
           div className: "#{bn}__digit",
             if value < 10 then "0#{value}" else value
-          div className: "#{bn}__label", field
+          div className: "#{bn}__label", osu.trans("common.countdown.#{field}")
 
