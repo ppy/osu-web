@@ -33,9 +33,9 @@ class @Tracklist extends React.Component
         thead {},
             tr className: 'tracklist__row--header',
                 th className: 'tracklist__col tracklist__col--preview', ''
-                th className: 'tracklist__col tracklist__col--title', 'title'
-                th className: 'tracklist__col tracklist__col--length', 'length'
-                th className: 'tracklist__col tracklist__col--bpm', 'bpm'
-                th className: 'tracklist__col tracklist__col--genre', 'genre'
+                th className: 'tracklist__col tracklist__col--title', osu.trans('artist.tracklist.title')
+                th className: 'tracklist__col tracklist__col--length', osu.trans('artist.tracklist.length')
+                th className: 'tracklist__col tracklist__col--bpm', osu.trans('artist.tracklist.bpm')
+                th className: 'tracklist__col tracklist__col--genre', osu.trans('artist.tracklist.genre')
                 th className: 'tracklist__col tracklist__col--dl',
         tbody {}, tracks

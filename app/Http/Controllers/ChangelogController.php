@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\CommentBundle;
 use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
@@ -106,10 +107,10 @@ class ChangelogController extends Controller
 
     public function show($version)
     {
-        $build = Build::default()->where('version', '=', $version)->firstOrFail();
+        $build = Build::default()->where('version', '=', $version)->first();
 
         if ($build === null) {
-            $normalizedVersion = preg_replace('#[^0-9.]#', '', $normalizedVersion);
+            $normalizedVersion = preg_replace('#[^0-9.]#', '', $version);
 
             $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
         }
@@ -122,11 +123,11 @@ class ChangelogController extends Controller
         $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = json_item(
-            $stream->builds()->default()->where('version', $version)->firstOrFail(),
-            'Build',
-            ['changelog_entries', 'changelog_entries.github_user', 'versions']
-        );
+        $build = $stream->builds()->default()->where('version', $version)->firstOrFail();
+        $buildJson = json_item($build, 'Build', [
+            'changelog_entries', 'changelog_entries.github_user', 'versions',
+        ]);
+        $commentBundle = new CommentBundle($build);
 
         $chartConfig = Cache::remember(
             "chart_config_{$build['update_stream']['id']}",
@@ -135,7 +136,7 @@ class ChangelogController extends Controller
                 return $this->chartConfig($build['update_stream']);
             });
 
-        return view('changelog.build', compact('build', 'chartConfig'));
+        return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
     }
 
     private function getUpdateStreams()

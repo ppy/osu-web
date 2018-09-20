@@ -22,9 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
-use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -40,7 +38,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
@@ -670,6 +668,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->memoized[__FUNCTION__];
     }
 
+    /**
+     * User group to be displayed in preference over other groups.
+     *
+     * @return string
+     */
+    public function defaultGroup()
+    {
+        if ($this->group_id === UserGroup::GROUPS['admin']) {
+            return 'default';
+        }
+
+        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+    }
+
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
@@ -707,6 +719,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+    }
+
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'user_id');
+    }
+
+    public function reportsMade()
+    {
+        return $this->hasMany(UserReport::class, 'reporter_id');
     }
 
     public function userGroups()
@@ -987,9 +1009,19 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        // 'cuz hasManyThrough is derp
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+    }
 
-        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    public function channels()
+    {
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
     }
 
     public function maxBlocks()
@@ -1083,6 +1115,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function hasBlocked(self $user)
     {
         return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
+    }
+
+    public function hasFriended(self $user)
+    {
+        return $this->friends()
             ->where('zebra_id', $user->user_id)
             ->exists();
     }
@@ -1197,9 +1236,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_unread_privmsg;
     }
 
+    // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'blocks', 'friends']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
     }
 
     public function supportLength()
@@ -1278,18 +1318,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
-    }
-
-    public function receiveMessage(self $sender, $body, $isAction = false)
-    {
-        $message = new PrivateMessage();
-        $message->user_id = $sender->user_id;
-        $message->target_id = $this->user_id;
-        $message->content = $body;
-        $message->is_action = $isAction;
-        $message->save();
-
-        return $message->fresh();
     }
 
     public function scopeDefault($query)

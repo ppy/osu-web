@@ -114,11 +114,6 @@ return [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
-
-            'info' => [
-                'total' => 'Liczba zasubskrybowanych wątków: :total.',
-                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
-            ],
         ],
 
         'topic_buttons' => [

@@ -392,7 +392,9 @@ class Beatmapset extends Model implements AfterCommit
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $url = BeatmapMirror::getRandom()->generateURL($this, true);
+        $mirrorsToUse = config('osu.beatmap_processor.mirrors_to_use');
+        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+
         if ($url === false) {
             return false;
         }
@@ -648,6 +650,11 @@ class Beatmapset extends Model implements AfterCommit
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function requiredHype()

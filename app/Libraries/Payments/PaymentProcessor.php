@@ -48,6 +48,13 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
+     * Gets the country code of the payment as returned by the provider.
+     *
+     * @return string
+     */
+    abstract public function getCountryCode();
+
+    /**
      * Gets a more friendly identifying order number string that represents an Order.
      *
      * @return string
@@ -180,6 +187,7 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $payment = new Payment([
                     'provider' => $this->getPaymentProvider(),
                     'transaction_id' => $this->getPaymentTransactionId(),
+                    'country_code' => $this->getCountryCode(),
                     'paid_at' => $this->getPaymentDate(),
                 ]);
 

@@ -162,7 +162,6 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
-    $.publish 'turbolinksDisqusReload'
     $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
 
     @setHash()
@@ -206,11 +205,10 @@ class BeatmapsetPage.Main extends React.Component
             hasScores: @props.beatmapset.has_scores
 
         if @props.beatmapset.ranked > 0
-          div
-            className: 'osu-page osu-page--generic js-turbolinks-disqus'
-            'data-turbolinks-disqus': JSON.stringify
-              identifier: "beatmapset_#{@props.beatmapset.id}"
-              title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
+          div className: 'osu-page osu-page--generic-compact',
+            el Comments,
+              commentableType: 'beatmapset'
+              commentableId: @props.beatmapset.id
 
 
   saveStateToContainer: =>

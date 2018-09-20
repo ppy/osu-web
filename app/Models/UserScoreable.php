@@ -23,6 +23,7 @@ namespace App\Models;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\BasicSearch;
+use App\Models\Score\Best;
 use Cache;
 
 trait UserScoreable
@@ -85,7 +86,7 @@ trait UserScoreable
         });
 
         $ids = array_slice($ids, $offset, $limit);
-        $clazz = 'App\Models\Score\Best\\'.studly_case($mode);
+        $clazz = Best\Model::getClassByString($mode);
 
         $results = $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids)->with($with)->get();
 

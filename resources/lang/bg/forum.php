@@ -114,11 +114,6 @@ return [
                 'total' => '',
                 'unread' => '',
             ],
-
-            'info' => [
-                'total' => '',
-                'unread' => '',
-            ],
         ],
 
         'topic_buttons' => [
