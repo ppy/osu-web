@@ -35,15 +35,15 @@ export class BackToTop extends PureComponent
 
   onClick: (_e) =>
     if @state.lastScrollY?
-      window.scrollTo(window.scrollX, @state.lastScrollY)
+      window.scrollTo(window.pageXOffset, @state.lastScrollY)
 
       @setState lastScrollY: null
     else
       scrollY = if @props.anchor? then $(@props.anchor.current).offset().top else 0
-      if window.scrollY > scrollY
-        @setState lastScrollY: window.scrollY
+      if window.pageYOffset > scrollY
+        @setState lastScrollY: window.pageYOffset
 
-        window.scrollTo(window.scrollX, scrollY)
+        window.scrollTo(window.pageXOffset, scrollY)
 
         Timeout.set 0, () =>
           document.addEventListener 'scroll', @onScroll
