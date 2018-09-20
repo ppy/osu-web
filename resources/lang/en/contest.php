@@ -52,6 +52,8 @@ return [
     'vote' => [
         'list' => 'votes',
         'count' => '1 vote|:count votes',
+        'points' => 'points',
+        'votes' => 'votes',
     ],
     'dates' => [
         'ended' => 'Ended :date',
