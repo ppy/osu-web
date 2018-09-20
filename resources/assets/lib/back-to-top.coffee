@@ -57,7 +57,8 @@ export class BackToTop extends PureComponent
 
 
   mountObserver: =>
-    # workaround Firefox srollTo and setTimeout(fn, 0) not being dispatched serially
+    # Workaround Firefox scrollTo and setTimeout(fn, 0) not being dispatched serially.
+    # Browsers without IntersectionObservers don't have this problem :D
     if window.IntersectionObserver?
       # anchor to body if none specified; assumes body's top is 0.
       target = @props.anchor?.current ? document.body
