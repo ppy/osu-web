@@ -40,7 +40,7 @@ export class BackToTop extends PureComponent
 
       @setState lastScrollY: null
     else
-      scrollY = if @props.anchor? then $(@props.anchor.current).offset().top else 0
+      scrollY = if @props.anchor?.current? then $(@props.anchor.current).offset().top else 0
       if window.pageYOffset > scrollY
         @setState lastScrollY: window.pageYOffset
 
@@ -58,6 +58,9 @@ export class BackToTop extends PureComponent
     if window.IntersectionObserver?
       return if @observer?
 
+      # anchor to body if none specified; assumes body's top is 0.
+      target = @props.anchor?.current ? document.body
+
       options =
         root: null
         rootMargin: '0px'
@@ -65,13 +68,13 @@ export class BackToTop extends PureComponent
 
       callback = (entries) =>
         for entry in entries
-          if entry.target == @props.anchor.current && entry.boundingClientRect.top == 0
+          if entry.target == target && entry.boundingClientRect.top == 0
             # also gets attached when scrolling downwards, but should be fine in this case.
             document.addEventListener 'scroll', @onScroll
             break
 
       @observer = new IntersectionObserver(callback, options)
-      @observer.observe(@props.anchor.current)
+      @observer.observe(target)
     else
       Timeout.set 0, () =>
         document.addEventListener 'scroll', @onScroll
