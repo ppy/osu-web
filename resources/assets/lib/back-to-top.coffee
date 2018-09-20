@@ -31,6 +31,7 @@ export class BackToTop extends PureComponent
 
   componentWillUnmount: =>
     document.removeEventListener 'scroll', @onScroll
+    @observer?.disconnect()
 
 
   onClick: (_e) =>
@@ -44,14 +45,36 @@ export class BackToTop extends PureComponent
         @setState lastScrollY: window.pageYOffset
 
         window.scrollTo(window.pageXOffset, scrollY)
-
-        Timeout.set 0, () =>
-          document.addEventListener 'scroll', @onScroll
+        @mountObserver()
 
 
   onScroll: (_e) =>
     @setState lastScrollY: null
     document.removeEventListener 'scroll', @onScroll
+
+
+  mountObserver: =>
+    # workaround Firefox srollTo and setTimeout(fn, 0) not being dispatched serially
+    if window.IntersectionObserver?
+      return if @observer?
+
+      options =
+        root: null
+        rootMargin: '0px'
+        threshold: 1.0
+
+      callback = (entries) =>
+        for entry in entries
+          if entry.target == @props.anchor.current && entry.intersectionRatio == 1
+            # also gets attached when scrolling downwards, but should be fine in this case.
+            document.addEventListener 'scroll', @onScroll
+            break
+
+      @observer = new IntersectionObserver(callback, options)
+      @observer.observe(@props.anchor.current)
+    else
+      Timeout.set 0, () =>
+        document.addEventListener 'scroll', @onScroll
 
 
   render: =>

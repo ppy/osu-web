@@ -104,8 +104,8 @@ class Beatmaps.Main extends React.PureComponent
 
     div
       className: 'osu-layout__section'
-      ref: @backToTopAnchor
       el Beatmaps.SearchPanel,
+        innerRef: @backToTopAnchor
         background: searchBackground
         availableFilters: @props.availableFilters
         filters: @state.filters
