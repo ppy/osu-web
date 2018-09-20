@@ -161,13 +161,14 @@ window.onload = function() {
                 If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
             </p>
         @elseif ($order->isProcessing())
-            <p><strong>Your payment has not yet been confirmed!</strong></p>
+            <p><strong>{{ trans('store.invoice.status.processing.title') }}</strong></p>
             <p>
-                If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!
+                {{ trans('store.invoice.status.processing.line_1') }}
             </p>
             <p>
-                If you encountered a problem during checkout,
-                <a class="store-order__link" href="{{ route('store.checkout.show', $order) }}">click here to resume your checkout</a>.
+                {!! trans('store.invoice.status.processing.line_2._', [
+                    'link' => Html::link(route('store.checkout.show', $order), trans('store.invoice.status.processing.line_2.link_text')),
+                ]) !!}
             </p>
         @elseif ($order->status == 'cancelled')
             <p><strong>Your order has been cancelled</strong></p>
@@ -199,7 +200,7 @@ window.onload = function() {
 
             @if ($order->isPendingEcheck())
                 <p>
-                    As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through paypal!
+                    {{ trans('store.invoice.echeck_delay') }}
                 </p>
             @endif
         @endif

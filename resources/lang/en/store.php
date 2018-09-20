@@ -65,6 +65,20 @@ return [
 
     'discount' => 'save :percent%',
 
+    'invoice' => [
+        'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Your payment has not yet been confirmed!',
+                'line_1' => 'If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!',
+                'line_2' => [
+                    '_' => 'If you encountered a problem during checkout, :link',
+                    'link_text' => 'click here to resume your checkout'
+                ],
+            ],
+        ],
+    ],
+
     'mail' => [
         'payment_completed' => [
             'subject' => 'We received your osu!store order!',
