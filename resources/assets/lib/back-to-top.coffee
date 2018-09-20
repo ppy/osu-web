@@ -61,11 +61,6 @@ export class BackToTop extends PureComponent
       # anchor to body if none specified; assumes body's top is 0.
       target = @props.anchor?.current ? document.body
 
-      options =
-        root: null
-        rootMargin: '0px'
-        threshold: 1.0
-
       callback = (entries) =>
         for entry in entries
           if entry.target == target && entry.boundingClientRect.top == 0
@@ -73,7 +68,7 @@ export class BackToTop extends PureComponent
             document.addEventListener 'scroll', @onScroll
             break
 
-      @observer = new IntersectionObserver(callback, options)
+      @observer = new IntersectionObserver(callback)
       @observer.observe(target)
     else
       Timeout.set 0, () =>
