@@ -88,6 +88,8 @@ return [
     'order' => [
         'paid_on' => 'Order placed :date',
 
+        'invoice' => 'View Invoice',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',

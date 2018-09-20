@@ -56,7 +56,7 @@
                         @endforeach
                     </ul>
                     @if ($order->hasInvoice())
-                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">View invoice</a>
+                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">{{ trans('store.order.invoice') }}</a>
                     @endif
                 </div>
             @endforeach
