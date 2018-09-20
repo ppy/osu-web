@@ -33,16 +33,8 @@ export class BackToTop extends PureComponent
     document.removeEventListener 'scroll', @onScroll
 
 
-  # remove qtip so it doesn't spaz on scrollTo
-  destroyTooltip: =>
-    if @container.current._tooltip
-      $(@container.current).qtip('api')?.destroy()
-      @container.current._tooltip = false
-
-
   onClick: (_e) =>
     if @state.lastScrollY?
-      @destroyTooltip()
       window.scrollTo(window.scrollX, @state.lastScrollY)
 
       @setState lastScrollY: null
@@ -51,7 +43,6 @@ export class BackToTop extends PureComponent
       if window.scrollY > scrollY
         @setState lastScrollY: window.scrollY
 
-        @destroyTooltip()
         window.scrollTo(window.scrollX, scrollY)
 
         Timeout.set 0, () =>
@@ -66,6 +57,7 @@ export class BackToTop extends PureComponent
   render: =>
     button
       className: 'back-to-top'
+      'data-tooltip-float': 'fixed'
       onClick: @onClick
       title: if @state.lastScrollY? then osu.trans('common.buttons.back_to_previous') else osu.trans('common.buttons.back_to_top')
       ref: @container
