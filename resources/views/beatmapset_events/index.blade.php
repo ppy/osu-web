@@ -102,13 +102,13 @@
                 </div>
             </form>
 
-            <div class='beatmapset-events'>
+            <div class='beatmapset-events' id="events">
                 <div class='beatmapset-events__title'></div>
                 @foreach ($events as $event)
                     @include('beatmapset_events._item', compact('event'))
                 @endforeach
             </div>
-            @include('objects._pagination_v0', ['object' => $events])
+            @include('objects._pagination_v0', ['object' => $events->fragment('events')])
         </div>
     </div>
 @endsection
