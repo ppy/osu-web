@@ -70,7 +70,7 @@
                     </div>
 
                     <input
-                        class="simple-form__input"
+                        class="simple-form__input simple-form__input--equal-width"
                         name="min_date"
                         type="date"
                         value="{{ $search['params']['min_date'] ?? '' }}"
@@ -81,7 +81,7 @@
                     </span>
 
                     <input
-                        class="simple-form__input"
+                        class="simple-form__input simple-form__input--equal-width"
                         name="max_date"
                         type="date"
                         value="{{ $search['params']['max_date'] ?? '' }}"
