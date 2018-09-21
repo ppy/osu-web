@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <label class="simple-form__row">
+                <div class="simple-form__row">
                     <div class="simple-form__label">
                         {{ trans('beatmapset_events.index.form.period') }}
                     </div>
@@ -86,7 +86,7 @@
                         type="date"
                         value="{{ $search['params']['max_date'] ?? '' }}"
                     >
-                </label>
+                </div>
 
                 <div class="simple-form__row simple-form__row--no-label">
                     <button class="btn-osu-big btn-osu-big--rounded" type="submit">
