@@ -35,7 +35,7 @@ class BeatmapsetEventsController extends Controller
         return view('beatmapset_events.index', [
             'search' => $search,
             'events' => new LengthAwarePaginator(
-                $search['query']->with(['user', 'beatmapset'])->get(),
+                $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get(),
                 $search['query']->realCount(),
                 $search['params']['limit'],
                 $search['params']['page'],

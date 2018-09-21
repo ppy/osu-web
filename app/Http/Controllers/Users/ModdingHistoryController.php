@@ -96,9 +96,9 @@ class ModdingHistoryController extends Controller
         if ($this->isModerator) {
             $events['items'] = $events['query']->with('user')->with(['beatmapset' => function ($query) {
                 $query->withTrashed();
-            }])->get();
+            }])->with('beatmapset.user')->get();
         } else {
-            $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
+            $events['items'] = $events['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
         }
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
@@ -148,9 +148,9 @@ class ModdingHistoryController extends Controller
         if ($this->isModerator) {
             $items = $search['query']->with('user')->with(['beatmapset' => function ($query) {
                 $query->withTrashed();
-            }])->get();
+            }])->with('beatmapset.user')->get();
         } else {
-            $items = $search['query']->with(['user', 'beatmapset'])->get();
+            $items = $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
         }
 
         $events = new LengthAwarePaginator(
