@@ -59,7 +59,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $sort = explode('_', $request['sort']);
         $this->sorts = $this->normalizeSort(
-            [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
+            static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))
         );
 
         // Supporter-only options.
@@ -77,7 +77,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private function normalizeSort($sorts)
+    private function normalizeSort(Sort $sort)
     {
         // additional options
         static $orderOptions = [
@@ -87,26 +87,20 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             ],
         ];
 
-        if ($sorts === []) {
-            return [];
+        $newSort = [];
+        // assign sort modes if any.
+        $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+        if ($options !== []) {
+            $sort->mode = $options['mode'];
         }
 
-        $newSort = [];
-        foreach ($sorts as $sort) {
-            // assign sort modes if any.
-            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
-            if ($options !== []) {
-                $sort->mode = $options['mode'];
-            }
+        $newSort[] = $sort;
 
-            $newSort[] = $sort;
-
-            // append/prepend extra sort orders.
-            if ($sort->field === 'nominations') {
-                $newSort[] = new Sort('hype', $sort->order);
-            } elseif ($sort->field === 'approved_date' && $this->status === 3) {
-                array_unshift($newSort, new Sort('queued_at', $sort->order));
-            }
+        // append/prepend extra sort orders.
+        if ($sort->field === 'nominations') {
+            $newSort[] = new Sort('hype', $sort->order);
+        } elseif ($sort->field === 'approved_date' && $this->status === 3) {
+            array_unshift($newSort, new Sort('queued_at', $sort->order));
         }
 
         return $newSort;
