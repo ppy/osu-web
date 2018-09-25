@@ -27,6 +27,9 @@ use Illuminate\Http\Request;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
+    const DEFAULT_SORT_TYPE = 'ranked';
+    const DEFAULT_SORT_ORDER = 'desc';
+
     public function __construct(Request $request, ?User $user = null)
     {
         parent::__construct();
@@ -57,10 +60,9 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->showRecommended = in_array('recommended', $generals, true);
         }
 
-        $sort = explode('_', $request['sort']);
-        $this->sorts = $this->normalizeSort(
-            static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))
-        );
+        $array = explode('_', $request['sort']);
+        $sort = new Sort($array[0] ?? static::DEFAULT_SORT_TYPE, $array[1] ?? static::DEFAULT_SORT_ORDER);
+        $this->sorts = $this->normalizeSort(static::remapSortField($sort));
 
         // Supporter-only options.
         $this->rank = array_intersect(
