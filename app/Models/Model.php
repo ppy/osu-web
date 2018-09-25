@@ -136,6 +136,11 @@ abstract class Model extends BaseModel
         return config("database.connections.{$connection}.database");
     }
 
+    public function tableName(bool $includeDbPrefix = false)
+    {
+        return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
+    }
+
     private function enlistCallbacks($model, $connection)
     {
         $transaction = resolve(TransactionStateManager::class)->current($connection);

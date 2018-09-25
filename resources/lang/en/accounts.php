@@ -84,4 +84,13 @@ return [
         'title' => 'Privacy',
         'friends_only' => 'block private messages from people not on your friends list',
     ],
+
+    'security' => [
+        'current_session' => 'current',
+        'end_session' => 'End Session',
+        'end_session_confirmation' => 'This will immedietely end your session on that device. Are you sure?',
+        'last_active' => 'Last active:',
+        'title' => 'Security',
+        'web_sessions' => 'web sessions',
+    ],
 ];

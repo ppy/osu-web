@@ -22,9 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
-use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -40,7 +38,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
@@ -1009,9 +1007,19 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        // 'cuz hasManyThrough is derp
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+    }
 
-        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    public function channels()
+    {
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
     }
 
     public function maxBlocks()
@@ -1105,6 +1113,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function hasBlocked(self $user)
     {
         return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
+    }
+
+    public function hasFriended(self $user)
+    {
+        return $this->friends()
             ->where('zebra_id', $user->user_id)
             ->exists();
     }
@@ -1301,18 +1316,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
-    }
-
-    public function receiveMessage(self $sender, $body, $isAction = false)
-    {
-        $message = new PrivateMessage();
-        $message->user_id = $sender->user_id;
-        $message->target_id = $this->user_id;
-        $message->content = $body;
-        $message->is_action = $isAction;
-        $message->save();
-
-        return $message->fresh();
     }
 
     public function scopeDefault($query)

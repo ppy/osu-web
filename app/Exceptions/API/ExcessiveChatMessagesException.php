@@ -18,40 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Chat;
+namespace App\Exceptions\API;
 
-use App\Models\User;
+use Exception;
 
-class PrivateMessage extends Model
+class ExcessiveChatMessagesException extends Exception
 {
-    protected $table = 'messages_private';
-    protected $primaryKey = 'message_id';
-    protected $dates = [
-        'timestamp',
-    ];
-
-    public function getTargetTypeAttribute()
-    {
-        return 'user';
-    }
-
-    public function sender()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function receiver()
-    {
-        return $this->belongsTo(User::class, 'target_id');
-    }
-
-    public function scopeToOrFrom($query, $user_id)
-    {
-        return $query->where(
-            function ($q) use ($user_id) {
-                $q->where('user_id', '=', $user_id)
-                    ->orWhere('target_id', '=', $user_id);
-            }
-        );
-    }
 }

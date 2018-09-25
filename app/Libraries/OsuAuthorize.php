@@ -23,9 +23,10 @@ namespace App\Libraries;
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
-use App\Models\Chat\Channel as ChatChannel;
+use App\Models\Chat\Channel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\User;
 use App\Models\UserContestEntry;
 use App\Models\UserGroup;
 use Carbon\Carbon;
@@ -463,37 +464,74 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkChatMessageSend($user, $target)
+    public function checkChatStart(User $user, User $target)
     {
-        $prefix = 'chat.message.send.';
+        $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+        $this->ensureCleanRecord($user, $prefix);
 
-        if ($target instanceof ChatChannel) {
-            if (!$this->doCheckUser($user, 'ChatChannelRead', $target)->can()) {
-                return $prefix.'channel.no_access';
-            }
+        if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
+            return $prefix.'blocked';
+        }
 
-            if ($target->moderated) {
-                return $prefix.'channel.moderated';
-            }
-        } elseif ($target instanceof User) {
-            // TODO: blocklist/ignore, etc
+        if ($target->pm_friends_only && !$target->hasFriended($user)) {
+            return $prefix.'friends_only';
         }
 
         return 'ok';
     }
 
-    public function checkChatChannelRead($user, $channel)
+    public function checkChatChannelSend(User $user, Channel $channel)
     {
-        $prefix = 'chat.channel.read.';
+        $prefix = 'chat.';
 
-        switch (strtolower($channel->type)) {
-            case 'public':
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
+        if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
+            return $prefix.'no_access';
+        }
+
+        if ($channel->isPM()) {
+            $chatStartPermission = $this->doCheckUser($user, 'ChatStart', $channel->pmTargetFor($user));
+            if (!$chatStartPermission->can()) {
+                return $chatStartPermission->rawMessage();
+            }
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
+        }
+
+        return 'ok';
+    }
+
+    public function checkChatChannelRead(User $user, Channel $channel)
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($channel->hasUser($user)) {
+            return 'ok';
+        }
+
+        return $prefix.'no_access';
+    }
+
+    public function checkChatChannelJoin(User $user, Channel $channel)
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
+        switch ($channel->type) {
+            case Channel::TYPES['public']:
                 return 'ok';
 
-            case 'private':
+            case Channel::TYPES['private']:
                 $commonGroupIds = array_intersect(
                     $user->groupIds(),
                     $channel->allowed_groups
@@ -504,9 +542,9 @@ class OsuAuthorize
                 }
                 break;
 
-            case 'spectator':
-            case 'multiplayer':
-            case 'temporary': // this and the comparisons below are needed until bancho is updated to use the new channel types
+            case Channel::TYPES['spectator']:
+            case Channel::TYPES['multiplayer']:
+            case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
                 if (starts_with($channel->name, '#spect_')) {
                     return 'ok';
                 }
