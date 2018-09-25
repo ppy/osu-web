@@ -25,6 +25,11 @@
   background: #000;
   font-size: @font-size--normal-2;
 
+  .sticky-header & {
+    padding: 0;
+    background: inherit;
+  }
+
   &__advanced {
     font-size: @font-size--small;
     display: none;
@@ -60,6 +65,11 @@
     }
   }
 
+  &__filters {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__icon {
     position: absolute;
     right: 0;
@@ -85,6 +95,11 @@
       border-color: @pink-light;
       box-shadow: 0 0 10px @pink-lighter;
     }
+
+    .sticky-header & {
+      padding: 5px;
+      padding-right: 50px; // 45 + 5
+    }
   }
 
   &__input-container {
@@ -93,5 +108,10 @@
     margin: 0 -10px;
     margin-top: 100px;
     margin-bottom: 20px;
+
+    .sticky-header & {
+      font-size: @font-size--normal-2;
+      margin: 5px 0;
+    }
   }
 }

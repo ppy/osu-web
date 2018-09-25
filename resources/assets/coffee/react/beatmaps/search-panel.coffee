@@ -26,23 +26,74 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
 
+    @state =
+      isSticky: false
+
 
   componentDidMount: =>
     $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+    $.subscribe 'stickyHeader.search-panel', @stickyHeader
 
 
   componentWillUnmount: =>
     $(document).off '.beatmaps-search-cache'
+    $.unsubscribe '.search-panel'
     @debouncedSubmit.cancel()
 
 
+  stickyHeader: (_e, target) =>
+    newState = (target == 'beatmapsets-search')
+    @setState(isSticky: newState) if newState != @state.isSticky
+
+
   render: =>
+    div null,
+      div
+        className: 'osu-page osu-page--beatmapsets-search-header'
+        if currentUser.id?
+          @renderUser()
+        else
+          @renderGuest()
+
+      @renderSticky(@renderStickyContent) if @state.isSticky
+
+
+  # placeholder for new sticky header
+  renderSticky: (content) =>
     div
-      className: 'osu-page osu-page--beatmapsets-search-header'
-      if currentUser.id?
-        @renderUser()
-      else
-        @renderGuest()
+      className: 'sticky-header'
+      div
+        className: 'sticky-header__breadcrumbs'
+
+      content()
+
+
+  renderStickyContent: =>
+    div
+      className: 'beatmapsets-search beatmapsets-search--sticky'
+      div
+        className: 'beatmapsets-search__input-container'
+        input
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          type: 'textbox'
+          name: 'search'
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          onInput: @onInput
+          defaultValue: @props.filters.query
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
+
+      div
+        className: 'beatmapsets-search__filters'
+        @renderFilter
+          name: 'status'
+          options: @props.availableFilters.statuses
+          showTitle: false
+
+        @renderFilter
+          name: 'mode'
+          options: @props.availableFilters.modes
+          showTitle: false
 
 
   onInput: (event) =>
@@ -50,11 +101,11 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @debouncedSubmit event
 
 
-  renderFilter: ({ multiselect = false, name, options }) =>
+  renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el Beatmaps.SearchFilter,
       filters: @props.filters
       name: name
-      title: osu.trans("beatmaps.listing.search.filters.#{name}")
+      title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       default: @props.filterDefaults[name]
       multiselect: multiselect
