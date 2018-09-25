@@ -40,10 +40,6 @@ class BeatmapsetSearch extends RecordSearch
             $params ?? new BeatmapsetSearchParams,
             Beatmapset::class
         );
-
-        if (empty($this->sorts)) {
-            $this->sorts = $this->getDefaultSort();
-        }
     }
 
     /**

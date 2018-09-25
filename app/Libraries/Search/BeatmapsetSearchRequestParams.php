@@ -61,10 +61,15 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $array = explode('_', $request['sort']);
-        $sort = new Sort($array[0] ?? static::DEFAULT_SORT_TYPE, $array[1] ?? static::DEFAULT_SORT_ORDER);
-        $this->sorts = $this->normalizeSort(static::remapSortField($sort));
-        // generic tie-breaker.
-        $this->sorts[] = new Sort('_id', $sort->order);
+        if (empty($array[0])) {
+            $this->sorts = $this->getDefaultSort();
+            $this->sorts[] = new Sort('_id', 'desc');
+        } else {
+            $sort = new Sort($array[0] ?? static::DEFAULT_SORT_TYPE, $array[1] ?? static::DEFAULT_SORT_ORDER);
+            $this->sorts = $this->normalizeSort(static::remapSortField($sort));
+            // generic tie-breaker.
+            $this->sorts[] = new Sort('_id', $sort->order);
+        }
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -76,6 +81,26 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
             $this->playedFilter = null;
         }
+    }
+
+    private function getDefaultSort() : array
+    {
+        if (present($this->queryString)) {
+            return [new Sort('_score', 'desc')];
+        }
+
+        if ($this->status === 3) {
+            return [
+                new Sort('queued_at', 'desc'),
+                new Sort('approved_date', 'desc'), // fallback
+            ];
+        }
+
+        if (in_array($this->status, [4, 5, 6], true)) {
+            return [new Sort('last_update', 'desc')];
+        }
+
+        return [new Sort('approved_date', 'desc')];
     }
 
     /**
