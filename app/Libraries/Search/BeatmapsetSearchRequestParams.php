@@ -63,6 +63,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $array = explode('_', $request['sort']);
         $sort = new Sort($array[0] ?? static::DEFAULT_SORT_TYPE, $array[1] ?? static::DEFAULT_SORT_ORDER);
         $this->sorts = $this->normalizeSort(static::remapSortField($sort));
+        // generic tie-breaker.
+        $this->sorts[] = new Sort('_id', $sort->order);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -79,7 +81,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private function normalizeSort(Sort $sort)
+    private function normalizeSort(Sort $sort) : array
     {
         // additional options
         static $orderOptions = [
