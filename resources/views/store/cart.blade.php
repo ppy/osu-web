@@ -113,7 +113,7 @@
                     </div>
                 @else
                     <div class="big-button">
-                        <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">
+                        <a href="{{ route('store.checkout.show', $order) }}" class="btn-osu btn-osu-default" name="checkout">
                             {{ trans('store.cart.checkout' ) }}
                         </a>
                     </div>
