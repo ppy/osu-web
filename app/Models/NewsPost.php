@@ -32,8 +32,6 @@ class NewsPost extends Model
     const CACHE_DURATION = 86400;
     const VERSION = 3;
 
-    protected $guarded = [];
-
     protected $casts = [
         'page' => 'array',
     ];

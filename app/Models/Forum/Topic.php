@@ -65,7 +65,6 @@ class Topic extends Model implements AfterCommit
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 
