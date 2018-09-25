@@ -87,7 +87,7 @@ abstract class Search extends HasSearch implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort', 'timeout', '_source'] as $key) {
+            foreach (['from', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 
@@ -119,7 +119,10 @@ abstract class Search extends HasSearch implements Queryable
         );
     }
 
-    public function getSortCursor() : ?array
+    /**
+     * @return array|null
+     */
+    public function getSortCursor()
     {
         $last = array_last($this->response()->hits());
         if ($last !== null && array_key_exists('sort', $last)) {
@@ -153,6 +156,16 @@ abstract class Search extends HasSearch implements Queryable
         return $this->response;
     }
 
+    /**
+     * @return $this
+     */
+    public function searchAfter(?array $searchAfter)
+    {
+        $this->searchAfter = $searchAfter;
+
+        return $this;
+    }
+
     public function setAggregations(array $aggregations)
     {
         $this->aggregations = $aggregations;
@@ -164,13 +177,18 @@ abstract class Search extends HasSearch implements Queryable
     public function toArray() : array
     {
         $body = [
-            'from' => $this->params->from,
             'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
             'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
+
+        if (isset($this->params->searchAfter)) {
+            $body['search_after'] = $this->params->searchAfter;
+        } else {
+            $body['from'] = $this->params->from;
+        }
 
         if (isset($this->highlight)) {
             $body['highlight'] = $this->highlight->toArray();
