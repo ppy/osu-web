@@ -39,8 +39,6 @@ class OrderItem extends Model
         'reserved' => 'boolean',
     ];
 
-    protected $guarded = [];
-
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',

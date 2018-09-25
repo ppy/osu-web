@@ -51,8 +51,6 @@ class Order extends Model
 
     const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
 
-    protected $fillable = ['user_id'];
-
     protected $primaryKey = 'order_id';
 
     protected $casts = [

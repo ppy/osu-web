@@ -28,7 +28,6 @@ class PollVote extends Model
     use Validatable;
 
     protected $table = 'phpbb_poll_votes';
-    protected $guarded = [];
     public $timestamps = false;
 
     public function pollOption()
