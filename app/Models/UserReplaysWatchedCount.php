@@ -26,7 +26,6 @@ class UserReplaysWatchedCount extends Model
 {
     protected $table = 'osu_user_replayswatched';
     protected $primaryKey = false;
-    protected $guarded = [];
 
     public function startDate()
     {

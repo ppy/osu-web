@@ -26,23 +26,23 @@ class @BeatmapsetMapping extends React.PureComponent
   render: =>
     user = @props.user ? @props.beatmapset.user
 
+
     div className: bn,
-      a
-        href: laroute.route 'users.show', user: user.id
-        className: 'avatar avatar--beatmapset'
-        style:
-          backgroundImage: osu.urlPresence(user.avatar_url)
+      if user.id?
+        a
+          href: laroute.route 'users.show', user: user.id
+          className: 'avatar avatar--beatmapset'
+          style:
+            backgroundImage: osu.urlPresence(user.avatar_url)
+      else
+        span className: 'avatar avatar--beatmapset avatar--guest'
 
       div className: "#{bn}__content",
         div
           className: "#{bn}__mapper"
           dangerouslySetInnerHTML:
             __html: osu.trans 'beatmapsets.show.details.mapped_by',
-              mapper: laroute.link_to_route 'users.show',
-                user.username
-                { user: user.id }
-                class: "#{bn}__user js-usercard"
-                'data-user-id': user.id
+              mapper: @userLink(user)
 
         @renderDate 'submitted', 'submitted_date'
 
@@ -60,3 +60,14 @@ class @BeatmapsetMapping extends React.PureComponent
         dateTime: @props.beatmapset[attribute]
         title: @props.beatmapset[attribute]
         moment(@props.beatmapset[attribute]).format dateFormat
+
+
+  userLink: (user) ->
+    if user.id?
+      laroute.link_to_route 'users.show',
+        user.username
+        { user: user.id }
+        class: "#{bn}__user js-usercard"
+        'data-user-id': user.id
+    else
+      "<span class='#{bn}__user'>#{_.escape(user.username ? osu.trans('users.deleted'))}</span>"

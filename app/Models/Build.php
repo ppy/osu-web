@@ -37,8 +37,6 @@ class Build extends Model
         'allow_bancho' => 'boolean',
     ];
 
-    protected $guarded = [];
-
     private $cache = [];
 
     public static function importFromGithubNewTag($data)

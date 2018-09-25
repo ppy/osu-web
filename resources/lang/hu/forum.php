@@ -114,11 +114,6 @@ return [
                 'total' => 'Felíratkozott témák',
                 'unread' => 'Témák új válaszokkal',
             ],
-
-            'info' => [
-                'total' => 'Te felíratkoztál :total témára.',
-                'unread' => ':unread választ nem olvastál el a felíratkozott témáidban.',
-            ],
         ],
 
         'topic_buttons' => [

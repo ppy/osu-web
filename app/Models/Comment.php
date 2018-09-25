@@ -37,8 +37,6 @@ class Comment extends Model
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
 
-    protected $guarded = [];
-
     protected $dates = ['deleted_at', 'edited_at'];
 
     protected $casts = [
@@ -128,9 +126,9 @@ class Comment extends Model
         }
 
         return $this->getConnection()->transaction(function () use ($options) {
-            if (!$this->exists && $this->parent_id !== null) {
+            if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
-                $this->parent()->increment('replies_count_cache');
+                $this->parent->increment('replies_count_cache');
             }
 
             return parent::save($options);

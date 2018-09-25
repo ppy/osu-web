@@ -114,11 +114,6 @@ return [
                 'total' => 'Tópicos subscritos',
                 'unread' => 'Tópicos com novas respostas',
             ],
-
-            'info' => [
-                'total' => 'Subscreveste a :total tópicos.',
-                'unread' => 'Tu tens :unread respostas não-lidas a tópicos subscritos.',
-            ],
         ],
 
         'topic_buttons' => [

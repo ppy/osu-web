@@ -25,7 +25,6 @@ use Illuminate\Database\Eloquent\Builder;
 class ForumTrack extends Model
 {
     protected $table = 'phpbb_forums_track';
-    protected $guarded = [];
 
     public $timestamps = false;
     protected $dates = ['mark_time'];
