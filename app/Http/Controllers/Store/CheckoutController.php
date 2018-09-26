@@ -39,12 +39,10 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
-            'destroy',
             'store',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
-            'destroy',
             'store',
         ]]);
 
@@ -53,20 +51,10 @@ class CheckoutController extends Controller
         return parent::__construct();
     }
 
-    public function destroy()
+    public function show($id)
     {
-        // ignore dummy parameter for now, just release the current cart.
-        $order = $this->userCart();
-        $checkout = new OrderCheckout($order);
-        $checkout->failCheckout();
-
-        return ujs_redirect(route('store.products.index'));
-    }
-
-    public function show()
-    {
-        $order = $this->userCart();
-        if (!$order || $order->isEmpty()) {
+        $order = $this->orderForCheckout($id);
+        if ($order === null || $order->isEmpty()) {
             return ujs_redirect(route('store.cart.show'));
         }
 
@@ -84,20 +72,13 @@ class CheckoutController extends Controller
 
     public function store()
     {
-        $order = $this->userCart();
         $orderId = get_int(request('orderId'));
         $provider = request('provider');
 
-        if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart.show'));
-        }
+        $order = $this->orderForCheckout($orderId);
 
-        // check that we aren't checking out using some ancient cart;
-        // otherwise the Xsolla client will use the stale cart.
-        if ($order->order_id !== $orderId) {
-            return $this->setAndRedirectCheckoutError(
-                trans('store.checkout.old_cart')
-            );
+        if ($order === null || $order->isEmpty()) {
+            return ujs_redirect(route('store.cart.show'));
         }
 
         $checkout = new OrderCheckout($order, $provider);
@@ -105,6 +86,7 @@ class CheckoutController extends Controller
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
+                $order,
                 trans('store.checkout.cart_problems'),
                 $validationErrors
             );

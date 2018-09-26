@@ -19,7 +19,7 @@
 export class StoreXsolla
   @promiseInit: (orderNumber) ->
     Promise.all([
-      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
+      StoreXsolla.fetchToken(orderNumber), StoreXsolla.fetchScript()
     ]).then (values) ->
       token = values[0]
       options = StoreXsolla.optionsWithToken(token)
@@ -33,9 +33,9 @@ export class StoreXsolla
       resolve() unless loading
 
 
-  @fetchToken: ->
+  @fetchToken: (orderNumber) ->
     new Promise (resolve, reject) ->
-      $.post laroute.route('payments.xsolla.token')
+      $.post laroute.route('payments.xsolla.token'), { orderNumber }
       .done (data) ->
         # Make sure laroute hasn't trolled us.
         return reject(message: 'wrong token length') unless data.length == 32

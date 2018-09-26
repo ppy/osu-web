@@ -133,6 +133,7 @@ return [
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
+            'orders-index' => 'order history',
             'products-show' => 'product',
 
             'new' => 'new',

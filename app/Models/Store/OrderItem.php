@@ -36,6 +36,7 @@ class OrderItem extends Model
     protected $casts = [
         'cost' => 'float',
         'extra_data' => 'array',
+        'reserved' => 'boolean',
     ];
 
     // The format for extra_data is:
@@ -140,6 +141,24 @@ class OrderItem extends Model
                 ]);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
+        }
+    }
+
+    public function releaseProduct()
+    {
+        if ($this->reserved) {
+            $this->product->release($this->quantity);
+            $this->reserved = false;
+            $this->saveOrExplode();
+        }
+    }
+
+    public function reserveProduct()
+    {
+        if (!$this->reserved) {
+            $this->product->reserve($this->quantity);
+            $this->reserved = true;
+            $this->saveOrExplode();
         }
     }
 
