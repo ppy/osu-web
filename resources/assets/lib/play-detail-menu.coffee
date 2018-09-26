@@ -40,6 +40,8 @@ export class PlayDetailMenu extends PureComponent
 
 
   hide: (e) =>
+    return if !@state.active
+
     event = e.originalEvent
     if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
       @setState active: false
