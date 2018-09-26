@@ -179,14 +179,12 @@ class Beatmaps.Main extends React.PureComponent
   fetchNewState: (newQuery = false) =>
     @fetchResults(newQuery)
     .then (data) =>
-      more = data.beatmapsets.length > 0
-
-      beatmaps: if newQuery then data else [].concat(@state.beatmaps, data.beatmapsets)
+      beatmaps: if newQuery then data.beatmapsets else [].concat(@state.beatmaps, data.beatmapsets)
       loading: false
       paging:
         sort_cursor: data.sort_cursor
         url: @state.paging.url
-        more: more
+        more: data.beatmapsets.length > 0
 
 
   fetchResults: (newQuery) =>

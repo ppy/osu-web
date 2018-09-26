@@ -177,7 +177,7 @@ abstract class Search extends HasSearch implements Queryable
     public function toArray() : array
     {
         $body = [
-            'size' => $this->getQuerySize(),
+            'size' => $this->getQuerySize(), // TODO: this probably shouldn't be calculated if search_after is used.
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
