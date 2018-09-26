@@ -27,6 +27,13 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ReplaysController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
+
     public function show($userId, $beatmapId, $mode)
     {
         $klass = Best\Model::getClassByString($mode);
