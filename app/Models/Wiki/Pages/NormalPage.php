@@ -20,8 +20,10 @@
 
 namespace App\Models\Wiki\Pages;
 
+use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
+use Exception;
 
 class NormalPage extends BasePage
 {
