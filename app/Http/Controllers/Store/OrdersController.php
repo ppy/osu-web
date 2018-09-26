@@ -18,20 +18,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Http\Controllers\Store;
 
-use Carbon\Carbon;
+use App\Models\User;
+use Auth;
 
-class UserReplaysWatchedCount extends Model
+class OrdersController extends Controller
 {
-    protected $table = 'osu_user_replayswatched';
-    protected $primaryKey = false;
+    protected $layout = 'master';
 
-    public function startDate()
+    public function __construct()
     {
-        $year = substr($this->year_month, 0, 2);
-        $month = substr($this->year_month, 2, 2);
+        parent::__construct();
 
-        return Carbon::parse("{$year}-{$month}-01");
+        $this->middleware('auth');
+        $this->middleware('verify-user');
+    }
+
+    public function index()
+    {
+        $orders = Auth::user()
+            ->orders()
+            ->orderBy('order_id', 'desc')
+            ->with('items.product');
+
+        if (request('type') === 'processing') {
+            $orders->where('status', 'processing');
+        } else {
+            $orders->where('status', '<>', 'incart');
+        }
+
+        $orders = $orders->paginate(20);
+
+        return view('store.orders.index', compact('orders'));
     }
 }

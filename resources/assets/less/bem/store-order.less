@@ -1,0 +1,103 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.store-order {
+  @store-order--status-cancelled: @gray-light;
+  @store-order--status-checkout: @yellow-darker;
+  @store-order--status-delivered: @green-dark;
+  @store-order--status-paid: @blue-dark;
+  @store-order--status-processing: @yellow-dark;
+  @store-order--status-shipped: @green-dark;
+
+  .default-box-shadow();
+  .default-border-radius();
+
+  margin-bottom: 10px;
+  padding: 10px;
+
+  .colors(@status) {
+    @color-name: "store-order--status-@{status}";
+    @color: @@color-name;
+
+    &--status-@{status} {
+      &::before {
+        background-color: @color;
+      }
+
+      .store-order__status {
+        color: @color;
+      }
+    }
+  }
+
+  .colors(cancelled);
+  .colors(checkout);
+  .colors(delivered);
+  .colors(paid);
+  .colors(processing);
+  .colors(shipped);
+
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: @border-radius-base;
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+  }
+
+  &__amount {
+    font-size: @font-size--title-small;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: @font-size--large;
+    line-height: 1.5;
+  }
+
+  &__header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__header-subtext {
+    font-size: @font-size--normal;
+  }
+
+  &__items {
+    list-style: none;
+    font-size: @font-size--normal;
+    margin: 10px 0;
+  }
+
+  &__item-quantity {
+    margin-left: 4px;
+    color: #ccc;
+  }
+}

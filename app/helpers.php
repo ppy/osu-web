@@ -677,6 +677,7 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'cart-show' => route('store.cart.show'),
+        'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),

@@ -29,8 +29,6 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    protected $guarded = [];
-
     const UPDATED_AT = 'last_update';
 
     public function user()

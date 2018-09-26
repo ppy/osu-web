@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Forum;
+namespace App\Models\Store;
 
-class AuthOption extends Model
+trait UserTrait
 {
-    protected $table = 'phpbb_acl_options';
-
-    protected $primaryKey = 'auth_option_id';
-    public $timestamps = false;
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }

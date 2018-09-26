@@ -48,7 +48,6 @@ class Event extends Model
     protected $primaryKey = 'event_id';
 
     protected $dates = ['date'];
-    protected $guarded = [];
     public $timestamps = false;
 
     public static function generate($type, $options)

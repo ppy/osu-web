@@ -30,8 +30,6 @@ class LegacySession extends Model
     protected $dates = ['session_last_visit', 'session_start', 'session_time'];
     public $timestamps = false;
 
-    protected $guarded = [];
-
     protected $casts = [
         'session_admin' => 'boolean',
         'session_autologin' => 'boolean',

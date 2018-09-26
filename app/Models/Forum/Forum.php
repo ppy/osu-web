@@ -24,7 +24,6 @@ class Forum extends Model
 {
     protected $table = 'phpbb_forums';
     protected $primaryKey = 'forum_id';
-    protected $guarded = [];
 
     protected $dates = ['forum_last_post_time'];
     protected $dateFormat = 'U';

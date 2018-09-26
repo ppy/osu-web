@@ -50,8 +50,9 @@ class XsollaController extends Controller
     {
         $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
-        // FIXME: use a different method?
-        $order = Order::cart($user);
+        $order = Order::whereIn('status', ['incart', 'processing'])
+            ->whereOrderNumber(request('orderNumber'))
+            ->first();
 
         if ($order === null) {
             return;

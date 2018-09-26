@@ -48,5 +48,21 @@
                 </div>
             </div>
         @endif
+
+        {{-- TODO: make nicer --}}
+        {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
+        @if(isset($pendingCheckout) && optional(request()->route())->getName() !== 'store.checkout.show')
+            <div class="">
+                <div class="store-header__notice-text">
+                    @php
+                        $pendingCheckoutLink = Html::link(
+                            route('store.orders.index', ['type' => 'processing']),
+                            trans('store.checkout.has_pending.link_text')
+                        )
+                    @endphp
+                    {!! trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
+                </div>
+            </div>
+        @endif
     </div>
 </div>
