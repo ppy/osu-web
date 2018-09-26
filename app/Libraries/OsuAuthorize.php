@@ -338,8 +338,6 @@ class OsuAuthorize
         if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
-
-        return 'unauthorized';
     }
 
     public function checkBeatmapsetLove($user)
