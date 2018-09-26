@@ -49,12 +49,12 @@ class Beatmaps.Main extends React.PureComponent
 
     @state = prevState.state unless _.isEmpty(prevState)
     @state ?= _.extend
-      beatmaps: @props.beatmaps
+      beatmaps: @props.beatmaps.beatmapsets
       paging:
         page: 2 # next page to load, so it starts at 2, not 1
         url: laroute.route('beatmapsets.search')
         loading: false
-        more: @props.beatmaps.length > 0
+        more: @props.beatmaps.beatmapsets.length > 0
       loading: false
       filters: null
       isExpanded: null
@@ -179,9 +179,9 @@ class Beatmaps.Main extends React.PureComponent
   fetchNewState: (newQuery = false) =>
     @fetchResults(newQuery)
     .then (data) =>
-      more = data.length > 0
+      more = data.beatmapsets.length > 0
 
-      beatmaps: if newQuery then data else [].concat(@state.beatmaps, data)
+      beatmaps: if newQuery then data else [].concat(@state.beatmaps, data.beatmapsets)
       loading: false
       paging:
         page: if newQuery then 2 else @state.paging.page + (if more then 1 else 0)
