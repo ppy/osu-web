@@ -52,11 +52,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderGuest: =>
     div
+      ref: @props.innerRef
       className: 'beatmapsets-search'
       div
         className: 'osu-page-header__background'
         style:
-          backgroundImage: "url(#{@props.background})"
+          backgroundImage: osu.urlPresence(@props.background)
       div className: 'fancy-search fancy-search--beatmapsets js-user-link',
         input
           className: 'fancy-search__input'
@@ -71,11 +72,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
     filters = @props.availableFilters
 
     div
+      ref: @props.innerRef
       className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
       div
         className: 'beatmapsets-search__background'
         style:
-          backgroundImage: "url(#{@props.background})"
+          backgroundImage: osu.urlPresence(@props.background)
       div className: 'fancy-search fancy-search--beatmapsets',
         input
           className: 'fancy-search__input js-beatmapsets-search-input'

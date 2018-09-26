@@ -28,7 +28,6 @@ class UserReport extends Model
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
-    protected $guarded = [];
 
     protected $dates = ['timestamp'];
 
@@ -41,7 +40,12 @@ class UserReport extends Model
 
     public function score()
     {
-        return $this->belongsTo(BestModel::getClass($this->mode), 'score_id');
+        return $this->morphTo();
+    }
+
+    public function getScoreTypeAttribute()
+    {
+        return BestModel::getClass($this->mode);
     }
 
     public function user()

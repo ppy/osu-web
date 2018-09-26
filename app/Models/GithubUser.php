@@ -22,8 +22,6 @@ namespace App\Models;
 
 class GithubUser extends Model
 {
-    protected $guarded = [];
-
     public static function importFromGithub($data)
     {
         $githubUser = static::where('canonical_id', '=', $data['id'])->first();

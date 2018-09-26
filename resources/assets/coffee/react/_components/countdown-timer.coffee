@@ -60,5 +60,5 @@ class @CountdownTimer extends React.Component
         div key: field, className: "#{bn}__field",
           div className: "#{bn}__digit",
             if value < 10 then "0#{value}" else value
-          div className: "#{bn}__label", field
+          div className: "#{bn}__label", osu.trans("common.countdown.#{field}")
 

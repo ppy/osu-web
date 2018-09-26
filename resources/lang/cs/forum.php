@@ -114,11 +114,6 @@ return [
                 'total' => 'Počet sledovaných témat',
                 'unread' => 'Témata s novými odpověďmi',
             ],
-
-            'info' => [
-                'total' => 'Sledujete :total témat.',
-                'unread' => 'Máš :unread nepřečtených odpovědí ve sledovaných tématech.',
-            ],
         ],
 
         'topic_buttons' => [

@@ -194,6 +194,10 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
+  urlPresence: (url) ->
+    "url(#{url})" if osu.presence(url)?
+
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
@@ -241,6 +245,13 @@
 
   presence: (string) ->
     if string? && string != '' then string else null
+
+
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
 
 
   trans: (key, replacements, locale) ->

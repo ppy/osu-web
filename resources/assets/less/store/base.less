@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@address-box-padding: 20px;
+
 .address-list {
   margin-top: 20px;
 }
@@ -25,7 +27,7 @@
   background: white;
   border: 3px solid transparent;
   font-style: italic;
-  padding: 20px;
+  padding: @address-box-padding;
   &:last-child {
     margin-bottom: 20px;
   }
@@ -47,14 +49,14 @@
 }
 
 .address-delete-button {
+  .reset-input();
   color: @gray-light;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -@address-box-padding;
+  right: -@address-box-padding;
   z-index: 1;
-  .btn-flat;
-  padding: 10px 15px;
-  font-size: 24px;
+  padding: @address-box-padding;
+  font-size: 20px;
 
   &:hover {
     color: red;

@@ -27,8 +27,6 @@ class ProfileBanner extends Model
     protected $macros = ['active'];
     public $timestamps = false;
 
-    protected $fillable = ['tournament_id', 'country_acronym'];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

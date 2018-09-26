@@ -21,13 +21,7 @@
 
 @foreach($posts as $post)
     @php
-        $withDeleteLink = Auth::check()
-            ? $post->poster_id === Auth::user()->user_id
-            : false;
-
-        if (!$withDeleteLink) {
-            $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
-        }
+        $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
 
         if ($post->trashed() && $postPosition > 0 && !$loop->first) {
             $postPosition--;

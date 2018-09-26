@@ -38,7 +38,7 @@
 @endif
 
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 
 @if (App::getLocale() === 'vi')
     <link href='//fonts.googleapis.com/css?family=Exo:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -77,8 +77,6 @@
                 /extensions\//i,
                 /^chrome:\/\//i,
                 /^resource:\/\//i,
-                // Disqus
-                /embed\.js$/i,
                 // Errors caused by spyware/adware junk
                 /^\/loaders\//i
             ]
@@ -90,7 +88,7 @@
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
-<script src="//assets.ppy.sh/js/site-switcher.min.js?{{config('osu.site-switcher-js-hash')}}" async></script>
+<script src="//s.ppy.sh/js/site-switcher.js?{{config('osu.site-switcher-js-hash')}}" async></script>
 
 @if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>

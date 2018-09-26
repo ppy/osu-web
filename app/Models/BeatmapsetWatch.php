@@ -24,8 +24,6 @@ use Carbon\Carbon;
 
 class BeatmapsetWatch extends Model
 {
-    protected $guarded = [];
-
     protected $dates = ['last_read', 'last_notified'];
 
     public static function check($beatmapset, $user)

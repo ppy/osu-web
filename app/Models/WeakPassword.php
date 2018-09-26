@@ -27,7 +27,6 @@ class WeakPassword extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $primaryKey = 'hash';
-    protected $guarded = [];
 
     public static function add($string)
     {
