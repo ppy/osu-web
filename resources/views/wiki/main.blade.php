@@ -33,6 +33,7 @@
         </div>
     </div>
     <div class="osu-page osu-page--wiki">
+        @include('wiki._notice')
         <div class="wiki-main-page">
             {!! $page->page()['output'] !!}
         </div>

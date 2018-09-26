@@ -20,6 +20,7 @@
 
 namespace App\Models\Wiki\Pages;
 
+use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ElementRendererInterface;
