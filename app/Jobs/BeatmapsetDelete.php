@@ -67,6 +67,7 @@ class BeatmapsetDelete implements ShouldQueue
             }
 
             if ($this->beatmapset->delete()) {
+                $this->beatmapset->removeCovers();
                 Storage::disk(config('osu.beatmapset.storage'))->delete($this->beatmapset->getKey());
             }
         });
