@@ -20,9 +20,11 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -48,6 +50,11 @@ class BeatmapsetDelete implements ShouldQueue
 
     public function handle()
     {
+        // Extra check that doesn't get bypassed by admin permissions.
+        if ($this->beatmapset->isScoreable()) {
+            throw new AuthorizationException('This beatmap is no longer deleteable.');
+        }
+
         $this->beatmapset->getConnection()->transaction(function () {
             Event::generate(
                 'beatmapsetDelete',
@@ -60,10 +67,15 @@ class BeatmapsetDelete implements ShouldQueue
                 $post->skipBeatmapPostRestrictions()->saveOrExplode();
             }
 
-            if ($this->beatmapset->delete()) {
-                $this->beatmapset->removeCovers();
-                Storage::disk(config('osu.beatmapset.storage'))->delete($this->beatmapset->getKey());
+            // won't update already deleted beatmaps which is what we want.
+            $this->beatmapset->beatmaps()->delete();
+            if ($this->beatmapset->delete() === false) {
+                // something internal probably went wrong, so just force a rollback.
+                throw new Exception('Failed to delete beatmapset.');
             }
+
+            $this->beatmapset->removeCovers();
+            Storage::disk(config('osu.beatmapset.storage'))->delete($this->beatmapset->getKey());
         });
     }
 }

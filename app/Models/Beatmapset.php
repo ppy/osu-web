@@ -20,7 +20,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\AuthorizationException;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
@@ -957,29 +956,6 @@ class Beatmapset extends Model implements AfterCommit
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
-    }
-
-    public function delete()
-    {
-        if ($this->isScoreable()) {
-            throw new AuthorizationException('This beatmap is no longer deleteable.');
-        }
-
-        // kinda pointless since laravel doesn't error on delete
-        return $this->getConnection()->transaction(function () {
-            $this->beatmaps()->delete();
-
-            return parent::delete();
-        });
-    }
-
-    public function restore()
-    {
-        return $this->getConnection()->transaction(function () {
-            $this->beatmaps()->restore();
-
-            return parent::restore();
-        });
     }
 
     public static function removeMetadataText($text)
