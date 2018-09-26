@@ -46,7 +46,6 @@ class Beatmaps.Main extends React.PureComponent
     super props
 
     @url = location.href
-    @xhr = {}
 
     prevState = JSON.parse(props.container.dataset.reactState ? '{}')
 
@@ -54,7 +53,7 @@ class Beatmaps.Main extends React.PureComponent
     @state ?= _.extend
       beatmaps: @props.beatmaps
       paging:
-        page: 1
+        page: 2
         url: laroute.route('beatmapsets.search')
         loading: false
         more: @props.beatmaps.length > 0
@@ -94,7 +93,7 @@ class Beatmaps.Main extends React.PureComponent
   componentWillUnmount: =>
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
-    xhr.abort() for own _type, xhr of @xhr when xhr?
+    @xhr?.abort()
 
 
   render: =>
@@ -171,6 +170,35 @@ class Beatmaps.Main extends React.PureComponent
     @setState isExpanded: !@state.isExpanded
 
 
+  fetchNewState: (newQuery = false) =>
+    @fetchResults(newQuery)
+    .then (data) =>
+      more = data.length > 0
+
+      beatmaps: if newQuery then data else [].concat(@state.beatmaps, data)
+      loading: false
+      paging:
+        page: if newQuery then 2 else @state.paging.page + (if more then 1 else 0)
+        url: @state.paging.url
+        more: more
+
+
+  fetchResults: (newQuery) =>
+    params = @buildSearchQuery()
+    params.page = @state.paging.page if !newQuery
+
+    @xhr = $.ajax @state.paging.url,
+      method: 'get'
+      dataType: 'json'
+      data: params
+
+    osu.promisify @xhr
+
+
+  hideLoader: =>
+    @setState loading: false
+
+
   isSupporterMissing: =>
     !currentUser.is_supporter && @supporterFilters().length > 0
 
@@ -184,20 +212,8 @@ class Beatmaps.Main extends React.PureComponent
 
     @setState paging: pagingState
 
-    @xhr.pagination = $.ajax @state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
-    .done (data) =>
-      more = data.length > 0
-
-      @setState
-        beatmaps: [].concat(@state.beatmaps, data)
-        paging:
-          page: @state.paging.page + (if more then 1 else 0)
-          url: @state.paging.url
-          more: more
-        loading: false
+    @fetchNewState().then (newState) =>
+      @setState newState
 
 
   recordUrl: =>
@@ -210,7 +226,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   search: =>
-    @xhr.search?.abort()
+    @xhr?.abort()
 
     params = @buildSearchQuery()
     newUrl = laroute.route 'beatmapsets.index', params
@@ -220,20 +236,7 @@ class Beatmaps.Main extends React.PureComponent
     @setState loading: true
     @backToTop.current.reset()
 
-    @xhr.search = $.ajax @state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: params
-    .done (data) =>
-      newState =
-        beatmaps: data
-        paging:
-          page: 1
-          url: @state.paging.url
-          loading: false
-          more: data.length > 0
-        loading: false
-
+    @fetchNewState(true).then (newState) =>
       @setState newState
 
 
