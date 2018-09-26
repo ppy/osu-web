@@ -24,6 +24,7 @@
     "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
+    "jenssegers/agent": "^2.6",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",

@@ -37,8 +37,6 @@ class Comment extends Model
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
 
-    protected $guarded = [];
-
     protected $dates = ['deleted_at', 'edited_at'];
 
     protected $casts = [

@@ -52,6 +52,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderGuest: =>
     div
+      ref: @props.innerRef
       className: 'beatmapsets-search'
       div
         className: 'osu-page-header__background'
@@ -71,6 +72,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
     filters = @props.availableFilters
 
     div
+      ref: @props.innerRef
       className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
       div
         className: 'beatmapsets-search__background'

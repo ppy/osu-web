@@ -28,6 +28,28 @@ abstract class Controller extends BaseController
 {
     protected $section = 'store';
 
+    protected $pendingCheckout;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            view()->share('pendingCheckout', optional($this->pendingCheckouts())->first());
+
+            return $next($request);
+        });
+
+        parent::__construct();
+    }
+
+    protected function orderForCheckout($id)
+    {
+        return Auth::user()
+            ->orders()
+            ->whereIn('status', ['incart', 'processing'])
+            ->with('items.product')
+            ->find($id);
+    }
+
     /**
      * Gets the cart of the currently logged in user.
      *
@@ -43,12 +65,14 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * @return bool
+     * Gets the pending checkouts of the current user.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder pending checkouts of the current user.
      */
-    protected function hasPendingCheckout()
+    protected function pendingCheckouts()
     {
-        $cart = $this->userCart();
-
-        return $cart === null ? false : $cart->isProcessing();
+        if (Auth::check()) {
+            return Order::where('user_id', Auth::user()->getKey())->processing();
+        }
     }
 }

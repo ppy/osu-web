@@ -29,8 +29,6 @@ class FavouriteBeatmapset extends Model
         'dateadded',
     ];
 
-    protected $guarded = [];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

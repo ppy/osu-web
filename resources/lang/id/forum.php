@@ -114,11 +114,6 @@ return [
                 'total' => 'Topik yang dilanggan',
                 'unread' => 'Topik dengan balasan terbaru',
             ],
-
-            'info' => [
-                'total' => 'Anda berlangganan :total topik.',
-                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik yang Anda langgan.',
-            ],
         ],
 
         'topic_buttons' => [
