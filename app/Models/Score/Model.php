@@ -77,9 +77,9 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($mode);
     }
 
-    public function getMode() : string
+    public static function getMode() : string
     {
-        return strtolower(get_class_basename(get_called_class()));
+        return snake_case(get_class_basename(static::class));
     }
 
     public function scopeDefault($query)
