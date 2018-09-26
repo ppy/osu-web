@@ -77,9 +77,9 @@ class ReplayFile
         $components = [
             pack('c', $mode),
             pack('i', $version),
-            packStr($beatmap->checksum),
-            packStr($user->username),
-            packStr($md5),
+            pack_str($beatmap->checksum),
+            pack_str($user->username),
+            pack_str($md5),
             pack('S', $score->count300),
             pack('S', $score->count100),
             pack('S', $score->count50),
@@ -90,7 +90,7 @@ class ReplayFile
             pack('S', $score->maxcombo),
             pack('c', $score->perfect),
             pack('i', ModsHelper::toBitset($score->enabled_mods)),
-            packStr(''), // 0b00 here, 00 if lazer.
+            pack_str(''), // 0b00 here, 00 if lazer.
             pack('q', $ticks),
         ];
 

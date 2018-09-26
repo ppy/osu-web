@@ -311,7 +311,7 @@ function osu_url($key)
     return $url;
 }
 
-function packStr($str)
+function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
