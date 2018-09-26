@@ -119,6 +119,18 @@ abstract class Search extends HasSearch implements Queryable
         );
     }
 
+    public function getSortCursor() : ?array
+    {
+        $last = array_last($this->response()->hits());
+        if ($last !== null && array_key_exists('sort', $last)) {
+            $fields = array_map(function ($sort) {
+                return $sort->field;
+            }, $this->params->sorts);
+
+            return array_combine($fields, $last['sort']);
+        }
+    }
+
     /**
      * Returns if the total number of results found is greater than the allowed limit.
      *
