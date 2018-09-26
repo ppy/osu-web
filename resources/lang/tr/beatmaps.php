@@ -39,7 +39,6 @@ return [
         'edit' => 'düzenle',
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
-        'message_placeholder' => 'Gönderinizi buraya yazın',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Bu gönderi beatmap setinin genel tartışmasına gidecek. Bu beatmapi modlamak için mesajı bir zaman damgası ile başlatın (ör: 00:12:345).',
             'in_timeline' => 'Birden fazla zaman damgasını modlamak için, birden fazla gönderi yapın (gönderi başına bir zaman damgası).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Genel\'e yazmak için burayı kullanın (:version)',
+            'generalAll' => 'Genel\'e yazmak için burayı kullanın (tüm zorluklar)',
+            'timeline' => 'Timeline\'a yazmak için burayı kullanın (:version)',
         ],
 
         'message_type' => [
@@ -91,7 +96,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title :mapper tarafından maplendi',
+            'title' => ':title :mapper tarafından yapıldı',
         ],
 
         'sort' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'anahtar kelimeler yazın...',
             'options' => 'Diğer Arama Seçenekleri',
+            'supporter_filter' => ':filters için supporter gerekli',
             'not-found' => 'sonuç bulunamadı',
             'not-found-quote' => '... yok, bir şey bulunamadı.',
             'filters' => [
@@ -181,15 +187,19 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'başlık',
+                'artist' => 'sanatçı',
+                'difficulty' => 'zorluk',
+                'updated' => 'güncellenme',
+                'ranked' => 'dereceli',
+                'rating' => 'puan',
+                'plays' => 'oynanma',
+                'relevance' => 'alaka',
+                'nominations' => 'adaylıklar',
+            ],
+            'supporter_filter_quote' => [
+                '_' => ':filters için :link gerekli',
+                'link_text' => 'supporter tag',
             ],
         ],
         'mode' => 'Oyun modu',
@@ -212,7 +222,7 @@ return [
         'any' => 'Hepsi',
         'ranked-approved' => 'Dereceli & Onaylı',
         'approved' => 'Onaylı',
-        'qualified' => 'Qualified',
+        'qualified' => 'Nitelikli',
         'loved' => 'Sevilen',
         'faves' => 'Favoriler',
         'pending' => 'Beklemede',

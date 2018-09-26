@@ -29,7 +29,7 @@ return [
             'account-edit' => '設定',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
-            'changelog-show' => 'ビルド',
+            'changelog-build' => '',
             'getDownload' => 'ダウンロード',
             'getIcons' => 'アイコン',
             'groups-show' => 'グループ',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
+            'privacy' => '',
             'server_status' => 'サーバー状態',
+            'source_code' => '',
             'terms' => '利用規約',
         ],
     ],

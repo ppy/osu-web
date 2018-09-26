@@ -34,9 +34,10 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => '作者: :mapper',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
+            'updated_timeago' => '上次更新于 :timeago',
             'ranked' => 'ranked 于 ',
             'approved' => 'approved 于 ',
             'qualified' => 'qualified 于 ',
@@ -53,7 +54,7 @@ return [
             'favourited_count' => '还有很多人...',
         ],
         'stats' => [
-            'cs' => '缩圈大小',
+            'cs' => '圆圈大小',
             'cs-mania' => '键位数量',
             'drain' => '掉血速度',
             'accuracy' => '准确率',

@@ -29,7 +29,7 @@ return [
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
+            'privacy' => 'Quyền Riêng Tư',
             'server_status' => 'Trạng Thái Server',
+            'source_code' => 'Mã Nguồn',
             'terms' => 'Điều Khoản Và Điều Kiện',
         ],
     ],

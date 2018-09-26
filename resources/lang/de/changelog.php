@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Bugfixes und kleine Verbesserungen.',
-    'users-online' => '1 Benutzer online|:users Benutzer online',
 
-    'prefixes' => [
-        'add' => 'hinzugefügt',
-        'fix' => 'fix',
-        'misc' => 'sonstiges',
+    'builds' => [
+        'users_online' => ':count_delimited user online |:count_delimited user online',
+    ],
+
+    'entry' => [
+        'by' => 'von :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Liste',
+        ],
     ],
 
     'support' => [

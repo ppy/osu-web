@@ -1,0 +1,99 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ .user-session-list-session {
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  &__header {
+    .center-content();
+    font-size: @font-size--title-small;
+    margin-bottom: 5px;
+    color: white;
+  }
+
+  &__current-badge {
+    background: #444;
+    padding: 2px 8px;
+    border-radius: 13px;
+    color: #ccc;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-left: 5px;
+  }
+
+  &__icon {
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+    border-bottom: 1px solid #444;
+
+    @media @desktop {
+      align-items: center;
+      padding: 0px 5px 10px 5px;
+    }
+
+    @media @mobile {
+      align-items: flex-start;
+      padding: 0px 0px 10px 0px;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__ip {
+    .center-content();
+
+    @media @mobile {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__last-active {
+    @media @desktop {
+      width: 50%;
+      padding-left: 20px;
+    }
+    @media @mobile {
+      margin-bottom: 5px;
+      flex-basis: 100%;
+    }
+  }
+
+  &__logout {
+    .reset-input();
+    .link-gray-light();
+
+    flex-shrink: 0;
+    margin-right: 5px;
+
+    @media @mobile {
+      margin-bottom: 5px;
+      align-self: flex-end;
+    }
+  }
+
+  &__logout-icon {
+    margin-left: 5px;
+  }
+}

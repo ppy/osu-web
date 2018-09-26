@@ -39,8 +39,7 @@ return [
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
-        'message_placeholder' => 'Scrivi qui per postare',
-        'message_placeholder_deleted_beatmap' => 'La difficoltà è stata eliminata cosicché non possa essere più discussa.',
+        'message_placeholder_deleted_beatmap' => 'La difficoltà è stata eliminata quindi non può più essere discussa.',
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Questo post andrà nella discussione generale della Beatmap. Per moddare questa Beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
             'in_timeline' => 'per moddare più timestamp, posta più volte (un post per timestamp).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Scrivi qui per postare in Generale (:version)',
+            'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
+            'timeline' => 'Scrivi qui per postare nella Cronologia (:version)',
         ],
 
         'message_type' => [
@@ -86,7 +91,7 @@ return [
 
         'new' => [
             'timestamp' => 'Data e ora',
-            'timestamp_missing' => 'ctrl-c in modalità modifica e incollaci il tuo messaggio per aggiungere un timestamp!',
+            'timestamp_missing' => 'ctrl-c in modalità modifica e incolla il tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
         ],
 
@@ -156,7 +161,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Azzeramento processo di nomina :tempo_fa da :utente con nuovo problema :discussione (:messaggio).',
-            'disqualify' => '',
+            'disqualify' => 'Squalificato :time_ago da :user con il nuovo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'scrivi le parole chiave...',
             'options' => 'Più Opzioni di Ricerca',
+            'supporter_filter' => 'Filtrare tramite :filters necessita di una tag da sostenitore attiva',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
             'filters' => [
@@ -181,20 +187,23 @@ return [
                 'played' => 'Giocato',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'titolo',
+                'artist' => 'artista',
+                'difficulty' => 'difficoltà',
+                'updated' => 'aggiornato',
+                'ranked' => 'classificazione',
+                'rating' => 'rankate',
+                'plays' => 'volte giocata',
+                'relevance' => 'rilevanza',
+                'nominations' => 'candidature',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtrare tramite :filters necessita di una :link attiva',
+                'link_text' => 'tag supporter',
             ],
         ],
         'mode' => 'Modalità',
         'status' => 'Status del Rank',
-        'mapped-by' => 'mappata da :mapper',
         'source' => 'da :source',
         'load-more' => 'Carica altro...',
     ],

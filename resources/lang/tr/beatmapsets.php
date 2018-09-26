@@ -34,9 +34,10 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => ':mapper tarafından yapıldı',
             'submitted' => 'gönderilme tarihi: ',
             'updated' => 'son güncelleme ',
+            'updated_timeago' => 'son güncelleme :timeago',
             'ranked' => 'dereceli olma tarihi: ',
             'approved' => 'tarihinde onaylandı ',
             'qualified' => 'aday olma tarihi ',
@@ -53,7 +54,7 @@ return [
             'favourited_count' => '+ :count kişi tarafından!',
         ],
         'stats' => [
-            'cs' => 'Daire boyutu',
+            'cs' => 'Daire Boyutu',
             'cs-mania' => 'Tuş Sayısı',
             'drain' => 'HP Drain',
             'accuracy' => 'İsabetlilik',
@@ -85,7 +86,7 @@ return [
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
-            'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için Supporter olman gerekiyor!',
+            'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için supporter olman gerekiyor!',
             'title' => 'Skor tahtası',
 
             'headers' => [
@@ -101,7 +102,7 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ülkenizde hiçkimse henüz bu haritada bir skora sahip değil!',
+                'country' => 'Ülkenizde hiç kimse henüz bu haritada bir skora sahip değil!',
                 'friend' => 'Hiçbir arkadaşın bu haritada henüz bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',

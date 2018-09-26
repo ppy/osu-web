@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Du har blockerat denna användare.',
+        'blocked_count' => 'blockerade användare (:count)',
+        'hide_profile' => 'dölj profil',
+        'not_blocked' => 'Användaren är inte blockerad.',
+        'show_profile' => 'visa profil',
+        'too_many' => 'Du har nått gränsen för blockeringar.',
+        'button' => [
+            'block' => 'blockera',
+            'unblock' => 'avblockera',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Begravda Beatmaps (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Älskade Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankade & Godkända Beatmaps (:count)',

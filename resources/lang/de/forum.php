@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
         'new_topic' => 'Neuen Thread erstellen',
+        'new_topic_login' => 'Melde dich an, um einen neuen Thread zu erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
         'started_by' => 'von :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Abonnierte Threads',
                 'unread' => 'Threads mit ungelesenen Antworten',
             ],
-
-            'info' => [
-                'total' => 'Du hast :total Threads abonniert.',
-                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Threads',
 
         'actions' => [
+            'login_reply' => 'Melde dich an, um zu antworten',
             'reply' => 'Antworten',
             'reply_with_quote' => 'Post in der Antwort zitieren',
             'search' => 'Suchen',

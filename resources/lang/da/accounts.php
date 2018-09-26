@@ -20,12 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Indstillinger',
+        'title' => '<strong>Konto</strong>indstillinger',
         'title_compact' => 'indstillinger',
         'username' => 'brugernavn',
 
         'avatar' => [
-            'title' => 'Ændr Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -43,11 +43,11 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Rediger Profil',
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'nuværende placering',
-                'user_interests' => 'interesse',
+                'user_interests' => 'interesser',
                 'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'tastatur',
         'tablet' => 'tablet',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacy',
+        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
     ],
 ];

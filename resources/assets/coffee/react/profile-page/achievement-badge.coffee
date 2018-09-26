@@ -106,6 +106,7 @@ class ProfilePage.AchievementBadge extends React.Component
                 __html: @props.achievement.description
             if @props.userAchievement?
               div
-                className: 'tooltip-achievement__date'
+                className: 'tooltip-achievement__date js-tooltip-time'
+                title: @props.userAchievement.achieved_at
                 osu.trans 'users.show.extra.achievements.achieved-on',
                   date: moment(@props.userAchievement.achieved_at).format 'll'

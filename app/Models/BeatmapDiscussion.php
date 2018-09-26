@@ -29,8 +29,6 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
-    protected $guarded = [];
-
     protected $casts = [
         'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',
@@ -41,10 +39,10 @@ class BeatmapDiscussion extends Model
     const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
-        'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
         'mapper_note' => 3,
+        'praise' => 0,
         'hype' => 4,
     ];
 
@@ -340,11 +338,7 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        if ($this->message_type === 'mapper_note') {
-            if ($this->user_id !== $this->beatmapset->user_id) {
-                $this->validationErrors()->add('message_type', '.mapper_note_wrong_user');
-            }
-        } elseif ($this->message_type === 'hype') {
+        if ($this->message_type === 'hype') {
             if ($this->beatmap_id !== null) {
                 $this->validationErrors()->add('message_type', '.hype_requires_null_beatmap');
             }

@@ -39,7 +39,6 @@ return [
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ค่าชื่อเสียง',
-        'message_placeholder' => 'พิมพ์ที่นี่เพื่อโพสต์',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_type_select' => 'เลือกประเภทคอมเม้นต์',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'โพสต์นี้จะไปที่การสนทนาทั่วไป ถ้าอยาก Mod Beatmap นี้ เริ่มต้นข้อความของคุณด้วยช่วงเวลา (เช่น 00:12:345)',
             'in_timeline' => 'ในการ Mod หลายช่วงเวลา โพสต์หลายๆครั้ง (หนึ่งโพสต์ต่อหนึ่งช่วงเวลา)',
+        ],
+
+        'message_placeholder' => [
+            'general' => '',
+            'generalAll' => '',
+            'timeline' => '',
         ],
 
         'message_type' => [
@@ -91,13 +96,13 @@ return [
         ],
 
         'show' => [
-            'title' => ':title แมพโดย :mapper',
+            'title' => ':title lสร้างโดย :mapper',
         ],
 
         'sort' => [
-            '_' => 'จัดเรียงตาม:',
+            '_' => 'เรียงตาม:',
             'created_at' => 'เวลาที่สร้าง',
-            'timeline' => 'เส้นเวลา',
+            'timeline' => 'ไทม์ไลน์',
             'updated_at' => 'อัพเดทล่าสุด',
         ],
 
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => 'พิมพ์คำสำคัญ...',
             'options' => 'ค้นหาเพิ่มเติม',
+            'supporter_filter' => '',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
             'filters' => [
@@ -181,15 +187,19 @@ return [
                 'played' => 'เคยเล่นแล้ว',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
+                'title' => 'ชื่อ',
+                'artist' => 'ศิลปิน',
+                'difficulty' => 'ระดับความยาก',
+                'updated' => 'เพิ่งอัพเดต',
                 'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
+                'rating' => 'คะแนน',
+                'plays' => 'จำนวนการเล่น',
+                'relevance' => 'ความเกี่ยวข้อง',
                 'nominations' => '',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
             ],
         ],
         'mode' => 'โหมด',

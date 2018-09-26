@@ -16,8 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'current_section' => 'error',
-    'current_action' => '401',
+    'currentSection' => 'error',
+    'currentAction' => '401',
 ])
 
 @section('content')

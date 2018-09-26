@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Hai bloccato questo utente.',
+        'blocked_count' => 'utenti bloccati (:count)',
+        'hide_profile' => 'nascondi profilo',
+        'not_blocked' => 'Questo utente non è bloccato.',
+        'show_profile' => 'visualizza profilo',
+        'too_many' => 'Limite blocchi raggiunto.',
+        'button' => [
+            'block' => 'blocca',
+            'unblock' => 'sblocca',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Caricamento...',
         'send_message' => 'invia messaggio',
@@ -147,7 +160,7 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
                     'title' => 'Beatmap abbandonate (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Beatmap Loved (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Rankate e Approvate (:count)',
@@ -248,7 +261,7 @@ href="mailto:accounts@ppy.sh">contatta supporto</a>.',
             ],
             'account_standing' => [
                 'title' => 'Stato dell\'account',
-                'bad_standing' => "<strong>:username's</strong>l'account non ha una buona reputazione :(",
+                'bad_standing' => "L'account di <strong>:username</strong> non ha una buona reputazione :(",
                 'remaining_silence' => '<strong>:username</strong> potrà parlare di nuovo tra :duration.',
 
                 'recent_infringements' => [

@@ -25,7 +25,11 @@ class Changelog extends Model
     public $timestamps = false;
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
-    protected $guarded = [];
+
+    protected $casts = [
+        'private' => 'boolean',
+        'major' => 'boolean',
+    ];
 
     protected $dates = [
         'date',

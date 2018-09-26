@@ -59,7 +59,10 @@ class BeatmapsetSearch extends RecordSearch
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
-            $query->must(QueryHelper::queryString($this->params->queryString));
+            $terms = explode(' ', $this->params->queryString);
+            // results must contain at least one of the terms and boosted by containing all of them.
+            $query->must(QueryHelper::queryString($this->params->queryString, [], 'or', 1 / count($terms)));
+            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
         }
 
         $this->addModeFilter($query);
@@ -134,7 +137,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($this->params->mode ?? Beatmap::MODES['osu']);
+            $mode = Beatmap::modeStr($this->params->mode) ?? $this->params->user->playmode;
             $difficulty = $this->params->user->recommendedStarDifficulty($mode);
             $query->filter([
                 'range' => [
@@ -158,9 +161,6 @@ class BeatmapsetSearch extends RecordSearch
                     ['match' => ['approved' => Beatmapset::STATES['ranked']]],
                     ['match' => ['approved' => Beatmapset::STATES['approved']]],
                 ]);
-                break;
-            case 1: // Approved
-                $query->must(['match' => ['approved' => Beatmapset::STATES['approved']]]);
                 break;
             case 8: // Loved
                 $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
@@ -220,9 +220,8 @@ class BeatmapsetSearch extends RecordSearch
     {
         $unionQuery = null;
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($this->params->user)
+            $newQuery = Score\Best\Model::getClass($mode)
+                ::forUser($this->params->user)
                 ->select('beatmap_id');
 
             if ($rank !== null) {

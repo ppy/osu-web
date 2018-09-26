@@ -29,7 +29,7 @@ return [
             'account-edit' => '設定',
             'friends-index' => '好友',
             'changelog-index' => '更新日誌',
-            'changelog-show' => '版本',
+            'changelog-build' => '版本',
             'getDownload' => '下載',
             'getIcons' => '圖示',
             'groups-show' => '群組',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => '法律 & 狀態',
             'copyright' => '版權（DMCA）',
+            'privacy' => '隱私政策',
             'server_status' => '伺服器狀態',
+            'source_code' => '原始碼',
             'terms' => '服務條款',
         ],
     ],

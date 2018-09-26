@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang halaman.',
+            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
         'resolve' => [
@@ -89,7 +89,7 @@ return [
 
             'store' => [
                 'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan untuk mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -121,7 +121,7 @@ return [
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
                     'restricted' => "Tidak dapat memberikan suara saat status dibatasi aktif.",
-                    'silenced' => "Tidak dapat memilih saat dibungkam.",
+                    'silenced' => "Tidak dapat memberikan suara saat dibungkam.",
                 ],
             ],
 
@@ -153,8 +153,8 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Halaman pengguna terkunci.',
-                'not_owner' => 'Hanya dapat menyunting halaman pengguna sendiri.',
+                'locked' => 'Laman pengguna terkunci.',
+                'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
                 'require_supporter_tag' => 'Supporter tag diperlukan.',
             ],
         ],

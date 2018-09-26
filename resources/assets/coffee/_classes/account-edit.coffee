@@ -18,7 +18,7 @@
 
 class @AccountEdit
   constructor: ->
-    $(document).on 'input', '.js-account-edit', @initializeUpdate
+    $(document).on 'input change', '.js-account-edit', @initializeUpdate
 
     $(document).on 'ajax:error', '.js-account-edit', @ajaxError
     $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
@@ -31,6 +31,7 @@ class @AccountEdit
     return if form.dataset.accountEditAutoSubmit != '1'
 
     @abortUpdate form
+    @saving form
     form.debouncedUpdate ?= _.debounce @update, 1000
     form.debouncedUpdate form
 
@@ -70,14 +71,17 @@ class @AccountEdit
 
   update: (form) =>
     input = form.querySelector('.js-account-edit__input')
-    value = input.value
+
+    if input.type == 'checkbox'
+      value = input.checked
+    else
+      value = input.value
+
     prevValue = form.dataset.lastValue
 
-    return if value == prevValue
+    return @clearState(form) if value == prevValue
 
     form.dataset.lastValue = value
-
-    @saving form
 
     form.updating = $.ajax laroute.route('account.update'),
       method: 'PUT'

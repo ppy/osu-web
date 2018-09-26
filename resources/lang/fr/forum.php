@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when par :user',
         'latest_reply_by' => 'dernière réponse par :user',
         'new_topic' => 'Poster un nouveau sujet',
+        'new_topic_login' => 'Connectez-vous pour poster un nouveau sujet',
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
         'started_by' => 'par :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Sujets suivis',
                 'unread' => 'Sujets avec nouvelles réponses',
             ],
-
-            'info' => [
-                'total' => 'Vous suivez un total de :total sujets.',
-                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
+            'login_reply' => 'Connectez-vous pour Répondre',
             'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
             'search' => 'Rechercher',

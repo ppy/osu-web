@@ -48,7 +48,7 @@ class MPHistory.Game extends React.Component
           el MPHistory.Score,
             score: m
             mode: game.mode
-            lookupUser: @props.lookupUser
+            users: @props.users
             key: m.multiplayer.slot
 
       if showTeams && @props.event.game.end_time

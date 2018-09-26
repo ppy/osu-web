@@ -22,11 +22,12 @@ return [
     'codes' => [
         'http-401' => 'Mohon masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
+        'http-404' => 'Tidak ditemukan.',
         'http-429' => 'Terlalu banyak percobaan. Coba lagi nanti.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Terjadi masalah. Cobalah untuk memuat ulang halaman.',
+            'generic' => 'Terjadi masalah. Cobalah untuk memuat ulang laman.',
         ],
     ],
     'beatmaps' => [

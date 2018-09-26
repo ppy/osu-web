@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => 'Kasse',
-        'more_goodies' => 'Ich möchte noch nach anderen Artikeln suchen, bevor ich meine Bestellung aufgebe',
+        'checkout' => 'Zur Kasse',
+        'more_goodies' => 'Ich möchte mich vor meiner Bestellung noch etwas umschauen',
         'shipping_fees' => 'Versandkosten',
         'title' => 'Warenkorb',
-        'total' => 'gesamt',
+        'total' => 'insgesamt',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => 'Entfernen oder aktualisieren Sie Ihre Artikel bevor Sie fortfahren.',
+            'line_1' => 'Ups, irgendetwas im Warenkorb verhindert die Buchung!',
+            'line_2' => 'Entfernen oder aktualisieren Sie Ihre Artikel, bevor Sie fortfahren.',
         ],
 
         'empty' => [
-            'text' => 'Ihr Warenkorb ist leer',
+            'text' => 'Dein Warenkorb ist leer.',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Geh\' doch zurück zum :link und such\' dir ein paar Goodies aus!',
+                'link_text' => 'Shop',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Sie können ihre bestellung nicht bearbeiten da diese abgebrochen wurde',
-            'checkout' => 'Sie können Ihre Bestellung nicht verändern während diese bearbeitet wird.', // checkout and processing should have the same message.
+            'cancelled' => 'Du kannst deine Bestellung nicht ändern, da diese storniert wurde.',
+            'checkout' => 'Du kannst deine Bestellung nicht ändern, während diese bearbeitet wird.', // checkout and processing should have the same message.
             'default' => 'Bestellung kann nicht bearbeitet werden',
-            'delivered' => 'Sie können Ihre Bestellung nicht verändern, da diese bereits zugestellt wird.',
-            'paid' => 'Sie können ihre Bestellung nicht bearbeiten, da diese bereits bezahlt wurde.',
-            'processing' => 'Sie können Ihre Bestellung nicht verändern, während diese bearbeitet wird.',
-            'shipped' => 'Sie können ihre Bestellung nicht bearbeiten da diese bereits verschickt wurde',
+            'delivered' => 'Du kannst deine Bestellung nicht ändern, da diese bereits zugestellt wurde.',
+            'paid' => 'Du kannst deine Bestellung nicht ändern, da diese bereits bezahlt wurde.',
+            'processing' => 'Du kannst deine Bestellung nicht ändern, während diese bearbeitet wird.',
+            'shipped' => 'Du kannst deine Bestellung nicht ändern, da diese bereits versandt wurde.',
         ],
     ],
 

@@ -97,7 +97,7 @@ return [
                 'description' => 'sigue las instrucciones cuando inicies el juego para iniciar sesión o crear una nueva cuenta',
             ],
             'download' => [
-                'title' => 'descarga el juego',
+                'title' => 'descargar el juego',
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
@@ -133,7 +133,7 @@ return [
             'plays' => ':count veces jugado',
         ],
         'buttons' => [
-            'download' => 'Descarga osu!',
+            'download' => 'Descargar osu!',
             'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],

@@ -19,7 +19,7 @@
  */
 
 return [
-    'insufficient_stock' => '',
-    'not_available' => '해당 항목은 사용하실 수 없습니다.',
-    'too_many' => '',
+    'insufficient_stock' => '이 물품은 남은 재고가 없습니다!',
+    'not_available' => '이 항목은 아직 준비 중입니다.',
+    'too_many' => '이 항목은 한 번에 :count개만 주문하실 수 있습니다.',
 ];

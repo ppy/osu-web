@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Topics',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -71,10 +71,13 @@ return [
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+        'new_topic' => 'New topic',
+        'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
+        'started_by_verbose' => 'started by :user',
 
         'create' => [
             'preview' => 'Preview',
@@ -82,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Write',
             'submit' => 'Post',
+
+            'necropost' => [
+                'default' => 'This topic has been inactive for a while. Only post here if you have a specific reason to do so.',
+
+                'new_topic' => [
+                    '_' => "This topic has been inactive for a while. If you don't have a specific reason to post here, please :create instead.",
+                    'create' => 'create a new topic',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Type post content here',
@@ -132,6 +144,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
+            'login_reply' => 'Sign in to Reply',
             'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',

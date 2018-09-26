@@ -29,7 +29,7 @@ return [
             'account-edit' => 'paramètres',
             'friends-index' => 'amis',
             'changelog-index' => 'notes de MàJ',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Confidentialité',
             'server_status' => 'Statut du serveur',
+            'source_code' => 'Code Source',
             'terms' => 'Conditions du service',
         ],
     ],

@@ -40,6 +40,15 @@ class Match extends Model
         return $this->hasMany(Event::class, 'match_id');
     }
 
+    public function currentGame()
+    {
+        $game = $this->games()->last();
+
+        if ($game !== null && $game->end_time === null) {
+            return $game;
+        }
+    }
+
     public function currentPlayers()
     {
         $players = [];

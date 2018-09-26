@@ -34,7 +34,7 @@ class ForumsController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-forums-'.current_action());
+        view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
     public function index()
@@ -84,7 +84,7 @@ class ForumsController extends Controller
             new ForumCoverTransformer()
         );
 
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $showDeleted = priv_check('ForumModerate', $forum)->can();
 
         $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
         $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(30);

@@ -21,11 +21,15 @@
 namespace Tests;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
+use App\Mail\DonationThanks;
+use App\Mail\SupporterGift;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
+use App\Models\SupporterTag;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
+use Mail;
 use TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
@@ -39,9 +43,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => Carbon::today(),
         ]);
 
-        $this->order = factory(Order::class)->create([
+        $this->order = factory(Order::class, 'paid')->create([
             'user_id' => $this->user->user_id,
-            'transaction_id' => 'test-'.time(),
         ]);
     }
 
@@ -91,6 +94,36 @@ class SupporterTagFulfillmentTest extends TestCase
         // votes go to donor.
         $this->assertEquals(2, $donor->osu_featurevotes);
         $this->assertEquals(0, $giftee->osu_featurevotes);
+    }
+
+    public function testMailDonateSupporterTagToOthers()
+    {
+        Mail::fake();
+        $today = Carbon::today();
+
+        $donor = $this->user;
+        $giftee1 = factory(User::class)->create(['user_sig' => '']); // prevent factory from generating user_sig
+        $giftee2 = factory(User::class)->create(['user_sig' => '']);
+
+        $this->createDonationOrderItem($this->order, $giftee1, false, false);
+        $this->createDonationOrderItem($this->order, $giftee1, false, false);
+        $this->createDonationOrderItem($this->order, $giftee2, false, false);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
+            $params = $this->invokeProperty($mail, 'params');
+
+            if ($params['giftee']->is($giftee1)) {
+                return $params['duration'] === SupporterTag::getDurationText(2);
+            } elseif ($params['giftee']->is($giftee2)) {
+                return $params['duration'] === SupporterTag::getDurationText(1);
+            }
+        });
+
+        Mail::assertQueued(SupporterGift::class, 2);
+        Mail::assertQueued(DonationThanks::class, 1);
     }
 
     public function testPartiallyFulfilledOrder()
@@ -265,6 +298,7 @@ class SupporterTagFulfillmentTest extends TestCase
             'cost' => $amount,
             'extra_data' => [
                 'target_id' => $user->user_id,
+                'username' => $user->username,
                 'duration' => $duration,
             ],
         ]);

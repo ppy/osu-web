@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'blocked_count' => 'engellenen kullanıcılar (:count)',
+        'hide_profile' => 'profili gizle',
+        'not_blocked' => 'Bu kullanıcı engellenmemiş.',
+        'show_profile' => 'profili göster',
+        'too_many' => 'Engelleme sınırına ulaşıldı.',
+        'button' => [
+            'block' => 'engelle',
+            'unblock' => 'engellemeyi kaldır',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Yükleniyor...',
         'send_message' => 'mesaj gönder',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Terk Edilmiş Beatmapler (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Sevilen Haritalar (:count)',
+                    'title' => 'Sevilen Beatmapler (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Dereceli & Onaylanmış Beatmapler (:count)',
@@ -242,7 +255,7 @@ return [
                     'title' => 'En İyi Performans',
                 ],
                 'first' => [
-                    'title' => 'İlk Sıralama Dereceleri',
+                    'title' => 'Birincilikler',
                 ],
             ],
             'account_standing' => [

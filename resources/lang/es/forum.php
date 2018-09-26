@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Escribir nuevo tema',
+        'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
         'started_by' => 'por :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Temas suscritos',
                 'unread' => 'Temas con nuevas respuestas',
             ],
-
-            'info' => [
-                'total' => 'Te has suscrito a :total temas.',
-                'unread' => 'Tienes :unread respuestas sin leer a temas suscritos.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Temas',
 
         'actions' => [
+            'login_reply' => 'Inicia sesión para responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicación y responder',
             'search' => 'Buscar',

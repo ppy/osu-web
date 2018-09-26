@@ -66,7 +66,7 @@
             >
                 {{ trans("forum.topics.watch.to_{$newState}") }}
                 <span class="simple-menu__item-loading-spinner">
-                    <i class="fas fa-spinner fa-pulse"></i>
+                    {!! spinner() !!}
                 </span>
             </button>
         @endforeach

@@ -27,11 +27,12 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
+use App\Models\UserReport;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PDOException;
 use Request;
 
 class UsersController extends Controller
@@ -177,6 +178,33 @@ class UsersController extends Controller
     public function recentActivity($_userId)
     {
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
+    }
+
+    public function report($id)
+    {
+        $user = User::lookup($id);
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            return response()->json([], 404);
+        }
+
+        priv_check('UserReport', Auth::user())->ensureCan();
+
+        $report = Auth::user()->reportsMade()->make([
+            'user_id' => $user->getKey(),
+            'comments' => trim(request('comments')),
+            'reason' => trim(request('reason')),
+        ]);
+
+        try {
+            $report->saveOrExplode();
+        } catch (PDOException $ex) {
+            // ignore duplicate reports;
+            if (!is_sql_unique_exception($ex)) {
+                throw $ex;
+            }
+        }
+
+        return response(null, 204);
     }
 
     public function scores($_userId, $type)
@@ -419,10 +447,7 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->scoresBest($options['mode'], true)
-                    ->orderBy('pp', 'DESC')
-                    ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
-                $withScoresPosition = true;
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
@@ -433,19 +458,14 @@ class UsersController extends Controller
                 break;
             case 'scoresRecent':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
+                $includes = ['beatmap', 'beatmapset', 'best'];
                 $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset');
+                    ->with('beatmap', 'beatmap.beatmapset', 'best');
                 break;
         }
 
         if (!isset($collection)) {
             $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        if (isset($withScoresPosition)) {
-            // for scores which require pp ('weight' include).
-            ScoreBestModel::fillInPosition($collection);
         }
 
         return json_collection($collection, $transformer, $includes ?? []);

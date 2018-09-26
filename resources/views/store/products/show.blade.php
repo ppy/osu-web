@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", ['titlePrepend' => $product->name])
+@extends('master', ['titlePrepend' => $product->name])
 
-@section("content")
-    @include("store.header")
+@section('content')
+    @include('store.header')
 
     {!! Form::open([
-        "url" => "store/add-to-cart",
+        "url" => route('store.cart.store', ['add' => true]),
         "data-remote" => true,
         "id" => "product-form",
         "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"

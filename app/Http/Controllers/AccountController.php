@@ -99,7 +99,17 @@ class AccountController extends Controller
 
     public function edit()
     {
-        return view('accounts.edit');
+        $blocks = Auth::user()->blocks()
+            ->orderBy('username')
+            ->get();
+
+        $sessions = Request::session()
+            ->currentUserSessions();
+
+        $currentSessionId = Request::session()
+            ->getIdWithoutPrefix();
+
+        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()
@@ -120,6 +130,7 @@ class AccountController extends Controller
             [
                 'osu_playstyle:string[]',
                 'playmode:string',
+                'pm_friends_only:bool',
                 'user_from:string',
                 'user_interests:string',
                 'user_msnm:string',

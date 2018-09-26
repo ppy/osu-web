@@ -89,7 +89,7 @@ class FriendsController extends Controller
             UserRelation::create([
                 'user_id' => $currentUser->user_id,
                 'zebra_id' => $targetId,
-                'friend' => 1,
+                'friend' => true,
             ]);
 
             dispatch(new UpdateUserFollowerCountCache($targetId));

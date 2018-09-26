@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',
+        'new_topic_login' => 'เข้าสู่ระบบเพื่อโพสต์หัวเรื่องใหม่',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
         'started_by' => 'โดย :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
             ],
-
-            'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Show reply box',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',

@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Auth;
+
 class BeatmapMirror extends Model
 {
     protected $table = 'osu_mirrors';
@@ -50,6 +52,11 @@ class BeatmapMirror extends Model
         return self::randomUsable()->first();
     }
 
+    public static function getRandomFromList(array $mirrorIds)
+    {
+        return self::whereIn('mirror_id', $mirrorIds)->randomUsable()->first();
+    }
+
     public static function getRandomForRegion($region = null)
     {
         if (presence($region)) {
@@ -75,9 +82,10 @@ class BeatmapMirror extends Model
         $serveFilename = str_replace(['"', '?'], ['', ''], $serveFilename);
 
         $time = time();
+        $userId = Auth::check() ? Auth::user()->user_id : 0;
         $checksum = md5("{$beatmapset->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$this->secret_key}");
 
-        $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
+        $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=$userId&nv=$noVideo";
 
         return $url;
     }

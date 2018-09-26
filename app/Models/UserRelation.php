@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';
     public $timestamps = false;
-    protected $guarded = [];
+    protected $casts = [
+        'friend' => 'boolean',
+        'foe' => 'boolean',
+    ];
 
     public function user()
     {
@@ -18,6 +22,11 @@ class UserRelation extends Model
     public function target()
     {
         return $this->belongsTo(User::class, 'zebra_id', 'user_id');
+    }
+
+    public function scopeBlocks($query)
+    {
+        return $query->where('foe', true);
     }
 
     public function scopeFriends($query)
@@ -71,5 +80,14 @@ class UserRelation extends Model
                 WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
             ) as online'
         ));
+    }
+
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->where([
+            'user_id' => $this->user_id,
+            'zebra_id' => $this->zebra_id,
+        ]);
     }
 }

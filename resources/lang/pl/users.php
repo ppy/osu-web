@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Ten użytkownik został zablokowany.',
+        'blocked_count' => 'zablokowani użytkownicy (:count)',
+        'hide_profile' => 'ukryj profil',
+        'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
+        'show_profile' => 'pokaż profil',
+        'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
+        'button' => [
+            'block' => 'zablokuj',
+            'unblock' => 'odblokuj',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Ładowanie...',
         'send_message' => 'wyślij wiadomość',
@@ -95,7 +108,7 @@ return [
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
-        'lastvisit' => 'Ostatnio widziano :date',
+        'lastvisit' => 'Ostatnio online :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_age' => ':age',
         'origin_country_age' => ':age i pochodzi z :country',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Porzucone beatmapy (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Ulubione społeczności (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',

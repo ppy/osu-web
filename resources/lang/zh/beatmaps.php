@@ -39,7 +39,6 @@ return [
         'edit' => '编辑',
         'edited' => '最后由 :editor 编辑于 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
-        'message_placeholder' => '在此处输入您的内容',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
@@ -64,6 +63,12 @@ return [
             'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
         ],
 
+        'message_placeholder' => [
+            'general' => '在此处输入以发布到常规 (:version)',
+            'generalAll' => '在此处输入以发布到常规 (所有难度)',
+            'timeline' => '在此处输入以发布到时间线 (:version)',
+        ],
+
         'message_type' => [
             'disqualify' => '取消提名',
             'hype' => '推荐！',
@@ -80,7 +85,7 @@ return [
             'timeline' => '时间线',
             'scopes' => [
                 'general' => '当前难度',
-                'generalAll' => '全难度',
+                'generalAll' => '所有难度',
             ],
         ],
 
@@ -168,6 +173,7 @@ return [
         'search' => [
             'prompt' => '输入关键字...',
             'options' => '更多搜索选项',
+            'supporter_filter' => '按 :filters 筛选需要成为支持者',
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',
             'filters' => [
@@ -181,15 +187,19 @@ return [
                 'played' => '玩过',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => '标题',
+                'artist' => '艺术家',
+                'difficulty' => '难度',
+                'updated' => '更新时间',
+                'ranked' => 'rank时间',
+                'rating' => '评分',
+                'plays' => '游玩次数',
+                'relevance' => '相关性',
+                'nominations' => '提名状态',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '按 :filters 筛选需要成为 :link',
+                'link_text' => '支持者',
             ],
         ],
         'mode' => '模式',

@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
-    "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
     'search' => [
         'params' => [
@@ -28,7 +28,8 @@
     'pageDescription' => $topic->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
+    <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>
     <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
 
     @include('forum.topics._floating_header')
@@ -77,14 +78,14 @@
 
     <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
-        <span><i class="fas fa-sync fa-spin"></i></span>
+        <span>{!! spinner() !!}</span>
     </div>
 
     @include("forum.topics._posts")
 
     <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
-        <span><i class="fas fa-sync fa-spin"></i></span>
+        <span>{!! spinner() !!}</span>
     </div>
 
     <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
@@ -97,6 +98,27 @@
         ]) !!}
             @if (priv_check('ForumTopicReply', $topic)->can())
                 <div class="osu-page osu-page--small-desktop">
+                    @if (!$topic->isActive())
+                        <div class="warning-box">
+                            <div class="warning-box__icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+
+                            @if (priv_check('ForumTopicStore', $topic->forum)->can())
+                                <span>
+                                    {!! trans('forum.topic.create.necropost.new_topic._', [
+                                        'create' => link_to_route(
+                                            'forum.topics.create',
+                                            trans('forum.topic.create.necropost.new_topic.create'),
+                                            ['forum_id' => $topic->forum]
+                                        ),
+                                    ]) !!}
+                                </span>
+                            @else
+                                {{ trans('forum.topic.create.necropost.default') }}
+                            @endif
+                        </div>
+                    @endif
                     <div class="forum-post forum-post--reply js-forum-topic-reply--block">
                         <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
                             @if (Auth::check() === true)
@@ -195,18 +217,16 @@
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
                 @include('forum.topics._lock', compact('topic'))
-                @if (priv_check('ForumTopicModerate', $topic)->can())
+
+                @if ($userCanModerate)
                     @include('forum.topics._moderate_pin', compact('topic'))
-                @endif
-
-                @if (priv_check('ForumTopicModerate', $topic)->can())
                     @include('forum.topics._moderate_move', compact('topic'))
-                @endif
 
-                @if ($topic->isIssue() && priv_check('ForumTopicModerate', $topic)->can())
-                    @foreach ($topic::ISSUE_TAGS as $type)
-                        @include("forum.topics._issue_tag_{$type}")
-                    @endforeach
+                    @if ($topic->isIssue())
+                        @foreach ($topic::ISSUE_TAGS as $type)
+                            @include("forum.topics._issue_tag_{$type}")
+                        @endforeach
+                    @endif
                 @endif
 
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
@@ -328,22 +348,41 @@
                     </span>
                 </a>
 
-                <button
-                    type="button"
-                    class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
-                >
-                    <span class="btn-osu-big__content">
-                        <span class="btn-osu-big__icon">
-                            <i class="fas fa-comment"></i>
-                        </span>
+                @if (Auth::check())
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
+                    >
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fas fa-comment"></i>
+                            </span>
 
-                        <span class="btn-osu-big__left">
-                            <span class="btn-osu-big__text-top">
-                                {{ trans('forum.topics.actions.reply') }}
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.reply') }}
+                                </span>
                             </span>
                         </span>
-                    </span>
-                </button>
+                    </button>
+                @else
+                    <button
+                        type="button"
+                        class="btn-osu-big btn-osu-big--forum-reply js-user-link"
+                    >
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </span>
+
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.login_reply') }}
+                                </span>
+                            </span>
+                        </span>
+                    </button>
+                @endif
             </div>
         </div>
     </div>

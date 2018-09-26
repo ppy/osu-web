@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
 @php
     // always ignore empty keys.
@@ -23,7 +23,7 @@
     $itemErrors = $validationErrors['orderItems'] ?? [];
 @endphp
 
-@section("content")
+@section('content')
     @include("store.header")
 
     @if(!$order || !count($order->items))
@@ -113,7 +113,7 @@
                     </div>
                 @else
                     <div class="big-button">
-                        <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">
+                        <a href="{{ route('store.checkout.show', $order) }}" class="btn-osu btn-osu-default" name="checkout">
                             {{ trans('store.cart.checkout' ) }}
                         </a>
                     </div>

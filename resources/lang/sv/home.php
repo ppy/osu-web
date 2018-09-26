@@ -103,7 +103,7 @@ return [
             'beatmaps' => [
                 'title' => 'skaffa beatmaps',
                 'description' => [
-                    '_' => ':browse det stora bibloteket av beatmaps skapade av användare och börja spela!',
+                    '_' => ':browse i det stora bibloteket av beatmaps skapade av användare och börja spela!',
                     'browse' => 'bläddra',
                 ],
             ],
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Nya Rankade Beatmaps',
             'popular' => 'Populära Beatmaps',
             'by' => 'av',
             'plays' => 'Spelad :count gånger',

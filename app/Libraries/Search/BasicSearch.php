@@ -24,9 +24,15 @@ use App\Libraries\Elasticsearch\Search;
 
 class BasicSearch extends Search
 {
-    public function __construct(string $index)
+    /**
+     * @param string $index Name of the index.
+     * @param string $loggingTag Name to tag the operation with.
+     */
+    public function __construct(string $index, string $loggingTag = null)
     {
         parent::__construct($index, new EmptySearchParams);
+
+        $this->loggingTag = $loggingTag;
     }
 
     public function data()

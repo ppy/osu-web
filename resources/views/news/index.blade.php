@@ -49,19 +49,19 @@
                 @foreach ($posts as $post)
                     <div class="news-index-item">
                         <a
-                            href="{{ route('news.show', $post->getKey()) }}"
+                            href="{{ route('news.show', $post->slug) }}"
                             class="news-index-item__title"
                         >{{ $post->title() }}</a>
 
                         <span class="news-index-item__time">
-                            {!! trans('news.show.posted', ['time' => timeago($post->createdAt())]) !!}
+                            {!! trans('news.show.posted', ['time' => timeago($post->published_at)]) !!}
                         </span>
                     </div>
                 @endforeach
             </div>
 
             <div class="t-forum-category-osu">
-                @include('forum._pagination', ['object' => $posts
+                @include('objects._pagination_v0', ['object' => $posts
                     ->appends([
                         'limit' => Request::input('limit'),
                     ])

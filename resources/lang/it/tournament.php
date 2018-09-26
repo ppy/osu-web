@@ -28,8 +28,8 @@ return [
         'registration_period' => 'Registrazioni da :inizio a :fine',
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Tornei in corso',
+            'previous' => 'Tornei passati',
         ],
     ],
 

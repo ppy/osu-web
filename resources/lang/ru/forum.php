@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
         'new_topic' => 'Создать новую тему',
+        'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Начинайте вводить тут',
         'started_by' => 'от :user',
@@ -106,17 +107,12 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Темы, на которые вы подписаны',
-            'title_compact' => 'подписки',
+            'title_compact' => 'подписки на темы',
             'title_main' => '<strong>Подписки</strong> на темы',
 
             'box' => [
                 'total' => 'Подписок на тем',
                 'unread' => 'С новыми ответами',
-            ],
-
-            'info' => [
-                'total' => 'Всего подписок :total.',
-                'unread' => 'У вас :unread непрочитанных ответов к темам, за которыми вы следите.',
             ],
         ],
 
@@ -132,6 +128,7 @@ return [
         '_' => 'Темы',
 
         'actions' => [
+            'login_reply' => 'Войдите, чтобы ответить',
             'reply' => 'Ответить',
             'reply_with_quote' => 'Ответить с цитированием',
             'search' => 'Найти',

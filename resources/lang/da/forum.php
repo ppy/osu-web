@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when af :user',
         'latest_reply_by' => 'seneste svar af :user',
         'new_topic' => 'Slå nyt emne op',
+        'new_topic_login' => '',
         'post_reply' => 'Slå op',
         'reply_box_placeholder' => 'Skriv her for at svare',
         'started_by' => 'af :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Emner Abonneret',
                 'unread' => 'Emner med nye svar',
             ],
-
-            'info' => [
-                'total' => 'Du abonnerer i alt på :total emner.',
-                'unread' => 'Du har :unread ulæste svar til abonnerede emner.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Emner',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svar',
             'reply_with_quote' => 'Citér opslag til svar',
             'search' => 'Søg',

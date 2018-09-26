@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Utwórz nowy wątek',
+        'new_topic_login' => 'Zaloguj się, aby utworzyć nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'started_by' => 'przez :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
-
-            'info' => [
-                'total' => 'Liczba zasubskrybowanych wątków: :total.',
-                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Wątki',
 
         'actions' => [
+            'login_reply' => 'Zaloguj się, aby odpowiedzieć',
             'reply' => 'Odpowiedz',
             'reply_with_quote' => 'Zacytuj we własnej odpowiedzi',
             'search' => 'Wyszukaj',
@@ -152,7 +149,7 @@ return [
                 'max_options' => 'Możliwości wyboru na każdego użytkownika',
                 'max_options_info' => 'Liczba możliwości, jakie każdy użytkownik może zaznaczyć.',
                 'options' => 'Możliwości wyboru',
-                'options_info' => 'Umieszczaj wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
+                'options_info' => 'Umieść wszystkie możliwości wyboru w oddzielnych liniach. Możesz wprowadzić maksymalnie 10 możliwości.',
                 'title' => 'Pytanie',
                 'vote_change' => 'Zezwól na zmianę głosów.',
                 'vote_change_info' => 'Jeżeli ta opcja zostanie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',

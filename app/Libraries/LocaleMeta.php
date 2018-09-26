@@ -23,6 +23,14 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'bg' => [
+            'name' => 'Български',
+            'flag' => 'BG',
+        ],
+        'cs' => [
+            'name' => 'Česky',
+            'flag' => 'CZ',
+        ],
         'da' => [
             'name' => 'Dansk',
             'flag' => 'DK',
@@ -90,6 +98,10 @@ class LocaleMeta
         'pt-br' => [
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
+        ],
+        'ro' => [
+            'name' => 'Română',
+            'flag' => 'RO',
         ],
         'ru' => [
             'name' => 'Русский',

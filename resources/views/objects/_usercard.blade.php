@@ -44,7 +44,7 @@
             <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
-                        <i class="fas fa-fw fa-sync fa-spin"></i>
+                        {!! spinner() !!}
                     </div>
                     @if (!isset($loading))
                         <img class="usercard__avatar usercard__avatar--main" src="{{$user->user_avatar}}">
@@ -77,7 +77,7 @@
                             @endif
                             <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
 
-                            @if ($user->exists)
+                            @if ($user->exists && (!Auth::check() || !Auth::user()->hasBlocked($user)))
                                 <div class="usercard__icon">
                                     <a
                                         class="user-action-button user-action-button--message"

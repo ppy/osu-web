@@ -26,28 +26,28 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussão está trancada.',
-        'first_post' => 'Não é possível deletar a postagem inicial.',
+        'first_post' => 'Não é possível excluir a publicação inicial.',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Marcação de tempo é especificada mas o mapa está faltando.',
-        'beatmapset_no_hype' => "Mapa não pode ser hypado.",
+        'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
+        'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
         'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
         'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
-        'invalid_beatmapset_id' => 'Mapa inválido especificado.',
+        'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
         'locked' => 'Discussão está trancada.',
-        'mapper_note_wrong_user' => 'Apenas o dono do mapa pode postar notas de mapper.',
+        'mapper_note_wrong_user' => 'Apenas o dono do beatmap pode postar notas de mapper.',
 
         'hype' => [
             'guest' => 'Precisa estar conectado para hypar.',
-            'hyped' => 'Você já hypou este mapa.',
+            'hyped' => 'Você já hypou este beatmap.',
             'limit_exceeded' => 'Você usou todo seu hype.',
-            'not_hypeable' => 'Este mapa não pode ser hypado',
-            'owner' => 'Não é possível hypar seu próprio mapa.',
+            'not_hypeable' => 'Este beatmap não pode ser hypado',
+            'owner' => 'Não é possível hypar seu próprio beatmap.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do mapa.',
+            'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do beatmap.',
             'negative' => "Marcação de tempo não pode ser negativa.",
         ],
     ],
@@ -63,8 +63,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um mapa não é permitido.',
-            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um mapa não é permitido.',
+            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
+            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
         ],
 
         'topic_poll' => [

@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'touch',
     ],
+
+    'privacy' => [
+        'title' => 'Privacy',
+        'friends_only' => 'Blokkeer privébericht van mensen buiten je vriendenlijst',
+    ],
 ];

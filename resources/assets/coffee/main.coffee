@@ -17,6 +17,9 @@
 ###
 
 @polyfills ?= new Polyfills
+
+Turbolinks.setProgressBarDelay(0)
+
 Lang.setLocale(currentLocale)
 jQuery.timeago.settings.allowFuture = true
 
@@ -33,14 +36,17 @@ $(document).on 'turbolinks:load', ->
   StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
+# ensure currentUser is updated early enough.
+@currentUserObserver ?= new CurrentUserObserver
+
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditPlaystyle ?= new AccountEditPlaystyle
+@accountEditBlocklist ?= new AccountEditBlocklist
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new ClickMenu
-@currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -72,7 +78,6 @@ $(document).on 'turbolinks:load', ->
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
-@twitchPlayer ?= new TwitchPlayer
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
@@ -83,8 +88,7 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
-@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
+@twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -103,8 +107,19 @@ reactTurbolinks.register 'friendButton', FriendButton, (target) ->
   container: target
   user_id: parseInt(target.dataset.target)
 
+# Globally init block buttons
+reactTurbolinks.register 'blockButton', BlockButton, (target) ->
+  container: target
+  user_id: parseInt(target.dataset.target)
+
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
+
+reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
+  osu.parseJson 'json-spotlight-select-options'
+
+reactTurbolinks.register 'comments', Comments, (el) ->
+  JSON.parse(el.dataset.comments)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

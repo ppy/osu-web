@@ -79,4 +79,9 @@ return [
         'tablet' => 'tablet',
         'touch' => 'layar sentuh',
     ],
+
+    'privacy' => [
+        'title' => 'Kebijakan Privasi',
+        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
+    ],
 ];

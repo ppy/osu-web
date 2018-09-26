@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'title' => 'osu!',
     'blank' => 'true',
-    'body_additional_classes' => 'osu-layout--body-dark'
+    'bodyAdditionalClasses' => 'osu-layout--body-dark'
 ])
 
-@section("content")
+@section('content')
     <nav class="osu-layout__row">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')
@@ -54,24 +54,29 @@
                         data-visibility="hidden"
                     >
                         @foreach (config('app.available_locales') as $locale)
-                            <a
-                                class="landing-nav__link landing-nav__link--locale"
-                                href="{{ route('set-locale', ['locale' => $locale]) }}"
-                                data-remote="1"
-                                data-method="POST"
+                            <button
+                                type="button"
+                                class="landing-nav__locale-button"
+                                @if ($locale !== App::getLocale())
+                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
+                                    data-remote="1"
+                                    data-method="POST"
+                                @endif
                             >
-                                <span class="landing-nav__locale-link-pointer">
-                                    <span class="fas fa-chevron-right"></span>
+                                <span class="landing-nav__link landing-nav__link--locale">
+                                    <span class="landing-nav__locale-link-pointer">
+                                        <span class="fas fa-chevron-right"></span>
+                                    </span>
+
+                                    <img
+                                        class="landing-nav__locale-flag"
+                                        src="{{ flag_path(locale_flag($locale)) }}"
+                                        alt="{{ $locale }}"
+                                    >
+
+                                    {{ locale_name($locale) }}
                                 </span>
-
-                                <img
-                                    class="landing-nav__locale-flag"
-                                    src="{{ flag_path(locale_flag($locale)) }}"
-                                    alt="{{ $locale }}"
-                                >
-
-                                {{ locale_name($locale) }}
-                            </a>
+                            </button>
                         @endforeach
                     </div>
                 </div>
@@ -179,16 +184,6 @@
     <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
-                href="{{ route('support-the-game') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--support"
-            ></a>
-
-            <a
-                href="{{ action('StoreController@getListing') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--store"
-            ></a>
-
-            <a
                 href="https://blog.ppy.sh/"
                 class="landing-middle-buttons__button landing-middle-buttons__button--blog"
             ></a>
@@ -199,7 +194,7 @@
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
-                    <div class="osu-layout__col osu-layout__col--sm-3">
+                    <div class="osu-layout__col osu-layout__col--sm-4">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
                                 <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>

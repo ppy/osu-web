@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Sentry;
 
 class Event extends Model
@@ -29,7 +30,7 @@ class Event extends Model
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
-        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
         'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
@@ -47,7 +48,6 @@ class Event extends Model
     protected $primaryKey = 'event_id';
 
     protected $dates = ['date'];
-    protected $guarded = [];
     public $timestamps = false;
 
     public static function generate($type, $options)
@@ -57,7 +57,7 @@ class Event extends Model
                 $beatmapset = $options['beatmapset'];
 
                 $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->title);
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
                 $userName = e($beatmapset->user->username);
                 $userUrl = e(route('users.show', $beatmapset->user, false));
                 $approval = e($beatmapset->status());
@@ -125,6 +125,10 @@ class Event extends Model
         }
 
         if (isset($params)) {
+            if (!isset($params['date'])) {
+                $params['date'] = Carbon::now();
+            }
+
             return static::create($params);
         }
     }

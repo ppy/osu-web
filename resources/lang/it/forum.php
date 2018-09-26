@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Scrivi nuovo topic',
+        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
         'post_reply' => 'Invia',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'started_by' => 'da :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Topic a cui sei iscritto',
                 'unread' => 'Topic con nuove risposte',
             ],
-
-            'info' => [
-                'total' => 'Sei iscritto a :total topic.',
-                'unread' => 'Hai :unread risposte non lette nei topic a cui sei iscritto.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'login_reply' => 'Accedi per rispondere',
             'reply' => 'Rispondi',
             'reply_with_quote' => 'Quota il post per rispondere',
             'search' => 'Cerca',

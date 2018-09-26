@@ -20,7 +20,6 @@
 
 namespace App\Models\Forum;
 
-use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -40,7 +39,6 @@ class Post extends Model implements AfterCommit
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 
@@ -53,22 +51,6 @@ class Post extends Model implements AfterCommit
 
     private $skipBeatmapPostRestrictions = false;
     private $skipBodyPresenceCheck = false;
-
-    /*
-    |--------------------------------------------------------------------------
-    | Elasticsearch mappings; can't put in a Trait.
-    |--------------------------------------------------------------------------
-    */
-    const ES_MAPPINGS = [
-        'post_id' => ['type' => 'long'],
-        'topic_id' => ['type' => 'long'],
-        'poster_id' => ['type' => 'long'],
-        'forum_id' => ['type' => 'long'],
-        'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']],
-    ];
 
     public function forum()
     {
@@ -300,11 +282,6 @@ class Post extends Model implements AfterCommit
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
     }
 
-    public function scopeLast($query)
-    {
-        return $query->orderBy('post_id', 'desc')->limit(1);
-    }
-
     public function scopeShowDeleted($query, $showDeleted)
     {
         if ($showDeleted) {
@@ -314,11 +291,7 @@ class Post extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        if ($this->trashed()) {
-            dispatch(new EsDeleteDocument($this));
-        } else {
-            dispatch(new EsIndexDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 
     public function markRead($user)
@@ -327,11 +300,17 @@ class Post extends Model implements AfterCommit
             return;
         }
 
-        $this->topic->markRead($user, $this->post_time);
+        $topic = $this->topic()->withTrashed()->first();
+
+        if ($topic === null) {
+            return;
+        }
+
+        $topic->markRead($user, $this->post_time);
 
         // reset notification status when viewing latest post
-        if ($this->topic->topic_last_post_id === $this->getKey()) {
-            TopicWatch::lookupQuery($this->topic, $user)->update(['notify_status' => false]);
+        if ($topic->topic_last_post_id === $this->getKey()) {
+            TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
         }
     }
 }

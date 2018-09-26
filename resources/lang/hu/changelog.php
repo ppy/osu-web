@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'hírfolyam',
     'generic' => 'Hibajavítások és kisebb fejlesztések.',
-    'users-online' => '1 felhasználó online |:users felhasználó online',
 
-    'prefixes' => [
-        'add' => 'kiegészítés',
-        'fix' => 'javítás',
-        'misc' => 'különféle',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => ':user által',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Változtatások :info',
+            'info' => 'Listázás',
+        ],
     ],
 
     'support' => [

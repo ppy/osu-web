@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/QAT group member can post mapper notes.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => "Can't vote on own discussion.",
@@ -48,22 +52,11 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
-                ],
-
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
-            ],
-        ],
+        'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
+        'friends_only' => 'User is blocking messages from people not on their friends list.',
+        'moderated' => 'That channel is currently moderated.',
+        'no_access' => 'You do not have access to that channel.',
+        'restricted' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'contest' => [
@@ -71,6 +64,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'No permission to moderate this forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Only last post can be deleted.',
@@ -95,7 +92,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'double_post' => 'Please edit your last post instead of posting again.',
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
@@ -155,7 +152,7 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
     ],

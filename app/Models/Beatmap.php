@@ -29,7 +29,6 @@ class Beatmap extends Model
 
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
-    protected $guarded = [];
 
     protected $casts = [
         'orphaned' => 'boolean',
@@ -89,19 +88,26 @@ class Beatmap extends Model
 
     public function getDiffSizeAttribute($value)
     {
+        /*
+         * Matches client implementation.
+         * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
+         * References:
+         * - (implmentation) https://github.com/ppy/osu/blob/c9276ce2b8b2eb728b1e5fc74f5f7ef81b0c6e09/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L36
+         * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
+         */
         if ($this->mode === 'mania') {
-            // Matches client implementation.
-            // Reference: https://github.com/ppy/osu/blob/c9276ce2b8b2eb728b1e5fc74f5f7ef81b0c6e09/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L36
+            $roundedValue = (int) round($value, 0, PHP_ROUND_HALF_EVEN);
+
             if ($this->convert) {
                 $sliderOrSpinner = $this->countSlider + $this->countSpinner;
                 $total = max(1, $sliderOrSpinner + $this->countNormal);
                 $percentSliderOrSpinner = $sliderOrSpinner / $total;
 
-                $accuracy = (int) round($this->diff_overall);
+                $accuracy = (int) round($this->diff_overall, 0, PHP_ROUND_HALF_EVEN);
 
                 if ($percentSliderOrSpinner < 0.2) {
                     return 7;
-                } elseif ($percentSliderOrSpinner < 0.3 || round($value) >= 5) {
+                } elseif ($percentSliderOrSpinner < 0.3 || $roundedValue >= 5) {
                     return $accuracy > 5 ? 7 : 5;
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
@@ -109,7 +115,7 @@ class Beatmap extends Model
                     return clamp($accuracy + 1, 4, 7);
                 }
             } else {
-                return (int) max(1, round($value));
+                return max(1, $roundedValue);
             }
         }
 

@@ -20,20 +20,19 @@
 
 namespace App\Models\Forum;
 
-use DB;
-
 class Forum extends Model
 {
     protected $table = 'phpbb_forums';
     protected $primaryKey = 'forum_id';
-    protected $guarded = [];
 
     protected $dates = ['forum_last_post_time'];
     protected $dateFormat = 'U';
     public $timestamps = false;
 
     protected $casts = [
+        'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
+        'moderator_groups' => 'array',
     ];
 
     public static function lastTopics($forum = null)
@@ -208,9 +207,31 @@ class Forum extends Model
         return $this->forum_id === config('osu.forum.feature_forum_id');
     }
 
+    public function topicsAdded($count)
+    {
+        $this->getConnection()->transaction(function () use ($count) {
+            $this->update([
+                'forum_topics' => db_unsigned_increment('forum_topics', $count),
+                'forum_topics_real' => db_unsigned_increment('forum_topics_real', $count),
+            ]);
+        });
+    }
+
+    public function postsAdded($count)
+    {
+        $this->getConnection()->transaction(function () use ($count) {
+            $this->fill([
+                'forum_posts' => db_unsigned_increment('forum_posts', $count),
+            ]);
+            $this->setLastPostCache();
+
+            $this->save();
+        });
+    }
+
     public function refreshCache()
     {
-        DB::transaction(function () {
+        $this->getConnection()->transaction(function () {
             $this->setTopicsCountCache();
             $this->setPostsCountCache();
             $this->setLastPostCache();

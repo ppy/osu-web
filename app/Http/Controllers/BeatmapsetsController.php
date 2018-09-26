@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
@@ -62,7 +63,6 @@ class BeatmapsetsController extends Controller
         $statuses = [
             ['id' => 7, 'name' => trans('beatmaps.status.any')],
             ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
             ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
             ['id' => 8, 'name' => trans('beatmaps.status.loved')],
             ['id' => 2, 'name' => trans('beatmaps.status.faves')],
@@ -129,10 +129,11 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
+            $commentBundle = new CommentBundle($beatmapset);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
         }
     }
 
@@ -213,6 +214,14 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
+        $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
+            ->where('timestamp', '>', Carbon::now()->subHour()->getTimestamp())
+            ->count();
+
+        if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
+            abort(403);
+        }
+
         $noVideo = get_bool(Request::input('noVideo', false));
         $mirror = BeatmapMirror::getRandomForRegion(request_country(request()));
 
@@ -234,6 +243,26 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
         $nomination = $beatmapset->nominate(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
+        }
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        (new NotifyBeatmapsetUpdate([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]))->delayedDispatch();
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
+    public function love($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetLove')->ensureCan();
+
+        $nomination = $beatmapset->love(Auth::user());
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }

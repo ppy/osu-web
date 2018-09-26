@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
 @php
     // always ignore empty keys.
     $hasErrors = count(array_flatten($validationErrors)) > 0
 @endphp
 
-@section("content")
+@section('content')
     @include("store.header")
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
@@ -37,21 +37,10 @@
             @endif
 
             @if ($order->isProcessing())
-                @php
-                    $cancelLink = Html::link(
-                        route('store.checkout.destroy'),
-                        trans('store.checkout.pending_checkout.link_text'),
-                        [
-                            'data-method' => 'DELETE',
-                            'data-confirm' => trans('common.confirmation'),
-                            'data-remote' => '1',
-                        ]
-                    );
-                @endphp
                 <div class="alert alert-danger">
                     <p>
                         {{ trans('store.checkout.pending_checkout.line_1') }}<br>
-                        {!! trans('store.checkout.pending_checkout.line_2', ['link' => $cancelLink]) !!}
+                        {{ trans('store.checkout.pending_checkout.line_2') }}
                     </p>
                 </div>
             @endif

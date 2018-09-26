@@ -61,7 +61,7 @@ class ProfilePage.HeaderMain extends React.Component
     div
       className: mainClasses
       style:
-        backgroundImage: "url('#{@state.coverUrl}')"
+        backgroundImage: osu.urlPresence(@state.coverUrl)
 
       @renderTournamentBanner modifiers: ['top']
 
@@ -69,9 +69,7 @@ class ProfilePage.HeaderMain extends React.Component
         className: 'profile-header__spinner'
         'data-visibility': 'hidden' if !@state.isCoverUpdating
 
-        div className: 'spinner',
-          div className: 'spinner__cube'
-          div className: 'spinner__cube spinner__cube--2'
+        el Spinner
 
       div
         className: 'profile-header__column profile-header__column--info'

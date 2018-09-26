@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ο ρυθμός είναι μόνο ένα *κλικ * μακριά! Με Ouendan/EBA, Taiko και αυθεντικούς τρόπους παιχνιδιού, καθώς και έναν πλήρως λειτουργικό επεξεργαστή επιπέδων.',
+        'page_description' => 'osu! - Ο ρυθμός είναι μόνο ένα *κλικ* μακριά! Με Ouendan/EBA, Taiko και αυθεντικά gameplay modes, καθώς και έναν πλήρως λειτουργικό level editor.',
     ],
 
     'menu' => [
@@ -29,11 +29,11 @@ return [
             'account-edit' => 'ρυθμίσεις',
             'friends-index' => 'φίλοι',
             'changelog-index' => 'αρχείο καταγραφής αλλαγών',
-            'changelog-show' => 'έκδοση',
+            'changelog-build' => 'έκδοση',
             'getDownload' => 'λήψη',
             'getIcons' => 'εικονίδια',
             'groups-show' => 'ομάδες',
-            'index' => 'ταμπλό',
+            'index' => 'επισκόπηση',
             'legal-show' => 'πληροφορίες',
             'news-index' => 'ειδήσεις',
             'news-show' => 'ειδήσεις',
@@ -70,7 +70,7 @@ return [
             '_' => 'κατατάξεις',
             'index' => 'επίδοση',
             'performance' => 'επίδοση',
-            'charts' => 'προβολείς',
+            'charts' => 'spotlights',
             'score' => 'βαθμολογία',
             'country' => 'χώρα',
             'kudosu' => 'kudosu',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Νομική Υπόσταση',
             'copyright' => 'Δικαιώματα Πνευματικής Ιδιοκτησίας (DMCA)',
+            'privacy' => 'Απόρρητο',
             'server_status' => 'Κατάσταση Διακομιστή',
+            'source_code' => 'Πηγαίος Κώδικας',
             'terms' => 'Όροι Παροχής Υπηρεσιών',
         ],
     ],

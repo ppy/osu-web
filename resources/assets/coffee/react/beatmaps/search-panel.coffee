@@ -52,25 +52,32 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderGuest: =>
     div
-      className: 'osu-page-header osu-page-header--beatmapsets-header-guest'
+      ref: @props.innerRef
+      className: 'beatmapsets-search'
       div
         className: 'osu-page-header__background'
         style:
-          backgroundImage: "url(#{@props.background})"
-      h1
-        className: 'osu-page-header__title'
-        'Beatmaps'
+          backgroundImage: osu.urlPresence(@props.background)
+      div className: 'fancy-search fancy-search--beatmapsets js-user-link',
+        input
+          className: 'fancy-search__input'
+          disabled: true
+          type: 'textbox'
+          placeholder: osu.trans('beatmaps.listing.search.login_required')
+        div className: 'fancy-search__icon',
+          i className: 'fas fa-search'
 
 
   renderUser: =>
     filters = @props.availableFilters
 
     div
+      ref: @props.innerRef
       className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
       div
         className: 'beatmapsets-search__background'
         style:
-          backgroundImage: "url(#{@props.background})"
+          backgroundImage: osu.urlPresence(@props.background)
       div className: 'fancy-search fancy-search--beatmapsets',
         input
           className: 'fancy-search__input js-beatmapsets-search-input'
@@ -133,24 +140,19 @@ class Beatmaps.SearchPanel extends React.PureComponent
           multiselect: true
           selected: @props.filters.extra
 
-        if currentUser.is_supporter
-          [
-            el Beatmaps.SearchFilter,
-              key: 'rank'
-              name: 'rank'
-              title: osu.trans('beatmaps.listing.search.filters.rank')
-              options: filters.ranks
-              multiselect: true
-              selected: @props.filters.rank
+        el Beatmaps.SearchFilter,
+          name: 'rank'
+          title: osu.trans('beatmaps.listing.search.filters.rank')
+          options: filters.ranks
+          multiselect: true
+          selected: @props.filters.rank
 
-            el Beatmaps.SearchFilter,
-              key: 'played'
-              name: 'played'
-              title: osu.trans('beatmaps.listing.search.filters.played')
-              options: filters.played
-              default: @props.filterDefaults.played
-              selected: @props.filters.played
-          ]
+        el Beatmaps.SearchFilter,
+          name: 'played'
+          title: osu.trans('beatmaps.listing.search.filters.played')
+          options: filters.played
+          default: @props.filterDefaults.played
+          selected: @props.filters.played
 
 
   submit: (e) =>

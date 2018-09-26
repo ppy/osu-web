@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\ForumUpdateNotifier;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -44,7 +45,7 @@ class TopicsController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-topics-'.current_action());
+        view()->share('currentAction', 'forum-topics-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'create',
@@ -79,7 +80,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
@@ -102,14 +103,17 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        $moderationPriv = priv_check('ForumModerate', $topic->forum);
+
+        $moderationPriv->ensureCan();
+        $userCanModerate = $moderationPriv->can();
 
         $type = 'lock';
         $state = get_bool(Request::input('lock'));
         $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
         $topic->lock($state);
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'));
     }
 
     public function move($id)
@@ -118,7 +122,8 @@ class TopicsController extends Controller
         $originForum = $topic->forum;
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumModerate', $originForum)->ensureCan();
+        priv_check('ForumModerate', $destinationForum)->ensureCan();
 
         $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
@@ -132,7 +137,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
@@ -155,11 +160,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $this->validate($request, [
-            'body' => 'required',
-        ]);
-
-        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
+        try {
+            $post = $topic->addPostOrExplode(Auth::user(), request('body'));
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
@@ -184,14 +189,18 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
-        $showDeleted = priv_check('ForumTopicModerate')->can();
-
         $topic = Topic
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
-            ])->showDeleted($showDeleted)->findOrFail($id);
+            ])->withTrashed()->findOrFail($id);
+
+        $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
+
+        if ($topic->trashed() && !$userCanModerate) {
+            abort(404);
+        }
 
         if ($topic->forum === null) {
             abort(404);
@@ -199,7 +208,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted);
+        $posts = $topic->posts()->showDeleted($userCanModerate);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -244,6 +253,7 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
+            ->with('forum')
             ->with('topic')
             ->with('user.rank')
             ->with('user.country')
@@ -256,7 +266,7 @@ class TopicsController extends Controller
         }
 
         $firstPostId = $topic->posts()
-            ->showDeleted($showDeleted)
+            ->showDeleted($userCanModerate)
             ->orderBy('post_id', 'asc')
             ->select('post_id')
             ->first()
@@ -291,7 +301,8 @@ class TopicsController extends Controller
                 'posts',
                 'firstPostPosition',
                 'firstPostId',
-                'topic'
+                'topic',
+                'userCanModerate'
             )
         );
     }
@@ -301,11 +312,6 @@ class TopicsController extends Controller
         $forum = Forum::findOrFail($request->get('forum_id'));
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
-
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-        ]);
 
         if (get_bool($request->get('with_poll'))) {
             $pollParams = get_params($request, 'forum_topic_poll', [
@@ -366,7 +372,7 @@ class TopicsController extends Controller
 
             return [];
         } else {
-            abort(422);
+            return error_popup($topic->validationErrors()->toSentence());
         }
     }
 

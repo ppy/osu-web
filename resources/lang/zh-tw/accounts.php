@@ -79,4 +79,9 @@ return [
         'tablet' => '繪圖板',
         'touch' => '觸控螢幕',
     ],
+
+    'privacy' => [
+        'title' => '隱私政策',
+        'friends_only' => '過濾來自好友以外的訊息',
+    ],
 ];

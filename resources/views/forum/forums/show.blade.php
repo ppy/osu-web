@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
     'search' => [
         'params' => [
             'forum_id' => $forum->forum_id,
@@ -27,7 +27,7 @@
     'pageDescription' => $forum->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
             @include('forum._header_breadcrumb')
@@ -77,19 +77,34 @@
 
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
+                <div class="forum-topics-spacer">
+                    <div class="forum-topics-spacer__buttons">
+                        @include('forum.forums._new_topic', compact('forum'))
+                    </div>
+                </div>
+
                 @include('forum.forums._topics', [
                     'title' => trans('forum.topics._'),
                     'topics' => $topics,
-                    'withNewTopicLink' => $forum->isOpen(),
                 ])
 
-                @include('forum._pagination', ['object' => $topics
-                    ->fragment('topics')
-                    ->appends([
-                        'sort' => Request::input('sort'),
-                        'with_replies' => Request::input('with_replies'),
-                    ])
-                ])
+                <div class="forum-topics-spacer forum-topics-spacer--pager">
+                    <div class="forum-topics-spacer__buttons">
+                        @include('forum.forums._new_topic', compact('forum'))
+                    </div>
+
+                    <div class="forum-topics-spacer__pager">
+                        @include('objects._pagination_v0', ['object' => $topics
+                            ->fragment('topics')
+                            ->appends([
+                                'sort' => Request::input('sort'),
+                                'with_replies' => Request::input('with_replies'),
+                            ])
+                        ])
+                    </div>
+
+                    <div class="forum-topics-spacer__buttons">{{-- keeps pager centred --}}</div>
+                </div>
             @endif
         </div>
     </div>

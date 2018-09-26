@@ -77,12 +77,10 @@ class WikiController extends Controller
 
     private function showImage($path)
     {
-        try {
-            $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
-        } catch (GitHubNotFoundException $e) {
+        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
+
+        if ($image === null) {
             abort(404);
-        } catch (GitHubTooLargeException $e) {
-            abort(403);
         }
 
         return response($image['data'], 200)

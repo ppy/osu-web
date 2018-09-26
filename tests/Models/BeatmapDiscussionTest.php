@@ -74,7 +74,7 @@ class BeatmapDiscussionTest extends TestCase
             'user_id' => $modder->getKey(),
         ]);
 
-        $this->assertFalse($discussion->isValid());
+        $this->assertTrue($discussion->isValid());
 
         $discussion->message_type = 'problem';
         $this->assertTrue($discussion->isValid());

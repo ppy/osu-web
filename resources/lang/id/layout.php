@@ -29,7 +29,7 @@ return [
             'account-edit' => 'pengaturan',
             'friends-index' => 'teman',
             'changelog-index' => 'riwayat perubahan',
-            'changelog-show' => 'versi',
+            'changelog-build' => 'versi',
             'getDownload' => 'unduh',
             'getIcons' => 'ikon',
             'groups-show' => 'grup',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artis unggulan',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
             'beatmapset-watches-index' => 'daftar pengamatan modding',
@@ -186,15 +186,17 @@ return [
         'legal' => [
             '_' => 'Status Resmi',
             'copyright' => 'Hak Cipta (DMCA)',
+            'privacy' => 'Privasi',
             'server_status' => 'Status Server',
+            'source_code' => 'Kode Sumber',
             'terms' => 'Ketentuan Layanan',
         ],
     ],
 
     'errors' => [
         '404' => [
-            'error' => 'Halaman Hilang',
-            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
+            'error' => 'Laman Hilang',
+            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
             'error' => "Anda seharusnya tidak di sini.",
@@ -206,7 +208,7 @@ return [
         ],
         '405' => [
             'error' => 'Halaman Hilang',
-            'description' => "Maaf, tapi halaman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '500' => [
             'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',

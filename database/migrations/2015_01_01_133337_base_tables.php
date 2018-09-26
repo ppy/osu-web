@@ -238,6 +238,25 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_changelog', 'DYNAMIC');
 
+        Schema::create('osu_charts', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedSmallInteger('chart_id', true);
+            $table->string('acronym', 10)->default('');
+            $table->string('name', 50)->default('');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->boolean('mode_specific')->default(0);
+            $table->string('type', 50)->default('monthly');
+            $table->boolean('active')->default(1);
+            $table->date('chart_month')->nullable();
+            $table->unique('acronym', 'acronym');
+            $table->index('end_date', 'enddate');
+            $table->index(['type', 'chart_month'], 'type');
+        });
+        $this->setRowFormat('osu_charts', 'DYNAMIC');
+
         Schema::create('osu_builds', function ($table) {
             $table->mediumIncrements('build_id');
             $table->string('version', 40)->nullable();
@@ -440,6 +459,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -467,6 +487,42 @@ class BaseTables extends Migration
             $table->bigInteger('disk_space_free')->nullable();
         });
         $this->setRowFormat('osu_mirrors', 'DYNAMIC');
+
+        Schema::create('osu_replays', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays', 'DYNAMIC');
+
+        Schema::create('osu_replays_fruits', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_fruits', 'DYNAMIC');
+
+        Schema::create('osu_replays_mania', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_mania', 'DYNAMIC');
+
+        Schema::create('osu_replays_taiko', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+        });
+        $this->setRowFormat('osu_replays_taiko', 'DYNAMIC');
 
         Schema::create('osu_scores_fruits_high', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -572,6 +628,7 @@ class BaseTables extends Migration
             $table->integer('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -603,6 +660,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -662,6 +720,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -852,6 +911,26 @@ class BaseTables extends Migration
         $partitions .= 'PARTITION p3 VALUES LESS THAN (4)';
         DB::statement("ALTER TABLE `osu_user_performance_rank` PARTITION BY RANGE (mode) ({$partitions});");
         $this->setRowFormat('osu_user_performance_rank', 'DYNAMIC');
+
+        Schema::create('osu_user_reports', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->increments('report_id');
+            $table->integer('user_id');
+            $table->unsignedInteger('score_id')->default(0);
+            $table->tinyInteger('mode')->default(0);
+            $table->enum('reason', ['Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other'])->default('Cheating');
+            $table->integer('reporter_id');
+            $table->text('comments');
+            $table->timestamp('timestamp')->useCurrent();
+
+            $table->unique(['reporter_id', 'user_id', 'mode', 'score_id'], 'unique-new');
+            $table->index('timestamp', 'timestamp');
+            $table->index('user_id', 'user_lookup');
+        });
+
+        $this->setRowFormat('osu_user_reports', 'DYNAMIC');
 
         Schema::create('osu_user_replayswatched', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -1123,6 +1202,17 @@ class BaseTables extends Migration
             $table->index(['left_id', 'right_id'], 'left_right_id');
         });
         $this->setRowFormat('phpbb_forums', 'DYNAMIC');
+
+        Schema::create('phpbb_forums_track', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumInteger('user_id')->unsigned()->default(0);
+            $table->mediumInteger('forum_id')->unsigned()->default(0);
+            $table->integer('mark_time')->unsigned()->default(0);
+            $table->primary(['user_id', 'forum_id']);
+        });
+        $this->setRowFormat('phpbb_forums_track', 'DYNAMIC');
 
         Schema::create('phpbb_posts', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -1517,6 +1607,10 @@ class BaseTables extends Migration
         Schema::drop('osu_leaders_taiko');
         Schema::drop('osu_login_attempts');
         Schema::drop('osu_mirrors');
+        Schema::drop('osu_replays');
+        Schema::drop('osu_replays_fruits');
+        Schema::drop('osu_replays_mania');
+        Schema::drop('osu_replays_taiko');
         Schema::drop('osu_scores_fruits_high');
         Schema::drop('osu_scores_fruits');
         Schema::drop('osu_scores_high');
@@ -1533,6 +1627,7 @@ class BaseTables extends Migration
         Schema::drop('osu_user_month_playcount');
         Schema::drop('osu_user_performance_rank');
         Schema::drop('osu_user_replayswatched');
+        Schema::drop('osu_user_reports');
         Schema::drop('osu_user_stats_fruits');
         Schema::drop('osu_user_stats_mania');
         Schema::drop('osu_user_stats');

@@ -43,22 +43,22 @@ return [
         ],
 
         'profile' => [
-            'title' => '프로필 수정',
+            'title' => '프로필',
 
             'user' => [
-                'user_from' => '지역',
+                'user_from' => '거주지',
                 'user_interests' => '관심 분야',
                 'user_msnm' => 'Skype',
                 'user_occ' => '직업',
                 'user_twitter' => 'Twitter',
-                'user_website' => '사이트',
+                'user_website' => '웹사이트',
                 'user_discord' => 'Discord',
             ],
         ],
 
         'signature' => [
-            'title' => '시그니처',
-            'update' => '수정',
+            'title' => '서명',
+            'update' => '적용',
         ],
     ],
 
@@ -77,6 +77,11 @@ return [
         'mouse' => '마우스',
         'keyboard' => '키보드',
         'tablet' => '태블릿',
-        'touch' => '터치',
+        'touch' => '터치스크린',
+    ],
+
+    'privacy' => [
+        'title' => '개인 정보',
+        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
     ],
 ];

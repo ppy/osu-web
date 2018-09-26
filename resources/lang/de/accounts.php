@@ -29,8 +29,8 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuelle e-mail',
-            'new' => 'neue e-mail',
+            'current' => 'Aktuelle E-Mail Adresse',
+            'new' => 'Neue E-Mail',
             'new_confirmation' => 'e-mail bestätigen',
             'title' => 'E-Mail',
         ],
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'tastatur',
         'tablet' => 'tablet',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privatsphäre',
+        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
     ],
 ];

@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'フィード',
     'generic' => 'バグ修正と細かい調整',
-    'users-online' => ':users人オンライン',
 
-    'prefixes' => [
-        'add' => '追加要素',
-        'fix' => '修正',
-        'misc' => 'その他',
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

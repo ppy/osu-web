@@ -29,7 +29,7 @@ return [
             'account-edit' => 'beállítások',
             'friends-index' => 'barátok',
             'changelog-index' => 'változások listája',
-            'changelog-show' => 'verzió',
+            'changelog-build' => 'verzió',
             'getDownload' => 'letöltés',
             'getIcons' => 'ikonok',
             'groups-show' => 'csoportok',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Jogok és állapot',
             'copyright' => 'Szerzői jog (DMCA)',
+            'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
+            'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',
         ],
     ],

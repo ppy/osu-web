@@ -74,6 +74,8 @@ class @ForumTopicReply
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
 
+    @enableFlash() if @getState('sticking') != '1' && currentUser.id?
+
 
   activateWithReply: (e, data) =>
     data += '\n'
@@ -97,6 +99,16 @@ class @ForumTopicReply
     @setState 'active', '0'
     button.classList.remove 'js-activated' for button in @stickButtons
     $.publish 'stickyFooter:check'
+    @disableFlash()
+
+
+  disableFlash: ->
+    $('.js-forum-topic-reply').removeClass('js-forum-topic-reply-flash')
+
+
+  enableFlash: =>
+    $('.js-forum-topic-reply').addClass('js-forum-topic-reply-flash')
+    Timeout.set 500, @disableFlash # so animation doesn't play again when element gets transplanted from unsticking.
 
 
   inputChange: =>

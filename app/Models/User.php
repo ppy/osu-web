@@ -22,9 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
-use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -40,13 +38,13 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, Store\UserTrait;
+    use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';
@@ -56,6 +54,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
+        'user_allow_pm' => 'boolean',
         'user_timezone', 'float',
     ];
 
@@ -81,25 +80,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
-    ];
-
-    const ES_MAPPINGS = [
-        'is_old' => ['type' => 'boolean'],
-        'user_lastvisit' => ['type' => 'date'],
-        'username' => [
-            'type' => 'text',
-            'analyzer' => 'username_lower',
-            'fields' => [
-                // for exact match
-                'raw' => ['type' => 'keyword'],
-                // try match sloppy search guesses
-                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
-                // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
-            ],
-        ],
-        'user_warnings' => ['type' => 'short'],
-        'user_type' => ['type' => 'short'],
     ];
 
     private $memoized = [];
@@ -200,6 +180,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             $history = new UsernameChangeHistory();
             $history->username = $newUsername;
             $history->username_last = $oldUsername;
+            $history->timestamp = Carbon::now();
             $history->type = $type;
 
             if (!$this->usernameChangeHistory()->save($history)) {
@@ -450,6 +431,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['osu_playstyle'] = $styles;
     }
 
+    public function getPmFriendsOnlyAttribute()
+    {
+        return !$this->user_allow_pm;
+    }
+
+    public function setPmFriendsOnlyAttribute($value)
+    {
+        $this->user_allow_pm = !$value;
+    }
+
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
@@ -459,28 +450,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isSpecial()
     {
         return $this->user_id !== null && present($this->user_colour);
-    }
-
-    public function getUserBirthdayAttribute($value)
-    {
-        if (presence($value) === null) {
-            return;
-        }
-
-        $date = explode('-', $value);
-        $date = array_map(function ($x) {
-            return (int) trim($x);
-        }, $date);
-        if ($date[2] === 0) {
-            return;
-        }
-
-        return Carbon::create($date[2], $date[1], $date[0]);
-    }
-
-    public function age()
-    {
-        return $this->user_birthday->age ?? null;
     }
 
     public function cover()
@@ -698,6 +667,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->memoized[__FUNCTION__];
     }
 
+    /**
+     * User group to be displayed in preference over other groups.
+     *
+     * @return string
+     */
+    public function defaultGroup()
+    {
+        if ($this->group_id === UserGroup::GROUPS['admin']) {
+            return 'default';
+        }
+
+        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+    }
+
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
@@ -722,6 +705,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserBadge::class, 'user_id');
     }
 
+    public function githubUsers()
+    {
+        return $this->hasMany(GithubUser::class, 'user_id');
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
@@ -730,6 +718,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+    }
+
+    public function reportedIn()
+    {
+        return $this->hasMany(UserReport::class, 'user_id');
+    }
+
+    public function reportsMade()
+    {
+        return $this->hasMany(UserReport::class, 'reporter_id');
     }
 
     public function userGroups()
@@ -1003,16 +1001,41 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserRelation::class, 'user_id');
     }
 
+    public function blocks()
+    {
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+    }
+
     public function friends()
     {
-        // 'cuz hasManyThrough is derp
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+    }
 
-        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    public function channels()
+    {
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
+    }
+
+    public function maxBlocks()
+    {
+        return ceil($this->maxFriends() / 10);
     }
 
     public function maxFriends()
     {
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+    }
+
+    public function beatmapsetDownloadAllowance()
+    {
+        return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
     }
 
     public function uncachedFollowerCount()
@@ -1036,11 +1059,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
-    }
-
-    public function foes()
-    {
-        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -1091,6 +1109,20 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function hasBlocked(self $user)
+    {
+        return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
+    }
+
+    public function hasFriended(self $user)
+    {
+        return $this->friends()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
     }
 
     public function hasFavourited($beatmapset)
@@ -1203,9 +1235,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_unread_privmsg;
     }
 
+    // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'friends']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
     }
 
     public function supportLength()
@@ -1270,13 +1303,12 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $postsChangeCount = 0;
             }
 
-            // In case user_posts is 0 and $postsChangeCount is -1.
-            $newPostsCount = DB::raw("GREATEST(CAST(user_posts AS SIGNED) + {$postsChangeCount}, 0)");
+            $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
-        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+        $lastPost = $this->forumPosts()->select('post_time')->last();
 
         // FIXME: not null column, hence default 0. Change column to allow null
         $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;
@@ -1285,18 +1317,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
-    }
-
-    public function receiveMessage(self $sender, $body, $isAction = false)
-    {
-        $message = new PrivateMessage();
-        $message->user_id = $sender->user_id;
-        $message->target_id = $this->user_id;
-        $message->content = $body;
-        $message->is_action = $isAction;
-        $message->save();
-
-        return $message->fresh();
     }
 
     public function scopeDefault($query)

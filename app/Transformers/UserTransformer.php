@@ -29,12 +29,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         'account_history',
         'active_tournament_banner',
         'badges',
+        'blocks',
         'defaultStatistics',
-        'disqus_auth',
         'favourite_beatmapset_count',
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -59,9 +60,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
             ],
-            'age' => $user->age(),
             'avatar_url' => $user->user_avatar,
-            'is_admin' => $user->isAdmin(),
             'is_supporter' => $user->osu_subscriber,
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
@@ -80,6 +79,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
+            'pm_friends_only' => $user->pm_friends_only,
             'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
             'profile_order' => $profileCustomization->extras_order,
@@ -93,6 +93,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
+            'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
         ];
     }
@@ -133,29 +134,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer);
     }
 
-    public function includeDisqusAuth(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $data = [
-                'id' => $user->user_id,
-                'username' => $user->username,
-                'email' => $user->user_email,
-                'avatar' => $user->user_avatar,
-                'url' => route('users.show', $user->user_id),
-            ];
-
-            $encodedData = base64_encode(json_encode($data));
-            $timestamp = time();
-            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
-
-            return [
-                'short_name' => config('services.disqus.short_name'),
-                'public_key' => config('services.disqus.public_key'),
-                'auth_data' => "$encodedData $hmac $timestamp",
-            ];
-        });
-    }
-
     public function includeFavouriteBeatmapsetCount(User $user)
     {
         return $this->item($user, function ($user) {
@@ -163,6 +141,14 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $user->profileBeatmapsetsFavourite()->count(),
             ];
         });
+    }
+
+    public function includeBlocks(User $user)
+    {
+        return $this->collection(
+            $user->relations()->blocks()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeFollowerCount(User $user)
@@ -186,6 +172,13 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsGraveyard()->count(),
             ];
+        });
+    }
+
+    public function includeIsAdmin(User $user)
+    {
+        return $this->primitive($user->isAdmin(), function ($flag) {
+            return $flag;
         });
     }
 

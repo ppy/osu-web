@@ -113,9 +113,7 @@ class OrderCheckout
 
             $order->status = 'processing';
             $order->transaction_id = $this->provider;
-            if ($order->isDirty('status')) {
-                $order->reserveItems();
-            }
+            $order->reserveItems();
 
             $order->saveorExplode();
         });
@@ -154,7 +152,6 @@ class OrderCheckout
                 );
             }
 
-            $order->status = 'incart';
             $order->transaction_id = "{$this->provider}-failed";
             $order->releaseItems();
 

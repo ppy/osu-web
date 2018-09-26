@@ -29,7 +29,7 @@ return [
             'account-edit' => 'instellingen',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'versie',
             'getDownload' => 'downloaden',
             'getIcons' => 'iconen',
             'groups-show' => 'groepen',
@@ -186,7 +186,9 @@ return [
         'legal' => [
             '_' => 'Juridisch & Status',
             'copyright' => 'Copyright (DMCA)',
+            'privacy' => 'Privacy',
             'server_status' => 'Server Status',
+            'source_code' => 'Broncode',
             'terms' => 'Gebruikersvoorwaarden',
         ],
     ],

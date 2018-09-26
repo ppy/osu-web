@@ -28,7 +28,7 @@
 @endphp
 <button
     type="button"
-    class="btn-circle js-post-delete-toggle"
+    class="btn-circle"
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
     data-tooltip-position="left center"
     data-url="{{ route("forum.posts.$deleteString", $post) }}"

@@ -21,11 +21,20 @@ el = React.createElement
 
 bn = 'profile-header-extra'
 
-rowValue = (value, attributes) ->
-  attributesString = ''
-  attributesString += " #{k}='#{_.escape v}'" for own k, v of attributes
+rowValue = (value, attributes = {}, modifiers = []) ->
+  if attributes.href?
+    tagName = 'a'
+    modifiers.push 'link'
+  else
+    tagName = 'span'
 
-  "<strong#{attributesString}>#{value}</strong>"
+  elem = document.createElement(tagName)
+  elem[k] = v for own k, v of attributes
+  elem.className += " #{osu.classWithModifiers "#{bn}__value", modifiers}"
+  elem.innerHTML = value
+
+  elem.outerHTML
+
 
 class ProfilePage.HeaderExtra extends React.Component
   constructor: (props) ->
@@ -57,10 +66,6 @@ class ProfilePage.HeaderExtra extends React.Component
 
     friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
 
-    originKeys = []
-    originKeys.push 'country' if @props.user.country.name?
-    originKeys.push 'age' if @props.user.age?
-
     playsWith =
       (@props.user.playstyle || []).map (s) ->
         osu.trans "common.device.#{s}"
@@ -68,6 +73,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
+    isBlocked = _.find(currentUser.blocks, target_id: @props.user.id)
 
     div
       className:
@@ -90,16 +96,14 @@ class ProfilePage.HeaderExtra extends React.Component
 
       div className: bn,
         div className: "#{bn}__column #{bn}__column--text",
-          if originKeys.length != 0 || @props.user.title?
+          if @props.user.country.name?
             div className: "#{bn}__rows",
-              if originKeys.length != 0
-                div
-                  className: "#{bn}__row",
-                  dangerouslySetInnerHTML:
-                    __html:
-                      osu.trans "users.show.origin_#{originKeys.join('_')}",
-                        country: rowValue @props.user.country.name
-                        age: rowValue osu.trans('users.show.age', age: @props.user.age)
+              div
+                className: "#{bn}__row"
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'users.show.origin_country',
+                      country: rowValue @props.user.country.name
 
           div className: "#{bn}__rows",
             if joinDate.isBefore moment('2008-01-01')
@@ -133,11 +137,17 @@ class ProfilePage.HeaderExtra extends React.Component
 
           if !currentUser.id? || currentUser.id != @props.user.id
             div className: "#{bn}__rows #{bn}__rows--actions",
-              a
-                className: 'user-action-button user-action-button--message'
-                href: laroute.route 'messages.users.show', user: @props.user.id
-                title: osu.trans('users.card.send_message')
-                i className: 'fas fa-envelope'
+              if !isBlocked
+                span null,
+                  a
+                    className: 'user-action-button user-action-button--message user-action-button--right-margin'
+                    href: laroute.route 'messages.users.show', user: @props.user.id
+                    title: osu.trans('users.card.send_message')
+                    i className: 'fas fa-envelope'
+
+                  el BlockButton, user_id: @props.user.id
+
+              el _exported.ReportForm, user: @props.user
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
@@ -168,7 +178,9 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'discord'
               icon: 'fab fa-discord'
-              text: el(ClickToCopy, value: @props.user.discord)
+              text: el ClickToCopy,
+                value: @props.user.discord
+                modifiers: ['profile-header-extra']
 
             @fancyLink
               key: 'skype'
@@ -217,20 +229,26 @@ class ProfilePage.HeaderExtra extends React.Component
   renderPostCount: =>
     count = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
     url = laroute.route('users.posts', user: @props.user.id)
-    link = "<a href=\"#{url}\">#{rowValue count}</a>" # wtb better way of doing this :|.
 
     div
       className: "#{bn}__row"
       dangerouslySetInnerHTML:
         __html:
           osu.trans 'users.show.post_count._',
-            link: link
+            link: rowValue count, href: url
 
 
   fancyLink: ({key, url, icon, text, title}) =>
     return if !@props.user[key]?
 
-    component = if url? then a else span
+    componentClass = "u-ellipsis-overflow #{bn}__value #{bn}__value--fancy-link"
+
+    if url?
+      component = a
+      componentClass += " #{bn}__value--link"
+    else
+      component = span
+
     title ?= osu.trans "users.show.info.#{key}"
 
     div
@@ -243,7 +261,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
       component
         href: url
-        className: "#{bn}__fancy-link-text u-ellipsis-overflow"
+        className: componentClass
         text ? @props.user[key]
 
 

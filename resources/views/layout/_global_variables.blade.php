@@ -17,11 +17,10 @@
 --}}
 <script data-turbolinks-eval="always">
     var csrf = "{{ csrf_token() }}";
-    var section = "{{ $current_section }}";
-    var page = "{{ $current_action }}";
+    var section = "{{ $currentSection }}";
+    var page = "{{ $currentAction }}";
     var canonicalUrl = "{{ $canonicalUrl or '' }}";
     var reloadUrl = "{{ $reloadUrl or '' }}";
-    var disqusShortName = "{{ config('services.disqus.short_name') }}";
 </script>
 
 @include ('layout._current_user')

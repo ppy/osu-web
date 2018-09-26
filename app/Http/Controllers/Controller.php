@@ -42,8 +42,8 @@ abstract class Controller extends BaseController
      */
     public function __construct()
     {
-        view()->share('current_section', $this->section ?? '');
-        view()->share('current_action', ($this->actionPrefix ?? '').current_action());
+        view()->share('currentSection', $this->section ?? '');
+        view()->share('currentAction', ($this->actionPrefix ?? '').current_action());
     }
 
     protected function formatValidationErrors(Validator $validator)
@@ -63,8 +63,23 @@ abstract class Controller extends BaseController
     protected function login($user, $remember = false)
     {
         Request::session()->flush();
-        Request::session()->regenerateToken();
         Auth::login($user, $remember);
+        Request::session()->migrate(true, Auth::user()->user_id);
+    }
+
+    protected function logout()
+    {
+        Auth::logout();
+
+        // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+        unset($_COOKIE['phpbb3_2cjk5_sid']);
+        unset($_COOKIE['phpbb3_2cjk5_sid_check']);
+        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
+        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+
+        Request::session()->invalidate();
     }
 
     protected function locale()

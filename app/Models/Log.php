@@ -26,7 +26,6 @@ class Log extends Model
 
     protected $table = 'phpbb_log';
     protected $primaryKey = 'log_id';
-    protected $guarded = [];
 
     public $timestamps = false;
     protected $dates = ['log_time'];

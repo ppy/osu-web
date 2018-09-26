@@ -34,9 +34,10 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => 'được tạo bởi :mapper',
             'submitted' => 'tải lên vào ',
             'updated' => 'cập nhật lần cuối lúc ',
+            'updated_timeago' => 'cập nhật lần cuối vào :timeago',
             'ranked' => 'được xếp hạng vào ',
             'approved' => 'được chấp nhận vào ',
             'qualified' => 'qualified vào ',

@@ -27,24 +27,6 @@
                     <h1 class="osu-page-header__title">
                         {!! trans('forum.topic_watches.index.title_main') !!}
                     </h1>
-
-                    <p class="osu-page-header__detail">
-                        {!! trans('forum.topic_watches.index.info.total', [
-                            'total' =>
-                                '<span class="js-forum-topic-watch--total">'.
-                                number_format($counts['total']).
-                                '</span>',
-                        ]) !!}
-                    </p>
-
-                    <p class="osu-page-header__detail">
-                        {!! trans('forum.topic_watches.index.info.unread', [
-                            'unread' =>
-                                '<span class="js-forum-topic-watch--unread">'.
-                                number_format($counts['unread']).
-                                '</span>',
-                        ]) !!}
-                    </p>
                 </div>
 
                 <div class="osu-page-header__box osu-page-header__box--status">
@@ -74,6 +56,6 @@
             'row' => 'forum.topic_watches._topic',
         ])
 
-        @include('forum._pagination', ['object' => $topics])
+        @include('objects._pagination_v0', ['object' => $topics])
     </div>
 @endsection

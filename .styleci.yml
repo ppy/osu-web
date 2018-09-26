@@ -12,10 +12,13 @@ disabled:
 
 finder:
   not-path:
+    - resources/lang/bg
+    - resources/lang/cs
     - resources/lang/da
     - resources/lang/de
     - resources/lang/el
     - resources/lang/es
+    - resources/lang/fi
     - resources/lang/fr
     - resources/lang/hu
     - resources/lang/id
@@ -24,7 +27,9 @@ finder:
     - resources/lang/ko
     - resources/lang/nl
     - resources/lang/pl
+    - resources/lang/pt
     - resources/lang/pt-br
+    - resources/lang/ro
     - resources/lang/ru
     - resources/lang/sv
     - resources/lang/th

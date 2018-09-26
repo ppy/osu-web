@@ -30,6 +30,7 @@ class Contest extends Model
     protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
         'extra_options' => 'json',
+        'visible' => 'boolean',
     ];
 
     public function entries()

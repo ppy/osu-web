@@ -36,7 +36,10 @@ return [
         'title' => 'Discussão do Beatmap',
 
         'form' => [
+            '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões excluídas',
+            'types' => 'Tipos de mensagem',
+            'username' => 'Nome de Usuário',
 
             'user' => [
                 'label' => 'Usuário',
@@ -46,7 +49,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Data de postagem',
+        'created_at' => 'Data de publicação',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
         'permalink' => 'Copiar link da postagem',

@@ -12,6 +12,9 @@ return [
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
         'url' => env('PAYPAL_URL'),
         'merchant_id' => env('PAYPAL_MERCHANT_ID'),
+        'profiles' => [
+            'no_shipping' => env('PAYPAL_NO_SHIPPING_EXPERIENCE_PROFILE_ID'),
+        ],
     ],
     'xsolla' => [
         'api_key' => env('XSOLLA_API_KEY'),

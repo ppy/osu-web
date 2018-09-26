@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Veuillez vous connecter pour continuer.',
         'http-403' => 'Accès refusé.',
+        'http-404' => 'Introuvable.',
         'http-429' => 'Trop de tentatives ! Réessayez plus tard.',
     ],
     'account' => [

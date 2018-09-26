@@ -20,8 +20,8 @@
 
 return [
     'availability' => [
-        'disabled' => 'This beatmap is currently not available for download.',
-        'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
+        'disabled' => 'Dette beatmap er i øjeblikket ikke tilgængelig for download.',
+        'parts-removed' => 'Dele af dette beatmap er blevet fjernet efter anmodning fra skaberen eller en tredjeparts-rettighedsholder.',
         'more-info' => 'Check here for more information.',
     ],
 
@@ -34,9 +34,10 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'lavet af ',
+            'mapped_by' => 'mappet af :mapper',
             'submitted' => 'indsendt den ',
             'updated' => 'sidst opdateret den ',
+            'updated_timeago' => 'sidst opdateret :timeago',
             'ranked' => 'ranked den ',
             'approved' => 'godkendt den ',
             'qualified' => 'kvalificeret den ',
@@ -44,28 +45,28 @@ return [
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'download' => [
                 '_' => 'Download',
-                'video' => 'med Video',
-                'no-video' => 'uden Video',
+                'video' => 'med video',
+                'no-video' => 'uden video',
                 'direct' => 'osu!direct',
             ],
             'favourite' => 'Markér dette beatmapset som favorit',
             'unfavourite' => 'Fjern markering af dette beatmapset som favorit',
-            'favourited_count' => '+ 1 andre!|+ :count andre!',
+            'favourited_count' => '+ 1 anden!|+ :count andre!',
         ],
         'stats' => [
-            'cs' => 'Circle Størrelse',
+            'cs' => 'Cirkelstørrelse',
             'cs-mania' => 'Key Antal',
-            'drain' => 'HP Dræn',
+            'drain' => 'HP-dræn',
             'accuracy' => 'Præcision',
             'ar' => 'Approach Rate',
-            'stars' => 'Stjerne Sværhedsgrad',
+            'stars' => 'Stjernesværhedsgrad',
             'total_length' => 'Længde',
             'bpm' => 'BPM',
             'count_circles' => 'Cirkel Antal',
             'count_sliders' => 'Slider Antal',
             'user-rating' => 'Brugerbedømmelse',
             'rating-spread' => 'Rating Fordeling',
-            'nominations' => '',
+            'nominations' => 'Nomineringer',
             'playcount' => '',
         ],
         'info' => [

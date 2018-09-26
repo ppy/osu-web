@@ -33,7 +33,7 @@
     ret = className
 
     if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers
+      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
 
     ret
 
@@ -101,6 +101,11 @@
 
   parseJson: (id) ->
     JSON.parse document.getElementById(id)?.text ? null
+
+
+  # make a clone of json-like object (object with simple values)
+  jsonClone: (object) ->
+    JSON.parse JSON.stringify(object)
 
 
   isInputElement: (el) ->
@@ -189,6 +194,10 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
+  urlPresence: (url) ->
+    "url(#{url})" if osu.presence(url)?
+
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
@@ -238,6 +247,13 @@
     if string? && string != '' then string else null
 
 
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
+
+
   trans: (key, replacements, locale) ->
     if locale?
       initialLocale = Lang.getLocale()
@@ -264,7 +280,9 @@
         "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
-  transChoice: (key, count, replacements, locale) ->
+  transChoice: (key, count, replacements = {}, locale) ->
+    replacements.count_delimited ?= count.toLocaleString()
+
     if locale?
       initialLocale = Lang.getLocale()
       Lang.setLocale locale

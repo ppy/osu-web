@@ -18,12 +18,19 @@
 
 @import "app";
 
+@font-content: 'Open Sans', sans-serif;
+@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
 
+@nav2-height: 90px;
 @nav2-menu-height: 60px;
 @nav2-header-height: 360px;
+@nav2-header-image-height: 310px;
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -32,17 +39,32 @@
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
 
+@gutter: 30px;
+@gutter-desktop: 70px;
+
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+@comment-nest-margin: 70px;
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
 
 // here be z-indexes
+@z-index--header-bg: -1;
+
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
+
+@z-index--beatmapset-header: 1;
+@z-index--contest-header: 1;
+@z-index--comment-parent-preview: 1;
+@z-index--download-header: 1;
+@z-index--page-header: 1;
+@z-index--tournament-header: 1;
+@z-index--notification-banner-v2: 1;
+
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
 @z-index--profile-previous-usernames: 10;
@@ -59,11 +81,6 @@
 // modal-backdrop: 1040
 // modal: 1050
 @z-index--overlay: 9990;
-
-@z-index--beatmapset-header: 1;
-@z-index--contest-header: 1;
-@z-index--download-header: 1;
-@z-index--tournament-header: 1;
 
 @box-shadow-x: 0;
 @box-shadow-y: 1px;
@@ -100,6 +117,7 @@
 @font-size--title-small: 14px;
 @font-size--title-small-2: 15px;
 @font-size--title-small-3: 16px;
+@font-size--title-small-4: 18px;
 @font-size--large: 20px;
 @font-size--title: 24px;
 @font-size--large-2: 35px;
@@ -113,10 +131,10 @@
 @font-size--header-description: 12px;
 
 @font-size--header-wiki-2: 26px;
-@font-size--header-wiki-3: 20px;
-@font-size--header-wiki-4: 18px;
-@font-size--header-wiki-5: 16px;
-@font-size--header-wiki-6: 14px;
+@font-size--header-wiki-3: @font-size--large;
+@font-size--header-wiki-4: @font-size--title-small-4;
+@font-size--header-wiki-5: @font-size--title-small-3;
+@font-size--header-wiki-6: @font-size--title-small;
 
 @font-size--new-header-title: 30px;
 @font-size--new-header-subtitle: 14px;
@@ -186,6 +204,9 @@
 
 @forum-post--xs-avatar: 50px;
 
+@forum-topic-new-topic-button--width: 150px;
+@forum-topic-entry--main-margin: 40px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -196,6 +217,9 @@
 @beatmap-discussion--color-problem: @pink-dark;
 @beatmap-discussion--color-resolved: @green;
 @beatmap-discussion--color-suggestion: @yellow-dark;
+
+@beatmap-discussion--user-color-moderator: @yellow-dark;
+@beatmap-discussion--user-color-owner: @green-dark;
 
 @beatmappack-listing--gutter: 20px;
 
@@ -214,24 +238,17 @@
 @user-color-default: @blue-darker;
 
 @changelog-stream--stable: @blue;
-@changelog-stream--stable-fallback: @green;
-@changelog-stream--beta: @yellow;
-@changelog-stream--cutting-edge: @yellow;
+@changelog-stream--stable-fallback: @blue-darker;
+@changelog-stream--beta: @yellow-light;
+@changelog-stream--cutting-edge: @yellow-dark;
 @changelog-stream--lazer: @red;
 @changelog-stream--lazer-experimental: @red;
+@changelog-stream--web: @purple;
+@changelog-stream--wiki: #999;
 
-@changelog-stream--build-0: @purple;
-@changelog-stream--build-1: @purple-darker;
-@changelog-stream--build-2: @pink;
-@changelog-stream--build-3: @pink-darker;
-@changelog-stream--build-4: @blue;
-@changelog-stream--build-5: @blue-darker;
-@changelog-stream--build-6: @yellow;
-@changelog-stream--build-7: @yellow-darker;
-@changelog-stream--build-8: @green;
-@changelog-stream--build-9: @green-darker;
-@changelog-stream--build-10: @red;
-@changelog-stream--build-11: @red-darker;
+@changelog-bg: @dark-purple-dark;
+@changelog-bg-extra: @dark-purple-darker;
+@changelog-fg: #fff;
 
 @page-extra-side-padding--small: 10px;
 @page-extra-side-padding--large: 30px;
@@ -249,6 +266,8 @@
 
 @rank-width: 60px;
 @rank-height: 40px;
+
+@ranking-page-header-inset: 40px;
 
 @btn-circle-diameter: 30px;
 

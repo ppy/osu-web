@@ -89,10 +89,13 @@ return [
         'en',
 
         // sort by name
+        'bg',
+        'cs',
         'da',
         'de',
         'el',
         'es',
+        'fi',
         'fr',
         'hu',
         'id',
@@ -101,7 +104,9 @@ return [
         'ko',
         'nl',
         'pl',
+        'pt',
         'pt-br',
+        'ro',
         'ru',
         'sv',
         'th',
@@ -189,7 +194,8 @@ return [
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
+        // We're using our own SessionServiceProvider so we can override the session id naming (for redis key namespacing)
+        App\Providers\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
@@ -198,7 +204,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
@@ -213,7 +218,6 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\ElasticsearchServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         /*

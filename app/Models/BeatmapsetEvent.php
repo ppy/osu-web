@@ -22,9 +22,8 @@ namespace App\Models;
 
 class BeatmapsetEvent extends Model
 {
-    protected $guarded = [];
-
     const NOMINATE = 'nominate';
+    const LOVE = 'love';
     const QUALIFY = 'qualify';
     const DISQUALIFY = 'disqualify';
     const APPROVE = 'approve';
@@ -71,6 +70,7 @@ class BeatmapsetEvent extends Model
         'discussion_post_restore',
 
         'nomination_reset',
+        'love',
     ];
 
     public static function log($type, $user, $object, $extraData = [])

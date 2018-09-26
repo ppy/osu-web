@@ -72,6 +72,7 @@ return [
         'latest_post' => ':user tarafından :when',
         'latest_reply_by' => 'son cevap :user tarafından',
         'new_topic' => 'Yeni konu aç',
+        'new_topic_login' => 'Yeni konu başlatmak için giriş yapın',
         'post_reply' => 'Gönder',
         'reply_box_placeholder' => 'Yanıtlamak için buraya yazın',
         'started_by' => ':user tarafından',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Abone olunan konular',
                 'unread' => 'Yeni yorumlar içeren konular',
             ],
-
-            'info' => [
-                'total' => ':total konularına abone oldunuz.',
-                'unread' => 'Abone olduğunuz konulara :unread tane okunmamış yanıt bulunmaktadır.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Konular',
 
         'actions' => [
+            'login_reply' => 'Cevaplamak için giriş yap',
             'reply' => 'Yanıtla',
             'reply_with_quote' => 'Alıntı yaparak cevap ver',
             'search' => 'Ara',

@@ -15,9 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", ['body_additional_classes' => 'osu-layout--body-dark'])
+@extends('master', ['bodyAdditionalClasses' => 'osu-layout--body-dark'])
 
-@section("content")
+@section('content')
     <div class="osu-page">
         <!-- header info -->
         <div class="stg-header">
@@ -71,7 +71,7 @@
                     @if ($supporterStatus['expiration'] !== null)
                     <div class="stg-status__text stg-status__text--first">
                         {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
-                            'date' => '<strong>'.timeago($supporterStatus['expiration']).'</strong>'
+                            'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
                         ]) !!}
                     </div>
                     @else

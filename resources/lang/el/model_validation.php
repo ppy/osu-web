@@ -19,8 +19,8 @@
  */
 
 return [
-    'not_negative' => 'το:attribute δε μπορεί να δοθεί.',
-    'required' => 'το:attribute απαιτείται.',
+    'not_negative' => 'το :attribute δε μπορεί να δοθεί.',
+    'required' => 'το :attribute απαιτείται.',
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
@@ -30,7 +30,7 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Το timestamp έχει καθοριστεί αλλά το beatmap λείπει.',
+        'beatmap_missing' => 'Η χρονική σήμανση έχει καθοριστεί αλλά το beatmap λείπει.',
         'beatmapset_no_hype' => "Το beatmap δε μπορεί να γίνει hyped.",
         'hype_requires_null_beatmap' => 'Το hype πρέπει να γίνει στην Γενική (όλες οι δυσκολίες) ενότητα.',
         'invalid_beatmap_id' => 'Προσδιορίστηκε μη έγκυρη δυσκολία.',
@@ -39,7 +39,7 @@ return [
         'mapper_note_wrong_user' => 'Μόνο ο δημιουργός του beatmap μπορεί να δημοσιεύσει τις σημειώσεις του mapper.',
 
         'hype' => [
-            'guest' => 'Πρέπει να έχετε συνδεθεί για να κάνετε hype.',
+            'guest' => 'Πρέπει να είστε συνδεδεμένοι για να κάνετε hype.',
             'hyped' => 'Έχετε κάνει ήδη hype αυτό το beatmap.',
             'limit_exceeded' => 'Έχετε χρησιμοποιήσει όλο το hype σας.',
             'not_hypeable' => 'Δε μπορεί να γίνει hype σε αυτό το betamap',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Το καθορισμένο timestamp είναι πέρα από τη διάρκεια του beatmap.',
-            'negative' => "Το timestamp δε μπορεί να είναι αρνητικό.",
+            'negative' => "Η χρονική σήμανση δε μπορεί να είναι αρνητική.",
         ],
     ],
 
@@ -70,13 +70,13 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Η επιλογή για διπλασιασμό δεν είναι επιτρεπτή.',
             'invalid_max_options' => 'Η επιλογή ανά χρήστη ίσως υπερβαίνει τον αριθμό των διαθέσιμων επιλογών.',
-            'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή για κάθε χρήστη.',
+            'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
             'too_many_options' => 'Υπερβήκατε το μέγιστο αριθμό επιλογών που επιτρέπεται.',
         ],
 
         'topic_vote' => [
-            'required' => 'Επιλέξτε μία επιλογή όταν ψηφίζεται.',
+            'required' => 'Επιλέξτε μία επιλογή όταν ψηφίζετε.',
             'too_many' => 'Επιλέχθηκαν περισσότερες επιλογές από το επιτρεπόμενο όριο.',
         ],
     ],
@@ -99,10 +99,10 @@ return [
         'username_too_short' => 'Το ζητούμενο όνομα είναι πολύ μικρό.',
         'username_too_long' => 'Το ζητούμενο όνομα χρήστη είναι πολύ μεγάλο.',
         'weak' => 'Απαγορευμένος κωδικός.',
-        'wrong_current_password' => 'Ο παρόν κωδικός είναι λανθασμένος.',
+        'wrong_current_password' => 'Ο παρών κωδικός είναι λανθασμένος.',
         'wrong_email_confirmation' => 'Η πιστοποίηση του email δεν ταιριάζει.',
         'wrong_password_confirmation' => 'Η πιστοποίηση του κωδικού δεν ταιριάζει.',
-        'too_long' => 'Το μέγεθος έχει υπερβεί - μπορεί να είναι μέχρι :limit χαρακτήρες.',
+        'too_long' => 'Έχετε υπερβεί το μέγιστο όριο - μπορεί να είναι μέχρι :limit χαρακτήρες.',
 
         'change_username' => [
             'supporter_required' => [

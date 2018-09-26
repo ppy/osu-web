@@ -31,6 +31,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\DisqusImport::class,
+
         Commands\EsIndexDocuments::class,
 
         // modding stuff
@@ -43,6 +45,9 @@ class Kernel extends ConsoleKernel
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
+
+        // builds
+        Commands\BuildsCreate::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
         // leaderboard recalculation
@@ -54,6 +59,7 @@ class Kernel extends ConsoleKernel
         // fix username change fail :D
         Commands\FixUsernameChangeTopicCache::class,
 
+        Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
 
         Commands\LocaleCheck::class,

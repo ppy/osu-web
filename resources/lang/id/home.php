@@ -34,7 +34,7 @@ return [
     'search' => [
         'advanced_link' => 'Pencarian lanjutan',
         'button' => 'Cari',
-        'empty_result' => 'Tidak Ditemukan!',
+        'empty_result' => 'Tidak ditemukan!',
         'missing_query' => 'Kata kunci pencarian harus mengandung setidaknya :n karakter',
         'placeholder' => 'ketik untuk mencari',
         'title' => 'Pencarian',
@@ -115,7 +115,7 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang halaman?...',
+            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
             'welcome' => 'Halo, <strong>:username</strong>!',

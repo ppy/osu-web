@@ -25,6 +25,8 @@
   display: flex;
   flex-direction: column;
 
+  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
+
   &--body {
     background-color: transparent;
 
@@ -41,6 +43,14 @@
       left: 0;
       content: " ";
       z-index: @z-index--body-background;
+    }
+  }
+
+  &--body-111-plain {
+    background-color: #111;
+
+    &::before {
+      display: none;
     }
   }
 
@@ -83,6 +93,19 @@
     width: 100%;
   }
 
+  &--masked {
+    position: absolute;
+    filter: brightness(0);
+    opacity: 0.8;
+    pointer-events: none;
+    backface-visibility: hidden; // prevents flashing in some browers on resize/transition start
+
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+      /* IE10+ fallback */
+      opacity: 0;
+    }
+  }
+
   &__col {
     width: calc(100% ~'-' 10px);
     margin: 5px;
@@ -119,6 +142,11 @@
     }
   }
 
+  &__no-scroll {
+    overflow: hidden;
+    flex: 1 0 auto;
+  }
+
   &__row {
     ._width(@extra-margin: 0px) {
       width: calc(100% ~'-' (@extra-margin * 2));
@@ -141,12 +169,6 @@
 
     &--bootstrap {
       .clearfix;
-    }
-
-    &--changelog-header {
-      ._page;
-      background-color: #555;
-      margin-bottom: 10px;
     }
 
     &--forum-post-create {

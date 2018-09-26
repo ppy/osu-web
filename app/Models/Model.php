@@ -31,11 +31,13 @@ abstract class Model extends BaseModel
 {
     use MacroableModel;
     protected $connection = 'mysql';
+    protected $guarded = [];
 
     public function getMacros()
     {
         $macros = $this->macros ?? [];
         $macros[] = 'realCount';
+        $macros[] = 'last';
 
         return $macros;
     }
@@ -48,6 +50,15 @@ abstract class Model extends BaseModel
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroLast()
+    {
+        return function ($baseQuery, $column = null) {
+            $query = clone $baseQuery;
+
+            return $query->orderBy($column ?? $this->getKeyName(), 'DESC')->first();
+        };
     }
 
     public function macroRealCount()
@@ -116,6 +127,18 @@ abstract class Model extends BaseModel
 
             return $result;
         });
+    }
+
+    public function dbName()
+    {
+        $connection = $this->connection ?? config('database.default');
+
+        return config("database.connections.{$connection}.database");
+    }
+
+    public function tableName(bool $includeDbPrefix = false)
+    {
+        return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
     }
 
     private function enlistCallbacks($model, $connection)

@@ -46,7 +46,13 @@ class NormalPage extends BasePage
     {
         try {
             $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-        } catch (GitHubNotFoundException $_e) {
+        } catch (Exception $e) {
+            if (!$e instanceof GitHubNotFoundException) {
+                $index = false;
+
+                log_error($e);
+            }
+
             $body = null;
         }
 

@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when bởi :user',
         'latest_reply_by' => 'trả lời cuối bởi :user',
         'new_topic' => 'Đăng một chủ đề mới',
+        'new_topic_login' => 'Đăng nhập để đăng một chủ đề mới',
         'post_reply' => 'Đăng',
         'reply_box_placeholder' => 'Nhập vào đây để trả lời',
         'started_by' => 'bởi :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Chủ đề đã đăng kí',
                 'unread' => 'Chủ đề có trả lời mới',
             ],
-
-            'info' => [
-                'total' => 'Bạn đã đăng kí :total chủ đề.',
-                'unread' => 'Bạn chưa đọc :unread trả lời của những chủ đề đã đăng kí.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Chủ đề',
 
         'actions' => [
+            'login_reply' => 'Đăng nhập để Trả lời',
             'reply' => 'Trả lời',
             'reply_with_quote' => 'Trích dẫn bài viết để trả lời',
             'search' => 'Tìm kiếm',

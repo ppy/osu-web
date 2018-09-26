@@ -15,7 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav2 js-nav-button">
+@php
+    $legacyNav ?? ($legacyNav = true);
+@endphp
+<div class="nav2 {{ $legacyNav ? 'nav2--legacy' : '' }} js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
             <a href="{{ route('home') }}" class="nav2__logo-link">
@@ -35,7 +38,7 @@
                     <span class="nav2__menu-link-main-text">
                         {{ trans("layout.menu.{$section}._") }}
 
-                        @if ($section === $current_section && !($isSearchPage ?? false))
+                        @if ($section === $currentSection && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
                         @endif
                     </span>
@@ -43,7 +46,13 @@
 
                 <div class="nav2__menu-popup">
                     <div
-                        class="simple-menu simple-menu--nav2 simple-menu--nav2-left-aligned js-menu"
+                        class="
+                            simple-menu
+                            simple-menu--nav2
+                            simple-menu--nav2-left-aligned
+                            {{ $legacyNav ? '' : 'simple-menu--nav2-transparent' }}
+                            js-menu
+                        "
                         data-menu-id="nav2-menu-popup-{{ $section }}"
                         data-visibility="hidden"
                     >
@@ -118,34 +127,36 @@
 
             <div class="nav2__click-popup">
                 <div
-                    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+                    class="simple-menu simple-menu--nav2 simple-menu--nav2-locales js-click-menu js-nav2--centered-popup"
                     data-click-menu-id="nav2-locale-popup"
                     data-visibility="hidden"
                 >
-                    @foreach (config('app.available_locales') as $locale)
-                        <button
-                            type="button"
-                            class="
-                                simple-menu__item
-                                {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
-                            "
-                            @if ($locale !== App::getLocale())
-                                data-url="{{ route('set-locale', ['locale' => $locale]) }}"
-                                data-remote="1"
-                                data-method="POST"
-                            @endif
-                        >
-                            <span class="nav2-locale-item">
-                                <img
-                                    src="{{ flag_path(locale_flag($locale)) }}"
-                                    alt="{{ $locale }}"
-                                    class="nav2-locale-item__flag"
-                                >
+                    <div class="simple-menu__content">
+                        @foreach (config('app.available_locales') as $locale)
+                            <button
+                                type="button"
+                                class="
+                                    simple-menu__item
+                                    {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
+                                "
+                                @if ($locale !== App::getLocale())
+                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
+                                    data-remote="1"
+                                    data-method="POST"
+                                @endif
+                            >
+                                <span class="nav2-locale-item">
+                                    <img
+                                        src="{{ flag_path(locale_flag($locale)) }}"
+                                        alt="{{ $locale }}"
+                                        class="nav2-locale-item__flag"
+                                    >
 
-                                {{ locale_name($locale) }}
-                            </span>
-                        </button>
-                    @endforeach
+                                    {{ locale_name($locale) }}
+                                </span>
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

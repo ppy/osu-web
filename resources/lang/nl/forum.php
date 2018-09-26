@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Maak nieuw onderwerp',
+        'new_topic_login' => 'Log in om een nieuw onderwerp maken',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
         'started_by' => 'door :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Geabonneerde topics',
                 'unread' => 'Topics met nieuwe berichten',
             ],
-
-            'info' => [
-                'total' => 'Je bent geabonneerd op :total topics.',
-                'unread' => 'Je hebt :unread ongelezen berichten in geabonneerde berichten.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Onderwerpen',
 
         'actions' => [
+            'login_reply' => 'Log in om te antwoorden',
             'reply' => 'Beantwoorden',
             'reply_with_quote' => 'Citeer post voor antwoord',
             'search' => 'Zoek',

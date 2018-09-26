@@ -31,15 +31,15 @@ return [
         'total' => '总计',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => '啊哦，你的购物车中存在问题导致你无法结账！',
+            'line_2' => '移除或更新上面的物品以继续。',
         ],
 
         'empty' => [
             'text' => '你的购物车是空的。',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => '返回到 :link 查看别的商品吧！',
+                'link_text' => '商店列表',
             ],
         ],
     ],
@@ -76,12 +76,12 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => '你不能修改此订单，因为它已经被取消了。',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '你不能修改此订单，因为它已经被交付了。',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '你不能修改此订单，因为它已经开始运输了。',
+            'checkout' => '你不能修改正在处理的订单。', // checkout and processing should have the same message.
+            'default' => '订单不可修改',
+            'delivered' => '你不能修改此订单，因为它已经送达了。',
+            'paid' => '你不能修改此订单，因为它已经完成付款了。',
+            'processing' => '你不能修改正在处理的订单。',
+            'shipped' => '你不能修改此订单，因为已经发货了。',
         ],
     ],
 

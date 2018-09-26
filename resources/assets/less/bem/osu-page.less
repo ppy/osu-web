@@ -46,6 +46,12 @@
     margin-bottom: 10px;
   }
 
+  &--changelog {
+    .default-box-shadow();
+    background-color: @changelog-bg;
+    color: @changelog-fg;
+  }
+
   &--comments {
     .default-box-shadow();
     background-color: #fff;
@@ -95,6 +101,12 @@
     margin-bottom: 10px;
   }
 
+  &--generic-compact {
+    .default-box-shadow();
+    background-color: #fff;
+    margin-bottom: 10px;
+  }
+
   &--header {
     .default-box-shadow();
     background-color: #333;
@@ -104,6 +116,11 @@
     .default-box-shadow();
     background-color: #333;
     margin-bottom: 10px;
+  }
+
+  &--header-v3 {
+    align-self: auto;
+    z-index: @z-index--page-header;
   }
 
   &--landing-buttons {
@@ -161,6 +178,7 @@
     .default-box-shadow();
     .inner-shadow-top();
     margin-bottom: 10px;
+    background-color: #333;
   }
 
   &--wiki {

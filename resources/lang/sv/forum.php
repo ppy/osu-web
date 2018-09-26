@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
         'post_reply' => 'Lägg upp',
         'reply_box_placeholder' => 'Tryck här för att svara',
         'started_by' => 'av :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Ämne prenumererade',
                 'unread' => 'Ämnen med nya svar',
             ],
-
-            'info' => [
-                'total' => 'Du prenumererade till :total ämnen.',
-                'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
+            'login_reply' => '',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',

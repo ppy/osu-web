@@ -34,12 +34,13 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
-            'made-by' => 'δημιουργήθηκε από ',
+            'mapped_by' => 'δημιουργήθηκε από :mapper',
             'submitted' => 'υποβλήθηκε στις ',
             'updated' => 'τελευταία ενημέρωση στις ',
+            'updated_timeago' => 'τελευταία ενημέρωση :timeago',
             'ranked' => 'έγινε ranked στις ',
             'approved' => 'έγινε approved στις ',
-            'qualified' => 'κρίθηκε ότι πληροί τα κριτήρια στις ',
+            'qualified' => 'έγινε qualified στις ',
             'loved' => 'έγινε loved στις ',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'download' => [

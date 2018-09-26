@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-form-error" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+<div class="account-edit-entry js-account-edit js-form-error" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
     <input
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
         data-last-value="{{ Auth::user()->$field }}"
         @if (($maxLength = App\Models\User::MAX_FIELD_LENGTHS[$field]) !== null)
-        maxlength="{{ $maxLength }}"
+            maxlength="{{ $maxLength }}"
         @endif
         value="{{ Auth::user()->$field }}"
     >
@@ -33,4 +33,4 @@
     @include('accounts._edit_entry_status')
 
     <span class="account-edit-entry__error js-form-error--error"></span>
-</label>
+</div>

@@ -21,7 +21,7 @@ class @TooltipBeatmap
       '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
 
   constructor: ->
-    $(document).on 'mouseover', '.js-beatmap-tooltip', @onMouseOver
+    $(document).on 'mouseover touchstart', '.js-beatmap-tooltip', @onMouseOver
 
   onMouseOver: (event) =>
     el = event.currentTarget
@@ -51,12 +51,15 @@ class @TooltipBeatmap
         event: event.type
         ready: true
       hide:
-        inactive: 3000
+        event: 'click mouseleave'
       style:
         classes: 'qtip tooltip-beatmap'
         tip:
           width: 10
           height: 9
+
+    if event.type == 'touchstart'
+      options.hide = inactive: 3000
 
     $(el).qtip options, event
 

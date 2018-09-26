@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações de <strong>conta</strong>',
+        'title' => 'Configurações de <strong>Conta</strong>',
         'title_compact' => 'configurações',
         'username' => 'nome de usuário',
 
@@ -78,5 +78,10 @@ return [
         'keyboard' => 'teclado',
         'tablet' => 'mesa digitalizadora',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacidade',
+        'friends_only' => 'Bloquear mensagens de pessoas que não estão na sua lista de amigos',
     ],
 ];

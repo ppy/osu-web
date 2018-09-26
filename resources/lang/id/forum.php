@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
         'new_topic' => 'Post topik baru',
+        'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
         'started_by' => 'oleh :user',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Topik yang dilanggan',
                 'unread' => 'Topik dengan balasan terbaru',
             ],
-
-            'info' => [
-                'total' => 'Anda berlangganan :total topik.',
-                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik yang Anda langgan.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Topik',
 
         'actions' => [
+            'login_reply' => 'Masuk untuk Membalas',
             'reply' => 'Balas',
             'reply_with_quote' => 'Kutip posting untuk balasan',
             'search' => 'Cari',

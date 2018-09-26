@@ -64,14 +64,20 @@ class @BeatmapsetPanel extends React.PureComponent
 
     condenseDifficulties = beatmapset.beatmaps.length > maxDisplayedDifficulty
 
+    groupedBeatmaps = BeatmapHelper.group beatmapset.beatmaps
+
     difficulties =
-      for own mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps
+      for mode in BeatmapHelper.modes
+        beatmaps = groupedBeatmaps[mode]
+
+        continue unless beatmaps?
+
         if condenseDifficulties
           [
             el BeatmapIcon, key: "#{mode}-icon", beatmap: _.last(beatmaps), showTitle: false
             span
               className: 'beatmapset-panel__difficulty-count'
-              key: "#{(mode)}-count", beatmaps.length
+              key: "#{mode}-count", beatmaps.length
           ]
         else
           for b in beatmaps
@@ -143,7 +149,12 @@ class @BeatmapsetPanel extends React.PureComponent
                               'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'
-                beatmapset.source
+                if beatmapset.status in ['graveyard', 'wip', 'pending']
+                  span dangerouslySetInnerHTML: __html:
+                    osu.trans 'beatmapsets.show.details.updated_timeago',
+                      timeago: osu.timeago(beatmapset.last_updated)
+                else
+                  beatmapset.source
 
             div className: 'beatmapset-panel__icons-box',
               if currentUser?.id

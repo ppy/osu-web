@@ -29,7 +29,7 @@ return [
 
         'state' => [
             'current' => 'Aktive Turniere',
-            'previous' => '',
+            'previous' => 'Vergangene Turniere',
         ],
     ],
 

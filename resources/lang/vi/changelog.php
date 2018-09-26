@@ -21,12 +21,20 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Sửa lỗi và một số cải tiến',
-    'users-online' => ':users người dùng online',
 
-    'prefixes' => [
-        'add' => 'thêm',
-        'fix' => 'sửa',
-        'misc' => 'misc',
+    'builds' => [
+        'users_online' => ':count_delimited người dùng online',
+    ],
+
+    'entry' => [
+        'by' => 'bởi :user',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Danh Sách',
+        ],
     ],
 
     'support' => [

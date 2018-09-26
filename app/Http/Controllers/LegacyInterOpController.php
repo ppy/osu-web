@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Models\Beatmapset;
-use App\Models\News;
+use App\Models\NewsPost;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LegacyInterOpController extends Controller
@@ -41,13 +41,13 @@ class LegacyInterOpController extends Controller
 
     public function news()
     {
-        $news = News\Index::all(null, 5);
+        $newsPosts = NewsPost::default()->limit(5)->get();
         $posts = [];
 
-        foreach ($news as $post) {
+        foreach ($newsPosts as $post) {
             $posts[] = [
-                  'timestamp' => $post->createdAt()->timestamp,
-                  'permalink' => route('news.show', $post->getKey()),
+                  'timestamp' => $post->published_at->timestamp,
+                  'permalink' => route('news.show', $post->slug),
                   'title' => $post->title(),
                   'body' => $post->previewText(),
             ];

@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Du har blokeret denne bruger.',
+        'blocked_count' => 'blokerede brugere (:count)',
+        'hide_profile' => 'skjul profil',
+        'not_blocked' => '',
+        'show_profile' => 'vis profil',
+        'too_many' => '',
+        'button' => [
+            'block' => '',
+            'unblock' => '',
+        ],
+    ],
+
     'card' => [
         'loading' => 'Loader...',
         'send_message' => 'send besked',
@@ -146,7 +159,7 @@ return [
                     'title' => 'Beatmaps på kirkegården (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Elskede beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Godkendte Beatmaps (:count)',
@@ -278,10 +291,10 @@ return [
             'website' => 'Hjemmeside',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'De kan have ændret deres brugernavn.',
+            'reason_2' => 'Kontoen kan være midlertidigt utilgængelig pga. sikkerhedsproblemer eller misbrug.',
+            'reason_3' => 'Du har muligvis lavet en stavefejl!',
+            'reason_header' => 'Der er et par mulige årsager til dette:',
             'title' => 'Bruger ikke fundet! ;_;',
         ],
         'page' => [

@@ -37,7 +37,7 @@ BeatmapsetPage.ScoreTop = (props) ->
             href: laroute.route 'users.show', user: props.score.user.id
             className: "avatar"
             style:
-              backgroundImage: "url(#{props.score.user.avatar_url})"
+              backgroundImage: osu.urlPresence(props.score.user.avatar_url)
 
         div className: "#{bn}__user-box",
           a

@@ -72,6 +72,7 @@ return [
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma posztolása',
+        'new_topic_login' => 'Jelentkezz be új téma nyitásához',
         'post_reply' => 'Poszt',
         'reply_box_placeholder' => 'Válasz írásához kattintson ide',
         'started_by' => ':user által',
@@ -113,11 +114,6 @@ return [
                 'total' => 'Felíratkozott témák',
                 'unread' => 'Témák új válaszokkal',
             ],
-
-            'info' => [
-                'total' => 'Te felíratkoztál :total témára.',
-                'unread' => ':unread választ nem olvastál el a felíratkozott témáidban.',
-            ],
         ],
 
         'topic_buttons' => [
@@ -132,6 +128,7 @@ return [
         '_' => 'Témák',
 
         'actions' => [
+            'login_reply' => 'Jelentkezz be a válaszoláshoz',
             'reply' => 'Válasz',
             'reply_with_quote' => 'Poszt idézése válaszhoz',
             'search' => 'Keresés',

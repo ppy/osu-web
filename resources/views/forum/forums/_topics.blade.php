@@ -21,10 +21,6 @@
     </h2>
 
     <ul class="forum-topics__entries js-forum-topic-entries">
-        @if ($withNewTopicLink ?? false)
-            @include('forum.forums._new_topic')
-        @endif
-
         @if (count($topics) === 0)
             @include('forum.forums._topic_empty')
         @else
