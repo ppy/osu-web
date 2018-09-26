@@ -21,6 +21,17 @@
 ])
 
 @section('content')
+    <div class="osu-layout osu-layout__row">
+        <div class="osu-page-header osu-page-header--wiki-main-page">
+            <div class="osu-page-header__title-box">
+                <span class="osu-page-header__title osu-page-header__title--icon">
+                    <i class="fa fa-university"></i>
+                </span>
+                <h1 class="osu-page-header__title osu-page-header__title--main">{{ trans('wiki.main.title') }}</h1>
+                <h2 class="osu-page-header__title osu-page-header__title--small">{{ trans('wiki.main.subtitle') }}</h2>
+            </div>
+        </div>
+    </div>
     <div class="osu-page osu-page--wiki">
         <div class="wiki-main-page">
             {!! $page->page()['output'] !!}

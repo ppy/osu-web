@@ -40,4 +40,8 @@ return [
             'default' => 'English version',
         ],
     ],
+    'main' => [
+        'title' => 'Knowledge Base',
+        'subtitle' => 'because osu!pedia sounds lame',
+    ],
 ];
