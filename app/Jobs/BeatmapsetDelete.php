@@ -20,7 +20,6 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\User;
@@ -49,11 +48,6 @@ class BeatmapsetDelete implements ShouldQueue
 
     public function handle()
     {
-        // Extra check that doesn't get bypassed by admin permissions.
-        if ($this->beatmapset->isScoreable()) {
-            throw new AuthorizationException('This beatmap is no longer deleteable.');
-        }
-
         $this->beatmapset->getConnection()->transaction(function () {
             Event::generate(
                 'beatmapsetDelete',
