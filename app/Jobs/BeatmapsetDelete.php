@@ -30,7 +30,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Storage;
 
 class BeatmapsetDelete implements ShouldQueue
 {
@@ -61,12 +60,6 @@ class BeatmapsetDelete implements ShouldQueue
                 ['beatmapset' => $this->beatmapset, 'user' => $this->user]
             );
 
-            $post = $this->beatmapset->getPost();
-            if ($post !== null) {
-                $post->post_text = 'This map has been deleted on the request of its creator. It is no longer available.';
-                $post->skipBeatmapPostRestrictions()->saveOrExplode();
-            }
-
             // won't update already deleted beatmaps which is what we want.
             $this->beatmapset->beatmaps()->delete();
             if ($this->beatmapset->delete() === false) {
@@ -75,7 +68,6 @@ class BeatmapsetDelete implements ShouldQueue
             }
 
             $this->beatmapset->removeCovers();
-            Storage::disk(config('osu.beatmapset.storage'))->delete($this->beatmapset->getKey());
         });
     }
 }
