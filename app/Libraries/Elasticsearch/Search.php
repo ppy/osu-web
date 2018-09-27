@@ -48,6 +48,7 @@ abstract class Search implements Queryable
 
     private $count;
     private $error;
+    private $page;
     private $response;
 
     const ASSIGN_FIELDS = ['page', 'size', 'sort', 'source'];
@@ -62,6 +63,9 @@ abstract class Search implements Queryable
                 $this->$field($params->$field);
             }
         }
+
+        // TODO: probably should convert page to from even earlier.
+        $this->from = $this->getSize() * ($this->getPage() - 1);
     }
 
     // for paginator
@@ -116,7 +120,8 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        if (isset($this->from)) {
+        // FIXME: side-effect is setting page now overrides from
+        if ($this->page === null) {
             // no laravel paginator if offset-only paging is used
             return;
         }
@@ -145,6 +150,9 @@ abstract class Search implements Queryable
     public function page(?int $page)
     {
         $this->page = $page;
+        if ($page !== null) {
+            $this->from = $this->getSize() * ($this->getPage() - 1);
+        }
 
         return $this;
     }
@@ -172,7 +180,7 @@ abstract class Search implements Queryable
     public function toArray() : array
     {
         $body = [
-            'from' => $this->getFrom(),
+            'from' => $this->from,
             'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
@@ -216,11 +224,6 @@ abstract class Search implements Queryable
     protected function getDefaultSize() : int
     {
         return 50;
-    }
-
-    protected function getFrom() : int
-    {
-        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
     }
 
     private function fetch()

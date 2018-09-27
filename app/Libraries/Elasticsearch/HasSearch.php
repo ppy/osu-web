@@ -22,7 +22,7 @@ namespace App\Libraries\Elasticsearch;
 
 trait HasSearch
 {
-    protected $from;
+    protected $from = 0;
     protected $highlight;
     protected $query;
     protected $size;
@@ -33,7 +33,7 @@ trait HasSearch
     /**
      * @return $this
      */
-    public function from(?int $from)
+    public function from(int $from)
     {
         $this->from = $from;
 
@@ -129,23 +129,13 @@ trait HasSearch
     }
 
     /**
-     *  Gets the actual offset to use in queries.
-     *
-     * @return int actual offset to use.
-     */
-    protected function getFrom() : int
-    {
-        return $this->from ?? 0;
-    }
-
-    /**
      *  Gets the actual size to use in queries.
      *
      * @return int actual size to use.
      */
     protected function getQuerySize() : int
     {
-        return min($this->maxResults() - $this->getFrom(), $this->getSize());
+        return min($this->maxResults() - $this->from, $this->getSize());
     }
 
     /**

@@ -52,7 +52,7 @@ class HasChildQuery implements Queryable
         // inner_hits in join queries.
         $inner = [
             'name' => $this->name,
-            'from' => $this->getFrom(),
+            'from' => $this->from,
             'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();

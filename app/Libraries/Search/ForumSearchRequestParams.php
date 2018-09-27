@@ -27,7 +27,7 @@ class ForumSearchRequestParams extends ForumSearchParams
     public function __construct(Request $request)
     {
         $this->queryString = presence(trim($request['query']));
-        $this->page = get_int($request['page']);
+        $this->page = get_int($request['page']) ?? 1;
         $this->includeSubforums = get_bool($request['forum_children']) ?? false;
         $this->username = presence(trim($request['username']));
         $this->forumId = get_int($request['forum_id']);
