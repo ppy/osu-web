@@ -144,7 +144,7 @@ class Beatmaps.Main extends React.PureComponent
                     title: osu.trans("beatmaps.listing.search.not-found")
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
-          el(Beatmaps.Paginator, paging: @state.paging) unless @isSupporterMissing()
+          el(Beatmaps.Paginator, @state.paging) unless @isSupporterMissing()
 
       el window._exported.BackToTop,
         anchor: @backToTopAnchor
