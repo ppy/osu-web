@@ -615,6 +615,10 @@ class OsuAuthorize
         if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
             return 'ok';
         }
+
+        if ($comment->commentable === null) {
+            return;
+        }
     }
 
     public function checkCommentStore($user, $comment)

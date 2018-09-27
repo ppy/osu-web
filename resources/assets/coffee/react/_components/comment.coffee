@@ -45,8 +45,10 @@ class @Comment extends React.PureComponent
 
 
   render: =>
-    children = @props.commentsByParentId[@props.comment.id] ? []
+    children = @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
+    showReplies = @props.showReplies ? true
+    parent = @props.comment.parent ? @props.parent
 
     modifiers = @props.modifiers?[..] ? []
     modifiers.push 'top' if @props.depth == 0
@@ -77,6 +79,13 @@ class @Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
+          if @props.showCommentableMeta
+            div className: 'comment__row comment__row--header',
+              span
+                className: 'comment__row-item comment__row-item--commentable-meta'
+                @commentableMeta()
+
+
           div className: 'comment__row comment__row--header',
             if user.id?
               a
@@ -89,13 +98,13 @@ class @Comment extends React.PureComponent
                 className: 'comment__row-item comment__row-item--username'
                 user.username
 
-            if @props.parent?
+            if parent?
               span
                 className: 'comment__row-item comment__row-item--parent'
-                title: makePreview(@props.parent)
+                title: makePreview(parent)
                 span className: 'fas fa-reply'
                 ' '
-                @userFor(@props.parent).username
+                @userFor(parent).username
 
             if @isDeleted()
               span
@@ -120,7 +129,7 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if !@isDeleted()
+            if showReplies && !@isDeleted()
               div className: 'comment__row-item',
                 button
                   type: 'button'
@@ -154,13 +163,19 @@ class @Comment extends React.PureComponent
 
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
-                button
-                  type: 'button'
-                  className: 'comment__action'
-                  onClick: @toggleReplies
-                  "[#{if @state.showReplies then '-' else '+'}] "
-                  osu.trans('comments.replies')
-                  " (#{@props.comment.replies_count.toLocaleString()})"
+                if showReplies
+                  button
+                    type: 'button'
+                    className: 'comment__action'
+                    onClick: @toggleReplies
+                    "[#{if @state.showReplies then '-' else '+'}] "
+                    osu.trans('comments.replies')
+                    " (#{@props.comment.replies_count.toLocaleString()})"
+                else
+                  span null,
+                    osu.trans('comments.replies')
+                    ': '
+                    @props.comment.replies_count.toLocaleString()
 
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
@@ -182,7 +197,7 @@ class @Comment extends React.PureComponent
                 close: @closeNewReply
                 modifiers: @props.modifiers
 
-      if @props.comment.replies_count > 0
+      if showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
           for comment in children
@@ -219,6 +234,20 @@ class @Comment extends React.PureComponent
 
   canModerate: =>
     currentUser.is_admin || currentUser.is_gmt
+
+
+  commentableMeta: =>
+    if @props.comment.commentable_meta.url
+      component = a
+      params = href: @props.comment.commentable_meta.url
+    else
+      component = span
+      params = null
+
+    component params,
+      span className: 'fas fa-comment-alt'
+      ' '
+      @props.comment.commentable_meta.title
 
 
   isOwner: =>

@@ -299,6 +299,15 @@
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
 
+
+  # Update collection item with newItem identified by id.
+  updateCollection: (collection, newItem) ->
+    replacementIndex = _.findIndex collection, (item) -> item.id == newItem.id
+    collection[replacementIndex] = newItem if replacementIndex != -1
+
+    collection
+
+
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)
     for own key, value of params

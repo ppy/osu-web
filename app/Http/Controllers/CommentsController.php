@@ -24,10 +24,12 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommentsController extends Controller
 {
     protected $section = 'community';
+    protected $actionPrefix = 'comments-';
 
     public function destroy($id)
     {
@@ -37,7 +39,7 @@ class CommentsController extends Controller
 
         $comment->softDelete(auth()->user());
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     public function index()
@@ -55,9 +57,34 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
-        return (new CommentBundle($commentable ?? null, [
-            'search' => request()->all(),
-        ]))->toArray();
+        $commentBundle = new CommentBundle(
+            $commentable ?? null,
+            ['params' => request()->all()]
+        );
+
+        if (request()->expectsJson()) {
+            return $commentBundle->toArray();
+        } else {
+            priv_check('CommentModerate')->ensureCan();
+
+            $commentBundle->depth = 0;
+            $commentBundle->includeCommentableMeta = true;
+            $commentBundle->includeParent = true;
+            $commentBundle->filterByParentId = false;
+
+            $commentPagination = new LengthAwarePaginator(
+                [],
+                Comment::count(),
+                $commentBundle->params['limit'],
+                $commentBundle->params['page'],
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'query' => $commentBundle->getParams(),
+                ]
+            );
+
+            return view('comments.index', compact('commentBundle', 'commentPagination'));
+        }
     }
 
     public function restore($id)
@@ -68,12 +95,12 @@ class CommentsController extends Controller
 
         $comment->restore();
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     public function show($id)
     {
-        return json_item(Comment::findOrFail($id), 'Comment', ['editor', 'user']);
+        return json_item(Comment::findOrFail($id), 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     public function store()
@@ -118,6 +145,6 @@ class CommentsController extends Controller
         $params['edited_at'] = Carbon::now();
         $comment->update($params);
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 }

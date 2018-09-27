@@ -26,6 +26,13 @@ return [
     'show_replies' => 'show replies',
     'title' => 'Comments',
 
+    'commentable_name' => [
+        'beatmapset' => 'Beatmap',
+        'build' => 'Changelog',
+        'news_post' => 'News',
+        '_deleted' => 'Deleted Item',
+    ],
+
     'editor' => [
         'textarea_hint' => [
             '_' => 'Press enter to :action. Use shift+enter for new line.',
@@ -38,6 +45,13 @@ return [
     'guest_button' => [
         'new' => 'Login to comment',
         'reply' => 'Login to reply',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => 'Comments :info',
+            'info' => 'Listing',
+        ],
     ],
 
     'placeholder' => [

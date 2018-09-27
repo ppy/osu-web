@@ -108,13 +108,6 @@ class @Comments extends React.PureComponent
 
 
   update: (_event, {comment}) =>
-    newComments = @state.comments[..]
-    replacementIndex = _.findIndex newComments, (c) -> c.id == comment.id
-
-    return if replacementIndex == -1
-
-    newComments[replacementIndex] = comment
-
     @setState
-      comments: newComments
+      comments: osu.updateCollection @state.comments[..], comment
       users: _.concat comment.user, comment.editor, @state.users

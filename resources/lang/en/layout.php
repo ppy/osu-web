@@ -81,6 +81,7 @@ return [
             'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => 'comments',
             'contests' => 'contests',
             'profile' => 'profile',
             'tournaments' => 'tournaments',

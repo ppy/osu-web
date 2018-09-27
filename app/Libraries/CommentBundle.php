@@ -25,19 +25,24 @@ use App\Models\User;
 
 class CommentBundle
 {
+    const DEFAULT_PAGE = 1;
+    const DEFAULT_LIMIT = 50;
+
+    public $includeCommentableMeta = false;
+    public $includeParent = false;
+    public $filterByParentId = true;
+    public $params = [];
+    public $depth = 2;
+
     private $commentable;
     private $comments;
-    private $search;
     private $lastLoadedId;
 
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
 
-        $this->search = [];
-        $this->search['parent_id'] = get_int($options['search']['parent_id'] ?? null);
-        $this->search['last_loaded_id'] = get_int($options['search']['last_loaded_id'] ?? null);
-        $this->search['depth'] = clamp(get_int($options['search']['depth'] ?? 0), 0, 2);
+        $this->setParams($options['params'] ?? null);
 
         $this->comments = $options['comments'] ?? null;
     }
@@ -47,14 +52,11 @@ class CommentBundle
         if (isset($this->comments)) {
             $comments = $this->comments;
         } else {
-            $comments = $this->getComments(
-                $this->commentsQuery()->where(['parent_id' => $this->search['parent_id']]),
-                $this->search['last_loaded_id']
-            );
+            $comments = $this->getComments($this->commentsQuery(), false);
 
             $nestedComments = null;
 
-            for ($i = 0; $i < $this->search['depth']; $i++) {
+            for ($i = 0; $i < $this->depth; $i++) {
                 if ($i === 0) {
                     $parentIds = $comments->pluck('id');
                 } else {
@@ -66,21 +68,33 @@ class CommentBundle
             }
         }
 
-        $userIds = $comments->pluck('user_id')
-            ->concat($comments->pluck('edited_by_id'));
-
-        $users = User::whereIn('user_id', $userIds)->get();
+        $users = $this->getUsers($comments);
 
         $result = [
-            'comments' => json_collection($comments, 'Comment'),
+            'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
             'users' => json_collection($users, 'UserCompact'),
         ];
 
-        if ($this->search['parent_id'] === null) {
+        if ($this->params['parent_id'] === null && $this->filterByParentId) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
         }
 
         return $result;
+    }
+
+    public function commentIncludes()
+    {
+        $includes = [];
+
+        if ($this->includeCommentableMeta) {
+            $includes[] = 'commentable_meta';
+        }
+
+        if ($this->includeParent) {
+            $includes[] = 'parent';
+        }
+
+        return $includes;
     }
 
     public function commentsQuery()
@@ -92,16 +106,79 @@ class CommentBundle
         }
     }
 
-    private function getComments($query, $lastLoadedId = null, $limit = 50)
+    public function setParams($input)
     {
-        if ($lastLoadedId !== null) {
-            $query->where('id', '<', $lastLoadedId);
+        $this->params['parent_id'] = get_int($input['parent_id'] ?? null);
+        $this->params['last_loaded_id'] = get_int($input['last_loaded_id'] ?? null);
+        $this->params['limit'] = clamp(get_int($input['limit'] ?? static::DEFAULT_LIMIT), 1, 100);
+        $this->params['page'] = max(get_int($input['page'] ?? static::DEFAULT_PAGE), 1);
+    }
+
+    public function getParams()
+    {
+        $params = [];
+
+        if ($this->params['last_loaded_id'] !== null) {
+            $params['last_loaded_id'] = $this->params['last_loaded_id'];
+        }
+
+        if ($this->params['parent_id'] !== null) {
+            $params['parent_id'] = $this->params['parent_id'];
+        }
+
+        if ($this->params['page'] !== static::DEFAULT_PAGE) {
+            $params['page'] = $this->params['page'];
+        }
+
+        if ($this->params['limit'] !== static::DEFAULT_LIMIT) {
+            $params['limit'] = $this->params['limit'];
+        }
+
+        return $params;
+    }
+
+    private function getComments($query, $isChildren = true)
+    {
+        if (!$isChildren) {
+            if ($this->params['last_loaded_id'] !== null) {
+                $query->where('id', '<', $this->params['last_loaded_id']);
+            }
+
+            if ($this->filterByParentId) {
+                $query->where(['parent_id' => $this->params['parent_id']]);
+            }
+
+            $query->offset($this->params['limit'] * ($this->params['page'] - 1));
+        }
+
+        if ($this->includeCommentableMeta) {
+            $query->with('commentable');
+        }
+
+        if ($this->includeParent) {
+            $query->with('parent');
         }
 
         return $query
             ->orderBy('created_at', 'DESC')
             ->orderBy('id', 'DESC')
-            ->limit($limit)
+            ->limit($this->params['limit'])
             ->get();
+    }
+
+    private function getUsers($comments)
+    {
+        $userIds = $comments->pluck('user_id')
+            ->concat($comments->pluck('edited_by_id'));
+
+        if ($this->includeParent) {
+            foreach ($comments as $comment) {
+                if ($comment->parent !== null) {
+                    $userIds[] = $comment->parent->user_id;
+                }
+            }
+        }
+
+        return User::whereIn('user_id', $userIds)->get();
     }
 }

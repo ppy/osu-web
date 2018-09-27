@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,18 +16,6 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-@Admin = {}
-@Admin.Contest = {}
-@BeatmapDiscussions = {}
-@Beatmaps = {}
-@BeatmapsetPage = {}
-@ChangelogIndex = {}
-@ChangelogBuild = {}
-@CommentsIndex = {}
-@Contest =
-  Entry: {}
-  Voting: {}
-@MPHistory = {}
-@ProfilePage = {}
-@Ranking = {}
-@Status = {}
+reactTurbolinks.registerPersistent 'comments-index', CommentsIndex.Main, true, (el) ->
+  container: el
+  data: osu.parseJson('json-index')
