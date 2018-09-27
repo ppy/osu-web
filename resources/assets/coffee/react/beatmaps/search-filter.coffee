@@ -46,7 +46,6 @@ class Beatmaps.SearchFilter extends React.PureComponent
             key: i
             href: @href(option)
             className: cssClasses
-            value: option.id
             'data-filter-value': option.id
             onClick: @select
             option.name
@@ -56,8 +55,8 @@ class Beatmaps.SearchFilter extends React.PureComponent
     BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
 
 
-  href: (option) =>
-    i = @cast(option.id)
+  href: ({ id, name }) =>
+    i = @cast(id)
     newSelection =
       if @props.multiselect
         _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
