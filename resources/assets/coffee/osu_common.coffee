@@ -247,6 +247,13 @@
     if string? && string != '' then string else null
 
 
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
+
+
   trans: (key, replacements, locale) ->
     if locale?
       initialLocale = Lang.getLocale()

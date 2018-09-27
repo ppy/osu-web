@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, there are problems with your cart!',
         'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
+        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
+
+        'has_pending' => [
+            '_' => 'You have incomplete checkouts, click :link to view them.',
+            'link_text' => 'here',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'A previous checkout was started but did not finish.',
-            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
-            'link_text' => 'click here',
+            'line_2' => 'Resume your checkout by selecting a payment method.',
         ],
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
 
     'discount' => 'save :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Your payment has not yet been confirmed!',
+                'line_1' => 'If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!',
+                'line_2' => [
+                    '_' => 'If you encountered a problem during checkout, :link',
+                    'link_text' => 'click here to resume your checkout',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Order placed :date',
+
+        'invoice' => 'View Invoice',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'You cannot modify your order as it has already been paid for.',
             'processing' => 'You cannot modify your order while it is being processed.',
             'shipped' => 'You cannot modify your order as it has already been shipped.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Cancelled',
+            'checkout' => 'Preparing',
+            'delivered' => 'Delivered',
+            'paid' => 'Paid',
+            'processing' => 'Pending confirmation',
+            'shipped' => 'In Transit',
         ],
     ],
 

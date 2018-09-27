@@ -49,6 +49,8 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
+    const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
+
     protected $primaryKey = 'order_id';
 
     protected $casts = [
@@ -78,9 +80,14 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeWhereHasInvoice($query)
+    {
+        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
+    }
+
     public function scopeInCart($query)
     {
-        return $query->whereIn('status', ['incart', 'processing']);
+        return $query->where('status', 'incart');
     }
 
     public function scopeProcessing($query)
@@ -156,6 +163,25 @@ class Order extends Model
         return studly_case(explode('-', $this->transaction_id)[0]);
     }
 
+    public function getPaymentStatusText()
+    {
+        switch ($this->status) {
+            case 'cancelled':
+                return 'Cancelled';
+            case 'checkout':
+            case 'processing':
+                return 'Awaiting Payment';
+            case 'incart':
+                return '';
+            case 'paid':
+            case 'shipped':
+            case 'delivered':
+                return 'Paid';
+            default:
+                return 'Unknown';
+        }
+    }
+
     public function getSubtotal($forShipping = false)
     {
         $total = 0;
@@ -219,25 +245,6 @@ class Order extends Model
         return (float) $total * $rate;
     }
 
-    public function getStatusText()
-    {
-        switch ($this->status) {
-            case 'cancelled':
-                return 'Cancelled';
-            case 'checkout':
-            case 'processing':
-                return 'Awaiting Payment';
-            case 'incart':
-                return '';
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
-                return 'Paid';
-            default:
-                return 'Unknown';
-        }
-    }
-
     public function getTotal()
     {
         return $this->getSubtotal() + $this->shipping;
@@ -258,6 +265,11 @@ class Order extends Model
     public function canCheckout()
     {
         return in_array($this->status, ['incart', 'processing'], true);
+    }
+
+    public function hasInvoice()
+    {
+        return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
     public function isEmpty()
@@ -386,9 +398,7 @@ class Order extends Model
         $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
-            foreach ($items as $item) {
-                $item->product->release($item->quantity);
-            }
+            $items->each->releaseProduct();
         });
     }
 
@@ -397,10 +407,7 @@ class Order extends Model
         // locking bottleneck
         $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
-
-            foreach ($items as $item) {
-                $item->product->reserve($item->quantity);
-            }
+            $items->each->reserveProduct();
         });
     }
 
@@ -410,9 +417,9 @@ class Order extends Model
             $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
 
             $quantity = $orderItem->quantity;
-            $orderItem->product->release($quantity);
+            $orderItem->releaseProduct();
             $orderItem->product()->associate($newProduct);
-            $newProduct->reserve($quantity);
+            $orderItem->reserveProduct();
 
             $orderItem->saveOrExplode();
         });
@@ -478,16 +485,7 @@ class Order extends Model
 
     private function removeOrderItem(array $params)
     {
-        $itemId = $params['id'];
-        $item = $this->items()->find($itemId);
-
-        if ($item) {
-            $item->delete();
-        }
-
-        if ($this->items()->count() === 0) {
-            $this->delete();
-        }
+        optional($this->items()->find($params['id']))->delete();
     }
 
     private function newOrderItem(array $params)

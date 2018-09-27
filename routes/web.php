@@ -235,9 +235,9 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::get('cart', 'CartController@show')->name('cart.show');
         Route::resource('cart', 'CartController', ['only' => ['store']]);
 
-        Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
-        Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
-        Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
+        Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
+
+        Route::resource('orders', 'OrdersController', ['only' => ['index']]);
 
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
