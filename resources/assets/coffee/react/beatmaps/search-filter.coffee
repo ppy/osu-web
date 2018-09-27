@@ -23,6 +23,9 @@ class Beatmaps.SearchFilter extends React.PureComponent
   constructor: (props) ->
     super props
 
+    keyToChar = _.invert BeatmapsetFilter.charToKey
+    @char = keyToChar[@props.name]
+
     @cache = {}
 
 
@@ -41,7 +44,7 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
           a
             key: i
-            href: '#'
+            href: @href(option)
             className: cssClasses
             value: option.id
             'data-filter-value': option.id
@@ -51,6 +54,17 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
   cast: (value) =>
     BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
+
+
+  href: (option) =>
+    i = @cast(option.id)
+    newSelection =
+      if @props.multiselect
+        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
+      else
+        if @selected(i) then @props.default else i
+
+    osu.updateQueryString(null, "#{@char}": newSelection)
 
 
   select: (e) =>
