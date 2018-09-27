@@ -50,7 +50,7 @@ abstract class Search implements Queryable
     private $error;
     private $response;
 
-    const ASSIGN_FIELDS = ['size', 'sort', 'source'];
+    const ASSIGN_FIELDS = ['from', 'size', 'sort', 'source'];
 
     public function __construct(string $index, SearchParams $params)
     {
@@ -62,9 +62,6 @@ abstract class Search implements Queryable
                 $this->$field($params->$field);
             }
         }
-
-        $page = max(1, $this->params->page ?? 1);
-        $this->from = $this->size * ($page - 1);
     }
 
     // for paginator

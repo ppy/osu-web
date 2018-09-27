@@ -29,11 +29,13 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     public function __construct(Request $request, ?User $user = null)
     {
+        parent::__construct();
+
         static $validExtras = ['video', 'storyboard'];
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->page = get_int($request['page']) ?? 1;
+        $this->from = $this->pageAsFrom(get_int($request['page']));
 
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
