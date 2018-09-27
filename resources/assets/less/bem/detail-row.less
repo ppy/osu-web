@@ -17,31 +17,96 @@
  */
 
 .detail-row {
+  @top: detail-row;
+  @activated-row: detail-row--menu-active;
+  @passive-row: detail-row--highlightable;
+  @content-spill: 10px;
+  @handle: 16px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
-  border-bottom: 1px solid #eee;
-  margin: 0;
-  padding: 2px 0;
-
-  &::before {
-    .full-size();
-    content: ' ';
-    margin: 0 -10px;
-    width: calc(100% ~'+' 20px);
-    pointer-events: none;
-    will-change: opacity;
-    transition: all 25ms ease-out;
-    opacity: 0;
-
-    background-color: #eee;
-    .default-box-shadow();
+  @media @desktop {
+    margin-right: -(@content-spill + @handle);
   }
 
-  &:hover::before {
-    opacity: 1;
-    transition: all 50ms ease-out;
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    padding: 2px 0;
+
+    &::before {
+      .default-box-shadow();
+      .full-size();
+
+      content: '';
+      margin: 0 -@content-spill;
+      width: calc(100% ~'+' @content-spill * 2);
+      pointer-events: none;
+      background-color: #eee;
+
+      will-change: opacity;
+      transition: all 25ms ease-out;
+      opacity: 0;
+
+      // normal behaviour; highlights on hover.
+      .@{passive-row}:hover & {
+        opacity: 1;
+        transition: all 50ms ease-out;
+
+        // when menu is active, only the active row is highlighted.
+        .play-detail-list--menu-active & {
+          opacity: 0;
+        }
+      }
+
+      // when menu is active; always highlighted.
+      .@{activated-row} & {
+        opacity: 1;
+        transition: all 50ms ease-out;
+
+        .play-detail-list--menu-active & {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__more {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    opacity: 0;
+    margin-left: @content-spill;
+    width: @handle; // fixed width for less mind-bendingness
+
+    @media @desktop {
+      display: inline-flex;
+    }
+
+    // normal behaviour; highlights on hover.
+    .@{passive-row}:hover & {
+      opacity: 1;
+
+      // when menu is active, only the active row is highlighted.
+      .play-detail-list--menu-active & {
+        opacity: 0;
+      }
+    }
+
+    // when menu is active; always highlighted.
+    .@{activated-row} & {
+      opacity: 1;
+
+      .play-detail-list--menu-active & {
+        opacity: 1;
+      }
+    }
   }
 
   &__detail {
@@ -61,6 +126,11 @@
     &--full {
       min-width: 0;
       flex: 1;
+    }
+
+    &--more {
+      display: flex;
+      align-self: stretch;
     }
 
     &--score-data {
@@ -87,7 +157,6 @@
       align-items: flex-start;
     }
   }
-
 
   &__score-data {
     display: inline-flex;
