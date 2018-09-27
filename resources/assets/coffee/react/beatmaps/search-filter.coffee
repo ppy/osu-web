@@ -32,14 +32,17 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
   render: =>
     div className: 'beatmapsets-search-filter',
-      span className:'beatmapsets-search-filter__header', @props.title
+      span className: 'beatmapsets-search-filter__header', @props.title
 
       div className: 'beatmapsets-search-filter__items',
         for option, i in @props.options
+          cssClasses = 'beatmapsets-search-filter__item'
+          cssClasses += ' beatmapsets-search-filter__item--active' if @selected(option.id)
+
           a
             key: i
             href: '#'
-            className: "beatmapsets-search-filter__item #{'beatmapsets-search-filter__item--active' if @selected(option.id)}"
+            className: cssClasses
             value: option.id
             'data-filter-value': option.id
             onClick: @select
