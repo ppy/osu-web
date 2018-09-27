@@ -19,8 +19,8 @@
 .wiki-main-page-panel {
   @_top: wiki-main-page-panel;
 
+  width: 100%;
   min-height: 150px;
-  width: calc(50% ~'-' 3.5px);
   margin-bottom: 7px;
   padding: 30px;
 
@@ -31,13 +31,17 @@
   .default-border-radius;
   .default-box-shadow;
 
-  &:nth-child(2n) {
-    margin-right: 7px;
-  }
+  @media @desktop {
+    width: calc(50% ~'-' 3.5px);
 
-  &:first-child, &:last-child&:nth-child(2n) {
-    width: 100%;
-    margin-right: 0;
+    &:nth-child(2n) {
+      margin-right: 7px;
+    }
+
+    &:first-child, &:last-child&:nth-child(2n) {
+      width: 100%;
+      margin-right: 0;
+    }
   }
 
   &__link {
