@@ -32,10 +32,16 @@
             </div>
         </div>
     </div>
-    <div class="osu-page osu-page--wiki">
+    <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')
-        <div class="wiki-main-page">
+        <div class="js-react--wiki-search"></div>
+        <div class="wiki-main-page__blurb">
+            {!! trans('wiki.main.blurb') !!}
+        </div>
+        <div class="wiki-main-page__panels">
             {!! $page->page()['output'] !!}
         </div>
     </div>
+
+    @include('layout._extra_js', ['src' => 'js/react/wiki-search.js'])
 @endsection
