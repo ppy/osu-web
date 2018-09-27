@@ -199,10 +199,6 @@ class Beatmaps.Main extends React.PureComponent
     osu.promisify @xhr
 
 
-  hideLoader: =>
-    @setState loading: false
-
-
   isSupporterMissing: =>
     !currentUser.is_supporter && @supporterFilters().length > 0
 
