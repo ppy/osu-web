@@ -38,6 +38,7 @@ return [
         'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
         'limit_reached' => 'You have reached the entry limit for this contest',
         'drop_here' => 'Drop your entry here',
+        'download' => 'Download .osz',
         'wrong_type' => [
             'art' => 'Only .jpg and .png files are accepted for this contest.',
             'beatmap' => 'Only .osu files are accepted for this contest.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => '1 vote|:count votes',
+        'count' => ':count vote|:count votes',
+        'points' => ':count point|:count points',
     ],
     'dates' => [
         'ended' => 'Ended :date',
