@@ -59,16 +59,6 @@ trait HasSearch
     }
 
     /**
-     * @return $this
-     */
-    public function page(?int $page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    /**
      * @param Highlight $highlight the fields and settings for highlighting. Set to null to remove.
      *
      * @return $this
@@ -145,7 +135,7 @@ trait HasSearch
      */
     protected function getFrom() : int
     {
-        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
+        return $this->from ?? 0;
     }
 
     /**
@@ -179,10 +169,5 @@ trait HasSearch
         if (!$sort->isBlank()) {
             $this->sorts[] = $sort;
         }
-    }
-
-    private function getPage() : int
-    {
-        return max(1, $this->page ?? 1);
     }
 }

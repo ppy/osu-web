@@ -140,6 +140,16 @@ abstract class Search implements Queryable
     }
 
     /**
+     * @return $this
+     */
+    public function page(?int $page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
      * @return SearchResponse
      */
     public function response() : SearchResponse
@@ -208,6 +218,11 @@ abstract class Search implements Queryable
         return 50;
     }
 
+    protected function getFrom() : int
+    {
+        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
+    }
+
     private function fetch()
     {
         if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
@@ -248,6 +263,11 @@ abstract class Search implements Queryable
             'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
             'index' => $this->index,
         ];
+    }
+
+    private function getPage() : int
+    {
+        return max(1, $this->page ?? 1);
     }
 
     private function isSearchWindowExceeded()
