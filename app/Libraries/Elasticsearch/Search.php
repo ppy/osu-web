@@ -50,25 +50,17 @@ abstract class Search implements Queryable
     private $error;
     private $response;
 
+    const ASSIGN_FIELDS = ['page', 'size', 'sort', 'source'];
+
     public function __construct(string $index, SearchParams $params)
     {
         $this->index = $index;
         $this->params = $params;
 
-        if ($this->params->page !== null) {
-            $this->page($this->params->page);
-        }
-
-        if ($this->params->size !== null) {
-            $this->size($this->params->size);
-        }
-
-        if ($this->params->sort !== null) {
-            $this->sort($this->params->sort);
-        }
-
-        if ($this->params->source !== null) {
-            $this->source($this->params->source);
+        foreach (static::ASSIGN_FIELDS as $field) {
+            if ($params->$field !== null) {
+                $this->$field($params->$field);
+            }
         }
     }
 
