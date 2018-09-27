@@ -89,7 +89,7 @@ class MultiSearch
                 $search = new $class($params);
 
                 if ($this->getMode() === 'all') {
-                    $search->page(1)->size($settings['size']);
+                    $search->from(0)->size($settings['size']);
                     if ($this->hasQuery()) {
                         $search->response(); // FIXME: run query before counts for tab; need better way to do this.
                     }

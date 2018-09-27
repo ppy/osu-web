@@ -48,10 +48,9 @@ abstract class Search implements Queryable
 
     private $count;
     private $error;
-    private $page;
     private $response;
 
-    const ASSIGN_FIELDS = ['page', 'size', 'sort', 'source'];
+    const ASSIGN_FIELDS = ['size', 'sort', 'source'];
 
     public function __construct(string $index, SearchParams $params)
     {
@@ -64,8 +63,8 @@ abstract class Search implements Queryable
             }
         }
 
-        // TODO: probably should convert page to from even earlier.
-        $this->from = $this->getSize() * ($this->getPage() - 1);
+        $page = max(1, $this->params->page ?? 1);
+        $this->from = $this->getSize() * ($page - 1);
     }
 
     // for paginator
@@ -120,16 +119,15 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        // FIXME: side-effect is setting page now overrides from
-        if ($this->page === null) {
-            // no laravel paginator if offset-only paging is used
-            return;
-        }
+        // this does mean it's possible to do something stupid
+        // like having $this->from start from the middle of a page,
+        // but you've got other problems if the paginator is used like that.
+        $page = floor($this->from / $this->getSize()) + 1;
 
         return new SearchPaginator(
             $this,
             $this->getSize(),
-            $this->getPage(),
+            $page,
             $options
         );
     }
@@ -142,19 +140,6 @@ abstract class Search implements Queryable
     public function overLimit()
     {
         return $this->response()->total() > $this->maxResults();
-    }
-
-    /**
-     * @return $this
-     */
-    public function page(?int $page)
-    {
-        $this->page = $page;
-        if ($page !== null) {
-            $this->from = $this->getSize() * ($this->getPage() - 1);
-        }
-
-        return $this;
     }
 
     /**
@@ -266,11 +251,6 @@ abstract class Search implements Queryable
             'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
             'index' => $this->index,
         ];
-    }
-
-    private function getPage() : int
-    {
-        return max(1, $this->page ?? 1);
     }
 
     private function isSearchWindowExceeded()
