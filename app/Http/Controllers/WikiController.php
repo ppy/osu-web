@@ -20,8 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\GitHubNotFoundException;
-use App\Exceptions\GitHubTooLargeException;
 use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
@@ -54,7 +52,7 @@ class WikiController extends Controller
                 return ujs_redirect(wiki_url($redirectTarget));
             }
 
-            $correctPath = Wiki\BasePage::searchPath($path, $this->locale());
+            $correctPath = $pageClass::searchPath($path, $this->locale());
             if ($correctPath !== null && $correctPath !== $path) {
                 return ujs_redirect(wiki_url($correctPath));
             }
