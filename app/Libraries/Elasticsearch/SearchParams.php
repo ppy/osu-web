@@ -27,8 +27,8 @@ abstract class SearchParams
     /** @var int|null */
     public $page = null;
 
-    /** @var int|null */
-    public $size = null;
+    /** @var int */
+    public $size = 50;
 
     /** @var array|Sort|null */
     public $sort = null;

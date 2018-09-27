@@ -46,11 +46,6 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    public function getDefaultSize() : int
-    {
-        return config('osu.beatmaps.max');
-    }
-
     /**
      * {@inheritdoc}
      */

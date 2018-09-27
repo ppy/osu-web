@@ -64,7 +64,7 @@ abstract class Search implements Queryable
         }
 
         $page = max(1, $this->params->page ?? 1);
-        $this->from = $this->getSize() * ($page - 1);
+        $this->from = $this->size * ($page - 1);
     }
 
     // for paginator
@@ -122,11 +122,11 @@ abstract class Search implements Queryable
         // this does mean it's possible to do something stupid
         // like having $this->from start from the middle of a page,
         // but you've got other problems if the paginator is used like that.
-        $page = floor($this->from / $this->getSize()) + 1;
+        $page = floor($this->from / $this->size) + 1;
 
         return new SearchPaginator(
             $this,
-            $this->getSize(),
+            $this->size,
             $page,
             $options
         );
@@ -204,11 +204,6 @@ abstract class Search implements Queryable
     public function total()
     {
         return min($this->response()->total(), $this->maxResults());
-    }
-
-    protected function getDefaultSize() : int
-    {
-        return 50;
     }
 
     private function fetch()

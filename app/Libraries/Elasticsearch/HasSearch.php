@@ -25,7 +25,7 @@ trait HasSearch
     protected $from = 0;
     protected $highlight;
     protected $query;
-    protected $size;
+    protected $size = 10;
     protected $sorts = [];
     protected $source;
     protected $type;
@@ -51,7 +51,7 @@ trait HasSearch
     /**
      * @return $this
      */
-    public function size(?int $size)
+    public function size(int $size)
     {
         $this->size = $size;
 
@@ -123,11 +123,6 @@ trait HasSearch
         return $this;
     }
 
-    protected function getDefaultSize() : int
-    {
-        return 10;
-    }
-
     /**
      *  Gets the actual size to use in queries.
      *
@@ -135,17 +130,7 @@ trait HasSearch
      */
     protected function getQuerySize() : int
     {
-        return min($this->maxResults() - $this->from, $this->getSize());
-    }
-
-    /**
-     *  Gets the size or default size if none was give..
-     *
-     * @return int size.
-     */
-    protected function getSize() : int
-    {
-        return $this->size ?? $this->getDefaultSize();
+        return min($this->maxResults() - $this->from, $this->size);
     }
 
     protected function maxResults() : int
