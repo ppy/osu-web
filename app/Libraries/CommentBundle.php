@@ -27,15 +27,18 @@ class CommentBundle
 {
     private $commentable;
     private $comments;
-    private $parentId;
+    private $search;
     private $lastLoadedId;
 
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
 
-        $this->parentId = $options['parentId'] ?? null;
-        $this->lastLoadedId = $options['lastLoadedId'] ?? null;
+        $this->search = [];
+        $this->search['parent_id'] = get_int($options['search']['parent_id'] ?? null);
+        $this->search['last_loaded_id'] = get_int($options['search']['last_loaded_id'] ?? null);
+        $this->search['depth'] = clamp(get_int($options['search']['depth'] ?? 0), 0, 2);
+
         $this->comments = $options['comments'] ?? null;
     }
 
@@ -45,13 +48,13 @@ class CommentBundle
             $comments = $this->comments;
         } else {
             $comments = $this->getComments(
-                $this->commentable->comments()->where(['parent_id' => $this->parentId]),
-                $this->lastLoadedId
+                $this->commentsQuery()->where(['parent_id' => $this->search['parent_id']]),
+                $this->search['last_loaded_id']
             );
 
             $nestedComments = null;
 
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < $this->search['depth']; $i++) {
                 if ($i === 0) {
                     $parentIds = $comments->pluck('id');
                 } else {
@@ -73,11 +76,20 @@ class CommentBundle
             'users' => json_collection($users, 'UserCompact'),
         ];
 
-        if ($this->parentId === null) {
-            $result['top_level_count'] = $this->commentable->comments()->whereNull('parent_id')->count();
+        if ($this->search['parent_id'] === null) {
+            $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
         }
 
         return $result;
+    }
+
+    public function commentsQuery()
+    {
+        if (isset($this->commentable)) {
+            return $this->commentable->comments();
+        } else {
+            return Comment::select();
+        }
     }
 
     private function getComments($query, $lastLoadedId = null, $limit = 50)

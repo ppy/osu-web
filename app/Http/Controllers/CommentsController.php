@@ -53,13 +53,10 @@ class CommentsController extends Controller
             }
 
             $commentable = $class::findOrFail($id);
-        } else {
-            abort(404);
         }
 
-        return (new CommentBundle($commentable, [
-            'parentId' => get_int(request('parent_id')),
-            'lastLoadedId' => get_int(request('after')),
+        return (new CommentBundle($commentable ?? null, [
+            'search' => request()->all(),
         ]))->toArray();
     }
 

@@ -51,6 +51,7 @@ class @CommentShowMore extends React.PureComponent
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
       parent_id: @props.parent?.id ? ''
       after: @props.after ? ''
+      depth: 2
 
     $.get laroute.route('comments.index', params)
     .done (data) =>
