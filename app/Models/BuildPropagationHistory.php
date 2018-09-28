@@ -22,7 +22,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class BuildPropagationHistory extends Model
 {
