@@ -76,7 +76,7 @@ class Store extends \Illuminate\Session\Store
             $fullSessionId = $this->keyPrefix($userId).":{$sessionId}";
             $this->handler->destroy($fullSessionId);
 
-            Redis::srem($this->sessionListKey($userId), config('cache.prefix').$fullSessionId);
+            Redis::srem($this->sessionListKey($userId), config('cache.prefix').':'.$fullSessionId);
 
             return true;
         }
@@ -216,7 +216,7 @@ class Store extends \Illuminate\Session\Store
 
         if ($destroy) {
             if (!$this->isGuestSession()) {
-                Redis::srem($this->sessionListKey($userId), $this->getId());
+                Redis::srem($this->sessionListKey($userId), config('cache.prefix').':'.$fullSessionId);
             }
             $this->handler->destroy($this->getId());
         }
@@ -238,7 +238,7 @@ class Store extends \Illuminate\Session\Store
         if ($data = $this->handler->read($this->getId())) {
             $data = @unserialize($this->prepareForUnserialize($data));
 
-            if ($data !== false && ! is_null($data) && is_array($data)) {
+            if ($data !== false && !is_null($data) && is_array($data)) {
                 return $data;
             }
         }
@@ -250,8 +250,6 @@ class Store extends \Illuminate\Session\Store
 
     /**
      * Save the session data to storage.
-     *
-     * @return bool
      */
     public function save()
     {
