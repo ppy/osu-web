@@ -20,8 +20,8 @@
 
 namespace App\Models\UserStatistics;
 
-use App\Models\User;
 use App\Models\Model as BaseModel;
+use App\Models\User;
 
 abstract class Model extends BaseModel
 {
