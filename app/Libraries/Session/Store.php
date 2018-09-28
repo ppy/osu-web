@@ -227,6 +227,28 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
+     * Read the session data from the handler.
+     *
+     * @return array
+     */
+    protected function readFromHandler()
+    {
+        // Overridden to force session ids to be regenerated when trying to load a session that doesn't exist anymore
+
+        if ($data = $this->handler->read($this->getId())) {
+            $data = @unserialize($this->prepareForUnserialize($data));
+
+            if ($data !== false && ! is_null($data) && is_array($data)) {
+                return $data;
+            }
+        }
+
+        $this->regenerate(true);
+
+        return [];
+    }
+
+    /**
      * Save the session data to storage.
      *
      * @return bool
