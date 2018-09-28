@@ -98,8 +98,12 @@ class Comment extends Model
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
-        if ($this->parent_id !== null && !$this->parent()->exists()) {
-            $this->validationErrors()->add('parent_id', 'invalid');
+        if ($this->isDirty('parent_id') && $this->parent_id !== null) {
+            if ($this->parent === null) {
+                $this->validationErrors()->add('parent_id', 'invalid');
+            } elseif ($this->parent->isDeleted()) {
+                $this->validationErrors()->add('parent_id', '.deleted_parent');
+            }
         }
 
         if (!$this->allowEmptyCommentable && !$this->commentable()->exists()) {
