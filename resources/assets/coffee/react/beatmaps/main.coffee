@@ -51,7 +51,7 @@ class Beatmaps.Main extends React.PureComponent
     @state ?= _.extend
       beatmaps: @props.beatmaps.beatmapsets
       paging:
-        sort_cursor: @props.beatmaps.sort_cursor
+        cursor: @props.beatmaps.cursor
         url: laroute.route('beatmapsets.search')
         loading: false
         more: @props.beatmaps.beatmapsets.length > 0
@@ -182,14 +182,14 @@ class Beatmaps.Main extends React.PureComponent
       beatmaps: if newQuery then data.beatmapsets else [].concat(@state.beatmaps, data.beatmapsets)
       loading: false
       paging:
-        sort_cursor: data.sort_cursor
+        cursor: data.cursor
         url: @state.paging.url
         more: data.beatmapsets.length > 0
 
 
   fetchResults: (newQuery) =>
     params = BeatmapsetFilter.queryParamsFromFilters(@state.filters)
-    params.search_after = @state.paging.sort_cursor if !newQuery
+    params.cursor = @state.paging.cursor if !newQuery
 
     @xhr = $.ajax @state.paging.url,
       method: 'get'

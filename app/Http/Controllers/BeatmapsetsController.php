@@ -173,7 +173,7 @@ class BeatmapsetsController extends Controller
                 new BeatmapsetTransformer,
                 'beatmaps'
             ),
-            'sort_cursor' => $search->getSortCursor(),
+            'cursor' => $search->getSortCursor(),
         ];
     }
 
