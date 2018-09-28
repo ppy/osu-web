@@ -70,10 +70,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderUser: =>
     filters = @props.availableFilters
+    cssClasses = 'beatmapsets-search'
+    cssClasses += ' beatmapsets-search--expanded' if @props.isExpanded
 
     div
       ref: @props.innerRef
-      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
+      className: cssClasses
       div
         className: 'beatmapsets-search__background'
         style:
