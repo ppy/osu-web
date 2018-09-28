@@ -21,8 +21,9 @@
 namespace App\Models\UserStatistics\Spotlight;
 
 use App\Models\UserStatistics\Model as BaseModel;
+use App\Libraries\HasDynamicTable;
 
-abstract class Model extends BaseModel
+abstract class Model extends BaseModel implements HasDynamicTable
 {
     protected $connection = 'mysql-charts';
 
