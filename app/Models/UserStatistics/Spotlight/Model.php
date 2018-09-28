@@ -20,8 +20,8 @@
 
 namespace App\Models\UserStatistics\Spotlight;
 
-use App\Models\UserStatistics\Model as BaseModel;
 use App\Libraries\HasDynamicTable;
+use App\Models\UserStatistics\Model as BaseModel;
 
 abstract class Model extends BaseModel implements HasDynamicTable
 {
