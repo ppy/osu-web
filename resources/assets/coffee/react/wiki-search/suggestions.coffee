@@ -15,22 +15,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div, span} = ReactDOMFactories
 
-{div, input, span} = ReactDOMFactories
-el = React.createElement
-
-class @WikiSearch.Main extends React.Component
+class @WikiSearch.Suggestions extends React.Component
   constructor: (props) ->
     super props
 
   render: ->
     div
-      className: 'wiki-search',
-      input
-        className: 'wiki-search__bar'
-        placeholder: osu.trans 'common.input.search'
-
-      span
-        className: 'wiki-search__button fa fa-search'
-
-      el WikiSearch.Suggestions
+      className: 'wiki-search-suggestions',
+      for i in [1..5]
+        div
+          className: 'wiki-search-suggestions__suggestion',
+          span className: 'wiki-search-suggestions__suggestion--matching', 'te'
+          "st#{i}"
+      div
+        className: 'wiki-search-suggestions__prompt',
+        osu.trans 'wiki.main.search-enter-prompt'
