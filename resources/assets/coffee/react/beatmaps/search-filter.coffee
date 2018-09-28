@@ -23,9 +23,6 @@ class Beatmaps.SearchFilter extends React.PureComponent
   constructor: (props) ->
     super props
 
-    keyToChar = _.invert BeatmapsetFilter.charToKey
-    @char = keyToChar[@props.name]
-
     @cache = {}
 
 
@@ -55,8 +52,12 @@ class Beatmaps.SearchFilter extends React.PureComponent
     BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
 
 
-  href: ({ id, name }) =>
-    osu.updateQueryString(null, "#{@char}": @newSelection(id))
+  href: ({ id }) =>
+    updatedFilter = {}
+    updatedFilter[@props.name] = @newSelection(id)
+    filters = _.assign {}, @props.filters, updatedFilter
+
+    osu.updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
 
 
   select: (e) =>
