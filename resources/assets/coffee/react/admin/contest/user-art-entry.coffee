@@ -19,7 +19,7 @@
 {br, tr, td, a, img, dl, dt, dd, div} = ReactDOMFactories
 el = React.createElement
 
-class @Admin.Contest.UserArtEntry extends @Admin.Contest.BaseUserEntry
+class @Admin.Contest.UserArtEntry extends React.Component
   render: =>
     className = 'admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted
@@ -42,7 +42,8 @@ class @Admin.Contest.UserArtEntry extends @Admin.Contest.BaseUserEntry
           dt className: 'admin-contest__meta-row', 'Filesize'
           dd className: 'admin-contest__meta-row', osu.formatBytes(@props.entry.filesize)
 
-        @renderButton()
+        el Admin.Contest.UserEntryDeleteButton,
+          entry: @props.entry
 
       td {},
         a download: @props.entry.original_filename, href: @props.entry.url,

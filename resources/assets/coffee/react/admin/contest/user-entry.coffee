@@ -19,7 +19,7 @@
 {tr, td, a, div} = ReactDOMFactories
 el = React.createElement
 
-class @Admin.Contest.UserEntry extends @Admin.Contest.BaseUserEntry
+class @Admin.Contest.UserEntry extends React.Component
   render: =>
     className = 'admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted
@@ -43,4 +43,5 @@ class @Admin.Contest.UserEntry extends @Admin.Contest.BaseUserEntry
           osu.formatBytes(@props.entry.filesize)
 
       td className: 'admin-contest-entry__column admin-contest-entry__column--button',
-        @renderButton()
+        el Admin.Contest.UserEntryDeleteButton,
+          entry: @props.entry

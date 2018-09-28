@@ -19,7 +19,7 @@
 {br, tr, td, button, a, img, dl, dt, dd, i} = ReactDOMFactories
 el = React.createElement
 
-class @Admin.Contest.BaseUserEntry extends React.Component
+class @Admin.Contest.UserEntryDeleteButton extends React.Component
   update: (id, destroy) =>
     params =
       dataType: 'json'
@@ -44,7 +44,7 @@ class @Admin.Contest.BaseUserEntry extends React.Component
     e.preventDefault()
     @update(@props.entry.id, false)
 
-  renderButton: ->
+  render: =>
     if @props.entry.deleted
       btnClass = 'info'
       icon = 'fas fa-magic'
