@@ -558,6 +558,25 @@ function link_to_user($user_id, $user_name = null, $user_color = null)
     }
 }
 
+function link_to_forum($forum_id, $forum_name)
+{
+    if ($forum_id instanceof App\Models\Forum\Topic) {
+        $forum_id = $forum_id->getKey();
+    }
+
+    if ($forum_id instanceof App\Models\Forum\Forum) {
+        $forum_name = $forum_name->getKey();
+    }
+
+    if ($forum_id) {
+        $forum_url = e(route('forum.forums.show', $forum_id));
+
+        return "<a class='forums__forum-topic-link' href='{$forum_url}' style='{$style}'>{$forum_name}</a>";
+    } else {
+        return "<span class='forums__forum-topic-link'>{$forum_name}</span>";
+    }
+}
+
 function issue_icon($issue)
 {
     switch ($issue) {
