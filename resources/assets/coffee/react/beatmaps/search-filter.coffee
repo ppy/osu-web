@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span} = ReactDOMFactories
+{div, a, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchFilter extends React.PureComponent
@@ -56,27 +56,21 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
 
   href: ({ id, name }) =>
-    i = @cast(id)
-    newSelection =
-      if @props.multiselect
-        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
-      else
-        if @selected(i) then @props.default else i
-
-    osu.updateQueryString(null, "#{@char}": newSelection)
+    osu.updateQueryString(null, "#{@char}": @newSelection(id))
 
 
   select: (e) =>
     e.preventDefault()
-    i = @cast(e.target.dataset.filterValue)
+    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": @newSelection(e.target.dataset.filterValue)
 
-    newSelection =
-      if @props.multiselect
-        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
-      else
-        if @selected(i) then @props.default else i
 
-    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": newSelection
+  # TODO: rename
+  newSelection: (id) =>
+    i = @cast(id)
+    if @props.multiselect
+      _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
+    else
+      if @selected(i) then @props.default else i
 
 
   selected: (i) =>
