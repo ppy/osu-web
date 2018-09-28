@@ -27,7 +27,6 @@ use Auth;
 class Address extends Model
 {
     protected $primaryKey = 'address_id';
-    protected $guarded = ['id', 'user_id'];
 
     public function user()
     {

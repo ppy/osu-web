@@ -39,7 +39,6 @@ class Post extends Model implements AfterCommit
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 

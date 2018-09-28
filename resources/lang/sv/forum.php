@@ -114,11 +114,6 @@ return [
                 'total' => 'Ämne prenumererade',
                 'unread' => 'Ämnen med nya svar',
             ],
-
-            'info' => [
-                'total' => 'Du prenumererade till :total ämnen.',
-                'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
-            ],
         ],
 
         'topic_buttons' => [

@@ -29,7 +29,6 @@ class Beatmap extends Model
 
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
-    protected $guarded = [];
 
     protected $casts = [
         'orphaned' => 'boolean',

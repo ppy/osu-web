@@ -67,3 +67,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_regdate' => $faker->dateTimeBetween('-6 years', 'now'),
     ];
 });
+
+$factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
+    return [
+        'user_warnings' => 1,
+    ];
+});
