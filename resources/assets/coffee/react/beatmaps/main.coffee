@@ -163,18 +163,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   buildSearchQuery: =>
-    return {} if !currentUser.id?
-
-    params = _.extend {}, @state.filters
-
-    keyToChar = _.invert BeatmapsetFilter.charToKey
-    charParams = {}
-
-    for own key, value of params
-      if value? && BeatmapsetFilter.getDefault(params, key) != value
-        charParams[keyToChar[key]] = value
-
-    charParams
+    BeatmapsetFilter.queryParamsFromFilters(@state.filters)
 
 
   expand: (e) =>
