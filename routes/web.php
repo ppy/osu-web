@@ -26,6 +26,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
+    Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
+    Route::post('user-contest-entries/{user_contest_entry}/restore', 'UserContestEntriesController@restore')->name('user-contest-entries.restore');
+
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
     Route::get('/', 'PagesController@root')->name('root');

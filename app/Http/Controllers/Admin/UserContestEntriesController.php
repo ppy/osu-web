@@ -18,34 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\UserContestEntry;
-use League\Fractal;
 
-class UserContestEntryTransformer extends Fractal\TransformerAbstract
+class UserContestEntriesController extends Controller
 {
-    protected $availableIncludes = [
-        'user',
-    ];
-
-    public function transform(UserContestEntry $entry)
+    public function destroy($id)
     {
-        return [
-            'id' => $entry->id,
-            'filename' => $entry->original_filename,
-            'filesize' => $entry->filesize,
-            'url' => $entry->fileUrl(),
-            'created_at' => json_time($entry->created_at),
-            'deleted' => $entry->deleted_at !== null,
-        ];
+        $entry = UserContestEntry::findOrFail($id);
+        $entry->delete();
+
+        return response([], 204);
     }
 
-    public function includeUser(UserContestEntry $entry)
+    public function restore($id)
     {
-        return $this->item(
-            $entry->user ?? (new DeletedUser),
-            new UserCompactTransformer
-        );
+        $entry = UserContestEntry::withTrashed()->findOrFail($id);
+        $entry->restore();
+
+        return response([], 204);
     }
 }
