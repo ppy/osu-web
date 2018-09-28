@@ -68,6 +68,14 @@
             </a>
 
             <div>
+                {!! trans("forum.topic.location", [
+                    "forum" => link_to_forum(
+                        $topic->forum_id,
+                        $topic->forum,
+                )]) !!}
+            </div>
+
+            <div>
                 {!! trans("forum.topic.started_by", [
                     "user" => link_to_user(
                         $topic->topic_poster,
