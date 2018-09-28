@@ -92,6 +92,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           i className: 'fas fa-search'
 
       el Beatmaps.SearchFilter,
+        filters: @props.filters
         name: 'general'
         title: osu.trans('beatmaps.listing.search.filters.general')
         options: filters.general
@@ -100,6 +101,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         selected: @props.filters.general
 
       el Beatmaps.SearchFilter,
+        filters: @props.filters
         name: 'mode'
         title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
@@ -107,6 +109,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         selected: @props.filters.mode
 
       el Beatmaps.SearchFilter,
+        filters: @props.filters
         name: 'status'
         title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
@@ -122,6 +125,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,
+          filters: @props.filters
           name: 'genre'
           title: osu.trans('beatmaps.listing.search.filters.genre')
           options: filters.genres
@@ -129,6 +133,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.genre
 
         el Beatmaps.SearchFilter,
+          filters: @props.filters
           name: 'language'
           title: osu.trans('beatmaps.listing.search.filters.language')
           options: filters.languages
@@ -136,6 +141,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.language
 
         el Beatmaps.SearchFilter,
+          filters: @props.filters
           name: 'extra'
           title: osu.trans('beatmaps.listing.search.filters.extra')
           options: filters.extras
@@ -143,6 +149,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.extra
 
         el Beatmaps.SearchFilter,
+          filters: @props.filters
           name: 'rank'
           title: osu.trans('beatmaps.listing.search.filters.rank')
           options: filters.ranks
@@ -150,6 +157,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           selected: @props.filters.rank
 
         el Beatmaps.SearchFilter,
+          filters: @props.filters
           name: 'played'
           title: osu.trans('beatmaps.listing.search.filters.played')
           options: filters.played
