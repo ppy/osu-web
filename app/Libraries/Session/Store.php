@@ -101,10 +101,7 @@ class Store extends \Illuminate\Session\Store
      */
     public function isGuestSession()
     {
-        $sessionId = $this->getId();
-        $prefix = substr($sessionId, 0, strlen($sessionId) - static::SESSION_ID_LENGTH - 1);
-
-        return $prefix === $this->keyPrefix(null);
+        return starts_with($this->getId(), static::keyPrefix(null).':');
     }
 
     public function currentUserSessions()
