@@ -76,6 +76,7 @@ return [
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'reply_title_prefix' => 'Re',
+        'location' => 'in :forum',
         'started_by' => 'by :user',
         'started_by_verbose' => 'started by :user',
 
