@@ -75,6 +75,8 @@
                         class="simple-form__input simple-form__input--equal-width"
                         name="min_date"
                         type="date"
+                        {{-- set correct baseline for safari --}}
+                        placeholder=" "
                         value="{{ $search['params']['min_date'] ?? '' }}"
                     >
 
@@ -86,6 +88,8 @@
                         class="simple-form__input simple-form__input--equal-width"
                         name="max_date"
                         type="date"
+                        {{-- set correct baseline for safari --}}
+                        placeholder=" "
                         value="{{ $search['params']['max_date'] ?? '' }}"
                     >
                 </div>
