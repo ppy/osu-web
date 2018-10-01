@@ -22,7 +22,6 @@ namespace App\Libraries\Elasticsearch;
 
 use App\Libraries\Search\EmptySearchParams;
 
-
 class HasChildQuery extends HasSearch implements Queryable
 {
     protected $name;

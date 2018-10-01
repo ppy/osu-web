@@ -71,7 +71,6 @@ abstract class SearchParams
         return false;
     }
 
-
     /**
      * Helper to convert a page request parameter to a from query parameter.
      * The desired page size should be set first, otherwise the default size will be used.
@@ -82,6 +81,7 @@ abstract class SearchParams
     public function pageAsFrom($page) : int
     {
         $page = max(1, $page ?? 1);
+
         return $this->size * ($page - 1);
     }
 }
