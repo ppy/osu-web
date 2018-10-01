@@ -89,10 +89,12 @@
     background-color: #fff;
     color: @input-color;
     font-weight: normal;
+    font-size: @font-size--phone-input;
     width: 100%;
 
     @media @desktop {
       width: auto;
+      font-size: inherit;
     }
 
     &:focus {
