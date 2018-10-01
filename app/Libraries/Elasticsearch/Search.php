@@ -164,7 +164,7 @@ abstract class Search extends HasSearch implements Queryable
             $body['highlight'] = $this->highlight->toArray();
         }
 
-        if (isset($this->source)) {
+        if (isset($this->params->source)) {
             $body['_source'] = $this->params->source;
         }
 

@@ -66,7 +66,7 @@ class HasChildQuery extends HasSearch implements Queryable
             $inner['highlight'] = $this->highlight->toArray();
         }
 
-        if (isset($this->source)) {
+        if (isset($this->params->source)) {
             $inner['_source'] = $this->params->source;
         }
 

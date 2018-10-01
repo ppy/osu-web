@@ -27,8 +27,6 @@ abstract class HasSearch
     protected $query;
     protected $type;
 
-
-
     public function __construct(SearchParams $params)
     {
         $this->params = $params;
