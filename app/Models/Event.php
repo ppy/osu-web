@@ -73,6 +73,21 @@ class Event extends Model
 
                 break;
 
+            case 'beatmapsetDelete':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
+
+                $params = [
+                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> has been deleted.",
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $options['user']->getKey(),
+                    'private' => false,
+                    'epicfactor' => 1,
+                ];
+
+                break;
+
             case 'usernameChange':
                 $user = static::userParams($options['user']);
                 $oldUsername = e($options['history']->username_last);

@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Delete',
+        'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
+        'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
         'disqualification_prompt' => 'Reason for disqualification?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'no reason specified',

@@ -328,6 +328,19 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetDelete($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($beatmapset->isGraveyard() && $user->getKey() === $beatmapset->user_id) {
+            return 'ok';
+        }
+
+        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapsetLove($user)
     {
         $this->ensureLoggedIn($user);
