@@ -24,8 +24,6 @@ use Carbon\Carbon;
 
 class BeatmapsetEvent extends Model
 {
-    protected $guarded = [];
-
     const NOMINATE = 'nominate';
     const LOVE = 'love';
     const QUALIFY = 'qualify';

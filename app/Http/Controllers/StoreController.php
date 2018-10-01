@@ -67,10 +67,6 @@ class StoreController extends Controller
 
     public function getListing()
     {
-        if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.show'));
-        }
-
         return view('store.index')
             ->with('cart', $this->userCart())
             ->with('products', Store\Product::latest()->simplePaginate(30));
@@ -78,7 +74,7 @@ class StoreController extends Controller
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::where('status', '<>', 'incart')
+        $order = Store\Order::whereHasInvoice()
             ->with('items.product')
             ->findOrFail($id);
 
@@ -140,7 +136,16 @@ class StoreController extends Controller
             'address' => Request::input('address'),
         ]));
 
-        $addressInput = Request::all()['address'];
+        $addressInput = get_params(request(), 'address', [
+            'first_name',
+            'last_name',
+            'street',
+            'city',
+            'state',
+            'zip',
+            'country_code',
+            'phone',
+        ]);
 
         $validator = Validator::make($addressInput, [
             'first_name' => ['required'],
@@ -172,12 +177,8 @@ class StoreController extends Controller
 
     public function postAddToCart()
     {
-        $error = $this->userCart()->updateItem(Request::input('item', []), true);
-
-        if ($error === null) {
-            return ujs_redirect(route('store.cart.show'));
-        } else {
-            return error_popup($error);
-        }
+        // FIXME: remove after deploy; this is just to stop 'omg can't add items'
+        // old route, force reload to get updated view.
+        return js_view('layout.ujs-reload');
     }
 }

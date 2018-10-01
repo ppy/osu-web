@@ -48,7 +48,6 @@ class Event extends Model
     protected $primaryKey = 'event_id';
 
     protected $dates = ['date'];
-    protected $guarded = [];
     public $timestamps = false;
 
     public static function generate($type, $options)
@@ -70,6 +69,21 @@ class Event extends Model
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
                     'epicfactor' => 8,
+                ];
+
+                break;
+
+            case 'beatmapsetDelete':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
+
+                $params = [
+                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> has been deleted.",
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $options['user']->getKey(),
+                    'private' => false,
+                    'epicfactor' => 1,
                 ];
 
                 break;

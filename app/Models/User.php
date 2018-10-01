@@ -40,11 +40,11 @@ use Request;
 
 class User extends Model implements AuthenticatableContract
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
+    use Elasticsearch\UserTrait, Store\UserTrait;
+    use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';

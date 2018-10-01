@@ -9,7 +9,6 @@ class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';
     public $timestamps = false;
-    protected $guarded = [];
     protected $casts = [
         'friend' => 'boolean',
         'foe' => 'boolean',

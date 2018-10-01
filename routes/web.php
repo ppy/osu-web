@@ -26,6 +26,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
+    Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
+    Route::post('user-contest-entries/{user_contest_entry}/restore', 'UserContestEntriesController@restore')->name('user-contest-entries.restore');
+
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
     Route::get('/', 'PagesController@root')->name('root');
@@ -79,7 +82,7 @@ Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download'
 Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
-Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
+Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
@@ -195,6 +198,8 @@ Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->na
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
+Route::get('users/{user}/replays/{beatmap}/{mode}', 'Users\ReplaysController@show')->name('users.replay');
+
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
     Route::get('/events', 'ModdingHistoryController@events')->name('events');
@@ -233,9 +238,9 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::get('cart', 'CartController@show')->name('cart.show');
         Route::resource('cart', 'CartController', ['only' => ['store']]);
 
-        Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
-        Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
-        Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
+        Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
+
+        Route::resource('orders', 'OrdersController', ['only' => ['index']]);
 
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
