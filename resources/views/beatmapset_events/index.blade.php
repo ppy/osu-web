@@ -52,14 +52,16 @@
                     </div>
                     <div class="simple-form__checkboxes-overflow">
                         @foreach (App\Models\BeatmapsetEvent::publicTypes() as $type)
-                            <label class="simple-form__checkbox simple-form__checkbox--overflow">
-                                @include('objects._checkbox', [
-                                    'name' => 'types[]',
-                                    'value' => $type,
-                                    'checked' => in_array($type, $search['params']['types'], true),
-                                ])
-                                {{ trans("beatmapset_events.type.{$type}") }}
-                            </label>
+                            <div class="simple-form__checkbox-overflow-container">
+                                <label class="simple-form__checkbox simple-form__checkbox--overflow">
+                                    @include('objects._checkbox', [
+                                        'name' => 'types[]',
+                                        'value' => $type,
+                                        'checked' => in_array($type, $search['params']['types'], true),
+                                    ])
+                                    {{ trans("beatmapset_events.type.{$type}") }}
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>

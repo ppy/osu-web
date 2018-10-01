@@ -39,13 +39,17 @@
     }
 
     &--overflow {
-      flex: none;
       margin: 0;
       padding: 5px 10px;
+    }
+  }
 
-      @media @desktop {
-        width: 33%;
-      }
+  &__checkbox-overflow-container {
+    flex: none;
+    width: 100%;
+
+    @media @desktop {
+      width: 33%;
     }
   }
 
@@ -56,16 +60,15 @@
   }
 
   &__checkboxes-overflow {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     max-height: 300px;
     overflow-y: auto;
+    // fancier scrolling and visible scroll bar on safari ios
+    -webkit-overflow-scrolling: touch;
     margin: -5px -10px;
     width: 100%;
 
     @media @desktop {
-      flex-direction: row;
+      display: flex;
       flex-wrap: wrap;
     }
   }
