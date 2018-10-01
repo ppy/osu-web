@@ -58,7 +58,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $sort = explode('_', $request['sort']);
-        $this->sort = $this->normalizeSort(
+        $this->sorts = $this->normalizeSort(
             [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
         );
 

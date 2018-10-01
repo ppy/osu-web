@@ -20,22 +20,26 @@
 
 namespace App\Libraries\Elasticsearch;
 
-trait HasSearch
+class HasSearch
 {
-    protected $from = 0;
     protected $highlight;
+    protected $params;
     protected $query;
-    protected $size = 10;
-    protected $sorts = [];
-    protected $source;
     protected $type;
+
+
+
+    public function __construct(SearchParams $params)
+    {
+        $this->params = $params;
+    }
 
     /**
      * @return $this
      */
     public function from(int $from)
     {
-        $this->from = $from;
+        $this->params->from = $from;
 
         return $this;
     }
@@ -43,7 +47,7 @@ trait HasSearch
     /**
      * @return $this
      */
-    public function limit(?int $limit)
+    public function limit(int $limit)
     {
         return $this->size($limit);
     }
@@ -53,7 +57,7 @@ trait HasSearch
      */
     public function size(int $size)
     {
-        $this->size = $size;
+        $this->params->size = $size;
 
         return $this;
     }
@@ -90,7 +94,7 @@ trait HasSearch
      */
     public function source($fields)
     {
-        $this->source = $fields;
+        $this->params->source = $fields;
 
         return $this;
     }
@@ -130,7 +134,7 @@ trait HasSearch
      */
     protected function getQuerySize() : int
     {
-        return min($this->maxResults() - $this->from, $this->size);
+        return min($this->maxResults() - $this->params->from, $this->params->size);
     }
 
     protected function maxResults() : int
@@ -142,7 +146,7 @@ trait HasSearch
     private function addSort(Sort $sort)
     {
         if (!$sort->isBlank()) {
-            $this->sorts[] = $sort;
+            $this->params->sorts[] = $sort;
         }
     }
 }

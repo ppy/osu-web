@@ -24,10 +24,8 @@ use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 
-abstract class Search implements Queryable
+abstract class Search extends HasSearch implements Queryable
 {
-    use HasSearch;
-
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
     /** @var string */
@@ -43,7 +41,6 @@ abstract class Search implements Queryable
 
     protected $aggregations;
     protected $index;
-    protected $params;
     protected $queryString;
 
     private $count;
@@ -54,14 +51,9 @@ abstract class Search implements Queryable
 
     public function __construct(string $index, SearchParams $params)
     {
-        $this->index = $index;
-        $this->params = $params;
+        parent::__construct($params);
 
-        foreach (static::ASSIGN_FIELDS as $field) {
-            if ($params->$field !== null) {
-                $this->$field($params->$field);
-            }
-        }
+        $this->index = $index;
     }
 
     // for paginator
@@ -117,13 +109,13 @@ abstract class Search implements Queryable
     public function getPaginator(array $options = [])
     {
         // this does mean it's possible to do something stupid
-        // like having $this->from start from the middle of a page,
+        // like having $this->params->from start from the middle of a page,
         // but you've got other problems if the paginator is used like that.
-        $page = floor($this->from / $this->size) + 1;
+        $page = floor($this->params->from / $this->params->size) + 1;
 
         return new SearchPaginator(
             $this,
-            $this->size,
+            $this->params->size,
             $page,
             $options
         );
@@ -162,11 +154,11 @@ abstract class Search implements Queryable
     public function toArray() : array
     {
         $body = [
-            'from' => $this->from,
+            'from' => $this->params->from,
             'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts),
+            }, $this->params->sorts),
             'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
 
@@ -175,7 +167,7 @@ abstract class Search implements Queryable
         }
 
         if (isset($this->source)) {
-            $body['_source'] = $this->source;
+            $body['_source'] = $this->params->source;
         }
 
         if (isset($this->aggregations)) {

@@ -20,15 +20,18 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasChildQuery implements Queryable
-{
-    use HasSearch;
+use App\Libraries\Search\EmptySearchParams;
 
+
+class HasChildQuery extends HasSearch implements Queryable
+{
     protected $name;
     protected $scoreMode;
 
     public function __construct(string $type, string $name)
     {
+        parent::__construct(new EmptySearchParams);
+
         $this->name = $name;
         $this->type = $type;
     }
@@ -52,11 +55,11 @@ class HasChildQuery implements Queryable
         // inner_hits in join queries.
         $inner = [
             'name' => $this->name,
-            'from' => $this->from,
+            'from' => $this->params->from,
             'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts),
+            }, $this->params->sorts),
         ];
 
         if (isset($this->highlight)) {
@@ -64,7 +67,7 @@ class HasChildQuery implements Queryable
         }
 
         if (isset($this->source)) {
-            $inner['_source'] = $this->source;
+            $inner['_source'] = $this->params->source;
         }
 
         $body = [

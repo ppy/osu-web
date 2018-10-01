@@ -30,8 +30,8 @@ abstract class SearchParams
     /** @var int */
     public $size = 50;
 
-    /** @var array|Sort|null */
-    public $sort = null;
+    /** @var array */
+    public $sorts = [];
 
     /** @var array|string|null */
     public $source = null;
