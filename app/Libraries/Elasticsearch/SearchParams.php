@@ -33,25 +33,8 @@ abstract class SearchParams
     /** @var array */
     public $sorts = [];
 
-    /**
-     * This is just for applyParams used by MultiSearch
-     * @var array|string|null
-     * */
-    public $source = null;
-
     public function __construct()
     {
-    }
-
-    /**
-     * This function only exists for MultiSearch to apply additional params.
-     * It should probably be replaced in favour of having different SearchParams subclasses.
-     */
-    public function applyParams(array $params)
-    {
-        foreach ($params as $key => $value) {
-            $this->$key = $value;
-        }
     }
 
     /**

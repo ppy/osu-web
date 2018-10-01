@@ -35,7 +35,6 @@ class MultiSearch
             'type' => BeatmapsetSearch::class,
             'paramsType' => BeatmapsetSearchRequestParams::class,
             'size' => 8,
-            'options' => ['source' => ''],
         ],
         'wiki_page' => [
             'type' => WikiSearch::class,
@@ -85,8 +84,10 @@ class MultiSearch
                 $paramsClass = $settings['paramsType'];
 
                 $params = new $paramsClass($this->request, $this->options['user']);
-                $params->applyParams($settings['options'] ?? []);
                 $search = new $class($params);
+                if ($search instanceof BeatmapsetSearch) {
+                    $search->source(false);
+                }
 
                 if ($this->getMode() === 'all') {
                     $search->from(0)->size($settings['size']);

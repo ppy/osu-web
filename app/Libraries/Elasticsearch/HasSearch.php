@@ -25,6 +25,7 @@ abstract class HasSearch
     protected $highlight;
     protected $params;
     protected $query;
+    protected $source;
     protected $type;
 
     public function __construct(SearchParams $params)
@@ -84,7 +85,7 @@ abstract class HasSearch
      */
     public function source($fields)
     {
-        $this->params->source = $fields;
+        $this->source = $fields;
 
         return $this;
     }
