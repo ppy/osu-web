@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasSearch
+abstract class HasSearch
 {
     protected $highlight;
     protected $params;
