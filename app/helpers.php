@@ -311,6 +311,11 @@ function osu_url($key)
     return $url;
 }
 
+function pack_str($str)
+{
+    return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
 function param_string_simple($value)
 {
     if (is_array($value)) {

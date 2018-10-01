@@ -19,6 +19,7 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import { BackToTop } from 'back-to-top'
+import { PlayDetailList } from 'play-detail-list'
 import { ReportForm } from 'report-form'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
@@ -32,6 +33,7 @@ window.Promise ?= Promise
 
 window._exported = {
   BackToTop
+  PlayDetailList
   ReportForm
   SelectOptions
   SpotlightSelectOptions

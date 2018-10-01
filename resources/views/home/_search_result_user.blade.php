@@ -17,6 +17,6 @@
 --}}
 @foreach ($search->data() as $entry)
     <div class="search-result-entry">
-        @include('objects._usercard', ['user' => $entry, '_modifiers' => ['search']])
+        @include('objects._usercard', ['user' => $entry, '_modifiers' => ['no-margin']])
     </div>
 @endforeach

@@ -165,6 +165,10 @@ mix
   'resources/assets/app.js'
 ], 'js/app.js')
 .js([
+  ...glob.sync('resources/assets/coffee/react/admin/contest/*.coffee'),
+  'resources/assets/coffee/react/admin/contest.coffee',
+], 'js/react/admin/contest.js')
+.js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',
 ], 'js/react/profile-page.js')

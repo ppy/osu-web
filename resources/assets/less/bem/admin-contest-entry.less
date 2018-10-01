@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,27 +16,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\BeatmapLeader;
+.admin-contest-entry {
+  &__deleted {
+    opacity: 0.25;
+  }
 
-use App\Models\Beatmap;
-use App\Models\Model as BaseModel;
-use App\Models\User;
+  &__thumbnail {
+    max-height: 400px;
+  }
 
-abstract class Model extends BaseModel
-{
-    protected $primaryKey = 'beatmap_id';
+  &__user-column {
+    width: 250px;
+  }
 
-    public $timestamps = false;
+  &__avatar {
+    display: inline-block;
+    width: 32px;
+    margin-right: 5px;
+  }
 
-    public function beatmap()
-    {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+  &__user-link {
+    display: flex;
+    align-items: center;
+  }
+
+  &__username {
+    margin-bottom: 10px;
+  }
+
+  &__column {
+    && { // bootstrap override
+      vertical-align: middle;
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+    &--button {
+      text-align: center;
     }
-
-    abstract public function score();
+  }
 }

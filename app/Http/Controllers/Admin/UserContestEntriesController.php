@@ -18,27 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\BeatmapLeader;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Beatmap;
-use App\Models\Model as BaseModel;
-use App\Models\User;
+use App\Models\UserContestEntry;
 
-abstract class Model extends BaseModel
+class UserContestEntriesController extends Controller
 {
-    protected $primaryKey = 'beatmap_id';
-
-    public $timestamps = false;
-
-    public function beatmap()
+    public function destroy($id)
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+        $entry = UserContestEntry::findOrFail($id);
+        $entry->delete();
+
+        return response([], 204);
     }
 
-    public function user()
+    public function restore($id)
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+        $entry = UserContestEntry::withTrashed()->findOrFail($id);
+        $entry->restore();
 
-    abstract public function score();
+        return response([], 204);
+    }
 }

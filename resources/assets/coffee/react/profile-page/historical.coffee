@@ -101,8 +101,7 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.scoresRecent?.length
         [
-          @props.scoresRecent.map (score, i) =>
-            el PlayDetail, key: i, score: score
+          el window._exported.PlayDetailList, scores: @props.scoresRecent
 
           span
             key: 'show-more-row'

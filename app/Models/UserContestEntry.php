@@ -22,11 +22,15 @@ namespace App\Models;
 
 use App\Traits\Uploadable;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 
 class UserContestEntry extends Model
 {
+    use SoftDeletes;
     use Uploadable;
+
+    protected $dates = ['deleted_at'];
 
     public function getFileRoot()
     {
