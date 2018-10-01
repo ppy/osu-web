@@ -25,6 +25,16 @@ deletedUser = username: osu.trans('users.deleted')
 class @Comment extends React.PureComponent
   MAX_DEPTH = 3
 
+  makePreviewElement = document.createElement('div')
+
+  makePreview = (comment) ->
+    if comment.deleted_at?
+      osu.trans('comments.deleted')
+    else
+      makePreviewElement.innerHTML = comment.message_html
+      _.truncate makePreviewElement.textContent, length: 100
+
+
   constructor: (props) ->
     super props
 
@@ -38,15 +48,22 @@ class @Comment extends React.PureComponent
     children = @props.commentsByParentId[@props.comment.id] ? []
     user = @userFor(@props.comment)
 
+    modifiers = @props.modifiers?[..] ? []
+    modifiers.push 'top' if @props.depth == 0
+
     repliesClass = 'comment__replies'
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
     repliesClass += ' comment__replies--hidden' if !@state.showReplies
 
     div
-      className: osu.classWithModifiers 'comment', @props.modifiers
+      className: osu.classWithModifiers 'comment', modifiers
 
-      if @props.depth == 0 && @state.showReplies && children.length > 0
-        div className: 'comment__line'
+      if @props.depth == 0 && children.length > 0
+        button
+          className: 'comment__top-show-replies'
+          type: 'button'
+          onClick: @toggleReplies
+          span className: "fas #{if @state.showReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
         if user.id?
@@ -60,12 +77,12 @@ class @Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
-          div className: 'comment__row',
+          div className: 'comment__row comment__row--header',
             if user.id?
               a
-                className: 'comment__row-item comment__row-item--username comment__row-item--username-link js-usercard'
                 'data-user-id': user.id
                 href: laroute.route('users.show', user: user.id)
+                className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
                 user.username
             else
               span
@@ -73,21 +90,18 @@ class @Comment extends React.PureComponent
                 user.username
 
             if @props.parent?
-              message =
-                if @props.parent.deleted_at?
-                  osu.trans('comments.deleted')
-                else
-                  _.truncate $(@props.parent.message_html).text(), length: 100
-              div
+              span
                 className: 'comment__row-item comment__row-item--parent'
-                title: message
+                title: makePreview(@props.parent)
                 span className: 'fas fa-reply'
                 ' '
                 @userFor(@props.parent).username
 
-            span
-              className: 'comment__row-item'
-              dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+            if @isDeleted()
+              span
+                className: 'comment__row-item comment__row-item--deleted'
+                osu.trans('comments.deleted')
+
           if @state.editing
             div className: 'comment__editor',
               el CommentEditor,
@@ -95,19 +109,17 @@ class @Comment extends React.PureComponent
                 message: @props.comment.message
                 modifiers: @props.modifiers
                 close: @closeEdit
-          else
-            div className: 'comment__content',
-              if @isDeleted() && !@props.comment.message_html?
-                div className: 'comment__deleted',
-                  osu.trans('comments.deleted')
-
-              else
-                div
-                  className: 'comment__message'
-                  dangerouslySetInnerHTML:
-                    __html: @props.comment.message_html
+          else if @props.comment.message_html?
+            div
+              className: 'comment__message',
+              dangerouslySetInnerHTML:
+                __html: @props.comment.message_html
 
           div className: 'comment__row comment__row--footer',
+            div
+              className: 'comment__row-item comment__row-item--info'
+              dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+
             div className: 'comment__row-item',
               button
                 type: 'button'
@@ -152,7 +164,7 @@ class @Comment extends React.PureComponent
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
               div
-                className: 'comment__row-item'
+                className: 'comment__row-item comment__row-item--info'
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'comments.edited',
                     timeago: osu.timeago(@props.comment.edited_at)
@@ -169,25 +181,27 @@ class @Comment extends React.PureComponent
                 close: @closeNewReply
                 modifiers: @props.modifiers
 
-      div
-        className: repliesClass
-        for comment in children
-          el Comment,
-            key: comment.id
-            comment: comment
-            commentsByParentId: @props.commentsByParentId
-            usersById: @props.usersById
-            depth: @props.depth + 1
-            parent: @props.comment
-            modifiers: @props.modifiers
+      if @props.comment.replies_count > 0
+        div
+          className: repliesClass
+          for comment in children
+            el Comment,
+              key: comment.id
+              comment: comment
+              commentsByParentId: @props.commentsByParentId
+              usersById: @props.usersById
+              depth: @props.depth + 1
+              parent: @props.comment
+              modifiers: @props.modifiers
 
-        if children.length < @props.comment.replies_count
-          lastCommentId = _.last(children)?.id
-          el CommentShowMore,
-            key: "show-more:#{lastCommentId}"
-            parent: @props.comment
-            after: lastCommentId
-            modifiers: @props.modifiers
+          if children.length < @props.comment.replies_count
+            lastCommentId = _.last(children)?.id
+            el CommentShowMore,
+              key: "show-more:#{lastCommentId}"
+              parent: @props.comment
+              after: lastCommentId
+              modifiers: @props.modifiers
+              label: osu.trans('comments.show_replies') if children.length == 0
 
 
   canDelete: =>

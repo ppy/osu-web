@@ -18,26 +18,40 @@
 
 .comment-editor {
   @_top: comment-editor;
+  @_avatar: 50px;
+  @_avatar-margin: 10px;
+  @_spacing: 10px;
 
   .default-border-radius();
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  border: 0 solid #ccc;
 
   &--changelog {
     background-color: @changelog-bg-extra;
+    border-color: @dark-purple-dark;
   }
 
-  &--compact {
-    padding: 0;
-    border-radius: 0;
+  &--fancy {
+    border-width: 1px;
+    border-radius: @border-radius-large;
+    margin-left: (@_avatar + @_avatar-margin);
+  }
+
+  &__avatar {
+    position: absolute;
+    width: @_avatar;
+    height: @_avatar;
+    right: 100%;
+    margin-right: @_avatar-margin;
   }
 
   &__footer {
     display: flex;
     justify-content: flex-end;
     margin: 5px -5px -5px;
+    padding: @_spacing;
   }
 
   &__footer-item {
@@ -49,15 +63,11 @@
     .content-font();
 
     min-height: 100px;
-    padding: 10px;
+    padding: @_spacing;
     resize: vertical;
 
     .@{_top}--changelog & {
       color: @changelog-fg;
-    }
-
-    .@{_top}--compact & {
-      padding: 0;
     }
   }
 }

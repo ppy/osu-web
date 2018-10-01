@@ -23,6 +23,7 @@ return [
     'edited' => 'edited :timeago by :user',
     'empty' => 'No comments yet.',
     'replies' => 'Replies',
+    'show_replies' => 'show replies',
     'title' => 'Comments',
 
     'guest_button' => [
