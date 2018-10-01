@@ -31,17 +31,19 @@ class BeatmapsetEventsController extends Controller
     public function index()
     {
         $search = BeatmapsetEvent::search(request());
-        $events = new LengthAwarePaginator(
-            $search['query']->with(['user', 'beatmapset'])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
 
-        return view('beatmapset_events.index', compact('events'));
+        return view('beatmapset_events.index', [
+            'search' => $search,
+            'events' => new LengthAwarePaginator(
+                $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get(),
+                $search['query']->realCount(),
+                $search['params']['limit'],
+                $search['params']['page'],
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'query' => $search['params'],
+                ]
+            ),
+        ]);
     }
 }
