@@ -114,4 +114,13 @@ class CheckoutController extends Controller
 
         return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
+
+    private function orderForCheckout($id)
+    {
+        return Auth::user()
+            ->orders()
+            ->whereIn('status', ['incart', 'processing'])
+            ->with('items.product')
+            ->find($id);
+    }
 }
