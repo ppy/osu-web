@@ -33,7 +33,10 @@ abstract class SearchParams
     /** @var array */
     public $sorts = [];
 
-    /** @var array|string|null */
+    /**
+     * This is just for applyParams used by MultiSearch
+     * @var array|string|null
+     * */
     public $source = null;
 
     public function __construct()
