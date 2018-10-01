@@ -47,14 +47,6 @@ abstract class HasSearch
     /**
      * @return $this
      */
-    public function limit(int $limit)
-    {
-        return $this->size($limit);
-    }
-
-    /**
-     * @return $this
-     */
     public function size(int $size)
     {
         $this->params->size = $size;
