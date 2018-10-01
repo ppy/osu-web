@@ -47,8 +47,6 @@ abstract class Search extends HasSearch implements Queryable
     private $error;
     private $response;
 
-    const ASSIGN_FIELDS = ['from', 'size', 'sort', 'source'];
-
     public function __construct(string $index, SearchParams $params)
     {
         parent::__construct($params);
