@@ -80,8 +80,8 @@
                         value="{{ $search['params']['min_date'] ?? '' }}"
                     >
 
-                    <span class="simple-form__input-arrow-right">
-                        <i class="fas fa-chevron-right"></i>
+                    <span class="simple-form__input-arrow-next">
+                        <i class="fas fa-chevron-down"></i>
                     </span>
 
                     <input
