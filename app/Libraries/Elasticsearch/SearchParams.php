@@ -76,7 +76,7 @@ abstract class SearchParams
      * The desired page size should be set first, otherwise the default size will be used.
      *
      * @param $page
-     * @return integer
+     * @return int
      */
     public function pageAsFrom($page) : int
     {

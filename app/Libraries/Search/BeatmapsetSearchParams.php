@@ -70,7 +70,6 @@ class BeatmapsetSearchParams extends SearchParams
         $this->size = config('osu.beatmaps.max');
     }
 
-
     /**
      * {@inheritdoc}
      */
