@@ -24,7 +24,7 @@ use App\Libraries\UserVerification;
 use Auth;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
-use Redis;
+use LaravelRedis as Redis;
 
 class Store extends \Illuminate\Session\Store
 {
