@@ -192,6 +192,11 @@
     background-color: @pink;
   }
 
+  &--rounded {
+    padding: 10px 15px;
+    border-radius: 100000px;
+  }
+
   &--search-advanced {
     flex: 1 0 auto;
     text-transform: lowercase;
@@ -264,6 +269,10 @@
     flex: none;
     margin: 0 5px;
     font-size: 150%;
+
+    &--normal {
+      font-size: inherit;
+    }
 
     .@{top}--account-edit & {
       height: 0;
