@@ -90,6 +90,16 @@ class Beatmaps.Main extends React.PureComponent
     $(window).on 'resize.beatmaps', @updateColumnCount
 
 
+  componentDidUpdate: (_prevProps, prevState) =>
+    return if _.isEqual(prevState.filters, @state.filters)
+
+    $(document).trigger 'beatmap:search:start'
+    url = encodeURI laroute.route('beatmapsets.index', @buildSearchQuery())
+    Turbolinks
+      .controller
+      .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+
+
   componentWillUnmount: =>
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
@@ -285,10 +295,4 @@ class Beatmaps.Main extends React.PureComponent
     newFilters = BeatmapsetFilter.fillDefaults(newFilters)
 
     if !_.isEqual @state.filters, newFilters
-      @setState filters: newFilters, ->
-        $(document).trigger 'beatmap:search:start'
-        # copied from https://github.com/turbolinks/turbolinks/pull/61
-        url = encodeURI laroute.route('beatmapsets.index', @buildSearchQuery())
-        Turbolinks
-          .controller
-          .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+      @setState filters: newFilters
