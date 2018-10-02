@@ -29,6 +29,8 @@ class @CommentEditor extends React.PureComponent
     @textarea = null
     @throttledPost = _.throttle @post, 1000
 
+    @handleKeyDown = TextareaKeyDown.createHandler @handleKeyDownCallback
+
     @state =
       message: @props.message ? ''
       posting: false
@@ -59,6 +61,7 @@ class @CommentEditor extends React.PureComponent
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange
+        onKeyDown: @handleKeyDown
         disabled: !currentUser.id? || @state.posting
       div
         className: "#{bn}__footer"
@@ -107,6 +110,24 @@ class @CommentEditor extends React.PureComponent
         when 'new' then 'post'
 
     osu.trans("common.buttons.#{key}")
+
+
+  close: =>
+    return unless @props.close?
+
+    initialMessage = @props.message ? ''
+
+    return if initialMessage != @state.message && !confirm(osu.trans('common.confirmation_unsaved'))
+
+    @props.close()
+
+
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when TextareaKeyDown.CANCEL
+        @close()
+      when TextareaKeyDown.SUBMIT
+        @throttledPost()
 
 
   isValid: =>

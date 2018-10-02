@@ -31,6 +31,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     super props
 
     @throttledPost = _.throttle @post, 1000
+    @handleKeyDown = TextareaKeyDown.createHandler @handleKeyDownCallback
 
     @state =
       editing: false
@@ -142,12 +143,12 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  handleKeyDown: (e) =>
-    if e.keyCode == 27
-      @setState editing: false
-    else if e.keyCode == 13 && !e.shiftKey
-      e.preventDefault()
-      @throttledPost(e)
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when TextareaKeyDown.CANCEL
+        @setState editing: false
+      when TextareaKeyDown.SUBMIT
+        @throttledPost(event)
 
 
   post: (event) =>
