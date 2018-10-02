@@ -41,15 +41,6 @@ abstract class Controller extends BaseController
         parent::__construct();
     }
 
-    protected function orderForCheckout($id)
-    {
-        return Auth::user()
-            ->orders()
-            ->whereIn('status', ['incart', 'processing'])
-            ->with('items.product')
-            ->find($id);
-    }
-
     /**
      * Gets the cart of the currently logged in user.
      *
