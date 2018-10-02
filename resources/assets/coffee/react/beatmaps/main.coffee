@@ -288,7 +288,4 @@ class Beatmaps.Main extends React.PureComponent
     if @state.filters.query != newFilters.query || @state.filters.status != newFilters.status
       newFilters.sort = null
 
-    newFilters = BeatmapsetFilter.fillDefaults(newFilters)
-
-    if !_.isEqual @state.filters, newFilters
-      @setState filters: newFilters
+    @setState filters: BeatmapsetFilter.fillDefaults(newFilters)
