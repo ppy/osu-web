@@ -20,13 +20,14 @@
   @_top: comment-editor;
   @_avatar: 50px;
   @_avatar-margin: 10px;
-  @_spacing: 10px;
+  @_spacing: 5px;
 
   .default-border-radius();
   background-color: #fff;
   display: flex;
   flex-direction: column;
   border: 0 solid #ccc;
+  padding: @_spacing;
 
   &--changelog {
     background-color: @changelog-bg-extra;
@@ -50,7 +51,7 @@
   &__footer {
     display: flex;
     justify-content: flex-end;
-    margin: 5px -5px -5px;
+    margin: -5px;
     padding: @_spacing;
   }
 
