@@ -154,7 +154,7 @@ class UsersController extends Controller
 
     public function posts($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, null, true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
