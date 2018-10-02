@@ -159,26 +159,6 @@
     }
   }
 
-  &__parent-preview {
-    .default-border-radius();
-    display: none;
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: 10px;
-    left: 0;
-    padding: 10px;
-    background-color: fade(#000, 75%);
-    color: #fff;
-    z-index: @z-index--comment-parent-preview;
-    width: 200px;
-    max-width: 80vw;
-    font-size: @font-size--normal;
-
-    .@{_top}__parent:hover & {
-      display: block;
-    }
-  }
-
   &__replies {
     margin-top: 10px;
 
