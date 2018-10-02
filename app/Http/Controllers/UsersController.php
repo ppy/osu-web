@@ -62,7 +62,9 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        $user = User::lookup($id, 'id');
+        // FIXME: if there's a username with the id of a restricted user,
+        // it'll show the card of the non-restricted user.
+        $user = User::lookup($id);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
