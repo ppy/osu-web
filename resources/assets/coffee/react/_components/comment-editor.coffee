@@ -27,6 +27,7 @@ class @CommentEditor extends React.PureComponent
     super props
 
     @textarea = null
+    @throttledPost = _.throttle @post, 1000
 
     @state =
       message: @props.message ? ''
@@ -39,6 +40,7 @@ class @CommentEditor extends React.PureComponent
 
 
   componentWillUnmount: =>
+    @throttledPost.cancel()
     @xhr?.abort()
 
 
@@ -77,7 +79,7 @@ class @CommentEditor extends React.PureComponent
               text: @buttonText()
               icon: @buttonIcon()
               props:
-                onClick: @post
+                onClick: @throttledPost
                 disabled: @state.posting || !@isValid()
         else
           div className: "#{bn}__footer-item",
