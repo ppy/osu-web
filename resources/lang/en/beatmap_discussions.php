@@ -85,9 +85,4 @@ return [
         'everyone' => 'Everyone',
         'label' => 'Filter by user',
     ],
-
-    'votes' => [
-        'up' => 'Upvote this discussion',
-        'down' => 'Downvote this discussion',
-    ],
 ];

@@ -126,6 +126,10 @@ return [
             'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
         ],
 
+        'votes' => [
+            'up' => 'Upvote this discussion',
+            'down' => 'Downvote this discussion',
+        ],
     ],
 
     'hype' => [
