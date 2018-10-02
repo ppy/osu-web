@@ -127,6 +127,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
+      title: osu.trans('beatmap_discussions.votes.#{type}')
 
 
   doVote: (e) =>
