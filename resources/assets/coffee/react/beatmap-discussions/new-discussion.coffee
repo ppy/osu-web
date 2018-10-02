@@ -91,6 +91,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               onClick: @toggleSticky
               span className: 'btn-circle__content',
                 i className: 'fas fa-thumbtack'
+              title:
+                if @state.sticky
+                  osu.trans('beatmap.discussions.new.pinned')
+                else
+                  osu.trans('beatmap.discussions.new.unpinned')
 
         div className: "#{bn}__content",
           div

@@ -93,6 +93,8 @@ return [
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
+            'pinned' => 'Unpin the textbox',
+            'unpinned' => 'Pin the textbox',
         ],
 
         'show' => [
