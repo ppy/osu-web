@@ -109,6 +109,9 @@ class Beatmaps.Main extends React.PureComponent
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
     supporterFilters = @supporterFiltersTrans()
+    listCssClasses = 'beatmapsets'
+    listCssClasses += ' beatmapsets--dimmed' if @state.loading
+
 
     div
       className: 'osu-layout__section'
@@ -122,7 +125,7 @@ class Beatmaps.Main extends React.PureComponent
         isExpanded: @state.isExpanded
 
       div className: 'osu-layout__row osu-layout__row--page-compact',
-        div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
+        div className: listCssClasses,
           if currentUser.id?
             el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
