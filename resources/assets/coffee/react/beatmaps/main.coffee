@@ -94,7 +94,7 @@ class Beatmaps.Main extends React.PureComponent
     return if _.isEqual(prevState.filters, @state.filters)
 
     $(document).trigger 'beatmap:search:start'
-    url = encodeURI laroute.route('beatmapsets.index', @buildSearchQuery())
+    url = encodeURI laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(@state.filters))
     Turbolinks
       .controller
       .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
@@ -170,10 +170,6 @@ class Beatmaps.Main extends React.PureComponent
           link: link
 
 
-  buildSearchQuery: =>
-    BeatmapsetFilter.queryParamsFromFilters(@state.filters)
-
-
   expand: (e) =>
     e.preventDefault()
 
@@ -194,7 +190,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   fetchResults: (newQuery) =>
-    params = @buildSearchQuery()
+    params = BeatmapsetFilter.queryParamsFromFilters(@state.filters)
     params.page = @state.paging.page if !newQuery
 
     @xhr = $.ajax @state.paging.url,
