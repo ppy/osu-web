@@ -85,7 +85,6 @@ class Beatmaps.Main extends React.PureComponent
   componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
     $(document).on 'beatmap:search:start.beatmaps', @search
-    $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'turbolinks:before-visit.beatmaps', @recordUrl
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
@@ -172,10 +171,6 @@ class Beatmaps.Main extends React.PureComponent
     @setState isExpanded: !@state.isExpanded
 
 
-  hideLoader: =>
-    @setState loading: false
-
-
   isSupporterMissing: =>
     !currentUser.is_supporter && @supporterFilters().length > 0
 
@@ -239,8 +234,7 @@ class Beatmaps.Main extends React.PureComponent
           more: data.length > 0
         loading: false
 
-      @setState newState, ->
-        $(document).trigger 'beatmap:search:done'
+      @setState newState
 
 
   sorting: =>
