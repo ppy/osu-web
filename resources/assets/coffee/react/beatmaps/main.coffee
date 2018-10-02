@@ -228,10 +228,7 @@ class Beatmaps.Main extends React.PureComponent
   search: =>
     @xhr?.abort()
 
-    params = @buildSearchQuery()
-    newUrl = laroute.route 'beatmapsets.index', params
-
-    return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
+    return Promise.resolve() if @isSupporterMissing()
 
     @setState loading: true
     @backToTop.current.reset()
