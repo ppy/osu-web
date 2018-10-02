@@ -53,7 +53,7 @@ class Beatmaps.Main extends React.PureComponent
     @state ?= _.extend
       beatmaps: @props.beatmaps
       paging:
-        page: 2
+        page: 2 # next page to load, so it starts at 2, not 1
         url: laroute.route('beatmapsets.search')
         loading: false
         more: @props.beatmaps.length > 0
