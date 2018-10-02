@@ -62,7 +62,7 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id');
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
@@ -154,7 +154,7 @@ class UsersController extends Controller
 
     public function posts($id)
     {
-        $user = User::lookup($id, null, true);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
@@ -178,7 +178,7 @@ class UsersController extends Controller
 
     public function report($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return response()->json([], 404);
         }
