@@ -108,12 +108,13 @@ class @Comment extends React.PureComponent
                     __html: @props.comment.message_html
 
           div className: 'comment__row comment__row--footer',
-            div className: 'comment__row-item',
-              button
-                type: 'button'
-                className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
-                onClick: @toggleNewReply
-                osu.trans('common.buttons.reply')
+            if !@isDeleted()
+              div className: 'comment__row-item',
+                button
+                  type: 'button'
+                  className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
+                  onClick: @toggleNewReply
+                  osu.trans('common.buttons.reply')
 
             if @canEdit()
               div className: 'comment__row-item',
