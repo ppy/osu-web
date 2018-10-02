@@ -222,7 +222,7 @@ class Beatmaps.Main extends React.PureComponent
 
     return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
 
-    @showLoader()
+    @setState loading: true
     @backToTop.current.reset()
 
     @xhr.search = $.ajax @state.paging.url,
@@ -241,10 +241,6 @@ class Beatmaps.Main extends React.PureComponent
 
       @setState newState, ->
         $(document).trigger 'beatmap:search:done'
-
-
-  showLoader: =>
-    @setState loading: true
 
 
   sorting: =>
