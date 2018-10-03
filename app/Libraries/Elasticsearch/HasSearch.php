@@ -20,22 +20,25 @@
 
 namespace App\Libraries\Elasticsearch;
 
-trait HasSearch
+abstract class HasSearch
 {
-    protected $from;
     protected $highlight;
+    protected $params;
     protected $query;
-    protected $size;
-    protected $sorts = [];
     protected $source;
     protected $type;
 
+    public function __construct(SearchParams $params)
+    {
+        $this->params = $params;
+    }
+
     /**
      * @return $this
      */
-    public function from(?int $from)
+    public function from(int $from)
     {
-        $this->from = $from;
+        $this->params->from = $from;
 
         return $this;
     }
@@ -43,27 +46,9 @@ trait HasSearch
     /**
      * @return $this
      */
-    public function limit(?int $limit)
+    public function size(int $size)
     {
-        return $this->size($limit);
-    }
-
-    /**
-     * @return $this
-     */
-    public function size(?int $size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function page(?int $page)
-    {
-        $this->page = $page;
+        $this->params->size = $size;
 
         return $this;
     }
@@ -133,21 +118,6 @@ trait HasSearch
         return $this;
     }
 
-    protected function getDefaultSize() : int
-    {
-        return 10;
-    }
-
-    /**
-     *  Gets the actual offset to use in queries.
-     *
-     * @return int actual offset to use.
-     */
-    protected function getFrom() : int
-    {
-        return $this->from ?? $this->getSize() * ($this->getPage() - 1);
-    }
-
     /**
      *  Gets the actual size to use in queries.
      *
@@ -155,17 +125,7 @@ trait HasSearch
      */
     protected function getQuerySize() : int
     {
-        return min($this->maxResults() - $this->getFrom(), $this->getSize());
-    }
-
-    /**
-     *  Gets the size or default size if none was give..
-     *
-     * @return int size.
-     */
-    protected function getSize() : int
-    {
-        return $this->size ?? $this->getDefaultSize();
+        return min($this->maxResults() - $this->params->from, $this->params->size);
     }
 
     protected function maxResults() : int
@@ -177,12 +137,7 @@ trait HasSearch
     private function addSort(Sort $sort)
     {
         if (!$sort->isBlank()) {
-            $this->sorts[] = $sort;
+            $this->params->sorts[] = $sort;
         }
-    }
-
-    private function getPage() : int
-    {
-        return max(1, $this->page ?? 1);
     }
 }

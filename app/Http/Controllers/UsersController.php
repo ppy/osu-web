@@ -31,7 +31,6 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
 use PDOException;
 use Request;
 
@@ -160,8 +159,7 @@ class UsersController extends Controller
         }
 
         $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
-            ->size(50)
-            ->page(LengthAwarePaginator::resolveCurrentPage());
+            ->size(50);
 
         return view('users.posts', compact('search', 'user'));
     }

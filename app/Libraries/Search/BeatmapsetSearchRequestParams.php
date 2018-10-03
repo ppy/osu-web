@@ -29,11 +29,13 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     public function __construct(Request $request, ?User $user = null)
     {
+        parent::__construct();
+
         static $validExtras = ['video', 'storyboard'];
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->page = get_int($request['page']) ?? 1;
+        $this->from = $this->pageAsFrom(get_int($request['page']));
 
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
@@ -55,10 +57,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->showRecommended = in_array('recommended', $generals, true);
         }
 
-        $sort = explode('_', $request['sort']);
-        $this->sort = $this->normalizeSort(
-            [static::remapSortField(new Sort($sort[0] ?? null, $sort[1] ?? null))]
-        );
+        $this->parseSortOrder($request['sort']);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -72,10 +71,30 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
     }
 
+    private function getDefaultSort(string $order) : array
+    {
+        if (present($this->queryString)) {
+            return [new Sort('_score', $order)];
+        }
+
+        if ($this->status === 3) {
+            return [
+                new Sort('queued_at', $order),
+                new Sort('approved_date', $order), // fallback
+            ];
+        }
+
+        if (in_array($this->status, [4, 5, 6], true)) {
+            return [new Sort('last_update', $order)];
+        }
+
+        return [new Sort('approved_date', $order)];
+    }
+
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private function normalizeSort($sorts)
+    private function normalizeSort(Sort $sort) : array
     {
         // additional options
         static $orderOptions = [
@@ -85,32 +104,46 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             ],
         ];
 
-        if ($sorts === []) {
-            return [];
+        $newSort = [];
+        // assign sort modes if any.
+        $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+        if ($options !== []) {
+            $sort->mode = $options['mode'];
         }
 
-        $newSort = [];
-        foreach ($sorts as $sort) {
-            // assign sort modes if any.
-            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
-            if ($options !== []) {
-                $sort->mode = $options['mode'];
-            }
+        $newSort[] = $sort;
 
-            $newSort[] = $sort;
-
-            // append/prepend extra sort orders.
-            if ($sort->field === 'nominations') {
-                $newSort[] = new Sort('hype', $sort->order);
-            } elseif ($sort->field === 'approved_date' && $this->status === 3) {
-                array_unshift($newSort, new Sort('queued_at', $sort->order));
-            }
+        // append/prepend extra sort orders.
+        if ($sort->field === 'nominations') {
+            $newSort[] = new Sort('hype', $sort->order);
+        } elseif ($sort->field === 'approved_date' && $this->status === 3) {
+            array_unshift($newSort, new Sort('queued_at', $sort->order));
         }
 
         return $newSort;
     }
 
-    private static function remapSortField(Sort $sort)
+    private function parseSortOrder(?string $value)
+    {
+        $array = explode('_', $value);
+        $field = static::remapSortField($array[0]);
+        $order = $array[1] ?? null;
+
+        if (!in_array($order, ['asc', 'desc'], true)) {
+            $order = 'desc';
+        }
+
+        if (empty($field)) {
+            $this->sorts = $this->getDefaultSort($order);
+        } else {
+            $this->sorts = $this->normalizeSort(new Sort($field, $order));
+        }
+
+        // generic tie-breaker.
+        $this->sorts[] = new Sort('_id', $order);
+    }
+
+    private static function remapSortField(?string $name)
     {
         static $fields = [
             'artist' => 'artist.raw',
@@ -125,6 +158,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'updated' => 'last_update',
         ];
 
-        return new Sort($fields[$sort->field] ?? null, $sort->order, $sort->mode);
+        return $fields[$name] ?? null;
     }
 }
