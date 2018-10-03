@@ -29,7 +29,7 @@ class @CommentEditor extends React.PureComponent
     @textarea = null
     @throttledPost = _.throttle @post, 1000
 
-    @handleKeyDown = TextareaKeyDown.createHandler @handleKeyDownCallback
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
     @state =
       message: @props.message ? ''
@@ -124,9 +124,9 @@ class @CommentEditor extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when TextareaKeyDown.CANCEL
+      when InputHandler.CANCEL
         @close()
-      when TextareaKeyDown.SUBMIT
+      when InputHandler.SUBMIT
         @throttledPost()
 
 

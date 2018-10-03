@@ -26,7 +26,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     super props
 
     @throttledPost = _.throttle @post, 1000
-    @handleKeyDown = TextareaKeyDown.createHandler @handleKeyDownCallback
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @cache = {}
 
     @state =
@@ -215,7 +215,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   handleKeyDownCallback: (type, event) =>
     # Ignores SUBMIT, requiring shift-enter to add new line.
     switch type
-      when TextareaKeyDown.CANCEL
+      when InputHandler.CANCEL
         @setState sticky: false
 
 

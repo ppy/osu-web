@@ -26,7 +26,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     super props
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
-    @handleKeyDown = TextareaKeyDown.createHandler @handleKeyDownCallback
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
     @cache = {}
 
@@ -141,7 +141,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when TextareaKeyDown.SUBMIT
+      when InputHandler.SUBMIT
         @throttledUpdatePost()
 
 

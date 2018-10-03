@@ -17,14 +17,14 @@
 ###
 
 
-class @TextareaKeyDown
+class @InputHandler
   @CANCEL = 'cancel'
   @SUBMIT = 'submit'
 
   @KEY_ENTER = 13
   @KEY_ESC = 27
 
-  @createHandler: (callback) =>
+  @textarea: (callback) =>
     (event) =>
       if event.keyCode == @KEY_ESC
         type = @CANCEL
