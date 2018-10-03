@@ -28,7 +28,7 @@ class @InputHandler
     (event) =>
       if event.keyCode == @KEY_ESC
         type = @CANCEL
-      else if event.keyCode == @KEY_ENTER && !event.shiftKey
+      else if event.keyCode == @KEY_ENTER && !event.shiftKey && osu.isDesktop()
         event.preventDefault()
         type = @SUBMIT
 

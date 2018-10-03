@@ -65,6 +65,10 @@ class @CommentEditor extends React.PureComponent
         disabled: !currentUser.id? || @state.posting
       div
         className: "#{bn}__footer"
+        div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
+          osu.trans 'comments.editor.textarea_hint._',
+            action: osu.trans("comments.editor.textarea_hint.#{@mode()}")
+
         if @props.close?
           div className: "#{bn}__footer-item",
             el BigButton,

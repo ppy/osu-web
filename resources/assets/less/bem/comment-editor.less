@@ -62,14 +62,20 @@
   }
 
   &__footer-item {
+    font-size: @font-size--normal;
     padding: @_spacing;
+    flex: none;
+
+    &--notice {
+      flex: 1;
+    }
   }
 
   &__message {
     .reset-input();
     .content-font();
 
-    min-height: 100px;
+    min-height: 3em;
     padding: @_spacing;
     resize: vertical;
     font-size: @font-size--phone-input;

@@ -26,6 +26,15 @@ return [
     'show_replies' => 'show replies',
     'title' => 'Comments',
 
+    'editor' => [
+        'textarea_hint' => [
+            '_' => 'Press enter to :action. Use shift+enter for new line.',
+            'edit' => 'save',
+            'new' => 'post',
+            'reply' => 'reply',
+        ],
+    ],
+
     'guest_button' => [
         'new' => 'Login to comment',
         'reply' => 'Login to reply',
