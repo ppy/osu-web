@@ -45,7 +45,7 @@ class @Comment extends React.PureComponent
 
 
   render: =>
-    children = @props.commentsByParentId?[@props.comment.id] ? []
+    children = @props.childrenArray ? @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
     showReplies = @props.showReplies ? true
     parent = @props.comment.parent ? @props.parent
@@ -101,10 +101,7 @@ class @Comment extends React.PureComponent
             if parent?
               span
                 className: 'comment__row-item comment__row-item--parent'
-                title: makePreview(parent)
-                span className: 'fas fa-reply'
-                ' '
-                @userFor(parent).username
+                @parentLink(parent)
 
             if @isDeleted()
               span
@@ -128,6 +125,12 @@ class @Comment extends React.PureComponent
             div
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+
+            div className: 'comment__row-item',
+              a
+                href: laroute.route('comments.show', comment: @props.comment.id)
+                className: 'comment__action'
+                osu.trans('common.buttons.permalink')
 
             if showReplies && !@isDeleted()
               div className: 'comment__row-item',
@@ -200,15 +203,18 @@ class @Comment extends React.PureComponent
       if showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: @props.commentsByParentId
-              usersById: @props.usersById
-              depth: @props.depth + 1
-              parent: @props.comment
-              modifiers: @props.modifiers
+          if @props.children?
+            @props.children
+          else
+            for comment in children
+              el Comment,
+                key: comment.id
+                comment: comment
+                commentsByParentId: @props.commentsByParentId
+                usersById: @props.usersById
+                depth: @props.depth + 1
+                parent: @props.comment
+                modifiers: @props.modifiers
 
           if children.length < @props.comment.replies_count
             lastCommentId = _.last(children)?.id
@@ -273,6 +279,21 @@ class @Comment extends React.PureComponent
 
   isDeleted: =>
     @props.comment.deleted_at?
+
+
+  parentLink: (parent) =>
+    props = title: makePreview(parent)
+
+    if @props.linkParent
+      component = a
+      props.href = laroute.route('comments.show', comment: parent.id)
+    else
+      component = span
+
+    component props,
+      span className: 'fas fa-reply'
+      ' '
+      @userFor(parent).username
 
 
   userFor: (comment) =>

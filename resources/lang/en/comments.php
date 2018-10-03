@@ -59,4 +59,11 @@ return [
         'new' => 'Type new comment here',
         'reply' => 'Type your response here',
     ],
+
+    'show' => [
+        'title' => [
+            '_' => 'Comments :info',
+            'info' => 'Detail',
+        ],
+    ],
 ];

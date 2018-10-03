@@ -178,6 +178,7 @@ mix
 .js(...reactComponentSet('changelog-build'))
 .js(...reactComponentSet('changelog-index'))
 .js(...reactComponentSet('comments-index'))
+.js(...reactComponentSet('comments-show'))
 .js(...reactComponentSet('mp-history'))
 .js(...reactComponentSet('profile-page'))
 .js(...reactComponentSet('status-page'))

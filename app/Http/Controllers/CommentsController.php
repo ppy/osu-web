@@ -100,7 +100,19 @@ class CommentsController extends Controller
 
     public function show($id)
     {
-        return json_item(Comment::findOrFail($id), 'Comment', ['editor', 'user', 'commentable_meta']);
+        priv_check('CommentModerate')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+
+        $commentBundle = new CommentBundle($comment->commentable, [
+            'params' => ['parent_id' => $comment->getKey()],
+        ]);
+
+        $commentJson = json_item($comment, 'Comment', [
+            'editor', 'user', 'commentable_meta', 'parent',
+        ]);
+
+        return view('comments.show', compact('commentJson', 'commentBundle'));
     }
 
     public function store()
@@ -126,7 +138,7 @@ class CommentsController extends Controller
         $comments = collect([$comment]);
 
         if ($comment->parent !== null) {
-            $comments->push($comment->parent);
+            $comments[] = $comment->parent;
         }
 
         return (new CommentBundle($comment->commentable, [

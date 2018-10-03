@@ -19,22 +19,23 @@
 {button, div, h1, p, span} = ReactDOMFactories
 el = React.createElement
 
-class CommentsIndex.Main extends React.PureComponent
+class CommentsShow.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @pagination = React.createRef()
-    @id = "comments-index-#{osu.uuid()}"
+    @id = "comments-show-#{osu.uuid()}"
+
+    comments = osu.updateCollection @props.data.bundle.comments, [@props.data.comment]
+    users = osu.updateCollection @props.data.bundle.users, [@props.data.comment.user, @props.data.comment.editor]
+
     @state =
-      comments: @props.data.comments
-      users: @props.data.users
+      comments: comments
+      users: users
 
 
   componentDidMount: =>
+    $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comment:updated.#{@id}", @update
-
-    pagination = document.querySelector('.js-comments-pagination')
-    @pagination.current.appendChild pagination
 
 
   componentWillUnmount: =>
@@ -42,7 +43,15 @@ class CommentsIndex.Main extends React.PureComponent
 
 
   render: =>
+    commentsByParentId = _(@state.comments)
+      .uniqBy('id')
+      .orderBy(['created_at', 'id'], ['desc', 'desc'])
+      .groupBy('parent_id')
+      .value()
     usersById = _.keyBy(@state.users ? [], 'id')
+
+    mainComment = commentsByParentId[@props.data.comment.parent_id][0]
+    children = commentsByParentId[mainComment.id] ? []
 
     div null,
       div className: 'header-v3 header-v3--comments',
@@ -52,24 +61,29 @@ class CommentsIndex.Main extends React.PureComponent
           @renderHeaderTitle()
           @renderHeaderTabs()
 
-      div className: 'osu-page osu-page--comments',
-        for comment in @state.comments
-          el Comment,
-            key: comment.id
-            comment: comment
-            usersById: usersById
-            showReplies: false
-            showCommentableMeta: true
-            depth: 0
-
-        div ref: @pagination
+      div className: 'osu-page osu-page--comment',
+        el Comment,
+          comment: mainComment
+          usersById: usersById
+          showCommentableMeta: true
+          depth: 0
+          childrenArray: children
+          linkParent: true
+          for comment in children
+            el Comment,
+              key: comment.id
+              comment: comment
+              parent: mainComment
+              commentsByParentId: commentsByParentId
+              usersById: usersById
+              depth: 1
 
 
   renderHeaderTabs: =>
     div className: 'page-mode-v2 page-mode-v2--comments',
       span
         className: 'page-mode-v2__link page-mode-v2__link--active'
-        osu.trans 'comments.index.title.info'
+        osu.trans 'comments.show.title.info'
 
 
   renderHeaderTitle: =>
@@ -80,11 +94,17 @@ class CommentsIndex.Main extends React.PureComponent
         h1
           className: 'osu-page-header-v3__title-text'
           dangerouslySetInnerHTML:
-            __html: osu.trans 'comments.index.title._',
-              info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.index.title.info')}</span>"
+            __html: osu.trans 'comments.show.title._',
+              info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.show.title.info')}</span>"
+
+
+  appendBundle: (events, {comments}) =>
+    @setState
+      comments: osu.updateCollection @state.comments, comments.comments
+      users: osu.updateCollection @state.users, comments.users
 
 
   update: (event, {comment}) =>
     @setState
-      comments: osu.updateCollection @state.comments, [comment]
+      comments: osu.updateCollection @state.comments, comment
       users: osu.updateCollection @state.users, [comment.user, comment.editor]

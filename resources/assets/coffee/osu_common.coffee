@@ -300,12 +300,12 @@
     Turbolinks.uuid() # no point rolling our own
 
 
-  # Update collection item with newItem identified by id.
-  updateCollection: (collection, newItem) ->
-    replacementIndex = _.findIndex collection, (item) -> item.id == newItem.id
-    collection[replacementIndex] = newItem if replacementIndex != -1
-
-    collection
+  # Update collection item with newItems and remove old items.
+  updateCollection: (collection, newItems) ->
+    _(newItems)
+      .concat(collection)
+      .uniqBy('id')
+      .value()
 
 
   updateQueryString: (url, params) ->

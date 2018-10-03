@@ -41,9 +41,7 @@ class CommentBundle
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
-
         $this->setParams($options['params'] ?? null);
-
         $this->comments = $options['comments'] ?? null;
     }
 
@@ -51,7 +49,7 @@ class CommentBundle
     {
         if (isset($this->comments)) {
             $comments = $this->comments;
-        } else {
+        } else  {
             $comments = $this->getComments($this->commentsQuery(), false);
 
             $nestedComments = null;
