@@ -21,11 +21,14 @@ class @TextareaKeyDown
   @CANCEL = 'cancel'
   @SUBMIT = 'submit'
 
+  @KEY_ENTER = 13
+  @KEY_ESC = 27
+
   @createHandler: (callback) =>
     (event) =>
-      if event.keyCode == 27
+      if event.keyCode == @KEY_ESC
         type = @CANCEL
-      else if event.keyCode == 13 && !event.shiftKey
+      else if event.keyCode == @KEY_ENTER && !event.shiftKey
         event.preventDefault()
         type = @SUBMIT
 
