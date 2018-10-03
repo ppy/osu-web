@@ -400,7 +400,7 @@ class BBCodeFromDB
                 $level--;
                 $marker = $match['end'][1] + mb_strlen($match['end'][0]);
                 if ($level === 0) {
-                    $text = mb_substr($text, 0, $quoteBeginning) . mb_substr($text, $marker);
+                    $text = mb_substr($text, 0, $quoteBeginning).mb_substr($text, $marker);
                     $marker = 0;
                 }
             } else {
