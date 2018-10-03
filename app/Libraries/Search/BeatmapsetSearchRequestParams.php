@@ -135,16 +135,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if (empty($array[0])) {
             $this->sorts = $this->getDefaultSort();
         } else {
-            $sort = new Sort($array[0], $order);
-            $this->sorts = $this->normalizeSort(static::remapSortField($sort));
+            $this->sorts = $this->normalizeSort(new Sort(static::remapSortField($array[0]), $order));
         }
 
         // generic tie-breaker.
         $this->sorts[] = new Sort('_id', $order);
     }
 
-
-    private static function remapSortField(Sort $sort)
+    private static function remapSortField(?string $name)
     {
         static $fields = [
             'artist' => 'artist.raw',
@@ -159,6 +157,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'updated' => 'last_update',
         ];
 
-        return new Sort($fields[$sort->field] ?? null, $sort->order, $sort->mode);
+        return $fields[$name] ?? null;
     }
 }
