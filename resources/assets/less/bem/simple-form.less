@@ -37,12 +37,41 @@
       flex: none;
       margin: 5px 10px;
     }
+
+    &--overflow {
+      margin: 0;
+      padding: 5px 10px;
+    }
+  }
+
+  &__checkbox-overflow-container {
+    flex: none;
+    width: 100%;
+
+    @media @desktop {
+      width: 33%;
+    }
   }
 
   &__checkboxes-inline {
     display: flex;
     flex-wrap: wrap;
     margin: -5px -10px;
+  }
+
+  &__checkboxes-overflow {
+    max-height: 300px;
+    overflow-y: auto;
+    // Fancier scrolling and visible scroll bar on safari ios.
+    // Doesn't seem to work with `display: flex` though.
+    -webkit-overflow-scrolling: touch;
+    margin: -5px -10px;
+    width: 100%;
+
+    @media @desktop {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   &__info {
@@ -64,15 +93,26 @@
     background-color: #fff;
     color: @input-color;
     font-weight: normal;
+    font-size: @font-size--phone-input;
     width: 100%;
 
     @media @desktop {
       width: auto;
+      font-size: inherit;
     }
 
     &:focus {
       border: none;
       outline: none;
+    }
+
+    &[type="date"] {
+      // for some reason resizable in chrome
+      resize: none;
+    }
+
+    &--equal-width {
+      flex: 1;
     }
 
     &--small {
@@ -81,6 +121,20 @@
 
     &--full-height {
       align-self: stretch;
+    }
+  }
+
+  &__input-arrow-next {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+
+    @media @desktop {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+      transform: rotate(-90deg);
     }
   }
 

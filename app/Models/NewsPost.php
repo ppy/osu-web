@@ -32,8 +32,6 @@ class NewsPost extends Model
     const CACHE_DURATION = 86400;
     const VERSION = 3;
 
-    protected $guarded = [];
-
     protected $casts = [
         'page' => 'array',
     ];
@@ -114,6 +112,11 @@ class NewsPost extends Model
         }
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');
@@ -134,11 +137,6 @@ class NewsPost extends Model
     public function bodyHtml()
     {
         return $this->page['output'];
-    }
-
-    public function disqusId()
-    {
-        return 'news_'.($this->tumblr_id ?? $this->slug);
     }
 
     public function editUrl()

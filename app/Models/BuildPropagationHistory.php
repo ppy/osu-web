@@ -22,12 +22,9 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class BuildPropagationHistory extends Model
 {
-    protected $guarded = [];
-
     public $timestamps = false;
     protected $dates = [
         'created_at',

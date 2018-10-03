@@ -20,7 +20,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\BeatmapsetDelete;
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
@@ -40,6 +42,15 @@ use Request;
 class BeatmapsetsController extends Controller
 {
     protected $section = 'beatmapsets';
+
+    public function destroy($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDelete', $beatmapset)->ensureCan();
+
+        (new BeatmapsetDelete($beatmapset, Auth::user()))->handle();
+    }
 
     public function index()
     {
@@ -128,10 +139,11 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
+            $commentBundle = new CommentBundle($beatmapset);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
         }
     }
 
@@ -144,7 +156,7 @@ class BeatmapsetsController extends Controller
                 'search-cache:',
                 config('osu.beatmapset.es_cache_duration'),
                 function () use ($params) {
-                    $search = (new BeatmapsetSearch($params))->source('_id');
+                    $search = (new BeatmapsetSearch($params))->source(false);
 
                     return $search->response()->ids();
                 }

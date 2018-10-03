@@ -33,6 +33,7 @@ desktop.ini
 /public/vendor
 /public/uploads
 /public/uploads-avatar
+/public/uploads-replay
 
 # server logs
 /logs/osu/*

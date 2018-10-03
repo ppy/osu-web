@@ -31,7 +31,6 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
 use PDOException;
 use Request;
 
@@ -64,12 +63,10 @@ class UsersController extends Controller
     {
         $user = User::lookup($id);
 
-        list($friend, $mutual) = $this->getFriendStatus($user);
-
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
 
-        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
+        return view('objects._usercard', compact('user', 'popup'));
     }
 
     public function disabled()
@@ -101,12 +98,10 @@ class UsersController extends Controller
         $username = Request::input('username');
         $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
-        list($friend, $mutual) = $this->getFriendStatus($user);
-
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
-            'card_html' => view('objects._usercard', compact('user', 'friend', 'mutual'))->render(),
+            'card_html' => view('objects._usercard', compact('user'))->render(),
         ];
     }
 
@@ -164,8 +159,7 @@ class UsersController extends Controller
         }
 
         $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
-            ->size(50)
-            ->page(LengthAwarePaginator::resolveCurrentPage());
+            ->size(50);
 
         return view('users.posts', compact('search', 'user'));
     }
@@ -339,22 +333,6 @@ class UsersController extends Controller
                 'jsonChunks'
             ));
         }
-    }
-
-    private function getFriendStatus($user)
-    {
-        if (!(Auth::user()
-            && $user
-            && $user !== UserNotFound::instance())) {
-            return [null, false];
-        }
-
-        $friend = Auth::user()
-            ->friends()
-            ->where('user_id', $user->user_id)
-            ->first();
-
-        return [$friend, $friend->mutual ?? false];
     }
 
     private function parsePaginationParams()

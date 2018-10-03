@@ -48,8 +48,8 @@
 
   &--changelog {
     .default-box-shadow();
-    background-color: @dark-purple-dark;
-    color: #fff;
+    background-color: @changelog-bg;
+    color: @changelog-fg;
   }
 
   &--comments {
@@ -98,6 +98,12 @@
     .default-box-shadow();
     background-color: #fff;
     padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  &--generic-compact {
+    .default-box-shadow();
+    background-color: #fff;
     margin-bottom: 10px;
   }
 
@@ -172,6 +178,7 @@
     .default-box-shadow();
     .inner-shadow-top();
     margin-bottom: 10px;
+    background-color: #333;
   }
 
   &--wiki {

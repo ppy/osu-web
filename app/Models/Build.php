@@ -37,8 +37,6 @@ class Build extends Model
         'allow_bancho' => 'boolean',
     ];
 
-    protected $guarded = [];
-
     private $cache = [];
 
     public static function importFromGithubNewTag($data)
@@ -112,6 +110,11 @@ class Build extends Model
     public function defaultChangelogEntries()
     {
         return $this->changelogEntries()->default();
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function scopeDefault($query)
@@ -209,15 +212,5 @@ class Build extends Model
     public function displayVersion()
     {
         return preg_replace('#[^0-9.]#', '', $this->version);
-    }
-
-    public function disqusId()
-    {
-        return 'build_b'.substr(htmlentities($this->version), 0, 8).$this->updateStream->name;
-    }
-
-    public function disqusTitle()
-    {
-        return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
     }
 }

@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmapset Events',
+
+        'form' => [
+            'period' => 'Period',
+            'types' => 'Types',
+        ],
     ],
 
     'item' => [
         'content' => 'Content',
         'discussion_deleted' => '[deleted]',
         'type' => 'Type',
+    ],
+
+    'type' => [
+        'approve' => 'Approval',
+        'discussion_delete' => 'Discussion deletion',
+        'discussion_post_delete' => 'Discussion reply deletion',
+        'discussion_post_restore' => 'Discussion reply restoration',
+        'discussion_restore' => 'Discussion restoration',
+        'disqualify' => 'Disqualification',
+        'issue_reopen' => 'Discussion reopening',
+        'issue_resolve' => 'Discussion resolving',
+        'kudosu_allow' => 'Kudosu allowance',
+        'kudosu_deny' => 'Kudosu denial',
+        'kudosu_gain' => 'Kudosu gain',
+        'kudosu_lost' => 'Kudosu loss',
+        'kudosu_recalculate' => 'Kudosu recalculation',
+        'love' => 'Love',
+        'nominate' => 'Nomination',
+        'nomination_reset' => 'Nomination resetting',
+        'qualify' => 'Qualification',
+        'rank' => 'Ranking',
     ],
 ];

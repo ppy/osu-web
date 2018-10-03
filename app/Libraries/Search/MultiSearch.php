@@ -35,7 +35,6 @@ class MultiSearch
             'type' => BeatmapsetSearch::class,
             'paramsType' => BeatmapsetSearchRequestParams::class,
             'size' => 8,
-            'options' => ['source' => 'id'],
         ],
         'wiki_page' => [
             'type' => WikiSearch::class,
@@ -85,11 +84,13 @@ class MultiSearch
                 $paramsClass = $settings['paramsType'];
 
                 $params = new $paramsClass($this->request, $this->options['user']);
-                $params->applyParams($settings['options'] ?? []);
                 $search = new $class($params);
+                if ($search instanceof BeatmapsetSearch) {
+                    $search->source(false);
+                }
 
                 if ($this->getMode() === 'all') {
-                    $search->page(1)->size($settings['size']);
+                    $search->from(0)->size($settings['size']);
                     if ($this->hasQuery()) {
                         $search->response(); // FIXME: run query before counts for tab; need better way to do this.
                     }

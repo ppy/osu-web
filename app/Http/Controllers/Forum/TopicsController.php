@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\ForumUpdateNotifier;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -159,7 +160,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
+        try {
+            $post = $topic->addPostOrExplode(Auth::user(), request('body'));
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
@@ -308,11 +313,6 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-
         if (get_bool($request->get('with_poll'))) {
             $pollParams = get_params($request, 'forum_topic_poll', [
                 'length_days:int',
@@ -372,7 +372,7 @@ class TopicsController extends Controller
 
             return [];
         } else {
-            abort(422);
+            return error_popup($topic->validationErrors()->toSentence());
         }
     }
 

@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
 
 class NewsController extends Controller
@@ -42,7 +43,9 @@ class NewsController extends Controller
             abort(404);
         }
 
-        return view('news.show', compact('post'));
+        $commentBundle = new CommentBundle($post);
+
+        return view('news.show', compact('post', 'commentBundle'));
     }
 
     public function store()

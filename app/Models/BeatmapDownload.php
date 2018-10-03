@@ -24,7 +24,6 @@ class BeatmapDownload extends Model
 {
     protected $table = 'osu_downloads';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 

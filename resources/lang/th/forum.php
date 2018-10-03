@@ -114,11 +114,6 @@ return [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
             ],
-
-            'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
-            ],
         ],
 
         'topic_buttons' => [
