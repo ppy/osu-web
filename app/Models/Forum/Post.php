@@ -233,12 +233,8 @@ class Post extends Model implements AfterCommit
             }
         }
 
-        $trimmedBody = trim($this->body_raw);
-        while (preg_match('/^\[quote(?:=".+?")?\].+?\[\/quote\]/s', $trimmedBody, $matches)) {
-            if (empty($trimmedBody = trim(substr($trimmedBody, strlen($matches[0]))))) {
-                $this->validationErrors()->add('base', '.only_quote');
-                break;
-            }
+        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
+            $this->validationErrors()->add('base', '.only_quote');
         }
 
         return $this->validationErrors()->isEmpty();
