@@ -31,7 +31,6 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
 use PDOException;
 use Request;
 
