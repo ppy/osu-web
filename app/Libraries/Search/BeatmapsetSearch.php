@@ -187,26 +187,6 @@ class BeatmapsetSearch extends RecordSearch
         $mainQuery->filter($query);
     }
 
-    private function getDefaultSort() : array
-    {
-        if (present($this->params->queryString)) {
-            return [new Sort('_score', 'desc')];
-        }
-
-        if ($this->params->status === 3) {
-            return [
-                new Sort('queued_at', 'desc'),
-                new Sort('approved_date', 'desc'), // fallback
-            ];
-        }
-
-        if (in_array($this->params->status, [4, 5, 6], true)) {
-            return [new Sort('last_update', 'desc')];
-        }
-
-        return [new Sort('approved_date', 'desc')];
-    }
-
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $unionQuery = null;

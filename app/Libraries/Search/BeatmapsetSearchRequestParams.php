@@ -71,24 +71,24 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
     }
 
-    private function getDefaultSort() : array
+    private function getDefaultSort(string $order) : array
     {
         if (present($this->queryString)) {
-            return [new Sort('_score', 'desc')];
+            return [new Sort('_score', $order)];
         }
 
         if ($this->status === 3) {
             return [
-                new Sort('queued_at', 'desc'),
-                new Sort('approved_date', 'desc'), // fallback
+                new Sort('queued_at', $order),
+                new Sort('approved_date', $order), // fallback
             ];
         }
 
         if (in_array($this->status, [4, 5, 6], true)) {
-            return [new Sort('last_update', 'desc')];
+            return [new Sort('last_update', $order)];
         }
 
-        return [new Sort('approved_date', 'desc')];
+        return [new Sort('approved_date', $order)];
     }
 
     /**
@@ -134,7 +134,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         if (empty($field)) {
-            $this->sorts = $this->getDefaultSort();
+            $this->sorts = $this->getDefaultSort($order);
         } else {
             $this->sorts = $this->normalizeSort(new Sort($field, $order));
         }
