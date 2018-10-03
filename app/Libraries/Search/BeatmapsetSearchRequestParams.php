@@ -126,16 +126,17 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     private function parseSortOrder(?string $value)
     {
         $array = explode('_', $value);
+        $field = static::remapSortField($array[0]);
         $order = $array[1] ?? null;
 
         if (!in_array($order, ['asc', 'desc'], true)) {
             $order = 'desc';
         }
 
-        if (empty($array[0])) {
+        if (empty($field)) {
             $this->sorts = $this->getDefaultSort();
         } else {
-            $this->sorts = $this->normalizeSort(new Sort(static::remapSortField($array[0]), $order));
+            $this->sorts = $this->normalizeSort(new Sort($field, $order));
         }
 
         // generic tie-breaker.
