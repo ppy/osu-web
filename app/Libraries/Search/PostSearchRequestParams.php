@@ -27,7 +27,7 @@ class PostSearchRequestParams extends PostSearchParams
 {
     public function __construct(Request $request, User $user)
     {
-        $this->__construct();
+        parent::__construct();
 
         $this->queryString = presence(trim($request['query']));
         $this->from = $this->pageAsFrom(get_int($request['page']));
