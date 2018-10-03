@@ -100,8 +100,12 @@
 
   &--comment-editor {
     border-radius: 10000px;
-    padding: 10px 20px;
-    min-width: 130px;
+    padding: 10px;
+
+    @media @desktop {
+      min-width: 130px;
+      padding: 10px 20px;
+    }
   }
 
   &--contest-download {

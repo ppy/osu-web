@@ -37,7 +37,9 @@
   &--fancy {
     border-width: 1px;
     border-radius: @border-radius-large;
-    margin-left: (@_avatar + @_avatar-margin);
+    @media @desktop {
+      margin-left: (@_avatar + @_avatar-margin);
+    }
   }
 
   &__avatar {
@@ -46,10 +48,16 @@
     height: @_avatar;
     right: 100%;
     margin-right: @_avatar-margin;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
   }
 
   &__footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
   }
 
@@ -64,6 +72,11 @@
     min-height: 100px;
     padding: @_spacing;
     resize: vertical;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
 
     .@{_top}--changelog & {
       color: @changelog-fg;
