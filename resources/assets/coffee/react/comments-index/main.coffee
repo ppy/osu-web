@@ -33,7 +33,8 @@ class CommentsIndex.Main extends React.PureComponent
   componentDidMount: =>
     $.subscribe "comment:updated.#{@id}", @update
 
-    pagination = document.querySelector('.js-comments-pagination')
+    pagination = document.querySelector('.js-comments-pagination').cloneNode(true)
+    @pagination.current.innerHTML = ''
     @pagination.current.appendChild pagination
 
 
