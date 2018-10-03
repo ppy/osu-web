@@ -62,6 +62,7 @@ class CommentsIndex.Main extends React.PureComponent
             showReplies: false
             showCommentableMeta: true
             showPermalink: true
+            linkParent: true
             depth: 0
 
         div ref: @pagination
