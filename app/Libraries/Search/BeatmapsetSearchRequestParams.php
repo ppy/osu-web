@@ -57,17 +57,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->showRecommended = in_array('recommended', $generals, true);
         }
 
-        // TODO: fix this; array[0] always has a value, etc.
-        $array = explode('_', $request['sort']);
-        if (empty($array[0])) {
-            $this->sorts = $this->getDefaultSort();
-            $this->sorts[] = new Sort('_id', 'desc');
-        } else {
-            $sort = new Sort($array[0], $array[1] ?? null);
-            $this->sorts = $this->normalizeSort(static::remapSortField($sort));
-            // generic tie-breaker.
-            $this->sorts[] = new Sort('_id', $sort->order);
-        }
+        $this->parseSortOrder($request['sort']);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -132,6 +122,27 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         return $newSort;
     }
+
+    private function parseSortOrder(?string $value)
+    {
+        $array = explode('_', $value);
+        $order = $array[1] ?? null;
+
+        if (!in_array($order, ['asc', 'desc'], true)) {
+            $order = 'desc';
+        }
+
+        if (empty($array[0])) {
+            $this->sorts = $this->getDefaultSort();
+        } else {
+            $sort = new Sort($array[0], $order);
+            $this->sorts = $this->normalizeSort(static::remapSortField($sort));
+        }
+
+        // generic tie-breaker.
+        $this->sorts[] = new Sort('_id', $order);
+    }
+
 
     private static function remapSortField(Sort $sort)
     {
