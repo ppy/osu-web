@@ -382,8 +382,9 @@ class BBCodeFromDB
     {
         $level = 0;
         $marker = 0;
+        $quoteBeginning = 0;
 
-        while ($marker >= 0 && $marker < mb_strlen($text) && $level >= 0) {
+        while ($marker >= 0 && $level >= 0) {
             $match = static::scanForNextQuoteTag($text, $marker);
             if ($match === null) {
                 return $text;
@@ -391,12 +392,16 @@ class BBCodeFromDB
 
             if (present($match['start'][0])) {
                 $marker = $match['start'][1] + mb_strlen($match['start'][0]);
+                if ($level === 0) {
+                    $quoteBeginning = $match['start'][1];
+                }
                 $level++;
             } elseif (present($match['end'][0])) {
                 $level--;
                 $marker = $match['end'][1] + mb_strlen($match['end'][0]);
                 if ($level === 0) {
-                    $text = mb_substr($text, $marker, mb_strlen($text) - $marker);
+                    $text = mb_substr($text, 0, $quoteBeginning) . mb_substr($text, $marker);
+                    $marker = 0;
                 }
             } else {
                 $marker = -1;
