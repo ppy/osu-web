@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,24 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+.admin-contest {
+  @top: admin-contest;
 
-use LaravelRedis as Redis;
+  &__meta-row {
+    margin-bottom: 5px;
+  }
 
-class RoomsController extends Controller
-{
-    public function show($id)
-    {
-        $roomId = get_int($id);
+  &__table {
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
 
-        if (!is_null($roomId)) {
-            $meta = Redis::get("room:$roomId");
-        }
-
-        if (!isset($meta)) {
-            abort(404);
-        }
-
-        return response($meta)->header('Content-Type', 'application/json');
+  &__table-column {
+    &--username {
+      width: 200px;
     }
+    &--filesize {
+      width: 110px;
+    }
+    &--button {
+      width: 120px;
+    }
+  }
 }

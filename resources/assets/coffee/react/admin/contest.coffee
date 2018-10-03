@@ -16,17 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-@Admin = {}
-@Admin.Contest = {}
-@BeatmapDiscussions = {}
-@Beatmaps = {}
-@BeatmapsetPage = {}
-@ChangelogIndex = {}
-@ChangelogBuild = {}
-@Contest = {}
-@Contest.Entry = {}
-@Contest.Voting = {}
-@MPHistory = {}
-@ProfilePage = {}
-@Ranking = {}
-@Status = {}
+reactTurbolinks.registerPersistent 'admin-contest-user-entry-list', Admin.Contest.UserEntryList, true, (el) ->
+  container: el
+  contest: osu.parseJson('json-contest')
+  entries: osu.parseJson('json-contest-entries')

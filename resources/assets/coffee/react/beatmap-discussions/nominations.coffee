@@ -180,6 +180,19 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               props:
                 onClick: @love
 
+      if @props.beatmapset.current_user_attributes?.can_delete
+        div
+          className: "#{bn}__row"
+          key: 'delete'
+          div className: "#{bn}__row-left"
+          div className: "#{bn}__row-right",
+            el BigButton,
+              modifiers: ['full']
+              text: osu.trans 'beatmaps.nominations.delete'
+              icon: 'fas fa-trash'
+              props:
+                onClick: @delete
+
       if showHype
         div
           className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
@@ -232,6 +245,28 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
           key: lightsOn + n
           className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
 
+
+  delete: =>
+    message = if @userIsOwner()
+                osu.trans('beatmaps.nominations.delete_own_confirm')
+              else
+                osu.trans('beatmaps.nominations.delete_other_confirm')
+
+    return unless confirm(message)
+
+    LoadingOverlay.show()
+
+    @xhr?.abort()
+
+    user = @props.beatmapset.user_id
+    url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
+    params = method: 'DELETE'
+
+    @xhr = $.ajax(url, params)
+      .done ->
+        Turbolinks.visit laroute.route('users.show', { user })
+      .fail osu.ajaxError
+      .always LoadingOverlay.hide
 
   love: =>
     return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))

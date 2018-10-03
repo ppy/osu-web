@@ -73,7 +73,7 @@ export class PlayDetailMenu extends PureComponent
     div
       className: "play-detail-menu__menu"
       div
-        className: 'simple-menu'
+        className: 'simple-menu simple-menu--play-detail-menu'
         a
           className: 'simple-menu__item'
           href: laroute.route 'users.replay',

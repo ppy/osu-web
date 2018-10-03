@@ -37,7 +37,6 @@
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/rest-api-sdk-php": "*",
-    "predis/predis": "~1.0",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
     "webuni/commonmark-table-extension": "*",

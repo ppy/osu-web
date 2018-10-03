@@ -18,24 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Admin;
 
-use LaravelRedis as Redis;
+use App\Models\UserContestEntry;
 
-class RoomsController extends Controller
+class UserContestEntriesController extends Controller
 {
-    public function show($id)
+    public function destroy($id)
     {
-        $roomId = get_int($id);
+        $entry = UserContestEntry::findOrFail($id);
+        $entry->delete();
 
-        if (!is_null($roomId)) {
-            $meta = Redis::get("room:$roomId");
-        }
+        return response([], 204);
+    }
 
-        if (!isset($meta)) {
-            abort(404);
-        }
+    public function restore($id)
+    {
+        $entry = UserContestEntry::withTrashed()->findOrFail($id);
+        $entry->restore();
 
-        return response($meta)->header('Content-Type', 'application/json');
+        return response([], 204);
     }
 }
