@@ -26,7 +26,7 @@
         }
     }
 
-    $showOnline = !isset($loading) && $user->isOnline();
+    $showOnline = !isset($loading) && isset($user) && $user->isOnline();
 @endphp
 @if (isset($user) || isset($loading))
     <div class="{{ $blockClass }}">
