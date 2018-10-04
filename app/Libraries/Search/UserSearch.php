@@ -83,11 +83,6 @@ class UserSearch extends RecordSearch
         return $query;
     }
 
-    protected function getDefaultSize() : int
-    {
-        return 20;
-    }
-
     protected function maxResults() : int
     {
         return config('osu.search.max.user');

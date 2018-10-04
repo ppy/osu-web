@@ -58,13 +58,13 @@ class Beatmaps.SearchPanel extends React.PureComponent
         className: 'osu-page-header__background'
         style:
           backgroundImage: osu.urlPresence(@props.background)
-      div className: 'fancy-search fancy-search--beatmapsets js-user-link',
+      div className: 'beatmapsets-search__input-container js-user-link',
         input
-          className: 'fancy-search__input'
+          className: 'beatmapsets-search__input'
           disabled: true
           type: 'textbox'
           placeholder: osu.trans('beatmaps.listing.search.login_required')
-        div className: 'fancy-search__icon',
+        div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
 
@@ -78,15 +78,15 @@ class Beatmaps.SearchPanel extends React.PureComponent
         className: 'beatmapsets-search__background'
         style:
           backgroundImage: osu.urlPresence(@props.background)
-      div className: 'fancy-search fancy-search--beatmapsets',
+      div className: 'beatmapsets-search__input-container',
         input
-          className: 'fancy-search__input js-beatmapsets-search-input'
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
           type: 'textbox'
           name: 'search'
           placeholder: osu.trans('beatmaps.listing.search.prompt')
           onInput: @onInput
           defaultValue: @props.filters.query
-        div className: 'fancy-search__icon',
+        div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
       el Beatmaps.SearchFilter,
