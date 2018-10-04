@@ -17,12 +17,12 @@
 --}}
 <div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
     <div class="osu-page">
-        <div class="forum-topic-headernav">
-            <div class="forum-topic-headernav__logo">
+        <div class="sticky-header__body">
+            <div class="sticky-header__logo">
                 @include('objects.logo_menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
             </div>
 
-            <div class="forum-topic-headernav__content">
+            <div class="sticky-header__content">
                 <div class="sticky-header__breadcrumbs">
                     @yield('sticky-header-breadcrumbs')
                 </div>

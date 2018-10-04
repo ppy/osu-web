@@ -21,17 +21,6 @@
     data-visibility="hidden"
 >
     <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
-
-    <div class="osu-page">
-        <div class="forum-topic-headernav">
-            <div class="forum-topic-headernav__logo">
-                @include('objects.logo_menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
-            </div>
-
-            <div class="forum-topic-headernav__content">
-            </div>
-        </div>
-    </div>
 </div>
 
 @section('sticky-header-breadcrumbs')
