@@ -25,9 +25,9 @@
 @ChangelogBuild = {}
 @CommentsIndex = {}
 @CommentsShow = {}
-@Contest =
-  Entry: {}
-  Voting: {}
+@Contest = {}
+@Contest.Entry = {}
+@Contest.Voting = {}
 @MPHistory = {}
 @ProfilePage = {}
 @Ranking = {}
