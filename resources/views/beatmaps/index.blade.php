@@ -24,6 +24,11 @@
 ])
 
 @section('content')
+  <div class="sticky-header">
+    <div class="sticky-header__breadcrumbs"></div>
+    <div id="js-sticky-header-content"></div>
+  </div>
+
   <div class="js-react--beatmaps"></div>
   {{--
     this should content a server side react.js render which doesn't exist in hhvm
