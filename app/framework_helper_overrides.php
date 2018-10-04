@@ -31,5 +31,13 @@ function trans_choice($key, $number, array $replace = [], $locale = null)
         $locale = config('app.fallback_locale');
     }
 
+    if (is_array($number) || $number instanceof Countable) {
+        $number = count($number);
+    }
+
+    if (!isset($replace['count_delimited'])) {
+        $replace['count_delimited'] = i18n_number($number, null, null, $locale);
+    }
+
     return app('translator')->transChoice($key, $number, $replace, $locale);
 }

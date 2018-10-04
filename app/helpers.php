@@ -801,6 +801,16 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     return $formatter->format($datetime);
 }
 
+function i18n_number($number, $style = null, $pattern = null, $locale = null)
+{
+    if (!isset($style)) {
+        $style = NumberFormatter::DECIMAL;
+    }
+
+    return NumberFormatter::create($locale ?? App::getLocale(), $style, $pattern)
+        ->format($number);
+}
+
 function i18n_time($datetime, $format = IntlDateFormatter::LONG)
 {
     return IntlDateFormatter::create(App::getLocale(), $format, $format)
