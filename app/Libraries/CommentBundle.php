@@ -49,7 +49,7 @@ class CommentBundle
     {
         if (isset($this->comments)) {
             $comments = $this->comments;
-        } else  {
+        } else {
             $comments = $this->getComments($this->commentsQuery(), false);
 
             $nestedComments = null;
