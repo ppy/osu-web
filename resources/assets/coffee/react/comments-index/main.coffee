@@ -44,6 +44,10 @@ class CommentsIndex.Main extends React.PureComponent
 
   render: =>
     usersById = _.keyBy(@state.users ? [], 'id')
+    sortedComments = _(@state.comments ? [])
+      .uniqBy('id')
+      .orderBy(['created_at', 'id'], ['desc', 'desc'])
+      .value()
 
     div null,
       div className: 'header-v3 header-v3--comments',
@@ -54,7 +58,7 @@ class CommentsIndex.Main extends React.PureComponent
           @renderHeaderTabs()
 
       div className: 'osu-page osu-page--comments',
-        for comment in @state.comments
+        for comment in sortedComments
           el Comment,
             key: comment.id
             comment: comment
