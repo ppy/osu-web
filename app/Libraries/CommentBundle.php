@@ -138,6 +138,9 @@ class CommentBundle
     private function getComments($query, $isChildren = true)
     {
         if (!$isChildren) {
+            // FIXME: This should be replaced with multi-column comparison
+            // which also includes the created_at, in line with actual ORDER BY
+            // used in the final query.
             if ($this->params['last_loaded_id'] !== null) {
                 $query->where('id', '<', $this->params['last_loaded_id']);
             }
