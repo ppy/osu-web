@@ -15,77 +15,38 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<li class="
-    forum-topic-entry
-    u-forum--hover-area
-    {{ $disabled ? 'forum-topic-entry--disabled' : 'clickable-row' }}
-">
-    <div class="forum-topic-entry__bg"></div>
 
-    @if ($disabled)
-        <span class="forum-topic-entry__col forum-topic-entry__col--icon forum-topic-entry__col--icon-plus">
-            <i class="fas fa-plus"></i>
-        </span>
-    @else
-        <a
-            class="
-                forum-topic-entry__col
-                forum-topic-entry__col--icon
-                forum-topic-entry__col--icon-plus
-                js-login-required--click
-            "
-            href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-        >
-            @if (Auth::check())
-                <i class="fas fa-plus"></i>
-            @else
-                <i class="fas fa-sign-in-alt"></i>
-            @endif
-        </a>
-    @endif
+@php
+    $newTopicAuth = priv_check('ForumTopicStore', $forum);
+    $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
+@endphp
 
-    <div class="forum-topic-entry__col forum-topic-entry__col--main">
-        <div class="forum-topic-entry__content forum-topic-entry__content--left">
-            @if ($disabled)
-                <span
-                    class="
-                        u-forum--link
-                        u-forum--hover-target
-                        forum-topic-entry__title
-                    "
-                    title="{{ $disabledReason ?? '' }}"
-                >{{ trans('forum.topic.new_topic') }}</span>
-            @else
-                <a
-                    class="
-                        u-forum--link
-                        u-forum--hover-target
-                        clickable-row-link
-                        js-login-required--click
-                        forum-topic-entry__title
-                    "
-                    href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-                >
-                    @if (Auth::check())
-                        {{ trans('forum.topic.new_topic') }}
-                    @else
-                        {{ trans('forum.topic.new_topic_login') }}
-                    @endif
-                </a>
-            @endif
-        </div>
-    </div>
-
-    <a
-        class="
-            forum-topic-entry__col
-            forum-topic-entry__col--last-link
-            js-login-required--click
-            u-forum--link-hover
-        "
-        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-        title="{{ trans('forum.topic.new_topic') }}"
-    >
-        <i class="fas fa-chevron-right"></i>
+@if ($newTopicEnabled)
+    <a class="btn-osu-big btn-osu-big--forum-new-topic js-login-required--click"
+        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
+        @if (Auth::check())
+            <span class="btn-osu-big__content">
+                <span class="btn-osu-big__left">
+                    {{ trans('forum.topic.new_topic') }}
+                </span>
+                <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
+            </span>
+        @else
+            <span class="btn-osu-big__content">
+                <span class="btn-osu-big__left">
+                    {{ trans('forum.topic.new_topic_login') }}
+                </span>
+                <span class="btn-osu-big__icon"><i class="fas fa-sign-in-alt"></i></span>
+            </span>
+        @endif
     </a>
-</li>
+@else
+    <span class="btn-osu-big btn-osu-big--forum-new-topic" title="{{ $newTopicAuth->message() }}" disabled>
+        <span class="btn-osu-big__content">
+            <span class="btn-osu-big__left">
+                {{ trans('forum.topic.new_topic') }}
+            </span>
+            <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
+        </span>
+    </span>
+@endif

@@ -32,7 +32,7 @@ return [
 
     'index' => [
         'title' => [
-            '_' => 'Lista zmian: :info',
+            '_' => 'Zmiany (:info)',
             'info' => 'Lista',
         ],
     ],

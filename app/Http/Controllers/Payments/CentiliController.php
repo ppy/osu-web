@@ -25,8 +25,8 @@ use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
+use App\Models\Store\Order;
 use Illuminate\Http\Request as HttpRequest;
-use Request;
 
 class CentiliController extends Controller
 {
@@ -60,7 +60,7 @@ class CentiliController extends Controller
 
     public function completed()
     {
-        $orderNumber = Request::input('reference') ?? '';
+        $orderNumber = request()->input('reference') ?? '';
         $order = OrderCheckout::for($orderNumber)->completeCheckout();
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
@@ -68,9 +68,9 @@ class CentiliController extends Controller
 
     public function failed()
     {
-        // FIXME: show a message to the user
-        Request::session()->flash('status', 'An error occured while processing the payment.');
+        $order = Order::whereOrderNumber(request()->input('reference'))->firstOrFail();
+        request()->session()->flash('status', 'An error occured while processing the payment.');
 
-        return redirect(route('store.checkout.show'));
+        return redirect(route('store.checkout.show', $order));
     }
 }

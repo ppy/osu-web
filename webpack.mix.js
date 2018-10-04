@@ -82,6 +82,7 @@ let webpackConfig = {
   externals: {
     "react": "React",
     "react-dom": "ReactDOM",
+    "react-dom-factories": "ReactDOMFactories",
     "prop-types": "PropTypes",
   },
   plugins: [
@@ -163,6 +164,10 @@ mix
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
+.js([
+  ...glob.sync('resources/assets/coffee/react/admin/contest/*.coffee'),
+  'resources/assets/coffee/react/admin/contest.coffee',
+], 'js/react/admin/contest.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',

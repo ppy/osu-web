@@ -128,7 +128,7 @@ return [
         'store' => [
             '_' => 'obchod',
             'checkout-show' => 'k pokladně',
-            'getListing' => 'výpis',
+            'getListing' => 'zboží',
             'cart-show' => 'košík',
 
             'getCheckout' => 'zaplatit',
@@ -203,7 +203,7 @@ return [
             'description' => 'Můžete se pokusit vrátit zpět.',
         ],
         '401' => [
-            'error' => "Tady nesmíš být.",
+            'error' => "Tady bys neměl být.",
             'description' => 'Můžete se pokusit vrátit zpět. Nebo možná se přihlásit.',
         ],
         '405' => [

@@ -114,11 +114,6 @@ return [
                 'total' => 'Seurattuja aiheita',
                 'unread' => 'Aiheita uusilla vastauksilla',
             ],
-
-            'info' => [
-                'total' => 'Olet seurannut :total aihetta.',
-                'unread' => 'Sinulla on :unread lukematonta vastausta seuratuissa aiheissa.',
-            ],
         ],
 
         'topic_buttons' => [

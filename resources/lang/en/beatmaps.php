@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Delete',
+        'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
+        'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
         'disqualification_prompt' => 'Reason for disqualification?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'no reason specified',
@@ -174,6 +177,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
+            'login_required' => 'Sign in to search.',
             'options' => 'More Search Options',
             'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',

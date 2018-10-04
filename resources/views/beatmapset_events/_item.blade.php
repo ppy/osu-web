@@ -21,13 +21,27 @@
     if ($discussionId) {
         $discussionLink .= '#/'.$discussionId;
     }
+
+    if ($event->beatmapset !== null) {
+        if ($event->beatmapset->user !== null) {
+            $mapper = $event->beatmapset->user->username;
+        } else {
+            $mapper = trans('users.deleted');
+        }
+    }
 @endphp
 <div class='beatmapset-events__event'>
     <div class="beatmapset-event">
         @if ($event->beatmapset === null)
             <span>deleted<br>beatmap</span>
         @else
-            <a href="{{$discussionLink}}">
+            <a
+                href="{{ $discussionLink }}"
+                title="
+                    {{ $event->beatmapset->title }} - {{ $event->beatmapset->artist }}
+                    ({{ trans('beatmapsets.show.details.mapped_by', ['mapper' => $mapper]) }})
+                "
+            >
                 <img class='beatmapset-activities__beatmapset-cover'
 
                         src="{{$event->beatmapset->coverURL('list')}}"

@@ -43,6 +43,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
             'perfect' => $score->perfect,
+            'replay' => $score->replay,
             'statistics' => [
                 'count_50' => $score->count50,
                 'count_100' => $score->count100,

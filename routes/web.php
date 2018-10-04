@@ -26,6 +26,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
+    Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
+    Route::post('user-contest-entries/{user_contest_entry}/restore', 'UserContestEntriesController@restore')->name('user-contest-entries.restore');
+
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
     Route::get('/', 'PagesController@root')->name('root');
@@ -79,11 +82,12 @@ Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download'
 Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
-Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
+Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
+
+Route::resource('comments', 'CommentsController');
+Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 
 Route::group(['prefix' => 'community'], function () {
-    Route::get('chat', 'CommunityController@getChat')->name('chat');
-
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::put('contest-entries/{contest_entry}/vote', 'ContestEntriesController@vote')->name('contest-entries.vote');
@@ -132,18 +136,21 @@ Route::group(['prefix' => 'community'], function () {
 Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'home'], function () {
-    Route::get('account/edit', 'AccountController@edit')->name('account.edit');
-    // Uploading file doesn't quite work with PUT/PATCH.
-    // Reference: https://bugs.php.net/bug.php?id=55815
-    // Note that hhvm behaves differently (the same as POST).
-    Route::post('account/avatar', 'AccountController@avatar')->name('account.avatar');
-    Route::post('account/cover', 'AccountController@cover')->name('account.cover');
-    Route::put('account/email', 'AccountController@updateEmail')->name('account.email');
-    Route::put('account/page', 'AccountController@updatePage')->name('account.page');
-    Route::put('account/password', 'AccountController@updatePassword')->name('account.password');
-    Route::post('account/reissue-code', 'AccountController@reissueCode')->name('account.reissue-code');
-    Route::post('account/verify', 'AccountController@verify')->name('account.verify');
-    Route::put('account', 'AccountController@update')->name('account.update');
+    Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
+        Route::get('edit', 'AccountController@edit')->name('edit');
+        // Uploading file doesn't quite work with PUT/PATCH.
+        // Reference: https://bugs.php.net/bug.php?id=55815
+        // Note that hhvm behaves differently (the same as POST).
+        Route::post('avatar', 'AccountController@avatar')->name('avatar');
+        Route::post('cover', 'AccountController@cover')->name('cover');
+        Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('page', 'AccountController@updatePage')->name('page');
+        Route::put('password', 'AccountController@updatePassword')->name('password');
+        Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
+        Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::post('verify', 'AccountController@verify')->name('verify');
+        Route::put('/', 'AccountController@update')->name('update');
+    });
 
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
@@ -189,6 +196,9 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
+Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
+
+Route::get('users/{user}/replays/{beatmap}/{mode}', 'Users\ReplaysController@show')->name('users.replay');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -207,9 +217,6 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
-
-    Route::get('support', 'HelpController@getSupport')->name('support');
-    Route::get('faq', 'HelpController@getFaq')->name('faq');
 });
 
 // FIXME: someone split this crap up into proper controllers
@@ -231,9 +238,9 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::get('cart', 'CartController@show')->name('cart.show');
         Route::resource('cart', 'CartController', ['only' => ['store']]);
 
-        Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
-        Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
-        Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
+        Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
+
+        Route::resource('orders', 'OrdersController', ['only' => ['index']]);
 
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
@@ -265,15 +272,17 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
-        Route::group(['prefix' => 'chat'], function () {
-            //  GET /api/v2/chat/channels
-            Route::get('channels', 'ChatController@channels');
-            //  GET /api/v2/chat/messages
-            Route::get('messages', 'ChatController@messages');
-            //  GET /api/v2/chat/messages/private
-            Route::get('messages/private', 'ChatController@privateMessages');
-            // POST /api/v2/chat/messages/new
-            Route::post('messages', 'ChatController@postMessage');
+        Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
+            Route::get('updates', '\App\Http\Controllers\Chat\ChatController@updates')->name('updates');
+            Route::get('presence', '\App\Http\Controllers\Chat\ChatController@presence')->name('presence');
+            Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+                Route::apiResource('{channel_id}/messages', '\App\Http\Controllers\Chat\Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
+                Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
+                Route::put('{channel_id}/mark-as-read/{message_id}', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
+            });
+            Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);

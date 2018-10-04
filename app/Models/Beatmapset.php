@@ -41,7 +41,6 @@ class Beatmapset extends Model implements AfterCommit
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
-    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',
@@ -267,6 +266,12 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved <= 0;
     }
 
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
+    // TODO: remove this and update the coffee side names to match isScoreable.
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;
@@ -392,7 +397,9 @@ class Beatmapset extends Model implements AfterCommit
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $url = BeatmapMirror::getRandom()->generateURL($this, true);
+        $mirrorsToUse = config('osu.beatmap_processor.mirrors_to_use');
+        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+
         if ($url === false) {
             return false;
         }
@@ -648,6 +655,11 @@ class Beatmapset extends Model implements AfterCommit
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function requiredHype()
@@ -919,7 +931,7 @@ class Beatmapset extends Model implements AfterCommit
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    private function getPost()
+    public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);
 

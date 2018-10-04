@@ -65,7 +65,6 @@ class Topic extends Model implements AfterCommit
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 
@@ -392,6 +391,10 @@ class Topic extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
+        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
+            $this->validationErrors()->add('topic_title', 'required');
+        }
+
         foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
             if ($this->isDirty($field)) {
                 $val = $this->$field;
@@ -565,6 +568,11 @@ class Topic extends Model implements AfterCommit
         // not checking STATUS_LOCK because there's another
         // state (STATUS_MOVED) which isn't handled yet.
         return $this->topic_status !== static::STATUS_UNLOCKED;
+    }
+
+    public function isActive()
+    {
+        return $this->topic_last_post_time > Carbon::now()->subMonths(config('osu.forum.necropost_months'));
     }
 
     public function markRead($user, $markTime)
@@ -761,11 +769,7 @@ class Topic extends Model implements AfterCommit
             $minHours = config('osu.forum.double_post_time.normal');
         }
 
-        return $this
-            ->topic_last_post_time
-            ->copy()
-            ->addHours($minHours)
-            ->isFuture();
+        return $this->topic_last_post_time > Carbon::now()->subHours($minHours);
     }
 
     public function isFeatureTopic()

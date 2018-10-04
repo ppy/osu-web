@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
+use App\Events\Fulfillments\SupporterTagEvent;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
@@ -46,7 +46,10 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->run();
         }
 
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        event(
+            "store.fulfillments.run.{$this->taggedName()}",
+            new SupporterTagEvent($this->order, $this->getOrderItems())
+        );
 
         $this->afterRun();
     }
@@ -59,7 +62,10 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->revoke();
         }
 
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        event(
+            "store.fulfillments.revoke.{$this->taggedName()}",
+            new SupporterTagEvent($this->order, $this->getOrderItems())
+        );
     }
 
     private function afterRun()

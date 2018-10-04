@@ -17,6 +17,7 @@
  */
 
 .beatmapsets-search {
+  @_icon-width: 25px;
   @_top: beatmapsets-search;
 
   .default-box-shadow();
@@ -57,5 +58,40 @@
     .@{_top}--expanded & {
       display: none;
     }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: (@_icon-width + 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__input {
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 10px;
+    padding-right: (10px + @_icon-width + 20px);
+
+    font-style: italic;
+    font-weight: lighter;
+
+    &:focus {
+      outline: none;
+      border-color: @pink-light;
+      box-shadow: 0 0 10px @pink-lighter;
+    }
+  }
+
+  &__input-container {
+    color: @pink;
+    font-size: @font-size--large;
+    margin: 0 -10px;
+    margin-top: 100px;
+    margin-bottom: 20px;
   }
 }

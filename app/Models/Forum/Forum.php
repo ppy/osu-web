@@ -24,7 +24,6 @@ class Forum extends Model
 {
     protected $table = 'phpbb_forums';
     protected $primaryKey = 'forum_id';
-    protected $guarded = [];
 
     protected $dates = ['forum_last_post_time'];
     protected $dateFormat = 'U';
@@ -33,6 +32,7 @@ class Forum extends Model
     protected $casts = [
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
+        'moderator_groups' => 'array',
     ];
 
     public static function lastTopics($forum = null)

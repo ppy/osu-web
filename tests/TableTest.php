@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Libraries\HasDynamicTable;
 use App\Models\Model;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -44,7 +45,11 @@ class TableTest extends TestCase
     {
         $class = $this->classFromFileInfo($file);
         $reflectionClass = new ReflectionClass($class);
-        if ($reflectionClass->isAbstract() || !$reflectionClass->isSubclassOf(Model::class)) {
+        if (
+            $reflectionClass->isAbstract() ||
+            !$reflectionClass->isSubclassOf(Model::class) ||
+            $reflectionClass->implementsInterface(HasDynamicTable::class)
+        ) {
             return;
         }
 

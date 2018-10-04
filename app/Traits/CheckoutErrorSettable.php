@@ -20,15 +20,17 @@
 
 namespace App\Traits;
 
+use App\Models\Store\Order;
 use Session;
 
 trait CheckoutErrorSettable
 {
-    public function setAndRedirectCheckoutError($message = '', $errors = [])
+    public function setAndRedirectCheckoutError(?Order $order, $message = '', $errors = [])
     {
         Session::flash('checkout.error.message', $message);
         Session::flash('checkout.error.errors', $errors);
 
-        return ujs_redirect(route('store.checkout.show'), 422);
+        // TODO: what to do if order is null?
+        return ujs_redirect(route('store.checkout.show', $order), 422);
     }
 }

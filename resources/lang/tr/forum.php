@@ -114,11 +114,6 @@ return [
                 'total' => 'Abone olunan konular',
                 'unread' => 'Yeni yorumlar içeren konular',
             ],
-
-            'info' => [
-                'total' => ':total konularına abone oldunuz.',
-                'unread' => 'Abone olduğunuz konulara :unread tane okunmamış yanıt bulunmaktadır.',
-            ],
         ],
 
         'topic_buttons' => [

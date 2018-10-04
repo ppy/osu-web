@@ -101,8 +101,7 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.scoresRecent?.length
         [
-          @props.scoresRecent.map (score, i) =>
-            el PlayDetail, key: i, score: score
+          el window._exported.PlayDetailList, scores: @props.scoresRecent
 
           span
             key: 'show-more-row'
@@ -140,7 +139,7 @@ class ProfilePage.Historical extends React.PureComponent
       div
         className: 'beatmapset-row__cover'
         style:
-          backgroundImage: "url('#{bmset.covers.list}')"
+          backgroundImage: osu.urlPresence(bmset.covers.list)
       div
         className: 'beatmapset-row__detail'
         div

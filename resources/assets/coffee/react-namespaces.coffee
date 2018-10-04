@@ -16,6 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+@Admin = {}
+@Admin.Contest = {}
 @BeatmapDiscussions = {}
 @Beatmaps = {}
 @BeatmapsetPage = {}

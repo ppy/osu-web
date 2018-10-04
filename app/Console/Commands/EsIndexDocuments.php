@@ -82,13 +82,15 @@ class EsIndexDocuments extends Command
 
         $start = time();
 
-        $indices = $this->index();
+        foreach ($this->groups as $name) {
+            $this->indexGroup($name);
+        }
 
-        $this->finish($indices, $oldIndices);
+        $this->finish($oldIndices);
         $this->warn("\nIndexing completed in ".(time() - $start).'s');
     }
 
-    protected function finish(array $indices, array $oldIndices)
+    protected function finish(array $oldIndices)
     {
         if (!$this->inplace && $this->cleanup) {
             foreach ($oldIndices as $index) {
@@ -98,55 +100,55 @@ class EsIndexDocuments extends Command
         }
     }
 
-    /**
-     * Indexes and returns the names of the indices.
-     *
-     * @return array names of the indices indexed to.
-     */
-    protected function index()
-    {
-        $indices = [];
-        foreach ($this->groups as $name) {
-            $indices = array_merge($indices, $this->indexGroup($name));
-        }
-
-        return $indices;
-    }
-
     private function indexGroup($name)
     {
         $indices = [];
-        $types = static::ALLOWED_TYPES[$name];
+        $newIndices = [];
+        $types = collect(static::ALLOWED_TYPES[$name]);
 
-        foreach ($types as $i => $type) {
+        $allSame = $types->every(function ($type) use ($types) {
+            return $type::esIndexName() === $types->first()::esIndexName();
+        });
+
+        if (!$allSame) {
+            $this->error("All types in group {$name} must have the same index.");
+
+            return [];
+        }
+
+        $first = $types->first();
+        $alias = $first::esIndexName();
+        $indexName = "{$first::esIndexName()}{$this->suffix}";
+        $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
+
+        foreach ($types as $type) {
             $count = $type::esIndexingQuery()->count();
             $bar = $this->output->createProgressBar($count);
 
-            $indexName = "{$type::esIndexName()}{$this->suffix}";
-            $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
             $this->info("{$pretext} {$type} into {$indexName}");
 
-            if (!$this->inplace && $i === 0) {
+            if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
                 $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
-                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
+                $options = ['index' => $indexName];
+                $type::esReindexAll(static::BATCH_SIZE, 0, $options, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
-            }
-
-            if ($i === 0) {
-                $indices[] = $type::esIndexName();
             }
 
             $bar->finish();
             $this->line("\n");
         }
 
-        return $indices;
+        if ($alias !== $indexName) {
+            $this->info("Aliasing {$alias} to {$indexName}");
+            Indexing::updateAlias($alias, [$indexName]);
+            $this->line('');
+        }
     }
 
     protected function readOptions()
