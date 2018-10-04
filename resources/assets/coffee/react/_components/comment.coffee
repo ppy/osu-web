@@ -126,7 +126,7 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if @props.showPermalink
+            if @canModerate()
               div className: 'comment__row-item',
                 a
                   href: laroute.route('comments.show', comment: @props.comment.id)
@@ -216,7 +216,6 @@ class @Comment extends React.PureComponent
                 depth: @props.depth + 1
                 parent: @props.comment
                 modifiers: @props.modifiers
-                showPermalink: @props.showPermalink
 
           if children.length < @props.comment.replies_count
             lastCommentId = _.last(children)?.id

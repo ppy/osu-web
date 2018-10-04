@@ -61,7 +61,6 @@ class CommentsIndex.Main extends React.PureComponent
             usersById: usersById
             showReplies: false
             showCommentableMeta: true
-            showPermalink: true
             linkParent: true
             depth: 0
 

@@ -69,7 +69,6 @@ class CommentsShow.Main extends React.PureComponent
           depth: 0
           childrenArray: children
           linkParent: true
-          showPermalink: true
           for comment in children
             el Comment,
               key: comment.id
@@ -78,7 +77,6 @@ class CommentsShow.Main extends React.PureComponent
               commentsByParentId: commentsByParentId
               usersById: usersById
               depth: 1
-              showPermalink: true
 
 
   renderHeaderTabs: =>
