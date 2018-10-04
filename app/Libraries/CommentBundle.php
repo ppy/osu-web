@@ -28,11 +28,11 @@ class CommentBundle
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
 
-    public $includeCommentableMeta = false;
-    public $includeParent = false;
-    public $filterByParentId = true;
-    public $params = [];
-    public $depth = 2;
+    public $depth;
+    public $filterByParentId;
+    public $includeCommentableMeta;
+    public $includeParent;
+    public $params;
 
     private $commentable;
     private $comments;
@@ -41,8 +41,20 @@ class CommentBundle
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
-        $this->setParams($options['params'] ?? null);
+
+        $this->params = [
+            'parent_id' => null,
+            'last_loaded_id' => null,
+            'limit' => static::DEFAULT_LIMIT,
+            'page' => static::DEFAULT_PAGE,
+        ];
+        $this->setParams($options['params'] ?? []);
+
         $this->comments = $options['comments'] ?? null;
+        $this->depth = $options['depth'] ?? 2;
+        $this->filterByParentId = $options['filterByParentId'] ?? true;
+        $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
+        $this->includeParent = $options['includeParent'] ?? false;
     }
 
     public function toArray()
@@ -106,10 +118,18 @@ class CommentBundle
 
     public function setParams($input)
     {
-        $this->params['parent_id'] = get_int($input['parent_id'] ?? null);
-        $this->params['last_loaded_id'] = get_int($input['last_loaded_id'] ?? null);
-        $this->params['limit'] = clamp(get_int($input['limit'] ?? static::DEFAULT_LIMIT), 1, 100);
-        $this->params['page'] = max(get_int($input['page'] ?? static::DEFAULT_PAGE), 1);
+        if (array_key_exists('parent_id', $input)) {
+            $this->params['parent_id'] = get_int($input['parent_id']);
+        }
+        if (array_key_exists('last_loaded_id', $input)) {
+            $this->params['last_loaded_id'] = get_int($input['last_loaded_id']);
+        }
+        if (array_key_exists('limit', $input)) {
+            $this->params['limit'] = clamp(get_int($input['limit']), 1, 100);
+        }
+        if (array_key_exists('page', $input)) {
+            $this->params['page'] = max(get_int($input['page']), 1);
+        }
     }
 
     public function getParams()
