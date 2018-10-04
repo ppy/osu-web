@@ -55,3 +55,5 @@
         ])
     </div>
 @endif
+
+@include('layout._sticky_header')
