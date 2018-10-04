@@ -100,7 +100,12 @@
 
   &--comment-editor {
     border-radius: 10000px;
-    padding: 10px 20px;
+    padding: 10px;
+
+    @media @desktop {
+      min-width: 130px;
+      padding: 10px 20px;
+    }
   }
 
   &--contest-download {
@@ -279,6 +284,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .@{top}--comment-editor & {
+      font-size: 120%;
     }
 
     .@{top}--download-landing & {

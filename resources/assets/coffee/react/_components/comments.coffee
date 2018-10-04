@@ -59,18 +59,6 @@ class @Comments extends React.PureComponent
 
     comments = commentsByParentId[null]
 
-    items =
-      if comments?
-        for comment in comments
-          el Comment,
-            key: comment.id
-            comment: comment
-            commentsByParentId: commentsByParentId
-            usersById: usersById
-            depth: 0
-            modifiers: @props.modifiers
-      else
-        osu.trans('comments.empty')
 
     div className: osu.classWithModifiers('comments', @props.modifiers),
       h2 className: 'comments__title', osu.trans('comments.title')
@@ -80,16 +68,28 @@ class @Comments extends React.PureComponent
           commentableId: @props.commentableId
           focus: false
           modifiers: @props.modifiers
-      div className: 'comments__items',
-        items
-        if comments? && comments.length < @state.topLevelCount
-          lastCommentId = _.last(comments)?.id
-          el CommentShowMore,
-            key: "show-more:#{lastCommentId}"
-            commentableType: @props.commentableType
-            commentableId: @props.commentableId
-            after: lastCommentId
-            modifiers: _.concat 'top', @props.modifiers
+      if comments?
+        div className: 'comments__items',
+          for comment in comments
+            el Comment,
+              key: comment.id
+              comment: comment
+              commentsByParentId: commentsByParentId
+              usersById: usersById
+              depth: 0
+              modifiers: @props.modifiers
+          if comments.length < @state.topLevelCount
+            lastCommentId = _.last(comments)?.id
+            el CommentShowMore,
+              key: "show-more:#{lastCommentId}"
+              commentableType: @props.commentableType
+              commentableId: @props.commentableId
+              after: lastCommentId
+              modifiers: _.concat 'top', @props.modifiers
+      else
+        div
+          className: 'comments__items comments__items--empty'
+          osu.trans('comments.empty')
 
 
   appendBundle: (_event, {comments}) =>
