@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h1, p, span} = ReactDOMFactories
+{a, button, div, h1, li, ol, p, span} = ReactDOMFactories
 el = React.createElement
 
 class CommentsShow.Main extends React.PureComponent
@@ -82,10 +82,18 @@ class CommentsShow.Main extends React.PureComponent
 
 
   renderHeaderTabs: =>
-    div className: 'page-mode-v2 page-mode-v2--comments',
-      span
-        className: 'page-mode-v2__link page-mode-v2__link--active'
-        osu.trans 'comments.show.title.info'
+    ol className: 'page-mode-v2 page-mode-v2--comments',
+      li
+        className: 'page-mode-v2__item'
+        a
+          href: laroute.route('comments.index')
+          className: 'page-mode-v2__link'
+          osu.trans 'comments.index.title.info'
+      li
+        className: 'page-mode-v2__item'
+        span
+          className: 'page-mode-v2__link page-mode-v2__link--active'
+          osu.trans 'comments.show.title.info'
 
 
   renderHeaderTitle: =>
