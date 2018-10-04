@@ -427,6 +427,13 @@ function to_sentence($array, $key = 'common.array_and')
     }
 }
 
+function trans_exists($key, $locale)
+{
+    $translated = app('translator')->get($key, [], $locale, false);
+
+    return present($translated) && $translated !== $key;
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
