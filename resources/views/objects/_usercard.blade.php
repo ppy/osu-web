@@ -25,6 +25,8 @@
             $blockClass .= ' usercard--'.$modifier;
         }
     }
+
+    $showOnline = !isset($loading) && $user->isOnline();
 @endphp
 @if (isset($user) || isset($loading))
     <div class="{{ $blockClass }}">
@@ -92,10 +94,10 @@
                     </div>
                 </div>
             </div>
-            <div class="usercard__status-bar usercard__status-bar--{{!isset($loading) && $user->isOnline() ? 'online' : 'offline'}}">
+            <div class="usercard__status-bar usercard__status-bar--{{ $showOnline ? 'online' : 'offline' }}">
                 <span class="far fa-fw fa-circle usercard__status-icon"></span>
-                <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : ($user->user_lastvisit ? trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) : '')}}">
-                    {{!isset($loading) && $user->isOnline() ? trans('users.status.online') : trans('users.status.offline')}}
+                <span class="usercard__status-message" title="{{ isset($loading) || is_null($user->displayed_last_visit) ? '' : trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) }}">
+                    {{ $showOnline ? trans('users.status.online') : trans('users.status.offline') }}
                 </span>
             </div>
         </div>
