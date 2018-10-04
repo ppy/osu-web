@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Jsi si jist/á?',
+    'confirmation_unsaved' => 'Provedené změny budou ztraceny, chcete pokračovat?',
     'saved' => 'Uloženo',
 
     'array_and' => [

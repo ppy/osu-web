@@ -28,8 +28,8 @@ return [
         'title' => 'osu!hírek',
 
         'nav' => [
-            'newer' => 'Újabb poszt',
-            'older' => 'Régebbi poszt',
+            'newer' => 'Újabb posztok',
+            'older' => 'Régebbi posztok',
         ],
     ],
 

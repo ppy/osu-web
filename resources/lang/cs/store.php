@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'darovat hráči',
         'require_login' => [
-            '_' => 'Pro obdržení supporter tagu se musíš :link!',
+            '_' => 'Pro obdržení štítku podporovatele se musíš :link!',
             'link_text' => 'přihlášený',
         ],
     ],

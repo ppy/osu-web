@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap on poistettu',
+        'difference' => ':difference pisteen erotuksella',
+        'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
-        'team-types' => [
-            'head-to-head' => 'Kaikki vastakkain',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Tiimi VS',
-            'tag-team-vs' => 'Tag Tiimi VS',
-        ],
+        'in-progress' => '(peli meneillään)',
+        'in_progress_spinner_label' => '',
+        'loading-events' => 'Ladataan tapahtumia...',
+        'winner' => ':team voitti',
+
         'events' => [
             'player-left' => ':user poistui pelistä',
             'player-joined' => ':user liittyi peliin',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'peli lakkautettiin',
             'host-changed-no-user' => 'isäntä vaihtui',
         ],
-        'in-progress' => '(peli meneillään)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Tarkkuus',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Pisteet',
             ],
         ],
-        'failed' => 'HÄVISI',
+
+        'team-types' => [
+            'head-to-head' => 'Kaikki vastakkain',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Tiimi VS',
+            'tag-team-vs' => 'Tag Tiimi VS',
+        ],
+
         'teams' => [
             'blue' => 'Sininen joukkue',
             'red' => 'Punainen joukkue',
         ],
-        'winner' => ':team voitti',
-        'difference' => ':difference pisteen erotuksella',
-        'loading-events' => 'Ladataan tapahtumia...',
-        'more-events' => 'näytä kaikki...',
-        'beatmap-deleted' => 'beatmap on poistettu',
     ],
     'game' => [
         'scoring-type' => [

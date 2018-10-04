@@ -22,6 +22,10 @@ return [
     'feed_title' => 'lista',
     'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
 
+    'build' => [
+        'title' => 'zmiany w :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited użytkownik online|:count_delimited użytkownicy online|:count_delimited użytkowników online',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'lista zmian',
+            '_from' => 'zmiany od :from',
+            '_from_to' => 'zmiany w okresie :from - :to',
+            '_stream' => 'zmiany w :stream',
+            '_stream_from' => 'zmiany w :stream od :from',
+            '_stream_from_to' => 'zmiany w :stream w okresie :from - :to',
+            '_stream_to' => 'zmiany w :stream do :to',
+            '_to' => 'zmiany do :to',
+        ],
+
         'title' => [
             '_' => 'Zmiany (:info)',
             'info' => 'Lista',

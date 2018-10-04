@@ -178,11 +178,6 @@ return [
             'livestreams' => '',
             'report' => '',
         ],
-        'support' => [
-            '_' => '',
-            'tags' => '',
-            'merchandise' => '',
-        ],
         'legal' => [
             '_' => '',
             'copyright' => '',

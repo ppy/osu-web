@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Вы уверены?',
+    'confirmation_unsaved' => 'Несохраненные изменения будет утеряны. Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [

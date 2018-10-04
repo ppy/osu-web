@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Solo el creador del tema y dueño del beatmap puede resolver una discusión.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Sólo el dueño del beatmap o un miembro de un grupo de nominaciones/QAT puede publicar notas de mapeador.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
             'owner' => "No puedes votar tus propias discusiones.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Acabas de publicar. Espera un poco o edita tu última publicación.',
+                'double_post' => 'Por favor edita tu última publicación en vez de publicar otra vez.',
                 'locked' => 'No puedes responder a un hilo cerrado.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para responder.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Necesitas ser supporter.',
+                'require_supporter_tag' => 'Se requiere el osu!supporter tag.',
             ],
         ],
     ],

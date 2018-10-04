@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Topik yang Disematkan',
     'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
-    'title' => 'osu!community',
+    'title' => 'forum osu!',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'oleh :user',
+        'started_by_verbose' => 'topik dimulai oleh :user',
 
         'create' => [
             'preview' => 'Pratinjau',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Ketik',
             'submit' => 'Post',
+
+            'necropost' => [
+                'default' => 'Topik ini sudah tidak aktif untuk sementara waktu. Posting di sini jika Anda memiliki alasan khusus untuk melakukannya.',
+
+                'new_topic' => [
+                    '_' => "Topik ini sudah tidak aktif untuk beberapa waktu. Jika Anda tidak memiliki alasan khusus untuk memposting di sini, silakan :create saja.",
+                    'create' => 'post topik baru',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Ketik konten post di sini',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Topik yang dilanggan',
                 'unread' => 'Topik dengan balasan terbaru',
+            ],
+
+            'info' => [
+                'total' => 'Anda berlangganan :total topik.',
+                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik yang Anda langgan.',
             ],
         ],
 

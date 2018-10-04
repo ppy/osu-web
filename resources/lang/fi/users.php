@@ -77,7 +77,7 @@ return [
         'forgot' => 'Unohditko salasanasi?',
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
-            'small' => '(Tukijat pääsevät sisään pian)',
+            'small' => '(osu!tukijat tulevat kohta)',
         ],
 
         'here' => 'täällä', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Sinun tarvitsee olla kirjautunut tätä varten.',
     ],
     'logout_confirm' => 'Oletko varma, että haluat kirjautua ulos? :(',
+    'report' => [
+        'button_text' => 'raportoi',
+        'comments' => 'Lisä-kommentit',
+        'placeholder' => 'Anna kaikki tieto joka voisi olla kätevää.',
+        'reason' => 'Syy',
+        'thanks' => 'Kiitos raportistasi!',
+        'title' => '',
+
+        'actions' => [
+            'send' => 'Lähetä raportti',
+            'cancel' => 'Peruuta',
+        ],
+
+        'options' => [
+            'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'insults' => 'Haukkuu minua / muita',
+            'spam' => 'Spämmii',
+            'unwanted_content' => 'Linkkaa aikuismateriaalia / muuta epämukavaa materiaalia',
+            'nonsense' => '',
+            'other' => 'Muu (kirjoita alle)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tilisi on rajoitettu!',
         'message' => 'Kun olet rajoitetussa tilassa, et näe muita pelaajia ja tuloksesi ovat näkyvissä vain sinulle. Tämä on yleensä automatisoitu prosessi ja poistuu useimmiten 24 tunnin sisällä. Jos haluat tehdä valituksen <a href="mailto:accounts@ppy.sh">ota yhteyttä tukeen</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, maasta: :country',
         'origin_country' => 'Maasta :country',
         'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää käyttäjästä :username!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',

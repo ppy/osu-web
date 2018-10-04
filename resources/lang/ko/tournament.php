@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => '지금 당장 진행중인 토너먼트가 없군요, 나중에 다시 확인해주세요!',
+        'registration_period' => '참가: :start부터 :end까지',
+
         'header' => [
             'subtitle' => '현재 진행중인, 공식적으로 인정된 토너먼트 목록입니다.',
             'title' => '커뮤니티 토너먼트',
         ],
-        'none_running' => '지금 당장 진행중인 토너먼트가 없군요, 나중에 다시 확인해주세요!',
-        'registration_period' => '참가: :start부터 :end까지',
+
+        'item' => [
+            'registered' => '등록된 플레이어',
+        ],
 
         'state' => [
             'current' => '개최 중인 토너먼트',

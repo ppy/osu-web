@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => '要贈與的玩家',
         'require_login' => [
-            '_' => '您需要 :link 以獲得 Supporter 標籤！',
+            '_' => '',
             'link_text' => '登入',
         ],
     ],

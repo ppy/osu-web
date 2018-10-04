@@ -77,7 +77,7 @@ return [
         'forgot' => 'Zapoměl jsi heslo?',
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
-            'small' => '(brzy pro supportery)',
+            'small' => '(brzy pro podporovatele)',
         ],
 
         'here' => 'zde', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Pro tuto akci musíte být přihlášeni.',
     ],
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
         'message' => 'Zatímco jsi v omezeném režimu, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu který by se měl sám vyřešit do nejpozději 24 hodin. Pokud si přeješ odvolat tvé omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age z :country',
         'origin_country' => 'Z :country',
         'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
         'previous_usernames' => 'dříve znám jako',

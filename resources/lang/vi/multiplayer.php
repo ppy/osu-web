@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap đã bị xóa',
+        'difference' => 'với :difference',
+        'failed' => 'THẤT BẠI',
         'header' => 'Những trận đấu Multiplayer',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(trận đấu đang diễn ra)',
+        'in_progress_spinner_label' => 'trận đấu đang diễn ra',
+        'loading-events' => 'Đang tải các sự kiện...',
+        'winner' => ':team thắng',
+
         'events' => [
             'player-left' => ':user đã rời khỏi trận đấu',
             'player-joined' => ':user đã tham gia trận đấu',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'trận đấu đã giải tán',
             'host-changed-no-user' => 'đã thay đổi chủ trận đấu',
         ],
-        'in-progress' => '(trận đấu đang diễn ra)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Độ chính xác',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Điểm',
             ],
         ],
-        'failed' => 'THẤT BẠI',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Đội Xanh',
             'red' => 'Đội Đỏ',
         ],
-        'winner' => ':team thắng',
-        'difference' => 'với :difference',
-        'loading-events' => 'Đang tải các sự kiện...',
-        'more-events' => 'xem tất cả...',
-        'beatmap-deleted' => 'beatmap đã bị xóa',
     ],
     'game' => [
         'scoring-type' => [

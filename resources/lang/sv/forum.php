@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Nålade Ämnen',
     'slogan' => "det är farligt att spela ensam.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'osu! forumen',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
         'post_reply' => 'Lägg upp',
         'reply_box_placeholder' => 'Tryck här för att svara',
+        'reply_title_prefix' => 'Åter',
         'started_by' => 'av :user',
+        'started_by_verbose' => 'startad av :user',
 
         'create' => [
             'preview' => 'Förhandsvisning',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
             'submit' => 'Lägg upp',
+
+            'necropost' => [
+                'default' => 'Detta ämne har varit inaktiv ett tag. Skapa endast ett inlägg om du har en särskild skäl till att göra så.',
+
+                'new_topic' => [
+                    '_' => "Detta ämne har varit inaktiv ett tag. Om du inte har ett särskilt skäl att lägga upp här, vänligen :create istället.",
+                    'create' => 'skapa ett nytt ämne',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Skriv ditt inläggs innehåll här',
@@ -114,6 +125,11 @@ return [
                 'total' => 'Ämne prenumererade',
                 'unread' => 'Ämnen med nya svar',
             ],
+
+            'info' => [
+                'total' => 'Du prenumererade till :total ämnen.',
+                'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
+            ],
         ],
 
         'topic_buttons' => [
@@ -128,7 +144,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
-            'login_reply' => '',
+            'login_reply' => 'Logga in för att Svara',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',

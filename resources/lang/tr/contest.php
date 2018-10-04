@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Yalnızca dairelere tıklamaktan başka yollarda yarışın.',
-        'large' => 'osu! Topluluk Yarışmaları',
+        'large' => 'Topluluk Yarışmaları',
     ],
     'voting' => [
         'over' => 'Bu yarışma için oylama sona erdi',

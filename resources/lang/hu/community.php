@@ -22,8 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Tetszik az osu!?<br/>
-                                Támogasd az osu! fejlesztőit :D',
+            'big_description' => 'Szereted az osu!-t?<br/>                                Támogasd az osu! fejlesztését! :D',
             'small_description' => '',
             'support_button' => 'Támogatni szeretném az osu!-t',
         ],

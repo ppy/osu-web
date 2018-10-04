@@ -22,7 +22,7 @@ return [
     'pinned_topics' => '置頂主題',
     'slogan' => "獨樂樂不如眾樂樂~",
     'subforums' => '其他相關討論',
-    'title' => 'osu! 社群',
+    'title' => 'osu! 論壇',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
+        'reply_title_prefix' => '',
         'started_by' => '發表人： :user',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => '預覽',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => '編輯',
             'submit' => '發表',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => '在這裡輸入內文',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => '訂閱的主題',
                 'unread' => '主題有新回覆',
+            ],
+
+            'info' => [
+                'total' => '共訂閱了 :total 個主題',
+                'unread' => '有 :unread 個未讀回覆',
             ],
         ],
 

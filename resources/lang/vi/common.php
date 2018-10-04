@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Bạn có chắc không?',
+    'confirmation_unsaved' => 'Mọi thay đổi chưa lưu sẽ bị mất. Bạn chắc không?',
     'saved' => 'Đã lưu',
 
     'array_and' => [
@@ -37,7 +38,7 @@ return [
         'hide' => 'ẩn',
         'permalink' => 'permalink',
         'permalink_copied' => 'đã sao chép link',
-        'post' => 'Bài đăng',
+        'post' => 'Đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',

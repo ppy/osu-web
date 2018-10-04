@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',
         ],
-        'support' => [
-            '_' => 'Dukung osu!',
-            'tags' => 'Supporter Tag',
-            'merchandise' => 'Merchandise',
-        ],
         'legal' => [
             '_' => 'Status Resmi',
             'copyright' => 'Hak Cipta (DMCA)',

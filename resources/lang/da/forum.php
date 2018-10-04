@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Emner',
     'slogan' => "det er farlig at spille alene.",
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => '',
         'post_reply' => 'Slå op',
         'reply_box_placeholder' => 'Skriv her for at svare',
+        'reply_title_prefix' => '',
         'started_by' => 'af :user',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => 'Forhåndsvisning',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
             'submit' => 'Slå op',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Skriv opslagets indhold her',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Emner Abonneret',
                 'unread' => 'Emner med nye svar',
+            ],
+
+            'info' => [
+                'total' => 'Du abonnerer i alt på :total emner.',
+                'unread' => 'Du har :unread ulæste svar til abonnerede emner.',
             ],
         ],
 

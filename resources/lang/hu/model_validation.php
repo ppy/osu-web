@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Érvénytelen nehézség van megadva.',
         'invalid_beatmapset_id' => 'Érvénytelen beatmap van megadva.',
         'locked' => 'A megbeszélés zárva van.',
-        'mapper_note_wrong_user' => 'Csak beatmap tulajdonos tud feladni mapper jegyzeteket.',
 
         'hype' => [
             'guest' => 'A népszerűsítéshez be kell lépned.',

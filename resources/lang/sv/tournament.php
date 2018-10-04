@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Det finns inga pågående turneringar just nu, var vänlig kolla igen senare!',
+        'registration_period' => 'Registrering: :start till :end',
+
         'header' => [
             'subtitle' => 'En lista av aktiva, officiella turneringar',
             'title' => 'Gemenskapsturneringar',
         ],
-        'none_running' => 'Det finns inga pågående turneringar just nu, var vänlig kolla igen senare!',
-        'registration_period' => 'Registrering: :start till :end',
+
+        'item' => [
+            'registered' => 'Registrerade spelare',
+        ],
 
         'state' => [
             'current' => 'Aktiva Turneringar',

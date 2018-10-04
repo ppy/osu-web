@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Compite de más formas que solo presionando círculos.',
-        'large' => 'Concursos de la comunidad de osu!',
+        'large' => '',
     ],
     'voting' => [
         'over' => 'Las votaciones para este concurso ya han terminado',
