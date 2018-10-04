@@ -66,6 +66,9 @@
 
         <div class="forum-post__info-panel-extra-bottom">
             <div class="forum-post__info-row">
+                {{ trans_choice('forum.post.info.post_count', number_format($user->user_posts)) }}
+            </div>
+            <div class="forum-post__info-row">
                 {!! display_regdate($user) !!}
             </div>
         </div>
