@@ -29,21 +29,26 @@
             </div>
 
             <div class="forum-topic-headernav__content">
-                <div class="forum-topic-headernav__row">
-                    @include('forum.topics._header_breadcrumb_small', [
-                        'forum' => $topic->forum,
-                    ])
-                </div>
-
-                <h1 class="forum-topic-headernav__row u-ellipsis-overflow">
-                    <a
-                        href="{{ route("forum.topics.show", $topic->topic_id) }}"
-                        class="forum-topic-headernav__title-link"
-                    >
-                        {{ $topic->topic_title }}
-                    </a>
-                </h1>
             </div>
         </div>
     </div>
 </div>
+
+@section('sticky-header-breadcrumbs')
+    <div class="forum-topic-headernav__row">
+        @include('forum.topics._header_breadcrumb_small', [
+            'forum' => $topic->forum,
+        ])
+    </div>
+@endsection();
+
+@section('sticky-header-content')
+    <h1 class="forum-topic-headernav__row u-ellipsis-overflow">
+        <a
+            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+            class="forum-topic-headernav__title-link"
+        >
+            {{ $topic->topic_title }}
+        </a>
+    </h1>
+@endsection()

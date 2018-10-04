@@ -16,6 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
-    <div class="sticky-header__breadcrumbs"></div>
-    <div id="js-sticky-header-content"></div>
+    <div class="osu-page">
+        <div class="forum-topic-headernav">
+            <div class="forum-topic-headernav__logo">
+                @include('objects.logo_menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
+            </div>
+
+            <div class="forum-topic-headernav__content">
+                <div class="sticky-header__breadcrumbs">
+                    @yield('sticky-header-breadcrumbs')
+                </div>
+                <div id="js-sticky-header-content">
+                    @yield('sticky-header-content')
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
