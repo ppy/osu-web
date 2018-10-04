@@ -44,6 +44,10 @@ class CommentsController extends Controller
 
     public function index()
     {
+        if (!request()->expectsJson()) {
+            priv_check('CommentModerate')->ensureCan();
+        }
+
         $type = request('commentable_type');
         $id = request('commentable_id');
 
@@ -65,8 +69,6 @@ class CommentsController extends Controller
         if (request()->expectsJson()) {
             return $commentBundle->toArray();
         } else {
-            priv_check('CommentModerate')->ensureCan();
-
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includeParent = true;
