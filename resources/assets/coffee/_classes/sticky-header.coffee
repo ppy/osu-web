@@ -40,3 +40,15 @@ class @StickyHeader
         return
 
     $.publish 'stickyHeader'
+
+
+  @hide: ->
+    Fade.out document.getElementById('js-sticky-header')
+
+
+  @setVisible: (visible) =>
+    if visible then @show() else @hide()
+
+
+  @show: ->
+    Fade.in document.getElementById('js-sticky-header')

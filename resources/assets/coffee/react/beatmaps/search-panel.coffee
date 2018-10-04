@@ -45,7 +45,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   stickyHeader: (_e, target) =>
     newState = (target == 'beatmapsets-search')
-    @setState(isSticky: newState) if newState != @state.isSticky
+    if newState != @state.isSticky
+      @setState isSticky: newState, ->
+        StickyHeader.setVisible(newState)
 
 
   render: =>
