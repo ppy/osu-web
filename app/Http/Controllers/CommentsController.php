@@ -141,9 +141,10 @@ class CommentsController extends Controller
             $comments[] = $comment->parent;
         }
 
-        return (new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-        ]))->toArray();
+        $bundle = new CommentBundle($comment->commentable, compact('comments'));
+        $bundle->includeCommentableMeta = true;
+
+        return $bundle->toArray();
     }
 
     public function update($id)
