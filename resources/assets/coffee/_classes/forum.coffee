@@ -220,10 +220,8 @@ class @Forum
 
     if target == 'forum-topic-headernav'
       StickyHeader.setVisible(true)
-      # Fade.in @_stickyHeaderTopic[0]
     else
       StickyHeader.setVisible(false)
-      # Fade.out @_stickyHeaderTopic[0]
 
 
   showMore: (e) =>

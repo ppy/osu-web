@@ -15,12 +15,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div
-    class="forum-topic-floating-header js-forum-topic-headernav js-sync-height--reference"
-    data-sync-height-target="forum-topic-headernav"
-    data-visibility="hidden"
->
-</div>
+<div class="js-forum-topic-headernav"></div>
+
 @section('sticky-header-stripe')
     <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
 @endsection()
