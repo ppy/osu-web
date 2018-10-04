@@ -20,8 +20,10 @@
     data-sync-height-target="forum-topic-headernav"
     data-visibility="hidden"
 >
-    <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
 </div>
+@section('sticky-header-stripe')
+    <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
+@endsection()
 
 @section('sticky-header-breadcrumbs')
     <div class="forum-topic-headernav__row">
