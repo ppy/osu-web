@@ -156,7 +156,7 @@ class BeatmapsetsController extends Controller
                 'search-cache:',
                 config('osu.beatmapset.es_cache_duration'),
                 function () use ($params) {
-                    $search = (new BeatmapsetSearch($params))->source('_id');
+                    $search = (new BeatmapsetSearch($params))->source(false);
 
                     return $search->response()->ids();
                 }
