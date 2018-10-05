@@ -118,7 +118,7 @@ class OsuAuthorize
                     return $prefix.'has_reply';
                 }
             }
-        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutTrashed()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 

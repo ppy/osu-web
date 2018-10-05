@@ -100,7 +100,7 @@ class BeatmapDiscussion extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            $query->withoutDeleted();
+            $query->withoutTrashed();
         }
 
         if (!($rawParams['is_moderator'] ?? false)) {
@@ -273,7 +273,7 @@ class BeatmapDiscussion extends Model
     {
         $systemPosts = $this
             ->beatmapDiscussionPosts()
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->where('system', '=', true)
             ->orderBy('id', 'DESC')
             ->get();
@@ -605,7 +605,7 @@ class BeatmapDiscussion extends Model
     public function scopeOpenIssues($query)
     {
         $query
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
             ->where(function ($query) {
                 $query
@@ -615,7 +615,7 @@ class BeatmapDiscussion extends Model
             ->where('resolved', '=', false);
     }
 
-    public function scopeWithoutDeleted($query)
+    public function scopeWithoutTrashed($query)
     {
         $query->whereNull('deleted_at');
     }

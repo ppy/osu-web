@@ -92,7 +92,7 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            $query->withoutDeleted();
+            $query->withoutTrashed();
         }
 
         if (!($rawParams['is_moderator'] ?? false)) {
@@ -318,7 +318,7 @@ class BeatmapDiscussionPost extends Model
         return static::parseTimestamp($this->message);
     }
 
-    public function scopeWithoutDeleted($query)
+    public function scopeWithoutTrashed($query)
     {
         $query->whereNull('deleted_at');
     }
