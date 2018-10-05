@@ -87,7 +87,7 @@ class ProfilePage.HeaderExtra extends React.Component
           el FriendButton, user_id: @props.user.id
 
         div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
-          osu.transChoice('users.show.extra.followers', @props.user.follower_count[0].toLocaleString())
+          osu.transChoice('users.show.extra.followers', @props.user.follower_count[0])
 
         if friendState?.mutual
           div className: "#{bn}__follower-mutual-divider", "|"
@@ -229,7 +229,7 @@ class ProfilePage.HeaderExtra extends React.Component
               osu.trans('users.show.extra.unranked')
 
   renderPostCount: =>
-    count = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
+    count = osu.transChoice 'users.show.post_count.count', @props.user.post_count
     url = laroute.route('users.posts', user: @props.user.id)
 
     div

@@ -121,7 +121,7 @@ class BeatmapsetPage.Header extends React.Component
                   el UserAvatar, user: user, modifiers: ['full']
               if @props.favcount > @favouritesToShow
                 div className: 'beatmapset-favourites__remainder-count',
-                  osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
+                  osu.transChoice 'beatmapsets.show.details.favourited_count', @props.favcount - @favouritesToShow
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
