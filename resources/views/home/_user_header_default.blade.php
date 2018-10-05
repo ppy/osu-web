@@ -28,7 +28,7 @@
             </h1>
             <p class="osu-page-header__detail">
                 <a class="osu-page-header__link" href="{{ osu_url('user.inbox') }}">
-                    {{ trans_choice('home.user.header.messages', number_format(Auth::user()->notificationCount())) }}
+                    {{ trans_choice('home.user.header.messages', Auth::user()->notificationCount()) }}
                 </a>
             </p>
         </div>
