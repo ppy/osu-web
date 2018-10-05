@@ -97,6 +97,28 @@ return [
         'error' => 'Bạn cần phải đăng nhập để làm việc này.',
     ],
     'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
+    'report' => [
+        'button_text' => 'báo cáo',
+        'comments' => 'Bình Luận Khác',
+        'placeholder' => 'Vui lòng cung cấp bất kỳ thông tin nào bạn cho rằng có thể hữu ích.',
+        'reason' => 'Lý Do',
+        'thanks' => 'Cảm ơn bạn đã báo cáo!',
+        'title' => 'Báo cáo :username?',
+
+        'actions' => [
+            'send' => 'Gửi Báo Cáo',
+            'cancel' => 'Hủy',
+        ],
+
+        'options' => [
+            'cheating' => 'Chơi xấu / Gian lận',
+            'insults' => 'Xúc phạm tôi / những người khác',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Có những nội dung không phù hợp',
+            'nonsense' => 'Phi lý',
+            'other' => 'Khác (nhập dưới đây)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age đến từ :country',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',

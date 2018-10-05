@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'ส่งให้ผู้เล่นอื่น',
         'require_login' => [
-            '_' => 'คุณจะต้อง:linkจึงจะเอา supporter tag ได้!',
+            '_' => '',
             'link_text' => 'เข้าสู่ระบบ',
         ],
     ],

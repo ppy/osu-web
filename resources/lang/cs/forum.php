@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Připnuté témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
-    'title' => 'osu!komunita',
+    'title' => 'osu! fóra',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Přihlaš se k vytvoření nového téma',
         'post_reply' => 'Přidat příspěvek',
         'reply_box_placeholder' => 'Pro zodpovězení klikni sem',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
+        'started_by_verbose' => 'započal :user',
 
         'create' => [
             'preview' => 'Náhled',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Psát',
             'submit' => 'Odeslat',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Počet sledovaných témat',
                 'unread' => 'Témata s novými odpověďmi',
+            ],
+
+            'info' => [
+                'total' => 'Sledujete :total témat.',
+                'unread' => 'Máš :unread nepřečtených odpovědí ve sledovaných tématech.',
             ],
         ],
 

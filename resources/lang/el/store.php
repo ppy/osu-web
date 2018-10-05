@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'δωρίστε σε έναν παίχτη',
         'require_login' => [
-            '_' => 'Πρέπει να είστε :link για να πάρετε το supporter tag!',
+            '_' => 'Πρέπει να είστε :link για να πάρετε ένα supporter tag!',
             'link_text' => 'συνδεδεμένος',
         ],
     ],

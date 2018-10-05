@@ -232,7 +232,7 @@ class @Comment extends React.PureComponent
 
 
   canEdit: =>
-    @canModerate() || @isOwner()
+    @canModerate() || (@isOwner() && !@isDeleted())
 
 
   canRestore: =>

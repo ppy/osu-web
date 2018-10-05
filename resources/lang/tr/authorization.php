@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Yalnızca başlık sahibi ile beatmap sahibi bir tartışmayı sonlandırabilir.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Sadece beatmap sahibi ya da nominatör/QAT grup üyesi mapper notu gönderebilir.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Lütfen daha fazla oy vermeden önce bir süre bekleyin',
             'owner' => "Kendi tartışmanıza oy veremezsiniz.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Daha şimdi gönderi yaptınız. Biraz bekleyin ya da son gönderinizi düzenleyin.',
+                'double_post' => 'Lütfen yeni gönderi yerine son gönderinizi düzenleyin.',
                 'locked' => 'Kilitli bir başlığa cevap yazamazsınız.',
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
                 'no_permission' => 'Cevaplama izni yok.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Kullanıcı sayfası kilitli.',
                 'not_owner' => 'Yalnızca kendi kullanıcı sayfanızı düzenleyebilirsiniz.',
-                'require_supporter_tag' => 'Supporter etiketi gereklidir.',
+                'require_supporter_tag' => 'osu!supporter etiketi gereklidir.',
             ],
         ],
     ],

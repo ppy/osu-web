@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'smazaná mapa',
+        'difference' => 'o :difference',
+        'failed' => 'SELHAL',
         'header' => 'Multiplayer zápasy',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(zápas probíhá)',
+        'in_progress_spinner_label' => 'probíhá zápas',
+        'loading-events' => 'Načítání událostí...',
+        'winner' => ':team vyhrává',
+
         'events' => [
             'player-left' => ':user opustil zápas',
             'player-joined' => ':user se připojil',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'zápas byl zrušen',
             'host-changed-no-user' => 'hostitel byl změněn',
         ],
-        'in-progress' => '(zápas probíhá)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Přesnost',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Skóre',
             ],
         ],
-        'failed' => 'SELHAL',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Modrý tým',
             'red' => 'Červený tým',
         ],
-        'winner' => ':team vyhrává',
-        'difference' => 'o :difference',
-        'loading-events' => 'Načítání událostí...',
-        'more-events' => 'zobrazit vše...',
-        'beatmap-deleted' => 'smazaná mapa',
     ],
     'game' => [
         'scoring-type' => [

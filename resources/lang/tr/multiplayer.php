@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'silinmiş beatmap',
+        'difference' => ':difference puan farkla kazandı',
+        'failed' => 'BAŞARISIZ',
         'header' => 'Çok Oyunculu Maçlar',
-        'team-types' => [
-            'head-to-head' => 'Başa-baş',
-            'tag-coop' => 'Sıralı Co-op',
-            'team-vs' => 'Takım VS',
-            'tag-team-vs' => 'Tag takım VS',
-        ],
+        'in-progress' => '(devam eden maç)',
+        'in_progress_spinner_label' => 'devam eden maç',
+        'loading-events' => 'Olaylar yükleniyor...',
+        'winner' => ':team',
+
         'events' => [
             'player-left' => ':user maçtan ayrıldı',
             'player-joined' => ':user maça katıldı',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'maç dağıtıldı',
             'host-changed-no-user' => 'odanın sahibi değiştirildi',
         ],
-        'in-progress' => '(maç devam ediyor)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Doğruluk',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Skor',
             ],
         ],
-        'failed' => 'BAŞARISIZ',
+
+        'team-types' => [
+            'head-to-head' => 'Başa-baş',
+            'tag-coop' => 'Sıralı Co-op',
+            'team-vs' => 'Takım VS',
+            'tag-team-vs' => 'Tag takım VS',
+        ],
+
         'teams' => [
             'blue' => 'Mavi Takım',
             'red' => 'Kırmızı Takım',
         ],
-        'winner' => ':team',
-        'difference' => ':difference puan farkla kazandı',
-        'loading-events' => 'Olaylar yükleniyor...',
-        'more-events' => 'hepsini gör...',
-        'beatmap-deleted' => 'silinmiş beatmap',
     ],
     'game' => [
         'scoring-type' => [

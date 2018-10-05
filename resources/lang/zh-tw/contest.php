@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => '享受遊戲以外的競賽體驗。',
-        'large' => 'osu! 社群評選',
+        'large' => '',
     ],
     'voting' => [
         'over' => '這場評選的投票已經結束',

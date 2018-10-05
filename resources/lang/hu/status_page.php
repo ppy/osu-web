@@ -25,22 +25,22 @@ return [
     ],
 
     'incidents' => [
-        'title' => 'Aktív balesetek',
+        'title' => 'Aktív Incidensek',
         'automated' => 'automatizált',
     ],
 
     'online' => [
         'title' => [
             'users' => 'Elérhető Felhasználók az elmúlt 24 órában',
-            'score' => 'Ponteredmény beküldések az elmúlt 24 órában',
+            'score' => 'Pontszám beküldések az elmúlt 24 órában',
         ],
         'current' => 'Jelenleg Elérhető Felhasználók',
-        'score' => 'Eredmény beadvány másodpercenként',
+        'score' => 'Pontszám beküldések másodpercenként',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Legutóbbi balesetek',
+            'title' => 'Legutóbbi Incidensek',
             'state' => [
                 'resolved' => 'Megoldott',
                 'resolving' => 'Megoldás alatt',

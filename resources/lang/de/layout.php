@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',
         ],
-        'support' => [
-            '_' => 'osu! unterstützen',
-            'tags' => 'Supporter-Tags',
-            'merchandise' => 'Merchandise',
-        ],
         'legal' => [
             '_' => 'Rechtliches & Status',
             'copyright' => 'Copyright (DMCA)',

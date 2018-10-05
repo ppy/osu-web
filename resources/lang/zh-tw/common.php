@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '確定？',
+    'confirmation_unsaved' => '',
     'saved' => '儲存',
 
     'array_and' => [

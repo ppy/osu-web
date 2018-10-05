@@ -612,7 +612,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+        if (!$comment->isDeleted()) {
             return 'ok';
         }
 
@@ -639,6 +639,10 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($comment->user_id === $user->getKey()) {
+            if ($comment->isDeleted()) {
+                return 'comment.update.deleted';
+            }
+
             return 'ok';
         }
     }

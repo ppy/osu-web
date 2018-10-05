@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'ระดับความยากไม่ได้เลือกอย่างถูกต้อง',
         'invalid_beatmapset_id' => 'Beatmap ไม่ได้เลือกอย่างถูกต้อง',
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
-        'mapper_note_wrong_user' => 'เจ้าของ Beatmap เท่านั้นที่สามารถแปะโน้ตได้',
 
         'hype' => [
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',

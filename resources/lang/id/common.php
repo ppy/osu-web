@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Apakah Anda yakin?',
+    'confirmation_unsaved' => 'Perubahan yang tidak disimpan akan hilang. Apa Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [

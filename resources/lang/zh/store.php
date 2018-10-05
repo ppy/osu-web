@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => '要赠与的玩家',
         'require_login' => [
-            '_' => '你需要 :link 以获得 Supporter 标签！',
+            '_' => '你需要 :link 以获得 osu!Supporter 标签！',
             'link_text' => '登录',
         ],
     ],

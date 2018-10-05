@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Concurreren op meer manieren dan enkel het klikken van cirkels.',
-        'large' => 'osu! Community Wedstrijden',
+        'large' => 'Community Wedstrijden',
     ],
     'voting' => [
         'over' => 'Je kan niet meer stemmen in deze wedstrijd',

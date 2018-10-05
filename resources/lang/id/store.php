@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'hadiahkan ke pengguna lain',
         'require_login' => [
-            '_' => 'Anda harus :link untuk mendapatkan supporter tag!',
+            '_' => 'Anda harus :link untuk menerima osu!supporter tag!',
             'link_text' => 'masuk',
         ],
     ],

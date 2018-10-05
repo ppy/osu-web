@@ -46,15 +46,15 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'このユーザーにブロックされています。',
+        'blocked_count' => 'ブロックしたユーザー(:count)',
+        'hide_profile' => 'プロフィールを隠す',
+        'not_blocked' => 'このユーザーにはブロックされていません。',
+        'show_profile' => 'プロフィールを表示',
+        'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'ブロック',
+            'unblock' => 'ブロック解除',
         ],
     ],
 
@@ -77,7 +77,7 @@ return [
         'forgot' => 'パスワードを紛失した場合',
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
-            'small' => '（サポーターのユーザーは近いうちに貰えます）',
+            'small' => '(osu!サポーターは間もなくもらえます)',
         ],
 
         'here' => 'こちら', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'ログインが必要です。',
     ],
     'logout_confirm' => 'ログアウトしてもよろしいですか？',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'あなたのアカウントは制限されました。',
         'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
@@ -110,8 +132,6 @@ return [
         'joined_at' => '登録日時 :date',
         'lastvisit' => '最終ログイン :date',
         'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
-        'origin_age' => ':age',
-        'origin_country_age' => ':countryの:age歳',
         'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'previous_usernames' => '以前の名前',
@@ -159,7 +179,7 @@ return [
                     'title' => 'Graveyardの譜面 (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'お気に入りの譜面 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'RankedかApprovedの譜面 (:count)',

@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => '討論 :discussion 獲得了足夠的票數而被給予 kudosu 。',
         'kudosu_lost' => '討論 :discussion 失去了票數，並且所得 kudosu 已被移除。',
         'kudosu_recalculate' => '討論 :discussion 所得的 kudosu 已經重新計算。',
+        'love' => '',
         'nominate' => '被 :user 提名',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
-        'qualify' => '提名',
+        'qualify' => '',
         'rank' => '進榜',
     ],
 
