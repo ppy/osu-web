@@ -299,6 +299,15 @@
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
 
+
+  # Update collection item with newItems and remove old items.
+  updateCollection: (collection, newItems) ->
+    _(newItems)
+      .concat(collection)
+      .uniqBy('id')
+      .value()
+
+
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)
     for own key, value of params

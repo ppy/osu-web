@@ -35,25 +35,30 @@ class @Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
+  @defaultProps =
+    showReplies: true
+
+
   constructor: (props) ->
     super props
 
     @state =
       editing: false
       showNewReply: false
-      showReplies: !@isDeleted()
+      expandReplies: !@isDeleted()
 
 
   render: =>
-    children = @props.commentsByParentId[@props.comment.id] ? []
+    children = @props.childrenArray ? @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
+    parent = @props.comment.parent ? @props.parent
 
     modifiers = @props.modifiers?[..] ? []
     modifiers.push 'top' if @props.depth == 0
 
     repliesClass = 'comment__replies'
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
-    repliesClass += ' comment__replies--hidden' if !@state.showReplies
+    repliesClass += ' comment__replies--hidden' if !@state.expandReplies
 
     div
       className: osu.classWithModifiers 'comment', modifiers
@@ -63,7 +68,7 @@ class @Comment extends React.PureComponent
           className: 'comment__top-show-replies'
           type: 'button'
           onClick: @toggleReplies
-          span className: "fas #{if @state.showReplies then 'fa-angle-up' else 'fa-angle-down'}"
+          span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
         if user.id?
@@ -77,6 +82,13 @@ class @Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
+          if @props.showCommentableMeta
+            div className: 'comment__row comment__row--header',
+              span
+                className: 'comment__row-item comment__row-item--commentable-meta'
+                @commentableMeta()
+
+
           div className: 'comment__row comment__row--header',
             if user.id?
               a
@@ -89,13 +101,10 @@ class @Comment extends React.PureComponent
                 className: 'comment__row-item comment__row-item--username'
                 user.username
 
-            if @props.parent?
+            if parent?
               span
                 className: 'comment__row-item comment__row-item--parent'
-                title: makePreview(@props.parent)
-                span className: 'fas fa-reply'
-                ' '
-                @userFor(@props.parent).username
+                @parentLink(parent)
 
             if @isDeleted()
               span
@@ -120,7 +129,14 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if !@isDeleted()
+            if @canModerate()
+              div className: 'comment__row-item',
+                a
+                  href: laroute.route('comments.show', comment: @props.comment.id)
+                  className: 'comment__action comment__action--permalink'
+                  osu.trans('common.buttons.permalink')
+
+            if @props.showReplies && !@isDeleted()
               div className: 'comment__row-item',
                 button
                   type: 'button'
@@ -154,13 +170,19 @@ class @Comment extends React.PureComponent
 
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
-                button
-                  type: 'button'
-                  className: 'comment__action'
-                  onClick: @toggleReplies
-                  "[#{if @state.showReplies then '-' else '+'}] "
-                  osu.trans('comments.replies')
-                  " (#{@props.comment.replies_count.toLocaleString()})"
+                if @props.showReplies
+                  button
+                    type: 'button'
+                    className: 'comment__action'
+                    onClick: @toggleReplies
+                    "[#{if @state.expandReplies then '-' else '+'}] "
+                    osu.trans('comments.replies')
+                    " (#{@props.comment.replies_count.toLocaleString()})"
+                else
+                  span null,
+                    osu.trans('comments.replies')
+                    ': '
+                    @props.comment.replies_count.toLocaleString()
 
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
@@ -182,18 +204,21 @@ class @Comment extends React.PureComponent
                 close: @closeNewReply
                 modifiers: @props.modifiers
 
-      if @props.comment.replies_count > 0
+      if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: @props.commentsByParentId
-              usersById: @props.usersById
-              depth: @props.depth + 1
-              parent: @props.comment
-              modifiers: @props.modifiers
+          if @props.children?
+            @props.children
+          else
+            for comment in children
+              el Comment,
+                key: comment.id
+                comment: comment
+                commentsByParentId: @props.commentsByParentId
+                usersById: @props.usersById
+                depth: @props.depth + 1
+                parent: @props.comment
+                modifiers: @props.modifiers
 
           if children.length < @props.comment.replies_count
             lastCommentId = _.last(children)?.id
@@ -221,6 +246,20 @@ class @Comment extends React.PureComponent
     currentUser.is_admin || currentUser.is_gmt
 
 
+  commentableMeta: =>
+    if @props.comment.commentable_meta.url
+      component = a
+      params = href: @props.comment.commentable_meta.url
+    else
+      component = span
+      params = null
+
+    component params,
+      span className: 'fas fa-comment-alt'
+      ' '
+      @props.comment.commentable_meta.title
+
+
   isOwner: =>
     @props.comment.user_id? && @props.comment.user_id == currentUser.id
 
@@ -244,6 +283,21 @@ class @Comment extends React.PureComponent
 
   isDeleted: =>
     @props.comment.deleted_at?
+
+
+  parentLink: (parent) =>
+    props = title: makePreview(parent)
+
+    if @props.linkParent
+      component = a
+      props.href = laroute.route('comments.show', comment: parent.id)
+    else
+      component = span
+
+    component props,
+      span className: 'fas fa-reply'
+      ' '
+      @userFor(parent).username
 
 
   userFor: (comment) =>
@@ -273,4 +327,4 @@ class @Comment extends React.PureComponent
 
 
   toggleReplies: =>
-    @setState showReplies: !@state.showReplies
+    @setState expandReplies: !@state.expandReplies
