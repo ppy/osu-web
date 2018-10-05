@@ -803,12 +803,11 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number($number, $style = null, $pattern = null, $locale = null)
 {
-    if ($style === null) {
-        $style = NumberFormatter::DECIMAL;
-    }
-
-    return NumberFormatter::create($locale ?? App::getLocale(), $style, $pattern)
-        ->format($number);
+    return NumberFormatter::create(
+        $locale ?? App::getLocale(),
+        $style ?? NumberFormatter::DECIMAL,
+        $pattern
+    )->format($number);
 }
 
 function i18n_time($datetime, $format = IntlDateFormatter::LONG)
