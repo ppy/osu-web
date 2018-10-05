@@ -803,7 +803,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number($number, $style = null, $pattern = null, $locale = null)
 {
-    if (!isset($style)) {
+    if ($style === null) {
         $style = NumberFormatter::DECIMAL;
     }
 
