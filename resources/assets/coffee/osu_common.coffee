@@ -290,6 +290,7 @@
     translated
 
 
+  # Handles case where crowdin fills in untranslated key with empty string.
   transExists: (key, locale) ->
     translated = Lang.get(key, null, locale)
 

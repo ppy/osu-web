@@ -427,6 +427,7 @@ function to_sentence($array, $key = 'common.array_and')
     }
 }
 
+// Handles case where crowdin fills in untranslated key with empty string.
 function trans_exists($key, $locale)
 {
     $translated = app('translator')->get($key, [], $locale, false);
