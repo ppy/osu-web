@@ -21,24 +21,25 @@ import { button, div, i, span, textarea } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
-options = [
-  { id: 'Cheating', text: osu.trans 'users.report.options.cheating' },
-  { id: 'Insults', text: osu.trans 'users.report.options.insults' },
-  { id: 'Spam', text: osu.trans 'users.report.options.spam' },
-  { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
-  { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
-  { id: 'Other', text: osu.trans 'users.report.options.other' },
-]
 
 export class ReportForm extends PureComponent
   constructor: (props) ->
     super props
 
+    @options = [
+      { id: 'Cheating', text: osu.trans 'users.report.options.cheating' },
+      { id: 'Insults', text: osu.trans 'users.report.options.insults' },
+      { id: 'Spam', text: osu.trans 'users.report.options.spam' },
+      { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
+      { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
+      { id: 'Other', text: osu.trans 'users.report.options.other' },
+    ]
+
     @ref = createRef()
     @textarea = createRef()
 
     @state =
-      selectedReason: options[0]
+      selectedReason: @options[0]
       showingModal: false
 
 
@@ -124,7 +125,7 @@ export class ReportForm extends PureComponent
           blackout: false
           bn: "#{bn}-select-options"
           onItemSelected: @onItemSelected
-          options: options
+          options: @options
           selected: @state.selectedReason
 
       div
