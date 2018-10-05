@@ -1243,7 +1243,11 @@ function suffixed_number_format_tag($number)
 // e.g.: 98.3 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
-    return sprintf("%.{$precision}f%%", round($number, $precision));
+    $formatter = NumberFormatter::create(App::getLocale(), NumberFormatter::PERCENT);
+    $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+
+    // the formatter assumes decimal number while the function receive percentage number.
+    return $formatter->format($number / 100);
 }
 
 function group_users_by_online_state($users)
