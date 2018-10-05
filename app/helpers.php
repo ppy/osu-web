@@ -806,7 +806,7 @@ function i18n_number_format($number, $style = null, $pattern = null, $locale = n
 {
     return NumberFormatter::create(
         $locale ?? App::getLocale(),
-        $style ?? NumberFormatter::DECIMAL,
+        $style ?? NumberFormatter::DEFAULT_STYLE,
         $pattern
     )->format($number);
 }
