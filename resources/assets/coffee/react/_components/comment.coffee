@@ -35,6 +35,10 @@ class @Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
+  @defaultProps =
+    showReplies: true
+
+
   constructor: (props) ->
     super props
 
@@ -47,7 +51,6 @@ class @Comment extends React.PureComponent
   render: =>
     children = @props.childrenArray ? @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
-    showReplies = @props.showReplies ? true
     parent = @props.comment.parent ? @props.parent
 
     modifiers = @props.modifiers?[..] ? []
@@ -133,7 +136,7 @@ class @Comment extends React.PureComponent
                   className: 'comment__action comment__action--permalink'
                   osu.trans('common.buttons.permalink')
 
-            if showReplies && !@isDeleted()
+            if @props.showReplies && !@isDeleted()
               div className: 'comment__row-item',
                 button
                   type: 'button'
@@ -167,7 +170,7 @@ class @Comment extends React.PureComponent
 
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
-                if showReplies
+                if @props.showReplies
                   button
                     type: 'button'
                     className: 'comment__action'
@@ -201,7 +204,7 @@ class @Comment extends React.PureComponent
                 close: @closeNewReply
                 modifiers: @props.modifiers
 
-      if showReplies && @props.comment.replies_count > 0
+      if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
           if @props.children?
