@@ -198,7 +198,7 @@ class BeatmapDiscussion extends Model
         return
             in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
             $this->user_id !== $this->beatmapset->user_id &&
-            !$this->isDeleted() &&
+            !$this->trashed() &&
             !$this->kudosu_denied;
     }
 
@@ -517,11 +517,6 @@ class BeatmapDiscussion extends Model
             ])->saveOrExplode();
             $this->refreshKudosu('deny_kudosu');
         });
-    }
-
-    public function isDeleted()
-    {
-        return $this->deleted_at !== null;
     }
 
     public function userRecentVotesCount($user, $increment = false)
