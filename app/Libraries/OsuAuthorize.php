@@ -612,7 +612,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+        if (!$comment->isDeleted()) {
             return 'ok';
         }
     }
