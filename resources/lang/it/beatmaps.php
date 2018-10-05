@@ -60,7 +60,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'Questo post andrà nella discussione generale della Beatmap. Per moddare questa Beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
-            'in_timeline' => 'per moddare più timestamp, posta più volte (un post per timestamp).',
+            'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
         'message_placeholder' => [
@@ -73,14 +73,14 @@ return [
             'disqualify' => 'Squalifica',
             'hype' => 'Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Reset Nomina',
+            'nomination_reset' => 'Azzera Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
-            'events' => 'Storico',
+            'events' => 'Cronologia',
             'general' => ':scope generale',
             'timeline' => 'Linea Temporale',
             'scopes' => [
@@ -90,8 +90,8 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'Data e ora',
-            'timestamp_missing' => 'ctrl-c in modalità modifica e incolla il tuo messaggio per aggiungere un timestamp!',
+            'timestamp' => 'Timestamp',
+            'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla il tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
         ],
 
@@ -110,7 +110,7 @@ return [
             'deleted' => 'Eliminato',
             'mapper_notes' => 'Note',
             'mine' => 'Mio',
-            'pending' => 'In attesa',
+            'pending' => 'In Attesa',
             'praises' => 'Elogi',
             'resolved' => 'Risolti',
             'total' => 'Tutto',
@@ -120,7 +120,7 @@ return [
             'approved' => 'Questa beatmap è stata approvata il :date!',
             'graveyard' => "Questa beatmap non è stata aggiornata dal :date ed è stata molto probabilmente abbandonata dal creatore...",
             'loved' => 'Questa beatmap è stata approvata il :date!',
-            'ranked' => 'Questa beatmap è stata rankata il :date!',
+            'ranked' => 'Questa beatmap è stata classificata il :date!',
             'wip' => 'Nota: Questa beatmap è contrassegnata come un work-in-progress dal creatore.',
         ],
 
@@ -149,11 +149,13 @@ return [
         'disqualified_no_reason' => 'nessuna motivazione specificata',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
+        'love' => 'Ama',
+        'love_confirm' => 'Ama questa beatmap?',
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominato da :users',
-        'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
-        'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
+        'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
+        'qualified_soon' => 'La classificazione è prevista a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nominazioni: :current/:required',
         'reset_message_deleted' => 'eliminato',
         'title' => 'Stato nomina',
@@ -172,14 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'scrivi le parole chiave...',
+            'login_required' => 'Accedi per effettuare una ricerca.',
             'options' => 'Più Opzioni di Ricerca',
-            'supporter_filter' => 'Filtrare tramite :filters necessita di una tag da sostenitore attiva',
+            'supporter_filter' => 'Filtrare per :filters necessita di un tag supporter attivo',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
             'filters' => [
                 'general' => 'Generale',
                 'mode' => 'Modalità',
-                'status' => 'Stato del rank',
+                'status' => 'Categorie',
                 'genre' => 'Genere',
                 'language' => 'Lingua',
                 'extra' => 'extra',
@@ -191,8 +194,8 @@ return [
                 'artist' => 'artista',
                 'difficulty' => 'difficoltà',
                 'updated' => 'aggiornato',
-                'ranked' => 'classificazione',
-                'rating' => 'rankate',
+                'ranked' => 'data classificazione',
+                'rating' => 'valutazione',
                 'plays' => 'volte giocata',
                 'relevance' => 'rilevanza',
                 'nominations' => 'candidature',
@@ -202,10 +205,6 @@ return [
                 'link_text' => 'tag supporter',
             ],
         ],
-        'mode' => 'Modalità',
-        'status' => 'Status del Rank',
-        'source' => 'da :source',
-        'load-more' => 'Carica altro...',
     ],
     'general' => [
         'recommended' => 'Difficoltà raccomandata',
@@ -220,12 +219,12 @@ return [
     ],
     'status' => [
         'any' => 'Tutto',
-        'ranked-approved' => 'Rankate e Approvate',
+        'ranked-approved' => 'Classificate e Approvate',
         'approved' => 'Approvate',
-        'qualified' => 'Qualificata',
-        'loved' => 'Loved',
-        'faves' => 'Preferiti',
-        'pending' => 'In Attesa',
+        'qualified' => 'Qualificate',
+        'loved' => 'Amata',
+        'faves' => 'Preferite',
+        'pending' => 'In Attesa & In Lavorazione',
         'graveyard' => 'Cimitero',
         'my-maps' => 'Mie Mappe',
     ],

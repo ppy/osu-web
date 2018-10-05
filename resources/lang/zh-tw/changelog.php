@@ -22,6 +22,10 @@ return [
     'feed_title' => '詳細',
     'generic' => '修復已知問題並做了改進.',
 
+    'build' => [
+        'title' => '',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited 名用戶上線',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => '',
+            '_from' => '',
+            '_from_to' => '',
+            '_stream' => '',
+            '_stream_from' => '',
+            '_stream_from_to' => '',
+            '_stream_to' => '',
+            '_to' => '',
+        ],
+
         'title' => [
             '_' => '更新記錄 :info',
             'info' => '列表',

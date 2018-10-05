@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Diskuse :discussion uživatele :user dosáhla dostatku hlasů pro kudosu.',
         'kudosu_lost' => 'Diskuse :discussion uživatele :user ztratila hlasy a získané kudosu byly odebrány.',
         'kudosu_recalculate' => 'Diskusi :discussion byly získané kudosu přepočteny.',
+        'love' => 'Tuto mapu miluje :user',
         'nominate' => 'Nominováno uživatelem :user.',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
-        'qualify' => 'Kvalifikované.',
+        'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
     ],
 

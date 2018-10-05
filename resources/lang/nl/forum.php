@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Gepinde Onderwerpen',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subfora',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Log in om een nieuw onderwerp maken',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'door :user',
+        'started_by_verbose' => 'gestart door :user',
 
         'create' => [
             'preview' => 'Voorbeeld',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Schrijf',
             'submit' => 'Post',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Geabonneerde topics',
                 'unread' => 'Topics met nieuwe berichten',
+            ],
+
+            'info' => [
+                'total' => 'Je bent geabonneerd op :total topics.',
+                'unread' => 'Je hebt :unread ongelezen berichten in geabonneerde berichten.',
             ],
         ],
 

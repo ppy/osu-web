@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Tens a certeza?',
+    'confirmation_unsaved' => 'As alterações não guardadas serão perdidas. Tens a certeza?',
     'saved' => 'Guardado',
 
     'array_and' => [

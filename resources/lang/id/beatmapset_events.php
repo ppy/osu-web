@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => ':user memperoleh cukup suara untuk mendapat kudosu dari topik diskusi :discussion.',
         'kudosu_lost' => ':user kehilangan suara dari topik diskusi :discussion dan kudosu yang sebelumnya diberikan telah dianulir.',
         'kudosu_recalculate' => 'Jumlah perolehan kudosu untuk diskusi :discussion telah dihitung ulang.',
+        'love' => 'Di-love oleh :user',
         'nominate' => 'Dinominasikan oleh :user.',
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
-        'qualify' => 'Qualified.',
+        'qualify' => 'Beatmap ini telah mencapai ketentuan nominasi dan berstatus qualified.',
         'rank' => 'Ranked.',
     ],
 

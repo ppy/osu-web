@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use Carbon\Carbon;
@@ -92,19 +93,21 @@ class CommentsController extends Controller
 
         priv_check('CommentStore', $comment)->ensureCan();
 
-        if ($comment->save()) {
-            $comments = collect([$comment]);
-
-            if ($comment->parent !== null) {
-                $comments->push($comment->parent);
-            }
-
-            return (new CommentBundle($comment->commentable, [
-                'comments' => $comments,
-            ]))->toArray();
-        } else {
-            abort(422);
+        try {
+            $comment->saveOrExplode();
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        $comments = collect([$comment]);
+
+        if ($comment->parent !== null) {
+            $comments->push($comment->parent);
+        }
+
+        return (new CommentBundle($comment->commentable, [
+            'comments' => $comments,
+        ]))->toArray();
     }
 
     public function update($id)

@@ -97,6 +97,28 @@ return [
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
+    'report' => [
+        'button_text' => 'reportar',
+        'comments' => 'Comentários Adicionais',
+        'placeholder' => 'Por favor, forneça qualquer informação que você acredite ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => 'Obrigado por sua denuncia!',
+        'title' => 'Reportar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Reporte',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jogando sujo / Trapaceando',
+            'insults' => 'Me insultando / outros',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
+            'nonsense' => 'Sem sentido',
+            'other' => 'Outro (escreva abaixo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Entrou em :date',
         'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age e morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
         'previous_usernames' => 'anteriormente conhecido como',

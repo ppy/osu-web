@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Momentan laufen keine Turniere, schau später noch mal!',
+        'registration_period' => 'Anmeldung: :start bis :end',
+
         'header' => [
             'subtitle' => 'Eine Liste an aktiven, offiziell anerkannten Turnieren',
             'title' => 'Community-Turniere',
         ],
-        'none_running' => 'Momentan laufen keine Turniere, schau später noch mal!',
-        'registration_period' => 'Anmeldung: :start bis :end',
+
+        'item' => [
+            'registered' => 'Registrierte Spieler',
+        ],
 
         'state' => [
             'current' => 'Aktive Turniere',

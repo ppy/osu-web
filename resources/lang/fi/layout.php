@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Live-lähetykset',
             'report' => 'Ilmoita ongelmasta',
         ],
-        'support' => [
-            '_' => 'Tue osua!',
-            'tags' => 'Tukija',
-            'merchandise' => 'Myytävät tuotteet',
-        ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
             'copyright' => 'Copyright (DMCA)',

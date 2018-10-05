@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '',
         'invalid_beatmapset_id' => '',
         'locked' => '',
-        'mapper_note_wrong_user' => '',
 
         'hype' => [
             'guest' => '',

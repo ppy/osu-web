@@ -104,9 +104,4 @@ class WikiSearch extends RecordSearch
             ->must($langQuery)
             ->must($matchQuery);
     }
-
-    protected function getDefaultSize(): int
-    {
-        return 50;
-    }
 }

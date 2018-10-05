@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset fel lett támasztva az örök álomból <strong>:user</strong> által.',
     'beatmapset_update' => '<strong><em>:user</em></strong> frissítette "<em>:beatmapset</em>" beatmap-jét',
     'beatmapset_upload' => '<strong><em>:user</em></strong> feltöltött egy új beatmap-et ":beatmapset"',
-    'empty' => "Ez a felhasználó semmi jelentőset se tett mostanában!",
+    'empty' => "Ez a felhasználó nem tett semmit jelentőset mostanában!",
     'rank' => '<strong><em>:user</em></strong> #:rank helyet ért el <em>:beatmap</em> (:mode) beatmap-en',
     'rank_lost' => '<strong><em>:user</em></strong> elvesztette az elsőhelyét <em>:beatmap</em> (:mode) beatmap-en',
     'user_support_again' => '<strong>:user</strong> újra úgy döntött, hogy osu! támogató lesz - köszönjük a nagylelkűségedet!',

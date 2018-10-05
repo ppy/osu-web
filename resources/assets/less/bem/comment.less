@@ -18,17 +18,28 @@
 
 .comment {
   @_avatar-margin: 10px;
-  @_avatar: @comment-nest-margin - @_avatar-margin;
+  @_avatar: 40px;
   @_line-width: 5px;
   @_line-margin: 10px;
   @_top: comment;
+  @_spacing: 10px;
 
-  margin-bottom: 20px;
-  font-size: @font-size--title-small;
+  margin-top: @_spacing;
+  font-size: @font-size--normal-2;
   color: #555;
+  border-bottom: 0 solid #ccc;
+
+  &--top {
+    .default-gutter();
+    border-bottom-width: 1px;
+    margin-top: 0;
+    padding-top: @_spacing;
+    padding-bottom: @_spacing;
+  }
 
   &--changelog {
     color: @changelog-fg;
+    border-bottom-color: fade(@dark-purple-darker, 50%);
   }
 
   &__action {
@@ -102,7 +113,7 @@
 
   &__message {
     .content-font();
-    margin: 10px 0;
+    margin: 2px 0;
     word-wrap: break-word;
 
     h1 {
@@ -135,32 +146,16 @@
       font-size: 1em;
     }
 
+    p {
+      margin: 0;
+    }
+
     .@{_top}--changelog & {
-      color: @changelog-fg;
+      color: @changelog-fg-content;
 
       a {
         .link-blue-light();
       }
-    }
-  }
-
-  &__parent-preview {
-    .default-border-radius();
-    display: none;
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: 10px;
-    left: 0;
-    padding: 10px;
-    background-color: fade(#000, 75%);
-    color: #fff;
-    z-index: @z-index--comment-parent-preview;
-    width: 200px;
-    max-width: 80vw;
-    font-size: @font-size--normal;
-
-    .@{_top}__parent:hover & {
-      display: block;
     }
   }
 
@@ -175,7 +170,7 @@
       padding-left: 0;
 
       @media @desktop {
-        padding-left: @comment-nest-margin;
+        padding-left: 20px;
       }
     }
   }
@@ -185,33 +180,53 @@
   }
 
   &__row {
-    margin: -2px -10px;
+    margin: -2px -5px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
+    font-weight: bold;
 
     &--footer {
       font-size: @font-size--normal;
     }
+
+    &--header {
+      font-size: @font-size--title-small;
+      font-style: italic;
+    }
   }
 
   &__row-item {
-    margin: 2px 10px;
+    margin: 2px 5px;
 
-    &--parent {
-      font-size: @font-size--title-small-3;
-    }
+    &--info {
+      font-weight: normal;
 
-    &--username {
-      font-size: @font-size--title-small-3;
-      font-style: italic;
-      font-weight: bold;
+      .@{_top}--changelog & {
+        color: @changelog-fg-content;
+      }
     }
 
     &--username-link {
       .@{_top}--changelog & {
         .link-blue-light();
       }
+    }
+  }
+
+  &__top-show-replies {
+    .reset-input();
+    position: absolute;
+    left: 20px;
+    height: @_avatar;
+    width: @_avatar;
+    top: @_spacing;
+    left: (@gutter-desktop - @_avatar - @_avatar-margin);
+    font-size: 18px; // icon size
+    display: none;
+
+    @media @desktop {
+      display: block;
     }
   }
 }

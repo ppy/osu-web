@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Sicher?',
+    'confirmation_unsaved' => 'Nicht gespeicherte Änderungen gehen verloren. Willst du trotzdem fortfahren?',
     'saved' => 'Gespeichert',
 
     'array_and' => [

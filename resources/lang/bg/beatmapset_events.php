@@ -34,6 +34,7 @@ return [
         'kudosu_gain' => '',
         'kudosu_lost' => '',
         'kudosu_recalculate' => '',
+        'love' => '',
         'nominate' => '',
         'nomination_reset' => '',
         'qualify' => '',

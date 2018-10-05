@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
         'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
-        'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
             'guest' => 'He moet ingelogd zijn om te hypen.',

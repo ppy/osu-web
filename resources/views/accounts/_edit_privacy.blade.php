@@ -50,6 +50,33 @@
                     </div>
                 </label>
             </div>
+
+            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+                <label class="account-edit-entry__checkbox">
+                    <div class="osu-checkbox">
+                        <input
+                            name="user[hide_presence]"
+                            class="osu-checkbox__input js-account-edit__input"
+                            type="checkbox"
+                            @if (Auth::user()->hide_presence)
+                                checked
+                            @endif
+                        >
+                        <span class="osu-checkbox__box"></span>
+                        <span class="osu-checkbox__tick">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ trans('accounts.privacy.hide_online') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </label>
+            </div>
         </div>
         @if (count($blocks) > 0)
             <div class="account-edit__input-group">

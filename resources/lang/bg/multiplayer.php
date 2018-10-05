@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => '',
+        'difference' => '',
+        'failed' => '',
         'header' => '',
-        'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
-        ],
+        'in-progress' => '',
+        'in_progress_spinner_label' => '',
+        'loading-events' => '',
+        'winner' => '',
+
         'events' => [
             'player-left' => '',
             'player-joined' => '',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => '',
             'host-changed-no-user' => '',
         ],
-        'in-progress' => '',
+
         'score' => [
             'stats' => [
                 'accuracy' => '',
@@ -50,16 +52,18 @@ return [
                 'score' => '',
             ],
         ],
-        'failed' => '',
+
+        'team-types' => [
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
+        ],
+
         'teams' => [
             'blue' => '',
             'red' => '',
         ],
-        'winner' => '',
-        'difference' => '',
-        'loading-events' => '',
-        'more-events' => '',
-        'beatmap-deleted' => '',
     ],
     'game' => [
         'scoring-type' => [

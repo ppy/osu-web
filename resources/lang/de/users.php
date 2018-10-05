@@ -77,7 +77,7 @@ return [
         'forgot' => 'Passwort vergessen?',
         'beta' => [
             'main' => 'Beta-Zugang ist momentan privilegierten Benutzern vorbehalten.',
-            'small' => '(Supporter kommen bald dazu)',
+            'small' => '(osu!supporter kommen bald dazu)',
         ],
 
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Dafür musst du eingeloggt sein.',
     ],
     'logout_confirm' => 'Sicher, dass du dich ausloggen willst? :(',
+    'report' => [
+        'button_text' => 'melden',
+        'comments' => 'Weitere Kommentare',
+        'placeholder' => 'Bitte stelle jegliche Infomationen zur Verfügung, die nützlich sein könnten.',
+        'reason' => 'Grund',
+        'thanks' => 'Danke für deine Meldung!',
+        'title' => 'Meldung :username?',
+
+        'actions' => [
+            'send' => 'Meldung abschicken',
+            'cancel' => 'Abbrechen',
+        ],
+
+        'options' => [
+            'cheating' => 'Cheating',
+            'insults' => 'Beleidigt mich / andere',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Verlinkt unangemessene Inhalte',
+            'nonsense' => 'Unsinn',
+            'other' => 'Anderes (unten angeben)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
         'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => ':date beigetreten',
         'lastvisit' => 'Zuletzt gesehen :date',
         'missingtext' => 'Vielleicht hast du dich verschrieben (oder der Benutzer wurde gebannt)!',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age aus :country',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
         'previous_usernames' => 'auch bekannt als',

@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ogiltig svårighetgrad angiven.',
         'invalid_beatmapset_id' => 'Ogiltig beatmap angiven.',
         'locked' => 'Diskussion är låst.',
-        'mapper_note_wrong_user' => 'Endast ägaren av beatmapen kan lägga upp anteckningar.',
 
         'hype' => [
             'guest' => 'Måste vara inloggad för att hypa.',

@@ -27,6 +27,9 @@ class @CommentEditor extends React.PureComponent
     super props
 
     @textarea = null
+    @throttledPost = _.throttle @post, 1000
+
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
     @state =
       message: @props.message ? ''
@@ -39,45 +42,68 @@ class @CommentEditor extends React.PureComponent
 
 
   componentWillUnmount: =>
+    @throttledPost.cancel()
     @xhr?.abort()
 
 
   render: =>
     blockClass = osu.classWithModifiers bn, @props.modifiers
-    blockClass += " #{bn}--compact" if @mode() == 'new'
+    blockClass += " #{bn}--fancy" if @mode() == 'new'
 
     div className: blockClass,
+      if @mode() == 'new'
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: currentUser, modifiers: ['full-circle']
+
       el TextareaAutosize,
         className: "#{bn}__message"
         innerRef: @setTextarea
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange
+        onKeyDown: @handleKeyDown
         disabled: !currentUser.id? || @state.posting
       div
         className: "#{bn}__footer"
+        div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
+          osu.trans 'comments.editor.textarea_hint._',
+            action: osu.trans("comments.editor.textarea_hint.#{@mode()}")
+
         if @props.close?
           div className: "#{bn}__footer-item",
-            button
-              className: 'btn-osu-big btn-osu-big--comment-editor'
-              onClick: @props.close
-              disabled: @state.posting
-              osu.trans('common.buttons.cancel')
+            el BigButton,
+              modifiers: ['comment-editor']
+              text: osu.trans('common.buttons.cancel')
+              icon: 'fas fa-times'
+              props:
+                onClick: @props.close
+                disabled: @state.posting
 
         if currentUser.id?
           div className: "#{bn}__footer-item",
-            button
-              className: 'btn-osu-big btn-osu-big--comment-editor'
-              onClick: @post
-              disabled: @state.posting || !@isValid()
-              span className: 'btn-osu-big__content',
-                @buttonText()
+            el BigButton,
+              modifiers: ['comment-editor']
+              text: @buttonText()
+              icon: @buttonIcon()
+              props:
+                onClick: @throttledPost
+                disabled: @state.posting || !@isValid()
         else
           div className: "#{bn}__footer-item",
-            button
-              className: 'btn-osu-big btn-osu-big--comment-editor js-user-link'
-              span className: 'btn-osu-big__content',
-                osu.trans("comments.guest_button.#{@mode()}")
+            el BigButton,
+              modifiers: ['comment-editor']
+              extraClasses: ['js-user-link']
+              text: osu.trans("comments.guest_button.#{@mode()}")
+              icon: 'fas fa-sign-in-alt'
+
+
+  buttonIcon: =>
+    return '_spinner' if @state.posting
+
+    switch @mode()
+      when 'reply' then 'fas fa-reply'
+      when 'edit' then 'fas fa-save'
+      when 'new' then 'fas fa-comment'
 
 
   buttonText: =>
@@ -88,6 +114,24 @@ class @CommentEditor extends React.PureComponent
         when 'new' then 'post'
 
     osu.trans("common.buttons.#{key}")
+
+
+  close: =>
+    return unless @props.close?
+
+    initialMessage = @props.message ? ''
+
+    return if initialMessage != @state.message && !confirm(osu.trans('common.confirmation_unsaved'))
+
+    @props.close()
+
+
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when InputHandler.CANCEL
+        @close()
+      when InputHandler.SUBMIT
+        @throttledPost()
 
 
   isValid: =>

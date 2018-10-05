@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Cạnh tranh bằng nhiều cách khác nhau hơn là chỉ bấm vòng tròn.',
-        'large' => 'Các Cuộc Thi Của Cộng Đồng osu!',
+        'large' => 'Cuộc Thi Cộng Đồng',
     ],
     'voting' => [
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',

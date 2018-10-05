@@ -20,9 +20,12 @@
   @_top: comment-show-more;
 
   display: block;
+  font-size: @font-size--normal;
 
   &--top {
-    margin-left: @comment-nest-margin;
+    .default-gutter();
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   &__link {

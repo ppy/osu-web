@@ -77,7 +77,7 @@ return [
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'beta' => [
             'main' => 'O acesso beta está actualmente restrito a utilizadores privilegiados.',
-            'small' => '(os apoiantes entrarão em breve)',
+            'small' => '(osu!supporters terão acesso em breve)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
     'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'report' => [
+        'button_text' => 'denunciar',
+        'comments' => 'Comentários Adicionais',
+        'placeholder' => 'Por favor fornece qualquer informação que acredites ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => 'Obrigado pela tua denúncia!',
+        'title' => 'Denunciar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Relatório',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jogada suja / Fazer batota',
+            'insults' => 'Insultar-me / outros',
+            'spam' => 'Spamar',
+            'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
+            'nonsense' => 'Disparate',
+            'other' => 'Outro (escreve abaixo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Juntou-se em :date',
         'lastvisit' => 'Visto pela ultima vez em :date',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age de :country',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
         'previous_usernames' => 'antigamente conhecido como',
