@@ -22,6 +22,10 @@ return [
     'feed_title' => 'umpan',
     'generic' => 'Perbaikan bug dan perkembangan kecil',
 
+    'build' => [
+        'title' => 'terjadi perubahan di :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited pengguna online',
     ],
@@ -31,8 +35,19 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'daftar riwayat perubahan',
+            '_from' => 'terjadi perubahan sejak :from',
+            '_from_to' => 'terjadi perubahan antara :from dan :to',
+            '_stream' => 'terjadi perubahan dalam :stream',
+            '_stream_from' => 'terjadi perubahan dalam :stream sejak :from',
+            '_stream_from_to' => 'terjadi perubahan dalam :stream antara :from dan :to',
+            '_stream_to' => 'terjadi perubahan dalam :stream hingga :to',
+            '_to' => 'terjadi perubahan hingga :to',
+        ],
+
         'title' => [
-            '_' => 'Catatan Perubahan :info',
+            '_' => ':info Riwayat Perubahan',
             'info' => 'Daftar',
         ],
     ],

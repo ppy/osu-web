@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => '讨论 :discussion 获得了足够的票数而被给予 kudosu 。',
         'kudosu_lost' => '讨论 :discussion 失去了票数，并且所得 kudosu 已被移除。',
         'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
-        'nominate' => 'Nominated.',
+        'love' => '受到 :user 的喜爱',
+        'nominate' => '被 :user 提名。',
         'nomination_reset' => '新问题 :discussion 导致提名被重置。',
-        'qualify' => 'Qualified.',
+        'qualify' => '这张谱面已经有了足够数量的提名并已经 Qualified。',
         'rank' => 'Ranked.',
     ],
 

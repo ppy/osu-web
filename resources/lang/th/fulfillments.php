@@ -21,10 +21,10 @@
 return [
     'mail' => [
         'donation_thanks' => [
-            'subject' => 'ขอบคุณมาก osu! รักคุณ',
+            'subject' => '',
         ],
         'supporter_gift' => [
-            'subject' => 'คุณได้รับ osu! supporter tag!',
+            'subject' => '',
         ],
     ],
 ];

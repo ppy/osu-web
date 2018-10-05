@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'ไม่มีทัวร์นาเมนต์ในขณะนี้ โปรดตรวจสอบในภายหลัง',
+        'registration_period' => 'Registration: :start to :end',
+
         'header' => [
             'subtitle' => 'รายชื่อทัวร์นาเมนต์ที่ได้รับการยอมรับอย่างเป็นทางการ',
             'title' => 'คอมมูนิตี้ ทัวร์นาเมนต์',
         ],
-        'none_running' => 'ไม่มีทัวร์นาเมนต์ในขณะนี้ โปรดตรวจสอบในภายหลัง',
-        'registration_period' => 'Registration: :start to :end',
+
+        'item' => [
+            'registered' => '',
+        ],
 
         'state' => [
             'current' => 'ทัวร์นาเมนต์ที่กำลังดำเนินอยู่',

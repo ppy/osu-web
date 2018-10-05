@@ -120,12 +120,13 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            div className: 'comment__row-item',
-              button
-                type: 'button'
-                className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
-                onClick: @toggleNewReply
-                osu.trans('common.buttons.reply')
+            if !@isDeleted()
+              div className: 'comment__row-item',
+                button
+                  type: 'button'
+                  className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
+                  onClick: @toggleNewReply
+                  osu.trans('common.buttons.reply')
 
             if @canEdit()
               div className: 'comment__row-item',

@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => '目前沒有正在進行的比賽，過段時間再來看看吧！',
+        'registration_period' => '報名時間： :start 到 :end',
+
         'header' => [
             'subtitle' => '官方認可的比賽列表',
             'title' => '社區比賽',
         ],
-        'none_running' => '目前沒有正在進行的比賽，過段時間再來看看吧！',
-        'registration_period' => '報名時間： :start 到 :end',
+
+        'item' => [
+            'registered' => '已註冊玩家',
+        ],
 
         'state' => [
             'current' => '正在進行的比賽',

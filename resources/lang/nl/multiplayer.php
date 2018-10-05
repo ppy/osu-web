@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'verwijderde beatmap',
+        'difference' => 'met :difference',
+        'failed' => 'GEFAALD',
         'header' => 'Multiplayer Spellen',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(spel is al bezig)',
+        'in_progress_spinner_label' => 'match is bezig',
+        'loading-events' => 'Gebeurtenissen laden...',
+        'winner' => ':team heeft gewonnen',
+
         'events' => [
             'player-left' => ':user heeft het spel verlaten',
             'player-joined' => ':user speelt nu mee',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'het spel was gestopt',
             'host-changed-no-user' => 'de spelleider is veranderd',
         ],
-        'in-progress' => '(spel is al bezig)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Nauwkeurigheid',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Score',
             ],
         ],
-        'failed' => 'GEFAALD',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Team Blauw',
             'red' => 'Team Rood',
         ],
-        'winner' => ':team heeft gewonnen',
-        'difference' => 'met :difference',
-        'loading-events' => 'Gebeurtenissen laden...',
-        'more-events' => 'alles weergeven...',
-        'beatmap-deleted' => 'verwijderde beatmap',
     ],
     'game' => [
         'scoring-type' => [

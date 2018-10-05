@@ -26,12 +26,12 @@ return [
         'issuing' => 'Yeni kod veriliyor...',
 
         'info' => [
-            'check_spam' => "Eğer e-postayı bulamıyorsanız hesabınızın \"spam\" klasörüne baktığınızdan emin olun.",
+            'check_spam' => "E-postayı bulamıyorsanız hesabınızın \"spam\" klasörüne baktığınızdan emin olun.",
             'recover' => "E-mailinize ulaşamıyorsanız veya hangisini kullandığınızı unuttuysanız, lütfen şurayı takip ediniz :link.",
             'recover_link' => 'email kurtarma işlemi buradan',
             'reissue' => 'Şunları da yapabilirsiniz: :reissue_link veya :logout_link.',
-            'reissue_link' => 'yeni kod iste',
-            'logout_link' => 'çıkış yap',
+            'reissue_link' => 'yeni kod isteyebilir',
+            'logout_link' => 'çıkış yapabilirsiniz',
         ],
     ],
 

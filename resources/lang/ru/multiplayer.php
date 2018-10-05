@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'удалённая карта',
+        'difference' => 'с разницей в :difference очков',
+        'failed' => 'ПРОИГРЫШ',
         'header' => 'Многопользовательская игра',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(игра в процессе)',
+        'in_progress_spinner_label' => 'игра в процессе',
+        'loading-events' => 'Загрузка событий...',
+        'winner' => ':team победила,',
+
         'events' => [
             'player-left' => ':user покинул игру',
             'player-joined' => ':user зашёл в игру',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'игра была распущена',
             'host-changed-no-user' => 'хост игры поменялся',
         ],
-        'in-progress' => '(игра в процессе)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'точность',
@@ -50,16 +52,18 @@ return [
                 'score' => 'очки',
             ],
         ],
-        'failed' => 'ПРОИГРЫШ',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Синяя команда',
             'red' => 'Красная команда',
         ],
-        'winner' => ':team победила,',
-        'difference' => 'с разницей в :difference очков',
-        'loading-events' => 'Загрузка событий...',
-        'more-events' => 'посмотреть все...',
-        'beatmap-deleted' => 'удалённая карта',
     ],
     'game' => [
         'scoring-type' => [

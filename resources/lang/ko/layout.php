@@ -178,11 +178,6 @@ return [
             'livestreams' => '라이브 스트림',
             'report' => '문제 신고하기',
         ],
-        'support' => [
-            '_' => 'osu! 지원',
-            'tags' => '서포터 권한',
-            'merchandise' => '상품',
-        ],
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',

@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap ที่ถูกลบ',
+        'difference' => 'โดยคะแนน :difference',
+        'failed' => 'ล้มเหลว',
         'header' => 'แข่งขันแบบหลายคน',
-        'team-types' => [
-            'head-to-head' => 'ตัว ต่อ ตัว',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'ทีม VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
+        'in_progress_spinner_label' => '',
+        'loading-events' => 'กำลังโหลดสิ่งที่เกิดขึ้น...',
+        'winner' => ':team ชนะ',
+
         'events' => [
             'player-left' => ':user ออกจากแมตช์',
             'player-joined' => ':user เข้าร่วมแมตช์',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'การแข่งขันถูกยกเลิก',
             'host-changed-no-user' => 'โฮสได้มีการเปลี่ยน',
         ],
-        'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'ความแม่นยำ',
@@ -50,16 +52,18 @@ return [
                 'score' => 'คะแนน',
             ],
         ],
-        'failed' => 'ล้มเหลว',
+
+        'team-types' => [
+            'head-to-head' => 'ตัว ต่อ ตัว',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'ทีม VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'ทีมสีน้ำเงิน',
             'red' => 'ทีมสีแดง',
         ],
-        'winner' => ':team ชนะ',
-        'difference' => 'โดยคะแนน :difference',
-        'loading-events' => 'กำลังโหลดสิ่งที่เกิดขึ้น...',
-        'more-events' => 'ดูทั้งหมด...',
-        'beatmap-deleted' => 'beatmap ที่ถูกลบ',
     ],
     'game' => [
         'scoring-type' => [

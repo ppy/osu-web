@@ -77,7 +77,7 @@ return [
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
-            'small' => '(donatorzy otrzymają ją wkrótce)',
+            'small' => '(donatorzy osu! otrzymają ją wkrótce)',
         ],
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,9 +97,31 @@ return [
         'error' => 'Musisz się zalogować, aby to zrobić.',
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
+    'report' => [
+        'button_text' => 'zgłoś',
+        'comments' => 'Dodatkowe informacje',
+        'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
+        'reason' => 'Powód',
+        'thanks' => 'Dziękujemy za zgłoszenie!',
+        'title' => 'Zgłosić gracza :username?',
+
+        'actions' => [
+            'send' => 'Wyślij zgłoszenie',
+            'cancel' => 'Anuluj',
+        ],
+
+        'options' => [
+            'cheating' => 'Oszukiwanie',
+            'insults' => 'Obrażanie mnie lub innych',
+            'spam' => 'Spamowanie',
+            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
+            'nonsense' => 'Pisanie bez sensu',
+            'other' => 'Inny (napisz poniżej)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
-        'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio online :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age i pochodzi z :country',
         'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'previous_usernames' => 'poprzednie nazwy użytkownika',

@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => '',
+        'registration_period' => '',
+
         'header' => [
             'subtitle' => '',
             'title' => '',
         ],
-        'none_running' => '',
-        'registration_period' => '',
+
+        'item' => [
+            'registered' => '',
+        ],
 
         'state' => [
             'current' => '',

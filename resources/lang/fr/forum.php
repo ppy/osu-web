@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Sujets épinglés',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Sous-forums',
-    'title' => 'Communauté osu!',
+    'title' => 'osu! forum',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Connectez-vous pour poster un nouveau sujet',
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'par :user',
+        'started_by_verbose' => 'suivi par :user',
 
         'create' => [
             'preview' => 'Prévisualisation',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Écrire',
             'submit' => 'Poster',
+
+            'necropost' => [
+                'default' => 'Cette discussion a été inactive depuis un certain temps. Postez ici seulement si vous avez une raison particulière de le faire.',
+
+                'new_topic' => [
+                    '_' => "Cette discussion a été inactive pendant un certain temps. Si vous n’avez pas de raison particulière de poster ici, s’il vous plaît :create au lieu de cela.",
+                    'create' => 'créer une nouvelle discussion',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Tapez le contenu du post ici',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Sujets suivis',
                 'unread' => 'Sujets avec nouvelles réponses',
+            ],
+
+            'info' => [
+                'total' => 'Vous suivez un total de :total sujets.',
+                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
             ],
         ],
 

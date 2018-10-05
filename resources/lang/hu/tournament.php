@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Jelenleg nincs futó bajnokság, nézz vissza később!',
+        'registration_period' => 'Regisztráció: :start a :end -ig',
+
         'header' => [
             'subtitle' => 'Az aktív, hivatalosan elismert tornák listája',
             'title' => 'Közösségi versenyek',
         ],
-        'none_running' => 'Jelenleg egyetlen verseny sincs, nézz vissza később!',
-        'registration_period' => 'Regisztráció: :start a :end -ig',
+
+        'item' => [
+            'registered' => 'Regisztrált játékosok',
+        ],
 
         'state' => [
             'current' => 'Aktív versenyek',
@@ -35,22 +40,22 @@ return [
 
     'show' => [
         'banner' => 'Támogasd A Csapatod',
-        'entered' => 'Regisztrálva vagy erre a versenyre.<br><br>Ez nem azt jelenti, hogy egy csapatba elhelyeztünk.<br><br>További tennivalókat emailben küldjük a verseny dátumához közelítve, szóval kérlek biztosítalsd, hogy az osu! Fiókodhoz tartozó email valós!',
+        'entered' => 'Regisztrálva vagy erre a versenyre.<br><br>Ne feledd, hogy ez nem azt jelenti, hogy csapatba kerültél.<br><br>A további tennivalókat e-mailben fogjuk küldeni a verseny dátumához közelítve, szóval kérlek ellenőrizd, hogy az osu! fiókodhoz tartozó email érvényes!',
         'info_page' => 'Információs oldal',
         'login_to_register' => 'Kérlek :login a regisztrációs adatok megtekintéséhez!',
         'not_yet_entered' => 'Nem vagy regisztrálva erre a versenyre.',
-        'rank_too_low' => 'Bocsi, de te nem éred el a rank követelményeket ehhez a versenyhez!',
-        'registration_ends' => 'A regisztrációk :date-án/én zárulnak',
+        'rank_too_low' => 'Sajnáljuk, de te nem éred el a rang követelményeket ehhez a versenyhez!',
+        'registration_ends' => 'A regisztráció ekkor zárul :date',
 
         'button' => [
-            'cancel' => 'Regisztráció megszakitása',
+            'cancel' => 'Regisztráció visszavonása',
             'register' => 'Regisztrálj engem!',
         ],
 
         'state' => [
-            'before_registration' => 'A versenyre való regisztráció még nem nyílt meg.',
+            'before_registration' => 'A versenyre való regisztrálás még nem nyílt meg.',
             'ended' => 'Ez a verseny véget ért. Nézd meg az információs oldalt az eredményekért.',
-            'registration_closed' => 'Erre a versenyre való regisztráció zárolva lett. Nézd meg az információs oldalt a legfrissebb frissitésekért.',
+            'registration_closed' => 'A versenyre való regisztrálás lezárult. Nézd meg az információs oldalt a legújabb hírekért.',
             'running' => 'Ez a verseny jelenleg zajlik. Részletekért nézd meg az információs oldalt.',
         ],
     ],

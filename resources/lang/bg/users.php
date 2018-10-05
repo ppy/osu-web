@@ -97,6 +97,28 @@ return [
         'error' => '',
     ],
     'logout_confirm' => '',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '',
         'message' => '',
@@ -110,8 +132,6 @@ return [
         'joined_at' => '',
         'lastvisit' => '',
         'missingtext' => '',
-        'origin_age' => '',
-        'origin_country_age' => '',
         'origin_country' => '',
         'page_description' => '',
         'previous_usernames' => '',

@@ -17,14 +17,29 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Build;
+use App\Models\Comment;
+use App\Models\User;
+use Carbon\Carbon;
 
-return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => '非常感谢， osu! 爱你哦~',
-        ],
-        'supporter_gift' => [
-            'subject' => '你成为了 osu!Supporter ！',
-        ],
-    ],
-];
+class CommentTest extends TestCase
+{
+    public function testReplyingToDeletedComment()
+    {
+        $user = factory(User::class)->create();
+        $commentable = factory(Build::class)->create();
+        $parentComment = $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+            'deleted_at' => Carbon::now(),
+        ]);
+
+        $comment = new Comment([
+            'parent_id' => $parentComment->getKey(),
+            'message' => 'Hello',
+        ]);
+
+        $this->assertFalse($comment->isValid());
+        $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
+    }
+}

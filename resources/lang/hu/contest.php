@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Versenyezz másképp mint csak kör klikkelésben.',
-        'large' => 'osu! közösségi versenyek',
+        'large' => 'Közösségi Versenyek',
     ],
     'voting' => [
         'over' => 'Az adott versenyre való szavazás véget ért',

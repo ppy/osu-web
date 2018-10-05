@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap dihapus',
+        'difference' => 'dengan :difference',
+        'failed' => 'GAGAL',
         'header' => 'Pertandingan Multiplayer',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(pertandingan sedang berlangsung)',
+        'in_progress_spinner_label' => 'pertandingan sedang berlangsung',
+        'loading-events' => 'Memuat peristiwa...',
+        'winner' => ':team menang',
+
         'events' => [
             'player-left' => ':user meninggalkan pertandingan',
             'player-joined' => ':user bergabung dalam pertandingan',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'pertandingan telah dibubarkan',
             'host-changed-no-user' => 'host diubah',
         ],
-        'in-progress' => '(pertandingan sedang berlangsung)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Akurasi',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Skor',
             ],
         ],
-        'failed' => 'GAGAL',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Tim Biru',
             'red' => 'Tim Merah',
         ],
-        'winner' => ':team menang',
-        'difference' => 'dengan :difference',
-        'loading-events' => 'Memuat peristiwa...',
-        'more-events' => 'lihat semua...',
-        'beatmap-deleted' => 'beatmap dihapus',
     ],
     'game' => [
         'scoring-type' => [

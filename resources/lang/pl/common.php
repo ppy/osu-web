@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Na pewno?',
+    'confirmation_unsaved' => 'Niezapisane zmiany zostaną utracone. Czy na pewno chcesz kontynuować?',
     'saved' => 'Zapisane',
 
     'array_and' => [

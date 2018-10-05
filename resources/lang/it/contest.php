@@ -20,8 +20,8 @@
 
 return [
     'header' => [
-        'small' => 'Competi in più modi che solo cliccando sui cerchi.',
-        'large' => 'Contest della Community di osu!',
+        'small' => 'Competi in più modi oltre che a cliccare cerchi.',
+        'large' => 'Contest della Comunità',
     ],
     'voting' => [
         'over' => 'Le votazioni per questo contest sono terminate',

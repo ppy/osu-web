@@ -77,7 +77,7 @@ return [
         'forgot' => '忘記密碼？',
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
-            'small' => '（贊助者將在不久後開放）',
+            'small' => '',
         ],
 
         'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => '請先登入',
     ],
     'logout_confirm' => '確定要登出嗎？o(TヘTo)',
+    'report' => [
+        'button_text' => '檢舉',
+        'comments' => '補充評論',
+        'placeholder' => '',
+        'reason' => '原因',
+        'thanks' => '感謝您的舉報！',
+        'title' => '檢舉 :username?',
+
+        'actions' => [
+            'send' => '傳送檢舉',
+            'cancel' => '取消',
+        ],
+
+        'options' => [
+            'cheating' => '違規 / 作弊',
+            'insults' => '侮辱我 / 其他人',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
         'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => '註冊時間：:date',
         'lastvisit' => '最後登入於：:date',
         'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
-        'origin_age' => ':age 歲',
-        'origin_country_age' => ':age，來自 :country',
         'origin_country' => '來自 :country',
         'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
         'previous_usernames' => '前一個的使用者名稱',

@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
         'locked' => 'Die Diskussion ist gesperrt.',
-        'mapper_note_wrong_user' => 'Nur der Besitzer der Beatmap kann Notizen posten.',
 
         'hype' => [
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
