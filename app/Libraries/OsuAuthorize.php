@@ -634,7 +634,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($comment->user_id === $user->getKey()) {
+        if ($comment->user_id === $user->getKey() && !$comment->isDeleted()) {
             return 'ok';
         }
     }
