@@ -469,7 +469,7 @@ function currency($price, $precision = 2, $zeroShowFree = true)
         return 'free!';
     }
 
-    return 'US$'.number_format($price, $precision);
+    return 'US$'.i18n_number_format($price, null, null, $precision);
 }
 
 /**
@@ -802,13 +802,19 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     return $formatter->format($datetime);
 }
 
-function i18n_number_format($number, $style = null, $pattern = null, $locale = null)
+function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
-    return NumberFormatter::create(
+    $formatter = NumberFormatter::create(
         $locale ?? App::getLocale(),
         $style ?? NumberFormatter::DEFAULT_STYLE,
         $pattern
-    )->format($number);
+    );
+
+    if ($precision !== null) {
+        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+    }
+
+    return $formatter->format($number);
 }
 
 function i18n_time($datetime, $format = IntlDateFormatter::LONG)
@@ -1243,11 +1249,8 @@ function suffixed_number_format_tag($number)
 // e.g.: 98.3 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
-    $formatter = NumberFormatter::create(App::getLocale(), NumberFormatter::PERCENT);
-    $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
-
-    // the formatter assumes decimal number while the function receive percentage number.
-    return $formatter->format($number / 100);
+    // the formatter assumes decimal number while the function receives percentage number.
+    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
 }
 
 function group_users_by_online_state($users)
