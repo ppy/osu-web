@@ -802,7 +802,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     return $formatter->format($datetime);
 }
 
-function i18n_number($number, $style = null, $pattern = null, $locale = null)
+function i18n_number_format($number, $style = null, $pattern = null, $locale = null)
 {
     return NumberFormatter::create(
         $locale ?? App::getLocale(),
