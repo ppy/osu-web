@@ -90,7 +90,7 @@ class CommentsIndex.Main extends React.PureComponent
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.index.title.info')}</span>"
 
 
-  update: (event, {comment}) =>
+  update: (_event, {comment}) =>
     @setState
       comments: osu.updateCollection @state.comments, [comment]
       users: osu.updateCollection @state.users, [comment.user, comment.editor]

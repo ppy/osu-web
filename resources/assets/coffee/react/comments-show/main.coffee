@@ -104,13 +104,13 @@ class CommentsShow.Main extends React.PureComponent
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.show.title.info')}</span>"
 
 
-  appendBundle: (events, {comments}) =>
+  appendBundle: (_events, {comments}) =>
     @setState
       comments: osu.updateCollection @state.comments, comments.comments
       users: osu.updateCollection @state.users, comments.users
 
 
-  update: (event, {comment}) =>
+  update: (_event, {comment}) =>
     @setState
       comments: osu.updateCollection @state.comments, comment
       users: osu.updateCollection @state.users, [comment.user, comment.editor]
