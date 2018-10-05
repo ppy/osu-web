@@ -51,7 +51,7 @@ return [
             ],
             'favourite' => 'Favourite this beatmapset',
             'unfavourite' => 'Unfavourite this beatmapset',
-            'favourited_count' => '+ 1 other!|+ :count_delimited others!',
+            'favourited_count' => '+ :count_delimited other!|+ :count_delimited others!',
         ],
         'stats' => [
             'cs' => 'Circle Size',
