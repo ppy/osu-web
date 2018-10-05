@@ -33,7 +33,7 @@
                     {!! timeago($beatmapset->approved_date) !!}
                 @elseif ($type === 'popular')
                     {{ trans('home.user.beatmaps.plays', [
-                        'count' => number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])
+                        'count' => i18n_number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])
                     ]) }}
             @endif
             </span>
