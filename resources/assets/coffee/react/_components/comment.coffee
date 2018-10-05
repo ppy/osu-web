@@ -45,7 +45,7 @@ class @Comment extends React.PureComponent
     @state =
       editing: false
       showNewReply: false
-      showReplies: !@isDeleted()
+      expandReplies: !@isDeleted()
 
 
   render: =>
@@ -58,7 +58,7 @@ class @Comment extends React.PureComponent
 
     repliesClass = 'comment__replies'
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
-    repliesClass += ' comment__replies--hidden' if !@state.showReplies
+    repliesClass += ' comment__replies--hidden' if !@state.expandReplies
 
     div
       className: osu.classWithModifiers 'comment', modifiers
@@ -68,7 +68,7 @@ class @Comment extends React.PureComponent
           className: 'comment__top-show-replies'
           type: 'button'
           onClick: @toggleReplies
-          span className: "fas #{if @state.showReplies then 'fa-angle-up' else 'fa-angle-down'}"
+          span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
         if user.id?
@@ -175,7 +175,7 @@ class @Comment extends React.PureComponent
                     type: 'button'
                     className: 'comment__action'
                     onClick: @toggleReplies
-                    "[#{if @state.showReplies then '-' else '+'}] "
+                    "[#{if @state.expandReplies then '-' else '+'}] "
                     osu.trans('comments.replies')
                     " (#{@props.comment.replies_count.toLocaleString()})"
                 else
@@ -327,4 +327,4 @@ class @Comment extends React.PureComponent
 
 
   toggleReplies: =>
-    @setState showReplies: !@state.showReplies
+    @setState expandReplies: !@state.expandReplies
