@@ -161,7 +161,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => '1 follower|:count_delimited followers',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -326,7 +326,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Contributed :link',
-            'count' => ':count forum post|:count forum posts',
+            'count' => ':count_delimited forum post|:count_delimited forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',

@@ -62,7 +62,7 @@ return [
             'month' => 'month',
             'all_time' => 'all time',
             'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'weeks_ago' => ':count_delimited week ago|:count_delimited weeks ago',
         ],
     ],
 ];

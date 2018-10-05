@@ -253,7 +253,7 @@ return [
                 'do' => 'Promote this request',
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} no vote|{1} :count_delimited vote|[2,*] :count_delimited votes',
                     'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
