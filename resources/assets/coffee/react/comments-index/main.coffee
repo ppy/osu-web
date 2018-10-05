@@ -26,8 +26,8 @@ class CommentsIndex.Main extends React.PureComponent
     @pagination = React.createRef()
     @id = "comments-index-#{osu.uuid()}"
     @state =
-      comments: @props.data.comments
-      users: @props.data.users
+      comments: @props.comments
+      users: @props.users
 
 
   componentDidMount: =>

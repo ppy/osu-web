@@ -25,12 +25,10 @@ class CommentsShow.Main extends React.PureComponent
 
     @id = "comments-show-#{osu.uuid()}"
 
-    comments = osu.updateCollection @props.data.bundle.comments, [@props.data.comment]
-    users = osu.updateCollection @props.data.bundle.users, [@props.data.comment.user, @props.data.comment.editor]
+    comments = osu.updateCollection @props.comments, [@props.comment]
+    users = osu.updateCollection @props.users, [@props.comment.user, @props.comment.editor]
 
-    @state =
-      comments: comments
-      users: users
+    @state = {comments, users}
 
 
   componentDidMount: =>
@@ -50,7 +48,7 @@ class CommentsShow.Main extends React.PureComponent
       .value()
     usersById = _.keyBy(@state.users ? [], 'id')
 
-    mainComment = commentsByParentId[@props.data.comment.parent_id][0]
+    mainComment = commentsByParentId[@props.comment.parent_id][0]
     children = commentsByParentId[mainComment.id] ? []
 
     div null,
