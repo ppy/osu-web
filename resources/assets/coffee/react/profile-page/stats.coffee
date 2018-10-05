@@ -36,7 +36,7 @@ ProfilePage.Stats = ({stats}) ->
       className: 'profile-stats__rank'
       div
         className: "badge-rank badge-rank--small badge-rank--#{name}"
-      div null, rankCount.toLocaleString()
+      div null, osu.formatNumber(rankCount)
 
   playtime = moment.duration stats.play_time, 'seconds'
 
@@ -70,25 +70,25 @@ ProfilePage.Stats = ({stats}) ->
     div className: 'profile-stats__row',
       simpleEntry
         key: 'ranked_score'
-        value: stats.ranked_score.toLocaleString()
+        value: osu.formatNumber(stats.ranked_score)
       simpleEntry
         key: 'hit_accuracy'
-        value: "#{stats.hit_accuracy.toFixed(2)}%"
+        value: "#{osu.formatNumber(stats.hit_accuracy, 2)}%"
       simpleEntry
         key: 'play_count'
-        value: stats.play_count.toLocaleString()
+        value: osu.formatNumber(stats.play_count)
       simpleEntry
         key: 'total_score'
-        value: stats.total_score.toLocaleString()
+        value: osu.formatNumber(stats.total_score)
       simpleEntry
         key: 'total_hits'
-        value: stats.total_hits.toLocaleString()
+        value: osu.formatNumber(stats.total_hits)
       simpleEntry
         key: 'maximum_combo'
-        value: stats.maximum_combo.toLocaleString()
+        value: osu.formatNumber(stats.maximum_combo)
       simpleEntry
         key: 'replays_watched_by_others'
-        value: stats.replays_watched_by_others.toLocaleString()
+        value: osu.formatNumber(stats.replays_watched_by_others)
 
       div className: 'profile-stats__value profile-stats__value--score-ranks',
         rankCountEntry('XH')

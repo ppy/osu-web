@@ -62,10 +62,10 @@ BeatmapsetPage.ScoreboardTable = (props) ->
               div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
 
             td className: "#{bn}__score",
-              score.score.toLocaleString()
+              osu.formatNumber(score.score)
 
             td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
-              "#{(score.accuracy * 100).toFixed(2)}%"
+              "#{osu.formatNumber(score.accuracy * 100, 2)}%"
 
             td {},
               if score.user.country_code
@@ -85,16 +85,16 @@ BeatmapsetPage.ScoreboardTable = (props) ->
                 score.user.username
 
             td className: (if score.max_combo == props.beatmap.max_combo?[0] then "#{bn}__perfect" else ''),
-              "#{score.max_combo.toLocaleString()}x"
+              "#{osu.formatNumber(score.max_combo)}x"
 
             for stat in props.hitTypeMapping
               td
                 key: stat[0]
                 className: (if score.statistics["count_#{stat[1]}"] == 0 then "#{bn}__zero" else ''),
-                score.statistics["count_#{stat[1]}"].toLocaleString()
+                osu.formatNumber(score.statistics["count_#{stat[1]}"])
 
             td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
-              score.statistics.count_miss.toLocaleString()
+              osu.formatNumber(score.statistics.count_miss)
 
             td {}, _.round score.pp
 

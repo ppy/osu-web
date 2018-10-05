@@ -54,10 +54,10 @@ class @BeatmapsetPanel extends React.PureComponent
 
     showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
     if showHypeCounts
-      currentHype = beatmapset.hype.current.toLocaleString()
-      requiredHype = beatmapset.hype.required.toLocaleString()
-      currentNominations = beatmapset.nominations.current.toLocaleString()
-      requiredNominations = beatmapset.nominations.required.toLocaleString()
+      currentHype = osu.formatNumber(beatmapset.hype.current)
+      requiredHype = osu.formatNumber(beatmapset.hype.required)
+      currentNominations = osu.formatNumber(beatmapset.nominations.current)
+      requiredNominations = osu.formatNumber(beatmapset.nominations.required)
 
     # arbitrary number
     maxDisplayedDifficulty = 10
@@ -120,11 +120,11 @@ class @BeatmapsetPanel extends React.PureComponent
                   i className: 'fas fa-thumbs-up fa-fw'
             else
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+                span className: 'beatmapset-panel__count-number', osu.formatNumber(beatmapset.play_count)
                 i className: 'fas fa-fw fa-play-circle'
 
             div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
+              span className: 'beatmapset-panel__count-number', osu.formatNumber(beatmapset.favourite_count)
               i className: 'fas fa-fw fa-heart'
 
           div

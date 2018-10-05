@@ -75,7 +75,7 @@ class ProfilePage.Historical extends React.PureComponent
                 span
                   key: 'value'
                   className: 'beatmapset-row__info beatmapset-row__info--large'
-                  " #{pc.count.toLocaleString()}"
+                  " #{osu.formatNumber(pc.count)}"
               ]
             ]
           span
@@ -204,7 +204,7 @@ class ProfilePage.Historical extends React.PureComponent
         curve: d3.curveLinear
         formats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
-          y: (d) -> d.toLocaleString()
+          y: (d) -> osu.formatNumber(d)
         margins: right: 80 # more spacing for x axis label
         tooltipFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))

@@ -208,14 +208,14 @@ class ProfilePage.HeaderExtra extends React.Component
                 if @state.hoverLine1?
                   @state.hoverLine1
                 else if @props.stats.rank.global?
-                  "##{Math.round(@props.stats.rank.global).toLocaleString()}"
+                  "##{Math.round(osu.formatNumber(@props.stats.rank.global))}"
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
                 if @state.hoverLine2?
                   @state.hoverLine2
                 else if @props.stats.rank.country?
-                  "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
+                  "#{@props.user.country.name} ##{osu.formatNumber(Math.round(@props.stats.rank.country))}"
                 else
                   '\u00A0'
 
@@ -224,7 +224,7 @@ class ProfilePage.HeaderExtra extends React.Component
             ref: (el) => @rankChartArea = el
           div className: "#{bn}__rank-box",
             if @props.stats.is_ranked
-              "#{Math.round(@props.stats.pp).toLocaleString()}pp"
+              "#{osu.formatNumber(Math.round(@props.stats.pp))}pp"
             else
               osu.trans('users.show.extra.unranked')
 
@@ -269,7 +269,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
   rankChartHover: (_e, {data} = {}) =>
     if data?
-      hoverLine1 = "##{(-data.y).toLocaleString()}"
+      hoverLine1 = "##{osu.formatNumber(-data.y)}"
       hoverLine2 =
         if data.x == 0
           osu.trans('common.time.now')

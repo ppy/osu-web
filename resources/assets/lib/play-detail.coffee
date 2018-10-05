@@ -77,9 +77,9 @@ export PlayDetail = (props) ->
                   if score.weight
                     osu.trans 'users.show.extra.top_ranks.weighted_pp',
                       percentage: "#{Math.round(score.weight.percentage)}%"
-                      pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
+                      pp: osu.trans('users.show.extra.top_ranks.pp', amount: osu.formatNumber(Math.round(score.weight.pp)))
                 if pp > 0
-                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(pp).toLocaleString())
+                  osu.trans('users.show.extra.top_ranks.pp', amount: osu.formatNumber(Math.round(pp)))
                 else
                   span
                     title:
@@ -91,7 +91,7 @@ export PlayDetail = (props) ->
               div
                 className: 'detail-row__text-score'
                 osu.trans 'users.show.extra.historical.recent_plays.accuracy',
-                  percentage: "#{(score.accuracy * 100).toFixed(2)}%"
+                  percentage: "#{osu.formatNumber(score.accuracy * 100, 2)}%"
 
     div
       className: 'detail-row__more'

@@ -86,9 +86,9 @@ class BeatmapsetPage.Stats extends React.Component
 
               valueText =
                 if stat == 'stars'
-                  value.toFixed 2
+                  osu.formatNumber(value, 2)
                 else
-                  value.toLocaleString()
+                  osu.formatNumber(value)
 
               if @props.beatmap.mode == 'mania' && stat == 'cs'
                 stat += '-mania'
@@ -114,8 +114,8 @@ class BeatmapsetPage.Stats extends React.Component
                 width: "#{(ratingsNegative / ratingsAll) * 100}%"
 
           div className: 'beatmapset-stats__rating-values',
-            span null, ratingsNegative.toLocaleString()
-            span null, ratingsPositive.toLocaleString()
+            span null, osu.formatNumber(ratingsNegative)
+            span null, osu.formatNumber(ratingsPositive)
 
           div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
 

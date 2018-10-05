@@ -176,7 +176,17 @@
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
+    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
+
+
+  formatNumber: (number, precision, options, locale) ->
+    options ?= {}
+
+    if precision?
+      options.minimumFractionDigits = 2
+      maximumFractionDigits = 2
+
+    number.toLocaleString locale ? currentLocale, options
 
 
   reloadPage: (keepScroll = true) ->
@@ -282,7 +292,7 @@
       initialLocale = Lang.getLocale()
       Lang.setLocale locale
 
-    replacements.count_delimited ?= count.toLocaleString(locale ? currentLocale)
+    replacements.count_delimited ?= osu.formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     Lang.setLocale initialLocale if initialLocale?
