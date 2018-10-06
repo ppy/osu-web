@@ -27,6 +27,7 @@ return [
     'views' => true,
 
     'allow_unsafe_links' => false,
+    'max_nesting_level' => 20,
 
     'extensions' => [
         Webuni\CommonMark\TableExtension\TableExtension::class,
