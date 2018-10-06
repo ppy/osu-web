@@ -298,4 +298,8 @@ return [
         'C' => 'C',
         'D' => 'D',
     ],
+    'panel' => [
+        'playcount' => 'Playcount: :count',
+        'favourite' => 'Favourites: :count',
+    ],
 ];
