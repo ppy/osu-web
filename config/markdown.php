@@ -24,8 +24,9 @@ return [
     | Default: true
     |
     */
-
     'views' => true,
+
+    'allow_unsafe_links' => false,
 
     'extensions' => [
         Webuni\CommonMark\TableExtension\TableExtension::class,
