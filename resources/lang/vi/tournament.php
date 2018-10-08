@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Hiên tại không có giải đấu nào đang diễn ra, vui lòng kiểm tra lại sau!',
+        'registration_period' => 'Đăng kí: :start đến :end',
+
         'header' => [
             'subtitle' => 'Danh sách các giải đấu chính thức đang hoạt động',
             'title' => 'Giải Đấu Cộng Đồng',
         ],
-        'none_running' => 'Hiên tại không có giải đấu nào đang diễn ra, vui lòng kiểm tra lại sau!',
-        'registration_period' => 'Đăng kí: :start đến :end',
+
+        'item' => [
+            'registered' => 'Người chơi đã đăng kí',
+        ],
 
         'state' => [
             'current' => 'Giải Đấu Đang Diễn Ra',

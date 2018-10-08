@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'tặng người chơi khác',
         'require_login' => [
-            '_' => 'Bạn cần phải :link để lấy một supporter tag!',
+            '_' => 'Bạn cần phải :link để nhận một osu!supporter tag!',
             'link_text' => 'đăng nhập',
         ],
     ],

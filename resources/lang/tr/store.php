@@ -52,7 +52,7 @@ return [
         'pay' => 'Paypal ile Ödeme Yap',
         'pending_checkout' => [
             'line_1' => 'Bir önceki ödeme başladı fakat bitmedi.',
-            'line_2' => 'Ödemenize devam etmek için ödeme şekli seçin, veya iptal için :link.',
+            'line_2' => 'Ödemenize devam etmek için ödeme şekli seçin, veya iptal etmek için :link.',
             'link_text' => 'buraya tıkla',
         ],
         'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
@@ -103,9 +103,9 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'oyuncuya hediye',
+        'gift' => 'oyuncuya hediye et',
         'require_login' => [
-            '_' => 'Supporter almak için :link olmalısınız!',
+            '_' => 'osu!supporter etiketi almak için :link !',
             'link_text' => 'giriş yapmış',
         ],
     ],

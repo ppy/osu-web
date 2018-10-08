@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Nur der Beatmap Urheber oder ein Nominator/QAT Mitglied kann Mapper Notizen posten.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
             'owner' => "Man kann nicht in der eigenen Diskussion abstimmen!",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du hast erst kürzlich einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
+                'double_post' => 'Bitte bearbeite deinen letzten Post, statt erneut zu posten.',
                 'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Dieses Profil ist gesperrt.',
                 'not_owner' => 'Nur das eigene Profil kann bearbeitet werden.',
-                'require_supporter_tag' => 'Ein Supporter-Tag ist hierzu erforderlich.',
+                'require_supporter_tag' => 'Ein osu!supporter Tag ist erforderlich.',
             ],
         ],
     ],

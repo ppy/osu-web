@@ -33,6 +33,10 @@ return [
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '只有谱面作者或谱面管理团队、质量保证团队成员可以发布备注。',
+        ],
+
         'vote' => [
             'limit_exceeded' => '在投更多票之前请稍等一会。',
             'owner' => "不能为自己的讨论投票！",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '刚刚已经发表回复了，喝口水休息会儿，或者编辑之前的回复。',
+                'double_post' => '请编辑您的最后一条评论, 而不是多次发表。',
                 'locked' => '无法回复被锁定的主题。',
                 'no_forum_access' => '没有权限，无法进入该板块。',
                 'no_permission' => '没有权限，无法回复。',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => '个人页面被锁定。',
                 'not_owner' => '只能编辑自己的个人页面。',
-                'require_supporter_tag' => '需要 Supporter 标签。',
+                'require_supporter_tag' => '需要成为支持者。',
             ],
         ],
     ],

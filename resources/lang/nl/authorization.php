@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Alleen de eigenaar van deze beatmap of een nominator/QAT groepslid kan mapper notities posten.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Wacht even voor je meer stemmen indient',
             'owner' => "Je kan niet stemmen op je eigen discussie.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Je hebt net gepost. Wacht even voor je een nieuwe maakt of bewerk je vorige post.',
+                'double_post' => 'Bewerk je laatste bericht in plaats van opnieuw te posten.',
                 'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om te antwoorden.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Gebruikerspagina is gesloten.',
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
-                'require_supporter_tag' => 'Supporter tag is nodig.',
+                'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
         ],
     ],

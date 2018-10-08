@@ -22,7 +22,7 @@ return [
     'pinned_topics' => '置顶主题',
     'slogan' => "独乐乐不如众乐乐~",
     'subforums' => '子版块',
-    'title' => 'osu! 社区',
+    'title' => 'osu! 论坛',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => '登录以发表新主题',
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
+        'reply_title_prefix' => '回复',
         'started_by' => '发帖人： :user',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => '预览',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => '编辑',
             'submit' => '发表',
+
+            'necropost' => [
+                'default' => '这个主题已经有一段时间无活动了。除非你有特殊的理由，否则不要在这里回复。',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '创建一个新主题',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => '在这里输入正文',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => '订阅的主题',
                 'unread' => '主题有新回复',
+            ],
+
+            'info' => [
+                'total' => '共订阅了 :total 个主题',
+                'unread' => '有 :unread 个未读回复',
             ],
         ],
 

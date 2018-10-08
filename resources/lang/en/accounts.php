@@ -83,6 +83,7 @@ return [
     'privacy' => [
         'title' => 'Privacy',
         'friends_only' => 'block private messages from people not on your friends list',
+        'hide_online' => 'hide your online presence',
     ],
 
     'security' => [

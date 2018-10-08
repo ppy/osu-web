@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Livestreams',
             'report' => 'Een Probleem Melden',
         ],
-        'support' => [
-            '_' => 'Steun osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
-        ],
         'legal' => [
             '_' => 'Juridisch & Status',
             'copyright' => 'Copyright (DMCA)',

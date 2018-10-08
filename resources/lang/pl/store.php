@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'podaruj innemu użytkownikowi',
         'require_login' => [
-            '_' => 'Aby uzyskać status donatora, musisz się :link!',
+            '_' => 'Aby uzyskać status donatora osu!, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],

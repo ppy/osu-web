@@ -77,7 +77,7 @@ return [
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'beta' => [
             'main' => '베타 권한은 현재 일부 특수 사용자만 가지고 있습니다.',
-            'small' => '(서포터들도 곧 받게 될 거에요)',
+            'small' => '(osu! 서포터들도 곧 받게 될 거에요)',
         ],
 
         'here' => '이곳', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => '계속하려면 로그인하셔야 합니다.',
     ],
     'logout_confirm' => '정말 로그아웃하실건가요? :(',
+    'report' => [
+        'button_text' => '신고',
+        'comments' => '추가 의견',
+        'placeholder' => '아시는 정보를 입력해 주세요. 유용하게 쓰일 수 있습니다.',
+        'reason' => '이유',
+        'thanks' => '신고해 주셔서 감사합니다!',
+        'title' => ':username 님을 신고할까요?',
+
+        'actions' => [
+            'send' => '신고 보내기',
+            'cancel' => '취소',
+        ],
+
+        'options' => [
+            'cheating' => '부정 행위 / 치트 사용',
+            'insults' => '자신 / 다른 사람을 모욕 함',
+            'spam' => '도배',
+            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
+            'nonsense' => '허튼소리',
+            'other' => '기타 (아래에 입력해 주세요)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, :country에 거주',
         'origin_country' => ':country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'previous_usernames' => '이전 사용자명',

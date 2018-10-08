@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Mappe',
+        '_' => 'Beatmap',
         'download' => 'Scarica Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],

@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
         'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
         'locked' => 'Cuộc thảo luận đã bị khóa.',
-        'mapper_note_wrong_user' => 'Chỉ có chủ beatmap mới có thể đăng ghi chú.',
 
         'hype' => [
             'guest' => 'Cần phải đăng nhập để hype.',

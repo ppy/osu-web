@@ -26,7 +26,7 @@ return [
 
     'incidents' => [
         'title' => 'Aktif Olaylar',
-        'automated' => 'otomatikleştirilmiş',
+        'automated' => 'otomatik',
     ],
 
     'online' => [
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Geçen Zaman',
+            'title' => 'Çalışma süresi',
             'graphs' => [
                 'server' => 'sunucu',
                 'web' => 'web',

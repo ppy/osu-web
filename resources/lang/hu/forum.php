@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Kitűzött Témák',
     'slogan' => "egyedül játszani veszélyes.",
     'subforums' => 'Mellékfórum',
-    'title' => 'osu!közösség',
+    'title' => 'osu! fórumok',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Jelentkezz be új téma nyitásához',
         'post_reply' => 'Poszt',
         'reply_box_placeholder' => 'Válasz írásához kattintson ide',
+        'reply_title_prefix' => 'Válasz',
         'started_by' => ':user által',
+        'started_by_verbose' => ':user által indítva',
 
         'create' => [
             'preview' => 'Előnézet',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Ír',
             'submit' => 'Küldés',
+
+            'necropost' => [
+                'default' => 'Ez a téma már inaktív egy ideje. Megfelelő indok hiányában ne posztolj ide.',
+
+                'new_topic' => [
+                    '_' => "Ez a téma már inaktív egy ideje. Ha nincs konkrét okod ide posztolni, kérlek :create helyette.",
+                    'create' => 'új téma létrehozása',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Ide írja a tartalmat',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Felíratkozott témák',
                 'unread' => 'Témák új válaszokkal',
+            ],
+
+            'info' => [
+                'total' => 'Te felíratkoztál :total témára.',
+                'unread' => ':unread választ nem olvastál el a felíratkozott témáidban.',
             ],
         ],
 

@@ -24,7 +24,7 @@ return [
         'languages' => 'Lingue',
         'missing' => 'La pagina richiesta ":keyword" non è stata trovata.',
         'missing_title' => 'Non trovato',
-        'missing_translation' => 'La pagina richiesta non è stata trovata per la lingua selezionata attualmente.',
+        'missing_translation' => 'La pagina richiesta non è stata trovata per la lingua attualmente selezionata.',
         'search' => 'Cerca pagine esistenti per :link.',
         'toc' => 'Contenuti',
 
@@ -34,7 +34,7 @@ return [
         ],
 
         'outdated' => [
-            '_' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare la :default per informazioni più accurate (e considera di aggiornare la traduzione se sei in grado di aiutare)!',
+            '_' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare la :default per informazioni più accurate (e, se sei in grado di aiutare, migliora la traduzione su GitHub)!',
             'default' => 'Versione inglese',
         ],
     ],

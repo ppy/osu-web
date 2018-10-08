@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Endast beatmap ägaren eller nominator/QAT gruppmedlem kan publicera kart anteckningar.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du la precis upp ett inlägg. Vänta en stund eller redigera ditt senaste inlägg.',
+                'double_post' => 'Vänligen redigera ditt senaste inlägg istället för att publicera ett inlägg igen.',
                 'locked' => 'Kan ej svara på ett låst inlägg.',
                 'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'no_permission' => 'Saknar behörighet för att svara.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Användar-sidan är låst.',
                 'not_owner' => 'Kan endast redigera egen användar-sida.',
-                'require_supporter_tag' => 'Supporter tagg behövs.',
+                'require_supporter_tag' => 'osu!supporter tag krävs.',
             ],
         ],
     ],
