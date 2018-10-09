@@ -167,27 +167,24 @@ class ProfilePage.Main extends React.PureComponent
           rankHistory: @props.rankHistory
 
         div
-          className: 'hidden-xs page-extra-tabs js-sticky-header'
+          className: 'hidden-xs page-extra-tabs js-sticky-header js-switchable-mode-page--scrollspy-offset'
           'data-sticky-header-target': 'page-extra-tabs'
-
-          div
-            className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
-            if profileOrder.length > 1
-              div className: 'osu-page',
-                div
-                  className: 'page-mode page-mode--page-extra-tabs'
-                  ref: (el) => @tabs = el
-                  for m in profileOrder
-                    a
-                      className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                      key: m
-                      'data-page-id': m
-                      onClick: @tabClick
-                      href: "##{m}"
-                      el ProfilePage.ExtraTab,
-                        page: m
-                        currentPage: @state.currentPage
-                        currentMode: @state.currentMode
+          if profileOrder.length > 1
+            div className: 'osu-page',
+              div
+                className: 'page-mode page-mode--page-extra-tabs'
+                ref: (el) => @tabs = el
+                for m in profileOrder
+                  a
+                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                    key: m
+                    'data-page-id': m
+                    onClick: @tabClick
+                    href: "##{m}"
+                    el ProfilePage.ExtraTab,
+                      page: m
+                      currentPage: @state.currentPage
+                      currentMode: @state.currentMode
 
         div
           className: 'osu-layout__section osu-layout__section--extra'
