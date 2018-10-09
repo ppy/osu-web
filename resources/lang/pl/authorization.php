@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zakończyć dyskusję.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka QAT.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
             'owner' => "Nie możesz głosować we własnej dyskusji!",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Post został przed chwilą utworzony. Poczekaj chwilę albo zedytuj swój ostatni post.',
+                'double_post' => 'Zedytuj swój poprzedni post zamiast tworzenia nowego.',
                 'locked' => 'Nie możesz odpowiadać w zamkniętym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do odpowiadania.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Strona użytkownika została zablokowana.',
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
-                'require_supporter_tag' => 'Wymagany jest status donatora.',
+                'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
         ],
     ],

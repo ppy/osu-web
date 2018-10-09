@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Csak a fonál indítója és a beatmap készítője tudja megoldottnak jelölni a beszélgetést.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Csak a beatmap tulajdonos vagy nomináló/QAT csoporttag posztolhat mappelői megjegyzést.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Kérlek várj egy keveset, újabb szavazat leadása előtt',
             'owner' => "Nem szavazhatsz a saját megbeszéléseden.",
@@ -75,14 +79,14 @@ return [
             'delete' => [
                 'only_last_post' => 'Csak az utolsó posztot lehet törölni.',
                 'locked' => 'Lezárt téma posztját nem lehet törölni.',
-                'no_forum_access' => 'A kért fórumhoz belépési engedély szükséges.',
+                'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
                 'not_owner' => 'Csak a posztoló törölheti a posztot.',
             ],
 
             'edit' => [
                 'deleted' => 'Törölt posztot nem lehet szerkeszteni.',
                 'locked' => 'A posztot nem lehet szerkeszteni.',
-                'no_forum_access' => 'A kért fórumhoz hozzáférési engedély szükséges.',
+                'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
                 'not_owner' => 'Csak a posztoló szerkesztheti a posztot.',
                 'topic_locked' => 'Lezárt téma posztját nem lehet szerkeszteni.',
             ],
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Nem rég posztoltál. Várj egy kicsit, vagy szerkeszd a legutóbbi posztod.',
+                'double_post' => 'Kérlek módosítsd az utolsó posztodat az újraposztolás helyett.',
                 'locked' => 'Nem lehet válaszolni egy zárt fonálra.',
                 'no_forum_access' => 'A kért fórumra belépési engedély szükséges.',
                 'no_permission' => 'Nincs jogosultságod válaszolni.',
@@ -126,7 +130,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'A kért fórumhoz hozzáférési engedély szükséges.',
+                'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
             ],
         ],
 
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Felhasználói oldal lezárva.',
                 'not_owner' => 'Csak a saját felhasználói oldaladat szerkesztheted.',
-                'require_supporter_tag' => 'Supporter-nek kell lenned.',
+                'require_supporter_tag' => 'osu!támogatói cím szükséges.',
             ],
         ],
     ],

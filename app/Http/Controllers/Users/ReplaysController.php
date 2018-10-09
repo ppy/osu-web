@@ -46,6 +46,7 @@ class ReplaysController extends Controller
         $score = $klass::forUser($user)
             ->where('beatmap_id', $beatmapId)
             ->where('replay', true)
+            ->orderBy('score_id', 'desc')
             ->firstOrFail();
 
         $replayFile = $score->replayFile();
@@ -56,10 +57,12 @@ class ReplaysController extends Controller
         try {
             $disposition = "attachment; filename=replay-{$mode}_{$beatmapId}_{$score->getKey()}.osr";
 
+            $content = $replayFile->get();
             // TODO: switch to streamDownload in Laravel 5.6+?
-            $stream = response()->stream(function () use ($replayFile) {
+            $stream = response()->stream(function () use ($replayFile, $content) {
                 echo $replayFile->headerChunk();
-                echo $replayFile->get();
+                echo pack('i', strlen($content));
+                echo $content;
                 echo $replayFile->endChunk();
             });
             $stream->headers->set('Content-Disposition', $disposition);

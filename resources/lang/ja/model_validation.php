@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定の難易度が無効です。',
         'invalid_beatmapset_id' => '指定の譜面が無効です。',
         'locked' => 'ディスカッションはロックされています。',
-        'mapper_note_wrong_user' => 'マッパーメモは譜面作者のみ投稿できます。',
 
         'hype' => [
             'guest' => 'Hypeするにはログインが必要です。',

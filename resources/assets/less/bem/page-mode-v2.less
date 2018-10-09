@@ -48,6 +48,12 @@
     }
   }
 
+  &--comments {
+    &::after {
+      background-color: @blue;
+    }
+  }
+
   &__item {
     display: flex;
 
@@ -58,6 +64,10 @@
 
       .@{_top}--changelog & {
         color: @dark-purple;
+      }
+
+      .@{_top}--comments & {
+        color: @blue;
       }
     }
   }
@@ -92,6 +102,14 @@
 
       &::before {
         background-color: @dark-purple;
+      }
+    }
+
+    .@{_top}--comments & {
+      color: @blue;
+
+      &::before {
+        background-color: @blue;
       }
     }
 

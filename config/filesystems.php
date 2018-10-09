@@ -90,6 +90,14 @@ return [
             'bucket' => env('S3_AVATAR_BUCKET'),
             'base_url' => env('S3_AVATAR_BASE_URL'),
         ],
+
+        's3-beatmap' => [
+            'driver' => 's3',
+            'key' => env('S3_BEATMAPSET_KEY'),
+            'secret' => env('S3_BEATMAPSET_SECRET'),
+            'region' => env('S3_BEATMAPSET_REGION'),
+            'bucket' => env('S3_BEATMAPSET_BUCKET'),
+        ],
     ],
 
 ];

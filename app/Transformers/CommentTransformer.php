@@ -20,15 +20,20 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\Comment;
+use App\Models\NewsPost;
 use League\Fractal;
 use Markdown;
 
 class CommentTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'user',
+        'commentable_meta',
         'editor',
+        'user',
+        'parent',
     ];
 
     public function transform(Comment $comment)
@@ -64,6 +69,34 @@ class CommentTransformer extends Fractal\TransformerAbstract
         ];
     }
 
+    public function includeCommentableMeta(Comment $comment)
+    {
+        return $this->item($comment->commentable, function ($commentable) {
+            // probably belongs somewhere else
+            if ($commentable instanceof Beatmapset) {
+                $titlePrefix = trans('comments.commentable_name.beatmapset');
+                $title = $commentable->artist.' - '.$commentable->title;
+                $url = route('beatmapsets.show', $commentable);
+            } elseif ($commentable instanceof Build) {
+                $titlePrefix = trans('comments.commentable_name.build');
+                $title = $commentable->updateStream->display_name.' '.$commentable->displayVersion();
+                $url = build_url($commentable);
+            } elseif ($commentable instanceof NewsPost) {
+                $titlePrefix = trans('comments.commentable_name.news_post');
+                $title = $commentable->title();
+                $url = route('news.show', $commentable->slug);
+            } else {
+                $title = trans('comments.commentable_name._deleted');
+                $url = null;
+            }
+
+            return [
+                'title' => isset($titlePrefix) ? "{$titlePrefix}: {$title}" : $title,
+                'url' => $url,
+            ];
+        });
+    }
+
     public function includeEditor(Comment $comment)
     {
         if ($comment->editor === null) {
@@ -71,6 +104,15 @@ class CommentTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item($comment->editor, new UserCompactTransformer);
+    }
+
+    public function includeParent(Comment $comment)
+    {
+        if ($comment->parent === null) {
+            return;
+        }
+
+        return $this->item($comment->parent, new static);
     }
 
     public function includeUser(Comment $comment)

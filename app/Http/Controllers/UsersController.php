@@ -31,7 +31,6 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
 use PDOException;
 use Request;
 
@@ -62,6 +61,8 @@ class UsersController extends Controller
 
     public function card($id)
     {
+        // FIXME: if there's a username with the id of a restricted user,
+        // it'll show the card of the non-restricted user.
         $user = User::lookup($id);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
@@ -154,14 +155,13 @@ class UsersController extends Controller
 
     public function posts($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
         $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
-            ->size(50)
-            ->page(LengthAwarePaginator::resolveCurrentPage());
+            ->size(50);
 
         return view('users.posts', compact('search', 'user'));
     }
@@ -178,7 +178,7 @@ class UsersController extends Controller
 
     public function report($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return response()->json([], 404);
         }
@@ -339,7 +339,7 @@ class UsersController extends Controller
 
     private function parsePaginationParams()
     {
-        $this->user = User::lookup(Request::route('user'), 'id');
+        $this->user = User::lookup(Request::route('user'), 'id', true);
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
             abort(404);
         }

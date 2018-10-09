@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Är du säker?',
+    'confirmation_unsaved' => 'Osparade ändringar kommer att förloras. Är du säker?',
     'saved' => 'Sparad',
 
     'array_and' => [

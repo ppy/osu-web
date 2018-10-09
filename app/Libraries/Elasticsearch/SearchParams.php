@@ -24,27 +24,17 @@ use Cache;
 
 abstract class SearchParams
 {
-    /** @var int|null */
-    public $page = null;
+    /** @var int */
+    public $from = 0;
 
-    /** @var int|null */
-    public $size = null;
+    /** @var int */
+    public $size = 50;
 
-    /** @var array|Sort|null */
-    public $sort = null;
+    /** @var array */
+    public $sorts = [];
 
-    /** @var array|string|null */
-    public $source = null;
-
-    /**
-     * This function only exists for MultiSearch to apply additional params.
-     * It should probably be replaced in favour of having different SearchParams subclasses.
-     */
-    public function applyParams(array $params)
+    public function __construct()
     {
-        foreach ($params as $key => $value) {
-            $this->$key = $value;
-        }
     }
 
     /**
@@ -79,5 +69,19 @@ abstract class SearchParams
     public function shouldReturnEmptyResponse() : bool
     {
         return false;
+    }
+
+    /**
+     * Helper to convert a page request parameter to a from query parameter.
+     * The desired page size should be set first, otherwise the default size will be used.
+     *
+     * @param $page
+     * @return int
+     */
+    public function pageAsFrom($page) : int
+    {
+        $page = max(1, $page ?? 1);
+
+        return $this->size * ($page - 1);
     }
 }

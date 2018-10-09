@@ -77,7 +77,7 @@ return [
         'forgot' => 'Mot de passe oublié ?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utilisateurs privilégiés.',
-            'small' => '(les supporteurs l\'obtiendront bientôt)',
+            'small' => '(les supporteurs osu! l\'obtiendront bientôt)',
         ],
 
         'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
     'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter ? :(',
+    'report' => [
+        'button_text' => 'signaler',
+        'comments' => 'Commentaires supplémentaires',
+        'placeholder' => 'Veuillez fournir toute information que vous pensez pouvoir être utile.',
+        'reason' => 'Raison',
+        'thanks' => 'Merci pour votre signalement !',
+        'title' => 'Signaler :username ?',
+
+        'actions' => [
+            'send' => 'Envoyer le rapport',
+            'cancel' => 'Annuler',
+        ],
+
+        'options' => [
+            'cheating' => 'Anti-jeu / Tricherie',
+            'insults' => 'M’insulte / insulte les autres',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Envoi de contenu inapproprié',
+            'nonsense' => 'Non-sens',
+            'other' => 'Autre (écrivez ci-dessous)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu pour la dernière fois :date',
         'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age ans et de :country',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'previous_usernames' => 'Anciennement connu en tant que',

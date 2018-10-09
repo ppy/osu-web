@@ -328,6 +328,19 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetDelete($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($beatmapset->isGraveyard() && $user->getKey() === $beatmapset->user_id) {
+            return 'ok';
+        }
+
+        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapsetLove($user)
     {
         $this->ensureLoggedIn($user);
@@ -599,7 +612,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+        if (!$comment->isDeleted()) {
             return 'ok';
         }
     }
@@ -622,6 +635,10 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($comment->user_id === $user->getKey()) {
+            if ($comment->isDeleted()) {
+                return 'comment.update.deleted';
+            }
+
             return 'ok';
         }
     }

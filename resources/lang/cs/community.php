@@ -33,9 +33,9 @@ return [
         poskytováním cen pro soutěže, odpovídáním na otázky z podpory a obecně udržováním lidí šťastných, osu! konzumuje nezanedbatelnou sumu peněz!
         Jo, a nezapomínejme že to všechno děláme bez nějakých reklam nebo partnerství s hloupými toolbary a podobnými pitomostmi!
             <br/><br/>osu! je koneckonců z velké části řízeno mnou. Nejspíš mě asi znáte pod přezdívkou "peppy".
-            Musel jsem skončit ve své původní práci abych s osu! dokázal udržet krok,
+            Musel jsem zkončit ve své původní práci abych s osu! dokázal udržet krok,
             a i tak se mi ne vždy podaří udržet standardy o které usiluji.
-            Rád bych nabídl své srdečné díky jak všem kteří doteď osu! podporovali,
+            Rád bych nabídl své srdečné díky jak všem kteří doteď osu! pdopořili,
             tak i všem kteří se se rozhodnou dál pokračovat v podpoře téhle úžasné hry a komunity do budoucna :).',
 
         'supporter_status' => [
@@ -87,7 +87,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmapové filtry',
-                'description' => 'Filtruj vyhledávání beatmap podle zahraných a nehraných a podle písmene (jestli je nějaké).',
+                'description' => 'Filtrujte beatmapové vyhledávání podle zahraných a ještě nehraných a podle umístění (jestli jsou nějaké).',
             ],
 
             'yellow_fellow' => [

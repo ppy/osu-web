@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Momenteel zijn er geen toernooien bezig, Kijk later nog eens!',
+        'registration_period' => 'Registratie: :start tot :end',
+
         'header' => [
             'subtitle' => 'Een lijst van actieve, officieel erkende toernooien',
             'title' => 'Community Toernooien',
         ],
-        'none_running' => 'Momenteel zijn er geen toernooien bezig, Kijk later nog eens!',
-        'registration_period' => 'Registratie: :start tot :end',
+
+        'item' => [
+            'registered' => 'Geregistreerde spelers',
+        ],
 
         'state' => [
             'current' => 'Actieve Toernooien',

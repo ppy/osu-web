@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'giv som gave',
         'require_login' => [
-            '_' => 'Du skal være :link for at få et supporter tag!',
+            '_' => '',
             'link_text' => 'logget ind',
         ],
     ],

@@ -33,6 +33,10 @@ return [
             'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '',
+        ],
+
         'vote' => [
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '剛剛已經發表回覆了，喝口水休息會兒，或者編輯之前的回覆。',
+                'double_post' => '',
                 'locked' => '無法回覆被鎖定的主題。',
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'no_permission' => '沒有權限，無法回覆。',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成為支持者。',
+                'require_supporter_tag' => '',
             ],
         ],
     ],

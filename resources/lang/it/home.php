@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> utenti registrati',
 
         'slogan' => [
-            'main' => 'simulatore di cerchi dove vinci gratuitamente',
+            'main' => 'il miglior gioco di ritmo free-to-play',
             'sub' => 'il ritmo è solo ad un click di distanza',
         ],
     ],
@@ -35,7 +35,7 @@ return [
         'advanced_link' => 'Ricerca avanzata',
         'button' => 'Cerca',
         'empty_result' => 'Nessun risultato!',
-        'missing_query' => 'Parola chiave di ricerca di minimo :n caratteri è richiesta',
+        'missing_query' => 'E\' richiesta una parola chiave di almeno :n caratteri',
         'placeholder' => 'digita per cercare',
         'title' => 'Cerca',
 

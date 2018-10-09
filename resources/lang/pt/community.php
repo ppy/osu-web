@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Adoras o osu!?<br/>
-                                Suporta o desenvolvedor do osu! :D',
+                                Apoia o desenvolvimento do osu! :D',
             'small_description' => '',
             'support_button' => 'Eu quero ajudar o osu!',
         ],

@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
         'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
         'locked' => 'Keskustelu on lukittu.',
-        'mapper_note_wrong_user' => 'Vain beatmapin omistaja voi lähettää kartanluojan muistiinpanoja.',
 
         'hype' => [
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',

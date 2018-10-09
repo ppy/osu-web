@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',
         ],
-        'support' => [
-            '_' => 'Podpoř osu!',
-            'tags' => 'Štítek podporovatele',
-            'merchandise' => 'Zboží',
-        ],
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',
             'copyright' => 'Autorské právo (DMCA)',

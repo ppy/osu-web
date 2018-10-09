@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Canlı Yayınlar',
             'report' => 'Bir Sorun Bildir',
         ],
-        'support' => [
-            '_' => 'osu!\'yu Destekle',
-            'tags' => 'Supporter Etiketleri',
-            'merchandise' => 'Ürünler',
-        ],
         'legal' => [
             '_' => 'Yasal & Durum',
             'copyright' => 'Telif Hakkı (DMCA)',

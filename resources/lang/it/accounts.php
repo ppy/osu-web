@@ -76,12 +76,12 @@ return [
         'title' => 'Stili di gioco',
         'mouse' => 'mouse',
         'keyboard' => 'tastiera',
-        'tablet' => 'tablet',
+        'tablet' => 'tavoletta grafica',
         'touch' => 'schermo touch',
     ],
 
     'privacy' => [
         'title' => 'Privacy',
-        'friends_only' => 'Blocca i messaggi privati da persone che non sono sulla tua lista amici',
+        'friends_only' => 'blocca messaggi privati dei non-amici',
     ],
 ];

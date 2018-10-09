@@ -22,6 +22,10 @@ return [
     'feed_title' => '피드',
     'generic' => '버그 수정 및 소소한 사항 개선.',
 
+    'build' => [
+        'title' => ':version 에서 바뀐 것들',
+    ],
+
     'builds' => [
         'users_online' => '접속중인 사용자: :count_delimited명',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => '변경 목록',
+            '_from' => ':from 부터 바뀐 것들',
+            '_from_to' => ':from 과 :to 사이에 바뀐 것들',
+            '_stream' => ':stream 에서 바뀐 것들',
+            '_stream_from' => ':from 부터 :stream 에서 바뀐 것들',
+            '_stream_from_to' => ':stream 에서 :from 과 :to 사이에 바뀐 것들',
+            '_stream_to' => ':stream 의 :to 까지 바뀐 것들',
+            '_to' => ':to 까지 바뀐 것들',
+        ],
+
         'title' => [
             '_' => '변경 사항 :info',
             'info' => '목록',

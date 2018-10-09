@@ -22,6 +22,10 @@ return [
     'feed_title' => 'přehled',
     'generic' => 'Opravy chyb a drobná vylepšení.',
 
+    'build' => [
+        'title' => 'změny v :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited uživatelé online|:count_delimited uživatelé online',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'výpis změn',
+            '_from' => 'změny od :from',
+            '_from_to' => 'změny mezi :from a :to',
+            '_stream' => 'změny v :stream',
+            '_stream_from' => 'změny v :stream od :from',
+            '_stream_from_to' => 'změny v :stream mezi :from a :to',
+            '_stream_to' => 'změny v :stream do :to',
+            '_to' => 'změny do :to',
+        ],
+
         'title' => [
             '_' => 'Seznam změn :info',
             'info' => 'Výpis',

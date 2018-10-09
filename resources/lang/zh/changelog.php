@@ -22,6 +22,10 @@ return [
     'feed_title' => '详细',
     'generic' => '修复已知问题并做了小改动.',
 
+    'build' => [
+        'title' => ':version 中的更新',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited 名用户在线',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => '更新日志',
+            '_from' => '自 :from 以来的更新',
+            '_from_to' => '从 :from 到 :to 的更新',
+            '_stream' => ':stream 中的更新',
+            '_stream_from' => '自 :from 以来 :stream 中的更新',
+            '_stream_from_to' => '从 :from 到 :to 以来 :stream 中的更新',
+            '_stream_to' => '',
+            '_to' => '',
+        ],
+
         'title' => [
             '_' => '更新日志 :info',
             'info' => '列表',

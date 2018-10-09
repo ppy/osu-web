@@ -25,7 +25,7 @@ return [
         'username' => '用户名',
 
         'avatar' => [
-            'title' => '编辑头像',
+            'title' => '头像',
         ],
 
         'email' => [
@@ -43,7 +43,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '编辑个人资料',
+            'title' => '个人资料',
 
             'user' => [
                 'user_from' => '当前位置',
@@ -81,7 +81,7 @@ return [
     ],
 
     'privacy' => [
-        'title' => '隐私政策',
+        'title' => '隐私',
         'friends_only' => '屏蔽来自陌生人的私信',
     ],
 ];

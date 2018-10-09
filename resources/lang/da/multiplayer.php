@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'slettet beatmap',
+        'difference' => 'med :difference',
+        'failed' => 'FAILED',
         'header' => 'Multiplayer Matches',
-        'team-types' => [
-            'head-to-head' => 'Alle mod alle',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(match i gang)',
+        'in_progress_spinner_label' => '',
+        'loading-events' => 'Indlæser begivenheder...',
+        'winner' => ':team vinder',
+
         'events' => [
             'player-left' => ':user forlod matchen',
             'player-joined' => ':user deltog i matchen',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'matchen blev opløst',
             'host-changed-no-user' => 'vært blev skiftet',
         ],
-        'in-progress' => '(match i gang)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Præcision',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Score',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => 'Alle mod alle',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Blåt Hold',
             'red' => 'Rødt Hold',
         ],
-        'winner' => ':team vinder',
-        'difference' => 'med :difference',
-        'loading-events' => 'Indlæser begivenheder...',
-        'more-events' => 'vis alle...',
-        'beatmap-deleted' => 'slettet beatmap',
     ],
     'game' => [
         'scoring-type' => [

@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Keskustelu :discussion käyttäjältä :user sai tarpeeksi ääniä kudosua varten.',
         'kudosu_lost' => 'Keskustelu :discussion käyttäjältä :user menetti ääniä ja annettu kudosu on poistettu.',
         'kudosu_recalculate' => 'Keskustelun :discussion kudosu on uudelleenlaskettu.',
+        'love' => '',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
-        'qualify' => 'Esihyväksytty.',
+        'qualify' => '',
         'rank' => 'Hyväksytty.',
     ],
 
