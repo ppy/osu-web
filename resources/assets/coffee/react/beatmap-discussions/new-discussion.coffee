@@ -53,20 +53,30 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   render: =>
-    topClass = 'beatmap-discussion-new-float js-sync-height--target'
-    topClass += ' beatmap-discussion-new-float--floating' if @isSticky()
+    div null,
+      @renderSticky() if @state.sticky && document.getElementById('js-mode-switcher-portal')?
+
+      div
+        className: "page-extra-tabs"
+
+        @renderCommon()
+
+
+  renderSticky: =>
+    ReactDOM.createPortal @renderCommon(), document.getElementById('js-mode-switcher-portal')
+
+
+  renderCommon: =>
+    topClass = 'beatmap-discussion-new-float'
 
     div
       className: topClass
-      'data-sync-height-id': 'new-discussion-box'
       div className: 'beatmap-discussion-new-float__floatable',
         div
-          className: 'js-sync-height--target beatmap-discussion-new-float__spacer'
-          'data-sync-height-id': 'page-extra-tabs'
-        div
-          className: 'js-new-discussion js-sync-height--reference beatmap-discussion-new-float__content'
-          'data-sync-height-target': 'new-discussion-box'
+          className: 'js-new-discussion beatmap-discussion-new-float__content'
+
           @renderBox()
+
 
   renderBox: =>
     canHype =

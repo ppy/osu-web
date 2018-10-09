@@ -47,7 +47,14 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
 
 
   renderSticky: =>
-    ReactDOM.createPortal @renderCommon(), StickyHeader.contentElement()
+    ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
+
+
+  renderStickyContent: =>
+    div null,
+      @renderCommon()
+      div
+        id: 'js-mode-switcher-portal'
 
 
   renderCommon: =>
