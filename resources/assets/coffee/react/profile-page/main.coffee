@@ -167,15 +167,8 @@ class ProfilePage.Main extends React.PureComponent
           rankHistory: @props.rankHistory
 
         div
-          className: "hidden-xs page-extra-tabs"
-          style:
-            position: 'sticky'
-            top: '50px'
-            zIndex: 501
-
-          div
-            className: 'js-sticky-header'
-            'data-sticky-header-target': 'page-extra-tabs'
+          className: 'hidden-xs page-extra-tabs js-sticky-header'
+          'data-sticky-header-target': 'page-extra-tabs'
 
           div
             className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'

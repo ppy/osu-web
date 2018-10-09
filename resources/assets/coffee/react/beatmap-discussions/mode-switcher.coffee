@@ -38,15 +38,11 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
 
   render: =>
     div
-      className: "page-extra-tabs"
-      style:
-        position: 'sticky'
-        top: '50px'
-        zIndex: 501
+      className: 'page-extra-tabs js-sticky-header'
+      'data-sticky-header-target': 'page-extra-tabs'
 
       div
-        className: 'page-extra-tabs__floatable js-mode-switcher js-sticky-header'
-        'data-sticky-header-target': 'page-extra-tabs'
+        className: 'page-extra-tabs__floatable js-mode-switcher'
         div className: 'osu-page',
           ul className: 'page-mode page-mode--page-extra-tabs',
             for mode in ['generalAll', 'general', 'timeline', 'events']

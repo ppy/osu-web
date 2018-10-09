@@ -54,19 +54,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   render: =>
     div
-      className: "page-extra-tabs"
-      style:
-        position: 'sticky'
-        top: '86px'
-        zIndex: 501
+      className: 'beatmap-discussion-new-float'
+      div className: 'beatmap-discussion-new-float__floatable',
+        div
+          className: 'js-new-discussion beatmap-discussion-new-float__content'
 
-      div
-        className: 'beatmap-discussion-new-float'
-        div className: 'beatmap-discussion-new-float__floatable',
-          div
-            className: 'js-new-discussion beatmap-discussion-new-float__content'
-
-            @renderBox()
+          @renderBox()
 
 
   renderBox: =>
