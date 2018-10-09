@@ -81,4 +81,5 @@ export class PlayDetailMenu extends PureComponent
                   mode: @props.score.beatmap.mode
                   user: @props.score.user_id
           'data-turbolinks': false
+          onClick: @onClick
           osu.trans 'users.show.extra.top_ranks.download_replay'
