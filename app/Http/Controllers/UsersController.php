@@ -219,7 +219,7 @@ class UsersController extends Controller
         $perPage = $this->perPage;
 
         if ($type === 'firsts') {
-            // Override per page restriction in parsePageParams to allow infinite paging
+            // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
 
