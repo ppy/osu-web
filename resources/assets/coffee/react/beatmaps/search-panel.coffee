@@ -19,8 +19,6 @@
 {div, a, i, input, h1, h2} = ReactDOMFactories
 el = React.createElement
 
-stickyHeader = document.getElementById('js-sticky-header-content')
-
 class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
@@ -52,7 +50,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   render: =>
     div null,
-      @renderSticky() if @state.isSticky && stickyHeader?
+      @renderSticky() if @state.isSticky && StickyHeader.contentElement()?
 
       div
         className: 'osu-page osu-page--beatmapsets-search-header'
@@ -63,7 +61,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
 
   renderSticky: =>
-    ReactDOM.createPortal @renderStickyContent(), stickyHeader
+    ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
 
 
   renderStickyContent: =>

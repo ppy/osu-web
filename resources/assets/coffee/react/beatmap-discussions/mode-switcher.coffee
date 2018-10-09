@@ -37,52 +37,56 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
 
 
   render: =>
+    div null,
+      @renderSticky() if @state.tabsSticky && StickyHeader.contentElement()?
+
+      div
+        className: "page-extra-tabs"
+
+        @renderCommon()
+
+
+  renderSticky: =>
+    ReactDOM.createPortal @renderCommon(), StickyHeader.contentElement()
+
+
+  renderCommon: =>
     div
-      className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-
-      div
-        className: 'js-sticky-header'
-        'data-sticky-header-target': 'page-extra-tabs'
-
-      div
-        className: 'page-extra-tabs__padding js-sync-height--target'
-        'data-sync-height-id': 'page-extra-tabs'
-        'data-sticky-header-target': 'page-extra-tabs'
-
-      div
-        className: 'page-extra-tabs__floatable js-sync-height--reference js-mode-switcher'
-        'data-sync-height-target': 'page-extra-tabs'
-        div className: 'osu-page',
-          ul className: 'page-mode page-mode--page-extra-tabs',
-            for mode in ['generalAll', 'general', 'timeline', 'events']
-              li
-                key: mode
-                className: 'page-mode__item'
-                a
-                  className: "page-mode-link #{if @props.mode == mode then 'page-mode-link--is-active' else ''}"
-                  onClick: @switch
-                  href: BeatmapDiscussionHelper.url
-                    mode: mode
-                    beatmapId: @props.currentBeatmap.id
-                    beatmapsetId: @props.beatmapset.id
-                  'data-mode': mode
-                  div
-                    dangerouslySetInnerHTML:
-                      __html:
-                        if _.startsWith(mode, 'general')
-                          osu.trans "beatmaps.discussions.mode.general",
-                            scope: "<span class='page-mode-link__subtitle'>(#{osu.trans("beatmaps.discussions.mode.scopes.#{mode}")})</span>"
-                        else
-                          osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
-                  if mode != 'events'
-                    span className: 'page-mode-link__badge',
-                      _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
-                  span className: 'page-mode-link__stripe'
+      className: 'page-extra-tabs__floatable js-mode-switcher js-sticky-header'
+      'data-sticky-header-target': 'page-extra-tabs'
+      div className: 'osu-page',
+        ul className: 'page-mode page-mode--page-extra-tabs',
+          for mode in ['generalAll', 'general', 'timeline', 'events']
+            li
+              key: mode
+              className: 'page-mode__item'
+              a
+                className: "page-mode-link #{if @props.mode == mode then 'page-mode-link--is-active' else ''}"
+                onClick: @switch
+                href: BeatmapDiscussionHelper.url
+                  mode: mode
+                  beatmapId: @props.currentBeatmap.id
+                  beatmapsetId: @props.beatmapset.id
+                'data-mode': mode
+                div
+                  dangerouslySetInnerHTML:
+                    __html:
+                      if _.startsWith(mode, 'general')
+                        osu.trans "beatmaps.discussions.mode.general",
+                          scope: "<span class='page-mode-link__subtitle'>(#{osu.trans("beatmaps.discussions.mode.scopes.#{mode}")})</span>"
+                      else
+                        osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
+                if mode != 'events'
+                  span className: 'page-mode-link__badge',
+                    _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
+                span className: 'page-mode-link__stripe'
 
 
   tabsStick: (_e, target) =>
     newState = (target == 'page-extra-tabs')
-    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+    if newState != @state.tabsSticky
+      @setState(tabsSticky: newState)
+      StickyHeader.setVisible(newState)
 
 
   switch: (e) =>

@@ -42,6 +42,10 @@ class @StickyHeader
     $.publish 'stickyHeader'
 
 
+  @contentElement: ->
+    document.getElementById('js-sticky-header-content')
+
+
   @hide: ->
     Fade.out document.getElementById('js-sticky-header')
 
