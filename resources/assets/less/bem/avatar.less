@@ -17,6 +17,7 @@
  */
 
 .avatar {
+  @_sticky: nav2-header--sticky;
   @default-avatar-size: 70px;
 
   .reset-input();
@@ -105,6 +106,11 @@
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
+
+    .@{_sticky} & {
+      width: 40px;
+      height: 40px;
+    }
 
     &::after {
       .full-size();

@@ -18,6 +18,7 @@
 
 .nav2 {
   @_top: nav2;
+  @_sticky: nav2-header--sticky;
   @_icon-size: 40px;
   @_button-content-size: 16px;
   @_menu-gutter: 10px;
@@ -34,7 +35,7 @@
   font-weight: 500;
   z-index: @z-index--nav2;
 
-  .nav2-header--sticky & {
+  .@{_sticky} & {
     height: 50px;
   }
 
@@ -146,6 +147,10 @@
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
+
+    .@{_sticky} & {
+      height: 40px;
+    }
   }
 
   &__menu-link {
