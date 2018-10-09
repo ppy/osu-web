@@ -134,7 +134,7 @@ class ProfilePage.Main extends React.PureComponent
 
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-    div className: 'osu-layout__no-scroll',
+    div className: 'osu-layout',
       if isBlocked
         div className: 'osu-page',
           el NotificationBanner,
@@ -167,19 +167,18 @@ class ProfilePage.Main extends React.PureComponent
           rankHistory: @props.rankHistory
 
         div
-          className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+          className: "hidden-xs page-extra-tabs"
+          style:
+            position: 'sticky'
+            top: '50px'
+            zIndex: 501
 
           div
             className: 'js-sticky-header'
             'data-sticky-header-target': 'page-extra-tabs'
 
           div
-            className: 'page-extra-tabs__padding js-sync-height--target'
-            'data-sync-height-id': 'page-extra-tabs'
-
-          div
             className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
-            'data-sync-height-target': 'page-extra-tabs'
             if profileOrder.length > 1
               div className: 'osu-page',
                 div
@@ -207,7 +206,9 @@ class ProfilePage.Main extends React.PureComponent
 
   _tabsStick: (_e, target) =>
     newState = (target == 'page-extra-tabs')
-    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+    if newState != @state.tabsSticky
+      @setState(tabsSticky: newState)
+      StickyHeader.setVisible(newState)
 
 
   extraPage: (name) =>
