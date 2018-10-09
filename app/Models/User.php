@@ -777,6 +777,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id');
     }
 
+    public function clients()
+    {
+        return $this->hasMany(UserClient::class, 'user_id');
+    }
+
     public function favourites()
     {
         return $this->hasMany(FavouriteBeatmapset::class, 'user_id');
