@@ -23,7 +23,7 @@
 
     <div class="osu-layout__row osu-layout__row--page">
         <div class="store-orders">
-            @if (!$orders)
+            @if (!($orders as $order))
                 <span>{{ trans('store.order.no_orders') }}</span>
             @endif
 
