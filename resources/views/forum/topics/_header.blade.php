@@ -47,7 +47,6 @@
                     tabindex="1"
                     name="title"
                     type="text"
-                    value="{{ Request::old("title") }}"
                     placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
                     maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
                 />

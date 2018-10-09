@@ -58,22 +58,18 @@ class TopicsController extends Controller
 
     public function create()
     {
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        $forum = Forum::findOrFail(request('forum_id'));
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $cover = json_item(
-            TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
-            new TopicCoverTransformer()
-        );
-
-        $post = new Post([
-            'post_text' => Request::old('body'),
-            'user' => Auth::user(),
-            'post_time' => Carbon::now(),
+        return view('forum.topics.create', [
+            'forum' => $forum,
+            'cover' => json_item(null, 'Forum/TopicCover'),
+            'post' => new Post([
+                'user' => Auth::user(),
+                'post_time' => Carbon::now(),
+            ]),
         ]);
-
-        return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
     public function issueTag($id)
