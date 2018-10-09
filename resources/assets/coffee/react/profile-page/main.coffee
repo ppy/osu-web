@@ -167,6 +167,9 @@ class ProfilePage.Main extends React.PureComponent
           rankHistory: @props.rankHistory
 
         div
+          className: 'page-extra-tabs-before'
+
+        div
           className: 'hidden-xs page-extra-tabs js-sticky-header js-switchable-mode-page--scrollspy-offset'
           'data-sticky-header-target': 'page-extra-tabs'
           if profileOrder.length > 1
