@@ -67,20 +67,24 @@ class @Forum
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].textContent, 10
+    parseInt @_totalPostsDiv[0].dataset.total, 10
 
 
   setTotalPosts: (n) =>
-    $(@_totalPostsDiv).text(n)
+    $(@_totalPostsDiv)
+      .text osu.formatNumber(n)
+      .attr 'data-total', n
 
 
   deletedPosts: ->
     return null if @_deletedPostsDiv.length == 0
-    parseInt @_deletedPostsDiv[0].textContent, 10
+    parseInt @_deletedPostsDiv[0].dataset.total, 10
 
 
   setDeletedPosts: (n) ->
-    $(@_deletedPostsDiv).text(n)
+    $(@_deletedPostsDiv)
+      .text osu.formatNumber(n)
+      .attr 'data-total', n
 
 
   setCounter: (currentPost) =>
@@ -89,7 +93,7 @@ class @Forum
     @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
     window.reloadUrl = @postUrlN @currentPostPosition
 
-    @_postsCounter[0].textContent = @currentPostPosition
+    @_postsCounter[0].textContent = osu.formatNumber @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
 
@@ -155,7 +159,7 @@ class @Forum
     postN = Math.min(postN, @totalPosts())
 
     $post = $(".js-forum-post[data-post-position='#{postN}']")
-    @_postsCounter[0].textContent = postN
+    @_postsCounter[0].textContent = osu.formatNumber postN
 
     if $post.length
       @scrollTo $post.attr('data-post-id')
