@@ -43,19 +43,5 @@
   &__floatable {
     .own-layer();
     width: 100%;
-
-    .@{top}--floating & {
-      position: fixed;
-      z-index: @z-index--fixed-bar;
-      top: 0;
-    }
-  }
-
-  &__spacer {
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
   }
 }

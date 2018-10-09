@@ -53,29 +53,20 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   render: =>
-    div null,
-      @renderSticky() if @state.sticky && document.getElementById('js-mode-switcher-portal')?
+    div
+      className: "page-extra-tabs"
+      style:
+        position: 'sticky'
+        top: '86px'
+        zIndex: 501
 
       div
-        className: "page-extra-tabs"
+        className: 'beatmap-discussion-new-float'
+        div className: 'beatmap-discussion-new-float__floatable',
+          div
+            className: 'js-new-discussion beatmap-discussion-new-float__content'
 
-        @renderCommon()
-
-
-  renderSticky: =>
-    ReactDOM.createPortal @renderCommon(), document.getElementById('js-mode-switcher-portal')
-
-
-  renderCommon: =>
-    topClass = 'beatmap-discussion-new-float'
-
-    div
-      className: topClass
-      div className: 'beatmap-discussion-new-float__floatable',
-        div
-          className: 'js-new-discussion beatmap-discussion-new-float__content'
-
-          @renderBox()
+            @renderBox()
 
 
   renderBox: =>
