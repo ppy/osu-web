@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'แข่งขันกันได้มากกว่าแค่คลิ๊กเจ้าวงกลม',
-        'large' => 'osu! Community Contests',
+        'large' => '',
     ],
     'voting' => [
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',

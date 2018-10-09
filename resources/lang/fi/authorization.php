@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Vain aiheen aloittaja sekä beatmapin omistaja voivat ratkaista keskustelun.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Lähetit juuri viestin. Odota hetki tai muokkaa edellistä viestiäsi.',
+                'double_post' => 'Muokkaa entistä postaustasi sen sijaan kun postaat uuden.',
                 'locked' => 'Et voi vastata lukittuun aiheeseen.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'no_permission' => 'Ei oikeutta vastata.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'Vain Tukijoille.',
+                'require_supporter_tag' => 'osu!tukija tägi tarvitaan.',
             ],
         ],
     ],

@@ -31,7 +31,7 @@ return [
         'total' => 'totale',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh oh, ci sono problemi con il vostro carrello che stanno impedendo il check-out!',
+            'line_1' => 'Uh oh, ci sono problemi con il tuo carrello che stanno impedendo il check-out!',
             'line_2' => 'Rimuovere o aggiornare gli elementi di sopra per continuare.',
         ],
 
@@ -48,21 +48,21 @@ return [
         'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è annullato.',
-        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, si prega di riprovare.',
+        'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato, per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'pending_checkout' => [
             'line_1' => 'Un precedente check-out è stato iniziato ma non è stato portato a termine.',
-            'line_2' => 'Riprendi il tuo checkout selezionando un metodo di pagamento, o :link to annullare.',
+            'line_2' => 'Riprendi il tuo checkout selezionando un metodo di pagamento, o :link per annullare.',
             'link_text' => 'clicca qui',
         ],
-        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
     ],
 
     'discount' => 'risparmi :percent%',
 
     'mail' => [
         'payment_completed' => [
-            'subject' => 'Abbiamo ricevuto il tuo ordine di osu!store!',
+            'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'regalo ad un giocatore',
         'require_login' => [
-            '_' => 'Devi essere :link per ottenere un tag sostenitore!',
+            '_' => 'Devi avere l\':link per ottenere un tag supporter!',
             'link_text' => 'accesso effettuato',
         ],
     ],

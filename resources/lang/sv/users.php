@@ -77,7 +77,7 @@ return [
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
-            'small' => '(supportare kommer komma in snart)',
+            'small' => '(osu!supportrar kommer att komma in snart)',
         ],
 
         'here' => 'här', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Du behöver vara inloggad för att göra detta.',
     ],
     'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
+    'report' => [
+        'button_text' => 'rapportera',
+        'comments' => 'Ytterligare kommentarer',
+        'placeholder' => 'Var snäll och lämna någon information som du tror kan vara användbar.',
+        'reason' => 'Orsak',
+        'thanks' => 'Tack för din rapport!',
+        'title' => 'Rapportera :username?',
+
+        'actions' => [
+            'send' => 'Skicka Rapport',
+            'cancel' => 'Avbryt',
+        ],
+
+        'options' => [
+            'cheating' => 'Fult spel / Fusk',
+            'insults' => 'Förolämpar mig / andra',
+            'spam' => 'Spammning',
+            'unwanted_content' => 'Länkar olämpligt innehåll',
+            'nonsense' => 'Dumheter',
+            'other' => 'Andra (skriv nedan)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age från :country',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
         'previous_usernames' => 'tidigare känd som',

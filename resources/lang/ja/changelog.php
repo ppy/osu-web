@@ -19,28 +19,43 @@
  */
 
 return [
-    'feed_title' => 'フィード',
+    'feed_title' => '詳細',
     'generic' => 'バグ修正と細かい調整',
 
+    'build' => [
+        'title' => ':versionの変更点',
+    ],
+
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited 人のユーザーがオンライン',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => '開発者: :user',
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => '更新履歴一覧',
+            '_from' => ':from からの変更点',
+            '_from_to' => ':from から :to への変更',
+            '_stream' => ':streamの変更点',
+            '_stream_from' => ':fromからの:streamの変更',
+            '_stream_from_to' => ':fromから:toの:streamの変更',
+            '_stream_to' => ':streamを:toへ変更',
+            '_to' => ':toへ変更',
+        ],
+
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':infoの更新履歴',
+            'info' => '一覧',
         ],
     ],
 
     'support' => [
-        'heading' => 'アップデート、良かったですか？',
-        'text_1' => 'osu!の開発をサポートする為に:link！',
+        'heading' => 'このアップデートは良かったですか？',
+        'text_1' => 'osu!の開発をサポートするために:link！',
         'text_1_link' => 'サポーターになりましょう',
-        'text_2' => '開発の進行の手助けになるほか、いろんな機能が追加で利用できる様になります！',
+        'text_2' => '開発の進行の手助けになるほか、いろんな機能が追加で利用できるようになります！',
     ],
 ];

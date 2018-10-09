@@ -37,6 +37,9 @@ class ForumSearchParams extends SearchParams
     /** @var string|null */
     public $queryString = null;
 
+    /** {@inheritdoc} */
+    public $size = 20;
+
     /** @var int|null */
     public $topicId = null;
 

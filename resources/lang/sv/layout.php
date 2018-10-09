@@ -29,7 +29,7 @@ return [
             'account-edit' => 'inställningar',
             'friends-index' => 'vänner',
             'changelog-index' => 'ändringslogg',
-            'changelog-build' => '',
+            'changelog-build' => 'bygget',
             'getDownload' => 'ladda ner',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
@@ -177,11 +177,6 @@ return [
             'forum' => 'GemenskapsForum',
             'livestreams' => 'Live Strömmar',
             'report' => 'Rapportera ett Problem',
-        ],
-        'support' => [
-            '_' => 'Stötta osu!',
-            'tags' => 'Supporter Taggar',
-            'merchandise' => 'Handelsvaror',
         ],
         'legal' => [
             '_' => 'Juridik & Status',

@@ -55,7 +55,8 @@ class User extends Model implements AuthenticatableContract
     protected $casts = [
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
-        'user_timezone', 'float',
+        'user_allow_viewonline' => 'boolean',
+        'user_timezone' => 'float',
     ];
 
     const PLAYSTYLES = [
@@ -441,10 +442,25 @@ class User extends Model implements AuthenticatableContract
         $this->user_allow_pm = !$value;
     }
 
+    public function getHidePresenceAttribute()
+    {
+        return !$this->user_allow_viewonline;
+    }
+
+    public function setHidePresenceAttribute($value)
+    {
+        $this->user_allow_viewonline = !$value;
+    }
+
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
         $this->username_clean = static::cleanUsername($value);
+    }
+
+    public function getDisplayedLastVisitAttribute()
+    {
+        return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
     public function isSpecial()
@@ -622,7 +638,8 @@ class User extends Model implements AuthenticatableContract
 
     public function isOnline()
     {
-        return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+        return !$this->hide_presence
+            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
     public function isPrivileged()
@@ -1329,7 +1346,9 @@ class User extends Model implements AuthenticatableContract
 
     public function scopeOnline($query)
     {
-        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+        return $query
+            ->where('user_allow_viewonline', true)
+            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function checkPassword($password)

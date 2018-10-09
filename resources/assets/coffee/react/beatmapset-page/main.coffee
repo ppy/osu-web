@@ -204,11 +204,10 @@ class BeatmapsetPage.Main extends React.Component
             loading: @state.loading
             hasScores: @props.beatmapset.has_scores
 
-        if @props.beatmapset.ranked > 0
-          div className: 'osu-page osu-page--generic-compact',
-            el Comments,
-              commentableType: 'beatmapset'
-              commentableId: @props.beatmapset.id
+        div className: 'osu-page osu-page--generic-compact',
+          el Comments,
+            commentableType: 'beatmapset'
+            commentableId: @props.beatmapset.id
 
 
   saveStateToContainer: =>

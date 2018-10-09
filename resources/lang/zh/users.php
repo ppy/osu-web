@@ -77,7 +77,7 @@ return [
         'forgot' => '忘记密码？',
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
-            'small' => '（捐赠玩家将在不久开放）',
+            'small' => '（在不久后将对 osu!支持者 开放）',
         ],
 
         'here' => '这里', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => '请先登录',
     ],
     'logout_confirm' => '确定要退出吗？o(TヘTo)',
+    'report' => [
+        'button_text' => '举报',
+        'comments' => '附加信息',
+        'placeholder' => '请提供你认为可能有用的所有信息。',
+        'reason' => '原因',
+        'thanks' => '感谢你的报告！',
+        'title' => '举报 :username ？',
+
+        'actions' => [
+            'send' => '发送报告',
+            'cancel' => '取消',
+        ],
+
+        'options' => [
+            'cheating' => '违规 / 作弊',
+            'insults' => '侮辱 我/其他人',
+            'spam' => '刷屏/垃圾广告',
+            'unwanted_content' => '发布包含不当内容的链接',
+            'nonsense' => '无意义内容',
+            'other' => '其他（在下方输入原因）',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
-        'origin_age' => ':age 岁',
-        'origin_country_age' => ':age，来自 :country',
         'origin_country' => '来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'previous_usernames' => '曾用名',

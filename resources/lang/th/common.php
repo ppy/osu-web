@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'แน่ใจหรือ?',
+    'confirmation_unsaved' => 'การเปลี่ยนแปลงทั้งหมดจะหายไป คุณแน่หรือไม่',
     'saved' => 'บันทึกแล้ว',
 
     'array_and' => [
@@ -34,7 +35,7 @@ return [
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
         'delete' => 'ลบ',
-        'hide' => '',
+        'hide' => 'ซ่อน',
         'permalink' => 'ลิงก์ถาวร',
         'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
         'post' => 'โพสต์',
@@ -44,9 +45,9 @@ return [
         'reset' => 'รีเซ็ต',
         'save' => 'บันทึก',
         'saving' => 'กำลังบันทึก...',
-        'search' => '',
+        'search' => 'ค้นหา',
         'see_more' => 'ดูเพิ่มเติม',
-        'show' => '',
+        'show' => 'แสดง',
         'show_more' => 'แสดงเพิ่มเติม',
         'upload_image' => 'อัพโหลดรูปภาพ',
     ],

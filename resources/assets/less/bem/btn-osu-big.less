@@ -100,7 +100,12 @@
 
   &--comment-editor {
     border-radius: 10000px;
-    padding: 10px 20px;
+    padding: 10px;
+
+    @media @desktop {
+      min-width: 130px;
+      padding: 10px 20px;
+    }
   }
 
   &--contest-download {
@@ -192,6 +197,11 @@
     background-color: @pink;
   }
 
+  &--rounded {
+    padding: 10px 15px;
+    border-radius: 100000px;
+  }
+
   &--search-advanced {
     flex: 1 0 auto;
     text-transform: lowercase;
@@ -265,11 +275,19 @@
     margin: 0 5px;
     font-size: 150%;
 
+    &--normal {
+      font-size: inherit;
+    }
+
     .@{top}--account-edit & {
       height: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .@{top}--comment-editor & {
+      font-size: 120%;
     }
 
     .@{top}--download-landing & {

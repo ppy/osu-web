@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Сигурни ли сте?',
+    'confirmation_unsaved' => '',
     'saved' => 'Запазено',
 
     'array_and' => [

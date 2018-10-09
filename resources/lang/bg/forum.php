@@ -75,7 +75,9 @@ return [
         'new_topic_login' => '',
         'post_reply' => '',
         'reply_box_placeholder' => '',
+        'reply_title_prefix' => '',
         'started_by' => '',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => '',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => '',
             'submit' => '',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => '',
@@ -111,6 +122,11 @@ return [
             'title_main' => '',
 
             'box' => [
+                'total' => '',
+                'unread' => '',
+            ],
+
+            'info' => [
                 'total' => '',
                 'unread' => '',
             ],

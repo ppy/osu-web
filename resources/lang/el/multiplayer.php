@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'διαγραμμένο beatmap',
+        'difference' => 'με :difference',
+        'failed' => 'ΑΠΈΤΥΧΕ',
         'header' => 'Παιχνίδια πολλών παικτών',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(ματς σε εξέλιξη)',
+        'in_progress_spinner_label' => 'ματς σε εξέλιξη',
+        'loading-events' => 'Φόρτωση events...',
+        'winner' => 'Η :team νίκησε',
+
         'events' => [
             'player-left' => 'Ο :user έφυγε από το ματς',
             'player-joined' => 'Ο :user μπήκε στο ματς',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'το ματς εγκαταλείφθηκε',
             'host-changed-no-user' => 'ο host άλλαξε',
         ],
-        'in-progress' => '(ματς σε εξέλιξη)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Ακρίβεια',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Σκορ',
             ],
         ],
-        'failed' => 'ΑΠΈΤΥΧΕ',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Μπλε Ομάδα',
             'red' => 'Κόκκινη Ομάδα',
         ],
-        'winner' => 'Η :team νίκησε',
-        'difference' => 'με :difference',
-        'loading-events' => 'Φόρτωση events...',
-        'more-events' => 'Προβολή όλων...',
-        'beatmap-deleted' => 'διαγραμμένο beatmap',
     ],
     'game' => [
         'scoring-type' => [

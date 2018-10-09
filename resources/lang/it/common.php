@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Sei sicuro?',
+    'confirmation_unsaved' => 'Le modifiche non salvate andranno perse. Sei sicuro?',
     'saved' => 'Salvato',
 
     'array_and' => [
@@ -43,9 +44,9 @@ return [
         'reply_resolve' => 'Rispondi e Risolvi',
         'reset' => 'Resetta',
         'save' => 'Salva',
-        'saving' => 'Salvando...',
+        'saving' => 'Salvataggio in corso...',
         'search' => 'Cerca',
-        'see_more' => 'vedi più',
+        'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_more' => 'mostra altro',
         'upload_image' => 'carica immagine',
@@ -76,7 +77,7 @@ return [
     'device' => [
         'keyboard' => 'Tastiera',
         'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
+        'tablet' => 'Tavoletta grafica',
         'touch' => 'Schermo Touch',
     ],
 
@@ -95,7 +96,7 @@ return [
         'count_50' => '50',
         'count_geki' => 'MAX',
         'count_katu' => '200',
-        'count_miss' => 'Errori',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [

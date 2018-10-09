@@ -24,7 +24,7 @@ return [
             'subject' => 'Terima kasih, osu! mencintaimu',
         ],
         'supporter_gift' => [
-            'subject' => 'Anda memiliki osu! supporter tag!',
+            'subject' => 'Anda memiliki osu!supporter tag!',
         ],
     ],
 ];

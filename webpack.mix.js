@@ -32,6 +32,13 @@ if (mix.inProduction()) {
   reactMin = 'production.min'
 }
 
+const reactComponentSet = function (name) {
+    return [[
+      ...glob.sync(`resources/assets/coffee/react/${name}/*.coffee`),
+      `resources/assets/coffee/react/${name}.coffee`,
+    ], `js/react/${name}.js`];
+}
+
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX)
@@ -164,54 +171,27 @@ mix
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
+.js(...reactComponentSet('artist-page'))
+.js(...reactComponentSet('beatmap-discussions'))
+.js(...reactComponentSet('beatmaps'))
+.js(...reactComponentSet('beatmapset-page'))
+.js(...reactComponentSet('changelog-build'))
+.js(...reactComponentSet('changelog-index'))
+.js(...reactComponentSet('comments-index'))
+.js(...reactComponentSet('comments-show'))
+.js(...reactComponentSet('mp-history'))
+.js(...reactComponentSet('profile-page'))
+.js(...reactComponentSet('status-page'))
+.js(...reactComponentSet('admin/contest'))
 .js([
-  ...glob.sync('resources/assets/coffee/react/admin/contest/*.coffee'),
-  'resources/assets/coffee/react/admin/contest.coffee',
-], 'js/react/admin/contest.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
-  'resources/assets/coffee/react/profile-page.coffee',
-], 'js/react/profile-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
-  'resources/assets/coffee/react/beatmaps.coffee',
-], 'js/react/beatmaps.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
-  'resources/assets/coffee/react/status-page.coffee',
-], 'js/react/status-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmap-discussions/*.coffee'),
-  'resources/assets/coffee/react/beatmap-discussions.coffee',
-], 'js/react/beatmap-discussions.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmapset-page/*.coffee'),
-  'resources/assets/coffee/react/beatmapset-page.coffee',
-], 'js/react/beatmapset-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/changelog-index/*.coffee'),
-  'resources/assets/coffee/react/changelog-index.coffee',
-], 'js/react/changelog-index.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/changelog-build/*.coffee'),
-  'resources/assets/coffee/react/changelog-build.coffee',
-], 'js/react/changelog-build.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
-  'resources/assets/coffee/react/mp-history.coffee',
-], 'js/react/mp-history.js')
-.js([
-  'resources/assets/coffee/react/artist-page.coffee',
-], 'js/react/artist-page.js')
+  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
+  'resources/assets/coffee/react/contest-entry.coffee',
+], 'js/react/contest-entry.js')
 .js([
   // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
   ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
   'resources/assets/coffee/react/contest-voting.coffee',
 ], 'js/react/contest-voting.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
-  'resources/assets/coffee/react/contest-entry.coffee',
-], 'js/react/contest-entry.js')
 .copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')

@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
     'slogan' => "เล่นคนเดียวมันอันตราย",
     'subforums' => 'ฟอรั่มย่อย',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'เข้าสู่ระบบเพื่อโพสต์หัวเรื่องใหม่',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
+        'reply_title_prefix' => '',
         'started_by' => 'โดย :user',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => 'Preview',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'เขียน',
             'submit' => 'โพสต์',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'พิมพ์เนื้อหาโพสต์ที่นี่',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
+            ],
+
+            'info' => [
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
             ],
         ],
 

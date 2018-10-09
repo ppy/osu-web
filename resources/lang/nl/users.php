@@ -77,7 +77,7 @@ return [
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
             'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
-            'small' => '(supporters krijgen binnenkort toegang)',
+            'small' => '(osu!supporters krijgen binnenkort in)',
         ],
 
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Je moet ingelogd zijn om dit te doen.',
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Je account is gerestricteerd!',
         'message' => 'Zolang je gerestricteerd bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age uit :country',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
         'previous_usernames' => 'vroeger bekend als',

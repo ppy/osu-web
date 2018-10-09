@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'törölt beatmap',
+        'difference' => ':difference különbséggel',
+        'failed' => 'ELBUKOTT',
         'header' => 'Többjátékos meccsek',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Csapat VS',
-            'tag-team-vs' => 'Tag Csapat VS',
-        ],
+        'in-progress' => '(a mérkőzés folyamatban van)',
+        'in_progress_spinner_label' => 'a meccs folyamatban',
+        'loading-events' => 'Események betöltése...',
+        'winner' => ':team nyer',
+
         'events' => [
             'player-left' => ':user elhagyta a mérkőzést',
             'player-joined' => ':user csatlakozott a mérkőzéshez',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'a mérkőzés felbomlott',
             'host-changed-no-user' => 'a házigazda megváltozott',
         ],
-        'in-progress' => '(a mérkőzés folyamatban van)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Pontosság',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Pontszám',
             ],
         ],
-        'failed' => 'ELBUKOTT',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Csapat VS',
+            'tag-team-vs' => 'Tag Csapat VS',
+        ],
+
         'teams' => [
             'blue' => 'Kék Csapat',
             'red' => 'Piros Csapat',
         ],
-        'winner' => ':team nyer',
-        'difference' => ':difference különbséggel',
-        'loading-events' => 'Események betöltése...',
-        'more-events' => 'összes megtekintése...',
-        'beatmap-deleted' => 'törölt beatmap',
     ],
     'game' => [
         'scoring-type' => [

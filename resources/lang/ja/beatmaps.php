@@ -41,7 +41,7 @@ return [
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除されたのでディスカッションはできません。',
         'message_type_select' => 'コメントタイプを選択',
-        'reply_notice' => 'エンターキーで送信する',
+        'reply_notice' => 'Enter キーを押して送信',
         'reply_placeholder' => 'ここに入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済',
@@ -64,13 +64,13 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => '一般(:version)への投稿をここに入力',
+            'generalAll' => '一般 (全難易度) への投稿をここに入力',
+            'timeline' => '一般(:version)への投稿をここに入力',
         ],
 
         'message_type' => [
-            'disqualify' => 'Disqualify',
+            'disqualify' => '失格',
             'hype' => 'Hype!',
             'mapper_note' => 'メモ',
             'nomination_reset' => 'ノミネーションをリセット',
@@ -100,7 +100,7 @@ return [
         ],
 
         'sort' => [
-            '_' => '並び替え順：',
+            '_' => '並び替え順:',
             'created_at' => '投稿日時',
             'timeline' => 'タイムライン',
             'updated_at' => '更新日時',
@@ -149,6 +149,8 @@ return [
         'disqualified_no_reason' => '理由が明示されていません',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
+        'love' => 'お気に入り',
+        'love_confirm' => 'このBeatmapは好きですか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'この譜面をノミネートしますか？',
         'nominated_by' => ':usersがノミネート',
@@ -165,21 +167,22 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
+            'nomination_reset' => 'よろしいですか？新しい問題点を投稿すると審査中ではなくなります。',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'キーワードを入力・・・',
+            'login_required' => '検索にはサインインをする必要があります。',
             'options' => '検索の詳細設定',
-            'supporter_filter' => '',
+            'supporter_filter' => ':filters による絞り込みにはサポーター タグが必要です',
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',
             'filters' => [
                 'general' => '一般',
                 'mode' => 'モード',
-                'status' => 'ランクステータス',
+                'status' => 'カテゴリー',
                 'genre' => 'ジャンル',
                 'language' => '言語',
                 'extra' => 'エキストラ',
@@ -198,14 +201,10 @@ return [
                 'nominations' => 'ノミネーション',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => ':filters による絞り込みには有効な:link が必要です',
+                'link_text' => 'サポーター タグ',
             ],
         ],
-        'mode' => 'モード',
-        'status' => 'ランクステータス',
-        'source' => ':source より',
-        'load-more' => '更に読み込む',
     ],
     'general' => [
         'recommended' => '推奨難易度',
@@ -225,7 +224,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'お気に入り',
-        'pending' => 'Pending',
+        'pending' => '保留中・製作中',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
     ],
