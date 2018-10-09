@@ -17,10 +17,6 @@
  */
 
 .beatmap-discussion-new-float {
-  position: sticky;
-  top: 86px;
-  z-index: 500;
-
   .bg() {
     .at2x('/images/backgrounds/page-ddd.png');
 
@@ -37,6 +33,12 @@
   margin-top: -10px;
   margin-bottom: 10px;
   pointer-events: none;
+
+  &--pinned {
+    position: sticky;
+    top: 86px;
+    z-index: 500;
+  }
 
   &__content {
     .bg();

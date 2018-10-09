@@ -53,8 +53,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   render: =>
+    cssClasses = 'beatmap-discussion-new-float'
+    cssClasses += ' beatmap-discussion-new-float--pinned' if @state.sticky
+
     div
-      className: 'beatmap-discussion-new-float'
+      className: cssClasses
       div className: 'beatmap-discussion-new-float__floatable',
         div
           className: 'js-new-discussion beatmap-discussion-new-float__content'
@@ -73,6 +76,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @props.currentUser.is_bng ||
       @props.currentUser.is_qat
 
+    buttonCssClasses = 'btn-circle'
+    buttonCssClasses += ' btn-circle--activated' if @state.sticky
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -82,7 +88,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           span className: 'page-title__button',
             span
-              className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
+              className: buttonCssClasses
               onClick: @toggleSticky
               span className: 'btn-circle__content',
                 i className: 'fas fa-thumbtack'
