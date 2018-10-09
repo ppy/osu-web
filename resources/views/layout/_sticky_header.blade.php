@@ -16,15 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
-    @yield('sticky-header-stripe')
+    <div class="nav2-header nav2-header--sticky">
+        <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
+        <div class="nav2-header__sticky-bg"></div>
+
+        <div class="osu-page">
+            @include('layout._nav2', ['legacyNav' => false])
+        </div>
+    </div>
+
     <div class="osu-page">
         <div class="sticky-header__body">
-            <div class="sticky-header__logo">
-                @include('objects.logo_menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
-            </div>
-
-            <div class="sticky-header__content">
-                <div class="sticky-header__breadcrumbs">
+            <div class="sticky-header__breadcrumbs">
                     @yield('sticky-header-breadcrumbs')
                 </div>
                 <div id="js-sticky-header-content">
