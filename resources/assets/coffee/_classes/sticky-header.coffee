@@ -36,7 +36,7 @@ class @StickyHeader
 
     for marker in @stickMarker by -1
       css = window.getComputedStyle(marker)
-      top = if css.position == 'sticky'
+      top = if css.position == 'sticky' || css.position == '-webkit-sticky'
               parseInt(css.top, 10)
             else
               0
