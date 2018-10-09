@@ -48,9 +48,9 @@ export class PlayDetailMenu extends PureComponent
       @props.onHide?()
 
 
-  onClick: =>
+  toggle: =>
     @setState active: !@state.active
-    @props.onShow?()
+    if @state.active then @props.onHide?() else @props.onShow?()
 
 
   render: =>
@@ -60,7 +60,7 @@ export class PlayDetailMenu extends PureComponent
       button
         className: 'play-detail-menu__button'
         type: 'button'
-        onClick: @onClick
+        onClick: @toggle
         i className: 'fas fa-ellipsis-v'
 
       @renderMenu()
@@ -81,5 +81,5 @@ export class PlayDetailMenu extends PureComponent
                   mode: @props.score.beatmap.mode
                   user: @props.score.user_id
           'data-turbolinks': false
-          onClick: @onClick
+          onClick: @toggle
           osu.trans 'users.show.extra.top_ranks.download_replay'
