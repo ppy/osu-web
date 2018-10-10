@@ -23,11 +23,11 @@
 
     <div class="osu-layout__row osu-layout__row--page">
         <div class="store-orders">
-            @if (!($orders as $order))
-                <span>{{ trans('store.order.no_orders') }}</span>
-            @endif
 
             @foreach ($orders as $order)
+                @if ($order->isEmpty())
+                    <span>{{ trans('store.order.no_orders') }}</span>
+                @endif
                 <div class="store-order store-order--status-{{ $order->status }}">
                     <div class="store-order__header">
                         <div class="store-order__header-left">
