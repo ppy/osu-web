@@ -21,9 +21,6 @@
     <div
         class="
             navbar-mobile
-            navbar
-            navbar-default
-            navbar-static-top
             u-section--bg
         "
         role="navigation"

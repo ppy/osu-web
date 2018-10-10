@@ -17,19 +17,21 @@
  */
 
 .navbar-mobile-padding-before {
-  padding-top: 60px;
+  padding-top: @navbar-height;
 }
 
 .navbar-mobile {
   position: fixed;
   top: 0;
   width: 100%;
+  color: #fff;
 
   &__brand {
     float: none;
     padding: 0 10px;
     height: auto;
     min-width: 0;
+    font-size: 20px;
     line-height: 1.5; // avoid clipping
   }
 
