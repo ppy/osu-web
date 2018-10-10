@@ -16,34 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.nav2-header-legacy-padding {
+  padding-top: @nav2-height;
+
+  @media @desktop {
+    margin-bottom: -5px;
+  }
+}
+
 .nav2-header {
   @_top: nav2-header;
-  position: fixed;
-  // top: 0;
+  position: absolute;
+  top: 0;
   width: 100%;
-
 
   &--sticky {
     position: fixed;
     background-color: #333;
-    width: 100%;
     height: 50px;
-    top: 0;
     z-index: @z-index--fixed-bar;
-  }
-
-  &--legacy {
-    position: relative;
-    width: auto;
-
-    &.nav2-header--sticky {
-      position: fixed;
-      width: 100%;
-    }
-
-    @media @desktop {
-      margin-bottom: -5px;
-    }
   }
 
   &__menu-bg {

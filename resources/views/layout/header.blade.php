@@ -19,13 +19,16 @@
     $legacyNav ?? ($legacyNav = true);
 @endphp
 @include('layout._header_mobile')
+
+@if ($legacyNav)
+    <div class="nav2-header-legacy-padding"></div>
+@endif
 <div
     id="js-pinned-header"
     class="
     hidden-xs
     no-print
     nav2-header
-    {{ $legacyNav ? 'nav2-header--legacy' : '' }}
     {{ optional(Auth::user())->isRestricted() ? 'nav2-header--restricted' : '' }}
 ">
     @if ($legacyNav)
