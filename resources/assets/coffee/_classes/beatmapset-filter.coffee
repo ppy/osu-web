@@ -44,7 +44,7 @@ class @BeatmapsetFilter
 
 
   @keyToChar: ->
-    @_keyToChar ||= _.invert @charToKey
+    @_keyToChar ?= _.invert @charToKey
 
 
   @defaults:
