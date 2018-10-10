@@ -41,13 +41,12 @@ class UserClient extends Model
             return false;
         }
 
-        $latestBuildId = Build::select('build_id')
+        $latestBuild = Build::select('build_id')
             ->where([
                 'test_build' => false,
                 'stream_id' => $this->build->stream_id,
-            ])->last()
-            ->getKey();
+            ])->last();
 
-        return $this->build->getKey() === $latestBuildId;
+        return $this->build->getKey() === optional($latestBuild)->getKey();
     }
 }
