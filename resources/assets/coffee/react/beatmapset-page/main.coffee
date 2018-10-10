@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -192,6 +192,12 @@ class BeatmapsetPage.Main extends React.Component
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
+        if @props.beatmapset.can_be_hyped
+          div className: 'osu-page osu-page--generic-compact',
+            el BeatmapsetPage.Hype,
+              beatmapset: @props.beatmapset
+              currentUser: currentUser
+
         div className: 'osu-page osu-page--generic',
           el BeatmapsetPage.Scoreboard,
             type: @state.currentScoreboardType

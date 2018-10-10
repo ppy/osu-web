@@ -69,6 +69,24 @@ return [
             'nominations' => 'Nominations',
             'playcount' => 'Playcount',
         ],
+
+        'hype' => [
+            'action' => [
+                '_' => 'Hype this map if you enjoyed playing it to help it progress to :ranked status.',
+                'ranked' => 'Ranked',
+            ],
+
+            'current' => [
+                '_' => 'This map is currently :status.',
+
+                'status' => [
+                    'graveyard' => 'in graveyard',
+                    'pending' => 'pending',
+                    'wip' => 'work in progress',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Description',
             'genre' => 'Genre',

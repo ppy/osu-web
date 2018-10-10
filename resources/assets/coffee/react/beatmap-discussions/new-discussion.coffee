@@ -98,7 +98,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          div className: "#{bn}__message",
+          div className: "#{bn}__message", id: 'new',
             if @props.currentUser.id?
               [
                 el TextareaAutosize,
@@ -109,6 +109,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @setSticky
+                  # FIXME: Doesn't quite work in firefox for some reason.
+                  # It first focuses in but then gets unfocused after a while.
+                  autoFocus: document.location.hash == '#new'
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
