@@ -174,7 +174,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'anna hakusana...',
-            'login_required' => '',
+            'login_required' => 'Kirjaudu sisään etsiäksesi.',
             'options' => 'Lisää Haku-asetuksia',
             'supporter_filter' => '',
             'not-found' => 'ei tuloksia',
@@ -182,7 +182,7 @@ return [
             'filters' => [
                 'general' => 'Yleinen',
                 'mode' => 'Pelitila',
-                'status' => '',
+                'status' => 'Luokat',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
                 'extra' => 'extra',

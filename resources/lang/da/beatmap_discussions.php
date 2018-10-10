@@ -39,7 +39,7 @@ return [
             '_' => '',
             'deleted' => 'Inkluder slettede diskussioner',
             'types' => '',
-            'username' => '',
+            'username' => 'Brugernavn',
 
             'user' => [
                 'label' => 'Bruger',
