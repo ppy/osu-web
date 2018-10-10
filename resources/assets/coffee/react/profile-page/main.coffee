@@ -169,7 +169,6 @@ class ProfilePage.Main extends React.PureComponent
 
         div
           className: 'hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'
-          'data-sticky-header-target': 'page-extra-tabs'
           if profileOrder.length > 1
             div className: 'osu-page',
               div
