@@ -18,9 +18,13 @@
 
 .sticky-header {
   position: fixed;
-  top: 50px;
+  top: @nav2-height--sticky;
   width: 100%;
-  z-index: @z-index--fixed-bar;
+  z-index: 1;
+
+  @media @mobile {
+    top: 0;
+  }
 
   &__body {
     display: flex;

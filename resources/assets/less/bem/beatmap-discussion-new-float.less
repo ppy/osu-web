@@ -37,8 +37,12 @@
   &--pinned {
     position: sticky;
     position: -webkit-sticky;
-    top: 86px;
-    z-index: 500;
+    top: @nav2-height--sticky + 37px;
+    z-index: 1;
+
+    @media @mobile {
+      top: 37px;
+    }
   }
 
   &__content {

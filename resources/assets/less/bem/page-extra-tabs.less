@@ -19,10 +19,14 @@
 .page-extra-tabs {
   position: sticky;
   position: -webkit-sticky;
-  top: 50px;
-  z-index: @z-index--fixed-bar;
+  top: @nav2-height--sticky;
+  z-index: 1;
 
   background-color: #333;
 
   border-bottom: 1px solid @yellow;
+
+  @media @mobile {
+    top: 0;
+  }
 }
