@@ -25,6 +25,7 @@
   @_link-padding-vertical: 6px;
   @_link-highlight-margin-vertical: 2px;
   @_padding-vertical: ((@nav2-height - @nav2-menu-height) / 2);
+  @_padding-vertical--sticky: (abs(@nav2-height--sticky - @nav2-menu-height) / 2);
 
   .own-layer();
   padding: @_padding-vertical 0;
@@ -36,6 +37,7 @@
   z-index: @z-index--nav2;
 
   .@{_sticky} & {
+    padding: @_padding-vertical--sticky 0;
     height: 50px;
   }
 
