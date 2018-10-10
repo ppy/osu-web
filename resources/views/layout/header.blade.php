@@ -19,7 +19,9 @@
     $legacyNav ?? ($legacyNav = true);
 @endphp
 @include('layout._header_mobile')
-<div class="
+<div
+    id="js-pinned-header"
+    class="
     hidden-xs
     no-print
     nav2-header
@@ -37,6 +39,8 @@
     <div class="osu-page">
         @include('layout._nav2')
     </div>
+
+    @include('layout._sticky_header')
 </div>
 
 @if (Auth::user() === null)
@@ -56,4 +60,3 @@
     </div>
 @endif
 
-@include('layout._sticky_header')

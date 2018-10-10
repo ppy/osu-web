@@ -44,13 +44,14 @@ class Beatmaps.SearchPanel extends React.PureComponent
   stickyHeader: (_e, target) =>
     newState = (target == 'beatmapsets-search')
     if newState != @state.isSticky
-      @setState isSticky: newState, ->
+      @setState isSticky: newState, () ->
         StickyHeader.setVisible(newState)
 
 
   render: =>
     div null,
-      @renderSticky() if @state.isSticky && StickyHeader.contentElement()?
+      if @state.isSticky && StickyHeader.contentElement()?
+        ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
 
       div
         className: 'osu-page osu-page--beatmapsets-search-header'
@@ -58,10 +59,6 @@ class Beatmaps.SearchPanel extends React.PureComponent
           @renderUser()
         else
           @renderGuest()
-
-
-  renderSticky: =>
-    ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
 
 
   renderStickyContent: =>

@@ -46,7 +46,6 @@ class ProfilePage.Main extends React.PureComponent
           raw: props.userPage.raw
           editing: false
           selection: [0, 0]
-        tabsSticky: false
         profileOrder: props.user.profile_order[..]
         recentActivity: @props.extras.recentActivity
         scoresBest: @props.extras.scoresBest
@@ -74,7 +73,6 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
@@ -170,7 +168,7 @@ class ProfilePage.Main extends React.PureComponent
           className: 'page-extra-tabs-before'
 
         div
-          className: 'hidden-xs page-extra-tabs js-sticky-header js-switchable-mode-page--scrollspy-offset'
+          className: 'hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'
           'data-sticky-header-target': 'page-extra-tabs'
           if profileOrder.length > 1
             div className: 'osu-page',
@@ -195,13 +193,6 @@ class ProfilePage.Main extends React.PureComponent
             className: 'osu-layout__row'
             ref: (el) => @pages = el
             @extraPage name for name in profileOrder
-
-
-  _tabsStick: (_e, target) =>
-    newState = (target == 'page-extra-tabs')
-    if newState != @state.tabsSticky
-      @setState(tabsSticky: newState)
-      StickyHeader.setVisible(newState)
 
 
   extraPage: (name) =>

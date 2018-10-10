@@ -15,24 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
-    <div class="nav2-header nav2-header--sticky">
-        <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
-        <div class="nav2-header__sticky-bg"></div>
-
-        <div class="osu-page">
-            @include('layout._nav2', ['legacyNav' => false])
-        </div>
-    </div>
-
+<div id="js-sticky-header" class="sticky-header" data-visibility="none">
     <div class="osu-page">
         <div class="sticky-header__body">
             <div class="sticky-header__breadcrumbs">
-                    @yield('sticky-header-breadcrumbs')
-                </div>
-                <div id="js-sticky-header-content">
-                    @yield('sticky-header-content')
-                </div>
+                @yield('sticky-header-breadcrumbs')
+            </div>
+            <div id="js-sticky-header-content">
+                @yield('sticky-header-content')
             </div>
         </div>
     </div>

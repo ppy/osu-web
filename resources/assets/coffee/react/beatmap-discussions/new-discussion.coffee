@@ -38,10 +38,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       sticky: false
 
 
-  componentDidMount: =>
-    $.subscribe 'stickyHeader.newDiscussion', @checkStickability
-
-
   componentWillUpdate: =>
     @cache = {}
 
@@ -49,7 +45,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   componentWillUnmount: =>
     @postXhr?.abort()
     @throttledPost.cancel()
-    $.unsubscribe '.newDiscussion'
 
 
   render: =>
@@ -204,12 +199,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   canPost: =>
     !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
-
-
-  checkStickability: (_e, target) =>
-    # depends on ModeSwitcher
-    newState = (target == 'page-extra-tabs')
-    @setState(stickable: newState) if newState != @state.stickable
 
 
   handleKeyDownCallback: (type, event) =>

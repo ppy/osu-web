@@ -27,7 +27,7 @@
             'forum' => $topic->forum,
         ])
     </div>
-@endsection();
+@endsection()
 
 @section('sticky-header-content')
     <h1 class="forum-topic-headernav__row u-ellipsis-overflow">

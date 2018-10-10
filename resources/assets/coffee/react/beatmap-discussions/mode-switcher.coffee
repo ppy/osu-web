@@ -23,18 +23,6 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state =
-      tabsSticky: false
-
-
-  componentDidMount: =>
-    $.subscribe 'stickyHeader.beatmapDiscussionsMode', @tabsStick
-    osu.pageChange()
-
-
-  componentWillUnmount: =>
-    $.unsubscribe '.beatmapDiscussionsMode'
-
 
   render: =>
     [
@@ -43,8 +31,7 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
         key: 'page-extra-tabs-before'
 
       div
-        className: 'page-extra-tabs js-sticky-header js-mode-switcher'
-        'data-sticky-header-target': 'page-extra-tabs'
+        className: 'page-extra-tabs js-mode-switcher'
         key: 'page-extra-tabs'
 
         div className: 'osu-page',
@@ -74,12 +61,6 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
                       _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
                   span className: 'page-mode-link__stripe'
     ]
-
-  tabsStick: (_e, target) =>
-    newState = (target == 'page-extra-tabs')
-    if newState != @state.tabsSticky
-      @setState(tabsSticky: newState)
-      StickyHeader.setVisible(newState)
 
 
   switch: (e) =>

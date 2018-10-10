@@ -27,8 +27,19 @@ class @StickyHeader
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
 
+    $(window).on 'throttled-scroll', @applyCss
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+
+
+  applyCss: ->
+    header = document.getElementById('js-pinned-header')
+    return unless header?
+
+    if window.pageYOffset > 90
+      header.classList.add 'nav2-header--sticky'
+    else if window.pageYOffset < 50
+      header.classList.remove 'nav2-header--sticky'
 
 
   stickOrUnstick: =>
@@ -52,13 +63,8 @@ class @StickyHeader
     document.getElementById('js-sticky-header-content')
 
 
-  @hide: ->
-    Fade.out document.getElementById('js-sticky-header')
-
-
-  @setVisible: (visible) =>
-    if visible then @show() else @hide()
-
-
-  @show: ->
-    Fade.in document.getElementById('js-sticky-header')
+  @setVisible: (visible) ->
+    if visible
+      Fade.in document.getElementById('js-sticky-header')
+    else
+      Fade.out document.getElementById('js-sticky-header')

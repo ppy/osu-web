@@ -18,18 +18,13 @@
 
 .sticky-header {
   position: fixed;
-  backface-visibility: hidden;
-  top: 0;
-  left: 0;
+  top: 50px;
   width: 100%;
-  transition: opacity 120ms linear;
   z-index: @z-index--fixed-bar;
 
   &__body {
-    top: 50px;
     display: flex;
     width: 100%;
-    padding: 5px;
     background-color: #333;
 
     min-width: 0;
