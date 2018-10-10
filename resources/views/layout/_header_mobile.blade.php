@@ -16,6 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="visible-xs no-print js-header--main">
+    <div class="navbar-mobile-padding-before"></div>
+
     <div
         class="
             navbar-mobile
