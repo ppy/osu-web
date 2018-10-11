@@ -98,6 +98,9 @@ let webpackConfig = {
     })
   ],
   resolve: {
+    alias: {
+      'css': path.resolve(__dirname, 'resources/assets/less'),
+    },
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),

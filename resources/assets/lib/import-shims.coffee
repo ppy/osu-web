@@ -27,7 +27,7 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
-import variables from '../less/variables.less'
+import variables from 'css/variables.less'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
