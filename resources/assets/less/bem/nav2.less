@@ -34,6 +34,7 @@
   font-size: @font-size--title-small;
   font-weight: 500;
   z-index: @z-index--nav2;
+  transition: height @header-pinned-animation-duration;
 
   .@{header-pinned} & {
     padding: @_padding-vertical--sticky 0;
@@ -148,6 +149,7 @@
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
+    transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
 
     .@{header-pinned} & {
       height: 40px;
