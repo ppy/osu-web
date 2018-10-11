@@ -39,7 +39,7 @@ class @StickyHeader
     styles = window._styles.header
     if window.pageYOffset > styles.height
       header.classList.add 'js-pinned-header--pinned'
-    else if window.pageYOffset < styles.heightSticky
+    else
       header.classList.remove 'js-pinned-header--pinned'
 
 
