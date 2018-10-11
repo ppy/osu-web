@@ -55,10 +55,7 @@ return [
         ],
 
         'hype' => [
-            'action' => [
-                '_' => 'Hype this map if you enjoyed playing it to help it progress to :ranked status.',
-                'ranked' => 'Ranked',
-            ],
+            'action' => 'Hype this map if you enjoyed playing it to help it progress to <strong>Ranked</strong> status.',
 
             'current' => [
                 '_' => 'This map is currently :status.',

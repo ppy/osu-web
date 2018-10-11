@@ -34,8 +34,7 @@ class BeatmapsetPage.Hype extends React.PureComponent
         p
           className: "#{bn}__description-row #{bn}__description-row--action"
           dangerouslySetInnerHTML:
-            __html: osu.trans 'beatmapsets.show.hype.action._',
-              ranked: "<strong>#{osu.trans('beatmapsets.show.hype.action.ranked')}</strong>"
+            __html: osu.trans('beatmapsets.show.hype.action')
 
       div className: "#{bn}__box #{bn}__box--float",
         div className: "#{bn}__lights-header",
