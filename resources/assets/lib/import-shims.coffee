@@ -41,11 +41,10 @@ window._exported = {
 
 # refer to variables.less
 window._styles =
-  variables:
-    headerHeight: 90 # @nav2-height
-    headerHeightSticky: 50 # @nav2-height--sticky
-    headerHeightMobile: 60 # @navbar-height
-    headerPinned: 'js-header-pinned' # @header-pinned
+  header:
+    height: 90 # @nav2-height
+    heightSticky: 50 # @nav2-height--sticky
+    heightMobile: 60 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize

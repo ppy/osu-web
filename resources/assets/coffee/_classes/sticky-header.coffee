@@ -36,11 +36,11 @@ class @StickyHeader
     header = document.getElementById('js-pinned-header')
     return unless header?
 
-    styles = window._styles.variables
-    if window.pageYOffset > styles.headerHeight
-      header.classList.add styles.headerPinned
-    else if window.pageYOffset < styles.headerHeightSticky
-      header.classList.remove styles.headerPinned
+    styles = window._styles.header
+    if window.pageYOffset > styles.height
+      header.classList.add 'js-pinned-header--pinned'
+    else if window.pageYOffset < styles.heightSticky
+      header.classList.remove 'js-pinned-header--pinned'
 
 
   stickOrUnstick: =>
@@ -59,11 +59,11 @@ class @StickyHeader
 
 
   @headerHeight: ->
-    styles = window._styles.variables
+    styles = window._styles.header
     if osu.isMobile()
-      styles.headerHeightMobile
+      styles.heightMobile
     else
-      styles.headerHeightSticky
+      styles.heightSticky
 
 
   @setVisible: (visible) ->
