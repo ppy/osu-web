@@ -47,7 +47,7 @@ services:
     user: ${UID:?err}
     environment:
       <<: *x-env
-    command: ./docker/php/start
+    command: ['./docker/php/start', 'db:3306']
   yarn:
     image: node:8-alpine
     volumes:
