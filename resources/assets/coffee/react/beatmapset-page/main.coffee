@@ -198,17 +198,18 @@ class BeatmapsetPage.Main extends React.Component
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
-        div className: 'osu-page osu-page--generic',
-          el BeatmapsetPage.Scoreboard,
-            type: @state.currentScoreboardType
-            beatmap: @state.currentBeatmap
-            scores: @state.scores
-            userScore: @state.userScore?.score
-            userScorePosition: @state.userScore?.position
-            enabledMods: @state.enabledMods
-            countries: @props.countries
-            loading: @state.loading
-            hasScores: @props.beatmapset.has_scores
+        if @props.beatmapset.has_scores
+          div className: 'osu-page osu-page--generic',
+            el BeatmapsetPage.Scoreboard,
+              type: @state.currentScoreboardType
+              beatmap: @state.currentBeatmap
+              scores: @state.scores
+              userScore: @state.userScore?.score
+              userScorePosition: @state.userScore?.position
+              enabledMods: @state.enabledMods
+              countries: @props.countries
+              loading: @state.loading
+              hasScores: @props.beatmapset.has_scores
 
         div className: 'osu-page osu-page--generic-compact',
           el Comments,
