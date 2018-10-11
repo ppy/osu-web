@@ -43,8 +43,13 @@
 
   &__legacy-gradient-overlay {
     .full-size();
+
+    .@{header-pinned} & {
+      background-position-y: 100%;
+    }
+
     display: block;
-    transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out, background-position @header-pinned-animation-duration / 2;
   }
 
   &__legacy-triangles {
