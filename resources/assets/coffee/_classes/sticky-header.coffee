@@ -37,9 +37,9 @@ class @StickyHeader
     return unless header?
 
     styles = window._styles.variables
-    if window.pageYOffset > parseInt(styles.headerHeight, 10)
+    if window.pageYOffset > styles.headerHeight
       header.classList.add styles.headerPinned
-    else if window.pageYOffset < parseInt(styles.headerHeightSticky, 10)
+    else if window.pageYOffset < styles.headerHeightSticky
       header.classList.remove styles.headerPinned
 
 
@@ -61,9 +61,9 @@ class @StickyHeader
   @headerHeight: ->
     styles = window._styles.variables
     if osu.isMobile()
-      parseInt(styles.headerHeightMobile, 10)
+      styles.headerHeightMobile
     else
-      parseInt(styles.headerHeightSticky, 10)
+      styles.headerHeightSticky
 
 
   @setVisible: (visible) ->

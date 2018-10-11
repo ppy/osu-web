@@ -27,7 +27,6 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
-import variables from 'css/variables.less'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -40,9 +39,13 @@ window._exported = {
   SpotlightSelectOptions
 }
 
-window._styles = {
-  variables
-}
+# refer to variables.less
+window._styles =
+  variables:
+    headerHeight: 90 # @nav2-height
+    headerHeightSticky: 50 # @nav2-height--sticky
+    headerHeightMobile: 60 # @navbar-height
+    headerPinned: 'js-header-pinned' # @header-pinned
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize
