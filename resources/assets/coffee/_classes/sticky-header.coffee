@@ -36,9 +36,10 @@ class @StickyHeader
     header = document.getElementById('js-pinned-header')
     return unless header?
 
-    if window.pageYOffset > 90
+    styles = window._styles.variables
+    if window.pageYOffset > parseInt(styles.headerHeight, 10)
       header.classList.add 'nav2-header--sticky'
-    else if window.pageYOffset < 50
+    else if window.pageYOffset < parseInt(styles.headerHeightSticky, 10)
       header.classList.remove 'nav2-header--sticky'
 
 
@@ -58,7 +59,11 @@ class @StickyHeader
 
 
   @headerHeight: ->
-    if osu.isMobile() then 60 else 50
+    styles = window._styles.variables
+    if osu.isMobile()
+      parseInt(styles.headerHeightMobile, 10)
+    else
+      parseInt(styles.headerHeightSticky, 10)
 
 
   @setVisible: (visible) ->
