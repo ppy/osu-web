@@ -53,22 +53,6 @@ return [
             'unfavourite' => 'Unfavourite this beatmapset',
             'favourited_count' => '+ 1 other!|+ :count others!',
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Length',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => 'User Rating',
-            'rating-spread' => 'Rating Spread',
-            'nominations' => 'Nominations',
-            'playcount' => 'Playcount',
-        ],
 
         'hype' => [
             'action' => [
@@ -98,6 +82,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
@@ -130,6 +115,23 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Length',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => 'User Rating',
+            'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
     ],
 ];
