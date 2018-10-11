@@ -32,7 +32,6 @@ class @Forum
     @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
-    @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
@@ -45,8 +44,6 @@ class @Forum
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
-
-    $.subscribe 'stickyHeader', @stickHeader
 
 
   userCanModerate: ->
@@ -213,15 +210,6 @@ class @Forum
 
   postUrlN: (postN) ->
     "#{document.location.pathname}?n=#{postN}"
-
-
-  stickHeader: (_e, target) =>
-    return unless @_stickyHeaderTopic.length
-
-    if target == 'forum-topic-headernav'
-      StickyHeader.setVisible(true)
-    else
-      StickyHeader.setVisible(false)
 
 
   showMore: (e) =>

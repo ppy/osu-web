@@ -15,7 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="js-forum-topic-headernav"></div>
 
 @section('sticky-header-breadcrumbs')
     <div class="forum-topic-headernav__row">

@@ -26,31 +26,19 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
 
-    @state =
-      isSticky: false
-
 
   componentDidMount: =>
     $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
-    $.subscribe 'stickyHeader.search-panel', @stickyHeader
 
 
   componentWillUnmount: =>
     $(document).off '.beatmaps-search-cache'
-    $.unsubscribe '.search-panel'
     @debouncedSubmit.cancel()
-
-
-  stickyHeader: (_e, target) =>
-    newState = (target == 'beatmapsets-search')
-    if newState != @state.isSticky
-      @setState isSticky: newState, () ->
-        StickyHeader.setVisible(newState)
 
 
   render: =>
     div null,
-      if @state.isSticky && StickyHeader.contentElement()?
+      if StickyHeader.contentElement()?
         ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
 
       div

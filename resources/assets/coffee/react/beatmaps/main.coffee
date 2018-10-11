@@ -121,9 +121,10 @@ class Beatmaps.Main extends React.PureComponent
         expand: @expand
         isExpanded: @state.isExpanded
 
+      div className: 'js-sticky-header'
+
       div
-        className: 'osu-layout__row osu-layout__row--page-compact js-sticky-header'
-        'data-sticky-header-target': 'beatmapsets-search',
+        className: 'osu-layout__row osu-layout__row--page-compact'
         div className: listCssClasses,
           if currentUser.id?
             el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters

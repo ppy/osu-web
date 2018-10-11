@@ -16,16 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+# Attachment that shows up below the omni-header.
 # How to use:
-# 1. create a marker on when it should be fixed, with class including
-#    'js-sticky-header' and data attribute 'data-sticky-header-target'
-# 2. subscribe to 'stickyHeader' event
-# 3. in the function, check if second parameter (first one is unused event
-#    object) is the correct target
-# 4. stick if matches, unstick otherwise
+# 1. render content into 'js-sticky-header-content' and 'js-sticky-header-breadcrumbs'
+# 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
 class @StickyHeader
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
+    @visible = false
 
     $(window).on 'throttled-scroll', @applyCss
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
@@ -45,13 +43,10 @@ class @StickyHeader
 
   stickOrUnstick: =>
     return if @stickMarker.length == 0
+    markerTop = @stickMarker[0].getBoundingClientRect().top
+    headerBottom = document.getElementById('js-pinned-header').getBoundingClientRect().bottom
 
-    for marker in @stickMarker by -1
-      if marker.getBoundingClientRect().top < document.getElementById('js-pinned-header').getBoundingClientRect().bottom
-        $.publish 'stickyHeader', marker.getAttribute('data-sticky-header-target')
-        return
-
-    $.publish 'stickyHeader'
+    StickyHeader.setVisible markerTop < headerBottom
 
 
   @contentElement: ->
@@ -67,6 +62,9 @@ class @StickyHeader
 
 
   @setVisible: (visible) ->
+    return if @visible == visible
+
+    @visible = visible
     if visible
       Fade.in document.getElementById('js-sticky-header')
     else
