@@ -26,6 +26,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @modeSwitcherRef = React.createRef()
+
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
     @cache = {}
@@ -101,6 +103,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
+        innerRef: @modeSwitcherRef
         mode: @state.currentMode
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -124,6 +127,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
             mode: @state.currentMode
+            stickTo: @modeSwitcherRef
 
           el BeatmapDiscussions.Discussions,
             beatmapset: @state.beatmapset

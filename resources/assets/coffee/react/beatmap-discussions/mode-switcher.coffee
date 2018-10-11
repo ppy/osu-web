@@ -33,6 +33,7 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
       div
         className: 'page-extra-tabs js-mode-switcher'
         key: 'page-extra-tabs'
+        ref: @props.innerRef
 
         div className: 'osu-page',
           ul className: 'page-mode page-mode--page-extra-tabs',

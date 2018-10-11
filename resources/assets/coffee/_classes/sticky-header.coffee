@@ -57,6 +57,10 @@ class @StickyHeader
     document.getElementById('js-sticky-header-content')
 
 
+  @headerHeight: ->
+    if osu.isMobile() then 60 else 50
+
+
   @setVisible: (visible) ->
     if visible
       Fade.in document.getElementById('js-sticky-header')

@@ -30,6 +30,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @cache = {}
 
     @state =
+      cssTop: null
       message: ''
       timestamp: null
       timestampConfirmed: false
@@ -38,11 +39,16 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       sticky: false
 
 
+  componentDidMount: =>
+    $(window).on 'throttled-resize.new-discussion', @setTop
+
+
   componentWillUpdate: =>
     @cache = {}
 
 
   componentWillUnmount: =>
+    $(window).off '.new-discussion', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -53,6 +59,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     div
       className: cssClasses
+      style:
+        top: @state.cssTop
       div className: 'beatmap-discussion-new-float__floatable',
         div
           className: 'js-new-discussion beatmap-discussion-new-float__content'
@@ -201,15 +209,16 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
 
 
+  cssTop: (sticky) =>
+    return if !sticky || !@props.stickTo?.current?
+    @props.stickTo.current.getBoundingClientRect().height + StickyHeader.headerHeight()
+
+
   handleKeyDownCallback: (type, event) =>
     # Ignores SUBMIT, requiring shift-enter to add new line.
     switch type
       when InputHandler.CANCEL
-        @setState sticky: false
-
-
-  isSticky: =>
-    @state.stickable && @state.sticky
+        @setSticky(false)
 
 
   nearbyDiscussions: =>
@@ -313,8 +322,15 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState {message, timestamp}
 
 
-  setSticky: =>
-    @setState sticky: true if !@state.sticky
+  setSticky: (sticky = true) =>
+    @setState
+      cssTop: @cssTop(sticky)
+      sticky: sticky
+
+
+  setTop: =>
+    @setState
+      cssTop: @cssTop(@state.sticky)
 
 
   setTimestamp: (e) =>
@@ -344,7 +360,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   toggleSticky: =>
-    @setState sticky: !@state.sticky
+    @setSticky(!@state.sticky)
 
 
   toggleTimestampConfirmation: =>
