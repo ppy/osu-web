@@ -227,20 +227,32 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return [] if !@state.timestamp?
 
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
-      discussions = []
+      discussions = {}
 
       for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
-        continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
+
+        distance = Math.abs(discussion.timestamp - @state.timestamp)
+
+        continue if distance > 5000
 
         if discussion.user_id == @props.currentUser.id
           continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
 
-        discussions.push discussion
+        category = switch
+          when distance == 0 then 'd0'
+          when distance < 100 then 'd100'
+          when distance < 1000 then 'd1000'
+          else 'other'
+
+        discussions[category] ?= []
+        discussions[category].push discussion
+
+      shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
 
       @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        discussions: _.sortBy discussions, 'timestamp'
+        discussions: _.sortBy shownDiscussions, 'timestamp'
 
     @cache.nearbyDiscussions.discussions
 
