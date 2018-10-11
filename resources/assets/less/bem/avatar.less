@@ -17,7 +17,6 @@
  */
 
 .avatar {
-  @_sticky: nav2-header--sticky;
   @default-avatar-size: 70px;
 
   .reset-input();
@@ -107,7 +106,7 @@
     border-radius: 50%;
     overflow: hidden;
 
-    .@{_sticky} & {
+    .@{header-pinned} & {
       width: 40px;
       height: 40px;
     }

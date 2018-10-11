@@ -38,9 +38,9 @@ class @StickyHeader
 
     styles = window._styles.variables
     if window.pageYOffset > parseInt(styles.headerHeight, 10)
-      header.classList.add 'nav2-header--sticky'
+      header.classList.add styles.headerPinned
     else if window.pageYOffset < parseInt(styles.headerHeightSticky, 10)
-      header.classList.remove 'nav2-header--sticky'
+      header.classList.remove styles.headerPinned
 
 
   stickOrUnstick: =>
