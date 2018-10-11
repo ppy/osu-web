@@ -37,12 +37,8 @@
   &--pinned {
     position: sticky;
     position: -webkit-sticky;
-    top: @nav2-height--sticky + 37px;
     z-index: 1;
-
-    @media @mobile {
-      top: 37px;
-    }
+    // top will be calulated by the component.
   }
 
   &__content {
