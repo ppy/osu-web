@@ -17,10 +17,6 @@
 --}}
 <div class="js-forum-topic-headernav"></div>
 
-@section('sticky-header-stripe')
-    <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
-@endsection()
-
 @section('sticky-header-breadcrumbs')
     <div class="forum-topic-headernav__row">
         @include('forum.topics._header_breadcrumb_small', [

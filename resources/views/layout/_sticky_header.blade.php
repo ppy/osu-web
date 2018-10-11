@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div id="js-sticky-header" class="sticky-header" data-visibility="none">
+<div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
     <div class="osu-page">
         <div class="sticky-header__body">
             <div class="sticky-header__breadcrumbs">
