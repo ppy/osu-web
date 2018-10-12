@@ -90,6 +90,11 @@ class Order extends Model
         return $query->where('status', 'processing');
     }
 
+    public function scopeStale($query)
+    {
+        return $query->where('updated_at', '<', Carbon::now()->subDays(14));
+    }
+
     public function scopeWhereHasInvoice($query)
     {
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
