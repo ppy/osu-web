@@ -124,10 +124,11 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       'data-score': score
       disabled: disabled
       onClick: @doVote
+      title: osu.trans('beatmaps.discussions.votes.#{type}')
+      
       i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
-      title: osu.trans('beatmaps.discussions.votes.#{type}')
 
 
   doVote: (e) =>

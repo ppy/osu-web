@@ -90,13 +90,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             span
               className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
               onClick: @toggleSticky
+              title: if @state.sticky then osu.trans('beatmap.discussions.new.pinned') else osu.trans('beatmap.discussions.new.unpinned')
+
               span className: 'btn-circle__content',
                 i className: 'fas fa-thumbtack'
-              title:
-                if @state.sticky
-                  osu.trans('beatmap.discussions.new.pinned')
-                else
-                  osu.trans('beatmap.discussions.new.unpinned')
 
         div className: "#{bn}__content",
           div
