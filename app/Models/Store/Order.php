@@ -80,11 +80,6 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeWhereHasInvoice($query)
-    {
-        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
-    }
-
     public function scopeInCart($query)
     {
         return $query->where('status', 'incart');
@@ -93,6 +88,11 @@ class Order extends Model
     public function scopeProcessing($query)
     {
         return $query->where('status', 'processing');
+    }
+
+    public function scopeWhereHasInvoice($query)
+    {
+        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
     }
 
     public function scopeWithPayments($query)
