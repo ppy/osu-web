@@ -66,7 +66,7 @@ return [
     'login' => [
         '_' => 'Inloggen',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
-        'username' => 'Gebruikernaam',
+        'username' => 'Gebruikersnaam',
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
         'button_posting' => 'Inloggen...',
@@ -99,15 +99,15 @@ return [
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'report' => [
         'button_text' => '',
-        'comments' => '',
+        'comments' => 'Aanvullende opmerkingen',
         'placeholder' => '',
-        'reason' => '',
+        'reason' => 'Reden',
         'thanks' => '',
         'title' => '',
 
         'actions' => [
             'send' => '',
-            'cancel' => '',
+            'cancel' => 'Annuleren',
         ],
 
         'options' => [
