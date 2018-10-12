@@ -135,6 +135,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
             readPostIds: @state.readPostIds
             users: @users()
 
+      el window._exported.BackToTop
+
 
   beatmaps: =>
     return @cache.beatmaps if @cache.beatmaps?
