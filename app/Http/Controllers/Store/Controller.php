@@ -63,7 +63,7 @@ abstract class Controller extends BaseController
     protected function pendingCheckouts()
     {
         if (Auth::check()) {
-            return Order::where('user_id', Auth::user()->getKey())->processing();
+            return Order::where('user_id', Auth::user()->getKey())->processing()->stale();
         }
     }
 }
