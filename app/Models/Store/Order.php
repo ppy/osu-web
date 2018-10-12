@@ -92,7 +92,7 @@ class Order extends Model
 
     public function scopeStale($query)
     {
-        return $query->where('updated_at', '<', Carbon::now()->subDays(14));
+        return $query->where('updated_at', '<', Carbon::now()->subDays(config('store.order.stale_days')));
     }
 
     public function scopeWhereHasInvoice($query)
