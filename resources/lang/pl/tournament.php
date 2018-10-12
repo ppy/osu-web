@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
+        'registration_period' => 'Rejestracja: od :start do :end',
+
         'header' => [
             'subtitle' => 'Lista oficjalnych turniejów osu!',
             'title' => 'Turnieje społeczności',
         ],
-        'none_running' => 'Nie ma obecnie żadnych aktywnych turniejów, sprawdź ponownie później!',
-        'registration_period' => 'Rejestracja: od :start do :end',
+
+        'item' => [
+            'registered' => 'Zarejestrowani użytkownicy',
+        ],
 
         'state' => [
             'current' => 'Aktualne turnieje',

@@ -37,21 +37,10 @@
             @endif
 
             @if ($order->isProcessing())
-                @php
-                    $cancelLink = Html::link(
-                        route('store.checkout.destroy'),
-                        trans('store.checkout.pending_checkout.link_text'),
-                        [
-                            'data-method' => 'DELETE',
-                            'data-confirm' => trans('common.confirmation'),
-                            'data-remote' => '1',
-                        ]
-                    );
-                @endphp
                 <div class="alert alert-danger">
                     <p>
                         {{ trans('store.checkout.pending_checkout.line_1') }}<br>
-                        {!! trans('store.checkout.pending_checkout.line_2', ['link' => $cancelLink]) !!}
+                        {{ trans('store.checkout.pending_checkout.line_2') }}
                     </p>
                 </div>
             @endif

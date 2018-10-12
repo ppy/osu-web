@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles',
-        'large' => 'Concours communautaires osu!',
+        'large' => 'Concours Communautaires',
     ],
     'voting' => [
         'over' => 'Le vote pour ce concours est terminé',

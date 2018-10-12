@@ -65,7 +65,6 @@ class Topic extends Model implements AfterCommit
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 
@@ -391,6 +390,10 @@ class Topic extends Model implements AfterCommit
     public function isValid()
     {
         $this->validationErrors()->reset();
+
+        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
+            $this->validationErrors()->add('topic_title', 'required');
+        }
 
         foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
             if ($this->isDirty($field)) {

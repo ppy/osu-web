@@ -22,8 +22,6 @@ namespace App\Models;
 
 class ContestVote extends Model
 {
-    protected $guarded = [];
-
     public function entry()
     {
         return $this->belongsTo(ContestEntry::class);

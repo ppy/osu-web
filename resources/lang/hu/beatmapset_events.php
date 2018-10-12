@@ -29,19 +29,20 @@ return [
         'disqualify_legacy' => 'Diszkvalifikálta :user. Indok: :text.',
         'issue_reopen' => 'Megoldott probléma :discussion újranyitva.',
         'issue_resolve' => 'A :discussion problémát megoldottnak jelölték.',
-        'kudosu_allow' => 'Kudosu megtagadás a megbeszélésre :discussion el lett távolítva.',
+        'kudosu_allow' => 'Kudosu megtagadás a :discussion megbeszélésre el lett távolítva.',
         'kudosu_deny' => 'A :discussion megbeszélés nem alkalmas kudosura.',
-        'kudosu_gain' => 'A :discussion megbeszélés :user által elért elég szavazatot kudosura.',
-        'kudosu_lost' => 'A :discussion megbeszélés vesztett szavazatokat így a kudosu szerzésre való lehetőség meg lett vonva.',
+        'kudosu_gain' => 'A :discussion megbeszélés :user által elég szavazatot szerzett kudosura.',
+        'kudosu_lost' => 'A :discussion megbeszélés :user által szavazatokat vesztett, így a megszerzett kudosu vissza lett vonva.',
         'kudosu_recalculate' => 'A :discussion megbeszélés kudosu száma újra lett kalkulálva.',
+        'love' => 'Kedvelte :user',
         'nominate' => 'Kijelölve :user által.',
-        'nomination_reset' => 'Új probléma :discussion (:text) kiváltott egy választási újrainditást.',
-        'qualify' => 'Minősített.',
+        'nomination_reset' => 'Új probléma :discussion (:text) miatt a nominálás alaphelyzetbe állt.',
+        'qualify' => 'Ez a beatmap elérte az elegendő számú nominációt és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
     ],
 
     'index' => [
-        'title' => 'Beatmapszet esemény',
+        'title' => 'Beatmapszett Események',
     ],
 
     'item' => [

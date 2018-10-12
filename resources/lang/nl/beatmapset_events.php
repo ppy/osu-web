@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Discussie: discussie door: gebruiker heeft genoeg stemmen ontvangen voor kudosu.',
         'kudosu_lost' => 'Discussie: discussie door: gebruiker heeft stemmen verloren en kudosu is verwijderd.',
         'kudosu_recalculate' => 'Discussie: discussie heeft de kudosu toekenningen laten herberekenen.',
+        'love' => 'Geloved door :user',
         'nominate' => 'Genomineerd door :user.',
         'nomination_reset' => 'Nieuw probleem: discussie (: tekst) veroorzaakte een nominatie reset.',
-        'qualify' => 'Gekwalificeerd.',
+        'qualify' => 'Deze beatmap heeft het benodigde aantal nominaties bereikt en is nu gekwalificeerd.',
         'rank' => 'Ranked.',
     ],
 

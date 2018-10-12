@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span,i} = ReactDOMFactories
+{div, a, span, i} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.Paginator extends React.PureComponent
@@ -40,15 +40,15 @@ class Beatmaps.Paginator extends React.PureComponent
 
 
   render: =>
-    return div() if !@props.paging.loading && !@props.paging.more
+    return div() if !@props.loading && !@props.more
 
     div
       className: 'beatmapsets-show-more'
-      if @props.paging.loading
+      if @props.loading
         el Spinner
-      else if @props.paging.more
+      else if @props.more
         a
-          href: @props.paging.url
+          href: @props.url
           className: 'beatmapsets-show-more__link'
           ref: (el) => @autoPagerTarget = el
           onClick: @showMore
@@ -56,7 +56,7 @@ class Beatmaps.Paginator extends React.PureComponent
 
 
   autoPagerOnScroll: =>
-    return if !@props.paging.more || @props.paging.loading
+    return if !@props.more || @props.loading
 
     currentTarget = @autoPagerTarget.getBoundingClientRect().top
     target = document.documentElement.clientHeight + @autoPagerTriggerDistance

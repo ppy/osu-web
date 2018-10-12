@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'A discussão :discussion por :user obteve votos suficientes para kudosu.',
         'kudosu_lost' => 'A discussão :discussion por :user perdeu votos e kudosu concedido foi removido.',
         'kudosu_recalculate' => 'A discussão :discussion teve o seu kudosu concedido recalculado.',
+        'love' => 'Adorado por :user',
         'nominate' => 'Nomeado por :user.',
         'nomination_reset' => 'Novo problema :discussion (:text) accionou um reinício de nomeação.',
-        'qualify' => 'Qualificado.',
+        'qualify' => 'Este beatmap atingiu o número necessário de nomeações e foi qualificado.',
         'rank' => 'Classificado.',
     ],
 

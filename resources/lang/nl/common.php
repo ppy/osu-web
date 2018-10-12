@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Weet je dat zeker?',
+    'confirmation_unsaved' => 'Niet-opgeslagen wijzigingen zullen verloren gaan. Weet je het zeker?',
     'saved' => 'Opgeslagen',
 
     'array_and' => [

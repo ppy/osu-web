@@ -43,31 +43,32 @@ export class StoreCheckout
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
-      init[provider]?.then =>
-        $.post laroute.route('store.checkout.store'), { provider, orderId }
-        .done =>
-          @startPayment(event.target.dataset)
-          .catch @handleError
-
+      init[provider]?.then ->
+        window.osu.promisify $.post(laroute.route('store.checkout.store'), { provider, orderId })
+      .then =>
+        @startPayment(event.target.dataset)
       .catch @handleError
 
 
   @startPayment: (params) ->
     switch params.provider
       when 'centili'
-        window.location = params.url
+        new Promise (resolve) ->
+          window.location = params.url
 
       when 'free'
-        $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
+        window.osu.promisify $.post(laroute.route('store.checkout.store', orderId: params.orderId, completed: '1'))
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
           window.location = link
 
       when 'xsolla'
-        # FIXME: flickering when transitioning to widget
-        XPayStationWidget.open()
-        LoadingOverlay.hide()
+        new Promise (resolve) ->
+          # FIXME: flickering when transitioning to widget
+          XPayStationWidget.open()
+          LoadingOverlay.hide()
+          resolve()
 
 
   @handleError: (error) ->

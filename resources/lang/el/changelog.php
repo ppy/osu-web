@@ -22,6 +22,10 @@ return [
     'feed_title' => 'ροή',
     'generic' => 'Διορθώσεις σφαλμάτων και μικρές βελτιώσεις.',
 
+    'build' => [
+        'title' => 'αλλαγές στην :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited συνδεδεμένος χρήστης |:count_delimited συνδεδεμένοι χρήστες',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'λίστα αρχείων αλλαγών',
+            '_from' => 'αλλαγές από :from',
+            '_from_to' => 'αλλαγές μεταξύ :from και :to',
+            '_stream' => 'αλλαγές στο :stream',
+            '_stream_from' => 'αλλαγές στο :stream από :from',
+            '_stream_from_to' => 'αλλαγές στο :stream μεταξύ :from και :to',
+            '_stream_to' => 'αλλαγές στο :stream έως :to',
+            '_to' => 'αλλαγές έως :to',
+        ],
+
         'title' => [
             '_' => 'Αρχείο καταγραφής αλλαγών :info',
             'info' => 'Λίστα',

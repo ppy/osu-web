@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Soutěž i jinak, než jen klikáním kruhů.',
-        'large' => 'osu! komunitní soutěže',
+        'large' => 'Komunitní soutěže',
     ],
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
@@ -61,8 +61,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Vstup otevřen',
-        'voting' => 'Hlasování začalo',
-        'results' => 'Výsledky vyhlášeny',
+        'entry' => 'Vstup Otevřen',
+        'voting' => 'Hlasování Začalo',
+        'results' => 'Výsledky Vyhlášeny',
     ],
 ];

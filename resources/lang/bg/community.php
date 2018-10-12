@@ -22,8 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Харесвате osu!?<br/>
-                                  Подкрепете osu! девелопъра :D',
+            'big_description' => '',
             'small_description' => '',
             'support_button' => 'Искам да подкрепя osu!',
         ],

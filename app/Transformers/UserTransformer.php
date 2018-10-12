@@ -31,11 +31,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         'badges',
         'blocks',
         'defaultStatistics',
-        'disqus_auth',
         'favourite_beatmapset_count',
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -61,7 +61,6 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'name' => $user->countryName(),
             ],
             'avatar_url' => $user->user_avatar,
-            'is_admin' => $user->isAdmin(),
             'is_supporter' => $user->osu_subscriber,
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
@@ -72,7 +71,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'occupation' => $user->user_occ,
             'title' => $user->title(),
             'location' => $user->user_from,
-            'lastvisit' => json_time($user->user_lastvisit),
+            'last_visit' => json_time($user->displayed_last_visit),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
@@ -135,29 +134,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer);
     }
 
-    public function includeDisqusAuth(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $data = [
-                'id' => $user->user_id,
-                'username' => $user->username,
-                'email' => $user->user_email,
-                'avatar' => $user->user_avatar,
-                'url' => route('users.show', $user->user_id),
-            ];
-
-            $encodedData = base64_encode(json_encode($data));
-            $timestamp = time();
-            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
-
-            return [
-                'short_name' => config('services.disqus.short_name'),
-                'public_key' => config('services.disqus.public_key'),
-                'auth_data' => "$encodedData $hmac $timestamp",
-            ];
-        });
-    }
-
     public function includeFavouriteBeatmapsetCount(User $user)
     {
         return $this->item($user, function ($user) {
@@ -196,6 +172,13 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsGraveyard()->count(),
             ];
+        });
+    }
+
+    public function includeIsAdmin(User $user)
+    {
+        return $this->primitive($user->isAdmin(), function ($flag) {
+            return $flag;
         });
     }
 

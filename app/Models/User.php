@@ -22,9 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
-use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -40,13 +38,13 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
+    use Elasticsearch\UserTrait, Store\UserTrait;
+    use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';
@@ -57,7 +55,8 @@ class User extends Model implements AuthenticatableContract, Messageable
     protected $casts = [
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
-        'user_timezone', 'float',
+        'user_allow_viewonline' => 'boolean',
+        'user_timezone' => 'float',
     ];
 
     const PLAYSTYLES = [
@@ -443,10 +442,25 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->user_allow_pm = !$value;
     }
 
+    public function getHidePresenceAttribute()
+    {
+        return !$this->user_allow_viewonline;
+    }
+
+    public function setHidePresenceAttribute($value)
+    {
+        $this->user_allow_viewonline = !$value;
+    }
+
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
         $this->username_clean = static::cleanUsername($value);
+    }
+
+    public function getDisplayedLastVisitAttribute()
+    {
+        return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
     public function isSpecial()
@@ -624,7 +638,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isOnline()
     {
-        return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
+        return !$this->hide_presence
+            && $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
     public function isPrivileged()
@@ -667,6 +682,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return $this->memoized[__FUNCTION__];
+    }
+
+    /**
+     * User group to be displayed in preference over other groups.
+     *
+     * @return string
+     */
+    public function defaultGroup()
+    {
+        if ($this->group_id === UserGroup::GROUPS['admin']) {
+            return 'default';
+        }
+
+        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
     }
 
     public function groupIds()
@@ -996,9 +1025,19 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        // 'cuz hasManyThrough is derp
+        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+    }
 
-        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    public function channels()
+    {
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
     }
 
     public function maxBlocks()
@@ -1092,6 +1131,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function hasBlocked(self $user)
     {
         return $this->blocks()
+            ->where('zebra_id', $user->user_id)
+            ->exists();
+    }
+
+    public function hasFriended(self $user)
+    {
+        return $this->friends()
             ->where('zebra_id', $user->user_id)
             ->exists();
     }
@@ -1206,9 +1252,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_unread_privmsg;
     }
 
+    // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['disqus_auth', 'blocks', 'friends']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
     }
 
     public function supportLength()
@@ -1289,18 +1336,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function receiveMessage(self $sender, $body, $isAction = false)
-    {
-        $message = new PrivateMessage();
-        $message->user_id = $sender->user_id;
-        $message->target_id = $this->user_id;
-        $message->content = $body;
-        $message->is_action = $isAction;
-        $message->save();
-
-        return $message->fresh();
-    }
-
     public function scopeDefault($query)
     {
         return $query->where([
@@ -1311,7 +1346,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scopeOnline($query)
     {
-        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+        return $query
+            ->where('user_allow_viewonline', true)
+            ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function checkPassword($password)

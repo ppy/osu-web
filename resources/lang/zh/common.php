@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '确定？',
+    'confirmation_unsaved' => '未保存的更改将会丢失，是否确定？',
     'saved' => '已保存',
 
     'array_and' => [

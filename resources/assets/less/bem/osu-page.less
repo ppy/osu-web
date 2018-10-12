@@ -48,14 +48,20 @@
 
   &--changelog {
     .default-box-shadow();
-    background-color: @dark-purple-dark;
-    color: #fff;
+    background-color: @changelog-bg;
+    color: @changelog-fg;
+  }
+
+  &--comment {
+    .default-box-shadow();
+    background-color: #eee;
+    padding: 10px 0 0;
   }
 
   &--comments {
     .default-box-shadow();
-    background-color: #fff;
-    padding: 10px 20px;
+    background-color: #eee;
+    padding: 10px 0;
   }
 
   &--contest {
@@ -98,6 +104,12 @@
     .default-box-shadow();
     background-color: #fff;
     padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  &--generic-compact {
+    .default-box-shadow();
+    background-color: #fff;
     margin-bottom: 10px;
   }
 
@@ -172,6 +184,7 @@
     .default-box-shadow();
     .inner-shadow-top();
     margin-bottom: 10px;
+    background-color: #333;
   }
 
   &--wiki {

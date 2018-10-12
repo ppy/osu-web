@@ -67,7 +67,7 @@ class PaypalController extends Controller
             $payment = $command->run();
             Log::debug($payment);
         } catch (PayPalConnectionException $e) {
-            return $this->setAndRedirectCheckoutError($this->userErrorMessage($e));
+            return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
@@ -95,7 +95,7 @@ class PaypalController extends Controller
             (new OrderCheckout($order, 'paypal'))->failCheckout();
         }
 
-        return $this->setAndRedirectCheckoutError(trans('store.checkout.declined'));
+        return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));
     }
 
     // Called by Paypal.

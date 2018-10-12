@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - リズムはもう、その指先に！  某応援団や某太鼓のゲームをモチーフにしたゲームモードにオリジナルのゲームモードも楽しめ、譜面作成までも完全にサポートされているゲームです。',
+        'page_description' => 'osu! - リズムはもう、その指先に！  某応援団や某太鼓のゲームをモチーフにしたゲームモードやオリジナルのゲームモードも楽しめて、譜面作成までも完全に行えるゲームです。',
     ],
 
     'menu' => [
@@ -29,7 +29,7 @@ return [
             'account-edit' => '設定',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
-            'changelog-build' => '',
+            'changelog-build' => 'ビルド',
             'getDownload' => 'ダウンロード',
             'getIcons' => 'アイコン',
             'groups-show' => 'グループ',
@@ -178,17 +178,12 @@ return [
             'livestreams' => 'ライブ配信',
             'report' => '問題を報告する',
         ],
-        'support' => [
-            '_' => 'osu!を支援する',
-            'tags' => 'サポータータグ',
-            'merchandise' => '商品',
-        ],
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => '著作権 (DMCA)',
-            'privacy' => '',
+            'privacy' => 'プライバシー',
             'server_status' => 'サーバー状態',
-            'source_code' => '',
+            'source_code' => 'ソースコード',
             'terms' => '利用規約',
         ],
     ],

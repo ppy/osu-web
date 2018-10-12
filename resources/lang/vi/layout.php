@@ -178,11 +178,6 @@ return [
             'livestreams' => 'Live Streams',
             'report' => 'Báo Cáo Một Vấn Đề',
         ],
-        'support' => [
-            '_' => 'Ủng Hộ osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Hàng Hóa',
-        ],
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',

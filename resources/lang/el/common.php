@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Είστε σίγουροι;',
+    'confirmation_unsaved' => 'Μη αποθηκευμένες αλλαγές θα χαθούν. Είστε σίγουροι;',
     'saved' => 'Αποθηκεύτηκε',
 
     'array_and' => [

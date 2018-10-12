@@ -247,6 +247,13 @@
     if string? && string != '' then string else null
 
 
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
+
+
   trans: (key, replacements, locale) ->
     if locale?
       initialLocale = Lang.getLocale()
@@ -291,6 +298,15 @@
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
+
+
+  # Update collection item with newItems and remove old items.
+  updateCollection: (collection, newItems) ->
+    _(newItems)
+      .concat(collection)
+      .uniqBy('id')
+      .value()
+
 
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)

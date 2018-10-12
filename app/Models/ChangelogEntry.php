@@ -26,8 +26,6 @@ use Markdown;
 
 class ChangelogEntry extends Model
 {
-    protected $guarded = [];
-
     protected $casts = [
         'private' => 'boolean',
         'major' => 'boolean',

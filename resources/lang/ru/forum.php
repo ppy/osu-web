@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Закреплённые темы',
     'slogan' => "опасно играть одному.",
     'subforums' => 'Подфорумы',
-    'title' => 'osu!сообщество',
+    'title' => 'osu! форум',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Начинайте вводить тут',
+        'reply_title_prefix' => 'Ответ',
         'started_by' => 'от :user',
+        'started_by_verbose' => 'начато :user',
 
         'create' => [
             'preview' => 'Предпросмотр',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Редактирование',
             'submit' => 'Опубликовать',
+
+            'necropost' => [
+                'default' => 'Данная тема была долгое время неактивна. Добавляйте сюда записи, только если у вас есть на то веская причина.',
+
+                'new_topic' => [
+                    '_' => "Данная тема была долгое время неактивна. Если у вас нет причин добавлять сюда комментарии, пожалуйста :create.",
+                    'create' => 'создайте новую тему',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Содержимое',

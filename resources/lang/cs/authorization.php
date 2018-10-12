@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Pouze vlastník mapy nebo nominátor/člen týmu zajišťující kvalitu může napsat připomínky.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Chvíli počkej, než budeš zasílat další hlasy',
             'owner' => "Ve vlastní diskusi nemůžeš hlasovat.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Právě jste napsali příspěvek. Chvíli vyčkejte nebo upravte poslední příspěvek.',
+                'double_post' => 'Prosím upravte váš poslední příspěvek namísto psaní nového.',
                 'locked' => 'Na uzamčené vlákno nelze odpovědět.',
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'no_permission' => 'Nemáte oprávnění odpovědět.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Uživatelská stránka je uzamčená.',
                 'not_owner' => 'Lze upravit pouze svou vlastní uživatelskou stránku.',
-                'require_supporter_tag' => 'Supporter tag je vyžadován.',
+                'require_supporter_tag' => 'supporter tag je vyžadován.',
             ],
         ],
     ],

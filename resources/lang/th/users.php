@@ -77,7 +77,7 @@ return [
         'forgot' => 'ลืมรหัสผ่าน?',
         'beta' => [
             'main' => 'การเข้าถึงข้อมูลนี้มีข้อจำกัด จำกัดเฉพาะผู้ใช้ที่ได้รับการยกเว้นเท่านั้น',
-            'small' => '(supporters จะได้รับเร็วๆนี้)',
+            'small' => '',
         ],
 
         'here' => 'ที่นี่', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
     ],
     'logout_confirm' => 'คุณแน่ใจหรือว่าต้องการออกจากระบบ? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'แอคเคาท์ของคุณได้ถูกจำกัดการใช้งาน',
         'message' => 'เมื่อคุณถูกจำกัดการใช้งาน, คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่นๆได้ และ คะแนนของคุณจะถูกให้เห็นแค่คุณเท่านั้น. ทุกอย่างจะทำกระบวนการอัตโนมัติและจะแล้วเสร็จภายใน 24 ชั่วโมง. ถ้าคุณอยากขอลดการจำกัดการใช้งานแอคเคาท์ของคุณ, โปรดติดต่อที่นี่ <a href="mailto:accounts@ppy.sh">contact support</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age มาจาก :country',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
         'previous_usernames' => 'เคยมีชื่อว่า',

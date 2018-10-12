@@ -1,0 +1,91 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comment-editor {
+  @_top: comment-editor;
+  @_avatar: 50px;
+  @_avatar-margin: 10px;
+  @_spacing: 5px;
+
+  .default-border-radius();
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border: 0 solid #ccc;
+  padding: @_spacing;
+
+  &--changelog {
+    background-color: @changelog-bg-extra;
+    border-color: @dark-purple-dark;
+  }
+
+  &--fancy {
+    border-width: 1px;
+    border-radius: @border-radius-large;
+    @media @desktop {
+      margin-left: (@_avatar + @_avatar-margin);
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    width: @_avatar;
+    height: @_avatar;
+    right: 100%;
+    margin-right: @_avatar-margin;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  &__footer-item {
+    font-size: @font-size--normal;
+    padding: @_spacing;
+    flex: none;
+
+    &--notice {
+      flex: 1;
+    }
+  }
+
+  &__message {
+    .reset-input();
+    .content-font();
+
+    min-height: 3em;
+    padding: @_spacing;
+    resize: vertical;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
+
+    .@{_top}--changelog & {
+      color: @changelog-fg;
+    }
+  }
+}

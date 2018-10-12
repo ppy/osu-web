@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => '目前没有正在进行的比赛，过段时间再来看看吧！',
+        'registration_period' => '报名时间： :start 到 :end',
+
         'header' => [
             'subtitle' => '官方认可的比赛列表',
             'title' => '社区比赛',
         ],
-        'none_running' => '目前没有正在进行的比赛，过段时间再来看看吧！',
-        'registration_period' => '报名时间： :start 到 :end',
+
+        'item' => [
+            'registered' => '已注册玩家',
+        ],
 
         'state' => [
             'current' => '正在进行的比赛',

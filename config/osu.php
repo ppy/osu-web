@@ -32,12 +32,27 @@ return [
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'storage' => env('BEATMAPSET_STORAGE'),
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'chat' => [
+        'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
+        'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
+        'rate_limits' => [
+            'public' => [
+                'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PUBLIC_WINDOW')) ?? 1,
+            ],
+            'private' => [
+                'limit' => get_int(env('CHAT_PRIVATE_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PRIVATE_WINDOW')) ?? 1,
+            ],
+        ],
     ],
     'client' => [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),

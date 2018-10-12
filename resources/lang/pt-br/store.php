@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'dar de presente',
         'require_login' => [
-            '_' => 'Você precisa estar :link para comprar uma supporter tag!',
+            '_' => 'Você precisa estar :link para conseguir uma osu!supporter tag!',
             'link_text' => 'conectado',
         ],
     ],

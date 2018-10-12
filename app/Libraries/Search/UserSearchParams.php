@@ -29,6 +29,9 @@ class UserSearchParams extends SearchParams
     public $queryString = null;
     public $recentOnly = false;
 
+    /** {@inheritdoc} */
+    public $size = 20;
+
     /**
      * {@inheritdoc}
      */

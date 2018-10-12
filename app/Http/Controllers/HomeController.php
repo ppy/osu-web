@@ -26,7 +26,7 @@ use App\Libraries\Search\AllSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
-use App\Models\News;
+use App\Models\NewsPost;
 use App\Models\User;
 use App\Models\UserDonation;
 use Auth;
@@ -91,7 +91,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = News\Index::all();
+            $news = NewsPost::default()->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
