@@ -28,7 +28,6 @@ class UserReport extends Model
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
-    protected $guarded = [];
 
     protected $dates = ['timestamp'];
 

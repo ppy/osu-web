@@ -82,7 +82,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laten we<br>je beginnen!",
+        'tagline' => "laten we<br>beginnen!",
         'action' => 'Download osu!',
         'os' => [
             'windows' => 'voor Windows',

@@ -24,7 +24,6 @@ class UserBadge extends Model
 {
     protected $table = 'osu_badges';
     protected $primaryKey = 'user_id';
-    protected $guarded = [];
 
     protected $dates = ['awarded'];
     public $timestamps = false;

@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam lapangan permainan.',
-        'large' => 'Kompetisi Komunitas osu!',
+        'large' => 'Turnamen Komunitas',
     ],
     'voting' => [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',

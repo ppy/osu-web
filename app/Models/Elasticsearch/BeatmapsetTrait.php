@@ -35,6 +35,11 @@ trait BeatmapsetTrait
         );
     }
 
+    public function esShouldIndex()
+    {
+        return !$this->trashed();
+    }
+
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'beatmaps';

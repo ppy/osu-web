@@ -21,7 +21,7 @@
     @include('store.header')
 
     {!! Form::open([
-        "url" => "store/add-to-cart",
+        "url" => route('store.cart.store', ['add' => true]),
         "data-remote" => true,
         "id" => "product-form",
         "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"

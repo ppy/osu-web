@@ -26,10 +26,10 @@ return [
         'issuing' => 'Új kód kiadása...',
 
         'info' => [
-            'check_spam' => "Biztositsd, hogy a spam mappát is megnézted ha nem találnád az emailt.",
+            'check_spam' => "Ellenőrizd a spam mappádat is, ha nem találod az e-mailt.",
             'recover' => "Ha nem tudsz hozzáférni az e-mailedhez vagy elfelejtetted melyiket használtad, kérlek kövesd ezt a linket: :link.",
             'recover_link' => 'e-mail helyreállítási folyamat itt',
-            'reissue' => ':reissue_link vagy :logout_link.',
+            'reissue' => 'Valamint tudsz :reissue_link vagy :logout_link.',
             'reissue_link' => 'másik kód kérése',
             'logout_link' => 'kijelentkezés',
         ],
@@ -40,10 +40,10 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Ellenörző kód érvénytelen lett, új visszaigazoló email küldve.',
+        'expired' => 'Érvénytelen ellenőrző kód, új visszaigazoló e-mail lett küldve.',
         'incorrect_key' => 'Helytelen hitelesítő kód.',
-        'retries_exceeded' => 'Helytelen hitelesítő kód. Újrapróbálkozási korlát túlléppve, új ellenőrző e-mailt elküldve.',
-        'reissued' => 'Ellenörző kód kiadva, új visszaigazoló email küldve',
+        'retries_exceeded' => 'Helytelen hitelesítő kód. Újrapróbálkozási korlát túllépve, új ellenőrző e-mail elküldve.',
+        'reissued' => 'Ellenőrző kód kiadva, új visszaigazoló e-mail lett küldve.',
         'unknown' => 'Ismeretlen hiba történt, új visszaigazoló email küldve.',
     ],
 ];

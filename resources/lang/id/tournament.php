@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
+        'registration_period' => 'Pendaftaran: :start sampai :end',
+
         'header' => [
             'subtitle' => 'Daftar turnamen resmi yang sedang berlangsung',
             'title' => 'Turnamen Komunitas',
         ],
-        'none_running' => 'Tidak ada turnamen yang berlangsung saat ini, silakan periksa lagi nanti!',
-        'registration_period' => 'Pendaftaran: :start sampai :end',
+
+        'item' => [
+            'registered' => 'Pemain yang terdaftar',
+        ],
 
         'state' => [
             'current' => 'Turnamen yang sedang berlangsung',

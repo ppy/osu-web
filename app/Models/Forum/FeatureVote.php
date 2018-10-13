@@ -30,7 +30,6 @@ class FeatureVote extends Model
 
     protected $table = 'phpbb_topics_stars';
     protected $primaryKey = 'star_id';
-    protected $guarded = [];
 
     public $timestamps = false;
     protected $dates = ['date'];

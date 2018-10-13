@@ -40,7 +40,7 @@ class @CommentShowMore extends React.PureComponent
         button
           className: "#{bn}__link"
           onClick: @load
-          osu.trans('common.buttons.show_more')
+          @props.label ? osu.trans('common.buttons.show_more')
 
 
   load: =>
@@ -50,9 +50,10 @@ class @CommentShowMore extends React.PureComponent
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
       parent_id: @props.parent?.id ? ''
-      after: @props.after ? ''
+      last_loaded_id: @props.after ? ''
 
-    $.get laroute.route('comments.index', params)
+    $.ajax laroute.route('comments.index', params),
+      dataType: 'json'
     .done (data) =>
       $.publish 'comments:added', comments: data
     .fail =>

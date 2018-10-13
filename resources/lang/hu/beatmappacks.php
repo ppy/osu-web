@@ -23,25 +23,25 @@ return [
         'blurb' => [
             'important' => 'OLVASD EL LETÖLTÉS ELŐTT',
             'instruction' => [
-                '_' => "Telepítés: Amint egy csomag letöltődött, csomagold ki a .rar fájlt az osu! Songs mappába
-Az összes pálya .zip és/vagy .osz kiterjesztésű, ezért mikor legközelebb kinyitod a játékot ezek a beatmapek kicsomagolódnak magába a játékba.
-:scary csomagold ki a .zip/.osz fájlokat saját magadtól, különben a beatmapek hibásan fognak megjelenni és nem fognak megfelelően működni.",
+                '_' => "Telepítés: Amint egy csomag letöltődött, csomagold ki a .rar fájlt az osu! Songs mappába.
+Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő Play módba lépéskor ezek a beatmapek ki lesznek csomagolva.
+:scary csomagold ki a .zip/.osz fájlokat saját magadtól, különben a beatmapek hibásan jelenhetnek meg és nem fognak megfelelően működni.",
                 'scary' => 'NE',
             ],
             'note' => [
-                '_' => 'Megjegyzés, hogy magasan ajánlott :scary mivel a régebbi pályák minősége sokkal alacsonyabb mint az újaké.',
-                'scary' => 'letölteni a csomagokat a frissebektől, a régiekig',
+                '_' => 'Valamint vedd figyelembe, hogy erősen javasolt a :scary, mivel a régebbi pályák minősége jóval alacsonyabb az újakéhoz képest.',
+                'scary' => 'a legújabb pályák letöltése',
             ],
         ],
-        'title' => 'Beatmap csomag',
-        'description' => 'Előre csomagolt beatmap kollekciók egy téma köré építve.',
+        'title' => 'Beatmap Csomagok',
+        'description' => 'Előre csomagolt közös témájú beatmap kollekciók.',
     ],
 
     'show' => [
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',
-            'not_cleared' => 'nem túlélt',
+            'not_cleared' => 'kijátszatlan',
         ],
     ],
 
@@ -53,7 +53,7 @@ Az összes pálya .zip és/vagy .osz kiterjesztésű, ezért mikor legközelebb 
     ],
 
     'require_login' => [
-        '_' => 'Be kell jelentkezned a letöltéshez! :link',
+        '_' => 'A letöltéshez :link kell lenned',
         'link_text' => 'bejelentkezve',
     ],
 ];

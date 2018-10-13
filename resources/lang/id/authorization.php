@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota nominator/QAT yang dapat memposting catatan mapper.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
             'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Anda baru saja mengirim. Tunggulah sebentar atau sunting kiriman terakhir Anda.',
+                'double_post' => 'Mohon sunting postingan terakhir Anda ketimbang memposting kembali.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Laman pengguna terkunci.',
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
-                'require_supporter_tag' => 'Supporter tag diperlukan.',
+                'require_supporter_tag' => 'osu!supporter tag diperlukan.',
             ],
         ],
     ],

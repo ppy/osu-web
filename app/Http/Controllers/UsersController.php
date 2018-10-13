@@ -31,7 +31,6 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
 use PDOException;
 use Request;
 
@@ -62,14 +61,14 @@ class UsersController extends Controller
 
     public function card($id)
     {
+        // FIXME: if there's a username with the id of a restricted user,
+        // it'll show the card of the non-restricted user.
         $user = User::lookup($id);
-
-        list($friend, $mutual) = $this->getFriendStatus($user);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
 
-        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
+        return view('objects._usercard', compact('user', 'popup'));
     }
 
     public function disabled()
@@ -101,12 +100,10 @@ class UsersController extends Controller
         $username = Request::input('username');
         $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
-        list($friend, $mutual) = $this->getFriendStatus($user);
-
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
-            'card_html' => view('objects._usercard', compact('user', 'friend', 'mutual'))->render(),
+            'card_html' => view('objects._usercard', compact('user'))->render(),
         ];
     }
 
@@ -153,19 +150,21 @@ class UsersController extends Controller
 
         $page = $mapping[$type] ?? abort(404);
 
-        return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+        // Override per page restriction in parsePaginationParams to allow infinite paging
+        $perPage = $this->sanitizedLimitParam();
+
+        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
     public function posts($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
         $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
-            ->size(50)
-            ->page(LengthAwarePaginator::resolveCurrentPage());
+            ->size(50);
 
         return view('users.posts', compact('search', 'user'));
     }
@@ -182,7 +181,7 @@ class UsersController extends Controller
 
     public function report($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return response()->json([], 404);
         }
@@ -220,7 +219,7 @@ class UsersController extends Controller
         $perPage = $this->perPage;
 
         if ($type === 'firsts') {
-            // Override per page restriction in parsePageParams to allow infinite paging
+            // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
 
@@ -341,25 +340,9 @@ class UsersController extends Controller
         }
     }
 
-    private function getFriendStatus($user)
-    {
-        if (!(Auth::user()
-            && $user
-            && $user !== UserNotFound::instance())) {
-            return [null, false];
-        }
-
-        $friend = Auth::user()
-            ->friends()
-            ->where('user_id', $user->user_id)
-            ->first();
-
-        return [$friend, $friend->mutual ?? false];
-    }
-
     private function parsePaginationParams()
     {
-        $this->user = User::lookup(Request::route('user'), 'id');
+        $this->user = User::lookup(Request::route('user'), 'id', true);
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
             abort(404);
         }

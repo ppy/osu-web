@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'oferecer ao jogador',
         'require_login' => [
-            '_' => 'Tu precisas de ser :link para arranjar uma etiqueta de apoiante!',
+            '_' => 'Tu precisas de ser :link para arranjar uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada em',
         ],
     ],

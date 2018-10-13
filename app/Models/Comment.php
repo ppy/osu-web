@@ -37,8 +37,6 @@ class Comment extends Model
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
 
-    protected $guarded = [];
-
     protected $dates = ['deleted_at', 'edited_at'];
 
     protected $casts = [
@@ -100,11 +98,19 @@ class Comment extends Model
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
-        if ($this->parent_id !== null && !$this->parent()->exists()) {
-            $this->validationErrors()->add('parent_id', 'invalid');
+        if ($this->isDirty('parent_id') && $this->parent_id !== null) {
+            if ($this->parent === null) {
+                $this->validationErrors()->add('parent_id', 'invalid');
+            } elseif ($this->parent->isDeleted()) {
+                $this->validationErrors()->add('parent_id', '.deleted_parent');
+            }
         }
 
-        if (!$this->allowEmptyCommentable && !$this->commentable()->exists()) {
+        if (!$this->allowEmptyCommentable && (
+            $this->commentable_type === null ||
+            $this->commentable_id === null ||
+            !$this->commentable()->exists()
+        )) {
             $this->validationErrors()->add('commentable', 'required');
         }
 

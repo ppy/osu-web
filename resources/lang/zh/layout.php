@@ -178,11 +178,6 @@ return [
             'livestreams' => '直播',
             'report' => '报告问题',
         ],
-        'support' => [
-            '_' => '支持 osu!',
-            'tags' => '成为 Supporter',
-            'merchandise' => '周边',
-        ],
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',

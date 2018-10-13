@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Tópicos Afixados',
     'slogan' => "é perigoso brincar sozinho.",
     'subforums' => 'Sub-fóruns',
-    'title' => 'comunidade osu!',
+    'title' => 'Fóruns osu!',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Inicia sessão para publicar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreve aqui para responder',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
+        'started_by_verbose' => 'começado por :user',
 
         'create' => [
             'preview' => 'Amostra',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
+
+            'necropost' => [
+                'default' => 'Este tópico tem estado inactivo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
+
+                'new_topic' => [
+                    '_' => "Este tópico tem estado inactivo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
+                    'create' => 'criar um novo tópico',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Escreve o conteúdo da publicação aqui',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Tópicos subscritos',
                 'unread' => 'Tópicos com novas respostas',
+            ],
+
+            'info' => [
+                'total' => 'Subscreveste a :total tópicos.',
+                'unread' => 'Tu tens :unread respostas não-lidas a tópicos subscritos.',
             ],
         ],
 

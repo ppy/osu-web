@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Non ci sono tornei in corso in questo momento, prova a vedere più tardi!',
+        'registration_period' => 'Registrazioni da :inizio a :fine',
+
         'header' => [
             'subtitle' => 'Una lista di tutti i tornei attivi e ufficialmente riconosciuti',
             'title' => 'Tornei della Community',
         ],
-        'none_running' => 'Non ci sono tornei in corso in questo momento, prova a vedere più tardi!',
-        'registration_period' => 'Registrazioni da :inizio a :fine',
+
+        'item' => [
+            'registered' => 'Giocatori registrati',
+        ],
 
         'state' => [
             'current' => 'Tornei in corso',

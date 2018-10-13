@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Emin misin?',
+    'confirmation_unsaved' => 'Kaydedilmemiş değişiklikler kaybolacak. Emin misiniz?',
     'saved' => 'Kaydedildi',
 
     'array_and' => [
@@ -55,7 +56,7 @@ return [
         'badges' => ':count rozet|:count rozet',
         'days' => ':count gün|:count gün',
         'hour_short_unit' => 'sa',
-        'hours' => ':count saat',
+        'hours' => ':count saat|:count saat',
         'item' => ':count birim|:count birim',
         'minute_short_unit' => 'dk|dk',
         'months' => ':count ay|:count ay',

@@ -33,6 +33,10 @@ return [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/QAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
+        ],
+
         'vote' => [
             'limit_exceeded' => '투표를 더 하기 전에 조금 기다려주세요',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '답글을 올린 지 얼마 되지 않았습니다. 잠시 기다려주시거나, 마지막에 올린 글을 수정하세요.',
+                'double_post' => '다시 작성하기보단 마지막으로 작성한 글을 수정 해 주세요.',
                 'locked' => '게시글이 잠겨있어 답변할 수 없습니다.',
                 'no_forum_access' => '요청하신 포럼에 대한 접근 권한이 필요합니다.',
                 'no_permission' => '답변할 권한이 없습니다.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => '유저 페이지가 잠겨있습니다.',
                 'not_owner' => '본인의 유저 페이지만 수정할 수 있습니다.',
-                'require_supporter_tag' => '서포터 권한이 필요합니다.',
+                'require_supporter_tag' => 'osu! 서포터 태그가 필요합니다.',
             ],
         ],
     ],
