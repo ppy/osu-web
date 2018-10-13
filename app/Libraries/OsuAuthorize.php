@@ -151,7 +151,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id) {
+        if ($user->user_id === $discussion->beatmapset->user_id && $beatmapset->approved !== Beatmapset::STATES['qualified']) {
             return 'ok';
         }
 
