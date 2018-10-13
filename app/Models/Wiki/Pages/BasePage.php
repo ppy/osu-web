@@ -48,6 +48,17 @@ abstract class BasePage
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
     }
 
+    public static function getClass($path)
+    {
+        $path = OsuWiki::cleanPath($path);
+
+        if (array_key_exists($path, config('osu.wiki.custom_pages'))) {
+            return config('osu.wiki.custom_pages')[$path];
+        }
+
+        return NormalPage::class;
+    }
+
     public static function searchIndexConfig($params = [])
     {
         return array_merge([

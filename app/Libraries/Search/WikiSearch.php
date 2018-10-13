@@ -23,7 +23,7 @@ namespace App\Libraries\Search;
 use App;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
-use App\Models\Wiki\Page;
+use App\Models\Wiki\Pages\BasePage;
 
 class WikiSearch extends RecordSearch
 {
@@ -32,7 +32,7 @@ class WikiSearch extends RecordSearch
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
             $params ?? new WikiSearchParams,
-            Page::class
+            BasePage::class # not used in this particular class
         );
     }
 
@@ -43,7 +43,9 @@ class WikiSearch extends RecordSearch
         $pages = [];
 
         foreach ($response->hits() as $hit) {
-            $page = new Page(null, null, $hit['_source']);
+            $path = $hit['_source']['path'];
+            $pageClass = BasePage::getClass($path);
+            $page = new $pageClass(null, null, $hit['_source']);
 
             $pages[] = $page;
         }
