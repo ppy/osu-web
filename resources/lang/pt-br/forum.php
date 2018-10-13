@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Tópicos Fixados',
     'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
-    'title' => 'comunidade osu!',
+    'title' => 'osu! fóruns',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
+        'started_by_verbose' => 'publicado por :user',
 
         'create' => [
             'preview' => 'Pré-visualizar',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
+
+            'necropost' => [
+                'default' => 'Este tópico está inativo por um tempo. Apenas publique aqui se você tiver um motivo específico para isso.',
+
+                'new_topic' => [
+                    '_' => "Este tópico está inativo por um tempo. Se não tiver uma razão especifica para publicar aqui, por favor :create como alternativa.",
+                    'create' => 'criar um novo tópico',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Escreva o conteúdo da publicação aqui',

@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
+        'registration_period' => 'Inscriptions : :start à :end',
+
         'header' => [
             'subtitle' => 'Une liste des tournois actifs et reconnus officiellement.',
             'title' => 'Tournois communautaires',
         ],
-        'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
-        'registration_period' => 'Inscriptions : :start à :end',
+
+        'item' => [
+            'registered' => 'Joueurs inscrits',
+        ],
 
         'state' => [
             'current' => 'Tournois en cours',

@@ -22,7 +22,8 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'osu!\'yu sevdiniz mi?<br/>                                osu!\'nun gelişimine destek olun :D',
+            'big_description' => 'osu!\'yu seviyor musunuz?<br/>
+                                osu!\'nun gelişimine destek olun :D',
             'small_description' => '',
             'support_button' => 'osu!\'yu desteklemek istiyorum!',
         ],
@@ -34,8 +35,8 @@ return [
             'gifted' => ':giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!',
             'not_yet' => "Şimdilik supporter'ınız yok :(",
             'title' => 'Şu anki supporter durumu',
-            'valid_until' => 'Şu anki supporter\'ınız :date daha geçerli!',
-            'was_valid_until' => 'Supporter\'ınız :date önceye kadar günceldi.',
+            'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
+            'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
         ],
 
         'why_support' => [
@@ -56,7 +57,7 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Otomatik İndirmeler',
+                'title' => 'Otomatik İndirme',
                 'description' => 'Multiplayer oynarken, başkalarını izlerken veya chatteki linklere tıkladığınızda mapleri otomatik indirir!',
             ],
 
@@ -81,7 +82,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => 'Sarı Arı',
+                'title' => 'Sarı Dost',
                 'description' => 'Oyun içinde yeni parlak sarı kullanıcı adı renginizle farkınız gözüksün.',
             ],
 

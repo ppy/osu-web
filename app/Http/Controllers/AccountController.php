@@ -107,7 +107,7 @@ class AccountController extends Controller
             ->currentUserSessions();
 
         $currentSessionId = Request::session()
-            ->getIdWithoutPrefix();
+            ->getIdWithoutKeyPrefix();
 
         return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
     }
@@ -128,6 +128,7 @@ class AccountController extends Controller
             request(),
             'user',
             [
+                'hide_presence:bool',
                 'osu_playstyle:string[]',
                 'playmode:string',
                 'pm_friends_only:bool',

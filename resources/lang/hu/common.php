@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Biztos vagy benne?',
+    'confirmation_unsaved' => 'A nem mentett változtatások elvesznek. Biztos vagy benne?',
     'saved' => 'Mentve',
 
     'array_and' => [

@@ -44,7 +44,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getFaq' => 'ukk',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
             'getWiki' => 'wiki',
@@ -177,11 +177,6 @@ return [
             'forum' => 'Keskustelupalsta',
             'livestreams' => 'Live-lähetykset',
             'report' => 'Ilmoita ongelmasta',
-        ],
-        'support' => [
-            '_' => 'Tue osua!',
-            'tags' => 'Tukija',
-            'merchandise' => 'Myytävät tuotteet',
         ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',

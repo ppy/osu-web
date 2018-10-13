@@ -23,9 +23,9 @@ return [
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
-                '_' => "Installazione: Una volta che il pacchetto è stato scaricato, estrai il .rar nella directory delle canzoni di osu!.
-                    Tutte le canzoni saranno dei file .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap la prossima volta che entri in modalità Play.
-                    :scary estrai i zip/osz da te,
+                '_' => "Installazione: Una volta scaricato il pacchetto desiderato, estrai il .rar nella directory Songs di osu!.
+                    Tutte i brani saranno dei file .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap in sé la prossima volta che entri nella modalità Play.
+                    :scary estrarre i file zip/osz manualmente,
                     oppure le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
                 'scary' => 'NON',
             ],

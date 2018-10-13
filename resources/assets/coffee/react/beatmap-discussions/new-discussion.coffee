@@ -26,6 +26,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     super props
 
     @throttledPost = _.throttle @post, 1000
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @cache = {}
 
     @state =
@@ -106,7 +107,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   className: "#{bn}__message-area js-hype--input"
                   value: if @canPost() then @state.message else ''
                   onChange: @setMessage
-                  onKeyDown: @handleEnter
+                  onKeyDown: @handleKeyDown
                   onFocus: @setSticky
                   placeholder:
                     if @canPost()
@@ -211,10 +212,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState(stickable: newState) if newState != @state.stickable
 
 
-  handleEnter: (e) =>
-    return if e.keyCode != 13 || e.shiftKey
-
-    e.preventDefault()
+  handleKeyDownCallback: (type, event) =>
+    # Ignores SUBMIT, requiring shift-enter to add new line.
+    switch type
+      when InputHandler.CANCEL
+        @setState sticky: false
 
 
   isSticky: =>

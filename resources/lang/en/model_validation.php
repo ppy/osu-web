@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Replying to deleted comment is not allowed.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',

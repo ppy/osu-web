@@ -27,8 +27,10 @@ class PostSearchRequestParams extends PostSearchParams
 {
     public function __construct(Request $request, User $user)
     {
+        parent::__construct();
+
         $this->queryString = presence(trim($request['query']));
-        $this->page = get_int($request['page']);
+        $this->from = $this->pageAsFrom(get_int($request['page']));
         $this->userId = $user->getKey();
         $this->forumId = get_int($request['forum_id']);
         $this->includeSubforums = get_bool($request['forum_children']);

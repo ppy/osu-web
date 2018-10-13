@@ -24,22 +24,22 @@ return [
     ],
 
     'cart' => [
-        'checkout' => '',
-        'more_goodies' => '',
-        'shipping_fees' => '',
-        'title' => '',
-        'total' => '',
+        'checkout' => 'レジへ進む',
+        'more_goodies' => '精算の前に他のグッズをチェックする。',
+        'shipping_fees' => '送料',
+        'title' => '買い物かご',
+        'total' => '合計',
 
         'errors_no_checkout' => [
-            'line_1' => '',
-            'line_2' => '',
+            'line_1' => '会計をする上でカート内の商品に問題があります！',
+            'line_2' => '続けるためには削除するか、商品の変更をしてください。',
         ],
 
         'empty' => [
-            'text' => '',
+            'text' => 'カートには何もありません。',
             'return_link' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => ':linkに戻って商品を見つける',
+                'link_text' => '商品一覧',
             ],
         ],
     ],
@@ -75,13 +75,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '',
-            'checkout' => '', // checkout and processing should have the same message.
-            'default' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'キャンセル後に注文の変更は行えません。',
+            'checkout' => '発送準備中に注文の変更は行えません。', // checkout and processing should have the same message.
+            'default' => '注文の変更は行えません。',
+            'delivered' => '発送後に注文の変更は行えません。',
+            'paid' => '支払い後に注文の変更は行えません。',
+            'processing' => '発送準備中に注文の変更は行えません。',
+            'shipped' => '発送後に注文の変更はできません。',
         ],
     ],
 

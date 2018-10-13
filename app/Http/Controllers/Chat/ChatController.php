@@ -83,8 +83,6 @@ class ChatController extends Controller
             ->selectRaw('channels.*')
             ->selectRaw('user_channels.last_read_id')
             ->selectRaw('(select max(messages.message_id) from messages where messages.channel_id = user_channels.channel_id) as last_message_id')
-            ->groupBy('user_channels.channel_id')
-            ->groupBy('user_channels.user_id')
             ->get();
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)

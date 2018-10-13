@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'gelöschte beatmap',
+        'difference' => 'um :difference punkte',
+        'failed' => 'FAILED',
         'header' => 'Mehrspieler-Matches',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(match läuft)',
+        'in_progress_spinner_label' => 'Match im Gange',
+        'loading-events' => 'Lade Events...',
+        'winner' => ':team gewinnt',
+
         'events' => [
             'player-left' => ':user hat das match verlassen',
             'player-joined' => ':user ist dem match beigetreten',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'das match wurde aufgelöst',
             'host-changed-no-user' => 'der host wurde gewechselt',
         ],
-        'in-progress' => '(match läuft)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Genauigkeit',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Punktzahl',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Blaues Team',
             'red' => 'Rotes Team',
         ],
-        'winner' => ':team gewinnt',
-        'difference' => 'um :difference punkte',
-        'loading-events' => 'Lade Events...',
-        'more-events' => 'alle ansehen...',
-        'beatmap-deleted' => 'gelöschte beatmap',
     ],
     'game' => [
         'scoring-type' => [

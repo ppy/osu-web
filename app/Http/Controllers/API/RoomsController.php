@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Redis;
+use LaravelRedis as Redis;
 
 class RoomsController extends Controller
 {

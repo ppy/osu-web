@@ -20,8 +20,8 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Models\Model as BaseModel;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {

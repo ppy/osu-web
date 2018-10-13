@@ -38,7 +38,7 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
-            'types' => '',
+            'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
 
             'user' => [

@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe nominateur/QAT peut poster des notes de mappeur.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Veuillez attendre un peu avant d\'envoyer de nouveaux votes',
             'owner' => "Vous ne pouvez pas voter pour votre propre discussion.",
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
+                'double_post' => 'Merci d\'éditer votre dernier post au lieu de poster à nouveau.',
                 'locked' => 'Impossible de répondre à un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'no_permission' => 'Vous n\'êtes pas autorisé à répondre.',
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'Cette fonction est réservée aux supporters.',
+                'require_supporter_tag' => 'le tag supporter est requis.',
             ],
         ],
     ],

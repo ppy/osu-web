@@ -18,46 +18,74 @@
 
 .comment-editor {
   @_top: comment-editor;
+  @_avatar: 50px;
+  @_avatar-margin: 10px;
+  @_spacing: 5px;
 
   .default-border-radius();
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  border: 0 solid #ccc;
+  padding: @_spacing;
 
   &--changelog {
     background-color: @changelog-bg-extra;
+    border-color: @dark-purple-dark;
   }
 
-  &--compact {
-    padding: 0;
-    border-radius: 0;
+  &--fancy {
+    border-width: 1px;
+    border-radius: @border-radius-large;
+    @media @desktop {
+      margin-left: (@_avatar + @_avatar-margin);
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    width: @_avatar;
+    height: @_avatar;
+    right: 100%;
+    margin-right: @_avatar-margin;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
   }
 
   &__footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
-    margin: 5px -5px -5px;
   }
 
   &__footer-item {
-    margin: 5px;
+    font-size: @font-size--normal;
+    padding: @_spacing;
+    flex: none;
+
+    &--notice {
+      flex: 1;
+    }
   }
 
   &__message {
     .reset-input();
     .content-font();
 
-    min-height: 100px;
-    padding: 10px;
+    min-height: 3em;
+    padding: @_spacing;
     resize: vertical;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
 
     .@{_top}--changelog & {
       color: @changelog-fg;
-    }
-
-    .@{_top}--compact & {
-      padding: 0;
     }
   }
 }

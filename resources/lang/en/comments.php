@@ -23,16 +23,47 @@ return [
     'edited' => 'edited :timeago by :user',
     'empty' => 'No comments yet.',
     'replies' => 'Replies',
+    'show_replies' => 'show replies',
     'title' => 'Comments',
+
+    'commentable_name' => [
+        'beatmapset' => 'Beatmap',
+        'build' => 'Changelog',
+        'news_post' => 'News',
+        '_deleted' => 'Deleted Item',
+    ],
+
+    'editor' => [
+        'textarea_hint' => [
+            '_' => 'Press enter to :action. Use shift+enter for new line.',
+            'edit' => 'save',
+            'new' => 'post',
+            'reply' => 'reply',
+        ],
+    ],
 
     'guest_button' => [
         'new' => 'Login to comment',
         'reply' => 'Login to reply',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Comments :info',
+            'info' => 'Listing',
+        ],
+    ],
+
     'placeholder' => [
         'edit' => 'Edit the comment here',
         'new' => 'Type new comment here',
         'reply' => 'Type your response here',
+    ],
+
+    'show' => [
+        'title' => [
+            '_' => 'Comments :info',
+            'info' => 'Detail',
+        ],
     ],
 ];

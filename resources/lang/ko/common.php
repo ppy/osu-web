@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '확실합니까?',
+    'confirmation_unsaved' => '저장되지 않은 정보는 사라집니다. 계속하시겠습니까?',
     'saved' => '저장됨',
 
     'array_and' => [

@@ -38,14 +38,8 @@ class CheckoutController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only' => [
-            'store',
-        ]]);
-
-        $this->middleware('check-user-restricted', ['only' => [
-            'store',
-        ]]);
-
+        $this->middleware('auth');
+        $this->middleware('check-user-restricted');
         $this->middleware('verify-user');
 
         return parent::__construct();
@@ -119,5 +113,14 @@ class CheckoutController extends Controller
         });
 
         return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+    }
+
+    private function orderForCheckout($id)
+    {
+        return Auth::user()
+            ->orders()
+            ->whereIn('status', ['incart', 'processing'])
+            ->with('items.product')
+            ->find($id);
     }
 }

@@ -43,6 +43,10 @@ class @BeatmapsetFilter
     sort: 'sort'
 
 
+  @keyToChar: ->
+    @_keyToChar ?= _.invert @charToKey
+
+
   @defaults:
     general: ''
     extra: ''
@@ -100,3 +104,14 @@ class @BeatmapsetFilter
     'sort'
     'status'
   ]
+
+  @queryParamsFromFilters: (filters) ->
+    return {} if !currentUser.id?
+
+    charParams = {}
+
+    for own key, value of filters
+      if value? && @getDefault(filters, key) != value
+        charParams[@keyToChar()[key]] = value
+
+    charParams

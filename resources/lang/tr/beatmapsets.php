@@ -51,7 +51,7 @@ return [
             ],
             'favourite' => 'Haritayı favorilere ekle',
             'unfavourite' => 'Haritayı favorilerden çıkar',
-            'favourited_count' => '+ :count kişi tarafından!',
+            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
         ],
         'stats' => [
             'cs' => 'Daire Boyutu',
@@ -66,7 +66,7 @@ return [
             'count_sliders' => 'Slider Sayısı',
             'user-rating' => 'Kullanıcı Derecelendirmesi',
             'rating-spread' => 'Değerlendirme Puanı',
-            'nominations' => 'Adaylar',
+            'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
         ],
         'info' => [
@@ -86,7 +86,7 @@ return [
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
-            'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için supporter olman gerekiyor!',
+            'supporter-only' => 'Arkadaş ve ülke sıralamasına erişebilmek için osu!supporter olman gerekiyor!',
             'title' => 'Skor tahtası',
 
             'headers' => [
@@ -103,7 +103,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Ülkenizde hiç kimse henüz bu haritada bir skora sahip değil!',
-                'friend' => 'Hiçbir arkadaşın bu haritada henüz bir skora sahip değil!',
+                'friend' => 'Hiçbir arkadaşın henüz bu haritada bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
                 'unranked' => 'Derecelendirilmemiş beatmap.',

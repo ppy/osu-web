@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Byla zadaná neplatná obtížnost.',
         'invalid_beatmapset_id' => 'Byla zadaná neplatná beatmapa.',
         'locked' => 'Diskuze je uzamčená.',
-        'mapper_note_wrong_user' => 'Pouze autor beatmapy může přidávat maperské poznámky.',
 
         'hype' => [
             'guest' => 'Musíš být přihlášek k nadšení.',

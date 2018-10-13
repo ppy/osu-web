@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Konkurrér på flere måder end bare at klikke på cirkler.',
-        'large' => 'osu! Fællesskabskonkurrencer',
+        'large' => '',
     ],
     'voting' => [
         'over' => 'Afstemning for denne konkurrence er sluit',

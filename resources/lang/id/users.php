@@ -77,7 +77,7 @@ return [
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
-            'small' => '(Supporter akan segera masuk)',
+            'small' => '(osu!supporter akan segera masuk)',
         ],
 
         'here' => 'di sini', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Anda perlu masuk untuk melakukan ini.',
     ],
     'logout_confirm' => 'Apa Anda yakin akan keluar? :(',
+    'report' => [
+        'button_text' => 'laporkan',
+        'comments' => 'Komentar Tambahan',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
+        'reason' => 'Alasan',
+        'thanks' => 'Terima kasih atas laporan Anda!',
+        'title' => 'Laporkan :username?',
+
+        'actions' => [
+            'send' => 'Kirim Laporan',
+            'cancel' => 'Batal',
+        ],
+
+        'options' => [
+            'cheating' => 'Melakukan kecurangan',
+            'insults' => 'Menghina saya / orang lain',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Menautkan konten yang tidak pantas',
+            'nonsense' => 'Berperilaku buruk',
+            'other' => 'Lainnya (ketik di bawah)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah dibatasi!',
         'message' => 'Selama dibatasi, Anda tidak dapat berinteraksi dengan pengguna lain dan skor hanya akan terlihat oleh Anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika Anda ingin mengajukan banding atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
@@ -159,7 +179,7 @@ return [
                     'title' => 'Beatmap Graveyarded (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Beatmap Favorit (:count)',
+                    'title' => 'Beatmap Loved (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmap Ranked & Approved (:count)',

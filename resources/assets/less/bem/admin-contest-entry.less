@@ -16,41 +16,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.fancy-search {
-  @_icon-width: 25px;
-  color: @pink;
-  font-size: @font-size--large;
-  margin: 0 -10px;
-
-  &--beatmapsets {
-    margin-top: 100px;
-    margin-bottom: 20px;
+.admin-contest-entry {
+  &__deleted {
+    opacity: 0.25;
   }
 
-  &__input {
-    border: 1px solid #ccc;
-    width: 100%;
-    padding: 10px;
-    padding-right: (10px + @_icon-width + 20px);
-
-    font-style: italic;
-    font-weight: lighter;
-
-    &:focus {
-      outline: none;
-      border-color: @pink-light;
-      box-shadow: 0 0 10px @pink-lighter;
-    }
+  &__thumbnail {
+    max-height: 400px;
   }
 
-  &__icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: (@_icon-width + 20px);
+  &__user-column {
+    width: 250px;
+  }
+
+  &__avatar {
+    display: inline-block;
+    width: 32px;
+    margin-right: 5px;
+  }
+
+  &__user-link {
     display: flex;
     align-items: center;
-    justify-content: center;
+  }
+
+  &__username {
+    margin-bottom: 10px;
+  }
+
+  &__column {
+    && { // bootstrap override
+      vertical-align: middle;
+    }
+
+    &--button {
+      text-align: center;
+    }
   }
 }
