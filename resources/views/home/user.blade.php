@@ -45,9 +45,6 @@
                                 @if ($loop->iteration <= 3)
                                     @continue
                                 @endif
-                                @if ($loop->iteration > 8)
-                                    @break
-                                @endif
 
                                 @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
                             @endforeach
