@@ -46,11 +46,11 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
+        'banner_text' => 'Du har blokeret denne bruger.',
+        'blocked_count' => 'blokerede brugere (:count)',
+        'hide_profile' => 'skjul profil',
         'not_blocked' => '',
-        'show_profile' => '',
+        'show_profile' => 'vis profil',
         'too_many' => '',
         'button' => [
             'block' => '',
@@ -77,7 +77,7 @@ return [
         'forgot' => 'Glemt din adgangskode?',
         'beta' => [
             'main' => 'Adgang til betaversionen er i øjeblikket restrikteret til priveligerede brugere.',
-            'small' => '(supportere ville også kunne snart)',
+            'small' => '',
         ],
 
         'here' => 'her', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Du skal være logget ind for at gøre dette.',
     ],
     'logout_confirm' => 'Er du sikker på, at du vil logge ud? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
@@ -110,11 +132,9 @@ return [
         'joined_at' => 'Deltog på :date',
         'lastvisit' => 'Sidste set på :date',
         'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age fra :country',
         'origin_country' => 'Fra :country',
         'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'tidligere kendt som',
         'plays_with' => 'Spiller med :devices',
         'title' => ":username ´s profil",
 
@@ -159,7 +179,7 @@ return [
                     'title' => 'Beatmaps på kirkegården (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Elskede beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Godkendte Beatmaps (:count)',
@@ -291,10 +311,10 @@ return [
             'website' => 'Hjemmeside',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
+            'reason_1' => 'De kan have ændret deres brugernavn.',
+            'reason_2' => 'Kontoen kan være midlertidigt utilgængelig pga. sikkerhedsproblemer eller misbrug.',
+            'reason_3' => 'Du har muligvis lavet en stavefejl!',
+            'reason_header' => 'Der er et par mulige årsager til dette:',
             'title' => 'Bruger ikke fundet! ;_;',
         ],
         'page' => [

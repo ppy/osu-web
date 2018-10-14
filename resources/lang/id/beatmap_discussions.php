@@ -36,7 +36,10 @@ return [
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
+            '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'types' => 'Tipe pesan',
+            'username' => 'Nama Pengguna',
 
             'user' => [
                 'label' => 'Pengguna',
@@ -53,7 +56,7 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang menarik perhatian saya',
+        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
         'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
     ],
 

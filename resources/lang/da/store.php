@@ -48,7 +48,7 @@ return [
         'cart_problems' => 'Åh åh, der er problemer med din indkøbskurv!',
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
-        'old_cart' => '',
+        'old_cart' => 'Din indkøbskurv ser ud til at være forældet og er blevet genindlæst, prøv venligst igen.',
         'pay' => 'Betal med PayPal',
         'pending_checkout' => [
             'line_1' => '',
@@ -62,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => '',
+            'subject' => 'Vi har modtaget din osu!store bestilling!',
         ],
     ],
 
@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'giv som gave',
         'require_login' => [
-            '_' => 'Du skal være :link for at få et supporter tag!',
+            '_' => '',
             'link_text' => 'logget ind',
         ],
     ],

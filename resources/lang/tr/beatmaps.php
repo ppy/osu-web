@@ -39,7 +39,6 @@ return [
         'edit' => 'düzenle',
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
-        'message_placeholder' => 'Gönderinizi buraya yazın',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Bu gönderi beatmap setinin genel tartışmasına gidecek. Bu beatmapi modlamak için mesajı bir zaman damgası ile başlatın (ör: 00:12:345).',
             'in_timeline' => 'Birden fazla zaman damgasını modlamak için, birden fazla gönderi yapın (gönderi başına bir zaman damgası).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Genel\'e yazmak için burayı kullanın (:version)',
+            'generalAll' => 'Genel\'e yazmak için burayı kullanın (tüm zorluklar)',
+            'timeline' => 'Timeline\'a yazmak için burayı kullanın (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'bir sebep belirtilmedi',
         'disqualify' => 'Diskalifiye',
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
+        'love' => 'Sevilenlere ekle',
+        'love_confirm' => 'Bu beatmapi seviyor musun?',
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'anahtar kelimeler yazın...',
+            'login_required' => 'Arama yapmak için giriş yap.',
             'options' => 'Diğer Arama Seçenekleri',
+            'supporter_filter' => ':filters ile filtrelemek için aktif bir osu!supporter etiketi gereklidir',
             'not-found' => 'sonuç bulunamadı',
             'not-found-quote' => '... yok, bir şey bulunamadı.',
             'filters' => [
                 'general' => 'Genel',
                 'mode' => 'Mod',
-                'status' => 'Derece Durumu',
+                'status' => 'Kategoriler',
                 'genre' => 'Tür',
                 'language' => 'Dil',
                 'extra' => 'ekstra',
@@ -181,21 +190,21 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => 'başlık',
+                'title' => 'isim',
                 'artist' => 'sanatçı',
                 'difficulty' => 'zorluk',
-                'updated' => 'güncellenme',
+                'updated' => 'güncel',
                 'ranked' => 'dereceli',
-                'rating' => 'puan',
+                'rating' => 'derece',
                 'plays' => 'oynanma',
                 'relevance' => 'alaka',
                 'nominations' => 'adaylıklar',
             ],
+            'supporter_filter_quote' => [
+                '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
+                'link_text' => 'osu!supporter etiketi',
+            ],
         ],
-        'mode' => 'Oyun modu',
-        'status' => 'Derece Durumu',
-        'source' => ':source tarafından',
-        'load-more' => 'Daha fazla yükle...',
     ],
     'general' => [
         'recommended' => 'Önerilen zorluk seviyesi',
@@ -212,10 +221,10 @@ return [
         'any' => 'Hepsi',
         'ranked-approved' => 'Dereceli & Onaylı',
         'approved' => 'Onaylı',
-        'qualified' => 'Qualified',
+        'qualified' => 'Nitelikli',
         'loved' => 'Sevilen',
         'faves' => 'Favoriler',
-        'pending' => 'Beklemede',
+        'pending' => 'Beklemede & Yapım Aşamasında',
         'graveyard' => 'Mezarlık',
         'my-maps' => 'Haritalarım',
     ],

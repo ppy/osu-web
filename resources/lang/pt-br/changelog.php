@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'painel de registros',
     'generic' => 'Correção de erros e aperfeiçoamentos.',
-    'users-online' => '1 usuário online|:users usuários online',
 
-    'prefixes' => [
-        'add' => 'adição',
-        'fix' => 'correção',
-        'misc' => 'outro',
+    'build' => [
+        'title' => 'alterações em :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited usuário online|:count_delimited usuários online',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'lista de alterações',
+            '_from' => 'alterações desde :from',
+            '_from_to' => 'alterações entre :from e :to',
+            '_stream' => 'alterações em :stream',
+            '_stream_from' => 'alterações em :stream desde :from',
+            '_stream_from_to' => 'alterações em :stream entre :from e :to',
+            '_stream_to' => 'alterações em :stream até :to',
+            '_to' => 'alterações até :to',
+        ],
+
+        'title' => [
+            '_' => 'Registro de Alterações :info',
+            'info' => 'Listagem',
+        ],
     ],
 
     'support' => [

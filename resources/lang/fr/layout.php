@@ -29,7 +29,7 @@ return [
             'account-edit' => 'paramètres',
             'friends-index' => 'amis',
             'changelog-index' => 'notes de MàJ',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
@@ -177,11 +177,6 @@ return [
             'forum' => 'Forums',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler une erreur',
-        ],
-        'support' => [
-            '_' => 'Supporter osu!',
-            'tags' => 'Tags de Supporter',
-            'merchandise' => 'Marchandise',
         ],
         'legal' => [
             '_' => 'Statut & Légal',

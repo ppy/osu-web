@@ -20,15 +20,17 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasChildQuery implements Queryable
-{
-    use HasSearch;
+use App\Libraries\Search\EmptySearchParams;
 
+class HasChildQuery extends HasSearch implements Queryable
+{
     protected $name;
     protected $scoreMode;
 
     public function __construct(string $type, string $name)
     {
+        parent::__construct(new EmptySearchParams);
+
         $this->name = $name;
         $this->type = $type;
     }
@@ -50,16 +52,13 @@ class HasChildQuery implements Queryable
     {
         // some of the parameters that normally go in body get moved into
         // inner_hits in join queries.
-
-        $pageParams = $this->getPaginationParams();
-
         $inner = [
             'name' => $this->name,
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
+            'from' => $this->params->from,
+            'size' => $this->getQuerySize(),
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts),
+            }, $this->params->sorts),
         ];
 
         if (isset($this->highlight)) {

@@ -19,7 +19,7 @@
 class @BeatmapHelper
   @default: ({group, items, mode}) =>
     if items?
-      return _.findLast(items, (i) -> !i.deleted_at?) ? _.last(items)
+      return _.findLast(items, (i) -> !i.deleted_at? && !i.convert) ? _.last(items)
 
     return unless group?
 
@@ -65,9 +65,7 @@ class @BeatmapHelper
 
 
   @sort: (beatmaps) ->
-    sortBy = ['convert', 'difficulty_rating']
-
     if beatmaps[0].mode == 'mania'
-      sortBy.unshift 'cs'
-
-    _.sortBy beatmaps, sortBy
+      _.orderBy beatmaps, ['convert', 'cs', 'difficulty_rating'], ['desc', 'asc', 'asc']
+    else
+      _.orderBy beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']

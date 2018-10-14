@@ -39,7 +39,6 @@ return [
         'edit' => 'επεξεργασία',
         'edited' => 'Τελευταία επεξεργασία από: :editor :update_time.',
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
-        'message_placeholder' => 'Πληκτρολογήστε εδώ για δημοσίευση',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Αυτή η δημοσίευση θα πάει στη γενική συζήτηση beatmap. Για να κάνετε μία πρόταση για αυτό το beatmap, ξεκινήστε το μήνυμά σας με μία χρονική σήμανση (π.χ. 00:12:345).',
             'in_timeline' => 'Για να κάνετε πολλαπλές προτάσεις ταυτόχρονα, δημοσιεύστε πολλές φορές (μία δημοσίευση ανά χρονική σήμανση).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (:version)',
+            'generalAll' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (όλες τις δυσκολίες)',
+            'timeline' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο Χρονολόγιο (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
+        'love' => 'Love',
+        'love_confirm' => 'Αγαπάτε αυτό το beatmap;',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'πληκτρολογήστε λέξεις-κλειδιά...',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε.',
             'options' => 'Περισσότερες Επιλογές Αναζήτησης',
+            'supporter_filter' => 'Το φιλτράρισμα βάσει :filters απαιτεί ένα ενεργό osu!supporter tag',
             'not-found' => 'κανένα αποτέλεσμα',
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
             'filters' => [
                 'general' => 'Γενικά',
                 'mode' => 'Mode',
-                'status' => 'Κατάσταση Κατάταξης',
+                'status' => 'Κατηγορίες',
                 'genre' => 'Είδος',
                 'language' => 'Γλώσσα',
                 'extra' => 'επιπλέον',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'σχετικότητα',
                 'nominations' => 'nominations',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
+                'link_text' => 'osu!supporter tag',
+            ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Κατάσταση Κατάταξης',
-        'source' => 'από :source',
-        'load-more' => 'Φόρτωση περισσότερων...',
     ],
     'general' => [
         'recommended' => 'Προτεινόμενη δυσκολία',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Αγαπημένα',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Νεκροταφείο',
         'my-maps' => 'Τα maps μου',
     ],

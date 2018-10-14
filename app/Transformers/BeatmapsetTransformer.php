@@ -119,8 +119,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
         $ret = [
+            'can_delete' => !$beatmapset->isScoreable() && priv_check('BeatmapsetDelete', $beatmapset)->can(),
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
+            'can_love' => $beatmapset->isLoveable() && priv_check('BeatmapsetLove')->can(),
             'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
             'remaining_hype' => $currentUser->remainingHype(),

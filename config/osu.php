@@ -32,12 +32,27 @@ return [
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'storage' => env('BEATMAPSET_STORAGE'),
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'chat' => [
+        'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
+        'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
+        'rate_limits' => [
+            'public' => [
+                'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PUBLIC_WINDOW')) ?? 1,
+            ],
+            'private' => [
+                'limit' => get_int(env('CHAT_PRIVATE_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PRIVATE_WINDOW')) ?? 1,
+            ],
+        ],
     ],
     'client' => [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
@@ -48,6 +63,7 @@ return [
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
+        'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
@@ -58,6 +74,8 @@ return [
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+
+        'necropost_months' => 6,
 
         'double_post_time' => [
             'author' => 24,
@@ -70,9 +88,6 @@ return [
         ],
     ],
     'git-sha' => env('GIT_SHA', 'unknown-version'),
-    'mp-history' => [
-        'event-count' => 500,
-    ],
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
@@ -88,6 +103,9 @@ return [
     ],
     'score_replays' => [
         'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
+    'scores' => [
+        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
     ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),

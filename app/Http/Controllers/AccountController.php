@@ -103,7 +103,13 @@ class AccountController extends Controller
             ->orderBy('username')
             ->get();
 
-        return view('accounts.edit', compact('blocks'));
+        $sessions = Request::session()
+            ->currentUserSessions();
+
+        $currentSessionId = Request::session()
+            ->getIdWithoutKeyPrefix();
+
+        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()
@@ -122,6 +128,7 @@ class AccountController extends Controller
             request(),
             'user',
             [
+                'hide_presence:bool',
                 'osu_playstyle:string[]',
                 'playmode:string',
                 'pm_friends_only:bool',

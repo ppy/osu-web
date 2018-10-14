@@ -18,6 +18,11 @@
 
 @import "app";
 
+@font-content: 'Open Sans', sans-serif;
+@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
@@ -41,12 +46,12 @@
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
-
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
 
 // here be z-indexes
 @z-index--header-bg: -1;
+
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
 
@@ -55,6 +60,7 @@
 @z-index--download-header: 1;
 @z-index--page-header: 1;
 @z-index--tournament-header: 1;
+@z-index--notification-banner-v2: 1;
 
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
@@ -62,6 +68,7 @@
 @z-index--profile-tournament-banner: 11;
 @z-index--nav2: 100;
 @z-index--simple-menu: 101;
+@z-index--back-to-top: 500;
 @z-index--forum-topic-headernav: 501;
 @z-index--fixed-bar: 501;
 @z-index--blackout: 510;
@@ -195,6 +202,9 @@
 
 @forum-post--xs-avatar: 50px;
 
+@forum-topic-new-topic-button--width: 150px;
+@forum-topic-entry--main-margin: 40px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -205,6 +215,9 @@
 @beatmap-discussion--color-problem: @pink-dark;
 @beatmap-discussion--color-resolved: @green;
 @beatmap-discussion--color-suggestion: @yellow-dark;
+
+@beatmap-discussion--user-color-moderator: @yellow-dark;
+@beatmap-discussion--user-color-owner: @green-dark;
 
 @beatmappack-listing--gutter: 20px;
 
@@ -231,6 +244,11 @@
 @changelog-stream--web: @purple;
 @changelog-stream--wiki: #999;
 
+@changelog-bg: @dark-purple-dark;
+@changelog-bg-extra: @dark-purple-darker;
+@changelog-fg: #fff;
+@changelog-fg-content: @pink-lighter;
+
 @page-extra-side-padding--small: 10px;
 @page-extra-side-padding--large: 30px;
 
@@ -247,6 +265,8 @@
 
 @rank-width: 60px;
 @rank-height: 40px;
+
+@ranking-page-header-inset: 40px;
 
 @btn-circle-diameter: 30px;
 

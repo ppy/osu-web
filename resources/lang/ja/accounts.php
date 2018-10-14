@@ -81,7 +81,7 @@ return [
     ],
 
     'privacy' => [
-        'title' => '',
-        'friends_only' => '',
+        'title' => 'プライバシー',
+        'friends_only' => '友達リストにいない人からプライベートメッセージをブロックする',
     ],
 ];

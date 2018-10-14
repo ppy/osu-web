@@ -41,7 +41,6 @@ class Beatmapset extends Model implements AfterCommit
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
-    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',
@@ -257,6 +256,22 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved === self::STATES['qualified'];
     }
 
+    public function isLoved()
+    {
+        return $this->approved === self::STATES['loved'];
+    }
+
+    public function isLoveable()
+    {
+        return $this->approved <= 0;
+    }
+
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
+    // TODO: remove this and update the coffee side names to match isScoreable.
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;
@@ -382,7 +397,9 @@ class Beatmapset extends Model implements AfterCommit
     public function fetchBeatmapsetArchive()
     {
         $oszFile = tmpfile();
-        $url = BeatmapMirror::getRandom()->generateURL($this, true);
+        $mirrorsToUse = config('osu.beatmap_processor.mirrors_to_use');
+        $url = BeatmapMirror::getRandomFromList($mirrorsToUse)->generateURL($this, true);
+
         if ($url === false) {
             return false;
         }
@@ -544,6 +561,31 @@ class Beatmapset extends Model implements AfterCommit
         ];
     }
 
+    public function love(User $user)
+    {
+        if (!$this->isLoveable()) {
+            return [
+                'result' => false,
+                'message' => trans('beatmaps.nominations.incorrect_state'),
+            ];
+        }
+
+        $this->getConnection()->transaction(function () use ($user) {
+            $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
+            $this->setApproved('loved', $user);
+            $this->userRatings()->delete();
+
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
+            dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        });
+
+        return [
+            'result' => true,
+        ];
+    }
+
     public function favourite($user)
     {
         DB::transaction(function () use ($user) {
@@ -575,7 +617,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->favourite_count = db_unsigned_increment('favourite_count', -1);
             $this->save();
         });
     }
@@ -613,6 +655,11 @@ class Beatmapset extends Model implements AfterCommit
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function requiredHype()
@@ -884,7 +931,7 @@ class Beatmapset extends Model implements AfterCommit
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    private function getPost()
+    public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);
 

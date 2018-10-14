@@ -29,7 +29,7 @@ return [
             'account-edit' => 'การตั้งค่า',
             'friends-index' => 'เพื่อน',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
-            'changelog-show' => 'เวอร์ชั่น',
+            'changelog-build' => '',
             'getDownload' => 'ดาวน์โหลด',
             'getIcons' => 'ไอคอน',
             'groups-show' => 'กลุ่ม',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'ศิลปินโดดเด่น',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'โพสต์การสนทนาเกี่ยวกับ Beatmap',
             'beatmap_discussions-index' => 'การสนทนาเกี่ยวกับ Beatmap',
             'beatmapset-watches-index' => 'รายการ Mod ที่ติดตาม',
@@ -177,11 +177,6 @@ return [
             'forum' => 'ฟอรัมชุมชน',
             'livestreams' => 'การถ่ายทอดสด',
             'report' => 'รายงานปัญหา',
-        ],
-        'support' => [
-            '_' => 'สนับสนุน osu!',
-            'tags' => 'แท้กสนับสนุน',
-            'merchandise' => 'สินค้า',
         ],
         'legal' => [
             '_' => 'สถานะและกฎหมาย',

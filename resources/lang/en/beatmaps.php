@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Delete',
+        'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
+        'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
         'disqualification_prompt' => 'Reason for disqualification?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'no reason specified',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Error performing that action, try refreshing the page.',
+        'love' => 'Love',
+        'love_confirm' => 'Love this beatmap?',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Nominate this beatmap?',
         'nominated_by' => 'nominated by :users',
@@ -172,6 +177,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
+            'login_required' => 'Sign in to search.',
             'options' => 'More Search Options',
             'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',
@@ -179,7 +185,7 @@ return [
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
@@ -202,10 +208,6 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Rank Status',
-        'source' => 'from :source',
-        'load-more' => 'Load more...',
     ],
     'general' => [
         'recommended' => 'Recommended difficulty',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
     ],

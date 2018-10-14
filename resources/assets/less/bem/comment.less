@@ -1,0 +1,241 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comment {
+  @_avatar-margin: 10px;
+  @_avatar: 40px;
+  @_line-width: 5px;
+  @_line-margin: 10px;
+  @_top: comment;
+  @_spacing: 10px;
+
+  margin-top: @_spacing;
+  font-size: @font-size--normal-2;
+  color: #555;
+  border-bottom: 0 solid #ccc;
+
+  &--top {
+    .default-gutter();
+    border-bottom-width: 1px;
+    margin-top: 0;
+    padding-top: @_spacing;
+    padding-bottom: @_spacing;
+  }
+
+  &--changelog {
+    color: @changelog-fg;
+    border-bottom-color: fade(@dark-purple-darker, 50%);
+  }
+
+  &__action {
+    .reset-input();
+    .link-default();
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--active {
+      font-weight: bold;
+    }
+
+    &--permalink {
+      // the translation is lowercased
+      text-transform: capitalize;
+    }
+
+    .@{_top}--changelog & {
+      .link-blue-light();
+    }
+  }
+
+  &__avatar {
+    width: @_avatar;
+    height: @_avatar;
+    margin-right: @_avatar-margin;
+    flex: none;
+  }
+
+  &__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__deleted {
+    font-weight: bold;
+    font-style: italic;
+    margin: 10px 0;
+  }
+
+  &__editor {
+    padding: 10px 0;
+  }
+
+  &__line {
+    position: absolute;
+    top: (@_avatar + @_line-margin);
+    left: (floor((@_avatar - @_line-width) / 2));
+    width: @_line-width;
+    height: calc(100% ~'-' (@_avatar + @_line-margin * 2));
+    background-color: #999;
+    border-radius: 10000px;
+
+    .@{_top}--changelog & {
+      background-color: @dark-purple-light;
+    }
+  }
+
+  &__link {
+    .@{_top}--changelog & {
+      .link-blue-light();
+    }
+  }
+
+  &__main {
+    display: flex;
+
+    &--deleted {
+      opacity: 0.5;
+    }
+  }
+
+  &__message {
+    .content-font();
+    margin: 2px 0;
+    word-wrap: break-word;
+
+    h1 {
+      color: inherit;
+      font-size: 1.2em;
+    }
+
+    h2 {
+      color: inherit;
+      font-size: 1.1em;
+    }
+
+    h3 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h4 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h5 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    h6 {
+      color: inherit;
+      font-size: 1em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .@{_top}--changelog & {
+      color: @changelog-fg-content;
+
+      a {
+        .link-blue-light();
+      }
+    }
+  }
+
+  &__replies {
+    margin-top: 10px;
+
+    &--hidden {
+      display: none;
+    }
+
+    &--indented {
+      padding-left: 0;
+
+      @media @desktop {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  &__reply-box {
+    padding-top: 10px;
+  }
+
+  &__row {
+    margin: -2px -5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    font-weight: bold;
+
+    &--footer {
+      font-size: @font-size--normal;
+    }
+
+    &--header {
+      font-size: @font-size--title-small;
+      font-style: italic;
+    }
+  }
+
+  &__row-item {
+    margin: 2px 5px;
+
+    &--commentable-meta {
+      font-style: normal;
+    }
+
+    &--info {
+      font-weight: normal;
+
+      .@{_top}--changelog & {
+        color: @changelog-fg-content;
+      }
+    }
+
+    &--username-link {
+      .@{_top}--changelog & {
+        .link-blue-light();
+      }
+    }
+  }
+
+  &__top-show-replies {
+    .reset-input();
+    position: absolute;
+    left: 20px;
+    height: @_avatar;
+    width: @_avatar;
+    top: @_spacing;
+    left: (@gutter-desktop - @_avatar - @_avatar-margin);
+    font-size: 18px; // icon size
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
+  }
+}

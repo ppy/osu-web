@@ -33,22 +33,41 @@ class Build extends Model
         'date',
     ];
 
-    protected $guarded = [];
+    protected $casts = [
+        'allow_bancho' => 'boolean',
+    ];
 
     private $cache = [];
 
     public static function importFromGithubNewTag($data)
     {
-        $repository = Repository::where('name', '=', $data['repository']['full_name'])->first();
+        $repository = Repository::where([
+            'name' => $data['repository']['full_name'],
+            'build_on_tag' => true,
+        ])->first();
 
-        // abort on unknown repository
+        // abort on unknown or non-auto build repository
         if ($repository === null) {
             return;
         }
 
-        $version = substr($data['ref'], strlen('refs/tags/'));
+        $tag = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $version = $tag[0];
+        $streamName = $tag[1] ?? null;
 
-        $build = $repository->updateStream->builds()->firstOrCreate([
+        if ($streamName !== null) {
+            $stream = UpdateStream::where('name', '=', $streamName)->first();
+        }
+
+        if (!isset($stream)) {
+            $stream = $repository->mainUpdateStream;
+        }
+
+        if (!isset($stream)) {
+            return;
+        }
+
+        $build = $stream->builds()->firstOrCreate([
             'version' => $version,
         ]);
 
@@ -56,9 +75,9 @@ class Build extends Model
 
         $changelogEntry = new ChangelogEntry;
 
-        $newChangelogEntryIds = $repository
+        $newChangelogEntryIds = $stream
             ->changelogEntries()
-            ->whereDoesntHave('builds')
+            ->orphans($stream->getKey())
             ->where($changelogEntry->qualifyColumn('created_at'), '<=', $lastChange)
             ->pluck($changelogEntry->qualifyColumn('id'));
 
@@ -93,6 +112,11 @@ class Build extends Model
         return $this->changelogEntries()->default();
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function scopeDefault($query)
     {
         $query->whereNotNull('stream_id');
@@ -103,22 +127,58 @@ class Build extends Model
         return $this->hasMany(BuildPropagationHistory::class, 'build_id');
     }
 
-    public function scopeLatestByStream($query, $streamIds)
-    {
-        $latestBuildIds = static::default()
-            ->selectRaw('MAX(build_id) latest_build_id')
-            ->whereIn('stream_id', $streamIds)
-            ->groupBy('stream_id')
-            ->pluck('latest_build_id');
-
-        $query->whereIn('build_id', $latestBuildIds)
-            ->orderByField('stream_id', $streamIds)
-            ->with('updateStream');
-    }
-
     public function scopePropagationHistory($query)
     {
         $query->default()->where('allow_bancho', true);
+    }
+
+    public function scopeSearch($query, $params)
+    {
+        if (isset($params['stream'])) {
+            $stream = UpdateStream::where('name', '=', $params['stream'])->first();
+
+            if ($stream === null) {
+                return $query->none();
+            }
+
+            $query->where('stream_id', '=', $stream->getKey());
+        } else {
+            $stream = null;
+        }
+
+        if (isset($params['from'])) {
+            $query->where('build_id', '>=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['from'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['to'])) {
+            $query->where('build_id', '<=', function ($q) use ($params, $stream) {
+                $q->from($this->getTable())
+                    ->where('version', '=', $params['to'])
+                    ->select('build_id')
+                    ->limit(1);
+
+                if ($stream !== null) {
+                    $q->where('stream_id', '=', $stream->getKey());
+                }
+            });
+        }
+
+        if (isset($params['max_id'])) {
+            $query->where('build_id', '<=', $params['max_id']);
+        }
+
+        if (isset($params['limit'])) {
+            $query->limit($params['limit']);
+        }
     }
 
     public function versionNext()
@@ -152,20 +212,5 @@ class Build extends Model
     public function displayVersion()
     {
         return preg_replace('#[^0-9.]#', '', $this->version);
-    }
-
-    public function disqusId()
-    {
-        return 'build_b'.substr(htmlentities($this->version), 0, 8).$this->updateStream->name;
-    }
-
-    public function disqusTitle()
-    {
-        return 'Release Notes for b'.$this->displayVersion().' ('.$this->updateStream->pretty_name.')';
-    }
-
-    public function isFeatured()
-    {
-        return $this->stream_id === config('osu.changelog.featured_stream');
     }
 }

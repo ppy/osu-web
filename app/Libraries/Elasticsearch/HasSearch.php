@@ -20,22 +20,25 @@
 
 namespace App\Libraries\Elasticsearch;
 
-trait HasSearch
+abstract class HasSearch
 {
-    protected $from;
     protected $highlight;
+    protected $params;
     protected $query;
-    protected $size;
-    protected $sorts = [];
     protected $source;
     protected $type;
 
+    public function __construct(SearchParams $params)
+    {
+        $this->params = $params;
+    }
+
     /**
      * @return $this
      */
-    public function from(?int $from)
+    public function from(int $from)
     {
-        $this->from = $from;
+        $this->params->from = $from;
 
         return $this;
     }
@@ -43,27 +46,9 @@ trait HasSearch
     /**
      * @return $this
      */
-    public function limit(?int $limit)
+    public function size(int $size)
     {
-        return $this->size($limit);
-    }
-
-    /**
-     * @return $this
-     */
-    public function size(?int $size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function page(?int $page)
-    {
-        $this->page = $page;
+        $this->params->size = $size;
 
         return $this;
     }
@@ -133,46 +118,26 @@ trait HasSearch
         return $this;
     }
 
-    protected function getDefaultSize() : int
-    {
-        return 10;
-    }
-
-    /**
-     * page is not returned if using offset query.
-     *
-     * @return array
-     */
-    protected function getPaginationParams()
-    {
-        $size = $this->getSize();
-        $params = ['size' => $size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page ?? 1);
-            $params['from'] = ($params['page'] - 1) * $size;
-        }
-
-        return $params;
-    }
-
     /**
      *  Gets the actual size to use in queries.
      *
      * @return int actual size to use.
      */
-    protected function getSize() : int
+    protected function getQuerySize() : int
     {
-        return $this->size ?? $this->getDefaultSize();
+        return min($this->maxResults() - $this->params->from, $this->params->size);
+    }
+
+    protected function maxResults() : int
+    {
+        // the default is the maximum number of total results allowed when not using the scroll API.
+        return 10000;
     }
 
     private function addSort(Sort $sort)
     {
         if (!$sort->isBlank()) {
-            $this->sorts[] = $sort;
+            $this->params->sorts[] = $sort;
         }
     }
 }

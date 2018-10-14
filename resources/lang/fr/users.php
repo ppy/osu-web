@@ -51,7 +51,7 @@ return [
         'hide_profile' => 'masquer le profil',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
         'show_profile' => 'afficher le profil',
-        'too_many' => 'Limite de bloquages atteinte.',
+        'too_many' => 'Limite de blocages atteinte.',
         'button' => [
             'block' => 'bloquer',
             'unblock' => 'débloquer',
@@ -74,10 +74,10 @@ return [
         'title' => 'Merci de vous connecter pour continuer',
         'failed' => 'Identifiants incorrects',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
-        'forgot' => 'Mot de passe oublié?',
+        'forgot' => 'Mot de passe oublié ?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utilisateurs privilégiés.',
-            'small' => '(les supporteurs l\'obtiendront bientôt)',
+            'small' => '(les supporteurs osu! l\'obtiendront bientôt)',
         ],
 
         'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
@@ -96,7 +96,29 @@ return [
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
-    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(',
+    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter ? :(',
+    'report' => [
+        'button_text' => 'signaler',
+        'comments' => 'Commentaires supplémentaires',
+        'placeholder' => 'Veuillez fournir toute information que vous pensez pouvoir être utile.',
+        'reason' => 'Raison',
+        'thanks' => 'Merci pour votre signalement !',
+        'title' => 'Signaler :username ?',
+
+        'actions' => [
+            'send' => 'Envoyer le rapport',
+            'cancel' => 'Annuler',
+        ],
+
+        'options' => [
+            'cheating' => 'Anti-jeu / Tricherie',
+            'insults' => 'M’insulte / insulte les autres',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Envoi de contenu inapproprié',
+            'nonsense' => 'Non-sens',
+            'other' => 'Autre (écrivez ci-dessous)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
@@ -110,9 +132,7 @@ return [
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu pour la dernière fois :date',
         'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age ans et de :country',
-        'origin_country' => 'Depuis :country',
+        'origin_country' => 'De :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',
@@ -159,7 +179,7 @@ return [
                     'title' => 'Beatmaps dans le cimetière (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps en attente (:count)',
+                    'title' => 'Beatmaps loved (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps classées et approuvées (:count)',
@@ -169,7 +189,7 @@ return [
                 ],
             ],
             'historical' => [
-                'empty' => 'Aucun performance enregistrée. :(',
+                'empty' => 'Aucune performance enregistrée. :(',
                 'title' => 'Historique',
 
                 'monthly_playcounts' => [
@@ -193,7 +213,7 @@ return [
                 'recent_entries' => 'Historique de Kudosu récent',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
-                'total_info' => 'Basé sur notre contribution à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
+                'total_info' => 'Basé sur la contribution de l\'utilisateur à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -235,7 +255,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'Moi!',
+                'title' => 'moi !',
             ],
             'medals' => [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
@@ -285,7 +305,7 @@ return [
             'interests' => 'Centres d\'intérêt',
             'lastfm' => 'Last.fm',
             'location' => 'Position actuelle',
-            'occupation' => 'Occupation professionnelle',
+            'occupation' => 'Occupation',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Site Internet',
@@ -298,7 +318,7 @@ return [
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [
-            'description' => '<strong>Moi!</strong> est une zone personnalisable du profil.',
+            'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
             'restriction_info' => "Vous devez être <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",

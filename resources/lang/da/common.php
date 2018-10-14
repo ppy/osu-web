@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Er du sikker?',
+    'confirmation_unsaved' => '',
     'saved' => 'Gemt',
 
     'array_and' => [
@@ -32,9 +33,9 @@ return [
         'cancel' => 'Annullér',
         'change' => '',
         'click_to_copy' => '',
-        'click_to_copy_copied' => '',
+        'click_to_copy_copied' => 'kopieret til udklipsholder!',
         'delete' => 'Slet',
-        'hide' => '',
+        'hide' => 'skjul',
         'permalink' => 'permalink',
         'permalink_copied' => '',
         'post' => 'Slå op',
@@ -53,9 +54,9 @@ return [
 
     'count' => [
         'badges' => '',
-        'days' => '',
+        'days' => ':count dag|:count dage',
         'hour_short_unit' => '',
-        'hours' => '',
+        'hours' => ':count time|:count timer',
         'item' => ':count unit|:count units',
         'minute_short_unit' => '',
         'months' => ':count måned|:count måneder',

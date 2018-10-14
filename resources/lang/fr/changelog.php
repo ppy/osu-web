@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'flux',
     'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => ':users utilisateur en ligne|:users utilisateurs en ligne',
 
-    'prefixes' => [
-        'add' => 'ajout',
-        'fix' => 'correction',
-        'misc' => 'divers',
+    'build' => [
+        'title' => 'changements dans :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited utilisateur en ligne|:count_delimited utilisateurs en ligne',
+    ],
+
+    'entry' => [
+        'by' => 'par :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'liste des changements',
+            '_from' => 'changements depuis :from',
+            '_from_to' => 'changements entre :from et :to',
+            '_stream' => 'changements dans :stream',
+            '_stream_from' => 'changements dans :stream depuis :from',
+            '_stream_from_to' => 'changements dans :stream entre :from et :to',
+            '_stream_to' => 'changements dans :stream jusqu\'à :to',
+            '_to' => 'changements jusqu\'à :to',
+        ],
+
+        'title' => [
+            '_' => 'Changements :info',
+            'info' => 'Listage',
+        ],
     ],
 
     'support' => [

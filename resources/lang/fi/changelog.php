@@ -21,18 +21,41 @@
 return [
     'feed_title' => 'syöte',
     'generic' => 'Vikojen korjauksia ja pieniä parannuksia.',
-    'users-online' => '1 käyttäjä linjoilla|:users käyttäjää linjoilla',
 
-    'prefixes' => [
-        'add' => 'lisäys',
-        'fix' => 'korjaus',
-        'misc' => 'sekalainen',
+    'build' => [
+        'title' => 'muutokset versiossa :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited käyttäjä paikalla|:count_delimited käyttäjää paikalla',
+    ],
+
+    'entry' => [
+        'by' => 'käyttäjältä :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'muutosloki listaus',
+            '_from' => '',
+            '_from_to' => '',
+            '_stream' => '',
+            '_stream_from' => '',
+            '_stream_from_to' => '',
+            '_stream_to' => '',
+            '_to' => '',
+        ],
+
+        'title' => [
+            '_' => 'Muutosloki :info',
+            'info' => 'Listaus',
+        ],
     ],
 
     'support' => [
-        'heading' => 'Tykkäätkö tästä päivityksestä?',
-        'text_1' => 'Tue osu!:n kehitystä ja :link tänään!',
-        'text_1_link' => 'ala tukijaksi',
-        'text_2' => 'Et ainoastaan auta kehityksen nopeutusta, mutta saat myös joitain lisäetuja ja -muokkauksia!',
+        'heading' => 'Onko tämä päivitys mieleesi?',
+        'text_1' => 'Tue osu!:n kehittämistä ja :link tänään!',
+        'text_1_link' => 'ryhdy tukijaksi',
+        'text_2' => 'Tukesi ei ainoastaan nopeuta pelin kehittämistä, vaan saat myös lisätoimintoja sekä enemmän muokkausvapautta!',
     ],
 ];

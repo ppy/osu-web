@@ -36,7 +36,10 @@ return [
         'title' => 'Beatmap Discussies',
 
         'form' => [
+            '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'types' => 'Berichttypen',
+            'username' => 'Gebruikersnaam',
 
             'user' => [
                 'label' => 'Gebruiker',

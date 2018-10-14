@@ -25,14 +25,14 @@ return [
 
     'cart' => [
         'checkout' => 'Pagamento',
-        'more_goodies' => 'Quero adicionar mais coisas boas antes de completar a pedido',
+        'more_goodies' => 'Quero adicionar mais coisas boas antes de completar o pedido',
         'shipping_fees' => 'custos de envio',
         'title' => 'Carrinho de Compras',
         'total' => 'total',
 
         'errors_no_checkout' => [
             'line_1' => 'Oh não, há problemas com o teu carrinho a impedir o pagamento!',
-            'line_2' => 'Remove ou actualiza itens acima para continuar.',
+            'line_2' => 'Remove ou actualiza os itens acima para continuar.',
         ],
 
         'empty' => [
@@ -62,7 +62,7 @@ return [
 
     'mail' => [
         'payment_completed' => [
-            'subject' => 'Nós recebemos o teu pedido da loja do osu!',
+            'subject' => 'Nós recebemos o teu pedido da osu!store!',
         ],
     ],
 
@@ -75,7 +75,7 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Não podes modificar a tua ordem porque foi cancelada.',
+            'cancelled' => 'Não podes modificar o teu pedido porque foi cancelado.',
             'checkout' => 'Tu não podes alterar o teu pedido enquanto está a ser processado.', // checkout and processing should have the same message.
             'default' => 'O pedido não é alterável',
             'delivered' => 'Tu não podes alterar o teu pedido porque já foi entregue.',
@@ -103,19 +103,19 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'presente para o jogador',
+        'gift' => 'oferecer ao jogador',
         'require_login' => [
-            '_' => 'Tu precisas de ser :link para arranjar uma etiqueta de apoiante!',
+            '_' => 'Tu precisas de ser :link para arranjar uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada em',
         ],
     ],
 
     'username_change' => [
-        'check' => 'Introduza um nome de utilizador para confirmar disponibilidade!',
-        'checking' => 'A confirmar disponibilidade do :username...',
+        'check' => 'Introduz um nome de utilizador para confirmar disponibilidade!',
+        'checking' => 'A confirmar disponibilidade de :username...',
         'require_login' => [
             '_' => 'Tu precisas de ser :link para mudares o teu nome!',
-            'link_text' => 'sessão iniciada em',
+            'link_text' => 'sessão iniciada',
         ],
     ],
 ];

@@ -65,9 +65,9 @@ class Contest.Voting.Entry extends React.Component
       if @props.contest.show_votes
         if @props.contest.best_of
           div className:'contest__vote-count contest__vote-count--no-percentages',
-            "#{@props.entry.results.votes} points"
+            osu.transChoice 'contest.vote.points', @props.entry.results.votes
         else
           div className:'contest__vote-count',
-            "#{@props.entry.results.votes} votes"
+            osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if isFinite(votePercentage)
               " (#{votePercentage}%)"

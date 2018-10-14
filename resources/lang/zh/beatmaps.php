@@ -39,7 +39,6 @@ return [
         'edit' => '编辑',
         'edited' => '最后由 :editor 编辑于 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
-        'message_placeholder' => '在此处输入您的内容',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
             'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
+        ],
+
+        'message_placeholder' => [
+            'general' => '在此处输入以发布到常规 (:version)',
+            'generalAll' => '在此处输入以发布到常规 (所有难度)',
+            'timeline' => '在此处输入以发布到时间线 (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => '没有指定原因',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作出错了，请刷新页面。',
+        'love' => '喜欢',
+        'love_confirm' => '喜欢这张谱面吗？',
         'nominate' => '提名',
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '被 :users 提名',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => '输入关键字...',
+            'login_required' => '登录以搜索。',
             'options' => '更多搜索选项',
+            'supporter_filter' => '按 :filters 筛选需要成为支持者',
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',
             'filters' => [
                 'general' => '常规',
                 'mode' => '模式',
-                'status' => 'Rank 状态',
+                'status' => '分类',
                 'genre' => '流派',
                 'language' => '语言',
                 'extra' => '额外',
@@ -191,11 +200,11 @@ return [
                 'relevance' => '相关性',
                 'nominations' => '提名状态',
             ],
+            'supporter_filter_quote' => [
+                '_' => '按 :filters 筛选需要成为 :link',
+                'link_text' => '支持者',
+            ],
         ],
-        'mode' => '模式',
-        'status' => 'Rank 状态',
-        'source' => '来自 :source',
-        'load-more' => '加载更多...',
     ],
     'general' => [
         'recommended' => '推荐难度',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => '我的',
     ],

@@ -25,11 +25,12 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
-use Es;
+use Exception;
 
 class Page
 {
@@ -84,7 +85,7 @@ class Page
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_searchpath'))
             ->source('path')
             ->query($query);
 
@@ -155,12 +156,12 @@ class Page
         $params['body']['indexed_at'] = json_time(Carbon::now());
         $params['body']['version'] = static::VERSION;
 
-        return Es::index($params);
+        return Es::getClient()->index($params);
     }
 
     public function esDeleteDocument()
     {
-        return Es::delete(static::searchIndexConfig([
+        return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
@@ -171,13 +172,19 @@ class Page
         return $this->page()['header']['outdated'] ?? false;
     }
 
+    public function isLegalTranslation()
+    {
+        return $this->locale !== config('app.fallback_locale')
+            && ($this->page()['header']['legal'] ?? false);
+    }
+
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [
@@ -207,7 +214,13 @@ class Page
                 if ($fetch) {
                     try {
                         $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-                    } catch (GitHubNotFoundException $_e) {
+                    } catch (Exception $e) {
+                        if (!$e instanceof GitHubNotFoundException) {
+                            $index = false;
+
+                            log_error($e);
+                        }
+
                         $body = null;
                     }
 
@@ -220,7 +233,7 @@ class Page
 
                 $this->cache['page'] = $page;
 
-                if ($fetch) {
+                if ($fetch && ($index ?? true)) {
                     dispatch(new EsIndexDocument($this));
                 }
 
@@ -236,6 +249,19 @@ class Page
     public function pagePath()
     {
         return $this->path.'/'.$this->locale.'.md';
+    }
+
+    public function hasParent()
+    {
+        return $this->parentPath() !== null
+            && (new static($this->parentPath(), $this->requestedLocale))->page() !== null;
+    }
+
+    public function parentPath()
+    {
+        if (($pos = strrpos($this->path, '/')) !== false) {
+            return substr($this->path, 0, $pos);
+        }
     }
 
     public function refresh()

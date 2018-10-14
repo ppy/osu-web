@@ -34,14 +34,15 @@ return [
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
         'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
+        'love' => ':user nadał(a) tej beatmapie status ulubionej społeczności',
         'nominate' => 'Nominowana przez :user.',
         'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
-        'qualify' => 'Zakwalifikowana.',
+        'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń zestawu beatmap',
+        'title' => 'Historia zdarzeń zestawów beatmap',
     ],
 
     'item' => [

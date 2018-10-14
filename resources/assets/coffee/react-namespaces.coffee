@@ -16,11 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+@Admin = {}
+@Admin.Contest = {}
 @BeatmapDiscussions = {}
 @Beatmaps = {}
 @BeatmapsetPage = {}
 @ChangelogIndex = {}
 @ChangelogBuild = {}
+@CommentsIndex = {}
+@CommentsShow = {}
 @Contest = {}
 @Contest.Entry = {}
 @Contest.Voting = {}

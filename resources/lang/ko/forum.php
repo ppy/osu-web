@@ -19,10 +19,10 @@
  */
 
 return [
-    'pinned_topics' => '고정된 토픽',
+    'pinned_topics' => '고정된 주제',
     'slogan' => "혼자서 놀기엔 너무 위험하지요.",
     'subforums' => '서브포럼',
-    'title' => 'osu!커뮤니티',
+    'title' => 'osu! 포럼',
 
     'covers' => [
         'create' => [
@@ -70,19 +70,30 @@ return [
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
+        'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',
         'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
         'post_reply' => '게시하기',
         'reply_box_placeholder' => '답글 내용을 입력하세요.',
+        'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
+        'started_by_verbose' => ':user 님이 시작함',
 
         'create' => [
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '계속 쓰기',
+            'preview_hide' => '작성',
             'submit' => '게시하기',
+
+            'necropost' => [
+                'default' => '이 주제는 조금 오래된 글입니다. 정말 그래야 할 사유가 있는 경우에만 작성해 주세요.',
+
+                'new_topic' => [
+                    '_' => "이 주제는 조금 오래된 글입니다. 정말 여기에 작성해야 할 사유가 없다면, :create해 주세요.",
+                    'create' => '새로운 주제를 생성',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => '글 내용을 입력하세요.',
@@ -133,6 +144,7 @@ return [
         '_' => '주제',
 
         'actions' => [
+            'login_reply' => '답변하려면 로그인하세요',
             'reply' => '답변',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',

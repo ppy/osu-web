@@ -20,53 +20,57 @@
 
 return [
     'match' => [
-        'header' => 'Moninpeliottelut',
-        'team-types' => [
-            'head-to-head' => 'Kasvokkain',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
-        ],
-        'events' => [
-            'player-left' => ':user poistui ottelusta',
-            'player-joined' => ':user liittyi otteluun',
-            'player-kicked' => ':user on potkittu ottelusta',
-            'match-created' => ':user loi ottelun',
-            'match-disbanded' => 'ottelu lakkautettiin',
-            'host-changed' => 'käyttäjästä :user tuli isäntä',
+        'beatmap-deleted' => 'beatmap on poistettu',
+        'difference' => ':difference pisteen erotuksella',
+        'failed' => 'HÄVISI',
+        'header' => 'Moninpelit',
+        'in-progress' => '(peli meneillään)',
+        'in_progress_spinner_label' => 'peli meneillään',
+        'loading-events' => 'Ladataan tapahtumia...',
+        'winner' => ':team voitti',
 
-            'player-left-no-user' => 'pelaaja poistui ottelusta',
-            'player-joined-no-user' => 'pelaaja liittyi otteluun',
-            'player-kicked-no-user' => 'pelaaja on potkittu ottelusta',
-            'match-created-no-user' => 'ottelu luotiin',
-            'match-disbanded-no-user' => 'ottelu lakkautettiin',
-            'host-changed-no-user' => 'isäntä muuttui',
+        'events' => [
+            'player-left' => ':user poistui pelistä',
+            'player-joined' => ':user liittyi peliin',
+            'player-kicked' => ':user potkittiin pelistä',
+            'match-created' => ':user loi pelin',
+            'match-disbanded' => 'peli lakkautettiin',
+            'host-changed' => ':user on nyt isäntä',
+
+            'player-left-no-user' => 'pelaaja poistui pelistä',
+            'player-joined-no-user' => 'pelaaja liittyi peliin',
+            'player-kicked-no-user' => 'pelaaja potkittiin pelistä',
+            'match-created-no-user' => 'peli luotiin',
+            'match-disbanded-no-user' => 'peli lakkautettiin',
+            'host-changed-no-user' => 'isäntä vaihtui',
         ],
-        'in-progress' => '(ottelu kesken)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Tarkkuus',
                 'combo' => 'Combo',
-                'score' => 'Pistemäärä',
+                'score' => 'Pisteet',
             ],
         ],
-        'failed' => 'EPÄONNISTUNUT',
+
+        'team-types' => [
+            'head-to-head' => 'Kaikki vastakkain',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Tiimi VS',
+            'tag-team-vs' => 'Tag Tiimi VS',
+        ],
+
         'teams' => [
             'blue' => 'Sininen joukkue',
             'red' => 'Punainen joukkue',
         ],
-        'winner' => ':team voitti',
-        'difference' => 'erotuksella :difference',
-        'loading-events' => 'Ladataan tapahtumia...',
-        'more-events' => 'näytä kaikki...',
-        'beatmap-deleted' => 'poistettu rytmikartta',
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Korkein pistemäärä',
+            'score' => 'Korkeimmat Pisteet',
             'accuracy' => 'Korkein tarkkuus',
             'combo' => 'Korkein combo',
-            'scorev2' => '',
+            'scorev2' => 'Pisteytys V2',
         ],
     ],
 ];

@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Diskussionen :discussion av :user skaffade sig tillräckligt många röster för kudosu.',
         'kudosu_lost' => 'Diskussionen :discussion av :user förlorade röster och tillåten kudosu har tagits bort.',
         'kudosu_recalculate' => 'Diskussionen :discussion har fått sina tillåtna kudosu omberäknade.',
+        'love' => 'Älskad av :user',
         'nominate' => 'Nominerad av :user.',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
-        'qualify' => 'Kvalificerad.',
+        'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
     ],
 

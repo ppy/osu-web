@@ -30,7 +30,7 @@ return [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
-        'play_count' => 'Játszottságszám',
+        'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',
         'ranked_score' => 'Rangsorolt Pontszám',

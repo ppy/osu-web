@@ -29,7 +29,6 @@ class PollOption extends Model
     protected $primaryKey = null;
     public $incrementing = false;
     public $timestamps = false;
-    protected $guarded = [];
 
     // For bbcode_uid, the first post (even if the post is deleted).
     public function post()

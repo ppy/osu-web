@@ -45,17 +45,26 @@ class UpdateStream extends Model
         return $this->hasManyThrough(
             ChangelogEntry::class, // target class
             Repository::class, // bridge class
-            'stream_id', // column name in bridge linking to this
-            'repository', // column name in target linking to bridge
-            null, // column name in this linking to bridge
-            'name' // column name in bridge linking to target
+            'stream_id' // column name in bridge linking to this
         );
+    }
+
+    public function scopeWhereHasBuilds($query)
+    {
+        $query->whereHas('builds', function ($q) {
+            $buildInstance = new Build;
+            $table = $buildInstance->getTable();
+            $database = $buildInstance->dbName();
+            $qualifiedTable = "{$database}.{$table}";
+
+            $q->from($qualifiedTable)->default()->whereRaw("{$qualifiedTable}.stream_id = stream_id");
+        });
     }
 
     public function createBuild()
     {
         $entryIds = model_pluck(
-            $this->changelogEntries()->whereDoesntHave('builds'),
+            $this->changelogEntries()->orphans($this->getKey()),
             'id',
             ChangelogEntry::class
         );
@@ -69,5 +78,20 @@ class UpdateStream extends Model
         $build->changelogEntries()->attach($entryIds);
 
         return $build;
+    }
+
+    public function latestBuild()
+    {
+        return $this->builds()->orderBy('build_id', 'DESC')->first();
+    }
+
+    public function userCount()
+    {
+        return (int) $this->builds()->where('allow_bancho', '=', true)->sum('users');
+    }
+
+    public function isFeatured()
+    {
+        return $this->getKey() === config('osu.changelog.featured_stream');
     }
 }

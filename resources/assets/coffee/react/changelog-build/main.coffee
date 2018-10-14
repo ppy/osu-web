@@ -22,20 +22,19 @@ el = React.createElement
 class ChangelogBuild.Main extends React.PureComponent
   componentDidMount: =>
     changelogChartLoader.initialize()
-    $.publish 'turbolinksDisqusReload'
 
 
   render: =>
     div null,
-      div className: 'header-bg header-bg--changelog',
-        div className: 'header-bg__overlay'
-
-      div className: 'osu-page osu-page--changelog',
-        div className: 'osu-page__header',
+      div className: 'header-v3 header-v3--changelog',
+        div className: 'header-v3__bg'
+        div className: 'header-v3__overlay'
+        div className: 'osu-page osu-page--header-v3',
           @renderHeaderTitle()
           @renderHeaderTabs()
 
-        el ChangelogHeaderBuilds, latestBuilds: @props.latestBuilds, currentStreamId: @props.build.update_stream.id
+      div className: 'osu-page osu-page--changelog',
+        el ChangelogHeaderStreams, updateStreams: @props.updateStreams, currentStreamId: @props.build.update_stream.id
 
         div className: 'js-changelog-chart', style: height: '100px'
 
@@ -69,10 +68,11 @@ class ChangelogBuild.Main extends React.PureComponent
             div className: 'builds__group', @renderSupporterPromo()
 
           div
-            className: 'builds__group builds__group--discussions js-turbolinks-disqus'
-            'data-turbolinks-disqus': JSON.stringify
-              identifier: @props.build.disqus_id
-              title: @props.build.disqus_title
+            className: 'builds__group builds__group--discussions'
+            el Comments,
+              commentableType: 'build'
+              commentableId: @props.build.id
+              modifiers: ['changelog']
 
 
   renderHeaderTabs: =>
@@ -94,7 +94,7 @@ class ChangelogBuild.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title js-nav2--header-title',
+      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1

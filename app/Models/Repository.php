@@ -22,15 +22,34 @@ namespace App\Models;
 
 class Repository extends Model
 {
-    protected $guarded = [];
+    protected $casts = [
+        'build_on_tag' => 'boolean',
+    ];
 
-    public function updateStream()
+    public static function importFromGithub($data)
+    {
+        return static::firstOrCreate(['name' => $data['full_name']]);
+    }
+
+    public function mainUpdateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id');
     }
 
+    public function updateStreams()
+    {
+        $bridgeTable = config('database.connections.mysql.database').'.repository_update_stream';
+
+        return $this->belongsToMany(UpdateStream::class, $bridgeTable, null, 'stream_id');
+    }
+
     public function changelogEntries()
     {
-        return $this->hasMany(ChangelogEntry::class, 'repository', 'name');
+        return $this->hasMany(ChangelogEntry::class);
+    }
+
+    public function shortName()
+    {
+        return substr($this->name, 1 + strpos($this->name, '/'));
     }
 }

@@ -29,7 +29,7 @@ return [
             'account-edit' => 'cài đặt',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
-            'changelog-show' => 'build',
+            'changelog-build' => 'build',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -177,11 +177,6 @@ return [
             'forum' => 'Diễn Đàn',
             'livestreams' => 'Live Streams',
             'report' => 'Báo Cáo Một Vấn Đề',
-        ],
-        'support' => [
-            '_' => 'Ủng Hộ osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Hàng Hóa',
         ],
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',

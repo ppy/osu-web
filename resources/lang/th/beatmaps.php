@@ -39,7 +39,6 @@ return [
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ค่าชื่อเสียง',
-        'message_placeholder' => 'พิมพ์ที่นี่เพื่อโพสต์',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_type_select' => 'เลือกประเภทคอมเม้นต์',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'โพสต์นี้จะไปที่การสนทนาทั่วไป ถ้าอยาก Mod Beatmap นี้ เริ่มต้นข้อความของคุณด้วยช่วงเวลา (เช่น 00:12:345)',
             'in_timeline' => 'ในการ Mod หลายช่วงเวลา โพสต์หลายๆครั้ง (หนึ่งโพสต์ต่อหนึ่งช่วงเวลา)',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีทั่วไป (:version)',
+            'generalAll' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีทั่วไป (ทุกระดับความยาก)',
+            'timeline' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีไปยังไทม์ไลน์ (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
+        'love' => 'รัก',
+        'love_confirm' => 'ชอบบีทแมพนี้หรือ',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อ Beatmap นี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'พิมพ์คำสำคัญ...',
+            'login_required' => 'ลงชื่อเข้าใช้เพื่อค้นหา',
             'options' => 'ค้นหาเพิ่มเติม',
+            'supporter_filter' => 'กรองโดย :filters ต้องมี osu!supporter tag ทำงานอยู่',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
             'filters' => [
                 'general' => 'ทั่วไป',
                 'mode' => 'โหมด',
-                'status' => 'สถานะการจัดอันดับ',
+                'status' => 'หมวดหมู่',
                 'genre' => 'ประเภท',
                 'language' => 'ภาษา',
                 'extra' => 'เพิ่มเติม',
@@ -185,17 +194,17 @@ return [
                 'artist' => 'ศิลปิน',
                 'difficulty' => 'ระดับความยาก',
                 'updated' => 'เพิ่งอัพเดต',
-                'ranked' => '',
+                'ranked' => 'จัดอันดับแล้ว',
                 'rating' => 'คะแนน',
                 'plays' => 'จำนวนการเล่น',
                 'relevance' => 'ความเกี่ยวข้อง',
-                'nominations' => '',
+                'nominations' => 'เสนอชื่อเข้าชิง',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
+                'link_text' => 'osu!supporter tag (ผู้สนับสนุนเกม)',
             ],
         ],
-        'mode' => 'โหมด',
-        'status' => 'สถานะการจัดอันดับ',
-        'source' => 'จาก :source',
-        'load-more' => 'โหลดเพิ่มเติม...',
     ],
     'general' => [
         'recommended' => 'ระดับความยากที่แนะนำ',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'ผ่านเกณฑ์',
         'loved' => 'Loved',
         'faves' => 'รายการโปรด',
-        'pending' => 'อยู่ระหว่างดำเนินการ',
+        'pending' => '',
         'graveyard' => 'สุสาน',
         'my-maps' => 'แมพของฉัน',
     ],

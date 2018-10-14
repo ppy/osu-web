@@ -21,12 +21,35 @@
 return [
     'feed_title' => '詳細',
     'generic' => '修復已知問題並做了改進.',
-    'users-online' => ':users 在線上',
 
-    'prefixes' => [
-        'add' => '新增',
-        'fix' => '修復',
-        'misc' => '雜項',
+    'build' => [
+        'title' => '',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited 名用戶上線',
+    ],
+
+    'entry' => [
+        'by' => '作者：:user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => '',
+            '_from' => '',
+            '_from_to' => '',
+            '_stream' => '',
+            '_stream_from' => '',
+            '_stream_from_to' => '',
+            '_stream_to' => '',
+            '_to' => '',
+        ],
+
+        'title' => [
+            '_' => '更新記錄 :info',
+            'info' => '列表',
+        ],
     ],
 
     'support' => [

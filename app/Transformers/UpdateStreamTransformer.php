@@ -25,12 +25,30 @@ use League\Fractal;
 
 class UpdateStreamTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'latest_build',
+        'user_count',
+    ];
+
     public function transform(UpdateStream $stream)
     {
         return [
             'id' => $stream->getKey(),
             'name' => $stream->name,
             'display_name' => $stream->pretty_name,
+            'is_featured' => $stream->isFeatured(),
         ];
+    }
+
+    public function includeLatestBuild(UpdateStream $stream)
+    {
+        return $this->item($stream->latestBuild(), new BuildTransformer);
+    }
+
+    public function includeUserCount(UpdateStream $stream)
+    {
+        return $this->item($stream, function ($stream) {
+            return [$stream->userCount()];
+        });
     }
 }

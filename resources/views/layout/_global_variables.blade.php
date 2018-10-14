@@ -21,7 +21,6 @@
     var page = "{{ $currentAction }}";
     var canonicalUrl = "{{ $canonicalUrl or '' }}";
     var reloadUrl = "{{ $reloadUrl or '' }}";
-    var disqusShortName = "{{ config('services.disqus.short_name') }}";
 </script>
 
 @include ('layout._current_user')

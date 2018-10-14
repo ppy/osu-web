@@ -21,7 +21,7 @@
 return [
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
-    'too_long' => ':attribute limite máximo excedido - só podem ser até :limit characters.',
+    'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
     'beatmap_discussion_post' => [
@@ -30,31 +30,30 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'O horário está especificado mas o beatmap está em falta.',
-        'beatmapset_no_hype' => "O beatmap não pode ser publicitado.",
-        'hype_requires_null_beatmap' => 'A publicitação tem que ser feita na secção Geral (todas as dificuldades).',
+        'beatmap_missing' => 'A marca de tempo está especificada mas o beatmap está em falta.',
+        'beatmapset_no_hype' => "O beatmap não pode ser hypeado.",
+        'hype_requires_null_beatmap' => 'O hype tem que ser feito na secção Geral (todas as dificuldades).',
         'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido.',
         'locked' => 'A discussão está bloqueada.',
-        'mapper_note_wrong_user' => 'Só o proprietário do beatmap pode publicar as notas do mapper.',
 
         'hype' => [
-            'guest' => 'Tem que estar com sessão iniciada para publicitar.',
-            'hyped' => 'Já te entusiasmaste com este beatmap.',
-            'limit_exceeded' => 'Usaste todo o teu entusiasmo.',
-            'not_hypeable' => 'Este beatmap não pode ser entusiasmado',
-            'owner' => 'Nada de entusiasmar o teu próprio beatmap.',
+            'guest' => 'Tens que estar com a sessão iniciada para hypear.',
+            'hyped' => 'Já hypeaste este beatmap.',
+            'limit_exceeded' => 'Usaste todo o teu hype.',
+            'not_hypeable' => 'Este beatmap não pode ser hypeado',
+            'owner' => 'Nada de hypear o teu próprio beatmap.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'O tempo marcado especificado ultrapassa a duração do beatmap.',
-            'negative' => "O tempo marcado não pode ser negativo.",
+            'exceeds_beatmapset_length' => 'A marca de tempo especificada ultrapassa a duração do beatmap.',
+            'negative' => "A marca de tempo não pode ser negativa.",
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Só se pode votar uma característica solicitada.',
+            'not_feature_topic' => 'Só se pode votar numa característica solicitada.',
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
 
@@ -83,31 +82,31 @@ return [
 
     'user' => [
         'contains_username' => 'A palavra-passe não pode conter o nome de utilizador.',
-        'email_already_used' => 'Endereço de e-mail já usado.',
+        'email_already_used' => 'Endereço de email já usado.',
         'invalid_country' => 'País inexistente na base de dados.',
         'invalid_discord' => 'Nome de utilizador do Discord inválido.',
-        'invalid_email' => "Não parece que seja um endereço de e-mail válido.",
-        'too_short' => 'Nova palavra-passe é demasiado curta.',
+        'invalid_email' => "Não parece que seja um endereço de email válido.",
+        'too_short' => 'A nova palavra-passe é demasiado curta.',
         'unknown_duplicate' => 'Nome de utilizador e endereço de e-mail já usados.',
         'username_available_in' => 'Este nome de utilizador irá estar disponível para uso em :duration.',
         'username_available_soon' => 'Este nome de utilizador irá estar disponível para uso em qualquer momento!',
         'username_invalid_characters' => 'O nome de utilizador solicitado contém caracteres inválidos.',
-        'username_in_use' => 'Nome de utilizador já está a ser usado!',
-        'username_no_space_userscore_mix' => 'Por favor usa ou sublinhados ou espaços, não ambos!',
-        'username_no_spaces' => "Nome de utilizador não pode começar ou acabar com espaços!",
+        'username_in_use' => 'Este nome de utilizador já está a ser usado!',
+        'username_no_space_userscore_mix' => 'Por favor usa sublinhados ou espaços, não ambos!',
+        'username_no_spaces' => "O nome de utilizador não pode começar ou acabar com espaços!",
         'username_not_allowed' => 'Esta escolha para nome de utilizador não é permitida.',
         'username_too_short' => 'O nome de utilizador solicitado é demasiado curto.',
         'username_too_long' => 'O nome de utilizador solicitado é demasiado longo.',
         'weak' => 'Palavra-passe colocada na lista-negra.',
         'wrong_current_password' => 'A palavra-passe actual está incorrecta.',
-        'wrong_email_confirmation' => 'A confirmação do e-mail não corresponde.',
+        'wrong_email_confirmation' => 'A confirmação do email não corresponde.',
         'wrong_password_confirmation' => 'A confirmação da palavra-passe não corresponde.',
         'too_long' => 'Comprimento máximo excedido - só pode ser até :limit caracteres.',
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Tens de ter :link para mudar o teu nome!',
-                'link_text' => 'apoiaste o osu!',
+                '_' => 'Tu tens de ter :link para mudar o teu nome!',
+                'link_text' => 'ajudaste o osu!',
             ],
             'username_is_same' => 'Este já é o teu nome de utilizador, tontinho!',
         ],

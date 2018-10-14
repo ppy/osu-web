@@ -82,7 +82,7 @@ class FriendsController extends Controller
         }
 
         $alreadyFriends = $friends
-            ->where('user_id', $targetId)
+            ->wherePivot('zebra_id', $targetId)
             ->exists();
 
         if (!$alreadyFriends) {
@@ -105,7 +105,7 @@ class FriendsController extends Controller
     {
         $friend = Auth::user()
             ->friends()
-            ->where(['user_id' => $id])
+            ->wherePivot('zebra_id', $id)
             ->firstOrFail();
 
         UserRelation::where([

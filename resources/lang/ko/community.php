@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'osu!가 마음에 드셨나요?<br/>
-                                osu! 개발진을 지원해주세요 :D',
+                                osu! 개발을 지원해주세요 :D',
             'small_description' => '',
             'support_button' => 'osu!를 지원하고 싶습니다!',
         ],
@@ -38,7 +38,7 @@ return [
             앞으로 이 멋진 게임과 커뮤니티에 계속해서 지원해주실 분들도 마찬가지로 말이죠 :).',
 
         'supporter_status' => [
-            'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결재로 :dollars를 후원하셨습니다.',
+            'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결제로 :dollars를 후원하셨습니다.',
             'gifted' => ':giftedTags번의 후원자 태그를 선물했습니다. (총 :giftedDollars 달러 선물 됨), 엄청나게 관대하시네요!',
             'not_yet' => "아직 후원자가 아니시군요 :(",
             'title' => '현재 후원 상태',

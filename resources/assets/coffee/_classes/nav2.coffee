@@ -18,7 +18,7 @@
 
 class @Nav2
   constructor: ->
-    @headerTitle = document.getElementsByClassName('js-nav2--header-title')
+    @hiddenOnMenuAccess = document.getElementsByClassName('js-nav2--hidden-on-menu-access')
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     addEventListener 'turbolinks:load', @setLoginBoxElements
@@ -66,17 +66,19 @@ class @Nav2
     popupLeftForCentered = referenceRect.left + referenceHalfWidth - popupLeft - popupHalfWidth
     popupLeftWhenCentered = popupLeft + popupLeftForCentered
 
-    if popupLeftWhenCentered < 0
-      finalLeft = Math.floor(referenceRect.left) * -1
-    else
-      popupRightWhenCentered = popupLeftWhenCentered + popupRect.width
-      popupRightOverflow = Math.round(popupRightWhenCentered - bodyWidth)
+    finalLeft =
+      if popupLeftWhenCentered < 0
+        referenceRect.left * -1
+      else
+        popupRightWhenCentered = popupLeftWhenCentered + popupRect.width
+        popupRightOverflow = Math.round(popupRightWhenCentered - bodyWidth)
 
-      finalLeft =
         if popupRightOverflow > 0
           popupLeftForCentered - popupRightOverflow
         else
           popupLeftForCentered
+
+    finalLeft = Math.floor(finalLeft)
 
     popup.style.transform = "translateX(#{finalLeft}px)"
 
@@ -84,7 +86,7 @@ class @Nav2
   adjustElementsVisibility: (_e, currentMenu) =>
     shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
 
-    Fade.toggle @headerTitle[0], !shown
+    Fade.toggle(item, !shown) for item in @hiddenOnMenuAccess
     Fade.toggle @menuBg[0], shown
 
 

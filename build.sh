@@ -12,8 +12,12 @@ if [ ! -d node_modules ]; then
   ln -snf ~/node_modules node_modules
 fi
 
-curl -sL https://getcomposer.org/installer > composer-installer
-php composer-installer
+if [ -f composer.phar ]; then
+  php composer.phar self-update
+else
+  curl -sL https://getcomposer.org/installer > composer-installer
+  php composer-installer
+fi
 
 # dummy user, no privilege github token to avoid github api limit
 php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff
@@ -29,6 +33,7 @@ if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
   php artisan migrate --force
 fi
 
+php artisan passport:keys
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 

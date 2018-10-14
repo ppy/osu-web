@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Are you sure?',
+    'confirmation_unsaved' => 'Unsaved changes will be lost. Are you sure?',
     'saved' => 'Saved',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Back to top',
+        'back_to_previous' => 'Return to previous position',
         'cancel' => 'Cancel',
         'change' => 'change',
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
         'delete' => 'Delete',
+        'edit' => 'Edit',
         'hide' => 'hide',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copied',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Reply and Reopen',
         'reply_resolve' => 'Reply and Resolve',
         'reset' => 'Reset',
+        'restore' => 'Restore',
         'save' => 'Save',
         'saving' => 'Saving...',
         'search' => 'Search',
@@ -61,6 +66,13 @@ return [
         'months' => ':count month|:count months',
         'second_short_unit' => 'sec|secs',
         'years' => ':count year|:count years',
+    ],
+
+    'countdown' => [
+        'days' => 'days',
+        'hours' => 'hours',
+        'minutes' => 'minutes',
+        'seconds' => 'seconds',
     ],
 
     'datetime' => [

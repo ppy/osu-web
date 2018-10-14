@@ -21,17 +21,40 @@
 return [
     'feed_title' => 'hírfolyam',
     'generic' => 'Hibajavítások és kisebb fejlesztések.',
-    'users-online' => '1 felhasználó online |:users felhasználó online',
 
-    'prefixes' => [
-        'add' => 'kiegészítés',
-        'fix' => 'javítás',
-        'misc' => 'különféle',
+    'build' => [
+        'title' => 'változtatások a :version -ben',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited felhasználó online|:count_delimited felhasználók online',
+    ],
+
+    'entry' => [
+        'by' => ':user által',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'változtatások listája',
+            '_from' => 'változtatások :from óta',
+            '_from_to' => ':from és :to közötti változtatások',
+            '_stream' => ':stream változtatások',
+            '_stream_from' => ':stream változtatások :from óta',
+            '_stream_from_to' => ':stream változtatások :from és :to között',
+            '_stream_to' => ':stream változtatások :to -ig',
+            '_to' => 'változtatások :to -ig',
+        ],
+
+        'title' => [
+            '_' => 'Változtatások :info',
+            'info' => 'Listázás',
+        ],
     ],
 
     'support' => [
         'heading' => 'Tetszik ez a frissítés?',
-        'text_1' => 'Támogasd a további osu! fejlesztéseket és :link még ma!',
+        'text_1' => 'Támogasd az osu! további fejlesztését és :link még ma!',
         'text_1_link' => 'legyél támogató',
         'text_2' => 'Nem csak a gyors fejlesztést segíted, de még sok extra funkciót és egyediségi lehetőséget kapsz!',
     ],

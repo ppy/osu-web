@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'ροή',
     'generic' => 'Διορθώσεις σφαλμάτων και μικρές βελτιώσεις.',
-    'users-online' => '1 συνδεδεμένος χρήστης|:users συνδεδεμένοι χρήστες',
 
-    'prefixes' => [
-        'add' => 'προσθήκη',
-        'fix' => 'διόρθωση',
-        'misc' => 'διάφορα',
+    'build' => [
+        'title' => 'αλλαγές στην :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited συνδεδεμένος χρήστης |:count_delimited συνδεδεμένοι χρήστες',
+    ],
+
+    'entry' => [
+        'by' => 'από :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'λίστα αρχείων αλλαγών',
+            '_from' => 'αλλαγές από :from',
+            '_from_to' => 'αλλαγές μεταξύ :from και :to',
+            '_stream' => 'αλλαγές στο :stream',
+            '_stream_from' => 'αλλαγές στο :stream από :from',
+            '_stream_from_to' => 'αλλαγές στο :stream μεταξύ :from και :to',
+            '_stream_to' => 'αλλαγές στο :stream έως :to',
+            '_to' => 'αλλαγές έως :to',
+        ],
+
+        'title' => [
+            '_' => 'Αρχείο καταγραφής αλλαγών :info',
+            'info' => 'Λίστα',
+        ],
     ],
 
     'support' => [

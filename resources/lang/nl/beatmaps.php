@@ -39,7 +39,6 @@ return [
         'edit' => 'bewerk',
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
-        'message_placeholder' => 'Typ hier om te posten',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Typ hier om in General te posten (:version)',
+            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheden)',
+            'timeline' => 'Typ hier om naar de tijdlijn te posten (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'geen reden opgegeven',
         'disqualify' => 'Diskwalificeer',
         'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
+        'love' => 'Love',
+        'love_confirm' => 'Love deze beatmap?',
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'typ sleutelwoorden in...',
+            'login_required' => 'Log in om te zoeken.',
             'options' => 'Meer Zoekopties',
+            'supporter_filter' => 'Filteren met :filters vereist een actieve osu!supporter tag',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
                 'general' => 'Algemeen',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categorieën',
                 'genre' => 'Genre',
                 'language' => 'Taal',
                 'extra' => 'extra',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'relevantie',
                 'nominations' => 'nominaties',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Filteren met :filters vereist een :link',
+                'link_text' => 'osu!supporter tag',
+            ],
         ],
-        'mode' => 'Modus',
-        'status' => 'Rank Status',
-        'source' => 'van :source',
-        'load-more' => 'Laad meer...',
     ],
     'general' => [
         'recommended' => 'Aanbevolen moeilijkheid',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Gekwalificeerd',
         'loved' => 'Loved',
         'faves' => 'Favorieten',
-        'pending' => 'Afwachtend',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Begraafplaats',
         'my-maps' => 'Mijn Mappen',
     ],

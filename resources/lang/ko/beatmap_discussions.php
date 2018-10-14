@@ -36,7 +36,10 @@ return [
         'title' => '비트맵 토론',
 
         'form' => [
+            '_' => '검색',
             'deleted' => '삭제된 토론 포함',
+            'types' => '메시지 종류',
+            'username' => '사용자 이름',
 
             'user' => [
                 'label' => '사용자',

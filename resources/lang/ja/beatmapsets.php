@@ -34,10 +34,10 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => '作者 :mapper',
             'submitted' => '投稿日 ',
             'updated' => '最後の更新 ',
-            'updated_timeago' => '',
+            'updated_timeago' => '最終更新時刻: :timeago',
             'ranked' => 'ranked日時 ',
             'approved' => 'approved日時 ',
             'qualified' => 'qualified日時 ',

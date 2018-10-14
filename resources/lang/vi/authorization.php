@@ -25,17 +25,21 @@ return [
             'has_reply' => 'Không thể xóa cuộc thảo luận có trả lời trong đó',
         ],
         'nominate' => [
-            'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hãy thử lại vào ngày mai.',
+            'exhausted' => 'Bạn đã đạt giới hạn đề cử của hôm nay, hãy thử lại vào ngày mai.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
-            'owner' => "Bạn không thể đề cử chính beatmap của bạn.",
+            'owner' => "Bạn không thể đề cử beatmap của bạn.",
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Chỉ chủ beatmap hoặc người đề cử/thành viên QAT mới có thể đăng ghi chú mapper.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
-            'owner' => "Không thể bình chọn cuộc thảo luận của chính bạn.",
+            'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap đang chờ.',
         ],
     ],
@@ -95,7 +99,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Bạn vừa đăng. Đợi một lát hoặc chỉnh sửa bài đăng cuối cùng của bạn.',
+                'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
                 'locked' => 'Không thể trả lời một thread bị khóa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'no_permission' => 'Không được phép trả lời.',
@@ -146,7 +150,7 @@ return [
 
     'unauthorized' => 'Truy cập bị từ chối.',
 
-    'silenced' => "Không thể làm việc đó trong khi bị im lặng.",
+    'silenced' => "Không thể làm việc đó trong khi bị cấm nói.",
 
     'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
 
@@ -155,7 +159,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'Yêu cầu supporter tag.',
+                'require_supporter_tag' => 'phải có osu!supporter.',
             ],
         ],
     ],

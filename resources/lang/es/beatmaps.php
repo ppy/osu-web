@@ -39,7 +39,6 @@ return [
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
-        'message_placeholder' => 'Escribe aquí para publicar',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad se ha eliminado, por lo que ya puede ser discutida.',
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Esta publicación irá a la discusión general del Beatmapset. Para modificar este Beatmap, comienca el mensaje con una marca de tiempo (Ej: 00:12:345).',
             'in_timeline' => 'Para modificar varias marcas de tiempo, publíca varias veces (una publicación por marca de tiempo).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Escribe aquí para publicar en General (:version)',
+            'generalAll' => 'Escribe aquí para publicar en General (todas las dificultades)',
+            'timeline' => 'Escribe aquí para publicar en la Línea de tiempo (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
+        'love' => '',
+        'love_confirm' => '',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
+            'login_required' => 'Inicia sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
+            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '...nop, nada encontrado.',
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Modo',
-                'status' => 'Estado de aprobación',
+                'status' => 'Categorías',
                 'genre' => 'Género',
                 'language' => 'Idioma',
                 'extra' => 'Adicional',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'relevancia',
                 'nominations' => 'nominaciones',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Necesitas un :link activo para filtrar por :filters',
+                'link_text' => 'tag de osu!supporter',
+            ],
         ],
-        'mode' => 'Modo',
-        'status' => 'Estado de Rank',
-        'source' => 'de :source',
-        'load-more' => 'Cargar más...',
     ],
     'general' => [
         'recommended' => 'Dificultades recomendadas',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Calificados',
         'loved' => 'Amados',
         'faves' => 'Favoritos',
-        'pending' => 'Pendientes',
+        'pending' => '',
         'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],

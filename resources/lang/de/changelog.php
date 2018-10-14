@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Bugfixes und kleine Verbesserungen.',
-    'users-online' => '1 Benutzer online|:users Benutzer online',
 
-    'prefixes' => [
-        'add' => 'hinzugefügt',
-        'fix' => 'fix',
-        'misc' => 'sonstiges',
+    'build' => [
+        'title' => 'Änderungen in :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited user online |:count_delimited user online',
+    ],
+
+    'entry' => [
+        'by' => 'von :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'Changelog Eintrag',
+            '_from' => 'Änderungen seit :from',
+            '_from_to' => 'Änderungen zwischen :from und :to',
+            '_stream' => 'Änderungen in :stream',
+            '_stream_from' => 'Änderungen in :stream seit :from',
+            '_stream_from_to' => 'Änderungen in Stream zwischen :from und :to',
+            '_stream_to' => 'Änderungen in :stream bis zum :to',
+            '_to' => 'Änderungen bis zum :to',
+        ],
+
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Auflistung',
+        ],
     ],
 
     'support' => [

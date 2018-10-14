@@ -34,9 +34,10 @@ return [
         'kudosu_gain' => 'Η συζήτηση :discussion από τον :user έλαβε αρκετές ψήφους για kudosu.',
         'kudosu_lost' => 'Η συζήτηση :discussion από τον :user έχασε ψήφους και τα kudosu που είχαν δοθεί αφαιρέθηκαν.',
         'kudosu_recalculate' => 'Τα κέρδη kudosu για τη συζήτηση :discussion επαναϋπολογίστηκαν.',
+        'love' => 'Loved από :user',
         'nominate' => 'Nominated από :user.',
         'nomination_reset' => 'Ένα νέο πρόβλημα :discussion (:text) ξεκίνησε μια επαναφορά της διαδικασίας υποψηφιότητας.',
-        'qualify' => 'Qualified.',
+        'qualify' => 'Αυτό το beatmap έχει φτάσει των απαραίτητο αριθμό nominations και είναι πλέον qualified.',
         'rank' => 'Ranked.',
     ],
 

@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'flöde',
     'generic' => 'Bugg fixar och mindre förbättringar.',
-    'users-online' => '1 användare online|:users användare online',
 
-    'prefixes' => [
-        'add' => 'tillägg',
-        'fix' => 'ändring',
-        'misc' => 'diverse',
+    'build' => [
+        'title' => 'förändringar i :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited användare online|:count_delimited användare online',
+    ],
+
+    'entry' => [
+        'by' => 'av :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'ändringsloggs lista',
+            '_from' => 'förändringar sedan :from',
+            '_from_to' => 'ändringar mellan :from och :to',
+            '_stream' => 'ändringar i :stream',
+            '_stream_from' => 'ändringar i :stream sedan :from',
+            '_stream_from_to' => 'ändringar i :stream mellan :from och :to',
+            '_stream_to' => 'ändringar i :stream upp till :to',
+            '_to' => 'ändringar up till :to',
+        ],
+
+        'title' => [
+            '_' => 'Ändringsloggs :info',
+            'info' => 'Lista',
+        ],
     ],
 
     'support' => [

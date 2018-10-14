@@ -29,7 +29,7 @@ return [
             'account-edit' => 'ayarlar',
             'friends-index' => 'arkadaşlar',
             'changelog-index' => 'değişiklikler',
-            'changelog-show' => 'sürüm',
+            'changelog-build' => 'sürüm',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
             'groups-show' => 'gruplar',
@@ -166,7 +166,7 @@ return [
         'general' => [
             '_' => 'Genel',
             'home' => 'Anasayfa',
-            'changelog-index' => 'Değişiklikler',
+            'changelog-index' => 'Sürüm notları',
             'beatmaps' => 'Beatmap Listesi',
             'download' => 'osu!\'yu indir!',
             'wiki' => 'Wiki',
@@ -177,11 +177,6 @@ return [
             'forum' => 'Topluluk Forumları',
             'livestreams' => 'Canlı Yayınlar',
             'report' => 'Bir Sorun Bildir',
-        ],
-        'support' => [
-            '_' => 'osu!\'yu Destekle',
-            'tags' => 'Supporter Etiketleri',
-            'merchandise' => 'Ürünler',
         ],
         'legal' => [
             '_' => 'Yasal & Durum',

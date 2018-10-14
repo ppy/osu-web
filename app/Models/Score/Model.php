@@ -36,6 +36,9 @@ abstract class Model extends BaseModel
         'replay' => 'boolean',
     ];
     protected $dates = ['date'];
+
+    protected $guarded = [];
+
     public $timestamps = false;
 
     public function scopeForUser($query, User $user)
@@ -65,10 +68,18 @@ abstract class Model extends BaseModel
         $modeStr = Beatmap::modeStr($modeInt);
 
         if ($modeStr !== null) {
-            $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
-
-            return new $klass;
+            return static::getClassByString($modeStr);
         }
+    }
+
+    public static function getClassByString(string $mode)
+    {
+        return get_class_namespace(static::class).'\\'.studly_case($mode);
+    }
+
+    public static function getMode() : string
+    {
+        return snake_case(get_class_basename(static::class));
     }
 
     public function scopeDefault($query)

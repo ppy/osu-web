@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -u
+set -e
+
+cd "$(dirname "${0}")/.."
+
+php artisan lang:js resources/assets/js/messages.js
+php artisan laroute:generate
+
+# triggers yarn rebuild
+touch resources/assets/coffee/main.coffee

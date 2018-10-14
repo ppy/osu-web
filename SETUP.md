@@ -43,7 +43,7 @@ $ ./bin/db_setup.sh
 $ ./build.sh
 ```
 
-At this point you should be access the site via whatever webserver you configured
+At this point you should be able to access the site via whatever webserver you configured
 
 ## 2. Automated setup for Ubuntu
 
@@ -68,14 +68,14 @@ php -S 127.0.0.1:8080
 
 ## 3. Using Docker
 
-- First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
+- First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
+- Export required environment variable `UID` (`export UID`).
+  - Make sure to do this before using any of docker-compose commands.
+  - Alternatively add the command to shell initialisation file like `~/.profile` or `~/.zshrc`.
+- Run `docker-compose up` in the main directory.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
-- If you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers:
-```bash
-_UID=$(id -u) _GID=$(id -g) docker-compose up
-```
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
-- To run any of the below commands, make sure you are in the docker container: `$ docker exec -it osuweb-php bash`.
+- To run any of the below commands, make sure you are in the docker container: `docker-compose exec php sh`.
 
 # Development
 
@@ -91,10 +91,9 @@ $ php artisan tinker
 Using Laravel's [Mix](https://laravel.com/docs/5.5/mix).
 ```bash
 # generate translations for langjs
-$ php artisan lang:js resources/assets/js/messages.js
-# generate routes for laroute
-$ php artisan laroute:generate
-# build assets
+# and routes for laroute
+$ bin/update_locales_and_routes_js
+# build assets (should be done automatically if using docker)
 $ yarn run development
 ```
 

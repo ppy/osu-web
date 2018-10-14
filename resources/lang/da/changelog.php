@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Fejlrettelser og små forbedringer.',
-    'users-online' => '1 bruger online|:users brugere online',
 
-    'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'diverse',
+    'build' => [
+        'title' => '',
+    ],
+
+    'builds' => [
+        'users_online' => '',
+    ],
+
+    'entry' => [
+        'by' => '',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => '',
+            '_from' => '',
+            '_from_to' => '',
+            '_stream' => '',
+            '_stream_from' => '',
+            '_stream_from_to' => '',
+            '_stream_to' => '',
+            '_to' => '',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'support' => [

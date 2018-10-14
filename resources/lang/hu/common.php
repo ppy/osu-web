@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Biztos vagy benne?',
+    'confirmation_unsaved' => 'A nem mentett változtatások elvesznek. Biztos vagy benne?',
     'saved' => 'Mentve',
 
     'array_and' => [
@@ -34,7 +35,7 @@ return [
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
         'delete' => 'Törlés',
-        'hide' => '',
+        'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
         'permalink_copied' => 'hivatkozás másolva',
         'post' => 'Küldés',
@@ -44,9 +45,9 @@ return [
         'reset' => 'Visszaállítás',
         'save' => 'Mentés',
         'saving' => 'Mentés...',
-        'search' => '',
+        'search' => 'Keresés',
         'see_more' => 'részletek',
-        'show' => '',
+        'show' => 'mutat',
         'show_more' => 'több megjelenítése',
         'upload_image' => 'kép feltöltése',
     ],

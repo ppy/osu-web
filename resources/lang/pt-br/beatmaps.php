@@ -39,7 +39,6 @@ return [
         'edit' => 'editar',
         'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
-        'message_placeholder' => 'Digite aqui para postar',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Esta postagem vai para a discussão geral do beatmap. Para fazer uma sugestão neste beatmap, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
             'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Digite aqui para publicar em Geral (:version)',
+            'generalAll' => 'Digite aqui para publicar em Geral (Todas as dificuldades)',
+            'timeline' => 'Digite aqui para publicar em Linha do Tempo (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'sem motivo específico',
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página.',
+        'love' => 'Amar',
+        'love_confirm' => 'Amar esse beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
+            'login_required' => 'Conecte-se para pesquisar.',
             'options' => 'Mais opções de busca',
+            'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
                 'general' => 'Geral',
                 'mode' => 'Modo',
-                'status' => 'Estado de Ranqueamento',
+                'status' => 'Categorias',
                 'genre' => 'Gênero',
                 'language' => 'Idioma',
                 'extra' => 'extra',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'relevância',
                 'nominations' => 'nomeações',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtrar por :filters requer uma :link',
+                'link_text' => 'osu!supporter tag',
+            ],
         ],
-        'mode' => 'Modo',
-        'status' => 'Estado de Ranqueamento',
-        'source' => 'de :source',
-        'load-more' => 'Carregar mais...',
     ],
     'general' => [
         'recommended' => 'Dificuldade recomendada',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Qualificado',
         'loved' => 'Loved',
         'faves' => 'Favoritos',
-        'pending' => 'Pendente',
+        'pending' => 'Pendente & Em Progresso',
         'graveyard' => 'Cemitério',
         'my-maps' => 'Meus beatmaps',
     ],

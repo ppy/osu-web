@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Sicher?',
+    'confirmation_unsaved' => 'Nicht gespeicherte Änderungen gehen verloren. Willst du trotzdem fortfahren?',
     'saved' => 'Gespeichert',
 
     'array_and' => [
@@ -47,7 +48,7 @@ return [
         'search' => 'Suchen',
         'see_more' => 'mehr anzeigen',
         'show' => 'anzeigen',
-        'show_more' => 'mehr zeigen',
+        'show_more' => 'mehr anzeigen',
         'upload_image' => 'bild hochladen',
     ],
 

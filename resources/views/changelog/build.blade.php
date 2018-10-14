@@ -25,15 +25,19 @@
     <div class="js-react--changelog-build osu-layout osu-layout--full"></div>
 
     <script id="json-build" type="application/json">
-        {!! json_encode($build) !!}
+        {!! json_encode($buildJson) !!}
     </script>
 
-    <script id="json-latest-builds" type="application/json">
-        {!! json_encode($latestBuilds) !!}
+    <script id="json-update-streams" type="application/json">
+        {!! json_encode($updateStreams) !!}
     </script>
 
     <script id="json-chart-config" type="application/json">
         {!! json_encode($chartConfig) !!}
+    </script>
+
+    <script id="json-comments-build-{{ $build->getKey() }}" type="application/json">
+        {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/changelog-build.js'])

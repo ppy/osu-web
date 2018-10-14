@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'лента',
     'generic' => 'Исправления ошибок и мелкие улучшения.',
-    'users-online' => ':users пользователь в сети|:users пользователя в сети|:users пользователей в сети',
 
-    'prefixes' => [
-        'add' => 'дополнение',
-        'fix' => 'исправление',
-        'misc' => 'другое',
+    'build' => [
+        'title' => 'изменения в :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited игрок в сети|:count_delimited игрока в сети|:count_delimited игроков в сети',
+    ],
+
+    'entry' => [
+        'by' => 'от :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'список изменений',
+            '_from' => 'изменения после :from',
+            '_from_to' => 'изменения между :from и :to',
+            '_stream' => 'изменения в :stream',
+            '_stream_from' => 'изменения в :stream после :from',
+            '_stream_from_to' => 'изменения в :stream между :from и :to',
+            '_stream_to' => 'изменения в :stream до :to',
+            '_to' => 'изменения до :to',
+        ],
+
+        'title' => [
+            '_' => 'История изменений :info',
+            'info' => 'Список',
+        ],
     ],
 
     'support' => [

@@ -39,7 +39,6 @@ return [
         'edit' => 'chỉnh sửa',
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
-        'message_placeholder' => 'Nhập vào đây để đăng',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Bài đăng này sẽ vào phần thảo luận chung của beatmap, dùng mốc thởi gian để bắt đầu bài đăng (ví dụ 00:12:345) để mod beatmap này.',
             'in_timeline' => 'Để mod nhiều mốc thời gian , hãy đăng nhiều lần (một bài đăng trên một mốc thời gian).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Nhập vào đây để đăng vào Chung (:version)',
+            'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
+            'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
+        'love' => 'Yêu thích',
+        'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'nhập từ khóa...',
+            'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
+            'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
                 'general' => 'Chung',
                 'mode' => 'Chế Độ',
-                'status' => 'Trạng Thái Xếp Hạng',
+                'status' => 'Danh mục',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
                 'extra' => 'thêm',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'độ liên quan',
                 'nominations' => 'số đề cử',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Lọc theo :filters cần một :link đang hoạt động',
+                'link_text' => 'osu!supporter tag',
+            ],
         ],
-        'mode' => 'Chế Độ',
-        'status' => 'Trạng Thái Xếp Hạng',
-        'source' => 'từ :source',
-        'load-more' => 'Tải thêm...',
     ],
     'general' => [
         'recommended' => 'Độ khó đề nghị',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Yêu Thích',
-        'pending' => 'Đang Chờ',
+        'pending' => 'Đang chờ & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Của Tôi',
     ],

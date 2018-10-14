@@ -20,16 +20,14 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Models\Model as BaseModel;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
-
-    protected $guarded = [];
 
     const UPDATED_AT = 'last_update';
 
@@ -79,9 +77,7 @@ abstract class Model extends BaseModel
             return;
         }
 
-        $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
-
-        return new $klass;
+        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)

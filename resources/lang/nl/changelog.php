@@ -21,12 +21,35 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Bugfixes en kleine verbeteringen.',
-    'users-online' => '1 gebruiker online|:users gebruikers online',
 
-    'prefixes' => [
-        'add' => 'toevoeging',
-        'fix' => 'fix',
-        'misc' => 'overige',
+    'build' => [
+        'title' => 'veranderingen in :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited gebruiker online|:count_delimited gebruikers online',
+    ],
+
+    'entry' => [
+        'by' => 'door :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'changelog index',
+            '_from' => 'veranderingen sinds :from',
+            '_from_to' => 'veranderingen tussen :from en :to',
+            '_stream' => 'veranderingen in :stream',
+            '_stream_from' => 'veranderingen in :stream sinds :from',
+            '_stream_from_to' => 'veranderingen in :stream tussen :from en :to',
+            '_stream_to' => 'veranderingen in :stream tot :to',
+            '_to' => 'veranderingen tot :to',
+        ],
+
+        'title' => [
+            '_' => 'Changelog :info',
+            'info' => 'Index',
+        ],
     ],
 
     'support' => [

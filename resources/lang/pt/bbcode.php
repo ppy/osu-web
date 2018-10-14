@@ -25,14 +25,14 @@ return [
     'italic' => 'Itálico',
     'link' => 'Ligação',
     'list' => 'Lista',
-    'list_numbered' => 'Lista Numerada',
+    'list_numbered' => 'Lista Enumerada',
     'size' => [
-        '_' => 'Tamanho do Tipo de Letra',
+        '_' => 'Tamanho da Fonte',
         'tiny' => 'Minúsculo',
         'small' => 'Pequeno',
         'normal' => 'Normal',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Caixa de Desmancha-prazeres',
+    'spoilerbox' => 'Caixa de Spoilers',
     'strikethrough' => 'Excluir',
 ];

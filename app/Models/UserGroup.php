@@ -24,7 +24,6 @@ class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
-    protected $guarded = [];
 
     // taken from current forum
     const GROUPS = [
@@ -38,6 +37,7 @@ class UserGroup extends Model
         'mod' => 18,
         'bng' => 28,
         'bot' => 29,
+        'loved' => 31,
     ];
 
     public function group()

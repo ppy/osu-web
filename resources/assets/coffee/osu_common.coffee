@@ -103,6 +103,11 @@
     JSON.parse document.getElementById(id)?.text ? null
 
 
+  # make a clone of json-like object (object with simple values)
+  jsonClone: (object) ->
+    JSON.parse JSON.stringify(object)
+
+
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
 
@@ -189,6 +194,10 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
+  urlPresence: (url) ->
+    "url(#{url})" if osu.presence(url)?
+
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
@@ -238,6 +247,13 @@
     if string? && string != '' then string else null
 
 
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
+
+
   trans: (key, replacements, locale) ->
     if locale?
       initialLocale = Lang.getLocale()
@@ -282,6 +298,15 @@
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
+
+
+  # Update collection item with newItems and remove old items.
+  updateCollection: (collection, newItems) ->
+    _(newItems)
+      .concat(collection)
+      .uniqBy('id')
+      .value()
+
 
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)

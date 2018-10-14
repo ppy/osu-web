@@ -29,7 +29,7 @@ return [
             'account-edit' => 'ρυθμίσεις',
             'friends-index' => 'φίλοι',
             'changelog-index' => 'αρχείο καταγραφής αλλαγών',
-            'changelog-show' => 'έκδοση',
+            'changelog-build' => 'έκδοση',
             'getDownload' => 'λήψη',
             'getIcons' => 'εικονίδια',
             'groups-show' => 'ομάδες',
@@ -177,11 +177,6 @@ return [
             'forum' => 'Φόρουμ Κοινότητας',
             'livestreams' => 'Ζωντανές Μεταδόσεις',
             'report' => 'Αναφέρετε Κάποιο Πρόβλημα',
-        ],
-        'support' => [
-            '_' => 'Υποστηρίξτε το osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Προϊόντα',
         ],
         'legal' => [
             '_' => 'Νομική Υπόσταση',

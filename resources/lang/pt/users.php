@@ -22,7 +22,7 @@ return [
     'deleted' => '[utilizador eliminado]',
 
     'beatmapset_activities' => [
-        'title' => "Histórico de Modificação do :user",
+        'title' => "Histórico de Modificações do :user",
 
         'discussions' => [
             'title_recent' => 'Discussões recentemente iniciadas',
@@ -45,6 +45,19 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'banner_text' => 'Tu bloqueaste este utilizador.',
+        'blocked_count' => 'utilizadores bloqueados (:count)',
+        'hide_profile' => 'ocultar perfil',
+        'not_blocked' => 'Esse utilizador não está bloqueado.',
+        'show_profile' => 'mostrar perfil',
+        'too_many' => 'Limite de bloqueios atingido.',
+        'button' => [
+            'block' => 'bloquear',
+            'unblock' => 'desbloquear',
+        ],
+    ],
+
     'card' => [
         'loading' => 'A carregar...',
         'send_message' => 'enviar mensagem',
@@ -59,13 +72,12 @@ return [
         'button_posting' => 'A iniciar sessão...',
         'remember' => 'Lembrar este computador',
         'title' => 'Por favor inicia sessão para proceder',
-        'failed' => 'Início de sessão incorrecto em',
-        'register' => "Não tens uma conta osu!? Cria uma nova",
-        'forgot' => 'Esqueceste-te da palavra-passe?
-',
+        'failed' => 'Início de sessão incorrecto',
+        'register' => "Não tens uma conta osu? Cria uma nova",
+        'forgot' => 'Esqueceste-te da palavra-passe?',
         'beta' => [
-            'main' => 'Acesso beta está actualmente restrito a utilizadores privilegiados.',
-            'small' => '(apoiantes entrarão em breve)',
+            'main' => 'O acesso beta está actualmente restrito a utilizadores privilegiados.',
+            'small' => '(osu!supporters terão acesso em breve)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
@@ -85,21 +97,41 @@ return [
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
     'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'report' => [
+        'button_text' => 'denunciar',
+        'comments' => 'Comentários Adicionais',
+        'placeholder' => 'Por favor fornece qualquer informação que acredites ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => 'Obrigado pela tua denúncia!',
+        'title' => 'Denunciar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Relatório',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jogada suja / Fazer batota',
+            'insults' => 'Insultar-me / outros',
+            'spam' => 'Spamar',
+            'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
+            'nonsense' => 'Disparate',
+            'other' => 'Outro (escreve abaixo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
-        'message' => 'Enquanto restrito, estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado de um processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta o suporte</a>.',
+        'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
     ],
     'show' => [
         'age' => ':age anos',
         'change_avatar' => 'muda o teu avatar!',
         'first_members' => 'Aqui desde o princípio',
-        'is_developer' => 'desenvolvedor osu!',
-        'is_supporter' => 'adepto osu!',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'Juntou-se em :date',
-        'lastvisit' => 'Ultimamente visto :date',
-        'missingtext' => 'Poderás ter digitado mal! (ou o utilizador poderá ter sido banido)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age de :country',
+        'lastvisit' => 'Visto pela ultima vez em :date',
+        'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
         'previous_usernames' => 'antigamente conhecido como',
@@ -115,7 +147,7 @@ return [
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
-                    'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>adeptos osu!</a> só",
+                    'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> só",
                     'size_info' => 'O tamanho da capa deveria ser 2000x700',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -130,7 +162,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
-            'unranked' => 'Nenhuma jogada recente',
+            'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
                 'title' => 'Proezas',
@@ -147,7 +179,7 @@ return [
                     'title' => 'Beatmaps no Cemitério (:count)',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Amados (:count)',
+                    'title' => 'Beatmaps Adorados (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Classificados & Aprovados (:count)',
@@ -169,19 +201,19 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
-                    'title' => 'Jogadas Recentes (24h)',
+                    'title' => 'Partidas Recentes (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de Repetições Vistas',
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu disponíveis',
+                'available' => 'Kudosu Disponível',
                 'available_info' => "Os kudosus podem ser trocados por estrelas de kudosu, que irão ajudar o teu beatmap a ganhar mais atenção. Este é o número de kudosus que ainda não trocaste.",
                 'recent_entries' => 'Historial Recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Ganhos',
-                'total_info' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Confirma <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informação.',
+                'total_info' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Confirma em <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informação.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -234,7 +266,7 @@ return [
             ],
             'top_ranks' => [
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda. :(',
-                'not_ranked' => 'Só beatmaps classificados é que dão pp.',
+                'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp' => '',
                 'title' => 'Classificações',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
@@ -248,7 +280,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Reputação da Conta',
-                'bad_standing' => "A conta de <strong>:username's</strong> não tem uma boa reputação :(",
+                'bad_standing' => "A conta de <strong>:username</strong> não tem uma boa reputação :(",
                 'remaining_silence' => '<strong>:username</strong> será capaz de falar outra vez em :duration.',
 
                 'recent_infringements' => [
@@ -279,9 +311,9 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Eles poderão ter mudado de nome de utilizador.',
+            'reason_1' => 'Ele/ela poderá ter mudado de nome de utilizador.',
             'reason_2' => 'A conta poderá estar indisponível devido a problemas de segurança ou de abuso.',
-            'reason_3' => 'Poderás ter cometido um erro de digitação!',
+            'reason_3' => 'Poderás ter cometido um erro de escrita!',
             'reason_header' => 'Há algumas possíveis razões para isto:',
             'title' => 'Utilizador não encontrado! ;_;',
         ],
@@ -289,7 +321,7 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',
-            'restriction_info' => "Precisas de ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>apoiante do osu!</a> para desbloquear esta funcionalidade.",
+            'restriction_info' => "Precisas de ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta funcionalidade.",
         ],
         'post_count' => [
             '_' => 'Contribuiu em :link',
@@ -303,7 +335,7 @@ return [
             'hit_accuracy' => 'Precisão de Acertos',
             'level' => 'Nível :level',
             'maximum_combo' => 'Combo Máximo',
-            'play_count' => 'Número de Jogos',
+            'play_count' => 'Número de Partidas',
             'play_time' => 'Tempo Total de Jogo',
             'ranked_score' => 'Pontuação Classificada',
             'replays_watched_by_others' => 'Repetições Vistas por Outros',

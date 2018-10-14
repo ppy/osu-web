@@ -39,7 +39,6 @@ return [
         'edit' => 'redigera',
         'edited' => 'Senast redigerad av :editor :update_time.',
         'kudosu_denied' => 'Kudosu nekad.',
-        'message_placeholder' => 'Tryck här för att svara',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har blivit borttagen så den kan inte längre diskuteras.',
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => 'Detta inlägg kommer läggas upp på allmän beatmapset diskussion. För att modda denna beatmap, börja meddelandet med en tidsstämpel (e.x. 00:12:345).',
             'in_timeline' => 'För att modda flera tidsstämplar, lägg upp flera inlägg (ett inlägg för varje tidsstämpel).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Skriv här för att posta till General (:version)',
+            'generalAll' => 'Skriv här för att posta till General (Alla svårighetsgrader)',
+            'timeline' => 'Skriv här för att posta till Tidslinjen (:version)',
         ],
 
         'message_type' => [
@@ -144,6 +149,8 @@ return [
         'disqualified_no_reason' => 'inget anledning specificerad',
         'disqualify' => 'Diskvalificera',
         'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
+        'love' => 'Kärlek',
+        'love_confirm' => 'Älskar du denna beatmap?',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'skriv in nyckelord...',
+            'login_required' => 'Logga in för att söka.',
             'options' => 'Mer Sök Alternativ',
+            'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter tagg',
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
                 'general' => 'Allmänt',
                 'mode' => 'Läge',
-                'status' => 'Rank Status',
+                'status' => 'Kategorier',
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'extra' => 'extra',
@@ -191,11 +200,11 @@ return [
                 'relevance' => 'relevans',
                 'nominations' => 'nomineringar',
             ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtrering av :filters kräver en aktiv :link',
+                'link_text' => 'osu!supporter tagg',
+            ],
         ],
-        'mode' => 'Läge',
-        'status' => 'Rank Status',
-        'source' => 'från :source',
-        'load-more' => 'Ladda mer...',
     ],
     'general' => [
         'recommended' => 'Rekommenderad svårighetsgrad',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Kvalificerad',
         'loved' => 'Älskad',
         'faves' => 'Favoriter',
-        'pending' => 'Avvaktar',
+        'pending' => 'Pågående & WIP',
         'graveyard' => 'Kyrkogård',
         'my-maps' => 'Mina Maps',
     ],

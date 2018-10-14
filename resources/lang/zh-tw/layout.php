@@ -29,7 +29,7 @@ return [
             'account-edit' => '設定',
             'friends-index' => '好友',
             'changelog-index' => '更新日誌',
-            'changelog-show' => '版本',
+            'changelog-build' => '版本',
             'getDownload' => '下載',
             'getIcons' => '圖示',
             'groups-show' => '群組',
@@ -177,11 +177,6 @@ return [
             'forum' => '論壇',
             'livestreams' => '直播',
             'report' => '問題回報',
-        ],
-        'support' => [
-            '_' => '贊助 osu!',
-            'tags' => '成為贊助者',
-            'merchandise' => '銷售',
         ],
         'legal' => [
             '_' => '法律 & 狀態',

@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
     'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Subforums',
-    'title' => 'Cộng Đồng osu!',
+    'title' => 'diễn đàn osu!',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Đăng nhập để đăng một chủ đề mới',
         'post_reply' => 'Đăng',
         'reply_box_placeholder' => 'Nhập vào đây để trả lời',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'bởi :user',
+        'started_by_verbose' => 'bắt đầu bởi :user',
 
         'create' => [
             'preview' => 'Xem trước',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Viết',
             'submit' => 'Đăng',
+
+            'necropost' => [
+                'default' => 'Chủ đề này đã không còn hoạt động trong một thời gian. Chỉ đăng ở đây nếu bạn có một lý do cụ thể.',
+
+                'new_topic' => [
+                    '_' => "Chủ đề này đã không còn hoạt động trong một thời gian. Nếu bạn không có một lý do cụ thể để đăng ở đây, vui lòng :create.",
+                    'create' => 'tạo một chủ đề mới',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Nhập nội dung bài viết vào đây',
@@ -133,6 +144,7 @@ return [
         '_' => 'Chủ đề',
 
         'actions' => [
+            'login_reply' => 'Đăng nhập để Trả lời',
             'reply' => 'Trả lời',
             'reply_with_quote' => 'Trích dẫn bài viết để trả lời',
             'search' => 'Tìm kiếm',

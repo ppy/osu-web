@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
         'require_login' => [
-            '_' => '¡Tienes que :link para obtener un título de supporter!',
+            '_' => '',
             'link_text' => 'sesión iniciada',
         ],
     ],

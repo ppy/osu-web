@@ -52,11 +52,54 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
+ * and return old value if failed getting the value after it expires.
+ */
+function cache_remember_with_fallback($key, $minutes, $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        try {
+            $data = [
+                'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                'value' => $callback(),
+            ];
+
+            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+        } catch (Exception $e) {
+            // Log and continue with data from the first ::get.
+            log_error($e);
+        }
+    }
+
+    return $data['value'] ?? null;
+}
+
+// Just normal Cache::forget but with the suffix.
+function cache_forget_with_fallback($key)
+{
+    return Cache::forget("{$key}:with_fallback");
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
+    $uid = uniqid($stat);
+    // spaces used so clockwork doesn't run across the whole screen.
+    $description = $stat
+                   .' '.($tag['type'] ?? null)
+                   .' '.($tag['index'] ?? null);
+
     $start = microtime(true);
 
+    clock()->startEvent($uid, $description);
     $result = $callable();
+    clock()->endEvent($uid);
 
     if (config('datadog-helper.enabled')) {
         $duration = microtime(true) - $start;
@@ -243,6 +286,15 @@ function locale_for_timeago($locale)
     return $locale;
 }
 
+function log_error($exception)
+{
+    Log::error($exception);
+
+    if (config('sentry.dsn')) {
+        Sentry::captureException($exception);
+    }
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
@@ -257,6 +309,11 @@ function osu_url($key)
     }
 
     return $url;
+}
+
+function pack_str($str)
+{
+    return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
 function param_string_simple($value)
@@ -490,8 +547,8 @@ function current_action()
 function link_to_user($user_id, $user_name = null, $user_color = null)
 {
     if ($user_id instanceof App\Models\User) {
-        $user_name = $user_id->username;
-        $user_color = $user_id->user_colour;
+        $user_name ?? ($user_name = $user_id->username);
+        $user_color ?? ($user_color = $user_id->user_colour);
         $user_id = $user_id->getKey();
     }
     $user_name = e($user_name);
@@ -610,7 +667,7 @@ function nav_links()
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
-        'charts' => osu_url('rankings.charts'),
+        'charts' => route('rankings', ['mode' => 'osu', 'type' => 'charts']),
         'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
         'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
@@ -625,6 +682,7 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'cart-show' => route('store.cart.show'),
+        'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),
@@ -1085,14 +1143,14 @@ function retinaify($url)
     return preg_replace('/(\.[^.]+)$/', '@2x\1', $url);
 }
 
-function priv_check($ability, $args = null)
+function priv_check($ability, $object = null)
 {
-    return priv_check_user(Auth::user(), $ability, $args);
+    return priv_check_user(Auth::user(), $ability, $object);
 }
 
-function priv_check_user($user, $ability, $args = null)
+function priv_check_user($user, $ability, $object = null)
 {
-    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $object);
 }
 
 // Used to generate x,y pairs for fancy-chart.coffee

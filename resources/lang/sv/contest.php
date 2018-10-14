@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Tävla i andra sätt än att bara klicka cirklar.',
-        'large' => 'osu! Genemskapstävlingar',
+        'large' => 'Gemenskapstävlingar',
     ],
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',

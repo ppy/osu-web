@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Tópicos Afixados',
     'slogan' => "é perigoso brincar sozinho.",
     'subforums' => 'Sub-fóruns',
-    'title' => 'comunidade osu!',
+    'title' => 'Fóruns osu!',
 
     'covers' => [
         'create' => [
@@ -54,7 +54,7 @@ return [
         'posted_at' => 'publicado :when',
 
         'actions' => [
-            'destroy' => 'Publicação apagada',
+            'destroy' => 'Eliminar publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
         ],
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Inicia sessão para publicar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreve aqui para responder',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
+        'started_by_verbose' => 'começado por :user',
 
         'create' => [
             'preview' => 'Amostra',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
+
+            'necropost' => [
+                'default' => 'Este tópico tem estado inactivo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
+
+                'new_topic' => [
+                    '_' => "Este tópico tem estado inactivo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
+                    'create' => 'criar um novo tópico',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Escreve o conteúdo da publicação aqui',
@@ -116,14 +127,14 @@ return [
             ],
 
             'info' => [
-                'total' => 'Subscreveste a :total tópico(s).',
+                'total' => 'Subscreveste a :total tópicos.',
                 'unread' => 'Tu tens :unread respostas não-lidas a tópicos subscritos.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Anular subscrição do tópico?',
+                'confirmation' => 'Anular a subscrição do tópico?',
                 'title' => 'Anular subscrição',
             ],
         ],
@@ -133,6 +144,7 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
+            'login_reply' => 'Inicia sessão para Responder',
             'reply' => 'Resposta',
             'reply_with_quote' => 'Publicação de citação para resposta',
             'search' => 'Procurar',
@@ -147,7 +159,7 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Correr sondagem por',
+                'length' => 'Manter a sondagem por',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixa em branco para uma sondagem interminável',
                 'max_options' => 'Opções por utilizador',
@@ -224,12 +236,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Desanexar tópico',
-            'to_0_done' => 'O tópico foi desanexado',
-            'to_1' => 'Anexar tópico',
+            'to_0' => 'Despegar tópico',
+            'to_0_done' => 'O tópico foi despegado',
+            'to_1' => 'Afixar tópico',
             'to_1_done' => 'O tópico foi afixado',
-            'to_2' => 'Anexar tópico e marcar como uma declaração',
-            'to_2_done' => 'O tópico foi anexado e marcado como uma declaração',
+            'to_2' => 'Afixar tópico e marcar como uma declaração pública',
+            'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
         ],
 
         'show' => [

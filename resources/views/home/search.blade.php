@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}" data-loading-overlay="0">
+    <form action="{{ route('search') }}" data-loading-overlay="0" class="js-search" autocomplete="off">
         <input type="hidden" name="mode" value="{{ request('mode') }}">
 
         <div class="osu-page">

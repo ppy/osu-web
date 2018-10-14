@@ -43,6 +43,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
             'perfect' => $score->perfect,
+            'replay' => $score->replay,
             'statistics' => [
                 'count_50' => $score->count50,
                 'count_100' => $score->count100,
@@ -100,7 +101,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
         return $this->item($score, function ($score) {
             return [
-                'percentage' => $score->weight() * 100,
+                'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
             ];
         });

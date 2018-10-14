@@ -39,7 +39,6 @@ return [
         'edit' => '수정',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
-        'message_placeholder' => '게시할 답글의 내용을 입력하세요.',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
@@ -62,6 +61,12 @@ return [
         'message_hint' => [
             'in_general' => '작성된 글은 일반 비트맵 토론으로 올라가집니다. 비트맵을 모딩하시려면 글의 첫 부분을 타임스탬프로 시작하십시오 (예시, 00:12:345).',
             'in_timeline' => '비트맵의 여러 부분을 수정하려면 글을 여러 번 올리세요 (한 글에 한 타임스탬프만 수정할 수 있습니다).',
+        ],
+
+        'message_placeholder' => [
+            'general' => '일반(:version)에 게시할 답글 내용을 입력하세요.',
+            'generalAll' => '일반(모든 난이도)에 게시할 답글 내용을 입력하세요.',
+            'timeline' => '타임라인(:version)에 게시할 답글 내용을 입력하세요.',
         ],
 
         'message_type' => [
@@ -140,13 +145,15 @@ return [
 
     'nominations' => [
         'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
-        'disqualified_at' => ':time_ago (:reason).에 disqualify되었습니다.',
+        'disqualified_at' => ':time_ago에 Disqualified 됨 (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
+        'love' => '하트',
+        'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
-        'nominated_by' => ':users가 지명함',
+        'nominated_by' => ':users님이 지명함',
         'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
         'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '지명 수: :current/:required',
@@ -167,13 +174,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => '검색어를 입력하세요...',
+            'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
+            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 권한이 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
                 'general' => '일반',
                 'mode' => '모드',
-                'status' => '등록 상태',
+                'status' => '카테고리',
                 'genre' => '장르',
                 'language' => '언어',
                 'extra' => '추가 기능',
@@ -191,11 +200,11 @@ return [
                 'relevance' => '연관성',
                 'nominations' => '지명',
             ],
+            'supporter_filter_quote' => [
+                '_' => ':filters로 검색하려면 :link이 필요합니다.',
+                'link_text' => 'osu! 서포터',
+            ],
         ],
-        'mode' => '모드',
-        'status' => '랭크 상태',
-        'source' => '원작: :source',
-        'load-more' => '더 불러오기...',
     ],
     'general' => [
         'recommended' => '권장 난이도',
@@ -215,7 +224,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => '즐겨찾기',
-        'pending' => 'Pending',
+        'pending' => '보류 중 & 작업 중',
         'graveyard' => 'Graveyard',
         'my-maps' => '내 비트맵',
     ],
@@ -266,7 +275,7 @@ return [
         'korean' => '한국어',
         'spanish' => '스페인어',
         'swedish' => '스웨덴어',
-        'instrumental' => '가사 없음',
+        'instrumental' => 'Instrumental',
         'other' => '기타',
     ],
     'played' => [

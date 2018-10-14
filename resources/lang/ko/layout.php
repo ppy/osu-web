@@ -29,7 +29,7 @@ return [
             'account-edit' => '설정',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
-            'changelog-show' => '빌드 버전',
+            'changelog-build' => '빌드 버전',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
@@ -52,7 +52,7 @@ return [
         ],
         'beatmaps' => [
             '_' => '비트맵',
-            'artists' => '주요 아티스트',
+            'artists' => '공식 아티스트',
             'beatmap_discussion_posts-index' => '비트맵 토론 글',
             'beatmap_discussions-index' => '비트맵 토론',
             'beatmapset-watches-index' => '모딩 확인 목록',
@@ -99,14 +99,14 @@ return [
         'error' => [
             '_' => '오류',
             '404' => '찾을 수 없음',
-            '403' => '거부됨',
+            '403' => '요청이 거부됨',
             '401' => '권한 없음',
             '405' => '찾을 수 없음',
             '500' => '내부 서버 오류',
-            '503' => '서비스 점검 ',
+            '503' => '서비스 점검 중',
         ],
         'user' => [
-            '_' => '유저',
+            '_' => '사용자',
             'getLogin' => '로그인',
             'disabled' => '비활성 상태',
 
@@ -122,8 +122,8 @@ return [
             'modding-history-events' => '유저 모딩 활동',
             'modding-history-index' => '유저 모딩 기록',
             'modding-history-posts' => '유저 모딩 글',
-            'modding-history-votesGiven' => '준 유저 모딩 투표',
-            'modding-history-votesReceived' => '받은 유저 모딩 투표',
+            'modding-history-votesGiven' => '유저가 준 모딩 투표',
+            'modding-history-votesReceived' => '유저가 받은 모딩 투표',
         ],
         'store' => [
             '_' => '상점',
@@ -178,11 +178,6 @@ return [
             'livestreams' => '라이브 스트림',
             'report' => '문제 신고하기',
         ],
-        'support' => [
-            '_' => 'osu! 지원',
-            'tags' => '서포터 권한',
-            'merchandise' => '상품',
-        ],
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
@@ -212,15 +207,15 @@ return [
         ],
         '500' => [
             'error' => '이런! 뭔가 잘못 되었네요! ;_;',
-            'description' => "저희는 모든 에러를 자동으로 보고받고 있습니다.",
+            'description' => "저희는 모든 오류를 자동으로 보고받고 있습니다.",
         ],
         'fatal' => [
             'error' => '이런! 뭔가 잘못 되었네요! (심각한데요...) ;_;',
-            'description' => "저희는 모든 에러를 자동으로 보고받고 있습니다.",
+            'description' => "저희는 모든 오류를 자동으로 보고받고 있습니다.",
         ],
         '503' => [
             'error' => '서비스 점검중입니다!',
-            'description' => "점검은 보통 5분 내지 10분 동안 이루어집니다. 만약 더 오래 걸린다면, :link에서 더 많은 정보를 확인하실 수 있습니다.",
+            'description' => "점검은 보통 5분 내지 10분 동안 이루어집니다. 만약 더 오래 걸린다면 :link에서 더 많은 정보를 확인하실 수 있습니다.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',

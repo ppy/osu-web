@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Hiba poszt mentése közben',
+            'error' => 'Sikertelen poszt mentés',
         ],
     ],
 
@@ -39,13 +39,12 @@ return [
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
-        'message_placeholder' => 'Ide írj posztoláshoz',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, így már nem lehet vitatni.',
         'message_type_select' => 'Komment típusának választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
         'require-login' => 'Kérlek jelentkezz be posztoláshoz illetve válaszoláshoz',
-        'resolved' => 'Megoldott',
+        'resolved' => 'Megoldva',
         'restore' => 'visszaállítás',
         'title' => 'Megbeszélések',
 
@@ -60,15 +59,21 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ez a poszt bekerül az általános beatmapszet megbeszélésbe.A beatmap modolásához kezdj egy üzenetet időbélyeggel (pl.: 00:12:345).',
-            'in_timeline' => 'Több időbélyeg modolásához, posztolj több időt (egy poszt időbélyegenként).',
+            'in_general' => 'Ez a poszt az általános beatmapszett megbeszélésbe kerül. A beatmap modolásához időbélyeggel kezdd az üzenetet (pl.: 00:12:345).',
+            'in_timeline' => 'Több időbélyeg modolásához több poszt szükséges (egy poszt egy időbélyeghez).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Írj ide az Általános (:version) részlegbe való posztoláshoz',
+            'generalAll' => 'Ide írj az Általános-ba posztoláshoz (Összes nehézség)',
+            'timeline' => 'Írj ide az Idővonalra való posztoláshoz (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Diszkvalifikált',
             'hype' => 'Hype!',
             'mapper_note' => 'Megjegyzés',
-            'nomination_reset' => 'Megjelölés újrakezdése',
+            'nomination_reset' => 'Nomináció Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
             'suggestion' => 'Javaslat',
@@ -80,14 +85,14 @@ return [
             'timeline' => 'Idővonal',
             'scopes' => [
                 'general' => 'Ez a nehézség',
-                'generalAll' => 'Minden nehézség',
+                'generalAll' => 'Összes nehézség',
             ],
         ],
 
         'new' => [
             'timestamp' => 'Időbélyeg',
             'timestamp_missing' => 'ctrl-c szerkesztő módban és másold be az üzenetedbe időbélyeg hozzáadásához!',
-            'title' => 'Új vita indítása',
+            'title' => 'Új megbeszélés indítása',
         ],
 
         'show' => [
@@ -95,15 +100,15 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Listázva:',
-            'created_at' => 'elkészítési idő',
+            '_' => 'Rendezve:',
+            'created_at' => 'létrehozás ideje',
             'timeline' => 'idővonal',
             'updated_at' => 'utolsó frissítés',
         ],
 
         'stats' => [
             'deleted' => 'Törölve',
-            'mapper_notes' => 'Jegyzetek',
+            'mapper_notes' => 'Megjegyzések',
             'mine' => 'Saját',
             'pending' => 'Függő',
             'praises' => 'Dicséretek',
@@ -113,24 +118,24 @@ return [
 
         'status-messages' => [
             'approved' => 'Ezt a beatmapot ekkor hagyták jóvá : :date!',
-            'graveyard' => "Ezt a beatmap-et nem frissítették :date óta, és a készítő valszószínú elhagyatott állapotba hozta...",
-            'loved' => 'Ezt a beatmap ekkor lett kedvelt: :date!',
-            'ranked' => 'Ez a beatmap ekkor lett rangsorolt : :date!',
-            'wip' => 'Megjegyzés: Ez a beatmap még készítés alatt áll.',
+            'graveyard' => "Ezt a beatmap :date óta nem kapott frissítést és valószínűleg hátrahagyta a készítője...",
+            'loved' => 'Ez a beatmap ekkor lett kedvelt: :date!',
+            'ranked' => 'Ez a beatmap ekkor lett rangsorolva: :date!',
+            'wip' => 'Megjegyzés: Ezen a beatmapen még munkálatok folynak.',
         ],
 
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
-        'button_done' => 'Már felhypeolt!',
+        'button' => 'Beatmap Hype-olása!',
+        'button_done' => 'Már Hype-olt!',
         'confirm' => "Biztos vagy benne? Ezzel elhasználsz egyet az :n hype-odból, és nem lehet visszavonni.",
-        'explanation' => 'Hypeold a beatmapet, hogy még láthatóbbá tedd kijelöléshez és rankoláshoz!',
-        'explanation_guest' => 'Jelentkezz be és hypeold a beatmapet, hogy még láthatóbbá tedd kijelöléshez és rankoláshoz!',
+        'explanation' => 'Hype-old a beatmapet, hogy még láthatóbbá tedd nomináláshoz és rangoláshoz!',
+        'explanation_guest' => 'Jelentkezz be és Hype-old a beatmapet, hogy még láthatóbbá tedd nomináláshoz és rangoláshoz!',
         'new_time' => "Kapsz még egy hypeot :new_time-kor.",
-        'remaining' => ':remaining hypeod maradt hátra.',
+        'remaining' => 'Még :remaining hype-od maradt.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Hype vonat',
+        'section_title' => 'Hype Vonat',
         'title' => 'Hype',
     ],
 
@@ -144,40 +149,44 @@ return [
         'disqualified_no_reason' => 'nincs ok meghatározva',
         'disqualify' => 'Diszkvalifikálás',
         'incorrect_state' => 'Hiba a művelet végrehajtásában, próbáld meg újratölteni az oldalt.',
-        'nominate' => 'Kijelölni',
-        'nominate_confirm' => 'Kijelölöd ezt a beatmapet?',
-        'nominated_by' => 'kijelölve :users által',
-        'qualified' => 'Előreláthatóan rankolva lesz :date-án/én , ha semmi probléma nem lesz találva.',
-        'qualified_soon' => 'Előreláthatóan rankolva lesz hamarosan, ha semmi probléma nem lesz találva.',
-        'required_text' => 'Kijelölések: :current/:required',
+        'love' => 'Kedvelés',
+        'love_confirm' => 'Kedveled ezt a beatmapot?',
+        'nominate' => 'Nominálás',
+        'nominate_confirm' => 'Nominálod ezt a beatmapot?',
+        'nominated_by' => 'nominálva :users által',
+        'qualified' => 'Előreláthatóan :date-kor lesz rangsorolva, ha nem találnak vele problémát.',
+        'qualified_soon' => 'Hamarosan rangsorolva lesz, ha nem találnak vele problémát.',
+        'required_text' => 'Nominálások: :current/:required',
         'reset_message_deleted' => 'törölve',
-        'title' => 'Kijelöltségi állapot',
+        'title' => 'Nominálási Állapot',
         'unresolved_issues' => 'Még mindig vannak problémák amelyeket először meg kellene oldani.',
 
         'reset_at' => [
-            'nomination_reset' => 'A kijelölési folyamat újaindításra került :time_ago :user által: :discussion (:message).',
-            'disqualify' => 'Kizárva :time_ago -ja :user által e miatt a probléma miatt: :discussion (:message).',
+            'nomination_reset' => 'A nominálási folyamat újraindításra került :time_ago :user által: :discussion (:message).',
+            'disqualify' => ':time_ago óta diszkvalifikálva :user által egy új probléma miatt :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása nullázza a jelölési folyamatot.',
+            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
         ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'írj kulcsszavakkal...',
+            'prompt' => 'írj kulcsszavakat...',
+            'login_required' => 'Jelentkezz be a kereséshez.',
             'options' => 'További Keresési Beállítások',
+            'supporter_filter' => 'A :filters általi szűrés egy aktív osu!támogatói címet igényel',
             'not-found' => 'nincs találat',
-            'not-found-quote' => '... semmit, semmit nem találtam.',
+            'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
                 'general' => 'Általános',
                 'mode' => 'Mód',
-                'status' => 'Rank Státusz',
+                'status' => 'Kategóriák',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
                 'extra' => 'extra',
-                'rank' => 'Rank elérve',
+                'rank' => 'Elért Rang',
                 'played' => 'Játszott',
             ],
             'sorting' => [
@@ -189,13 +198,13 @@ return [
                 'rating' => 'értékelés',
                 'plays' => 'játszottság',
                 'relevance' => 'relevancia',
-                'nominations' => 'kijelölések',
+                'nominations' => 'nominációk',
+            ],
+            'supporter_filter_quote' => [
+                '_' => ':filters általi szűrés aktiv :link-et igényel',
+                'link_text' => 'osu!támogatói cím',
             ],
         ],
-        'mode' => 'Mód',
-        'status' => 'Rank Státusz',
-        'source' => ':source -bol/-ból',
-        'load-more' => 'Továbbiak betöltése...',
     ],
     'general' => [
         'recommended' => 'Ajánlott nehézség',
@@ -210,12 +219,12 @@ return [
     ],
     'status' => [
         'any' => 'Bármelyik',
-        'ranked-approved' => 'Ranked & Elfogadott',
+        'ranked-approved' => 'Rangsorolt & Elfogadott',
         'approved' => 'Elfogadott',
         'qualified' => 'Kvalifikált',
         'loved' => 'Kedvelt',
         'faves' => 'Kedvencek',
-        'pending' => 'Függő',
+        'pending' => 'Függőben lévő & WIP',
         'graveyard' => 'Temető',
         'my-maps' => 'Saját pályáim',
     ],
@@ -275,8 +284,8 @@ return [
         'unplayed' => 'Nem játszott',
     ],
     'extra' => [
-        'video' => 'Van Videó',
-        'storyboard' => 'Van Storyboard',
+        'video' => 'Tartalmaz Videót',
+        'storyboard' => 'Storyboardot Tartalmaz',
     ],
     'rank' => [
         'any' => 'Bármelyik',
