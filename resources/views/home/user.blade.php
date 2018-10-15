@@ -51,7 +51,7 @@
                         </div>
                     @endif
 
-                    @if (count($news) > 8)
+                    @if (count($news) > App\Models\NewsPost::DASHBOARD_LIMIT)
                         <a
                             href="{{ route('news.index') }}"
                             class="user-home__news-posts-group user-home__news-posts-group--more"
