@@ -49,6 +49,10 @@ class @StickyHeader
     StickyHeader.setVisible markerTop < headerBottom
 
 
+  @breadcrumbsElement: ->
+    document.getElementById('js-sticky-header-breadcrumbs')
+
+
   @contentElement: ->
     document.getElementById('js-sticky-header-content')
 

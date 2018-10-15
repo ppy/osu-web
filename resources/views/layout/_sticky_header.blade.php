@@ -18,7 +18,7 @@
 <div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
     <div class="osu-page">
         <div class="sticky-header__body">
-            <div class="sticky-header__breadcrumbs">
+            <div id="js-sticky-header-breadcrumbs">
                 @yield('sticky-header-breadcrumbs')
             </div>
             <div id="js-sticky-header-content">

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i, input, h1, h2} = ReactDOMFactories
+{div, a, i, input, h1, h2, li, ol, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent
@@ -38,6 +38,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   render: =>
     div null,
+      if StickyHeader.breadcrumbsElement()?
+        ReactDOM.createPortal @renderBreadcrumbs(), StickyHeader.breadcrumbsElement()
+
       if StickyHeader.contentElement()?
         ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
 
@@ -47,6 +50,21 @@ class Beatmaps.SearchPanel extends React.PureComponent
           @renderUser()
         else
           @renderGuest()
+
+
+  renderBreadcrumbs: =>
+    return null unless currentUser.id?
+
+    ol className: 'forum-header-breadcrumb-small',
+      li className: 'forum-header-breadcrumb-small__item',
+        span
+          className: 'forum-header-breadcrumb-small__link'
+          'Beatmapsets'
+
+      li className: 'forum-header-breadcrumb-small__item',
+        span
+          className: 'forum-header-breadcrumb-small__link'
+          'Search'
 
 
   renderStickyContent: =>
