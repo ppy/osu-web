@@ -65,6 +65,17 @@
     background-color: #222;
   }
 
+  &__transition-overlay {
+    .full-size();
+    background-color: #222;
+    opacity: 0;
+    transition: opacity @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      opacity: 1;
+    }
+  }
+
   &__triangles {
     .full-size();
     background-image: url('/images/layout/nav2-background.png');

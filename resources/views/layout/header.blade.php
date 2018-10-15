@@ -37,6 +37,7 @@
     @else
         <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
         <div class="nav2-header__triangles"></div>
+        <div class="nav2-header__transition-overlay"></div>
     @endif
 
     <div class="osu-page">
