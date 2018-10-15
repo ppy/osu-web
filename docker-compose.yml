@@ -2,12 +2,12 @@ version: '3.4'
 
 x-env: &x-env
   CACHE_DRIVER: redis
-  COMPOSER_HOME: /data/osuweb/.composer
+  COMPOSER_HOME: /data/osuweb/.docker/.composer
   DB_HOST: db
   ES_HOST: elasticsearch:9200
-  HOME: /data/osuweb
+  HOME: /data/osuweb/.docker
   REDIS_HOST: redis
-  YARN_CACHE_FOLDER: /data/osuweb/.yarn
+  YARN_CACHE_FOLDER: /data/osuweb/.docker/.yarn
 
 services:
   nginx:
@@ -26,6 +26,7 @@ services:
       - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
       - ./docker/mysql/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
+      <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ONETIME_PASSWORD: "yes"
   redis:
