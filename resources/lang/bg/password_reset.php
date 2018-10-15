@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => '',
+    'title' => 'Задаване на нова парола',
 
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'cancel' => 'Отмени',
+        'resend' => 'Препрати електронното писмо за потвърждение',
+        'set' => 'Задаване на парола',
+        'start' => 'Начало',
     ],
 
     'email' => [
-        'subject' => '',
+        'subject' => 'възстановяване на osu! акаунт',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'contact_support' => 'Моля обърнете се към поддръжка за възстановяване на акаунта.',
+        'is_privileged' => 'Пишете на peppy лол.',
+        'missing_key' => 'Задължително.',
+        'too_many_tries' => 'Прекалено много неуспешни опити.',
+        'user_not_found' => 'Даденият потребител не съществува.',
+        'wrong_key' => 'Неправилен код.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Проверете си пощенската кутия за код за потвърждение.',
+        'saved' => 'Новата парола запомнена!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Нова парола',
+        'password_confirmation' => 'Потвърждение чрез парола',
+        'title' => 'Задаване на нова парола на акаунт <strong>:username</strong>.',
+        'verification_key' => 'Код за потвърждение',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Въведете имейл адрес или потребителско име',
     ],
 ];

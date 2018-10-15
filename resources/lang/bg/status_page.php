@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'title' => '',
-        'description' => '',
+        'title' => 'статус',
+        'description' => 'какво се случва мой човек?',
     ],
 
     'incidents' => [
-        'title' => '',
-        'automated' => '',
+        'title' => 'Активни проблеми',
+        'automated' => 'автоматизирано',
     ],
 
     'online' => [
         'title' => [
-            'users' => '',
-            'score' => '',
+            'users' => 'Потребители онлайн за последните 24 часа',
+            'score' => 'Публикации на резултати за последните 24 часа',
         ],
-        'current' => '',
-        'score' => '',
+        'current' => 'Текущи потребители онлайн',
+        'score' => 'Публикации на резултати на секунда',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => '',
+            'title' => 'Скорошни проблеми',
             'state' => [
-                'resolved' => '',
-                'resolving' => '',
-                'unknown' => '',
+                'resolved' => 'Разрешени',
+                'resolving' => 'В процес на разрешаване',
+                'unknown' => 'Неизвестен',
             ],
         ],
 
         'uptime' => [
-            'title' => '',
+            'title' => 'Време на работа',
             'graphs' => [
-                'server' => '',
-                'web' => '',
+                'server' => 'сървър',
+                'web' => 'уеб',
             ],
         ],
 
         'when' => [
-            'today' => '',
-            'week' => '',
-            'month' => '',
-            'all_time' => '',
-            'last_week' => '',
-            'weeks_ago' => '',
+            'today' => 'днес',
+            'week' => 'седмица',
+            'month' => 'месец',
+            'all_time' => 'за всички времена',
+            'last_week' => 'за последната седмица',
+            'weeks_ago' => 'преди :count седмица | преди :count седмици',
         ],
     ],
 ];

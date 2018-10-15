@@ -23,7 +23,7 @@ return [
     'generic' => 'Vikojen korjauksia ja pieniä parannuksia.',
 
     'build' => [
-        'title' => '',
+        'title' => 'muutokset versiossa :version',
     ],
 
     'builds' => [
@@ -36,7 +36,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => '',
+            '_' => 'muutosloki listaus',
             '_from' => '',
             '_from_to' => '',
             '_stream' => '',
