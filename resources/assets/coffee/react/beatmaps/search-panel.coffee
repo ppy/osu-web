@@ -50,6 +50,8 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
 
   renderStickyContent: =>
+    return null unless currentUser.id?
+
     div
       className: 'beatmapsets-search beatmapsets-search--sticky'
       div
