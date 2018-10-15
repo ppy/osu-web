@@ -132,7 +132,8 @@ class ProfilePage.Main extends React.PureComponent
 
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-    div className: 'osu-layout',
+    div
+      className: 'osu-layout__no-scroll' if isBlocked
       if isBlocked
         div className: 'osu-page',
           el NotificationBanner,
