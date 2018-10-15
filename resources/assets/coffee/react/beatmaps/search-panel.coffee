@@ -55,15 +55,15 @@ class Beatmaps.SearchPanel extends React.PureComponent
   renderBreadcrumbs: =>
     return null unless currentUser.id?
 
-    ol className: 'forum-header-breadcrumb-small',
-      li className: 'forum-header-breadcrumb-small__item',
+    ol className: 'sticky-header-breadcrumbs',
+      li className: 'sticky-header-breadcrumbs__item',
         span
-          className: 'forum-header-breadcrumb-small__link'
+          className: 'sticky-header-breadcrumbs__link'
           'Beatmapsets'
 
-      li className: 'forum-header-breadcrumb-small__item',
+      li className: 'sticky-header-breadcrumbs__item',
         span
-          className: 'forum-header-breadcrumb-small__link'
+          className: 'sticky-header-breadcrumbs__link'
           'Search'
 
 

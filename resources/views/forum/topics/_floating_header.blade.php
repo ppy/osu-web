@@ -17,11 +17,9 @@
 --}}
 
 @section('sticky-header-breadcrumbs')
-    <div class="forum-topic-headernav__row">
-        @include('forum.topics._header_breadcrumb_small', [
-            'forum' => $topic->forum,
-        ])
-    </div>
+    @include('forum.topics._header_breadcrumb_small', [
+        'forum' => $topic->forum,
+    ])
 @endsection()
 
 @section('sticky-header-content')
