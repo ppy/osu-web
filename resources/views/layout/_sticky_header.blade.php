@@ -15,15 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+
+
 <div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
     <div class="osu-page">
-        <div class="sticky-header__body">
-            <div id="js-sticky-header-breadcrumbs" class="sticky-header__breadcrumbs">
-                @yield('sticky-header-breadcrumbs')
+        {{-- Workaround to remove empty block with padding --}}
+        {{-- TODO: Need a better way to handle this while keeps the padding in the container element --}}
+        @if (View::hasSection('sticky-header-breadcrumbs') || View::hasSection('sticky-header-content'))
+            <div class="sticky-header__body">
+                <div id="js-sticky-header-breadcrumbs" class="sticky-header__breadcrumbs">
+                    @yield('sticky-header-breadcrumbs')
+                </div>
+                <div id="js-sticky-header-content" class="sticky-header__content">
+                    @yield('sticky-header-content')
+                </div>
             </div>
-            <div id="js-sticky-header-content" class="sticky-header__content">
-                @yield('sticky-header-content')
-            </div>
-        </div>
+        @endif
     </div>
 </div>
