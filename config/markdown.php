@@ -34,6 +34,7 @@ return [
     ],
 
     'extensions' => [
+        Jonnybarnes\CommonmarkLinkify\LinkifyExtension::class,
         Webuni\CommonMark\TableExtension\TableExtension::class,
     ],
 

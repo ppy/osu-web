@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30e34368f1e02eb5eb9e311ed2d020e3",
+    "content-hash": "87e018a388fb6d03fe85fdafe3a83c4c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1139,36 +1139,36 @@
         },
         {
             "name": "graham-campbell/markdown",
-            "version": "v8.1.0",
+            "version": "v10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "f144479771fba3cac973639a1e705f6c9c2262fd"
+                "reference": "1b685b0b31f1aa92a199251960d3a8807c9be047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/f144479771fba3cac973639a1e705f6c9c2262fd",
-                "reference": "f144479771fba3cac973639a1e705f6c9c2262fd",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/1b685b0b31f1aa92a199251960d3a8807c9be047",
+                "reference": "1b685b0b31f1aa92a199251960d3a8807c9be047",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "illuminate/view": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "league/commonmark": "^0.15|^0.16",
-                "php": "^7.0"
+                "illuminate/contracts": "5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*",
+                "illuminate/view": "5.5.*|5.6.*|5.7.*",
+                "league/commonmark": "^0.17",
+                "php": "^7.1.3"
             },
             "require-dev": {
-                "graham-campbell/analyzer": "^1.1",
-                "graham-campbell/testbench": "^4.0",
-                "league/commonmark-extras": "^0.1.2",
+                "graham-campbell/analyzer": "^2.1",
+                "graham-campbell/testbench": "^5.1",
+                "league/commonmark-extras": "^0.1.4",
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.1"
+                "phpunit/phpunit": "^6.5|^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.1-dev"
+                    "dev-master": "10.1-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1203,7 +1203,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2017-12-10T12:02:26+00:00"
+            "time": "2018-08-23T12:03:07+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1748,6 +1748,52 @@
             "time": "2017-11-10T10:35:35+00:00"
         },
         {
+            "name": "jonnybarnes/commonmark-linkify",
+            "version": "v0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jonnybarnes/commonmark-linkify.git",
+                "reference": "fa5b1434dbd3639d2739e3b4f0aa5d14f322d60a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jonnybarnes/commonmark-linkify/zipball/fa5b1434dbd3639d2739e3b4f0aa5d14f322d60a",
+                "reference": "fa5b1434dbd3639d2739e3b4f0aa5d14f322d60a",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^0.17.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jonnybarnes\\CommonmarkLinkify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC0-1.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jonny Barnes",
+                    "email": "jonny@jonnybarnes.uk"
+                }
+            ],
+            "description": "Turn plaintext URLs into click-able links",
+            "homepage": "https://github.com/jonnybarnes/commonmark-linkify",
+            "keywords": [
+                "commonmark",
+                "extension",
+                "markdown"
+            ],
+            "time": "2018-01-11T10:38:16+00:00"
+        },
+        {
             "name": "knplabs/github-api",
             "version": "2.10.1",
             "source": {
@@ -2208,34 +2254,34 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.16.0",
+            "version": "0.17.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "c0e41be0f80c51ad3170c9c713f74a0b8dec59ce"
+                "reference": "82d7ab62d7f68391cb9d323f3ccce50be24a5369"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c0e41be0f80c51ad3170c9c713f74a0b8dec59ce",
-                "reference": "c0e41be0f80c51ad3170c9c713f74a0b8dec59ce",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/82d7ab62d7f68391cb9d323f3ccce50be24a5369",
+                "reference": "82d7ab62d7f68391cb9d323f3ccce50be24a5369",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=5.4.8"
+                "php": ">=5.6.5"
             },
             "replace": {
                 "colinodell/commonmark-php": "*"
             },
             "require-dev": {
                 "cebe/markdown": "~1.0",
+                "commonmark/commonmark.js": "0.28",
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.28",
                 "michelf/php-markdown": "~1.4",
-                "mikehaertl/php-shellcommand": "~1.2.0",
-                "phpunit/phpunit": "^4.8.35|~5.7",
-                "scrutinizer/ocular": "~1.1",
-                "symfony/finder": "~2.3|~3.0"
+                "mikehaertl/php-shellcommand": "^1.2",
+                "phpunit/phpunit": "^5.7|^6.5",
+                "scrutinizer/ocular": "^1.1",
+                "symfony/finder": "^3.0|^4.0"
             },
             "suggest": {
                 "league/commonmark-extras": "Library of useful extensions including smart punctuation"
@@ -2246,7 +2292,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.17-dev"
+                    "dev-master": "0.18-dev"
                 }
             },
             "autoload": {
@@ -2273,7 +2319,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2017-10-31T00:49:55+00:00"
+            "time": "2018-03-29T14:35:19+00:00"
         },
         {
             "name": "league/event",
