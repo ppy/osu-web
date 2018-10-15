@@ -55,16 +55,17 @@ class Beatmaps.SearchPanel extends React.PureComponent
   renderBreadcrumbs: =>
     return null unless currentUser.id?
 
+    # TODO: replace with component that takes an array of {name, link}.
     ol className: 'sticky-header-breadcrumbs',
       li className: 'sticky-header-breadcrumbs__item',
         span
           className: 'sticky-header-breadcrumbs__link'
-          'Beatmapsets'
+          osu.trans 'beatmapsets.index.guest_title'
 
       li className: 'sticky-header-breadcrumbs__item',
         span
           className: 'sticky-header-breadcrumbs__link'
-          'Search'
+          osu.trans 'home.search.title'
 
 
   renderStickyContent: =>
