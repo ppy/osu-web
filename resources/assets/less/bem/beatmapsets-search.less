@@ -17,7 +17,8 @@
  */
 
 .beatmapsets-search {
-  @_icon-width: 25px;
+  @_icon-width: @font-size--large + 5px;
+  @_icon-width--sticky: @font-size--normal-2 + 5px;
   @_top: beatmapsets-search;
 
   .default-box-shadow();
@@ -75,17 +76,21 @@
     right: 0;
     top: 0;
     height: 100%;
-    width: (@_icon-width + 20px);
+    width: @_icon-width + 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .@{_top}--sticky & {
+      width: @_icon-width--sticky + 20px;
+    }
   }
 
   &__input {
     border: 1px solid #ccc;
     width: 100%;
     padding: 10px;
-    padding-right: (10px + @_icon-width + 20px);
+    padding-right: 10px + @_icon-width + 20px;
 
     font-style: italic;
     font-weight: lighter;
@@ -98,7 +103,7 @@
 
     .@{_top}--sticky & {
       padding: 5px;
-      padding-right: 50px; // 45 + 5
+      padding-right: 5px + @_icon-width--sticky + 20px;
     }
   }
 
