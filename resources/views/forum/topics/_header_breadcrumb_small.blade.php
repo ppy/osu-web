@@ -17,7 +17,6 @@
 --}}
 <ol class="
     sticky-header-breadcrumbs
-    u-forum--bg-link
 ">
     <li class="sticky-header-breadcrumbs__item">
         <a href="{{ route('forum.forums.index') }}" class="sticky-header-breadcrumbs__link">
