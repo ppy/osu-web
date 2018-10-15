@@ -25,9 +25,9 @@
   background: #000;
   font-size: @font-size--normal-2;
 
-  .sticky-header & {
-    padding: 0;
-    background: inherit;
+  &--sticky {
+    padding: 10px;
+    background: #333;
   }
 
   &__advanced {
@@ -96,7 +96,7 @@
       box-shadow: 0 0 10px @pink-lighter;
     }
 
-    .sticky-header & {
+    .@{_top}--sticky & {
       padding: 5px;
       padding-right: 50px; // 45 + 5
     }
@@ -109,7 +109,7 @@
     margin-top: 100px;
     margin-bottom: 20px;
 
-    .sticky-header & {
+    .@{_top}--sticky & {
       font-size: @font-size--normal-2;
       margin: 5px 0;
     }
