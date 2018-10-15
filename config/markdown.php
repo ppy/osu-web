@@ -29,6 +29,10 @@ return [
     'allow_unsafe_links' => false,
     'max_nesting_level' => 20,
 
+    'renderer' => [
+        'soft_break' => '<br />',
+    ],
+
     'extensions' => [
         Webuni\CommonMark\TableExtension\TableExtension::class,
     ],
