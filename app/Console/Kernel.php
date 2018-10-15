@@ -75,6 +75,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('store:cleanup-stale-orders')
+            ->daily();
+
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');
 
