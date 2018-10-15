@@ -30,7 +30,7 @@
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
-                @if ($news->count() > 0)
+                @if ($news->isNotEmpty())
                     @foreach ($news as $post)
                         @if ($loop->iteration > 3)
                             @break
