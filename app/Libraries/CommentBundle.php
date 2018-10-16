@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Models\Comment;
+use App\Models\CommentVote;
 use App\Models\User;
 
 class CommentBundle
@@ -37,6 +38,7 @@ class CommentBundle
     private $commentable;
     private $comments;
     private $lastLoadedId;
+    private $user;
 
     public function __construct($commentable, $options = [])
     {
@@ -55,6 +57,7 @@ class CommentBundle
         $this->filterByParentId = $options['filterByParentId'] ?? true;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeParent = $options['includeParent'] ?? false;
+        $this->user = $options['user'] ?? auth()->user();
     }
 
     public function toArray()
@@ -82,6 +85,7 @@ class CommentBundle
 
         $result = [
             'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
+            'user_votes' => $this->getUserVotes($comments),
             'users' => json_collection($users, 'UserCompact'),
         ];
 
@@ -185,6 +189,19 @@ class CommentBundle
             ->orderBy('id', 'DESC')
             ->limit($this->params['limit'])
             ->get();
+    }
+
+    private function getUserVotes($comments)
+    {
+        if ($this->user === null) {
+            return [];
+        }
+
+        $ids = $comments->pluck('id');
+
+        return CommentVote::where(['user_id' => $this->user->getKey()])
+            ->whereIn('comment_id', $ids)
+            ->pluck('comment_id');
     }
 
     private function getUsers($comments)

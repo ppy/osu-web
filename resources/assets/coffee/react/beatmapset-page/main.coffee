@@ -205,9 +205,11 @@ class BeatmapsetPage.Main extends React.Component
             hasScores: @props.beatmapset.has_scores
 
         div className: 'osu-page osu-page--generic-compact',
-          el Comments,
-            commentableType: 'beatmapset'
-            commentableId: @props.beatmapset.id
+          el CommentsManager,
+            component: Comments
+            componentProps:
+              commentableType: 'beatmapset'
+              commentableId: @props.beatmapset.id
 
 
   saveStateToContainer: =>

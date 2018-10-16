@@ -69,10 +69,12 @@ class ChangelogBuild.Main extends React.PureComponent
 
           div
             className: 'builds__group builds__group--discussions'
-            el Comments,
-              commentableType: 'build'
-              commentableId: @props.build.id
-              modifiers: ['changelog']
+            el CommentsManager,
+              component: Comments
+              componentProps:
+                commentableId: @props.build.id
+                commentableType: 'build'
+                modifiers: ['changelog']
 
 
   renderHeaderTabs: =>
