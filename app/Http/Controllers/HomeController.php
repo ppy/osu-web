@@ -91,7 +91,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = NewsPost::default()->limit(8)->get();
+            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
