@@ -43,7 +43,7 @@ window._exported = {
 window._styles =
   header:
     height: 90 # @nav2-height
-    heightSticky: 50 # @nav2-height--sticky
+    heightSticky: 50 # @nav2-height--pinned
     heightMobile: 60 # @navbar-height
 
 window.StoreCheckout = StoreCheckout

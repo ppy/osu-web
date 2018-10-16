@@ -37,7 +37,7 @@
 
   .@{header-pinned} & {
     padding: 0;
-    height: @nav2-height--sticky;
+    height: @nav2-height--pinned;
   }
 
   &__button {
@@ -151,7 +151,8 @@
     transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
 
     .@{header-pinned} & {
-      height: 40px;
+      height: @nav2-avatar-height--pinned;
+      width: @nav2-avatar-height--pinned;
     }
   }
 
