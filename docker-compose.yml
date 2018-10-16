@@ -2,12 +2,12 @@ version: '3.4'
 
 x-env: &x-env
   CACHE_DRIVER: redis
-  COMPOSER_HOME: /data/osuweb/.composer
+  COMPOSER_HOME: /data/osuweb/.docker/.composer
   DB_HOST: db
   ES_HOST: elasticsearch:9200
-  HOME: /data/osuweb
+  HOME: /data/osuweb/.docker
   REDIS_HOST: redis
-  YARN_CACHE_FOLDER: /data/osuweb/.yarn
+  YARN_CACHE_FOLDER: /data/osuweb/.docker/.yarn
 
 services:
   nginx:
@@ -26,6 +26,7 @@ services:
       - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
       - ./docker/mysql/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
+      <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ONETIME_PASSWORD: "yes"
     command: --default-authentication-plugin=mysql_native_password
@@ -48,6 +49,7 @@ services:
     user: ${UID:?err}
     environment:
       <<: *x-env
+      OSU_SKIP_CACHE_PERMISSION_OVERRIDE: 1
     command: ./docker/php/start
   yarn:
     image: node:8-alpine
