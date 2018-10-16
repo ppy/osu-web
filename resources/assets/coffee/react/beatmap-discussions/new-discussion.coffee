@@ -35,7 +35,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       timestamp: null
       timestampConfirmed: false
       posting: null
-      stickable: false
       sticky: false
 
 
