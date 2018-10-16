@@ -17,13 +17,13 @@
  */
 
 .sticky-header {
-  position: fixed;
-  top: @nav2-height--sticky;
   width: 100%;
   z-index: 1;
+  height: 0;
 
-  @media @mobile {
-    top: @navbar-height;
+  .@{header-pinned} & {
+    display: block;
+    height: auto;
   }
 
   &__body {

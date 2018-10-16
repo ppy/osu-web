@@ -31,19 +31,20 @@
     nav2-header
     {{ optional(Auth::user())->isRestricted() ? 'nav2-header--restricted' : '' }}
 ">
-    @if ($legacyNav)
-        <div class="nav2-header__legacy-triangles"></div>
-        <div class="nav2-header__legacy-gradient-overlay u-section--gradient-down"></div>
-    @else
-        <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
-        <div class="nav2-header__triangles"></div>
-        <div class="nav2-header__transition-overlay"></div>
-    @endif
+    <div class="nav2-header__body">
+        @if ($legacyNav)
+            <div class="nav2-header__legacy-triangles"></div>
+            <div class="nav2-header__legacy-gradient-overlay u-section--gradient-down"></div>
+        @else
+            <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
+            <div class="nav2-header__triangles"></div>
+            <div class="nav2-header__transition-overlay"></div>
+        @endif
 
-    <div class="osu-page">
-        @include('layout._nav2')
+        <div class="osu-page">
+            @include('layout._nav2')
+        </div>
     </div>
-
     @include('layout._sticky_header')
 </div>
 
