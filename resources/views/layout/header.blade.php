@@ -52,6 +52,7 @@
     @include('layout._popup_login')
 @endif
 
+
 <div class="js-user-verification--reference"></div>
 @include('layout._user_verification_popup')
 

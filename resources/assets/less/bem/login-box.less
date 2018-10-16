@@ -23,11 +23,18 @@
 .login-box {
   @_top: login-box;
 
+  position: fixed;
   width: 100%;
+  z-index: @z-index--nav-float;
+  top: @navbar-height;
 
   @media @desktop {
-    position: absolute;
     top: @nav2-height;
+    transition: top @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      top: @nav2-height--pinned;
+    }
   }
 
   &--landing {
@@ -46,7 +53,6 @@
     display: flex;
     flex-direction: column;
     font-size: @font-size--nav-popup-section;
-    z-index: @z-index--nav-float;
     overflow: hidden;
     transition: none;
     color: #999;
