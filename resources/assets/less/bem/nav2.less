@@ -23,7 +23,7 @@
   @_menu-gutter: 10px;
   @_link-padding-vertical: 6px;
   @_link-highlight-margin-vertical: 2px;
-  @_padding-vertical: ((@nav2-height - @nav2-menu-height) / 2);
+  @_padding-vertical: ((@nav2-height - @nav2-avatar-height) / 2);
 
   .own-layer();
   padding: @_padding-vertical 0;
@@ -144,7 +144,7 @@
 
   &__logo-link {
     @__logo-whitespace: 5px;
-    @_logo-size: (@nav2-menu-height + @__logo-whitespace * 2);
+    @_logo-size: (@nav2-avatar-height + @__logo-whitespace * 2);
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
