@@ -52,9 +52,9 @@ class @StickyHeader
 
     styles = window._styles.header
     if window.pageYOffset > styles.height
-      document.body.classList.add 'js-pinned-header--pinned'
+      document.body.classList.add 'js-header-is-pinned'
     else
-      document.body.classList.remove 'js-pinned-header--pinned'
+      document.body.classList.remove 'js-header-is-pinned'
 
 
   setVisible: (visible) ->
