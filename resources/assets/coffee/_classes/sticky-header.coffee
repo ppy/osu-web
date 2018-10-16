@@ -21,6 +21,22 @@
 # 1. render content into 'js-sticky-header-content' and 'js-sticky-header-breadcrumbs'
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
 class @StickyHeader
+  @breadcrumbsElement: ->
+    document.getElementById('js-sticky-header-breadcrumbs')
+
+
+  @contentElement: ->
+    document.getElementById('js-sticky-header-content')
+
+
+  @headerHeight: ->
+    styles = window._styles.header
+    if osu.isMobile()
+      styles.heightMobile
+    else
+      styles.heightSticky
+
+
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
     @visible = false
@@ -41,31 +57,7 @@ class @StickyHeader
       header.classList.remove 'js-pinned-header--pinned'
 
 
-  stickOrUnstick: =>
-    return if @stickMarker.length == 0
-    markerTop = @stickMarker[0].getBoundingClientRect().top
-    headerBottom = document.getElementById('js-pinned-header').getBoundingClientRect().bottom
-
-    StickyHeader.setVisible markerTop < headerBottom
-
-
-  @breadcrumbsElement: ->
-    document.getElementById('js-sticky-header-breadcrumbs')
-
-
-  @contentElement: ->
-    document.getElementById('js-sticky-header-content')
-
-
-  @headerHeight: ->
-    styles = window._styles.header
-    if osu.isMobile()
-      styles.heightMobile
-    else
-      styles.heightSticky
-
-
-  @setVisible: (visible) ->
+  setVisible: (visible) ->
     return if @visible == visible
 
     @visible = visible
@@ -73,3 +65,11 @@ class @StickyHeader
       Fade.in document.getElementById('js-sticky-header')
     else
       Fade.out document.getElementById('js-sticky-header')
+
+
+  stickOrUnstick: =>
+    return if @stickMarker.length == 0
+    markerTop = @stickMarker[0].getBoundingClientRect().top
+    headerBottom = document.getElementById('js-pinned-header').getBoundingClientRect().bottom
+
+    @setVisible markerTop < headerBottom
