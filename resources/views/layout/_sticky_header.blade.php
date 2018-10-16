@@ -17,7 +17,11 @@
 --}}
 
 
-<div id="js-sticky-header" class="sticky-header" data-visibility="hidden">
+<div id="js-sticky-header"
+     class="sticky-header js-sync-height--reference"
+     data-sync-height-target="sticky-header"
+     data-visibility="hidden"
+>
     <div class="osu-page">
         {{-- Workaround to remove empty block with padding --}}
         {{-- TODO: Need a better way to handle this while keeps the padding in the container element --}}
