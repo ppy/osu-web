@@ -23,10 +23,10 @@
 @endsection()
 
 @section('sticky-header-content')
-    <h1 class="forum-topic-headernav u-ellipsis-overflow">
+    <h1 class="forum-topic-floating-header u-ellipsis-overflow">
         <a
             href="{{ route("forum.topics.show", $topic->topic_id) }}"
-            class="forum-topic-headernav__title-link"
+            class="forum-topic-floating-header__title-link"
         >
             {{ $topic->topic_title }}
         </a>
