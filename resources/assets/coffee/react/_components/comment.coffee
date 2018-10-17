@@ -244,7 +244,6 @@ class @Comment extends React.PureComponent
 
   renderVoteButton: =>
     className = 'comment-vote'
-
     className += ' comment-vote--posting' if @state.postingVote
 
     if @hasVoted()
