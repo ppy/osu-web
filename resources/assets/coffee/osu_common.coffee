@@ -183,8 +183,8 @@
     options ?= {}
 
     if precision?
-      options.minimumFractionDigits = 2
-      options.maximumFractionDigits = 2
+      options.minimumFractionDigits = precision
+      options.maximumFractionDigits = precision
 
     number.toLocaleString locale ? currentLocale, options
 
