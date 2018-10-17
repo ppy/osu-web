@@ -101,7 +101,7 @@ class Comment extends Model
         if ($this->isDirty('parent_id') && $this->parent_id !== null) {
             if ($this->parent === null) {
                 $this->validationErrors()->add('parent_id', 'invalid');
-            } elseif ($this->parent->isDeleted()) {
+            } elseif ($this->parent->trashed()) {
                 $this->validationErrors()->add('parent_id', '.deleted_parent');
             }
         }
@@ -148,7 +148,7 @@ class Comment extends Model
         return presence($this->disqus_user_data['name'] ?? null);
     }
 
-    public function isDeleted()
+    public function trashed()
     {
         return $this->deleted_at !== null;
     }

@@ -1152,7 +1152,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $hyped = $this
                 ->beatmapDiscussions()
-                ->withoutDeleted()
+                ->withoutTrashed()
                 ->ofType('hype')
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
@@ -1168,7 +1168,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $earliestWeeklyHype = $this
                 ->beatmapDiscussions()
-                ->withoutDeleted()
+                ->withoutTrashed()
                 ->ofType('hype')
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->orderBy('created_at')
