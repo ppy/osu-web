@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
+use App\Models\Log;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -38,6 +39,10 @@ class CommentsController extends Controller
         priv_check('CommentDestroy', $comment)->ensureCan();
 
         $comment->softDelete(auth()->user());
+
+        if ($comment->user_id !== auth()->user()->getKey()) {
+            $this->logModerate('LOG_COMMENT_DELETE', $comment);
+        }
 
         return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
@@ -96,6 +101,8 @@ class CommentsController extends Controller
         priv_check('CommentRestore', $comment)->ensureCan();
 
         $comment->restore();
+
+        $this->logModerate('LOG_COMMENT_RESTORE', $comment);
 
         return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
@@ -162,6 +169,23 @@ class CommentsController extends Controller
         $params['edited_at'] = Carbon::now();
         $comment->update($params);
 
+        if ($comment->user_id !== auth()->user()->getKey()) {
+            $this->logModerate('LOG_COMMENT_UPDATE', $comment);
+        }
+
         return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+    }
+
+    private function logModerate($operation, $comment)
+    {
+        $this->log([
+            'log_type' => Log::LOG_COMMENT_MOD,
+            'log_operation' => $operation,
+            'log_data' => [
+                'commentable_type' => $comment->commentable_type,
+                'commentable_id' => $comment->commentable_id,
+                'id' => $comment->getKey(),
+            ],
+        ]);
     }
 }

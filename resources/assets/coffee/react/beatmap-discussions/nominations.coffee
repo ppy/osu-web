@@ -208,15 +208,15 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
             # implies mapCanBeNominated
             else
-              span null,
+              div null,
                 if disqualification?
-                  span null,
-                    span
-                      dangerouslySetInnerHTML:
-                        __html: @resetReason(disqualification)
-                    ' ' # spacer
+                  div
+                    className: "#{bn}__note-row"
+                    dangerouslySetInnerHTML:
+                      __html: @resetReason(disqualification)
                 if nominationReset?
-                  span
+                  div
+                    className: "#{bn}__note-row"
                     dangerouslySetInnerHTML:
                       __html: @resetReason(nominationReset)
           if nominators.length > 0

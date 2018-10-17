@@ -18,12 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'title' => 'Beatmap Diskussion Stemmer',
-    ],
+namespace App\Models;
 
-    'item' => [
-        'score' => 'Score',
-    ],
-];
+class UserClient extends Model
+{
+    const CREATED_AT = 'timestamp';
+
+    protected $table = 'osu_user_security';
+
+    protected $dates = ['timestamp'];
+
+    protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
+
+    public $timestamps = false;
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'osu_md5', 'hash');
+    }
+
+    public function isLatest()
+    {
+        if ($this->build === null) {
+            return false;
+        }
+
+        $latestBuild = Build::select('build_id')
+            ->where([
+                'test_build' => false,
+                'stream_id' => $this->build->stream_id,
+            ])->last();
+
+        return $this->build->getKey() === optional($latestBuild)->getKey();
+    }
+}

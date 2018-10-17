@@ -682,7 +682,7 @@ class Beatmapset extends Model implements AfterCommit
             } else {
                 $hyped = $this
                     ->beatmapDiscussions()
-                    ->withoutDeleted()
+                    ->withoutTrashed()
                     ->ofType('hype')
                     ->where('user_id', '=', $user->getKey())
                     ->exists();
@@ -946,7 +946,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         return $this
             ->beatmapDiscussions()
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->ofType('hype')
             ->count();
     }
