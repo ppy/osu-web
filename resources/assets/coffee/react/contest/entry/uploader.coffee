@@ -33,7 +33,7 @@ class Contest.Entry.Uploader extends React.Component
     switch @props.contest.type
       when 'art'
         allowedExtensions = ['.jpg', '.jpeg', '.png']
-        maxSize = 4000000
+        maxSize = 8000000
 
       when 'beatmap'
         allowedExtensions = ['.osu', '.osz']
