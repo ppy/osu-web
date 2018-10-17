@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,input,h1,h2} = ReactDOMFactories
+{div, a, i, input, h1, h2} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent
@@ -50,6 +50,17 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @debouncedSubmit event
 
 
+  renderFilter: ({ multiselect = false, name, options }) =>
+    el Beatmaps.SearchFilter,
+      filters: @props.filters
+      name: name
+      title: osu.trans("beatmaps.listing.search.filters.#{name}")
+      options: options
+      default: @props.filterDefaults[name]
+      multiselect: multiselect
+      selected: @props.filters[name]
+
+
   renderGuest: =>
     div
       ref: @props.innerRef
@@ -70,10 +81,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderUser: =>
     filters = @props.availableFilters
+    cssClasses = 'beatmapsets-search'
+    cssClasses += ' beatmapsets-search--expanded' if @props.isExpanded
 
     div
       ref: @props.innerRef
-      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
+      className: cssClasses
       div
         className: 'beatmapsets-search__background'
         style:
@@ -89,27 +102,18 @@ class Beatmaps.SearchPanel extends React.PureComponent
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
-      el Beatmaps.SearchFilter,
-        name: 'general'
-        title: osu.trans('beatmaps.listing.search.filters.general')
-        options: filters.general
-        default: @props.filterDefaults.general
+      @renderFilter
         multiselect: true
-        selected: @props.filters.general
+        name: 'general'
+        options: filters.general
 
-      el Beatmaps.SearchFilter,
+      @renderFilter
         name: 'mode'
-        title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
-        default: @props.filterDefaults.mode
-        selected: @props.filters.mode
 
-      el Beatmaps.SearchFilter,
+      @renderFilter
         name: 'status'
-        title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
-        default: @props.filterDefaults.status
-        selected: @props.filters.status
 
       a
         className: 'beatmapsets-search__expand-link'
@@ -119,40 +123,27 @@ class Beatmaps.SearchPanel extends React.PureComponent
         div {}, i className: 'fas fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'genre'
-          title: osu.trans('beatmaps.listing.search.filters.genre')
           options: filters.genres
-          default: @props.filterDefaults.genre
-          selected: @props.filters.genre
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'language'
-          title: osu.trans('beatmaps.listing.search.filters.language')
           options: filters.languages
-          default: @props.filterDefaults.language
-          selected: @props.filters.language
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
+          multiselect: true
           name: 'extra'
-          title: osu.trans('beatmaps.listing.search.filters.extra')
           options: filters.extras
-          multiselect: true
-          selected: @props.filters.extra
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
+          multiselect: true
           name: 'rank'
-          title: osu.trans('beatmaps.listing.search.filters.rank')
           options: filters.ranks
-          multiselect: true
-          selected: @props.filters.rank
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'played'
-          title: osu.trans('beatmaps.listing.search.filters.played')
           options: filters.played
-          default: @props.filterDefaults.played
-          selected: @props.filters.played
 
 
   submit: (e) =>

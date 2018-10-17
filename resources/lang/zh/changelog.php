@@ -42,8 +42,8 @@ return [
             '_stream' => ':stream 中的更新',
             '_stream_from' => '自 :from 以来 :stream 中的更新',
             '_stream_from_to' => '从 :from 到 :to 以来 :stream 中的更新',
-            '_stream_to' => '',
-            '_to' => '',
+            '_stream_to' => ':stream 当中到 :to 为止的更改',
+            '_to' => '到 :to 为止的更改',
         ],
 
         'title' => [

@@ -41,7 +41,7 @@ class ReplayFileTest extends TestCase
     public function testHeaderChunk()
     {
         // known good header.
-        $known = '0056ef33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101180400000b008014b73dec8dd508';
+        $known = '0056ef33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
 
         $replayFile = new ReplayFile($this->knownScore());
 
@@ -64,7 +64,7 @@ class ReplayFileTest extends TestCase
             'countgeki' => 22,
             'countkatu' => 5,
             'perfect' => true,
-            'enabled_mods' => 1048,
+            'enabled_mods' => 17016, // [HD, HR, NC, PF]  + implied mods
             'date' => '2018-03-19 22:53:33',
             'pp' => 68.41,
             'replay' => true,
