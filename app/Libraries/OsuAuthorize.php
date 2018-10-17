@@ -643,6 +643,14 @@ class OsuAuthorize
         }
     }
 
+    public function checkCommentVote($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkContestEntryStore($user, $contest)
     {
         $this->ensureLoggedIn($user);

@@ -181,6 +181,8 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
+        priv_check('CommentVote')->ensureCan();
+
         $vote = $comment->votes()->where([
             'user_id' => auth()->user()->getKey(),
         ])->first();
@@ -193,6 +195,8 @@ class CommentsController extends Controller
     public function voteStore($id)
     {
         $comment = Comment::findOrFail($id);
+
+        priv_check('CommentVote')->ensureCan();
 
         try {
             $comment->votes()->create([
