@@ -16,12 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {observable, autorun, action} from 'mobx';
-import RootDataStore from './root-data-store';
-import User, { UserJSON } from 'models/user';
-import DispatchListener from 'dispatch-listener';
 import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
+import {action, observable} from 'mobx';
+import User, { UserJSON } from 'models/user';
+import RootDataStore from './root-data-store';
 
 export default class UserStore implements DispatchListener {
   parent: RootDataStore;

@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UIStateStore from './ui-state-store';
-import ChannelStore from './channel-store';
-import UserStore from './user-store';
 import Dispatcher from 'dispatcher';
+import ChannelStore from './channel-store';
+import UIStateStore from './ui-state-store';
+import UserStore from './user-store';
 
 export default class RootDataStore {
   uiState: UIStateStore;

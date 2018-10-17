@@ -16,11 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import MainView from './messaging/main-view';
-import RootDataStore from './stores/root-data-store';
+import Dispatcher from './dispatcher';
 import ChatOrchestrator from './messaging/chat-orchestrator';
 import ChatWorker from './messaging/chat-worker';
-import Dispatcher from './dispatcher';
+import MainView from './messaging/main-view';
+import RootDataStore from './stores/root-data-store';
 import WindowFocusObserver from './window-focus-observer';
 
 declare global {

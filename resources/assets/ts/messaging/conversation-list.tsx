@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
-import { inject, observer } from 'mobx-react';
 
 @inject('dataStore')
 @observer

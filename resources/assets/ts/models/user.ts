@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable, action } from 'mobx';
+import { action, observable } from 'mobx';
 
 export interface UserJSON {
   id: number;

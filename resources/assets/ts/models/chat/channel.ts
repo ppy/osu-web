@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable, computed, action, transaction} from 'mobx';
+import { action, computed, observable, transaction} from 'mobx';
 import Message from './message';
 
 export interface ChannelJSON {

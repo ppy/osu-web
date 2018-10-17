@@ -16,16 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
+import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import { observer, Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
-
-import ConversationList from './conversation-list';
-import Conversation from './conversation';
-import ChatInput from './chat-input';
-import { ChatChannelSwitchAction } from 'actions/chat-actions';
-import User from 'models/user';
 import Channel from 'models/chat/channel';
+import User from 'models/user';
+import * as React from 'react';
+import ChatInput from './chat-input';
+import Conversation from './conversation';
+import ConversationList from './conversation-list';
 
 @observer
 export default class MainView extends React.Component<any, any> {

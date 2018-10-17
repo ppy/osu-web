@@ -16,14 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {observable, autorun, action, computed} from 'mobx';
-import Channel, { ChannelJSON } from 'models/chat/channel';
-import RootDataStore from './root-data-store';
-import Message, { MessageJSON } from 'models/chat/message';
-import Dispatcher from 'dispatcher';
+import { ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from 'dispatch-listener';
-import { ChatMessageSendAction, ChatMessageUpdateAction, ChatMessageAddAction } from 'actions/chat-actions';
+import Dispatcher from 'dispatcher';
+import {action, computed, observable} from 'mobx';
+import Channel, { ChannelJSON } from 'models/chat/channel';
+import Message from 'models/chat/message';
+import RootDataStore from './root-data-store';
 
 export default class ChannelStore implements DispatchListener {
   parent: RootDataStore;

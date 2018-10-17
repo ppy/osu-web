@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable, action} from 'mobx';
-import Channel from './channel';
+import { action, observable} from 'mobx';
 import User, { UserJSON } from 'models/user';
+import Channel from './channel';
 
 export interface MessageJSON {
   content: string;

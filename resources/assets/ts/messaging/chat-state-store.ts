@@ -16,11 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UIStateStore from 'stores/ui-state-store';
-import { observable } from 'mobx';
-import DispatchListener from 'dispatch-listener';
-import DispatcherAction from 'actions/dispatcher-action';
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import { observable } from 'mobx';
+import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
   parent: UIStateStore
