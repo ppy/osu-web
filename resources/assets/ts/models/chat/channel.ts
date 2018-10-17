@@ -18,7 +18,6 @@
 
 import { observable, computed, action, transaction} from "mobx";
 import Message from "./message";
-import User from "../user";
 
 export interface ChannelJSON {
   channel_id: number;

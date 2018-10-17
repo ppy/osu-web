@@ -17,7 +17,7 @@
  */
 
 import DispatcherAction from "./dispatcher-action";
-import Message from "../models/chat/message";
+import Message from "models/chat/message";
 
 export class ChatChannelSwitchAction implements DispatcherAction {
   constructor(public channel_id: number) {

@@ -17,9 +17,9 @@
  */
 
 import * as React from "react";
-import { ChatMessageSendAction } from "../actions/chat-actions";
+import { ChatMessageSendAction } from "actions/chat-actions";
 import { inject } from "mobx-react";
-import Message from "../models/chat/message";
+import Message from "models/chat/message";
 
 @inject('dataStore')
 @inject('dispatcher')

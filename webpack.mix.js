@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 require('dotenv').config();
 
 // .js doesn't support globbing by itself, so we need to glob
@@ -96,7 +97,8 @@ let webpackConfig = {
       path.resolve(__dirname, 'resources/assets/lib'),
       path.resolve(__dirname, 'node_modules'),
     ],
-    extensions: ['*', '.js', '.coffee']
+    extensions: ['*', '.js', '.coffee', '.ts'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   module: {
     rules: [

@@ -20,10 +20,10 @@
 
 import {observable, autorun, action} from 'mobx';
 import RootDataStore from './root-data-store';
-import User, { UserJSON } from '../models/user';
-import DispatchListener from '../dispatch-listener';
-import DispatcherAction from '../actions/dispatcher-action';
-import Dispatcher from '../dispatcher';
+import User, { UserJSON } from 'models/user';
+import DispatchListener from 'dispatch-listener';
+import DispatcherAction from 'actions/dispatcher-action';
+import Dispatcher from 'dispatcher';
 
 export default class UserStore implements DispatchListener {
   parent: RootDataStore;

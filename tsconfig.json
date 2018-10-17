@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "./resources/assets/ts",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
-    "module": "commonjs",
+    "lib": ["es6", "dom"],
+    "module": "es6",
+    "moduleResolution": "node",
     "target": "es6",
   },
   "exclude": [

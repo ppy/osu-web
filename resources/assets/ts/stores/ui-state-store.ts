@@ -17,10 +17,10 @@
  */
 
 import RootDataStore from "./root-data-store";
-import ChatStateStore from "../messaging/chat-state-store";
-import DispatchListener from "../dispatch-listener";
-import DispatcherAction from "../actions/dispatcher-action";
-import Dispatcher from "../dispatcher";
+import ChatStateStore from "messaging/chat-state-store";
+import DispatchListener from "dispatch-listener";
+import DispatcherAction from "actions/dispatcher-action";
+import Dispatcher from "dispatcher";
 
 export default class UIStateStore implements DispatchListener {
   parent: RootDataStore

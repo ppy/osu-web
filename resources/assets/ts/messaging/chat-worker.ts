@@ -16,16 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import RootDataStore from "../stores/root-data-store";
-import Dispatcher from "../dispatcher";
-import DispatchListener from "../dispatch-listener";
-import DispatcherAction from "../actions/dispatcher-action";
-import {ChatChannelSwitchAction, ChatMessageSendAction, ChatMessageUpdateAction, ChatMessageAddAction} from "../actions/chat-actions";
-import Message, { MessageJSON } from "../models/chat/message";
-import Channel from "../models/chat/channel";
+import RootDataStore from "stores/root-data-store";
+import Dispatcher from "dispatcher";
+import DispatchListener from "dispatch-listener";
+import DispatcherAction from "actions/dispatcher-action";
+import {ChatChannelSwitchAction, ChatMessageSendAction, ChatMessageUpdateAction, ChatMessageAddAction} from "actions/chat-actions";
+import Message, { MessageJSON } from "models/chat/message";
+import Channel from "models/chat/channel";
 import ChatAPI from "./chat-api";
 import { transaction } from "mobx";
-import { WindowFocusAction, WindowBlurAction } from "../actions/window-focus-actions";
+import { WindowFocusAction, WindowBlurAction } from "actions/window-focus-actions";
 
 export default class ChatWorker implements DispatchListener {
   private dispatcher: Dispatcher;

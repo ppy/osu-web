@@ -19,7 +19,7 @@
 import UIStateStore from "./ui-state-store";
 import ChannelStore from "./channel-store";
 import UserStore from "./user-store";
-import Dispatcher from "../dispatcher";
+import Dispatcher from "dispatcher";
 
 export default class RootDataStore {
   uiState: UIStateStore;

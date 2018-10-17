@@ -23,9 +23,9 @@ import DevTools from 'mobx-react-devtools';
 import ConversationList from "./conversation-list";
 import Conversation from "./conversation";
 import ChatInput from "./chat-input";
-import { ChatChannelSwitchAction } from "../actions/chat-actions";
-import User from "../models/user";
-import Channel from "../models/chat/channel";
+import { ChatChannelSwitchAction } from "actions/chat-actions";
+import User from "models/user";
+import Channel from "models/chat/channel";
 
 @observer
 export default class MainView extends React.Component<any, any> {

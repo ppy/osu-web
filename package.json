@@ -41,8 +41,9 @@
     "require-dir": "^0.3.2",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",
-    "turbolinks": "^5.1.1",
     "ts-loader": "3.5",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "turbolinks": "^5.1.1",
     "typescript": "^2.9.1",
     "url-polyfill": "^1.0.10",
     "webpack-sentry-plugin": "^1.9.2"

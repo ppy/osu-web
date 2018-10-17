@@ -18,8 +18,8 @@
 
 import * as React from "react";
 import { observer, inject } from "mobx-react";
-import RootDataStore from "../stores/root-data-store";
-import Channel from "../models/chat/channel";
+import RootDataStore from "stores/root-data-store";
+import Channel from "models/chat/channel";
 
 @inject("dataStore")
 @observer

@@ -19,14 +19,13 @@
 // import * as React from "react";
 
 import {observable, autorun, action, computed} from 'mobx';
-import Channel, { ChannelJSON } from '../models/chat/channel';
+import Channel, { ChannelJSON } from 'models/chat/channel';
 import RootDataStore from './root-data-store';
-import Message, { MessageJSON } from '../models/chat/message';
-import Dispatcher from '../dispatcher';
-import DispatcherAction from '../actions/dispatcher-action';
-import DispatchListener from '../dispatch-listener';
-import { ChatMessageSendAction, ChatMessageUpdateAction, ChatMessageAddAction } from '../actions/chat-actions';
-import User from '../models/user';
+import Message, { MessageJSON } from 'models/chat/message';
+import Dispatcher from 'dispatcher';
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import { ChatMessageSendAction, ChatMessageUpdateAction, ChatMessageAddAction } from 'actions/chat-actions';
 
 export default class ChannelStore implements DispatchListener {
   parent: RootDataStore;
