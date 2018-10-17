@@ -57,6 +57,7 @@
     "laravel-mix": "^1.0.7",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
-    "mobx-react-devtools": "^5.0.1"
+    "mobx-react-devtools": "^5.0.1",
+    "tslint": "^5.11.0"
   }
 }
