@@ -45,3 +45,9 @@
   20%  { opacity: 1.0; }
   100% { opacity: 0.0; }
 }
+
+@keyframes glow-in-out {
+  0%  { opacity: 0.5; background: @green; }
+  10% { opacity: 1.0; background: lighten(@green, 10%); }
+  20% { opacity: 0.5; background: @green; }
+}

@@ -35,6 +35,7 @@ return [
             'groups-show' => 'groups',
             'index' => 'dashboard',
             'legal-show' => 'information',
+            'messages-index' => 'messages',
             'news-index' => 'news',
             'news-show' => 'news',
             'password-reset-index' => 'reset password',

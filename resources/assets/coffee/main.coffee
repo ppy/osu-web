@@ -82,6 +82,7 @@ $(document).on 'turbolinks:load', ->
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
 @wiki ?= new Wiki
+@userCard ?= new UserCard
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)

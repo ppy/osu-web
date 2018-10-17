@@ -112,7 +112,7 @@ class HomeController extends Controller
 
     public function messageUser($user)
     {
-        return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        return ujs_redirect(route('messages.index', ['sendto' => $user]));
     }
 
     public function osuSupportPopup()

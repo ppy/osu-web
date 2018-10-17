@@ -1,0 +1,392 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+.messaging {
+  @top: messaging;
+  display: flex;
+  font-size: 12px;
+  width: 100%;
+
+  @media @mobile {
+    flex-direction: column;
+  }
+
+  &__container {
+    flex: 1 0 auto;
+    display: flex;
+    height: 100%;
+    border-top: 1px solid #555555;
+  }
+
+  &__conversation-list {
+    width: 270px;
+    flex-shrink: 0;
+    background: @gray;
+    margin-left: 20px;
+
+    @media @mobile {
+      margin-left: 0px;
+      display: flex;
+      width: 100vw;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  &__conversation-list-item {
+    height: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    padding-left: 10px;
+    background: @gray;
+
+    .link-plain();
+    .link-white();
+
+    @media @desktop {
+      &:hover {
+        background: linear-gradient(to right, transparent 5%, fade(@gray-dark, 50%) 20%, fade(@gray-dark, 50%) 100%);
+      }
+    }
+
+    &--selected {
+      .link-yellow();
+      background: linear-gradient(to right, transparent 5%, @gray-dark 20%, @gray-dark 100%);
+      @media @mobile {
+        background: @yellow;
+        .default-border-radius();
+      }
+    }
+
+    @media @mobile {
+      margin-left: 0px;
+      padding-left: 0px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__conversation-list-unread {
+    background: @green;
+    width: 2px;
+    height: 10px;
+    border-radius: 1px;
+    margin-left: -10px;
+    margin-right: 8px;
+    transition: ease-in 50ms;
+
+    opacity: 0;
+    .@{top}__conversation-list-item--unread & {
+      opacity: 1;
+      &::after {
+        opacity: 0.5;
+        .full-size();
+        border-radius: 1px;
+        content: '';
+        box-shadow: 0 0 5px lighten(@green, 10%);
+        animation: glow-in-out 5s infinite;
+      }
+    }
+
+    @media @mobile {
+      .@{top}__conversation-list-item--unread & {
+        margin-left: 5px;
+        margin-right: 0px;
+      }
+    }
+  }
+
+  &__title {
+    color: @pink;
+    padding: 0 0 10px 20px;
+    font-size: 20px;
+    font-weight: 100;
+    padding-left: 40px;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__conversation-list-item-name {
+    flex: 1;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__conversation-list-chevron {
+    margin-right: 10px;
+    color: white;
+
+    opacity: 0;
+    .@{top}__conversation-list-item--selected & {
+      opacity: 1;
+    }
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__conversation-list-item-av {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 10px;
+    flex-shrink: 0;
+
+    @media @mobile {
+      margin: 0px 5px;
+    }
+  }
+
+  &__conversation-window {
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__conversation {
+    padding: 10px 20px;
+    background: @gray-dark;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+
+    @media @mobile {
+      padding: 10px 0px;
+    }
+  }
+
+  &__new-chat-avatar {
+    width: 70px;
+    .default-border-radius();
+    margin-bottom: 10px;
+  }
+
+  &__message-group {
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 120px;
+    color: white;
+    display: flex;
+
+
+    &--own {
+      margin-left: 120px;
+      margin-right: 0px;
+      color: @blue-light;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__message-group-sender {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 10px;
+    color: white;
+    text-decoration: italic;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  &__message-group-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+
+  &__message-group-bubble {
+    background: @gray-darker;
+    .default-border-radius();
+    padding: 5px 8px;
+    max-width: 400px;
+    overflow-x: auto;
+    // flex: 1;
+  }
+
+  &__day-divider {
+    color: #878787;
+    text-align: center;
+    font-size: 10px;
+    padding-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__cannot-message {
+    color: #878787;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  &__cannot-message-reasons {
+    color: #878787;
+    text-align: left;
+    margin: 0px 25%;
+    font-size: 10px;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  &__message {
+    margin: 5px;
+
+    &--sending {
+      opacity: 0.5;
+    }
+  }
+
+  &__message-content {
+    &--action {
+      color: @yellow;
+      font-style: italic;
+
+      &::before {
+        content: '* ';
+      }
+      &::after {
+        content: ' *';
+      }
+    }
+  }
+
+  &__message-sending {
+    color: #878787;
+    float: right;
+  }
+
+  &__message-timestamp {
+    color: #878787;
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  &__read-marker {
+    border-bottom: 1px solid @yellow;
+    color: @yellow;
+    margin: 5px 100px;
+    font-size: 10px;
+
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    text-align: center;
+    height: 1.5em;
+    &:before {
+      content: '';
+      background: @yellow;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      padding: 0 .5em;
+      line-height: 1.5em;
+      color: @yellow;
+      background-color: @gray-dark;
+    }
+
+  }
+
+  &__chat-input {
+    background: @gray-darker;
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-height: 75px;
+    justify-content: space-between;
+    color: white;
+
+    &--disabled > * {
+      opacity: 0.5;
+    }
+
+    @media @mobile {
+      font-size: 16px;
+      padding: 10px 20px;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__chat-input-box {
+    .reset-input();
+    .default-border-radius();
+    width: 100%;
+    background: @gray;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    @media @mobile {
+      margin-bottom: 0px;
+      margin-right: 20px;
+    }
+  }
+
+}
+
+
+// TODO: DO SOMETHING WITH THIS
+.osu-layout--mobile-app {
+  /* Turn on custom 8px wide scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(255,255,255,0);
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb:vertical {
+    /* This is the EXACT color of Mac OS scrollbars.
+      Yes, I pulled out digital color meter */
+    background: rgba(255,255,255,0.5);
+    -webkit-border-radius: 100px;
+    background-clip: padding-box;
+    border: 2px solid rgba(255, 255, 255, 0);
+    min-height: 10px; /*Prevent it from getting too small */
+  }
+  ::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+}

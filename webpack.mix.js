@@ -176,6 +176,11 @@ mix
   ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
   'resources/assets/coffee/react/beatmaps.coffee',
 ], 'js/react/beatmaps.js')
+.ts([
+  'resources/assets/ts/window-focus-observer.ts',
+  ...glob.sync('resources/assets/ts/messaging/*.ts?'),
+  'resources/assets/ts/messaging.ts',
+], 'js/react/messaging.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
   'resources/assets/coffee/react/status-page.coffee',

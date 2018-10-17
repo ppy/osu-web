@@ -26,6 +26,7 @@
 @Contest = {}
 @Contest.Entry = {}
 @Contest.Voting = {}
+@Messaging = {}
 @MPHistory = {}
 @ProfilePage = {}
 @Ranking = {}

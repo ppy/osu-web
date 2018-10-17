@@ -46,6 +46,20 @@
 
     <li class="page-mode__item">
         <a
+            href="{{ route('messages.index') }}"
+            class="
+                page-mode-link
+                {{ $currentAction === 'messages-index' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('messages.title_compact') }}
+
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
+
+    <li class="page-mode__item">
+        <a
             href="{{ route('account.edit') }}"
             class="
                 page-mode-link
