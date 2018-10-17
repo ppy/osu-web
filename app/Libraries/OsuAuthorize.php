@@ -118,7 +118,7 @@ class OsuAuthorize
                     return $prefix.'has_reply';
                 }
             }
-        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutTrashed()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
@@ -612,7 +612,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted()) {
+        if (!$comment->trashed()) {
             return 'ok';
         }
     }
@@ -635,7 +635,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($comment->user_id === $user->getKey()) {
-            if ($comment->isDeleted()) {
+            if ($comment->trashed()) {
                 return 'comment.update.deleted';
             }
 
