@@ -25,7 +25,7 @@ return [
     'wrong_confirmation' => 'Bekræftelseskoderne matcher ikke.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Diskussionen er låst.',
         'first_post' => 'Kan ikke slette det startende opslag.',
     ],
 

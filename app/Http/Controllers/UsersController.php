@@ -150,7 +150,10 @@ class UsersController extends Controller
 
         $page = $mapping[$type] ?? abort(404);
 
-        return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+        // Override per page restriction in parsePaginationParams to allow infinite paging
+        $perPage = $this->sanitizedLimitParam();
+
+        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
     public function posts($id)
@@ -216,7 +219,7 @@ class UsersController extends Controller
         $perPage = $this->perPage;
 
         if ($type === 'firsts') {
-            // Override per page restriction in parsePageParams to allow infinite paging
+            // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
 

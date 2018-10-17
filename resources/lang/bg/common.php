@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => 'Сигурни ли сте?',
-    'confirmation_unsaved' => '',
+    'confirmation_unsaved' => 'Незапазените промени ще бъдат загубени. Сигурни ли сте?',
     'saved' => 'Запазено',
 
     'array_and' => [
@@ -36,12 +36,12 @@ return [
         'click_to_copy_copied' => 'копиранo в клипборда!',
         'delete' => 'Изтрий',
         'hide' => 'скрий',
-        'permalink' => '',
+        'permalink' => 'постоянен линк',
         'permalink_copied' => 'линк копиран',
         'post' => 'Пост',
         'reply' => 'Отговори',
-        'reply_reopen' => '',
-        'reply_resolve' => '',
+        'reply_reopen' => 'Отговори и възстанови',
+        'reply_resolve' => 'Отговори и разреши',
         'reset' => 'Нулирай',
         'save' => 'Запази',
         'saving' => 'Запазване...',

@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Kilpaile muillakin tavoilla kuin klikkailemalla ympyröitä.',
-        'large' => '',
+        'large' => 'Yhteisön kilpailut',
     ],
     'voting' => [
         'over' => 'Äänestys tälle kilpailulle on päättynyt',

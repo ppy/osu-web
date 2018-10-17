@@ -23,11 +23,14 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
+use App\Models\Log;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommentsController extends Controller
 {
     protected $section = 'community';
+    protected $actionPrefix = 'comments-';
 
     public function destroy($id)
     {
@@ -37,11 +40,19 @@ class CommentsController extends Controller
 
         $comment->softDelete(auth()->user());
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        if ($comment->user_id !== auth()->user()->getKey()) {
+            $this->logModerate('LOG_COMMENT_DELETE', $comment);
+        }
+
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     public function index()
     {
+        if (!request()->expectsJson()) {
+            priv_check('CommentModerate')->ensureCan();
+        }
+
         $type = request('commentable_type');
         $id = request('commentable_id');
 
@@ -53,14 +64,34 @@ class CommentsController extends Controller
             }
 
             $commentable = $class::findOrFail($id);
-        } else {
-            abort(404);
         }
 
-        return (new CommentBundle($commentable, [
-            'parentId' => get_int(request('parent_id')),
-            'lastLoadedId' => get_int(request('after')),
-        ]))->toArray();
+        $commentBundle = new CommentBundle(
+            $commentable ?? null,
+            ['params' => request()->all()]
+        );
+
+        if (request()->expectsJson()) {
+            return $commentBundle->toArray();
+        } else {
+            $commentBundle->depth = 0;
+            $commentBundle->includeCommentableMeta = true;
+            $commentBundle->includeParent = true;
+            $commentBundle->filterByParentId = false;
+
+            $commentPagination = new LengthAwarePaginator(
+                [],
+                Comment::count(),
+                $commentBundle->params['limit'],
+                $commentBundle->params['page'],
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'query' => $commentBundle->getParams(),
+                ]
+            );
+
+            return view('comments.index', compact('commentBundle', 'commentPagination'));
+        }
     }
 
     public function restore($id)
@@ -71,12 +102,26 @@ class CommentsController extends Controller
 
         $comment->restore();
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        $this->logModerate('LOG_COMMENT_RESTORE', $comment);
+
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     public function show($id)
     {
-        return json_item(Comment::findOrFail($id), 'Comment', ['editor', 'user']);
+        priv_check('CommentModerate')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+
+        $commentBundle = new CommentBundle($comment->commentable, [
+            'params' => ['parent_id' => $comment->getKey()],
+        ]);
+
+        $commentJson = json_item($comment, 'Comment', [
+            'editor', 'user', 'commentable_meta', 'parent',
+        ]);
+
+        return view('comments.show', compact('commentJson', 'commentBundle'));
     }
 
     public function store()
@@ -102,12 +147,15 @@ class CommentsController extends Controller
         $comments = collect([$comment]);
 
         if ($comment->parent !== null) {
-            $comments->push($comment->parent);
+            $comments[] = $comment->parent;
         }
 
-        return (new CommentBundle($comment->commentable, [
+        $bundle = new CommentBundle($comment->commentable, [
             'comments' => $comments,
-        ]))->toArray();
+            'includeCommentableMeta' => true,
+        ]);
+
+        return $bundle->toArray();
     }
 
     public function update($id)
@@ -121,6 +169,23 @@ class CommentsController extends Controller
         $params['edited_at'] = Carbon::now();
         $comment->update($params);
 
-        return json_item($comment, 'Comment', ['editor', 'user']);
+        if ($comment->user_id !== auth()->user()->getKey()) {
+            $this->logModerate('LOG_COMMENT_UPDATE', $comment);
+        }
+
+        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+    }
+
+    private function logModerate($operation, $comment)
+    {
+        $this->log([
+            'log_type' => Log::LOG_COMMENT_MOD,
+            'log_operation' => $operation,
+            'log_data' => [
+                'commentable_type' => $comment->commentable_type,
+                'commentable_id' => $comment->commentable_id,
+                'id' => $comment->getKey(),
+            ],
+        ]);
     }
 }
