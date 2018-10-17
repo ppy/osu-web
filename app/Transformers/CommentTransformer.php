@@ -100,7 +100,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
     public function includeEditor(Comment $comment)
     {
-        if ($comment->editor === null) {
+        if ($comment->editor_id === null || $comment->editor === null) {
             return;
         }
 
