@@ -182,7 +182,7 @@ return [
                     'title' => 'Loved 的谱面 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
+                    'title' => 'Ranked & Approved 的谱面 (:count)',
                 ],
                 'unranked' => [
                     'title' => 'Pending 的谱面 (:count)',

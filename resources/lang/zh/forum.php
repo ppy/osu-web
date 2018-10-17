@@ -70,14 +70,14 @@ return [
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最后的帖子',
         'latest_post' => ':when :user',
-        'latest_reply_by' => '最后回复: :user',
+        'latest_reply_by' => '最后回复： :user',
         'new_topic' => '发表新主题',
         'new_topic_login' => '登录以发表新主题',
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
         'reply_title_prefix' => '回复',
         'started_by' => '发帖人： :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => '启动者： :user',
 
         'create' => [
             'preview' => '预览',
@@ -90,7 +90,7 @@ return [
                 'default' => '这个主题已经有一段时间无活动了。除非你有特殊的理由，否则不要在这里回复。',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "此主题已有一段时间不活跃了。如果你没有特别的理由一定要发表在这里，请另行 :create 。",
                     'create' => '创建一个新主题',
                 ],
             ],
@@ -246,7 +246,7 @@ return [
 
         'show' => [
             'deleted-posts' => '删除主题',
-            'total_posts' => '总主题数量',
+            'total_posts' => '讨论总数',
 
             'feature_vote' => [
                 'current' => '当前优先级: +:count',

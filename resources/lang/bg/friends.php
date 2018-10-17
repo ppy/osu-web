@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => '',
-      'remove' => '',
+      'add' => 'добави приятел',
+      'remove' => 'премахни приятел',
     ],
 
     'state' => [
-      'friends' => '',
-      'mutual' => '',
+      'friends' => 'приятели',
+      'mutual' => 'взаимни',
     ],
 
-    'title' => '',
-    'title_compact' => '',
+    'title' => 'Приятели',
+    'title_compact' => 'приятели',
 
-    'too_many' => '',
+    'too_many' => 'Достъгнати са максимум брой приятели',
 ];

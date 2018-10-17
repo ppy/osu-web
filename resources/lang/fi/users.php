@@ -103,7 +103,7 @@ return [
         'placeholder' => 'Anna kaikki tieto joka voisi olla kätevää.',
         'reason' => 'Syy',
         'thanks' => 'Kiitos raportistasi!',
-        'title' => '',
+        'title' => 'Ilmianna :username?',
 
         'actions' => [
             'send' => 'Lähetä raportti',
@@ -115,7 +115,7 @@ return [
             'insults' => 'Haukkuu minua / muita',
             'spam' => 'Spämmii',
             'unwanted_content' => 'Linkkaa aikuismateriaalia / muuta epämukavaa materiaalia',
-            'nonsense' => '',
+            'nonsense' => 'Hölynpölyä',
             'other' => 'Muu (kirjoita alle)',
         ],
     ],
@@ -324,7 +324,7 @@ return [
             'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
         ],
         'post_count' => [
-            '_' => 'Lähettänyt :link',
+            '_' => 'Mukana toiminnassa :link',
             'count' => ':count foorumiviestillä|:count foorumiviestillä',
         ],
         'rank' => [
