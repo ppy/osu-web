@@ -89,7 +89,7 @@ class ReplayFile
             pack('i', $score->score),
             pack('S', $score->maxcombo),
             pack('c', $score->perfect),
-            pack('i', ModsHelper::toBitset($score->enabled_mods)),
+            pack('i', $score->getAttributes()['enabled_mods']),
             pack_str(''), // outputs 0b00 from site, 00 if exported from game client.
             pack('q', $ticks),
         ];
