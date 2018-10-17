@@ -25,7 +25,7 @@ import { inject, observer } from 'mobx-react';
 export default class ConversationList extends React.Component<any, {}> {
   render(): React.ReactNode {
     let conversations = this.props.dataStore.channelStore.sortedByPresence;
-    let conversationList: Array<React.ReactNode> = new Array<React.ReactNode>();
+    let conversationList: React.ReactNode[] = [];
 
     conversations.forEach((conversation) => {
       conversationList.push(

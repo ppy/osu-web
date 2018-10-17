@@ -61,8 +61,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @computed get
-  sortedByPresence(): Array<Channel> {
-    let sortedChannels: Array<Channel> = new Array<Channel>();
+  sortedByPresence(): Channel[] {
+    let sortedChannels: Channel[] = [];
     this.channels.forEach((channel, channel_id) => {
       sortedChannels.push(channel);
     });
@@ -110,7 +110,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  addMessages(channel_id: number, messages: Array<Message>) {
+  addMessages(channel_id: number, messages: Message[]) {
     if (_.isEmpty(messages)) {
       return
     }
@@ -125,7 +125,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  updatePresence(presence: Array<ChannelJSON>) {
+  updatePresence(presence: ChannelJSON[]) {
     console.log('ChannelStore::updatePresence', presence);
     presence.forEach(json => {
       this.getOrCreate(json.channel_id).updatePresence(json);

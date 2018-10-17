@@ -85,8 +85,8 @@ export default class ChatWorker implements DispatchListener {
       })
   }
 
-  addMessages(channel_id: number, messages: Array<MessageJSON>) {
-    let newMessages: Array<Message> = new Array<Message>();
+  addMessages(channel_id: number, messages: MessageJSON[]) {
+    let newMessages: Message[] = [];
 
     transaction(() => {
       _.forEach(messages, (json) => {

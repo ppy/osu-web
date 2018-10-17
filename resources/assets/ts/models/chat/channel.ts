@@ -25,7 +25,7 @@ export interface ChannelJSON {
   name: string;
   description?: string;
   icon?: string;
-  users: Array<number>;
+  users: number[];
   last_read_id: number;
   last_message_id: number;
 }
@@ -37,7 +37,7 @@ export default class Channel {
   @observable description?: string;
   @observable icon?: string;
 
-  @observable messages?: Message[] = observable(new Array<Message>());
+  @observable messages?: Message[] = observable([]);
 
   @observable last_message_id?: number;
   @observable last_read_id?: number;
@@ -51,7 +51,6 @@ export default class Channel {
 
   constructor(channel_id: number) {
     this.channel_id = channel_id;
-    // this.messages = observable(new Array<ChatMessage>());
   }
 
   @action
@@ -74,7 +73,7 @@ export default class Channel {
   }
 
   @action
-  addMessages(messages: Message | Array<Message>, skipSort: boolean = false) {
+  addMessages(messages: Message | Message[], skipSort: boolean = false) {
     transaction(() => {
       this.messages = this.messages.concat(messages);
 
@@ -130,6 +129,6 @@ export default class Channel {
 
   @action
   unload() {
-    this.messages = observable(new Array<Message>());
+    this.messages = observable([]);
   }
 }
