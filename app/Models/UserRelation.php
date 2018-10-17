@@ -14,6 +14,8 @@ class UserRelation extends Model
         'foe' => 'boolean',
     ];
 
+    protected $primaryKeys = ['user_id', 'zebra_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
@@ -80,14 +82,5 @@ class UserRelation extends Model
                 WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
             ) as online'
         ));
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'user_id' => $this->user_id,
-            'zebra_id' => $this->zebra_id,
-        ]);
     }
 }

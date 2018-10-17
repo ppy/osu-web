@@ -33,6 +33,8 @@ class TopicWatch extends Model
 
     public $timestamps = false;
 
+    protected $primaryKeys = ['topic_id', 'user_id'];
+
     public static function unreadCount($user)
     {
         if ($user === null) {
@@ -147,11 +149,5 @@ class TopicWatch extends Model
         } else {
             return 'not_watching';
         }
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->lookupQuery($this->topic_id, $this->user_id);
     }
 }

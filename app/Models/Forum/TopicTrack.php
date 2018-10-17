@@ -30,6 +30,8 @@ class TopicTrack extends Model
     protected $dates = ['mark_time'];
     protected $dateFormat = 'U';
 
+    protected $primaryKeys = ['topic_id', 'user_id'];
+
     public static function readStatus($user, ...$topicsArrays)
     {
         if ($user === null) {
@@ -67,14 +69,5 @@ class TopicTrack extends Model
         }
 
         return $result;
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'topic_id' => $this->topic_id,
-            'user_id' => $this->user_id,
-        ]);
     }
 }

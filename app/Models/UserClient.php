@@ -28,6 +28,8 @@ class UserClient extends Model
 
     protected $dates = ['timestamp'];
 
+    protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
+
     public $timestamps = false;
 
     public function build()

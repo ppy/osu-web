@@ -30,12 +30,5 @@ class ForumTrack extends Model
     protected $dates = ['mark_time'];
     protected $dateFormat = 'U';
 
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'forum_id' => $this->forum_id,
-            'user_id' => $this->user_id,
-        ]);
-    }
+    protected $primaryKeys = ['forum_id', 'user_id'];
 }
