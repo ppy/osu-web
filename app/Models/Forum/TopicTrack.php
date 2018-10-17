@@ -20,8 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Builder;
-
 class TopicTrack extends Model
 {
     protected $table = 'phpbb_topics_track';

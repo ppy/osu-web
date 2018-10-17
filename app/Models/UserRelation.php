@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 
 class UserRelation extends Model
 {

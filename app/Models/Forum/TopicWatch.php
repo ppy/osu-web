@@ -21,7 +21,6 @@
 namespace App\Models\Forum;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
 class TopicWatch extends Model
 {

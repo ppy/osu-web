@@ -21,7 +21,6 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
 class UserChannel extends Model
 {
