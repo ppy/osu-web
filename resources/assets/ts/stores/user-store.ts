@@ -16,8 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// import * as React from "react";
-
 import {observable, autorun, action} from 'mobx';
 import RootDataStore from './root-data-store';
 import User, { UserJSON } from 'models/user';

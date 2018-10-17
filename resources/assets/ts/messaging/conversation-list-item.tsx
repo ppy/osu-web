@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from "react";
-import { inject, observer } from "mobx-react";
-import RootDataStore from "stores/root-data-store";
-import { ChatChannelSwitchAction } from "actions/chat-actions";
+import * as React from 'react';
+import { inject, observer } from 'mobx-react';
+import RootDataStore from 'stores/root-data-store';
+import { ChatChannelSwitchAction } from 'actions/chat-actions';
 
 @inject('dataStore')
 @inject('dispatcher')

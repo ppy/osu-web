@@ -16,16 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from "react";
-import { ChatMessageSendAction } from "actions/chat-actions";
-import { inject } from "mobx-react";
-import Message from "models/chat/message";
+import * as React from 'react';
+import { ChatMessageSendAction } from 'actions/chat-actions';
+import { inject } from 'mobx-react';
+import Message from 'models/chat/message';
 
 @inject('dataStore')
 @inject('dispatcher')
 export default class ChatInput extends React.Component<any, any> {
   sendMessage(target) {
-    if (target.value == "")
+    if (target.value == '')
       return
 
     let message: Message = new Message();
@@ -34,7 +34,7 @@ export default class ChatInput extends React.Component<any, any> {
     message.content = target.value;
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
-    target.value = ""
+    target.value = ''
   }
 
   buttonClicked = (e) => {

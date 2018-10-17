@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from "./dispatcher-action";
-import Message from "models/chat/message";
+import DispatcherAction from './dispatcher-action';
+import Message from 'models/chat/message';
 
 export class ChatChannelSwitchAction implements DispatcherAction {
   constructor(public channel_id: number) {

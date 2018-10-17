@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable, action } from "mobx";
+import { observable, action } from 'mobx';
 
 export interface UserJSON {
   id: number;
@@ -99,6 +99,6 @@ export default class User {
   }
 
   static reviver(key: string, value: any): any {
-    return key === "" ? User.fromJSON(value) : value;
+    return key === '' ? User.fromJSON(value) : value;
   }
 }

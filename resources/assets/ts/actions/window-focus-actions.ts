@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from "./dispatcher-action";
+import DispatcherAction from './dispatcher-action';
 
 export class WindowFocusAction implements DispatcherAction {
 }

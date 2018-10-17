@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { MessageJSON } from "models/chat/message";
-import { ChannelJSON } from "models/chat/channel";
+import { MessageJSON } from 'models/chat/message';
+import { ChannelJSON } from 'models/chat/channel';
 
 export interface UpdateJSON {
   presence: ChannelJSON[];

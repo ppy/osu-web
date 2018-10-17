@@ -16,8 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// import * as React from "react";
-
 import {observable, autorun, action, computed} from 'mobx';
 import Channel, { ChannelJSON } from 'models/chat/channel';
 import RootDataStore from './root-data-store';

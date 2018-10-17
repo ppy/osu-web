@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatchListener from "./dispatch-listener";
-import DispatcherAction from "./actions/dispatcher-action";
+import DispatchListener from './dispatch-listener';
+import DispatcherAction from './actions/dispatcher-action';
 
 export default class Dispatcher {
   private callbacks: DispatchListener[] = [];

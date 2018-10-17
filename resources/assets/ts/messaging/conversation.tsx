@@ -16,12 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from "react";
-import { observer, inject } from "mobx-react";
-import RootDataStore from "stores/root-data-store";
-import Channel from "models/chat/channel";
+import * as React from 'react';
+import { observer, inject } from 'mobx-react';
+import RootDataStore from 'stores/root-data-store';
+import Channel from 'models/chat/channel';
 
-@inject("dataStore")
+@inject('dataStore')
 @observer
 export default class Conversation extends React.Component<any, any> {
   componentDidMount() {
@@ -132,7 +132,7 @@ export default class Conversation extends React.Component<any, any> {
       }
     })
 
-    // console.log("MG", messageGroups)
+    // console.log('MG', messageGroups)
     return (
       <div className='messaging__conversation'>
         {channel.newChannel &&

@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable, action} from "mobx";
-import Channel from "./channel";
-import User, { UserJSON } from "models/user";
+import { observable, action} from 'mobx';
+import Channel from './channel';
+import User, { UserJSON } from 'models/user';
 
 export interface MessageJSON {
   content: string;
@@ -82,6 +82,6 @@ export default class Message {
   }
 
   static reviver(key: string, value: any): any {
-    return key === "" ? Message.fromJSON(value) : value;
+    return key === '' ? Message.fromJSON(value) : value;
   }
 }
