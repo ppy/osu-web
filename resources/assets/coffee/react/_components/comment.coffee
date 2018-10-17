@@ -65,7 +65,7 @@ class @Comment extends React.PureComponent
       className: osu.classWithModifiers 'comment', modifiers
 
       if @canVote()
-        div className: 'comment__float-container comment__float-container--left',
+        div className: 'comment__float-container comment__float-container--left hidden-xs',
           @renderVoteButton()
 
       if @props.depth == 0 && children.length > 0
@@ -131,6 +131,11 @@ class @Comment extends React.PureComponent
                 __html: @props.comment.message_html
 
           div className: 'comment__row comment__row--footer',
+            if @canVote()
+              div
+                className: 'comment__row-item visible-xs'
+                @renderVoteText()
+
             div
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
@@ -259,6 +264,18 @@ class @Comment extends React.PureComponent
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
+
+
+  renderVoteText: =>
+    className = 'comment__action'
+    className += ' comment__action--active' if @hasVoted()
+
+    button
+      className: className
+      type: 'button'
+      onClick: @voteToggle
+      disabled: @state.postingVote
+      "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
 
 
   canDelete: =>
