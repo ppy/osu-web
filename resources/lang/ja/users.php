@@ -179,7 +179,7 @@ return [
                     'title' => 'Graveyardの譜面 (:count)',
                 ],
                 'loved' => [
-                    'title' => 'お気に入りの譜面 (:count)',
+                    'title' => 'Lovedされた譜面 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'RankedかApprovedの譜面 (:count)',

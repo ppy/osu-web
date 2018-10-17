@@ -87,11 +87,11 @@ return [
             'submit' => 'Odeslat',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
+                    'create' => 'vytvoř nové téma',
                 ],
             ],
 

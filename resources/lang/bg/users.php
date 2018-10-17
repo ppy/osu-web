@@ -19,339 +19,339 @@
  */
 
 return [
-    'deleted' => '',
+    'deleted' => '[изтрит потребител]',
 
     'beatmapset_activities' => [
-        'title' => "",
+        'title' => "История на редактираните карти на :user",
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Наскоро започнати дискусии',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Последни събития',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Скорошни публикации',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Най-харесваните от (последните 3 месеца)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Най-харесваните (последните 3 месеца)',
         ],
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Вие блокирахте този потребител.',
+        'blocked_count' => 'блокирани потребители (:count)',
+        'hide_profile' => 'скрий профил',
+        'not_blocked' => 'Този потребител не е блокиран.',
+        'show_profile' => 'покажи профил',
+        'too_many' => 'Достигнат е лимита за блокиране.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'блокирай',
+            'unblock' => 'отблокирай',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Зареждане...',
+        'send_message' => 'изпрати съобщението',
     ],
 
     'login' => [
-        '_' => '',
-        'locked_ip' => '',
-        'username' => '',
-        'password' => '',
-        'button' => '',
-        'button_posting' => '',
-        'remember' => '',
-        'title' => '',
-        'failed' => '',
-        'register' => "",
-        'forgot' => '',
+        '_' => 'Вход',
+        'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
+        'username' => 'Потребителско име',
+        'password' => 'Парола',
+        'button' => 'Вход',
+        'button_posting' => 'Влизане...',
+        'remember' => 'Запомни ме на този компютър',
+        'title' => 'Моля влезте в профила си, за да продължите',
+        'failed' => 'Неправилен опит за влизане',
+        'register' => "Нямате osu! акаунт? Направете си един",
+        'forgot' => 'Забравихте си паролата?',
         'beta' => [
-            'main' => '',
-            'small' => '',
+            'main' => 'Ранният достъп е ограничен само за привилегировани потребители.',
+            'small' => '(osu!supporter ще има достъп скоро)',
         ],
 
-        'here' => '', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'тук', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => 'публикациите на :username',
     ],
 
     'signup' => [
-        '_' => '',
+        '_' => 'Регистрация',
     ],
     'anonymous' => [
-        'login_link' => '',
-        'login_text' => '',
-        'username' => '',
-        'error' => '',
+        'login_link' => 'щракнете, за да влезете',
+        'login_text' => 'вход',
+        'username' => 'Гост',
+        'error' => 'Трябва да сте влезли в акаунта си, за да направите това.',
     ],
-    'logout_confirm' => '',
+    'logout_confirm' => 'Сигурни ли сте, че искате да излезете от профила си? :(',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
-        'placeholder' => '',
-        'reason' => '',
-        'thanks' => '',
-        'title' => '',
+        'button_text' => 'докладвай',
+        'comments' => 'Допълнителни коментари',
+        'placeholder' => 'Моля предоставете всякаква информация, която смятате, че ще бъде полезна.',
+        'reason' => 'Причина',
+        'thanks' => 'Благодаря ви, че докладвахте този профил!',
+        'title' => 'Искате да докладвате :username?',
 
         'actions' => [
-            'send' => '',
-            'cancel' => '',
+            'send' => 'Изпращане на доклад',
+            'cancel' => 'Отмени',
         ],
 
         'options' => [
-            'cheating' => '',
-            'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'cheating' => 'Нечестна игра / Измама',
+            'insults' => 'Обижда ме / други',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Изпраща неприлично съдържание',
+            'nonsense' => 'Безсмислици',
+            'other' => 'Друго (посочете по-долу)',
         ],
     ],
     'restricted_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Вашият профил е с ограничен статут!',
+        'message' => 'Докато сте с ограничен статут, вие няма да можете да общувате с други играчи и изпълненията Ви ще бъдат видими само за вас. Това често е резултат от системата ни за автоматично засичане на измамници и статутът ще бъде премахнат до 24 часа. В противен случай сте добре дошли да обжалвате този статут като се свържете с <a href="mailto:accounts@ppy.sh"> поддръжка</a>.',
     ],
     'show' => [
-        'age' => '',
-        'change_avatar' => '',
-        'first_members' => '',
-        'is_developer' => '',
-        'is_supporter' => '',
-        'joined_at' => '',
-        'lastvisit' => '',
-        'missingtext' => '',
-        'origin_country' => '',
-        'page_description' => '',
-        'previous_usernames' => '',
-        'plays_with' => '',
-        'title' => "",
+        'age' => 'на :age години',
+        'change_avatar' => 'променете аватара си!',
+        'first_members' => 'Тук от началото',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Потребител от :date',
+        'lastvisit' => 'Последно видян :date',
+        'missingtext' => 'Вероятно сте допуснали правописна грешка! (или потребителят е бил баннат)',
+        'origin_country' => 'От :country',
+        'page_description' => 'osu! - Всичко, което би желал да знаеш за :username!',
+        'previous_usernames' => 'някога известен като',
+        'plays_with' => 'Играе с :devices',
+        'title' => "профила на :username",
 
         'edit' => [
             'cover' => [
-                'button' => '',
-                'defaults_info' => '',
+                'button' => 'Промяна на профилната корица',
+                'defaults_info' => 'Повече опции за корици ще бъдат налични в бъдеще',
                 'upload' => [
-                    'broken_file' => '',
-                    'button' => '',
-                    'dropzone' => '',
-                    'dropzone_info' => '',
-                    'restriction_info' => "".route('store.products.show', 'supporter-tag')."",
-                    'size_info' => '',
-                    'too_large' => '',
-                    'unsupported_format' => '',
+                    'broken_file' => 'Неуспешна обработка на изображението. Проверете каченото изображение и опитайте отново.',
+                    'button' => 'Качи изображение',
+                    'dropzone' => 'Пуснете файла тук, за да го качите',
+                    'dropzone_info' => 'Можете също да пуснете вашето изображение тук за качване',
+                    'restriction_info' => "Качване налично за <a href='".route('store.products.show', 'supporter-tag')."само за ' target='_blank'>osu!supporter</a>",
+                    'size_info' => 'Размерът на корицата трябва да е 2000x700 пиксела',
+                    'too_large' => 'Каченият файл е прекалено голям.',
+                    'unsupported_format' => 'Неподдържан формат.',
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '',
-                'set' => '',
+                'is_default_tooltip' => 'стандартният режим на игра',
+                'set' => 'задаване на :mode като стандартен режим на игра',
             ],
         ],
 
         'extra' => [
-            'followers' => '',
-            'unranked' => '',
+            'followers' => '1 последовател|:count последователи',
+            'unranked' => 'Няма скорошни данни',
 
             'achievements' => [
-                'title' => '',
-                'achieved-on' => '',
+                'title' => 'Постижения',
+                'achieved-on' => 'Постигнато на :date',
             ],
             'beatmaps' => [
-                'none' => '',
-                'title' => '',
+                'none' => 'Няма... все още.',
+                'title' => 'Бийтмапове',
 
                 'favourite' => [
-                    'title' => '',
+                    'title' => 'Любими бийтмапове (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '',
+                    'title' => 'Изоставени бийтмапове (:count)',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Обичани бийтмапове (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => '',
+                    'title' => 'Класирани и одобрени бийтмапове (:count)',
                 ],
                 'unranked' => [
-                    'title' => '',
+                    'title' => 'Предстоящи класиране бийтмапове (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => '',
-                'title' => '',
+                'empty' => 'Няма записани изпълнения. :(',
+                'title' => 'Хронология',
 
                 'monthly_playcounts' => [
-                    'title' => '',
+                    'title' => 'Историята на игра',
                 ],
                 'most_played' => [
-                    'count' => '',
-                    'title' => '',
+                    'count' => 'пъти изиграно',
+                    'title' => 'Най-играните бийтмапове',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '',
-                    'title' => '',
+                    'accuracy' => 'прецизност: :percentage',
+                    'title' => 'Скорошна активност (24 часа)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
+                    'title' => 'История на гледани повторения',
                 ],
             ],
             'kudosu' => [
-                'available' => '',
-                'available_info' => "",
-                'recent_entries' => '',
-                'title' => '',
-                'total' => '',
-                'total_info' => ''.osu_url('user.kudosu').'',
+                'available' => 'Неизползвано Kudosu',
+                'available_info' => "Kudosu може да се обменено за kudosu звезди, които ще ти помогнат на бийтмапа ти да получи повече внимание. Това е броят на kudosu, което все още не си обменил.",
+                'recent_entries' => 'Скорошна Kudosu история',
+                'title' => 'Kudosu!',
+                'total' => 'Общо получено Kudosu',
+                'total_info' => 'Въз основа на това колко този потребител е помогнал с редактирането на бийтмапове. Вижте <a href="'.osu_url('user.kudosu').'"> тази страница</a> за повече информация.',
 
                 'entry' => [
-                    'amount' => '',
-                    'empty' => "",
+                    'amount' => ':amount kudosu',
+                    'empty' => "Този потребител все още няма kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Получено :amount от погрешно анулиране на kudosu на съобщение от :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Отхвърлено :amount от съобщение от :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Изгубено :amount от изтриване на съобщение от :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Получено :amount от възобновяване на съобщение от :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Получено :amount от получените гласове на съобщение от :post',
+                            'reset' => 'Загубено :amount от загубените гласове на съобщение от :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Получено :amount от прекалкулиране на гласовете на съобщение от :post',
+                            'reset' => 'Загубено :amount от прекалкулиране на гласовете на съобщение от :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Получено :amount от :giver за публикацията :post',
+                        'reset' => 'Нулиране на Kudosu от :giver за публикацията :post',
+                        'revoke' => 'Отхвърлено Kudosu от :giver за публикацията :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'за мен!',
             ],
             'medals' => [
-                'empty' => "",
-                'title' => '',
+                'empty' => "Този потребител все още няма никакви! Т - Т",
+                'title' => 'Медали',
             ],
             'recent_activity' => [
-                'title' => '',
+                'title' => 'Скорошна активност',
             ],
             'top_ranks' => [
-                'empty' => '',
-                'not_ranked' => '',
+                'empty' => 'Все още няма страхотни изпълнения. :(',
+                'not_ranked' => 'Само класираните бийтмапове дават pp точки.',
                 'pp' => '',
-                'title' => '',
-                'weighted_pp' => '',
+                'title' => 'Класации',
+                'weighted_pp' => 'претеглено: :pp (:percentage)',
 
                 'best' => [
-                    'title' => '',
+                    'title' => 'Най-добри резултати',
                 ],
                 'first' => [
-                    'title' => '',
+                    'title' => 'Класации на първо място',
                 ],
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => 'Състояние на акаунта',
+                'bad_standing' => "Акаунта на <strong>:username</strong> не е в добро състояние :(",
+                'remaining_silence' => '<strong>:username</strong> ще бъде в състояние да говори отново след :duration.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'Скорошни нарушения',
+                    'date' => 'дата',
+                    'action' => 'действие',
+                    'length' => 'продължителност',
+                    'length_permanent' => 'Завинаги',
+                    'description' => 'описание',
+                    'actor' => 'от :username',
 
                     'actions' => [
-                        'restriction' => '',
-                        'silence' => '',
-                        'note' => '',
+                        'restriction' => 'Бан',
+                        'silence' => 'Заглушен',
+                        'note' => 'Бележка',
                     ],
                 ],
             ],
         ],
         'info' => [
             'discord' => '',
-            'interests' => '',
-            'lastfm' => '',
-            'location' => '',
-            'occupation' => '',
+            'interests' => 'Интереси',
+            'lastfm' => 'Last.fm',
+            'location' => 'Текущо местоположение',
+            'occupation' => 'Занимание/Работа',
             'skype' => '',
             'twitter' => '',
-            'website' => '',
+            'website' => 'Уебсайт',
         ],
         'not_found' => [
-            'reason_1' => '',
-            'reason_2' => '',
-            'reason_3' => '',
-            'reason_header' => '',
-            'title' => '',
+            'reason_1' => 'Този потребител вероятно си е променил името.',
+            'reason_2' => 'Акаунта вероятно е недостъпен по причини за сигурност или злоупотреба.',
+            'reason_3' => 'Вероятно сте допуснал правописна грешка!',
+            'reason_header' => 'Има няколко вероятни причини за това:',
+            'title' => 'Не е открит такъв потребител! Т - Т',
         ],
         'page' => [
-            'description' => '',
-            'edit_big' => '',
-            'placeholder' => '',
-            'restriction_info' => "".route('store.products.show', 'supporter-tag')."",
+            'description' => '<strong>за мен!</strong> е една персонализирана част от профилната ви страница.',
+            'edit_big' => 'Редактирай ме!',
+            'placeholder' => 'Въведи съдържанието на страницата тук',
+            'restriction_info' => "Трябва да сте <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>, за да отключите тази функция.",
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Приноси :link',
+            'count' => ':count съобщение в форума|:count съобщения в форума',
         ],
         'rank' => [
-            'country' => '',
-            'global' => '',
+            'country' => 'Класация на държавата за :mode',
+            'global' => 'Световна класация за :mode',
         ],
         'stats' => [
-            'hit_accuracy' => '',
-            'level' => '',
-            'maximum_combo' => '',
-            'play_count' => '',
-            'play_time' => '',
-            'ranked_score' => '',
-            'replays_watched_by_others' => '',
-            'score_ranks' => '',
-            'total_hits' => '',
-            'total_score' => '',
+            'hit_accuracy' => 'Прецизност на ударите',
+            'level' => 'Ниво :level',
+            'maximum_combo' => 'Максимално комбо',
+            'play_count' => 'Брой игри',
+            'play_time' => 'Общо играно време',
+            'ranked_score' => 'Общ класиран резултат',
+            'replays_watched_by_others' => 'Брой гледания от повторения',
+            'score_ranks' => 'Класации по брой точки',
+            'total_hits' => 'Общ брой попадения',
+            'total_score' => 'Общ брой точки',
         ],
     ],
     'status' => [
-        'online' => '',
-        'offline' => '',
+        'online' => 'Онлайн',
+        'offline' => 'Офлайн',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'Потребител създаден',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Потвърждение на акаунта',
     ],
 ];

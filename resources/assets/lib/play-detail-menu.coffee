@@ -35,6 +35,11 @@ export class PlayDetailMenu extends PureComponent
     $(document).on "keyup.#{@uuid}", @hide
 
 
+  componentDidUpdate: (_prevProps, prevState) =>
+    if prevState.active != @state.active
+      if @state.active then @props.onShow?() else @props.onHide?()
+
+
   componentWillUnmount: =>
     $(document).off ".#{@uuid}", @hide
 
@@ -45,12 +50,10 @@ export class PlayDetailMenu extends PureComponent
     event = e.originalEvent
     if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
       @setState active: false
-      @props.onHide?()
 
 
-  onClick: =>
+  toggle: =>
     @setState active: !@state.active
-    @props.onShow?()
 
 
   render: =>
@@ -60,7 +63,7 @@ export class PlayDetailMenu extends PureComponent
       button
         className: 'play-detail-menu__button'
         type: 'button'
-        onClick: @onClick
+        onClick: @toggle
         i className: 'fas fa-ellipsis-v'
 
       @renderMenu()
@@ -81,4 +84,5 @@ export class PlayDetailMenu extends PureComponent
                   mode: @props.score.beatmap.mode
                   user: @props.score.user_id
           'data-turbolinks': false
+          onClick: @toggle
           osu.trans 'users.show.extra.top_ranks.download_replay'

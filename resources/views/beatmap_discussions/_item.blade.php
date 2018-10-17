@@ -25,7 +25,7 @@
     ];
 @endphp
 <div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
-    <div class="beatmap-discussion beatmapset-activities__post-grow{{ $discussion->isDeleted() ? ' beatmap-discussion--deleted' : ''}}">
+    <div class="beatmap-discussion beatmapset-activities__post-grow{{ $discussion->trashed() ? ' beatmap-discussion--deleted' : ''}}">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
                 <a href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">

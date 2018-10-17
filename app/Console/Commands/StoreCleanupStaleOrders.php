@@ -18,12 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'title' => 'Beatmap Diskussion Stemmer',
-    ],
+namespace App\Console\Commands;
 
-    'item' => [
-        'score' => 'Score',
-    ],
-];
+use App\Models\Store\Order;
+use Illuminate\Console\Command;
+
+class StoreCleanupStaleOrders extends Command
+{
+    protected $signature = 'store:cleanup-stale-orders';
+
+    protected $description = 'Removes stale orders';
+
+    public function handle()
+    {
+        $count = Order::processing()->stale()->update(['status' => 'cancelled']);
+
+        $this->line("Cancelled {$count} stale orders.");
+    }
+}
