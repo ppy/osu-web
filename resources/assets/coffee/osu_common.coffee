@@ -184,7 +184,7 @@
 
     if precision?
       options.minimumFractionDigits = 2
-      maximumFractionDigits = 2
+      options.maximumFractionDigits = 2
 
     number.toLocaleString locale ? currentLocale, options
 
