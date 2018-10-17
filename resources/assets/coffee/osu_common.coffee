@@ -103,6 +103,19 @@
     JSON.parse document.getElementById(id)?.text ? null
 
 
+  storeJson: (id, object) ->
+    json = JSON.stringify object
+    element = document.getElementById(id)
+
+    if !element?
+      element = document.createElement 'script'
+      element.id = id
+      element.type = 'application/json'
+      document.body.appendChild element
+
+    element.text = json
+
+
   # make a clone of json-like object (object with simple values)
   jsonClone: (object) ->
     JSON.parse JSON.stringify(object ? null)

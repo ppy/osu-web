@@ -22,16 +22,19 @@ class @CommentsManager extends React.PureComponent
   constructor: (props) ->
     super props
 
-    commentBundle = osu.jsonClone(@props.commentBundle) ?
-      osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
-
     @id = "comments-#{osu.uuid()}"
 
-    @state =
-      comments: commentBundle.comments
-      userVotes: commentBundle.user_votes
-      users: commentBundle.users
-      topLevelCount: commentBundle.top_level_count
+    @state = osu.parseJson @jsonStorageId()
+
+    if !@state?
+      commentBundle = osu.jsonClone(@props.commentBundle) ?
+        osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
+
+      @state =
+        comments: commentBundle.comments
+        userVotes: commentBundle.user_votes
+        users: commentBundle.users
+        topLevelCount: commentBundle.top_level_count
 
 
   componentDidMount: =>
@@ -39,6 +42,7 @@ class @CommentsManager extends React.PureComponent
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
+    $(document).on "turbolinks:before-cache.#{@id}", @saveState
 
 
   componentWillUnmount: =>
@@ -75,3 +79,11 @@ class @CommentsManager extends React.PureComponent
 
   removeVote: (_event, {id}) =>
     @setState userVotes: _.filter @state.userVotes, (commentId) -> commentId != id
+
+
+  jsonStorageId: =>
+    "json-comments-manager-state-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}"
+
+
+  saveState: =>
+    osu.storeJson @jsonStorageId(), @state
