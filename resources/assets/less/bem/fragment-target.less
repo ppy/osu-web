@@ -16,9 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-:target::before {
-  content: "";
-  display: block;
-  height: @nav2-height--pinned;
-  margin: -(@nav2-height--pinned) 0 0;
+.fragment-target {
+  &[id]::before {
+    content: '';
+    display: block;
+    height: @nav2-height--pinned;
+    margin: -(@nav2-height--pinned) 0 0;
+  }
 }

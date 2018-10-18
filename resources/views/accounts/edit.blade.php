@@ -69,7 +69,7 @@
     </div>
 
     <div class="osu-page osu-page--small">
-        <div id="avatar">{{-- anchor won't offset properly if included in the flex container below --}}</div>
+        <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
         <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
