@@ -57,15 +57,15 @@
                 </dl>
             </div>
             <div class="col-md-4 text-right">
-                <button
-                    data-remote="true"
-                    data-method="POST"
-                    data-url="{{ route('admin.contests.get-zip', $contest->id) }}"
-                    class="btn btn-primary"
-                >
-                    <i class="fas fa-fw fa-file-archive"></i>
-                    Download all entries as ZIP
-                </button>
+                {!! Form::open([
+                    'route' => ['admin.contests.get-zip', $contest->id],
+                    'method' => 'POST'
+                ]) !!}
+                    <button class="btn btn-primary">
+                        <i class="fas fa-fw fa-file-archive"></i>
+                        Download all entries as ZIP
+                    </button>
+                {!! Form::close() !!}
             </div>
         </div>
         <dl>
