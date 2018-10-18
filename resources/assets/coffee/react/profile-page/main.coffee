@@ -334,8 +334,9 @@ class ProfilePage.Main extends React.PureComponent
           # - simple variable in callback
           # Both still change the switch too soon.
           @modeScrollTimeout = Timeout.set 100, => @scrolling = false
-      # count for the tabs height
-      offset: pagesOffset[0].getBoundingClientRect().height * -1
+      # count for the tabs height; assume pageJump always causes the header to be pinned
+      # otherwise the calculation needs another phase and gets a bit messy.
+      offset: (StickyHeader.headerHeight() + pagesOffset[0].getBoundingClientRect().height) * -1
 
 
   pageScan: =>
