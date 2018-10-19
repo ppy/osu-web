@@ -16,24 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
+import { WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
 import { observable } from 'mobx';
+import RootDataStore from 'stores/root-data-store';
 import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
-  parent: UIStateStore;
+  root: RootDataStore;
+  parent: UIStateStore; // TODO: do we need to bother with tracking parent?
+  dispatcher: Dispatcher;
 
   @observable selected: number = -1;
+  @observable lastReadId: number = -1;
 
-  constructor(root: UIStateStore) {
-    this.parent = root;
+  constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
+    this.root = root;
+    this.parent = parent;
+    this.dispatcher = dispatcher;
+    dispatcher.register(this);
   }
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
-      this.selected = action.channelId;
+      this.lastReadId = this.root.channelStore.getOrCreate(action.channelId).lastReadId;
+    }
+
+    if (action instanceof ChatMessageSendAction) {
+      this.lastReadId = action.message.channel.lastMessageId;
     }
   }
 }

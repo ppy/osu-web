@@ -47,12 +47,9 @@ export default class ChatOrchestrator implements DispatchListener {
       this.changeChannel(action.channelId);
     }
 
-    if (action instanceof ChatChannelSwitchAction) {
-      this.changeChannel(action.channelId);
-    }
-
     if (action instanceof WindowFocusAction) {
       this.windowActive();
+      this.markAsRead(this.rootDataStore.uiState.chat.selected);
     }
 
     if (action instanceof WindowBlurAction) {
@@ -90,7 +87,6 @@ export default class ChatOrchestrator implements DispatchListener {
   markAsRead(channel_id: number) {
     let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channel_id);
     let lastRead: number = channel.lastMessageId;
-
 
     if (!lastRead || channel.lastReadId >= lastRead) {
       return;

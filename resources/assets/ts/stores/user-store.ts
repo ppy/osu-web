@@ -24,12 +24,12 @@ import User, { UserJSON } from 'models/user';
 import RootDataStore from './root-data-store';
 
 export default class UserStore implements DispatchListener {
-  parent: RootDataStore;
+  root: RootDataStore;
 
   @observable users = observable.map<number, User>();
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.parent = root;
+    this.root = root;
     dispatcher.register(this);
   }
 

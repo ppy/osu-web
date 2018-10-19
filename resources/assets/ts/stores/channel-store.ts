@@ -26,14 +26,14 @@ import Message from 'models/chat/message';
 import RootDataStore from './root-data-store';
 
 export default class ChannelStore implements DispatchListener {
-  parent: RootDataStore;
+  root: RootDataStore;
 
   @observable channels = observable.map<number, Channel>();
   @observable maxMessageId: number = 0;
   @observable loaded: boolean = false;
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.parent = root;
+    this.root = root;
     dispatcher.register(this);
   }
 

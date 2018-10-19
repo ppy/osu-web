@@ -88,7 +88,7 @@ export default class ConversationView extends React.Component<any, any> {
 
     _.each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      if (!lastReadIndicatorShown && message.messageId > channel.lastReadId && message.sender.id !== currentUser.id) {
+      if (!lastReadIndicatorShown && message.messageId > dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
         lastReadIndicatorShown = true;
         if (!_.isEmpty(currentGroup)) {
           renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
