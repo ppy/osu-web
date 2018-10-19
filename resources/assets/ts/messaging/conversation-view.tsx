@@ -24,7 +24,7 @@ import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
 @observer
-export default class Conversation extends React.Component<any, any> {
+export default class ConversationView extends React.Component<any, any> {
   componentDidMount() {
     this.componentDidUpdate();
   }
@@ -42,6 +42,7 @@ export default class Conversation extends React.Component<any, any> {
     const presence = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!presence) {
+      // this shouldn't happen...
       return;
     }
 
