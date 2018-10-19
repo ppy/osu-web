@@ -61,7 +61,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         top: @state.cssTop
       div className: 'beatmap-discussion-new-float__floatable',
         div
-          className: 'js-new-discussion beatmap-discussion-new-float__content'
+          className: 'beatmap-discussion-new-float__content'
+          ref: @props.innerRef
 
           @renderBox()
 

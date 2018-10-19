@@ -19,14 +19,12 @@
 {a, div, h1, p} = ReactDOMFactories
 el = React.createElement
 
-modeSwitcher = document.getElementsByClassName('js-mode-switcher')
-newDiscussion = document.getElementsByClassName('js-new-discussion')
-
 class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
     @modeSwitcherRef = React.createRef()
+    @newDiscussionRef = React.createRef()
 
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
@@ -126,6 +124,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
+            innerRef: @newDiscussionRef
             mode: @state.currentMode
             pinned: @state.pinnedNewDiscussion
             setPinned: (pinned) => @setState pinnedNewDiscussion: pinned
@@ -330,8 +329,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-      offset = -StickyHeader.headerHeight() - modeSwitcher[0]?.getBoundingClientRect().height
-      offset += -newDiscussion[0]?.getBoundingClientRect().height if @state.pinnedNewDiscussion
+      offset = -StickyHeader.headerHeight() - @modeSwitcherRef.current.getBoundingClientRect().height
+      offset += -@newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
       $(window).stop().scrollTo target, 500, { offset }
 
