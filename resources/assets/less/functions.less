@@ -29,6 +29,16 @@
   transition: @target @duration @type;
 }
 
+.fragment-target-fn(@offset: 0) {
+  &[id]::before {
+    content: '';
+    display: block;
+    height: @nav2-height--pinned + @offset;
+    margin: -(@nav2-height--pinned + @offset) 0 0;
+  }
+}
+
+
 .default-border-radius() {
   border-radius: @border-radius-base;
 }
