@@ -74,7 +74,6 @@ export default class ChatOrchestrator implements DispatchListener {
         if (channel.loaded) {
           this.markAsRead(channelId);
         } else {
-          console.log('loading', channelId)
           this.loadChannel(channelId)
             .then(() => {
               if (this.windowIsActive) {
@@ -94,10 +93,8 @@ export default class ChatOrchestrator implements DispatchListener {
 
 
     if (!lastRead || channel.lastReadId >= lastRead) {
-      console.log('markAsRead', 'up to date, doing nothing')
-      return
+      return;
     }
-    console.group('markAsRead', channel.channelId, lastRead, '=>', channel.lastReadId)
 
     this.api.markAsRead(channel.channelId, lastRead)
       .then(() => {
@@ -112,8 +109,6 @@ export default class ChatOrchestrator implements DispatchListener {
     let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.loading) {
-      console.log('loadChannel:: already loading', channel)
-
       return Promise.resolve();
     }
 
@@ -146,8 +141,6 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   sendMessage(message: Message) {
-    console.log('ChatOrchestrator::sendMessage', message);
-
     let channel: Channel = message.channel;
     let channel_id: number = channel.channelId;
 
@@ -161,10 +154,8 @@ export default class ChatOrchestrator implements DispatchListener {
         return;
       }
 
-      console.log('api.createChannel(',userId,', ',message,')')
       this.api.newConversation(userId, message.content)
         .then((response) => {
-          console.log('api.createChannel ->', response);
           let new_id = response.new_channel_id;
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channel_id);

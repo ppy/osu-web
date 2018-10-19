@@ -21,7 +21,7 @@ import DispatcherAction from './actions/dispatcher-action';
 
 export default class Dispatcher {
   private callbacks: DispatchListener[] = [];
-  private trace: boolean = true;
+  private trace: boolean = false;
 
   register(callback: DispatchListener) {
     this.callbacks.push(callback);
@@ -32,16 +32,7 @@ export default class Dispatcher {
       console.log('Dispatcher::dispatch', action);
     }
     this.callbacks.forEach((callback) => {
-      // if (this.trace) {
-      //   console.group(callback.constructor.name);
-      // }
       callback.handleDispatchAction(action);
-      // if (this.trace) {
-      //   console.groupEnd();
-      // }
     })
-    // if (this.trace) {
-    //   console.groupEnd();
-    // }
   }
 }

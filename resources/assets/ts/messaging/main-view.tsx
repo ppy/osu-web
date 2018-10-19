@@ -44,8 +44,6 @@ export default class MainView extends React.Component<any, any> {
   }
 
   init = () => {
-    console.log('MainView::init');
-
     const sendTo = osu.parseJson('json-sendto');
     let channelId: number;
 
@@ -71,10 +69,9 @@ export default class MainView extends React.Component<any, any> {
     } else {
       if (!_.isEmpty(this.props.presence)) {
         channelId = this.props.dataStore.channelStore.sortedByPresence[0].channelId;
-        console.log('presence sorted', this.props.dataStore.channelStore.sortedByPresence);
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
       } else {
-        console.log('presence missing...');
+        console.log('presence missing...?');
       }
     }
 

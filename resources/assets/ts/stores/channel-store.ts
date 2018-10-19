@@ -120,7 +120,6 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   updatePresence(presence: ChannelJSON[]) {
-    console.log('ChannelStore::updatePresence', presence);
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
 

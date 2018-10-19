@@ -70,10 +70,8 @@ export default class ChatWorker implements DispatchListener {
     const lastRead: number = channel.lastMessageId;
 
     if (!lastRead || channel.lastReadId >= lastRead) {
-      console.log('markAsRead', 'up to date, doing nothing');
       return;
     }
-    console.group('markAsRead', channel.channelId, lastRead, '=>', channel.lastReadId);
 
     this.api.markAsRead(channel.channelId, lastRead)
       .then(() => {
@@ -100,8 +98,6 @@ export default class ChatWorker implements DispatchListener {
   }
 
   sendMessage(message: Message) {
-    console.log('ChatOrchestrator::sendMessage', message);
-
     const channel: Channel = message.channel;
     const channelId: number = channel.channelId;
 
@@ -116,10 +112,8 @@ export default class ChatWorker implements DispatchListener {
         return;
       }
 
-      console.log('api.createChannel(', userId, ', ', message, ')');
       this.api.newConversation(userId, message.content)
         .then((response) => {
-          console.log('api.createChannel ->', response);
           const newId = response.new_channel_id;
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channelId);
