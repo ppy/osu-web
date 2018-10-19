@@ -116,6 +116,8 @@ class CommentsController extends Controller
 
         $commentBundle = new CommentBundle($comment->commentable, [
             'params' => ['parent_id' => $comment->getKey()],
+            'additionalComments' => [$comment],
+            'includeCommentableMeta' => true,
         ]);
 
         $commentJson = json_item($comment, 'Comment', [

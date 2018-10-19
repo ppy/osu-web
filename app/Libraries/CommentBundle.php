@@ -53,6 +53,7 @@ class CommentBundle
         $this->setParams($options['params'] ?? []);
 
         $this->comments = $options['comments'] ?? null;
+        $this->additionalComments = $options['additionalComments'] ?? [];
         $this->depth = $options['depth'] ?? 2;
         $this->filterByParentId = $options['filterByParentId'] ?? true;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
@@ -81,6 +82,8 @@ class CommentBundle
             }
         }
 
+        $comments = $comments->concat($this->additionalComments);
+
         $users = $this->getUsers($comments);
 
         $result = [
@@ -93,16 +96,18 @@ class CommentBundle
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
         }
 
+        if ($this->includeCommentableMeta) {
+            $commentables = $comments->pluck('commentable')->concat([null]);
+            $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
+        }
+
+
         return $result;
     }
 
     public function commentIncludes()
     {
         $includes = [];
-
-        if ($this->includeCommentableMeta) {
-            $includes[] = 'commentable_meta';
-        }
 
         if ($this->includeParent) {
             $includes[] = 'parent';

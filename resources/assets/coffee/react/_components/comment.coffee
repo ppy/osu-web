@@ -228,6 +228,7 @@ class @Comment extends React.PureComponent
                 commentsByParentId: @props.commentsByParentId
                 usersById: @props.usersById
                 userVotesByCommentId: @props.userVotesByCommentId
+                commentableMetaById: @props.commentableMetaById
                 depth: @props.depth + 1
                 parent: @props.comment
                 modifiers: @props.modifiers
@@ -298,9 +299,12 @@ class @Comment extends React.PureComponent
 
 
   commentableMeta: =>
-    if @props.comment.commentable_meta.url
+    meta = @props.commentableMetaById["#{@props.comment.commentable_type}-#{@props.comment.commentable_id}"]
+    meta ?= @props.commentableMetaById['-']
+
+    if meta.url
       component = a
-      params = href: @props.comment.commentable_meta.url
+      params = href: meta.url
     else
       component = span
       params = null
@@ -308,7 +312,7 @@ class @Comment extends React.PureComponent
     component params,
       span className: 'fas fa-comment-alt'
       ' '
-      @props.comment.commentable_meta.title
+      meta.title
 
 
   isOwner: =>

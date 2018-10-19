@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,30 +72,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
     public function includeCommentableMeta(Comment $comment)
     {
-        return $this->item($comment->commentable, function ($commentable) {
-            // probably belongs somewhere else
-            if ($commentable instanceof Beatmapset) {
-                $titlePrefix = trans('comments.commentable_name.beatmapset');
-                $title = $commentable->artist.' - '.$commentable->title;
-                $url = route('beatmapsets.show', $commentable);
-            } elseif ($commentable instanceof Build) {
-                $titlePrefix = trans('comments.commentable_name.build');
-                $title = $commentable->updateStream->display_name.' '.$commentable->displayVersion();
-                $url = build_url($commentable);
-            } elseif ($commentable instanceof NewsPost) {
-                $titlePrefix = trans('comments.commentable_name.news_post');
-                $title = $commentable->title();
-                $url = route('news.show', $commentable->slug);
-            } else {
-                $title = trans('comments.commentable_name._deleted');
-                $url = null;
-            }
-
-            return [
-                'title' => isset($titlePrefix) ? "{$titlePrefix}: {$title}" : $title,
-                'url' => $url,
-            ];
-        });
+        return $this->item($comment->commentable, new CommentableMetaTransformer);
     }
 
     public function includeEditor(Comment $comment)

@@ -48,6 +48,7 @@ class CommentsIndex.Main extends React.PureComponent
             comment: comment
             usersById: @props.usersById
             userVotesByCommentId: @props.userVotesByCommentId
+            commentableMetaById: @props.commentableMetaById
             showReplies: false
             showCommentableMeta: true
             linkParent: true

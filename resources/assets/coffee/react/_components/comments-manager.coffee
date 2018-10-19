@@ -34,17 +34,12 @@ class @CommentsManager extends React.PureComponent
       commentBundle = osu.jsonClone(@props.commentBundle) ?
         osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
 
-      if @props.additionalComments.length > 0
-        additionalUsers = []
-        comments = osu.updateCollection commentBundle.comments, @props.additionalComments
-        additionalUsers.push(comment.user, comment.editor) for comment in @props.additionalComments
-        users = osu.updateCollection commentBundle.users, additionalUsers
-
       @state =
         comments: comments ? commentBundle.comments
         userVotes: commentBundle.user_votes
         users: users ? commentBundle.users
         topLevelCount: commentBundle.top_level_count
+        commentableMeta: commentBundle.commentable_meta
 
 
   componentDidMount: =>
@@ -63,6 +58,8 @@ class @CommentsManager extends React.PureComponent
     componentProps = _.assign {}, @props.componentProps, @state
     componentProps.userVotesByCommentId = _.keyBy @state.userVotes
     componentProps.usersById = _.keyBy(@state.users ? [], 'id')
+    componentProps.commentableMetaById = _.keyBy @state.commentableMeta ? [], (item) ->
+      "#{item.type ? ''}-#{item.id ? ''}"
     componentProps.sortedComments = _(@state.comments ? [])
       .uniqBy('id')
       .orderBy(['created_at', 'id'], ['desc', 'desc'])
@@ -75,12 +72,14 @@ class @CommentsManager extends React.PureComponent
     @setState
       comments: osu.updateCollection @state.comments, comments.comments
       users: osu.updateCollection @state.users, comments.users
+      commentableMeta: osu.updateCollection @state.commentableMeta, comments.commentable_meta
 
 
   update: (_event, {comment}) =>
     @setState
       comments: osu.updateCollection @state.comments, [comment]
       users: osu.updateCollection @state.users, [comment.user, comment.editor]
+      commentableMeta: osu.updateCollection @state.commentableMeta, [comment.commentable_meta]
 
 
   addVote: (_event, {id}) =>

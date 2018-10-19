@@ -23,4 +23,3 @@ reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
   componentProps:
     comment: data.comment
   commentBundle: data.bundle
-  additionalComments: [data.comment]
