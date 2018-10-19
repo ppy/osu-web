@@ -330,11 +330,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-      offset = 0
-      for header in [modeSwitcher, newDiscussion] when header[0]?
-        offset += header[0].getBoundingClientRect().height * -1
+      offset = -StickyHeader.headerHeight() - modeSwitcher[0]?.getBoundingClientRect().height
+      offset += -newDiscussion[0]?.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo target, 500, offset: offset
+      $(window).stop().scrollTo target, 500, { offset }
 
     @update null, newState
 
