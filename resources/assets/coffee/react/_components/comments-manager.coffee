@@ -35,11 +35,11 @@ class @CommentsManager extends React.PureComponent
         osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
 
       @state =
-        comments: comments ? commentBundle.comments
+        comments: comments ? commentBundle.comments ? []
         userVotes: commentBundle.user_votes
-        users: users ? commentBundle.users
+        users: users ? commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
-        commentableMeta: commentBundle.commentable_meta
+        commentableMeta: commentBundle.commentable_meta ? []
 
 
   componentDidMount: =>
@@ -76,10 +76,14 @@ class @CommentsManager extends React.PureComponent
 
 
   update: (_event, {comment}) =>
-    @setState
+    newState =
       comments: osu.updateCollection @state.comments, [comment]
       users: osu.updateCollection @state.users, [comment.user, comment.editor]
-      commentableMeta: osu.updateCollection @state.commentableMeta, [comment.commentable_meta]
+
+    if comment.commentable_meta?
+      newState.commentableMeta = osu.updateCollection @state.commentableMeta, [comment.commentable_meta]
+
+    @setState newState
 
 
   addVote: (_event, {id}) =>
