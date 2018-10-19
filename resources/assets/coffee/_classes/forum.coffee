@@ -184,6 +184,8 @@ class @Forum
 
     target = if postTop == 0 then 0 else post
 
+    # FIXME: target is off by the size of the sub sticky header on first load
+    # if load more is present on the top.
     $(window).stop().scrollTo target, 500,
       offset: if postTop == 0 then 0 else -(StickyHeader.offsetForScrollTo 68) # FIXME: less magic number
 
