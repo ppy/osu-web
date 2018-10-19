@@ -29,6 +29,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @cache = {}
 
+    # FIXME: should save state on navigation?
     @state =
       cssTop: null
       message: ''

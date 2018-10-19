@@ -127,7 +127,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             innerRef: @newDiscussionRef
             mode: @state.currentMode
             pinned: @state.pinnedNewDiscussion
-            setPinned: (pinned) => @setState pinnedNewDiscussion: pinned
+            setPinned: @setPinnedNewDiscussion
             stickTo: @modeSwitcherRef
 
           el BeatmapDiscussions.Discussions,
@@ -373,6 +373,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   setCurrentPlaymode: (e, {mode}) =>
     @update e, playmode: mode
+
+
+  setPinnedNewDiscussion: (pinned) =>
+    @setState pinnedNewDiscussion: pinned
 
 
   update: (_e, options) =>
