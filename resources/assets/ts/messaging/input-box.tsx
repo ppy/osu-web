@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import { ChatMessageSendAction } from 'actions/chat-actions';
 import { inject } from 'mobx-react';
 import Message from 'models/chat/message';
+import * as React from 'react';
 
 @inject('dataStore')
 @inject('dispatcher')
@@ -29,7 +29,7 @@ export default class InputBox extends React.Component<any, any> {
       return;
     }
 
-    let message: Message = new Message();
+    const message: Message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
     message.channel = this.props.dataStore.channelStore.getOrCreate(this.props.dataStore.uiState.chat.selected);
     message.content = messageText;
@@ -39,25 +39,26 @@ export default class InputBox extends React.Component<any, any> {
   }
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    let target = $(e.currentTarget).parent().children('input')[0];
-    let message: string = target.nodeValue || '';
+    const target = $(e.currentTarget).parent().children('input')[0];
+    const message: string = target.nodeValue || '';
     this.sendMessage(message);
     target.nodeValue = '';
   }
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode == 13) {
-      let target = $(e.currentTarget)[0];
-      let message: string = target.nodeValue || '';
+    if (e.keyCode === 13) {
+      const target = $(e.currentTarget)[0];
+      const message: string = target.nodeValue || '';
       this.sendMessage(message);
       target.nodeValue = '';
     }
   }
 
   render(): React.ReactNode {
-    let classes = 'messaging__chat-input'
-    if (this.props.disabled)
-      classes += ' messaging__chat-input--disabled'
+    let classes = 'messaging__chat-input';
+    if (this.props.disabled) {
+      classes += ' messaging__chat-input--disabled';
+    }
 
     return (
       <div className={classes}>
@@ -73,11 +74,11 @@ export default class InputBox extends React.Component<any, any> {
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
+            disabled: this.props.disabled,
             onClick: this.buttonClicked,
-            disabled: this.props.disabled
           }}
         />
       </div>
-    )
+    );
   }
 }

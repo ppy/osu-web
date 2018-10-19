@@ -38,7 +38,6 @@ export default class Conversation extends React.Component<any, any> {
   }
 
   noCanSendMessage(): React.ReactNode {
-    // console.log('noCanSendMessage', this.props.presence?.type)
     const dataStore: RootDataStore = this.props.dataStore;
     const presence = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
@@ -74,28 +73,6 @@ export default class Conversation extends React.Component<any, any> {
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
     const channel: Channel | undefined = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
-
-    // if (channel && channel.messages.length > 0) {
-    //   // console.log('messages', channel.messages);
-    //   console.log('last_read_id', channel.last_read_id)
-    //   console.log('last_message_id', channel.last_message_id)
-
-    // }
-
-    // return (
-    //   <div className='messaging__conversation'>
-    //     {channel && channel.messages.length &&
-    //       channel.messages.map((message, index) => {
-    //         return (
-    //           <div key={message.uuid} style={{backgroundColor: `#${message.uuid.substr(0,6)}`}}>{message.message_id}</div>
-    //         )
-    //       })
-    //     }
-    //     {channel && channel.messages.length &&
-    //       <div style={{color: 'red'}}>{channel.last_message_id}</div>
-    //     }
-    //   </div>
-    // );
 
     if (!channel) {
       return(<div className='messaging__conversation' />);
@@ -184,7 +161,7 @@ export default class Conversation extends React.Component<any, any> {
                     </div>
                   </div>
                   <div className='messaging__message-group-bubble'>
-                    {messageGroup.map((message) => {
+                    {messageGroup.map((message: Message) => {
                       let classes = 'messaging__message';
                       let innerClasses;
 
