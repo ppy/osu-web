@@ -627,7 +627,7 @@ class Topic extends Model implements AfterCommit
 
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
+        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
     }
 
     public function postsAdded($count)

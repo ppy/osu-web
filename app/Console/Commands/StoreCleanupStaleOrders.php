@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,25 +17,22 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Models\Forum\Topic;
 
-class TopicTest extends TestCase
+namespace App\Console\Commands;
+
+use App\Models\Store\Order;
+use Illuminate\Console\Command;
+
+class StoreCleanupStaleOrders extends Command
 {
-    public function testIssueTags()
+    protected $signature = 'store:cleanup-stale-orders';
+
+    protected $description = 'Removes stale orders';
+
+    public function handle()
     {
-        $topic = new Topic();
-        $topic->forum_id = config('osu.forum.issue_forum_ids')[0];
+        $count = Order::processing()->stale()->update(['status' => 'cancelled']);
 
-        $topic->topic_title = '[invalid] herp a derp';
-        $this->assertSame(['invalid'], $topic->issueTags());
-    }
-
-    public function testIssueTagsWithKeywordAsTitle()
-    {
-        $topic = new Topic();
-        $topic->forum_id = config('osu.forum.issue_forum_ids')[0];
-
-        $topic->topic_title = 'invalid herp a derp';
-        $this->assertSame([], $topic->issueTags());
+        $this->line("Cancelled {$count} stale orders.");
     }
 }
