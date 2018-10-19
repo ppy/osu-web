@@ -37,6 +37,21 @@ class @StickyHeader
       styles.heightSticky
 
 
+  @getHeader: ->
+    document.getElementById('js-pinned-header')
+
+
+  @getHeaderBottom: (offset) ->
+    if StickyHeader.shouldPin(offset)
+      window._styles.header.heightSticky
+    else
+      window._styles.header.height
+
+
+  @shouldPin: (offset = window.pageYOffset) ->
+    offset > window._styles.header.height
+
+
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
     @visible = false
@@ -47,11 +62,10 @@ class @StickyHeader
 
 
   applyCss: ->
-    header = document.getElementById('js-pinned-header')
+    header = StickyHeader.getHeader()
     return unless header?
 
-    styles = window._styles.header
-    if window.pageYOffset > styles.height
+    if StickyHeader.shouldPin()
       document.body.classList.add 'js-header-is-pinned'
     else
       document.body.classList.remove 'js-header-is-pinned'

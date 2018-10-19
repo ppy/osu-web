@@ -173,23 +173,20 @@ class @Forum
     try @jumpTo n
 
   scrollTo: (postId) =>
-    post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
+    post = $(".js-forum-post[data-post-id='#{postId}']")?[0]
 
     return unless post
 
-    if @postPosition(post) == 1
-      postTop = 0
-    else
-      postDim = post.getBoundingClientRect()
-      windowHeight = window.innerHeight
+    postTop = if @postPosition(post) == 1
+                0
+              else
+                post.offset().top
 
-      postTop = window.pageYOffset + postDim.top
+    target = if postTop == 0 then 0 else post
 
-      offset = (windowHeight - postDim.height) / 2
-      # FIXME: compute height using new header target
-      offset = Math.max(offset, 60)
-
-    window.scrollTo 0, postTop - offset
+    # FIXME: post appears to be in the wrong offset on page load?
+    $(window).stop().scrollTo target, 500,
+      offset: -StickyHeader.getHeaderBottom(postTop) - 68 # FIXME: less magic number
 
 
   initialScrollTo: =>
