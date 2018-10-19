@@ -173,14 +173,14 @@ class @Forum
     try @jumpTo n
 
   scrollTo: (postId) =>
-    post = $(".js-forum-post[data-post-id='#{postId}']")?[0]
+    post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
     return unless post
 
     postTop = if @postPosition(post) == 1
                 0
               else
-                post.offset().top
+                $(post).offset().top
 
     target = if postTop == 0 then 0 else post
 
