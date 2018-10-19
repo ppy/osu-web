@@ -23,7 +23,7 @@ import { observable } from 'mobx';
 import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
-  parent: UIStateStore
+  parent: UIStateStore;
 
   @observable selected: number = -1;
 
@@ -33,7 +33,7 @@ export default class ChatStateStore implements DispatchListener {
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
-      this.selected = action.channel_id;
+      this.selected = action.channelId;
     }
   }
 }

@@ -78,10 +78,9 @@ export default class User {
 
   @action
   static fromJSON(json: UserJSON): User {
-    // console.log('fromJSON', json)
-    let user = Object.create(User.prototype);
+    const user = Object.create(User.prototype);
     user.data = JSON.stringify(json);
-    return (<any>Object).assign(user, {
+    return Object.assign(user, {
       id: json.id,
       username: json.username,
       avatarUrl: json.avatar_url,

@@ -17,6 +17,7 @@
  */
 
 import { inject, observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
 
@@ -24,17 +25,17 @@ import ConversationListItem from './conversation-list-item';
 @observer
 export default class ConversationList extends React.Component<any, {}> {
   render(): React.ReactNode {
-    let conversations = this.props.dataStore.channelStore.sortedByPresence;
-    let conversationList: React.ReactNode[] = [];
+    const conversations: Channel[] = this.props.dataStore.channelStore.sortedByPresence;
+    const conversationList: React.ReactNode[] = [];
 
     conversations.forEach((conversation) => {
       conversationList.push(
         <ConversationListItem
-            key={conversation.channel_id}
-            channel_id={conversation.channel_id}
-        />
+            key={conversation.channelId}
+            channel_id={conversation.channelId}
+        />,
       );
-    })
+    });
 
     return(
       <div className='messaging__conversation-list'>
@@ -44,6 +45,6 @@ export default class ConversationList extends React.Component<any, {}> {
           conversationList
         )}
       </div>
-    )
+    );
   }
 }

@@ -27,7 +27,7 @@ export default class WindowFocusObserver {
     $(window).on('blur focus', this.focusChange);
   }
 
-  focusChange = (e) => {
+  focusChange = (e: JQuery.Event<EventTarget>) => {
     if (e.type === 'focus') {
       this.windowFocused();
     } else {

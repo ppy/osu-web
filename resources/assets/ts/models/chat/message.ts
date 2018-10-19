@@ -69,8 +69,8 @@ export default class Message {
 
   @action
   static fromJSON(json: MessageJSON): Message {
-    let message = Object.create(Message.prototype);
-    return (<any>Object).assign(message, {
+    const message = Object.create(Message.prototype);
+    return Object.assign(message, {
       message_id: json.message_id,
       channel_id: json.channel_id,
       content: json.content,

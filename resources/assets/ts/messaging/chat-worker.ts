@@ -36,11 +36,11 @@ export default class ChatWorker implements DispatchListener {
   private pollTimeIdle: number = 5000;
   private windowIsActive: boolean = true;
 
-  private updateTimerId: number;
+  private updateTimerId?: number;
 
   private api: ChatAPI;
 
-  private updateXHR;
+  private updateXHR: boolean;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
     this.dispatcher = dispatcher;
@@ -65,66 +65,70 @@ export default class ChatWorker implements DispatchListener {
     }
   }
 
-  markAsRead(channel_id: number) {
-    let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channel_id);
-    let last_read: number = channel.last_message_id;
+  markAsRead(channelId: number) {
+    const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+    const lastRead: number = channel.lastMessageId;
 
-
-    if (!last_read || channel.last_read_id >= last_read) {
-      console.log('markAsRead', 'up to date, doing nothing')
-      return
+    if (!lastRead || channel.lastReadId >= lastRead) {
+      console.log('markAsRead', 'up to date, doing nothing');
+      return;
     }
-    console.group('markAsRead', channel.channel_id, last_read, '=>', channel.last_read_id)
+    console.group('markAsRead', channel.channelId, lastRead, '=>', channel.lastReadId);
 
-    this.api.markAsRead(channel.channel_id, last_read)
+    this.api.markAsRead(channel.channelId, lastRead)
       .then(() => {
-        channel.last_read_id = last_read;
+        channel.lastReadId = lastRead;
       })
       .catch((err) => {
         console.log('error idk', err);
-      })
+      });
   }
 
-  addMessages(channel_id: number, messages: MessageJSON[]) {
-    let newMessages: Message[] = [];
+  addMessages(channelId: number, messages: MessageJSON[]) {
+    const newMessages: Message[] = [];
 
     transaction(() => {
-      _.forEach(messages, (json) => {
-        let newMessage: Message = Message.fromJSON(json);
+      _.forEach(messages, (json: MessageJSON) => {
+        const newMessage: Message = Message.fromJSON(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         // newMessage.channel = this.rootDataStore.channelStore.getOrCreate(json.channel_id);
         newMessages.push(newMessage);
       });
 
-      this.rootDataStore.channelStore.addMessages(channel_id, newMessages)
+      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
     });
   }
 
   sendMessage(message: Message) {
     console.log('ChatOrchestrator::sendMessage', message);
 
-    let channel: Channel = message.channel;
-    let channel_id: number = channel.channel_id;
+    const channel: Channel = message.channel;
+    const channelId: number = channel.channelId;
 
     if (channel.newChannel) {
-      let users = channel.users.slice();
-      let userId = users.find((user) => {
-        return user != currentUser.id;
+      const users = channel.users.slice();
+      const userId = users.find((user) => {
+        return user !== currentUser.id;
       });
 
-      console.log('api.createChannel(',userId,', ',message,')')
+      if (!userId) {
+        console.log('sendMessage:: userId not found??');
+        return;
+      }
+
+      console.log('api.createChannel(', userId, ', ', message, ')');
       this.api.createChannel(userId, message.content)
         .then((response) => {
           console.log('api.createChannel ->', response);
-          let new_id = response.new_channel_id;
+          const newId = response.new_channel_id;
           transaction(() => {
-            this.rootDataStore.channelStore.channels.delete(channel_id);
+            this.rootDataStore.channelStore.channels.delete(channelId);
             // this.rootDataStore.channelStore.updatePresence(response.presence);
-            this.dispatcher.dispatch(new ChatChannelSwitchAction(new_id));
+            this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
           });
         });
     } else {
-      this.api.postMessage(channel_id, message.content)
+      this.api.postMessage(channelId, message.content)
         .then((updateJson) => {
           if (updateJson) {
             message.message_id = updateJson.message_id;
@@ -154,13 +158,13 @@ export default class ChatWorker implements DispatchListener {
       }
 
       if (!updateJson) {
-        return
+        return;
       }
 
       transaction(() => {
         _.forEach(updateJson.messages, (message: MessageJSON) => {
 
-          let newMessage = Message.fromJSON(message);
+          const newMessage = Message.fromJSON(message);
           newMessage.channel = this.rootDataStore.channelStore.getOrCreate(message.channel_id);
           newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
           this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
@@ -191,7 +195,7 @@ export default class ChatWorker implements DispatchListener {
   stopPolling() {
     if (this.updateTimerId) {
       Timeout.clear(this.updateTimerId);
-      this.updateTimerId = null;
+      this.updateTimerId = undefined;
       this.updateXHR = false;
     }
   }

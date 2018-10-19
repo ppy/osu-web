@@ -31,45 +31,46 @@ export interface ChannelJSON {
 }
 
 export default class Channel {
-  @observable channel_id: number;
+  @observable channelId: number;
   @observable type: string;
   @observable name: string;
   @observable description?: string;
   @observable icon?: string;
 
-  @observable messages?: Message[] = observable([]);
+  @observable messages: Message[] = observable([]);
 
-  @observable last_message_id?: number;
-  @observable last_read_id?: number;
+  @observable lastMessageId: number = -1;
+  @observable lastReadId: number = -1;
 
-  @observable users?: number[];
+  @observable users: number[] = [];
 
   @observable loading: boolean = false;
   @observable loaded: boolean = false;
 
   @observable newChannel: boolean = false;
 
-  constructor(channel_id: number) {
-    this.channel_id = channel_id;
+  constructor(channelId: number) {
+    this.channelId = channelId;
   }
 
   @action
   static fromJSON(json: ChannelJSON): Channel {
-    let channel = Object.create(Channel.prototype);
-    return (<any>Object).assign(channel, {
+    const channel = Object.create(Channel.prototype);
+    return Object.assign(channel, {
       channel_id: json.channel_id,
       name: json.name,
       type: json.type,
+
       description: json.description,
       icon: json.icon,
+      last_message_id: json.last_message_id,
       last_read_id: json.last_read_id,
-      last_message_id: json.last_message_id
     });
   }
 
   @computed
   get isUnread(): boolean {
-    return this.last_message_id > this.last_read_id;
+    return this.lastMessageId > this.lastReadId;
   }
 
   @action
@@ -82,14 +83,14 @@ export default class Channel {
       }
 
       if (this.messages.length > 100) {
-        this.messages = _.drop(this.messages, this.messages.length - 100)
+        this.messages = _.drop(this.messages, this.messages.length - 100);
       }
     });
   }
 
   @action
   updateMessage(message: Message) {
-    let messageObject = _.find(this.messages, {'uuid': message.uuid});
+    const messageObject = _.find(this.messages, {uuid: message.uuid});
     if (messageObject) {
       messageObject.update(message);
       if (messageObject.errored) {
@@ -98,7 +99,7 @@ export default class Channel {
         messageObject.persist();
       }
     } else {
-      console.log('wtfm8', message)
+      console.log('wtfm8', message);
       // delay and retry?
     }
   }
@@ -106,8 +107,8 @@ export default class Channel {
   @action
   resortMessages() {
     let newMessages = this.messages.slice();
-    newMessages = _.sortBy(newMessages, 'timestamp')
-    newMessages = _.uniqBy(newMessages, 'message_id')
+    newMessages = _.sortBy(newMessages, 'timestamp');
+    newMessages = _.uniqBy(newMessages, 'message_id');
 
     this.messages = newMessages;
   }
@@ -120,9 +121,9 @@ export default class Channel {
     this.description = presence.description;
     this.type = presence.type;
     this.icon = presence.icon || '/tmp/channel-default.png'; // TODO: update with actual image
-    this.last_read_id = presence.last_read_id;
+    this.lastReadId = presence.last_read_id;
 
-    this.last_message_id = _.max([this.last_message_id, presence.last_message_id]);
+    this.lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
 
     this.users = presence.users;
   }

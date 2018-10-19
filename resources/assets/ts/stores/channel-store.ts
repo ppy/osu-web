@@ -37,23 +37,20 @@ export default class ChannelStore implements DispatchListener {
     dispatcher.register(this);
   }
 
-  handleDispatchAction(action: DispatcherAction) {
-    // console.log('ChannelStore::handleDispatchAction', action);
-
-    if (action instanceof ChatMessageSendAction) {
-      this.getOrCreate(action.message.channel.channel_id).addMessages(action.message, true);
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    if (dispatchedAction instanceof ChatMessageSendAction) {
+      this.getOrCreate(dispatchedAction.message.channel.channelId).addMessages(dispatchedAction.message, true);
     }
 
-    if (action instanceof ChatMessageAddAction) {
-      this.getOrCreate(action.message.channel.channel_id).addMessages(action.message);
+    if (dispatchedAction instanceof ChatMessageAddAction) {
+      this.getOrCreate(dispatchedAction.message.channel.channelId).addMessages(dispatchedAction.message);
     }
 
-    if (action instanceof ChatMessageUpdateAction) {
-      let channel: Channel = this.getOrCreate(action.message.channel.channel_id)
-      channel.updateMessage(action.message);
+    if (dispatchedAction instanceof ChatMessageUpdateAction) {
+      const channel: Channel = this.getOrCreate(dispatchedAction.message.channel.channelId);
+      channel.updateMessage(dispatchedAction.message);
       channel.resortMessages();
     }
-
   }
 
   getMaxId(): number {
@@ -62,8 +59,8 @@ export default class ChannelStore implements DispatchListener {
 
   @computed get
   sortedByPresence(): Channel[] {
-    let sortedChannels: Channel[] = [];
-    this.channels.forEach((channel, channel_id) => {
+    const sortedChannels: Channel[] = [];
+    this.channels.forEach((channel, channelId) => {
       sortedChannels.push(channel);
     });
 
@@ -72,52 +69,49 @@ export default class ChannelStore implements DispatchListener {
       if (a.newChannel) return -1;
       if (b.newChannel) return 1;
 
-      if (a.last_message_id == b.last_message_id)
+      if (a.lastMessageId === b.lastMessageId) {
         return 0;
+      }
 
-      return a.last_message_id > b.last_message_id ? -1 : 1;
+      return a.lastMessageId > b.lastMessageId ? -1 : 1;
     });
   }
 
   @action
-  getOrCreate(channel_id: number) {
-    if (!channel_id) {
-      return;
-    }
+  getOrCreate(channelId: number): Channel {
+    let channel = this.channels.get(channelId);
 
-    let channel: Channel;
-
-    if (this.channels.has(channel_id)) {
-      channel = this.channels.get(channel_id);
-    } else {
-      channel = new Channel(channel_id);
-      this.channels.set(channel_id, channel);
+    if (!channel) {
+      channel = new Channel(channelId);
+      this.channels.set(channelId, channel);
     }
 
     return channel;
   }
 
-  findPM(user_id: number): Channel {
-    for (let [channel_id, channel] of this.channels) {
-      if (channel.type != 'PM') {
+  findPM(userId: number): Channel | null {
+    for (const [channelId, channel] of this.channels) {
+      if (channel.type !== 'PM') {
         continue;
       }
 
-      if (channel.users.some((user) => { return user == user_id; })) {
+      if (channel.users.some((user) => user === userId)) {
         return channel;
       }
     }
+
+    return null;
   }
 
   @action
-  addMessages(channel_id: number, messages: Message[]) {
+  addMessages(channelId: number, messages: Message[]) {
     if (_.isEmpty(messages)) {
-      return
+      return;
     }
 
-    this.getOrCreate(channel_id).addMessages(messages);
+    this.getOrCreate(channelId).addMessages(messages);
 
-    let max: number = _.maxBy(messages, 'message_id').message_id;
+    const max: number = _.maxBy(messages, 'message_id').message_id;
 
     if (max > this.maxMessageId) {
       this.maxMessageId = max;
@@ -127,7 +121,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   updatePresence(presence: ChannelJSON[]) {
     console.log('ChannelStore::updatePresence', presence);
-    presence.forEach(json => {
+    presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
 
       if (json.last_message_id > this.maxMessageId) {

@@ -29,8 +29,8 @@ import ConversationList from './conversation-list';
 @observer
 export default class MainView extends React.Component<any, any> {
 
-  constructor(props) {
-    super(props)
+  constructor(props: any) {
+    super(props);
 
     if (!_.isEmpty(props.presence)) {
       this.props.dataStore.channelStore.updatePresence(props.presence);
@@ -38,28 +38,28 @@ export default class MainView extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    $('html').addClass('osu-layout--mobile-app')
+    $('html').addClass('osu-layout--mobile-app');
 
     this.init();
   }
 
   init = () => {
-    console.log('MainView::init')
+    console.log('MainView::init');
 
-    let sendTo = osu.parseJson('json-sendto');
-    let channel_id;
+    const sendTo = osu.parseJson('json-sendto');
+    let channelId: number;
 
     if (!_.isEmpty(sendTo)) {
-      let target: User = this.props.dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
-      let channel: Channel = this.props.dataStore.channelStore.findPM(target.id)
+      const target: User = this.props.dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
+      let channel: Channel = this.props.dataStore.channelStore.findPM(target.id);
 
       if (channel) {
-        channel_id = channel.channel_id;
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel_id));
+        channelId = channel.channelId;
+        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
       } else {
         channel = new Channel(-1);
         channel.newChannel = true;
-        channel.channel_id = -1;
+        channel.channelId = -1;
         channel.name = target.username;
         channel.icon = target.avatarUrl;
         channel.type = 'PM';
@@ -70,8 +70,11 @@ export default class MainView extends React.Component<any, any> {
       }
     } else {
       if (!_.isEmpty(this.props.presence)) {
-        channel_id = this.props.dataStore.channelStore.sortedByPresence[0].channel_id;
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel_id));
+        channelId = this.props.dataStore.channelStore.sortedByPresence[0].channelId;
+        console.log('presence sorted', this.props.dataStore.channelStore.sortedByPresence);
+        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
+      } else {
+        console.log('presence missing...');
       }
     }
 

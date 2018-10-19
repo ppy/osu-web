@@ -19,5 +19,5 @@
 import DispatcherAction from './actions/dispatcher-action';
 
 export default interface DispatchListener {
-  handleDispatchAction(action: DispatcherAction);
+  handleDispatchAction(action: DispatcherAction) : void;
 }

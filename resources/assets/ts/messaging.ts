@@ -71,12 +71,12 @@ if (window.WindowFocusObserver) {
   window.WindowFocusObserver = windowFocusObserver = new WindowFocusObserver(window, dispatcher);
 }
 
-reactTurbolinks.register('messaging', MainView, function () {
+reactTurbolinks.register('messaging', MainView, () => {
   return {
-    presence: osu.parseJson('json-presence'),
     dataStore: datastore,
-    dispatcher: dispatcher,
+    dispatcher,
     orchestrator: chatOrchestrator,
+    presence: osu.parseJson('json-presence'),
     worker: chatWorker,
-  }
+  };
 });

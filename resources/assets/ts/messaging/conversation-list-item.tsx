@@ -25,25 +25,29 @@ import RootDataStore from 'stores/root-data-store';
 @inject('dispatcher')
 @observer
 export default class ConversationListItem extends React.Component<any, {}> {
-  switch = (e) => {
-    e.preventDefault()
+  switch = (e: React.MouseEvent<HTMLElement> /* ??? */) => {
+    // console.log(e);
+    e.preventDefault();
 
-    if (this.props.dataStore.uiState.chat.selected != this.props.channel_id) {
+    if (this.props.dataStore.uiState.chat.selected !== this.props.channel_id) {
       this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channel_id));
     }
   }
 
   render(): React.ReactNode {
-    let dataStore: RootDataStore = this.props.dataStore;
-    let uiState = dataStore.uiState.chat;
-    let conversation = dataStore.channelStore.getOrCreate(this.props.channel_id);
-    let selected = this.props.channel_id == uiState.selected;
+    const dataStore: RootDataStore = this.props.dataStore;
+    const uiState = dataStore.uiState.chat;
+    const conversation = dataStore.channelStore.getOrCreate(this.props.channel_id);
+    const selected = this.props.channel_id === uiState.selected;
 
-    let className = 'messaging__conversation-list-item'
-    if (selected)
-      className += ' messaging__conversation-list-item--selected'
-    if (conversation.isUnread)
-      className += ' messaging__conversation-list-item--unread'
+    let className = 'messaging__conversation-list-item';
+    if (selected) {
+      className += ' messaging__conversation-list-item--selected';
+    }
+
+    if (conversation.isUnread) {
+      className += ' messaging__conversation-list-item--unread';
+    }
 
     return (
       <a href='#' className={className} onClick={this.switch}>
@@ -57,5 +61,3 @@ export default class ConversationListItem extends React.Component<any, {}> {
     );
   }
 }
-
-

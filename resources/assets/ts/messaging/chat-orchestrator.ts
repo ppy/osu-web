@@ -44,11 +44,11 @@ export default class ChatOrchestrator implements DispatchListener {
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
-      this.changeChannel(action.channel_id);
+      this.changeChannel(action.channelId);
     }
 
     if (action instanceof ChatChannelSwitchAction) {
-      this.changeChannel(action.channel_id);
+      this.changeChannel(action.channelId);
     }
 
     if (action instanceof WindowFocusAction) {
@@ -60,67 +60,68 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  changeChannel(channel_id: number) {
+  changeChannel(channelId: number) {
     let uiState = this.rootDataStore.uiState.chat;
-    if (channel_id == uiState.selected) {
+    if (channelId == uiState.selected) {
       return;
     }
 
     let channelStore = this.rootDataStore.channelStore;
     transaction(() => {
-      let channel = channelStore.getOrCreate(channel_id);
+      let channel = channelStore.getOrCreate(channelId);
 
       if (!channel.newChannel) {
         if (channel.loaded) {
-          this.markAsRead(channel_id);
+          this.markAsRead(channelId);
         } else {
-          console.log('loading', channel_id)
-          this.loadChannel(channel_id)
+          console.log('loading', channelId)
+          this.loadChannel(channelId)
             .then(() => {
               if (this.windowIsActive) {
-                this.markAsRead(channel_id);
+                this.markAsRead(channelId);
               }
             });
         }
       }
 
-      this.rootDataStore.uiState.chat.selected = channel_id;
+      this.rootDataStore.uiState.chat.selected = channelId;
     });
   }
 
   markAsRead(channel_id: number) {
     let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channel_id);
-    let last_read: number = channel.last_message_id;
+    let lastRead: number = channel.lastMessageId;
 
 
-    if (!last_read || channel.last_read_id >= last_read) {
+    if (!lastRead || channel.lastReadId >= lastRead) {
       console.log('markAsRead', 'up to date, doing nothing')
       return
     }
-    console.group('markAsRead', channel.channel_id, last_read, '=>', channel.last_read_id)
+    console.group('markAsRead', channel.channelId, lastRead, '=>', channel.lastReadId)
 
-    this.api.markAsRead(channel.channel_id, last_read)
+    this.api.markAsRead(channel.channelId, lastRead)
       .then(() => {
-        channel.last_read_id = last_read;
+        channel.lastReadId = lastRead;
       })
       .catch((err) => {
         console.log('error idk', err);
       })
   }
 
-  loadChannel(channel_id: number) {
-    let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channel_id);
+  loadChannel(channelId: number): Promise<void> {
+    let channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.loading) {
       console.log('loadChannel:: already loading', channel)
-      return;
+
+      return Promise.resolve();
     }
 
     channel.loading = true;
 
-    return this.api.getMessages(channel_id)
+    return this.api.getMessages(channelId)
       .then((messages) => {
-        this.addMessages(channel_id, messages);
+        this.addMessages(channelId, messages);
         channel.loading = false;
         channel.loaded = true;
       })
@@ -133,7 +134,7 @@ export default class ChatOrchestrator implements DispatchListener {
     let newMessages: Message[] = [];
 
     transaction(() => {
-      _.forEach(messages, (json) => {
+      _.forEach(messages, (json: MessageJSON) => {
         let newMessage: Message = Message.fromJSON(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         // newMessage.channel = this.rootDataStore.channelStore.getOrCreate(json.channel_id);
@@ -148,7 +149,7 @@ export default class ChatOrchestrator implements DispatchListener {
     console.log('ChatOrchestrator::sendMessage', message);
 
     let channel: Channel = message.channel;
-    let channel_id: number = channel.channel_id;
+    let channel_id: number = channel.channelId;
 
     if (channel.newChannel) {
       let users = channel.users.slice();
@@ -156,9 +157,13 @@ export default class ChatOrchestrator implements DispatchListener {
         return user != currentUser.id;
       });
 
+      if (!userId) {
+        return;
+      }
+
       console.log('api.createChannel(',userId,', ',message,')')
       this.api.createChannel(userId, message.content)
-        .then((response) => {
+        .then((response: JQueryPromise<any>) => {
           console.log('api.createChannel ->', response);
           let new_id = response.new_channel_id;
           transaction(() => {

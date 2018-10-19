@@ -24,26 +24,34 @@ import Message from 'models/chat/message';
 @inject('dataStore')
 @inject('dispatcher')
 export default class ChatInput extends React.Component<any, any> {
-  sendMessage(target) {
-    if (target.value == '')
-      return
+  sendMessage(messageText?: string) {
+    if (!messageText || messageText === '') {
+      return;
+    }
 
     let message: Message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
     message.channel = this.props.dataStore.channelStore.getOrCreate(this.props.dataStore.uiState.chat.selected);
-    message.content = target.value;
+    message.content = messageText;
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
-    target.value = ''
+    // messageText = '';
   }
 
-  buttonClicked = (e) => {
-    this.sendMessage($(e.currentTarget).parent().children('input')[0])
+  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
+    let target = $(e.currentTarget).parent().children('input')[0];
+    let message: string = target.nodeValue || '';
+    this.sendMessage(message);
+    target.nodeValue = '';
   }
 
-  checkIfEnterPressed = (e) => {
-    if (e.keyCode == 13)
-      this.sendMessage($(e.currentTarget)[0])
+  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode == 13) {
+      let target = $(e.currentTarget)[0];
+      let message: string = target.nodeValue || '';
+      this.sendMessage(message);
+      target.nodeValue = '';
+    }
   }
 
   render(): React.ReactNode {

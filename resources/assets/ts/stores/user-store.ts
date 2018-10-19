@@ -33,28 +33,26 @@ export default class UserStore implements DispatchListener {
     dispatcher.register(this);
   }
 
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    // whee
   }
 
   @action
-  getOrCreate(user_id: number, props?: UserJSON): User {
-    let user: User;
+  getOrCreate(userId: number, props?: UserJSON): User {
+    let user: User | undefined = this.users.get(userId);
 
-    if (!user_id) {
-      return;
+    // TODO: update from props if newer?
+    if (user && user.loaded) {
+      return user;
     }
 
-    if (this.users.has(user_id) && this.users.get(user_id).loaded) {
-      user = this.users.get(user_id);
+    if (props) {
+      user = User.fromJSON(props);
     } else {
-      if (props) {
-        user = User.fromJSON(props);
-      } else {
-        user = new User(user_id);
-      }
-      this.users.delete(user_id);
-      this.users.set(user_id, user);
+      user = new User(userId);
     }
+    // this.users.delete(userId);
+    this.users.set(userId, user);
 
     if (!user.loaded) {
       user.load();
