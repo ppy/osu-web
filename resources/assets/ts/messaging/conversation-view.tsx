@@ -21,6 +21,8 @@ import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
+import MessageDivider from './message-divider';
+import MessageGroup from './message-group';
 
 @inject('dataStore')
 @observer
@@ -30,7 +32,7 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.messaging__read-marker').length > 0 && false) {
+    if ($('.messaging__read-marker').length > 0 ) {
       $('.messaging__read-marker')[0].scrollIntoView();
     } else {
       $('.messaging__conversation').scrollTop($('.messaging__conversation')[0].scrollHeight);
@@ -79,47 +81,46 @@ export default class ConversationView extends React.Component<any, any> {
       return(<div className='messaging__conversation' />);
     }
 
-    const messageGroups: Array<Message[] | any> = [];
-    let group: Message[] = [];
-    let lastReadIndicatorShown = false;
+    const renderStack: JSX.Element[] = [];
+    let currentGroup: Message[] = [];
+    let lastReadIndicatorShown: boolean = false;
     let currentDay: number;
 
     _.each(channel.messages, (message: Message, key: number) => {
+      // check if the last read indicator needs to be shown
       if (!lastReadIndicatorShown && message.messageId > channel.lastReadId && message.sender.id !== currentUser.id) {
         lastReadIndicatorShown = true;
-        if (!_.isEmpty(group)) {
-          messageGroups.push(group);
+        if (!_.isEmpty(currentGroup)) {
+          renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          currentGroup = [];
         }
-        messageGroups.push({'READ_MARKER': message.timestamp});
-        group = [];
+        renderStack.push(<MessageDivider key={`read-${message.timestamp}`} type='READ_MARKER' timestamp={message.timestamp} />);
       }
 
-      if (_.isEmpty(messageGroups) || moment(message.timestamp).date() !== currentDay) {
-        if (!_.isEmpty(group)) {
-          messageGroups.push(group);
+      // check whether the day-change header needs to be shown
+      if (_.isEmpty(renderStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+        if (!_.isEmpty(currentGroup)) {
+          renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          currentGroup = [];
         }
-        messageGroups.push({'DAY_DIVIDER': message.timestamp});
+        renderStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
         currentDay = moment(message.timestamp).date();
-        group = [];
       }
 
-      if (_.isEmpty(group)) {
-        group = [message];
+      // add message to current message grouping if the sender is the same, otherwise create a new message grouping
+      if (_.isEmpty(currentGroup) || _.last(currentGroup).sender.id === message.sender.id) {
+        currentGroup.push(message);
       } else {
-        if (_.last(group).sender.id === message.sender.id) {
-          group = group.concat(message);
-        } else {
-          messageGroups.push(group);
-          group = [message];
-        }
+        renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+        currentGroup = [];
+        currentGroup.push(message);
       }
 
       if (key === channel.messages.length - 1) {
-        messageGroups.push(group);
+        renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
       }
     });
 
-    // console.log('MG', messageGroups);
     return (
       <div className='messaging__conversation'>
         {channel.newChannel &&
@@ -137,68 +138,8 @@ export default class ConversationView extends React.Component<any, any> {
           </div>
         }
 
-        {messageGroups.map((messageGroup) => {
-          let className = 'messaging__message-group';
-          if (messageGroup[0] && messageGroup[0].sender.id === currentUser.id) {
-            className += ' messaging__message-group--own';
-          }
+        {renderStack}
 
-          return (
-            <div key={osu.uuid()}>
-              {messageGroup['DAY_DIVIDER'] && // if
-                <div className='messaging__day-divider' key={`dd-${messageGroup['DAY_DIVIDER']}`}>{moment(messageGroup['DAY_DIVIDER']).format('LL')}</div>
-              }
-              {!messageGroup['DAY_DIVIDER'] && messageGroup['READ_MARKER'] && // else if
-                <div className='messaging__read-marker' key={`read-${messageGroup['READ_MARKER']}`} data-content='unread messages' />
-              }
-              {!messageGroup['DAY_DIVIDER'] && !messageGroup['READ_MARKER'] && messageGroup[0] && // else
-                <div className={className} key={messageGroup[0].uuid}>
-                  <div className='messaging__message-group-sender'>
-                    <a className='js-usercard' data-user-id={messageGroup[0].sender.id} data-tooltip-position='top center' href='#'>
-                      <img className='messaging__message-group-avatar' src={messageGroup[0].sender.avatarUrl} />
-                    </a>
-                    <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
-                      {messageGroup[0].sender.username}
-                    </div>
-                  </div>
-                  <div className='messaging__message-group-bubble'>
-                    {messageGroup.map((message: Message) => {
-                      let classes = 'messaging__message';
-                      let innerClasses;
-
-                      if (!message.persisted) {
-                        classes += ' messaging__message--sending';
-                      }
-
-                      if (message.isAction) {
-                        innerClasses = ' messaging__message-content--action';
-                      }
-
-                      return (
-                        <div className={classes} key={message.uuid}>
-                          <div className={`messaging__message-content${innerClasses ? innerClasses : ''}`}>
-                            {message.content}
-                            {!message.persisted && !message.errored &&
-                              <div className='messaging__message-sending'>
-                                <Spinner />
-                              </div>
-                            }
-                            {message.errored &&
-                              <div className='messaging__message-sending'>
-                                <i className='fas fa-times'/>
-                              </div>
-                            }
-                          </div>
-                          <div className='messaging__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              }
-            </div>
-          );
-        })}
         {!this.props.canMessage && false &&
           this.noCanSendMessage()
         }

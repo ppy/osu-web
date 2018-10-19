@@ -71,12 +71,13 @@ export default class Message {
   static fromJSON(json: MessageJSON): Message {
     const message = Object.create(Message.prototype);
     return Object.assign(message, {
-      channel_id: json.channel_id,
+      channelId: json.channel_id,
       content: json.content,
       isAction: json.is_action,
-      message_id: json.message_id,
+      messageId: json.message_id,
       persisted: true,
       timestamp: json.timestamp,
+      uuid: osu.uuid(),
     });
   }
 

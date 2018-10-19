@@ -111,7 +111,7 @@ export default class ChannelStore implements DispatchListener {
 
     this.getOrCreate(channelId).addMessages(messages);
 
-    const max: number = _.maxBy(messages, 'message_id').message_id;
+    const max: number = _.maxBy(messages, 'messageId').messageId;
 
     if (max > this.maxMessageId) {
       this.maxMessageId = max;

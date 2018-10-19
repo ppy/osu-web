@@ -57,14 +57,14 @@ export default class Channel {
   static fromJSON(json: ChannelJSON): Channel {
     const channel = Object.create(Channel.prototype);
     return Object.assign(channel, {
-      channel_id: json.channel_id,
+      channelId: json.channel_id,
       name: json.name,
       type: json.type,
 
       description: json.description,
       icon: json.icon,
-      last_message_id: json.last_message_id,
-      last_read_id: json.last_read_id,
+      lastMessageId: json.last_message_id,
+      lastReadId: json.last_read_id,
     });
   }
 
@@ -75,9 +75,11 @@ export default class Channel {
 
   @action
   addMessages(messages: Message | Message[], skipSort: boolean = false) {
+    // console.log('addMessages', messages);
     transaction(() => {
       this.messages = this.messages.concat(messages);
 
+      // console.log('messages length', this.messages.length);
       if (!skipSort) {
         this.resortMessages();
       }
@@ -94,7 +96,7 @@ export default class Channel {
     if (messageObject) {
       messageObject.update(message);
       if (messageObject.errored) {
-        messageObject.message_id = messageObject.uuid; // prevent from being culled by uniq sort thing
+        messageObject.messageId = messageObject.uuid; // prevent from being culled by uniq sort thing
       } else {
         messageObject.persist();
       }
@@ -108,14 +110,13 @@ export default class Channel {
   resortMessages() {
     let newMessages = this.messages.slice();
     newMessages = _.sortBy(newMessages, 'timestamp');
-    newMessages = _.uniqBy(newMessages, 'message_id');
+    newMessages = _.uniqBy(newMessages, 'messageId');
 
     this.messages = newMessages;
   }
 
   @action
   updatePresence = (presence: ChannelJSON) => {
-    console.log('Channel::updatePresence', presence);
     // this.channel_id = presence.channel_id;
     this.name = presence.name;
     this.description = presence.description;
