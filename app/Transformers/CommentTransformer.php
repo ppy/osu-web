@@ -20,10 +20,7 @@
 
 namespace App\Transformers;
 
-use App\Models\Beatmapset;
-use App\Models\Build;
 use App\Models\Comment;
-use App\Models\NewsPost;
 use League\Fractal;
 use Markdown;
 

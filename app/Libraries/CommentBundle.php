@@ -101,7 +101,6 @@ class CommentBundle
             $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
         }
 
-
         return $result;
     }
 
