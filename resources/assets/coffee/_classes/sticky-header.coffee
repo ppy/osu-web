@@ -41,13 +41,6 @@ class @StickyHeader
     document.getElementById('js-pinned-header')
 
 
-  @getHeaderBottom: (offset) ->
-    if StickyHeader.shouldPin(offset)
-      window._styles.header.heightSticky
-    else
-      window._styles.header.height
-
-
   @offsetForScrollTo: (offset) ->
     @headerHeight() + offset
 

@@ -184,9 +184,8 @@ class @Forum
 
     target = if postTop == 0 then 0 else post
 
-    # FIXME: post appears to be in the wrong offset on page load?
     $(window).stop().scrollTo target, 500,
-      offset: -StickyHeader.getHeaderBottom(postTop) - 68 # FIXME: less magic number
+      offset: if postTop == 0 then 0 else -(StickyHeader.offsetForScrollTo 68) # FIXME: less magic number
 
 
   initialScrollTo: =>
