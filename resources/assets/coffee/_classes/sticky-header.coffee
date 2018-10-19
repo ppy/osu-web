@@ -48,6 +48,10 @@ class @StickyHeader
       window._styles.header.height
 
 
+  @offsetForScrollTo: (offset) ->
+    @headerHeight() + offset
+
+
   @shouldPin: (offset = window.pageYOffset) ->
     offset > window._styles.header.height
 

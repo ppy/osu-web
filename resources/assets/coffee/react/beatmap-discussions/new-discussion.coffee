@@ -211,7 +211,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   cssTop: (sticky) =>
     return if !sticky || !@props.stickTo?.current?
-    @props.stickTo.current.getBoundingClientRect().height + StickyHeader.headerHeight()
+    StickyHeader.offsetForScrollTo(@props.stickTo.current.getBoundingClientRect().height)
 
 
   handleKeyDownCallback: (type, event) =>

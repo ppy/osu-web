@@ -336,7 +336,7 @@ class ProfilePage.Main extends React.PureComponent
           @modeScrollTimeout = Timeout.set 100, => @scrolling = false
       # count for the tabs height; assume pageJump always causes the header to be pinned
       # otherwise the calculation needs another phase and gets a bit messy.
-      offset: (StickyHeader.headerHeight() + pagesOffset[0].getBoundingClientRect().height) * -1
+      offset: -StickyHeader.offsetForScrollTo(pagesOffset[0].getBoundingClientRect().height)
 
 
   pageScan: =>
