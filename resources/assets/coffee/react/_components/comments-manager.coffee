@@ -19,6 +19,10 @@
 el = React.createElement
 
 class @CommentsManager extends React.PureComponent
+  @defaultProps =
+    additionalComments: []
+
+
   constructor: (props) ->
     super props
 
@@ -30,10 +34,16 @@ class @CommentsManager extends React.PureComponent
       commentBundle = osu.jsonClone(@props.commentBundle) ?
         osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
 
+      if @props.additionalComments.length > 0
+        additionalUsers = []
+        comments = osu.updateCollection commentBundle.comments, @props.additionalComments
+        additionalUsers.push(comment.user, comment.editor) for comment in @props.additionalComments
+        users = osu.updateCollection commentBundle.users, additionalUsers
+
       @state =
-        comments: commentBundle.comments
+        comments: comments ? commentBundle.comments
         userVotes: commentBundle.user_votes
-        users: commentBundle.users
+        users: users ? commentBundle.users
         topLevelCount: commentBundle.top_level_count
 
 
