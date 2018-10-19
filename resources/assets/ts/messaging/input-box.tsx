@@ -39,18 +39,18 @@ export default class InputBox extends React.Component<any, any> {
   }
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    const target = $(e.currentTarget).parent().children('input')[0];
-    const message: string = target.nodeValue || '';
+    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
+    const message: string = target.value || '';
     this.sendMessage(message);
-    target.nodeValue = '';
+    target.value = '';
   }
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      const target = $(e.currentTarget)[0];
-      const message: string = target.nodeValue || '';
+      const target = $(e.currentTarget)[0] as HTMLInputElement;
+      const message: string = target.value || '';
       this.sendMessage(message);
-      target.nodeValue = '';
+      target.value = '';
     }
   }
 
