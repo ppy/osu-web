@@ -110,7 +110,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   value: if @canPost() then @state.message else ''
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
-                  onFocus: @setSticky
+                  onFocus: @onFocus
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
@@ -240,6 +240,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         discussions: _.sortBy discussions, 'timestamp'
 
     @cache.nearbyDiscussions.discussions
+
+
+  onFocus: =>
+    @setSticky true
 
 
   parseTimestamp: (message) =>
