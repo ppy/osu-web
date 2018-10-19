@@ -23,7 +23,8 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
-  @_gutter-desktop: @gutter-desktop + 10px;
+  @_gutter-desktop-left: (@gutter-desktop + 10px);
+  @_gutter-desktop-right: @gutter-desktop;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
@@ -37,8 +38,8 @@
     padding-right: @gutter;
 
     @media @desktop {
-      padding-left: @_gutter-desktop;
-      padding-right: @_gutter-desktop;
+      padding-left: @_gutter-desktop-left;
+      padding-right: @_gutter-desktop-right;
     }
   }
 
@@ -96,7 +97,6 @@
   &__float-container {
     position: absolute;
     height: @_avatar;
-    width: @_gutter-desktop;
     top: 0;
     display: flex;
     align-items: center;
@@ -104,7 +104,8 @@
 
     &--left {
       justify-content: flex-end;
-      left: -@_gutter-desktop;
+      left: -@_gutter-desktop-left;
+      width: @_gutter-desktop-left;
 
       .@{_top}--top > & {
         left: 0;
@@ -113,7 +114,8 @@
 
     &--right {
       justify-content: flex-start;
-      right: -@_gutter-desktop;
+      right: -@_gutter-desktop-right;
+      width: @_gutter-desktop-right;
 
       .@{_top}--top > & {
         right: 0;
