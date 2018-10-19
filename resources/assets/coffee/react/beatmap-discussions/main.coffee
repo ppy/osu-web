@@ -127,6 +127,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
             mode: @state.currentMode
+            pinned: @state.pinnedNewDiscussion
+            setPinned: (pinned) => @setState pinnedNewDiscussion: pinned
             stickTo: @modeSwitcherRef
 
           el BeatmapDiscussions.Discussions,

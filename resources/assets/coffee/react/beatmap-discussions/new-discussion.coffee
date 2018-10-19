@@ -35,7 +35,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       timestamp: null
       timestampConfirmed: false
       posting: null
-      sticky: false
 
 
   componentDidMount: =>
@@ -54,7 +53,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   render: =>
     cssClasses = 'beatmap-discussion-new-float'
-    cssClasses += ' beatmap-discussion-new-float--pinned' if @state.sticky
+    cssClasses += ' beatmap-discussion-new-float--pinned' if @props.pinned
 
     div
       className: cssClasses
@@ -79,7 +78,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @props.currentUser.is_qat
 
     buttonCssClasses = 'btn-circle'
-    buttonCssClasses += ' btn-circle--activated' if @state.sticky
+    buttonCssClasses += ' btn-circle--activated' if @props.pinned
 
     div
       className: 'osu-page osu-page--small'
@@ -324,12 +323,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   setSticky: (sticky = true) =>
     @setState
       cssTop: @cssTop(sticky)
-      sticky: sticky
+
+    @props.setPinned?(sticky)
 
 
   setTop: =>
     @setState
-      cssTop: @cssTop(@state.sticky)
+      cssTop: @cssTop(@props.pinned)
 
 
   setTimestamp: (e) =>
@@ -359,7 +359,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   toggleSticky: =>
-    @setSticky(!@state.sticky)
+    @setSticky(!@props.pinned)
 
 
   toggleTimestampConfirmation: =>
