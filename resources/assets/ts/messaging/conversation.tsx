@@ -107,7 +107,7 @@ export default class Conversation extends React.Component<any, any> {
     let currentDay: number;
 
     _.each(channel.messages, (message: Message, key: number) => {
-      if (!lastReadIndicatorShown && message.message_id > channel.lastReadId && message.sender.id !== currentUser.id) {
+      if (!lastReadIndicatorShown && message.messageId > channel.lastReadId && message.sender.id !== currentUser.id) {
         lastReadIndicatorShown = true;
         if (!_.isEmpty(group)) {
           messageGroups.push(group);

@@ -162,8 +162,8 @@ export default class ChatOrchestrator implements DispatchListener {
       }
 
       console.log('api.createChannel(',userId,', ',message,')')
-      this.api.createChannel(userId, message.content)
-        .then((response: JQueryPromise<any>) => {
+      this.api.newConversation(userId, message.content)
+        .then((response) => {
           console.log('api.createChannel ->', response);
           let new_id = response.new_channel_id;
           transaction(() => {
@@ -173,10 +173,10 @@ export default class ChatOrchestrator implements DispatchListener {
           });
         });
     } else {
-      this.api.postMessage(channel_id, message.content)
+      this.api.sendMessage(channel_id, message.content)
         .then((updateJson) => {
           if (updateJson) {
-            message.message_id = updateJson.message_id;
+            message.messageId = updateJson.message_id;
           } else {
             message.errored = true;
           }

@@ -16,79 +16,68 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { MessageJSON } from 'models/chat/message';
-import { ChannelJSON } from 'models/chat/channel';
-
-export interface UpdateJSON {
-  presence: ChannelJSON[];
-  messages: MessageJSON[];
-}
+import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
-  // Route::post('messages/new', 'MessagesController@newConversation')->name('messages.new');
-  createChannel(userId: number, message: string): Promise<any> {
+  getMessages(channelId: number): Promise<ApiResponses.GetMessagesJSON> {
     return new Promise((resolve, reject) => {
-      $.post(laroute.route('chat.new'), {
-        target_id: userId,
-        message: message
-      }).done((r) => {
-        resolve(r)
-      }).fail((e) => {
-        reject(e)
+      $.get(laroute.route('chat.channels.messages.index', {channel_id: channelId}))
+        .done((response) => {
+          resolve(response as ApiResponses.GetMessagesJSON);
+        }).fail((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  getUpdates(since: number): Promise<ApiResponses.GetUpdatesJSON> {
+    return new Promise((resolve, reject) => {
+      $.get(laroute.route('chat.updates'),
+        {since: since}
+      ).done((response) => {
+        resolve(response as ApiResponses.GetUpdatesJSON);
+      }).fail((error) => {
+        reject(error);
       });
     });
   }
 
-  // Route::post('messages/channel/{channel_id}/mark-as-read', 'MessagesController@postMarkAsRead')->name('messages.mark-as-read');
-  markAsRead(channelId: number, messageId: number): Promise<null> {
+  markAsRead(channelId: number, messageId: number): Promise<ApiResponses.MarkAsReadJSON> {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: laroute.route('chat.channels.mark-as-read', {channel_id: channelId, message_id: messageId}),
         type: 'PUT'
-      }).done((r) => {
-        resolve(r);
-      }).fail((e) => {
-        reject(e)
+      }).done((response) => {
+        resolve(response as ApiResponses.MarkAsReadJSON);
+      }).fail((error) => {
+        reject(error)
       });
     });
   }
 
-  // Route::post('messages/{channel_id}', 'API\ChatController@postMessage')->name('messages.send');
-  postMessage(channelId: number, message: string): Promise<MessageJSON> {
+  newConversation(userId: number, message: string): Promise<ApiResponses.NewConversationJSON> {
+    return new Promise((resolve, reject) => {
+      $.post(laroute.route('chat.new'), {
+        target_id: userId,
+        message: message
+      }).done((response) => {
+        resolve(response as ApiResponses.NewConversationJSON)
+      }).fail((error) => {
+        reject(error)
+      });
+    });
+  }
+
+  sendMessage(channelId: number, message: string): Promise<ApiResponses.SendMessageJSON> {
     return new Promise((resolve, reject) => {
       $.post(laroute.route('chat.channels.messages.store', {channel_id: channelId}), {
         target_type: 'channel',
         target_id: channelId,
         message: message
-      }).done((r) => {
-        resolve(<MessageJSON>r);
-      }).fail((e) => {
-        reject(e);
-      });
-    });
-  }
-
-  // Route::get('messages/channel/{channel_id}', 'MessagesController@channel')->name('messages.channel');
-  getMessages(channelId: number): Promise<MessageJSON[]> {
-    return new Promise((resolve, reject) => {
-      $.get(laroute.route('chat.channels.messages.index', {channel_id: channelId}))
-        .done((data) => {
-          resolve(<MessageJSON[]>data);
-        }).fail((e) => {
-          reject(e);
-        });
-    });
-  }
-
-  // Route::get('messages/updates', 'MessagesController@getUpdates')->name('messages.updates');
-  getUpdates(since: number): Promise<UpdateJSON> {
-    return new Promise((resolve, reject) => {
-      $.get(laroute.route('chat.updates'),
-        {since: since}
-      ).done( (r) => {
-        resolve(<UpdateJSON>r);
-      }).fail((e) => {
-        reject(e);
+      }).done((response) => {
+        resolve(response as ApiResponses.SendMessageJSON);
+      }).fail((error) => {
+        reject(error);
       });
     });
   }

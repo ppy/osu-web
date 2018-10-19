@@ -117,7 +117,7 @@ export default class ChatWorker implements DispatchListener {
       }
 
       console.log('api.createChannel(', userId, ', ', message, ')');
-      this.api.createChannel(userId, message.content)
+      this.api.newConversation(userId, message.content)
         .then((response) => {
           console.log('api.createChannel ->', response);
           const newId = response.new_channel_id;
@@ -128,10 +128,10 @@ export default class ChatWorker implements DispatchListener {
           });
         });
     } else {
-      this.api.postMessage(channelId, message.content)
+      this.api.sendMessage(channelId, message.content)
         .then((updateJson) => {
           if (updateJson) {
-            message.message_id = updateJson.message_id;
+            message.messageId = updateJson.message_id;
           } else {
             message.errored = true;
           }

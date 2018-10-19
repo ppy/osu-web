@@ -31,7 +31,7 @@ export interface MessageJSON {
 }
 
 export default class Message {
-  @observable message_id: number;
+  @observable messageId: number;
   @observable uuid: string = osu.uuid();
   @observable channel: Channel;
   @observable sender: User;
@@ -48,7 +48,7 @@ export default class Message {
 
   @action
   update(message: Message): Message {
-    this.message_id = message.message_id;
+    this.messageId = message.messageId;
     this.channel = message.channel;
     this.content = message.content;
     this.timestamp = message.timestamp;
@@ -71,13 +71,12 @@ export default class Message {
   static fromJSON(json: MessageJSON): Message {
     const message = Object.create(Message.prototype);
     return Object.assign(message, {
-      message_id: json.message_id,
       channel_id: json.channel_id,
       content: json.content,
-      timestamp: json.timestamp,
       isAction: json.is_action,
-
+      message_id: json.message_id,
       persisted: true,
+      timestamp: json.timestamp,
     });
   }
 

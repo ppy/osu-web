@@ -44,19 +44,17 @@ export default class User {
   @observable isBot: boolean;
   @observable isOnline: boolean;
 
-  @observable data;
+  @observable data: UserJSON;
   @observable loaded: boolean = false;
 
   @observable pmFriendsOnly: boolean = false;
 
-  constructor(id?: number) {
-    // if (id) {
+  constructor(id: number) {
     this.id = id;
-    // }
   }
 
   load() {
-    //do stuff?;
+    // do stuff?;
     console.log('User.load called', this.id);
   }
 
@@ -75,25 +73,22 @@ export default class User {
     this.loaded =  true;
   }
 
-
   @action
   static fromJSON(json: UserJSON): User {
     const user = Object.create(User.prototype);
     user.data = JSON.stringify(json);
     return Object.assign(user, {
-      id: json.id,
-      username: json.username,
       avatarUrl: json.avatar_url,
-      profileColour: json.profile_colour,
       countryCode: json.country_code,
-
-      isSupporter: json.is_supporter,
+      id: json.id,
       isActive: json.is_active,
       isBot: json.is_bot,
       isOnline: json.is_online,
-      pmFriendsOnly: json.pm_friends_only,
-
+      isSupporter: json.is_supporter,
       loaded: true,
+      pmFriendsOnly: json.pm_friends_only,
+      profileColour: json.profile_colour,
+      username: json.username,
     });
   }
 
