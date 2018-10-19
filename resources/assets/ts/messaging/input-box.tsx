@@ -23,7 +23,7 @@ import Message from 'models/chat/message';
 
 @inject('dataStore')
 @inject('dispatcher')
-export default class ChatInput extends React.Component<any, any> {
+export default class InputBox extends React.Component<any, any> {
   sendMessage(messageText?: string) {
     if (!messageText || messageText === '') {
       return;

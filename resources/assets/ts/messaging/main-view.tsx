@@ -22,9 +22,9 @@ import DevTools from 'mobx-react-devtools';
 import Channel from 'models/chat/channel';
 import User from 'models/user';
 import * as React from 'react';
-import ChatInput from './chat-input';
 import Conversation from './conversation';
 import ConversationList from './conversation-list';
+import InputBox from './input-box';
 
 @observer
 export default class MainView extends React.Component<any, any> {
@@ -93,7 +93,7 @@ export default class MainView extends React.Component<any, any> {
           <ConversationList />
           <div className='messaging__conversation-window'>
             <Conversation />
-            <ChatInput />
+            <InputBox />
             <DevTools />
           </div>
         </div>
