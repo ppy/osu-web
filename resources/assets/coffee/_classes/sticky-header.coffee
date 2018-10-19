@@ -81,6 +81,6 @@ class @StickyHeader
   stickOrUnstick: =>
     return if @stickMarker.length == 0
     markerTop = @stickMarker[0].getBoundingClientRect().top
-    headerBottom = document.getElementById('js-pinned-header').getBoundingClientRect().bottom
+    headerBottom = document.getElementById('js-sticky-header').getBoundingClientRect().bottom
 
     @setVisible markerTop < headerBottom
