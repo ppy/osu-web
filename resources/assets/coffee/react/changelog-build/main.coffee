@@ -71,8 +71,8 @@ class ChangelogBuild.Main extends React.PureComponent
             className: 'builds__group builds__group--discussions'
             el CommentsManager,
               component: Comments
-              commentableId: @props.build.id
               commentableType: 'build'
+              commentableId: @props.build.id
               componentProps:
                 modifiers: ['changelog']
 

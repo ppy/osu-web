@@ -28,6 +28,13 @@ class CommentBundle
 {
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
+    const DEFAULT_SORT = 'new';
+
+    const SORTS = [
+        'new' => ['order' => 'DESC', 'columns' => ['created_at', 'id']],
+        'old' => ['order' => 'ASC', 'columns' => ['created_at', 'id']],
+        'top' => ['order' => 'DESC', 'columns' => ['votes_count_cache', 'created_at', 'id']],
+    ];
 
     public $depth;
     public $filterByParentId;
@@ -46,9 +53,14 @@ class CommentBundle
 
         $this->params = [
             'parent_id' => null,
-            'last_loaded_id' => null,
+            'cursor' => [
+                'created_at' => null,
+                'id' => null,
+                'votes_count' => null,
+            ],
             'limit' => static::DEFAULT_LIMIT,
             'page' => static::DEFAULT_PAGE,
+            'sort' => static::DEFAULT_SORT,
         ];
         $this->setParams($options['params'] ?? []);
 
@@ -63,10 +75,17 @@ class CommentBundle
 
     public function toArray()
     {
+        $hasMore = false;
+
         if (isset($this->comments)) {
             $comments = $this->comments;
         } else {
             $comments = $this->getComments($this->commentsQuery(), false);
+
+            if ($comments->count() > $this->params['limit']) {
+                $hasMore = true;
+                $comments->pop();
+            }
 
             $nestedComments = null;
 
@@ -84,12 +103,12 @@ class CommentBundle
 
         $comments = $comments->concat($this->additionalComments);
 
-        $users = $this->getUsers($comments);
-
         $result = [
             'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
+            'has_more' => $hasMore,
+            'has_more_id' => $this->params['parent_id'],
             'user_votes' => $this->getUserVotes($comments),
-            'users' => json_collection($users, 'UserCompact'),
+            'users' => json_collection($this->getUsers($comments), 'UserCompact'),
         ];
 
         if ($this->params['parent_id'] === null && $this->filterByParentId) {
@@ -129,8 +148,16 @@ class CommentBundle
         if (array_key_exists('parent_id', $input)) {
             $this->params['parent_id'] = get_int($input['parent_id']);
         }
-        if (array_key_exists('last_loaded_id', $input)) {
-            $this->params['last_loaded_id'] = get_int($input['last_loaded_id']);
+        if (array_key_exists('cursor', $input) && is_array($input['cursor'])) {
+            if (array_key_exists('created_at', $input['cursor'])) {
+                $this->params['cursor']['created_at'] = parse_time_to_carbon(get_string($input['cursor']['created_at']));
+            }
+            if (array_key_exists('id', $input['cursor'])) {
+                $this->params['cursor']['id'] = get_int($input['cursor']['id']);
+            }
+            if (array_key_exists('votes_count', $input['cursor'])) {
+                $this->params['cursor']['votes_count'] = get_int($input['cursor']['votes_count']);
+            }
         }
         if (array_key_exists('limit', $input)) {
             $this->params['limit'] = clamp(get_int($input['limit']), 1, 100);
@@ -138,14 +165,23 @@ class CommentBundle
         if (array_key_exists('page', $input)) {
             $this->params['page'] = max(get_int($input['page']), 1);
         }
+        if (array_key_exists($input['sort'] ?? null, static::SORTS)) {
+            $this->params['sort'] = $input['sort'];
+        }
     }
 
     public function getParams()
     {
         $params = [];
 
-        if ($this->params['last_loaded_id'] !== null) {
-            $params['last_loaded_id'] = $this->params['last_loaded_id'];
+        if ($this->params['cursor']['created_at'] !== null) {
+            $params['cursor']['created_at'] = json_time($input['cursor']['created_at']);
+        }
+        if ($this->params['cursor']['id'] !== null) {
+            $params['cursor']['id'] = $input['cursor']['id'];
+        }
+        if ($this->params['cursor']['votes_count'] !== null) {
+            $params['cursor']['votes_count'] = $input['cursor']['votes_count'];
         }
 
         if ($this->params['parent_id'] !== null) {
@@ -160,24 +196,47 @@ class CommentBundle
             $params['limit'] = $this->params['limit'];
         }
 
+        if ($this->params['sort'] !== static::DEFAULT_SORT) {
+            $params['sort'] = $this->params['sort'];
+        }
+
         return $params;
     }
 
     private function getComments($query, $isChildren = true)
     {
-        if (!$isChildren) {
-            // FIXME: This should be replaced with multi-column comparison
-            // which also includes the created_at, in line with actual ORDER BY
-            // used in the final query.
-            if ($this->params['last_loaded_id'] !== null) {
-                $query->where('id', '<', $this->params['last_loaded_id']);
-            }
+        $sort = static::SORTS[$this->params['sort']];
+        $queryLimit = $this->params['limit'];
 
+        if (!$isChildren) {
             if ($this->filterByParentId) {
                 $query->where(['parent_id' => $this->params['parent_id']]);
             }
 
-            $query->offset($this->params['limit'] * ($this->params['page'] - 1));
+            $queryLimit++;
+            $values = [];
+
+            foreach ($sort['columns'] as $column) {
+                $key = $column === 'votes_count_cache' ? 'votes_count' : $column;
+                $value = $this->params['cursor'][$key];
+                if (isset($value)) {
+                    $values[$column] = $value;
+                }
+            }
+
+            if (count($values) > 0 && count($values) === count($sort['columns'])) {
+                $direction = $sort['order'] === 'DESC' ? '<' : '>';
+                $key = implode(',', $sort['columns']);
+                foreach ($values as $value) {
+                    $bindingKeys[] = '?';
+                    $bindingValues[] = $value;
+                }
+                $bindingKey = implode(',', $bindingKeys);
+
+                $query->whereRaw("({$key}) {$direction} ({$bindingKey})", $bindingValues);
+            } else {
+                $query->offset($this->params['limit'] * ($this->params['page'] - 1));
+            }
         }
 
         if ($this->includeCommentableMeta) {
@@ -188,11 +247,11 @@ class CommentBundle
             $query->with('parent');
         }
 
-        return $query
-            ->orderBy('created_at', 'DESC')
-            ->orderBy('id', 'DESC')
-            ->limit($this->params['limit'])
-            ->get();
+        foreach ($sort['columns'] as $column) {
+            $query->orderBy($column, $sort['order']);
+        }
+
+        return $query->limit($queryLimit)->get();
     }
 
     private function getUserVotes($comments)
