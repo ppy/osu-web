@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki\Pages;
+namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Exception;
 
-class NormalPage extends BasePage
+class MarkdownPage extends Page
 {
     private $defaultTitle;
     private $defaultSubtitle;

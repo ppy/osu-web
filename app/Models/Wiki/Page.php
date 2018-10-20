@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki\Pages;
+namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
@@ -32,7 +32,7 @@ use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
 
-abstract class BasePage
+abstract class Page
 {
     // in minutes
     const REINDEX_AFTER = 300;
@@ -56,7 +56,7 @@ abstract class BasePage
             return config('osu.wiki.custom_pages')[$path];
         }
 
-        return NormalPage::class;
+        return MarkdownPage::class;
     }
 
     public static function searchIndexConfig($params = [])

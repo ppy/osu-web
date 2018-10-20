@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki\Pages;
+namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
@@ -29,7 +29,7 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use Symfony\Component\Yaml\Yaml;
 
-class MainPage extends BasePage
+class MainPage extends Page
 {
     private $env;
     private $converter;

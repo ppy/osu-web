@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
-use App\Models\Wiki\Pages\BasePage;
+use App\Models\Wiki;
 use Request;
 
 class WikiController extends Controller
@@ -43,7 +43,7 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        $pageClass = BasePage::getClass($path);
+        $pageClass = Wiki\Page::getClass($path);
         $page = new $pageClass($path, $this->locale());
 
         if ($page->page() === null) {
@@ -67,7 +67,7 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        $pageClass = BasePage::getPageClass($path);
+        $pageClass = Wiki\Page::getPageClass($path);
         (new $pageClass($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());

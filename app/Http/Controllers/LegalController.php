@@ -44,7 +44,7 @@ class LegalController extends Controller
         }
 
         return view('wiki.show', [
-            'page' => new Wiki\Pages\NormalPage($path, $this->locale()),
+            'page' => new Wiki\MarkdownPage($path, $this->locale()),
         ]);
     }
 }
