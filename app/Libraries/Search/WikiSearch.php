@@ -104,6 +104,9 @@ class WikiSearch extends RecordSearch
 
         return (new BoolQuery)
             ->must($langQuery)
-            ->must($matchQuery);
+            ->must($matchQuery)
+            ->mustNot(['match' => [
+                'queryable' => false,
+            ]]);
     }
 }

@@ -68,6 +68,11 @@ class MainPage extends Page
         }
     }
 
+    public function isQueryable()
+    {
+        return false;
+    }
+
     public function pageTemplate()
     {
         return 'wiki.main';

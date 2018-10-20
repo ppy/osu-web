@@ -143,6 +143,7 @@ abstract class Page
                 'path_clean' => null,
                 'title' => null,
                 'tags' => [],
+                'queryable' => null,
             ];
         } else {
             $params['body'] = [
@@ -153,6 +154,7 @@ abstract class Page
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
                 'tags' => $this->tags(),
+                'queryable' => $this->isQueryable(),
             ];
         }
 
@@ -180,6 +182,11 @@ abstract class Page
     {
         return $this->locale !== config('app.fallback_locale')
             && ($this->page()['header']['legal'] ?? false);
+    }
+
+    public function isQueryable()
+    {
+        return true;
     }
 
     public function page()
