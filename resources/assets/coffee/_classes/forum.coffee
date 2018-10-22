@@ -182,12 +182,13 @@ class @Forum
               else
                 $(post).offset().top
 
-    target = if postTop == 0 then 0 else post
+    target = if postTop == 0
+               0
+             else
+               postTop - StickyHeader.offsetForScrollTo(68)
 
-    # FIXME: target is off by the size of the sub sticky header on first load
-    # if load more is present on the top.
-    $(window).stop().scrollTo target, 500,
-      offset: if postTop == 0 then 0 else -(StickyHeader.offsetForScrollTo 68) # FIXME: less magic number
+    # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
+    window.scrollTo window.pageXOffset, target
 
 
   initialScrollTo: =>
