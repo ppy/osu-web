@@ -27,10 +27,10 @@
         {{-- TODO: Need a better way to handle this while keeps the padding in the container element --}}
         @if (View::hasSection('sticky-header-breadcrumbs') || View::hasSection('sticky-header-content'))
             <div class="sticky-header__body">
-                <div id="js-sticky-header-breadcrumbs" class="sticky-header__breadcrumbs">
+                <div class="js-sticky-header-breadcrumbs sticky-header__breadcrumbs">
                     @yield('sticky-header-breadcrumbs')
                 </div>
-                <div id="js-sticky-header-content" class="sticky-header__content">
+                <div class="js-sticky-header-content sticky-header__content">
                     @yield('sticky-header-content')
                 </div>
             </div>

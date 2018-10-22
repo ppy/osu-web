@@ -20,17 +20,18 @@
 # How to use:
 # 1. render content into 'js-sticky-header-content' and 'js-sticky-header-breadcrumbs'
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
-
-header = document.getElementsByClassName('js-pinned-header')
-sticky = document.getElementsByClassName('js-pinned-header-sticky')
-
 class @StickyHeader
+  header = document.getElementsByClassName('js-pinned-header')
+  sticky = document.getElementsByClassName('js-pinned-header-sticky')
+  stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
+  stickyContent = document.getElementsByClassName('js-sticky-header-content')
+
   @breadcrumbsElement: ->
-    document.getElementById('js-sticky-header-breadcrumbs')
+    stickyBreadcrumbs[0]
 
 
   @contentElement: ->
-    document.getElementById('js-sticky-header-content')
+    stickyContent[0]
 
 
   @headerHeight: ->
