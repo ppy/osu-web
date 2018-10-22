@@ -51,7 +51,6 @@ class @StickyHeader
 
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
-    @visible = false
 
     $(window).on 'throttled-scroll', @applyCss
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
@@ -68,9 +67,6 @@ class @StickyHeader
 
 
   setVisible: (visible) ->
-    return if @visible == visible
-
-    @visible = visible
     if visible
       Fade.in sticky[0]
     else
