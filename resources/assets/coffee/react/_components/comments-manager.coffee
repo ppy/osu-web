@@ -58,8 +58,10 @@ class @CommentsManager extends React.PureComponent
     componentProps = _.assign {}, @props.componentProps, @state
     componentProps.userVotesByCommentId = _.keyBy @state.userVotes
     componentProps.usersById = _.keyBy(@state.users ? [], 'id')
-    componentProps.commentableMetaById = _.keyBy @state.commentableMeta ? [], (item) ->
-      "#{item.type ? ''}-#{item.id ? ''}"
+    componentProps.commentableMetaById = _(@state.commentableMeta ? [])
+      .filter (item) -> item?
+      .keyBy (item) -> "#{item.type ? ''}-#{item.id ? ''}"
+      .value()
     componentProps.sortedComments = _(@state.comments ? [])
       .uniqBy('id')
       .orderBy(['created_at', 'id'], ['desc', 'desc'])
@@ -72,18 +74,14 @@ class @CommentsManager extends React.PureComponent
     @setState
       comments: osu.updateCollection @state.comments, comments.comments
       users: osu.updateCollection @state.users, comments.users
-      commentableMeta: osu.updateCollection @state.commentableMeta, comments.commentable_meta
+      commentableMeta: _.concat @state.commentableMeta, comments.commentable_meta
 
 
   update: (_event, {comment}) =>
-    newState =
+    @setState
       comments: osu.updateCollection @state.comments, [comment]
       users: osu.updateCollection @state.users, [comment.user, comment.editor]
-
-    if comment.commentable_meta?
-      newState.commentableMeta = osu.updateCollection @state.commentableMeta, [comment.commentable_meta]
-
-    @setState newState
+      commentableMeta = _.concat @state.commentableMeta, [comment.commentable_meta]
 
 
   addVote: (_event, {id}) =>
