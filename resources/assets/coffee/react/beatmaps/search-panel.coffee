@@ -23,17 +23,21 @@ class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @inputRef = React.createRef()
+    @pinnedInputRef = React.createRef()
+
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
 
 
   componentDidMount: =>
-    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @turbolinksBeforeCache
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmaps-search-cache'
-    @debouncedSubmit.cancel()
+    $(document).off '.search-panel'
+    @turbolinksBeforeCache()
 
 
   render: =>
@@ -77,6 +81,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         className: 'beatmapsets-search__input-container'
         input
           className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @pinnedInputRef
           type: 'textbox'
           name: 'search'
           placeholder: osu.trans('beatmaps.listing.search.prompt')
@@ -147,6 +152,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div className: 'beatmapsets-search__input-container',
         input
           className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @inputRef
           type: 'textbox'
           name: 'search'
           placeholder: osu.trans('beatmaps.listing.search.prompt')
@@ -197,6 +203,18 @@ class Beatmaps.SearchPanel extends React.PureComponent
         @renderFilter
           name: 'played'
           options: filters.played
+
+
+  turbolinksBeforeCache: =>
+    $(document).off '.beatmaps-search-cache'
+    @debouncedSubmit.cancel()
+
+
+  setHeaderPinned: (_event, pinned) =>
+    if pinned && document.activeElement == @inputRef.current
+      @pinnedInputRef.current.focus()
+    else if !pinned && document.activeElement == @pinnedInputRef.current
+      @inputRef.current.focus()
 
 
   submit: (e) =>

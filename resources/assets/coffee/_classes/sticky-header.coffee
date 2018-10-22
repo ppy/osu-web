@@ -48,13 +48,15 @@ class @StickyHeader
 
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
+    @visible = false
 
-    $(window).on 'throttled-scroll', @applyCss
+    $(window).on 'throttled-scroll', @pin
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+    $(document).on 'turbolinks:load', () => @visible = false
 
 
-  applyCss: =>
+  pin: =>
     return unless header[0]?
 
     if @shouldPin()
@@ -63,11 +65,16 @@ class @StickyHeader
       document.body.classList.remove 'js-header-is-pinned'
 
 
-  setVisible: (visible) ->
+  setVisible: (visible) =>
+    return if @visible == visible
+
+    @visible = visible
     if visible
       Fade.in sticky[0]
     else
       Fade.out sticky[0]
+
+    $(document).trigger 'sticky-header:sticking', [visible]
 
 
   shouldPin: (offset = window.pageYOffset) =>
