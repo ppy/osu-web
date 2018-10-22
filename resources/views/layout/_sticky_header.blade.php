@@ -17,8 +17,7 @@
 --}}
 
 
-<div id="js-sticky-header"
-     class="sticky-header js-sync-height--reference"
+<div class="js-pinned-header-sticky sticky-header js-sync-height--reference"
      data-sync-height-target="sticky-header"
      data-visibility="hidden"
 >

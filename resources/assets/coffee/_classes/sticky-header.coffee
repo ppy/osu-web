@@ -20,6 +20,10 @@
 # How to use:
 # 1. render content into 'js-sticky-header-content' and 'js-sticky-header-breadcrumbs'
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
+
+header = document.getElementsByClassName('js-pinned-header')
+sticky = document.getElementsByClassName('js-pinned-header-sticky')
+
 class @StickyHeader
   @breadcrumbsElement: ->
     document.getElementById('js-sticky-header-breadcrumbs')
@@ -35,10 +39,6 @@ class @StickyHeader
       styles.heightMobile
     else
       styles.heightSticky
-
-
-  @getHeader: ->
-    document.getElementById('js-pinned-header')
 
 
   @offsetForScrollTo: (offset) ->
@@ -59,8 +59,7 @@ class @StickyHeader
 
 
   applyCss: ->
-    header = StickyHeader.getHeader()
-    return unless header?
+    return unless header[0]?
 
     if StickyHeader.shouldPin()
       document.body.classList.add 'js-header-is-pinned'
@@ -73,14 +72,14 @@ class @StickyHeader
 
     @visible = visible
     if visible
-      Fade.in document.getElementById('js-sticky-header')
+      Fade.in sticky[0]
     else
-      Fade.out document.getElementById('js-sticky-header')
+      Fade.out sticky[0]
 
 
   stickOrUnstick: =>
-    return if @stickMarker.length == 0
+    return unless @stickMarker.length > 0 && sticky[0]?
     markerTop = @stickMarker[0].getBoundingClientRect().top
-    headerBottom = StickyHeader.offsetForScrollTo(document.getElementById('js-sticky-header').getBoundingClientRect().height)
+    headerBottom = StickyHeader.offsetForScrollTo(sticky[0].getBoundingClientRect().height)
 
     @setVisible markerTop < headerBottom

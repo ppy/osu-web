@@ -24,8 +24,8 @@
     <div class="nav2-header-legacy-padding"></div>
 @endif
 <div
-    id="js-pinned-header"
     class="
+    js-pinned-header
     hidden-xs
     no-print
     nav2-header
