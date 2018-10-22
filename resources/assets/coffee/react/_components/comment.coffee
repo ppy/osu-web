@@ -50,7 +50,7 @@ class @Comment extends React.PureComponent
 
 
   render: =>
-    children = @props.childrenArray ? @props.commentsByParentId?[@props.comment.id] ? []
+    children = @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
     parent = @props.comment.parent ? @props.parent
 
@@ -218,20 +218,17 @@ class @Comment extends React.PureComponent
       if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          if @props.children?
-            @props.children
-          else
-            for comment in children
-              el Comment,
-                key: comment.id
-                comment: comment
-                commentsByParentId: @props.commentsByParentId
-                usersById: @props.usersById
-                userVotesByCommentId: @props.userVotesByCommentId
-                commentableMetaById: @props.commentableMetaById
-                depth: @props.depth + 1
-                parent: @props.comment
-                modifiers: @props.modifiers
+          for comment in children
+            el Comment,
+              key: comment.id
+              comment: comment
+              commentsByParentId: @props.commentsByParentId
+              usersById: @props.usersById
+              userVotesByCommentId: @props.userVotesByCommentId
+              commentableMetaById: @props.commentableMetaById
+              depth: @props.depth + 1
+              parent: @props.comment
+              modifiers: @props.modifiers
 
           if children.length < @props.comment.replies_count
             lastCommentId = _.last(children)?.id

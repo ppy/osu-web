@@ -37,22 +37,14 @@ class CommentsShow.Main extends React.PureComponent
       div className: 'osu-page osu-page--comment',
         el Comment,
           comment: mainComment
+          parent: @props.comment.parent
           usersById: @props.usersById
           userVotesByCommentId: @props.userVotesByCommentId
           commentableMetaById: @props.commentableMetaById
+          commentsByParentId: commentsByParentId
           showCommentableMeta: true
           depth: 0
-          childrenArray: children
           linkParent: true
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              parent: mainComment
-              commentsByParentId: commentsByParentId
-              userVotesByCommentId: @props.userVotesByCommentId
-              usersById: @props.usersById
-              depth: 1
 
 
   renderHeaderTabs: =>
