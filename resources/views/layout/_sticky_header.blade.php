@@ -20,6 +20,7 @@
 <div class="js-pinned-header-sticky sticky-header js-sync-height--reference"
      data-sync-height-target="sticky-header"
      data-visibility="hidden"
+     data-visibility-animation="none"
 >
     <div class="osu-page">
         {{-- Workaround to remove empty block with padding --}}
