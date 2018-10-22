@@ -45,10 +45,6 @@ class @StickyHeader
     @headerHeight() + offset
 
 
-  @shouldPin: (offset = window.pageYOffset) ->
-    offset > window._styles.header.height
-
-
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-header')
 
@@ -57,10 +53,10 @@ class @StickyHeader
     $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
 
 
-  applyCss: ->
+  applyCss: =>
     return unless header[0]?
 
-    if StickyHeader.shouldPin()
+    if @shouldPin()
       document.body.classList.add 'js-header-is-pinned'
     else
       document.body.classList.remove 'js-header-is-pinned'
@@ -73,9 +69,20 @@ class @StickyHeader
       Fade.out sticky[0]
 
 
-  stickOrUnstick: =>
+  shouldPin: (offset = window.pageYOffset) =>
+    offset > window._styles.header.height || @shouldStick()
+
+
+  shouldStick: =>
     return unless @stickMarker.length > 0 && sticky[0]?
     markerTop = @stickMarker[0].getBoundingClientRect().top
     headerBottom = StickyHeader.offsetForScrollTo(sticky[0].getBoundingClientRect().height)
 
-    @setVisible markerTop < headerBottom
+    markerTop < headerBottom
+
+
+  stickOrUnstick: =>
+    visible = @shouldStick() # undefined when elements don't exist
+    return unless visible?
+
+    @setVisible visible
