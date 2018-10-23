@@ -35,6 +35,11 @@
     display: block;
     height: @nav2-height--pinned + @offset;
     margin: -(@nav2-height--pinned + @offset) 0 0;
+
+    @media @mobile {
+      height: @navbar-height + @offset;
+      margin: -(@navbar-height + @offset) 0 0;
+    }
   }
 }
 
