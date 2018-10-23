@@ -26,27 +26,40 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @inputRef = React.createRef()
     @pinnedInputRef = React.createRef()
 
+    # containers for React to render portal into; turbolinks and React portals
+    # don't play well together, otherwise. These aren't needed without turbolinks.
+    @breadcrumbsPortal = document.createElement('div')
+    @contentPortal = document.createElement('div')
+
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
+    @breadcrumbsElement = StickyHeader.breadcrumbsElement()
+    @contentElement = StickyHeader.contentElement()
 
 
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
-    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @turbolinksBeforeCache
+    $(document).on 'turbolinks:before-cache.search-panel', () =>
+      # componentWillUnmount is called too late for Beatmaps.
+      @breadcrumbsElement.removeChild @breadcrumbsPortal
+      @contentElement.removeChild @contentPortal
+
+    @breadcrumbsElement.appendChild @breadcrumbsPortal
+    @contentElement.appendChild @contentPortal
 
 
   componentWillUnmount: =>
     $(document).off '.search-panel'
-    @turbolinksBeforeCache()
+    @debouncedSubmit.cancel()
 
 
   render: =>
     div null,
       if StickyHeader.breadcrumbsElement()?
-        ReactDOM.createPortal @renderBreadcrumbs(), StickyHeader.breadcrumbsElement()
+        ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
 
       if StickyHeader.contentElement()?
-        ReactDOM.createPortal @renderStickyContent(), StickyHeader.contentElement()
+        ReactDOM.createPortal @renderStickyContent(), @contentPortal
 
       div
         className: 'osu-page osu-page--beatmapsets-search-header'
@@ -203,11 +216,6 @@ class Beatmaps.SearchPanel extends React.PureComponent
         @renderFilter
           name: 'played'
           options: filters.played
-
-
-  turbolinksBeforeCache: =>
-    $(document).off '.beatmaps-search-cache'
-    @debouncedSubmit.cancel()
 
 
   setHeaderPinned: (_event, pinned) =>
