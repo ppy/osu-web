@@ -24,7 +24,7 @@ class @StickyHeader
   constructor: ->
     @header = document.getElementsByClassName('js-pinned-header')
     @marker = document.getElementsByClassName('js-sticky-header')
-    @sticky = document.getElementsByClassName('js-pinned-header-sticky')
+    @pinnedSticky = document.getElementsByClassName('js-pinned-header-sticky')
     @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
@@ -62,7 +62,7 @@ class @StickyHeader
   scrollOffset: (orig) ->
     # just assume scroll will always try to go to a position that causes sticky to show.
     # TODO: don't assume.
-    stickyHeight = if @sticky[0]? then @sticky[0].getBoundingClientRect().height else 0
+    stickyHeight = if @pinnedSticky[0]? then @pinnedSticky[0].getBoundingClientRect().height else 0
     Math.max(0, orig - @headerHeight() - stickyHeight)
 
 
@@ -71,9 +71,9 @@ class @StickyHeader
 
     @visible = visible
     if visible
-      Fade.in @sticky[0]
+      Fade.in @pinnedSticky[0]
     else
-      Fade.out @sticky[0]
+      Fade.out @pinnedSticky[0]
 
     $(document).trigger 'sticky-header:sticking', [visible]
 
@@ -83,9 +83,9 @@ class @StickyHeader
 
 
   shouldStick: =>
-    return unless @marker.length > 0 && @sticky[0]?
+    return unless @marker.length > 0 && @pinnedSticky[0]?
     markerTop = @marker[0].getBoundingClientRect().top
-    headerBottom = @headerHeight() + @sticky[0].getBoundingClientRect().height
+    headerBottom = @headerHeight() + @pinnedSticky[0].getBoundingClientRect().height
 
     markerTop < headerBottom
 
