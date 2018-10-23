@@ -95,7 +95,7 @@ class @CommentsManager extends React.PureComponent
 
 
   jsonStorageId: =>
-    "json-comments-manager-state-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}"
+    "json-comments-manager-state-#{@props.commentableType}-#{@props.commentableId}"
 
 
   saveState: =>
