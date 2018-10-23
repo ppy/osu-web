@@ -182,13 +182,10 @@ class @Forum
               else
                 $(post).offset().top
 
-    target = if postTop == 0
-               0
-             else
-               postTop - StickyHeader.offsetForScrollTo(68)
+    postTop = StickyHeader.scrollOffset(postTop) if postTop != 0
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
-    window.scrollTo window.pageXOffset, target
+    window.scrollTo window.pageXOffset, postTop
 
 
   initialScrollTo: =>

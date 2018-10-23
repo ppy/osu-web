@@ -42,8 +42,10 @@ class @StickyHeader
       styles.heightSticky
 
 
-  @offsetForScrollTo: (offset) ->
-    @headerHeight() + offset
+  @scrollOffset: (orig) ->
+    # just assume scroll will always try to go to a position that causes sticky to show.
+    # TODO: don't assume.
+    Math.max(0, orig - @headerHeight() - sticky[0].getBoundingClientRect().height)
 
 
   constructor: ->
@@ -84,7 +86,7 @@ class @StickyHeader
   shouldStick: =>
     return unless @stickMarker.length > 0 && sticky[0]?
     markerTop = @stickMarker[0].getBoundingClientRect().top
-    headerBottom = StickyHeader.offsetForScrollTo(sticky[0].getBoundingClientRect().height)
+    headerBottom = StickyHeader.headerHeight() + sticky[0].getBoundingClientRect().height
 
     markerTop < headerBottom
 

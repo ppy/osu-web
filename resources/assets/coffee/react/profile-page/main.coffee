@@ -323,7 +323,11 @@ class ProfilePage.Main extends React.PureComponent
     @scrolling = true
     Timeout.clear @modeScrollTimeout
 
-    $(window).stop().scrollTo target, 500,
+    # count for the tabs height; assume pageJump always causes the header to be pinned
+    # otherwise the calculation needs another phase and gets a bit messy.
+    offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
+
+    $(window).stop().scrollTo StickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -334,9 +338,6 @@ class ProfilePage.Main extends React.PureComponent
           # - simple variable in callback
           # Both still change the switch too soon.
           @modeScrollTimeout = Timeout.set 100, => @scrolling = false
-      # count for the tabs height; assume pageJump always causes the header to be pinned
-      # otherwise the calculation needs another phase and gets a bit messy.
-      offset: -StickyHeader.offsetForScrollTo(pagesOffset[0].getBoundingClientRect().height)
 
 
   pageScan: =>
