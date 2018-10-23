@@ -36,6 +36,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @breadcrumbsElement = StickyHeader.breadcrumbsElement()
     @contentElement = StickyHeader.contentElement()
 
+    @state =
+      query: @props.filters.query
+
 
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
@@ -46,6 +49,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
     @breadcrumbsElement.appendChild @breadcrumbsPortal
     @contentElement.appendChild @contentPortal
+
+
+  componentDidUpdate: (prevProps, prevState) =>
+    @debouncedSubmit @state.query if prevState.query != @state.query
 
 
   componentWillUnmount: =>
@@ -97,9 +104,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
           ref: @pinnedInputRef
           type: 'textbox'
           name: 'search'
+          onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          onInput: @onInput
-          defaultValue: @props.filters.query
+          value: @state.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -116,9 +123,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
           showTitle: false
 
 
-  onInput: (event) =>
-    event.persist()
-    @debouncedSubmit event
+  onChange: (event) =>
+    @setState
+      query: event.target.value
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
@@ -168,9 +175,9 @@ class Beatmaps.SearchPanel extends React.PureComponent
           ref: @inputRef
           type: 'textbox'
           name: 'search'
+          onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          onInput: @onInput
-          defaultValue: @props.filters.query
+          value: @state.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -225,12 +232,5 @@ class Beatmaps.SearchPanel extends React.PureComponent
       @inputRef.current.focus()
 
 
-  submit: (e) =>
-    text = e.target.value.trim()
-
-    if text == @prevText
-      return
-
-    @prevText = text
-
-    $(document).trigger 'beatmap:search:filtered', query: text
+  submit: (query) ->
+    $(document).trigger 'beatmap:search:filtered', query: query.trim()
