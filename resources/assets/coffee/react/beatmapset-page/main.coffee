@@ -207,9 +207,8 @@ class BeatmapsetPage.Main extends React.Component
         div className: 'osu-page osu-page--generic-compact',
           el CommentsManager,
             component: Comments
-            componentProps:
-              commentableType: 'beatmapset'
-              commentableId: @props.beatmapset.id
+            commentableType: 'beatmapset'
+            commentableId: @props.beatmapset.id
 
 
   saveStateToContainer: =>
