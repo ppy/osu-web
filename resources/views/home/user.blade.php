@@ -30,37 +30,34 @@
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
-                @if (!empty($news))
-                    @foreach ($news as $post)
-                        @if ($loop->iteration > 3)
-                            @break
-                        @endif
 
-                        @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
-                    @endforeach
-
-                    @if (count($news) > 3)
-                        <div class="user-home__news-posts-group">
-                            @foreach ($news as $post)
-                                @if ($loop->iteration <= 3)
-                                    @continue
-                                @endif
-
-                                @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
-                            @endforeach
-                        </div>
+                @foreach ($news as $post)
+                    @if ($loop->iteration > 3)
+                        @break
                     @endif
 
-                    @if (count($news) > 8)
-                        <a
-                            href="{{ route('news.index') }}"
-                            class="user-home__news-posts-group user-home__news-posts-group--more"
-                        >
-                            {{ trans('common.buttons.see_more') }}
-                        </a>
-                    @endif
-                @else
-                    <div class="user-home__news-fetch-error">{{trans('home.user.news.error')}}</div>
+                    @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
+                @endforeach
+
+                @if (count($news) > 3)
+                    <div class="user-home__news-posts-group">
+                        @foreach ($news as $post)
+                            @if ($loop->iteration <= 3)
+                                @continue
+                            @endif
+
+                            @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
+                        @endforeach
+                    </div>
+                @endif
+
+                @if (count($news) > App\Models\NewsPost::DASHBOARD_LIMIT)
+                    <a
+                        href="{{ route('news.index') }}"
+                        class="user-home__news-posts-group user-home__news-posts-group--more"
+                    >
+                        {{ trans('common.buttons.see_more') }}
+                    </a>
                 @endif
             </div>
             <div class="user-home__right-sidebar">

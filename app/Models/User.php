@@ -777,6 +777,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id');
     }
 
+    public function clients()
+    {
+        return $this->hasMany(UserClient::class, 'user_id');
+    }
+
     public function favourites()
     {
         return $this->hasMany(FavouriteBeatmapset::class, 'user_id');
@@ -1152,7 +1157,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $hyped = $this
                 ->beatmapDiscussions()
-                ->withoutDeleted()
+                ->withoutTrashed()
                 ->ofType('hype')
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
@@ -1168,7 +1173,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $earliestWeeklyHype = $this
                 ->beatmapDiscussions()
-                ->withoutDeleted()
+                ->withoutTrashed()
                 ->ofType('hype')
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->orderBy('created_at')
