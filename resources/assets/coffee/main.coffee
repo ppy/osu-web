@@ -40,6 +40,7 @@ $(document).on 'turbolinks:load', ->
 @currentUserObserver ?= new CurrentUserObserver
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @syncHeight ?= new SyncHeight
+@stickyHeader ?= new StickyHeader
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
@@ -73,7 +74,6 @@ $(document).on 'turbolinks:load', ->
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault

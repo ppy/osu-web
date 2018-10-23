@@ -332,7 +332,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
       offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo StickyHeader.scrollOffset(offsetTop), 500
+      $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500
 
     @update null, newState
 

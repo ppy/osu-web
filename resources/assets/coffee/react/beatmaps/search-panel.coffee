@@ -33,8 +33,8 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
-    @breadcrumbsElement = StickyHeader.breadcrumbsElement()
-    @contentElement = StickyHeader.contentElement()
+    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
+    @contentElement = window.stickyHeader.contentElement()
 
     @state =
       query: @props.filters.query
@@ -62,10 +62,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   render: =>
     div null,
-      if StickyHeader.breadcrumbsElement()?
+      if window.stickyHeader.breadcrumbsElement()?
         ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
 
-      if StickyHeader.contentElement()?
+      if window.stickyHeader.contentElement()?
         ReactDOM.createPortal @renderStickyContent(), @contentPortal
 
       div
