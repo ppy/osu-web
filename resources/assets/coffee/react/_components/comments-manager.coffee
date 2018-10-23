@@ -32,7 +32,7 @@ class @CommentsManager extends React.PureComponent
 
     if !@state?
       commentBundle = osu.jsonClone(@props.commentBundle) ?
-        osu.parseJson("json-comments-#{@props.componentProps?.commentableType}-#{@props.componentProps?.commentableId}")
+        osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
       @state =
         comments: comments ? commentBundle.comments ? []
