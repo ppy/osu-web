@@ -161,7 +161,7 @@ abstract class Search extends HasSearch implements Queryable
      */
     public function searchAfter(?array $searchAfter)
     {
-        $this->searchAfter = $searchAfter;
+        $this->params->searchAfter = $searchAfter;
 
         return $this;
     }
