@@ -81,7 +81,7 @@ class @CommentsManager extends React.PureComponent
     @setState
       comments: osu.updateCollection @state.comments, [comment]
       users: osu.updateCollection @state.users, [comment.user, comment.editor]
-      commentableMeta = _.concat @state.commentableMeta, [comment.commentable_meta]
+      commentableMeta: _.concat @state.commentableMeta, [comment.commentable_meta]
 
 
   addVote: (_event, {id}) =>
