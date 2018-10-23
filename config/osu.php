@@ -69,11 +69,12 @@ return [
         'account' => 'accounts@ppy.sh',
     ],
     'forum' => [
-        'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
+        'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
-        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
+        'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
-        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS', 200)),
+        'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
+        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
 
         'necropost_months' => 6,
 
