@@ -56,6 +56,8 @@ class @CommentsManager extends React.PureComponent
 
   render: =>
     componentProps = _.assign {}, @props.componentProps, @state
+    componentProps.commentableType = @props.commentableType
+    componentProps.commentableId = @props.commentableId
     componentProps.userVotesByCommentId = _.keyBy @state.userVotes
     componentProps.usersById = _.keyBy(@state.users ? [], 'id')
     componentProps.commentableMetaById = _(@state.commentableMeta ? [])
