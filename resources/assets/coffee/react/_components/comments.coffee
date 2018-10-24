@@ -94,27 +94,11 @@ class @Comments extends React.PureComponent
 
   appendBundle: (_event, {comments}) =>
     @setState
-      # remove old objects included in new bundle by relying on uniqBy keeping first item
-      comments:
-        _(comments.comments)
-          .concat(@state.comments)
-          .uniqBy('id')
-          .value()
-      users:
-        _(comments.users)
-          .concat(@state.users)
-          .uniqBy('id')
-          .value()
+      comments: osu.updateCollection @state.comments, comments.comments
+      users: osu.updateCollection @state.users, comments.users
 
 
   update: (_event, {comment}) =>
-    newComments = @state.comments[..]
-    replacementIndex = _.findIndex newComments, (c) -> c.id == comment.id
-
-    return if replacementIndex == -1
-
-    newComments[replacementIndex] = comment
-
     @setState
-      comments: newComments
-      users: _.concat comment.user, comment.editor, @state.users
+      comments: osu.updateCollection @state.comments, [comment]
+      users: osu.updateCollection @state.users, [comment.user, comment.editor]

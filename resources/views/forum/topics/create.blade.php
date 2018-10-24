@@ -24,7 +24,7 @@
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         'data-remote' => true,
     ]) !!}
-        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
+        <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
         @include('forum.topics._header')
 

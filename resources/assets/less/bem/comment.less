@@ -54,6 +54,11 @@
       font-weight: bold;
     }
 
+    &--permalink {
+      // the translation is lowercased
+      text-transform: capitalize;
+    }
+
     .@{_top}--changelog & {
       .link-blue-light();
     }
@@ -198,6 +203,10 @@
 
   &__row-item {
     margin: 2px 5px;
+
+    &--commentable-meta {
+      font-style: normal;
+    }
 
     &--info {
       font-weight: normal;

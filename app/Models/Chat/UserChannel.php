@@ -29,6 +29,8 @@ class UserChannel extends Model
 {
     protected $guarded = [];
 
+    protected $primaryKeys = ['user_id', 'channel_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

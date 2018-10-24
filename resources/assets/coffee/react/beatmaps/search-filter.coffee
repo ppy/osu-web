@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span} = ReactDOMFactories
+{div, a, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchFilter extends React.PureComponent
@@ -32,15 +32,17 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
   render: =>
     div className: 'beatmapsets-search-filter',
-      span className:'beatmapsets-search-filter__header', @props.title
+      span className: 'beatmapsets-search-filter__header', @props.title
 
       div className: 'beatmapsets-search-filter__items',
         for option, i in @props.options
+          cssClasses = 'beatmapsets-search-filter__item'
+          cssClasses += ' beatmapsets-search-filter__item--active' if @selected(option.id)
+
           a
             key: i
-            href: '#'
-            className: "beatmapsets-search-filter__item #{'beatmapsets-search-filter__item--active' if @selected(option.id)}"
-            value: option.id
+            href: @href(option)
+            className: cssClasses
             'data-filter-value': option.id
             onClick: @select
             option.name
@@ -50,17 +52,26 @@ class Beatmaps.SearchFilter extends React.PureComponent
     BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
 
 
+  href: ({ id }) =>
+    updatedFilter = {}
+    updatedFilter[@props.name] = @newSelection(id)
+    filters = _.assign {}, @props.filters, updatedFilter
+
+    osu.updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
+
+
   select: (e) =>
     e.preventDefault()
-    i = @cast(e.target.dataset.filterValue)
+    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": @newSelection(e.target.dataset.filterValue)
 
-    newSelection =
-      if @props.multiselect
-        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
-      else
-        if @selected(i) then @props.default else i
 
-    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": newSelection
+  # TODO: rename
+  newSelection: (id) =>
+    i = @cast(id)
+    if @props.multiselect
+      _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
+    else
+      if @selected(i) then @props.default else i
 
 
   selected: (i) =>
