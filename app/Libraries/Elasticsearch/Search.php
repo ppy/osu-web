@@ -130,7 +130,13 @@ abstract class Search extends HasSearch implements Queryable
                 return $sort->field;
             }, $this->params->sorts);
 
-            return array_combine($fields, $last['sort']);
+            $casted = array_map(function ($value) {
+                // stringify all ints since javascript doesn't like big ints.
+                // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
+                return is_int($value) ? (string) $value : $value;
+            }, $last['sort']);
+
+            return array_combine($fields, $casted);
         }
     }
 
