@@ -35,7 +35,6 @@ export default class InputBox extends React.Component<any, any> {
     message.content = messageText;
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
-    // messageText = '';
   }
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {

@@ -18,7 +18,6 @@
 
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
-import { WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import { observable } from 'mobx';
