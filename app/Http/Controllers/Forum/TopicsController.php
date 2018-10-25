@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\ForumUpdateNotifier;
+use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
@@ -32,7 +33,6 @@ use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
-use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
@@ -58,22 +58,14 @@ class TopicsController extends Controller
 
     public function create()
     {
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        $forum = Forum::findOrFail(request('forum_id'));
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $cover = json_item(
-            TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
-            new TopicCoverTransformer()
+        return view(
+            'forum.topics.create',
+            (new NewForumTopic($forum, Auth::user()))->toArray()
         );
-
-        $post = new Post([
-            'post_text' => Request::old('body'),
-            'user' => Auth::user(),
-            'post_time' => Carbon::now(),
-        ]);
-
-        return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
     public function issueTag($id)

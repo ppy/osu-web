@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 
 class UserRelation extends Model
 {
@@ -13,6 +12,8 @@ class UserRelation extends Model
         'friend' => 'boolean',
         'foe' => 'boolean',
     ];
+
+    protected $primaryKeys = ['user_id', 'zebra_id'];
 
     public function user()
     {
@@ -80,14 +81,5 @@ class UserRelation extends Model
                 WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
             ) as online'
         ));
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'user_id' => $this->user_id,
-            'zebra_id' => $this->zebra_id,
-        ]);
     }
 }

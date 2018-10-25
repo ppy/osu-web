@@ -18,15 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Forum;
+namespace App\Models;
 
-class ForumTrack extends Model
+class UserClient extends Model
 {
-    protected $table = 'phpbb_forums_track';
+    const CREATED_AT = 'timestamp';
+
+    protected $table = 'osu_user_security';
+
+    protected $dates = ['timestamp'];
+
+    protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
 
     public $timestamps = false;
-    protected $dates = ['mark_time'];
-    protected $dateFormat = 'U';
 
-    protected $primaryKeys = ['forum_id', 'user_id'];
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'osu_md5', 'hash');
+    }
+
+    public function isLatest()
+    {
+        if ($this->build === null) {
+            return false;
+        }
+
+        $latestBuild = Build::select('build_id')
+            ->where([
+                'test_build' => false,
+                'stream_id' => $this->build->stream_id,
+            ])->last();
+
+        return $this->build->getKey() === optional($latestBuild)->getKey();
+    }
 }
