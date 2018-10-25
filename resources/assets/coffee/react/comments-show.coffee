@@ -16,9 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'comments-show', CommentsShow.Main, true, ->
+reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
   data = osu.parseJson('json-show')
 
-  comment: data.comment
-  comments: data.bundle.comments
-  users: data.bundle.users
+  component: CommentsShow.Main
+  componentProps:
+    comment: data.comment
+  commentBundle: data.bundle

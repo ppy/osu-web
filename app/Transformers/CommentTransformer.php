@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,10 +20,7 @@
 
 namespace App\Transformers;
 
-use App\Models\Beatmapset;
-use App\Models\Build;
 use App\Models\Comment;
-use App\Models\NewsPost;
 use League\Fractal;
 use Markdown;
 
@@ -52,7 +49,8 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'user_id' => $comment->user_id,
             'message' => $message,
             'message_html' => $messageHtml,
-            'replies_count' => $comment->replies_count_cache,
+            'replies_count' => $comment->replies_count_cache ?? 0,
+            'votes_count' => $comment->votes_count_cache ?? 0,
 
             'commentable_type' => $comment->commentable_type,
             'commentable_id' => $comment->commentable_id,
@@ -71,35 +69,12 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
     public function includeCommentableMeta(Comment $comment)
     {
-        return $this->item($comment->commentable, function ($commentable) {
-            // probably belongs somewhere else
-            if ($commentable instanceof Beatmapset) {
-                $titlePrefix = trans('comments.commentable_name.beatmapset');
-                $title = $commentable->artist.' - '.$commentable->title;
-                $url = route('beatmapsets.show', $commentable);
-            } elseif ($commentable instanceof Build) {
-                $titlePrefix = trans('comments.commentable_name.build');
-                $title = $commentable->updateStream->display_name.' '.$commentable->displayVersion();
-                $url = build_url($commentable);
-            } elseif ($commentable instanceof NewsPost) {
-                $titlePrefix = trans('comments.commentable_name.news_post');
-                $title = $commentable->title();
-                $url = route('news.show', $commentable->slug);
-            } else {
-                $title = trans('comments.commentable_name._deleted');
-                $url = null;
-            }
-
-            return [
-                'title' => isset($titlePrefix) ? "{$titlePrefix}: {$title}" : $title,
-                'url' => $url,
-            ];
-        });
+        return $this->item($comment->commentable, new CommentableMetaTransformer);
     }
 
     public function includeEditor(Comment $comment)
     {
-        if ($comment->editor === null) {
+        if ($comment->editor_id === null || $comment->editor === null) {
             return;
         }
 

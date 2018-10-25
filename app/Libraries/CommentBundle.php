@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Models\Comment;
+use App\Models\CommentVote;
 use App\Models\User;
 
 class CommentBundle
@@ -37,6 +38,7 @@ class CommentBundle
     private $commentable;
     private $comments;
     private $lastLoadedId;
+    private $user;
 
     public function __construct($commentable, $options = [])
     {
@@ -51,10 +53,12 @@ class CommentBundle
         $this->setParams($options['params'] ?? []);
 
         $this->comments = $options['comments'] ?? null;
+        $this->additionalComments = $options['additionalComments'] ?? [];
         $this->depth = $options['depth'] ?? 2;
         $this->filterByParentId = $options['filterByParentId'] ?? true;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeParent = $options['includeParent'] ?? false;
+        $this->user = $options['user'] ?? auth()->user();
     }
 
     public function toArray()
@@ -78,15 +82,23 @@ class CommentBundle
             }
         }
 
+        $comments = $comments->concat($this->additionalComments);
+
         $users = $this->getUsers($comments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
+            'user_votes' => $this->getUserVotes($comments),
             'users' => json_collection($users, 'UserCompact'),
         ];
 
         if ($this->params['parent_id'] === null && $this->filterByParentId) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
+        }
+
+        if ($this->includeCommentableMeta) {
+            $commentables = $comments->pluck('commentable')->concat([null]);
+            $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
         }
 
         return $result;
@@ -95,10 +107,6 @@ class CommentBundle
     public function commentIncludes()
     {
         $includes = [];
-
-        if ($this->includeCommentableMeta) {
-            $includes[] = 'commentable_meta';
-        }
 
         if ($this->includeParent) {
             $includes[] = 'parent';
@@ -185,6 +193,19 @@ class CommentBundle
             ->orderBy('id', 'DESC')
             ->limit($this->params['limit'])
             ->get();
+    }
+
+    private function getUserVotes($comments)
+    {
+        if ($this->user === null) {
+            return [];
+        }
+
+        $ids = $comments->pluck('id');
+
+        return CommentVote::where(['user_id' => $this->user->getKey()])
+            ->whereIn('comment_id', $ids)
+            ->pluck('comment_id');
     }
 
     private function getUsers($comments)
