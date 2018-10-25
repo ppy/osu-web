@@ -23,6 +23,8 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
+  @_gutter-desktop-left: (@gutter-desktop + 10px);
+  @_gutter-desktop-right: @gutter-desktop;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
@@ -30,11 +32,15 @@
   border-bottom: 0 solid #ccc;
 
   &--top {
-    .default-gutter();
     border-bottom-width: 1px;
-    margin-top: 0;
-    padding-top: @_spacing;
     padding-bottom: @_spacing;
+    padding-left: @gutter;
+    padding-right: @gutter;
+
+    @media @desktop {
+      padding-left: @_gutter-desktop-left;
+      padding-right: @_gutter-desktop-right;
+    }
   }
 
   &--changelog {
@@ -51,7 +57,7 @@
     }
 
     &--active {
-      font-weight: bold;
+      color: @green;
     }
 
     &--permalink {
@@ -86,6 +92,35 @@
 
   &__editor {
     padding: 10px 0;
+  }
+
+  &__float-container {
+    position: absolute;
+    height: @_avatar;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+
+    &--left {
+      justify-content: flex-end;
+      left: -@_gutter-desktop-left;
+      width: @_gutter-desktop-left;
+
+      .@{_top}--top > & {
+        left: 0;
+      }
+    }
+
+    &--right {
+      justify-content: flex-start;
+      right: -@_gutter-desktop-right;
+      width: @_gutter-desktop-right;
+
+      .@{_top}--top > & {
+        right: 0;
+      }
+    }
   }
 
   &__line {
@@ -225,12 +260,7 @@
 
   &__top-show-replies {
     .reset-input();
-    position: absolute;
-    left: 20px;
-    height: @_avatar;
     width: @_avatar;
-    top: @_spacing;
-    left: (@gutter-desktop - @_avatar - @_avatar-margin);
     font-size: 18px; // icon size
     display: none;
 

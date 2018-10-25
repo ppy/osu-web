@@ -118,8 +118,11 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
 
-reactTurbolinks.register 'comments', Comments, (el) ->
-  JSON.parse(el.dataset.comments)
+reactTurbolinks.register 'comments', CommentsManager, (el) ->
+  props = JSON.parse(el.dataset.props)
+  props.component = Comments
+
+  props
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

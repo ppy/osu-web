@@ -50,6 +50,11 @@ class Comment extends Model
         return array_key_exists($type, static::COMMENTABLES);
     }
 
+    public function scopeWithoutTrashed($query)
+    {
+        return $query->whereNull('deleted_at');
+    }
+
     public function commentable()
     {
         return $this->morphTo();
@@ -73,6 +78,11 @@ class Comment extends Model
     public function replies()
     {
         return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(CommentVote::class);
     }
 
     public function setCommentableTypeAttribute($value)
@@ -137,6 +147,14 @@ class Comment extends Model
             if (!$this->exists && $this->parent_id !== null && $this->parent !== null) {
                 // skips validation and everything
                 $this->parent->increment('replies_count_cache');
+            }
+
+            if ($this->isDirty('deleted_at')) {
+                if (isset($this->deleted_at)) {
+                    $this->votes_count_cache = 0;
+                } else {
+                    $this->votes_count_cache = $this->votes()->count();
+                }
             }
 
             return parent::save($options);
