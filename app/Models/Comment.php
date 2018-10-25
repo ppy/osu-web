@@ -50,6 +50,11 @@ class Comment extends Model
         return array_key_exists($type, static::COMMENTABLES);
     }
 
+    public function scopeWithoutTrashed($query)
+    {
+        return $query->whereNull('deleted_at');
+    }
+
     public function commentable()
     {
         return $this->morphTo();

@@ -39,7 +39,7 @@ class CommentVote extends Model
             $result = parent::delete();
 
             if ($result && $decrementParentCounter) {
-                $this->comment()->getQuery()->update([
+                $this->comment()->getQuery()->withoutTrashed()->update([
                     'votes_count_cache' => db_unsigned_increment('votes_count_cache', -1),
                 ]);
             }
@@ -59,7 +59,7 @@ class CommentVote extends Model
             $result = parent::save($options);
 
             if ($result && $incrementParentCounter) {
-                $this->comment->increment('votes_count_cache');
+                $this->comment()->getQuery()->withoutTrashed()->increment('votes_count_cache');
             }
 
             return $result;
