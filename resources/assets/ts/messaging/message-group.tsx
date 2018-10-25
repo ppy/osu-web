@@ -36,6 +36,8 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
       className += ' messaging__message-group--own';
     }
 
+    let lastTimestamp: string;
+
     return (
       <div className={className}>
         <div className='messaging__message-group-sender'>
@@ -47,7 +49,7 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
           </div>
         </div>
         <div className='messaging__message-group-bubble'>
-          {messages.map((message: Message) => {
+          {messages.map((message: Message, key: number) => {
             if (!message.content) {
               return;
             }
@@ -62,6 +64,9 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
             if (message.isAction) {
               innerClasses = ' messaging__message-content--action';
             }
+
+            const showTimestamp: boolean = (lastTimestamp !== undefined && (moment(message.timestamp).format('LT') !== lastTimestamp));
+            lastTimestamp = moment(message.timestamp).format('LT');
 
             return (
               <div className={classes} key={message.uuid}>
@@ -78,7 +83,9 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
                     </div>
                   }
                 </div>
-                <div className='messaging__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
+                { (showTimestamp || key === messages.length - 1) &&
+                  <div className='messaging__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
+                }
               </div>
             );
           })}
