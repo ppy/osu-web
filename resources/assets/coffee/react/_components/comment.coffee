@@ -42,11 +42,17 @@ class @Comment extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @xhr = {}
+
     @state =
       postingVote: false
       editing: false
       showNewReply: false
       expandReplies: !@isDeleted()
+
+
+  componentWillUnmount: =>
+    xhr?.abort() for own _name, xhr of @xhr
 
 
   render: =>
@@ -327,10 +333,14 @@ class @Comment extends React.PureComponent
   delete: =>
     return unless confirm(osu.trans('common.confirmation'))
 
-    $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
+    @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
       $.publish 'comment:updated', comment: data
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   toggleEdit: =>
@@ -372,10 +382,14 @@ class @Comment extends React.PureComponent
 
 
   restore: =>
-    $.ajax laroute.route('comments.restore', comment: @props.comment.id),
+    @xhr.restor = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
       $.publish 'comment:updated', comment: data
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   toggleNewReply: =>
@@ -392,13 +406,17 @@ class @Comment extends React.PureComponent
       method = 'POST'
       voteAction = 'added'
 
-    $.ajax laroute.route('comments.vote', comment: @props.comment.id),
+    @xhr.vote = $.ajax laroute.route('comments.vote', comment: @props.comment.id),
       method: method
     .always =>
       @setState postingVote: false
     .done (data) =>
       $.publish 'comment:updated', comment: data
       $.publish "commentVote:#{voteAction}", id: @props.comment.id
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   closeNewReply: =>
