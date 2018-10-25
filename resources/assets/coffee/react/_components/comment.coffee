@@ -333,6 +333,7 @@ class @Comment extends React.PureComponent
   delete: =>
     return unless confirm(osu.trans('common.confirmation'))
 
+    @xhr.delete?.abort()
     @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
@@ -382,6 +383,7 @@ class @Comment extends React.PureComponent
 
 
   restore: =>
+    @xhr.restore?.abort()
     @xhr.restore = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
@@ -406,6 +408,7 @@ class @Comment extends React.PureComponent
       method = 'POST'
       voteAction = 'added'
 
+    @xhr.vote?.abort()
     @xhr.vote = $.ajax laroute.route('comments.vote', comment: @props.comment.id),
       method: method
     .always =>
