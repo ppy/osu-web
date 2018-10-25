@@ -15,20 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'home',
-    'pageDescription' => 'chatterriffic'
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-community',
+    'currentSection' => 'community',
+    'legacyNav' => false,
+    'title' => trans('messages.title'),
 ])
 
 @section("content")
-    @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
-    ])
-
-    <div class="osu-page osu-page--small osu-page--chat">
-        <h2 class="messaging__title">{{trans('messages.title')}}</h2>
-        <div class="js-react--messaging" style="flex: 1 0 auto; display: flex; height: 100%; border-top: 1px solid #555555;"></div>
-    </div>
+    <div class="js-react--messaging osu-layout osu-layout--full"></div>
 @endsection
 
 @section("script")

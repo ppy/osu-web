@@ -17,6 +17,7 @@
  */
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import HeaderV3 from 'header-v3';
 import { observer, Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import Channel from 'models/chat/channel';
@@ -85,16 +86,18 @@ export default class MainView extends React.Component<any, any> {
 
   render(): React.ReactNode {
     return(
-      <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
-        <div className='messaging'>
-          <ConversationList />
-          <div className='messaging__conversation-window'>
-            <ConversationView />
-            <InputBox />
-            <DevTools />
+      <div>
+        <HeaderV3 theme='chat' title='Chat' />
+        <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
+          <div className='messaging osu-page osu-page--chat'>
+            <ConversationList />
+            <div className='messaging__conversation-window'>
+              <ConversationView />
+              <InputBox />
+            </div>
           </div>
-        </div>
-      </Provider>
+        </Provider>
+      </div>
     );
   }
 }

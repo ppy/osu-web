@@ -27,18 +27,9 @@
     flex-direction: column;
   }
 
-  &__container {
-    flex: 1 0 auto;
-    display: flex;
-    height: 100%;
-    border-top: 1px solid #555555;
-  }
-
   &__conversation-list {
     width: 270px;
     flex-shrink: 0;
-    background: @gray;
-    margin-left: 20px;
 
     @media @mobile {
       margin-left: 0px;
@@ -56,23 +47,21 @@
     align-items: center;
     margin-left: 10px;
     padding-left: 10px;
-    background: @gray;
 
     .link-plain();
     .link-white();
 
     @media @desktop {
       &:hover {
-        background: linear-gradient(to right, transparent 5%, fade(@gray-dark, 50%) 20%, fade(@gray-dark, 50%) 100%);
+        background: linear-gradient(to right, @community-blue-darker 5%, lighten(@community-blue-dark, 2%) 33%, lighten(@community-blue-dark, 2%) 100%);
       }
     }
 
     &--selected {
-      .link-yellow();
-      background: linear-gradient(to right, transparent 5%, @gray-dark 20%, @gray-dark 100%);
+      color: white;
+      background: linear-gradient(to right, @community-blue-darker 5%, @community-blue-dark 33%, @community-blue-dark 100%);
       @media @mobile {
-        background: @yellow;
-        .default-border-radius();
+        background: @community-blue-dark;
       }
     }
 
@@ -151,7 +140,7 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 50%;
     flex-shrink: 0;
 
     @media @mobile {
@@ -168,7 +157,7 @@
 
   &__conversation {
     padding: 10px 20px;
-    background: @gray-dark;
+    background: @community-blue-dark;
     flex-direction: column;
     flex: 1;
     overflow-y: auto;
@@ -197,7 +186,6 @@
     &--own {
       margin-left: 120px;
       margin-right: 0px;
-      color: @blue-light;
       flex-direction: row-reverse;
     }
   }
@@ -217,12 +205,12 @@
   &__message-group-avatar {
     width: 35px;
     height: 35px;
-    border-radius: 10px;
+    border-radius: 50%;
     margin-bottom: 5px;
   }
 
   &__message-group-bubble {
-    background: @gray-darker;
+    background: @community-blue-darkest;
     .default-border-radius();
     padding: 5px 8px;
     max-width: 400px;
@@ -317,13 +305,13 @@
       padding: 0 .5em;
       line-height: 1.5em;
       color: @yellow;
-      background-color: @gray-dark;
+      background-color: @community-blue-dark;
     }
 
   }
 
   &__chat-input {
-    background: @gray-darker;
+    background: @community-blue-dark;
     padding: 10px 50px;
     display: flex;
     flex-direction: column;
@@ -348,9 +336,9 @@
     .reset-input();
     .default-border-radius();
     width: 100%;
-    background: @gray;
+    background: @community-blue-darkest;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     @media @mobile {
       margin-bottom: 0px;

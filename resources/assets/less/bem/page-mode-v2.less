@@ -28,6 +28,7 @@
   padding: 0 (@gutter-desktop + @gutter - 10px);
   margin: 0;
   width: 100%;
+  min-height: @_bar-active-height;
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
@@ -48,6 +49,12 @@
     }
   }
 
+  &--chat {
+    &::after {
+      background-color: @community-blue;
+    }
+  }
+
   &--comments {
     &::after {
       background-color: @blue;
@@ -64,6 +71,10 @@
 
       .@{_top}--changelog & {
         color: @dark-purple;
+      }
+
+      .@{_top}--chat & {
+        color: @community-blue;
       }
 
       .@{_top}--comments & {
@@ -102,6 +113,14 @@
 
       &::before {
         background-color: @dark-purple;
+      }
+    }
+
+    .@{_top}--chat & {
+      color: @community-blue;
+
+      &::before {
+        background-color: @community-blue;
       }
     }
 

@@ -71,7 +71,7 @@ export default class InputBox extends React.Component<any, any> {
         <BigButton
           text={osu.trans('messages.reply')}
           icon='fas fa-reply'
-          modifiers={['chat-send']}
+          modifiers={['chat-send', 'comment-editor']}
           props={{
             disabled: this.props.disabled,
             onClick: this.buttonClicked,

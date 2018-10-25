@@ -206,17 +206,13 @@
   }
 
   &--chat {
-    background-color: @gray;
     .default-box-shadow();
-
-    @media @desktop {
-      margin-bottom: 10px;
-    }
+    background-color: @community-blue-darker;
+    color: @community-blue;
 
     flex: 1 0 auto;
     display: flex;
-    flex-direction: column;
-    height: calc(100vh ~'-' 900px); // TODO: figure out why this "works"
+    height: calc(100vh ~'-' 340px); // viewport height - header+footer
   }
 
 }
