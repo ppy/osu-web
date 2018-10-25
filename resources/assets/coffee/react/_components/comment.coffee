@@ -382,7 +382,7 @@ class @Comment extends React.PureComponent
 
 
   restore: =>
-    @xhr.restor = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
+    @xhr.restore = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
       $.publish 'comment:updated', comment: data
