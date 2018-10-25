@@ -17,6 +17,8 @@
  */
 
 .comments-sort {
+  @_top: comments-sort;
+
   .default-gutter();
   display: flex;
   margin: -5px -10px;
@@ -26,10 +28,28 @@
     .reset-input();
     margin: 5px;
     padding: 0 5px;
+    color: #333;
 
+    .@{_top}--changelog & {
+      color: inherit;
+    }
+
+    &--button {
+      color: #555;
+
+      .@{_top}--changelog & {
+        color: #ddd;
+      }
+    }
+
+    // overrides --button
     &--active {
       color: @pink-darker;
       font-weight: bold;
+
+      .@{_top}--changelog & {
+        color: @pink;
+      }
     }
   }
 }

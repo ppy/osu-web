@@ -39,6 +39,7 @@ class @Comments extends React.PureComponent
           el CommentsSort,
             loadingSort: @props.loadingSort
             currentSort: @props.currentSort
+            modifiers: @props.modifiers
         if comments?
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
             for comment in comments
