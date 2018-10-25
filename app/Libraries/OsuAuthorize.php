@@ -643,10 +643,14 @@ class OsuAuthorize
         }
     }
 
-    public function checkCommentVote($user)
+    public function checkCommentVote($user, $comment)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return;
+        }
 
         return 'ok';
     }

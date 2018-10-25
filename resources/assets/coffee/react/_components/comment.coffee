@@ -64,7 +64,7 @@ class @Comment extends React.PureComponent
     div
       className: osu.classWithModifiers 'comment', modifiers
 
-      if @canVote()
+      if @canHaveVote()
         div className: 'comment__float-container comment__float-container--left hidden-xs',
           @renderVoteButton()
 
@@ -131,7 +131,7 @@ class @Comment extends React.PureComponent
                 __html: @props.comment.message_html
 
           div className: 'comment__row comment__row--footer',
-            if @canVote()
+            if @canHaveVote()
               div
                 className: 'comment__row-item visible-xs'
                 @renderVoteText()
@@ -255,7 +255,7 @@ class @Comment extends React.PureComponent
       className: className
       type: 'button'
       onClick: @voteToggle
-      disabled: @state.postingVote
+      disabled: @state.postingVote || !@canVote()
       span className: 'comment-vote__text',
         "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
       if @state.postingVote
@@ -283,16 +283,20 @@ class @Comment extends React.PureComponent
     @canModerate() || (@isOwner() && !@isDeleted())
 
 
-  canVote: =>
+  canHaveVote: =>
     !@isDeleted()
+
+
+  canModerate: =>
+    currentUser.is_admin || currentUser.is_gmt
 
 
   canRestore: =>
     @canModerate()
 
 
-  canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt
+  canVote: =>
+    !@isOwner()
 
 
   commentableMeta: =>

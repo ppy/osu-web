@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: center;
 
-  &:hover {
+  &:not([disabled]):hover {
     border-color: @_bg;
   }
 
@@ -39,7 +39,7 @@
     background-color: @_bg;
   }
 
-  &--on:hover {
+  &--on:not([disabled]):hover {
     background-color: fade(@_bg, 50%);
   }
 
@@ -57,7 +57,7 @@
     opacity: 0;
     will-change: opacity;
 
-    .@{_top}:hover & {
+    .@{_top}:not([disabled]):hover & {
       opacity: 1;
     }
   }

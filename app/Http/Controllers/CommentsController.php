@@ -183,7 +183,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        priv_check('CommentVote')->ensureCan();
+        priv_check('CommentVote', $comment)->ensureCan();
 
         $vote = $comment->votes()->where([
             'user_id' => auth()->user()->getKey(),
@@ -198,7 +198,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        priv_check('CommentVote')->ensureCan();
+        priv_check('CommentVote', $comment)->ensureCan();
 
         try {
             $comment->votes()->create([
