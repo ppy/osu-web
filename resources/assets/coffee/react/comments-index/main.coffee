@@ -24,31 +24,15 @@ class CommentsIndex.Main extends React.PureComponent
     super props
 
     @pagination = React.createRef()
-    @id = "comments-index-#{osu.uuid()}"
-    @state =
-      comments: @props.comments
-      users: @props.users
 
 
   componentDidMount: =>
-    $.subscribe "comment:updated.#{@id}", @update
-
     pagination = document.querySelector('.js-comments-pagination').cloneNode(true)
     @pagination.current.innerHTML = ''
     @pagination.current.appendChild pagination
 
 
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
   render: =>
-    usersById = _.keyBy(@state.users ? [], 'id')
-    sortedComments = _(@state.comments ? [])
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .value()
-
     div null,
       div className: 'header-v3 header-v3--comments',
         div className: 'header-v3__bg'
@@ -58,11 +42,13 @@ class CommentsIndex.Main extends React.PureComponent
           @renderHeaderTabs()
 
       div className: 'osu-page osu-page--comments',
-        for comment in sortedComments
+        for comment in @props.sortedComments
           el Comment,
             key: comment.id
             comment: comment
-            usersById: usersById
+            usersById: @props.usersById
+            userVotesByCommentId: @props.userVotesByCommentId
+            commentableMetaById: @props.commentableMetaById
             showReplies: false
             showCommentableMeta: true
             linkParent: true
@@ -88,9 +74,3 @@ class CommentsIndex.Main extends React.PureComponent
           dangerouslySetInnerHTML:
             __html: osu.trans 'comments.index.title._',
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.index.title.info')}</span>"
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, [comment]
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]
