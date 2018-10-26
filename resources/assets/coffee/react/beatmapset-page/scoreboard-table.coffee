@@ -100,3 +100,6 @@ BeatmapsetPage.ScoreboardTable = (props) ->
 
             td className: "#{bn}__mods",
               el Mods, modifiers: ['scoreboard'], mods: score.mods
+
+            td className: "#{bn}__report",
+              el _exported.ReportButton

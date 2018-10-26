@@ -18,6 +18,7 @@
 
 import { createElement as el, createRef, PureComponent } from 'react'
 import { button, div, i, span, textarea } from 'react-dom-factories'
+import { ReportButton } from 'report-button'
 import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
@@ -73,14 +74,9 @@ export class ReportForm extends PureComponent
     return null unless currentUser.id? && @props.user?.id != currentUser.id
 
     [
-      button
-        className: 'textual-button',
+      el ReportButton,
         key: 'button'
-        type: 'button'
         onClick: @showModal
-        span null,
-          i className: 'textual-button__icon fas fa-exclamation-triangle'
-          " #{osu.trans 'users.report.button_text'}"
 
       @renderForm() if @state.showingModal
     ]

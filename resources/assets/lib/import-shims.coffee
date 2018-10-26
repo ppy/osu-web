@@ -20,6 +20,7 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
+import { ReportButton } from 'report-button'
 import { ReportForm } from 'report-form'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
@@ -34,6 +35,7 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
+  ReportButton
   ReportForm
   SelectOptions
   SpotlightSelectOptions
