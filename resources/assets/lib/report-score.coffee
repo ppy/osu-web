@@ -28,6 +28,8 @@ export class ReportScore extends PureComponent
       completed: false
       disabled: false
       showingForm: false
+      reported: @props.reported
+
 
   render: =>
     return null unless currentUser.id? && @props.score?.user_id != currentUser.id
@@ -35,6 +37,7 @@ export class ReportScore extends PureComponent
     [
       el ReportButton,
         key: 'button'
+        text: 'Already reported' if @state.reported
         onClick: @showForm
 
       el ReportForm,
@@ -55,7 +58,7 @@ export class ReportScore extends PureComponent
 
 
   showForm: (e) =>
-    return if e.button != 0
+    return if e.button != 0 || @state.reported
     e.preventDefault()
 
     Timeout.clear @timeout
@@ -76,7 +79,7 @@ export class ReportScore extends PureComponent
 
     .done () =>
       @timeout = Timeout.set 1000, @onFormClose
-      @setState completed: true
+      @setState completed: true, reported: true
 
     .fail (xhr) =>
       osu.ajaxError xhr
