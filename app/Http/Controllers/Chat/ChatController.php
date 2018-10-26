@@ -46,7 +46,7 @@ class ChatController extends Controller
         }
 
         $since = Request::input('since');
-        $limit = clamp(get_int(Request::input('limit')) || 50, 1, 50);
+        $limit = clamp(get_int(Request::input('limit')) ?? 50, 1, 50);
 
         $messages = Message::forUser(Auth::user())
             ->with('sender')
