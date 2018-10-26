@@ -69,7 +69,7 @@ export class ReportScore extends PureComponent
 
     $.ajax
       type: 'POST'
-      url: laroute.route 'scores.report', score: @props.score.score_id, mode: @props.mode
+      url: laroute.route 'scores.report', score: @props.score.id, mode: @props.mode
       data:
         { comments }
       dataType: 'json'
