@@ -36,8 +36,6 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
       className += ' messaging__message-group--own';
     }
 
-    let lastTimestamp: string;
-
     return (
       <div className={className}>
         <div className='messaging__message-group-sender'>
@@ -65,25 +63,28 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
               innerClasses = ' messaging__message-content--action';
             }
 
-            const showTimestamp: boolean = (lastTimestamp !== undefined && (moment(message.timestamp).format('LT') !== lastTimestamp));
-            lastTimestamp = moment(message.timestamp).format('LT');
+            const showTimestamp: boolean =
+              // show timestamp if this is the last message in the group
+              (key === messages.length - 1) ||
+              // or if the next message has a different timestamp
+              (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
               <div className={classes} key={message.uuid}>
                 <div className={`messaging__message-content${innerClasses ? innerClasses : ''}`}>
                   {message.content}
                   {!message.persisted && !message.errored &&
-                    <div className='messaging__message-sending'>
+                    <div className='messaging__message-status'>
                       <Spinner />
                     </div>
                   }
                   {message.errored &&
-                    <div className='messaging__message-sending'>
+                    <div className='messaging__message-status'>
                       <i className='fas fa-times'/>
                     </div>
                   }
                 </div>
-                { (showTimestamp || key === messages.length - 1) &&
+                { showTimestamp &&
                   <div className='messaging__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
                 }
               </div>
