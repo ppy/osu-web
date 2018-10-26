@@ -149,7 +149,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
                   el BlockButton, user_id: @props.user.id
 
-              el _exported.ReportForm, user: @props.user
+              el _exported.ReportUser, user: @props.user
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",

@@ -23,7 +23,7 @@ import { SelectOptions } from 'select-options'
 
 bn = 'report-form'
 
-export class ReportForm extends PureComponent
+export class ReportUser extends PureComponent
   constructor: (props) ->
     super props
 

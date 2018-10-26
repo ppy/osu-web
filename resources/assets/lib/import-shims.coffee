@@ -21,7 +21,7 @@
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
 import { ReportButton } from 'report-button'
-import { ReportForm } from 'report-form'
+import { ReportUser } from 'report-user'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
@@ -36,7 +36,7 @@ window._exported = {
   BackToTop
   PlayDetailList
   ReportButton
-  ReportForm
+  ReportUser
   SelectOptions
   SpotlightSelectOptions
 }
