@@ -123,14 +123,10 @@ export default class ConversationView extends React.Component<any, any> {
 
     return (
       <div className='messaging__conversation'>
-        {channel.newChannel &&
-          <div className='messaging__conversation'>
-            <div className='messaging__day-divider'>
-              <img className='messaging__new-chat-avatar' src={channel.icon} />
-            </div>
-            <div className='messaging__day-divider'>new conversation with {channel.name}</div>
-          </div>
-        }
+        <div className='messaging__new-chat-avatar'>
+          <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
+        </div>
+        <div className='messaging__chat-label'>talking with {channel.name}</div>
 
         {channel.loading &&
           <div className='messaging__day-divider'>

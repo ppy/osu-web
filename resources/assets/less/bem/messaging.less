@@ -27,12 +27,21 @@
     flex-direction: column;
   }
 
+  &__chat-label {
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
   &__conversation-list {
     width: 270px;
     flex-shrink: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     @media @mobile {
-      margin-left: 0px;
       display: flex;
       width: 100vw;
       overflow-x: auto;
@@ -153,7 +162,6 @@
   }
 
   &__conversation-window {
-
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -166,17 +174,18 @@
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 20px;
+    padding-bottom: 150px;
 
     @media @mobile {
       padding: 10px 0px;
+      padding-bottom: 150px;
     }
   }
 
   &__new-chat-avatar {
-    width: 70px;
-    .default-border-radius();
     margin-bottom: 10px;
+    width: 100%;
+    .center-content();
   }
 
   &__message-group {
@@ -270,7 +279,7 @@
     }
   }
 
-  &__message-sending {
+  &__message-status {
     color: #878787;
     float: right;
   }
@@ -315,14 +324,16 @@
   }
 
   &__chat-input {
-    background: @community-blue-dark;
     padding: 10px 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    min-height: 75px;
-    justify-content: space-between;
     color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+
+    background: linear-gradient(to bottom, fade(@community-blue-dark, 0%), fade(@community-blue-dark, 95%) 40%, fade(@community-blue-dark, 95%) 100%);
+    width: calc(100% ~'-' 10px);
+    height: 160px;
 
     &--disabled > * {
       opacity: 0.5;
@@ -339,13 +350,14 @@
   &__chat-input-box {
     .reset-input();
     .default-border-radius();
+    .default-box-shadow();
     width: 100%;
     background: @community-blue-darkest;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 50px;
 
     @media @mobile {
-      margin-bottom: 0px;
       margin-right: 20px;
     }
   }

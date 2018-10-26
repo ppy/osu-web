@@ -23,7 +23,6 @@ return [
     'title_compact' => 'messages',
 
     'input-placeholder' => 'type message...',
-    'reply' => 'Reply',
     'no-conversations' => 'no conversations yet',
-
+    'send' => 'Send',
 ];

@@ -45,6 +45,14 @@ export default class MainView extends React.Component<any, any> {
   }
 
   init = () => {
+    // TODO: cleanup/(re)move this vh stuff:
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+
     const sendTo = osu.parseJson('json-sendto');
     let channelId: number;
 
@@ -86,8 +94,8 @@ export default class MainView extends React.Component<any, any> {
 
   render(): React.ReactNode {
     return(
-      <div>
-        <HeaderV3 theme='chat' title='Chat' />
+      [
+        <HeaderV3 theme='chat' title='Chat' />,
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
           <div className='messaging osu-page osu-page--chat'>
             <ConversationList />
@@ -96,8 +104,8 @@ export default class MainView extends React.Component<any, any> {
               <InputBox />
             </div>
           </div>
-        </Provider>
-      </div>
+        </Provider>,
+      ]
     );
   }
 }
