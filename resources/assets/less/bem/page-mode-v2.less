@@ -64,6 +64,10 @@
   &__item {
     display: flex;
 
+    @media @mobile {
+      display: none;
+    }
+
     & + &::before {
       content: '›';
       padding: 5px 5px 15px;
@@ -89,6 +93,10 @@
     padding: 5px @_link-padding 15px;
     margin: 0 5px;
     transition: all 100ms;
+
+    @media @mobile {
+      display: none;
+    }
 
     &::before {
       content: '';
