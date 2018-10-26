@@ -33,7 +33,7 @@ export default class ChatAPI {
   getUpdates(since: number): Promise<ApiResponses.GetUpdatesJSON> {
     return new Promise((resolve, reject) => {
       $.get(laroute.route('chat.updates'),
-        {since: since}
+        {since},
       ).done((response) => {
         resolve(response as ApiResponses.GetUpdatesJSON);
       }).fail((error) => {
@@ -45,12 +45,12 @@ export default class ChatAPI {
   markAsRead(channelId: number, messageId: number): Promise<ApiResponses.MarkAsReadJSON> {
     return new Promise((resolve, reject) => {
       $.ajax({
+        type: 'PUT',
         url: laroute.route('chat.channels.mark-as-read', {channel_id: channelId, message_id: messageId}),
-        type: 'PUT'
       }).done((response) => {
         resolve(response as ApiResponses.MarkAsReadJSON);
       }).fail((error) => {
-        reject(error)
+        reject(error);
       });
     });
   }
@@ -58,12 +58,12 @@ export default class ChatAPI {
   newConversation(userId: number, message: string): Promise<ApiResponses.NewConversationJSON> {
     return new Promise((resolve, reject) => {
       $.post(laroute.route('chat.new'), {
+        message,
         target_id: userId,
-        message: message
       }).done((response) => {
-        resolve(response as ApiResponses.NewConversationJSON)
+        resolve(response as ApiResponses.NewConversationJSON);
       }).fail((error) => {
-        reject(error)
+        reject(error);
       });
     });
   }
@@ -71,9 +71,9 @@ export default class ChatAPI {
   sendMessage(channelId: number, message: string): Promise<ApiResponses.SendMessageJSON> {
     return new Promise((resolve, reject) => {
       $.post(laroute.route('chat.channels.messages.store', {channel_id: channelId}), {
-        target_type: 'channel',
+        message,
         target_id: channelId,
-        message: message
+        target_type: 'channel',
       }).done((response) => {
         resolve(response as ApiResponses.SendMessageJSON);
       }).fail((error) => {

@@ -15,9 +15,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-import DispatcherAction from './dispatcher-action';
+// tslint:disable:max-classes-per-file
 import Message from 'models/chat/message';
+import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelSwitchAction implements DispatcherAction {
   constructor(public channelId: number) {

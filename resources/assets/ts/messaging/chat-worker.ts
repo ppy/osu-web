@@ -89,7 +89,6 @@ export default class ChatWorker implements DispatchListener {
       _.forEach(messages, (json: MessageJSON) => {
         const newMessage: Message = Message.fromJSON(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
-        // newMessage.channel = this.rootDataStore.channelStore.getOrCreate(json.channel_id);
         newMessages.push(newMessage);
       });
 
@@ -98,8 +97,8 @@ export default class ChatWorker implements DispatchListener {
   }
 
   sendMessage(message: Message) {
-    const channel: Channel = message.channel;
-    const channelId: number = channel.channelId;
+    const channelId: number = message.channelId;
+    const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.newChannel) {
       const users = channel.users.slice();
@@ -117,7 +116,7 @@ export default class ChatWorker implements DispatchListener {
           const newId = response.new_channel_id;
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channelId);
-            // this.rootDataStore.channelStore.updatePresence(response.presence);
+            this.rootDataStore.channelStore.updatePresence(response.presence);
             this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
           });
         });
@@ -131,10 +130,10 @@ export default class ChatWorker implements DispatchListener {
           }
           this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
         })
-        .catch((err) => {
-          message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
-        });
+        .catch(() => {
+            message.errored = true;
+            this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          });
     }
   }
 
@@ -157,9 +156,7 @@ export default class ChatWorker implements DispatchListener {
 
       transaction(() => {
         _.forEach(updateJson.messages, (message: MessageJSON) => {
-
           const newMessage = Message.fromJSON(message);
-          newMessage.channel = this.rootDataStore.channelStore.getOrCreate(message.channel_id);
           newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
           this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
         });

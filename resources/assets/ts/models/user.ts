@@ -44,7 +44,6 @@ export default class User {
   @observable isBot: boolean;
   @observable isOnline: boolean;
 
-  @observable data: UserJSON;
   @observable loaded: boolean = false;
 
   @observable pmFriendsOnly: boolean = false;
@@ -76,7 +75,6 @@ export default class User {
   @action
   static fromJSON(json: UserJSON): User {
     const user = Object.create(User.prototype);
-    user.data = JSON.stringify(json);
     return Object.assign(user, {
       avatarUrl: json.avatar_url,
       countryCode: json.country_code,

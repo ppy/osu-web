@@ -33,7 +33,7 @@ export interface MessageJSON {
 export default class Message {
   @observable messageId: number;
   @observable uuid: string = osu.uuid();
-  @observable channel: Channel;
+  @observable channelId: number;
   @observable sender: User;
   @observable content: string;
   @observable timestamp: string = moment().toISOString();
@@ -49,13 +49,12 @@ export default class Message {
   @action
   update(message: Message): Message {
     this.messageId = message.messageId;
-    this.channel = message.channel;
+    this.channelId = message.channelId;
     this.content = message.content;
     this.timestamp = message.timestamp;
     this.isAction = message.isAction;
     this.errored = message.errored;
     this.sender = message.sender;
-    // this.data = JSON.stringify(message);
 
     return this;
   }

@@ -31,7 +31,7 @@ export default class InputBox extends React.Component<any, any> {
 
     const message: Message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
-    message.channel = this.props.dataStore.channelStore.getOrCreate(this.props.dataStore.uiState.chat.selected);
+    message.channelId = this.props.dataStore.uiState.chat.selected;
     message.content = messageText;
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
