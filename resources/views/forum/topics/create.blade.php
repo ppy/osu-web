@@ -42,7 +42,7 @@
                 <div class="forum-post__body">
                     <div class="forum-post__preview js-post-preview--box hidden">
                         <div class="forum-post__content forum-post__content--header">
-                            post preview
+                            {{ trans('forum.topics.create.preview') }}
                         </div>
                         <div class="forum-post__content forum-post__content--main">
                             <div class="forum-post-content js-post-preview--body">
