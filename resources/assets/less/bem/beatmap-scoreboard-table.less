@@ -18,24 +18,26 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
+  @_play-detail-menu: beatmap-scoreboard-table__play-detail-menu;
+  @handle: 16px;
   @row-height: 1.8em;
 
-  width: 100%;
+  margin-right: -@handle;
   overflow-x: auto;
 
   .row-colour(@colour) {
-    > td {
+    > td:not(.@{_top}__play-detail-menu) {
       background-color: lighten(@colour, 20%);
     }
 
     &:nth-child(odd) {
-      > td {
+      > td:not(.@{_top}__play-detail-menu) {
         background-color: lighten(@colour, 20%);
       }
     }
 
     &:hover {
-      > td {
+      > td:not(.@{_top}__play-detail-menu) {
         background-color: @colour;
       }
     }
@@ -106,6 +108,10 @@
       min-width: 50px;
       padding-left: 5px;
     }
+
+    &--play-detail-menu {
+      width: @handle;
+    }
   }
 
   &__body-row {
@@ -116,7 +122,8 @@
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
-    > td:last-child {
+
+    > td:nth-last-child(2) {
       // ...and right side
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
@@ -125,15 +132,14 @@
 
     // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
     &:nth-child(odd) {
-      > td {
+      > td:not(.@{_top}__play-detail-menu) {
         background-color: #eee;
       }
     }
 
     &:hover {
-      color: #fff;
-
-      > td {
+      > td:not(.@{_top}__play-detail-menu) {
+        color: #fff;
         background-color: #555;
       }
     }
@@ -157,6 +163,10 @@
     .@{_top}__body-row:hover & {
       color: @green-lighter;
     }
+  }
+
+  &__play-detail-menu {
+    background-color: unset;
   }
 
   &__rank {
@@ -185,7 +195,7 @@
       color: #fff;
     }
   }
-  
+
   &__zero {
     color: #aaa;
   }

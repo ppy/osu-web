@@ -19,6 +19,7 @@
 import { createElement as el, PureComponent } from 'react'
 import { ReportButton } from 'report-button'
 import { ReportForm } from 'report-form'
+import { a, button, div, i } from 'react-dom-factories'
 
 export class ReportScore extends PureComponent
   @defaultProps =
@@ -38,22 +39,31 @@ export class ReportScore extends PureComponent
   render: =>
     return null unless currentUser.id? && @props.score?.user_id != currentUser.id
 
-    [
-      el ReportButton,
-        key: 'button'
-        text: 'Already reported' if @state.reported
-        onClick: @showForm
+    div
+      className: 'play-detail-menu'
+      # ref: @menu
+      button
+        className: 'play-detail-menu__button'
+        type: 'button'
+        # onClick: @toggle
+        i className: 'fas fa-ellipsis-v'
 
-      el ReportForm,
-        allowOptions: false
-        completed: @state.completed
-        disabled: @state.disabled
-        key: 'form'
-        onClose: @onFormClose
-        onSubmit: @onSubmit
-        title: "#{@props.score.user.username}'s score?"
-        visible: @state.showingForm
-    ]
+    # [
+    #   el ReportButton,
+    #     key: 'button'
+    #     text: 'Already reported' if @state.reported
+    #     onClick: @showForm
+
+    #   el ReportForm,
+    #     allowOptions: false
+    #     completed: @state.completed
+    #     disabled: @state.disabled
+    #     key: 'form'
+    #     onClose: @onFormClose
+    #     onSubmit: @onSubmit
+    #     title: "#{@props.score.user.username}'s score?"
+    #     visible: @state.showingForm
+    # ]
 
 
   onFormClose: =>

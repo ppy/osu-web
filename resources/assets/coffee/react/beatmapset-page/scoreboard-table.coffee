@@ -38,6 +38,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
           th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
           th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
           th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
+          th className: "#{bn}__header #{bn}__header--play-detail-menu"
 
       tbody className: "#{bn}__body",
         for score, i in props.scores
@@ -101,7 +102,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
             td className: "#{bn}__mods",
               el Mods, modifiers: ['scoreboard'], mods: score.mods
 
-            td className: "#{bn}__report",
+            td className: "#{bn}__play-detail-menu",
               el _exported.ReportScore,
                 mode: props.beatmap.mode
                 reported: _.includes props.reportedScores, score.id
