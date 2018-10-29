@@ -21,6 +21,10 @@ import { ReportButton } from 'report-button'
 import { ReportForm } from 'report-form'
 
 export class ReportScore extends PureComponent
+  @defaultProps =
+    reported: false
+
+
   constructor: (props) ->
     super props
 

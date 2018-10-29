@@ -52,6 +52,7 @@ class BeatmapsetPage.Main extends React.Component
         loading: false
         currentScoreboardType: 'global'
         enabledMods: []
+        reportedScores: []
         scores: []
         userScore: null
         userScorePosition: -1
@@ -86,6 +87,7 @@ class BeatmapsetPage.Main extends React.Component
 
     loadScore = =>
       @setState
+        reportedScores: @scoresCache[cacheKey].reportedScores
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
@@ -196,6 +198,7 @@ class BeatmapsetPage.Main extends React.Component
           el BeatmapsetPage.Scoreboard,
             type: @state.currentScoreboardType
             beatmap: @state.currentBeatmap
+            reportedScores: @state.reportedScores
             scores: @state.scores
             userScore: @state.userScore?.score
             userScorePosition: @state.userScore?.position
