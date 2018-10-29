@@ -18,6 +18,7 @@
 
 import { createElement as el, createRef, PureComponent } from 'react'
 import { a, button, div, i } from 'react-dom-factories'
+import { ReportScore } from 'report-score'
 
 export class PlayDetailMenu extends PureComponent
   constructor: (props) ->
@@ -86,3 +87,7 @@ export class PlayDetailMenu extends PureComponent
           'data-turbolinks': false
           onClick: @toggle
           osu.trans 'users.show.extra.top_ranks.download_replay'
+
+        el ReportScore,
+          score: @props.score
+          mode: @props.score.beatmap.mode
