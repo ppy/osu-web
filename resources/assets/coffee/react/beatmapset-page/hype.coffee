@@ -53,7 +53,7 @@ class BeatmapsetPage.Hype extends React.PureComponent
 
         div
           className: "#{bn}__button"
-          title: @props.beatmapset.current_user_attributes.can_hype_reason
+          title: @props.beatmapset.current_user_attributes?.can_hype_reason
           el BigButton,
             modifiers: ['full']
             text: osu.trans('beatmaps.hype.button')
@@ -64,4 +64,8 @@ class BeatmapsetPage.Hype extends React.PureComponent
                 beatmap: '-'
                 mode: 'generalAll'
                 filter: 'praises'}#new"
-              disabled: !@props.beatmapset.current_user_attributes.can_hype
+              disabled:
+                if @props.currentUser.id?
+                  !@props.beatmapset.current_user_attributes.can_hype
+                else
+                  false
