@@ -20,6 +20,7 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
+import { PlayDetailMenu } from 'play-detail-menu'
 import { ReportScore } from 'report-score'
 import { ReportUser } from 'report-user'
 import { SelectOptions } from 'select-options'
@@ -35,6 +36,7 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
+  PlayDetailMenu
   ReportScore
   ReportUser
   SelectOptions

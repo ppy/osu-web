@@ -39,31 +39,22 @@ export class ReportScore extends PureComponent
   render: =>
     return null unless currentUser.id? && @props.score?.user_id != currentUser.id
 
-    div
-      className: 'play-detail-menu'
-      # ref: @menu
-      button
-        className: 'play-detail-menu__button'
-        type: 'button'
-        # onClick: @toggle
-        i className: 'fas fa-ellipsis-v'
+    [
+      el ReportButton,
+        key: 'button'
+        text: 'Already reported' if @state.reported
+        onClick: @showForm
 
-    # [
-    #   el ReportButton,
-    #     key: 'button'
-    #     text: 'Already reported' if @state.reported
-    #     onClick: @showForm
-
-    #   el ReportForm,
-    #     allowOptions: false
-    #     completed: @state.completed
-    #     disabled: @state.disabled
-    #     key: 'form'
-    #     onClose: @onFormClose
-    #     onSubmit: @onSubmit
-    #     title: "#{@props.score.user.username}'s score?"
-    #     visible: @state.showingForm
-    # ]
+      el ReportForm,
+        allowOptions: false
+        completed: @state.completed
+        disabled: @state.disabled
+        key: 'form'
+        onClose: @onFormClose
+        onSubmit: @onSubmit
+        title: "#{@props.score.user.username}'s score?"
+        visible: @state.showingForm
+    ]
 
 
   onFormClose: =>
