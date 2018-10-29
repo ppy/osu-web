@@ -105,7 +105,7 @@ return [
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
         'require_login' => [
-            '_' => '',
+            '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
             'link_text' => 'kirjautunut sisään',
         ],
     ],

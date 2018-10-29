@@ -33,7 +33,10 @@ abstract class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            view()->share('pendingCheckout', optional($this->pendingCheckouts())->first());
+            if (Auth::check()) {
+                $pendingCheckouts = Order::where('user_id', Auth::user()->getKey())->processing();
+                view()->share('pendingCheckout', $pendingCheckouts->first());
+            }
 
             return $next($request);
         });
@@ -52,18 +55,6 @@ abstract class Controller extends BaseController
     {
         if (Auth::check()) {
             return Order::cart(Auth::user()) ?? new Order(['user_id' => Auth::user()->user_id]);
-        }
-    }
-
-    /**
-     * Gets the pending checkouts of the current user.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder pending checkouts of the current user.
-     */
-    protected function pendingCheckouts()
-    {
-        if (Auth::check()) {
-            return Order::where('user_id', Auth::user()->getKey())->processing();
         }
     }
 }

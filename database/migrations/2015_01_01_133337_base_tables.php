@@ -944,6 +944,22 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_user_replayswatched', 'COMPRESSED');
 
+        Schema::create('osu_user_security', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id');
+        });
+        $this->addBinary('osu_user_security', 'osu_md5', 16, true);
+        $this->addBinary('osu_user_security', 'unique_md5', 16, true);
+        $this->addBinary('osu_user_security', 'disk_md5', 16, true);
+        $this->addBinary('osu_user_security', 'mac_md5', 16, true);
+        Schema::table('osu_user_security', function (Blueprint $table) {
+            $table->timestamp('timestamp')->useCurrent();
+            $table->boolean('verified')->default(false);
+
+            $table->primary(['user_id', 'osu_md5', 'unique_md5']);
+            $table->index('disk_md5', 'disk_md5');
+            $table->index('unique_md5', 'unique_md5');
+        });
+
         Schema::create('osu_user_stats_fruits', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1628,6 +1644,7 @@ class BaseTables extends Migration
         Schema::drop('osu_user_performance_rank');
         Schema::drop('osu_user_replayswatched');
         Schema::drop('osu_user_reports');
+        Schema::drop('osu_user_security');
         Schema::drop('osu_user_stats_fruits');
         Schema::drop('osu_user_stats_mania');
         Schema::drop('osu_user_stats');

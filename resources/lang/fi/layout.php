@@ -44,7 +44,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getFaq' => 'ukk',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
             'getWiki' => 'wiki',

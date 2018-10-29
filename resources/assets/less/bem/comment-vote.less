@@ -1,0 +1,75 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comment-vote {
+  @_top: comment-vote;
+  @_bg: @green-light;
+
+  .reset-input();
+  border-radius: 100000px;
+  border: 2px solid transparent;
+  font-size: @font-size--normal;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not([disabled]):hover {
+    border-color: @_bg;
+  }
+
+  &--on {
+    .default-text-shadow();
+    color: #fff;
+    background-color: @_bg;
+  }
+
+  &--on:not([disabled]):hover {
+    background-color: fade(@_bg, 50%);
+  }
+
+  &__hover {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    height: 100%;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    color: @green;
+    text-shadow: none;
+    font-size: @font-size--title-small-3;
+    opacity: 0;
+    will-change: opacity;
+
+    .@{_top}:not([disabled]):hover & {
+      opacity: 1;
+    }
+  }
+
+  &__spinner {
+    .full-size();
+    .center-content();
+  }
+
+  &__text {
+    .@{_top}--posting & {
+      opacity: 0;
+    }
+  }
+}
