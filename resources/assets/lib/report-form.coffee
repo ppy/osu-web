@@ -23,6 +23,10 @@ import { SelectOptions } from 'select-options'
 bn = 'report-form'
 
 export class ReportForm extends PureComponent
+  @defaultProps =
+    allowOptions: true
+
+
   constructor: (props) ->
     super props
 
@@ -103,18 +107,23 @@ export class ReportForm extends PureComponent
 
   renderFormContent: =>
     div null,
-      div
-        className: "#{bn}__row"
-        osu.trans 'users.report.reason'
+      if @props.allowOptions
+        [
+          div
+            key: 'label'
+            className: "#{bn}__row"
+            osu.trans 'users.report.reason'
 
-      div
-        className: "#{bn}__row"
-        el SelectOptions,
-          blackout: false
-          bn: "#{bn}-select-options"
-          onItemSelected: @onItemSelected
-          options: @options
-          selected: @state.selectedReason
+          div
+            key: 'options'
+            className: "#{bn}__row"
+            el SelectOptions,
+              blackout: false
+              bn: "#{bn}-select-options"
+              onItemSelected: @onItemSelected
+              options: @options
+              selected: @state.selectedReason
+        ]
 
       div
         className: "#{bn}__row"

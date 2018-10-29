@@ -45,6 +45,7 @@ export class ReportScore extends PureComponent
         onClick: @showForm
 
       el ReportForm,
+        allowOptions: false
         completed: @state.completed
         disabled: @state.disabled
         key: 'form'
