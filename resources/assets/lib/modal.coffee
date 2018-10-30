@@ -16,19 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { createElement as el, createRef, PureComponent } from 'react'
-import { div } from 'react-dom-factories'
+import { PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 
 export class Modal extends PureComponent
-  constructor: ->
-    @ref = createRef()
-
+  portals = document.getElementsByClassName('js-react-modal')
 
   render: =>
-    bn = @props.bn
-    div
-      className: bn
-      onClick: @hideModal
-      ref: @ref
-      @props.children
+    createPortal @props.children, portals[0]
 

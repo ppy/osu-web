@@ -89,19 +89,24 @@ export class ReportForm extends PureComponent
     el Modal,
       bn: bn
       div
-        className: "#{bn}__content"
+        className: bn
+        onClick: @hideModal
+        ref: @ref
+
         div
-          className: "#{bn}__header"
+          className: "#{bn}__content"
           div
-            className: "#{bn}__row #{bn}__row--exclamation"
-            i className: 'fas fa-exclamation-triangle'
+            className: "#{bn}__header"
+            div
+              className: "#{bn}__row #{bn}__row--exclamation"
+              i className: 'fas fa-exclamation-triangle'
 
-          div
-            className: "#{bn}__row"
-            dangerouslySetInnerHTML:
-              __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
+            div
+              className: "#{bn}__row"
+              dangerouslySetInnerHTML:
+                __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
 
-        @renderFormContent() if !@props.completed
+          @renderFormContent() if !@props.completed
 
 
   renderFormContent: =>
