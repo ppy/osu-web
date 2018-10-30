@@ -1,0 +1,15 @@
+Upper line text.
+[notice]
+Packed notice.
+[/notice]
+Bottom line text.
+
+Prefix text.[notice]Inline notice (except it's not).[/notice]Suffix text.
+
+Upper line text.
+
+[notice]
+Notice with blank lines.
+[/notice]
+
+Bottom line text.

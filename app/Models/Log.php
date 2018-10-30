@@ -22,7 +22,11 @@ namespace App\Models;
 
 class Log extends Model
 {
+    const LOG_FORUM_ADMIN = 0;
     const LOG_FORUM_MOD = 1;
+    const LOG_FORUM_CRITICAL = 2;
+    const LOG_USERS = 3;
+    const LOG_COMMENT_MOD = 4;
 
     protected $table = 'phpbb_log';
     protected $primaryKey = 'log_id';

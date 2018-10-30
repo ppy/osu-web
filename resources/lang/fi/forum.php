@@ -77,7 +77,7 @@ return [
         'reply_box_placeholder' => 'Kirjoita vastauksesi tähän',
         'reply_title_prefix' => 'Re',
         'started_by' => 'tehnyt :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
             'preview' => 'Esikatselu',
@@ -90,7 +90,7 @@ return [
                 'default' => 'Tämä aihealue on ollut epäaktiivinen lähiaikoina. Postaa tänne vain jos sinulla on hyvä syy siihen.',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "Tämä aihe on ollut epäaktiivisena jo pidemmän aikaa. :create jos sinulla ei ole hyvää syytä lähettää viestiä.",
                     'create' => 'luo uusi aihe',
                 ],
             ],

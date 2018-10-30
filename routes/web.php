@@ -86,6 +86,8 @@ Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', '
 
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
+Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
+Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
 Route::group(['prefix' => 'community'], function () {
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);

@@ -37,7 +37,7 @@ return [
         'love' => '',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
-        'qualify' => '',
+        'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia tarkasteluvaihetta varten.',
         'rank' => 'Hyväksytty.',
     ],
 

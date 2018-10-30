@@ -9,6 +9,21 @@ if (!function_exists('mysqli_get_client_stats')) {
     die('Required mysqlnd driver is missing.');
 }
 
+$mysqlDefaults = [
+    'driver' => 'mysql',
+    'host' => env('DB_HOST', 'localhost'),
+    'username' => env('DB_USERNAME', 'osuweb'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8mb4',
+    'collation' => 'utf8mb4_general_ci',
+    'prefix' => '',
+    'strict' => true,
+    'options' => [
+        PDO::ATTR_PERSISTENT => true,
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
+    ],
+];
+
 return [
 
     /*
@@ -41,119 +56,35 @@ return [
     */
 
     'connections' => [
-        'mysql' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE', 'osu'),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
         // slave copy of 'mysql'
-        'mysql-readonly' => [
-            'driver' => 'mysql',
+        'mysql-readonly' => array_merge($mysqlDefaults, [
             'host' => env('DB_HOST_READONLY', env('DB_HOST', 'localhost')),
             'database' => env('DB_DATABASE_READONLY', env('DB_DATABASE', 'osu')),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
-        'mysql-mp' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql-mp' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_MP', 'osu_mp'),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
-        'mysql-charts' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql-charts' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_CHARTS', 'osu_charts'),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
-        'mysql-chat' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql-chat' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_CHAT', 'osu_chat'),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
-        'mysql-store' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql-store' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_STORE', 'osu_store'),
-            'username' => env('DB_USERNAME', 'next'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
+        ]),
 
-        'mysql-updates' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+        'mysql-updates' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_UPDATES', 'osu_updates'),
-            'username' => env('DB_USERNAME', 'osuweb'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_general_ci',
-            'prefix' => '',
-            'strict' => true,
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
-            ],
-        ],
-
+        ]),
     ],
 
     /*

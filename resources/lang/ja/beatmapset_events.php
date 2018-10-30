@@ -34,7 +34,7 @@ return [
         'kudosu_gain' => ':userのディスカッション:discussionがkudosu取得に値する評価を得ました。',
         'kudosu_lost' => ':userのディスカッション:discussionの評価が下がりkudosu取得が取り消されました。',
         'kudosu_recalculate' => 'ディスカッション:discussionのkudosu取得量が再計算されました。',
-        'love' => ':user のお気に入り',
+        'love' => ':user がLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
         'nomination_reset' => '新しい問題:discussionによりノミネートがリセットされました。',
         'qualify' => 'このBeatmapは審査の対象になる数に達しており、審査に通っています。',
