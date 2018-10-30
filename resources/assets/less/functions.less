@@ -30,11 +30,14 @@
 }
 
 .fragment-target-fn(@offset: 0) {
+  position: static; // relative will still block pointer-events
+
   &[id]::before {
     content: '';
     display: block;
     height: @nav2-height--pinned + @offset;
     margin: -(@nav2-height--pinned + @offset) 0 0;
+    pointer-events: none;
 
     @media @mobile {
       height: @navbar-height + @offset;
