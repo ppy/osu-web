@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Modal } from 'modal'
 import { createElement as el, createRef, PureComponent } from 'react'
 import { button, div, i, span, textarea } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
@@ -85,10 +86,8 @@ export class ReportForm extends PureComponent
             else
               @props.title
 
-    div
-      className: bn
-      onClick: @hideModal
-      ref: @ref
+    el Modal,
+      bn: bn
       div
         className: "#{bn}__content"
         div
