@@ -40,35 +40,10 @@ export class ReportForm extends PureComponent
       { id: 'Other', text: osu.trans 'users.report.options.other' },
     ]
 
-    @ref = createRef()
     @textarea = createRef()
 
     @state =
       selectedReason: @options[0]
-
-
-  close: =>
-    @props.onClose?()
-
-
-  componentDidMount: =>
-    document.addEventListener 'keydown', @handleEsc
-
-
-  componentDidUpdate: (prevProps) =>
-    Blackout.toggle(@props.visible, 0.5) unless prevProps.visible == @props.visible
-
-
-  componentWillUnmount: =>
-    document.removeEventListener 'keydown', @handleEsc
-
-
-  handleEsc: (e) =>
-    @close() if e.keyCode == 27
-
-
-  hideModal: (e) =>
-    @close() if !e? || (e.button == 0 && e.target == @ref.current)
 
 
   onItemSelected: (item) =>
@@ -88,25 +63,22 @@ export class ReportForm extends PureComponent
 
     el Modal,
       bn: bn
+      onClose: @props.onClose
+      visible: @props.visible
       div
-        className: bn
-        onClick: @hideModal
-        ref: @ref
-
+        className: "#{bn}__content"
         div
-          className: "#{bn}__content"
+          className: "#{bn}__header"
           div
-            className: "#{bn}__header"
-            div
-              className: "#{bn}__row #{bn}__row--exclamation"
-              i className: 'fas fa-exclamation-triangle'
+            className: "#{bn}__row #{bn}__row--exclamation"
+            i className: 'fas fa-exclamation-triangle'
 
-            div
-              className: "#{bn}__row"
-              dangerouslySetInnerHTML:
-                __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
+          div
+            className: "#{bn}__row"
+            dangerouslySetInnerHTML:
+              __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
 
-          @renderFormContent() if !@props.completed
+        @renderFormContent() if !@props.completed
 
 
   renderFormContent: =>
@@ -156,7 +128,7 @@ export class ReportForm extends PureComponent
             disabled: @props.disabled
             key: 'cancel'
             type: 'button'
-            onClick: @close
+            onClick: @props.onClose
             osu.trans 'users.report.actions.cancel'
         ]
 

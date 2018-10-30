@@ -16,12 +16,44 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { PureComponent } from 'react'
+import { createRef, PureComponent } from 'react'
+import { div } from 'react-dom-factories'
 import { createPortal } from 'react-dom'
 
 export class Modal extends PureComponent
   portals = document.getElementsByClassName('js-react-modal')
 
-  render: =>
-    createPortal @props.children, portals[0]
+  constructor: ->
+    @ref = createRef()
 
+
+  componentDidMount: =>
+    document.addEventListener 'keydown', @handleEsc
+
+
+  componentDidUpdate: (prevProps) =>
+    Blackout.toggle(@props.visible, 0.5) unless prevProps.visible == @props.visible
+
+
+  componentWillUnmount: =>
+    document.removeEventListener 'keydown', @handleEsc
+
+
+  handleEsc: (e) =>
+    @props.onClose?() if e.keyCode == 27
+
+
+  hideModal: (e) =>
+    @props.onClose?() if !e? || (e.button == 0 && e.target == @ref.current)
+
+
+  render: =>
+    createPortal @renderPortalContent(), portals[0]
+
+
+  renderPortalContent: =>
+    div
+      className: @props.bn
+      onClick: @hideModal
+      ref: @ref
+      @props.children
