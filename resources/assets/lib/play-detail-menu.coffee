@@ -19,6 +19,7 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import { a, button, div, i } from 'react-dom-factories'
 import { ReportScore } from 'report-score'
+import { Modal } from 'modal'
 
 export class PlayDetailMenu extends PureComponent
   constructor: (props) ->
@@ -49,6 +50,8 @@ export class PlayDetailMenu extends PureComponent
     return if !@state.active
 
     event = e.originalEvent
+    return if Modal.inTree(event)
+
     if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
       @setState active: false
 

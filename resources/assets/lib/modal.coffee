@@ -23,6 +23,11 @@ import { createPortal } from 'react-dom'
 export class Modal extends PureComponent
   portals = document.getElementsByClassName('js-react-modal')
 
+
+  @inTree: (event) ->
+    portals[0] in event.composedPath()
+
+
   constructor: ->
     @ref = createRef()
 
