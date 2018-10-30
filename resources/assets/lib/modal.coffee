@@ -38,12 +38,15 @@ export class Modal extends PureComponent
     $(document).on 'turbolinks:before-cache.modal', () =>
       roots[0].removeChild @portal
 
+    Blackout.toggle(@props.visible, 0.5)
+
 
   componentDidUpdate: (prevProps) =>
     Blackout.toggle(@props.visible, 0.5) unless prevProps.visible == @props.visible
 
 
   componentWillUnmount: =>
+    Blackout.toggle(false)
     document.removeEventListener 'keydown', @handleEsc
     $(document).off '.modal'
 
