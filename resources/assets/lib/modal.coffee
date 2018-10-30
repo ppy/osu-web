@@ -63,7 +63,7 @@ export class Modal extends PureComponent
 
   renderPortalContent: =>
     div
-      className: @props.bn
+      className: 'js-react-modal__overlay'
       onClick: @hideModal
       ref: @ref
       @props.children

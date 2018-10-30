@@ -62,11 +62,10 @@ export class ReportForm extends PureComponent
               @props.title
 
     el Modal,
-      bn: bn
       onClose: @props.onClose
       visible: @props.visible
       div
-        className: "#{bn}__content"
+        className: bn
         div
           className: "#{bn}__header"
           div
