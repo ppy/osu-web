@@ -21,11 +21,11 @@ import { div } from 'react-dom-factories'
 import { createPortal } from 'react-dom'
 
 export class Modal extends PureComponent
-  portals = document.getElementsByClassName('js-react-modal')
+  roots = document.getElementsByClassName('js-react-modal')
 
 
   @inTree: (event) ->
-    portals[0] in event.composedPath()
+    roots[0] in event.composedPath()
 
 
   constructor: ->
@@ -33,7 +33,10 @@ export class Modal extends PureComponent
 
 
   componentDidMount: =>
+    roots[0].appendChild @portal
     document.addEventListener 'keydown', @handleEsc
+    $(document).on 'turbolinks:before-cache.modal', () =>
+      roots[0].removeChild @portal
 
 
   componentDidUpdate: (prevProps) =>
@@ -42,6 +45,7 @@ export class Modal extends PureComponent
 
   componentWillUnmount: =>
     document.removeEventListener 'keydown', @handleEsc
+    $(document).off '.modal'
 
 
   handleEsc: (e) =>
@@ -53,7 +57,8 @@ export class Modal extends PureComponent
 
 
   render: =>
-    createPortal @renderPortalContent(), portals[0]
+    @portal ?= document.createElement('div')
+    createPortal @renderPortalContent(), @portal
 
 
   renderPortalContent: =>
