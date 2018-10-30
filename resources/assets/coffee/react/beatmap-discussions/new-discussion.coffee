@@ -47,7 +47,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion', @setTop
+    $(window).off '.new-discussion'
     @postXhr?.abort()
     @throttledPost.cancel()
 
