@@ -31,7 +31,6 @@ class @StickyHeader
     $(window).on 'throttled-scroll', @pin
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
-    $(document).on 'turbolinks:load', () => @visible = false
 
 
   breadcrumbsElement: ->
@@ -67,13 +66,7 @@ class @StickyHeader
 
 
   setVisible: (visible) =>
-    return if @visible == visible
-
-    @visible = visible
-    if visible
-      Fade.in @pinnedSticky[0]
-    else
-      Fade.out @pinnedSticky[0]
+    Fade.toggle @pinnedSticky[0], visible
 
     $(document).trigger 'sticky-header:sticking', [visible]
 
