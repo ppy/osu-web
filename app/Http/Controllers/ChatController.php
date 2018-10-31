@@ -30,10 +30,10 @@ use Carbon\Carbon;
 use DB;
 use Request;
 
-class MessagesController extends Controller
+class ChatController extends Controller
 {
     protected $section = 'home';
-    protected $actionPrefix = 'messages-';
+    protected $actionPrefix = 'chat-';
 
     public function __construct()
     {
@@ -62,6 +62,6 @@ class MessagesController extends Controller
             $json['can_message'] = $canMessage;
         }
 
-        return view('messages.index', compact('presence', 'messages', 'json'));
+        return view('chat.index', compact('presence', 'messages', 'json'));
     }
 }

@@ -674,9 +674,9 @@ function nav_links()
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'chat' => route('chat.index'),
         'contests' => route('contests.index'),
         'tournaments' => route('tournaments.index'),
-        'chat' => route('messages.index'),
         'getLive' => route('livestreams.index'),
         'dev' => osu_url('dev'),
     ];

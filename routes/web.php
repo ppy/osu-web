@@ -131,6 +131,20 @@ Route::group(['prefix' => 'community'], function () {
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });
+
+    Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+        Route::post('new', 'ChatController@newConversation')->name('new');
+        Route::get('updates', 'ChatController@updates')->name('updates');
+        Route::get('presence', 'ChatController@presence')->name('presence');
+        Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+            Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
+            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
+            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
+        });
+        Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
+    });
+    Route::resource('chat', 'ChatController', ['only' => ['index']]);
 });
 
 Route::resource('groups', 'GroupsController', ['only' => ['show']]);
@@ -169,20 +183,6 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
-
-    Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
-        Route::post('new', 'ChatController@newConversation')->name('new');
-        Route::get('updates', 'ChatController@updates')->name('updates');
-        Route::get('presence', 'ChatController@presence')->name('presence');
-        Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-            Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
-            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
-            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
-            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
-        });
-        Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
-    });
-    Route::resource('messages', 'MessagesController', ['only' => ['index']]);
 
     Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);

@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ChatStateStore from 'chat/chat-state-store';
 import Dispatcher from 'dispatcher';
-import ChatStateStore from 'messaging/chat-state-store';
 import RootDataStore from './root-data-store';
 
 export default class UIStateStore {

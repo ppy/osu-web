@@ -79,6 +79,7 @@ return [
         'community' => [
             '_' => 'community',
             'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'development',
             'getForum' => 'forums',
             'getLive' => 'live',
@@ -94,7 +95,6 @@ return [
             'forum-topics-show' => 'forums',
             'forum-forums-index' => 'forums',
             'forum-forums-show' => 'forums',
-            'messages-index' => 'chat',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',

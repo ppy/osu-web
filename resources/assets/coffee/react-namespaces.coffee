@@ -23,12 +23,12 @@
 @BeatmapsetPage = {}
 @ChangelogIndex = {}
 @ChangelogBuild = {}
+@Chat = {}
 @CommentsIndex = {}
 @CommentsShow = {}
 @Contest = {}
 @Contest.Entry = {}
 @Contest.Voting = {}
-@Messaging = {}
 @MPHistory = {}
 @ProfilePage = {}
 @Ranking = {}

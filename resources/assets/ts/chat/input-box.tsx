@@ -54,14 +54,14 @@ export default class InputBox extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    let classes = 'messaging__chat-input';
+    let classes = 'chat__chat-input';
     if (this.props.disabled) {
-      classes += ' messaging__chat-input--disabled';
+      classes += ' chat__chat-input--disabled';
     }
 
     return (
       <div className={classes}>
-        <input className='messaging__chat-input-box'
+        <input className='chat__chat-input-box'
           name= 'textbox'
           placeholder={this.props.disabled ? 'unable to send message...' : osu.trans('messages.input-placeholder')}
           onKeyDown={this.checkIfEnterPressed}

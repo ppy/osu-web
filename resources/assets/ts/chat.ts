@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ChatOrchestrator from './chat/chat-orchestrator';
+import ChatWorker from './chat/chat-worker';
+import MainView from './chat/main-view';
 import Dispatcher from './dispatcher';
-import ChatOrchestrator from './messaging/chat-orchestrator';
-import ChatWorker from './messaging/chat-worker';
-import MainView from './messaging/main-view';
 import RootDataStore from './stores/root-data-store';
 import WindowFocusObserver from './window-focus-observer';
 
@@ -71,7 +71,7 @@ if (window.WindowFocusObserver) {
   window.WindowFocusObserver = windowFocusObserver = new WindowFocusObserver(window, dispatcher);
 }
 
-reactTurbolinks.register('messaging', MainView, () => {
+reactTurbolinks.register('chat', MainView, () => {
   return {
     dataStore: datastore,
     dispatcher,

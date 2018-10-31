@@ -112,7 +112,7 @@ class HomeController extends Controller
 
     public function messageUser($user)
     {
-        return ujs_redirect(route('messages.index', ['sendto' => $user]));
+        return ujs_redirect(route('chat.index', ['sendto' => $user]));
     }
 
     public function osuSupportPopup()

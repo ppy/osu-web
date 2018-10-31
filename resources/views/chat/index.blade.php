@@ -23,7 +23,7 @@
 ])
 
 @section("content")
-    <div class="js-react--messaging osu-layout osu-layout--full"></div>
+    <div class="js-react--chat osu-layout osu-layout--full"></div>
 @endsection
 
 @section("script")
@@ -37,5 +37,5 @@
         {!! json_encode($presence) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/messaging.js'])
+    @include('layout._extra_js', ['src' => 'js/react/chat.js'])
 @endsection

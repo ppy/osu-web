@@ -196,9 +196,9 @@ mix
 ], 'js/react/contest-voting.js')
 .ts([
   'resources/assets/ts/window-focus-observer.ts',
-  ...glob.sync('resources/assets/ts/messaging/*.ts?'),
-  'resources/assets/ts/messaging.ts',
-], 'js/react/messaging.js')
+  ...glob.sync('resources/assets/ts/chat/*.ts?'),
+  'resources/assets/ts/chat.ts',
+], 'js/react/chat.js')
 .copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')

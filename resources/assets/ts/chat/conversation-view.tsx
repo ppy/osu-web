@@ -32,10 +32,10 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.messaging__read-marker').length > 0 ) {
-      $('.messaging__read-marker')[0].scrollIntoView();
+    if ($('.chat__read-marker').length > 0 ) {
+      $('.chat__read-marker')[0].scrollIntoView();
     } else {
-      $('.messaging__conversation').scrollTop($('.messaging__conversation')[0].scrollHeight);
+      $('.chat__conversation').scrollTop($('.chat__conversation')[0].scrollHeight);
     }
   }
 
@@ -51,8 +51,8 @@ export default class ConversationView extends React.Component<any, any> {
     if (presence.type === 'PM' || presence.type === 'NEW') {
       return (
         <div>
-          <div className='messaging__cannot-message'>You cannot message this user at this time. This may be due to any of the following reasons:</div>
-          <ul className='messaging__cannot-message-reasons'>
+          <div className='chat__cannot-message'>You cannot message this user at this time. This may be due to any of the following reasons:</div>
+          <ul className='chat__cannot-message-reasons'>
             <li>The recipient is only accepting messages from people on their friends list</li>
             <li>The recipient is currently restricted</li>
             <li>You were blocked by the recipient</li>
@@ -63,8 +63,8 @@ export default class ConversationView extends React.Component<any, any> {
     } else if (presence.type === 'GROUP') {
       return (
         <div>
-          <div className='messaging__cannot-message'>You cannot message this channel at this time. This may be due to any of the following reasons:</div>
-          <ul className='messaging__cannot-message-reasons'>
+          <div className='chat__cannot-message'>You cannot message this channel at this time. This may be due to any of the following reasons:</div>
+          <ul className='chat__cannot-message-reasons'>
             <li>The channel has been moderated</li>
             <li>You are currently restricted</li>
           </ul>
@@ -78,7 +78,7 @@ export default class ConversationView extends React.Component<any, any> {
     const channel: Channel | undefined = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
-      return(<div className='messaging__conversation' />);
+      return(<div className='chat__conversation' />);
     }
 
     const renderStack: JSX.Element[] = [];
@@ -122,14 +122,14 @@ export default class ConversationView extends React.Component<any, any> {
     });
 
     return (
-      <div className='messaging__conversation'>
-        <div className='messaging__new-chat-avatar'>
+      <div className='chat__conversation'>
+        <div className='chat__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
-        <div className='messaging__chat-label'>talking with {channel.name}</div>
+        <div className='chat__chat-label'>talking with {channel.name}</div>
 
         {channel.loading &&
-          <div className='messaging__day-divider'>
+          <div className='chat__day-divider'>
             <Spinner />
           </div>
         }

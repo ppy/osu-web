@@ -94,18 +94,18 @@ export default class MainView extends React.Component<any, any> {
 
   render(): React.ReactNode {
     return(
-      [
-        <HeaderV3 theme='chat' title='Chat' />,
+      <div>
+        <HeaderV3 theme='chat' title='Chat' />
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
-          <div className='messaging osu-page osu-page--chat'>
+          <div className='chat osu-page osu-page--chat'>
             <ConversationList />
-            <div className='messaging__conversation-window'>
+            <div className='chat__conversation-window'>
               <ConversationView />
               <InputBox />
             </div>
           </div>
-        </Provider>,
-      ]
+        </Provider>
+      </div>
     );
   }
 }

@@ -40,21 +40,21 @@ export default class ConversationListItem extends React.Component<any, {}> {
     const conversation = dataStore.channelStore.getOrCreate(this.props.channel_id);
     const selected = this.props.channel_id === uiState.selected;
 
-    let className = 'messaging__conversation-list-item';
+    let className = 'chat__conversation-list-item';
     if (selected) {
-      className += ' messaging__conversation-list-item--selected';
+      className += ' chat__conversation-list-item--selected';
     }
 
     if (conversation.isUnread) {
-      className += ' messaging__conversation-list-item--unread';
+      className += ' chat__conversation-list-item--unread';
     }
 
     return (
       <a href='#' className={className} onClick={this.switch}>
-        <div className='messaging__conversation-list-unread' />
-        <img className='messaging__conversation-list-item-av' src={conversation.icon} />
-        <div className='messaging__conversation-list-item-name'>{conversation.name}</div>
-        <div className='messaging__conversation-list-chevron'>
+        <div className='chat__conversation-list-unread' />
+        <img className='chat__conversation-list-item-av' src={conversation.icon} />
+        <div className='chat__conversation-list-item-name'>{conversation.name}</div>
+        <div className='chat__conversation-list-chevron'>
           <i className='fas fa-chevron-right' />
         </div>
       </a>

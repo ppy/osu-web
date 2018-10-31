@@ -27,10 +27,10 @@ export default class MessageDivider extends React.Component<PropsInterface, any>
   render(): React.ReactNode {
     switch (this.props.type) {
       case 'DAY_MARKER':
-        return (<div className='messaging__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
+        return (<div className='chat__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
 
       case 'READ_MARKER':
-        return (<div className='messaging__read-marker' data-content='unread messages' />);
+        return (<div className='chat__read-marker' data-content='unread messages' />);
 
       default:
         return null;
