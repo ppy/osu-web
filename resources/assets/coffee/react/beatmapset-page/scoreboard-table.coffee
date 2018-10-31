@@ -24,9 +24,18 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @state = {}
+
+
+  onMenuActive: ({ index, active }) =>
+    activeMenu = index if active
+    @setState { activeMenu }
+
 
   render: =>
-    div className: "#{bn}",
+    classMods = ['menu-active'] if @state.activeMenu?
+
+    div className: osu.classWithModifiers(bn, classMods),
       table
         className: "#{bn}__table"
         thead {},
@@ -46,10 +55,10 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             th className: "#{bn}__header #{bn}__header--play-detail-menu"
 
         tbody className: "#{bn}__body",
-          for score, i in @props.scores
+          for score, index in @props.scores
             rowClasses = "#{bn}__body-row"
 
-            if i == 0
+            if index == 0
               rowClasses += " #{bn}__body-row--first"
 
             if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
@@ -60,9 +69,9 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
             tr
               className: rowClasses
-              key: i,
+              key: index,
 
-              td className: "#{bn}__rank", "##{i+1}"
+              td className: "#{bn}__rank", "##{index+1}"
 
               td className: "#{bn}__grade",
                 div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
@@ -109,4 +118,6 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
               td className: "#{bn}__play-detail-menu",
                 el _exported.PlayDetailMenu,
+                  onHide: () => @onMenuActive?(active: false, index: index)
+                  onShow: () => @onMenuActive?(active: true, index: index)
                   score: score
