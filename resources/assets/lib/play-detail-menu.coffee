@@ -51,6 +51,8 @@ export class PlayDetailMenu extends PureComponent
     return if !@state.active || Modal.isOpen()
 
     event = e.originalEvent
+    return if !event? # originalEvent gets eaten by error popup?
+
     if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
       @setState active: false
 
