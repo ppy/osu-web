@@ -20,88 +20,93 @@
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-BeatmapsetPage.ScoreboardTable = (props) ->
-  div className: "#{bn}",
-    table
-      className: "#{bn}__table"
-      thead {},
-        tr {},
-          th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
-          th className: "#{bn}__header #{bn}__header--grade", ''
-          th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
-          th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
-          th className: "#{bn}__header #{bn}__header--flag", ''
-          th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
-          th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
-          for stat in props.hitTypeMapping
-            th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
-          th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
-          th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
-          th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
-          th className: "#{bn}__header #{bn}__header--play-detail-menu"
+class BeatmapsetPage.ScoreboardTable extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-      tbody className: "#{bn}__body",
-        for score, i in props.scores
-          rowClasses = "#{bn}__body-row"
 
-          if i == 0
-            rowClasses += " #{bn}__body-row--first"
+  render: =>
+    div className: "#{bn}",
+      table
+        className: "#{bn}__table"
+        thead {},
+          tr {},
+            th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
+            th className: "#{bn}__header #{bn}__header--grade", ''
+            th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
+            th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
+            th className: "#{bn}__header #{bn}__header--flag", ''
+            th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
+            th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
+            for stat in @props.hitTypeMapping
+              th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
+            th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
+            th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+            th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
+            th className: "#{bn}__header #{bn}__header--play-detail-menu"
 
-          if props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
-            rowClasses += " #{bn}__body-row--friend"
+        tbody className: "#{bn}__body",
+          for score, i in @props.scores
+            rowClasses = "#{bn}__body-row"
 
-          if score.user.id == currentUser.id
-            rowClasses += " #{bn}__body-row--self"
+            if i == 0
+              rowClasses += " #{bn}__body-row--first"
 
-          tr
-            className: rowClasses
-            key: i,
+            if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
+              rowClasses += " #{bn}__body-row--friend"
 
-            td className: "#{bn}__rank", "##{i+1}"
+            if score.user.id == currentUser.id
+              rowClasses += " #{bn}__body-row--self"
 
-            td className: "#{bn}__grade",
-              div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
+            tr
+              className: rowClasses
+              key: i,
 
-            td className: "#{bn}__score",
-              score.score.toLocaleString()
+              td className: "#{bn}__rank", "##{i+1}"
 
-            td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
-              "#{(score.accuracy * 100).toFixed(2)}%"
+              td className: "#{bn}__grade",
+                div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
 
-            td {},
-              if score.user.country_code
+              td className: "#{bn}__score",
+                score.score.toLocaleString()
+
+              td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
+                "#{(score.accuracy * 100).toFixed(2)}%"
+
+              td {},
+                if score.user.country_code
+                  a
+                    href: laroute.route 'rankings',
+                      mode: @props.beatmap.mode
+                      country: score.user.country_code
+                      type: 'performance'
+                    el FlagCountry,
+                      country: @props.countries[score.user.country_code]
+                      classModifiers: ['scoreboard', 'small-box']
+              td {},
                 a
-                  href: laroute.route 'rankings',
-                    mode: props.beatmap.mode
-                    country: score.user.country_code
-                    type: 'performance'
-                  el FlagCountry,
-                    country: props.countries[score.user.country_code]
-                    classModifiers: ['scoreboard', 'small-box']
-            td {},
-              a
-                className: "#{bn}__user-link js-usercard"
-                'data-user-id': score.user.id
-                href: laroute.route 'users.show', user: score.user.id
-                score.user.username
+                  className: "#{bn}__user-link js-usercard"
+                  'data-user-id': score.user.id
+                  href: laroute.route 'users.show', user: score.user.id
+                  score.user.username
 
-            td className: (if score.max_combo == props.beatmap.max_combo?[0] then "#{bn}__perfect" else ''),
-              "#{score.max_combo.toLocaleString()}x"
+              td className: (if score.max_combo == @props.beatmap.max_combo?[0] then "#{bn}__perfect" else ''),
+                "#{score.max_combo.toLocaleString()}x"
 
-            for stat in props.hitTypeMapping
-              td
-                key: stat[0]
-                className: (if score.statistics["count_#{stat[1]}"] == 0 then "#{bn}__zero" else ''),
-                score.statistics["count_#{stat[1]}"].toLocaleString()
+              for stat in @props.hitTypeMapping
+                td
+                  key: stat[0]
+                  className: (if score.statistics["count_#{stat[1]}"] == 0 then "#{bn}__zero" else ''),
+                  score.statistics["count_#{stat[1]}"].toLocaleString()
 
-            td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
-              score.statistics.count_miss.toLocaleString()
+              td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
+                score.statistics.count_miss.toLocaleString()
 
-            td {}, _.round score.pp
+              td {}, _.round score.pp
 
-            td className: "#{bn}__mods",
-              el Mods, modifiers: ['scoreboard'], mods: score.mods
+              td className: "#{bn}__mods",
+                el Mods, modifiers: ['scoreboard'], mods: score.mods
 
-            td className: "#{bn}__play-detail-menu",
-              el _exported.PlayDetailMenu,
-                score: score
+              td className: "#{bn}__play-detail-menu",
+                el _exported.PlayDetailMenu,
+                  score: score
