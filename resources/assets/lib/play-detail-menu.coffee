@@ -93,5 +93,4 @@ export class PlayDetailMenu extends PureComponent
           osu.trans 'users.show.extra.top_ranks.download_replay'
 
         el ReportScore,
-          score: @props.score
-          mode: @props.score.beatmap.mode
+          { reported, score } = @props
