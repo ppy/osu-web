@@ -24,6 +24,7 @@ use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\UserReport;
 use Auth;
+use PDOException;
 
 class ScoresController extends Controller
 {
@@ -33,12 +34,19 @@ class ScoresController extends Controller
 
         priv_check('ScoreReport', $score)->ensureCan();
 
-        $report = $score->reportedIn()->create([
-            'user_id' => $score->user_id,
-            'reporter_id' => Auth::user()->getKey(),
-            'mode' => Beatmap::modeInt($mode),
-            'comments' => trim(request('comments')),
-        ]);
+        try {
+            $score->reportedIn()->create([
+                'user_id' => $score->user_id,
+                'reporter_id' => Auth::user()->getKey(),
+                'mode' => Beatmap::modeInt($mode),
+                'comments' => trim(request('comments')),
+            ]);
+        } catch (PDOException $ex) {
+            // ignore duplicate reports;
+            if (!is_sql_unique_exception($ex)) {
+                throw $ex;
+            }
+        }
 
         return response(null, 204);
     }

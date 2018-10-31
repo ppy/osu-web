@@ -73,7 +73,6 @@ class BeatmapsController extends Controller
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
-            $results['reportedScores'] = (clone $query)->reportedBy($user)->pluck('score_id');
 
             if ($score !== null) {
                 $results['userScore'] = [

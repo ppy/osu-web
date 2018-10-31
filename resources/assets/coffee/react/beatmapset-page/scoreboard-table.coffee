@@ -104,5 +104,4 @@ BeatmapsetPage.ScoreboardTable = (props) ->
 
             td className: "#{bn}__play-detail-menu",
               el _exported.PlayDetailMenu,
-                reported: _.includes props.reportedScores, score.id
                 score: score

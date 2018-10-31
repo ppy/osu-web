@@ -102,7 +102,6 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
 
             el BeatmapsetPage.ScoreboardTable,
               beatmap: @props.beatmap
-              reportedScores: @props.reportedScores
               scores: @props.scores
               countries: @props.countries
               hitTypeMapping: @hitTypeMapping()

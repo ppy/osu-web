@@ -22,10 +22,6 @@ import { ReportForm } from 'report-form'
 import { a, button, div, i } from 'react-dom-factories'
 
 export class ReportScore extends PureComponent
-  @defaultProps =
-    reported: false
-
-
   constructor: (props) ->
     super props
 
@@ -33,7 +29,6 @@ export class ReportScore extends PureComponent
       completed: false
       disabled: false
       showingForm: false
-      reported: @props.reported
 
 
   render: =>
@@ -42,7 +37,6 @@ export class ReportScore extends PureComponent
     [
       el ReportButton,
         key: 'button'
-        text: 'Already reported' if @state.reported
         onClick: @showForm
 
       el ReportForm,
@@ -64,7 +58,7 @@ export class ReportScore extends PureComponent
 
 
   showForm: (e) =>
-    return if e.button != 0 || @state.reported
+    return if e.button != 0
     e.preventDefault()
 
     Timeout.clear @timeout
@@ -85,7 +79,7 @@ export class ReportScore extends PureComponent
 
     .done () =>
       @timeout = Timeout.set 1000, @onFormClose
-      @setState completed: true, reported: true
+      @setState completed: true
 
     .fail (xhr) =>
       osu.ajaxError xhr

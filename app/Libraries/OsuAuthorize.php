@@ -978,15 +978,10 @@ class OsuAuthorize
 
     public function checkScoreReport($user, $score)
     {
-        $prefix = 'score.report.';
-
         $this->ensureLoggedIn($user);
 
         if ($user->getKey() === $score->user_id) {
-            return $prefix.'self';
-        }
-         if ($score->reportedIn()->where('reporter_id', $user->getKey())->exists()) {
-            return $prefix.'already_reported';
+            return 'score.report.self';
         }
 
         return 'ok';
