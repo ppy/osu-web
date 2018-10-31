@@ -19,12 +19,12 @@
 {a, div, h1, p} = ReactDOMFactories
 el = React.createElement
 
-modeSwitcher = document.getElementsByClassName('js-mode-switcher')
-newDiscussion = document.getElementsByClassName('js-new-discussion')
-
 class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
     super props
+
+    @modeSwitcherRef = React.createRef()
+    @newDiscussionRef = React.createRef()
 
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
@@ -101,6 +101,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
+        innerRef: @modeSwitcherRef
         mode: @state.currentMode
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -123,7 +124,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
+            innerRef: @newDiscussionRef
             mode: @state.currentMode
+            pinned: @state.pinnedNewDiscussion
+            setPinned: @setPinnedNewDiscussion
+            stickTo: @modeSwitcherRef
 
           el BeatmapDiscussions.Discussions,
             beatmapset: @state.beatmapset
@@ -324,11 +329,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-      offset = 0
-      for header in [modeSwitcher, newDiscussion] when header[0]?
-        offset += header[0].getBoundingClientRect().height * -1
+      offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
+      offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo target, 500, offset: offset
+      $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500
 
     @update null, newState
 
@@ -369,6 +373,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   setCurrentPlaymode: (e, {mode}) =>
     @update e, playmode: mode
+
+
+  setPinnedNewDiscussion: (pinned) =>
+    @setState pinnedNewDiscussion: pinned
 
 
   update: (_e, options) =>

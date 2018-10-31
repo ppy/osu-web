@@ -38,6 +38,9 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 @currentUserObserver ?= new CurrentUserObserver
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@syncHeight ?= new SyncHeight
+@stickyHeader ?= new StickyHeader
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
@@ -71,9 +74,6 @@ $(document).on 'turbolinks:load', ->
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@syncHeight ?= new SyncHeight
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
@@ -81,7 +81,6 @@ $(document).on 'turbolinks:load', ->
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
-@wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)

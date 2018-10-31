@@ -27,10 +27,23 @@
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
 
+@header-pinned: js-header-is-pinned;
+@header-pinned-animation-duration: 300ms;
+
+// update import-shims.coffee when changing the height of the header.
+@nav2-avatar-height: 60px;
+@nav2-avatar-height--pinned : 40px;
 @nav2-height: 90px;
-@nav2-menu-height: 60px;
+@nav2-height--pinned: 50px;
 @nav2-header-height: 360px;
 @nav2-header-image-height: 310px;
+
+
+// mobile nav
+// TODO: un-bootstrap names
+@navbar-height: 60px;
+@navbar-padding-horizontal: 10px;
+@navbar-padding-vertical: 10px;
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -69,7 +82,6 @@
 @z-index--nav2: 100;
 @z-index--simple-menu: 101;
 @z-index--back-to-top: 500;
-@z-index--forum-topic-headernav: 501;
 @z-index--fixed-bar: 501;
 @z-index--blackout: 510;
 @z-index--blackout-visible: 511;

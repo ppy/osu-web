@@ -16,18 +16,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.nav2-header-legacy-padding {
+  @media @desktop {
+    padding-top: @nav2-height;
+  }
+}
+
 .nav2-header {
   @_top: nav2-header;
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: @z-index--fixed-bar;
 
-  &--legacy {
-    position: relative;
-    width: auto;
-
-    @media @desktop {
-      margin-bottom: -5px;
-    }
+  &__body {
+    width: 100%;
   }
 
   &__menu-bg {
@@ -43,8 +46,13 @@
 
   &__legacy-gradient-overlay {
     .full-size();
+
+    .@{header-pinned} & {
+      background-position-y: 100%;
+    }
+
     display: block;
-    transition: all 1s ease-in-out;
+    transition: background-position @header-pinned-animation-duration / 2;
   }
 
   &__legacy-triangles {
@@ -53,6 +61,17 @@
     background-size: 640px 360px;
 
     .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
+  }
+
+  &__transition-overlay {
+    .full-size();
+    background-color: #222;
+    opacity: 0;
+    transition: opacity @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      opacity: 1;
+    }
   }
 
   &__triangles {

@@ -16,45 +16,123 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i, input, h1, h2} = ReactDOMFactories
+{div, a, i, input, h1, h2, li, ol, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @inputRef = React.createRef()
+    @pinnedInputRef = React.createRef()
+
+    # containers for React to render portal into; turbolinks and React portals
+    # don't play well together, otherwise. These aren't needed without turbolinks.
+    @breadcrumbsPortal = document.createElement('div')
+    @contentPortal = document.createElement('div')
+
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
+    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
+    @contentElement = window.stickyHeader.contentElement()
+
+    @state =
+      query: @props.filters.query
 
 
   componentDidMount: =>
-    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    $(document).on 'turbolinks:before-cache.search-panel', () =>
+      # componentWillUnmount is called too late for Beatmaps.
+      @breadcrumbsElement.removeChild @breadcrumbsPortal
+      @contentElement.removeChild @contentPortal
+
+    @breadcrumbsElement.appendChild @breadcrumbsPortal
+    @contentElement.appendChild @contentPortal
+
+
+  componentDidUpdate: (prevProps, prevState) =>
+    @debouncedSubmit @state.query if prevState.query != @state.query
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmaps-search-cache'
+    $(document).off '.search-panel'
     @debouncedSubmit.cancel()
 
 
   render: =>
+    div null,
+      if window.stickyHeader.breadcrumbsElement()?
+        ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
+
+      if window.stickyHeader.contentElement()?
+        ReactDOM.createPortal @renderStickyContent(), @contentPortal
+
+      div
+        className: 'osu-page osu-page--beatmapsets-search-header'
+        if currentUser.id?
+          @renderUser()
+        else
+          @renderGuest()
+
+
+  renderBreadcrumbs: =>
+    return null unless currentUser.id?
+
+    # TODO: replace with component that takes an array of {name, link}.
+    ol className: 'sticky-header-breadcrumbs',
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'beatmapsets.index.guest_title'
+
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'home.search.title'
+
+
+  renderStickyContent: =>
+    return null unless currentUser.id?
+
     div
-      className: 'osu-page osu-page--beatmapsets-search-header'
-      if currentUser.id?
-        @renderUser()
-      else
-        @renderGuest()
+      className: 'beatmapsets-search beatmapsets-search--sticky'
+      div
+        className: 'beatmapsets-search__input-container'
+        input
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @pinnedInputRef
+          type: 'textbox'
+          name: 'search'
+          onChange: @onChange
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          value: @state.query
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
+
+      div
+        className: 'beatmapsets-search__filters'
+        @renderFilter
+          name: 'status'
+          options: @props.availableFilters.statuses
+          showTitle: false
+
+        @renderFilter
+          name: 'mode'
+          options: @props.availableFilters.modes
+          showTitle: false
 
 
-  onInput: (event) =>
-    event.persist()
-    @debouncedSubmit event
+  onChange: (event) =>
+    @setState
+      query: event.target.value
 
 
-  renderFilter: ({ multiselect = false, name, options }) =>
+  renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el Beatmaps.SearchFilter,
       filters: @props.filters
       name: name
-      title: osu.trans("beatmaps.listing.search.filters.#{name}")
+      title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       default: @props.filterDefaults[name]
       multiselect: multiselect
@@ -94,11 +172,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div className: 'beatmapsets-search__input-container',
         input
           className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @inputRef
           type: 'textbox'
           name: 'search'
+          onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          onInput: @onInput
-          defaultValue: @props.filters.query
+          value: @state.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -146,12 +225,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
           options: filters.played
 
 
-  submit: (e) =>
-    text = e.target.value.trim()
+  setHeaderPinned: (_event, pinned) =>
+    if pinned && document.activeElement == @inputRef.current
+      @pinnedInputRef.current.focus()
+    else if !pinned && document.activeElement == @pinnedInputRef.current
+      @inputRef.current.focus()
 
-    if text == @prevText
-      return
 
-    @prevText = text
-
-    $(document).trigger 'beatmap:search:filtered', query: text
+  submit: (query) ->
+    $(document).trigger 'beatmap:search:filtered', query: query.trim()

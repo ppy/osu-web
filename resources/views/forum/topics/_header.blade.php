@@ -77,6 +77,6 @@
     </div>
 
     @if (!$newTopic)
-        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
+        <div class="forum-topic-header__sticky-marker js-sticky-header"></div>
     @endif
 </div>
