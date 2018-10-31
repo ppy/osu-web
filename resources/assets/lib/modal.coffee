@@ -56,7 +56,7 @@ export class Modal extends PureComponent
 
 
   hideModal: (e) =>
-    @props.onClose?() if !e? || (e.button == 0 && e.target == @ref.current)
+    @props.onClose?() if e.button == 0 && e.target == @ref.current
 
 
   render: =>
