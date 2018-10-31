@@ -23,13 +23,17 @@ import { createPortal } from 'react-dom'
 export class Modal extends PureComponent
   roots = document.getElementsByClassName('js-react-modal')
 
-
-  @inTree: (event) ->
-    roots[0] in event.composedPath()
+  @isOpen: ->
+    document.body.classList.contains 'js-react-modal---is-open'
 
 
   constructor: ->
     @ref = createRef()
+
+
+  close: ->
+    document.body.classList.remove 'js-react-modal---is-open'
+    Blackout.toggle(false, 0.5)
 
 
   componentDidMount: =>
@@ -38,15 +42,16 @@ export class Modal extends PureComponent
     $(document).on 'turbolinks:before-cache.modal', () =>
       roots[0].removeChild @portal
 
-    Blackout.toggle(@props.visible, 0.5)
+    if @props.visible then @open() else @close()
 
 
   componentDidUpdate: (prevProps) =>
-    Blackout.toggle(@props.visible, 0.5) unless prevProps.visible == @props.visible
+    return if prevProps.visible == @props.visible
+    if @props.visible then @open() else @close()
 
 
   componentWillUnmount: =>
-    Blackout.toggle(false)
+    @close()
     document.removeEventListener 'keydown', @handleEsc
     $(document).off '.modal'
 
@@ -57,6 +62,12 @@ export class Modal extends PureComponent
 
   hideModal: (e) =>
     @props.onClose?() if e.button == 0 && e.target == @ref.current
+
+
+  open: ->
+    # TODO: move to global react state or something
+    document.body.classList.add 'js-react-modal---is-open'
+    Blackout.toggle(true, 0.5)
 
 
   render: =>
