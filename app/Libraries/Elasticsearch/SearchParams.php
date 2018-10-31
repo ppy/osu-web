@@ -33,6 +33,9 @@ abstract class SearchParams
     /** @var array */
     public $sorts = [];
 
+    /** @var array|null */
+    public $searchAfter = null;
+
     public function __construct()
     {
     }
