@@ -32,18 +32,19 @@ export class PlayDetailMenu extends PureComponent
       active: false
 
 
-  componentDidMount: =>
-    $(document).on "click.#{@uuid}", @hide
-    $(document).on "keyup.#{@uuid}", @hide
-
-
   componentDidUpdate: (_prevProps, prevState) =>
-    if prevState.active != @state.active
-      if @state.active then @props.onShow?() else @props.onHide?()
+    return if prevState.active == @state.active
+
+    if @state.active
+      $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
+      @props.onShow?()
+    else
+      $(document).off ".#{@uuid}"
+      @props.onHide?()
 
 
   componentWillUnmount: =>
-    $(document).off ".#{@uuid}", @hide
+    $(document).off ".#{@uuid}"
 
 
   hide: (e) =>
