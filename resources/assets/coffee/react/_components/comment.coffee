@@ -247,7 +247,7 @@ class @Comment extends React.PureComponent
 
 
   renderVoteButton: =>
-    className = 'comment-vote'
+    className = osu.classWithModifiers('comment-vote', @props.modifiers)
     className += ' comment-vote--posting' if @state.postingVote
 
     if @hasVoted()
