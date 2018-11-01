@@ -24,7 +24,7 @@
 
                 <p class="osu-page-header__title osu-page-header__title--smaller">
                     {!! trans('livestreams.top-headers.description', [
-                    'here' => link_to(
+                    'link' => link_to(
                     wiki_url('Guides/Live_Streaming_osu!'),
                     trans('livestreams.top-headers.link')
                     ),
