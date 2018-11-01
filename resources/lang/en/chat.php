@@ -19,14 +19,26 @@
  */
 
 return [
-    'title' => 'Messages',
-    'title_compact' => 'messages',
-
     'no-conversations' => 'no conversations yet',
-    'send' => 'Send',
+    'talking_in' => 'talking in :channel',
+    'talking_with' => 'talking with :name',
+    'title_compact' => 'chat',
+    'title' => 'Chat',
 
+    'cannot_send' => [
+        'user' => 'You cannot message this user at this time. This may be due to any of the following reasons:',
+        'channel' => 'You cannot message this channel at this time. This may be due to any of the following reasons:',
+        'reasons' => [
+            'blocked' => 'You were blocked by the recipient',
+            'friends_only' => 'The recipient only accepts messages from people on their friends list',
+            'restricted' => 'You are currently restricted',
+            'target_restricted' => 'The recipient is currently restricted',
+            'channel_moderated' => 'The channel has been moderated'
+        ],
+    ],
     'input' => [
         'disabled' => 'unable to send message...',
         'placeholder' => 'type message...',
+        'send' => 'Send',
     ],
 ];

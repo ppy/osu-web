@@ -51,22 +51,22 @@ export default class ConversationView extends React.Component<any, any> {
     if (presence.type === 'PM' || presence.type === 'NEW') {
       return (
         <div>
-          <div className='chat__cannot-message'>You cannot message this user at this time. This may be due to any of the following reasons:</div>
+          <div className='chat__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
           <ul className='chat__cannot-message-reasons'>
-            <li>The recipient is only accepting messages from people on their friends list</li>
-            <li>The recipient is currently restricted</li>
-            <li>You were blocked by the recipient</li>
-            <li>You are currently restricted</li>
+            <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
           </ul>
         </div>
       );
     } else if (presence.type === 'GROUP') {
       return (
         <div>
-          <div className='chat__cannot-message'>You cannot message this channel at this time. This may be due to any of the following reasons:</div>
+          <div className='chat__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
           <ul className='chat__cannot-message-reasons'>
-            <li>The channel has been moderated</li>
-            <li>You are currently restricted</li>
+            <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
           </ul>
         </div>
       );
@@ -126,17 +126,20 @@ export default class ConversationView extends React.Component<any, any> {
         <div className='chat__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
-        <div className='chat__chat-label'>talking with {channel.name}</div>
-
+        <div className='chat__chat-label'>
+          {channel.type === 'PM' ? (
+            osu.trans('chat.talking_with', {name: channel.name})
+          ) : (
+            osu.trans('chat.talking_in', {channel: channel.name})
+          )}
+        </div>
         {channel.loading &&
           <div className='chat__day-divider'>
             <Spinner />
           </div>
         }
-
         {renderStack}
-
-        {!this.props.canMessage && false &&
+        {channel.newChannel && !this.props.canMessage &&
           this.noCanSendMessage()
         }
       </div>

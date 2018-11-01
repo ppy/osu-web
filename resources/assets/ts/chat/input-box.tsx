@@ -69,7 +69,7 @@ export default class InputBox extends React.Component<any, any> {
         />
 
         <BigButton
-          text={osu.trans('chat.send')}
+          text={osu.trans('chat.input.send')}
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
