@@ -44,11 +44,11 @@ class Beatmaps.SearchPanel extends React.PureComponent
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
     $(document).on 'turbolinks:before-cache.search-panel', () =>
       # componentWillUnmount is called too late for Beatmaps.
-      @breadcrumbsElement.removeChild @breadcrumbsPortal
-      @contentElement.removeChild @contentPortal
+      @breadcrumbsElement?.removeChild @breadcrumbsPortal
+      @contentElement?.removeChild @contentPortal
 
-    @breadcrumbsElement.appendChild @breadcrumbsPortal
-    @contentElement.appendChild @contentPortal
+    @breadcrumbsElement?.appendChild @breadcrumbsPortal
+    @contentElement?.appendChild @contentPortal
 
 
   componentDidUpdate: (prevProps, prevState) =>
@@ -62,10 +62,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   render: =>
     div null,
-      if window.stickyHeader.breadcrumbsElement()?
+      if @breadcrumbsElement?
         ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
 
-      if window.stickyHeader.contentElement()?
+      if @contentElement?
         ReactDOM.createPortal @renderStickyContent(), @contentPortal
 
       div
