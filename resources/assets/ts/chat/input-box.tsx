@@ -63,13 +63,13 @@ export default class InputBox extends React.Component<any, any> {
       <div className={classes}>
         <input className='chat__chat-input-box'
           name= 'textbox'
-          placeholder={this.props.disabled ? 'unable to send message...' : osu.trans('messages.input-placeholder')}
+          placeholder={this.props.disabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}
           disabled={this.props.disabled}
         />
 
         <BigButton
-          text={osu.trans('messages.send')}
+          text={osu.trans('chat.send')}
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{

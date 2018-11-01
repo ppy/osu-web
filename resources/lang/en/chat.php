@@ -22,7 +22,11 @@ return [
     'title' => 'Messages',
     'title_compact' => 'messages',
 
-    'input-placeholder' => 'type message...',
     'no-conversations' => 'no conversations yet',
     'send' => 'Send',
+
+    'input' => [
+        'disabled' => 'unable to send message...',
+        'placeholder' => 'type message...',
+    ],
 ];
