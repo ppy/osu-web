@@ -19,12 +19,12 @@
 import * as React from 'react';
 
 export default class HeaderV3 extends React.Component<any, any> {
-
   renderHeaderTitle(): React.ReactNode {
     let classNames = 'osu-page-header-v3';
     if (this.props.theme) {
       classNames += ` osu-page-header-v3--${this.props.theme}`;
     }
+
     return (
       <div className={classNames}>
         <div className='osu-page-header-v3__title js-nav2--hidden-on-menu-access'>
@@ -47,6 +47,7 @@ export default class HeaderV3 extends React.Component<any, any> {
     if (this.props.theme) {
       classNames += ` page-mode-v2--${this.props.theme}`;
     }
+
     return (
       <ol className={classNames} />
     );
@@ -57,6 +58,7 @@ export default class HeaderV3 extends React.Component<any, any> {
     if (this.props.theme) {
       classNames += ` header-v3--${this.props.theme}`;
     }
+
     return (
       <div className={classNames}>
         <div className='header-v3__bg'></div>

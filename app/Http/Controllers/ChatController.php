@@ -45,21 +45,12 @@ class ChatController extends Controller
     public function index()
     {
         $presence = UserChannel::presenceForUser(Auth::user());
-
         $json = [];
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');
         if ($targetUser) {
-            $sendto = json_item($targetUser, 'UserCompact');
-            $canMessage = true;
-            if (!$targetUser->user_allow_pm) {
-                $canMessage = $targetUser->friends()->pluck('phpbb_users.user_id')->contains(Auth::user()->user_id);
-            }
-            if ($targetUser->isRestricted() || Auth::user()->isRestricted()) {
-                $canMessage = false;
-            }
-            $json['target'] = $sendto;
-            $json['can_message'] = $canMessage;
+            $json['target'] = json_item($targetUser, 'UserCompact', ['priv']);
+            $json['can_message'] = priv_check('ChatStart', $targetUser)->can();
         }
 
         return view('chat.index', compact('presence', 'messages', 'json'));
