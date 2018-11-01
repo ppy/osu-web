@@ -46,6 +46,9 @@
 
   &__legacy-gradient-overlay {
     .full-size();
+    // workaround for the background not being covered properly
+    // due to browser rounding off sizes at different zoom levels.
+    height: calc(100% ~'+' 1px);
 
     .@{header-pinned} & {
       background-position-y: 100%;
