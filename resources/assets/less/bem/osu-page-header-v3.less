@@ -46,6 +46,11 @@
       box-shadow: inset 0 0 0 2px @community-blue;
       background-image: url('/images/icons/chat.svg');
     }
+
+    .@{_top}--users & {
+      box-shadow: inset 0 0 0 2px @community-user-green;
+      background-image: url('/images/icons/profile.svg');
+    }
   }
 
   &__title {
@@ -70,6 +75,10 @@
 
     .@{_top}--comments & {
       color: @blue;
+    }
+
+    .@{_top}--users & {
+      color: @community-user-green;
     }
   }
 

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding History",
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Recently started discussions',
@@ -169,23 +170,24 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
+                'by_artist' => 'by :artist',
                 'none' => 'None... yet.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'Favourite Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Graveyarded Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps',
                 ],
             ],
             'historical' => [
@@ -268,9 +270,8 @@ return [
                 'download_replay' => 'Download Replay',
                 'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => 'Only ranked beatmaps give out pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => 'weighted :percentage',
                 'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Best Performance',
@@ -301,6 +302,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Player :info',
+            'info' => 'Info',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interests',
@@ -330,12 +337,15 @@ return [
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
+            'country_simple' => 'Country Ranking',
             'global' => 'Global rank for :mode',
+            'global_simple' => 'Global Ranking',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
+            'medals' => 'Medals',
             'play_count' => 'Play Count',
             'play_time' => 'Total Play Time',
             'ranked_score' => 'Ranked Score',

@@ -164,16 +164,14 @@ class ProfilePage.Main extends React.PureComponent
           currentMode: @state.currentMode
           withEdit: @props.withEdit
           rankHistory: @props.rankHistory
+          userAchievements: @props.userAchievements
 
         div
-          className: 'page-extra-tabs-before'
-
-        div
-          className: 'hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'
+          className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
           if profileOrder.length > 1
             div className: 'osu-page',
               div
-                className: 'page-mode page-mode--page-extra-tabs'
+                className: 'page-mode page-mode--profile-page-extra'
                 ref: (el) => @tabs = el
                 for m in profileOrder
                   a
@@ -188,7 +186,7 @@ class ProfilePage.Main extends React.PureComponent
                       currentMode: @state.currentMode
 
         div
-          className: 'osu-layout__section osu-layout__section--extra'
+          className: 'osu-layout__section osu-layout__section--users-extra'
           div
             className: 'osu-layout__row'
             ref: (el) => @pages = el

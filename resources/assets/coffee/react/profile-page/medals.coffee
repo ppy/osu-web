@@ -20,22 +20,20 @@
 el = React.createElement
 
 class ProfilePage.Medals extends React.PureComponent
-  componentWillReceiveProps: =>
-    @_userAchievements = null
-
-
   render: =>
+    @userAchievements = null
+
     all =
-        for own grouping, groupedAchievements of @_groupedAchievements()
+        for own grouping, groupedAchievements of @groupedAchievements()
           div
             key: grouping
             className: 'medals-group__group'
             h3 className: 'medals-group__title', grouping
-            for own ordering, achievements of @_orderedAchievements(groupedAchievements)
+            for own ordering, achievements of @orderedAchievements(groupedAchievements)
                 div
                   key: ordering
                   className: 'medals-group__medals'
-                  achievements.map @_medal
+                  achievements.map @medal
 
     div
       className: 'page-extra'
@@ -46,14 +44,14 @@ class ProfilePage.Medals extends React.PureComponent
         osu.trans('users.show.extra.medals.empty')
 
 
-  _groupedAchievements: =>
+  groupedAchievements: =>
     isCurrentUser = currentUser.id == @props.user.id
 
     _.chain(@props.achievements)
       .values()
       .filter (a) =>
         isCurrentMode = !a.mode? || a.mode == @props.currentMode
-        isAchieved = @_userAchievement a.id
+        isAchieved = @userAchievement a.id
 
         isCurrentMode && (isAchieved || isCurrentUser)
       .groupBy (a) =>
@@ -61,22 +59,22 @@ class ProfilePage.Medals extends React.PureComponent
       .value()
 
 
-  _medal: (achievement, i) =>
+  medal: (achievement, i) =>
     div
       key: i
       className: 'medals-group__medal'
       el ProfilePage.AchievementBadge,
         additionalClasses: 'badge-achievement--listing'
         achievement: achievement
-        userAchievement: @_userAchievement achievement.id
+        userAchievement: @userAchievement achievement.id
 
 
-  _orderedAchievements: (achievements) =>
-      _.groupBy achievements, (achievement) =>
-        achievement.ordering
+  orderedAchievements: (achievements) =>
+    _.groupBy achievements, (achievement) =>
+      achievement.ordering
 
 
-  _userAchievement: (id) =>
-    @_userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
+  userAchievement: (id) =>
+    @userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
 
-    @_userAchievements[id]
+    @userAchievements[id]

@@ -61,6 +61,12 @@
     }
   }
 
+  &--users {
+    &::after {
+      background-color: @community-user-green;
+    }
+  }
+
   &__item {
     display: flex;
 
@@ -83,6 +89,10 @@
 
       .@{_top}--comments & {
         color: @blue;
+      }
+
+      .@{_top}--users & {
+        color: @community-user-green;
       }
     }
   }
@@ -137,6 +147,14 @@
 
       &::before {
         background-color: @blue;
+      }
+    }
+
+    .@{_top}--users & {
+      color: @community-user-green;
+
+      &::before {
+        background-color: @community-user-green;
       }
     }
 

@@ -19,6 +19,7 @@
 {a, div, h2, h3, img, p, small, span} = ReactDOMFactories
 el = React.createElement
 
+
 class ProfilePage.Historical extends React.PureComponent
   constructor: (props) ->
     super props
@@ -65,31 +66,20 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.beatmapPlaycounts?.length
         [
-          @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap, pc.beatmapset, i, [
-              [
-                span
-                  key: 'name'
-                  className: 'beatmapset-row__info'
-                  osu.trans('users.show.extra.historical.most_played.count')
-                span
-                  key: 'value'
-                  className: 'beatmapset-row__info beatmapset-row__info--large'
-                  " #{pc.count.toLocaleString()}"
-              ]
-            ]
-          span
+          for playcount in @props.beatmapPlaycounts
+            el ProfilePage.BeatmapPlaycount,
+              key: playcount.beatmap.id
+              playcount: playcount
+          el ShowMoreLink,
             key: 'show-more-row'
-            className: 'beatmapset-row beatmapset-row--more'
-            el ShowMoreLink,
-              event: 'profile:showMore'
-              hasMore: @props.pagination.beatmapPlaycounts.hasMore
-              loading: @props.pagination.beatmapPlaycounts.loading
-              data:
-                name: 'beatmapPlaycounts'
-                url: laroute.route 'users.beatmapsets',
-                    user: @props.user.id
-                    type: 'most_played'
+            event: 'profile:showMore'
+            hasMore: @props.pagination.beatmapPlaycounts.hasMore
+            loading: @props.pagination.beatmapPlaycounts.loading
+            data:
+              name: 'beatmapPlaycounts'
+              url: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
+                  type: 'most_played'
         ]
 
       else
@@ -103,19 +93,17 @@ class ProfilePage.Historical extends React.PureComponent
         [
           el window._exported.PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
-          span
+          el ShowMoreLink,
             key: 'show-more-row'
-            className: 'beatmapset-row beatmapset-row--more'
-            el ShowMoreLink,
-              event: 'profile:showMore'
-              hasMore: @props.pagination.scoresRecent.hasMore
-              loading: @props.pagination.scoresRecent.loading
-              data:
-                name: 'scoresRecent'
-                url: laroute.route 'users.scores',
-                    user: @props.user.id
-                    type: 'recent'
-                    mode: @props.currentMode
+            event: 'profile:showMore'
+            hasMore: @props.pagination.scoresRecent.hasMore
+            loading: @props.pagination.scoresRecent.loading
+            data:
+              name: 'scoresRecent'
+              url: laroute.route 'users.scores',
+                  user: @props.user.id
+                  type: 'recent'
+                  mode: @props.currentMode
         ]
 
       else
@@ -130,47 +118,6 @@ class ProfilePage.Historical extends React.PureComponent
           div
             className: 'page-extra__chart'
             ref: @setReplaysWatchedCountsChartArea
-
-
-  _beatmapRow: (bm, bmset, key, details = []) =>
-    div
-      key: key
-      className: 'beatmapset-row'
-      div
-        className: 'beatmapset-row__cover'
-        style:
-          backgroundImage: osu.urlPresence(bmset.covers.list)
-      div
-        className: 'beatmapset-row__detail'
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            a
-              className: 'beatmapset-row__title'
-              href: laroute.route 'beatmaps.show', beatmap: bm.id
-              title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
-              "#{bmset.title} [#{bm.version}] "
-              span
-                className: 'beatmapset-row__title-small'
-                bmset.artist
-          div
-            className: 'beatmapset-row__detail-column'
-            details[0]
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            span dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.details.mapped_by',
-                  mapper: laroute.link_to_route 'users.show',
-                    bmset.creator
-                    { user: bmset.user_id }
-                    class: 'beatmapset-row__title-small js-usercard'
-                    'data-user-id': bmset.user_id
-          div
-            className: 'beatmapset-row__detail-column'
-            details[1]
 
 
   chartUpdate: (attribute, area) =>

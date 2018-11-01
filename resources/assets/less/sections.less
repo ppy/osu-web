@@ -99,3 +99,20 @@
     }
   }
 }
+
+.fn-beatmap-difficulty(easy);
+.fn-beatmap-difficulty(normal);
+.fn-beatmap-difficulty(hard);
+.fn-beatmap-difficulty(insane);
+.fn-beatmap-difficulty(expert);
+.fn-beatmap-difficulty(expert-plus);
+
+.fn-beatmap-difficulty(@difficulty) {
+  @color-name: "diff-@{difficulty}";
+
+  .t-beatmap-difficulty--@{difficulty} {
+    .u-beatmap-difficulty--bg {
+      background-color: @@color-name;
+    }
+  }
+}

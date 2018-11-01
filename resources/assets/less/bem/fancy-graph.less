@@ -17,11 +17,18 @@
  */
 
 .fancy-graph {
+  @_top: fancy-graph;
+
   &__circle {
     stroke: @yellow;
     fill: @yellow;
     pointer-events: none;
     stroke-width: 1px;
+
+    .@{_top}--rank-chart & {
+      stroke-width: 4px;
+      fill: @community-user-graygreen-darkest;
+    }
   }
 
   &__hover-area {
@@ -33,5 +40,9 @@
     fill: none;
     stroke: @yellow;
     stroke-width: 1px;
+
+    .@{_top}--rank-chart & {
+      stroke-width: 2px;
+    }
   }
 }

@@ -16,10 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-222-plain',
     'currentSection' => 'community',
     'currentAction' => 'profile',
     'title' => trans('users.show.title', ['username' => $user->username]),
-    'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
+    'pageDescription' => trans('users.show.page_description', ['username' => $user->username]),
+    'legacyNav' => false,
 ])
 
 @section('content')
