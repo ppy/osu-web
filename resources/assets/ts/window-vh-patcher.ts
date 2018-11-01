@@ -15,23 +15,22 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-import MainView from './chat/main-view';
-import OsuCore from './osu-core';
 
-declare global {
-  interface Window {
-    OsuCore: OsuCore;
+// This works around vh units being inconsistent across browsers (read: on mobile).
+// You can use this in less/css with calc/var, e.g.:
+// height: calc(var(--vh, 1vh) ~'*' 100);
+export default class WindowVHPatcher {
+  private window: Window;
+
+  constructor(window: Window) {
+    this.window = window;
+    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
+  }
+
+  handleResize = () => {
+    const vh = this.window.innerHeight * 0.01;
+    if (this.window.document.documentElement !== null) {
+      this.window.document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
   }
 }
-
-const core: OsuCore = window.OsuCore = window.OsuCore || new OsuCore(window);
-
-reactTurbolinks.register('chat', MainView, () => {
-  return {
-    dataStore: core.DataStore,
-    dispatcher: core.Dispatcher,
-    orchestrator: core.ChatOrchestrator,
-    presence: osu.parseJson('json-presence'),
-    worker: core.ChatWorker,
-  };
-});

@@ -19,7 +19,6 @@
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import HeaderV3 from 'header-v3';
 import { observer, Provider } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
 import Channel from 'models/chat/channel';
 import User from 'models/user';
 import * as React from 'react';
@@ -45,14 +44,6 @@ export default class MainView extends React.Component<any, any> {
   }
 
   init = () => {
-    // TODO: cleanup/(re)move this vh stuff:
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    window.addEventListener('resize', () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    });
-
     const sendTo = osu.parseJson('json-sendto');
     let channelId: number;
 
