@@ -49,7 +49,7 @@ class ChatController extends Controller
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');
         if ($targetUser) {
-            $json['target'] = json_item($targetUser, 'UserCompact', ['priv']);
+            $json['target'] = json_item($targetUser, 'UserCompact');
             $json['can_message'] = priv_check('ChatStart', $targetUser)->can();
         }
 
