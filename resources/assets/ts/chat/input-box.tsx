@@ -28,14 +28,14 @@ import RootDataStore from 'stores/root-data-store';
 @observer
 export default class InputBox extends React.Component<any, any> {
   sendMessage(messageText?: string) {
-    if (!messageText || messageText === '') {
+    if (!messageText || _.trim(messageText) === '') {
       return;
     }
 
     const message: Message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
     message.channelId = this.props.dataStore.uiState.chat.selected;
-    message.content = messageText;
+    message.content = _.trim(messageText);
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
   }
