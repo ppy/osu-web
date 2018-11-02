@@ -33,8 +33,17 @@ export class PlayDetailMenu extends PureComponent
     @uuid = osu.uuid()
     @menu = createRef()
 
+    @body = document.body
+    @portal = document.createElement('div') if props.usePortal
+    @portalAdded = false
+
     @state =
       active: false
+
+
+  componentDidMount: =>
+    $(document).on "turbolinks:before-cache.#{@uuid}", () =>
+      @removePortal()
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -49,18 +58,17 @@ export class PlayDetailMenu extends PureComponent
         @portal.style.top = "#{Math.floor(top + element$.height() / 2)}px"
         @portal.style.left = "#{Math.floor(left + element$.width())}px"
 
-        document.body.appendChild @portal
+        @addPortal()
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
     else
-      document.body.removeChild @portal if @portal?
-      $(document).off ".#{@uuid}"
+      @removePortal()
+      $(document).off "click.#{@uuid} keydown.#{@uuid}"
       @props.onHide?()
 
 
   componentWillUnmount: =>
-    document.body.removeChild @portal if @portal?
     $(document).off ".#{@uuid}"
 
 
@@ -82,6 +90,18 @@ export class PlayDetailMenu extends PureComponent
     @setState active: !@state.active
 
 
+  addPortal: =>
+    if @portal? && !@portalAdded
+      @body.appendChild @portal
+      @portalAdded = true
+
+
+  removePortal: =>
+    if @portal? && @portalAdded
+      @body.removeChild @portal
+      @portalAdded = false
+
+
   render: =>
     div
       className: 'play-detail-menu'
@@ -93,7 +113,6 @@ export class PlayDetailMenu extends PureComponent
         i className: 'fas fa-ellipsis-v'
 
       if @props.usePortal
-        @portal ?= document.createElement('div')
         createPortal @renderMenu(), @portal
 
       else
