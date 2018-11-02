@@ -261,7 +261,7 @@
     margin: 5px;
 
     &--sending {
-      opacity: 0.5;
+      opacity: 0.2;
     }
   }
 
@@ -283,7 +283,11 @@
 
   &__message-status {
     color: #878787;
-    float: right;
+    margin-left: 10px;
+
+    &--errored {
+      color: red;
+    }
   }
 
   &__message-timestamp {

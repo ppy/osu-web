@@ -119,6 +119,10 @@ export default class ChatWorker implements DispatchListener {
             this.rootDataStore.channelStore.updatePresence(response.presence);
             this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
           });
+        })
+        .catch(() => {
+          message.errored = true;
+          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
         });
     } else {
       this.api.sendMessage(channelId, message.content)
@@ -131,9 +135,9 @@ export default class ChatWorker implements DispatchListener {
           this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
         })
         .catch(() => {
-            message.errored = true;
-            this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
-          });
+          message.errored = true;
+          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+        });
     }
   }
 
@@ -144,33 +148,33 @@ export default class ChatWorker implements DispatchListener {
     this.updateXHR = true;
 
     this.api.getUpdates(this.rootDataStore.channelStore.maxMessageId)
-    .then((updateJson) => {
-      this.updateXHR = false;
-      if (this.pollingEnabled) {
-        this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
-      }
+      .then((updateJson) => {
+        this.updateXHR = false;
+        if (this.pollingEnabled) {
+          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+        }
 
-      if (!updateJson) {
-        return;
-      }
+        if (!updateJson) {
+          return;
+        }
 
-      transaction(() => {
-        _.forEach(updateJson.messages, (message: MessageJSON) => {
-          const newMessage = Message.fromJSON(message);
-          newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-          this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
+        transaction(() => {
+          _.forEach(updateJson.messages, (message: MessageJSON) => {
+            const newMessage = Message.fromJSON(message);
+            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
+            this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
+          });
+
+          this.rootDataStore.channelStore.updatePresence(updateJson.presence);
         });
-
-        this.rootDataStore.channelStore.updatePresence(updateJson.presence);
+      })
+      .catch((err) => {
+        console.log('error idk', err);
+        this.updateXHR = false;
+        if (this.pollingEnabled) {
+          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+        }
       });
-    })
-    .catch((err) => {
-      console.log('error idk', err);
-      this.updateXHR = false;
-      if (this.pollingEnabled) {
-        this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
-      }
-    });
   }
 
   startPolling() {

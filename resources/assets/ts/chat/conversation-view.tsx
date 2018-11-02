@@ -81,7 +81,7 @@ export default class ConversationView extends React.Component<any, any> {
       return(<div className='chat__conversation' />);
     }
 
-    const renderStack: JSX.Element[] = [];
+    const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
     let lastReadIndicatorShown: boolean = false;
     let currentDay: number;
@@ -91,19 +91,19 @@ export default class ConversationView extends React.Component<any, any> {
       if (!lastReadIndicatorShown && message.messageId > dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
         lastReadIndicatorShown = true;
         if (!_.isEmpty(currentGroup)) {
-          renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        renderStack.push(<MessageDivider key={`read-${message.timestamp}`} type='READ_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} type='READ_MARKER' timestamp={message.timestamp} />);
       }
 
       // check whether the day-change header needs to be shown
-      if (_.isEmpty(renderStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+      if (_.isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
         if (!_.isEmpty(currentGroup)) {
-          renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        renderStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
         currentDay = moment(message.timestamp).date();
       }
 
@@ -111,13 +111,13 @@ export default class ConversationView extends React.Component<any, any> {
       if (_.isEmpty(currentGroup) || _.last(currentGroup).sender.id === message.sender.id) {
         currentGroup.push(message);
       } else {
-        renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
         currentGroup = [];
         currentGroup.push(message);
       }
 
       if (key === channel.messages.length - 1) {
-        renderStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
       }
     });
 
@@ -138,7 +138,7 @@ export default class ConversationView extends React.Component<any, any> {
             <Spinner />
           </div>
         }
-        {renderStack}
+        {conversationStack}
         {channel.newChannel && !this.props.canMessage &&
           this.noCanSendMessage()
         }

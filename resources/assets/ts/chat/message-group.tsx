@@ -79,7 +79,7 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
                     </div>
                   }
                   {message.errored &&
-                    <div className='chat__message-status'>
+                    <div className='chat__message-status chat__message-status--errored'>
                       <i className='fas fa-times'/>
                     </div>
                   }
