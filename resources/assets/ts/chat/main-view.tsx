@@ -17,18 +17,32 @@
  */
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import Dispatcher from 'dispatcher';
 import HeaderV3 from 'header-v3';
 import { observer, Provider } from 'mobx-react';
-import Channel from 'models/chat/channel';
-import User from 'models/user';
+import Channel, { ChannelJSON } from 'models/chat/channel';
+import User, { UserJSON } from 'models/user';
 import * as React from 'react';
+import RootDataStore from 'stores/root-data-store';
+import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
-@observer
-export default class MainView extends React.Component<any, any> {
+interface PropsInterface {
+  dataStore: RootDataStore;
+  dispatcher: Dispatcher;
+  worker: ChatWorker;
+  presence: ChannelJSON[];
+}
 
+interface SendToJSON {
+  target: UserJSON;
+  can_message: boolean;
+}
+
+@observer
+export default class MainView extends React.Component<PropsInterface, any> {
   constructor(props: any) {
     super(props);
 
@@ -44,12 +58,12 @@ export default class MainView extends React.Component<any, any> {
   }
 
   init = () => {
-    const sendTo = osu.parseJson('json-sendto');
+    const sendTo: SendToJSON = osu.parseJson('json-sendto');
     let channelId: number;
 
     if (!_.isEmpty(sendTo)) {
       const target: User = this.props.dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
-      let channel: Channel = this.props.dataStore.channelStore.findPM(target.id);
+      let channel: Channel | null = this.props.dataStore.channelStore.findPM(target.id);
 
       if (channel) {
         channelId = channel.channelId;
@@ -62,6 +76,7 @@ export default class MainView extends React.Component<any, any> {
         channel.icon = target.avatarUrl;
         channel.type = 'PM';
         channel.users = [currentUser.id, target.id];
+        channel.moderated = !sendTo.can_message;
 
         this.props.dataStore.channelStore.channels.set(-1, channel);
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(-1));
@@ -84,10 +99,11 @@ export default class MainView extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
+    const dataStore: RootDataStore = this.props.dataStore;
     return(
       <div>
         <HeaderV3 theme='chat' title='Chat' />
-        <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
+        <Provider dataStore={dataStore} dispatcher={this.props.dispatcher}>
           <div className='chat osu-page osu-page--chat'>
             <ConversationList />
             <div className='chat__conversation-window'>

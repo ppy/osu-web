@@ -17,12 +17,15 @@
  */
 
 import { ChatMessageSendAction } from 'actions/chat-actions';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
 @inject('dispatcher')
+@observer
 export default class InputBox extends React.Component<any, any> {
   sendMessage(messageText?: string) {
     if (!messageText || messageText === '') {
@@ -54,18 +57,22 @@ export default class InputBox extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    let classes = 'chat__chat-input';
-    if (this.props.disabled) {
-      classes += ' chat__chat-input--disabled';
+    const dataStore: RootDataStore = this.props.dataStore;
+    const selectedChan: number = dataStore.uiState.chat.selected;
+
+    let disableInput: boolean = false;
+    if (dataStore.channelStore.channels.has(selectedChan)) {
+      const channel: Channel = dataStore.channelStore.getOrCreate(selectedChan);
+      disableInput = channel.moderated;
     }
 
     return (
-      <div className={classes}>
-        <input className='chat__chat-input-box'
+      <div className='chat__chat-input'>
+        <input className={`chat__chat-input-box${disableInput ? ' chat__chat-input-box--disabled' : ''}`}
           name= 'textbox'
-          placeholder={this.props.disabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}
-          disabled={this.props.disabled}
+          disabled={disableInput}
         />
 
         <BigButton
@@ -73,7 +80,7 @@ export default class InputBox extends React.Component<any, any> {
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
-            disabled: this.props.disabled,
+            disabled: disableInput,
             onClick: this.buttonClicked,
           }}
         />

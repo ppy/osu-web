@@ -46,6 +46,7 @@ export default class Channel {
 
   @observable loading: boolean = false;
   @observable loaded: boolean = false;
+  @observable moderated: boolean = false;
 
   @observable newChannel: boolean = false;
 
