@@ -1,3 +1,3 @@
-* text=auto
-*.* eol=lf
-* eol=lf
+* text=auto eol=lf
+*.* -eol
+*.sh eol=lf
