@@ -212,7 +212,7 @@
 
     flex: 1 0 auto;
     display: flex;
-    height: calc(100vh ~'-' 340px); // viewport height - header+footer
+    height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 340px); // viewport height - header+footer
     width: 100vw;
 
     @media @mobile {

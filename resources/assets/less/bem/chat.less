@@ -178,7 +178,7 @@
 
     @media @mobile {
       padding: 10px 0px;
-      padding-bottom: 150px;
+      padding-bottom: 200px;
     }
   }
 
@@ -228,7 +228,6 @@
     padding: 5px 8px;
     max-width: 400px;
     overflow-x: auto;
-    // flex: 1;
   }
 
   &__day-divider {
@@ -246,6 +245,7 @@
     font-size: 10px;
     padding: 5px;
     font-weight: bold;
+    margin-top: 10px;
   }
 
   &__cannot-message-reasons {
@@ -266,7 +266,7 @@
   }
 
   &__message-content {
-    overflow-wrap: break-word;
+    word-break: break-all;
 
     &--action {
       color: @yellow;
@@ -334,22 +334,19 @@
     color: white;
     position: absolute;
     bottom: 0;
-    width: 100%;
     text-align: right;
 
     background: linear-gradient(to bottom, fade(@community-blue-dark, 0%), fade(@community-blue-dark, 95%) 40%, fade(@community-blue-dark, 95%) 100%);
-    width: calc(100% ~'-' 10px);
+    width: calc(100% ~'-' 10px); // this prevents the gradient drawing over the browser's scroll-bar
     height: 160px;
 
-    &--disabled > * {
-      opacity: 0.5;
-    }
-
     @media @mobile {
+      position: fixed;
       font-size: 16px;
-      padding: 10px 20px;
-      flex-direction: row;
+      padding: 10px;
+      height: 70px;
       align-items: center;
+      display: flex;
     }
   }
 
@@ -363,40 +360,15 @@
     margin-bottom: 10px;
     margin-top: 50px;
 
+    &--disabled {
+      opacity: 0.8;
+    }
+
     @media @mobile {
-      margin-right: 20px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      margin-right: 10px;
     }
   }
 
-}
-
-
-// TODO: DO SOMETHING WITH THIS
-.osu-layout--mobile-app {
-  /* Turn on custom 8px wide scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px; /* 1px wider than Lion. */
-    /* This is more usable for users trying to click it. */
-    background-color: rgba(255,255,255,0);
-    -webkit-border-radius: 100px;
-  }
-  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
-  ::-webkit-scrollbar:hover {
-    background-color: rgba(0, 0, 0, 0.09);
-  }
-
-  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
-  ::-webkit-scrollbar-thumb:vertical {
-    /* This is the EXACT color of Mac OS scrollbars.
-      Yes, I pulled out digital color meter */
-    background: rgba(255,255,255,0.5);
-    -webkit-border-radius: 100px;
-    background-clip: padding-box;
-    border: 2px solid rgba(255, 255, 255, 0);
-    min-height: 10px; /*Prevent it from getting too small */
-  }
-  ::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
-    -webkit-border-radius: 100px;
-  }
 }
