@@ -68,22 +68,24 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
     classMods.push 'friend' if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
     classMods.push 'self' if score.user.id == currentUser.id
 
+    cell = "#{bn}__cell"
+
     tr
       className: osu.classWithModifiers("#{bn}__body-row", classMods),
       key: index,
 
-      td className: "#{bn}__rank", "##{index+1}"
+      td className: osu.classWithModifiers(cell, ['rank']), "##{index+1}"
 
-      td className: "#{bn}__grade",
+      td className: osu.classWithModifiers(cell, ["grade"]),
         div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
 
-      td className: "#{bn}__score",
+      td className: osu.classWithModifiers(cell, ["score"]),
         score.score.toLocaleString()
 
-      td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
+      td className: osu.classWithModifiers(cell, ['perfect'] if score.accuracy == 1),
         "#{(score.accuracy * 100).toFixed(2)}%"
 
-      td {},
+      td className: cell,
         if score.user.country_code
           a
             href: laroute.route 'rankings',
@@ -93,28 +95,28 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             el FlagCountry,
               country: @props.countries[score.user.country_code]
               classModifiers: ['scoreboard', 'small-box']
-      td {},
+      td className: cell,
         a
-          className: "#{bn}__user-link js-usercard"
+          className: "user-link js-usercard"
           'data-user-id': score.user.id
           href: laroute.route 'users.show', user: score.user.id
           score.user.username
 
-      td className: (if score.max_combo == @props.beatmap.max_combo?[0] then "#{bn}__perfect" else ''),
+      td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo?[0]),
         "#{score.max_combo.toLocaleString()}x"
 
       for stat in @props.hitTypeMapping
         td
           key: stat[0]
-          className: (if score.statistics["count_#{stat[1]}"] == 0 then "#{bn}__zero" else ''),
+          className: osu.classWithModifiers(cell, ['zero'] if score.statistics["count_#{stat[1]}"] == 0),
           score.statistics["count_#{stat[1]}"].toLocaleString()
 
-      td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
+      td className: osu.classWithModifiers(cell, ['zero'] if score.statistics.count_miss == 0),
         score.statistics.count_miss.toLocaleString()
 
-      td {}, _.round score.pp
+      td className: cell, _.round score.pp
 
-      td className: "#{bn}__mods",
+      td className: osu.classWithModifiers(cell, "mods"),
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__play-detail-menu",

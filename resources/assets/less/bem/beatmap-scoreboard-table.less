@@ -52,12 +52,6 @@
     font-size: 12px;
   }
 
-  &__grade {
-    width: 100%;
-    height: @row-height;
-    .center-content();
-  }
-
   &__header {
     font-size: 10px;
     font-weight: 700;
@@ -120,33 +114,6 @@
   &__body-row {
     height: @row-height;
 
-    > td:first-child {
-      // rounded corners for left side
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
-
-    > td:nth-last-child(2) {
-      // ...and right side
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      padding-right: 10px;
-    }
-
-    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
-    &:nth-child(odd) {
-      > td:not(.@{_top}__play-detail-menu) {
-        background-color: #eee;
-      }
-    }
-
-    &:hover {
-      > td:not(.@{_top}__play-detail-menu) {
-        color: #fff;
-        background-color: #555;
-      }
-    }
-
     &--friend {
       .row-colour(@yellow-light);
     }
@@ -156,15 +123,92 @@
     }
   }
 
-  &__mods {
-    width: 1%; // don't let the column expand unless required
-  }
+  // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
+  &__cell {
+    &:first-child {
+      // rounded corners for left side
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
 
-  &__perfect {
-    color: @green;
+    &:nth-last-child(2) {
+      // ...and right side
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding-right: 10px;
+    }
 
-    .@{_top}__body-row:hover & {
-      color: @green-lighter;
+    &--grade {
+      width: 100%;
+      height: @row-height;
+      .center-content();
+    }
+
+    &--mods {
+      width: 1%; // don't let the column expand unless required
+    }
+
+    &--perfect {
+      color: @green;
+
+      .@{_top}__body-row:hover & {
+        color: @green-lighter;
+      }
+    }
+
+    &--rank {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    &--score {
+      padding-right: 10px;
+
+      .@{_top}__body-row--first & {
+        font-weight: 700;
+      }
+    }
+
+    &--user-link {
+      color: #555;
+      transition: none;
+
+      &:hover {
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .@{_top}__body-row:hover & {
+        color: #fff;
+      }
+    }
+
+    &--zero {
+      color: #aaa;
+    }
+
+    // explicitly set colours.
+    .@{activated-row} & {
+      color: #fff;
+      background-color: #555;
+    }
+
+    .@{passive-row} & {
+      background-color: #fff;
+    }
+
+    .@{passive-row}:nth-child(odd) & {
+      background-color: #eee;
+    }
+
+    .@{passive-row}:hover & {
+      color: #fff;
+      background-color: #555;
+    }
+
+    .@{passive-row}:hover:nth-child(odd) & {
+      color: #fff;
+      background-color: #555;
     }
   }
 
@@ -184,36 +228,5 @@
         opacity: 0;
       }
     }
-  }
-
-  &__rank {
-    font-weight: 700;
-    text-align: right;
-  }
-
-  &__score {
-    padding-right: 10px;
-
-    .@{_top}__body-row--first & {
-      font-weight: 700;
-    }
-  }
-
-  &__user-link {
-    color: #555;
-    transition: none;
-
-    &:hover {
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .@{_top}__body-row:hover & {
-      color: #fff;
-    }
-  }
-
-  &__zero {
-    color: #aaa;
   }
 }
