@@ -33,7 +33,7 @@ return [
             'friends_only' => 'The recipient only accepts messages from people on their friends list',
             'restricted' => 'You are currently restricted',
             'target_restricted' => 'The recipient is currently restricted',
-            'channel_moderated' => 'The channel has been moderated'
+            'channel_moderated' => 'The channel has been moderated',
         ],
     ],
     'input' => [

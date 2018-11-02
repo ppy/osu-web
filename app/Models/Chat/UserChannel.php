@@ -22,7 +22,6 @@ namespace App\Models\Chat;
 
 use App\Models\User;
 use App\Models\UserRelation;
-use App\Models\Chat\Channel;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserChannel extends Model
@@ -51,7 +50,7 @@ class UserChannel extends Model
         $userId = $user->user_id;
 
         // retrieve all the channels the user is in and the metadata for each
-        $userChannels = UserChannel::where('user_channels.user_id', $userId)
+        $userChannels = self::where('user_channels.user_id', $userId)
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
             ->selectRaw('user_channels.last_read_id')
@@ -60,7 +59,7 @@ class UserChannel extends Model
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
         $userRelationTableName = (new UserRelation)->tableName(true);
-        $userChannelMembers = UserChannel::whereIn('channel_id', $userChannels->pluck('channel_id'))
+        $userChannelMembers = self::whereIn('channel_id', $userChannels->pluck('channel_id'))
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {

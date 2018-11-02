@@ -25,7 +25,6 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
-use App\Models\UserRelation;
 use Auth;
 use DB;
 use Request;
