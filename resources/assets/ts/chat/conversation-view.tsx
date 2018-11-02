@@ -32,12 +32,8 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.chat-conversation__read-marker').length > 0 ) {
-      $('.chat-conversation__read-marker')[0].scrollIntoView();
-    } else {
-      if ($('.chat-conversation').length > 0) {
-        $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
-      }
+    if ($('.chat-conversation').length > 0) {
+      $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
     }
   }
 
