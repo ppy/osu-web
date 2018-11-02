@@ -17,11 +17,16 @@
 ###
 
 import { createElement as el, createRef, PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
 import { ReportScore } from 'report-score'
 import { Modal } from 'modal'
 
 export class PlayDetailMenu extends PureComponent
+  @defaultProps =
+    usePortal: false
+
+
   constructor: (props) ->
     super props
 
@@ -36,14 +41,26 @@ export class PlayDetailMenu extends PureComponent
     return if prevState.active == @state.active
 
     if @state.active
+      if @portal?
+        element$ = $(@menu.current)
+        { top, left } = element$.offset()
+
+        @portal.style.position = 'absolute'
+        @portal.style.top = "#{Math.floor(top + element$.height() / 2)}px"
+        @portal.style.left = "#{Math.floor(left + element$.width())}px"
+
+        document.body.appendChild @portal
+
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
     else
+      document.body.removeChild @portal if @portal?
       $(document).off ".#{@uuid}"
       @props.onHide?()
 
 
   componentWillUnmount: =>
+    document.body.removeChild @portal if @portal?
     $(document).off ".#{@uuid}"
 
 
@@ -71,7 +88,12 @@ export class PlayDetailMenu extends PureComponent
         onClick: @toggle
         i className: 'fas fa-ellipsis-v'
 
-      @renderMenu()
+      if @props.usePortal
+        @portal ?= document.createElement('div')
+        createPortal @renderMenu(), @portal
+
+      else
+        @renderMenu()
 
 
   renderMenu: =>
