@@ -116,7 +116,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
       td className: cell, _.round score.pp
 
-      td className: osu.classWithModifiers(cell, "mods"),
+      td className: osu.classWithModifiers(cell, ['mods']),
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__play-detail-menu",
