@@ -86,7 +86,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
         channelId = this.props.dataStore.channelStore.sortedByPresence[0].channelId;
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
       } else {
-        console.log('presence missing...?');
+        console.debug('presence missing...?');
       }
     }
 
@@ -106,7 +106,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
         <Provider dataStore={dataStore} dispatcher={this.props.dispatcher}>
           <div className='chat osu-page osu-page--chat'>
             <ConversationList />
-            <div className='chat__conversation-window'>
+            <div className='chat__conversation-area'>
               <ConversationView />
               <InputBox />
             </div>

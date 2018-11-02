@@ -31,36 +31,36 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
       return;
     }
 
-    let className = 'chat__message-group';
+    let className = 'chat-message-group';
     if (messages[0] && messages[0].sender.id === currentUser.id) {
-      className += ' chat__message-group--own';
+      className += ' chat-message-group--own';
     }
 
     return (
       <div className={className}>
-        <div className='chat__message-group-sender'>
+        <div className='chat-message-group__sender'>
           <a className='js-usercard' data-user-id={messages[0].sender.id} data-tooltip-position='top center' href='#'>
-            <img className='chat__message-group-avatar' src={messages[0].sender.avatarUrl} />
+            <img className='chat-message-group__avatar' src={messages[0].sender.avatarUrl} />
           </a>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
             {messages[0].sender.username}
           </div>
         </div>
-        <div className='chat__message-group-bubble'>
+        <div className='chat-message-group__bubble'>
           {messages.map((message: Message, key: number) => {
             if (!message.content) {
               return;
             }
 
-            let classes = 'chat__message';
+            let classes = 'chat-message-group__message';
             let innerClasses;
 
             if (!message.persisted) {
-              classes += ' chat__message--sending';
+              classes += ' chat-message-group__message--sending';
             }
 
             if (message.isAction) {
-              innerClasses = ' chat__message-content--action';
+              innerClasses = ' chat-message-group__message-content--action';
             }
 
             const showTimestamp: boolean =
@@ -71,21 +71,21 @@ export default class MessageGroup extends React.Component<PropsInterface, any> {
 
             return (
               <div className={classes} key={message.uuid}>
-                <div className={`chat__message-content${innerClasses ? innerClasses : ''}`}>
+                <div className={`chat-message-group__message-content${innerClasses ? innerClasses : ''}`}>
                   {message.content}
                   {!message.persisted && !message.errored &&
-                    <div className='chat__message-status'>
+                    <div className='chat-message-group__message-status'>
                       <Spinner />
                     </div>
                   }
                   {message.errored &&
-                    <div className='chat__message-status chat__message-status--errored'>
+                    <div className='chat-message-group__message-status chat-message-group__message-status--errored'>
                       <i className='fas fa-times'/>
                     </div>
                   }
                 </div>
                 { showTimestamp &&
-                  <div className='chat__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
+                  <div className='chat-message-group__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
                 }
               </div>
             );

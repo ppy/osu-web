@@ -76,11 +76,9 @@ export default class Channel {
 
   @action
   addMessages(messages: Message | Message[], skipSort: boolean = false) {
-    // console.log('addMessages', messages);
     transaction(() => {
       this.messages = this.messages.concat(messages);
 
-      // console.log('messages length', this.messages.length);
       if (!skipSort) {
         this.resortMessages();
       }
@@ -102,7 +100,6 @@ export default class Channel {
         messageObject.persist();
       }
     } else {
-      console.log('wtfm8', message);
       // delay and retry?
     }
   }
@@ -118,11 +115,10 @@ export default class Channel {
 
   @action
   updatePresence = (presence: ChannelJSON) => {
-    // this.channel_id = presence.channel_id;
     this.name = presence.name;
     this.description = presence.description;
     this.type = presence.type;
-    this.icon = presence.icon || '/tmp/channel-default.png'; // TODO: update with actual image
+    this.icon = presence.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons
     this.lastReadId = presence.last_read_id;
 
     this.lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);

@@ -53,8 +53,7 @@ export default class User {
   }
 
   load() {
-    // do stuff?;
-    console.log('User.load called', this.id);
+    // TODO: do automagic loading stuff?
   }
 
   @action

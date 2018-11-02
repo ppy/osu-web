@@ -1,0 +1,102 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.chat-message-group {
+  @top: chat-message-group;
+
+  margin: 10px;
+  margin-left: 0px;
+  margin-right: 120px;
+  color: white;
+  display: flex;
+
+
+  &--own {
+    margin-left: 120px;
+    margin-right: 0px;
+    flex-direction: row-reverse;
+  }
+
+  &__sender {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 10px;
+    color: white;
+    text-decoration: italic;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+
+  &__bubble {
+    background: @community-blue-darkest;
+    .default-border-radius();
+    padding: 5px 8px;
+    max-width: 400px;
+    overflow-x: auto;
+  }
+
+  &__message {
+    margin: 5px;
+
+    &--sending {
+      opacity: 0.2;
+    }
+  }
+
+  &__message-content {
+    display: flex;
+    word-break: break-all;
+    justify-content: space-between;
+
+    &--action {
+      color: @yellow;
+      font-style: italic;
+
+      &::before {
+        content: '* ';
+      }
+      &::after {
+        content: ' *';
+      }
+    }
+  }
+
+  &__message-status {
+    color: fade(@community-blue-lighter, 50%);
+    margin-left: 10px;
+
+    &--errored {
+      color: red;
+    }
+  }
+
+  &__message-timestamp {
+    color: fade(@community-blue-lighter, 50%);
+    font-size: 10px;
+    margin-top: 5px;
+  }
+}

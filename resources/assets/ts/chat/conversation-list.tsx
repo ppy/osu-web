@@ -38,9 +38,9 @@ export default class ConversationList extends React.Component<any, {}> {
     });
 
     return(
-      <div className='chat__conversation-list'>
+      <div className='conversation-list'>
         {_.isEmpty(conversationList) ? (
-          <div className='chat__conversation-list-item'>{osu.trans('chat.no-conversations')}</div>
+          <div className='conversation-list-item'>{osu.trans('chat.no-conversations')}</div>
         ) : (
           conversationList
         )}

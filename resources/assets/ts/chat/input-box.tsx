@@ -67,8 +67,8 @@ export default class InputBox extends React.Component<any, any> {
     }
 
     return (
-      <div className='chat__chat-input'>
-        <input className={`chat__chat-input-box${disableInput ? ' chat__chat-input-box--disabled' : ''}`}
+      <div className='chat-input'>
+        <input className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
           name= 'textbox'
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}

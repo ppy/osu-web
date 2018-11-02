@@ -78,7 +78,7 @@ export default class ChatWorker implements DispatchListener {
         channel.lastReadId = lastRead;
       })
       .catch((err) => {
-        console.log('error idk', err);
+        console.debug('markAsRead error', err);
       });
   }
 
@@ -107,7 +107,7 @@ export default class ChatWorker implements DispatchListener {
       });
 
       if (!userId) {
-        console.log('sendMessage:: userId not found??');
+        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
         return;
       }
 
@@ -169,7 +169,7 @@ export default class ChatWorker implements DispatchListener {
         });
       })
       .catch((err) => {
-        console.log('error idk', err);
+        // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
           this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);

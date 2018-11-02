@@ -32,10 +32,12 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.chat__read-marker').length > 0 ) {
-      $('.chat__read-marker')[0].scrollIntoView();
+    if ($('.chat-conversation__read-marker').length > 0 ) {
+      $('.chat-conversation__read-marker')[0].scrollIntoView();
     } else {
-      $('.chat__conversation').scrollTop($('.chat__conversation')[0].scrollHeight);
+      if ($('.chat-conversation').length > 0) {
+        $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
+      }
     }
   }
 
@@ -51,8 +53,8 @@ export default class ConversationView extends React.Component<any, any> {
     if (presence.type === 'PM' || presence.type === 'NEW') {
       return (
         <div>
-          <div className='chat__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
-          <ul className='chat__cannot-message-reasons'>
+          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
+          <ul className='chat-conversation__cannot-message-reasons'>
             <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
@@ -63,8 +65,8 @@ export default class ConversationView extends React.Component<any, any> {
     } else if (presence.type === 'GROUP') {
       return (
         <div>
-          <div className='chat__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
-          <ul className='chat__cannot-message-reasons'>
+          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
+          <ul className='chat-conversation__cannot-message-reasons'>
             <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
           </ul>
@@ -78,7 +80,7 @@ export default class ConversationView extends React.Component<any, any> {
     const channel: Channel | undefined = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
-      return(<div className='chat__conversation' />);
+      return(<div className='conversation' />);
     }
 
     const conversationStack: JSX.Element[] = [];
@@ -122,11 +124,11 @@ export default class ConversationView extends React.Component<any, any> {
     });
 
     return (
-      <div className='chat__conversation'>
-        <div className='chat__new-chat-avatar'>
+      <div className='chat-conversation'>
+        <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
-        <div className='chat__chat-label'>
+        <div className='chat-conversation__chat-label'>
           {channel.type === 'PM' ? (
             osu.trans('chat.talking_with', {name: channel.name})
           ) : (
@@ -134,7 +136,7 @@ export default class ConversationView extends React.Component<any, any> {
           )}
         </div>
         {channel.loading &&
-          <div className='chat__day-divider'>
+          <div className='chat-conversation__day-divider'>
             <Spinner />
           </div>
         }

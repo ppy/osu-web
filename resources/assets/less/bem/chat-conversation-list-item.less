@@ -1,0 +1,118 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ .conversation-list-item {
+  @top: conversation-list-item;
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding-left: 10px;
+
+  .link-plain();
+  .link-white();
+
+  @media @desktop {
+    &:hover {
+      background: linear-gradient(to right, @community-blue-darker 5%, lighten(@community-blue-dark, 2%) 33%, lighten(@community-blue-dark, 2%) 100%);
+    }
+  }
+
+  &--selected {
+    color: white;
+    background: linear-gradient(to right, @community-blue-darker 5%, @community-blue-dark 33%, @community-blue-dark 100%);
+    @media @mobile {
+      background: @community-blue-dark;
+    }
+  }
+
+  @media @mobile {
+    margin-left: 0px;
+    padding-left: 0px;
+    flex-shrink: 0;
+  }
+
+  &__unread-indicator {
+    background: @green;
+    width: 2px;
+    height: 10px;
+    border-radius: 1px;
+    margin-left: -10px;
+    margin-right: 8px;
+    transition: ease-in 50ms;
+
+    opacity: 0;
+    .@{top}--unread & {
+      opacity: 1;
+      &::after {
+        opacity: 0.5;
+        .full-size();
+        border-radius: 1px;
+        content: '';
+        box-shadow: 0 0 5px lighten(@green, 10%);
+        animation: glow-in-out 5s infinite;
+      }
+    }
+
+    @media @mobile {
+      .@{top}--unread & {
+        margin-left: 5px;
+        margin-right: 0px;
+      }
+    }
+  }
+
+  &__name {
+    flex: 1;
+
+    @media @mobile {
+      display: none;
+      .@{top}__--selected & {
+        display: block;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &__chevron {
+    margin-right: 10px;
+    color: white;
+
+    opacity: 0;
+    .@{top}--selected & {
+      opacity: 1;
+    }
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    @media @mobile {
+      margin: 0px 5px;
+    }
+  }
+}

@@ -97,7 +97,7 @@ export default class ChatOrchestrator implements DispatchListener {
         channel.lastReadId = lastRead;
       })
       .catch((err) => {
-        console.log('error idk', err);
+        console.debug('markAsRead error', err);
       });
   }
 
@@ -119,7 +119,7 @@ export default class ChatOrchestrator implements DispatchListener {
         });
       })
       .catch((err) => {
-        console.log('error idk', err);
+        console.debug('loadChannel error', err);
       });
   }
 
