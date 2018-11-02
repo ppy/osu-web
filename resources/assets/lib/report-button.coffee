@@ -19,12 +19,10 @@
 import { button, i, span } from 'react-dom-factories'
 
 export ReportButton = (props) ->
-  text = if props.text? then " #{props.text}" else " #{osu.trans 'users.report.button_text'}"
-
   button
     className: 'textual-button'
     onClick: props.onClick
     type: 'button'
     span null,
       i className: 'textual-button__icon fas fa-exclamation-triangle'
-      text
+      " #{osu.trans 'users.report.button_text'}"

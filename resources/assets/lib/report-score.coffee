@@ -17,7 +17,6 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
-import { ReportButton } from 'report-button'
 import { ReportForm } from 'report-form'
 import { a, button, div, i } from 'react-dom-factories'
 
@@ -35,9 +34,11 @@ export class ReportScore extends PureComponent
     return null unless currentUser.id? && @props.score?.user_id != currentUser.id
 
     [
-      el ReportButton,
+      button
+        className: 'simple-menu__item'
         key: 'button'
         onClick: @showForm
+        'Report Score'
 
       el ReportForm,
         allowOptions: false
