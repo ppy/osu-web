@@ -17,7 +17,7 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
-import { ReportButton } from 'report-button'
+import { button, span, i } from 'react-dom-factories'
 import { ReportForm } from 'report-form'
 
 export class ReportUser extends PureComponent
@@ -29,13 +29,19 @@ export class ReportUser extends PureComponent
       disabled: false
       showingForm: false
 
+
   render: =>
     return null unless currentUser.id? && @props.user?.id != currentUser.id
 
     [
-      el ReportButton,
+      button
+        className: 'textual-button'
         key: 'button'
         onClick: @showForm
+        type: 'button'
+        span null,
+          i className: 'textual-button__icon fas fa-exclamation-triangle'
+          " #{osu.trans 'users.report.button_text'}"
 
       el ReportForm,
         completed: @state.completed
