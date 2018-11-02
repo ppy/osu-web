@@ -19,6 +19,9 @@
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
   @_play-detail-menu: beatmap-scoreboard-table__play-detail-menu;
+  @activated-row: beatmap-scoreboard-table__body-row--menu-active;
+  @passive-row: beatmap-scoreboard-table__body-row--highlightable;
+
   @handle: 16px;
   @row-height: 1.8em;
 
@@ -166,7 +169,21 @@
   }
 
   &__play-detail-menu {
-    background-color: unset;
+    .@{activated-row} & {
+      opacity: 1;
+    }
+
+    .@{passive-row} & {
+      opacity: 0;
+    }
+
+    .@{passive-row}:hover & {
+      opacity: 1;
+
+      .@{_top}--menu-active & {
+        opacity: 0;
+      }
+    }
   }
 
   &__rank {
