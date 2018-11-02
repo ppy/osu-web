@@ -70,8 +70,12 @@ export class PlayDetailMenu extends PureComponent
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
 
-    if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
+    if event.keyCode == 27 || (event.button == 0 && !@isMenuInPath(event.composedPath()))
       @setState active: false
+
+
+  isMenuInPath: (path) =>
+    @menu.current in path || @portal in path
 
 
   toggle: =>
