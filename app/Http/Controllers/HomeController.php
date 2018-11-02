@@ -112,7 +112,11 @@ class HomeController extends Controller
 
     public function messageUser($user)
     {
-        return ujs_redirect(route('chat.index', ['sendto' => $user]));
+        if (Auth::user()->isPrivileged()) {
+            return ujs_redirect(route('chat.index', ['sendto' => $user]));
+        } else {
+            return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        }
     }
 
     public function osuSupportPopup()
