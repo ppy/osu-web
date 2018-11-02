@@ -38,7 +38,7 @@ export class ReportScore extends PureComponent
         className: 'simple-menu__item'
         key: 'button'
         onClick: @showForm
-        'Report Score'
+        osu.trans 'report.scores.button'
 
       el ReportForm,
         allowOptions: false
@@ -47,7 +47,7 @@ export class ReportScore extends PureComponent
         key: 'form'
         onClose: @onFormClose
         onSubmit: @onSubmit
-        title: "#{@props.score.user.username}'s score?"
+        title: osu.trans 'report.scores.title', username: "<strong>#{@props.score.user.username}</strong>"
         visible: @state.showingForm
     ]
 
