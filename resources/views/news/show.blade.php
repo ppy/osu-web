@@ -104,10 +104,10 @@
     <div class="osu-page osu-page--generic-compact">
         <div
             class="js-react--comments"
-            data-comments="{{ json_encode([
+            data-props="{{ json_encode([
                 'commentableType' => 'news_post',
                 'commentableId' => $post->getKey(),
-                'comments' => $commentBundle->toArray(),
+                'commentBundle' => $commentBundle->toArray(),
             ]) }}"
         ></div>
     </div>

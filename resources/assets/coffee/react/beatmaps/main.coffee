@@ -121,7 +121,10 @@ class Beatmaps.Main extends React.PureComponent
         expand: @expand
         isExpanded: @state.isExpanded
 
-      div className: 'osu-layout__row osu-layout__row--page-compact',
+      div className: 'js-sticky-header'
+
+      div
+        className: 'osu-layout__row osu-layout__row--page-compact'
         div className: listCssClasses,
           if currentUser.id?
             el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
@@ -230,6 +233,9 @@ class Beatmaps.Main extends React.PureComponent
     @backToTop.current.reset()
 
     @fetchNewState(true).then (newState) =>
+      cutoff = @backToTopAnchor.current.getBoundingClientRect().top
+      window.scrollTo window.pageXOffset, window.pageYOffset + cutoff if cutoff < 0
+
       @setState newState
 
 
