@@ -41,7 +41,6 @@
     "require-dir": "^0.3.2",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",
-    "ts-loader": "3.5",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
     "typescript": "^2.9.1",
@@ -54,10 +53,11 @@
     "cross-env": "^3.2.3",
     "import-glob-loader": "^1.1.0",
     "imports-loader": "^0.7.1",
-    "laravel-mix": "^1.0.7",
+    "laravel-mix": "^1.6.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "mobx-react-devtools": "^5.0.1",
+    "ts-loader": "3.5",
     "tslint": "^5.11.0"
   }
 }
