@@ -20,14 +20,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat\Channel;
-use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
-use App\Models\UserRelation;
 use Auth;
-use Carbon\Carbon;
-use DB;
 use Request;
 
 class ChatController extends Controller
@@ -44,6 +39,10 @@ class ChatController extends Controller
 
     public function index()
     {
+        if (!Auth::user()->isPrivileged()) {
+            return view('chat.coming-soon');
+        }
+
         $presence = UserChannel::presenceForUser(Auth::user());
         $json = [];
 
