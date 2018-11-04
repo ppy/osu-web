@@ -54,6 +54,7 @@ class BeatmapsetEvent extends Model
             $discussionPostId = $object->getKey();
             $discussionId = $object->beatmap_discussion_id;
             $beatmapsetId = $object->beatmapDiscussion->beatmapset_id;
+            $message = $object->message;
         } elseif ($object instanceof BeatmapDiscussion) {
             $discussionId = $object->getKey();
             $beatmapsetId = $object->beatmapset_id;
@@ -68,6 +69,7 @@ class BeatmapsetEvent extends Model
             'comment' => array_merge([
                 'beatmap_discussion_id' => $discussionId ?? null,
                 'beatmap_discussion_post_id' => $discussionPostId ?? null,
+                'message' => $message ?? null
             ], $extraData),
         ]);
     }
