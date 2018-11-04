@@ -69,7 +69,7 @@ class BeatmapsetEvent extends Model
             'comment' => array_merge([
                 'beatmap_discussion_id' => $discussionId ?? null,
                 'beatmap_discussion_post_id' => $discussionPostId ?? null,
-                'message' => $message ?? null
+                'message' => $message ?? null,
             ], $extraData),
         ]);
     }
