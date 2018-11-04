@@ -18,6 +18,7 @@
 @php
     $discussionId = isset($event->comment['beatmap_discussion_id']) ? $event->comment['beatmap_discussion_id'] : null;
     $discussionLink = route('beatmapsets.discussion', $event->beatmapset);
+    $message = isset($event->comment['message']) ? $event->comment['message'] : null;
     if ($discussionId) {
         $discussionLink .= '#/'.$discussionId;
     }
@@ -55,7 +56,7 @@
                 {!! trans('beatmapset_events.event.'.$event->typeForTranslation(), [
                     'user' => link_to_user($event->user),
                     'discussion' => $discussionId ? "<a href='$discussionLink'>#$discussionId</a>" : '',
-                    'text' => is_string($event->comment) ? $event->comment : '[no preview]',
+                    'text' => is_string($message) ? $message : '[no preview]',
                 ]) !!}
             </div>
             <div>{!! timeago($event->created_at) !!}</div>
