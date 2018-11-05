@@ -39,7 +39,7 @@ class ScoresController extends Controller
                 'reporter_id' => Auth::user()->getKey(),
                 'mode' => Beatmap::modeInt($mode),
                 'comments' => trim(request('comments')),
-                'reason' => 'Cheating'
+                'reason' => 'Cheating',
             ]);
         } catch (PDOException $ex) {
             // ignore duplicate reports;
