@@ -95,6 +95,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             el FlagCountry,
               country: @props.countries[score.user.country_code]
               classModifiers: ['scoreboard', 'small-box']
+
       td className: cell,
         a
           className: "#{bn}__user-link js-usercard"

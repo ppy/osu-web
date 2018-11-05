@@ -26,6 +26,53 @@
   @handle: 16px;
   @row-height: 1.8em;
 
+  .cell-color(@color, @highlight) {
+    color: @color;
+
+    && {
+      .@{activated-row} & {
+        color: @highlight;
+      }
+
+      .@{passive-row}:hover & {
+        color: @highlight;
+
+        .@{_top}--menu-active & {
+          color: @highlight;
+        }
+      }
+
+      .@{passive-row}:hover:nth-child(odd) & {
+        color: @highlight;
+
+        .@{_top}--menu-active & {
+          color: @highlight;
+        }
+      }
+    }
+  }
+
+  .row-color(@name, @color) {
+    .@{activated-row}.@{name} & {
+      color: #fff;
+      background-color: @color;
+    }
+
+    .@{passive-row}.@{name} & {
+      background-color: lighten(@color, 20%);
+    }
+
+    .@{passive-row}.@{name}:hover & {
+      color: #fff;
+      background-color: @color;
+
+      .@{_top}--menu-active & {
+        color: unset;
+        background-color: lighten(@color, 20%);
+      }
+    }
+  }
+
   margin-right: -@handle;
   overflow-x: auto;
 
@@ -124,11 +171,7 @@
     }
 
     &--perfect {
-      color: @green;
-
-      .@{_top}__body-row:hover & {
-        color: @green-lighter;
-      }
+      .cell-color(@green, @green-lighter);
     }
 
     &--rank {
@@ -145,7 +188,7 @@
     }
 
     &--zero {
-      color: #aaa;
+      .cell-color(#aaa, #aaa);
     }
 
     // when row is selected
@@ -156,16 +199,6 @@
       .@{_top}__user-link {
         color: #fff;
       }
-    }
-
-    .@{activated-row}.@{friend-row} & {
-      color: #fff;
-      background-color: @yellow-light;
-    }
-
-    .@{activated-row}.@{self-row} & {
-      color: #fff;
-      background-color: @green-light;
     }
 
     // when row is not selected
@@ -179,14 +212,6 @@
 
     .@{passive-row}:nth-child(odd) & {
       background-color: #eee;
-    }
-
-    .@{passive-row}.@{friend-row} & {
-      background-color: lighten(@yellow-light, 20%);
-    }
-
-    .@{passive-row}.@{self-row} & {
-      background-color: lighten(@green-light, 20%);
     }
 
     // hovering over an unselected row
@@ -218,25 +243,8 @@
       }
     }
 
-    .@{passive-row}.@{friend-row}:hover & {
-      color: #fff;
-      background-color: @yellow-light;
-
-      .@{_top}--menu-active & {
-        color: unset;
-        background-color: lighten(@yellow-light, 20%);
-      }
-    }
-
-    .@{passive-row}.@{self-row}:hover & {
-      color: #fff;
-      background-color: @green-light;
-
-      .@{_top}--menu-active & {
-        color: unset;
-        background-color: lighten(@green-light, 20%);
-      }
-    }
+    .row-color(@friend-row, @yellow-light);
+    .row-color(@self-row, @green-light);
   }
 
   &__play-detail-menu {
