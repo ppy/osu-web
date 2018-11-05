@@ -38,7 +38,7 @@
         color: @highlight;
 
         .@{_top}--menu-active & {
-          color: @highlight;
+          color: @color;
         }
       }
     }
@@ -187,19 +187,11 @@
     .@{activated-row} & {
       color: #fff;
       background-color: #555;
-
-      .@{_top}__user-link {
-        color: #fff;
-      }
     }
 
     // when row is not selected
     .@{passive-row} & {
       background-color: #fff;
-
-      .@{_top}__user-link {
-        color: #555;
-      }
     }
 
     .@{passive-row}:nth-child(odd) & {
@@ -214,14 +206,6 @@
       .@{_top}--menu-active & {
         color: unset;
         background-color: #fff;
-
-        .@{_top}__user-link {
-          color: #555;
-        }
-      }
-
-      .@{_top}__user-link {
-        color: #fff;
       }
     }
 
@@ -256,6 +240,7 @@
   }
 
   &__user-link {
+    .cell-color(#555, #fff);
     transition: none;
 
     &:hover {
