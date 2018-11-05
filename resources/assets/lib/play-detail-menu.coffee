@@ -127,15 +127,16 @@ export class PlayDetailMenu extends PureComponent
       className: "play-detail-menu__menu"
       div
         className: 'simple-menu simple-menu--play-detail-menu'
-        a
-          className: 'simple-menu__item'
-          href: laroute.route 'users.replay',
-                  beatmap: @props.score.beatmap.id
-                  mode: @props.score.beatmap.mode
-                  user: @props.score.user_id
-          'data-turbolinks': false
-          onClick: @toggle
-          osu.trans 'users.show.extra.top_ranks.download_replay'
+        if @props.score.replay
+          a
+            className: 'simple-menu__item'
+            href: laroute.route 'users.replay',
+                    beatmap: @props.score.beatmap.id
+                    mode: @props.score.beatmap.mode
+                    user: @props.score.user_id
+            'data-turbolinks': false
+            onClick: @toggle
+            osu.trans 'users.show.extra.top_ranks.download_replay'
 
         el ReportScore,
           { score } = @props
