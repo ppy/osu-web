@@ -21,6 +21,8 @@ class @BeatmapDiscussionHelper
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
   @MAX_MESSAGE_PREVIEW_LENGTH: 100
+  @MAX_LENGTH_TIMELINE: 750
+
 
   @MODES = ['events', 'general', 'generalAll', 'timeline']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
@@ -99,9 +101,6 @@ class @BeatmapDiscussionHelper
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
         osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
-
-
-  @maxlength: 750
 
 
   @messageType:
@@ -235,5 +234,10 @@ class @BeatmapDiscussionHelper
     ret
 
 
-  @validMessageLength: (message) =>
-    message.length > 0 && message.length <= @maxlength
+  @validMessageLength: (message, isTimeline) =>
+    return false unless message?.length > 0
+
+    if isTimeline
+      message.length <= @MAX_LENGTH_TIMELINE
+    else
+      true
