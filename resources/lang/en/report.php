@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 return [
     'scores' => [
         'button' => 'Report Score',

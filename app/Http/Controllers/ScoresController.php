@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
-use App\Models\UserReport;
 use Auth;
 use PDOException;
 
