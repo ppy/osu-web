@@ -121,8 +121,9 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__play-detail-menu",
-        el _exported.PlayDetailMenu,
-          onHide: () => @onMenuActive?(active: false, index: index)
-          onShow: () => @onMenuActive?(active: true, index: index)
-          score: score
-          usePortal: true
+        if _exported.ScoreHelper.hasMenu(score)
+          el _exported.PlayDetailMenu,
+            onHide: () => @onMenuActive?(active: false, index: index)
+            onShow: () => @onMenuActive?(active: true, index: index)
+            score: score
+            usePortal: true

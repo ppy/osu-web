@@ -31,8 +31,6 @@ export class ReportScore extends PureComponent
 
 
   render: =>
-    return null unless currentUser.id? && @props.score?.user_id != currentUser.id
-
     [
       button
         className: 'simple-menu__item'

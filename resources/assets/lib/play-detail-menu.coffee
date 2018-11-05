@@ -138,5 +138,6 @@ export class PlayDetailMenu extends PureComponent
             onClick: @toggle
             osu.trans 'users.show.extra.top_ranks.download_replay'
 
-        el ReportScore,
-          { score } = @props
+        if currentUser.id? && @props.score.user_id != currentUser.id
+          el ReportScore,
+            { score } = @props
