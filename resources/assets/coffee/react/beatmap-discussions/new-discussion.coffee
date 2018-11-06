@@ -122,6 +122,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 el BeatmapDiscussions.MessageLengthCounter,
                   key: 'counter'
                   message: @state.message
+                  isTimeline: @isTimeline()
               ]
             else
               osu.trans('beatmaps.discussions.require-login')
@@ -219,6 +220,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     switch type
       when InputHandler.CANCEL
         @setSticky(false)
+
+
+  isTimeline: =>
+    @props.mode == 'timeline'
 
 
   nearbyDiscussions: =>
@@ -385,9 +390,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
+    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
 
-    if @props.mode == 'timeline'
+    if @isTimeline()
       @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true
