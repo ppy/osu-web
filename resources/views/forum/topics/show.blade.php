@@ -35,7 +35,7 @@
     @include('forum.topics._floating_header')
     @include('forum.topics._header')
 
-    <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
+    <div class="js-header--alt js-sync-height--target" data-sync-height-id="sticky-header"></div>
 
     @if ($topic->poll()->exists())
         <div class="osu-layout__row js-header--main">

@@ -17,14 +17,18 @@
  */
 
 .navbar-mobile {
-  border-width: 0;
-  margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: @z-index--fixed-bar;
+  color: #fff;
 
   &__brand {
     float: none;
     padding: 0 10px;
     height: auto;
     min-width: 0;
+    font-size: 20px;
     line-height: 1.5; // avoid clipping
   }
 
@@ -63,10 +67,10 @@
   }
 
   &__menu {
-    box-shadow: none;
-    border-top-width: 0;
+    position: fixed;
+    top: @navbar-height;
+    padding: 0 10px;
     background-color: #444;
-    position: absolute;
     width: 100%;
     z-index: @z-index--nav2;
 

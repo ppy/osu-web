@@ -21,7 +21,6 @@
 namespace App\Models\Forum;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
 class TopicWatch extends Model
 {
@@ -32,6 +31,8 @@ class TopicWatch extends Model
     ];
 
     public $timestamps = false;
+
+    protected $primaryKeys = ['topic_id', 'user_id'];
 
     public static function unreadCount($user)
     {
@@ -147,11 +148,5 @@ class TopicWatch extends Model
         } else {
             return 'not_watching';
         }
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->lookupQuery($this->topic_id, $this->user_id);
     }
 }

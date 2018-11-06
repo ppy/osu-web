@@ -17,32 +17,15 @@
  */
 
 .page-extra-tabs {
-  @top: page-extra-tabs;
-  @bg: #333;
+  position: sticky;
+  top: @nav2-height--pinned;
+  z-index: 1;
 
-  background-color: @bg;
-  padding-top: 15px;
+  background-color: #333;
 
+  border-bottom: 1px solid @yellow;
 
-  &__floatable {
-    .own-layer();
-    width: 100%;
-    left: 0;
-    top: 0;
-    background-color: @bg;
-    border-bottom: 1px solid @yellow;
-
-    .@{top}--floating & {
-      z-index: @z-index--fixed-bar;
-      position: fixed;
-    }
-  }
-
-  &__padding {
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
+  @media @mobile {
+    top: @navbar-height;
   }
 }

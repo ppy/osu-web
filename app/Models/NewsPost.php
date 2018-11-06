@@ -31,6 +31,7 @@ class NewsPost extends Model
     // in minutes
     const CACHE_DURATION = 86400;
     const VERSION = 3;
+    const DASHBOARD_LIMIT = 8;
 
     protected $casts = [
         'page' => 'array',

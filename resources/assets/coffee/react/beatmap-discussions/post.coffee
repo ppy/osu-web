@@ -162,7 +162,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         onKeyDown: @handleKeyDown
         value: @state.message
         innerRef: (el) => @textarea = el
-      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+      el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -286,8 +286,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   permalink: (e) =>
@@ -337,4 +342,4 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
