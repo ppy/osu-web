@@ -58,10 +58,30 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @computed get
-  sortedByPresence(): Channel[] {
+  nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel, channelId) => {
-      sortedChannels.push(channel);
+    this.channels.forEach((channel) => {
+      if (channel.type !== 'PM') {
+        sortedChannels.push(channel);
+      }
+    });
+
+    return sortedChannels.sort((a, b) => {
+      if (a.name === b.name) {
+        return 0;
+      }
+
+      return a.name > b.name ? -1 : 1;
+    });
+  }
+
+  @computed get
+  pmChannels(): Channel[] {
+    const sortedChannels: Channel[] = [];
+    this.channels.forEach((channel) => {
+      if (channel.type === 'PM') {
+        sortedChannels.push(channel);
+      }
     });
 
     return sortedChannels.sort((a, b) => {

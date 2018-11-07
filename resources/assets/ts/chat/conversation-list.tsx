@@ -25,10 +25,24 @@ import ConversationListItem from './conversation-list-item';
 @observer
 export default class ConversationList extends React.Component<any, {}> {
   render(): React.ReactNode {
-    const conversations: Channel[] = this.props.dataStore.channelStore.sortedByPresence;
+    const nonPmChannels: Channel[] = this.props.dataStore.channelStore.nonPmChannels;
+    const pmChannels: Channel[] = this.props.dataStore.channelStore.pmChannels;
     const conversationList: React.ReactNode[] = [];
 
-    conversations.forEach((conversation) => {
+    nonPmChannels.forEach((conversation) => {
+      conversationList.push(
+        <ConversationListItem
+            key={conversation.channelId}
+            channel_id={conversation.channelId}
+        />,
+      );
+    });
+
+    conversationList.push(
+      <div className='chat-conversation-list-seperator' />,
+    );
+
+    pmChannels.forEach((conversation) => {
       conversationList.push(
         <ConversationListItem
             key={conversation.channelId}
@@ -38,9 +52,9 @@ export default class ConversationList extends React.Component<any, {}> {
     });
 
     return(
-      <div className='conversation-list'>
+      <div className='chat-conversation-list'>
         {_.isEmpty(conversationList) ? (
-          <div className='conversation-list-item'>{osu.trans('chat.no-conversations')}</div>
+          <div className='chat-conversation-list-item'>{osu.trans('chat.no-conversations')}</div>
         ) : (
           conversationList
         )}

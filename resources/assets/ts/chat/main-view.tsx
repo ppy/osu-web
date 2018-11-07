@@ -83,7 +83,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
       }
     } else {
       if (!_.isEmpty(this.props.presence)) {
-        channelId = this.props.dataStore.channelStore.sortedByPresence[0].channelId;
+        channelId = this.props.dataStore.channelStore.nonPmChannels[0].channelId || this.props.dataStore.channelStore.pmChannels[0].channelId;
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
       } else {
         console.debug('presence missing...?');
