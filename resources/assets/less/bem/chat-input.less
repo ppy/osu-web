@@ -17,23 +17,24 @@
  */
 
 .chat-input {
-  padding: 10px 50px;
+  padding: 10px 30px 10px 50px;
   color: white;
   position: absolute;
   bottom: 0;
   text-align: right;
 
   background: linear-gradient(to bottom, fade(@community-blue-dark, 0%), fade(@community-blue-dark, 95%) 40%, fade(@community-blue-dark, 95%) 100%);
-  width: calc(100% ~'-' 10px); // this prevents the gradient drawing over the browser's scroll-bar
-  height: 160px;
+  width: calc(100% ~'-' 20px); // this prevents the gradient drawing over the browser's scroll-bar
+  height: 80px;
+  padding-top: 10px;
+
+  align-items: center;
+  display: flex;
 
   @media @mobile {
     position: fixed;
     font-size: 16px;
-    padding: 10px;
-    height: 70px;
-    align-items: center;
-    display: flex;
+    padding: 10px 0px 10px 20px;
   }
 
   &__box {
@@ -43,17 +44,10 @@
     width: 100%;
     background: @community-blue-darkest;
     padding: 10px;
-    margin-bottom: 10px;
-    margin-top: 50px;
+    margin-right: 10px;
 
     &--disabled {
       opacity: 0.8;
-    }
-
-    @media @mobile {
-      margin-bottom: 0px;
-      margin-top: 0px;
-      margin-right: 10px;
     }
   }
 }
