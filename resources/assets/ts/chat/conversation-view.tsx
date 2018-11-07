@@ -131,6 +131,11 @@ export default class ConversationView extends React.Component<any, any> {
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
         </div>
+        {channel.description &&
+          <div className='chat-conversation__chat-label'>
+            {channel.description}
+          </div>
+        }
         {channel.loading &&
           <div className='chat-conversation__day-divider'>
             <Spinner />
