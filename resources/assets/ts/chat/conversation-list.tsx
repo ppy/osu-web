@@ -38,9 +38,11 @@ export default class ConversationList extends React.Component<any, {}> {
       );
     });
 
-    conversationList.push(
-      <div key='seperator' className='chat-conversation-list-seperator' />,
-    );
+    if (nonPmChannels.length > 0 && pmChannels.length > 0) {
+      conversationList.push(
+        <div key='seperator' className='chat-conversation-list-seperator' />,
+      );
+    }
 
     pmChannels.forEach((conversation) => {
       conversationList.push(
