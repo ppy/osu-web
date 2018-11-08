@@ -57,7 +57,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
     this.init();
   }
 
-  init = () => {
+  init() {
     const sendTo: SendToJSON = osu.parseJson('json-sendto');
     let channelId: number;
 
@@ -71,15 +71,14 @@ export default class MainView extends React.Component<PropsInterface, any> {
       } else {
         channel = new Channel(-1);
         channel.newChannel = true;
-        channel.channelId = -1;
         channel.name = target.username;
         channel.icon = target.avatarUrl;
         channel.type = 'PM';
         channel.users = [currentUser.id, target.id];
         channel.moderated = !sendTo.can_message;
 
-        this.props.dataStore.channelStore.channels.set(-1, channel);
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(-1));
+        this.props.dataStore.channelStore.channels.set(channel.channelId, channel);
+        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel.channelId));
       }
     } else {
       if (!_.isEmpty(this.props.presence)) {

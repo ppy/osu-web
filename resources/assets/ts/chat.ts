@@ -28,10 +28,10 @@ const core: OsuCore = window.OsuCore = window.OsuCore || new OsuCore(window);
 
 reactTurbolinks.register('chat', MainView, () => {
   return {
-    dataStore: core.DataStore,
-    dispatcher: core.Dispatcher,
-    orchestrator: core.ChatOrchestrator,
+    dataStore: core.dataStore,
+    dispatcher: core.dispatcher,
+    orchestrator: core.chatOrchestrator,
     presence: osu.parseJson('json-presence'),
-    worker: core.ChatWorker,
+    worker: core.chatWorker,
   };
 });

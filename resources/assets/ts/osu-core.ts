@@ -25,25 +25,25 @@ import WindowVHPatcher from './window-vh-patcher';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
-  Window: Window;
-  Dispatcher: Dispatcher;
-  DataStore: RootDataStore;
-  ChatWorker: ChatWorker;
-  ChatOrchestrator: ChatOrchestrator;
-  WindowFocusObserver: WindowFocusObserver;
-  WindowVHPatcher: WindowVHPatcher;
+  window: Window;
+  dispatcher: Dispatcher;
+  dataStore: RootDataStore;
+  chatWorker: ChatWorker;
+  chatOrchestrator: ChatOrchestrator;
+  windowFocusObserver: WindowFocusObserver;
+  windowVHPatcher: WindowVHPatcher;
 
   constructor(window: Window) {
-    this.Window = window;
-    this.Dispatcher = new Dispatcher();
-    this.DataStore = new RootDataStore(this.Dispatcher);
-    this.ChatWorker = new ChatWorker(this.Dispatcher, this.DataStore);
-    this.ChatOrchestrator = new ChatOrchestrator(this.Dispatcher, this.DataStore);
-    this.WindowFocusObserver = new WindowFocusObserver(this.Window, this.Dispatcher);
-    this.WindowVHPatcher = new WindowVHPatcher(this.Window);
+    this.window = window;
+    this.dispatcher = new Dispatcher();
+    this.dataStore = new RootDataStore(this.dispatcher);
+    this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
+    this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
+    this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
+    this.windowVHPatcher = new WindowVHPatcher(this.window);
 
     if (currentUser !== null) {
-      this.DataStore.userStore.getOrCreate(currentUser.id, currentUser);
+      this.dataStore.userStore.getOrCreate(currentUser.id, currentUser);
     }
   }
 }

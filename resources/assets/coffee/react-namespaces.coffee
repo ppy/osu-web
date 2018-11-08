@@ -23,7 +23,6 @@
 @BeatmapsetPage = {}
 @ChangelogIndex = {}
 @ChangelogBuild = {}
-@Chat = {}
 @CommentsIndex = {}
 @CommentsShow = {}
 @Contest = {}

@@ -79,8 +79,4 @@ export default class Message {
       uuid: osu.uuid(),
     });
   }
-
-  static reviver(key: string, value: any): any {
-    return key === '' ? Message.fromJSON(value) : value;
-  }
 }
