@@ -123,7 +123,7 @@ export default class Channel {
     this.name = presence.name;
     this.description = presence.description;
     this.type = presence.type;
-    this.icon = presence.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons
+    this.icon = presence.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
     this.lastReadId = presence.last_read_id;
 
     this.lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);

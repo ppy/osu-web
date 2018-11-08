@@ -47,10 +47,12 @@ export default class ChatOrchestrator implements DispatchListener {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
     } else if (action instanceof WindowFocusAction) {
-      this.windowActive();
-      this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      this.windowIsActive = true;
+      if (this.rootDataStore.channelStore.loaded) {
+        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      }
     } else if (action instanceof WindowBlurAction) {
-      this.windowIdle();
+      this.windowIsActive = false;
     }
   }
 
@@ -132,13 +134,5 @@ export default class ChatOrchestrator implements DispatchListener {
 
       this.rootDataStore.channelStore.addMessages(channelId, newMessages);
     });
-  }
-
-  windowIdle = () => {
-    this.windowIsActive = false;
-  }
-
-  windowActive = () => {
-    this.windowIsActive = true;
   }
 }

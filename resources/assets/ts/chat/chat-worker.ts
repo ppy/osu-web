@@ -56,9 +56,9 @@ export default class ChatWorker implements DispatchListener {
     if (action instanceof ChatMessageSendAction) {
       this.sendMessage(action.message);
     } else if (action instanceof WindowFocusAction) {
-      this.windowActive();
+      this.windowIsActive = true;
     } else if (action instanceof WindowBlurAction) {
-      this.windowIdle();
+      this.windowIsActive = false;
     }
   }
 
@@ -173,13 +173,5 @@ export default class ChatWorker implements DispatchListener {
       this.updateTimerId = undefined;
       this.updateXHR = false;
     }
-  }
-
-  windowIdle = () => {
-    this.windowIsActive = false;
-  }
-
-  windowActive = () => {
-    this.windowIsActive = true;
   }
 }
