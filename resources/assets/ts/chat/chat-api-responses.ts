@@ -16,8 +16,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChannelJSON } from 'models/chat/channel';
-import { MessageJSON } from 'models/chat/message';
+export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORARY'|'PM'|'GROUP'|'NEW';
+
+export interface ChannelJSON {
+  channel_id: number;
+  type: ChannelType;
+  name: string;
+  description?: string;
+  icon?: string;
+  users: number[];
+  last_read_id: number;
+  last_message_id: number;
+}
+
+export interface UserJSON {
+  id: number;
+  username: string;
+  avatar_url: string;
+  profile_colour: string;
+  country_code: string; // TODO: country object?
+  is_active: boolean;
+  is_bot: boolean;
+  is_online: boolean;
+  is_supporter: boolean;
+  pm_friends_only: boolean;
+}
+
+export interface MessageJSON {
+  content: string;
+  is_action: boolean;
+  message_id: number;
+  sender: UserJSON;
+  sender_id: number;
+  channel_id: number;
+  timestamp: string;
+}
 
 export type GetMessagesJSON =
   MessageJSON[];

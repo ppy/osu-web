@@ -18,10 +18,11 @@
 
 import { ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
+import { ChannelJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import {action, computed, observable} from 'mobx';
-import Channel, { ChannelJSON } from 'models/chat/channel';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import RootDataStore from './root-data-store';
 

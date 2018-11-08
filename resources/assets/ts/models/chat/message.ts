@@ -16,18 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { MessageJSON } from 'chat/chat-api-responses';
 import { action, observable} from 'mobx';
-import User, { UserJSON } from 'models/user';
-
-export interface MessageJSON {
-  content: string;
-  is_action: boolean;
-  message_id: number;
-  sender: UserJSON;
-  sender_id: number;
-  channel_id: number;
-  timestamp: string;
-}
+import User from 'models/user';
 
 export default class Message {
   @observable messageId: number;

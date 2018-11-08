@@ -16,20 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { UserJSON } from 'chat/chat-api-responses';
 import { action, observable } from 'mobx';
-
-export interface UserJSON {
-  id: number;
-  username: string;
-  avatar_url: string;
-  profile_colour: string;
-  country_code: string; // maek country
-  is_active: boolean;
-  is_bot: boolean;
-  is_online: boolean;
-  is_supporter: boolean;
-  pm_friends_only: boolean;
-}
 
 export default class User {
   @observable id: number;

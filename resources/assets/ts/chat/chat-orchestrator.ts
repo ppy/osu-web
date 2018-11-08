@@ -16,16 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelSwitchAction, ChatMessageUpdateAction} from 'actions/chat-actions';
+import {ChatChannelSwitchAction} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
 import Channel from 'models/chat/channel';
-import Message, { MessageJSON } from 'models/chat/message';
+import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
+import { MessageJSON } from './chat-api-responses';
 
 export default class ChatOrchestrator implements DispatchListener {
   private dispatcher: Dispatcher;
@@ -123,7 +124,7 @@ export default class ChatOrchestrator implements DispatchListener {
     const newMessages: Message[] = [];
 
     transaction(() => {
-      _.forEach(messages, (json: MessageJSON) => {
+      messages.forEach((json: MessageJSON) => {
         const newMessage: Message = Message.fromJSON(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         newMessages.push(newMessage);

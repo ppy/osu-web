@@ -17,10 +17,11 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import {action, observable} from 'mobx';
-import User, { UserJSON } from 'models/user';
+import User from 'models/user';
 import RootDataStore from './root-data-store';
 
 export default class UserStore implements DispatchListener {
