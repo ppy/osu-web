@@ -32,17 +32,16 @@ export interface UserJSON {
 }
 
 export default class User {
-  // id: number;
   @observable id: number;
-  @observable username: string;
-  @observable avatarUrl: string;
-  @observable profileColour: string;
-  @observable countryCode: string;
+  @observable username: string = '';
+  @observable avatarUrl: string = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
+  @observable profileColour: string = '';
+  @observable countryCode: string = 'XX';
 
-  @observable isSupporter: boolean;
-  @observable isActive: boolean;
-  @observable isBot: boolean;
-  @observable isOnline: boolean;
+  @observable isSupporter: boolean = false;
+  @observable isActive: boolean = false;
+  @observable isBot: boolean = false;
+  @observable isOnline: boolean = false;
 
   @observable loaded: boolean = false;
 
@@ -58,7 +57,6 @@ export default class User {
 
   @action
   updateFromJSON(json: UserJSON) {
-    // this.id = json.id;
     this.username = json.username;
     this.avatarUrl = json.avatar_url;
     this.profileColour = json.profile_colour;
@@ -87,9 +85,5 @@ export default class User {
       profileColour: json.profile_colour,
       username: json.username,
     });
-  }
-
-  static reviver(key: string, value: any): any {
-    return key === '' ? User.fromJSON(value) : value;
   }
 }
