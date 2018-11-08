@@ -69,7 +69,6 @@ export default class User {
     this.loaded =  true;
   }
 
-  @action
   static fromJSON(json: UserJSON): User {
     const user = Object.create(User.prototype);
     return Object.assign(user, {

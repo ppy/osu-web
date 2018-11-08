@@ -18,7 +18,6 @@
 
 import { action, observable} from 'mobx';
 import User, { UserJSON } from 'models/user';
-import Channel from './channel';
 
 export interface MessageJSON {
   content: string;
@@ -66,7 +65,6 @@ export default class Message {
     return this;
   }
 
-  @action
   static fromJSON(json: MessageJSON): Message {
     const message = Object.create(Message.prototype);
     return Object.assign(message, {

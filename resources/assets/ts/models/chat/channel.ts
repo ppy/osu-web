@@ -54,7 +54,6 @@ export default class Channel {
     this.channelId = channelId;
   }
 
-  @action
   static fromJSON(json: ChannelJSON): Channel {
     const channel = Object.create(Channel.prototype);
     return Object.assign(channel, {
