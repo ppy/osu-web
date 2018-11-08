@@ -41,7 +41,7 @@ export default class ChatWorker implements DispatchListener {
 
   private api: ChatAPI;
 
-  private updateXHR: boolean;
+  private updateXHR: boolean = false;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
     this.dispatcher = dispatcher;

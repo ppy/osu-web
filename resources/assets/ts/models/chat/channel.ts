@@ -23,8 +23,8 @@ import Message from './message';
 
 export default class Channel {
   @observable channelId: number;
-  @observable type: ChannelType;
-  @observable name: string;
+  @observable type: ChannelType = 'NEW';
+  @observable name: string = '';
   @observable description?: string;
   @observable icon?: string;
 

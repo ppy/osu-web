@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "target": "es6",
   },
   "exclude": [

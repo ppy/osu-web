@@ -26,24 +26,25 @@ interface PropsInterface {
 export default class MessageGroup extends React.Component<PropsInterface, any> {
   render(): React.ReactNode {
     const messages = this.props.messages;
+    const sender = messages[0].sender;
 
     if (_.isEmpty(messages)) {
       return;
     }
 
     let className = 'chat-message-group';
-    if (messages[0] && messages[0].sender.id === currentUser.id) {
+    if (messages[0] && sender.id === currentUser.id) {
       className += ' chat-message-group--own';
     }
 
     return (
       <div className={className}>
         <div className='chat-message-group__sender'>
-          <a className='js-usercard' data-user-id={messages[0].sender.id} data-tooltip-position='top center' href='#'>
-            <img className='chat-message-group__avatar' src={messages[0].sender.avatarUrl} />
+          <a className='js-usercard' data-user-id={sender.id} data-tooltip-position='top center' href='#'>
+            <img className='chat-message-group__avatar' src={sender.avatarUrl} />
           </a>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
-            {messages[0].sender.username}
+            {sender.username}
           </div>
         </div>
         <div className='chat-message-group__bubble'>

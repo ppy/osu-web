@@ -21,11 +21,11 @@ import { action, observable} from 'mobx';
 import User from 'models/user';
 
 export default class Message {
-  @observable messageId: number;
+  @observable messageId: number = -1;
   @observable uuid: string = osu.uuid();
-  @observable channelId: number;
+  @observable channelId: number = -1;
   @observable sender: User;
-  @observable content: string;
+  @observable content: string = '';
   @observable timestamp: string = moment().toISOString();
   @observable isAction: boolean = false;
 
@@ -34,6 +34,7 @@ export default class Message {
 
   constructor() {
     this.uuid = osu.uuid();
+    this.sender = new User(-1); // placeholder user
   }
 
   @action
