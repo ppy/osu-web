@@ -41,7 +41,7 @@ export default class Channel {
   @observable messages: Message[] = observable([]);
 
   @observable lastMessageId: number = -1;
-  @observable lastReadId: number = -1;
+  @observable lastReadId?: number;
 
   @observable users: number[] = [];
 
@@ -82,7 +82,11 @@ export default class Channel {
 
   @computed
   get isUnread(): boolean {
-    return this.lastMessageId > this.lastReadId;
+    if (this.lastReadId) {
+      return this.lastMessageId > this.lastReadId;
+    } else {
+      return this.lastMessageId > -1;
+    }
   }
 
   @action

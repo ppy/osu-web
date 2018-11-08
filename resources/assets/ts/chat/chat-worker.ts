@@ -65,23 +65,6 @@ export default class ChatWorker implements DispatchListener {
     }
   }
 
-  markAsRead(channelId: number) {
-    const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastRead: number = channel.lastMessageId;
-
-    if (!lastRead || channel.lastReadId >= lastRead) {
-      return;
-    }
-
-    this.api.markAsRead(channel.channelId, lastRead)
-      .then(() => {
-        channel.lastReadId = lastRead;
-      })
-      .catch((err) => {
-        console.debug('markAsRead error', err);
-      });
-  }
-
   addMessages(channelId: number, messages: MessageJSON[]) {
     const newMessages: Message[] = [];
 

@@ -41,7 +41,10 @@ export default class ChatStateStore implements DispatchListener {
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
-      this.lastReadId = this.root.channelStore.getOrCreate(action.channelId).lastReadId;
+      const lastReadId = this.root.channelStore.getOrCreate(action.channelId).lastReadId;
+      if (lastReadId) {
+        this.lastReadId = lastReadId;
+      }
     }
 
     if (action instanceof ChatMessageSendAction) {

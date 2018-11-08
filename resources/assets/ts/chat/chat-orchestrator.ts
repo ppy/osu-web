@@ -88,7 +88,7 @@ export default class ChatOrchestrator implements DispatchListener {
     const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
     const lastRead: number = channel.lastMessageId;
 
-    if (!lastRead || channel.lastReadId >= lastRead) {
+    if (!channel.isUnread) {
       return;
     }
 
