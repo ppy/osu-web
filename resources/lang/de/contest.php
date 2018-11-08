@@ -38,6 +38,7 @@ return [
         'over' => 'Vielen Dank für eure Einsendungen! Der Einsendezeitraum ist vorbei, die Abstimmungen werden bald beginnen.',
         'limit_reached' => 'Du hast das Einsendelimit für diesen Wettbewerb erreicht',
         'drop_here' => 'Lege deine Einsendung hier ab',
+        'download' => '.osz herunterladen',
         'wrong_type' => [
             'art' => 'Nur .jpg und .png-Dateien werden in diesem Wettbewerb akzeptiert.',
             'beatmap' => 'Nur .osu-Dateien werden in diesem Wettbewerb akzeptiert.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'stimmen',
-        'count' => '1 stimme|:count stimmen',
+        'count' => ':count Vote |:count Votes',
+        'points' => ':count Punkt |:count Punkte',
     ],
     'dates' => [
         'ended' => 'Endete am :date',

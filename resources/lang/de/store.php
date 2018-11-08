@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Es gibt Probleme in deinem Warenkorb!',
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
+        'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
+
+        'has_pending' => [
+            '_' => 'Du hast unvollständige Zahlungen, klicke :link , um sie anzuzeigen.',
+            'link_text' => 'hier',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Der vorherige Bezahlvorgang wurde gestartet, aber nicht beendet.',
-            'line_2' => 'Wähle eine Bezahlmethode zum Fortfahren oder :link zum Abbrechen.',
-            'link_text' => 'klick hier',
+            'line_2' => 'Setzte deine Zahlung fort, indem du eine Zahlungsmethode auswählst.',
         ],
-        'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
     ],
 
     'discount' => 'spare :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
+        'status' => [
+            'processing' => [
+                'title' => 'Deine Zahlung wurde noch nicht bestätigt!',
+                'line_1' => 'Wenn du bereits bezahlt hast, warten wir möglicherweise auf die Bestätigung deiner Zahlung. Bitte lade diese Seite in ein oder zwei Minuten neu!',
+                'line_2' => [
+                    '_' => 'Wenn du auf Problem während der Zahlung stößt: :link',
+                    'link_text' => 'Klicke hier, um deine Zahlung fortzusetzen',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Bestellung aufgegeben am :date',
+
+        'invoice' => 'Rechnung anzeigen',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name für :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Du kannst deine Bestellung nicht ändern, da diese bereits bezahlt wurde.',
             'processing' => 'Du kannst deine Bestellung nicht ändern, während diese bearbeitet wird.',
             'shipped' => 'Du kannst deine Bestellung nicht ändern, da diese bereits versandt wurde.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Abgebrochen',
+            'checkout' => 'Vorbereiten',
+            'delivered' => 'Zugestellt',
+            'paid' => 'Bezahlt',
+            'processing' => 'Bestätigung ausstehend',
+            'shipped' => 'In Zustellung',
         ],
     ],
 

@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Prywatność',
         'friends_only' => 'Blokuj prywatne wiadomości od osób spoza listy znajomych',
+        'hide_online' => 'ukryj swoją obecność online',
+    ],
+
+    'security' => [
+        'current_session' => 'obecna',
+        'end_session' => 'Zakończ sesję',
+        'end_session_confirmation' => 'Ta czynność natychmiastowo zakończy sesję na tym urządzeniu. Czy na pewno chcesz to zrobić?',
+        'last_active' => 'Ostatnio aktywna:',
+        'title' => 'Bezpieczeństwo',
+        'web_sessions' => 'sesje internetowe',
     ],
 ];

@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Oijoi, korisi kanssa on ongelmia!',
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
+        'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => 'tässä',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Edellinen kassalla olo aloitettiin mutta ei hoidettu loppuun.',
-            'line_2' => 'Jatka tilaustasi valitsemalla maksutapa, tai :link peruuttaaksesi.',
-            'link_text' => 'klikkaa tästä',
+            'line_2' => 'Jatka maksamista valitsemalla maksutapa.',
         ],
-        'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
     ],
 
     'discount' => 'säästä :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => 'Maksuasi ei ole vielä vahvistettu!',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => 'Näytä lasku',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name käyttäjälle :username (:duration)',
@@ -83,18 +106,27 @@ return [
             'processing' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.',
             'shipped' => 'Et voi muokata tilaustasi, sillä se on jo matkalla.',
         ],
+
+        'status' => [
+            'cancelled' => 'Peruutettu',
+            'checkout' => 'Valmistellaan',
+            'delivered' => 'Toimitettu',
+            'paid' => 'Maksettu',
+            'processing' => '',
+            'shipped' => 'Kuljetuksessa',
+        ],
     ],
 
     'product' => [
         'name' => 'Nimi',
 
         'stock' => [
-            'out' => 'Tätä tavaraa ei ole tällä hetkellä saatavissa. Tarkista myöhemmin uudelleen!',
-            'out_with_alternative' => 'Valitettavasti tämä tuote ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
+            'out' => 'Tätä tavaraa ei ole tällä hetkellä saatavilla. Tarkista myöhemmin uudelleen!',
+            'out_with_alternative' => 'Valitettavasti tätä tuotetta ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
         ],
 
         'add_to_cart' => 'Lisää koriin',
-        'notify' => 'Ilmoita minulle, kun saatavissa!',
+        'notify' => 'Ilmoita minulle, kun saatavilla!',
 
         'notification_success' => 'saat ilmoituksen, kun meillä on täydennystä. klikkaa :link peruuttaaksesi',
         'notification_remove_text' => 'tässä',

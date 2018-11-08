@@ -265,6 +265,7 @@ return [
                 'title' => 'Senaste',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
                 'pp' => ':amountpp',

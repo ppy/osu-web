@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Sıralaması',
+
     'type' => [
         'performance' => 'Performans',
         'charts' => 'Öne Çıkanlar',
         'score' => 'Skor',
         'country' => 'Ülke',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Bitiş Tarihi',
+        'map_count' => 'Map Sayısı',
+        'participants' => 'Katılımcılar',
+        'start_date' => 'Başlangıç Tarihi',
+    ],
+
     'stat' => [
         'accuracy' => 'İsabetlilik',
         'active_users' => 'Aktif Kullanıcılar',

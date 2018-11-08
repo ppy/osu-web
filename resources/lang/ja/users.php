@@ -265,6 +265,7 @@ return [
                 'title' => '最近の活動',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'まだ記録を作ってません！',
                 'not_ranked' => 'Ranked譜面のみがppを授与します。',
                 'pp' => ':amountpp',

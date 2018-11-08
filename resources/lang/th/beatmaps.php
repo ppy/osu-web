@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'เหตุผลในการตัดสิทธิ์?',
         'disqualified_at' => 'ถูกตัดสิทธิ์เมื่อ :time_ago เพราะ (:reason)',
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',

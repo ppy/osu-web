@@ -57,7 +57,7 @@ return [
             'beatmap_discussions-index' => 'beatmap viták',
             'beatmapset-watches-index' => 'modolási figyelőlista',
             'beatmapset_discussion_votes-index' => 'beatmap vita szavazatok',
-            'beatmapset_events-index' => 'beatmapszet események',
+            'beatmapset_events-index' => 'beatmapszett események',
             'index' => 'lista',
             'packs' => 'csomagok',
             'show' => 'információ',
@@ -81,6 +81,8 @@ return [
             'getForum' => 'fórumok',
             'getChat' => 'chat',
             'getLive' => 'élő',
+            'comments-index' => 'hozzászólások',
+            'comments-show' => 'hozzászólás',
             'contests' => 'versenyek',
             'profile' => 'profil',
             'tournaments' => 'versenyek',
@@ -116,7 +118,7 @@ return [
 
             'messages' => 'Üzenetek',
             'settings' => 'Beállitások',
-            'logout' => 'Kilépés',
+            'logout' => 'Kijelentkezés',
             'help' => 'Súgó',
             'modding-history-discussions' => 'felhasználói modoló megbeszélések',
             'modding-history-events' => 'felhasználói modoló események',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'fizetés',
             'getInvoice' => 'számla',
+            'orders-index' => 'rendelési előzmények',
             'products-show' => 'termék',
 
             'new' => 'új',
@@ -166,8 +169,8 @@ return [
         'general' => [
             '_' => 'Általános',
             'home' => 'Főoldal',
-            'changelog-index' => 'Változások listája',
-            'beatmaps' => 'Beatmap lista',
+            'changelog-index' => 'Változtatások',
+            'beatmaps' => 'Beatmap Lista',
             'download' => 'osu! letöltése',
             'wiki' => 'Wiki',
         ],
@@ -179,7 +182,7 @@ return [
             'report' => 'Hiba Jelentése',
         ],
         'legal' => [
-            '_' => 'Jogok és állapot',
+            '_' => 'Jogok és Állapot',
             'copyright' => 'Szerzői jog (DMCA)',
             'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
@@ -191,7 +194,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Hiányzó Oldal',
-            'description' => "Bocsánat, de az oldal, amit kértél nincs itt!",
+            'description' => "Bocsi, de a kért oldal nem itt van!",
         ],
         '403' => [
             'error' => "Nem kellene itt lenned.",
@@ -203,26 +206,26 @@ return [
         ],
         '405' => [
             'error' => 'Hiányzó Oldal',
-            'description' => "Bocsánat, de az oldal, amit kértél nincs itt!",
+            'description' => "Bocsi, de a kért oldal nem itt van!",
         ],
         '500' => [
-            'error' => 'Oh ne! Valami összetört! ;_;',
+            'error' => 'Jaj ne! Valami elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",
         ],
         'fatal' => [
-            'error' => 'Jaj ne! Valami összetört (martined)! ;_;',
+            'error' => 'Jaj ne! Valami (nagyon) elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",
         ],
         '503' => [
-            'error' => 'Karbantartás miatt leállitva!',
-            'description' => "A karbantartás általában 5 másodperc és akár 10 perc is lehet. Ha bármi esetben tovább tartana , lásd :link linket bővebb információért.",
+            'error' => 'Karbantartás miatt szünetel!',
+            'description' => "A karbantartás általában 5 másodperc és 10 perc közötti időt vesz igénybe. Ha esetleg tovább tartana, lásd :link bővebb információért.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Mindenesetre, itt egy kód amit a supportnak tudsz adni!",
+        'reference' => "Mindenesetre itt egy kód amit az ügyfélszolgálatnak tudsz adni!",
     ],
 
     'popup_login' => [
@@ -239,7 +242,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Uram, önnek kell egy fiók. Nem is értem miért nem rendelkezik még egyel?",
+            'info' => "Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?",
             'title' => "Nincs még fiókod?",
         ],
     ],

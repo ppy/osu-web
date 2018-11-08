@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Oh não, há problemas com o teu carrinho!',
         'cart_problems_edit' => 'Clica aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
+        'delayed_shipping' => 'Nós estamos actualmente sobrecarregados com encomendas! És bem-vindo em fazeres o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto alcançamos os pedidos existentes.',
         'old_cart' => 'O teu carrinho parece que está fora de prazo e foi recarregado, por favor tenta outra vez.',
         'pay' => 'Pagar com Paypal',
+
+        'has_pending' => [
+            '_' => 'Tens pagamentos incompletos, clica :link para os veres.',
+            'link_text' => 'aqui',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Um pagamento prévio foi iniciado mas não foi terminado.',
-            'line_2' => 'Resume o teu pagamento ao seleccionar um método de pagamento, ou :link para cancelar.',
-            'link_text' => 'clica aqui',
+            'line_2' => 'Resume o teu pagamento ao seleccionar um método de pagamento.',
         ],
-        'delayed_shipping' => 'Nós estamos actualmente sobrecarregados com encomendas! És bem-vindo em fazeres o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto alcançamos os pedidos existentes.',
     ],
 
     'discount' => 'poupa :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Como o teu pagamento era um eCheck, por favor permite até 10 dias extras para o pagamento ser autorizado através do PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'O teu pagamento ainda não foi confirmado!',
+                'line_1' => 'Se já pagaste, nós ainda poderemos estar à espera de receber a confirmação do teu pagamento. Por favor actualiza esta página dentro dum minuto ou dois!',
+                'line_2' => [
+                    '_' => 'Se encontraste um problema durante o pagamento, :link',
+                    'link_text' => 'clica aqui para resumir o teu pagamento',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Ordem colocada em :date',
+
+        'invoice' => 'Ver Factura',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Tu não podes alterar o teu pedido porque já foi pago.',
             'processing' => 'Tu não podes alterar o teu pedido porque já foi processado.',
             'shipped' => 'Tu não podes alterar o teu pedido porque já foi enviado.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Cancelados',
+            'checkout' => 'Em Preparação',
+            'delivered' => 'Entregues',
+            'paid' => 'Pagos',
+            'processing' => 'Confirmação pendente',
+            'shipped' => 'Em Curso',
         ],
     ],
 
@@ -106,7 +138,7 @@ return [
         'gift' => 'oferecer ao jogador',
         'require_login' => [
             '_' => 'Tu precisas de ser :link para arranjar uma etiqueta osu!supporter!',
-            'link_text' => 'sessão iniciada em',
+            'link_text' => 'sessão iniciada',
         ],
     ],
 

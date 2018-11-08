@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmapset Events',
+
+        'form' => [
+            'period' => '기간',
+            'types' => '종류',
+        ],
     ],
 
     'item' => [
         'content' => '내용',
         'discussion_deleted' => '[삭제됨]',
         'type' => '종류',
+    ],
+
+    'type' => [
+        'approve' => '승인',
+        'discussion_delete' => '토론 삭제',
+        'discussion_post_delete' => '토론 답글 삭제',
+        'discussion_post_restore' => '토론 답글 복원',
+        'discussion_restore' => '토론 복원',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => 'Kudosu 허용',
+        'kudosu_deny' => 'Kudosu 거부',
+        'kudosu_gain' => 'Kudosu 획득',
+        'kudosu_lost' => 'Kudosu 잃음',
+        'kudosu_recalculate' => 'Kudosu 재계산',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '랭킹',
     ],
 ];

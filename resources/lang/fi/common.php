@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Takaisin ylös',
+        'back_to_previous' => 'Takaisin',
         'cancel' => 'Peruuta',
         'change' => 'muuta',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
         'delete' => 'Poista',
+        'edit' => 'Muokkaa',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
         'permalink_copied' => 'linkki kopioitu',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',
         'reset' => 'Nollaa',
+        'restore' => 'Palauta',
         'save' => 'Tallenna',
         'saving' => 'Tallennetaan...',
         'search' => 'Etsi',
@@ -64,6 +68,13 @@ return [
         'years' => ':count vuosi|:count vuotta',
     ],
 
+    'countdown' => [
+        'days' => 'päivää',
+        'hours' => 'tuntia',
+        'minutes' => 'minuuttia',
+        'seconds' => 'sekuntia',
+    ],
+
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
@@ -82,7 +93,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'pudota tähän lataaksesi',
+        'target' => 'pudota tähän ladataksesi',
     ],
 
     'pagination' => [

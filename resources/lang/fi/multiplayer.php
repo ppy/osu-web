@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap on poistettu',
+        'beatmap-deleted' => 'poistettu beatmap',
         'difference' => ':difference pisteen erotuksella',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
@@ -48,7 +48,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Combo',
+                'combo' => 'Kombo',
                 'score' => 'Pisteet',
             ],
         ],

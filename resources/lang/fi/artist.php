@@ -37,7 +37,7 @@ return [
     ],
 
     'links' => [
-        'osu' => 'osu! profiili',
+        'osu' => 'osu!-profiili',
         'site' => 'Virallinen Nettisivu',
     ],
 
@@ -45,5 +45,12 @@ return [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
         'exclusive' => 'osu! eksklusiivinen',
+    ],
+
+    'tracklist' => [
+        'title' => 'nimi',
+        'length' => 'pituus',
+        'bpm' => 'bpm',
+        'genre' => 'tyylilaji',
     ],
 ];

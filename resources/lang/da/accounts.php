@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Privacy',
         'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];

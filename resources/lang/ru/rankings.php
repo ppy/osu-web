@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Рейтинг по :type',
+
     'type' => [
         'performance' => 'производительности',
         'charts' => 'чартам',
         'score' => 'очкам',
         'country' => 'странам',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Дата окончания',
+        'map_count' => 'Количество карт',
+        'participants' => 'Участники',
+        'start_date' => 'Дата начала',
+    ],
+
     'stat' => [
         'accuracy' => 'Точность',
         'active_users' => 'Активные игроки',

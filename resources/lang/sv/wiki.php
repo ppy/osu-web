@@ -33,8 +33,10 @@ return [
             'refresh' => 'Ladda om',
         ],
 
-        'outdated' => [
-            '_' => 'Denna sida innehåller en utdaterad version av det originala innehållet. Vänligen kolla :default för den mest exakta informationen (och överväg att uppdatera översättningen om du kan hjälpa till)!',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
             'default' => 'Engelsk version',
         ],
     ],

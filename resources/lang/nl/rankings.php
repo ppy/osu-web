@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Klassering',
+
     'type' => [
         'performance' => 'Prestatie',
         'charts' => 'In de schijnwerpers',
         'score' => 'Score',
         'country' => 'Landelijk',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'Precisie',
         'active_users' => 'Actieve gebruikers',

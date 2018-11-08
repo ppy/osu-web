@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Borrar',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => '¿Motivo de la descalificación?',
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',

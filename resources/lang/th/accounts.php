@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'ความเป็นส่วนตัว',
         'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];
