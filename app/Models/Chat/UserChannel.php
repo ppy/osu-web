@@ -63,8 +63,8 @@ class UserChannel extends Model
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
-                $join->on("$userRelationTableName.zebra_id", 'user_channels.user_id')
-                    ->where("$userRelationTableName.user_id", $userId);
+                $join->on("{$userRelationTableName}.zebra_id", 'user_channels.user_id')
+                    ->where("{$userRelationTableName}.user_id", $userId);
             })
             ->with('userScoped')
             ->get();
