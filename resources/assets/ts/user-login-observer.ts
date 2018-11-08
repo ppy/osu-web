@@ -16,23 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * This works around vh units being inconsistent across browsers (read: on mobile).
- * You can use this in less/css with calc/var, e.g.:
- * height: calc(var(--vh, 1vh) ~'*' 100);
- */
-export default class WindowVHPatcher {
-  private window: Window;
+import { UserLogoutAction } from 'actions/user-login-actions';
+import Dispatcher from './dispatcher';
 
-  constructor(window: Window) {
-    this.window = window;
-    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
+export default class UserLoginObserver {
+  private dispatcher: Dispatcher;
+
+  constructor(window: Window, dispatcher: Dispatcher) {
+    this.dispatcher = dispatcher;
+    $(window.document).on('ajax:success', '.js-logout-link', this.userLogout);
   }
 
-  handleResize = () => {
-    const vh = this.window.innerHeight * 0.01;
-    if (this.window.document.documentElement !== null) {
-      this.window.document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+  userLogout = () => {
+    this.dispatcher.dispatch(new UserLogoutAction());
   }
 }

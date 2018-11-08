@@ -15,24 +15,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+// tslint:disable:max-classes-per-file
+import DispatcherAction from './dispatcher-action';
 
-/**
- * This works around vh units being inconsistent across browsers (read: on mobile).
- * You can use this in less/css with calc/var, e.g.:
- * height: calc(var(--vh, 1vh) ~'*' 100);
- */
-export default class WindowVHPatcher {
-  private window: Window;
+export class UserLoginAction implements DispatcherAction {
+  // not yet implemented
+}
 
-  constructor(window: Window) {
-    this.window = window;
-    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
-  }
-
-  handleResize = () => {
-    const vh = this.window.innerHeight * 0.01;
-    if (this.window.document.documentElement !== null) {
-      this.window.document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-  }
+export class UserLogoutAction implements DispatcherAction {
 }

@@ -19,6 +19,7 @@
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import RootDataStore from 'stores/root-data-store';
+import UserLoginObserver from 'user-login-observer';
 import Dispatcher from './dispatcher';
 import WindowFocusObserver from './window-focus-observer';
 import WindowVHPatcher from './window-vh-patcher';
@@ -30,6 +31,7 @@ export default class OsuCore {
   dataStore: RootDataStore;
   chatWorker: ChatWorker;
   chatOrchestrator: ChatOrchestrator;
+  userLoginObserver: UserLoginObserver;
   windowFocusObserver: WindowFocusObserver;
   windowVHPatcher: WindowVHPatcher;
 
@@ -39,6 +41,7 @@ export default class OsuCore {
     this.dataStore = new RootDataStore(this.dispatcher);
     this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
     this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
+    this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
     this.windowVHPatcher = new WindowVHPatcher(this.window);
 

@@ -29,17 +29,9 @@ export default class WindowFocusObserver {
 
   focusChange = (e: JQuery.Event<EventTarget>) => {
     if (e.type === 'focus') {
-      this.windowFocused();
+      this.dispatcher.dispatch(new WindowFocusAction());
     } else {
-      this.windowBlurred();
+      this.dispatcher.dispatch(new WindowBlurAction());
     }
-  }
-
-  windowBlurred = () => {
-    this.dispatcher.dispatch(new WindowBlurAction());
-  }
-
-  windowFocused = () => {
-    this.dispatcher.dispatch(new WindowFocusAction());
   }
 }

@@ -55,10 +55,6 @@ export default class MainView extends React.Component<PropsInterface, any> {
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
 
-    this.init();
-  }
-
-  init() {
     const sendTo: SendToJSON = osu.parseJson('json-sendto');
     let channelId: number;
 

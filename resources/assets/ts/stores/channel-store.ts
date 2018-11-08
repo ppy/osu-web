@@ -18,6 +18,7 @@
 
 import { ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserLogoutAction } from 'actions/user-login-actions';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
@@ -47,11 +48,20 @@ export default class ChannelStore implements DispatchListener {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message);
       channel.resortMessages();
+    } else if (dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
     }
   }
 
   getMaxId(): number {
     return this.maxMessageId;
+  }
+
+  @action
+  flushStore() {
+    this.channels = observable.map<number, Channel>();
+    this.maxMessageId = 0;
+    this.loaded = false;
   }
 
   @computed get

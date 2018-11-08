@@ -18,9 +18,10 @@
 
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserLogoutAction } from 'actions/user-login-actions';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import RootDataStore from 'stores/root-data-store';
 import UIStateStore from 'stores/ui-state-store';
 
@@ -39,14 +40,22 @@ export default class ChatStateStore implements DispatchListener {
     dispatcher.register(this);
   }
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
-      const lastReadId = this.root.channelStore.getOrCreate(action.channelId).lastReadId;
+  handleDispatchAction(dispatcedAction: DispatcherAction) {
+    if (dispatcedAction instanceof ChatChannelSwitchAction) {
+      const lastReadId = this.root.channelStore.getOrCreate(dispatcedAction.channelId).lastReadId;
       if (lastReadId) {
         this.lastReadId = lastReadId;
       }
-    } else if (action instanceof ChatMessageSendAction) {
-      this.lastReadId = this.root.channelStore.getOrCreate(action.message.channelId).lastMessageId;
+    } else if (dispatcedAction instanceof ChatMessageSendAction) {
+      this.lastReadId = this.root.channelStore.getOrCreate(dispatcedAction.message.channelId).lastMessageId;
+    } else if (dispatcedAction instanceof UserLogoutAction) {
+      this.flushStore();
     }
+  }
+
+  @action
+  flushStore() {
+    this.selected = -1;
+    this.lastReadId = -1;
   }
 }

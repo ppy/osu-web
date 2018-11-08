@@ -17,6 +17,7 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserLogoutAction } from 'actions/user-login-actions';
 import { UserJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
@@ -35,7 +36,14 @@ export default class UserStore implements DispatchListener {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    // placeholder for DispatchListener implementation
+    if (dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
+  }
+
+  @action
+  flushStore() {
+    this.users = observable.map<number, User>();
   }
 
   @action
