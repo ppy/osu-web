@@ -34,7 +34,7 @@ export default class UserStore implements DispatchListener {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    // whee
+    // placeholder for DispatchListener implementation
   }
 
   @action

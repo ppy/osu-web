@@ -40,13 +40,9 @@ export default class ChannelStore implements DispatchListener {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatMessageSendAction) {
       this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message, true);
-    }
-
-    if (dispatchedAction instanceof ChatMessageAddAction) {
+    } else if (dispatchedAction instanceof ChatMessageAddAction) {
       this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
-    }
-
-    if (dispatchedAction instanceof ChatMessageUpdateAction) {
+    } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message);
       channel.resortMessages();

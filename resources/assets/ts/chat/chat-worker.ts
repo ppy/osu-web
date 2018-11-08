@@ -54,13 +54,9 @@ export default class ChatWorker implements DispatchListener {
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatMessageSendAction) {
       this.sendMessage(action.message);
-    }
-
-    if (action instanceof WindowFocusAction) {
+    } else if (action instanceof WindowFocusAction) {
       this.windowActive();
-    }
-
-    if (action instanceof WindowBlurAction) {
+    } else if (action instanceof WindowBlurAction) {
       this.windowIdle();
     }
   }

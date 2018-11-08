@@ -45,14 +45,10 @@ export default class ChatOrchestrator implements DispatchListener {
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
-    }
-
-    if (action instanceof WindowFocusAction) {
+    } else if (action instanceof WindowFocusAction) {
       this.windowActive();
       this.markAsRead(this.rootDataStore.uiState.chat.selected);
-    }
-
-    if (action instanceof WindowBlurAction) {
+    } else if (action instanceof WindowBlurAction) {
       this.windowIdle();
     }
   }
