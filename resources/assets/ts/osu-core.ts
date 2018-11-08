@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import ChatOrchestrator from './chat/chat-orchestrator';
-import ChatWorker from './chat/chat-worker';
+import ChatOrchestrator from 'chat/chat-orchestrator';
+import ChatWorker from 'chat/chat-worker';
+import RootDataStore from 'stores/root-data-store';
 import Dispatcher from './dispatcher';
-import RootDataStore from './stores/root-data-store';
 import WindowFocusObserver from './window-focus-observer';
 import WindowVHPatcher from './window-vh-patcher';
 

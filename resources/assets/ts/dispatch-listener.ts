@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from './actions/dispatcher-action';
+import DispatcherAction from 'actions/dispatcher-action';
 
 export default interface DispatchListener {
   handleDispatchAction(action: DispatcherAction): void;

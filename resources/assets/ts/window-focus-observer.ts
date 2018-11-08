@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { WindowBlurAction, WindowFocusAction } from './actions/window-focus-actions';
+import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import Dispatcher from './dispatcher';
 
 export default class WindowFocusObserver {

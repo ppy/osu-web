@@ -107,7 +107,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   findPM(userId: number): Channel | null {
-    for (const [channelId, channel] of this.channels) {
+    for (const [, channel] of this.channels) {
       if (channel.type !== 'PM') {
         continue;
       }
