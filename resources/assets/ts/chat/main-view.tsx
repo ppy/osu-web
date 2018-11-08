@@ -69,14 +69,8 @@ export default class MainView extends React.Component<PropsInterface, any> {
         channelId = channel.channelId;
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
       } else {
-        channel = new Channel(-1);
-        channel.newChannel = true;
-        channel.name = target.username;
-        channel.icon = target.avatarUrl;
-        channel.type = 'PM';
-        channel.users = [currentUser.id, target.id];
-        channel.moderated = !sendTo.can_message;
-
+        channel = Channel.newPM(target);
+        channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
         this.props.dataStore.channelStore.channels.set(channel.channelId, channel);
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel.channelId));
       }

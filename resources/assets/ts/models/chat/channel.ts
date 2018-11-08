@@ -17,6 +17,7 @@
  */
 
 import { action, computed, observable, transaction} from 'mobx';
+import User from 'models/user';
 import Message from './message';
 
 export interface ChannelJSON {
@@ -66,6 +67,17 @@ export default class Channel {
       lastMessageId: json.last_message_id,
       lastReadId: json.last_read_id,
     });
+  }
+
+  static newPM(target: User): Channel {
+    const channel = new Channel(-1);
+    channel.newChannel = true;
+    channel.type = 'PM';
+    channel.name = target.username;
+    channel.icon = target.avatarUrl;
+    channel.users = [currentUser.id, target.id];
+
+    return channel;
   }
 
   @computed
