@@ -18,17 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'error' => [
-        'chat' => [
-            'limit_exceeded' => 'You are sending messages too quickly, please wait a bit before trying again.',
-            'too_long' => 'The message you are trying to send is too long.',
-        ],
-    ],
+namespace App\Http\Middleware;
 
-    'scopes' => [
-        'identify' => 'Identify your osu! account',
-        'read' => 'View your private profile information',
-        'write' => 'Perform actions on your behalf',
-    ],
-];
+use Laravel\Passport\Http\Middleware\CheckScopes;
+
+class CheckScopesForAPI
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param  mixed                ...$scopes
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\AuthenticationException
+     * @throws \Laravel\Passport\Exceptions\MissingScopeException
+     */
+    public function handle($request, $next, ...$scopes)
+    {
+        if (is_api_request()) {
+            return app(CheckScopes::class)->handle($request, $next, ...$scopes);
+        }
+
+        return $next($request);
+    }
+}

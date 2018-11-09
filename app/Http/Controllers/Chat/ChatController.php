@@ -36,6 +36,9 @@ class ChatController extends Controller
     {
         $this->middleware('auth');
 
+        $this->middleware('scopes:read', ['only' => ['presence', 'updates']]);
+        $this->middleware('scopes:write', ['only' => ['newConversation']]);
+
         return parent::__construct();
     }
 

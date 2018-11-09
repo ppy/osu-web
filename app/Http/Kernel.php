@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
+        'scopes' => Middleware\CheckScopesForAPI::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];

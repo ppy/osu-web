@@ -46,6 +46,8 @@ class HomeController extends Controller
             ],
         ]);
 
+        $this->middleware('scopes:internal', ['only' => ['downloadQuotaCheck']]);
+
         return parent::__construct();
     }
 

@@ -46,6 +46,8 @@ class UsersController extends Controller
             'checkUsernameExists',
         ]]);
 
+        $this->middleware('scopes:identify', ['only' => ['me']]);
+
         $this->middleware('throttle:10,60', ['only' => ['store']]);
 
         $this->middleware(function ($request, $next) {

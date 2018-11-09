@@ -43,6 +43,12 @@ class BeatmapsetsController extends Controller
 {
     protected $section = 'beatmapsets';
 
+    public function __construct() {
+        $this->middleware('scopes:internal', ['only' => ['download']]);
+
+        return parent::__construct();
+    }
+
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

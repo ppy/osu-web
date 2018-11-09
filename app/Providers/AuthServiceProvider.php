@@ -28,5 +28,13 @@ class AuthServiceProvider extends ServiceProvider
         }
 
         Passport::routes();
+
+        Passport::tokensCan([
+            'identify' => trans('api.scopes.identify'),
+            'read' => trans('api.scopes.read'),
+            // TODO: This can be enabled in the future, according to
+            // https://github.com/ppy/osu-web/pull/3863#issuecomment-436904257
+            // 'write' => trans('api.scopes.write'),
+        ]);
     }
 }

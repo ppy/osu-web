@@ -27,6 +27,12 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('scopes:read', ['only' => ['favourites']]);
+
+        return parent::__construct();
+    }
+
     public function favourites()
     {
         $favourites = Auth::user()->favouriteBeatmapsets();

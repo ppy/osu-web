@@ -35,6 +35,8 @@ class FriendsController extends Controller
     {
         $this->middleware('auth');
 
+        $this->middleware('scopes:read', ['only' => ['index']]);
+
         $this->middleware('verify-user', [
             'only' => [
                 'store',
