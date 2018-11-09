@@ -104,6 +104,10 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
+  get(channelId: number): Channel | undefined {
+    return this.channels.get(channelId);
+  }
+
   @action
   getOrCreate(channelId: number): Channel {
     let channel = this.channels.get(channelId);

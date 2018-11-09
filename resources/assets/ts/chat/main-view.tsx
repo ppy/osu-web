@@ -30,7 +30,7 @@ import InputBox from './input-box';
 interface PropsInterface {
   dataStore: RootDataStore;
   dispatcher: Dispatcher;
-  initialChannel: number;
+  initialChannel?: number;
   worker: ChatWorker;
 }
 

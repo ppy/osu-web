@@ -37,7 +37,7 @@ if (!_.isEmpty(presence)) {
 }
 
 reactTurbolinks.register('chat', MainView, () => {
-  let initialChannel: number;
+  let initialChannel: number | undefined;
   const sendTo: SendToJSON = osu.parseJson('json-sendto');
 
   if (!_.isEmpty(sendTo)) {
@@ -54,7 +54,16 @@ reactTurbolinks.register('chat', MainView, () => {
       initialChannel = channel.channelId;
     }
   } else {
-    initialChannel = dataStore.channelStore.nonPmChannels[0].channelId || dataStore.channelStore.pmChannels[0].channelId;
+    if (dataStore.channelStore.loaded) {
+      const hasNonPmChannels = dataStore.channelStore.nonPmChannels.length > 0;
+      const hasPmChannels = dataStore.channelStore.pmChannels.length > 0;
+
+      if (hasNonPmChannels) {
+        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+      } else if (hasPmChannels) {
+        initialChannel =  dataStore.channelStore.pmChannels[0].channelId;
+      }
+    }
   }
 
   return {

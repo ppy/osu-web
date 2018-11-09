@@ -33,7 +33,7 @@ export default class ConversationList extends React.Component<any, {}> {
       conversationList.push(
         <ConversationListItem
             key={conversation.channelId}
-            channel_id={conversation.channelId}
+            channelId={conversation.channelId}
         />,
       );
     });
@@ -48,7 +48,7 @@ export default class ConversationList extends React.Component<any, {}> {
       conversationList.push(
         <ConversationListItem
             key={conversation.channelId}
-            channel_id={conversation.channelId}
+            channelId={conversation.channelId}
         />,
       );
     });

@@ -56,17 +56,14 @@ export default class InputBox extends React.Component<any, any> {
     }
   }
 
+  componentDidMount() {
+    $('#chat-input__box').focus();
+  }
+
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
-    const selectedChan: number = dataStore.uiState.chat.selected;
-
-    let disableInput: boolean = false;
-    if (!dataStore.channelStore.loaded) {
-      disableInput = true;
-    } else if (dataStore.channelStore.channels.has(selectedChan)) {
-      const channel: Channel = dataStore.channelStore.getOrCreate(selectedChan);
-      disableInput = channel.moderated;
-    }
+    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    const disableInput = !channel || channel.moderated;
 
     return (
       <div className='chat-input'>

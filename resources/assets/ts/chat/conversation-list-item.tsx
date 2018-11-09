@@ -28,19 +28,22 @@ export default class ConversationListItem extends React.Component<any, {}> {
   switch = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    if (this.props.dataStore.uiState.chat.selected !== this.props.channel_id) {
-      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channel_id));
+    if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
+      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channelId));
     }
   }
 
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
     const uiState = dataStore.uiState.chat;
-    const conversation = dataStore.channelStore.getOrCreate(this.props.channel_id);
-    const selected = this.props.channel_id === uiState.selected;
+    const conversation = dataStore.channelStore.get(this.props.channelId);
+
+    if (!conversation) {
+      return;
+    }
 
     let className = 'chat-conversation-list-item';
-    if (selected) {
+    if (this.props.channelId === uiState.selected) {
       className += ' chat-conversation-list-item--selected';
     }
 
