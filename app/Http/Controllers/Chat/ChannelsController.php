@@ -27,7 +27,8 @@ use DB;
 
 class ChannelsController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('scopes:write', ['only' => ['join', 'part', 'markAsRead']]);
 
         return parent::__construct();

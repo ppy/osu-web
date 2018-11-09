@@ -43,7 +43,8 @@ class BeatmapsetsController extends Controller
 {
     protected $section = 'beatmapsets';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('scopes:internal', ['only' => ['download']]);
 
         return parent::__construct();

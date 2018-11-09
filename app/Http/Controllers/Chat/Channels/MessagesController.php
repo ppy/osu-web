@@ -29,7 +29,8 @@ use Request;
 
 class MessagesController extends BaseController
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('scopes:read', ['only' => ['index']]);
         $this->middleware('scopes:write', ['only' => ['store']]);
 
