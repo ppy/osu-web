@@ -39,7 +39,9 @@ class ChatController extends Controller
 
     public function index()
     {
-        if (!Auth::user()->isPrivileged()) {
+        // TODO: REMOVE ONCE COMPLETELY LIVE
+        $canWebChat = Auth::user()->isPrivileged() || (config('osu.chat.webchat_enabled') && Auth::user()->isSupporter());
+        if (!$canWebChat) {
             return view('chat.coming-soon');
         }
 
