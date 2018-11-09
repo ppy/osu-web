@@ -17,18 +17,23 @@
 --}}
 @php
     $edit = $edit ?? false;
+    $topic = $topic ?? null;
     $options = optional($topic)->pollOptions() ?? collect()
 @endphp
 
 <div
-    class="simple-form js-form-toggle--form"
+    class="simple-form simple js-form-toggle--form"
     {{-- inlined style to work with jquery's slide animation --}}
-    style="display: none;"
+    @if (!$edit)
+        style="display: none;"
+    @endif
     data-form-toggle-id="poll-create"
 >
-    <h2 class="simple-form__row simple-form__row--title">
-        {{ trans('forum.topics.create.create_poll') }}
-    </h2>
+    @if (!$edit)
+        <h2 class="simple-form__row simple-form__row--title">
+            {{ trans('forum.topics.create.create_poll') }}
+        </h2>
+    @endif
 
     <label class="simple-form__row">
         <div class="simple-form__label">
@@ -37,7 +42,7 @@
         <input
             class="simple-form__input"
             name="forum_topic_poll[title]"
-            value="{{ $topic->poll_title }}"
+            value="{{ optional($topic)->poll_title }}"
         />
     </label>
 
@@ -60,7 +65,7 @@
         <input
             class="simple-form__input simple-form__input--small"
             name="forum_topic_poll[max_options]"
-            value="{{ $topic->poll_max_options }}"
+            value="{{ optional($topic)->poll_max_options }}"
         />
     </label>
 
@@ -73,7 +78,7 @@
             <input
                 class="simple-form__input simple-form__input--small simple-form__input--centered"
                 name="forum_topic_poll[length_days]"
-                value="{{ $topic->poll_length === 0 ? '' : $topic->poll_length }}"
+                value="{{ optional($topic)->poll_length > 0 ? $topic->poll_length : '' }}"
             />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
                 {{ trans('forum.topics.create.poll.length_days_suffix') }}
@@ -88,7 +93,7 @@
                     class="osu-checkbox__input"
                     name="forum_topic_poll[vote_change]"
                     type="checkbox"
-                    @if ($topic->poll_vote_change)
+                    @if (optional($topic)->poll_vote_change)
                         checked
                     @endif
                 />
@@ -104,24 +109,26 @@
     </label>
 </div>
 
-<label class="btn-osu-lite btn-osu-lite--default">
-    <div class="label-toggle">
-        <input
-            class="label-toggle__checkbox js-form-toggle--input"
-            data-form-toggle-id="poll-create"
-            name="with_poll"
-            type="checkbox"
-        />
+@if (!$edit)
+    <label class="btn-osu-lite btn-osu-lite--default">
+        <div class="label-toggle">
+            <input
+                class="label-toggle__checkbox js-form-toggle--input"
+                data-form-toggle-id="poll-create"
+                name="with_poll"
+                type="checkbox"
+            />
 
-        <span class="label-toggle__label label-toggle__label--uncheck">
-            {{ trans('forum.topics.create.create_poll_button.remove') }}
-        </span>
+            <span class="label-toggle__label label-toggle__label--uncheck">
+                {{ trans('forum.topics.create.create_poll_button.remove') }}
+            </span>
 
-        <span class="label-toggle__label label-toggle__label--check">
-            {{ trans('forum.topics.create.create_poll_button.add') }}
-        </span>
-    </div>
-</label>
+            <span class="label-toggle__label label-toggle__label--check">
+                {{ trans('forum.topics.create.create_poll_button.add') }}
+            </span>
+        </div>
+    </label>
+@endif
 
 @if ($edit)
     <button
