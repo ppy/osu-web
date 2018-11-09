@@ -398,4 +398,11 @@ class TopicsController extends Controller
             return error_popup($star->validationErrors()->toSentence());
         }
     }
+
+    public function editPoll($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        return view('forum.topics._create_poll', ['edit' => true]);
+    }
 }

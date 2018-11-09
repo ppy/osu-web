@@ -50,3 +50,14 @@ $(document).on 'ajax:success', '.js-forum-post-edit', (e, data, status, xhr) ->
     .parents('.js-forum-post').replaceWith(data)
 
   osu.pageChange()
+
+
+$(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
+  $(e.target)
+    .trigger('ajax:complete', [xhr, status])
+
+  original = $('.js-forum-poll').html()
+  $('.js-forum-poll').html(data)
+
+  $('.js-forum-poll-edit-cancel').on 'click', () ->
+    $('.js-forum-poll').html(original)

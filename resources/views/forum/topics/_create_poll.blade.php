@@ -15,6 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $edit = $edit ?? false;
+@endphp
+
 <div
     class="simple-form js-form-toggle--form"
     {{-- inlined style to work with jquery's slide animation --}}
@@ -95,3 +99,12 @@
         </span>
     </div>
 </label>
+
+@if ($edit)
+    <button
+        class="btn-osu-lite btn-osu-lite--default js-forum-poll-edit-cancel"
+        type="button"
+    >
+        Cancel
+    </button>
+@endif
