@@ -402,7 +402,8 @@ class TopicsController extends Controller
     public function editPoll($topicId)
     {
         $topic = Topic::findOrFail($topicId);
+        $edit = true;
 
-        return view('forum.topics._create_poll', ['edit' => true]);
+        return view('forum.topics._create_poll', compact('edit', 'topic'));
     }
 }

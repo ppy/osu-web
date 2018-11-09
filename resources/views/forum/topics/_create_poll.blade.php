@@ -17,6 +17,7 @@
 --}}
 @php
     $edit = $edit ?? false;
+    $options = optional($topic)->pollOptions() ?? collect()
 @endphp
 
 <div
@@ -33,7 +34,11 @@
         <div class="simple-form__label">
             {{ trans('forum.topics.create.poll.title') }}
         </div>
-        <input class="simple-form__input" name="forum_topic_poll[title]" />
+        <input
+            class="simple-form__input"
+            name="forum_topic_poll[title]"
+            value="{{ $topic->poll_title }}"
+        />
     </label>
 
     <label class="simple-form__row">
@@ -41,7 +46,10 @@
             {{ trans('forum.topics.create.poll.options') }}
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.options_info') }}</p>
         </div>
-        <textarea class="simple-form__input simple-form__input--full-height" name="forum_topic_poll[options]"></textarea>
+        <textarea
+            class="simple-form__input simple-form__input--full-height"
+            name="forum_topic_poll[options]"
+        >{{ $options->pluck('poll_option_text')->implode("\n") }}</textarea>
     </label>
 
     <label class="simple-form__row simple-form__row--half">
@@ -49,7 +57,11 @@
             {{ trans('forum.topics.create.poll.max_options') }}
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.max_options_info') }}</p>
         </div>
-        <input class="simple-form__input simple-form__input--small" name="forum_topic_poll[max_options]" />
+        <input
+            class="simple-form__input simple-form__input--small"
+            name="forum_topic_poll[max_options]"
+            value="{{ $topic->poll_max_options }}"
+        />
     </label>
 
     <label class="simple-form__row simple-form__row--half">
@@ -58,7 +70,11 @@
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.length_info') }}</p>
         </div>
         <div class="simple-form__input-group">
-            <input class="simple-form__input simple-form__input--small simple-form__input--centered" name="forum_topic_poll[length_days]" />
+            <input
+                class="simple-form__input simple-form__input--small simple-form__input--centered"
+                name="forum_topic_poll[length_days]"
+                value="{{ $topic->poll_length === 0 ? '' : $topic->poll_length }}"
+            />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
                 {{ trans('forum.topics.create.poll.length_days_suffix') }}
             </span>
@@ -68,7 +84,14 @@
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
             <div class="osu-checkbox">
-                <input class="osu-checkbox__input" name="forum_topic_poll[vote_change]" type="checkbox" />
+                <input
+                    class="osu-checkbox__input"
+                    name="forum_topic_poll[vote_change]"
+                    type="checkbox"
+                    @if ($topic->poll_vote_change)
+                        checked
+                    @endif
+                />
                 <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
                     <i class="fas fa-check"></i>
