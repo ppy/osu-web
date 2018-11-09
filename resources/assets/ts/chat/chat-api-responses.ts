@@ -69,5 +69,13 @@ export interface NewConversationJSON {
   message: MessageJSON;
 }
 
+export type PresenceJSON =
+  ChannelJSON[];
+
 export type SendMessageJSON =
   MessageJSON;
+
+export interface SendToJSON {
+  target: UserJSON;
+  can_message: boolean;
+}

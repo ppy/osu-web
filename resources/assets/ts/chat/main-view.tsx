@@ -20,11 +20,8 @@ import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import Dispatcher from 'dispatcher';
 import HeaderV3 from 'header-v3';
 import { observer, Provider } from 'mobx-react';
-import Channel from 'models/chat/channel';
-import User from 'models/user';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
-import { ChannelJSON, UserJSON } from './chat-api-responses';
 import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
@@ -33,60 +30,28 @@ import InputBox from './input-box';
 interface PropsInterface {
   dataStore: RootDataStore;
   dispatcher: Dispatcher;
+  initialChannel: number;
   worker: ChatWorker;
-  presence: ChannelJSON[];
-}
-
-interface SendToJSON {
-  target: UserJSON;
-  can_message: boolean;
 }
 
 @observer
 export default class MainView extends React.Component<PropsInterface, any> {
-  constructor(props: any) {
+  constructor(props: PropsInterface) {
     super(props);
 
-    if (!_.isEmpty(props.presence)) {
-      this.props.dataStore.channelStore.updatePresence(props.presence);
+    if (this.props.initialChannel) {
+      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
     }
   }
 
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
-
-    const sendTo: SendToJSON = osu.parseJson('json-sendto');
-    let channelId: number;
-
-    if (!_.isEmpty(sendTo)) {
-      const target: User = this.props.dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
-      let channel: Channel | null = this.props.dataStore.channelStore.findPM(target.id);
-
-      if (channel) {
-        channelId = channel.channelId;
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
-      } else {
-        channel = Channel.newPM(target);
-        channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
-        this.props.dataStore.channelStore.channels.set(channel.channelId, channel);
-        this.props.dataStore.channelStore.loaded = true;
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel.channelId));
-      }
-    } else {
-      if (!_.isEmpty(this.props.presence)) {
-        channelId = this.props.dataStore.channelStore.nonPmChannels[0].channelId || this.props.dataStore.channelStore.pmChannels[0].channelId;
-        this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channelId));
-      } else {
-        console.debug('presence missing...?');
-      }
-    }
-
     this.props.worker.startPolling();
   }
 
   componentWillUnmount() {
-    this.props.worker.stopPolling();
     $('html').removeClass('osu-layout--mobile-app');
+    this.props.worker.stopPolling();
   }
 
   render(): React.ReactNode {
