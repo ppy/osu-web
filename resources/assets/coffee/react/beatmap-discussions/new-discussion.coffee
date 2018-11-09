@@ -40,6 +40,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
+    @inputBox?.focus() if @props.autoFocus
 
 
   componentWillUpdate: =>
@@ -112,9 +113,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
-                  # FIXME: Doesn't quite work in firefox for some reason.
-                  # It first focuses in but then gets unfocused after a while.
-                  autoFocus: document.location.hash == '#new'
+                  innerRef: @setInputBox
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
@@ -337,6 +336,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return 'nomination_reset' if canReset && willReset
 
     'problem'
+
+
+  setInputBox: (elem) =>
+    @inputBox = elem
 
 
   setMessage: (e) =>

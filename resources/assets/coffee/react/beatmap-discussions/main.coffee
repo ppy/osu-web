@@ -33,6 +33,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
+    @focusNewDiscussion = document.location.hash == '#new'
 
     if !@restoredState
       beatmapset = props.initial.beatmapset
@@ -70,6 +71,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   componentWillUpdate: =>
     @cache = {}
+    @focusNewDiscussion = false
 
 
   componentDidUpdate: =>
@@ -129,6 +131,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             pinned: @state.pinnedNewDiscussion
             setPinned: @setPinnedNewDiscussion
             stickTo: @modeSwitcherRef
+            autoFocus: @focusNewDiscussion
 
           el BeatmapDiscussions.Discussions,
             beatmapset: @state.beatmapset
