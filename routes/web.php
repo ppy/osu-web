@@ -287,9 +287,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
-        Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
+        Route::apiResource('rooms', 'RoomsController', ['only' => ['show']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
+            // TODO: Should be moved under /me, and probably call to UsersController instead?
             Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
         });
 
@@ -299,7 +300,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmaps/lookup
         Route::get('beatmaps/lookup', 'BeatmapsController@lookup');
         //   GET /api/v2/beatmaps/:beatmap_id
-        Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+        Route::apiResource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
@@ -309,11 +310,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/:beatmapset/download
         Route::get('beatmapsets/{beatmapset}/download', '\App\Http\Controllers\BeatmapsetsController@download');
         //   GET /api/v2/beatmapsets/:beatmapset_id
-        Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
+        Route::apiResource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
 
         // Friends
         //  GET /api/v2/friends
-        Route::resource('friends', '\App\Http\Controllers\FriendsController', ['only' => ['index']]);
+        Route::apiResource('friends', '\App\Http\Controllers\FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
         Route::get('me', '\App\Http\Controllers\UsersController@me');
@@ -333,6 +334,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
     });
+
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
         Route::get('get_match', 'LegacyController@getMatch');
