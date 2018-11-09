@@ -29,7 +29,7 @@ class BeatmapDiscussionPost extends Model
 {
     use Validatable;
 
-    const MESSAGE_LIMIT = 750;
+    const MESSAGE_LIMIT_TIMELINE = 750;
 
     protected $touches = ['beatmapDiscussion'];
 
@@ -180,8 +180,8 @@ class BeatmapDiscussionPost extends Model
                 $this->validationErrors()->add('message', 'required');
             }
 
-            if (mb_strlen($this->message) > static::MESSAGE_LIMIT) {
-                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
+            if (optional($this->beatmapDiscussion)->timestamp !== null && mb_strlen($this->message) > static::MESSAGE_LIMIT_TIMELINE) {
+                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT_TIMELINE]);
             }
         }
 

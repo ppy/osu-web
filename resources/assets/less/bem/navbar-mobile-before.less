@@ -16,17 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-floating-header {
-  font-style: normal;
-  font-size: @font-size--title-small-2;
-  color: #fff;
-  flex: none;
-  padding: 0;
-  margin: 0;
-  line-height: 1.2; // prevent cut off from u-ellipsis-overflow
-
-  &__title-link {
-    .link-white();
-    .link-plain();
-  }
+// FIXME: should push main content down or fix page layout
+// to work with position: sticky instead.
+.navbar-mobile-before {
+  padding-top: @navbar-height;
 }

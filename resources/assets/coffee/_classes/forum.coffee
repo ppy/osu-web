@@ -32,7 +32,6 @@ class @Forum
     @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
-    @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
@@ -45,8 +44,6 @@ class @Forum
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
-
-    $.subscribe 'stickyHeader', @stickHeader
 
 
   userCanModerate: ->
@@ -180,19 +177,15 @@ class @Forum
 
     return unless post
 
-    if @postPosition(post) == 1
-      postTop = 0
-    else
-      postDim = post.getBoundingClientRect()
-      windowHeight = window.innerHeight
+    postTop = if @postPosition(post) == 1
+                0
+              else
+                $(post).offset().top
 
-      postTop = window.pageYOffset + postDim.top
+    postTop = window.stickyHeader.scrollOffset(postTop) if postTop != 0
 
-      offset = (windowHeight - postDim.height) / 2
-      # FIXME: compute height using new header target
-      offset = Math.max(offset, 60)
-
-    window.scrollTo 0, postTop - offset
+    # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
+    window.scrollTo window.pageXOffset, postTop
 
 
   initialScrollTo: =>
@@ -213,15 +206,6 @@ class @Forum
 
   postUrlN: (postN) ->
     "#{document.location.pathname}?n=#{postN}"
-
-
-  stickHeader: (_e, target) =>
-    return unless @_stickyHeaderTopic.length
-
-    if target == 'forum-topic-headernav'
-      Fade.in @_stickyHeaderTopic[0]
-    else
-      Fade.out @_stickyHeaderTopic[0]
 
 
   showMore: (e) =>

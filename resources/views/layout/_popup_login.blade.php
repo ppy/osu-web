@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="
-    login-box js-nav2--login-box-reference
+    login-box
     @foreach ($modifiers ?? [] as $modifier)
         login-box--{{ $modifier }}
     @endforeach

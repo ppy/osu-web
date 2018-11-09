@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,38 +16,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-headernav {
-  background-color: #333;
-  display: flex;
+.sticky-header {
   width: 100%;
+  position: absolute;
 
-  &__logo {
-    flex: none;
-    width: 60px;
-    min-height: 60px;
-    background-color: #222;
+  &__body {
+    width: 100%;
+    background-color: #333;
+    padding: 10px;
   }
 
-  &__row {
-    font-style: normal;
-    font-size: @font-size--title-small-2;
-    color: #fff;
-    flex: none;
-    margin: 3px 0;
-    line-height: 1.2; // prevent cut off from u-ellipsis-overflow
+  &__breadcrumbs {
+    margin-bottom: 10px;
   }
 
   &__content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    justify-content: center;
-  }
-
-  &__title-link {
-    .link-white();
-    .link-plain();
+    margin-top: 10px;
   }
 }
