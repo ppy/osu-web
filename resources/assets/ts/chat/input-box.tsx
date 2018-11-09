@@ -32,7 +32,7 @@ export default class InputBox extends React.Component<any, any> {
       return;
     }
 
-    const message: Message = new Message();
+    const message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
     message.channelId = this.props.dataStore.uiState.chat.selected;
     message.content = _.trim(messageText);
@@ -42,7 +42,7 @@ export default class InputBox extends React.Component<any, any> {
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
     const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
-    const message: string = target.value || '';
+    const message = target.value || '';
     this.sendMessage(message);
     target.value = '';
   }
@@ -50,7 +50,7 @@ export default class InputBox extends React.Component<any, any> {
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       const target = $(e.currentTarget)[0] as HTMLInputElement;
-      const message: string = target.value || '';
+      const message = target.value || '';
       this.sendMessage(message);
       target.value = '';
     }

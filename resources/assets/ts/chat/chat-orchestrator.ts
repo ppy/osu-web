@@ -84,8 +84,8 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   markAsRead(channelId: number) {
-    const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastRead: number = channel.lastMessageId;
+    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+    const lastRead = channel.lastMessageId;
 
     if (!channel.isUnread) {
       return;
@@ -101,7 +101,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   loadChannel(channelId: number): Promise<void> {
-    const channel: Channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.loading) {
       return Promise.resolve();
@@ -127,7 +127,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
     transaction(() => {
       messages.forEach((json: MessageJSON) => {
-        const newMessage: Message = Message.fromJSON(json);
+        const newMessage = Message.fromJSON(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         newMessages.push(newMessage);
       });

@@ -73,7 +73,7 @@ export default class ConversationView extends React.Component<any, any> {
 
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
-    const channel: Channel | undefined = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
+    const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
       return(<div className='conversation' />);
@@ -81,7 +81,7 @@ export default class ConversationView extends React.Component<any, any> {
 
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
-    let lastReadIndicatorShown: boolean = false;
+    let lastReadIndicatorShown = false;
     let currentDay: number;
 
     _.each(channel.messages, (message: Message, key: number) => {

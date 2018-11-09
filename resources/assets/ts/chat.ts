@@ -27,7 +27,7 @@ declare global {
   }
 }
 
-const core: OsuCore = window.OsuCore = window.OsuCore || new OsuCore(window);
+const core = window.OsuCore = window.OsuCore || new OsuCore(window);
 const dataStore = core.dataStore;
 const presence: PresenceJSON = osu.parseJson('json-presence');
 

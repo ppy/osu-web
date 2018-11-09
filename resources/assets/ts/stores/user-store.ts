@@ -48,7 +48,7 @@ export default class UserStore implements DispatchListener {
 
   @action
   getOrCreate(userId: number, props?: UserJSON): User {
-    let user: User | undefined = this.users.get(userId);
+    let user = this.users.get(userId);
 
     // TODO: update from props if newer?
     if (user && user.loaded) {
