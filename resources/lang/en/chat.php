@@ -43,6 +43,7 @@ return [
     'no-conversations' => [
         'howto' => "Start conversations from a user's profile or a usercard popup.",
         'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
+        'pm_limitations' => 'Only people using <a href=":link">osu!lazer</a> or the new website will receive PMs.',
         'title' => 'no conversations yet',
     ],
 ];

@@ -55,6 +55,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
   }
 
   render(): React.ReactNode {
+    const lazerLink = 'https://github.com/ppy/osu/releases';
     return(
       <div>
         <HeaderV3 theme='chat' title='Chat' />
@@ -73,7 +74,8 @@ export default class MainView extends React.Component<PropsInterface, any> {
                 <Img2x src='/images/layout/chat/none-yet.png' alt='Art by Badou_Rammsteiner' title='Art by Badou_Rammsteiner' />
                 <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: 'https://github.com/ppy/osu/releases'})}} />
+                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
+                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.pm_limitations', {link: lazerLink})}} />
               </div>
             </div>
           )}
