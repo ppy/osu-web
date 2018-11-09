@@ -33,6 +33,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
+    # FIXME: update url handler to recognize this instead
     @focusNewDiscussion = document.location.hash == '#new'
 
     if !@restoredState
