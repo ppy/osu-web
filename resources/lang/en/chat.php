@@ -19,26 +19,30 @@
  */
 
 return [
-    'no-conversations' => 'no conversations yet',
+    'coming_soon' => 'coming soon',
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
     'title_compact' => 'chat',
     'title' => 'Chat',
-
     'cannot_send' => [
-        'user' => 'You cannot message this user at this time. This may be due to any of the following reasons:',
         'channel' => 'You cannot message this channel at this time. This may be due to any of the following reasons:',
+        'user' => 'You cannot message this user at this time. This may be due to any of the following reasons:',
         'reasons' => [
             'blocked' => 'You were blocked by the recipient',
+            'channel_moderated' => 'The channel has been moderated',
             'friends_only' => 'The recipient only accepts messages from people on their friends list',
             'restricted' => 'You are currently restricted',
             'target_restricted' => 'The recipient is currently restricted',
-            'channel_moderated' => 'The channel has been moderated',
         ],
     ],
     'input' => [
         'disabled' => 'unable to send message...',
         'placeholder' => 'type message...',
         'send' => 'Send',
+    ],
+    'no-conversations' => [
+        'howto' => "Start conversations from a user's profile or a usercard popup.",
+        'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
+        'title' => 'no conversations yet',
     ],
 ];

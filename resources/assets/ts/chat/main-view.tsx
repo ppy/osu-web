@@ -69,6 +69,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
         channel = Channel.newPM(target);
         channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
         this.props.dataStore.channelStore.channels.set(channel.channelId, channel);
+        this.props.dataStore.channelStore.loaded = true;
         this.props.dispatcher.dispatch(new ChatChannelSwitchAction(channel.channelId));
       }
     } else {
@@ -89,18 +90,28 @@ export default class MainView extends React.Component<PropsInterface, any> {
   }
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
     return(
       <div>
         <HeaderV3 theme='chat' title='Chat' />
-        <Provider dataStore={dataStore} dispatcher={this.props.dispatcher}>
-          <div className='chat osu-page osu-page--chat'>
-            <ConversationList />
-            <div className='chat__conversation-area'>
-              <ConversationView />
-              <InputBox />
+        <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
+          {this.props.dataStore.channelStore.loaded ? (
+            <div className='chat osu-page osu-page--chat'>
+              <ConversationList />
+              <div className='chat__conversation-area'>
+                <ConversationView />
+                <InputBox />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className='chat osu-page osu-page--chat'>
+              <div className='chat__not-active'>
+                <Img2x src='/images/layout/chat/none-yet.png' alt='Art by Badou_Rammsteiner' title='Art by Badou_Rammsteiner' />
+                <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
+                <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
+                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: 'https://github.com/ppy/osu/releases'})}} />
+              </div>
+            </div>
+          )}
         </Provider>
       </div>
     );

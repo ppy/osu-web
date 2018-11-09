@@ -61,7 +61,9 @@ export default class InputBox extends React.Component<any, any> {
     const selectedChan: number = dataStore.uiState.chat.selected;
 
     let disableInput: boolean = false;
-    if (dataStore.channelStore.channels.has(selectedChan)) {
+    if (!dataStore.channelStore.loaded) {
+      disableInput = true;
+    } else if (dataStore.channelStore.channels.has(selectedChan)) {
       const channel: Channel = dataStore.channelStore.getOrCreate(selectedChan);
       disableInput = channel.moderated;
     }

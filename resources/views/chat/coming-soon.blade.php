@@ -39,9 +39,11 @@
         </div>
     </div>
     <div class="chat osu-page osu-page--chat">
-        <div class="chat__coming-soon">
-            <img title="Art by Badou_Rammsteiner" src="/images/layout/chat/coming-soon.png" />
-            <h1>coming soon</h1>
+        <div class="chat__not-active">
+            <img title="Art by Badou_Rammsteiner"
+                src="/images/layout/chat/coming-soon.png"
+                srcSet="/images/layout/chat/coming-soon.png 1x, /images/layout/chat/coming-soon@2x.png 2x">
+            <div class="chat__title">{{trans('chat.coming_soon')}}</div>
         </div>
     </div>
 @endsection
