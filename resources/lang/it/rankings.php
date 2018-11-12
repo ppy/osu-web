@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Classifica :type',
+
     'type' => [
         'performance' => 'Performance',
-        'charts' => 'Di rilievo',
+        'charts' => 'Spotlight',
         'score' => 'Punteggio',
-        'country' => 'Nazione',
+        'country' => 'Paese',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data Inizio',
+        'map_count' => 'N° Beatmap',
+        'participants' => 'Partecipanti',
+        'start_date' => 'Data Fine',
+    ],
+
     'stat' => [
         'accuracy' => 'Precisione',
         'active_users' => 'Utenti Attivi',
@@ -33,7 +42,7 @@ return [
         'play_count' => 'Partite Giocate',
         'performance' => 'Performance',
         'total_score' => 'Punteggio Totale',
-        'ranked_score' => 'Punteggio Rankato',
+        'ranked_score' => 'Punteggio Classificato',
         'average_score' => 'Media Punteggio',
         'average_performance' => 'Media Performance',
         'ss' => '',

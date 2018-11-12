@@ -265,6 +265,7 @@ return [
                 'title' => '最近活動',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
                 'pp' => ':amountpp',

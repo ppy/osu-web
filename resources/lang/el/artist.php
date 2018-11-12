@@ -46,4 +46,11 @@ return [
         'count' => ':count τραγούδι|:count τραγούδια',
         'exclusive' => 'αποκλειστικό του osu!',
     ],
+
+    'tracklist' => [
+        'title' => '',
+        'length' => '',
+        'bpm' => '',
+        'genre' => '',
+    ],
 ];

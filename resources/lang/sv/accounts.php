@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Sekretess',
         'friends_only' => 'Blockera privata meddelanden från icke-vänner',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];

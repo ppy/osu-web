@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Du kannst nur auf Featurewünsche abstimmen.',

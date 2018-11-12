@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'チャンネルへのアクセス権限がありません。',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'チャンネルへのアクセスが必要です。',
-                    'moderated' => 'このチャンネルは現在管理者のみ発言できます。',
-                    'not_lazer' => '現在#lazerでのみ発言できます。',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => '制限中・サイレンス中のプレイヤーは発言を禁止されています。',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '最新の投稿のみ削除できます。',

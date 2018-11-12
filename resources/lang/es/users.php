@@ -265,6 +265,7 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
                 'not_ranked' => 'Sólo los mapas rankeados dan pp.',
                 'pp' => ':amountpp',

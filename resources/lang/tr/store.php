@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Eyvah, sepetinizde problemler var!',
         'cart_problems_edit' => 'Düzenlemek için buraya tıklayın.',
         'declined' => 'Ödeme iptal edildi.',
+        'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
         'old_cart' => 'Sepetiniz güncel görünmediği için tekrar yüklendi, lütfen tekrar deneyin.',
         'pay' => 'Paypal ile Ödeme Yap',
+
+        'has_pending' => [
+            '_' => 'Tamamlanmamış ödemeleriniz var, görmek için :link tıklayın.',
+            'link_text' => 'buraya',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Bir önceki ödeme başladı fakat bitmedi.',
-            'line_2' => 'Ödemenize devam etmek için ödeme şekli seçin, veya iptal etmek için :link.',
-            'link_text' => 'buraya tıkla',
+            'line_2' => 'Bir ödeme yöntemi seçerek ödemenize devam edin.',
         ],
-        'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
     ],
 
     'discount' => '%:percent kazanın',
+
+    'invoice' => [
+        'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
+        'status' => [
+            'processing' => [
+                'title' => 'Ödemeniz henüz onaylanmadı!',
+                'line_1' => 'Eğer çoktan ödemeyi yaptıysanız, biz hala ödemenizin doğrulamasını bekliyor olabiliriz. Lütfen bu sayfayı bir ya da iki dakika sonra yenileyin!',
+                'line_2' => [
+                    '_' => 'Eğer ödeme sırasında bir sorun ile karşılaştıysanız, :link',
+                    'link_text' => 'ödeme özetini görmek için buraya tıklayın',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Sipariş verme tarihi :date',
+
+        'invoice' => 'Faturayı Görüntüle',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':username için :name (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Siparişiniz ödendiği için değiştiremezsiniz.',
             'processing' => 'Siparişiniz işlenirken değişiklik yapamazsınız.',
             'shipped' => 'Siparişiniz çoktan yollandığı için değişiklik yapamazsınız.',
+        ],
+
+        'status' => [
+            'cancelled' => 'İptal edildi',
+            'checkout' => 'Hazırlanıyor',
+            'delivered' => 'Teslim edildi',
+            'paid' => 'Ödendi',
+            'processing' => 'Onay bekleniyor',
+            'shipped' => 'Kargoda',
         ],
     ],
 

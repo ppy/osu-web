@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Usuń',
+        'delete_own_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do twojego profilu.',
+        'delete_other_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do profilu użytkownika.',
         'disqualification_prompt' => 'Powód dyskwalifikacji?',
         'disqualified_at' => 'Zdyskwalifkowane :time_ago (:reason).',
         'disqualified_no_reason' => 'brak określonego powodu',

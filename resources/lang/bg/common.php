@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Обратно към началото',
+        'back_to_previous' => 'Връщане към предишния изглед',
         'cancel' => 'Отмяна',
         'change' => 'промяна',
         'click_to_copy' => 'щракнете, за да копирате в клипборда',
         'click_to_copy_copied' => 'копиранo в клипборда!',
         'delete' => 'Изтрий',
+        'edit' => 'Редактирай',
         'hide' => 'скрий',
         'permalink' => 'постоянен линк',
         'permalink_copied' => 'линк копиран',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Отговори и възстанови',
         'reply_resolve' => 'Отговори и разреши',
         'reset' => 'Нулирай',
+        'restore' => 'Възстанови',
         'save' => 'Запази',
         'saving' => 'Запазване...',
         'search' => 'Търсене',
@@ -62,6 +66,13 @@ return [
         'months' => ':count месец|:count месеца',
         'second_short_unit' => 'сек|сек',
         'years' => ':count година|:count години',
+    ],
+
+    'countdown' => [
+        'days' => 'дни',
+        'hours' => 'часове',
+        'minutes' => 'минути',
+        'seconds' => 'секунди',
     ],
 
     'datetime' => [

@@ -46,4 +46,11 @@ return [
         'count' => ':count skladba|:count skladeb',
         'exclusive' => 'osu! exkluzivní',
     ],
+
+    'tracklist' => [
+        'title' => '',
+        'length' => '',
+        'bpm' => '',
+        'genre' => '',
+    ],
 ];

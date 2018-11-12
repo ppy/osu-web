@@ -81,6 +81,8 @@ return [
             'getForum' => 'フォーラム',
             'getChat' => 'チャット',
             'getLive' => '配信',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'コンテスト',
             'profile' => 'プロフィール',
             'tournaments' => 'トーナメント',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '精算',
             'getInvoice' => '送り状',
+            'orders-index' => '',
             'products-show' => '製品',
 
             'new' => 'new',

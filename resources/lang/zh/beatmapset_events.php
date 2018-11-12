@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => '谱面事件',
+
+        'form' => [
+            'period' => '时期',
+            'types' => '类型',
+        ],
     ],
 
     'item' => [
         'content' => '内容',
         'discussion_deleted' => '[已删除]',
         'type' => '类型',
+    ],
+
+    'type' => [
+        'approve' => '被 Approved',
+        'discussion_delete' => '删除讨论',
+        'discussion_post_delete' => '删除讨论的回复',
+        'discussion_post_restore' => '恢复已删除的讨论的回复',
+        'discussion_restore' => '恢复已删除的讨论',
+        'disqualify' => '被取消 Qualified',
+        'issue_reopen' => '讨论重开',
+        'issue_resolve' => '讨论被解决',
+        'kudosu_allow' => '给予 Kudosu',
+        'kudosu_deny' => '收回 Kudosu',
+        'kudosu_gain' => '获得 Kudosu',
+        'kudosu_lost' => '失去 Kudosu',
+        'kudosu_recalculate' => '重新计算 Kudosu',
+        'love' => '被 Loved',
+        'nominate' => '被提名',
+        'nomination_reset' => '被取消提名',
+        'qualify' => '被 Qualified',
+        'rank' => '被 Ranked',
     ],
 ];

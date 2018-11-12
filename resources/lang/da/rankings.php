@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Rangering',
+
     'type' => [
         'performance' => 'Præstation',
         'charts' => 'Baner',
         'score' => 'Score',
         'country' => 'Land',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'Præcision',
         'active_users' => 'Aktive Brugere',

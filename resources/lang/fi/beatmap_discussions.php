@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
-        'title' => 'Beatmap Keskustelu',
+        'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',
@@ -77,7 +77,7 @@ return [
     'user' => [
         'admin' => 'ylläpitäjä',
         'bng' => 'suosittelija',
-        'owner' => 'kartanluoja',
+        'owner' => 'mappaaja',
         'qat' => 'qat',
     ],
 

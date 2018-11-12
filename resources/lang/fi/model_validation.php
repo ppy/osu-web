@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Poistettuun kommenttiin ei voi vastata.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Voi äänestää vain ominaisuutta.',

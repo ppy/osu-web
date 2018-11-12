@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => '',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => '',
         'discussion_deleted' => '[slettet]',
         'type' => '',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

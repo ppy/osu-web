@@ -81,6 +81,8 @@ return [
             'getForum' => '포럼',
             'getChat' => '채팅',
             'getLive' => '라이브 스트림',
+            'comments-index' => '댓글',
+            'comments-show' => '댓글',
             'contests' => '콘테스트',
             'profile' => '프로필',
             'tournaments' => '대회',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
+            'orders-index' => '주문 내역',
             'products-show' => '상품',
 
             'new' => '새',

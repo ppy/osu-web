@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
         'declined' => 'Płatność została anulowana.',
+        'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
+
+        'has_pending' => [
+            '_' => 'Masz kilka niedokończonych zamówień, kliknij :link, aby je wyświetlić.',
+            'link_text' => 'tutaj',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Poprzednio podjęta próba złożenia zamówienia nie została zakończona.',
-            'line_2' => 'Wznów proces poprzez wybór metody płatności lub :link, aby przerwać składanie zamówienia.',
-            'link_text' => 'kliknij tutaj',
+            'line_2' => 'Możesz kontynuować proces zamówienia poprzez wybranie metody płatności.',
         ],
-        'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
     ],
 
     'discount' => 'zaoszczędź :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
+        'status' => [
+            'processing' => [
+                'title' => 'Twoja płatność nie została jeszcze potwierdzona!',
+                'line_1' => 'Jeśli zamówienie zostało już opłacone, możliwe, że wciąż oczekujemy na potwierdzenie. Odśwież tę stronę za kilka minut!',
+                'line_2' => [
+                    '_' => 'Jeśli napotkasz problem podczas realizacji transakcji, :link',
+                    'link_text' => 'kliknij tutaj, by kontynuować proces zamówienia',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Zamówienie złożone :date',
+
+        'invoice' => 'Pokaż fakturę',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name dla :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już opłacone.',
             'processing' => 'Nie możesz edytować swojego zamówienia, ponieważ jest ono aktualnie przetwarzane.',
             'shipped' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już wysłane.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Anulowane',
+            'checkout' => 'Przygotowywane',
+            'delivered' => 'Dostarczone',
+            'paid' => 'Opłacone',
+            'processing' => 'Oczekiwanie na potwierdzenie',
+            'shipped' => 'W transporcie',
         ],
     ],
 
