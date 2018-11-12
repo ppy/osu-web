@@ -30,7 +30,9 @@ $(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
 
 $(document).on 'click', '.js-forum-poll-edit-cancel', ->
   $poll = $('.js-forum-poll')
-  $poll.html $poll.attr('data-original-poll')
+  $poll
+    .html $poll.attr('data-original-poll')
+    .attr 'data-original-poll', null
 
   osu.pageChange()
 
