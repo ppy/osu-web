@@ -35,7 +35,9 @@ $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
   $postBox = $(e.target).parents '.js-forum-post'
-  $postBox.html $postBox.attr('data-original-post')
+  $postBox
+    .html $postBox.attr('data-original-post')
+    .attr 'data-original-post', null
 
   osu.pageChange()
 
