@@ -97,12 +97,6 @@ return [
         ],
 
         'topic' => [
-            'poll' => [
-                'edit' => [
-                    'grace_period_expired' => 'Too late to edit your poll.'
-                ],
-            ],
-
             'reply' => [
                 'double_post' => 'Please edit your last post instead of posting again.',
                 'locked' => 'Can not reply to a locked thread.',

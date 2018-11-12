@@ -940,11 +940,6 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        // TODO: should move this check to saving of poll...somehow
-        if (Carbon::now()->subHours(config('osu.forum.poll_edit_hours')) > $topic->topic_time) {
-            return 'forum.topic.poll.edit.grace_period_expired';
-        }
-
         if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
             return 'ok';
         }

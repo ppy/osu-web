@@ -283,9 +283,14 @@ class TopicsController extends Controller
 
         $watch = TopicWatch::lookup($topic, Auth::user());
 
+        $poll = new TopicPoll;
+        $poll->setTopic($topic);
+        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+
         return view(
             "forum.topics.{$template}",
             compact(
+                'canEditPoll',
                 'cover',
                 'watch',
                 'jumpTo',

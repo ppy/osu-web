@@ -70,7 +70,7 @@
         </div>
     {!! Form::close() !!}
 
-    @if (priv_check('ForumTopicPollEdit', $topic)->can())
+    @if ($canEditPoll ?? false)
         <div class="forum-poll__actions">
             <div class="forum-post-actions">
                 <div class="forum-post-actions__action">
