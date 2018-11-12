@@ -37,6 +37,16 @@ $(document).on 'click', '.js-forum-poll-edit-cancel', ->
   osu.pageChange()
 
 
+$(document).on 'ajax:success', '.js-forum-poll-edit-save', (e, data, status, xhr) ->
+  $(e.target).trigger('ajax:complete', [xhr, status])
+
+  $poll = $('.js-forum-poll')
+    .html $(data).html()
+    .attr 'data-original-poll', null
+
+  osu.pageChange()
+
+
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.

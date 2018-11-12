@@ -426,6 +426,8 @@ class TopicsController extends Controller
             return error_popup($poll->validationErrors()->toSentence());
         }
 
-        return ujs_redirect(route('forum.topics.show', $topic));
+        $pollSummary = PollOption::summary($topic, Auth::user());
+
+        return view('forum.topics._poll', compact('pollSummary', 'topic'));
     }
 }
