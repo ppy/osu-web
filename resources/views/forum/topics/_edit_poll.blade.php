@@ -20,20 +20,26 @@
     'url' => route('forum.topics.edit-poll', $topic),
     'data-remote' => true,
 ]) !!}
+    <div class="forum-poll__warning">
+        {{ trans('forum.poll.edit_warning') }}
+    </div>
+
     @include('forum.topics._create_poll')
 
-    <button
-        class="btn-osu-lite btn-osu-lite--default js-forum-poll-edit-cancel"
-        type="button"
-    >
-        Cancel
-    </button>
+    <div class="forum-poll__row">
+        <button
+            class="btn-osu-lite btn-osu-lite--default js-forum-poll-edit-cancel"
+            type="button"
+        >
+            {{ trans('common.buttons.cancel') }}
+        </button>
 
-    <button
-        class="btn-osu-lite btn-osu-lite--default"
-        type="submit"
-        data-disable-with="{{ trans('common.buttons.saving') }}"
-    >
-        Update
-    </button>
+        <button
+            class="btn-osu-lite btn-osu-lite--default"
+            type="submit"
+            data-disable-with="{{ trans('common.buttons.saving') }}"
+        >
+            {{ trans('common.buttons.save') }}
+        </button>
+    </div>
 {!! Form::close() !!}

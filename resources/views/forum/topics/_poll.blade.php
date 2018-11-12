@@ -76,7 +76,7 @@
                 <button
                     type="button"
                     class="btn-circle edit-post-link js-forum-poll-edit"
-                    title="{{ trans('forum.post.actions.edit') }}"
+                    title="{{ trans('forum.poll.actions.edit') }}"
                     data-tooltip-position="left center"
                     data-url="{{ route('forum.topics.edit-poll', $topic) }}"
                     data-remote="1"
