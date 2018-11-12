@@ -27,12 +27,6 @@ export PlayDetail = (props) ->
   score = props.score
   pp = score.best?.pp ? score.pp
 
-  modsText =
-    if score.mods.length
-      " +#{(mod.shortName for mod in score.mods).join(',')} "
-    else
-      ' '
-
   classMods = if props.activated then ['menu-active'] else ['highlightable']
 
   div
