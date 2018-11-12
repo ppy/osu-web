@@ -129,12 +129,3 @@
         </div>
     </label>
 @endif
-
-@if ($edit)
-    <button
-        class="btn-osu-lite btn-osu-lite--default js-forum-poll-edit-cancel"
-        type="button"
-    >
-        Cancel
-    </button>
-@endif

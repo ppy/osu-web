@@ -399,11 +399,33 @@ class TopicsController extends Controller
         }
     }
 
-    public function editPoll($topicId)
+    public function editPollGet($topicId)
     {
         $topic = Topic::findOrFail($topicId);
         $edit = true;
 
-        return view('forum.topics._create_poll', compact('edit', 'topic'));
+        return view('forum.topics._edit_poll', compact('edit', 'topic'));
+    }
+
+    public function editPollPost($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        $pollParams = get_params(request(), 'forum_topic_poll', [
+            'length_days:int',
+            'max_options:int',
+            'options:string_split',
+            'title',
+            'vote_change:bool',
+        ]);
+
+        $poll = (new TopicPoll())->fill($pollParams);
+        $poll->setTopic($topic);
+
+        if (!$poll->save()) {
+            return error_popup($poll->validationErrors()->toSentence());
+        }
+
+        return ujs_redirect(route('forum.topics.show', $topic));
     }
 }
