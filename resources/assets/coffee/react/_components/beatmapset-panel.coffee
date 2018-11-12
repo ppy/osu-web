@@ -101,7 +101,7 @@ class @BeatmapsetPanel extends React.PureComponent
             if beatmapset.video or beatmapset.storyboard
               div className: 'beatmapset-panel__video-icon',
                 i className: 'fas fa-film fa-fw'
-            div className: 'beatmapset-panel__status', beatmapset.status
+            div className: 'beatmapset-status', beatmapset.status
 
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',

@@ -78,7 +78,11 @@ class WikiController extends Controller
             abort(404);
         }
 
+        session(['_strip_cookies' => true]);
+
         return response($image['data'], 200)
-            ->header('Content-Type', $image['type']);
+            ->header('Content-Type', $image['type'])
+            // 10 years max-age
+            ->header('Cache-Control', 'max-age=315360000, public');
     }
 }
