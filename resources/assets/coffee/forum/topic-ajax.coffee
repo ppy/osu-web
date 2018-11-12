@@ -53,11 +53,19 @@ $(document).on 'ajax:success', '.js-forum-post-edit', (e, data, status, xhr) ->
 
 
 $(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
-  $(e.target)
-    .trigger('ajax:complete', [xhr, status])
+  $(e.target).trigger('ajax:complete', [xhr, status])
 
-  original = $('.js-forum-poll').html()
-  $('.js-forum-poll').html(data)
+  $poll = $('.js-forum-poll')
 
-  $('.js-forum-poll-edit-cancel').on 'click', () ->
-    $('.js-forum-poll').html(original)
+  $poll
+    .attr 'data-original-poll', $poll.html()
+    .html data
+
+  osu.pageChange()
+
+
+$(document).on 'click', '.js-forum-poll-edit-cancel', ->
+  $poll = $('.js-forum-poll')
+  $poll.html $poll.attr('data-original-poll')
+
+  osu.pageChange()
