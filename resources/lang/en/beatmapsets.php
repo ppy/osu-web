@@ -61,8 +61,8 @@ return [
                 '_' => 'This map is currently :status.',
 
                 'status' => [
-                    'graveyard' => 'in graveyard',
                     'pending' => 'pending',
+                    'qualified' => 'qualified',
                     'wip' => 'work in progress',
                 ],
             ],
