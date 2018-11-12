@@ -78,7 +78,7 @@
             <input
                 class="simple-form__input simple-form__input--small simple-form__input--centered"
                 name="forum_topic_poll[length_days]"
-                value="{{ optional($topic)->poll_length > 0 ? $topic->poll_length : '' }}"
+                value="{{ optional($topic)->poll_length > 0 ? $topic->poll_length_days : '' }}"
             />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
                 {{ trans('forum.topics.create.poll.length_days_suffix') }}

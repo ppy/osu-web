@@ -300,6 +300,11 @@ class Topic extends Model implements AfterCommit
         $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
     }
 
+    public function getPollLengthDaysAttribute()
+    {
+        return $this->attributes['poll_length'] / 86400;
+    }
+
     public function getPollStartAttribute($value)
     {
         return get_time_or_null($value);
