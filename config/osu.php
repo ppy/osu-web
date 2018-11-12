@@ -77,6 +77,7 @@ return [
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
 
         'necropost_months' => 6,
+        'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
         'double_post_time' => [
             'author' => 24,

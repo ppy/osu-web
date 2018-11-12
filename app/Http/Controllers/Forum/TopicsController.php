@@ -411,6 +411,8 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($topicId);
 
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
+
         $pollParams = get_params(request(), 'forum_topic_poll', [
             'length_days:int',
             'max_options:int',

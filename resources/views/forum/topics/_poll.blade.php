@@ -70,22 +70,24 @@
         </div>
     {!! Form::close() !!}
 
-    <div class="forum-poll__actions">
-        <div class="forum-post-actions">
-            <div class="forum-post-actions__action">
-                <button
-                    type="button"
-                    class="btn-circle edit-post-link js-forum-poll-edit"
-                    title="{{ trans('forum.poll.actions.edit') }}"
-                    data-tooltip-position="left center"
-                    data-url="{{ route('forum.topics.edit-poll', $topic) }}"
-                    data-remote="1"
-                >
-                    <span class="btn-circle__content">
-                        <i class="fas fa-pencil-alt"></i>
-                    </span>
-                </button>
+    @if (priv_check('ForumTopicPollEdit', $topic)->can())
+        <div class="forum-poll__actions">
+            <div class="forum-post-actions">
+                <div class="forum-post-actions__action">
+                    <button
+                        type="button"
+                        class="btn-circle edit-post-link js-forum-poll-edit"
+                        title="{{ trans('forum.poll.actions.edit') }}"
+                        data-tooltip-position="left center"
+                        data-url="{{ route('forum.topics.edit-poll', $topic) }}"
+                        data-remote="1"
+                    >
+                        <span class="btn-circle__content">
+                            <i class="fas fa-pencil-alt"></i>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
