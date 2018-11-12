@@ -15,6 +15,26 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
+$(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
+  $(e.target).trigger('ajax:complete', [xhr, status])
+
+  $poll = $('.js-forum-poll')
+
+  $poll
+    .attr 'data-original-poll', $poll.html()
+    .html data
+
+  osu.pageChange()
+
+
+$(document).on 'click', '.js-forum-poll-edit-cancel', ->
+  $poll = $('.js-forum-poll')
+  $poll.html $poll.attr('data-original-poll')
+
+  osu.pageChange()
+
+
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
@@ -48,24 +68,5 @@ $(document).on 'ajax:success', '.js-forum-post-edit', (e, data, status, xhr) ->
   $(e.target)
     .trigger('ajax:complete', [xhr, status])
     .parents('.js-forum-post').replaceWith(data)
-
-  osu.pageChange()
-
-
-$(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
-  $(e.target).trigger('ajax:complete', [xhr, status])
-
-  $poll = $('.js-forum-poll')
-
-  $poll
-    .attr 'data-original-poll', $poll.html()
-    .html data
-
-  osu.pageChange()
-
-
-$(document).on 'click', '.js-forum-poll-edit-cancel', ->
-  $poll = $('.js-forum-poll')
-  $poll.html $poll.attr('data-original-poll')
 
   osu.pageChange()
