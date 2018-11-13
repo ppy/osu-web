@@ -52,7 +52,7 @@ return [
 
         'actions' => [
             'edit' => 'Edit poll',
-        ]
+        ],
     ],
 
     'post' => [
