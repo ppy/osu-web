@@ -36,21 +36,33 @@ export class PlayDetailMenu extends PureComponent
 
 
   componentDidMount: =>
+    $(window).on 'throttled-resize.#{@uuid}', @resize
     $(document).on "turbolinks:before-cache.#{@uuid}", () =>
       @removePortal()
+
+
+  resize: () =>
+    return if !@state.active
+
+    # disappear if the tree the menu is in is no longer displayed
+    if !@menu.current.offsetParent?
+      @portal.style.display = 'none'
+      return
+
+    $element = $(@menu.current)
+    { top, left } = $element.offset()
+
+    @portal.style.display = 'block'
+    @portal.style.position = 'absolute'
+    @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
+    @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
 
   componentDidUpdate: (_prevProps, prevState) =>
     return if prevState.active == @state.active
 
     if @state.active
-      $element = $(@menu.current)
-      { top, left } = $element.offset()
-
-      @portal.style.position = 'absolute'
-      @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
-      @portal.style.left = "#{Math.floor(left + $element.width())}px"
-
+      @resize()
       @addPortal()
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
