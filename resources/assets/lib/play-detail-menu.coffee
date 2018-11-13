@@ -51,12 +51,12 @@ export class PlayDetailMenu extends PureComponent
 
     if @state.active
       if @portal?
-        element$ = $(@menu.current)
-        { top, left } = element$.offset()
+        $element = $(@menu.current)
+        { top, left } = $element.offset()
 
         @portal.style.position = 'absolute'
-        @portal.style.top = "#{Math.floor(top + element$.height() / 2)}px"
-        @portal.style.left = "#{Math.floor(left + element$.width())}px"
+        @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
+        @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
         @addPortal()
 
@@ -64,7 +64,7 @@ export class PlayDetailMenu extends PureComponent
       @props.onShow?()
     else
       @removePortal()
-      $(document).off "click.#{@uuid} keydown.#{@uuid}"
+      $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onHide?()
 
 

@@ -18,10 +18,10 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
-  @activated-row: beatmap-scoreboard-table__body-row--menu-active;
-  @friend-row: beatmap-scoreboard-table__body-row--friend;
-  @passive-row: beatmap-scoreboard-table__body-row--highlightable;
-  @self-row: beatmap-scoreboard-table__body-row--self;
+  @activated-row: ~'@{_top}__body-row--menu-active';
+  @friend-row: ~'@{_top}__body-row--friend';
+  @passive-row: ~'@{_top}__body-row--highlightable';
+  @self-row: ~'@{_top}__body-row--self';
 
   @handle: 16px;
   @row-height: 1.8em;
