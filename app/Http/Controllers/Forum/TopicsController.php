@@ -82,15 +82,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicPollEdit', $topic)->ensureCan();
 
-        $pollParams = get_params(request(), 'forum_topic_poll', [
-            'length_days:int',
-            'max_options:int',
-            'options:string_split',
-            'title',
-            'vote_change:bool',
-        ]);
-
-        $poll = (new TopicPoll())->fill($pollParams);
+        $poll = (new TopicPoll())->fill($this->getPollParams());
         $poll->setTopic($topic);
 
         $topic->getConnection()->transaction(function () use ($poll, $topic) {
@@ -359,15 +351,7 @@ class TopicsController extends Controller
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
         if (get_bool($request->get('with_poll'))) {
-            $pollParams = get_params($request, 'forum_topic_poll', [
-                'length_days:int',
-                'max_options:int',
-                'options:string_split',
-                'title',
-                'vote_change:bool',
-            ]);
-
-            $poll = (new TopicPoll())->fill($pollParams);
+            $poll = (new TopicPoll())->fill($this->getPollParams());
 
             if (!$poll->isValid()) {
                 return error_popup($poll->validationErrors()->toSentence());
@@ -450,5 +434,16 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getPollParams()
+    {
+        return get_params(request(), 'forum_topic_poll', [
+            'length_days:int',
+            'max_options:int',
+            'options:string_split',
+            'title',
+            'vote_change:bool',
+        ]);
     }
 }

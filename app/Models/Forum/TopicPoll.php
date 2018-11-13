@@ -82,7 +82,7 @@ class TopicPoll
                 $this->validationErrors()->add('max_options', '.invalid_max_options');
             }
 
-            if ($this->topic->exists && !$this->canEdit()) {
+            if ($this->topic !== null && $this->topic->exists && !$this->canEdit()) {
                 $this->validationErrors()->add(
                     'edit',
                     '.grace_period_expired',
