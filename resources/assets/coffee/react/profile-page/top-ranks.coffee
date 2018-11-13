@@ -31,7 +31,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             el window._exported.PlayDetailList, scores: @props.scoresBest
 
-            li className: 'profile-extra-entries__item',
+            div className: 'profile-extra-entries__item',
               el ShowMoreLink,
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresBest.hasMore
@@ -53,7 +53,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             el window._exported.PlayDetailList, scores: @props.scoresFirsts
 
-            li className: 'profile-extra-entries__item',
+            div className: 'profile-extra-entries__item',
               el ShowMoreLink,
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresFirsts.hasMore
