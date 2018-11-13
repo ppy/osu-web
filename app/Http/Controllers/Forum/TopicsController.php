@@ -429,7 +429,21 @@ class TopicsController extends Controller
         $poll = (new TopicPoll())->fill($pollParams);
         $poll->setTopic($topic);
 
-        if (!$poll->save()) {
+        $topic->getConnection()->transaction(function () use ($poll, $topic) {
+            if (!$poll->save()) {
+                return;
+            }
+
+            if (Auth::user()->getKey() !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_EDIT_POLL',
+                    [$topic->poll_title],
+                    $topic
+                );
+            }
+        });
+
+        if ($poll->validationErrors()->isAny()) {
             return error_popup($poll->validationErrors()->toSentence());
         }
 
