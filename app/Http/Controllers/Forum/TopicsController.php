@@ -72,6 +72,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($topicId);
 
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
 
         return view('forum.topics._edit_poll', compact('topic'));
     }
