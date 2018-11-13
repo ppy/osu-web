@@ -25,7 +25,7 @@
         {{ trans('forum.poll.edit_warning') }}
     </div>
 
-    @include('forum.topics._create_poll')
+    @include('forum.topics._create_poll', ['edit' => true])
 
     <div class="forum-poll__row">
         <button

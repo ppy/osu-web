@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $edit = $edit ?? false;
     $topic = $topic ?? null;
     $options = optional($topic)->pollOptions() ?? collect()
 @endphp
