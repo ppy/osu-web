@@ -29,8 +29,6 @@ export class PlayDetailMenu extends PureComponent
     @uuid = osu.uuid()
     @menu = createRef()
 
-    @body = document.body
-
     @state =
       active: false
 
@@ -96,11 +94,11 @@ export class PlayDetailMenu extends PureComponent
 
 
   addPortal: =>
-    @body.appendChild @portal if !@portal.parentElement?
+    document.body.appendChild @portal if !@portal.parentElement?
 
 
   removePortal: =>
-    @body.removeChild @portal if @portal.parentElement?
+    document.body.removeChild @portal if @portal.parentElement?
 
 
   render: =>
