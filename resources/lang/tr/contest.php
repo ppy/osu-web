@@ -38,6 +38,7 @@ return [
         'over' => 'Girdileriniz için teşekkürler! Bu yarışma için gönderiler kapandı ve yakında oylamalara açılacak.',
         'limit_reached' => 'Bu yarışma için girdi sınırına ulaştınız',
         'drop_here' => 'Girdinizi buraya bırakın',
+        'download' => '.osz indir',
         'wrong_type' => [
             'art' => 'Bu yarışma için sadece .jpg ve .png dosyaları kabul edilir.',
             'beatmap' => 'Bu yarışma için sadece .osu dosyaları kabul edilir.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'oylar',
-        'count' => ':count oy',
+        'count' => ':count oy|:count oy',
+        'points' => ':count puan|:count puan',
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',

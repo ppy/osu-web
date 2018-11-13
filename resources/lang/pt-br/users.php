@@ -265,10 +265,11 @@ return [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Baixar Replay',
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp' => ':amountpp',
-                'title' => 'Ranques',
+                'title' => 'Classificações',
                 'weighted_pp' => 'ponderado: :pp (:percentage)',
 
                 'best' => [

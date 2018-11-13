@@ -33,9 +33,11 @@ return [
             'refresh' => 'Aktualizovat',
         ],
 
-        'outdated' => [
-            '_' => 'Tato stránka obsahuje zastaralý překlad původního obsahu. Zkontrolujte prosím :default pro nejpřesnější informace (a jestli můžete, zkuste prosím tento překlad aktualizovat sami)!',
-            'default' => 'Anglická verze',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
+            'default' => '',
         ],
     ],
 ];

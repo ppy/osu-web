@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => '该谱面现在无法下载。',
-        'parts-removed' => '应作者/第三方版权持有者的要求，这张谱面已经下架。',
+        'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
     ],
 

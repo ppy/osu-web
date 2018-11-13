@@ -38,6 +38,7 @@ return [
         'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
         'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
         'drop_here' => 'Sleep je inzending hier',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmen',
-        'count' => '1 stem|:count stemmen',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Gesloten :date',

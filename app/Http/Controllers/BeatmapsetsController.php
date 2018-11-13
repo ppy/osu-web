@@ -127,6 +127,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps.max_combo',
                 'converts',
                 'converts.failtimes',
+                'current_user_attributes',
                 $descriptionInclude,
                 'genre',
                 'language',

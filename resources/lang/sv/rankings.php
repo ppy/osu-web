@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Rankning',
+
     'type' => [
         'performance' => 'Prestanda',
         'charts' => 'I rampljuset',
         'score' => 'Poäng',
         'country' => 'Land',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'Träffsäkerhet',
         'active_users' => 'Aktiva Användare',

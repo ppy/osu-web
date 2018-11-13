@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'キャンセル',
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'delete' => '削除',
+        'edit' => '',
         'hide' => '隠す',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => '返信して再開',
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
+        'restore' => '',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',
@@ -62,6 +66,13 @@ return [
         'months' => ':countヶ月',
         'second_short_unit' => '秒',
         'years' => ':count年',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

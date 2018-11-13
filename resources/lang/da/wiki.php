@@ -33,9 +33,11 @@ return [
             'refresh' => 'Genindlæs',
         ],
 
-        'outdated' => [
-            '_' => 'Denne side indeholder en gammel oversættelse af det originale indhold. Se venligst :default for at få den mest nøjagtige information (og overvej at hjælpe med en ny oversættelse, hvis du kan hjælpe til)!',
-            'default' => 'den engelsk version',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
+            'default' => '',
         ],
     ],
 ];

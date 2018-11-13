@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Możesz głosować tylko na prośby o funkcję.',

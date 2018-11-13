@@ -46,4 +46,11 @@ return [
         'count' => ':count szám|:count szám',
         'exclusive' => 'osu! exkluzív',
     ],
+
+    'tracklist' => [
+        'title' => 'cím',
+        'length' => 'hossz',
+        'bpm' => 'bpm',
+        'genre' => 'műfaj',
+    ],
 ];

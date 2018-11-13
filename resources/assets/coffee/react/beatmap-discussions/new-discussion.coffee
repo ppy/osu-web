@@ -40,6 +40,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
+    @inputBox?.focus() if @props.autoFocus
 
 
   componentWillUpdate: =>
@@ -101,7 +102,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          div className: "#{bn}__message",
+          div className: "#{bn}__message", id: 'new',
             if @props.currentUser.id?
               [
                 el TextareaAutosize,
@@ -112,6 +113,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
+                  innerRef: @setInputBox
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
@@ -334,6 +336,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return 'nomination_reset' if canReset && willReset
 
     'problem'
+
+
+  setInputBox: (elem) =>
+    @inputBox = elem
 
 
   setMessage: (e) =>

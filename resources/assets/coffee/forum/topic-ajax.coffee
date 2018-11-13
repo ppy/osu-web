@@ -23,7 +23,7 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   $postBox = $(e.target).parents('.js-forum-post')
 
   $postBox
-    .data 'originalPost', $postBox.html()
+    .attr 'data-original-post', $postBox.html()
     .html data
     .find '[name=body]'
     .focus()
@@ -35,7 +35,9 @@ $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
   $postBox = $(e.target).parents '.js-forum-post'
-  $postBox.html $postBox.data('originalPost')
+  $postBox
+    .html $postBox.attr('data-original-post')
+    .attr 'data-original-post', null
 
   osu.pageChange()
 

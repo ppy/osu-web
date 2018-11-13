@@ -81,6 +81,8 @@ return [
             'getForum' => 'diễn đàn',
             'getChat' => 'chat',
             'getLive' => 'live stream',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'thanh toán',
             'getInvoice' => 'hóa đơn',
+            'orders-index' => '',
             'products-show' => 'mặt hàng',
 
             'new' => 'mới',

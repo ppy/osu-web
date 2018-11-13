@@ -46,4 +46,11 @@ return [
         'count' => ':count canción|:count canciones',
         'exclusive' => 'exclusiva para osu!',
     ],
+
+    'tracklist' => [
+        'title' => 'título',
+        'length' => 'duración',
+        'bpm' => 'bpm',
+        'genre' => 'género',
+    ],
 ];

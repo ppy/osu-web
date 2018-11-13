@@ -46,4 +46,11 @@ return [
         'count' => ':count nummer|:count nummers',
         'exclusive' => 'osu!-exclusief',
     ],
+
+    'tracklist' => [
+        'title' => 'titel',
+        'length' => 'lengte',
+        'bpm' => 'bpm',
+        'genre' => 'genre',
+    ],
 ];

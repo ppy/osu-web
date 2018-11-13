@@ -48,17 +48,36 @@ return [
         'cart_problems' => '糟糕，您的購物車出現問題！',
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '付款被取消。',
+        'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => '先前的訂單尚未完成',
-            'line_2' => '透過選擇付款方式來恢復訂單，或者 :link 取消訂單。',
-            'link_text' => '點擊這裡',
+            'line_2' => '',
         ],
-        'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
     ],
 
     'discount' => '折扣 :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name 給 :username （:duration）',
@@ -82,6 +105,15 @@ return [
             'paid' => '您不能修改您的訂單，因為它已經支付。',
             'processing' => '您不能修改正在處理的訂單。',
             'shipped' => '您不能修改已經出貨的訂單。',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '已送達',
+            'paid' => '',
+            'processing' => '待確認',
+            'shipped' => '運輸中',
         ],
     ],
 

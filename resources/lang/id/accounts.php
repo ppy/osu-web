@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Kebijakan Privasi',
         'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
+        'hide_online' => 'sembunyikan keberadaan online Anda',
+    ],
+
+    'security' => [
+        'current_session' => 'saat ini',
+        'end_session' => 'Akhisi Sesi',
+        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
+        'last_active' => 'Terakhir aktif:',
+        'title' => 'Keamanan',
+        'web_sessions' => 'web session',
     ],
 ];

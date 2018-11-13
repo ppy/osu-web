@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Peringkat :type',
+
     'type' => [
         'performance' => 'Performa',
         'charts' => 'Spotlights',
         'score' => 'Skor',
         'country' => 'Negara',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Tanggal Selesai',
+        'map_count' => 'Jumlah Map',
+        'participants' => 'Peserta',
+        'start_date' => 'Tanggal Mulai',
+    ],
+
     'stat' => [
         'accuracy' => 'Akurasi',
         'active_users' => 'Pengguna Aktif',

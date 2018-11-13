@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
+        'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Bayar lewat Paypal',
+
+        'has_pending' => [
+            '_' => 'Anda memiliki transaksi yang belum tuntas, klik :link untuk melihatnya.',
+            'link_text' => 'di sini',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
-            'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran, atau :link untuk membatalkan.',
-            'link_text' => 'klik di sini',
+            'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran.',
         ],
-        'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
     ],
 
     'discount' => 'hemat :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Karena Anda melakukan pembayaran via eCheck, mohon izinkan setidaknya 10 hari tambahan untuk masuk melalui PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Pembayaran Anda belum dikonfirmasi!',
+                'line_1' => 'Jika Anda telah membayar sebelumnya, kami memerlukan waktu untuk dapat mengkonfirmasi pembayaran Anda. Mohon refresh laman ini dalam beberapa menit!',
+                'line_2' => [
+                    '_' => 'Jika Anda mengalami masalah saat melakukan pembayaran, :link',
+                    'link_text' => 'klik di sini untuk melanjutkan transaksi Anda',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => 'Lihat Invoice',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name untuk :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Anda tidak dapat menyunting pesanan yang telah dibayar.',
             'processing' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.',
             'shipped' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Dibatalkan',
+            'checkout' => 'Pesanan Diproses',
+            'delivered' => 'Sampai Tujuan',
+            'paid' => 'Lunas',
+            'processing' => 'Menunggu konfirmasi',
+            'shipped' => 'Sedang Dikirim',
         ],
     ],
 

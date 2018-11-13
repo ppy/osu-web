@@ -265,6 +265,7 @@ return [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
+                'download_replay' => 'Pobierz powtórkę',
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp' => ':amountpp',
