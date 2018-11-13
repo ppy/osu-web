@@ -35,7 +35,6 @@ export class PlayDetailMenu extends PureComponent
 
     @body = document.body
     @portal = document.createElement('div') if props.usePortal
-    @portalAdded = false
 
     @state =
       active: false
@@ -91,15 +90,13 @@ export class PlayDetailMenu extends PureComponent
 
 
   addPortal: =>
-    if @portal? && !@portalAdded
+    if @portal? && !@portal.parentElement?
       @body.appendChild @portal
-      @portalAdded = true
 
 
   removePortal: =>
-    if @portal? && @portalAdded
+    if @portal? && @portal.parentElement?
       @body.removeChild @portal
-      @portalAdded = false
 
 
   render: =>
