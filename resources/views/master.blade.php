@@ -50,7 +50,6 @@
     >
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
-        <div class="js-react-modal"></div>
 
         @if (!isset($blank))
             @include("layout.header")

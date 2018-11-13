@@ -21,8 +21,6 @@ import { div } from 'react-dom-factories'
 import { createPortal } from 'react-dom'
 
 export class Modal extends PureComponent
-  roots = document.getElementsByClassName('js-react-modal')
-
   @isOpen: ->
     document.body.classList.contains 'js-react-modal---is-open'
 
@@ -37,10 +35,10 @@ export class Modal extends PureComponent
 
 
   componentDidMount: =>
-    roots[0].appendChild @portal
+    document.body.appendChild @portal
     document.addEventListener 'keydown', @handleEsc
     $(document).on 'turbolinks:before-cache.modal', () =>
-      roots[0].removeChild @portal
+      document.body.removeChild @portal
 
     if @props.visible then @open() else @close()
 
@@ -77,7 +75,7 @@ export class Modal extends PureComponent
 
   renderPortalContent: =>
     div
-      className: 'js-react-modal__overlay'
+      className: 'js-react-modal'
       onClick: @hideModal
       ref: @ref
       @props.children
