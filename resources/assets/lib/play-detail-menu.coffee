@@ -23,10 +23,6 @@ import { ReportScore } from 'report-score'
 import { Modal } from 'modal'
 
 export class PlayDetailMenu extends PureComponent
-  @defaultProps =
-    usePortal: false
-
-
   constructor: (props) ->
     super props
 
@@ -34,7 +30,6 @@ export class PlayDetailMenu extends PureComponent
     @menu = createRef()
 
     @body = document.body
-    @portal = document.createElement('div') if props.usePortal
 
     @state =
       active: false
@@ -49,15 +44,14 @@ export class PlayDetailMenu extends PureComponent
     return if prevState.active == @state.active
 
     if @state.active
-      if @portal?
-        $element = $(@menu.current)
-        { top, left } = $element.offset()
+      $element = $(@menu.current)
+      { top, left } = $element.offset()
 
-        @portal.style.position = 'absolute'
-        @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
-        @portal.style.left = "#{Math.floor(left + $element.width())}px"
+      @portal.style.position = 'absolute'
+      @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
+      @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
-        @addPortal()
+      @addPortal()
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
@@ -90,16 +84,16 @@ export class PlayDetailMenu extends PureComponent
 
 
   addPortal: =>
-    if @portal? && !@portal.parentElement?
-      @body.appendChild @portal
+    @body.appendChild @portal if !@portal.parentElement?
 
 
   removePortal: =>
-    if @portal? && @portal.parentElement?
-      @body.removeChild @portal
+    @body.removeChild @portal if @portal.parentElement?
 
 
   render: =>
+    @portal ?= document.createElement('div')
+
     div
       className: 'play-detail-menu'
       ref: @menu
@@ -109,11 +103,7 @@ export class PlayDetailMenu extends PureComponent
         onClick: @toggle
         i className: 'fas fa-ellipsis-v'
 
-      if @props.usePortal
-        createPortal @renderMenu(), @portal
-
-      else
-        @renderMenu()
+      createPortal @renderMenu(), @portal
 
 
   renderMenu: =>

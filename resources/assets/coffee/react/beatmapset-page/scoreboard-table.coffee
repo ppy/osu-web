@@ -126,4 +126,3 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             onHide: () => @onMenuActive?(active: false, index: index)
             onShow: () => @onMenuActive?(active: true, index: index)
             score: score
-            usePortal: true
