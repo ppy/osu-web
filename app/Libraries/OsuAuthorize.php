@@ -980,10 +980,6 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->getKey() === $score->user_id) {
-            return 'score.report.self';
-        }
-
         return 'ok';
     }
 

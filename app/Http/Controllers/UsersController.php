@@ -33,6 +33,7 @@ use App\Models\UserReport;
 use Auth;
 use PDOException;
 use Request;
+use App\Exceptions\ModelNotSavedException;
 
 class UsersController extends Controller
 {
@@ -189,11 +190,15 @@ class UsersController extends Controller
         priv_check('UserReport', Auth::user())->ensureCan();
 
         try {
-            Auth::user()->reportsMade()->create([
+            $report = Auth::user()->reportsMade()->create([
                 'user_id' => $user->getKey(),
                 'comments' => trim(request('comments')),
                 'reason' => trim(request('reason')),
             ]);
+
+            if (!$report->exists) {
+                throw new ModelNotSavedException($report->validationErrors()->toSentence());
+            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {

@@ -34,13 +34,17 @@ class ScoresController extends Controller
         priv_check('ScoreReport', $score)->ensureCan();
 
         try {
-            $score->reportedIn()->create([
+            $report = $score->reportedIn()->create([
                 'user_id' => $score->user_id,
                 'reporter_id' => Auth::user()->getKey(),
                 'mode' => Beatmap::modeInt($mode),
                 'comments' => trim(request('comments')),
                 'reason' => 'Cheating',
             ]);
+
+            if (!$report->exists) {
+                throw new ModelNotSavedException($report->validationErrors()->toSentence());
+            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {

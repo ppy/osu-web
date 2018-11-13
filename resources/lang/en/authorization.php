@@ -145,12 +145,6 @@ return [
         ],
     ],
 
-    'score' => [
-        'report' => [
-            'self' => "You can't report your own score.",
-        ],
-    ],
-
     'require_login' => 'Please sign in to proceed.',
 
     'unauthorized' => 'Access denied.',
