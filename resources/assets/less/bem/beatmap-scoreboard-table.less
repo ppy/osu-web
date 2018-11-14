@@ -36,10 +36,6 @@
 
       .@{passive-row}:hover & {
         color: @highlight;
-
-        .@{_top}--menu-active & {
-          color: @color;
-        }
       }
     }
   }
@@ -57,11 +53,6 @@
     .@{passive-row}.@{name}:hover & {
       color: #fff;
       background-color: @color;
-
-      .@{_top}--menu-active & {
-        color: unset;
-        background-color: lighten(@color, 20%);
-      }
     }
   }
 
@@ -135,6 +126,13 @@
 
   &__body-row {
     height: @row-height;
+
+    // @passive-row
+    &--highlightable {
+      .@{_top}--menu-active & {
+        pointer-events: none;
+      }
+    }
   }
 
   // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
@@ -202,19 +200,10 @@
     .@{passive-row}:hover & {
       color: #fff;
       background-color: #555;
-
-      .@{_top}--menu-active & {
-        color: unset;
-        background-color: #fff;
-      }
     }
 
     .@{passive-row}:hover:nth-child(odd) & {
       background-color: #555;
-
-      .@{_top}--menu-active & {
-        background-color: #eee;
-      }
     }
 
     .row-color(@friend-row, @yellow-light);
@@ -232,10 +221,6 @@
 
     .@{passive-row}:hover & {
       opacity: 1;
-
-      .@{_top}--menu-active & {
-        opacity: 0;
-      }
     }
   }
 
