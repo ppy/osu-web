@@ -22,7 +22,7 @@ el = React.createElement
 
 class @Comments extends React.PureComponent
   render: =>
-    commentsByParentId = _.groupBy(@props.sortedComments, 'parent_id')
+    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
     comments = commentsByParentId[null]
 
 

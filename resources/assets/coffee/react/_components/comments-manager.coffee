@@ -69,7 +69,6 @@ class @CommentsManager extends React.PureComponent
       .filter (item) -> item?
       .keyBy (item) -> "#{item.type ? ''}-#{item.id ? ''}"
       .value()
-    componentProps.sortedComments = @state.comments ? []
 
     el @props.component, componentProps
 
@@ -138,6 +137,7 @@ class @CommentsManager extends React.PureComponent
       commentable_type: @props.commentableType
       commentable_id: @props.commentableId
       sort: sort
+      parent_id: 0
 
     $.ajax laroute.route('comments.index'),
       data: params

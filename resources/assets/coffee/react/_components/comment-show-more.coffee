@@ -56,7 +56,7 @@ class @CommentShowMore extends React.PureComponent
     params =
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
-      parent_id: @props.parent?.id ? ''
+      parent_id: @props.parent?.id ? 0
       sort: @props.sort
 
     lastComment = _.last(@props.comments)

@@ -140,7 +140,7 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
-            $commentBundle = new CommentBundle($beatmapset);
+            $commentBundle = new CommentBundle($beatmapset, ['params' => ['parent_id' => 0]]);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
