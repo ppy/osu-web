@@ -18,7 +18,7 @@
 @php
     $legacyNav ?? ($legacyNav = true);
 @endphp
-<div class="nav2 {{ $legacyNav ? 'nav2--legacy' : '' }} js-nav-button">
+<div class="nav2 js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
             <a href="{{ route('home') }}" class="nav2__logo-link">

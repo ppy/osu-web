@@ -265,6 +265,7 @@ return [
                 'title' => 'Nedávné',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp' => '',

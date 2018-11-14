@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Gizlilik',
         'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'hide_online' => 'çevrimiçi durumunu gizle',
+    ],
+
+    'security' => [
+        'current_session' => 'şu anki',
+        'end_session' => 'Oturumu sona erdir',
+        'end_session_confirmation' => 'Bu oturumunuzu o cihazda hemen sonlandırır. Emin misiniz?',
+        'last_active' => 'En son aktivite:',
+        'title' => 'Güvenlik',
+        'web_sessions' => 'web oturumları',
     ],
 ];

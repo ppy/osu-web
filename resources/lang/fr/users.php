@@ -265,6 +265,7 @@ return [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Télécharger le replay',
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp' => ':amountpp',

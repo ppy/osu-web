@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Класиране по :type',
+
     'type' => [
         'performance' => 'Изпълнение',
         'charts' => 'В светлината на прожектора',
         'score' => 'Резултат',
         'country' => 'Държава',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Крайна дата',
+        'map_count' => 'Брой мапове',
+        'participants' => 'Участници',
+        'start_date' => 'Начална дата',
+    ],
+
     'stat' => [
         'accuracy' => 'Прецизност',
         'active_users' => 'Активни потребители',

@@ -48,25 +48,48 @@ return [
         'cart_problems' => 'Ajjaj, problémák vannak a kosaraddal!',
         'cart_problems_edit' => 'Kattints ide a szerkesztéséhez.',
         'declined' => 'A fizetés meg lett szakítva.',
+        'delayed_shipping' => 'Jelenleg túlnyomóan sok rendelésünk van. Szívesen fogadjuk rendelésed, viszont arra számíts, hogy **további 1-2 hét késés** is lehet míg elérünk a jelenlegi rendelésekig.',
         'old_cart' => 'A kosarad réginek tűnik és újra lett töltve, kérlek próbáld újra.',
         'pay' => 'Fizetés Paypal használatával',
+
+        'has_pending' => [
+            '_' => 'Még vannak befejezetlen vételeid, kattints :link a megtekintéshez.',
+            'link_text' => 'ide',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Egy korábbi fizetés már el lett indítva, de nem ment végbe.',
-            'line_2' => 'Folytasd a fizetést egy fizetési módszer kiválasztásával, vagy :link a megszakításhoz.',
-            'link_text' => 'kattints ide',
+            'line_2' => 'Folytasd a fizetést egy fizetési módszer kiválasztásával.',
         ],
-        'delayed_shipping' => 'Jelenleg túlnyomóan sok rendelésünk van. Szívesen fogadjuk rendelésed, viszont arra számíts, hogy **további 1-2 hét késés** is lehet míg elérünk a jelenlegi rendelésekig.',
     ],
 
     'discount' => ':percent% megtakaritása',
 
+    'invoice' => [
+        'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
+        'status' => [
+            'processing' => [
+                'title' => 'A fizetésed még nem lett megerősítve!',
+                'line_1' => 'Ha már fizettél, előfordulhat hogy még a megerősítést várjuk róla. Kérlek egy-két percen belül frissítsd az oldalt!',
+                'line_2' => [
+                    '_' => 'Ha a fizetés során problémába ütköztél, :link',
+                    'link_text' => 'kattints ide a fizetés folytatásához',
+                ],
+            ],
+        ],
+    ],
+
     'mail' => [
         'payment_completed' => [
-            'subject' => 'Megkaptuk az osu!bolt-ban elhelyezett rendelésed!',
+            'subject' => 'Megkaptuk az osu!boltban elhelyezett rendelésed!',
         ],
     ],
 
     'order' => [
+        'paid_on' => 'Megrendelés feladva :date',
+
+        'invoice' => 'Számla megtekintése',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name :username-nek (:duration)',
@@ -81,7 +104,16 @@ return [
             'delivered' => 'Nem változtathatsz a rendeléseden mivel már ki lett szállítva.',
             'paid' => 'Nem változtathatsz a rendeléseden mivel már ki lett fizetve.',
             'processing' => 'Nem tudod módosítani a rendelésed amíg feldolgozás alatt áll.',
-            'shipped' => 'Nem változtathatsz a rendeléseden mivel már ki lett szállítva.',
+            'shipped' => 'Nem változtathatsz a rendeléseden mivel már folyamatban a szállítás.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Megszakitva',
+            'checkout' => 'Előkészítés',
+            'delivered' => 'Kézbesítve',
+            'paid' => 'Fizetett',
+            'processing' => 'Megerősítés függőben',
+            'shipped' => 'Szállítás alatt',
         ],
     ],
 

@@ -36,10 +36,10 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'muutosloki listaus',
+            '_' => 'muutosloki',
             '_from' => '',
             '_from_to' => '',
-            '_stream' => '',
+            '_stream' => ':stream muutokset',
             '_stream_from' => '',
             '_stream_from_to' => '',
             '_stream_to' => '',
@@ -48,13 +48,13 @@ return [
 
         'title' => [
             '_' => 'Muutosloki :info',
-            'info' => 'Listaus',
+            'info' => 'Lista',
         ],
     ],
 
     'support' => [
         'heading' => 'Onko tämä päivitys mieleesi?',
-        'text_1' => 'Tue osu!:n kehittämistä ja :link tänään!',
+        'text_1' => 'Tue osu!:n kehittämistä ja :link jo tänään!',
         'text_1_link' => 'ryhdy tukijaksi',
         'text_2' => 'Tukesi ei ainoastaan nopeuta pelin kehittämistä, vaan saat myös lisätoimintoja sekä enemmän muokkausvapautta!',
     ],

@@ -38,6 +38,7 @@ return [
         'over' => '感謝參與！提交已經關閉，投票即將開始。',
         'limit_reached' => '您提交的參賽文件大小超出限制',
         'drop_here' => '將您的參賽文件拖到此處',
+        'download' => '',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => '投票',
-        'count' => ':count 票',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => '結束於 :date',

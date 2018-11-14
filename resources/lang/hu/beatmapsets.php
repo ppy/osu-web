@@ -58,15 +58,15 @@ return [
             'cs-mania' => 'Billentyűk száma',
             'drain' => 'HP Vesztés',
             'accuracy' => 'Pontosság',
-            'ar' => 'Közelítési arány',
+            'ar' => 'Közelítési sebesség',
             'stars' => 'Nehézség',
             'total_length' => 'Hossz',
             'bpm' => 'BPM',
             'count_circles' => 'Körök Száma',
-            'count_sliders' => 'Csúszka számláló',
+            'count_sliders' => 'Sliderek Száma',
             'user-rating' => 'Felhasználói Értékelés',
             'rating-spread' => 'Értékelési Szórás',
-            'nominations' => 'Jelölések',
+            'nominations' => 'Nominálások',
             'playcount' => 'Játékszám',
         ],
         'info' => [
@@ -77,7 +77,7 @@ return [
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Cimkék',
+            'tags' => 'Címkék',
             'unranked' => 'Rangsorolatlan beatmap',
         ],
         'scoreboard' => [
@@ -87,7 +87,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
-            'title' => 'Eredményjelző',
+            'title' => 'Eredménylista',
 
             'headers' => [
                 'accuracy' => 'Pontosság',
@@ -110,7 +110,7 @@ return [
             ],
             'score' => [
                 'first' => 'Az élen',
-                'own' => 'A te legjobbad',
+                'own' => 'A legjobbad',
             ],
         ],
     ],

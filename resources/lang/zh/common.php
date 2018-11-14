@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '回到顶部',
+        'back_to_previous' => '返回上一位置',
         'cancel' => '取消',
         'change' => '更改',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
         'delete' => '删除',
+        'edit' => '编辑',
         'hide' => '隐藏',
         'permalink' => '静态链接',
         'permalink_copied' => '链接已复制',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => '回复并重新打开',
         'reply_resolve' => '回复并标记为已解决',
         'reset' => '重置',
+        'restore' => '恢复',
         'save' => '保存',
         'saving' => '保存中...',
         'search' => '搜索',
@@ -62,6 +66,13 @@ return [
         'months' => ':count 个月',
         'second_short_unit' => '秒',
         'years' => ':count 年',
+    ],
+
+    'countdown' => [
+        'days' => '天',
+        'hours' => '小时',
+        'minutes' => '分钟',
+        'seconds' => '秒',
     ],
 
     'datetime' => [

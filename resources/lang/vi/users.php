@@ -265,6 +265,7 @@ return [
                 'title' => 'Gần Đây',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp' => ':amountpp',

@@ -46,4 +46,11 @@ return [
         'count' => ':count 首音乐',
         'exclusive' => 'osu! 独享',
     ],
+
+    'tracklist' => [
+        'title' => '标题',
+        'length' => '长度',
+        'bpm' => 'BPM',
+        'genre' => '流派',
+    ],
 ];

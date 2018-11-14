@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'contests',
             'profile' => 'profile',
             'tournaments' => 'tournaments',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'ชำระเงิน',
             'getInvoice' => 'ใบกำกับสินค้า',
+            'orders-index' => '',
             'products-show' => 'สินค้า',
 
             'new' => 'ใหม่',

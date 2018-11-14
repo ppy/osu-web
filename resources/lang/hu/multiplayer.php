@@ -24,7 +24,7 @@ return [
         'difference' => ':difference különbséggel',
         'failed' => 'ELBUKOTT',
         'header' => 'Többjátékos meccsek',
-        'in-progress' => '(a mérkőzés folyamatban van)',
+        'in-progress' => '(a meccs folyamatban)',
         'in_progress_spinner_label' => 'a meccs folyamatban',
         'loading-events' => 'Események betöltése...',
         'winner' => ':team nyer',

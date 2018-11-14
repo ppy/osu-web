@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmap Seti Etkinlikleri',
+
+        'form' => [
+            'period' => '',
+            'types' => 'Türler',
+        ],
     ],
 
     'item' => [
         'content' => 'İçerik',
         'discussion_deleted' => '[silindi]',
         'type' => 'Tür',
+    ],
+
+    'type' => [
+        'approve' => 'Onay',
+        'discussion_delete' => 'Tartışma silindi',
+        'discussion_post_delete' => 'Tartışma yanıtı silme',
+        'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
+        'discussion_restore' => 'Tartışma geri getirme',
+        'disqualify' => 'Diskalifiye',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => 'Kudosu reddi',
+        'kudosu_gain' => 'Kudosu kazancı',
+        'kudosu_lost' => 'Kudosu kaybı',
+        'kudosu_recalculate' => 'Kudosu tekrar hesaplama',
+        'love' => 'Love',
+        'nominate' => 'Adaylık',
+        'nomination_reset' => 'Adaylık Sıfırlama',
+        'qualify' => 'Adaylık',
+        'rank' => 'Sıralama',
     ],
 ];

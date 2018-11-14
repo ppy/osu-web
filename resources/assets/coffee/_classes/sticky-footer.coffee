@@ -18,7 +18,7 @@
 
 # How to use:
 # 1. create a marker on when it should be fixed, with class including
-#    'js-sticky-header' and data attribute 'data-sticky-header-target'
+#    'js-sticky-footer' and data attribute 'data-sticky-footer-target'
 # 2. subscribe to 'stickyFooter' event
 # 3. in the function, check if second parameter (first one is unused event
 #    object) is the correct target

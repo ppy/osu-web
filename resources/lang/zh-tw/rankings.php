@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type 排名',
+
     'type' => [
         'performance' => '成績',
         'charts' => '月賽',
         'score' => '總分',
         'country' => '國家',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => '準確率',
         'active_users' => '活躍的使用者',

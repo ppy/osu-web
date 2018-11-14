@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '삭제된 댓글에 답글을 달 수 없습니다.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '기능을 요청하는 주제에만 투표할 수 있습니다.',

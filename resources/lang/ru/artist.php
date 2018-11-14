@@ -19,7 +19,7 @@
  */
 
 return [
-    'page_description' => 'Featured artists в osu!',
+    'page_description' => 'Избранные исполнители osu!',
     'title' => 'Featured Artists',
 
     'admin' => [
@@ -45,5 +45,12 @@ return [
         '_' => 'Песни',
         'count' => ':count песня|:count песни|:count песен',
         'exclusive' => 'эксклюзив osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'название',
+        'length' => 'длина',
+        'bpm' => 'bpm',
+        'genre' => 'жанр',
     ],
 ];
