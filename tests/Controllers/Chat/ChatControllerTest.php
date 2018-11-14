@@ -71,6 +71,19 @@ class ChatControllerTest extends TestCase
         )->assertStatus(401);
     }
 
+    public function testCreatePMWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus(403);
+    }
+
     public function testCreatePMWhenBlocked() // fail
     {
         factory(UserRelation::class)->states('block')->create([
@@ -231,6 +244,13 @@ class ChatControllerTest extends TestCase
             ->assertStatus(401);
     }
 
+    public function testChatPresenceWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(403);
+    }
+
     public function testChatPresence() // success
     {
         $publicChannel = factory(Chat\Channel::class)->states('public')->create();
@@ -335,6 +355,13 @@ class ChatControllerTest extends TestCase
     {
         $this->json('GET', route('api.chat.updates'))
             ->assertStatus(401);
+    }
+
+    public function testChatUpdatesWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('GET', route('api.chat.updates'))
+            ->assertStatus(403);
     }
 
     public function testChatUpdatesWithNoNewMessages() // success

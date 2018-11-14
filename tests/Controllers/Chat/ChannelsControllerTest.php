@@ -75,6 +75,16 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(401);
     }
 
+    public function testChannelJoinPublicWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id,
+            ]))
+            ->assertStatus(403);
+    }
+
     public function testChannelJoinPublicWhenDifferentUser() // fail
     {
         Passport::actingAs($this->user, ['write']);
@@ -168,6 +178,19 @@ class ChannelsControllerTest extends TestCase
             ])
         )
         ->assertStatus(401);
+    }
+
+    public function testChannelMarkAsReadWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json(
+            'PUT',
+            route('api.chat.channels.mark-as-read', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'message_id' => $this->publicMessage->message_id,
+            ])
+        )
+        ->assertStatus(403);
     }
 
     public function testChannelMarkAsReadWhenUnjoined() // fail
@@ -267,6 +290,16 @@ class ChannelsControllerTest extends TestCase
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(401);
+    }
+
+    public function testChannelLeaveWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('DELETE', route('api.chat.channels.part', [
+                'channel_id' => $this->publicChannel->channel_id,
+                'user_id' => $this->user->user_id,
+            ]))
+            ->assertStatus(403);
     }
 
     public function testChannelLeaveWhenNotPublic() // fail

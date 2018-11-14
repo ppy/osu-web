@@ -61,6 +61,13 @@ class MessagesControllerTest extends TestCase
             ->assertStatus(401);
     }
 
+    public function testChannelShowPublicWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->publicChannel->channel_id]))
+            ->assertStatus(403);
+    }
+
     public function testChannelShowPublicWhenUnjoined() // fail
     {
         Passport::actingAs($this->user, ['read']);
@@ -91,6 +98,13 @@ class MessagesControllerTest extends TestCase
             ->assertStatus(401);
     }
 
+    public function testChannelShowPrivateWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->privateChannel->channel_id]))
+            ->assertStatus(403);
+    }
+
     public function testChannelShowPrivateWhenNotJoined() // fail
     {
         Passport::actingAs($this->user, ['read']);
@@ -117,6 +131,13 @@ class MessagesControllerTest extends TestCase
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->pmChannel->channel_id]))
             ->assertStatus(401);
+    }
+
+    public function testChannelShowPMWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->pmChannel->channel_id]))
+            ->assertStatus(403);
     }
 
     public function testChannelShowPMWhenNotJoined() // fail
@@ -168,6 +189,16 @@ class MessagesControllerTest extends TestCase
             route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
             ['message' => self::$faker->sentence()]
         )->assertStatus(401);
+    }
+
+    public function testChannelSendWithoutScopes() // fail
+    {
+        Passport::actingAs($this->user, []);
+        $this->json(
+            'POST',
+            route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )->assertStatus(403);
     }
 
     public function testChannelSendWhenUnjoined() // fail
