@@ -175,13 +175,13 @@ class CommentBundle
         $params = [];
 
         if ($this->params['cursor']['created_at'] !== null) {
-            $params['cursor']['created_at'] = json_time($input['cursor']['created_at']);
+            $params['cursor']['created_at'] = json_time($this->params['cursor']['created_at']);
         }
         if ($this->params['cursor']['id'] !== null) {
-            $params['cursor']['id'] = $input['cursor']['id'];
+            $params['cursor']['id'] = $this->params['cursor']['id'];
         }
         if ($this->params['cursor']['votes_count'] !== null) {
-            $params['cursor']['votes_count'] = $input['cursor']['votes_count'];
+            $params['cursor']['votes_count'] = $this->params['cursor']['votes_count'];
         }
 
         if ($this->params['parent_id'] !== null) {
