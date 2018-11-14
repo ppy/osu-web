@@ -26,16 +26,6 @@ use App\Models\User;
 
 class CommentBundle
 {
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_LIMIT = 50;
-    const DEFAULT_SORT = 'new';
-
-    const SORTS = [
-        'new' => ['order' => 'DESC', 'columns' => ['created_at', 'id']],
-        'old' => ['order' => 'ASC', 'columns' => ['created_at', 'id']],
-        'top' => ['order' => 'DESC', 'columns' => ['votes_count_cache', 'created_at', 'id']],
-    ];
-
     public $depth;
     public $includeCommentableMeta;
     public $includeParent;
