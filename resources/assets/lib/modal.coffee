@@ -38,7 +38,7 @@ export class Modal extends PureComponent
     document.body.appendChild @portal
     document.addEventListener 'keydown', @handleEsc
     $(document).on 'turbolinks:before-cache.modal', () =>
-      # All this should go into componentWillUnmount, but \turbolinks/
+      # componentWillUnmount runs too late depending on how the top level component was registered
       @close()
       document.body.removeChild @portal
 
@@ -51,6 +51,7 @@ export class Modal extends PureComponent
 
 
   componentWillUnmount: =>
+    @close()
     document.removeEventListener 'keydown', @handleEsc
     $(document).off '.modal'
 
