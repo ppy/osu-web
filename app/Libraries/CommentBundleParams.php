@@ -20,10 +20,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Comment;
-use App\Models\CommentVote;
-use App\Models\User;
-
 class CommentBundleParams
 {
     const DEFAULT_PAGE = 1;
