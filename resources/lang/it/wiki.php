@@ -30,11 +30,13 @@ return [
 
         'edit' => [
             'link' => 'Mostra su GitHub',
-            'refresh' => 'Aggiorna',
+            'refresh' => 'Ricarica',
         ],
 
-        'outdated' => [
-            '_' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare la :default per informazioni più accurate (e, se sei in grado di aiutare, migliora la traduzione su GitHub)!',
+        'translation' => [
+            'legal' => 'Questa traduzione è provista solo per convenienza. L\'originale :default è l\'unica versione giuridicamente vincolante di questo testo.',
+            'outdated' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Si prega di controllare la :default per informazioni più accurate (e, se sei in grado di aiutare, aggiorna la traduzione su GitHub)!',
+
             'default' => 'Versione inglese',
         ],
     ],

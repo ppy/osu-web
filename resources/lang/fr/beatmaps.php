@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Supprimer',
+        'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimé et vous serez redirigé vers votre profil.',
+        'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
         'disqualification_prompt' => 'Raison de la disqualification?',
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
@@ -152,7 +155,7 @@ return [
         'love' => 'Aimer',
         'love_confirm' => 'Vous aimez cette beatmap ?',
         'nominate' => 'Nominer',
-        'nominate_confirm' => 'Nominer cette beatmap?',
+        'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',

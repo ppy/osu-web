@@ -265,6 +265,7 @@ return [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp' => ':amountpp',

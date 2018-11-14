@@ -33,9 +33,11 @@ return [
             'refresh' => 'Yenile',
         ],
 
-        'outdated' => [
-            '_' => 'Bu sayfa, orijinal içeriğin eski ve kullanılmayan bir çevirisini içeriyor. En doğru çeviri için lütfen :default sayfasını kontrol edin (ve eğer yardım edebilirseniz çevirileri güncellemeyi düşünün)!',
-            'default' => 'İngilizce sürüm',
+        'translation' => [
+            'legal' => 'Bu çeviri yalnızca kolaylık açısından eklenmiştir. Orijinal :default bu metnin tek yasal olarak bağlayıcı versiyonu olacaktır.',
+            'outdated' => 'Bu sayfa orijinal içeriğin güncel olmayan bir çevirisini barındırıyor. En doğru bilgi için :default sayfasını ziyaret edin (ve eğer yardım edebiliyorsanız çeviriyi güncellemeyi bir düşünün)!',
+
+            'default' => 'İngilizce versiyon',
         ],
     ],
 ];

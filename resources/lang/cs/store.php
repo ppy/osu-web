@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Ale né, s tvým košíkem se vyskytly nějaké potíže!',
         'cart_problems_edit' => 'Pro editaci klikni sem.',
         'declined' => 'Tvá platba byla zrušena.',
+        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
         'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
         'pay' => 'Zaplatit přes PayPal',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Předchozí nákup nebyl dokončen.',
-            'line_2' => 'Pokračuj v platbě vybráním platební metody, nebo :link ke zrušení.',
-            'link_text' => 'klikni zde',
+            'line_2' => '',
         ],
-        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
     ],
 
     'discount' => 'ušetři :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name pro :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Nemůžeš upravit svou objednávku, jelikož jsi za ni již zaplatil.',
             'processing' => 'Nemůžeš upravit svou objednávku, jelikož se již zpracovává.',
             'shipped' => 'Nemůžeš upravit svou objednávku, jelikož již byla odeslána.',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

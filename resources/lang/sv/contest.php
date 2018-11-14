@@ -38,6 +38,7 @@ return [
         'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
         'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
         'drop_here' => 'Släpp ditt bidrag här',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Endast .jpg och .png filer är tillåtna i denna tävling.',
             'beatmap' => 'Endast .osu filer är tillåtna i denna tävling.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'röster',
-        'count' => '1 röst|:count röster',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Avlutad :date',

@@ -265,6 +265,7 @@ return [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [
+                'download_replay' => '리플레이 다운로드',
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp' => ':amountpp',

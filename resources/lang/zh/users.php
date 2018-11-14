@@ -265,6 +265,7 @@ return [
                 'title' => '最近活动',
             ],
             'top_ranks' => [
+                'download_replay' => '下载回放',
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp' => ':amountpp',

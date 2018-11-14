@@ -29,7 +29,12 @@ return [
     'allow_unsafe_links' => false,
     'max_nesting_level' => 20,
 
+    'renderer' => [
+        'soft_break' => '<br />',
+    ],
+
     'extensions' => [
+        Jonnybarnes\CommonmarkLinkify\LinkifyExtension::class,
         Webuni\CommonMark\TableExtension\TableExtension::class,
     ],
 

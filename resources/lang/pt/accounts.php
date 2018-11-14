@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Privacidade',
         'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na tua lista de amigos',
+        'hide_online' => 'ocultar a tua presença online',
+    ],
+
+    'security' => [
+        'current_session' => 'actual',
+        'end_session' => 'Terminar Sessão',
+        'end_session_confirmation' => 'Isto irá imediatamente terminar a tua sessão nesse dispositivo. Tens a certeza?',
+        'last_active' => 'Activo pela última vez:',
+        'title' => 'Segurança',
+        'web_sessions' => 'sessões web',
     ],
 ];

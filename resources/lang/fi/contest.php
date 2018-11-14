@@ -38,6 +38,7 @@ return [
         'over' => 'Kiitos lähetämistänne töistä! Osallistumiset kilpailuun on suljettu ja äänestys aukeaa pian.',
         'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
         'drop_here' => 'Pudota tuotoksesi tähän',
+        'download' => 'Lataa .osz-tiedosto',
         'wrong_type' => [
             'art' => 'Kilpailuun hyväksytään vain .jpg tai .png tiedostoja.',
             'beatmap' => 'Kilpailuun hyväksytään vain .osu tiedostoja.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'äänet',
-        'count' => '1 ääni |:count äänestä',
+        'count' => ':count ääni|:count ääntä',
+        'points' => ':count piste|:count pistettä',
     ],
     'dates' => [
         'ended' => 'Loppui :date',

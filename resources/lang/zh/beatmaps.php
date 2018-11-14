@@ -73,7 +73,7 @@ return [
             'disqualify' => '取消提名',
             'hype' => '推荐！',
             'mapper_note' => '备注',
-            'nomination_reset' => '重置提名',
+            'nomination_reset' => '取消提名',
             'praise' => '赞',
             'problem' => '问题',
             'suggestion' => '建议',
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '删除',
+        'delete_own_confirm' => '你确定要删除吗？删除后你将回到个人资料页。',
+        'delete_other_confirm' => '你确定要删除吗？删除后你将回到他的个人资料页。',
         'disqualification_prompt' => 'DQ 的理由？',
         'disqualified_at' => '于 :time_ago 被 DQ （:reason）。',
         'disqualified_no_reason' => '没有指定原因',

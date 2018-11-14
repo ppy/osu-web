@@ -299,6 +299,7 @@ a[disabled] { &:extend(.btn[disabled]); }
   }
 
   &[data-visibility-animation="none"] {
-    transition-duration: 0s;
+    will-change: unset;
+    transition: none;
   }
 }

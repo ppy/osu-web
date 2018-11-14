@@ -35,7 +35,7 @@ return [
     'error' => [
         'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
         'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',
-        'missing_key' => 'Vaadittu.',
+        'missing_key' => 'Vaaditaan.',
         'too_many_tries' => 'Liikaa epäonnistuneita yrityksiä.',
         'user_not_found' => 'Käyttäjää ei ole olemassa.',
         'wrong_key' => 'Virheellinen koodi.',

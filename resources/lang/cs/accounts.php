@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Soukromí',
         'friends_only' => 'blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];

@@ -48,17 +48,36 @@ return [
         'cart_problems' => '¡Oh oh, hay problemas con tu carrito!',
         'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
+        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Un anterior pago ha sido iniciado pero no fue completado.',
-            'line_2' => 'Reanuda tu pago seleccionando un método de pago, o :link para cancelar.',
-            'link_text' => 'haz clic aquí',
+            'line_2' => '',
         ],
-        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
     ],
 
     'discount' => 'ahorra un :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'No puedes modificar tu orden porque ya ha sido pagada.',
             'processing' => 'No puedes modificar tu orden mientras está siendo procesada.',
             'shipped' => 'No puedes modificar tu orden porque ya ha sido enviada.',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

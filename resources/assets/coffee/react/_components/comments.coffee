@@ -21,28 +21,6 @@
 el = React.createElement
 
 class @Comments extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    commentBundle = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
-
-    @id = "comments-#{osu.uuid()}"
-
-    @state =
-      comments: commentBundle.comments
-      users: commentBundle.users
-      topLevelCount: commentBundle.top_level_count
-
-
-  componentDidMount: =>
-    $.subscribe "comments:added.#{@id}", @appendBundle
-    $.subscribe "comment:updated.#{@id}", @update
-
-
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
   render: =>
     # When implementing other type of order, don't forget to take care
     # how replying and show more interacts. It's currently fine* because
@@ -50,13 +28,7 @@ class @Comments extends React.PureComponent
     # always be at the top and doesn't affect loading older posts.
     # Also handling new replies will need to be fixed as well for newest
     # first because it currently just doesn't.
-    commentsByParentId = _(@state.comments ? [])
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .groupBy('parent_id')
-      .value()
-    usersById = _.keyBy(@state.users ? [], 'id')
-
+    commentsByParentId = _.groupBy(@props.sortedComments, 'parent_id')
     comments = commentsByParentId[null]
 
 
@@ -75,10 +47,11 @@ class @Comments extends React.PureComponent
               key: comment.id
               comment: comment
               commentsByParentId: commentsByParentId
-              usersById: usersById
+              userVotesByCommentId: @props.userVotesByCommentId
+              usersById: @props.usersById
               depth: 0
               modifiers: @props.modifiers
-          if comments.length < @state.topLevelCount
+          if comments.length < @props.topLevelCount
             lastCommentId = _.last(comments)?.id
             el CommentShowMore,
               key: "show-more:#{lastCommentId}"
@@ -90,15 +63,3 @@ class @Comments extends React.PureComponent
         div
           className: 'comments__items comments__items--empty'
           osu.trans('comments.empty')
-
-
-  appendBundle: (_event, {comments}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comments.comments
-      users: osu.updateCollection @state.users, comments.users
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, [comment]
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]

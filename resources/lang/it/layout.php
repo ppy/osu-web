@@ -80,7 +80,9 @@ return [
             'dev' => 'sviluppo',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getLive' => 'dirette',
+            'getLive' => 'live',
+            'comments-index' => 'commenti',
+            'comments-show' => 'commenta',
             'contests' => 'concorsi',
             'profile' => 'profilo',
             'tournaments' => 'tornei',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
+            'orders-index' => 'ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',

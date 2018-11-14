@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Xếp Hạng Theo :type',
+
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Tiêu điểm',
         'score' => 'Điểm',
         'country' => 'Quốc Gia',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Ngày Kết thúc',
+        'map_count' => 'Số Lần Chơi',
+        'participants' => 'Người tham gia',
+        'start_date' => 'Ngày Bắt đầu',
+    ],
+
     'stat' => [
         'accuracy' => 'Độ Chính Xác',
         'active_users' => 'Số người đang hoạt động',

@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'wedstrijden',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
+            'orders-index' => '',
             'products-show' => 'artikel',
 
             'new' => 'nieuw',

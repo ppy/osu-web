@@ -81,6 +81,8 @@ return [
             'getForum' => 'форуми',
             'getChat' => 'чат',
             'getLive' => 'на живо',
+            'comments-index' => 'коментари',
+            'comments-show' => 'коментар',
             'contests' => 'конкурси',
             'profile' => 'профил',
             'tournaments' => 'турнири',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'разплащане',
             'getInvoice' => 'фактура',
+            'orders-index' => 'история на поръчките',
             'products-show' => 'продукт',
 
             'new' => 'ново',
