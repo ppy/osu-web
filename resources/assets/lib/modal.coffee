@@ -38,6 +38,8 @@ export class Modal extends PureComponent
     document.body.appendChild @portal
     document.addEventListener 'keydown', @handleEsc
     $(document).on 'turbolinks:before-cache.modal', () =>
+      # All this should go into componentWillUnmount, but \turbolinks/
+      @close()
       document.body.removeChild @portal
 
     if @props.visible then @open() else @close()
@@ -49,7 +51,6 @@ export class Modal extends PureComponent
 
 
   componentWillUnmount: =>
-    @close()
     document.removeEventListener 'keydown', @handleEsc
     $(document).off '.modal'
 
