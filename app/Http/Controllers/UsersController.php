@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -33,7 +34,6 @@ use App\Models\UserReport;
 use Auth;
 use PDOException;
 use Request;
-use App\Exceptions\ModelNotSavedException;
 
 class UsersController extends Controller
 {

@@ -20,7 +20,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 
