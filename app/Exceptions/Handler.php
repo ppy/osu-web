@@ -176,7 +176,7 @@ class Handler extends ExceptionHandler
             return 403;
         } elseif ($e instanceof AuthenticationException) {
             return 401;
-        } elseif ($e instanceof AuthorizationException) {
+        } elseif ($e instanceof AuthorizationException || $e instanceof LaravelAuthorizationException) {
             return 403;
         } else {
             return 500;
