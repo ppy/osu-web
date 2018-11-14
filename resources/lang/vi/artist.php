@@ -19,7 +19,7 @@
  */
 
 return [
-    'page_description' => 'Nghệ sĩ nổi bật của osu!',
+    'page_description' => 'Nghệ sĩ tiêu biểu của osu!',
     'title' => 'Nghệ sĩ nổi bật',
 
     'admin' => [
@@ -45,5 +45,12 @@ return [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
         'exclusive' => 'độc quyền cho osu',
+    ],
+
+    'tracklist' => [
+        'title' => 'tiêu đề',
+        'length' => 'độ dài',
+        'bpm' => 'bpm',
+        'genre' => 'thể loại',
     ],
 ];

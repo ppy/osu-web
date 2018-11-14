@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '不能回复已删除的评论。',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '只能给新特性请求投票。',

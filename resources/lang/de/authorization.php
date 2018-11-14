@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Zugang zum angeforderten Kanal wurde verwehrt.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Zugang zum Kanal wurde verwehrt.',
-                    'moderated' => 'Der Kanal wird momentan moderiert.',
-                    'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
-                ],
+        'blocked' => 'Du kannst keine Nachrichten an einen User senden, der dich oder den du blockst.',
+        'friends_only' => 'Der User blockt alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
+        'moderated' => 'Dieser Kanal wird derzeit moderiert.',
+        'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
+        'restricted' => 'Du kannst keine Nachrichten senden während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+    ],
 
-                'not_allowed' => 'Gebannt, restricted oder stummgeschaltet kann man keine Nachrichten senden.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Du hast keine Berechtigung, dieses Forum zu moderieren.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',

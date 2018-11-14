@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => '没有权限进入该频道。',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => '需要有指定频道的权限。',
-                    'moderated' => '频道已满。',
-                    'not_lazer' => '当前只能在 #lazer 聊天。',
-                ],
+        'blocked' => '无法向被加入黑名单的用户发消息。',
+        'friends_only' => '用户阻止了来自非好友的消息。',
+        'moderated' => '该频道现在正在被管制中。',
+        'no_access' => '你没有权限访问该频道。',
+        'restricted' => '在账户受限与或被禁言时不能发消息。',
+    ],
 
-                'not_allowed' => '账户处于限制模式，无法发言。',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "无法编辑已删除的回复。",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '没有权限编辑该板块。',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '只有最后的回复可以被删除。',

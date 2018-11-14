@@ -38,6 +38,7 @@ return [
         'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
         'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Chỉ những file .jpg và .png mới được chấp nhận cho cuộc thi này.',
             'beatmap' => 'Chỉ những file .osu mới được chấp nhận cho cuộc thi này.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'phiếu',
-        'count' => ':count phiếu',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Đã kết thúc :date',

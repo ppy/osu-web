@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,45 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-header-breadcrumb-small {
-  .default-text-shadow();
-  .default-border-radius();
-  list-style: none;
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0;
-  font-size: 12px;
-  color: #fff;
+namespace App\Http\Middleware;
 
-  // Less top padding because the font used has too much space
-  // on the upper side
-  padding: 2.5px 2.5px 5px;
+use Closure;
 
-  &__item {
-    display: flex;
-    line-height: 1;
+class StripCookies
+{
+    public function handle($request, Closure $next)
+    {
+        $result = $next($request);
 
-    margin: 0 5px;
+        if (session('_strip_cookies') === true) {
+            session()->forget('_strip_cookies');
+            // strip all cookies from response
+            foreach ($result->headers->getCookies() as $cookie) {
+                $result->headers->removeCookie($cookie->getName());
+            }
+        }
 
-    & + & {
-      &::before {
-        content: '»';
-        margin-right: 10px;
-      }
+        return $result;
     }
-  }
-
-  &__link {
-    color: #fff;
-    font-weight: 300;
-
-    &:focus,
-    &:hover {
-      color: #fff;
-    }
-
-    &--is-active {
-      font-weight: 600;
-    }
-  }
 }

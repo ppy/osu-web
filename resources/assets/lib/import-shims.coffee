@@ -39,6 +39,13 @@ window._exported = {
   SpotlightSelectOptions
 }
 
+# refer to variables.less
+window._styles =
+  header:
+    height: 90 # @nav2-height
+    heightSticky: 50 # @nav2-height--pinned
+    heightMobile: 60 # @navbar-height
+
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize
 window.VirtualList = VirtualList

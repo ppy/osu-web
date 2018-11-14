@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Voltar ao topo',
+        'back_to_previous' => 'Voltar para posição anterior',
         'cancel' => 'Cancelar',
         'change' => 'mudar',
         'click_to_copy' => 'clique para copiar',
         'click_to_copy_copied' => 'copiado para a área de transferência!',
         'delete' => 'Excluir',
+        'edit' => 'Editar',
         'hide' => 'ocultar',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copiado',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Responder e Reabrir',
         'reply_resolve' => 'Responder e Resolver',
         'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
         'search' => 'Pesquisar',
@@ -62,6 +66,13 @@ return [
         'months' => ':count mês|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
+    ],
+
+    'countdown' => [
+        'days' => 'dias',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
     ],
 
     'datetime' => [

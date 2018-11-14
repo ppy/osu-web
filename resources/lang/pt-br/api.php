@@ -22,6 +22,7 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Você está enviando mensagens muito rapidamente, espere um pouco antes de tentar novamente.',
+            'too_long' => 'A mensagem que você está tentando enviar é longa demais.',
         ],
     ],
 ];

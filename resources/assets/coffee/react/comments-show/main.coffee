@@ -20,33 +20,8 @@
 el = React.createElement
 
 class CommentsShow.Main extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @id = "comments-show-#{osu.uuid()}"
-
-    comments = osu.updateCollection @props.comments, [@props.comment]
-    users = osu.updateCollection @props.users, [@props.comment.user, @props.comment.editor]
-
-    @state = {comments, users}
-
-
-  componentDidMount: =>
-    $.subscribe "comments:added.#{@id}", @appendBundle
-    $.subscribe "comment:updated.#{@id}", @update
-
-
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
   render: =>
-    commentsByParentId = _(@state.comments)
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .groupBy('parent_id')
-      .value()
-    usersById = _.keyBy(@state.users ? [], 'id')
+    commentsByParentId = _.groupBy(@props.sortedComments, 'parent_id')
 
     mainComment = commentsByParentId[@props.comment.parent_id][0]
     children = commentsByParentId[mainComment.id] ? []
@@ -62,19 +37,14 @@ class CommentsShow.Main extends React.PureComponent
       div className: 'osu-page osu-page--comment',
         el Comment,
           comment: mainComment
-          usersById: usersById
+          parent: @props.comment.parent
+          usersById: @props.usersById
+          userVotesByCommentId: @props.userVotesByCommentId
+          commentableMetaById: @props.commentableMetaById
+          commentsByParentId: commentsByParentId
           showCommentableMeta: true
           depth: 0
-          childrenArray: children
           linkParent: true
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              parent: mainComment
-              commentsByParentId: commentsByParentId
-              usersById: usersById
-              depth: 1
 
 
   renderHeaderTabs: =>
@@ -102,15 +72,3 @@ class CommentsShow.Main extends React.PureComponent
           dangerouslySetInnerHTML:
             __html: osu.trans 'comments.show.title._',
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.show.title.info')}</span>"
-
-
-  appendBundle: (_events, {comments}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comments.comments
-      users: osu.updateCollection @state.users, comments.users
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comment
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]

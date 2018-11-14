@@ -15,35 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div
-    class="forum-topic-floating-header js-forum-topic-headernav js-sync-height--reference"
-    data-sync-height-target="forum-topic-headernav"
-    data-visibility="hidden"
->
-    <div class="forum-topic-floating-header__stripe u-forum--bg-link"></div>
 
-    <div class="osu-page">
-        <div class="forum-topic-headernav">
-            <div class="forum-topic-headernav__logo">
-                @include('objects.logo_menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
-            </div>
+@section('sticky-header-breadcrumbs')
+    @include('forum.topics._header_breadcrumb_small', [
+        'forum' => $topic->forum,
+    ])
+@endsection()
 
-            <div class="forum-topic-headernav__content">
-                <div class="forum-topic-headernav__row">
-                    @include('forum.topics._header_breadcrumb_small', [
-                        'forum' => $topic->forum,
-                    ])
-                </div>
-
-                <h1 class="forum-topic-headernav__row u-ellipsis-overflow">
-                    <a
-                        href="{{ route("forum.topics.show", $topic->topic_id) }}"
-                        class="forum-topic-headernav__title-link"
-                    >
-                        {{ $topic->topic_title }}
-                    </a>
-                </h1>
-            </div>
-        </div>
-    </div>
-</div>
+@section('sticky-header-content')
+    <h1 class="forum-topic-floating-header u-ellipsis-overflow">
+        <a
+            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+            class="forum-topic-floating-header__title-link"
+        >
+            {{ $topic->topic_title }}
+        </a>
+    </h1>
+@endsection()

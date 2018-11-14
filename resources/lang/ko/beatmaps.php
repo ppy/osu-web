@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '삭제',
+        'delete_own_confirm' => '확실한가요? 비트맵을 제거하고 당신의 프로필로 돌아갑니다.',
+        'delete_other_confirm' => '확실한가요? 비트맵을 제거하고 해당 유저의 프로필로 돌아갑니다.',
         'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
         'disqualified_at' => ':time_ago에 Disqualified 됨 (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',

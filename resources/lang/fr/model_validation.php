@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',

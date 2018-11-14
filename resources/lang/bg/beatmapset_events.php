@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Бийтмап сет събития',
+
+        'form' => [
+            'period' => 'Период',
+            'types' => 'Типове',
+        ],
     ],
 
     'item' => [
         'content' => 'Съдържание',
         'discussion_deleted' => '[изтрито]',
         'type' => 'Тип',
+    ],
+
+    'type' => [
+        'approve' => 'Одобрен',
+        'discussion_delete' => 'Изтриване на дискусия',
+        'discussion_post_delete' => 'Изтриване на отговор от дискусия',
+        'discussion_post_restore' => 'Възстановяване на отговор от дискусия',
+        'discussion_restore' => 'Възстановяване на дискусия',
+        'disqualify' => 'Дисквалификация',
+        'issue_reopen' => 'Преотваряне на дискусия',
+        'issue_resolve' => 'Разрешаване на дискусия',
+        'kudosu_allow' => 'Отпуснато Kudosu',
+        'kudosu_deny' => 'Отказ на Kudosu',
+        'kudosu_gain' => 'Печалба на Kudosu',
+        'kudosu_lost' => 'Загуба на Kudosu',
+        'kudosu_recalculate' => 'Преизчисляване на Kudosu',
+        'love' => 'Обичан',
+        'nominate' => 'Номинация',
+        'nomination_reset' => 'Анулиране на номинацията',
+        'qualify' => 'Квалификация',
+        'rank' => 'Класиране',
     ],
 ];

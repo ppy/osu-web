@@ -48,17 +48,36 @@ return [
         'cart_problems' => '啊哦，你的购物车中存在问题！',
         'cart_problems_edit' => '点击此处以编辑。',
         'declined' => '支付被取消。',
+        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
         'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
+
+        'has_pending' => [
+            '_' => '你有未完成的支付，点击 :link 查看。',
+            'link_text' => '这里',
+        ],
+
         'pending_checkout' => [
             'line_1' => '先前的订单未完成',
-            'line_2' => '通过选择支付方式以恢复订单，或者 :link 取消订单。',
-            'link_text' => '点击这里',
+            'line_2' => '通过选择支付方式以恢复订单。',
         ],
-        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
     ],
 
     'discount' => '节省 :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '由于你的支付是通过 eCheck 进行的，请再等待至多 10 天以使你的支付通过 PayPal 完成！',
+        'status' => [
+            'processing' => [
+                'title' => '您的付款信息尚未确认！',
+                'line_1' => '如果你已经支付，请等待我们收到支付信息，稍后再来看看吧。',
+                'line_2' => [
+                    '_' => '如果你在结账中遇到问题，:link',
+                    'link_text' => '点击此处以恢复',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '订单支付于 :date',
+
+        'invoice' => '查看发票',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name 给 :username （:duration）',
@@ -82,6 +105,15 @@ return [
             'paid' => '你不能修改此订单，因为它已经完成付款了。',
             'processing' => '你不能修改正在处理的订单。',
             'shipped' => '你不能修改此订单，因为已经发货了。',
+        ],
+
+        'status' => [
+            'cancelled' => '已取消',
+            'checkout' => '准备中',
+            'delivered' => '已送达',
+            'paid' => '已付款',
+            'processing' => '待确认',
+            'shipped' => '运输中',
         ],
     ],
 

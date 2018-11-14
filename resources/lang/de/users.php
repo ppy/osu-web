@@ -265,6 +265,7 @@ return [
                 'title' => 'Neulich',
             ],
             'top_ranks' => [
+                'download_replay' => 'Replay downloaden',
                 'empty' => 'Noch keine Performance-Rekorde. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp' => ':amountpp',

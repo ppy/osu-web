@@ -103,9 +103,22 @@
     JSON.parse document.getElementById(id)?.text ? null
 
 
+  storeJson: (id, object) ->
+    json = JSON.stringify object
+    element = document.getElementById(id)
+
+    if !element?
+      element = document.createElement 'script'
+      element.id = id
+      element.type = 'application/json'
+      document.body.appendChild element
+
+    element.text = json
+
+
   # make a clone of json-like object (object with simple values)
   jsonClone: (object) ->
-    JSON.parse JSON.stringify(object)
+    JSON.parse JSON.stringify(object ? null)
 
 
   isInputElement: (el) ->
@@ -177,6 +190,25 @@
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
     return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
+
+
+  formatNumberSuffixed: (number, precision, options = {}) ->
+    suffixes = ['', 'k', 'm', 'b', 't']
+    k = 1000
+
+    format = (n) ->
+      options ?= {}
+
+      if precision?
+        options.minimumFractionDigits = precision
+        options.maximumFractionDigits = precision
+
+      n.toLocaleString 'en', options
+
+    return "#{format number}" if (number < k)
+
+    i = Math.min suffixes.length - 1, Math.floor(Math.log(number) / Math.log(k))
+    "#{format(number / Math.pow(k, i))}#{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->

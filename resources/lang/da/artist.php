@@ -46,4 +46,11 @@ return [
         'count' => ':count sang|:count sange',
         'exclusive' => 'osu! exklusive',
     ],
+
+    'tracklist' => [
+        'title' => '',
+        'length' => '',
+        'bpm' => '',
+        'genre' => '',
+    ],
 ];
