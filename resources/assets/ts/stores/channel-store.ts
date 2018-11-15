@@ -159,6 +159,13 @@ export default class ChannelStore implements DispatchListener {
       }
     });
 
+    // remove parted channels
+    this.channels.forEach((channel) => {
+      if (!presence.find((json) => json.channel_id === channel.channelId && !channel.newChannel)) {
+        this.channels.delete(channel.channelId);
+      }
+    });
+
     this.loaded = true;
   }
 }
