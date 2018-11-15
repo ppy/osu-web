@@ -105,8 +105,9 @@ class TopicsController extends Controller
         }
 
         $pollSummary = PollOption::summary($topic, Auth::user());
+        $canEditPoll = $poll->canEdit();
 
-        return view('forum.topics._poll', compact('pollSummary', 'topic'));
+        return view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
     }
 
     public function issueTag($id)
