@@ -22,6 +22,8 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
+  private backlogSize: number = 100;
+
   @observable channelId: number;
   @observable type: ChannelType = 'NEW';
   @observable name: string = '';
@@ -88,8 +90,8 @@ export default class Channel {
         this.resortMessages();
       }
 
-      if (this.messages.length > 100) {
-        this.messages = _.drop(this.messages, this.messages.length - 100);
+      if (this.messages.length > this.backlogSize) {
+        this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
       }
     });
   }
