@@ -36,6 +36,11 @@ class CommentBundle
     private $lastLoadedId;
     private $user;
 
+    public static function forEmbed($commentable)
+    {
+        return new static($commentable, ['params' => ['parent_id' => 0]]);
+    }
+
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
