@@ -3550,7 +3550,7 @@ jquery.scrollto@^2.1.2:
   dependencies:
     jquery ">=1.8"
 
-jquery@>=1.2.3, jquery@>=1.6.0, jquery@>=1.8, jquery@>=1.8.0:
+jquery@>=1.6.0, jquery@>=1.8, jquery@>=1.8.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -6146,12 +6146,6 @@ time-stamp@^1.0.0:
 time-stamp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-2.0.0.tgz#95c6a44530e15ba8d6f4a3ecb8c3a3fac46da357"
-
-timeago@^1.5.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/timeago/-/timeago-1.6.1.tgz#fa9aa932e6cfae1f0c9b62f49d8a6071fdf69c5b"
-  dependencies:
-    jquery ">=1.2.3"
 
 timed-out@^3.0.0:
   version "3.1.3"
