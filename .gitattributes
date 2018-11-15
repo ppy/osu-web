@@ -1,4 +1,4 @@
 * text=auto eol=lf
 *.* -eol
 *.sh eol=lf
-tests/Libraries/bbcode_examples/** eol=lf
+tests/Libraries/bbcode_examples/* eol=lf
