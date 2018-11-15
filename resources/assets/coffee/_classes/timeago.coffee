@@ -18,15 +18,23 @@
 
 class @Timeago
   constructor: ->
-    @observer = new MutationObserver (mutations) ->
-      # Third-party scripts may init conflicting versions of jquery
-      return unless $.fn.timeago
-
-      mutations.forEach (mutation) ->
-        $nodes = $(mutation.addedNodes)
-        $nodes.find('.timeago').add($nodes.filter('.timeago')).timeago()
+    @observer = new MutationObserver (mutations) =>
+      mutations.forEach (mutation) =>
+        mutation.addedNodes.forEach (addedNode) =>
+          # not all node types have querySelectorAll
+          addedNode.querySelectorAll && addedNode.querySelectorAll('.timeago').forEach (node) =>
+            @moment node
 
 
     $(document).on 'turbolinks:load', =>
-      $('.timeago').timeago()
+      document.querySelectorAll('.timeago').forEach (node) =>
+        @moment node
+
       @observer.observe document.body, childList: true, subtree: true
+
+
+  moment: (elem) ->
+    datetime = elem.getAttribute('datetime')
+    from_now = moment(datetime).fromNow()
+
+    elem.textContent = from_now
