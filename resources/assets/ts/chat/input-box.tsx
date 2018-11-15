@@ -17,8 +17,10 @@
  */
 
 import { ChatMessageSendAction } from 'actions/chat-actions';
+import DispatcherAction from 'actions/dispatcher-action';
+import { WindowFocusAction } from 'actions/window-focus-actions';
+import DispatchListener from 'dispatch-listener';
 import { inject, observer } from 'mobx-react';
-import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -26,7 +28,24 @@ import RootDataStore from 'stores/root-data-store';
 @inject('dataStore')
 @inject('dispatcher')
 @observer
-export default class InputBox extends React.Component<any, any> {
+export default class InputBox extends React.Component<any, any> implements DispatchListener {
+  private inputBoxRef = React.createRef<HTMLInputElement>();
+
+  constructor(props: {}) {
+    super(props);
+    this.props.dispatcher.register(this);
+  }
+
+  handleDispatchAction(action: DispatcherAction) {
+    if (action instanceof WindowFocusAction) {
+      this.focusInput();
+    }
+  }
+
+  componentDidMount() {
+    this.focusInput();
+  }
+
   sendMessage(messageText?: string) {
     if (!messageText || _.trim(messageText) === '') {
       return;
@@ -56,8 +75,10 @@ export default class InputBox extends React.Component<any, any> {
     }
   }
 
-  componentDidMount() {
-    $('#chat-input__box').focus();
+  focusInput() {
+    if (this.inputBoxRef.current) {
+      this.inputBoxRef.current.focus();
+    }
   }
 
   render(): React.ReactNode {
@@ -68,10 +89,11 @@ export default class InputBox extends React.Component<any, any> {
     return (
       <div className='chat-input'>
         <input className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          name= 'textbox'
+          name='textbox'
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}
           disabled={disableInput}
+          ref={this.inputBoxRef}
         />
 
         <BigButton
