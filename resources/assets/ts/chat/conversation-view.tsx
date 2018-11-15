@@ -17,7 +17,6 @@
  */
 
 import { inject, observer } from 'mobx-react';
-import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
