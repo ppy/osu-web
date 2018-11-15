@@ -21,6 +21,7 @@
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(currentLocale)
+moment.relativeTimeRounding(Math.floor)
 
 # loading animation overlay
 # fired from turbolinks
