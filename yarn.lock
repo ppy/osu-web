@@ -41,6 +41,13 @@
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.30.tgz#cca9b180160004df574519c3d7c559fb181d545f"
   integrity sha512-BQHUN9veeQJsmIod4i7sphZPAp85KBsYNtL2YMScPosJ58mVyChcN2SIfItmMrxZYWy2gBj5H3oKasT72rbsjQ==
 
+"@types/react@16.4.1":
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.1.tgz#c53bbfb4a78933db587da085ac60dbf5fcf73f8f"
+  integrity sha512-uZP8Fd4f7rwHKztnOhFJYEJsKXO7opmcyKk5P9vRC8UJAx3AiWaGFiLxDqPJqzO3n3IhF/v6rdscxadarEXnag==
+  dependencies:
+    csstype "^2.2.0"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -2160,6 +2167,11 @@ csso@~2.3.1:
   dependencies:
     clap "^1.0.9"
     source-map "^0.5.3"
+
+csstype@^2.2.0:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
+  integrity sha512-Nt5VDyOTIIV4/nRFswoCKps1R5CD1hkiyjBE9/thNaNZILLEviVw9yWQw15+O+CpNjQKB/uvdcxFFOrSflY3Yw==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
