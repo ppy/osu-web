@@ -32,6 +32,11 @@ class @Timeago
 
       @observer.observe document.body, childList: true, subtree: true
 
+      setInterval () =>
+        document.querySelectorAll('.timeago').forEach (node) =>
+          @moment node
+      , 60000
+
 
   moment: (elem) ->
     datetime = elem.getAttribute('datetime')
