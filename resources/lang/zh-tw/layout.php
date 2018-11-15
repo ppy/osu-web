@@ -81,6 +81,8 @@ return [
             'getForum' => '論壇',
             'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => '評選',
             'profile' => '個人簡介',
             'tournaments' => '官方比賽',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
+            'orders-index' => '',
             'products-show' => '商品',
 
             'new' => '最新消息',

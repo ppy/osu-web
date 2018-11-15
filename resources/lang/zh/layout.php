@@ -81,6 +81,8 @@ return [
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '评论',
+            'comments-show' => '评论',
             'contests' => '评选',
             'profile' => '个人资料',
             'tournaments' => '官方比赛',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
+            'orders-index' => '历史订单',
             'products-show' => '商品',
 
             'new' => '新增',

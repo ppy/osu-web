@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Xóa',
+        'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
+        'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
         'disqualification_prompt' => 'Lí do để qualify?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',

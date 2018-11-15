@@ -21,8 +21,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Libraries\UserBestScoresCheck;
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\NewsPost;
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LegacyInterOpController extends Controller
@@ -59,6 +62,17 @@ class LegacyInterOpController extends Controller
     public function refreshBeatmapsetCache($id)
     {
         Beatmapset::findOrFail($id)->refreshCache();
+
+        return ['success' => true];
+    }
+
+    public function userBestScoresCheck($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $mode => $_v) {
+            (new UserBestScoresCheck($user))->run($mode);
+        }
 
         return ['success' => true];
     }

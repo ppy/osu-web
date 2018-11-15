@@ -33,9 +33,11 @@ return [
             'refresh' => 'Muat Ulang',
         ],
 
-        'outdated' => [
-            '_' => 'Laman ini berisi konten dengan terjemahan yang belum diperbarui. Silahkan periksa :default untuk informasi selengkapnya (dan mohon pertimbangkan untuk memperbarui terjemahan bila anda dapat membantu)!',
-            'default' => 'Versi Bahasa Inggris',
+        'translation' => [
+            'legal' => '',
+            'outdated' => 'Laman ini mengandung terjemahan yang sudah kedaluwarsa dari artikel aslinya. Mohon periksa :default untuk memastikan keakuratan informasi (dan mohon pertimbangkan untuk memperbarui terjemahan bila Anda dapat membantu)!',
+
+            'default' => 'Versi Inggris',
         ],
     ],
 ];

@@ -38,6 +38,7 @@ return [
         'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
         'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
         'drop_here' => '"Droppez" votre entrée ici',
+        'download' => 'Télécharger .osz',
         'wrong_type' => [
             'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
             'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => ':count vote|:count votes',
+        'count' => ':count vote | :count: votes',
+        'points' => ':count point|:count points',
     ],
     'dates' => [
         'ended' => 'Terminé le :date',

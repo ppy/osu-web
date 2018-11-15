@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Sil',
+        'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
+        'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',
         'disqualification_prompt' => 'Diskalifiye sebebi nedir?',
         'disqualified_at' => ':time_ago: diskalifiye edildi (:reason).',
         'disqualified_no_reason' => 'bir sebep belirtilmedi',

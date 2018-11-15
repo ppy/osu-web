@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Удалить',
+        'delete_own_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены обратно в свой профиль.',
+        'delete_other_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены в профиль пользователя.',
         'disqualification_prompt' => 'Причина для дисквалификации?',
         'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
         'disqualified_no_reason' => 'причина не указана',

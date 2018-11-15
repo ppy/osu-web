@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'カートに問題があります！',
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
+        'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**1，2週間ほどの遅延**が発生する可能性があります。',
         'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => '前回の精算が完了していません。',
-            'line_2' => '支払い方法を選択して再開するか:linkキャンセルできます。',
-            'link_text' => 'ここをクリックして',
+            'line_2' => '',
         ],
-        'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**1，2週間ほどの遅延**が発生する可能性があります。',
     ],
 
     'discount' => ':percent%の割引',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':nameが:usernameに(:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => '支払い後に注文の変更は行えません。',
             'processing' => '発送準備中に注文の変更は行えません。',
             'shipped' => '発送後に注文の変更はできません。',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

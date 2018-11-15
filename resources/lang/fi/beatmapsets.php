@@ -26,7 +26,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmappien Listaus',
+        'title' => 'Beatmaplista',
         'guest_title' => 'Beatmapit',
     ],
 
@@ -46,7 +46,7 @@ return [
             'download' => [
                 '_' => 'Lataa',
                 'video' => 'Videon kanssa',
-                'no-video' => 'ilman Videota',
+                'no-video' => 'ilman videota',
                 'direct' => '',
             ],
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
@@ -83,7 +83,7 @@ return [
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
-            'friend' => 'Ystävien sijoitukset',
+            'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
             'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
@@ -103,7 +103,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan ystävistäsi ei vielä ole saanut tulosta tässä kartassa!',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Ehkä voisit yrittää saada sellaisen?',
                 'loading' => 'Ladataan tuloksia...',
                 'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',

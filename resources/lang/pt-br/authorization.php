@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'O acesso ao canal solicitado não é permitido.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'O acesso ao canal solicitado é obrigatório.',
-                    'moderated' => 'O canal está atualmente sob moderação.',
-                    'not_lazer' => 'Você só pode conversar em #lazer no momento.',
-                ],
+        'blocked' => 'Não se pode enviar uma mensagem para um usuário que foi bloqueado, ou te bloqueou.',
+        'friends_only' => 'O usuário esta bloqueou mensagens de pessoas fora de sua lista de amigos.',
+        'moderated' => 'O canal atual está sendo moderado.',
+        'no_access' => 'Você não tem acesso a esse canal.',
+        'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
+    ],
 
-                'not_allowed' => 'Não é possível enviar mensagens enquanto banido/restrito/silenciado.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Não é possível editar publicações deletadas.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Sem permissão para moderar este fórum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Somente a última publicação pode ser excluída.',

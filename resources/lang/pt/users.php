@@ -265,6 +265,7 @@ return [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Transferir Repetição',
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda. :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp' => '',

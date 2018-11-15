@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
         'delete' => 'Smazat',
+        'edit' => '',
         'hide' => 'skrýt',
         'permalink' => 'trvalý odkaz',
         'permalink_copied' => 'odkaz zkopírován',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Odpovědět a znovu otevřít',
         'reply_resolve' => 'Odpovědět a archivovat',
         'reset' => 'Resetovat',
+        'restore' => '',
         'save' => 'Uložit',
         'saving' => 'Ukládání...',
         'search' => 'Hledat',
@@ -62,6 +66,13 @@ return [
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
         'years' => ':count rok|:count let',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

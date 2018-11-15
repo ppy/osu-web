@@ -265,6 +265,7 @@ return [
                 'title' => 'Πρόσφατα',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
                 'pp' => '',

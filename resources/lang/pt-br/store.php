@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Ops, seu carrinho parece ter alguns problemas!',
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você é bem-vindo para fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
         'old_cart' => 'Seu carrinho aparenta estar desatualizado e foi recarregado, por favor tente novamente.',
         'pay' => 'Pagar com o Paypal',
+
+        'has_pending' => [
+            '_' => 'Você possui pedidos incompletos. Clique :link para visualizá-los.',
+            'link_text' => 'aqui',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Um pagamento prévio foi iniciado mas não foi finalizado.',
-            'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
-            'link_text' => 'clique aqui',
+            'line_2' => 'Continue sua compra selecionando um método de pagamento.',
         ],
-        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você é bem-vindo para fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Como seu pagamento foi um eCheck, por favor aguarde por até 10 dias para se concluir o pagamento via PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Seu pagamento ainda não foi confirmado!',
+                'line_1' => 'Se você já pagou, nós ainda estamos esperando pela confirmação. Por favor atualize a página daqui um minuto ou dois!',
+                'line_2' => [
+                    '_' => 'Se você encontrou algum problema, :link',
+                    'link_text' => 'clique aqui para continuar com a compra',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Ordem colocara :date',
+
+        'invoice' => 'Ver Fatura',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Você não pode modificar seu pedido, pois ele já foi pago.',
             'processing' => 'Você não pode modificar seu pedido enquanto está sendo processado.',
             'shipped' => 'Você não pode modificar seu pedido, pois ele já foi enviado.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Cancelado',
+            'checkout' => 'Preparando',
+            'delivered' => 'Entregue',
+            'paid' => 'Pago',
+            'processing' => 'Aguardando confirmação',
+            'shipped' => 'Enviado',
         ],
     ],
 

@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'ビートマップセットイベント',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => '目次',
         'discussion_deleted' => '[削除済み]',
         'type' => 'タイプ',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

@@ -21,7 +21,7 @@
 return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
     'slogan' => "on vaarallista pelata yksin.",
-    'subforums' => 'Alaforumit',
+    'subforums' => 'Alafoorumit',
     'title' => 'osu! foorumit',
 
     'covers' => [

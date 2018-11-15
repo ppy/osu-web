@@ -20,7 +20,7 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listaus',
+        'news-index' => 'lista',
         'news-show' => 'viesti',
     ],
 
@@ -44,7 +44,7 @@ return [
 
     'store' => [
         'button' => 'Päivitä',
-        'ok' => 'Listaus päivitetty.',
+        'ok' => 'Lista päivitetty.',
     ],
 
     'update' => [

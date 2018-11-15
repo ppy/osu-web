@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'czat',
             'getLive' => 'na żywo',
+            'comments-index' => 'komentarze',
+            'comments-show' => 'komentarz',
             'contests' => 'konkursy',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'płatność',
             'getInvoice' => 'paragon',
+            'orders-index' => 'historia zamówień',
             'products-show' => 'produkt',
 
             'new' => 'nowy',

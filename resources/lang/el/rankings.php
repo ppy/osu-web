@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Κατάταξη :type',
+
     'type' => [
         'performance' => 'Επίδοσης',
         'charts' => 'Spotlights',
         'score' => 'Σκορ',
         'country' => 'Χώρας',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'Ακρίβεια',
         'active_users' => 'Ενεργοί Χρήστες',

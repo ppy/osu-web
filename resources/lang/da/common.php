@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'Annullér',
         'change' => '',
         'click_to_copy' => '',
         'click_to_copy_copied' => 'kopieret til udklipsholder!',
         'delete' => 'Slet',
+        'edit' => '',
         'hide' => 'skjul',
         'permalink' => 'permalink',
         'permalink_copied' => '',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Svar og Genåben',
         'reply_resolve' => 'Svar og markér som løst',
         'reset' => 'Nulstil',
+        'restore' => '',
         'save' => 'Gem',
         'saving' => 'Gemmer...',
         'search' => '',
@@ -62,6 +66,13 @@ return [
         'months' => ':count måned|:count måneder',
         'second_short_unit' => '',
         'years' => ':count år|:count år',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

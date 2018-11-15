@@ -162,7 +162,7 @@ return [
 
         'extra' => [
             'followers' => '1 seuraaja |:count seuraajaa',
-            'unranked' => 'Ei viimeaikaisia pelauksia',
+            'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
                 'title' => 'Saavutukset',
@@ -212,7 +212,7 @@ return [
                 'available_info' => "Kudosuja voit vaihtaa kudosutähtiin, jotka auttavat tuomaan lisää huomiota beatmapillesi. Näin monta kudosua et ole vielä vaihtanut.",
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
-                'total' => 'Ansaittuja Kudosuja Yhteensä',
+                'total' => 'Ansaittu Kudosu',
                 'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
@@ -265,8 +265,9 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'top_ranks' => [
+                'download_replay' => 'Lataa Replay',
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
-                'not_ranked' => 'Vain hyväksytyt kartat antavat PP:tä.',
+                'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp' => '',
                 'title' => 'Suoritukset',
                 'weighted_pp' => 'painotettu: :pp (:percentage)',
@@ -346,7 +347,7 @@ return [
     ],
     'status' => [
         'online' => 'Paikalla',
-        'offline' => 'Ei paikalla',
+        'offline' => 'Poissa',
     ],
     'store' => [
         'saved' => 'Käyttäjä luotu',

@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, er zijn problemen met je winkelwagen!',
         'cart_problems_edit' => 'Klik hier om het te wijzigen.',
         'declined' => 'De betaling is geannuleerd.',
+        'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
         'old_cart' => 'Je winkelwagen lijkt verouderd te zijn en wordt herladen, probeer het opnieuw.',
         'pay' => 'Afrekenen met Paypal',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Een vorige checkout is gestart, maar niet geëindigd.',
-            'line_2' => 'Hervat uw checkout door het selecteren van een betaalmethode, of :link om te annuleren.',
-            'link_text' => 'klik hier',
+            'line_2' => '',
         ],
-        'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
     ],
 
     'discount' => 'bespaar :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name voor :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Je kan je bestelling niet wijzigen omdat hij al betaald is.',
             'processing' => 'Je kan je bestelling niet wijzigen omdat hij verwerkt wordt.',
             'shipped' => 'Je kan je bestelling niet wijzigen omdat hij al verzonden is.',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

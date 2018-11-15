@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Oh oh, il y a quelques problèmes avec votre panier !',
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
+        'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
+
+        'has_pending' => [
+            '_' => 'Vous avez un paiement en attente, cliquez :link pour y accéder.',
+            'link_text' => 'ici',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Une commande précédente a été commencée mais non finalisée.',
-            'line_2' => 'Reprenez votre commande en sélectionnant un mode de paiement, ou :link pour annuler la commande.',
-            'link_text' => 'cliquez ici',
+            'line_2' => 'Reprenez votre commande en sélectionnant un moyen de paiement.',
         ],
-        'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
     ],
 
     'discount' => 'économisez :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Votre paiement n\'a pas encore été confirmé !',
+                'line_1' => 'Si vous avez déjà payé, nous attendons toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
+                'line_2' => [
+                    '_' => 'Si vous avez rencontré un problème lors de votre commande, :link',
+                    'link_text' => 'cliquez ici pour reprendre votre commande',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Commande passée le :date',
+
+        'invoice' => 'Afficher la facture',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name pour :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a déjà été payée.',
             'processing' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.',
             'shipped' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Annulée',
+            'checkout' => 'Préparation',
+            'delivered' => 'Livrée',
+            'paid' => 'Payée',
+            'processing' => 'En attente de confirmation',
+            'shipped' => 'En transit',
         ],
     ],
 
