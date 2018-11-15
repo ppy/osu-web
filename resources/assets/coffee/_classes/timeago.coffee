@@ -40,3 +40,4 @@ class @Timeago
     datetime = elem.getAttribute('datetime')
     from_now = moment(datetime).fromNow()
     elem.textContent = from_now
+    elem.title = datetime
