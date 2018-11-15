@@ -25,21 +25,18 @@ class @Timeago
           addedNode.querySelectorAll && addedNode.querySelectorAll('.timeago').forEach (node) =>
             @moment node
 
-
     $(document).on 'turbolinks:load', =>
       document.querySelectorAll('.timeago').forEach (node) =>
         @moment node
 
       @observer.observe document.body, childList: true, subtree: true
 
-      setInterval () =>
-        document.querySelectorAll('.timeago').forEach (node) =>
-          @moment node
-      , 60000
-
+    @constructor.timer ?= setInterval () =>
+      document.querySelectorAll('.timeago').forEach (node) =>
+        @moment node
+    , 60000
 
   moment: (elem) ->
     datetime = elem.getAttribute('datetime')
     from_now = moment(datetime).fromNow()
-
     elem.textContent = from_now
