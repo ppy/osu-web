@@ -282,7 +282,8 @@ return [
             'to_not_watching' => 'Not bookmarked',
             'to_watching' => 'Bookmark',
             'to_watching_mail' => 'Bookmark with notification',
-            'mail_disable' => 'Disable notification',
+            'tooltip_mail_disable' => 'Notification is enabled. Click to disable',
+            'tooltip_mail_enable' => 'Notification is disabled. Click to enable',
         ],
     ],
 ];
