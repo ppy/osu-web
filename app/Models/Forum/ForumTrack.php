@@ -32,18 +32,28 @@ class ForumTrack extends Model
 
     public static function markAsRead($forum, $user, $time)
     {
-        $forumIds = $forum->allSubForums();
-        $forums = Forum::whereIn('forum_id', $forumIds)->get();
+        $forums = Forum::whereIn('forum_id', $forum->allSubForums())->get();
 
-        $ids = $forums->filter(function ($forum) {
+        $forumIds = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         })->pluck('forum_id');
 
-        foreach ($ids as $id) {
-            static::updateOrCreate(
-                ['forum_id' => $id, 'user_id' => $user->getKey()],
-                ['mark_time' => $time]
-            );
-        }
+        // update existing
+        $query = static::where('user_id', $user->getKey())->whereIn('forum_id', $forumIds);
+        $query->getConnection()->transaction(function () use ($forumIds, $query, $time, $user) {
+            $query->update(['mark_time' => $time->getTimestamp()]);
+
+            // insert any new forums
+            $existingIds = $query->pluck('forum_id');
+            $missingIds = $forumIds->diff($existingIds);
+
+            foreach ($missingIds as $id) {
+                static::create([
+                    'forum_id' => $id,
+                    'mark_time' => $time,
+                    'user_id' => $user->getKey(),
+                ]);
+            }
+        });
     }
 }
