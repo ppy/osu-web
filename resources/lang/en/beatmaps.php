@@ -170,7 +170,8 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Are you sure? Posting a new problem will reset nomination process.',
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
+            'disqualify' => 'Are you sure? This will remove the beatmap from qualifying and reset the nomination process.',
         ],
     ],
 
