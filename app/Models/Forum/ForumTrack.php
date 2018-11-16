@@ -30,12 +30,12 @@ class ForumTrack extends Model
 
     protected $primaryKeys = ['forum_id', 'user_id'];
 
-    public static function markAsRead($forum, $user, $time)
+    public static function markAsRead(Forum $forum, $user, $time)
     {
         $forums = Forum::whereIn('forum_id', $forum->allSubForums())->get();
 
-        $forumIds = $forums->filter(function ($forum) {
-            return priv_check('ForumView', $forum)->can();
+        $forumIds = $forums->filter(function ($forum) use ($user) {
+            return priv_check_user($user, 'ForumView', $forum)->can();
         })->pluck('forum_id');
 
         // update existing
