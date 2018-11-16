@@ -353,6 +353,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
+    Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 
