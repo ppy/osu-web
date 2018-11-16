@@ -34,7 +34,7 @@
 <button
     type="button"
     class="btn-circle btn-circle--topic-entry {{ $watch->mail ? 'btn-circle--activated' : '' }}"
-    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'mail_disable' : 'to_watching_mail')) }}"
+    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'tooltip_mail_disable' : 'tooltip_mail_enable')) }}"
     data-url="{{ route('forum.topic-watches.update', [
         $topic,
         'state' => $watch->mail ? 'watching' : 'watching_mail',
