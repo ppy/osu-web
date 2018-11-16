@@ -34,12 +34,23 @@ class RequireScopes
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$scopes)
     {
         $token = $request->user()->token();
+        if ($token === null) {
+            throw new AuthorizationException();
+        }
 
         if (empty($token->scopes)) {
             throw new AuthorizationException();
+        }
+
+        if (!empty($scopes)) {
+            foreach ($scopes as $scope) {
+                if ($token->cant($scope)) {
+                    throw new AuthorizationException();
+                }
+            }
         }
 
         return $next($request);
