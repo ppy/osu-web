@@ -47,6 +47,14 @@ return [
         ],
     ],
 
+    'poll' => [
+        'edit_warning' => 'Editing a poll will remove the current results!',
+
+        'actions' => [
+            'edit' => 'Edit poll',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
@@ -274,7 +282,8 @@ return [
             'to_not_watching' => 'Not bookmarked',
             'to_watching' => 'Bookmark',
             'to_watching_mail' => 'Bookmark with notification',
-            'mail_disable' => 'Disable notification',
+            'tooltip_mail_disable' => 'Notification is enabled. Click to disable',
+            'tooltip_mail_enable' => 'Notification is disabled. Click to enable',
         ],
     ],
 ];

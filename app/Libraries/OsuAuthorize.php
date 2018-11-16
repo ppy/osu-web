@@ -933,6 +933,22 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicPollEdit($user, $topic)
+    {
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        $forumTopicStorePermission = $this->doCheckUser($user, 'ForumTopicStore', $topic->forum);
+        if (!$forumTopicStorePermission->can()) {
+            return $postStorePermission->rawMessage();
+        }
+
+        if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicVote($user, $topic)
     {
         $prefix = 'forum.topic.vote.';

@@ -32,6 +32,11 @@ class TopicPoll
     private $validated = false;
     private $params;
 
+    public function canEdit()
+    {
+        return $this->topic->topic_time > Carbon::now()->subHours(config('osu.forum.poll_edit_hours'));
+    }
+
     public function exists()
     {
         return present($this->topic->poll_title);
@@ -75,6 +80,14 @@ class TopicPoll
 
             if ($this->params['max_options'] > count($this->params['options'])) {
                 $this->validationErrors()->add('max_options', '.invalid_max_options');
+            }
+
+            if ($this->topic !== null && $this->topic->exists && !$this->canEdit()) {
+                $this->validationErrors()->add(
+                    'edit',
+                    '.grace_period_expired',
+                    ['limit' => config('osu.forum.poll_edit_hours')]
+                );
             }
         }
 
