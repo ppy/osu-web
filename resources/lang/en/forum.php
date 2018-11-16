@@ -47,6 +47,14 @@ return [
         ],
     ],
 
+    'poll' => [
+        'edit_warning' => 'Editing a poll will remove the current results!',
+
+        'actions' => [
+            'edit' => 'Edit poll',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
