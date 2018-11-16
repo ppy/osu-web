@@ -42,6 +42,9 @@ return [
     ],
 
     'forums' => [
+        'mark_as_read' => 'Mark forums as read',
+        'marking_as_read' => 'Marking as read...',
+
         'topics' => [
             'empty' => 'No topics!',
         ],

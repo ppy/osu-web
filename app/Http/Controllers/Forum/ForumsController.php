@@ -39,15 +39,6 @@ class ForumsController extends Controller
         view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
-    public function markAsRead()
-    {
-        $forums = Forum::where('parent_id', 0)->get();
-        $time = Carbon::now();
-        $forums->each(function ($forum) use ($time) {
-            ForumTrack::markAsRead($forum, Auth::user(), $time);
-        });
-    }
-
     public function index()
     {
         $forums = Forum
@@ -63,6 +54,15 @@ class ForumsController extends Controller
         });
 
         return view('forum.forums.index', compact('forums', 'lastTopics'));
+    }
+
+    public function markAsRead()
+    {
+        $forums = Forum::where('parent_id', 0)->get();
+        $time = Carbon::now();
+        $forums->each(function ($forum) use ($time) {
+            ForumTrack::markAsRead($forum, Auth::user(), $time);
+        });
     }
 
     public function search()

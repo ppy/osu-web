@@ -57,4 +57,17 @@
             </div>
         @endforeach
     </div>
+
+    <div class="osu-page">
+        <div class="mark-as-read">
+            <button class="btn-osu-big btn-osu-big--forum-new-topic"
+                data-disable-with="{{ trans('forum.forums.marking_as_read') }}"
+                data-method="POST"
+                data-remote="1"
+                data-url="{{ route('forum.forums.mark-as-read') }}"
+            >
+                {{ trans('forum.forums.mark_as_read') }}
+            </button>
+        </div>
+    </div>
 @endsection
