@@ -21,9 +21,11 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\ForumTrack;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
+use Carbon\Carbon;
 use Request;
 
 class ForumsController extends Controller
@@ -35,6 +37,15 @@ class ForumsController extends Controller
         parent::__construct();
 
         view()->share('currentAction', 'forum-forums-'.current_action());
+    }
+
+    public function markAsRead()
+    {
+        $forums = Forum::where('parent_id', 0)->get();
+        $time = Carbon::now();
+        $forums->each(function ($forum) use ($time) {
+            ForumTrack::markAsRead($forum, Auth::user(), $time);
+        });
     }
 
     public function index()

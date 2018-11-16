@@ -29,4 +29,21 @@ class ForumTrack extends Model
     protected $dateFormat = 'U';
 
     protected $primaryKeys = ['forum_id', 'user_id'];
+
+    public static function markAsRead($forum, $user, $time)
+    {
+        $forumIds = $forum->allSubForums();
+        $forums = Forum::whereIn('forum_id', $forumIds)->get();
+
+        $ids = $forums->filter(function ($forum) {
+            return priv_check('ForumView', $forum)->can();
+        })->pluck('forum_id');
+
+        foreach ($ids as $id) {
+            static::updateOrCreate(
+                ['forum_id' => $id, 'user_id' => $user->getKey()],
+                ['mark_time' => $time]
+            );
+        }
+    }
 }
