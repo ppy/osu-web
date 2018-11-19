@@ -941,7 +941,7 @@ class OsuAuthorize
 
         $forumTopicStorePermission = $this->doCheckUser($user, 'ForumTopicStore', $topic->forum);
         if (!$forumTopicStorePermission->can()) {
-            return $postStorePermission->rawMessage();
+            return $forumTopicStorePermission->rawMessage();
         }
 
         if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
