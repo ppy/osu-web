@@ -298,6 +298,18 @@ class Forum extends Model
         return $this->forum_type === 1;
     }
 
+    public function markAsRead(User $user)
+    {
+        $forumTrack = ForumTrack::firstOrNew([
+            'user_id' => $user->getKey(),
+            'forum_id' => $this->getKey(),
+        ]);
+        $forumTrack->mark_time = Carbon::now();
+        $forumTrack->save();
+
+        TopicTrack::where('user_id', $user->getKey())->where('forum_id', $this->getKey())->delete();
+    }
+
     public function toMetaDescription()
     {
         $stack = [trans('forum.title')];

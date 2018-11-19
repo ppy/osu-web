@@ -80,6 +80,7 @@
                 <div class="forum-topics-spacer">
                     <div class="forum-topics-spacer__buttons">
                         @include('forum.forums._new_topic', compact('forum'))
+                        @include('forum.forums._mark_as_read', compact('forum'))
                     </div>
                 </div>
 
@@ -91,6 +92,7 @@
                 <div class="forum-topics-spacer forum-topics-spacer--pager">
                     <div class="forum-topics-spacer__buttons">
                         @include('forum.forums._new_topic', compact('forum'))
+                        @include('forum.forums._mark_as_read', compact('forum'))
                     </div>
 
                     <div class="forum-topics-spacer__pager">
