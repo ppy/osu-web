@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'contests',
             'profile' => 'profile',
             'tournaments' => 'tournaments',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'ชำระเงิน',
             'getInvoice' => 'ใบกำกับสินค้า',
+            'orders-index' => '',
             'products-show' => 'สินค้า',
 
             'new' => 'ใหม่',
@@ -177,11 +180,6 @@ return [
             'forum' => 'ฟอรัมชุมชน',
             'livestreams' => 'การถ่ายทอดสด',
             'report' => 'รายงานปัญหา',
-        ],
-        'support' => [
-            '_' => 'สนับสนุน osu!',
-            'tags' => 'แท้กสนับสนุน',
-            'merchandise' => 'สินค้า',
         ],
         'legal' => [
             '_' => 'สถานะและกฎหมาย',

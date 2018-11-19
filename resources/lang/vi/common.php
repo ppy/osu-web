@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Bạn có chắc không?',
+    'confirmation_unsaved' => 'Mọi thay đổi chưa lưu sẽ bị mất. Bạn chắc không?',
     'saved' => 'Đã lưu',
 
     'array_and' => [
@@ -29,19 +30,23 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Quay lại đầu trang',
+        'back_to_previous' => '',
         'cancel' => 'Hủy',
         'change' => 'đổi',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
         'delete' => 'Xóa',
+        'edit' => '',
         'hide' => 'ẩn',
         'permalink' => 'permalink',
         'permalink_copied' => 'đã sao chép link',
-        'post' => 'Bài đăng',
+        'post' => 'Đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',
         'reset' => 'Reset',
+        'restore' => '',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
         'search' => 'Tìm Kiếm',
@@ -61,6 +66,13 @@ return [
         'months' => ':count tháng',
         'second_short_unit' => 'sec|secs',
         'years' => ':count năm',
+    ],
+
+    'countdown' => [
+        'days' => 'ngày',
+        'hours' => 'giờ',
+        'minutes' => 'phút',
+        'seconds' => 'giây',
     ],
 
     'datetime' => [

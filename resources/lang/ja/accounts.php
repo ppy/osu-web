@@ -81,7 +81,17 @@ return [
     ],
 
     'privacy' => [
-        'title' => '',
+        'title' => 'プライバシー',
         'friends_only' => '友達リストにいない人からプライベートメッセージをブロックする',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];

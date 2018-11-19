@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Årsag for diskvalifikation?',
         'disqualified_at' => 'Diskvalificeret :time_ago (:reason).',
         'disqualified_no_reason' => 'ingen årsag specificeret',
         'disqualify' => 'Diskvalificér',
         'incorrect_state' => 'Fejl under udførelse, try prøv at genindlæse siden.',
+        'love' => '',
+        'love_confirm' => '',
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
@@ -172,6 +177,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'skriv nøgleord...',
+            'login_required' => '',
             'options' => 'Flere søgefunktioner',
             'supporter_filter' => '',
             'not-found' => 'ingen resultater',
@@ -179,7 +185,7 @@ return [
             'filters' => [
                 'general' => 'Generalt',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => '',
                 'genre' => 'Genre',
                 'language' => 'Sprog',
                 'extra' => 'extra',
@@ -202,10 +208,6 @@ return [
                 'link_text' => '',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Rank Status',
-        'source' => 'fra :source',
-        'load-more' => 'Indlæs mere...',
     ],
     'general' => [
         'recommended' => 'Rekommenderat sværhedsgrad',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Kvalificeret',
         'loved' => 'Loved',
         'faves' => 'Favoritter',
-        'pending' => 'Afvendtende',
+        'pending' => '',
         'graveyard' => 'Kirkegård',
         'my-maps' => 'Mine Maps',
     ],

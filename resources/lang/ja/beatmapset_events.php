@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => ':userのディスカッション:discussionがkudosu取得に値する評価を得ました。',
         'kudosu_lost' => ':userのディスカッション:discussionの評価が下がりkudosu取得が取り消されました。',
         'kudosu_recalculate' => 'ディスカッション:discussionのkudosu取得量が再計算されました。',
+        'love' => ':user がLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
         'nomination_reset' => '新しい問題:discussionによりノミネートがリセットされました。',
-        'qualify' => 'Qualifiedされました。',
+        'qualify' => 'このBeatmapは審査の対象になる数に達しており、審査に通っています。',
         'rank' => 'Rankedされました。',
     ],
 
     'index' => [
         'title' => 'ビートマップセットイベント',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => '目次',
         'discussion_deleted' => '[削除済み]',
         'type' => 'タイプ',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

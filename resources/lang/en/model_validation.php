@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Replying to deleted comment is not allowed.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',
@@ -69,6 +73,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
+            'grace_period_expired' => 'Can\'t edit a poll after more than :limit hours',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
             'minimum_one_selection' => 'A minimum of one option per user is required.',
             'minimum_two_options' => 'Need at least two options.',

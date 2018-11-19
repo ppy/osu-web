@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Alleen de eigenaar van deze beatmap of een nominator/QAT groepslid kan mapper notities posten.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Wacht even voor je meer stemmen indient',
             'owner' => "Je kan niet stemmen op je eigen discussie.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Toegang tot dit kanaal is niet toegestaan.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Toegang tot dit kanaal is vereist.',
-                    'moderated' => 'Kanaal wordt op het moment gemodereerd.',
-                    'not_lazer' => 'Je kan op dit moment enkel in #lazer praten.',
-                ],
+        'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
+        'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
+        'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
+        'no_access' => 'Je hebt geen toegang tot dat kanaal.',
+        'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
+    ],
 
-                'not_allowed' => 'Je kunt geen berichten sturen terwijl je verbannen/gerestricteerd/gesilenced bent.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Je kunt geen verwijderde berichten bewerken.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Geen rechten om dit forum de modereren.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Alleen de laatste post kan worden verwijderd.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Je hebt net gepost. Wacht even voor je een nieuwe maakt of bewerk je vorige post.',
+                'double_post' => 'Bewerk je laatste bericht in plaats van opnieuw te posten.',
                 'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om te antwoorden.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Gebruikerspagina is gesloten.',
                 'not_owner' => 'Je kan alleen je eigen gebruikerspagina bewerken.',
-                'require_supporter_tag' => 'Supporter tag is nodig.',
+                'require_supporter_tag' => 'osu!supporter tag is vereist.',
             ],
         ],
     ],

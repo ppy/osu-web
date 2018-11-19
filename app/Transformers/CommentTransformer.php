@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,8 +27,10 @@ use Markdown;
 class CommentTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'user',
+        'commentable_meta',
         'editor',
+        'user',
+        'parent',
     ];
 
     public function transform(Comment $comment)
@@ -47,7 +49,8 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'user_id' => $comment->user_id,
             'message' => $message,
             'message_html' => $messageHtml,
-            'replies_count' => $comment->replies_count_cache,
+            'replies_count' => $comment->replies_count_cache ?? 0,
+            'votes_count' => $comment->votes_count_cache ?? 0,
 
             'commentable_type' => $comment->commentable_type,
             'commentable_id' => $comment->commentable_id,
@@ -64,13 +67,27 @@ class CommentTransformer extends Fractal\TransformerAbstract
         ];
     }
 
+    public function includeCommentableMeta(Comment $comment)
+    {
+        return $this->item($comment->commentable, new CommentableMetaTransformer);
+    }
+
     public function includeEditor(Comment $comment)
     {
-        if ($comment->editor === null) {
+        if ($comment->editor_id === null || $comment->editor === null) {
             return;
         }
 
         return $this->item($comment->editor, new UserCompactTransformer);
+    }
+
+    public function includeParent(Comment $comment)
+    {
+        if ($comment->parent === null) {
+            return;
+        }
+
+        return $this->item($comment->parent, new static);
     }
 
     public function includeUser(Comment $comment)

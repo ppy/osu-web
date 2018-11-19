@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota nominator/QAT yang dapat memposting catatan mapper.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
             'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Anda tidak diperbolehkan mengakses channel yang ingin Anda tuju.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Anda tidak memiliki akses ke channel yang ingin Anda tuju.',
-                    'moderated' => 'Channel ini sedang berada dalam moderasi admin.',
-                    'not_lazer' => 'Anda hanya dapat berbicara dalam #lazer saat ini.',
-                ],
+        'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang memblokir Anda atau pengguna yang Anda blokir.',
+        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
+        'moderated' => 'Channel itu sedang dalam pengelolaan.',
+        'no_access' => 'Anda tidak memiliki akses ke channel ini.',
+        'restricted' => 'Anda tidak dapat mengirim pesan ketika sedang dibungkam, dibatasi atau dibann.',
+    ],
 
-                'not_allowed' => 'Tidak dapat mengirim pesan saat diblokir/dibatasi/dibungkam.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Tidak dapat menyunting post yang telah dihapus.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Tidak memiliki izin untuk mengelola forum ini.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Hanya kiriman terakhir yang dapat dihapus.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Anda baru saja mengirim. Tunggulah sebentar atau sunting kiriman terakhir Anda.',
+                'double_post' => 'Mohon sunting postingan terakhir Anda ketimbang memposting kembali.',
                 'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Laman pengguna terkunci.',
                 'not_owner' => 'Hanya dapat menyunting laman pengguna sendiri.',
-                'require_supporter_tag' => 'Supporter tag diperlukan.',
+                'require_supporter_tag' => 'osu!supporter tag diperlukan.',
             ],
         ],
     ],

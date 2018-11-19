@@ -46,4 +46,11 @@ return [
         'count' => ':count lagu',
         'exclusive' => 'eksklusif osu!',
     ],
+
+    'tracklist' => [
+        'title' => 'judul',
+        'length' => 'durasi',
+        'bpm' => 'bpm',
+        'genre' => 'genre',
+    ],
 ];

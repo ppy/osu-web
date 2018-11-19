@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Temas Fijados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'comunidad de osu!',
+    'title' => 'foros de osu!',
 
     'covers' => [
         'create' => [
@@ -75,7 +75,9 @@ return [
         'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
+        'reply_title_prefix' => '',
         'started_by' => 'por :user',
+        'started_by_verbose' => 'iniciado por :user',
 
         'create' => [
             'preview' => 'Previsualizar',
@@ -83,6 +85,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escribir',
             'submit' => 'Publicar',
+
+            'necropost' => [
+                'default' => 'Este tema ha estado inactivo por un tiempo. Solo publica aquí si tienes una razón específica para hacerlo.',
+
+                'new_topic' => [
+                    '_' => "Este tema ha estado inactivo por un tiempo. Si no tienes una razón específica para publicar aquí, :create un tema.",
+                    'create' => 'crear un nuevo tema',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Escribe el contenido de la publicación aquí',
@@ -113,6 +124,11 @@ return [
             'box' => [
                 'total' => 'Temas suscritos',
                 'unread' => 'Temas con nuevas respuestas',
+            ],
+
+            'info' => [
+                'total' => 'Te has suscrito a :total temas.',
+                'unread' => 'Tienes :unread respuestas sin leer a temas suscritos.',
             ],
         ],
 

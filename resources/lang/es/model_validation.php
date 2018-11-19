@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido',
         'locked' => 'La discusión está cerrada.',
-        'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas de mapper.',
 
         'hype' => [
             'guest' => 'Debes iniciar sesión para hypear.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del beatmapa.',
             'negative' => "La marca de tiempo no puede ser negativa.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [

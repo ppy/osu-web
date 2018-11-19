@@ -20,13 +20,17 @@
 
 bn = 'beatmap-discussion-message-length-counter'
 
-BeatmapDiscussions.MessageLengthCounter = ({message}) ->
+BeatmapDiscussions.MessageLengthCounter = ({message, isTimeline}) ->
+  return null if !isTimeline
+
+  maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE
+
   counterClass = bn
-  if message.length > BeatmapDiscussionHelper.maxlength
+  if message.length > maxLength
     counterClass += " #{bn}--over"
-  else if message.length > (BeatmapDiscussionHelper.maxlength * 0.95)
+  else if message.length > (maxLength * 0.95)
     counterClass += " #{bn}--almost-over"
 
   div
     className: counterClass
-    "#{message.length} / #{BeatmapDiscussionHelper.maxlength}"
+    "#{message.length} / #{maxLength}"

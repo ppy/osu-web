@@ -81,6 +81,8 @@ return [
             'getForum' => '포럼',
             'getChat' => '채팅',
             'getLive' => '라이브 스트림',
+            'comments-index' => '댓글',
+            'comments-show' => '댓글',
             'contests' => '콘테스트',
             'profile' => '프로필',
             'tournaments' => '대회',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
+            'orders-index' => '주문 내역',
             'products-show' => '상품',
 
             'new' => '새',
@@ -177,11 +180,6 @@ return [
             'forum' => '커뮤니티 포럼',
             'livestreams' => '라이브 스트림',
             'report' => '문제 신고하기',
-        ],
-        'support' => [
-            '_' => 'osu! 지원',
-            'tags' => '서포터 권한',
-            'merchandise' => '상품',
         ],
         'legal' => [
             '_' => '법률 & 상태',

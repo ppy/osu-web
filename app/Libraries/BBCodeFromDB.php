@@ -211,7 +211,7 @@ class BBCodeFromDB
     public function parseNotice($text)
     {
         return preg_replace(
-            "#\n*\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n*#s",
+            "#\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n?#s",
             "<div class='well'>\\1</div>",
             $text);
     }

@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Verwijder',
+        'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
+        'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',
         'disqualification_prompt' => 'Reden voor diskwalificatie?',
         'disqualified_at' => 'Gediskwalificeerd :time_ago (:reason).',
         'disqualified_no_reason' => 'geen reden opgegeven',
         'disqualify' => 'Diskwalificeer',
         'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
+        'love' => 'Love',
+        'love_confirm' => 'Love deze beatmap?',
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
@@ -172,14 +177,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'typ sleutelwoorden in...',
+            'login_required' => 'Log in om te zoeken.',
             'options' => 'Meer Zoekopties',
-            'supporter_filter' => 'Filteren met :filters vereist een supporter tag',
+            'supporter_filter' => 'Filteren met :filters vereist een actieve osu!supporter tag',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
                 'general' => 'Algemeen',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categorieën',
                 'genre' => 'Genre',
                 'language' => 'Taal',
                 'extra' => 'extra',
@@ -199,13 +205,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filteren met :filters vereist een :link',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Modus',
-        'status' => 'Rank Status',
-        'source' => 'van :source',
-        'load-more' => 'Laad meer...',
     ],
     'general' => [
         'recommended' => 'Aanbevolen moeilijkheid',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Gekwalificeerd',
         'loved' => 'Loved',
         'faves' => 'Favorieten',
-        'pending' => 'Afwachtend',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Begraafplaats',
         'my-maps' => 'Mijn Mappen',
     ],

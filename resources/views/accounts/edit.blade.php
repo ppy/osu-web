@@ -20,7 +20,7 @@
 @section('content')
     @include('home._user_header_default', ['title' => trans('accounts.edit.title')])
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -68,8 +68,9 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--small">
-        <div class="account-edit" id="avatar">
+    <div class="osu-page osu-page--small u-has-anchor">
+        <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
+        <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ trans('accounts.edit.avatar.title') }}
@@ -117,27 +118,27 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_signature')
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_playstyles')
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_privacy')
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_password')
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_email')
     </div>
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_sessions')
     </div>
 @endsection

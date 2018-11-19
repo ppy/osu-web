@@ -20,15 +20,20 @@
 
 return [
     'index' => [
+        'none_running' => 'Şu anda hiç turnuva yapılmıyor, daha sonra tekrar kontrol edin!',
+        'registration_period' => 'Kayıt :start - :end',
+
         'header' => [
             'subtitle' => 'Resmen tanınmış, aktif turnuvaların listesi',
             'title' => 'Topluluk Turnuvaları',
         ],
-        'none_running' => 'Şu anda hiç turnuva yapılmıyor, daha sonra tekrar deneyin!',
-        'registration_period' => 'Kayıtlar :start - :end',
+
+        'item' => [
+            'registered' => 'Kayıtlı oyuncular',
+        ],
 
         'state' => [
-            'current' => 'Etkin Turnuvalar',
+            'current' => 'Devam Eden Turnuvalar',
             'previous' => 'Geçmiş Turnuvalar',
         ],
     ],
@@ -43,7 +48,7 @@ return [
         'registration_ends' => 'Kayıtların bitiş tarihi :date',
 
         'button' => [
-            'cancel' => 'Kaydını iptal et',
+            'cancel' => 'Kaydı İptal Et',
             'register' => 'Beni Kaydet!',
         ],
 

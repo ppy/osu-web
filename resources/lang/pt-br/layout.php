@@ -81,6 +81,8 @@ return [
             'getForum' => 'fóruns',
             'getChat' => 'chat',
             'getLive' => 'transmissões',
+            'comments-index' => 'comentários',
+            'comments-show' => 'comentário',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneios',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'comprar',
             'getInvoice' => 'fatura',
+            'orders-index' => 'histórico de pedidos',
             'products-show' => 'produto',
 
             'new' => 'novo',
@@ -178,11 +181,6 @@ return [
             'livestreams' => 'Transmissões Ao Vivo',
             'report' => 'Relatar um problema',
         ],
-        'support' => [
-            '_' => 'Apoiar osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Mercadorias',
-        ],
         'legal' => [
             '_' => 'Informações Legais & Estado',
             'copyright' => 'Copyright (DMCA)',
@@ -195,7 +193,7 @@ return [
 
     'errors' => [
         '404' => [
-            'error' => 'Página não encontrada',
+            'error' => 'Página Não Encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '403' => [

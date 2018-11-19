@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Είστε σίγουροι;',
+    'confirmation_unsaved' => 'Μη αποθηκευμένες αλλαγές θα χαθούν. Είστε σίγουροι;',
     'saved' => 'Αποθηκεύτηκε',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'Ακύρωση',
         'change' => 'κάντε αλλαγές',
         'click_to_copy' => 'κάντε κλικ για να αντιγράψετε στο πρόχειρο',
         'click_to_copy_copied' => 'αντιγράφτηκε στο πρόχειρο!',
         'delete' => 'Διαγραφή',
+        'edit' => '',
         'hide' => 'απόκρυψη',
         'permalink' => 'permalink',
         'permalink_copied' => 'το link αντιγράφτηκε',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Απάντηση και εκ νέου άνοιγμα',
         'reply_resolve' => 'Απάντηση και Αρχειοθέτηση',
         'reset' => 'Επαναφορά',
+        'restore' => '',
         'save' => 'Αποθήκευση',
         'saving' => 'Γίνεται αποθήκευση...',
         'search' => 'Αναζήτηση',
@@ -61,6 +66,13 @@ return [
         'months' => ':count μήνας|:count μήνες',
         'second_short_unit' => 'δευτ.|δευτ.',
         'years' => ':count χρόνος|:count χρόνια',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

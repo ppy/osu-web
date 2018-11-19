@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Soutěž i jinak, než jen klikáním kruhů.',
-        'large' => 'osu! komunitní soutěže',
+        'large' => 'Komunitní soutěže',
     ],
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
@@ -38,6 +38,7 @@ return [
         'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
         'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
         'drop_here' => 'Tvůj vstup přetáhni sem',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'hlasy',
-        'count' => '1 hlas|:count hlasů',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',
@@ -61,8 +63,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Vstup otevřen',
-        'voting' => 'Hlasování začalo',
-        'results' => 'Výsledky vyhlášeny',
+        'entry' => 'Vstup Otevřen',
+        'voting' => 'Hlasování Začalo',
+        'results' => 'Výsledky Vyhlášeny',
     ],
 ];

@@ -27,14 +27,18 @@ return [
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
             'incorrect_state' => 'Errore nel eseguire l\'azione, prova a ricaricare la pagina.',
-            'owner' => "Non possono nominare i propri beatmap.",
+            'owner' => "Non puoi nominare la tua beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono rispolvere una discussione.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Solo il creatore della beatmap, i nominatori e membri del QAT possono postare note.',
+        ],
+
         'vote' => [
-            'limit_exceeded' => 'Si prega di attendere un po\' prima di esprimere altri voti',
+            'limit_exceeded' => 'Per favore attendi un po\' prima di esprimere altri voti',
             'owner' => "Impossibile votare la propria discussione.",
             'wrong_beatmapset_state' => 'Possibile votare solo su discussioni di mappe in attesa.',
         ],
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'L\'accesso al canale richiesto non è permesso.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'È richiesto l\'accesso al canale di destinazione.',
-                    'moderated' => 'Il canale è momentaneamente moderato.',
-                    'not_lazer' => 'Puoi parlare solo in #lazer al momento.',
-                ],
+        'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o hai bloccato.',
+        'friends_only' => 'L\'utente sta bloccando messaggi da parte dei non-amici.',
+        'moderated' => 'Quel canale è attualmente moderato.',
+        'no_access' => 'Non hai accesso a quel canale.',
+        'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, ristretto o bannato.',
+    ],
 
-                'not_allowed' => 'Non puoi inviare un messaggio mentre sei bannato/ristretto/silenziato.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Impossibile modificare un post cancellato.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Non sei autorizzato a moderare questo forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Solo l\'ultimo post può essere eliminato.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Hai appena postato. Aspetta un po\' o modifica il tuo ultimo post.',
+                'double_post' => 'Modifica il tuo ultimo post invece di postare di nuovo.',
                 'locked' => 'Non puoi rispondere ad un topic bloccato.',
                 'no_forum_access' => 'È richiesto l\'accesso al forum.',
                 'no_permission' => 'Non hai i permessi per rispondere.',
@@ -115,7 +118,7 @@ return [
 
             'vote' => [
                 'no_forum_access' => 'È richiesto l\'accesso al forum.',
-                'over' => 'Il sondaggio è finito e non puoi votare.',
+                'over' => 'Il sondaggio è finito e non puoi più votare.',
                 'voted' => 'Non è permesso cambiare voti.',
 
                 'user' => [
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'La pagina utente è bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
-                'require_supporter_tag' => 'È neccessario avere il supporter.',
+                'require_supporter_tag' => 'è necessario avere un tag supporter.',
             ],
         ],
     ],

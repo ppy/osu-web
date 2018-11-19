@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定の難易度が無効です。',
         'invalid_beatmapset_id' => '指定の譜面が無効です。',
         'locked' => 'ディスカッションはロックされています。',
-        'mapper_note_wrong_user' => 'マッパーメモは譜面作者のみ投稿できます。',
 
         'hype' => [
             'guest' => 'Hypeするにはログインが必要です。',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定されたタイムスタンプは譜面の長さの範囲に存在しません。',
             'negative' => "タイムスタンプは負の数が使えません。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [

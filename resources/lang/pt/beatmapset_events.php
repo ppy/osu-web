@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'A discussão :discussion por :user obteve votos suficientes para kudosu.',
         'kudosu_lost' => 'A discussão :discussion por :user perdeu votos e kudosu concedido foi removido.',
         'kudosu_recalculate' => 'A discussão :discussion teve o seu kudosu concedido recalculado.',
+        'love' => 'Adorado por :user',
         'nominate' => 'Nomeado por :user.',
         'nomination_reset' => 'Novo problema :discussion (:text) accionou um reinício de nomeação.',
-        'qualify' => 'Qualificado.',
+        'qualify' => 'Este beatmap atingiu o número necessário de nomeações e foi qualificado.',
         'rank' => 'Classificado.',
     ],
 
     'index' => [
         'title' => 'Eventos de Conjunto de Beatmaps',
+
+        'form' => [
+            'period' => 'Período',
+            'types' => 'Tipos',
+        ],
     ],
 
     'item' => [
         'content' => 'Conteúdo',
         'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
+    ],
+
+    'type' => [
+        'approve' => 'Aprovação',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => 'Desqualificação',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => 'Ganho de Kudosu',
+        'kudosu_lost' => 'Perda de Kudosu',
+        'kudosu_recalculate' => 'Recalculação de Kudosu',
+        'love' => '',
+        'nominate' => 'Nomeação',
+        'nomination_reset' => '',
+        'qualify' => 'Qualificação',
+        'rank' => 'Classificação',
     ],
 ];

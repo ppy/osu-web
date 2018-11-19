@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Emin misin?',
+    'confirmation_unsaved' => 'Kaydedilmemiş değişiklikler kaybolacak. Emin misiniz?',
     'saved' => 'Kaydedildi',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Yukarıya geri dön',
+        'back_to_previous' => 'Bir önceki pozisyona dön',
         'cancel' => 'İptal',
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
         'delete' => 'Sil',
+        'edit' => 'Düzenle',
         'hide' => 'gizle',
         'permalink' => 'kalıcı bağlantı',
         'permalink_copied' => 'bağlantı kopyalandı',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
         'reply_resolve' => 'Yanıtla ve Çözümle',
         'reset' => 'Sıfırla',
+        'restore' => 'Restore et',
         'save' => 'Kaydet',
         'saving' => 'Kaydediliyor...',
         'search' => 'Arama',
@@ -55,12 +60,19 @@ return [
         'badges' => ':count rozet|:count rozet',
         'days' => ':count gün|:count gün',
         'hour_short_unit' => 'sa',
-        'hours' => ':count saat',
+        'hours' => ':count saat|:count saat',
         'item' => ':count birim|:count birim',
         'minute_short_unit' => 'dk|dk',
         'months' => ':count ay|:count ay',
         'second_short_unit' => 'sn|sn',
         'years' => ':count yıl|:count yıl',
+    ],
+
+    'countdown' => [
+        'days' => 'gün',
+        'hours' => 'saat',
+        'minutes' => 'dakika',
+        'seconds' => 'saniye',
     ],
 
     'datetime' => [

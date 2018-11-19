@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Biztos vagy benne?',
+    'confirmation_unsaved' => 'A nem mentett változtatások elvesznek. Biztos vagy benne?',
     'saved' => 'Mentve',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Vissza a lap tetejére',
+        'back_to_previous' => 'Vissza az előző pozícióra',
         'cancel' => 'Mégse',
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
         'delete' => 'Törlés',
+        'edit' => 'Szerkesztés',
         'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
         'permalink_copied' => 'hivatkozás másolva',
@@ -42,10 +46,11 @@ return [
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',
         'reset' => 'Visszaállítás',
+        'restore' => 'Visszaállítás',
         'save' => 'Mentés',
         'saving' => 'Mentés...',
         'search' => 'Keresés',
-        'see_more' => 'részletek',
+        'see_more' => 'továbbiak mutatása',
         'show' => 'mutat',
         'show_more' => 'több megjelenítése',
         'upload_image' => 'kép feltöltése',
@@ -61,6 +66,13 @@ return [
         'months' => ':count hónap|:count hónap',
         'second_short_unit' => 'mp|mp',
         'years' => ':count év|:count év',
+    ],
+
+    'countdown' => [
+        'days' => 'nap',
+        'hours' => 'óra',
+        'minutes' => 'perc',
+        'seconds' => 'másodperc',
     ],
 
     'datetime' => [
@@ -106,6 +118,6 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Figyelmeztetés',
+        'notice' => 'Értesítés',
     ],
 ];

@@ -76,12 +76,22 @@ return [
         'title' => 'Stili di gioco',
         'mouse' => 'mouse',
         'keyboard' => 'tastiera',
-        'tablet' => 'tablet',
+        'tablet' => 'tavoletta grafica',
         'touch' => 'schermo touch',
     ],
 
     'privacy' => [
         'title' => 'Privacy',
-        'friends_only' => 'Blocca i messaggi privati da persone che non sono sulla tua lista amici',
+        'friends_only' => 'blocca messaggi privati dei non-amici',
+        'hide_online' => 'nascondi il tuo stato online',
+    ],
+
+    'security' => [
+        'current_session' => 'questo dispositivo',
+        'end_session' => 'Termina Sessione',
+        'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
+        'last_active' => 'Ultimo visto:',
+        'title' => 'Sicurezza',
+        'web_sessions' => 'sessioni web',
     ],
 ];

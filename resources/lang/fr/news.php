@@ -21,15 +21,15 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'liste',
-        'news-show' => 'post',
+        'news-show' => 'article',
     ],
 
     'index' => [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Nouveaux posts',
-            'older' => 'Anciens posts',
+            'newer' => 'Nouveaux articles',
+            'older' => 'Anciens articles',
         ],
     ],
 
@@ -37,18 +37,18 @@ return [
         'posted' => 'posté le :time',
 
         'nav' => [
-            'newer' => 'Post le plus récent',
-            'older' => 'Post le plus ancien',
+            'newer' => 'Article le plus récent',
+            'older' => 'Article le plus ancien',
         ],
     ],
 
     'store' => [
-        'button' => 'Modifiée',
-        'ok' => 'Liste modifiée.',
+        'button' => 'Mettre à jour',
+        'ok' => 'Liste mise à jour.',
     ],
 
     'update' => [
-        'button' => 'Modifier',
+        'button' => 'Mettre à jour',
         'ok' => 'Post modifié.',
     ],
 ];

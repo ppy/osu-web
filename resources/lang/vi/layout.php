@@ -81,6 +81,8 @@ return [
             'getForum' => 'diễn đàn',
             'getChat' => 'chat',
             'getLive' => 'live stream',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'thanh toán',
             'getInvoice' => 'hóa đơn',
+            'orders-index' => '',
             'products-show' => 'mặt hàng',
 
             'new' => 'mới',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Diễn Đàn',
             'livestreams' => 'Live Streams',
             'report' => 'Báo Cáo Một Vấn Đề',
-        ],
-        'support' => [
-            '_' => 'Ủng Hộ osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Hàng Hóa',
         ],
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',

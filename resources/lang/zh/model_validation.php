@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定的难度无效。',
         'invalid_beatmapset_id' => '指定的谱面无效。',
         'locked' => '讨论被锁定。',
-        'mapper_note_wrong_user' => '只有谱面作者可以钉上便签。',
 
         'hype' => [
             'guest' => '登录后才能推荐',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
             'negative' => "无法定位时间戳。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '不能回复已删除的评论。',
     ],
 
     'forum' => [

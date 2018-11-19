@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Nur der Beatmap Urheber oder ein Nominator/QAT Mitglied kann Mapper Notizen posten.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
             'owner' => "Man kann nicht in der eigenen Diskussion abstimmen!",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Zugang zum angeforderten Kanal wurde verwehrt.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Zugang zum Kanal wurde verwehrt.',
-                    'moderated' => 'Der Kanal wird momentan moderiert.',
-                    'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
-                ],
+        'blocked' => 'Du kannst keine Nachrichten an einen User senden, der dich oder den du blockst.',
+        'friends_only' => 'Der User blockt alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
+        'moderated' => 'Dieser Kanal wird derzeit moderiert.',
+        'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
+        'restricted' => 'Du kannst keine Nachrichten senden während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+    ],
 
-                'not_allowed' => 'Gebannt, restricted oder stummgeschaltet kann man keine Nachrichten senden.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Du hast keine Berechtigung, dieses Forum zu moderieren.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du hast erst kürzlich einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
+                'double_post' => 'Bitte bearbeite deinen letzten Post, statt erneut zu posten.',
                 'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Dieses Profil ist gesperrt.',
                 'not_owner' => 'Nur das eigene Profil kann bearbeitet werden.',
-                'require_supporter_tag' => 'Ein Supporter-Tag ist hierzu erforderlich.',
+                'require_supporter_tag' => 'Ein osu!supporter Tag ist erforderlich.',
             ],
         ],
     ],

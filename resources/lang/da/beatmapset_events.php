@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Diskussionen :discussion af :user modtog nok stemmer for at modtage kudosu.',
         'kudosu_lost' => 'Diskussionen :discussion by :user mistede stemmer, og det givne kudosu er blevet inddraget.',
         'kudosu_recalculate' => 'Diskussionen :discussion har fået sin kudosu givelser genberegnet.',
+        'love' => '',
         'nominate' => 'Nomineret af :user.',
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
-        'qualify' => 'Kvalificeret.',
+        'qualify' => '',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
         'title' => '',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => '',
         'discussion_deleted' => '[slettet]',
         'type' => '',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

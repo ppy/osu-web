@@ -25,28 +25,62 @@ deletedUser = username: osu.trans('users.deleted')
 class @Comment extends React.PureComponent
   MAX_DEPTH = 3
 
+  makePreviewElement = document.createElement('div')
+
+  makePreview = (comment) ->
+    if comment.deleted_at?
+      osu.trans('comments.deleted')
+    else
+      makePreviewElement.innerHTML = comment.message_html
+      _.truncate makePreviewElement.textContent, length: 100
+
+
+  @defaultProps =
+    showReplies: true
+
+
   constructor: (props) ->
     super props
 
+    @xhr = {}
+
     @state =
+      postingVote: false
       editing: false
       showNewReply: false
-      showReplies: !@isDeleted()
+      expandReplies: !@isDeleted()
+
+
+  componentWillUnmount: =>
+    xhr?.abort() for own _name, xhr of @xhr
 
 
   render: =>
-    children = @props.commentsByParentId[@props.comment.id] ? []
+    children = @props.commentsByParentId?[@props.comment.id] ? []
     user = @userFor(@props.comment)
+    parent = @props.comment.parent ? @props.parent
+
+    modifiers = @props.modifiers?[..] ? []
+    modifiers.push 'top' if @props.depth == 0
 
     repliesClass = 'comment__replies'
     repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
-    repliesClass += ' comment__replies--hidden' if !@state.showReplies
+    repliesClass += ' comment__replies--hidden' if !@state.expandReplies
 
     div
-      className: osu.classWithModifiers 'comment', @props.modifiers
+      className: osu.classWithModifiers 'comment', modifiers
 
-      if @props.depth == 0 && @state.showReplies && children.length > 0
-        div className: 'comment__line'
+      if @canHaveVote()
+        div className: 'comment__float-container comment__float-container--left hidden-xs',
+          @renderVoteButton()
+
+      if @props.depth == 0 && children.length > 0
+        div className: 'comment__float-container comment__float-container--right',
+          button
+            className: 'comment__top-show-replies'
+            type: 'button'
+            onClick: @toggleReplies
+            span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
         if user.id?
@@ -60,34 +94,35 @@ class @Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
-          div className: 'comment__row',
+          if @props.showCommentableMeta
+            div className: 'comment__row comment__row--header',
+              span
+                className: 'comment__row-item comment__row-item--commentable-meta'
+                @commentableMeta()
+
+
+          div className: 'comment__row comment__row--header',
             if user.id?
               a
-                className: 'comment__row-item comment__row-item--username comment__row-item--username-link js-usercard'
                 'data-user-id': user.id
                 href: laroute.route('users.show', user: user.id)
+                className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
                 user.username
             else
               span
                 className: 'comment__row-item comment__row-item--username'
                 user.username
 
-            if @props.parent?
-              message =
-                if @props.parent.deleted_at?
-                  osu.trans('comments.deleted')
-                else
-                  _.truncate $(@props.parent.message_html).text(), length: 100
-              div
+            if parent?
+              span
                 className: 'comment__row-item comment__row-item--parent'
-                title: message
-                span className: 'fas fa-reply'
-                ' '
-                @userFor(@props.parent).username
+                @parentLink(parent)
 
-            span
-              className: 'comment__row-item'
-              dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+            if @isDeleted()
+              span
+                className: 'comment__row-item comment__row-item--deleted'
+                osu.trans('comments.deleted')
+
           if @state.editing
             div className: 'comment__editor',
               el CommentEditor,
@@ -95,25 +130,36 @@ class @Comment extends React.PureComponent
                 message: @props.comment.message
                 modifiers: @props.modifiers
                 close: @closeEdit
-          else
-            div className: 'comment__content',
-              if @isDeleted() && !@props.comment.message_html?
-                div className: 'comment__deleted',
-                  osu.trans('comments.deleted')
-
-              else
-                div
-                  className: 'comment__message'
-                  dangerouslySetInnerHTML:
-                    __html: @props.comment.message_html
+          else if @props.comment.message_html?
+            div
+              className: 'comment__message',
+              dangerouslySetInnerHTML:
+                __html: @props.comment.message_html
 
           div className: 'comment__row comment__row--footer',
-            div className: 'comment__row-item',
-              button
-                type: 'button'
-                className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
-                onClick: @toggleNewReply
-                osu.trans('common.buttons.reply')
+            if @canHaveVote()
+              div
+                className: 'comment__row-item visible-xs'
+                @renderVoteText()
+
+            div
+              className: 'comment__row-item comment__row-item--info'
+              dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+
+            if @canModerate()
+              div className: 'comment__row-item',
+                a
+                  href: laroute.route('comments.show', comment: @props.comment.id)
+                  className: 'comment__action comment__action--permalink'
+                  osu.trans('common.buttons.permalink')
+
+            if @props.showReplies && !@isDeleted()
+              div className: 'comment__row-item',
+                button
+                  type: 'button'
+                  className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
+                  onClick: @toggleNewReply
+                  osu.trans('common.buttons.reply')
 
             if @canEdit()
               div className: 'comment__row-item',
@@ -141,18 +187,24 @@ class @Comment extends React.PureComponent
 
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
-                button
-                  type: 'button'
-                  className: 'comment__action'
-                  onClick: @toggleReplies
-                  "[#{if @state.showReplies then '-' else '+'}] "
-                  osu.trans('comments.replies')
-                  " (#{@props.comment.replies_count.toLocaleString()})"
+                if @props.showReplies
+                  button
+                    type: 'button'
+                    className: 'comment__action'
+                    onClick: @toggleReplies
+                    "[#{if @state.expandReplies then '-' else '+'}] "
+                    osu.trans('comments.replies')
+                    " (#{@props.comment.replies_count.toLocaleString()})"
+                else
+                  span null,
+                    osu.trans('comments.replies')
+                    ': '
+                    @props.comment.replies_count.toLocaleString()
 
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
               div
-                className: 'comment__row-item'
+                className: 'comment__row-item comment__row-item--info'
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'comments.edited',
                     timeago: osu.timeago(@props.comment.edited_at)
@@ -169,25 +221,64 @@ class @Comment extends React.PureComponent
                 close: @closeNewReply
                 modifiers: @props.modifiers
 
-      div
-        className: repliesClass
-        for comment in children
-          el Comment,
-            key: comment.id
-            comment: comment
-            commentsByParentId: @props.commentsByParentId
-            usersById: @props.usersById
-            depth: @props.depth + 1
-            parent: @props.comment
-            modifiers: @props.modifiers
+      if @props.showReplies && @props.comment.replies_count > 0
+        div
+          className: repliesClass
+          for comment in children
+            el Comment,
+              key: comment.id
+              comment: comment
+              commentsByParentId: @props.commentsByParentId
+              usersById: @props.usersById
+              userVotesByCommentId: @props.userVotesByCommentId
+              commentableMetaById: @props.commentableMetaById
+              depth: @props.depth + 1
+              parent: @props.comment
+              modifiers: @props.modifiers
 
-        if children.length < @props.comment.replies_count
-          lastCommentId = _.last(children)?.id
-          el CommentShowMore,
-            key: "show-more:#{lastCommentId}"
-            parent: @props.comment
-            after: lastCommentId
-            modifiers: @props.modifiers
+          if children.length < @props.comment.replies_count
+            lastCommentId = _.last(children)?.id
+            el CommentShowMore,
+              key: "show-more:#{lastCommentId}"
+              parent: @props.comment
+              after: lastCommentId
+              modifiers: @props.modifiers
+              label: osu.trans('comments.show_replies') if children.length == 0
+
+
+  renderVoteButton: =>
+    className = osu.classWithModifiers('comment-vote', @props.modifiers)
+    className += ' comment-vote--posting' if @state.postingVote
+
+    if @hasVoted()
+      className += ' comment-vote--on'
+      hover = null
+    else
+      className += ' comment-vote--off'
+      hover = div className: 'comment-vote__hover', '+1'
+
+    button
+      className: className
+      type: 'button'
+      onClick: @voteToggle
+      disabled: @state.postingVote || !@canVote()
+      span className: 'comment-vote__text',
+        "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
+      if @state.postingVote
+        span className: 'comment-vote__spinner', el Spinner
+      hover
+
+
+  renderVoteText: =>
+    className = 'comment__action'
+    className += ' comment__action--active' if @hasVoted()
+
+    button
+      className: className
+      type: 'button'
+      onClick: @voteToggle
+      disabled: @state.postingVote
+      "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
 
 
   canDelete: =>
@@ -195,28 +286,62 @@ class @Comment extends React.PureComponent
 
 
   canEdit: =>
-    @canModerate() || @isOwner()
+    @canModerate() || (@isOwner() && !@isDeleted())
 
 
-  canRestore: =>
-    @canModerate()
+  canHaveVote: =>
+    !@isDeleted()
 
 
   canModerate: =>
     currentUser.is_admin || currentUser.is_gmt
 
 
+  canRestore: =>
+    @canModerate()
+
+
+  canVote: =>
+    !@isOwner()
+
+
+  commentableMeta: =>
+    meta = @props.commentableMetaById["#{@props.comment.commentable_type}-#{@props.comment.commentable_id}"]
+    meta ?= @props.commentableMetaById['-']
+
+    if meta.url
+      component = a
+      params = href: meta.url
+    else
+      component = span
+      params = null
+
+    component params,
+      span className: 'fas fa-comment-alt'
+      ' '
+      meta.title
+
+
   isOwner: =>
     @props.comment.user_id? && @props.comment.user_id == currentUser.id
+
+
+  hasVoted: =>
+    @props.userVotesByCommentId[@props.comment.id]?
 
 
   delete: =>
     return unless confirm(osu.trans('common.confirmation'))
 
-    $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
+    @xhr.delete?.abort()
+    @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
       $.publish 'comment:updated', comment: data
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   toggleEdit: =>
@@ -231,6 +356,21 @@ class @Comment extends React.PureComponent
     @props.comment.deleted_at?
 
 
+  parentLink: (parent) =>
+    props = title: makePreview(parent)
+
+    if @props.linkParent
+      component = a
+      props.href = laroute.route('comments.show', comment: parent.id)
+    else
+      component = span
+
+    component props,
+      span className: 'fas fa-reply'
+      ' '
+      @userFor(parent).username
+
+
   userFor: (comment) =>
     user = @props.usersById[comment.user_id]
 
@@ -243,14 +383,43 @@ class @Comment extends React.PureComponent
 
 
   restore: =>
-    $.ajax laroute.route('comments.restore', comment: @props.comment.id),
+    @xhr.restore?.abort()
+    @xhr.restore = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
       $.publish 'comment:updated', comment: data
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   toggleNewReply: =>
     @setState showNewReply: !@state.showNewReply
+
+
+  voteToggle: =>
+    @setState postingVote: true
+
+    if @hasVoted()
+      method = 'DELETE'
+      voteAction = 'removed'
+    else
+      method = 'POST'
+      voteAction = 'added'
+
+    @xhr.vote?.abort()
+    @xhr.vote = $.ajax laroute.route('comments.vote', comment: @props.comment.id),
+      method: method
+    .always =>
+      @setState postingVote: false
+    .done (data) =>
+      $.publish 'comment:updated', comment: data
+      $.publish "commentVote:#{voteAction}", id: @props.comment.id
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   closeNewReply: =>
@@ -258,4 +427,4 @@ class @Comment extends React.PureComponent
 
 
   toggleReplies: =>
-    @setState showReplies: !@state.showReplies
+    @setState expandReplies: !@state.expandReplies

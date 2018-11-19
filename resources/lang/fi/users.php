@@ -77,7 +77,7 @@ return [
         'forgot' => 'Unohditko salasanasi?',
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
-            'small' => '(Tukijat pääsevät sisään pian)',
+            'small' => '(osu!tukijat tulevat kohta)',
         ],
 
         'here' => 'täällä', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +97,28 @@ return [
         'error' => 'Sinun tarvitsee olla kirjautunut tätä varten.',
     ],
     'logout_confirm' => 'Oletko varma, että haluat kirjautua ulos? :(',
+    'report' => [
+        'button_text' => 'raportoi',
+        'comments' => 'Lisä-kommentit',
+        'placeholder' => 'Anna kaikki tieto joka voisi olla kätevää.',
+        'reason' => 'Syy',
+        'thanks' => 'Kiitos raportistasi!',
+        'title' => 'Ilmianna :username?',
+
+        'actions' => [
+            'send' => 'Lähetä raportti',
+            'cancel' => 'Peruuta',
+        ],
+
+        'options' => [
+            'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'insults' => 'Haukkuu minua / muita',
+            'spam' => 'Spämmii',
+            'unwanted_content' => 'Linkkaa aikuismateriaalia / muuta epämukavaa materiaalia',
+            'nonsense' => 'Hölynpölyä',
+            'other' => 'Muu (kirjoita alle)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tilisi on rajoitettu!',
         'message' => 'Kun olet rajoitetussa tilassa, et näe muita pelaajia ja tuloksesi ovat näkyvissä vain sinulle. Tämä on yleensä automatisoitu prosessi ja poistuu useimmiten 24 tunnin sisällä. Jos haluat tehdä valituksen <a href="mailto:accounts@ppy.sh">ota yhteyttä tukeen</a>.',
@@ -110,8 +132,6 @@ return [
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, maasta: :country',
         'origin_country' => 'Maasta :country',
         'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää käyttäjästä :username!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
@@ -142,7 +162,7 @@ return [
 
         'extra' => [
             'followers' => '1 seuraaja |:count seuraajaa',
-            'unranked' => 'Ei viimeaikaisia pelauksia',
+            'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
                 'title' => 'Saavutukset',
@@ -192,7 +212,7 @@ return [
                 'available_info' => "Kudosuja voit vaihtaa kudosutähtiin, jotka auttavat tuomaan lisää huomiota beatmapillesi. Näin monta kudosua et ole vielä vaihtanut.",
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
-                'total' => 'Ansaittuja Kudosuja Yhteensä',
+                'total' => 'Ansaittu Kudosu',
                 'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
@@ -245,8 +265,9 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'top_ranks' => [
+                'download_replay' => 'Lataa Replay',
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
-                'not_ranked' => 'Vain hyväksytyt kartat antavat PP:tä.',
+                'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp' => '',
                 'title' => 'Suoritukset',
                 'weighted_pp' => 'painotettu: :pp (:percentage)',
@@ -304,7 +325,7 @@ return [
             'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
         ],
         'post_count' => [
-            '_' => 'Lähettänyt :link',
+            '_' => 'Mukana toiminnassa :link',
             'count' => ':count foorumiviestillä|:count foorumiviestillä',
         ],
         'rank' => [
@@ -326,7 +347,7 @@ return [
     ],
     'status' => [
         'online' => 'Paikalla',
-        'offline' => 'Ei paikalla',
+        'offline' => 'Poissa',
     ],
     'store' => [
         'saved' => 'Käyttäjä luotu',

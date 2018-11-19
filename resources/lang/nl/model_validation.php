@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
         'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
-        'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
             'guest' => 'He moet ingelogd zijn om te hypen.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Opgegeven tijdstip is later dan het einde van de beatmap.',
             'negative' => "Tijdstip kan niet negatief zijn.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [

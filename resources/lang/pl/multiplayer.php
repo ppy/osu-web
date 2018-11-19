@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'usunięta beatmapa',
+        'difference' => 'różnicą :difference punktów',
+        'failed' => 'PRZEGRANA',
         'header' => 'Mecz',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(mecz trwa)',
+        'in_progress_spinner_label' => 'mecz w trakcie',
+        'loading-events' => 'Ładowanie zdarzeń...',
+        'winner' => ':team wygrywa',
+
         'events' => [
             'player-left' => 'gracz :user wyszedł z meczu',
             'player-joined' => 'gracz :user dołączył do meczu',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'mecz został zakończony',
             'host-changed-no-user' => 'host został zmieniony',
         ],
-        'in-progress' => '(mecz trwa)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Precyzja',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Wynik',
             ],
         ],
-        'failed' => 'PRZEGRANA',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Drużyna niebieska',
             'red' => 'Drużyna czerwona',
         ],
-        'winner' => ':team wygrywa',
-        'difference' => 'różnicą :difference punktów',
-        'loading-events' => 'Ładowanie zdarzeń...',
-        'more-events' => 'wyświetl wszystkie...',
-        'beatmap-deleted' => 'usunięta beatmapa',
     ],
     'game' => [
         'scoring-type' => [

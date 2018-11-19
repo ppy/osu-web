@@ -19,7 +19,6 @@
 .beatmapset-panel {
   @top: beatmapset-panel;
   @padding: 10px;
-  @hover-transition-duration: 120ms;
   .own-layer();
   color: @text-color;
 
@@ -165,19 +164,6 @@
 
   &__row {
     display: flex;
-  }
-
-  &__status {
-    background: fade(black, 50%);
-    padding: 0 15px;
-    border-radius: 14px;
-    font-size: 12px;
-    line-height: 28px;
-    font-style: normal;
-    font-weight: 600;
-    text-transform: uppercase;
-
-    .fade-element(@hover-transition-duration);
   }
 
   &__status-container {

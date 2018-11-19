@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '本当にいいですか？',
+    'confirmation_unsaved' => '保存されていない変更は残りません。よろしいですか？',
     'saved' => '保存完了',
 
     'array_and' => [
@@ -29,12 +30,15 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'キャンセル',
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'delete' => '削除',
-        'hide' => '',
+        'edit' => '',
+        'hide' => '隠す',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',
         'post' => '投稿',
@@ -42,11 +46,12 @@ return [
         'reply_reopen' => '返信して再開',
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
+        'restore' => '',
         'save' => '保存',
         'saving' => '保存中・・・',
-        'search' => '',
+        'search' => '検索',
         'see_more' => 'もっと見る',
-        'show' => '',
+        'show' => '表示',
         'show_more' => '展開する',
         'upload_image' => '画像をアップロード',
     ],
@@ -61,6 +66,13 @@ return [
         'months' => ':countヶ月',
         'second_short_unit' => '秒',
         'years' => ':count年',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

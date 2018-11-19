@@ -81,6 +81,8 @@ return [
             'getForum' => '論壇',
             'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => '評選',
             'profile' => '個人簡介',
             'tournaments' => '官方比賽',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
+            'orders-index' => '',
             'products-show' => '商品',
 
             'new' => '最新消息',
@@ -177,11 +180,6 @@ return [
             'forum' => '論壇',
             'livestreams' => '直播',
             'report' => '問題回報',
-        ],
-        'support' => [
-            '_' => '贊助 osu!',
-            'tags' => '成為贊助者',
-            'merchandise' => '銷售',
         ],
         'legal' => [
             '_' => '法律 & 狀態',

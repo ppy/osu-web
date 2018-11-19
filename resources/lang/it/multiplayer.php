@@ -20,19 +20,21 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap cancellata',
+        'difference' => 'di :difference',
+        'failed' => 'FALLITO',
         'header' => 'Partite Multigiocatore',
-        'team-types' => [
-            'head-to-head' => 'Testa a Testa',
-            'tag-coop' => 'Tag Cooperativo',
-            'team-vs' => 'VS a squadre',
-            'tag-team-vs' => 'Tag VS a Squadre',
-        ],
+        'in-progress' => '(partita in corso)',
+        'in_progress_spinner_label' => 'partita in corso',
+        'loading-events' => 'Caricamento eventi...',
+        'winner' => ':team vince',
+
         'events' => [
             'player-left' => ':user ha lasciato la partita',
             'player-joined' => ':user si è unito alla partita',
             'player-kicked' => ':user è stato cacciato dalla partita',
             'match-created' => ':user ha creato la partita',
-            'match-disbanded' => ':the partita è stata terminata',
+            'match-disbanded' => 'la partita è stata terminata',
             'host-changed' => ':user è diventato l\'host',
 
             'player-left-no-user' => 'un giocatore ha lasciato la partita',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'la partita è stata terminata',
             'host-changed-no-user' => 'l\'host è cambiato',
         ],
-        'in-progress' => '(partita in corso)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Precisione',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Punteggio',
             ],
         ],
-        'failed' => 'FALLITO',
+
+        'team-types' => [
+            'head-to-head' => 'Testa a Testa',
+            'tag-coop' => 'Tag Cooperativo',
+            'team-vs' => 'VS a squadre',
+            'tag-team-vs' => 'Tag VS a Squadre',
+        ],
+
         'teams' => [
             'blue' => 'Team Blu',
             'red' => 'Team Rosso',
         ],
-        'winner' => 'Il :team vince',
-        'difference' => 'di :difference',
-        'loading-events' => 'Caricamento eventi...',
-        'more-events' => 'guarda tutto...',
-        'beatmap-deleted' => 'beatmap cancellata',
     ],
     'game' => [
         'scoring-type' => [

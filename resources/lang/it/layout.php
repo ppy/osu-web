@@ -57,7 +57,7 @@ return [
             'beatmap_discussions-index' => 'discussioni di beatmap',
             'beatmapset-watches-index' => 'lista modding',
             'beatmapset_discussion_votes-index' => 'voti di discussione di beatmap',
-            'beatmapset_events-index' => 'eventi beatmapset',
+            'beatmapset_events-index' => 'eventi beatmap',
             'index' => 'lista',
             'packs' => 'pacchetti',
             'show' => 'informazioni',
@@ -67,10 +67,10 @@ return [
             'discussion' => 'modding',
         ],
         'rankings' => [
-            '_' => 'rank',
+            '_' => 'classifiche',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'charts',
+            'charts' => 'spotlights',
             'score' => 'punteggio',
             'country' => 'paese',
             'kudosu' => 'kudosu',
@@ -80,7 +80,9 @@ return [
             'dev' => 'sviluppo',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getLive' => 'dirette',
+            'getLive' => 'live',
+            'comments-index' => 'commenti',
+            'comments-show' => 'commenta',
             'contests' => 'concorsi',
             'profile' => 'profilo',
             'tournaments' => 'tornei',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
+            'orders-index' => 'ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Forum della Comunità',
             'livestreams' => 'Dirette',
             'report' => 'Segnala un problema',
-        ],
-        'support' => [
-            '_' => 'Sostieni osu!',
-            'tags' => 'Tag Supporter',
-            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Legale e Status',

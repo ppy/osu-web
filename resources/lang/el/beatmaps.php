@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Λόγος αποκλεισμού;',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
+        'love' => 'Love',
+        'love_confirm' => 'Αγαπάτε αυτό το beatmap;',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
@@ -172,14 +177,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'πληκτρολογήστε λέξεις-κλειδιά...',
+            'login_required' => 'Συνδεθείτε για να αναζητήσετε.',
             'options' => 'Περισσότερες Επιλογές Αναζήτησης',
-            'supporter_filter' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό supporter tag',
+            'supporter_filter' => 'Το φιλτράρισμα βάσει :filters απαιτεί ένα ενεργό osu!supporter tag',
             'not-found' => 'κανένα αποτέλεσμα',
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
             'filters' => [
                 'general' => 'Γενικά',
                 'mode' => 'Mode',
-                'status' => 'Κατάσταση Κατάταξης',
+                'status' => 'Κατηγορίες',
                 'genre' => 'Είδος',
                 'language' => 'Γλώσσα',
                 'extra' => 'επιπλέον',
@@ -199,13 +205,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Κατάσταση Κατάταξης',
-        'source' => 'από :source',
-        'load-more' => 'Φόρτωση περισσότερων...',
     ],
     'general' => [
         'recommended' => 'Προτεινόμενη δυσκολία',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Αγαπημένα',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Νεκροταφείο',
         'my-maps' => 'Τα maps μου',
     ],

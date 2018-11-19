@@ -103,7 +103,7 @@ return [
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
                 'description' => [
-                    '_' => ':browse laajaa käyttäjien luomaa rytmikarttakirjastoa ja ryhdy pelaamaan!',
+                    '_' => ':browse käyttäjien luomaa laajaa beatmapkokoelmaa ja ryhdy pelaamaan!',
                     'browse' => 'selaa',
                 ],
             ],
@@ -118,10 +118,10 @@ return [
             'error' => 'Virhe ladattaessa uutisia, yritä päivittää sivu?...',
         ],
         'header' => [
-            'welcome' => 'Hei, <strong>:username</strong>!',
-            'messages' => 'Sinulla on :count uusi viesti|Sinulla on :count uutta viestiä',
+            'welcome' => 'Hei <strong>:username</strong>!',
+            'messages' => 'Sinulle on :count uusi viesti|Sinulle on :count uutta viestiä',
             'stats' => [
-                'friends' => 'Ystäviä Paikalla',
+                'friends' => 'Kavereita paikalla',
                 'games' => 'Pelejä',
                 'online' => 'Käyttäjiä paikalla',
             ],

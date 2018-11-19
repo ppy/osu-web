@@ -81,6 +81,8 @@ return [
             'getForum' => 'fóruns',
             'getChat' => 'chat',
             'getLive' => 'ao vivo',
+            'comments-index' => 'comentários',
+            'comments-show' => 'comentário',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneios',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'pagamento',
             'getInvoice' => 'factura',
+            'orders-index' => 'histórico de encomendas',
             'products-show' => 'produto',
 
             'new' => 'novo',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Fóruns da Comunidade',
             'livestreams' => 'Transmissões Ao Vivo',
             'report' => 'Comunicar um Problema',
-        ],
-        'support' => [
-            '_' => 'Apoiar o osu!',
-            'tags' => 'Etiquetas de Apoiante',
-            'merchandise' => 'Mercadoria',
         ],
         'legal' => [
             '_' => 'Legalidade & Situação Jurídica',

@@ -81,6 +81,8 @@ return [
             'getForum' => 'Fórum',
             'getChat' => 'chat',
             'getLive' => 'živě',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'soutěže',
             'profile' => 'profil',
             'tournaments' => 'turnaje',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'zaplatit',
             'getInvoice' => 'faktura',
+            'orders-index' => '',
             'products-show' => 'produkt',
 
             'new' => 'nový',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',
-        ],
-        'support' => [
-            '_' => 'Podpoř osu!',
-            'tags' => 'Štítek podporovatele',
-            'merchandise' => 'Zboží',
         ],
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',

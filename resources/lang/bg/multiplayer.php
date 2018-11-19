@@ -20,53 +20,57 @@
 
 return [
     'match' => [
-        'header' => '',
-        'team-types' => [
-            'head-to-head' => '',
-            'tag-coop' => '',
-            'team-vs' => '',
-            'tag-team-vs' => '',
-        ],
-        'events' => [
-            'player-left' => '',
-            'player-joined' => '',
-            'player-kicked' => '',
-            'match-created' => '',
-            'match-disbanded' => '',
-            'host-changed' => '',
+        'beatmap-deleted' => 'изтрит бийтмап',
+        'difference' => 'по :difference',
+        'failed' => 'ПРОВАЛИЛ СЕ',
+        'header' => 'Мултиплейър мачове',
+        'in-progress' => '(мач в ход)',
+        'in_progress_spinner_label' => 'мач в ход',
+        'loading-events' => 'Зареждане на събитията...',
+        'winner' => ':team печели',
 
-            'player-left-no-user' => '',
-            'player-joined-no-user' => '',
-            'player-kicked-no-user' => '',
-            'match-created-no-user' => '',
-            'match-disbanded-no-user' => '',
-            'host-changed-no-user' => '',
+        'events' => [
+            'player-left' => ':user напусна мача',
+            'player-joined' => ':user се присъедини към мача',
+            'player-kicked' => ':user бе изритан от мача',
+            'match-created' => ':user създаде този мач',
+            'match-disbanded' => 'мачът се разпадна',
+            'host-changed' => ':user стана домакин',
+
+            'player-left-no-user' => 'играч напусна мача',
+            'player-joined-no-user' => 'играч се присъедини към мача',
+            'player-kicked-no-user' => 'играч бе изритан от мача',
+            'match-created-no-user' => 'мачът бе създаден',
+            'match-disbanded-no-user' => 'мачът се разпадна',
+            'host-changed-no-user' => 'домакинът бе сменен',
         ],
-        'in-progress' => '',
+
         'score' => [
             'stats' => [
-                'accuracy' => '',
-                'combo' => '',
-                'score' => '',
+                'accuracy' => 'Прецизност',
+                'combo' => 'Комбо',
+                'score' => 'Точки',
             ],
         ],
-        'failed' => '',
-        'teams' => [
-            'blue' => '',
-            'red' => '',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
-        'winner' => '',
-        'difference' => '',
-        'loading-events' => '',
-        'more-events' => '',
-        'beatmap-deleted' => '',
+
+        'teams' => [
+            'blue' => 'Синият отбор',
+            'red' => 'Червеният отбор',
+        ],
     ],
     'game' => [
         'scoring-type' => [
-            'score' => '',
-            'accuracy' => '',
-            'combo' => '',
-            'scorev2' => '',
+            'score' => 'Най-висок резултат',
+            'accuracy' => 'Най-висока прецизност',
+            'combo' => 'Най-голямо комбо',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];

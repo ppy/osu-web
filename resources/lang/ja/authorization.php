@@ -33,6 +33,10 @@ return [
             'not_owner' => 'スレッド作者と譜面作者にのみディスカッションは解決できます。',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'ビートマップの所有者か、管理者/QATグループのメンバーのみマッパーノートに投稿できます。',
+        ],
+
         'vote' => [
             'limit_exceeded' => '再度評価するには少し間を置いてください。',
             'owner' => "自分のディスカッションは評価できません。",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'チャンネルへのアクセス権限がありません。',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'チャンネルへのアクセスが必要です。',
-                    'moderated' => 'このチャンネルは現在管理者のみ発言できます。',
-                    'not_lazer' => '現在#lazerでのみ発言できます。',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => '制限中・サイレンス中のプレイヤーは発言を禁止されています。',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '最新の投稿のみ削除できます。',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'もう一度投稿や編集をするには前回の投稿から少し間を置いてください。',
+                'double_post' => '再投稿するために最後に投稿した投稿を編集してください。',
                 'locked' => 'ロックされたスレッドには返信できません。',
                 'no_forum_access' => '要求されたチャンネルへのアクセスが必要です。',
                 'no_permission' => '返信の許可がされていません。',

@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Diskuse :discussion uživatele :user dosáhla dostatku hlasů pro kudosu.',
         'kudosu_lost' => 'Diskuse :discussion uživatele :user ztratila hlasy a získané kudosu byly odebrány.',
         'kudosu_recalculate' => 'Diskusi :discussion byly získané kudosu přepočteny.',
+        'love' => 'Tuto mapu miluje :user',
         'nominate' => 'Nominováno uživatelem :user.',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
-        'qualify' => 'Kvalifikované.',
+        'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
     ],
 
     'index' => [
         'title' => 'Události beatmapsetu',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => 'Obsah',
         'discussion_deleted' => '[odstraněno]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

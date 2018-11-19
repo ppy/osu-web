@@ -19,23 +19,32 @@
  */
 
 return [
-    'header' => '',
+    'header' => 'Класиране по :type',
+
     'type' => [
-        'performance' => '',
-        'charts' => '',
-        'score' => '',
-        'country' => '',
+        'performance' => 'Изпълнение',
+        'charts' => 'В светлината на прожектора',
+        'score' => 'Резултат',
+        'country' => 'Държава',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Крайна дата',
+        'map_count' => 'Брой мапове',
+        'participants' => 'Участници',
+        'start_date' => 'Начална дата',
+    ],
+
     'stat' => [
-        'accuracy' => '',
-        'active_users' => '',
-        'country' => '',
-        'play_count' => '',
-        'performance' => '',
-        'total_score' => '',
-        'ranked_score' => '',
-        'average_score' => '',
-        'average_performance' => '',
+        'accuracy' => 'Прецизност',
+        'active_users' => 'Активни потребители',
+        'country' => 'Държава',
+        'play_count' => 'Брой игри',
+        'performance' => 'Изпълнение',
+        'total_score' => 'Общ резултат',
+        'ranked_score' => 'Общ класиран резултат',
+        'average_score' => 'Ср. Резултат',
+        'average_performance' => 'Ср. Изпъл.',
         'ss' => '',
         's' => '',
         'a' => '',

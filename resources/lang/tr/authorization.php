@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Yalnızca başlık sahibi ile beatmap sahibi bir tartışmayı sonlandırabilir.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Sadece beatmap sahibi ya da nominatör/QAT grup üyesi mapper notu gönderebilir.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Lütfen daha fazla oy vermeden önce bir süre bekleyin',
             'owner' => "Kendi tartışmanıza oy veremezsiniz.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'İstenilen kanala erişim yasaktır.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Hedef kanala erişim gereklidir.',
-                    'moderated' => 'Kanal şu anda denetleniyor.',
-                    'not_lazer' => 'Şu anda sadece #lazer içinde konuşabilirsiniz.',
-                ],
+        'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
+        'friends_only' => 'Kullanıcı kendi arkadaş listede bulunmayan kişilerden gelen mesajları engelliyor.',
+        'moderated' => 'Kanal şu anda denetleniyor.',
+        'no_access' => 'Bu kanala erişiminiz yok.',
+        'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
+    ],
 
-                'not_allowed' => 'Yasaklanmış/kısıtlanmış/susturulmuş durumda mesaj gönderemezsiniz.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Silinmiş gönderi düzenlenemez.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Yalnızca son gönderi silinebilir.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Daha şimdi gönderi yaptınız. Biraz bekleyin ya da son gönderinizi düzenleyin.',
+                'double_post' => 'Lütfen yeni gönderi yerine son gönderinizi düzenleyin.',
                 'locked' => 'Kilitli bir başlığa cevap yazamazsınız.',
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
                 'no_permission' => 'Cevaplama izni yok.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Kullanıcı sayfası kilitli.',
                 'not_owner' => 'Yalnızca kendi kullanıcı sayfanızı düzenleyebilirsiniz.',
-                'require_supporter_tag' => 'Supporter etiketi gereklidir.',
+                'require_supporter_tag' => 'osu!supporter etiketi gereklidir.',
             ],
         ],
     ],

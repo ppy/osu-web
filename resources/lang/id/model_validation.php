@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
         'locked' => 'Diskusi dikunci.',
-        'mapper_note_wrong_user' => 'Hanya pemilik beatmap yang dapat mengirim catatan.',
 
         'hype' => [
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
             'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
     ],
 
     'forum' => [

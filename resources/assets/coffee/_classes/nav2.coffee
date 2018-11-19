@@ -21,10 +21,8 @@ class @Nav2
     @hiddenOnMenuAccess = document.getElementsByClassName('js-nav2--hidden-on-menu-access')
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
-    addEventListener 'turbolinks:load', @setLoginBoxElements
     $.subscribe 'click-menu:current', @autoCenterPopup
     $.subscribe 'menu:current', @adjustElementsVisibility
-    $(window).on 'throttled-resize, throttled-scroll', @stickLogin
 
 
   autoCenterPopup: (_e, currentMenu) =>
@@ -49,7 +47,6 @@ class @Nav2
     $(window).on 'throttled-resize.nav2-center-popup', doCenter
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
-    @stickLogin()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
 
@@ -92,18 +89,3 @@ class @Nav2
 
   loginBoxVisible: =>
     @currentMenu == 'nav2-login-box'
-
-
-  stickLogin: =>
-    return unless @loginBoxVisible()
-
-    @loginBox.style.position =
-      if @loginPopupReference.getBoundingClientRect().top < 0
-        'fixed'
-      else
-        ''
-
-
-  setLoginBoxElements: =>
-    @loginPopupReference = document.querySelector('.js-nav2--login-box-reference')
-    @loginBox = document.querySelector('.js-nav2--login-box')

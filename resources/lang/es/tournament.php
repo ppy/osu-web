@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'No hay torneos en activos en este momento, ¡por favor vuelve más tarde!',
+        'registration_period' => 'Inscripción: :start al :end',
+
         'header' => [
             'subtitle' => 'Una lista de torneos activos, y oficialmente reconocidos',
             'title' => 'Torneos de la comunidad',
         ],
-        'none_running' => 'No hay torneos en activos en este momento, ¡por favor vuelve más tarde!',
-        'registration_period' => 'Inscripción: :start al :end',
+
+        'item' => [
+            'registered' => 'Jugadores registrados',
+        ],
 
         'state' => [
             'current' => 'Torneos Activos',

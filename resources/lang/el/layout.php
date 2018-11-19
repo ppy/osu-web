@@ -81,6 +81,8 @@ return [
             'getForum' => 'φόρουμ',
             'getChat' => 'συνομιλία',
             'getLive' => 'ζωντανά',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'διαγωνισμοί',
             'profile' => 'προφίλ',
             'tournaments' => 'τουρνουά',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'ολοκλήρωση αγοράς',
             'getInvoice' => 'τιμολόγιο',
+            'orders-index' => '',
             'products-show' => 'προϊόν',
 
             'new' => 'νέο',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Φόρουμ Κοινότητας',
             'livestreams' => 'Ζωντανές Μεταδόσεις',
             'report' => 'Αναφέρετε Κάποιο Πρόβλημα',
-        ],
-        'support' => [
-            '_' => 'Υποστηρίξτε το osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Προϊόντα',
         ],
         'legal' => [
             '_' => 'Νομική Υπόσταση',

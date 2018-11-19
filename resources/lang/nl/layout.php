@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'wedstrijden',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
+            'orders-index' => '',
             'products-show' => 'artikel',
 
             'new' => 'nieuw',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Community Forums',
             'livestreams' => 'Livestreams',
             'report' => 'Een Probleem Melden',
-        ],
-        'support' => [
-            '_' => 'Steun osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Juridisch & Status',

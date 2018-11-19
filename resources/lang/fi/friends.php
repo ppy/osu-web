@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => 'lisää ystävä',
-      'remove' => 'poista ystävä',
+      'add' => 'lisää kaveri',
+      'remove' => 'poista kaveri',
     ],
 
     'state' => [
-      'friends' => 'ystävät',
+      'friends' => 'kaverit',
       'mutual' => 'yhteinen',
     ],
 
-    'title' => 'Ystävät',
-    'title_compact' => 'ystävät',
+    'title' => 'Kaverit',
+    'title_compact' => 'kaverit',
 
-    'too_many' => 'Ystäväraja saavutettu.',
+    'too_many' => 'Kaverilista täynnä',
 ];

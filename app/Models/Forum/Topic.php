@@ -92,7 +92,7 @@ class Topic extends Model implements AfterCommit
 
         $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
-            $topic->addPostOrExplode($params['user'], $params['body']);
+            $topic->addPostOrExplode($params['user'], $params['body'], false);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -107,7 +107,7 @@ class Topic extends Model implements AfterCommit
         return $topic->fresh();
     }
 
-    public function addPostOrExplode($poster, $body)
+    public function addPostOrExplode($poster, $body, $isReply = true)
     {
         $post = new Post([
             'post_text' => $body,
@@ -118,10 +118,10 @@ class Topic extends Model implements AfterCommit
             'post_time' => Carbon::now(),
         ]);
 
-        $this->getConnection()->transaction(function () use ($post) {
+        $this->getConnection()->transaction(function () use ($post, $isReply) {
             $post->saveOrExplode();
 
-            $this->postsAdded(1);
+            $this->postsAdded($isReply ? 1 : 0);
             optional($this->forum)->postsAdded(1);
 
             if ($post->user !== null) {
@@ -298,6 +298,11 @@ class Topic extends Model implements AfterCommit
     public function setPollLastVoteAttribute($value)
     {
         $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
+    }
+
+    public function getPollLengthDaysAttribute()
+    {
+        return $this->attributes['poll_length'] / 86400;
     }
 
     public function getPollStartAttribute($value)
@@ -627,7 +632,7 @@ class Topic extends Model implements AfterCommit
 
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
+        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
     }
 
     public function postsAdded($count)

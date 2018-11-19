@@ -57,7 +57,7 @@ return [
             'beatmap_discussions-index' => 'dyskusje',
             'beatmapset-watches-index' => 'obserwowane dyskusje',
             'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
-            'beatmapset_events-index' => 'historia zdarzeń zestawu beatmap',
+            'beatmapset_events-index' => 'historia zdarzeń zestawów beatmap',
             'index' => 'lista',
             'packs' => 'paczki',
             'show' => 'informacje',
@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'czat',
             'getLive' => 'na żywo',
+            'comments-index' => 'komentarze',
+            'comments-show' => 'komentarz',
             'contests' => 'konkursy',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
@@ -89,7 +91,7 @@ return [
             'forum-topic-watches-index' => 'subskrybcje',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'fora',
+            'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'płatność',
             'getInvoice' => 'paragon',
+            'orders-index' => 'historia zamówień',
             'products-show' => 'produkt',
 
             'new' => 'nowy',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
-        ],
-        'support' => [
-            '_' => 'Wspomóż osu!',
-            'tags' => 'Status donatora',
-            'merchandise' => 'Sklep',
         ],
         'legal' => [
             '_' => 'Prawne i status',

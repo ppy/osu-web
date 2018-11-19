@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定的難度無效。',
         'invalid_beatmapset_id' => '指定的譜面無效。',
         'locked' => '討論被鎖定。',
-        'mapper_note_wrong_user' => '只有譜面作者可以釘上便籤。',
 
         'hype' => [
             'guest' => '登錄後才能推薦',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
             'negative' => "無法定位時間戳。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [

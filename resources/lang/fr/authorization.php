@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe nominateur/QAT peut poster des notes de mappeur.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Veuillez attendre un peu avant d\'envoyer de nouveaux votes',
             'owner' => "Vous ne pouvez pas voter pour votre propre discussion.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Accès au canal demandé refusé.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'L\'accès au canal voulu est requis.',
-                    'moderated' => 'Ce canal est fermé à la discussion.',
-                    'not_lazer' => 'Vous ne pouvez parler que dans #lazer pour le moment.',
-                ],
+        'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
+        'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
+        'moderated' => 'Ce canal est actuellement modéré.',
+        'no_access' => 'Vous n’avez pas accès à ce canal.',
+        'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
+    ],
 
-                'not_allowed' => 'Vous ne pouvez pas envoyer de messages si vous êtes banni/restreint/réduit au silence.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Vous ne pouvez pas éditer un post supprimé.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Vous n’avez pas la permission de modérer ce forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Seul le dernier message peut être supprimé.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
+                'double_post' => 'Merci d\'éditer votre dernier post au lieu de poster à nouveau.',
                 'locked' => 'Impossible de répondre à un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'no_permission' => 'Vous n\'êtes pas autorisé à répondre.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'Cette fonction est réservée aux supporters.',
+                'require_supporter_tag' => 'le tag supporter est requis.',
             ],
         ],
     ],

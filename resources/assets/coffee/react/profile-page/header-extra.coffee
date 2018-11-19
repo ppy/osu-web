@@ -118,12 +118,14 @@ class ProfilePage.HeaderExtra extends React.Component
                   __html:
                     osu.trans 'users.show.joined_at',
                       date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')), title: joinDateTitle
-            div
-              className: "#{bn}__row"
-              dangerouslySetInnerHTML:
-                __html:
-                  osu.trans 'users.show.lastvisit',
-                    date: rowValue osu.timeago(@props.user.lastvisit)
+
+            if @props.user.last_visit?
+              div
+                className: "#{bn}__row"
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'users.show.lastvisit',
+                      date: rowValue osu.timeago(@props.user.last_visit)
 
           div className: "#{bn}__rows",
             if @props.user.playstyle?

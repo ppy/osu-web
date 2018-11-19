@@ -48,17 +48,36 @@ return [
         'cart_problems' => '장바구니에 문제가 생겼어요!',
         'cart_problems_edit' => '편집하려면 클릭하세요.',
         'declined' => '결제가 취소되었습니다.',
+        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '여기',
+        ],
+
         'pending_checkout' => [
             'line_1' => '이전 결제가 시작 됐지만 끝나지 않았습니다.',
-            'line_2' => '결제 수단을 선택하여 결제를 계속하시거나, :link를 눌러 취소하세요.',
-            'link_text' => '여기를 클릭하세요',
+            'line_2' => '결제 수단을 선택하여 결제를 계속하세요.',
         ],
-        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
     ],
 
     'discount' => ':percent% 절약 가능',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '당신의 결제가 아직 확인되지 않았습니다!',
+                'line_1' => '당신이 이미 결제하셨다면, 저희는 아직 당신의 결제의 확인을 받는것을 기다리고 있을 수 있습니다. 1~2분 후 이 페이지를 새로고침 해주세요!',
+                'line_2' => [
+                    '_' => '결제 도중 문제가 발생하셨다면, :link',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => ':date에 주문함',
+
+        'invoice' => '청구서 보기',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => '이미 결제하여 주문을 수정할 수 없습니다.',
             'processing' => '제품 처리 중인 경우엔 주문을 수정할 수 없습니다.',
             'shipped' => '배송된 주문을 수정할 수 없습니다.',
+        ],
+
+        'status' => [
+            'cancelled' => '취소됨',
+            'checkout' => '준비 중',
+            'delivered' => '배송 완료',
+            'paid' => '결제 완료',
+            'processing' => '확인 대기 중',
+            'shipped' => '운송 중',
         ],
     ],
 

@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Xóa',
+        'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
+        'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
         'disqualification_prompt' => 'Lí do để qualify?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
+        'love' => 'Yêu thích',
+        'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
@@ -172,6 +177,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'nhập từ khóa...',
+            'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
             'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
@@ -179,7 +185,7 @@ return [
             'filters' => [
                 'general' => 'Chung',
                 'mode' => 'Chế Độ',
-                'status' => 'Trạng Thái Xếp Hạng',
+                'status' => 'Danh mục',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
                 'extra' => 'thêm',
@@ -199,13 +205,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Chế Độ',
-        'status' => 'Trạng Thái Xếp Hạng',
-        'source' => 'từ :source',
-        'load-more' => 'Tải thêm...',
     ],
     'general' => [
         'recommended' => 'Độ khó đề nghị',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Yêu Thích',
-        'pending' => 'Đang Chờ',
+        'pending' => 'Đang chờ & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Của Tôi',
     ],

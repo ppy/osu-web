@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Die Diskussion :discussion von :user hat genug Stimmen für kudosu erhalten.',
         'kudosu_lost' => 'Die Diskussion :discussion von :user hat an Stimmen verloren und kudosu wurde entfernt.',
         'kudosu_recalculate' => 'Das verteilte kudosu der Diskussion :discussion wurde neu berechnet.',
+        'love' => 'Nominiert von :user',
         'nominate' => 'Von :user nominiert.',
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
-        'qualify' => 'Qualifiziert.',
+        'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
         'title' => 'Beatmapset-Events',
+
+        'form' => [
+            'period' => 'Zeitraum',
+            'types' => 'Typen',
+        ],
     ],
 
     'item' => [
         'content' => 'Inhalt',
         'discussion_deleted' => '[gelöscht]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => 'Approval',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => 'Disqualifikation',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => 'Love',
+        'nominate' => 'Nominierung',
+        'nomination_reset' => 'Nominierung zurücksetzten',
+        'qualify' => 'Qualifikation',
+        'rank' => 'Ranking',
     ],
 ];

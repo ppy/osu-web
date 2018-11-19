@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Hodnocení',
+
     'type' => [
         'performance' => 'Výkon',
         'charts' => 'Výběry',
         'score' => 'Skóre',
         'country' => 'Stát',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'Přesnost',
         'active_users' => 'Aktivní uživatelé',

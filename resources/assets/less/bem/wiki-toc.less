@@ -17,9 +17,15 @@
  */
 
 .wiki-toc {
-  .own-layer();
+  position: sticky;
+  top: @nav2-height--pinned;
+
   padding-top: 10px;
   padding-right: 10px;
+
+  // let toc scroll if it's too tall.
+  height: calc(100vh ~'-' @nav2-height--pinned);
+  overflow-y: auto;
 
   &__title {
     text-transform: uppercase;

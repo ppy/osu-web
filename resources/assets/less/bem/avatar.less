@@ -100,11 +100,17 @@
   }
 
   &--nav2 {
-    width: @nav2-menu-height;
-    height: @nav2-menu-height;
+    width: @nav2-avatar-height;
+    height: @nav2-avatar-height;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
+    transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      width: @nav2-avatar-height--pinned;
+      height: @nav2-avatar-height--pinned;
+    }
 
     &::after {
       .full-size();

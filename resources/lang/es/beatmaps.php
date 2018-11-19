@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Borrar',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => '¿Motivo de la descalificación?',
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
+        'love' => '',
+        'love_confirm' => '',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
@@ -172,14 +177,15 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
+            'login_required' => 'Inicia sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Necesitas ser supporter para filtrar por :filters',
+            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '...nop, nada encontrado.',
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Modo',
-                'status' => 'Estado de aprobación',
+                'status' => 'Categorías',
                 'genre' => 'Género',
                 'language' => 'Idioma',
                 'extra' => 'Adicional',
@@ -199,13 +205,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'tag de supporter',
+                'link_text' => 'tag de osu!supporter',
             ],
         ],
-        'mode' => 'Modo',
-        'status' => 'Estado de Rank',
-        'source' => 'de :source',
-        'load-more' => 'Cargar más...',
     ],
     'general' => [
         'recommended' => 'Dificultades recomendadas',
@@ -225,7 +227,7 @@ return [
         'qualified' => 'Calificados',
         'loved' => 'Amados',
         'faves' => 'Favoritos',
-        'pending' => 'Pendientes',
+        'pending' => '',
         'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],

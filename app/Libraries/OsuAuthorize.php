@@ -118,7 +118,7 @@ class OsuAuthorize
                     return $prefix.'has_reply';
                 }
             }
-        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutTrashed()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
@@ -151,7 +151,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id) {
+        if ($user->user_id === $discussion->beatmapset->user_id && $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
             return 'ok';
         }
 
@@ -612,7 +612,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted() || ($user !== null && $comment->user_id === $user->getKey())) {
+        if (!$comment->trashed()) {
             return 'ok';
         }
     }
@@ -635,8 +635,24 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($comment->user_id === $user->getKey()) {
+            if ($comment->trashed()) {
+                return 'comment.update.deleted';
+            }
+
             return 'ok';
         }
+    }
+
+    public function checkCommentVote($user, $comment)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return;
+        }
+
+        return 'ok';
     }
 
     public function checkContestEntryStore($user, $contest)
@@ -915,6 +931,22 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkForumTopicPollEdit($user, $topic)
+    {
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        $forumTopicStorePermission = $this->doCheckUser($user, 'ForumTopicStore', $topic->forum);
+        if (!$forumTopicStorePermission->can()) {
+            return $forumTopicStorePermission->rawMessage();
+        }
+
+        if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+            return 'ok';
+        }
     }
 
     public function checkForumTopicVote($user, $topic)

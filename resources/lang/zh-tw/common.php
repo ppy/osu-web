@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => '確定？',
+    'confirmation_unsaved' => '',
     'saved' => '儲存',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => '取消',
         'change' => '變更',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
         'delete' => '刪除',
+        'edit' => '編輯',
         'hide' => '隱藏',
         'permalink' => '永久連結',
         'permalink_copied' => '連結已複製',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',
         'reset' => '重設',
+        'restore' => '',
         'save' => '儲存',
         'saving' => '儲存中...',
         'search' => '搜尋',
@@ -61,6 +66,13 @@ return [
         'months' => ':count 個月',
         'second_short_unit' => '秒',
         'years' => ':count 年',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

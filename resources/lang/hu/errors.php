@@ -32,7 +32,7 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Érvénytelen mód lett megadva.',
-        'standard_converts_only' => 'Egyetlen eredmény sem elérhető a kért módban ezen a beatmap nehézségen.',
+        'standard_converts_only' => 'Nincs elérhető eredmény a kért módra ezen a beatmap nehézségen.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Túl sok beatmap van a kedvenceid közöt! Kérlek távolíts el egyet közülük a folytatáshoz.',

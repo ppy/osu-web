@@ -81,6 +81,8 @@ return [
             'getForum' => 'forum',
             'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',
+            'comments-index' => 'komentar',
+            'comments-show' => 'komentar',
             'contests' => 'kontes',
             'profile' => 'profil',
             'tournaments' => 'turnamen',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'periksa',
             'getInvoice' => 'faktur',
+            'orders-index' => 'riwayat transaksi',
             'products-show' => 'produk',
 
             'new' => 'baru',
@@ -177,11 +180,6 @@ return [
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',
-        ],
-        'support' => [
-            '_' => 'Dukung osu!',
-            'tags' => 'Supporter Tag',
-            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Status Resmi',
