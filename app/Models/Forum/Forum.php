@@ -20,6 +20,9 @@
 
 namespace App\Models\Forum;
 
+use App\Models\User;
+use Carbon\Carbon;
+
 class Forum extends Model
 {
     protected $table = 'phpbb_forums';
@@ -67,6 +70,13 @@ class Forum extends Model
         }
 
         return $lastTopics ?? [];
+    }
+
+    public static function markAllAsRead(User $user)
+    {
+        $user->update(['user_lastmark' => Carbon::now()]);
+        ForumTrack::where('user_id', $user->getKey())->delete();
+        TopicTrack::where('user_id', $user->getKey())->delete();
     }
 
     public function categorySlug()
