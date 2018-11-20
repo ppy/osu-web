@@ -540,36 +540,43 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        switch ($channel->type) {
-            case Channel::TYPES['public']:
-                return 'ok';
+        if ($channel->type === Channel::TYPES['public']) {
+            return 'ok';
+        }
 
-            case Channel::TYPES['private']:
-                $commonGroupIds = array_intersect(
-                    $user->groupIds(),
-                    $channel->allowed_groups
-                );
-
-                if (count($commonGroupIds) > 0) {
+        // FIXME: needs further check before allowing other types.
+        if (false) {
+            switch ($channel->type) {
+                case Channel::TYPES['public']:
                     return 'ok';
-                }
-                break;
 
-            case Channel::TYPES['spectator']:
-            case Channel::TYPES['multiplayer']:
-            case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
-                if (starts_with($channel->name, '#spect_')) {
-                    return 'ok';
-                }
+                case Channel::TYPES['private']:
+                    $commonGroupIds = array_intersect(
+                        $user->groupIds(),
+                        $channel->allowed_groups
+                    );
 
-                if (starts_with($channel->name, '#mp_')) {
-                    $matchId = intval(str_replace('#mp_', '', $channel->name));
-
-                    if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                    if (count($commonGroupIds) > 0) {
                         return 'ok';
                     }
-                }
-                break;
+                    break;
+
+                case Channel::TYPES['spectator']:
+                case Channel::TYPES['multiplayer']:
+                case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
+                    if (starts_with($channel->name, '#spect_')) {
+                        return 'ok';
+                    }
+
+                    if (starts_with($channel->name, '#mp_')) {
+                        $matchId = intval(str_replace('#mp_', '', $channel->name));
+
+                        if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                            return 'ok';
+                        }
+                    }
+                    break;
+            }
         }
 
         return $prefix.'no_access';
