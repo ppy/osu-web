@@ -74,10 +74,6 @@ class CommentBundle
             for ($i = 0; $i < $this->depth; $i++) {
                 $ids = $nestedParentIds->toArray();
                 sort($ids);
-                \Log::info([
-                    'depth' => $i,
-                    'ids' => implode(' ', $ids),
-                ]);
                 $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
                 $nestedParentIds = $nestedComments->pluck('id');
                 $comments = $comments->concat($nestedComments);
