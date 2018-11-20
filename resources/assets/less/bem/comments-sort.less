@@ -16,57 +16,40 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.comments {
-  @_top: comments;
-  @_header-spacing: 20px;
+.comments-sort {
+  @_top: comments-sort;
 
+  .default-gutter();
   display: flex;
-  flex-direction: column;
-  background-color: #fff;
+  margin: -5px -10px;
+  font-size: @font-size--title-small;
 
-  &--changelog {
-    background-color: @changelog-bg-extra;
-    color: @changelog-fg;
-  }
-
-  &__content {
-    background-color: #eee;
+  &__item {
+    .reset-input();
+    margin: 5px;
+    padding: 0 5px;
+    color: #333;
 
     .@{_top}--changelog & {
-      background-color: @changelog-bg;
-    }
-  }
-
-  &__items {
-    padding-top: 10px;
-
-    &--empty {
-      .default-gutter();
-      padding-top: 40px;
-      padding-bottom: 40px;
+      color: inherit;
     }
 
-    &--loading {
-      opacity: 0.5;
+    &--button {
+      color: #555;
+
+      .@{_top}--changelog & {
+        color: #ddd;
+      }
     }
-  }
 
-  &__new {
-    .default-gutter();
-    padding-top: @_header-spacing;
-    padding-bottom: @_header-spacing;
-  }
+    // overrides --button
+    &--active {
+      color: @pink-darker;
+      font-weight: bold;
 
-  &__title {
-    .default-gutter();
-    padding-top: @_header-spacing;
-    padding-bottom: 0;
-    font-size: @font-size--title-small-4;
-    margin: 0;
-    color: @pink-darker;
-
-    .@{_top}--changelog & {
-      color: @pink;
+      .@{_top}--changelog & {
+        color: @pink;
+      }
     }
   }
 }
