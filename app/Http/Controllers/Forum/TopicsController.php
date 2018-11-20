@@ -68,6 +68,48 @@ class TopicsController extends Controller
         );
     }
 
+    public function editPollGet($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
+
+        return view('forum.topics._edit_poll', compact('topic'));
+    }
+
+    public function editPollPost($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
+
+        $poll = (new TopicPoll())->fill($this->getPollParams());
+        $poll->setTopic($topic);
+
+        $topic->getConnection()->transaction(function () use ($poll, $topic) {
+            if (!$poll->save()) {
+                return;
+            }
+
+            if (Auth::user()->getKey() !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_EDIT_POLL',
+                    [$topic->poll_title],
+                    $topic
+                );
+            }
+        });
+
+        if ($poll->validationErrors()->isAny()) {
+            return error_popup($poll->validationErrors()->toSentence());
+        }
+
+        $pollSummary = PollOption::summary($topic, Auth::user());
+        $canEditPoll = $poll->canEdit();
+
+        return view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
+    }
+
     public function issueTag($id)
     {
         $topic = Topic::findOrFail($id);
@@ -283,9 +325,14 @@ class TopicsController extends Controller
 
         $watch = TopicWatch::lookup($topic, Auth::user());
 
+        $poll = new TopicPoll;
+        $poll->setTopic($topic);
+        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+
         return view(
             "forum.topics.{$template}",
             compact(
+                'canEditPoll',
                 'cover',
                 'watch',
                 'jumpTo',
@@ -306,15 +353,7 @@ class TopicsController extends Controller
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
         if (get_bool($request->get('with_poll'))) {
-            $pollParams = get_params($request, 'forum_topic_poll', [
-                'length_days:int',
-                'max_options:int',
-                'options:string_split',
-                'title',
-                'vote_change:bool',
-            ]);
-
-            $poll = (new TopicPoll())->fill($pollParams);
+            $poll = (new TopicPoll())->fill($this->getPollParams());
 
             if (!$poll->isValid()) {
                 return error_popup($poll->validationErrors()->toSentence());
@@ -397,5 +436,16 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getPollParams()
+    {
+        return get_params(request(), 'forum_topic_poll', [
+            'length_days:int',
+            'max_options:int',
+            'options:string_split',
+            'title',
+            'vote_change:bool',
+        ]);
     }
 }
