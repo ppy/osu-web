@@ -42,6 +42,7 @@ class CommentsShow.Main extends React.PureComponent
           userVotesByCommentId: @props.userVotesByCommentId
           commentableMetaById: @props.commentableMetaById
           commentsByParentId: commentsByParentId
+          moreComments: @props.moreComments
           showCommentableMeta: true
           depth: 0
           linkParent: true
