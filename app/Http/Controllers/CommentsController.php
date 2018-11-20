@@ -78,16 +78,15 @@ class CommentsController extends Controller
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includeParent = true;
-            $commentBundle->filterByParentId = false;
 
             $commentPagination = new LengthAwarePaginator(
                 [],
                 Comment::count(),
-                $commentBundle->params['limit'],
-                $commentBundle->params['page'],
+                $commentBundle->params->limit,
+                $commentBundle->params->page,
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => $commentBundle->getParams(),
+                    'query' => $commentBundle->params->forUrl(),
                 ]
             );
 

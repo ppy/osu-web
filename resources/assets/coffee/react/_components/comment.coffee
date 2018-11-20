@@ -235,15 +235,17 @@ class @Comment extends React.PureComponent
               depth: @props.depth + 1
               parent: @props.comment
               modifiers: @props.modifiers
+              currentSort: @props.currentSort
+              moreComments: @props.moreComments
 
-          if children.length < @props.comment.replies_count
-            lastCommentId = _.last(children)?.id
-            el CommentShowMore,
-              key: "show-more:#{lastCommentId}"
-              parent: @props.comment
-              after: lastCommentId
-              modifiers: @props.modifiers
-              label: osu.trans('comments.show_replies') if children.length == 0
+          el CommentShowMore,
+            parent: @props.comment
+            sort: @props.currentSort
+            comments: children
+            moreComments: @props.moreComments
+            total: @props.comment.replies_count
+            modifiers: @props.modifiers
+            label: osu.trans('comments.show_replies') if children.length == 0
 
 
   renderVoteButton: =>

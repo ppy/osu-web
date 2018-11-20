@@ -22,13 +22,7 @@ el = React.createElement
 
 class @Comments extends React.PureComponent
   render: =>
-    # When implementing other type of order, don't forget to take care
-    # how replying and show more interacts. It's currently fine* because
-    # it's ordered by created_at descending which means the reply will
-    # always be at the top and doesn't affect loading older posts.
-    # Also handling new replies will need to be fixed as well for newest
-    # first because it currently just doesn't.
-    commentsByParentId = _.groupBy(@props.sortedComments, 'parent_id')
+    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
     comments = commentsByParentId[null]
 
 
@@ -40,26 +34,34 @@ class @Comments extends React.PureComponent
           commentableId: @props.commentableId
           focus: false
           modifiers: @props.modifiers
-      if comments?
+      div className: 'comments__content',
         div className: 'comments__items',
-          for comment in comments
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: commentsByParentId
-              userVotesByCommentId: @props.userVotesByCommentId
-              usersById: @props.usersById
-              depth: 0
-              modifiers: @props.modifiers
-          if comments.length < @props.topLevelCount
-            lastCommentId = _.last(comments)?.id
+          el CommentsSort,
+            loadingSort: @props.loadingSort
+            currentSort: @props.currentSort
+            modifiers: @props.modifiers
+        if comments?
+          div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
+            for comment in comments
+              el Comment,
+                key: comment.id
+                comment: comment
+                commentsByParentId: commentsByParentId
+                userVotesByCommentId: @props.userVotesByCommentId
+                usersById: @props.usersById
+                depth: 0
+                currentSort: @props.currentSort
+                modifiers: @props.modifiers
+                moreComments: @props.moreComments
             el CommentShowMore,
-              key: "show-more:#{lastCommentId}"
               commentableType: @props.commentableType
               commentableId: @props.commentableId
-              after: lastCommentId
+              comments: comments
+              total: @props.topLevelCount
+              sort: @props.currentSort
               modifiers: _.concat 'top', @props.modifiers
-      else
-        div
-          className: 'comments__items comments__items--empty'
-          osu.trans('comments.empty')
+              moreComments: @props.moreComments
+        else
+          div
+            className: 'comments__items comments__items--empty'
+            osu.trans('comments.empty')
