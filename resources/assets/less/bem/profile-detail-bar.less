@@ -71,13 +71,12 @@
 
   &__level {
     .center-content();
-    height: 100%;
+    height: calc(100% ~'+' 10px);
     width: 50px;
     font-size: @font-size--large;
-
-    // FIXME: actual hexagon
-    border: 4px solid @yellow;
-    border-radius: 10px;
+    background-image: url('/images/backgrounds/level-hexagon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   &__level-progress-text {
