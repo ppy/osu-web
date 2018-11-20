@@ -25,7 +25,6 @@ use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\Log;
 use App\Models\User;
-use Carbon\Carbon;
 use TestCase;
 
 class BeatmapsetDeleteTest extends TestCase
