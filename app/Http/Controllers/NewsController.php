@@ -43,7 +43,7 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $commentBundle = new CommentBundle($post);
+        $commentBundle = CommentBundle::forEmbed($post);
 
         return view('news.show', compact('post', 'commentBundle'));
     }

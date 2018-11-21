@@ -42,7 +42,7 @@ class CommentsIndex.Main extends React.PureComponent
           @renderHeaderTabs()
 
       div className: 'osu-page osu-page--comments',
-        for comment in @props.sortedComments
+        for comment in @props.comments
           el Comment,
             key: comment.id
             comment: comment
