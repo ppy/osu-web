@@ -38,6 +38,15 @@ class ProfilePage.Medals extends React.PureComponent
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+
+      div null,
+        for achievement in @props.userAchievements[0..7]
+          el ProfilePage.AchievementBadge,
+            key: achievement.achievement_id
+            additionalClasses: 'badge-achievement--listing'
+            achievement: @props.achievements[achievement.achievement_id]
+            userAchievement: achievement
+
       div className: 'medals-group',
         all
       if all.length == 0
@@ -59,9 +68,9 @@ class ProfilePage.Medals extends React.PureComponent
       .value()
 
 
-  medal: (achievement, i) =>
+  medal: (achievement) =>
     div
-      key: i
+      key: achievement.id
       className: 'medals-group__medal'
       el ProfilePage.AchievementBadge,
         additionalClasses: 'badge-achievement--listing'
