@@ -41,7 +41,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
-        $this->continued = $this->order->user->supporterTagPurchases->count() > 0;
+        $this->continued = $this->order->user->supporterTagPurchases()->exists();
         $fulfillers = $this->getOrderItemFulfillers();
 
         foreach ($fulfillers as $fulfiller) {
