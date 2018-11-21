@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,43 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.chat {
-  font-size: 12px;
-  width: 100%;
+import * as React from 'react';
 
-  @media @mobile {
-    flex-direction: column;
-  }
-
-  &__conversation-area {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow-y: auto; // without this, firefox scroll breaks
-  }
-
-  &__instructions {
-    margin-top: 10px;
-  }
-
-  &__not-active {
-    padding: 20px;
-    .full-size();
-    .center-content();
-    flex-direction: column;
-    min-height: 250px;
-    color: @community-blue-lighter;
-  }
-
-  &__sidebar {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__title {
-    color: white;
-    .default-text-shadow();
-    font-size: 26px;
-    font-weight: 300;
+export default class ChatLogo extends React.Component<any, any> {
+  render(): React.ReactNode {
+    return (
+      <div className='chat-logo'>
+        <div className='chat-logo__icon'></div>
+        <div className='chat-logo__title'>{osu.trans('chat.title')}</div>
+      </div>
+    );
   }
 }
