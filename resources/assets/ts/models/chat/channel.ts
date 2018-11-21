@@ -74,7 +74,7 @@ export default class Channel {
 
   @computed
   get isUnread(): boolean {
-    if (this.lastReadId) {
+    if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
     } else {
       return this.lastMessageId > -1;
