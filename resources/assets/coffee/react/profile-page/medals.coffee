@@ -35,17 +35,25 @@ class ProfilePage.Medals extends React.PureComponent
                   className: 'medals-group__medals'
                   achievements.map @medal
 
+    recentAchievements = @recentAchievements()
+
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-      div null,
-        for achievement in @props.userAchievements[0..7]
-          el ProfilePage.AchievementBadge,
-            key: achievement.achievement_id
-            additionalClasses: 'badge-achievement--listing'
-            achievement: @props.achievements[achievement.achievement_id]
-            userAchievement: achievement
+      if recentAchievements.length > 0
+        div className: 'page-extra__recent-medals-box',
+          div className: 'page-extra__title page-extra__title--small',
+            osu.trans('users.show.extra.medals.recent')
+          div className: 'page-extra__recent-medals',
+            for achievement in recentAchievements
+              div
+                className: 'page-extra__recent-medal'
+                key: achievement.achievement_id
+                el ProfilePage.AchievementBadge,
+                  achievement: @props.achievements[achievement.achievement_id]
+                  userAchievement: achievement
+                  modifiers: ['dynamic-height']
 
       div className: 'medals-group',
         all
@@ -53,16 +61,20 @@ class ProfilePage.Medals extends React.PureComponent
         osu.trans('users.show.extra.medals.empty')
 
 
+  currentModeFilter: (achievement) =>
+    !achievement.mode? || achievement.mode == @props.currentMode
+
+
   groupedAchievements: =>
     isCurrentUser = currentUser.id == @props.user.id
 
     _.chain(@props.achievements)
       .values()
+      .filter @currentModeFilter
       .filter (a) =>
-        isCurrentMode = !a.mode? || a.mode == @props.currentMode
         isAchieved = @userAchievement a.id
 
-        isCurrentMode && (isAchieved || isCurrentUser)
+        isAchieved || isCurrentUser
       .groupBy (a) =>
         a.grouping
       .value()
@@ -73,7 +85,7 @@ class ProfilePage.Medals extends React.PureComponent
       key: achievement.id
       className: 'medals-group__medal'
       el ProfilePage.AchievementBadge,
-        additionalClasses: 'badge-achievement--listing'
+        modifiers: ['listing']
         achievement: achievement
         userAchievement: @userAchievement achievement.id
 
@@ -81,6 +93,19 @@ class ProfilePage.Medals extends React.PureComponent
   orderedAchievements: (achievements) =>
     _.groupBy achievements, (achievement) =>
       achievement.ordering
+
+
+  recentAchievements: =>
+    ret = []
+
+    for ua in @props.userAchievements
+      achievement = @props.achievements[ua.achievement_id]
+
+      ret.push(ua) if @currentModeFilter(achievement)
+
+      break if ret.length >= 8
+
+    ret
 
 
   userAchievement: (id) =>

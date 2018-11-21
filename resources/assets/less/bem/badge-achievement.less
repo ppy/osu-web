@@ -25,6 +25,12 @@
   text-align: center;
   vertical-align: middle;
 
+  &--dynamic-height {
+    flex: none;
+    width: (1em * @_big-width / @_big-height );
+    height: 1em;
+  }
+
   &--listing {
     width: 70px;
     margin: auto;
@@ -52,6 +58,15 @@
   &__image {
     max-width: 100%;
 
+    &--big {
+      width: @_big-width;
+      height: @_big-height;
+    }
+
+    .@{_top}--dynamic-height & {
+      vertical-align: baseline;
+    }
+
     .@{_top}--recent & {
       max-width: @_recent-width;
     }
@@ -59,11 +74,6 @@
     .@{_top}--locked & {
       opacity: 0.25;
       filter: saturate(0);
-    }
-
-    &--big {
-      width: @_big-width;
-      height: @_big-height;
     }
   }
 }

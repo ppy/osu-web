@@ -101,6 +101,32 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  &__recent-medal {
+    margin: 0 5px;
+  }
+
+  &__recent-medals {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 1em;
+    font-size: 90px; // icon size
+    margin: 0 -5px;
+  }
+
+  &__recent-medals-box {
+    background-color: @community-user-graygreen-darker;
+    margin: 0 (-@gutter-profile-page);
+    padding: 0 @gutter-profile-page 20px;
+
+    @media @desktop {
+      margin-left: (-@gutter-profile-page-desktop);
+      margin-right: (-@gutter-profile-page-desktop);
+      padding-left: @gutter-profile-page-desktop;
+      padding-right: @gutter-profile-page-desktop;
+    }
+  }
+
   &__title {
     display: inline-block;
     color: #fff;
@@ -112,7 +138,7 @@
     font-size: @font-size--title-small-3;
 
     &--small {
-      margin-top: 30px;
+      margin-top: 20px;
       padding-bottom: 0;
       border-bottom: none;
       font-size: @font-size--title-small-3;

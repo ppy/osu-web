@@ -19,7 +19,63 @@
 {div, img} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.AchievementBadge extends React.Component
+class ProfilePage.AchievementBadge extends React.PureComponent
+  @defaultProps =
+    modifiers: []
+
+
+  render: =>
+    @tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
+
+    badgeClass = osu.classWithModifiers('badge-achievement', @props.modifiers)
+    tooltipBadgeClass = 'badge-achievement'
+
+    if !@props.userAchievement?
+      tooltipBadgeClass += ' badge-achievement--locked'
+      badgeClass += ' badge-achievement--locked'
+
+    div
+      className: "js-tooltip-achievement #{badgeClass} #{@props.additionalClasses}",
+      el Img2x,
+        alt: @props.achievement.name
+        className: 'badge-achievement__image'
+        onMouseOver: @onMouseOver
+        src: @iconUrl()
+
+      div
+        className: 'hidden'
+        div
+          className: 'js-tooltip-achievement--content tooltip-achievement__main'
+          ref: 'tooltip'
+          div
+            className: 'tooltip-achievement__title'
+            @props.achievement.grouping
+          div
+            className: 'tooltip-achievement__badge'
+            div
+              className: tooltipBadgeClass
+              div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
+              el Img2x,
+                alt: @props.achievement.name
+                className: 'badge-achievement__image badge-achievement__image--big'
+                src: @iconUrl()
+          div
+            className: 'tooltip-achievement__content'
+            div
+              className: 'tooltip-achievement__nickname'
+              @props.achievement.name
+            div
+              className: 'tooltip-achievement__description'
+              dangerouslySetInnerHTML:
+                __html: @props.achievement.description
+            if @props.userAchievement?
+              div
+                className: 'tooltip-achievement__date js-tooltip-time'
+                title: @props.userAchievement.achieved_at
+                osu.trans 'users.show.extra.achievements.achieved-on',
+                  date: moment(@props.userAchievement.achieved_at).format 'll'
+
+
   onMouseOver: (event) =>
     elem = event.currentTarget
 
@@ -63,50 +119,3 @@ class ProfilePage.AchievementBadge extends React.Component
 
   iconUrl: =>
     "/images/badges/user-achievements/#{@props.achievement.slug}.png"
-
-  render: =>
-    @tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
-
-    badgeClasses = 'badge-achievement'
-    badgeClasses += ' badge-achievement--locked' if !@props.userAchievement?
-
-    div
-      className: "js-tooltip-achievement #{badgeClasses} #{@props.additionalClasses}",
-      el Img2x,
-        alt: @props.achievement.name
-        className: 'badge-achievement__image'
-        onMouseOver: @onMouseOver
-        src: @iconUrl()
-
-      div
-        className: 'hidden'
-        div
-          className: 'js-tooltip-achievement--content tooltip-achievement__main'
-          ref: 'tooltip'
-          div
-            className: 'tooltip-achievement__title'
-            @props.achievement.grouping
-          div
-            className: 'tooltip-achievement__badge'
-            div
-              className: badgeClasses
-              div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
-              el Img2x,
-                alt: @props.achievement.name
-                className: 'badge-achievement__image badge-achievement__image--big'
-                src: @iconUrl()
-          div
-            className: 'tooltip-achievement__content'
-            div
-              className: 'tooltip-achievement__nickname'
-              @props.achievement.name
-            div
-              className: 'tooltip-achievement__description'
-              dangerouslySetInnerHTML:
-                __html: @props.achievement.description
-            if @props.userAchievement?
-              div
-                className: 'tooltip-achievement__date js-tooltip-time'
-                title: @props.userAchievement.achieved_at
-                osu.trans 'users.show.extra.achievements.achieved-on',
-                  date: moment(@props.userAchievement.achieved_at).format 'll'

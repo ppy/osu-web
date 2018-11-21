@@ -261,6 +261,7 @@ return [
             ],
             'medals' => [
                 'empty' => "This user hasn't gotten any yet. ;_;",
+                'recent' => 'Latest Achievements',
                 'title' => 'Medals',
             ],
             'recent_activity' => [
