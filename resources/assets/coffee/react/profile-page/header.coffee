@@ -326,8 +326,8 @@ class Links extends React.PureComponent
     ]
 
     div className: bn,
-      for row, i in rows when _.compact(row).length > 0
-        div key: i, className: "#{bn}__row #{bn}__row--#{i}", row
+      for row, j in rows when _.compact(row).length > 0
+        div key: j, className: "#{bn}__row #{bn}__row--#{j}", row
 
 
   renderJoinDate: =>
