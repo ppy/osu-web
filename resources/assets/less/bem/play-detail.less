@@ -211,30 +211,15 @@
       @media @desktop {
         content: '';
         width: 10px;
-        height: 50%;
+        height: 100%;
         position: absolute;
         left: 0;
         top: 0;
-        background-image: linear-gradient(to right top, @_bg-main 0%, @_bg-main 50%, transparent 50%, transparent 100%);
+        background-color: @_bg-main;
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 
         .@{_top}:hover & {
-          background-image: linear-gradient(to right top, @_bg-main-hover 0%, @_bg-main-hover 50%, transparent 50%, transparent 100%);
-        }
-      }
-    }
-
-    &::after {
-      @media @desktop {
-        content: '';
-        width: 10px;
-        height: 50%;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        background-image: linear-gradient(to right bottom, @_bg-main 0%, @_bg-main 50%, transparent 50%, transparent 100%);
-
-        .@{_top}:hover & {
-          background-image: linear-gradient(to right bottom, @_bg-main-hover 0%, @_bg-main-hover 50%, transparent 50%, transparent 100%);
+          background-color: @_bg-main-hover;
         }
       }
     }
