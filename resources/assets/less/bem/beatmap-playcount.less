@@ -30,6 +30,14 @@
   margin-bottom: 2px;
   line-height: normal;
 
+  &__artist {
+    margin-right: 10px;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
   &__count {
     color: @yellow;
     font-size: @font-size--large;
@@ -96,7 +104,6 @@
 
   &__mapper {
     color: @community-user-graygreen-lighter;
-    margin-left: 10px;
   }
 
   &__mapper-link {
