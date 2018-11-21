@@ -113,7 +113,7 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         // TODO: REMOVE ONCE COMPLETELY LIVE
-        $canWebChat = Auth::user()->isPrivileged() || (config('osu.chat.webchat_enabled') && Auth::user()->isSupporter());
+        $canWebChat = Auth::check() && (Auth::user()->isPrivileged() || (config('osu.chat.webchat_enabled') && Auth::user()->isSupporter()));
         if (!$canWebChat) {
             return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
         } else {
