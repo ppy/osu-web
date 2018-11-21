@@ -112,7 +112,13 @@ class HomeController extends Controller
 
     public function messageUser($user)
     {
-        return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        // TODO: REMOVE ONCE COMPLETELY LIVE
+        $canWebChat = Auth::check() && (Auth::user()->isPrivileged() || (config('osu.chat.webchat_enabled') && Auth::user()->isSupporter()));
+        if (!$canWebChat) {
+            return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        } else {
+            return ujs_redirect(route('chat.index', ['sendto' => $user]));
+        }
     }
 
     public function osuSupportPopup()

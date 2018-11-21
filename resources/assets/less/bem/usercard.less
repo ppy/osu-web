@@ -144,6 +144,34 @@
     }
   }
 
+  &__message {
+    .center-content();
+    .link-plain();
+    .link-white();
+    border-radius: 10px;
+    width: 40px;
+    height: 20px;
+
+    font-size: 14px;
+    background: fade(@blue, 70%);
+
+    &:hover {
+      background: fade(lighten(@blue, 5%), 70%);
+    }
+  }
+
+  &__message-icon {
+    &::before {
+      content: "\F075"; // .fa-comment
+    }
+
+    .@{top}__message:hover & {
+      &::before {
+        content: "\F27A"; // .fa-commenting
+      }
+    }
+  }
+
   &__username {
     font-weight: 100;
     font-style: italic;

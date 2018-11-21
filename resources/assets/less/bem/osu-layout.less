@@ -27,6 +27,43 @@
 
   transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
 
+  &--mobile-app {
+    @media @mobile {
+      position: fixed;
+    }
+
+    /* Turn on custom 8px wide scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px; /* 1px wider than Lion. */
+      /* This is more usable for users trying to click it. */
+      background-color: rgba(255,255,255,0);
+      -webkit-border-radius: 100px;
+    }
+    /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+    ::-webkit-scrollbar:hover {
+      background-color: rgba(0, 0, 0, 0.09);
+    }
+
+    ::-webkit-scrollbar:horizontal {
+      height: 10px;
+    }
+
+    /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+    ::-webkit-scrollbar-thumb {
+      /* This is the EXACT color of Mac OS scrollbars.
+        Yes, I pulled out digital color meter */
+      background: rgba(255,255,255,0.5);
+      -webkit-border-radius: 100px;
+      background-clip: padding-box;
+      border: 2px solid rgba(255, 255, 255, 0);
+      min-height: 10px; /*Prevent it from getting too small */
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+      -webkit-border-radius: 100px;
+    }
+  }
+
   &--body {
     background-color: transparent;
 
@@ -48,6 +85,14 @@
 
   &--body-111-plain {
     background-color: #111;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--body-community {
+    background-color: @community-blue-bg;
 
     &::before {
       display: none;

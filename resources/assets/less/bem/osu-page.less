@@ -204,4 +204,19 @@
   &--dark-bg {
     background-color: #333;
   }
+
+  &--chat {
+    .default-box-shadow();
+    background-color: @community-blue-darker;
+    color: @community-blue;
+
+    flex: 1 0 auto;
+    display: flex;
+    height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 340px); // viewport height - header+footer
+    width: 100vw;
+
+    @media @mobile {
+      height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 110px);
+    }
+  }
 }
