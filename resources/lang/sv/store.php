@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, det finns problem med din varukorg!',
         'cart_problems_edit' => 'Klicka här för att redigera den.',
         'declined' => 'Betalningen avbröts.',
+        'delayed_shipping' => 'Vi är för nuvarande överväldigad med ordrar! Du får gärna placera din order, men kommer kanske få en **extra 1-2 veckors försening** medan vi kommer ikapp alla ordrar.',
         'old_cart' => 'Din varukorg verkar vara inaktuell och har blivit återladdad, var god försök igen.',
         'pay' => 'Betala med Paypal',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'En tidigare transaktion startades men avslutades inte.',
-            'line_2' => 'Välj en betalmetod för att återuppta din tidigare transaktion, eller :link för att avbryta.',
-            'link_text' => 'klicka här',
+            'line_2' => '',
         ],
-        'delayed_shipping' => 'Vi är för nuvarande överväldigad med ordrar! Du får gärna placera din order, men kommer kanske få en **extra 1-2 veckors försening** medan vi kommer ikapp alla ordrar.',
     ],
 
     'discount' => 'spara :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name för :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Du kan inte ändra din beställning då den redan har betalats.',
             'processing' => 'Du kan inte ändra din beställning när den bearbetas.',
             'shipped' => 'Du kan inte ändra din beställning då den redan har skeppats.',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

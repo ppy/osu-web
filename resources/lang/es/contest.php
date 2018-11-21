@@ -38,6 +38,7 @@ return [
         'over' => '¡Gracias por tu participación! Los envios se han cerrado para este concurso y la votación se abrirá pronto.',
         'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
         'drop_here' => 'Suelta tu entrada aquí',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Solo se aceptan archivos .jpg y .png en este concurso.',
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '1 voto|:count votos',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Finalizó el :date',

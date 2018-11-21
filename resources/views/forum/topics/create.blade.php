@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="forum-post__content forum-post__content--poll-create">
-                        @include('forum.topics._create_poll')
+                        @include('forum.topics._create_poll', ['edit' => false])
                     </div>
 
                     <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">

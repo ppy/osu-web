@@ -265,6 +265,7 @@ return [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => '',
                 'pp' => ':amountpp',

@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, có vấn đề với giỏ hàng của bạn!',
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
+        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
+
+        'has_pending' => [
+            '_' => '',
+            'link_text' => '',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Lần thanh toán trước đã bắt đầu nhưng chưa kết thúc.',
-            'line_2' => 'Tiếp tục thanh toán bằng cách chọn một phương thức thanh toán, hoặc :link để hủy.',
-            'link_text' => 'nhấp vào đây',
+            'line_2' => '',
         ],
-        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
     ],
 
     'discount' => 'tiết kiệm :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '',
+                'line_1' => '',
+                'line_2' => [
+                    '_' => '',
+                    'link_text' => '',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,10 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '',
+
+        'invoice' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name cho :username (:duration)',
@@ -82,6 +105,15 @@ return [
             'paid' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được thanh toán.',
             'processing' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.',
             'shipped' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được vận chuyển.',
+        ],
+
+        'status' => [
+            'cancelled' => '',
+            'checkout' => '',
+            'delivered' => '',
+            'paid' => '',
+            'processing' => '',
+            'shipped' => '',
         ],
     ],
 

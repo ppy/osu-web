@@ -134,7 +134,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Transfere o osu!',
-            'support' => 'Suporta o osu!',
+            'support' => 'Apoia o osu!',
             'store' => 'osu!store',
         ],
     ],
@@ -147,6 +147,6 @@ return [
             'part-2' => 'Também sabias que ao apoiar o osu! recebes um monte de funcionalidades úteis, tal como <strong>downloads dentro do jogo</strong> que acciona automaticamente em jogos de espectador e multijogador?',
         ],
         'find-out-more' => 'Clica aqui para descobrir mais!',
-        'download-starting' => "Ah, e não te preocupes - a tua transferência já foi iniciada para ti ;)",
+        'download-starting' => "Ah, e não te preocupes - o teu download já foi iniciado para ti ;)",
     ],
 ];

@@ -66,4 +66,11 @@ return [
             'info' => 'Detail',
         ],
     ],
+
+    'sort' => [
+        '_' => 'Sort by',
+        'new' => 'Recent',
+        'old' => 'Old',
+        'top' => 'Top',
+    ],
 ];

@@ -22,6 +22,7 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Túl gyorsan küldöd az üzeneteket, kérlek várj egy keveset, mielőtt újrapróbálnád.',
+            'too_long' => 'Túl hosszú üzenetet próbálsz küldeni.',
         ],
     ],
 ];

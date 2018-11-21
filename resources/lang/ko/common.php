@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '맨 위로',
+        'back_to_previous' => '이전 위치로 돌아가기',
         'cancel' => '취소',
         'change' => '변경',
         'click_to_copy' => '클립보드에 복사',
         'click_to_copy_copied' => '클립보드에 복사되었습니다!',
         'delete' => '삭제',
+        'edit' => '수정',
         'hide' => '숨기기',
         'permalink' => '고유 주소',
         'permalink_copied' => '링크 복사됨',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => '답변하고 토론 재개하기',
         'reply_resolve' => '답변하고 토론 마무리하기',
         'reset' => '초기화',
+        'restore' => '되돌리기',
         'save' => '저장',
         'saving' => '저장 중...',
         'search' => '검색',
@@ -62,6 +66,13 @@ return [
         'months' => ':count달',
         'second_short_unit' => '초',
         'years' => ':count년',
+    ],
+
+    'countdown' => [
+        'days' => '일',
+        'hours' => '시간',
+        'minutes' => '분',
+        'seconds' => '초',
     ],
 
     'datetime' => [

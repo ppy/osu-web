@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'ยกเลิก',
         'change' => 'เปลี่ยน',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
         'delete' => 'ลบ',
+        'edit' => '',
         'hide' => 'ซ่อน',
         'permalink' => 'ลิงก์ถาวร',
         'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
         'reply_resolve' => 'ตอบกลับ และแก้ไข',
         'reset' => 'รีเซ็ต',
+        'restore' => '',
         'save' => 'บันทึก',
         'saving' => 'กำลังบันทึก...',
         'search' => 'ค้นหา',
@@ -62,6 +66,13 @@ return [
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

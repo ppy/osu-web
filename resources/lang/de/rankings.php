@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type-Rangliste',
+
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Charts',
         'score' => 'Punktzahl',
         'country' => 'Länder',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Enddatum',
+        'map_count' => 'Map-Anzahl',
+        'participants' => 'Teilnehmer',
+        'start_date' => 'Startdatum',
+    ],
+
     'stat' => [
         'accuracy' => 'Genauigkeit',
         'active_users' => 'Aktive Nutzer',

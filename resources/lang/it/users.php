@@ -22,7 +22,7 @@ return [
     'deleted' => '[utente eliminato]',
 
     'beatmapset_activities' => [
-        'title' => "Cronologia di Modding dell'utente",
+        'title' => "Cronologia Modding di :user",
 
         'discussions' => [
             'title_recent' => 'Discussioni aperte di recente',
@@ -112,7 +112,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco sporco / Cheating',
-            'insults' => 'Insultarmi / altro',
+            'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropiati',
             'nonsense' => 'Senza senso',
@@ -266,6 +266,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'title' => 'Recenti',
             ],
             'top_ranks' => [
+                'download_replay' => 'Scarica Replay',
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
                 'pp' => ':amountpp',

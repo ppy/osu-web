@@ -81,6 +81,8 @@ return [
             'getForum' => 'Fórum',
             'getChat' => 'chat',
             'getLive' => 'živě',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'soutěže',
             'profile' => 'profil',
             'tournaments' => 'turnaje',
@@ -133,6 +135,7 @@ return [
 
             'getCheckout' => 'zaplatit',
             'getInvoice' => 'faktura',
+            'orders-index' => '',
             'products-show' => 'produkt',
 
             'new' => 'nový',

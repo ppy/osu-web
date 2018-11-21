@@ -37,8 +37,9 @@ class ChannelsController extends Controller
 
     public function join($channel_id, $user_id)
     {
-        // FIXME: Update this to proper permission check when public-only restriction is lifted
-        $channel = Channel::public()->where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+
+        priv_check('ChatChannelJoin', $channel)->ensureCan();
 
         if (Auth::user()->user_id !== get_int($user_id)) {
             abort(403);
@@ -53,8 +54,10 @@ class ChannelsController extends Controller
 
     public function part($channel_id, $user_id)
     {
-        // FIXME: Update this to proper permission check when public-only restriction is lifted
-        $channel = Channel::public()->where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+
+        // FIXME: doesn't seem right authorizing leaving channel
+        priv_check('ChatChannelJoin', $channel)->ensureCan();
 
         if (Auth::user()->user_id !== get_int($user_id)) {
             abort(403);

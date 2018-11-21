@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Apagar',
+        'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redireccionado de volta para o teu perfil.',
+        'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redireccionado de volta para o perfil de utilizador.',
         'disqualification_prompt' => 'Razão pela desqualificação?',
         'disqualified_at' => 'Desqualificado :time_ago (:reason).',
         'disqualified_no_reason' => 'nenhuma razão especificada',

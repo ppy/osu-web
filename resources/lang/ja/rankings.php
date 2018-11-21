@@ -20,12 +20,21 @@
 
 return [
     'header' => ':typeランキング',
+
     'type' => [
         'performance' => 'パフォーマンス',
         'charts' => 'チャート',
         'score' => 'スコア',
         'country' => '国別',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => '精度(Accuracy)',
         'active_users' => 'アクティブユーザー数',

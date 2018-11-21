@@ -38,6 +38,7 @@ return [
         'over' => '感谢参与！提交已经关闭，投票即将开始。',
         'limit_reached' => '您提交的参赛文件大小超出限制',
         'drop_here' => '将您的参赛文件拖到此处',
+        'download' => '下载 .osz',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
@@ -51,13 +52,14 @@ return [
     'vote' => [
         'list' => '投票',
         'count' => ':count 票',
+        'points' => ':count 分',
     ],
     'dates' => [
         'ended' => '结束于 :date',
 
         'starts' => [
             '_' => '开始于 :date',
-            'soon' => '马上就到',
+            'soon' => '不久之后',
         ],
     ],
     'states' => [

@@ -115,6 +115,9 @@ Route::group(['prefix' => 'community'], function () {
             Route::post('posts/{post}/restore', 'PostsController@restore')->name('posts.restore');
             Route::resource('posts', 'PostsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
+            Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll');
+            Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet');
+
             Route::post('topics/preview', 'TopicsController@preview')->name('topics.preview');
             Route::post('topics/{topic}/issue-tag', 'TopicsController@issueTag')->name('topics.issue-tag');
             Route::post('topics/{topic}/lock', 'TopicsController@lock')->name('topics.lock');
@@ -364,6 +367,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
+    Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap Megbeszéléses Szavazatok',
+        'title' => 'Beatmap Megbeszélési Szavazatok',
     ],
 
     'item' => [

@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Adgang til den anmodede kanal er nægtet.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Adgang til den anmodede kanal er nødvendig.',
-                    'moderated' => 'Kanal er i øjeblikket modereret.',
-                    'not_lazer' => 'Du kan i øjeblikket kun tale i #lazer.',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => 'Kan ikke sende besked imens du er bannet/begrænset/mutet.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Kun sidste opslag kan blive slettet.',

@@ -19,18 +19,27 @@
  */
 
 return [
-    'header' => ':type Tilasto',
+    'header' => ':type tilastot',
+
     'type' => [
         'performance' => 'Suorituskyky',
         'charts' => 'Valokeilassa',
         'score' => 'Piste',
         'country' => 'Maa',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => 'Osallistujat',
+        'start_date' => 'Aloituspäivä',
+    ],
+
     'stat' => [
         'accuracy' => 'Tarkkuus',
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
-        'play_count' => 'Pelaukset',
+        'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
         'ranked_score' => 'Pisteet (hyväksytyt)',

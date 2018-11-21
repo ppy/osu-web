@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Δεν επιτρέπεται η πρόσβαση σε αυτό το κανάλι.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Απαιτείται άδεια για αυτό το κανάλι.',
-                    'moderated' => 'Το κανάλι βρίσκεται υπό παρακολούθηση.',
-                    'not_lazer' => 'Μπορείτε να μιλήσετε μόνο στο #lazer αυτή τη στιγμή.',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => 'Το μήνυμα δε μπορεί να σταλθεί όταν είστε banned/restricted/silenced.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Μόνο η τελευταία δημοσίευση μπορεί να διαγραφεί.',
