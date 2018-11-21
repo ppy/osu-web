@@ -44,7 +44,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
       key: section
       h3
         className: 'page-extra__title page-extra__title--small'
-        osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title", count: count)
+        osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
         ' '
         if count > 0
           span
