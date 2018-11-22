@@ -19,8 +19,7 @@
 el = React.createElement
 
 class @CommentsManager extends React.PureComponent
-  @defaultProps =
-    additionalComments: []
+  SORTS: ['new', 'old', 'top']
 
 
   constructor: (props) ->
@@ -34,16 +33,22 @@ class @CommentsManager extends React.PureComponent
       commentBundle = osu.jsonClone(@props.commentBundle) ?
         osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
+
+      # also props of the containing component
       @state =
-        comments: comments ? commentBundle.comments ? []
+        comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
-        users: users ? commentBundle.users ? []
+        users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         commentableMeta: commentBundle.commentable_meta ? []
+        loadingSort: null
+        currentSort: 'new'
+        moreComments: {}
 
 
   componentDidMount: =>
     $.subscribe "comments:added.#{@id}", @appendBundle
+    $.subscribe "comments:sort.#{@id}", @updateSort
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
@@ -56,34 +61,53 @@ class @CommentsManager extends React.PureComponent
 
   render: =>
     componentProps = _.assign {}, @props.componentProps, @state
-    componentProps.commentableType = @props.commentableType
     componentProps.commentableId = @props.commentableId
+    componentProps.commentableType = @props.commentableType
     componentProps.userVotesByCommentId = _.keyBy @state.userVotes
     componentProps.usersById = _.keyBy(@state.users ? [], 'id')
     componentProps.commentableMetaById = _(@state.commentableMeta ? [])
       .filter (item) -> item?
       .keyBy (item) -> "#{item.type ? ''}-#{item.id ? ''}"
       .value()
-    componentProps.sortedComments = _(@state.comments ? [])
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .value()
 
     el @props.component, componentProps
 
 
-  appendBundle: (_event, {comments}) =>
+  appendBundle: (_event, {commentBundle, prepend}) =>
+    moreComments = osu.jsonClone @state.moreComments
+    moreComments[commentBundle.has_more_id] = commentBundle.has_more
+
     @setState
-      comments: osu.updateCollection @state.comments, comments.comments
-      users: osu.updateCollection @state.users, comments.users
-      commentableMeta: _.concat @state.commentableMeta, comments.commentable_meta
+      comments: @mergeCollection @state.comments, commentBundle.comments, prepend
+      users: @mergeCollection @state.users, commentBundle.users
+      commentableMeta: _.concat @state.commentableMeta, commentBundle.commentable_meta
+      moreComments: moreComments
 
 
   update: (_event, {comment}) =>
     @setState
-      comments: osu.updateCollection @state.comments, [comment]
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]
-      commentableMeta: _.concat @state.commentableMeta, [comment.commentable_meta]
+      comments: @mergeCollection @state.comments, [comment]
+      users: @mergeCollection @state.users, [comment.user, comment.editor]
+      commentableMeta: _.concat @state.commentableMeta, comment.commentable_meta
+
+
+  mergeCollection: (array, values, prepend) =>
+    result = osu.jsonClone array
+    prepend ?= false
+
+    method = if prepend then 'unshift' else 'push'
+
+    for item in values
+      continue unless item?
+
+      pos = _.findIndex result, (i) -> i.id == item.id
+
+      if pos == -1
+        result[method] item
+      else
+        result[pos] = item
+
+    result
 
 
   addVote: (_event, {id}) =>
@@ -100,3 +124,33 @@ class @CommentsManager extends React.PureComponent
 
   saveState: =>
     osu.storeJson @jsonStorageId(), @state
+
+
+  updateSort: (_event, {sort}) =>
+    return unless @props.commentableType && @props.commentableId
+
+    return unless sort in @SORTS
+
+    @setState loadingSort: sort
+
+    params =
+      commentable_type: @props.commentableType
+      commentable_id: @props.commentableId
+      sort: sort
+      parent_id: 0
+
+    $.ajax laroute.route('comments.index'),
+      data: params
+      dataType: 'json'
+    .done (data) =>
+      @setState
+        comments: data.comments ? []
+        users: data.users ? []
+        commentableMeta: data.commentable_meta ? []
+        userVotes: data.user_votes ? []
+        topLevelCount: data.top_level_count
+        currentSort: sort
+        moreComments: {}
+    .always =>
+      @setState
+        loadingSort: null

@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Přístup k požadovanému kanálu není povolen.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Přístup je vyžadován k vybranému kanálu.',
-                    'moderated' => 'Kanál je v současné době moderován.',
-                    'not_lazer' => 'V tuto chvíli můžete mluvit pouze v #lazer.',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => 'Nelze odesílat zprávy při banu/omezení/umlčení.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Lze odstranit pouze poslední příspěvek.',

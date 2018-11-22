@@ -71,7 +71,7 @@ return [
         'go_to_latest' => 'ver a ultima publicação',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Publicar um novo tópico',
+        'new_topic' => 'Criar novo tópico',
         'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',

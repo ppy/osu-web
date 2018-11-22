@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Yalnızca bir özellik isteğine oy verebilirsiniz.',

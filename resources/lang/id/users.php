@@ -265,6 +265,7 @@ return [
                 'title' => 'Terbaru',
             ],
             'top_ranks' => [
+                'download_replay' => 'Unduh Replay',
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp' => ':amountpp',

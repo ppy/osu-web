@@ -33,8 +33,10 @@ return [
             'refresh' => 'Odśwież',
         ],
 
-        'outdated' => [
-            '_' => 'Tłumaczenie tego artykułu jest niepełne. Sprawdź :default dla najdokładniejszych informacji (oraz uaktualnij tłumaczenie samodzielnie, jeśli chcesz pomóc)!',
+        'translation' => [
+            'legal' => 'Niniejsze tłumaczenie zostało stworzone wyłącznie dla ułatwienia komunikacji. Jedynie :default językową tego tekstu należy traktować jako prawnie wiążącą.',
+            'outdated' => 'Tłumaczenie tego artykułu jest nieaktualne. Sprawdź :default dla najdokładniejszych informacji (oraz zaktualizuj tłumaczenie samodzielnie, jeśli chcesz pomóc)!',
+
             'default' => 'oryginalną wersję',
         ],
     ],

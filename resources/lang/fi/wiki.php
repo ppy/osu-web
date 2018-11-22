@@ -33,8 +33,10 @@ return [
             'refresh' => 'Päivitä',
         ],
 
-        'outdated' => [
-            '_' => 'Tämä sivu sisältää vanhentuneen käännöksen alkuperäisestä sisällöstä. Tarkista :default tarkimman informaation saamiseksi (ja harkitse käännöksen päivittämistä, jos voit auttaa)!',
+        'translation' => [
+            'legal' => '',
+            'outdated' => 'Tämä sivu sisältää vanhentuneen käännöksen alkuperäisestä sisällöstä. Tarkista :default tarkimman tiedon saamiseksi (ja harkitse käännöksen päivittämistä, jos voit auttaa)!',
+
             'default' => 'Englanninkielinen versio',
         ],
     ],

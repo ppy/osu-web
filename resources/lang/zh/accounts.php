@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => '隐私',
         'friends_only' => '屏蔽来自陌生人的私信',
+        'hide_online' => '隐藏在线状态',
+    ],
+
+    'security' => [
+        'current_session' => '当前',
+        'end_session' => '终止会话',
+        'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '浏览器会话',
     ],
 ];

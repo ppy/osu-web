@@ -266,6 +266,7 @@ return [
                 'title' => 'ล่า​สุด',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
                 'pp' => ':amountpp',

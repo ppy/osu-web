@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Ranking :type',
+
     'type' => [
         'performance' => 'Globalny',
         'charts' => 'Wyróżnionych',
         'score' => 'Punktowy',
         'country' => 'Krajowy',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data zakończenia',
+        'map_count' => 'Liczba beatmap',
+        'participants' => 'Uczestnicy',
+        'start_date' => 'Data rozpoczęcia',
+    ],
+
     'stat' => [
         'accuracy' => 'Precyzja',
         'active_users' => 'Aktywni użytkownicy',

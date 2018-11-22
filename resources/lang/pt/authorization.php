@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Não é permitido o acesso ao canal solicitado.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'É necessário o acesso ao canal alvo.',
-                    'moderated' => 'Canal actualmente monitorizado.',
-                    'not_lazer' => 'Só podes falar em #lazer de momento.',
-                ],
+        'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
+        'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da lista de amigos dele.',
+        'moderated' => 'Esse canal está actualmente moderado.',
+        'no_access' => 'Tu não tens acesso a esse canal.',
+        'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
+    ],
 
-                'not_allowed' => 'Não é possível enviar mensagem enquanto estiveres banido/restrito/silenciado.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Não é possível editar publicações apagadas.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Sem permissão para moderar este fórum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Somente a ultima publicação pode ser apagada.',
@@ -93,7 +92,7 @@ return [
 
             'store' => [
                 'play_more' => 'Tenta jogar o jogo antes de publicar nos fóruns, por favor! Se tiveres um problema ao jogar, por favor publica no fórum de Ajuda e Suporte.',
-                'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas enquanto jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas ao jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

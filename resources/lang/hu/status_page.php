@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'állapot',
-        'description' => 'mi a helyzet, haver?',
+        'description' => 'MEGHALT -RatinA0 2018',
     ],
 
     'incidents' => [

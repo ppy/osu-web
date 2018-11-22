@@ -43,6 +43,7 @@ return [
     'chat' => [
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
+        'webchat_enabled' => get_int(env('CHAT_WEBCHAT_ENABLED')) ?? false,
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
@@ -77,6 +78,7 @@ return [
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
 
         'necropost_months' => 6,
+        'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
         'double_post_time' => [
             'author' => 24,

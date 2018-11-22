@@ -28,6 +28,7 @@
   padding: 0 (@gutter-desktop + @gutter - 10px);
   margin: 0;
   width: 100%;
+  min-height: @_bar-active-height;
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
@@ -48,6 +49,12 @@
     }
   }
 
+  &--chat {
+    &::after {
+      background-color: @community-blue;
+    }
+  }
+
   &--comments {
     &::after {
       background-color: @blue;
@@ -57,6 +64,10 @@
   &__item {
     display: flex;
 
+    @media @mobile {
+      display: none;
+    }
+
     & + &::before {
       content: '›';
       padding: 5px 5px 15px;
@@ -64,6 +75,10 @@
 
       .@{_top}--changelog & {
         color: @dark-purple;
+      }
+
+      .@{_top}--chat & {
+        color: @community-blue;
       }
 
       .@{_top}--comments & {
@@ -78,6 +93,10 @@
     padding: 5px @_link-padding 15px;
     margin: 0 5px;
     transition: all 100ms;
+
+    @media @mobile {
+      display: none;
+    }
 
     &::before {
       content: '';
@@ -102,6 +121,14 @@
 
       &::before {
         background-color: @dark-purple;
+      }
+    }
+
+    .@{_top}--chat & {
+      color: @community-blue;
+
+      &::before {
+        background-color: @community-blue;
       }
     }
 

@@ -40,6 +40,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
+    @inputBox?.focus() if @props.autoFocus
 
 
   componentWillUpdate: =>
@@ -101,7 +102,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          div className: "#{bn}__message",
+          div className: "#{bn}__message", id: 'new',
             if @props.currentUser.id?
               [
                 el TextareaAutosize,
@@ -112,6 +113,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
+                  innerRef: @setInputBox
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
@@ -122,6 +124,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 el BeatmapDiscussions.MessageLengthCounter,
                   key: 'counter'
                   message: @state.message
+                  isTimeline: @isTimeline()
               ]
             else
               osu.trans('beatmaps.discussions.require-login')
@@ -219,6 +222,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     switch type
       when InputHandler.CANCEL
         @setSticky(false)
+
+
+  isTimeline: =>
+    @props.mode == 'timeline'
 
 
   nearbyDiscussions: =>
@@ -331,6 +338,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     'problem'
 
 
+  setInputBox: (elem) =>
+    @inputBox = elem
+
+
   setMessage: (e) =>
     message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
@@ -385,9 +396,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
+    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
 
-    if @props.mode == 'timeline'
+    if @isTimeline()
       @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true

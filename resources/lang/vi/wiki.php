@@ -33,9 +33,11 @@ return [
             'refresh' => 'Tải lại',
         ],
 
-        'outdated' => [
-            '_' => 'Trang này chứa bản dịch cũ của nội dung gốc. Hãy kiểm tra :default để có thông tin chính xác nhất (và xem xét việc cập nhật bản dịch nếu bạn có thể giúp đỡ)!',
-            'default' => 'Phiên bản tiếng Anh',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
+            'default' => '',
         ],
     ],
 ];

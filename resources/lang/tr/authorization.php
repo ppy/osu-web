@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'İstenilen kanala erişim yasaktır.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Hedef kanala erişim gereklidir.',
-                    'moderated' => 'Kanal şu anda denetleniyor.',
-                    'not_lazer' => 'Şu anda sadece #lazer içinde konuşabilirsiniz.',
-                ],
+        'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
+        'friends_only' => 'Kullanıcı kendi arkadaş listede bulunmayan kişilerden gelen mesajları engelliyor.',
+        'moderated' => 'Kanal şu anda denetleniyor.',
+        'no_access' => 'Bu kanala erişiminiz yok.',
+        'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
+    ],
 
-                'not_allowed' => 'Yasaklanmış/kısıtlanmış/susturulmuş durumda mesaj gönderemezsiniz.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Silinmiş gönderi düzenlenemez.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Yalnızca son gönderi silinebilir.',

@@ -141,7 +141,7 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
-                'defaults_info' => 'Több borító lehetőségek a jövőben lesznek elérhetőek',
+                'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
                     'button' => 'Kép feltöltése',
@@ -265,6 +265,7 @@ return [
                 'title' => 'Legutóbbi',
             ],
             'top_ranks' => [
+                'download_replay' => 'Replay letöltése',
                 'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
                 'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
                 'pp' => '',

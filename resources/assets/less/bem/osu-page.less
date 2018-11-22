@@ -129,6 +129,15 @@
     z-index: @z-index--page-header;
   }
 
+  &--header-v3-compact {
+    @media @desktop {
+      align-self: flex-start;
+      margin-top: 90px;
+      z-index: @z-index--page-header;
+      width: 100%;
+    }
+  }
+
   &--landing-buttons {
     flex: 1 0 auto;
   }
@@ -203,5 +212,20 @@
   // color overrides goes here
   &--dark-bg {
     background-color: #333;
+  }
+
+  &--chat {
+    .default-box-shadow();
+    background-color: @community-blue-darker;
+    color: @community-blue;
+
+    flex: 1 0 auto;
+    display: flex;
+    height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 150px); // viewport height - compact header+footer
+    width: 100vw;
+
+    @media @mobile {
+      height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 110px);
+    }
   }
 }

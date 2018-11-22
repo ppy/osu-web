@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Classement par :type',
+
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Charts',
         'score' => 'Score',
         'country' => 'Pays',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Date de fin',
+        'map_count' => 'Nombre de map',
+        'participants' => 'Participants',
+        'start_date' => 'Date de début',
+    ],
+
     'stat' => [
         'accuracy' => 'Précision',
         'active_users' => 'Utilisateurs actifs',

@@ -46,4 +46,11 @@ return [
         'count' => ':count песен|:count песни',
         'exclusive' => 'osu! ексклузивен',
     ],
+
+    'tracklist' => [
+        'title' => 'заглавие',
+        'length' => 'дължина',
+        'bpm' => 'bpm',
+        'genre' => 'жанр',
+    ],
 ];

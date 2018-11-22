@@ -265,6 +265,7 @@ return [
                 'title' => 'Son',
             ],
             'top_ranks' => [
+                'download_replay' => 'Tekrarı İndir',
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
                 'pp' => '',

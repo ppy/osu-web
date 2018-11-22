@@ -34,7 +34,7 @@ return [
         'kudosu_gain' => 'Keskustelu :discussion käyttäjältä :user sai tarpeeksi ääniä kudosua varten.',
         'kudosu_lost' => 'Keskustelu :discussion käyttäjältä :user menetti ääniä ja annettu kudosu on poistettu.',
         'kudosu_recalculate' => 'Keskustelun :discussion kudosu on uudelleenlaskettu.',
-        'love' => '',
+        'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia tarkasteluvaihetta varten.',
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmapin Tapahtumat',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => 'Sisältö',
         'discussion_deleted' => '[poistettu]',
         'type' => 'Tyyppi',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

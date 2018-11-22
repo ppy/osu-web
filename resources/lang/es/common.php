@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => '¿Estás seguro?',
-    'confirmation_unsaved' => '',
+    'confirmation_unsaved' => 'Se perderán todos los cambios sin guardar. ¿Está seguro?',
     'saved' => 'Guardado',
 
     'array_and' => [
@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Ir arriba',
+        'back_to_previous' => 'Volver a la última posición',
         'cancel' => 'Cancelar',
         'change' => 'cambiar',
         'click_to_copy' => 'haz clic para copiarlo al portapapeles',
         'click_to_copy_copied' => '¡copiado al portapapeles!',
         'delete' => 'Eliminar',
+        'edit' => 'Editar',
         'hide' => 'ocultar',
         'permalink' => 'permalink',
         'permalink_copied' => 'enlace copiado',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',
         'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
         'search' => 'Buscar',
@@ -62,6 +66,13 @@ return [
         'months' => ':count mes|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count año|:count años',
+    ],
+
+    'countdown' => [
+        'days' => 'días',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
     ],
 
     'datetime' => [

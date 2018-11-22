@@ -32,10 +32,10 @@ return [
     'online' => [
         'title' => [
             'users' => 'Paikalla olevia käyttäjiä viimeisen 24 tunnin aikana',
-            'score' => 'Pelaukset viimeisen 24 tunnin aikana',
+            'score' => 'Pelikerrat viimeisen 24 tunnin aikana',
         ],
         'current' => 'Tällä hetkellä paikalla olevat käyttäjät',
-        'score' => 'Pelausta Joka Sekunti',
+        'score' => 'Pelejä per sekunti',
     ],
 
     'recent' => [
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Käynnissäoloaika',
+            'title' => 'Päälläoloaika',
             'graphs' => [
                 'server' => 'palvelin',
                 'web' => 'web',
