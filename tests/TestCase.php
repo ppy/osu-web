@@ -17,7 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Laravel\Passport\Passport;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -63,6 +65,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
                 $connection->disconnect();
             }
         });
+    }
+
+    protected function actAsScopedUser($user, array $scopes = ['*'])
+    {
+        Passport::actingAs($user, $scopes);
+        // Token will be a Mockery object, so the accessor needs to be mocked as well.
+        $user->token()->shouldReceive('getAttribute')->with('scopes')->andReturn($scopes);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

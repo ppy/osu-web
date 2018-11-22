@@ -23,6 +23,7 @@ namespace App\Http\Middleware;
 use App\Exceptions\AuthorizationException;
 use Closure;
 use Illuminate\Http\Request;
+use Laravel\Passport\Exceptions\MissingScopeException;
 
 class RequireScopes
 {
@@ -41,14 +42,17 @@ class RequireScopes
             throw new AuthorizationException();
         }
 
-        if (empty($token->scopes)) {
-            throw new AuthorizationException();
+        // assignment is so Mockery doesn't troll us.
+        $tokenScopes = $token->scopes;
+
+        if (empty($tokenScopes)) {
+            throw new MissingScopeException();
         }
 
         if (!empty($scopes)) {
             foreach ($scopes as $scope) {
                 if ($token->cant($scope)) {
-                    throw new AuthorizationException();
+                    throw new MissingScopeException();
                 }
             }
         }
