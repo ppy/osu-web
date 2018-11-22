@@ -166,8 +166,9 @@ return [
             'unranked' => 'No recent plays',
 
             'achievements' => [
-                'title' => 'Achievements',
                 'achieved-on' => 'Achieved on :date',
+                'locked' => 'Locked',
+                'title' => 'Achievements',
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',

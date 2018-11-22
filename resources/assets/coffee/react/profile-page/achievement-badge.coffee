@@ -28,7 +28,7 @@ class ProfilePage.AchievementBadge extends React.PureComponent
     @tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     badgeClass = osu.classWithModifiers('badge-achievement', @props.modifiers)
-    tooltipBadgeClass = 'badge-achievement'
+    tooltipBadgeClass = 'badge-achievement badge-achievement--dynamic-height'
 
     if !@props.userAchievement?
       tooltipBadgeClass += ' badge-achievement--locked'
@@ -48,32 +48,54 @@ class ProfilePage.AchievementBadge extends React.PureComponent
           className: 'js-tooltip-achievement--content tooltip-achievement__main'
           ref: 'tooltip'
           div
-            className: 'tooltip-achievement__title'
-            @props.achievement.grouping
-          div
             className: 'tooltip-achievement__badge'
             div
               className: tooltipBadgeClass
-              div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
               el Img2x,
                 alt: @props.achievement.name
-                className: 'badge-achievement__image badge-achievement__image--big'
+                className: 'badge-achievement__image'
                 src: @iconUrl()
           div
-            className: 'tooltip-achievement__content'
+            className: 'tooltip-achievement__grouping'
+            @props.achievement.grouping
+
+          div
+            className: "tooltip-achievement__detail-container #{if @props.achievement.instructions? then 'tooltip-achievement__detail-container--hoverable' else ''}"
             div
-              className: 'tooltip-achievement__nickname'
-              @props.achievement.name
-            div
-              className: 'tooltip-achievement__description'
-              dangerouslySetInnerHTML:
-                __html: @props.achievement.description
-            if @props.userAchievement?
+              className: "tooltip-achievement__detail tooltip-achievement__detail--normal"
               div
-                className: 'tooltip-achievement__date js-tooltip-time'
-                title: @props.userAchievement.achieved_at
-                osu.trans 'users.show.extra.achievements.achieved-on',
-                  date: moment(@props.userAchievement.achieved_at).format 'll'
+                className: 'tooltip-achievement__name'
+                @props.achievement.name
+              div
+                className: 'tooltip-achievement__description'
+                dangerouslySetInnerHTML:
+                  __html: @props.achievement.description
+            if @props.achievement.instructions?
+              div
+                className: 'tooltip-achievement__detail tooltip-achievement__detail--hover'
+                div
+                  className: 'tooltip-achievement__instructions'
+                  dangerouslySetInnerHTML:
+                    __html: @props.achievement.instructions
+
+          if @props.userAchievement?
+            div
+              className: 'tooltip-achievement__date'
+              dangerouslySetInnerHTML:
+                __html: osu.trans('users.show.extra.achievements.achieved-on', date: @achievementDateElem())
+          else
+            div
+              className: 'tooltip-achievement__date'
+              osu.trans('users.show.extra.achievements.locked')
+
+
+  achievementDateElem: =>
+    ret = document.createElement 'span'
+    ret.classList.add 'js-tooltip-time'
+    ret.title = @props.userAchievement.achieved_at
+    ret.textContent = moment(@props.userAchievement.achieved_at).format 'll'
+
+    ret.outerHTML
 
 
   onMouseOver: (event) =>
@@ -111,8 +133,8 @@ class ProfilePage.AchievementBadge extends React.PureComponent
       style:
         classes: classes
         tip:
-          width: 10
-          height: 8
+          width: 30
+          height: 20
 
     $(elem).qtip options, event
 
