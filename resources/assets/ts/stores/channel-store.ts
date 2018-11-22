@@ -31,7 +31,6 @@ export default class ChannelStore implements DispatchListener {
   root: RootDataStore;
 
   @observable channels = observable.map<number, Channel>();
-  @observable maxMessageId: number = 0;
   @observable loaded: boolean = false;
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
@@ -53,22 +52,23 @@ export default class ChannelStore implements DispatchListener {
     }
   }
 
-  getMaxId(): number {
-    return this.maxMessageId;
-  }
-
   @action
   flushStore() {
     this.channels = observable.map<number, Channel>();
-    this.maxMessageId = 0;
     this.loaded = false;
   }
 
-  @computed get
-  nonPmChannels(): Channel[] {
+  @computed
+  get maxMessageId(): number {
+    const channelArray = Array.from(this.channels.toJS().values());
+    return _.maxBy(channelArray, 'lastMessageId').lastMessageId;
+  }
+
+  @computed
+  get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type !== 'PM') {
+      if (channel.type !== 'PM' && channel.metaLoaded) {
         sortedChannels.push(channel);
       }
     });
@@ -82,11 +82,11 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
-  @computed get
-  pmChannels(): Channel[] {
+  @computed
+  get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type === 'PM') {
+      if (channel.type === 'PM' && channel.metaLoaded) {
         sortedChannels.push(channel);
       }
     });
@@ -141,21 +141,18 @@ export default class ChannelStore implements DispatchListener {
     }
 
     this.getOrCreate(channelId).addMessages(messages);
-
-    const max: number = _.maxBy(messages, 'messageId').messageId;
-
-    if (max > this.maxMessageId) {
-      this.maxMessageId = max;
-    }
   }
 
   @action
   updatePresence(presence: ChannelJSON[]) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
+    });
 
-      if (json.last_message_id > this.maxMessageId) {
-        this.maxMessageId = json.last_message_id;
+    // remove parted channels
+    this.channels.forEach((channel) => {
+      if (!presence.find((json) => json.channel_id === channel.channelId && !channel.newChannel)) {
+        this.channels.delete(channel.channelId);
       }
     });
 

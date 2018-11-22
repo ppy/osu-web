@@ -18,9 +18,12 @@
 
 .chat-conversation-list {
   width: 270px;
-  flex-shrink: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  @media @desktop {
+    padding: 10px 0px;
+  }
 
   @media @mobile {
     display: flex;
