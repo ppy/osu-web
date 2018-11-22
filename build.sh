@@ -39,12 +39,6 @@ php artisan passport:keys
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
-if [ ! "${APP_DEBUG:-false}" = "true" ]
-then
-  php artisan config:cache
-  php artisan route:cache
-fi
-
 command -v yarn || npm install -g yarn
 yarn
 yarn run production
