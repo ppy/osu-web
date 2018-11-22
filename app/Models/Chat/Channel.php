@@ -160,11 +160,6 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        // TODO: Remove this when join restriction is lifted
-        if ($this->type !== self::TYPES['public']) {
-            return;
-        }
-
         UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
