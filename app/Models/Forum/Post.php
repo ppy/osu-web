@@ -284,7 +284,7 @@ class Post extends Model implements AfterCommit
         dispatch(new EsIndexDocument($this));
     }
 
-    public function bodyHTML($options)
+    public function bodyHTML($options = [])
     {
         return bbcode($this->post_text, $this->bbcode_uid, array_merge(['withGallery' => true], $options));
     }
