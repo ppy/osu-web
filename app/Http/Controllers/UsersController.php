@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -188,14 +189,16 @@ class UsersController extends Controller
 
         priv_check('UserReport', Auth::user())->ensureCan();
 
-        $report = Auth::user()->reportsMade()->make([
-            'user_id' => $user->getKey(),
-            'comments' => trim(request('comments')),
-            'reason' => trim(request('reason')),
-        ]);
-
         try {
-            $report->saveOrExplode();
+            $report = Auth::user()->reportsMade()->create([
+                'user_id' => $user->getKey(),
+                'comments' => trim(request('comments')),
+                'reason' => trim(request('reason')),
+            ]);
+
+            if (!$report->exists) {
+                throw new ModelNotSavedException($report->validationErrors()->toSentence());
+            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {
@@ -429,21 +432,21 @@ class UsersController extends Controller
             // Score
             case 'scoresBest':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
+                $includes = ['beatmap', 'beatmapset', 'user'];
                 $query = $user->scoresFirst($options['mode'], true)
                     ->orderBy('score_id', 'desc')
-                    ->with('beatmap', 'beatmap.beatmapset');
+                    ->with('beatmap', 'beatmap.beatmapset', 'user');
                 break;
             case 'scoresRecent':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'best'];
+                $includes = ['beatmap', 'beatmapset', 'best', 'user'];
                 $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset', 'best');
+                    ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                 break;
         }
 

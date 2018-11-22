@@ -19,6 +19,7 @@
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import { a, div, i, img, small, span } from 'react-dom-factories'
+import { ScoreHelper } from 'score-helper'
 
 osu = window.osu
 
@@ -95,7 +96,7 @@ export PlayDetail = (props) ->
 
     div
       className: 'detail-row__more'
-      if score.replay
+      if ScoreHelper.hasMenu(score)
         el PlayDetailMenu,
           onHide: () -> props.onMenuActive?(active: false, index: props.index)
           onShow: () -> props.onMenuActive?(active: true, index: props.index)

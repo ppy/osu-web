@@ -116,4 +116,8 @@ return [
             'username_is_same' => 'This is already your username, silly!',
         ],
     ],
+
+    'user_report' => [
+        'self' => "You can't report yourself!",
+    ],
 ];
