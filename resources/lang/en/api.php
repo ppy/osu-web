@@ -25,4 +25,8 @@ return [
             'too_long' => 'The message you are trying to send is too long.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => 'Identify your osu! account',
+    ],
 ];

@@ -28,5 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         }
 
         Passport::routes();
+
+        Passport::tokensCan([
+            'identify' => trans('api.scopes.identify'),
+        ]);
     }
 }
