@@ -91,8 +91,12 @@
   }
 
   &__content-overflow-wrapper-inner {
-    padding-right: 30px;
+    padding-right: @gutter-profile-page;
     padding-bottom: 20px;
+
+    @media @desktop {
+      padding-right: @gutter-profile-page-desktop;
+    }
   }
 
   &__content-overflow-wrapper-outer {

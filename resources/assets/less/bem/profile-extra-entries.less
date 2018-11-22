@@ -22,6 +22,10 @@
   margin: 0;
   @item-height: 25px;
 
+  &--kudosu {
+    margin-top: 20px;
+  }
+
   &__item {
     display: flex;
     justify-content: space-between;
@@ -53,6 +57,20 @@
         opacity: 1;
         transition: all 50ms ease-out;
       }
+    }
+  }
+
+  &__kudosu-amount {
+    font-weight: inherit;
+    font-style: italic;
+    color: @pink-text;
+  }
+
+  &__link {
+    .link-blue-light();
+
+    &--kudosu {
+      font-style: italic;
     }
   }
 
