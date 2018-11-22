@@ -53,7 +53,7 @@ class HomeController extends Controller
     {
         $post = new Post(['post_text' => Request::input('text')]);
 
-        return $post->bodyHTML;
+        return $post->bodyHTML();
     }
 
     public function downloadQuotaCheck()

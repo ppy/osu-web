@@ -40,6 +40,7 @@ class BBCodeFromDB
             'ignoreLineHeight' => false,
             'withoutImageDimensions' => false,
             'extraClasses' => '',
+            'modifiers' => [],
         ];
 
         $this->text = $text;
@@ -333,6 +334,10 @@ class BBCodeFromDB
 
         if (present($this->options['extraClasses'])) {
             $className .= " {$this->options['extraClasses']}";
+        }
+
+        foreach ($this->options['modifiers'] as $mod) {
+            $className .= " {$className}--{$mod}";
         }
 
         if ($this->options['ignoreLineHeight']) {
