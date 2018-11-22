@@ -17,7 +17,7 @@
 --}}
 Hi {{ $donor->username }},
 
-Thanks a lot for your {{ $donor->hasSupported() ? 'continued': '' }} support towards osu!.
+Thanks a lot for your {{ $continued ? 'continued ': '' }}support towards osu!.
 It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.
 {{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.$duration : '' }}.
 More new supporter benefits will appear over time, as well!
