@@ -84,6 +84,24 @@ class RequireScopesTest extends TestCase
         $middleware->handle($this->request, $this->next, ...['identify']);
     }
 
+    public function testRequiresSpecificScopeAndAllScopeGiven()
+    {
+        $this->setUser(factory(User::class)->create(), ['*']);
+        $middleware = new RequireScopes;
+
+        $middleware->handle($this->request, $this->next, ...['identify']);
+        $this->assertTrue(true);
+    }
+
+    public function testRequiresSpecificScopeAndNoScopeGiven()
+    {
+        $this->setUser(factory(User::class)->create(), []);
+        $middleware = new RequireScopes;
+
+        $this->expectException(MissingScopeException::class);
+        $middleware->handle($this->request, $this->next, ...['identify']);
+    }
+
     protected function setUser(?User $user, ?array $scopes = null)
     {
         $this->request->setUserResolver(function () use ($user) {
