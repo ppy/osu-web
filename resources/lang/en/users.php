@@ -197,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Play History',
+                    'count_label' => 'Plays',
                 ],
                 'most_played' => [
                     'count' => 'times played',
@@ -208,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Watched History',
+                    'count_label' => 'Replays Watched',
                 ],
             ],
             'kudosu' => [

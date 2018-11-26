@@ -32,7 +32,7 @@ class @FancyChart
 
     @svg = @area
       .append 'svg'
-      .attr 'class', osu.classWithModifiers('fancy-graph', @options.modifiers)
+      .classed 'fancy-graph', true
 
     @svgWrapper = @svg.append 'g'
 
@@ -43,20 +43,10 @@ class @FancyChart
     @line = d3.line()
       .curve d3.curveMonotoneX
 
-    @svgEndCircle = @svgWrapper.append 'g'
-      .attr 'opacity', 0
-
-    if @options.circleLine
-      @svgEndCircle.append 'line'
-        .classed 'fancy-graph__line', true
-        .attr 'x1', 0
-        .attr 'x2', 0
-        .attr 'y1', '-100%'
-        .attr 'y2', '100%'
-
-    @svgEndCircle.append 'circle'
+    @svgEndCircle = @svgWrapper.append 'circle'
       .classed 'fancy-graph__circle', true
-      .attr 'r', @options.circleRadius ? 2
+      .attr 'r', 2
+      .attr 'opacity', 0
 
     @svgHoverArea = @svg.append 'rect'
       .classed 'fancy-graph__hover-area', true
@@ -64,20 +54,10 @@ class @FancyChart
       .on 'mousemove', @hoverRefresh
       .on 'drag', @hoverRefresh
 
-    @svgHoverMark = @svgWrapper.append 'g'
-      .attr 'data-visibility', 'hidden'
-
-    if @options.circleLine
-      @svgHoverMark.append 'line'
-        .classed 'fancy-graph__line', true
-        .attr 'x1', 0
-        .attr 'x2', 0
-        .attr 'y1', '-100%'
-        .attr 'y2', '100%'
-
-    @svgHoverMark.append 'circle'
+    @svgHoverMark = @svgWrapper.append 'circle'
       .classed 'fancy-graph__circle', true
-      .attr 'r', @options.circleRadius ? 2
+      .attr 'data-visibility', 'hidden'
+      .attr 'r', 2
 
     data = osu.parseJson area.dataset.src
     @loadData data
@@ -197,7 +177,6 @@ class @FancyChart
 
   hoverEnd: =>
     Fade.out @svgHoverMark.node()
-    Fade.in @svgEndCircle.node()
     $.publish "fancy-chart:hover-#{@options.hoverId}:end"
 
 
@@ -211,9 +190,8 @@ class @FancyChart
     return unless i?
 
     Fade.in @svgHoverMark.node()
-    Fade.out @svgEndCircle.node()
     Timeout.clear @_hoverTimeout
-    @_hoverTimeout = Timeout.set(3000, @hoverEnd) unless osu.isDesktop()
+    @_hoverTimeout = Timeout.set 3000, @hoverEnd
 
     d =
       if i == 0

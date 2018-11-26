@@ -40,6 +40,16 @@ class ProfilePage.RankChart extends React.Component
     $.unsubscribe ".#{@id}"
 
 
+  formatX: (d) ->
+    if d == 0
+      osu.trans('common.time.now')
+    else
+      osu.transChoice('common.time.days_ago', -d)
+
+  formatY: (d) ->
+    "<strong>#{osu.trans('users.show.rank.global_simple')}</strong> #{(-d).toLocaleString()}"
+
+
   render: =>
     div
       className: 'u-full-size'
@@ -49,19 +59,22 @@ class ProfilePage.RankChart extends React.Component
   rankChartUpdate: =>
     if !@rankChart?
       options =
-        modifiers: ['rank-chart']
+        modifiers: ['profile-page']
+        axisLabels: false
         circleLine: true
-        circleRadius: 10
         scales:
+          x: d3.scaleLinear()
           y: d3.scaleLog()
-        hoverId: @props.eventId
+        margins:
+          top: 15
+          right: 15
+          bottom: 15
+          left: 15 # referenced in css .profile-detail__col--bottom-left
+        infoBoxFormats:
+          x: @formatX
+          y: @formatY
 
-      @rankChart = new FancyChart(@rankChartArea.current, options)
-      @rankChart.margins =
-        top: 15
-        right: 15
-        bottom: 15
-        left: 15 # referenced in css .profile-detail__col--bottom-left
+      @rankChart = new LineChart(@rankChartArea.current, options)
 
       $(window).on "throttled-resize.#{@id}", @rankChart.resize
 

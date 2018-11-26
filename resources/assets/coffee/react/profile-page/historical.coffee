@@ -153,10 +153,14 @@ class ProfilePage.Historical extends React.PureComponent
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
           y: (d) -> d.toLocaleString()
         margins: right: 80 # more spacing for x axis label
-        tooltipFormats:
+        infoBoxFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
+          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
         tickValues: {}
         ticks: {}
+        xAxisTickGradient: false
+        circleLine: true
+        modifiers: ['profile-page']
 
       @charts[attribute] = new LineChart(area, options)
 

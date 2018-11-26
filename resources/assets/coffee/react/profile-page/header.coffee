@@ -23,7 +23,6 @@ class Detail extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @rankChartEventId = "rank-chart-profile-detail-#{osu.uuid()}"
     @state = extended: true
 
 
@@ -50,7 +49,6 @@ class Detail extends React.PureComponent
         div className: 'profile-detail__row',
           div className: 'profile-detail__col profile-detail__col--bottom-left',
             el ProfilePage.RankChart,
-              eventId: @rankChartEventId
               rankHistory: @props.rankHistory
               stats: @props.stats
 
