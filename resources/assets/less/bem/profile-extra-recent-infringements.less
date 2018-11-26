@@ -20,12 +20,13 @@
   @_top: profile-extra-recent-infringements;
 
   overflow-x: auto;
+  line-height: normal;
 
   &__action {
     width: 100%;
     border-radius: 20px;
 
-    margin-left: -10px;
+    margin: -2px -10px;
     padding: 2px 10px;
 
     &--note {
@@ -47,18 +48,20 @@
     min-width: 800px;
 
     margin: 0 -5px;
+
+    @media @desktop {
+      min-width: auto;
+    }
   }
 
   &__table-cell {
-    padding: 0 5px;
-    padding-bottom: 7px;
+    padding: 5px;
+    vertical-align: baseline;
 
     &--header {
       font-size: @font-size--small;
       font-weight: 900;
       text-transform: uppercase;
-
-      padding-bottom: 10px;
     }
 
     &--action {
