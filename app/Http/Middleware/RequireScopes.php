@@ -37,7 +37,7 @@ class RequireScopes
      */
     public function handle(Request $request, Closure $next, ...$scopes)
     {
-        $token = $request->user()->token();
+        $token = optional($request->user())->token();
         if ($token === null) {
             throw new AuthorizationException();
         }
