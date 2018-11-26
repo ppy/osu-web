@@ -128,6 +128,8 @@ class @LineChart
   setDimensions: =>
     areaDims = @area.node().getBoundingClientRect()
 
+    return unless areaDims.width > 0 && areaDims.height > 0
+
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
 
