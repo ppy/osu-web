@@ -49,9 +49,14 @@ class RequireScopes
             throw new MissingScopeException();
         }
 
-        if (!empty($scopes)) {
+        if (empty($scopes)) {
+            // use a non-existent scope; only '*' should pass.
+            if (!$token->can('invalid')) {
+                throw new MissingScopeException();
+            }
+        } else {
             foreach ($scopes as $scope) {
-                if ($token->cant($scope)) {
+                if (!$token->can($scope)) {
                     throw new MissingScopeException();
                 }
             }

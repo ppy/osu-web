@@ -22,6 +22,7 @@ use App\Exceptions\AuthorizationException;
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use Laravel\Passport\Token;
 
 class RequireScopesTest extends TestCase
 {
@@ -50,7 +51,6 @@ class RequireScopesTest extends TestCase
     public function testNoScopes()
     {
         $this->setUser(factory(User::class)->create(), []);
-
         $middleware = new RequireScopes;
 
         $this->expectException(MissingScopeException::class);
@@ -60,20 +60,45 @@ class RequireScopesTest extends TestCase
     public function testAllScopes()
     {
         $this->setUser(factory(User::class)->create(), ['*']);
-
         $middleware = new RequireScopes;
+
         $middleware->handle($this->request, $this->next);
         $this->assertTrue(true);
     }
 
-    protected function setUser(?User $user, array $scopes = null)
+    public function testHasTheRequiredScope()
+    {
+        $this->setUser(factory(User::class)->create(), ['identify']);
+        $middleware = new RequireScopes;
+
+        $middleware->handle($this->request, $this->next, ...['identify']);
+        $this->assertTrue(true);
+    }
+
+    public function testDoesNotHaveTheRequiredScope()
+    {
+        $this->setUser(factory(User::class)->create(), ['somethingelse']);
+        $middleware = new RequireScopes;
+
+        $this->expectException(MissingScopeException::class);
+        $middleware->handle($this->request, $this->next, ...['identify']);
+    }
+
+    protected function setUser(?User $user, ?array $scopes = null)
     {
         $this->request->setUserResolver(function () use ($user) {
             return $user;
         });
 
-        if ($scopes !== null) {
-            $this->actAsScopedUser($user, $scopes);
+        if ($user !== null) {
+            $token = Token::unguarded(function () use ($scopes, $user) {
+                return new Token([
+                    'scopes' => $scopes,
+                    'user_id' => $user->user_id,
+                ]);
+            });
+
+            $user->withAccessToken($token);
         }
     }
 }
