@@ -109,14 +109,7 @@ class RequireScopesTest extends TestCase
         });
 
         if ($user !== null) {
-            $token = Token::unguarded(function () use ($scopes, $user) {
-                return new Token([
-                    'scopes' => $scopes,
-                    'user_id' => $user->user_id,
-                ]);
-            });
-
-            $user->withAccessToken($token);
+            $this->actAsScopedUser($user, $scopes);
         }
     }
 }

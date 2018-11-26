@@ -19,7 +19,7 @@
  */
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\Passport;
+use Laravel\Passport\Token;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -67,11 +67,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         });
     }
 
-    protected function actAsScopedUser($user, array $scopes = ['*'])
+    protected function actAsScopedUser($user, array $scopes = ['*'], $guard = 'api')
     {
-        Passport::actingAs($user, $scopes);
-        // Token will be a Mockery object, so the accessor needs to be mocked as well.
-        $user->token()->shouldReceive('getAttribute')->with('scopes')->andReturn($scopes);
+        app('auth')->guard($guard)->setUser($user);
+
+        app('auth')->shouldUse($guard);
+
+        $token = Token::unguarded(function () use ($scopes, $user) {
+            return new Token([
+                'scopes' => $scopes,
+                'user_id' => $user->user_id,
+            ]);
+        });
+
+        $user->withAccessToken($token);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

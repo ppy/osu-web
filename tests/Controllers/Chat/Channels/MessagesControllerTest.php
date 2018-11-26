@@ -185,14 +185,12 @@ class MessagesControllerTest extends TestCase
         $message = self::$faker->sentence();
 
         $this->actAsScopedUser($this->user, ['*']);
-        $this->user->token()->shouldReceive('getAttribute')->with('scopes')->andReturn(['*']);
         $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]));
 
         $this->actAsScopedUser($this->user, ['*']);
-        $this->user->token()->shouldReceive('getAttribute')->with('scopes')->andReturn(['*']);
 
         $this->json(
                 'POST',
