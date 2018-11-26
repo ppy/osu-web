@@ -41,7 +41,7 @@
     min-height: auto;
     margin-right: 0;
 
-    &:hover {
+    &:hover, &--active {
       background-color: @_bg-extra-hover;
     }
   }
@@ -138,7 +138,7 @@
         padding-top: @_padding-vertical-desktop;
         padding-bottom: @_padding-vertical-desktop;
 
-        .@{_top}:hover & {
+        .@{_top}:hover &, .@{_top}--active & {
           background-color: @_bg-main-hover;
         }
       }
@@ -222,7 +222,7 @@
         background-color: @_bg-main;
         clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 
-        .@{_top}:hover & {
+        .@{_top}:hover &, .@{_top}--active & {
           background-color: @_bg-main-hover;
         }
       }
@@ -242,7 +242,7 @@
       padding: @_padding-vertical-desktop @_padding-horizontal;
       background-color: @_bg-main;
 
-      .@{_top}:hover & {
+      .@{_top}:hover &, .@{_top}--active & {
         background-color: @_bg-main-hover;
       }
     }

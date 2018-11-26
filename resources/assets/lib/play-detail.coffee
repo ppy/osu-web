@@ -36,7 +36,10 @@ export class PlayDetail extends PureComponent
     pp = score.best?.pp ? score.pp
 
     blockClass = bn
-    blockClass += " #{bn}--active" if @props.activated
+    if @props.activated
+      blockClass += " #{bn}--active"
+    else
+      blockClass += " #{bn}--highlightable"
     blockClass += " #{bn}--compact" if @state.compact
 
     div
@@ -109,8 +112,8 @@ export class PlayDetail extends PureComponent
         #  el PlayDetailMenu, onHide: @hide, onShow: @show, score: score
         if ScoreHelper.hasMenu(score)
           el PlayDetailMenu,
-            onHide: () -> props.onMenuActive?(active: false, index: props.index)
-            onShow: () -> props.onMenuActive?(active: true, index: props.index)
+            onHide: => @props.onMenuActive?(active: false, index: @props.index)
+            onShow: => @props.onMenuActive?(active: true, index: @props.index)
             score: score
 
         button
