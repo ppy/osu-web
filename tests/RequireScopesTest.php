@@ -33,7 +33,7 @@ class RequireScopesTest extends TestCase
     {
         parent::setUp();
 
-        $this->request = Request::create('/', 'GET', [], [], [], ['HTTP_ACCEPT' => 'application/json']);
+        $this->request = Request::create('/', 'GET');
         $this->next = static function () {
             // just an empty closure.
         };

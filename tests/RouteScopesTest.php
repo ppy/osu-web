@@ -33,8 +33,8 @@ class RouteScopesTest extends TestCase
                 continue;
             }
 
-            // uri will still have the placeholders, but it's fine.
-            $request = Request::create($route->uri, 'GET', [], [], [], ['HTTP_ACCEPT' => 'application/json']);
+            // uri will still have the placeholders and wrong verbs, but we don't need them.
+            $request = Request::create($route->uri, 'GET');
             $this->app->instance('request', $request); // set current request so is_api_request can work.
 
             $middlewares = $route->gatherMiddleware();
