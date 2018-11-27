@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{form, input} = ReactDOMFactories
+{div, label, p, strong} = ReactDOMFactories
 el = React.createElement
 
 
@@ -65,7 +65,7 @@ class ProfilePage.CoverUploader extends React.Component
     labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-uploader__button'
     labelClass += ' disabled' unless @props.canUpload
 
-    el 'div', className: 'profile-cover-uploader',
+    div className: 'profile-cover-uploader',
       el ProfilePage.CoverSelection,
         url: @props.cover.custom_url
         thumbUrl: @props.cover.custom_url
@@ -73,21 +73,21 @@ class ProfilePage.CoverUploader extends React.Component
         name: -1
         modifiers: ['custom']
 
-      el 'label',
+      label
         className: labelClass
         ref: @uploadButtonContainer
         osu.trans 'users.show.edit.cover.upload.button'
 
-      el 'div', className: 'profile-cover-uploader__info',
-        el 'p', className: 'profile-cover-uploader__info-entry',
-          el 'strong',
+      div className: 'profile-cover-uploader__info',
+        p className: 'profile-cover-uploader__info-entry',
+          strong
             dangerouslySetInnerHTML:
               __html: osu.trans 'users.show.edit.cover.upload.restriction_info'
 
-        el 'p', className: 'profile-cover-uploader__info-entry',
+        p className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.dropzone_info'
 
-        el 'p', className: 'profile-cover-uploader__info-entry',
+        p className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.size_info'
 
 
