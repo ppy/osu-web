@@ -21,6 +21,12 @@ el = React.createElement
 
 
 class ProfilePage.CoverUploader extends React.Component
+  constructor: (props) ->
+    super props
+
+    @uploadButtonContainer = React.createRef()
+
+
   componentDidMount: =>
     $dropzone = $('.js-profile-cover-upload--dropzone')
 
@@ -30,7 +36,7 @@ class ProfilePage.CoverUploader extends React.Component
       name: 'cover_file'
       disabled: !@props.canUpload
 
-    @uploadButtonContainer.appendChild($uploadButton[0])
+    @uploadButtonContainer.current.appendChild($uploadButton[0])
 
     $uploadButton.fileupload
       url: laroute.route('account.cover')
@@ -69,7 +75,7 @@ class ProfilePage.CoverUploader extends React.Component
 
       el 'label',
         className: labelClass
-        ref: (el) => @uploadButtonContainer = el
+        ref: @uploadButtonContainer
         osu.trans 'users.show.edit.cover.upload.button'
 
       el 'div', className: 'profile-cover-uploader__info',
@@ -86,4 +92,4 @@ class ProfilePage.CoverUploader extends React.Component
 
 
   $uploadButton: =>
-    $(@uploadButtonContainer).find('.js-profile-cover-upload')
+    $(@uploadButtonContainer.current).find('.js-profile-cover-upload')
