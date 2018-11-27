@@ -227,13 +227,15 @@ class @LineChart
 
 
   hoverReset: =>
+    style = (key, value) =>
+      elem.style(key, value) for elem in [@hoverLine, @hoverCircle]
     # Immediately hide so its position can be invisibly reset.
-    @hover.style 'transition', 'none'
+    style 'transition', 'none'
     @hoverEnd()
-    @hover.style 'transform', null
+    style 'transform', null
     # Out of current loop so browser doesn't optimize out the styling
     # and ignores previously set transition override.
-    Timeout.set 0, => @hover.style 'transition', null
+    Timeout.set 0, => style 'transition', null
 
 
   hoverStart: =>
