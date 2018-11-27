@@ -80,5 +80,4 @@ class ProfilePage.CoverSelector extends React.PureComponent
           'data-visibility': @state.dropOverlayVisibility
           onDragEnter: @_dropOverlayEnter
           onDragLeave: @_dropOverlayLeave
-          ref: 'dropOverlay'
           osu.trans 'users.show.edit.cover.upload.dropzone'
