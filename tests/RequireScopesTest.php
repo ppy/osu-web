@@ -20,6 +20,7 @@
 use App\Exceptions\AuthorizationException;
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
+use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
 
 class RequireScopesTest extends TestCase
@@ -46,6 +47,7 @@ class RequireScopesTest extends TestCase
     public function testNullUser()
     {
         $this->setUser(null);
+        $this->setRequest();
 
         $this->expectException(AuthorizationException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -56,6 +58,7 @@ class RequireScopesTest extends TestCase
         $userScopes = [];
 
         $this->setUser($userScopes);
+        $this->setRequest();
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -66,6 +69,7 @@ class RequireScopesTest extends TestCase
         $userScopes = ['*'];
 
         $this->setUser($userScopes);
+        $this->setRequest();
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(true);
@@ -77,6 +81,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -88,6 +93,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -99,6 +105,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -110,6 +117,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -121,6 +129,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -132,6 +141,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -142,6 +152,7 @@ class RequireScopesTest extends TestCase
         $userScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest();
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -153,6 +164,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
             app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -167,10 +179,26 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
             app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
+        });
+    }
+
+    protected function setRequest(?array $scopes = null)
+    {
+        // set a fake route resolver
+        $this->request->setRouteResolver(function () use ($scopes) {
+            $route = new Route(['GET'], '/', null);
+            $route->middleware('require-scopes');
+
+            if ($scopes !== null) {
+                $route->middleware('require-scopes:'.implode(',', $scopes));
+            }
+
+            return $route;
         });
     }
 
