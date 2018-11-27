@@ -42,82 +42,94 @@ class RequireScopesTest extends TestCase
     public function testNullUser()
     {
         $this->setUser(null);
-        $middleware = new RequireScopes;
 
         $this->expectException(AuthorizationException::class);
-        $middleware->handle($this->request, $this->next);
+        (new RequireScopes)->handle($this->request, $this->next);
     }
 
     public function testNoScopes()
     {
-        $this->setUser(factory(User::class)->create(), []);
-        $middleware = new RequireScopes;
+        $userScopes = [];
+
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        $middleware->handle($this->request, $this->next);
+        (new RequireScopes)->handle($this->request, $this->next);
     }
 
     public function testAllScopes()
     {
-        $this->setUser(factory(User::class)->create(), ['*']);
-        $middleware = new RequireScopes;
+        $userScopes = ['*'];
 
-        $middleware->handle($this->request, $this->next);
+        $this->setUser($userScopes);
+
+        (new RequireScopes)->handle($this->request, $this->next);
         $this->assertTrue(true);
     }
 
     public function testHasTheRequiredScope()
     {
-        $this->setUser(factory(User::class)->create(), ['identify']);
-        $middleware = new RequireScopes;
+        $userScopes = ['identify'];
+        $requireScopes = ['identify'];
 
-        $middleware->handle($this->request, $this->next, ...['identify']);
+        $this->setUser($userScopes);
+
+        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
     }
 
     public function testDoesNotHaveTheRequiredScope()
     {
-        $this->setUser(factory(User::class)->create(), ['somethingelse']);
-        $middleware = new RequireScopes;
+        $userScopes = ['somethingelse'];
+        $requireScopes = ['identify'];
+
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        $middleware->handle($this->request, $this->next, ...['identify']);
+        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
     }
 
     public function testRequiresSpecificScopeAndAllScopeGiven()
     {
-        $this->setUser(factory(User::class)->create(), ['*']);
-        $middleware = new RequireScopes;
+        $userScopes = ['*'];
+        $requireScopes = ['identify'];
 
-        $middleware->handle($this->request, $this->next, ...['identify']);
+        $this->setUser($userScopes);
+
+        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
     }
 
     public function testRequiresSpecificScopeAndNoScopeGiven()
     {
-        $this->setUser(factory(User::class)->create(), []);
-        $middleware = new RequireScopes;
+        $userScopes = [];
+        $requireScopes = ['identify'];
+
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        $middleware->handle($this->request, $this->next, ...['identify']);
+        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
     }
 
     public function testBlankRequireShouldDenyRegularScopes()
     {
-        $this->setUser(factory(User::class)->create(), ['identify']);
-        $middleware = new RequireScopes;
+        $userScopes = ['identify'];
+
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        $middleware->handle($this->request, $this->next);
+        (new RequireScopes)->handle($this->request, $this->next);
     }
 
     public function testRequireScopesLayered()
     {
-        $this->setUser(factory(User::class)->create(), ['identify']);
-        $middleware = new RequireScopes;
+        $userScopes = ['identify'];
+        $requireScopes = ['identify'];
 
-        $middleware->handle($this->request, function () {
-            (new RequireScopes)->handle($this->request, $this->next, ...['identify']);
+        $this->setUser($userScopes);
+
+        (new RequireScopes)->handle($this->request, function () use ($requireScopes) {
+            (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
         });
 
         $this->assertTrue(true);
@@ -125,17 +137,21 @@ class RequireScopesTest extends TestCase
 
     public function testRequireScopesLayeredNoPermission()
     {
-        $this->setUser(factory(User::class)->create(), ['somethingelse']);
-        $middleware = new RequireScopes;
+        $userScopes = ['somethingelse'];
+        $requireScopes = ['identify'];
+
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        $middleware->handle($this->request, function () {
-            (new RequireScopes)->handle($this->request, $this->next, ...['identify']);
+        (new RequireScopes)->handle($this->request, function () use ($requireScopes) {
+            (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
         });
     }
 
-    protected function setUser(?User $user, ?array $scopes = null)
+    protected function setUser(?array $scopes = null)
     {
+        $user = $scopes !== null ? factory(User::class)->create() : null;
+
         $this->request->setUserResolver(function () use ($user) {
             return $user;
         });
