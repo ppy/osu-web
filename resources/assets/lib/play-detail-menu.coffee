@@ -126,7 +126,7 @@ export class PlayDetailMenu extends PureComponent
         className: 'simple-menu simple-menu--play-detail-menu'
         if @props.score.replay
           a
-            className: 'simple-menu__item'
+            className: 'simple-menu__item js-login-required--click'
             href: laroute.route 'users.replay',
                     beatmap: @props.score.beatmap.id
                     mode: @props.score.beatmap.mode
