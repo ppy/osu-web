@@ -38,11 +38,15 @@ class ProfilePage.CoverSelection extends React.PureComponent
   onClick: (e) =>
     return if !@props.url?
 
+    $.publish 'user:cover:upload:state', [true]
+
     $.ajax laroute.route('account.cover'),
       method: 'post'
       data:
         cover_id: @props.name
       dataType: 'json'
+    .always ->
+      $.publish 'user:cover:upload:state', [false]
     .done (userData) ->
       $.publish 'user:update', userData
     .error osu.emitAjaxError(e.target)
