@@ -120,6 +120,7 @@
       will-change: transform;
       pointer-events: none;
       transform: scaleY(0);
+      z-index: @z-index--page-header; // prevent page content from covering the bottom poart
     }
 
     &:hover::before {

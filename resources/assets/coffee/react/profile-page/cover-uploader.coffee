@@ -65,6 +65,7 @@ class ProfilePage.CoverUploader extends React.Component
         thumbUrl: @props.cover.custom_url
         isSelected: !@props.cover.id?
         name: -1
+        modifiers: ['custom']
 
       el 'label',
         className: labelClass

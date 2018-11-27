@@ -86,7 +86,7 @@ class DetailBar extends React.PureComponent
     div className: bn,
       div className: "#{bn}__page-toggle",
         button
-          className: 'profile-page-toggle'
+          className: 'profile-page-button'
           onClick: @props.toggleExtend
           if @props.extended
             span className: 'fas fa-chevron-up'
@@ -184,7 +184,7 @@ class HeaderInfo extends React.PureComponent
       div
         className: "#{bn}__bg"
         style:
-          backgroundImage: osu.urlPresence(@props.user.cover_url)
+          backgroundImage: osu.urlPresence(@props.coverUrl)
 
       if @props.user.id == currentUser.id
         a
@@ -523,6 +523,7 @@ class ProfilePage.Header extends React.Component
       isCoverUpdating: false
       settingDefaultMode: false
 
+    @coverSelector = React.createRef()
     @debouncedCoverSet = _.debounce @coverSet, 300
 
 
@@ -557,6 +558,10 @@ class ProfilePage.Header extends React.Component
           className: 'header-v3__bg'
           style:
             backgroundImage: osu.urlPresence(@state.coverUrl)
+        div
+          className: 'header-v3__spinner'
+          'data-visibility': if @state.isCoverUpdating then 'visible' else 'hidden'
+          el Spinner
         div className: 'header-v3__overlay'
         div className: 'osu-page osu-page--header-v3',
           @renderTitle()
@@ -565,7 +570,7 @@ class ProfilePage.Header extends React.Component
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
-            el HeaderInfo, user: @props.user, currentMode: @props.currentMode
+            el HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
 
             el DetailMobile,
               stats: @props.stats
@@ -584,6 +589,23 @@ class ProfilePage.Header extends React.Component
             el ProfilePage.Badges, badges: @props.user.badges
 
           el Links, user: @props.user
+
+          @renderCoverSelector()
+
+
+  renderCoverSelector: =>
+    if @props.withEdit
+      div
+        ref: @coverSelector
+        className: 'profile-header__cover-editor'
+        button
+          className: 'profile-page-button'
+          onClick: @toggleEdit
+          span className: 'fas fa-pencil-alt'
+        if @state.editing
+          el ProfilePage.CoverSelector,
+            canUpload: @props.user.is_supporter
+            cover: @props.user.cover
 
 
   renderTabs: =>
@@ -628,14 +650,12 @@ class ProfilePage.Header extends React.Component
 
     if e?
       return if e.button != 0
-      return if $(e.target).closest(@coverSelector).length
+      return if $(e.target).closest(@coverSelector.current).length
 
     return if $('#overlay').is(':visible')
     return if document.body.classList.contains('modal-open')
 
-    Blackout.hide()
-    @setState editing: false, =>
-      @coverReset()
+    @setState editing: false, @coverReset
 
 
   coverReset: =>
@@ -653,7 +673,6 @@ class ProfilePage.Header extends React.Component
 
 
   openEdit: =>
-    Blackout.show()
     @setState editing: true
 
 
