@@ -27,6 +27,8 @@ use Laravel\Passport\Exceptions\MissingScopeException;
 
 class RequireScopes
 {
+    private $missingScope = true;
+
     /**
      * Handle an incoming request.
      *
@@ -48,23 +50,21 @@ class RequireScopes
 
         if (empty($scopes)) {
             // use a non-existent scope; only '*' should pass.
-            if (!$token->can('invalid')) {
-                // flag for failure, there may be additional checks layered that clear the flag.
-                $request->request->add(['requireScopesMissingScope' => true]);
-            }
+            // flag for failure, there may be additional checks layered that clear the flag.
+            $this->missingScope = !$token->can('invalid');
         } else {
             foreach ($scopes as $scope) {
                 if (!$token->can($scope)) {
                     throw new MissingScopeException([$scope], 'A required scope is missing.');
                 } else {
-                    $request->request->add(['requireScopesMissingScope' => false]);
+                    $this->missingScope = false;
                 }
             }
         }
 
         $response = $next($request);
 
-        if ($request->get('requireScopesMissingScope')) {
+        if ($this->missingScope) {
             throw new MissingScopeException();
         }
 

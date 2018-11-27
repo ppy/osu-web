@@ -39,12 +39,18 @@ class RequireScopesTest extends TestCase
         };
     }
 
+    public function testSingleton()
+    {
+        $this->assertSame(app(RequireScopes::class), app(RequireScopes::class));
+        $this->assertNotSame(app(RequireScopes::class), new RequireScopes);
+    }
+
     public function testNullUser()
     {
         $this->setUser(null);
 
         $this->expectException(AuthorizationException::class);
-        (new RequireScopes)->handle($this->request, $this->next);
+        app(RequireScopes::class)->handle($this->request, $this->next);
     }
 
     public function testNoScopes()
@@ -54,7 +60,7 @@ class RequireScopesTest extends TestCase
         $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        (new RequireScopes)->handle($this->request, $this->next);
+        app(RequireScopes::class)->handle($this->request, $this->next);
     }
 
     public function testAllScopes()
@@ -63,7 +69,7 @@ class RequireScopesTest extends TestCase
 
         $this->setUser($userScopes);
 
-        (new RequireScopes)->handle($this->request, $this->next);
+        app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(true);
     }
 
@@ -74,7 +80,7 @@ class RequireScopesTest extends TestCase
 
         $this->setUser($userScopes);
 
-        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
     }
 
@@ -86,7 +92,7 @@ class RequireScopesTest extends TestCase
         $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
     }
 
     public function testRequiresSpecificScopeAndAllScopeGiven()
@@ -96,7 +102,7 @@ class RequireScopesTest extends TestCase
 
         $this->setUser($userScopes);
 
-        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
     }
 
@@ -108,7 +114,7 @@ class RequireScopesTest extends TestCase
         $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
     }
 
     public function testBlankRequireShouldDenyRegularScopes()
@@ -118,7 +124,7 @@ class RequireScopesTest extends TestCase
         $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        (new RequireScopes)->handle($this->request, $this->next);
+        app(RequireScopes::class)->handle($this->request, $this->next);
     }
 
     public function testRequireScopesLayered()
@@ -128,8 +134,8 @@ class RequireScopesTest extends TestCase
 
         $this->setUser($userScopes);
 
-        (new RequireScopes)->handle($this->request, function () use ($requireScopes) {
-            (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
+            app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         });
 
         $this->assertTrue(true);
@@ -143,8 +149,8 @@ class RequireScopesTest extends TestCase
         $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
-        (new RequireScopes)->handle($this->request, function () use ($requireScopes) {
-            (new RequireScopes)->handle($this->request, $this->next, ...$requireScopes);
+        app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
+            app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         });
     }
 
