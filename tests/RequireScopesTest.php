@@ -17,12 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 use App\Exceptions\AuthorizationException;
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
 use Laravel\Passport\Exceptions\MissingScopeException;
-use Laravel\Passport\Token;
 
 class RequireScopesTest extends TestCase
 {

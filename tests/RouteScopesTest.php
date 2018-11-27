@@ -17,7 +17,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 class RouteScopesTest extends TestCase
 {
     public function testApiRoutesRequireScope()
@@ -44,6 +43,7 @@ class RouteScopesTest extends TestCase
                     continue;
                 }
 
+                // FIXME: need something that isn't string checking.
                 if (starts_with($middleware, 'require-scopes:')) {
                     $scopes = explode(',', substr($middleware, strlen('require-scopes:')));
                     sort($scopes);
@@ -52,7 +52,7 @@ class RouteScopesTest extends TestCase
             }
 
             // FIXME: separate this assertion.
-            $this->assertTrue(in_array('require-scopes', $middlewares));
+            $this->assertTrue(in_array('require-scopes', $middlewares, true));
         }
 
         $this->assertSame($expected, $loaded);
