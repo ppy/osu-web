@@ -102,6 +102,38 @@ class RequireScopesTest extends TestCase
         $middleware->handle($this->request, $this->next, ...['identify']);
     }
 
+    public function testBlankRequireShouldDenyRegularScopes()
+    {
+        $this->setUser(factory(User::class)->create(), ['identify']);
+        $middleware = new RequireScopes;
+
+        $this->expectException(MissingScopeException::class);
+        $middleware->handle($this->request, $this->next);
+    }
+
+    public function testRequireScopesLayered()
+    {
+        $this->setUser(factory(User::class)->create(), ['identify']);
+        $middleware = new RequireScopes;
+
+        $middleware->handle($this->request, function () {
+            (new RequireScopes)->handle($this->request, $this->next, ...['identify']);
+        });
+
+        $this->assertTrue(true);
+    }
+
+    public function testRequireScopesLayeredNoPermission()
+    {
+        $this->setUser(factory(User::class)->create(), ['somethingelse']);
+        $middleware = new RequireScopes;
+
+        $this->expectException(MissingScopeException::class);
+        $middleware->handle($this->request, function () {
+            (new RequireScopes)->handle($this->request, $this->next, ...['identify']);
+        });
+    }
+
     protected function setUser(?User $user, ?array $scopes = null)
     {
         $this->request->setUserResolver(function () use ($user) {

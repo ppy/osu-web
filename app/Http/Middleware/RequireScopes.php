@@ -42,26 +42,32 @@ class RequireScopes
             throw new AuthorizationException();
         }
 
-        // assignment is so Mockery doesn't troll us.
-        $tokenScopes = $token->scopes;
-
-        if (empty($tokenScopes)) {
-            throw new MissingScopeException();
+        if (empty($token->scopes)) {
+            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
         }
 
         if (empty($scopes)) {
             // use a non-existent scope; only '*' should pass.
             if (!$token->can('invalid')) {
-                throw new MissingScopeException();
+                // flag for failure, there may be additional checks layered that clear the flag.
+                $request->request->add(['requireScopesMissingScope' => true]);
             }
         } else {
             foreach ($scopes as $scope) {
                 if (!$token->can($scope)) {
-                    throw new MissingScopeException();
+                    throw new MissingScopeException([$scope], 'A required scope is missing.');
+                } else {
+                    $request->request->add(['requireScopesMissingScope' => false]);
                 }
             }
         }
 
-        return $next($request);
+        $response = $next($request);
+
+        if ($request->get('requireScopesMissingScope')) {
+            throw new MissingScopeException();
+        }
+
+        return $response;
     }
 }
