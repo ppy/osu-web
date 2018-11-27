@@ -115,6 +115,28 @@ class RequireScopesTest extends TestCase
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
     }
 
+    public function testRequiresSpecificScopeAndMultipleNonMatchingScopesGiven()
+    {
+        $userScopes = ['somethingelse', 'alsonotright', 'nope'];
+        $requireScopes = ['identify'];
+
+        $this->setUser($userScopes);
+
+        $this->expectException(MissingScopeException::class);
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
+    }
+
+    public function testRequiresSpecificScopeAndMultipleScopesGiven()
+    {
+        $userScopes = ['somethingelse', 'identify', 'nope'];
+        $requireScopes = ['identify'];
+
+        $this->setUser($userScopes);
+
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
+        $this->assertTrue(true);
+    }
+
     public function testBlankRequireShouldDenyRegularScopes()
     {
         $userScopes = ['identify'];
