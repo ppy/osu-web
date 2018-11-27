@@ -24,6 +24,11 @@ class ProfilePage.AchievementBadge extends React.PureComponent
     modifiers: []
 
 
+  constructor: (props) ->
+    super props
+
+    @tooltip = React.createRef()
+
   render: =>
     @tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
@@ -46,7 +51,7 @@ class ProfilePage.AchievementBadge extends React.PureComponent
         className: 'hidden'
         div
           className: 'js-tooltip-achievement--content tooltip-achievement__main'
-          ref: 'tooltip'
+          ref: @tooltip
           div
             className: 'tooltip-achievement__badge'
             div
@@ -103,11 +108,11 @@ class ProfilePage.AchievementBadge extends React.PureComponent
 
     return if elem._loadedTooltipId == @tooltipId
 
-    content = $(@refs.tooltip).clone()
+    $content = $(@tooltip.current).clone()
 
     if elem._loadedTooltipId?
       elem._loadedTooltipId = @tooltipId
-      $(elem).qtip 'set', 'content.text': content
+      $(elem).qtip 'set', 'content.text': $content
       return
 
     elem._loadedTooltipId = @tooltipId
@@ -116,7 +121,7 @@ class ProfilePage.AchievementBadge extends React.PureComponent
 
     options =
       overwrite: false
-      content: content
+      content: $content
       position:
         my: 'bottom center'
         at: 'top center'
