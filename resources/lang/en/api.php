@@ -27,6 +27,6 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Identify your osu! account',
+        'identify' => 'Identify you and read your public profile.',
     ],
 ];
