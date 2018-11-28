@@ -157,13 +157,14 @@ class DetailBar extends React.PureComponent
 
     if @props.user.id != currentUser.id
       blockButton = el BlockButton,
-        key: 'block-button'
+        key: 'block'
         userId: @props.user.id
         wrapperClass: 'simple-menu__item'
         modifiers: ['inline']
       items.push blockButton
 
       reportButton = el _exported.ReportUser,
+        key: 'report'
         user: @props.user
         wrapperClass: 'simple-menu__item'
         modifiers: ['inline']
