@@ -218,7 +218,7 @@ class HeaderInfo extends React.PureComponent
                   country: @props.user.country.code,
                   type: 'performance'
                 span className: "#{bn}__flag-flag",
-                  el FlagCountry, country: @props.user.country, classModifiers: ['full']
+                  el FlagCountry, country: @props.user.country, modifiers: ['full']
                 span className: "#{bn}__flag-text",
                   @props.user.country.name
       div
