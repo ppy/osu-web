@@ -18,12 +18,7 @@
 
 .profile-detail {
   .inner-shadow-top();
-  display: none;
   background-color: @community-user-graygreen-darkest;
-
-  @media @desktop {
-    display: block;
-  }
 
   &__col {
     flex: none;
@@ -47,7 +42,11 @@
 
   &__row {
     padding: 10px @gutter-desktop;
-    display: flex;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
 
     &--top {
       justify-content: space-between;

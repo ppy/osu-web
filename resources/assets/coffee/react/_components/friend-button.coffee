@@ -22,7 +22,9 @@ el = React.createElement
 bn = 'user-action-button'
 
 class @FriendButton extends React.PureComponent
-  @defaultProps = showFollowerCounter: false
+  @defaultProps =
+    showFollowerCounter: false
+    alwaysVisible: false
 
 
   constructor: (props) ->
@@ -85,12 +87,15 @@ class @FriendButton extends React.PureComponent
 
 
   render: =>
-    if @isVisible()
-      @props.container?.classList.remove 'hidden'
-    else
-      @props.container?.classList.add 'hidden'
+    isVisible = @isVisible()
 
-      return null
+    if !@props.alwaysVisible
+      if isVisible
+        @props.container?.classList.remove 'hidden'
+      else
+        @props.container?.classList.add 'hidden'
+
+        return null
 
     blockClass = osu.classWithModifiers(bn, @props.modifiers)
 
@@ -102,7 +107,7 @@ class @FriendButton extends React.PureComponent
             else
               osu.trans('friends.buttons.add')
 
-    disabled = @state.loading || isFriendLimit && !@state.friend
+    disabled = !isVisible || @state.loading || isFriendLimit && !@state.friend
 
     if @state.friend && !@state.loading
       if @state.friend.mutual
@@ -117,7 +122,7 @@ class @FriendButton extends React.PureComponent
       ref: @button
       title: title
       disabled: disabled
-      @renderIcon({isFriendLimit})
+      @renderIcon({isFriendLimit, isVisible})
       @renderCounter()
 
 
@@ -127,12 +132,14 @@ class @FriendButton extends React.PureComponent
     span className: "#{bn}__counter", @followers()
 
 
-  renderIcon: ({isFriendLimit}) =>
+  renderIcon: ({isFriendLimit, isVisible}) =>
     span className: "#{bn}__icon-container",
       if @state.loading
         el Spinner
       else
-        if @state.friend
+        if !isVisible
+          i className: 'fas fa-user'
+        else if @state.friend
           [
             span
               key: 'hover'

@@ -20,20 +20,27 @@
   width: 100%;
   height: 60px;
   display: none;
+  display: flex;
   flex: none;
-  padding: @padding-profile-page @gutter-profile-page-desktop;
+  padding: @padding-profile-page @gutter-profile-page;
   justify-content: space-between;
   align-items: center;
   background-color: @community-user-graygreen-dark;
 
   @media @desktop {
-    display: flex;
+    padding-left: @gutter-profile-page-desktop;
+    padding-right: @gutter-profile-page-desktop;
   }
 
   &__column {
-    display: flex;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
 
     &--left {
+      display: flex;
       align-self: stretch;
       margin: -5px;
     }
@@ -102,5 +109,10 @@
     top: 0;
     width: @gutter-desktop;
     height: 100%;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
   }
 }

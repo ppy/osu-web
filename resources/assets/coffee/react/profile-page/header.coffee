@@ -102,6 +102,7 @@ class DetailBar extends React.PureComponent
             showFollowerCounter: true
             followers: @props.user.follower_count[0]
             modifiers: ['profile-page']
+            alwaysVisible: true
 
         @renderExtraMenu()
 
