@@ -100,12 +100,15 @@ class @FriendButton extends React.PureComponent
     blockClass = osu.classWithModifiers(bn, @props.modifiers)
 
     isFriendLimit = currentUser.friends.length >= currentUser.max_friends
-    title = if @state.friend
-              osu.trans('friends.buttons.remove')
-            else if isFriendLimit
-              osu.trans('friends.too_many')
-            else
-              osu.trans('friends.buttons.add')
+    title = switch
+      when !isVisible
+        null
+      when @state.friend
+        osu.trans('friends.buttons.remove')
+      when isFriendLimit
+        osu.trans('friends.too_many')
+      else
+        osu.trans('friends.buttons.add')
 
     disabled = !isVisible || @state.loading || isFriendLimit && !@state.friend
 
@@ -134,12 +137,12 @@ class @FriendButton extends React.PureComponent
 
   renderIcon: ({isFriendLimit, isVisible}) =>
     span className: "#{bn}__icon-container",
-      if @state.loading
-        el Spinner
-      else
-        if !isVisible
+      switch
+        when @state.loading
+          el Spinner
+        when !isVisible
           i className: 'fas fa-user'
-        else if @state.friend
+        when @state.friend
           [
             span
               key: 'hover'
