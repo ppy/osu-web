@@ -29,14 +29,12 @@
 
 @section('content')
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
-        <div class="osu-page">
-            @include('objects._notification_banner', [
-                'type' => 'warning',
-                'title' => trans('admin.users.restricted_banner.title'),
-                'message' => trans('admin.users.restricted_banner.message'),
-                'legacyNav' => $legacyNav,
-            ])
-        </div>
+        @include('objects._notification_banner', [
+            'type' => 'warning',
+            'title' => trans('admin.users.restricted_banner.title'),
+            'message' => trans('admin.users.restricted_banner.message'),
+            'legacyNav' => $legacyNav,
+        ])
     @endif
 
     <div class="js-react--profile-page osu-layout osu-layout--full"></div>

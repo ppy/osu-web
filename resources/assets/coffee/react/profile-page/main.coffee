@@ -144,7 +144,7 @@ class ProfilePage.Main extends React.PureComponent
             message:
               div className: 'notification-banner__button-group',
                 div className: 'notification-banner__button',
-                  el BlockButton, user_id: @props.user.id
+                  el BlockButton, userId: @props.user.id
                 div className: 'notification-banner__button',
                   button
                     type: 'button'

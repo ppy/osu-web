@@ -140,6 +140,13 @@
     flex: 1 0 auto;
   }
 
+  &--notification-banners {
+    @media @desktop {
+      height: 0;
+      top: (@nav2-height + 10px);
+    }
+  }
+
   &--password-reset {
     .default-box-shadow();
     .inner-shadow-top();

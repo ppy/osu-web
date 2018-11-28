@@ -23,6 +23,7 @@ class Detail extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @id = osu.uuid()
     @state = extended: true
 
 
@@ -95,11 +96,14 @@ class DetailBar extends React.PureComponent
             span className: 'fas fa-chevron-down'
 
       div className: "#{bn}__column #{bn}__column--left",
-        el FriendButton,
-          userId: @props.user.id
-          showFollowerCounter: true
-          followers: @props.user.follower_count[0]
-          modifiers: ['profile-page']
+        div className: "#{bn}__menu-item",
+          el FriendButton,
+            userId: @props.user.id
+            showFollowerCounter: true
+            followers: @props.user.follower_count[0]
+            modifiers: ['profile-page']
+
+        @renderExtraMenu()
 
       div className: "#{bn}__column #{bn}__column--right",
         if @props.extended
@@ -137,6 +141,30 @@ class DetailBar extends React.PureComponent
         div className: "#{bn}__entry #{bn}__entry--level",
           div className: "#{bn}__level",
             @props.stats.level.current
+
+  renderExtraMenu: =>
+    items = []
+
+    if @props.user.id != currentUser.id
+      blockButton = el BlockButton,
+        key: 'block-button'
+        userId: @props.user.id
+        wrapperClass: 'simple-menu__item'
+        modifiers: ['inline']
+      items.push blockButton
+
+    return null if items.length == 0
+
+    div className: "#{bn}__menu-item",
+      button
+        className: 'profile-page-button js-click-menu'
+        'data-click-menu-target': "profile-page-bar-#{@id}"
+        span className: 'fas fa-ellipsis-v'
+      div
+        className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
+        'data-click-menu-id': "profile-page-bar-#{@id}"
+        'data-visibility': 'hidden'
+        items
 
 
 class DetailMobile extends React.PureComponent

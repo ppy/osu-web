@@ -30,8 +30,12 @@ class @FriendButton extends React.PureComponent
 
     @button = React.createRef()
     @eventId = "friendButton-#{@props.userId}-#{osu.uuid()}"
-    @state =
-      friend: _.find(currentUser.friends, target_id: props.userId)
+
+    friend = _.find(currentUser.friends, target_id: props.userId)
+    followersWithoutSelf = @props.followers ? 0
+    followersWithoutSelf -= 1 if friend
+
+    @state = {friend, followersWithoutSelf}
 
 
   requestDone: =>
@@ -120,7 +124,7 @@ class @FriendButton extends React.PureComponent
   renderCounter: =>
     return unless @props.showFollowerCounter && @props.followers?
 
-    span className: "#{bn}__counter", @props.followers
+    span className: "#{bn}__counter", @followers()
 
 
   renderIcon: ({isFriendLimit}) =>
@@ -148,6 +152,10 @@ class @FriendButton extends React.PureComponent
           ]
         else
           i className: if isFriendLimit then 'fas fa-user' else 'fas fa-user-plus'
+
+
+  followers: =>
+    @state.followersWithoutSelf + (if @state.friend then 1 else 0)
 
 
   isVisible: =>
