@@ -296,7 +296,7 @@ class @Comment extends React.PureComponent
 
 
   canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt
+    currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
 
 
   canRestore: =>
