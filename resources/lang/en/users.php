@@ -54,8 +54,8 @@ return [
         'show_profile' => 'show profile',
         'too_many' => 'Block limit reached.',
         'button' => [
-            'block' => 'block',
-            'unblock' => 'unblock',
+            'block' => 'Block',
+            'unblock' => 'Unblock',
         ],
     ],
 
@@ -99,7 +99,7 @@ return [
     ],
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
-        'button_text' => 'report',
+        'button_text' => 'Report',
         'comments' => 'Additional Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
