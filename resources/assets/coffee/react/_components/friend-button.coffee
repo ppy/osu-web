@@ -99,7 +99,7 @@ class @FriendButton extends React.PureComponent
 
     blockClass = osu.classWithModifiers(bn, @props.modifiers)
 
-    isFriendLimit = currentUser.friends.length >= currentUser.max_friends
+    isFriendLimit = (currentUser.friends?.length ? 0) >= currentUser.max_friends
     title = switch
       when !isVisible
         null

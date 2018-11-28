@@ -155,7 +155,7 @@ class DetailBar extends React.PureComponent
   renderExtraMenu: =>
     items = []
 
-    if @props.user.id != currentUser.id
+    if currentUser.id? && currentUser.id != @props.user.id
       blockButton = el BlockButton,
         key: 'block'
         userId: @props.user.id
