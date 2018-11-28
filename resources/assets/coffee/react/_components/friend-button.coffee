@@ -22,12 +22,16 @@ el = React.createElement
 bn = 'user-action-button'
 
 class @FriendButton extends React.PureComponent
+  @defaultProps = showFollowerCounter: false
+
+
   constructor: (props) ->
     super props
 
-    @eventId = "friendButton-#{@props.user_id}-#{osu.uuid()}"
+    @button = React.createRef()
+    @eventId = "friendButton-#{@props.userId}-#{osu.uuid()}"
     @state =
-      friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)
+      friend: _.find(currentUser.friends, target_id: props.userId)
 
 
   requestDone: =>
@@ -35,7 +39,7 @@ class @FriendButton extends React.PureComponent
 
 
   updateFriends: (data) =>
-    @setState friend: _.find(data, (o) => o.target_id == @props.user_id), ->
+    @setState friend: _.find(data, target_id: @props.userId), ->
       currentUser.friends = data
       $.publish 'user:update', currentUser
       $.publish "friendButton:refresh"
@@ -48,22 +52,22 @@ class @FriendButton extends React.PureComponent
       #un-friending
       @xhr = $.ajax
         type: "DELETE"
-        url: laroute.route 'friends.destroy', friend: @props.user_id
+        url: laroute.route 'friends.destroy', friend: @props.userId
     else
       #friending
       @xhr = $.ajax
         type: "POST"
-        url: laroute.route 'friends.store', target: @props.user_id
+        url: laroute.route 'friends.store', target: @props.userId
 
     @xhr
     .done @updateFriends
-    .fail osu.emitAjaxError(@button)
+    .fail osu.emitAjaxError(@button.current)
     .always @requestDone
 
 
   refresh: (e) =>
     @setState
-      friend: _.find(currentUser.friends, (o) => o.target_id == @props.user_id), =>
+      friend: _.find(currentUser.friends, target_id: @props.userId), =>
       @forceUpdate()
 
 
@@ -84,7 +88,7 @@ class @FriendButton extends React.PureComponent
 
       return null
 
-    blockClass = bn
+    blockClass = osu.classWithModifiers(bn, @props.modifiers)
 
     isFriendLimit = currentUser.friends.length >= currentUser.max_friends
     title = if @state.friend
@@ -106,9 +110,21 @@ class @FriendButton extends React.PureComponent
       type: 'button'
       className: blockClass
       onClick: @clicked
-      ref: (el) => @button = el
+      ref: @button
       title: title
       disabled: disabled
+      @renderIcon({isFriendLimit})
+      @renderCounter()
+
+
+  renderCounter: =>
+    return unless @props.showFollowerCounter && @props.followers?
+
+    span className: "#{bn}__counter", @props.followers
+
+
+  renderIcon: ({isFriendLimit}) =>
+    span className: "#{bn}__icon-container",
       if @state.loading
         el Spinner
       else
@@ -139,6 +155,6 @@ class @FriendButton extends React.PureComponent
     # - not viewing own card
     # - not blocked
     currentUser.id? &&
-      _.isFinite(@props.user_id) &&
-      @props.user_id != currentUser.id &&
-      !_.find(currentUser.blocks, target_id: @props.user_id)
+      _.isFinite(@props.userId) &&
+      @props.userId != currentUser.id &&
+      !_.find(currentUser.blocks, target_id: @props.userId)

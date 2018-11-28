@@ -20,12 +20,13 @@
   @_top: user-action-button;
 
   .reset-input();
-  .center-content();
   .link-plain();
   .link-white();
+  .center-content();
   border-radius: 10px;
-  width: 50px;
   height: 20px;
+  width: 50px;
+  text-align: center;
 
   font-size: 14px;
   background: fade(black, 70%);
@@ -54,8 +55,20 @@
     }
   }
 
+  &--profile-page {
+    width: auto;
+    height: auto;
+    padding: 0 10px;
+    border-radius: 10000px;
+    font-weight: bold;
+  }
+
   &--right-margin {
     margin-right: 10px;
+  }
+
+  &__counter {
+    padding: 0 10px;
   }
 
   &__icon {
@@ -78,5 +91,10 @@
         opacity: 1;
       }
     }
+  }
+
+  &__icon-container {
+    .center-content();
+    width: 50px;
   }
 }

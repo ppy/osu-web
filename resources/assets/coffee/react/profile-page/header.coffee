@@ -33,6 +33,7 @@ class Detail extends React.PureComponent
           stats: @props.stats
           toggleExtend: @toggleExtend
           extended: @state.extended
+          user: @props.user
       div
         className: if @state.extended then '' else 'hidden'
         div className: 'profile-detail__row profile-detail__row--top',
@@ -93,7 +94,13 @@ class DetailBar extends React.PureComponent
           else
             span className: 'fas fa-chevron-down'
 
-      div className: "#{bn}__column #{bn}__column--left"
+      div className: "#{bn}__column #{bn}__column--left",
+        el FriendButton,
+          userId: @props.user.id
+          showFollowerCounter: true
+          followers: @props.user.follower_count[0]
+          modifiers: ['profile-page']
+
       div className: "#{bn}__column #{bn}__column--right",
         if @props.extended
           div className: "#{bn}__entry #{bn}__entry--level-progress",
@@ -584,6 +591,7 @@ class ProfilePage.Header extends React.Component
               stats: @props.stats
               userAchievements: @props.userAchievements
               rankHistory: @props.rankHistory
+              user: @props.user
 
           if @props.user.badges.length > 0
             el ProfilePage.Badges, badges: @props.user.badges
