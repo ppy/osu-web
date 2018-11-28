@@ -85,6 +85,8 @@ class DetailBar extends React.PureComponent
 
 
   render: =>
+    isBlocked = _.find(currentUser.blocks, target_id: @props.user.id)
+
     div className: bn,
       div className: "#{bn}__page-toggle",
         button
@@ -103,6 +105,13 @@ class DetailBar extends React.PureComponent
             followers: @props.user.follower_count[0]
             modifiers: ['profile-page']
             alwaysVisible: true
+        if currentUser.id != @props.user.id && !isBlocked
+          div className: "#{bn}__menu-item",
+            a
+              className: 'user-action-button user-action-button--profile-page'
+              href: laroute.route 'messages.users.show', user: @props.user.id
+              title: osu.trans('users.card.send_message')
+              i className: 'fas fa-envelope'
 
         @renderExtraMenu()
 
@@ -153,6 +162,12 @@ class DetailBar extends React.PureComponent
         wrapperClass: 'simple-menu__item'
         modifiers: ['inline']
       items.push blockButton
+
+      reportButton = el _exported.ReportUser,
+        user: @props.user
+        wrapperClass: 'simple-menu__item'
+        modifiers: ['inline']
+      items.push reportButton
 
     return null if items.length == 0
 
