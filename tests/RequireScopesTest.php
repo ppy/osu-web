@@ -41,7 +41,6 @@ class RequireScopesTest extends TestCase
     public function testSingleton()
     {
         $this->assertSame(app(RequireScopes::class), app(RequireScopes::class));
-        $this->assertNotSame(app(RequireScopes::class), new RequireScopes);
     }
 
     public function testNullUser()
