@@ -27,11 +27,15 @@ use Laravel\Passport\Exceptions\MissingScopeException;
 
 class RequireScopes
 {
+    /** @var bool|null */
+    private $requestHasScopedMiddleware;
+
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
+     * @param Request $request
+     * @param Closure $next
+     * @param string[] ...$scopes
      *
      * @return mixed
      */
@@ -62,7 +66,23 @@ class RequireScopes
         return $next($request);
     }
 
-    private function requestHasScopedMiddleware(Request $request)
+    /**
+     * Returns if the request contains this middleware with scope parameter checks.
+     *
+     * @param Request $request
+     *
+     * @return bool
+     */
+    private function requestHasScopedMiddleware(Request $request) : bool
+    {
+        if ($this->requestHasScopedMiddleware === null) {
+            $this->requestHasScopedMiddleware = $this->containsScoped($request);
+        }
+
+        return $this->requestHasScopedMiddleware;
+    }
+
+    private function containsScoped(Request $request)
     {
         foreach ($request->route()->gatherMiddleware() as $middleware) {
             if (starts_with($middleware, 'require-scopes:')) {
