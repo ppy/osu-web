@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -20,18 +20,16 @@ el = React.createElement
 
 class @ShowMoreLink extends React.PureComponent
   render: =>
-    blockClass = osu.classWithModifiers('show-more-link', @props.modifiers)
+    return null unless @props.hasMore || @props.loading
 
-    if @props.loading
-      div className: blockClass, el Spinner
-
-    else
-      return null unless @props.hasMore
-
-      button
-        type: 'button'
-        onClick: @props.callback ? @showMore
-        className: "#{blockClass} show-more-link--link"
+    button
+      type: 'button'
+      onClick: @props.callback ? @showMore
+      disabled: @props.loading
+      className: osu.classWithModifiers('show-more-link', @props.modifiers)
+      if @props.loading
+        el Spinner
+      else
         osu.trans('common.buttons.show_more')
 
 

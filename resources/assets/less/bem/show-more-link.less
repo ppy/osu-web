@@ -22,16 +22,12 @@
   width: 100%;
   padding-top: 10px;
   text-align: center;
+  color: @link-color;
 
-  // Declared early so color and other styles can be overridden by other modifiers.
-  &--link {
-    color: @link-color;
-
-    .link-hover({
-      color: @link-hover-color;
-      text-decoration: underline;
-    });
-  }
+  .link-hover({
+    color: @link-hover-color;
+    text-decoration: underline;
+  });
 
   &--changelog-index {
     padding: 40px 0;
@@ -40,5 +36,10 @@
     .link-hover({
       color: #fff;
     });
+  }
+
+  &[disabled] {
+    .link-plain();
+    color: inherit;
   }
 }
