@@ -25,6 +25,9 @@ class ProfilePage.Historical extends React.PureComponent
     super props
 
     @id = "users-show-historical-#{osu.uuid()}"
+    @monthlyPlaycountsChartArea = React.createRef()
+    @replaysWatchedCountsChartArea = React.createRef()
+
     @charts = {}
 
 
@@ -57,7 +60,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           div
             className: 'page-extra__chart'
-            ref: @setMonthlyPlaycountsChartArea
+            ref: @monthlyPlaycountsChartArea
 
 
       h3
@@ -117,7 +120,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           div
             className: 'page-extra__chart'
-            ref: @setReplaysWatchedCountsChartArea
+            ref: @replaysWatchedCountsChartArea
 
 
   chartUpdate: (attribute, area) =>
@@ -179,13 +182,13 @@ class ProfilePage.Historical extends React.PureComponent
   monthlyPlaycountsChartUpdate: =>
     return if !@hasMonthlyPlaycounts()
 
-    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea
+    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea.current
 
 
   replaysWatchedCountsChartUpdate: =>
     return if !@hasReplaysWatchedCounts()
 
-    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea
+    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea.current
 
 
   updateTicks: (chart, data) =>
@@ -207,11 +210,3 @@ class ProfilePage.Historical extends React.PureComponent
     for own _name, chart of @charts
       @updateTicks chart
       chart.resize()
-
-
-  setMonthlyPlaycountsChartArea: (ref) =>
-    @monthlyPlaycountsChartArea = ref
-
-
-  setReplaysWatchedCountsChartArea: (ref) =>
-    @replaysWatchedCountsChartArea = ref
