@@ -132,7 +132,7 @@ class @FriendButton extends React.PureComponent
   renderCounter: =>
     return unless @props.showFollowerCounter && @props.followers?
 
-    span className: "#{bn}__counter", @followers()
+    span className: "#{bn}__counter", @followers().toLocaleString()
 
 
   renderIcon: ({isFriendLimit, isVisible}) =>
