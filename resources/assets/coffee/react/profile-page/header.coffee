@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -30,7 +30,7 @@ class Detail extends React.PureComponent
   render: =>
     div className: 'profile-detail',
       div className: 'profile-detail__bar',
-        el DetailBar,
+        el ProfilePage.DetailBar,
           stats: @props.stats
           toggleExtend: @toggleExtend
           extended: @state.extended
@@ -78,110 +78,6 @@ class Detail extends React.PureComponent
 
   toggleExtend: =>
     @setState extended: !@state.extended
-
-
-class DetailBar extends React.PureComponent
-  bn = 'profile-detail-bar'
-
-
-  render: =>
-    isBlocked = _.find(currentUser.blocks, target_id: @props.user.id)
-
-    div className: bn,
-      div className: "#{bn}__page-toggle",
-        button
-          className: 'profile-page-button'
-          onClick: @props.toggleExtend
-          if @props.extended
-            span className: 'fas fa-chevron-up'
-          else
-            span className: 'fas fa-chevron-down'
-
-      div className: "#{bn}__column #{bn}__column--left",
-        div className: "#{bn}__menu-item",
-          el FriendButton,
-            userId: @props.user.id
-            showFollowerCounter: true
-            followers: @props.user.follower_count[0]
-            modifiers: ['profile-page']
-            alwaysVisible: true
-        if currentUser.id != @props.user.id && !isBlocked
-          div className: "#{bn}__menu-item",
-            a
-              className: 'user-action-button user-action-button--profile-page'
-              href: laroute.route 'messages.users.show', user: @props.user.id
-              title: osu.trans('users.card.send_message')
-              i className: 'fas fa-envelope'
-
-        @renderExtraMenu()
-
-      div className: "#{bn}__column #{bn}__column--right",
-        if @props.extended
-          div className: "#{bn}__entry #{bn}__entry--level-progress",
-            div className: 'bar bar--user-profile',
-              div
-                className: 'bar__fill'
-                style:
-                  width: "#{@props.stats.level.progress}%"
-              div className: "bar__text",
-                "#{@props.stats.level.progress}%"
-
-        if !@props.extended
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            div className: 'value-display',
-              div className: 'value-display__label',
-                osu.trans('users.show.rank.global_simple')
-              div className: 'value-display__value',
-                if @props.stats.rank.global?
-                  @props.stats.rank.global.toLocaleString()
-                else
-                  '-'
-
-        if !@props.extended
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            div className: 'value-display',
-              div className: 'value-display__label',
-                osu.trans('users.show.rank.country_simple')
-              div className: 'value-display__value',
-                if @props.stats.rank.country?
-                  @props.stats.rank.country.toLocaleString()
-                else
-                  '-'
-
-        div className: "#{bn}__entry #{bn}__entry--level",
-          div className: "#{bn}__level",
-            @props.stats.level.current
-
-  renderExtraMenu: =>
-    items = []
-
-    if currentUser.id? && currentUser.id != @props.user.id
-      blockButton = el BlockButton,
-        key: 'block'
-        userId: @props.user.id
-        wrapperClass: 'simple-menu__item'
-        modifiers: ['inline']
-      items.push blockButton
-
-      reportButton = el _exported.ReportUser,
-        key: 'report'
-        user: @props.user
-        wrapperClass: 'simple-menu__item'
-        modifiers: ['inline']
-      items.push reportButton
-
-    return null if items.length == 0
-
-    div className: "#{bn}__menu-item",
-      button
-        className: 'profile-page-button js-click-menu'
-        'data-click-menu-target': "profile-page-bar-#{@id}"
-        span className: 'fas fa-ellipsis-v'
-      div
-        className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
-        'data-click-menu-id': "profile-page-bar-#{@id}"
-        'data-visibility': 'hidden'
-        items
 
 
 class DetailMobile extends React.PureComponent
