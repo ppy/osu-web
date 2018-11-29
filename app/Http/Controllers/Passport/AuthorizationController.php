@@ -18,16 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Passport;
 
 use Laravel\Passport\Passport;
 use Laravel\Passport\Bridge\Scope;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 
+/**
+ * Extension of Laravel\Passport\Http\Controllers\AuthorizationController
+ * to add support for scope normalization when requesting token scopes.
+ */
 class AuthorizationController extends PassportAuthorizationController
 {
     /**
      * Transform the authorization requests's scopes into Scope instances.
+     * This overrides the default implementation to normalize scope requests.
      *
      * @param  \League\OAuth2\Server\RequestTypes\AuthorizationRequest  $authRequest
      * @return array

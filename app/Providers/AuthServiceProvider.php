@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Passport\AuthorizationController;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -32,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
-        Route::get('oauth/authorize', 'App\Http\Controllers\AuthorizationController@authorize');
+        Route::get('oauth/authorize', AuthorizationController::class.'@authorize');
 
         Passport::tokensCan([
             'identify' => trans('api.scopes.identify'),
