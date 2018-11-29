@@ -36,7 +36,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    font-size: 70px;
+    font-size: 70px; // icon size
   }
 
   &__content {
@@ -46,13 +46,13 @@
 
   &__date {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: @font-size--small;
     color: #fff;
   }
 
   &__description {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: @font-size--normal;
     font-style: italic;
     color: #ccc;
   }
@@ -85,13 +85,13 @@
     padding: 10px;
     color: #fff;
 
-    font-size: 12px;
+    font-size: @font-size--normal;
   }
 
   &__instructions {
     color: @yellow;
     font-style: italic;
-    font-size: 14px;
+    font-size: @font-size--title-small;
     font-weight: 300;
 
     a {
@@ -111,7 +111,7 @@
   }
 
   &__name {
-    font-size: 20px;
+    font-size: @font-size--large;
     font-style: italic;
     font-weight: 300;
     color: #fff;
