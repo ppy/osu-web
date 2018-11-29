@@ -35,6 +35,7 @@ class @NotificationBanner extends React.PureComponent
 
 
   componentWillUnmount: =>
+    $(document).off ".#{@eventId}"
     @removePortalContainer()
 
 
