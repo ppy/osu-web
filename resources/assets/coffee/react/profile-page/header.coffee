@@ -19,66 +19,6 @@
 {a, button, div, dd, dl, dt, h1, i, img, li, span, ul} = ReactDOMFactories
 el = React.createElement
 
-class Detail extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @id = osu.uuid()
-    @state = extended: true
-
-
-  render: =>
-    div className: 'profile-detail',
-      div className: 'profile-detail__bar',
-        el ProfilePage.DetailBar,
-          stats: @props.stats
-          toggleExtend: @toggleExtend
-          extended: @state.extended
-          user: @props.user
-      div
-        className: if @state.extended then '' else 'hidden'
-        div className: 'profile-detail__row profile-detail__row--top',
-          div className: 'profile-detail__col profile-detail__col--top-left',
-            div className: 'profile-detail__top-left-item',
-              el PlayTime, stats: @props.stats
-            div className: 'profile-detail__top-left-item',
-              el MedalsCount, userAchievements: @props.userAchievements
-            div className: 'profile-detail__top-left-item',
-              el Pp, stats: @props.stats
-
-          div className: 'profile-detail__col',
-            el RankCount, stats: @props.stats
-        div className: 'profile-detail__row',
-          div className: 'profile-detail__col profile-detail__col--bottom-left',
-            el ProfilePage.RankChart,
-              rankHistory: @props.rankHistory
-              stats: @props.stats
-
-          div className: 'profile-detail__col profile-detail__col--bottom-right',
-            div className: 'profile-detail__bottom-right-item',
-              div className: 'value-display value-display--large',
-                div className: 'value-display__label',
-                  osu.trans('users.show.rank.global_simple')
-                div className: 'value-display__value',
-                  if @props.stats.rank.global?
-                    @props.stats.rank.global.toLocaleString()
-                  else
-                    '-'
-
-            div className: 'profile-detail__bottom-right-item',
-              div className: 'value-display',
-                div className: 'value-display__label',
-                  osu.trans('users.show.rank.country_simple')
-                div className: 'value-display__value',
-                  if @props.stats.rank.country?
-                    @props.stats.rank.country.toLocaleString()
-                  else
-                    '-'
-
-
-  toggleExtend: =>
-    @setState extended: !@state.extended
-
 
 class DetailMobile extends React.PureComponent
   render: =>
@@ -528,7 +468,7 @@ class ProfilePage.Header extends React.Component
               el Stats, stats: @props.stats
 
           if !@props.user.is_bot
-            el Detail,
+            el ProfilePage.Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements
               rankHistory: @props.rankHistory
