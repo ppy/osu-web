@@ -45,7 +45,7 @@ class ProfilePage.DetailBar extends React.PureComponent
     div className: bn,
       div className: "#{bn}__page-toggle",
         button
-          className: 'profile-page-button'
+          className: 'profile-page-toggle'
           onClick: @props.toggleExtend
           if @props.extended
             span className: 'fas fa-chevron-up'
@@ -129,7 +129,7 @@ class ProfilePage.DetailBar extends React.PureComponent
 
     div className: "#{bn}__menu-item",
       button
-        className: 'profile-page-button js-click-menu'
+        className: 'profile-page-toggle js-click-menu'
         'data-click-menu-target': "profile-page-bar-#{@id}"
         span className: 'fas fa-ellipsis-v'
       div

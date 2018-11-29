@@ -18,6 +18,21 @@
 
 .profile-page-button {
   .reset-input();
-  .circle(40px);
-  background-color: @community-user-graygreen;
+  font-size: @font-size--normal;
+  border-radius: 10000px;
+  background-color: @community-user-graygreen-darker;
+  color: #fff;
+  padding: 5px 20px;
+
+  &:hover {
+    background-color: @community-user-graygreen-dark;
+  }
+
+  &[disabled] {
+    color: #ccc;
+
+    &:hover {
+      background-color: @community-user-graygreen-darker;
+    }
+  }
 }

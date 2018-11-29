@@ -73,7 +73,10 @@ class ProfilePage.Header extends React.Component
         div className: 'osu-page osu-page--header-v3',
           @renderTitle()
           @renderTabs()
-          el ProfilePage.GameModeSwitcher, user: @props.user, currentMode: @props.currentMode
+          el ProfilePage.GameModeSwitcher,
+            currentMode: @props.currentMode
+            user: @props.user
+            withEdit: @props.withEdit
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
@@ -107,7 +110,7 @@ class ProfilePage.Header extends React.Component
         ref: @coverSelector
         className: 'profile-header__cover-editor'
         button
-          className: 'profile-page-button'
+          className: 'profile-page-toggle'
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'
         if @state.editing
