@@ -163,7 +163,7 @@ class ProfilePage.Links extends React.PureComponent
 
     return unless value?
 
-    playsWith = (value ? []).map (s) ->
+    playsWith = value.map (s) ->
       osu.trans "common.device.#{s}"
     .join ', '
 
