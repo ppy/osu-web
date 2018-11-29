@@ -39,14 +39,14 @@ class ProfilePage.Detail extends React.PureComponent
         div className: 'profile-detail__row profile-detail__row--top',
           div className: 'profile-detail__col profile-detail__col--top-left',
             div className: 'profile-detail__top-left-item',
-              el PlayTime, stats: @props.stats
+              el ProfilePage.PlayTime, stats: @props.stats
             div className: 'profile-detail__top-left-item',
-              el MedalsCount, userAchievements: @props.userAchievements
+              el ProfilePage.MedalsCount, userAchievements: @props.userAchievements
             div className: 'profile-detail__top-left-item',
-              el Pp, stats: @props.stats
+              el ProfilePage.Pp, stats: @props.stats
 
           div className: 'profile-detail__col',
-            el RankCount, stats: @props.stats
+            el ProfilePage.RankCount, stats: @props.stats
         div className: 'profile-detail__row',
           div className: 'profile-detail__col profile-detail__col--bottom-left',
             el ProfilePage.RankChart,
