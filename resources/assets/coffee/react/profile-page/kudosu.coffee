@@ -70,6 +70,7 @@ class ProfilePage.Kudosu extends React.Component
 
           li className: 'profile-extra-entries__item',
             el ShowMoreLink,
+              modifiers: ['profile-page']
               event: 'profile:showMore'
               hasMore: @props.pagination.recentlyReceivedKudosu.hasMore
               loading: @props.pagination.recentlyReceivedKudosu.loading

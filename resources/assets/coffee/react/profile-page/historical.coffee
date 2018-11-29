@@ -75,6 +75,7 @@ class ProfilePage.Historical extends React.PureComponent
               playcount: playcount
           el ShowMoreLink,
             key: 'show-more-row'
+            modifiers: ['profile-page']
             event: 'profile:showMore'
             hasMore: @props.pagination.beatmapPlaycounts.hasMore
             loading: @props.pagination.beatmapPlaycounts.loading
@@ -98,6 +99,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           el ShowMoreLink,
             key: 'show-more-row'
+            modifiers: ['profile-page']
             event: 'profile:showMore'
             hasMore: @props.pagination.scoresRecent.hasMore
             loading: @props.pagination.scoresRecent.loading

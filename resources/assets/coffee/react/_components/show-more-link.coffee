@@ -15,8 +15,9 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div} = ReactDOMFactories
+{button, span} = ReactDOMFactories
 el = React.createElement
+bn = 'show-more-link'
 
 class @ShowMoreLink extends React.PureComponent
   render: =>
@@ -26,10 +27,10 @@ class @ShowMoreLink extends React.PureComponent
       type: 'button'
       onClick: @props.callback ? @showMore
       disabled: @props.loading
-      className: osu.classWithModifiers('show-more-link', @props.modifiers)
-      if @props.loading
+      className: osu.classWithModifiers(bn, @props.modifiers)
+      span className: "#{bn}__spinner",
         el Spinner
-      else
+      span className: "#{bn}__label",
         osu.trans('common.buttons.show_more')
 
 
