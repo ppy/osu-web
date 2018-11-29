@@ -18,19 +18,18 @@
 
 {div} = ReactDOMFactories
 el = React.createElement
-
+ranks = ['XH', 'X', 'SH', 'S', 'A']
 
 class ProfilePage.RankCount extends React.PureComponent
   render: =>
     div className: 'profile-rank-count',
-      @renderRankCountEntry(name) for name in ['XH', 'X', 'SH', 'S', 'A']
+      ranks.map @renderRankCountEntry
 
 
   renderRankCountEntry: (name) =>
-    rankCount = @props.stats.scoreRanks[name]
-
     div
+      key: name
       className: 'profile-rank-count__item'
       div
         className: "score-rank-v2 score-rank-v2--#{name} score-rank-v2--profile-page"
-      div null, rankCount.toLocaleString()
+      @props.stats.scoreRanks[name].toLocaleString()
