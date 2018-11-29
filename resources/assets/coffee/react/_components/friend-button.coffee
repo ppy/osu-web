@@ -35,7 +35,7 @@ class @FriendButton extends React.PureComponent
 
     friend = _.find(currentUser.friends, target_id: props.userId)
     followersWithoutSelf = @props.followers ? 0
-    followersWithoutSelf -= 1 if friend
+    followersWithoutSelf -= 1 if friend?
 
     @state = {friend, followersWithoutSelf}
 
@@ -54,7 +54,7 @@ class @FriendButton extends React.PureComponent
   clicked: (e) =>
     @setState loading: true
 
-    if @state.friend
+    if @state.friend?
       #un-friending
       @xhr = $.ajax
         type: "DELETE"
@@ -103,16 +103,16 @@ class @FriendButton extends React.PureComponent
     title = switch
       when !isVisible
         null
-      when @state.friend
+      when @state.friend?
         osu.trans('friends.buttons.remove')
       when isFriendLimit
         osu.trans('friends.too_many')
       else
         osu.trans('friends.buttons.add')
 
-    disabled = !isVisible || @state.loading || isFriendLimit && !@state.friend
+    disabled = !isVisible || @state.loading || isFriendLimit && !@state.friend?
 
-    if @state.friend && !@state.loading
+    if @state.friend? && !@state.loading
       if @state.friend.mutual
         blockClass += " #{bn}--mutual"
       else
@@ -142,7 +142,7 @@ class @FriendButton extends React.PureComponent
           el Spinner
         when !isVisible
           i className: 'fas fa-user'
-        when @state.friend
+        when @state.friend?
           [
             span
               key: 'hover'
@@ -165,7 +165,7 @@ class @FriendButton extends React.PureComponent
 
 
   followers: =>
-    @state.followersWithoutSelf + (if @state.friend then 1 else 0)
+    @state.followersWithoutSelf + (if @state.friend? then 1 else 0)
 
 
   isVisible: =>
