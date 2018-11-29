@@ -34,15 +34,14 @@ class AuthorizationController extends PassportAuthorizationController
      */
     protected function parseScopes($authRequest)
     {
-        $scopes = $authRequest->getScopes();
-        if (empty($scopes)) {
-            $scopes = [new Scope('identify')];
+        $scopes = collect($authRequest->getScopes())->map(function ($scope) {
+            return $scope->getIdentifier();
+        });
+
+        if (!$scopes->containsStrict('identify')) {
+            $scopes->push('identify');
         }
 
-        return Passport::scopesFor(
-            collect($scopes)->map(function ($scope) {
-                return $scope->getIdentifier();
-            })->all()
-        );
+        return Passport::scopesFor($scopes->all());
     }
 }
