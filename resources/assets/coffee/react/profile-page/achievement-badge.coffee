@@ -30,7 +30,7 @@ class ProfilePage.AchievementBadge extends React.PureComponent
     @tooltip = React.createRef()
 
   render: =>
-    @tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
+    @tooltipId = "#{@props.achievement.slug}-#{osu.uuid()}"
 
     badgeClass = osu.classWithModifiers('badge-achievement', @props.modifiers)
     tooltipBadgeClass = 'badge-achievement badge-achievement--dynamic-height'
