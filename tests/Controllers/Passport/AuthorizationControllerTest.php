@@ -21,28 +21,17 @@
 namespace Tests\Passport;
 
 use App\Http\Controllers\Passport\AuthorizationController;
-use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
-use Laravel\Passport\Bridge\Scope;
 use Mockery;
-use ReflectionClass;
 use TestCase;
+use Zend\Diactoros\ServerRequest;
 
 class AuthorizationControllerTest extends TestCase
 {
-    protected $request;
-    protected $controller;
-
-    private static function scopeIdentifiers(array $scopes) {
-        return collect($scopes)->map(function ($scope) {
-            return $scope->id;
-        })->all();
-    }
+    private $controller;
 
     public function setUp()
     {
         parent::setUp();
-
-        $this->request = Mockery::mock('\League\OAuth2\Server\RequestTypes\AuthorizationRequest');
 
         $this->controller = new AuthorizationController(
             Mockery::mock('\League\OAuth2\Server\AuthorizationServer'),
@@ -57,43 +46,55 @@ class AuthorizationControllerTest extends TestCase
         Mockery::close();
     }
 
-    public function testBaseClassDoesNotNormalize()
+    public function testAuthorizeNormalizes()
     {
-        $this->request->shouldReceive('getScopes')->andReturn([]);
-        $this->controller = new PassportAuthorizationController(
-            Mockery::mock('\League\OAuth2\Server\AuthorizationServer'),
-            Mockery::mock('\Illuminate\Contracts\Routing\ResponseFactory')
+        $request = new ServerRequest(
+            /* $serverParams */ [],
+            /* $uploadedFiles */ [],
+            /* $uri */ config('app.url').'/oauth/authorize',
+            /* $method */ 'GET',
+            /* $body */ 'php://input',
+            /* $headers */  [],
+            /* $cookies */  [],
+            /* $queryParams */ ['scope' => 'one two three'],
+            /* $parsedBody */ null,
+            /* $protocol*/ '1.1'
         );
 
-        $actual = $this->invokeMethod($this->controller, 'parseScopes', [$this->request]);
+        $actual = $this->invokeMethod($this->controller, 'normalizeRequestScopes', [$request])->getQueryParams()['scope'];
 
-        $this->assertSame(static::scopeIdentifiers($actual), []);
+        $this->assertSame($actual, 'identify one three two');
     }
 
-    public function testIdentifyScopeAdded()
+    public function testNormalizeEmptyScopes()
     {
-        $this->request->shouldReceive('getScopes')->andReturn([]);
+        $scopes = [];
+        $actual = $this->invokeMethod($this->controller, 'normalizeScopes', [$scopes]);
 
-        $actual = $this->invokeMethod($this->controller, 'parseScopes', [$this->request]);
-
-        $this->assertSame(static::scopeIdentifiers($actual), ['identify']);
+        $this->assertSame($actual, ['identify']);
     }
 
-    public function testOnlyIdentifyScopeRequested()
+    public function testNormalizeIdentifyScope()
     {
-        $this->request->shouldReceive('getScopes')->andReturn([new Scope('identify')]);
+        $scopes = ['identify'];
+        $actual = $this->invokeMethod($this->controller, 'normalizeScopes', [$scopes]);
 
-        $actual = $this->invokeMethod($this->controller, 'parseScopes', [$this->request]);
-
-        $this->assertSame(static::scopeIdentifiers($actual), ['identify']);
+        $this->assertSame($actual, ['identify']);
     }
 
-    public function testOnlyIdentifyScopeIncludedInRequest()
+    public function testNormalizeMultipleScopes()
     {
-        $this->request->shouldReceive('getScopes')->andReturn([new Scope('identify'), new Scope('read')]);
+        $scopes = ['read', 'identify'];
+        $actual = $this->invokeMethod($this->controller, 'normalizeScopes', [$scopes]);
 
-        $actual = $this->invokeMethod($this->controller, 'parseScopes', [$this->request]);
+        $this->assertSame($actual, ['identify', 'read']);
+    }
 
-        $this->assertSame(static::scopeIdentifiers($actual), ['identify', 'read']);
+    public function testNormalizeIdentifyNotRequested()
+    {
+        $scopes = ['read'];
+        $actual = $this->invokeMethod($this->controller, 'normalizeScopes', [$scopes]);
+
+        $this->assertSame($actual, ['identify', 'read']);
     }
 }

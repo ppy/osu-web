@@ -21,10 +21,9 @@
 namespace App\Http\Controllers\Passport;
 
 use Illuminate\Http\Request;
-use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Bridge\Scope;
+use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
-use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -62,7 +61,22 @@ class AuthorizationController extends PassportAuthorizationController
     private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
     {
         $params = $request->getQueryParams();
-        $scopes = explode(' ', $params['scope'] ?? null);
+        $scopes = $this->normalizeScopes(
+            explode(' ', $params['scope'] ?? null)
+        );
+        $params['scope'] = implode(' ', $scopes);
+
+        return $request->withQueryParams($params);
+    }
+
+    /**
+     * Normalizes and sorts scopes.
+     *
+     * @param array $scopes
+     * @return array
+     */
+    private function normalizeScopes(array $scopes) : array
+    {
         if (!in_array('identify', $scopes, true)) {
             $scopes[] = 'identify';
         }
@@ -70,6 +84,6 @@ class AuthorizationController extends PassportAuthorizationController
         sort($scopes);
         $params['scope'] = implode(' ', $scopes);
 
-        return $request->withQueryParams($params);
+        return $scopes;
     }
 }
