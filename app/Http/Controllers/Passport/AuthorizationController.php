@@ -20,9 +20,13 @@
 
 namespace App\Http\Controllers\Passport;
 
-use Laravel\Passport\Passport;
+use Illuminate\Http\Request;
+use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Bridge\Scope;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
+use Laravel\Passport\Passport;
+use Laravel\Passport\TokenRepository;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Extension of Laravel\Passport\Http\Controllers\AuthorizationController
@@ -31,22 +35,41 @@ use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthori
 class AuthorizationController extends PassportAuthorizationController
 {
     /**
-     * Transform the authorization requests's scopes into Scope instances.
-     * This overrides the default implementation to normalize scope requests.
+     * Authorize a client to access the user's account.
+     * This overrides the default implementation to normalize scope requests
+     * and sort the scopes by key order.
      *
-     * @param  \League\OAuth2\Server\RequestTypes\AuthorizationRequest  $authRequest
-     * @return array
+     * @param  \Psr\Http\Message\ServerRequestInterface $psrRequest
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Laravel\Passport\ClientRepository $clients
+     * @param  \Laravel\Passport\TokenRepository $tokens
+     * @return \Illuminate\Http\Response
      */
-    protected function parseScopes($authRequest)
+    public function authorize(ServerRequestInterface $psrRequest,
+                              Request $request,
+                              ClientRepository $clients,
+                              TokenRepository $tokens)
     {
-        $scopes = collect($authRequest->getScopes())->map(function ($scope) {
-            return $scope->getIdentifier();
-        });
+        return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
+    }
 
-        if (!$scopes->containsStrict('identify')) {
-            $scopes->push('identify');
+    /**
+     * Normalizes the authorization request's scopes.
+     *
+     * @param ServerRequestInterface $request
+     * @return ServerRequestInterface
+     */
+    private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
+    {
+        $params = $request->getQueryParams();
+        $scopes = explode(' ', $params['scope'] ?? null);
+        if (!in_array('identify', $scopes, true)) {
+            $scopes[] = 'identify';
         }
 
-        return Passport::scopesFor($scopes->all());
+        sort($scopes);
+        $params['scope'] = implode(' ', $scopes);
+
+        return $request->withQueryParams($params);
     }
 }
