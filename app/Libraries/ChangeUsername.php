@@ -29,6 +29,8 @@ class ChangeUsername
 
     private $newUsername;
     private $type;
+
+    /** @var User */
     private $user;
 
     public function __construct(User $user, $newUsername, $type)
@@ -56,7 +58,36 @@ class ChangeUsername
             }
         }
 
+        $this->validatePreviousUsers();
+
         return $this->validationErrors();
+    }
+
+    public function validatePreviousUsers()
+    {
+        $previousUsers = $this->previousUsers()->get();
+        foreach ($previousUsers as $previousUser) {
+            // has badges
+            if ($previousUser->badges()->exists()) {
+                $this->validationErrors()->add('username', '.has_badge');
+            }
+
+            // ranked beatmaps
+            if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
+                $this->validationErrors()->add('username', '.ranked_beatmapets');
+            }
+
+            // ranks
+        }
+
+        return $this->validationErrors();
+    }
+
+    public function previousUsers()
+    {
+        return User::whereHas('usernameChangeHistory', function ($query) {
+            $query->where('username_last', $this->newUsername);
+        });
     }
 
     public function isValid()
