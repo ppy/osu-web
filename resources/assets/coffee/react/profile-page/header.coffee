@@ -71,6 +71,7 @@ class ProfilePage.Header extends React.Component
           el Spinner
         div className: 'header-v3__overlay'
         div className: 'osu-page osu-page--header-v3',
+          @renderTournamentBanner()
           @renderTitle()
           @renderTabs()
           el ProfilePage.GameModeSwitcher,
@@ -150,10 +151,10 @@ class ProfilePage.Header extends React.Component
 
     a
       href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
-      className: osu.classWithModifiers 'profile-header__tournament-banner', modifiers
+      className: osu.classWithModifiers 'profile-tournament-banner', modifiers
       el Img2x,
         src: @props.user.active_tournament_banner.image
-        className: 'profile-header__tournament-banner-image'
+        className: 'profile-tournament-banner__image'
 
 
   closeEdit: (e) =>

@@ -16,26 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-header {
-  &__cover-editor {
-    position: absolute;
-    right: @gutter-profile-page;
-    top: 10px;
+.profile-tournament-banner {
+  .own-layer();
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 10px;
+  left: 0;
+  width: 60%;
+  transition: transform .2s cubic-bezier(.08,.82,.17,1),-webkit-transform .2s cubic-bezier(.08,.82,.17,1);
+  will-change: transform;
 
-    @media @desktop {
-      right: 0;
-      top: auto;
-      bottom: 100%;
-      margin-bottom: 10px;
-    }
+  &:hover {
+    transform: scale(1.1);
   }
 
-  &__top {
-    display: flex;
-    flex-direction: column;
-
-    @media @desktop {
-      flex-direction: row;
-    }
+  &__image {
+    .default-border-radius();
+    width: 100%;
   }
 }
