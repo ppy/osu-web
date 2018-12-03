@@ -70,7 +70,7 @@ class ProfilePage.Links extends React.PureComponent
       joinDate = moment(val)
       joinDateTitle = joinDate.format('LL')
 
-      if joinDate.isBefore moment('2008-01-01')
+      if joinDate.isBefore moment.utc([2008])
         title: joinDateTitle
         html: osu.trans 'users.show.first_members'
       else
