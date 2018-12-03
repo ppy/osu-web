@@ -56,9 +56,7 @@
                 @include("forum.forums._forums", ["forums" => $category->subforums])
             </div>
         @endforeach
-    </div>
 
-    <div class="osu-page">
         <div class="forum-category col-sm-12">
             <div class="forums">
                 <div class="forums__forum forums__forum--mark-as-read">
