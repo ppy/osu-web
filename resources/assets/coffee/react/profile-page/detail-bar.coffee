@@ -140,6 +140,6 @@ class ProfilePage.DetailBar extends React.PureComponent
 
 
   updateCurrentUser: (_e, user) =>
-    return unless !@state.currentUser.id? || @state.currentUser.id == user.id
+    return unless @state.currentUser.id == user.id
 
     @setState currentUser: osu.jsonClone(user)
