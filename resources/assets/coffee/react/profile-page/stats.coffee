@@ -21,21 +21,32 @@ el = React.createElement
 
 
 class ProfilePage.Stats extends React.PureComponent
-  defaultValueFormatter = (val) -> val.toLocaleString()
+  entries = [
+    'ranked_score'
+    'hit_accuracy'
+    'play_count'
+    'total_score'
+    'total_hits'
+    'maximum_combo'
+    'replays_watched_by_others'
+  ]
 
 
   render: =>
-    div className: 'profile-stats',
-      @renderSimpleEntry 'ranked_score'
-      @renderSimpleEntry 'hit_accuracy', (val) -> "#{val.toFixed(2)}%"
-      @renderSimpleEntry 'play_count'
-      @renderSimpleEntry 'total_score'
-      @renderSimpleEntry 'total_hits'
-      @renderSimpleEntry 'maximum_combo'
-      @renderSimpleEntry 'replays_watched_by_others'
+    div className: 'profile-stats', entries.map(@renderEntry)
 
 
-  renderSimpleEntry: (key, valueFormatter = defaultValueFormatter) =>
-    dl className: 'profile-stats__entry',
+  renderEntry: (key) =>
+    dl
+      className: 'profile-stats__entry'
+      key: key
       dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
-      dd className: 'profile-stats__value', valueFormatter(@props.stats[key])
+      dd className: 'profile-stats__value', @formatValue(key)
+
+
+  formatValue: (key) =>
+    val = @props.stats[key]
+
+    switch key
+      when 'hit_accuracy' then "#{val.toFixed(2)}%"
+      else val.toLocaleString()
