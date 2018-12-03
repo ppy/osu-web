@@ -246,18 +246,16 @@ class Beatmaps.Main extends React.PureComponent
 
 
   stateFromUrl: =>
-    params = location.search.substr(1).split('&')
+    params = new URL(location).searchParams
 
     expand = false
 
     filters = {}
 
-    for part in params
-      [key, value] = part.split('=')
-      value = decodeURIComponent(value)
-      key = BeatmapsetFilter.charToKey[key]
+    for own char, key of BeatmapsetFilter.charToKey
+      value = params.get(char)
 
-      continue if !key? || value.length == 0
+      continue if !value? || value.length == 0
 
       value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
       expand = true if key in BeatmapsetFilter.expand
