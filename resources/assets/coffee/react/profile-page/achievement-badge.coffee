@@ -20,14 +20,11 @@
 el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.PureComponent
-  @defaultProps =
-    modifiers: []
-
-
   constructor: (props) ->
     super props
 
     @tooltip = React.createRef()
+
 
   render: =>
     @tooltipId = "#{@props.achievement.slug}-#{osu.uuid()}"
