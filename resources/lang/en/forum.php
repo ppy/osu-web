@@ -42,12 +42,15 @@ return [
     ],
 
     'forums' => [
-        'mark_as_read' => 'Mark forums as read',
-        'marking_as_read' => 'Marking as read...',
-
         'topics' => [
             'empty' => 'No topics!',
         ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => 'Mark forum as read',
+        'forums' => 'Mark forums as read',
+        'busy' => 'Marking as read...',
     ],
 
     'poll' => [

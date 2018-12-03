@@ -20,11 +20,11 @@
 @endphp
 
 <button class="btn-osu-big btn-osu-big--forum-button"
-    data-disable-with="{{ trans('forum.forums.marking_as_read') }}"
+    data-disable-with="{{ trans('forum.mark_as_read.busy') }}"
     data-method="POST"
     data-params="forum_id={{ optional($forum)->getKey() }}"
     data-remote="1"
     data-url="{{ route('forum.forums.mark-as-read') }}"
 >
-    {{ trans('forum.forums.mark_as_read') }}
+    {{ $forum === null ? trans('forum.mark_as_read.forums') : trans('forum.mark_as_read.forum') }}
 </button>
