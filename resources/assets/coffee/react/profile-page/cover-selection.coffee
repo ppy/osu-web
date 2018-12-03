@@ -20,8 +20,6 @@
 bn = 'profile-cover-selection'
 
 class ProfilePage.CoverSelection extends React.PureComponent
-  @defaultProps = modifiers: []
-
   render: =>
     button
       className: osu.classWithModifiers(bn, @props.modifiers)
