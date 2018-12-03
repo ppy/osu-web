@@ -32,7 +32,6 @@ class @LineChart
     @options.scales ?= {}
     @options.scales.x ?= d3.scaleTime()
     @options.scales.y ?= d3.scaleLinear()
-    @options.xAxisTickGradient ?= true
     @options.circleLine ?= false
     @options.axisLabels ?= true
 
@@ -40,8 +39,6 @@ class @LineChart
       .classed osu.classWithModifiers(bn, @options.modifiers), true
 
     @svg = @area.append 'svg'
-
-    @createXAxisTickGradient()
 
     @svgWrapper = @svg.append 'g'
       .classed "#{bn}__wrapper", true
@@ -102,27 +99,6 @@ class @LineChart
     @svgLine.datum data
 
     @resize()
-
-
-  createXAxisTickGradient: =>
-    return unless @options.axisLabels && @options.xAxisTickGradient
-
-    @xAxisTickGradient = @svg.append 'defs'
-      .append 'linearGradient'
-      .attr 'id', "x-axis-line-gradient-#{@id}"
-      .attr 'gradientUnits', 'userSpaceOnUse'
-      .attr 'x1', '0'
-      .attr 'x2', '0'
-      .attr 'y1', '-100%'
-      .attr 'y2', '0'
-
-    @xAxisTickGradient.append 'stop'
-      .classed "#{bn}__tick-gradient #{bn}__tick-gradient--start", true
-      .attr 'offset', '20%'
-
-    @xAxisTickGradient.append 'stop'
-      .classed "#{bn}__tick-gradient #{bn}__tick-gradient--end", true
-      .attr 'offset', '100%'
 
 
   setDimensions: =>
@@ -190,13 +166,8 @@ class @LineChart
       .transition()
       .call @yAxis
 
-    xAxisTick = @svgXAxis.selectAll '.tick line'
-      .classed "#{bn}__tick-line", true
-
-    if @options.xAxisTickGradient
-      xAxisTick.attr 'stroke', "url(#x-axis-line-gradient-#{@id})"
-    else
-      xAxisTick.classed "#{bn}__tick-line--default", true
+    @svgXAxis.selectAll '.tick line'
+      .classed "#{bn}__tick-line #{bn}__tick-line--default", true
 
     @svgYAxis.selectAll '.tick line'
       .classed "#{bn}__tick-line #{bn}__tick-line--default", true

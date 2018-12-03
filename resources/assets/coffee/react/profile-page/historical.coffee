@@ -163,7 +163,6 @@ class ProfilePage.Historical extends React.PureComponent
           y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
         tickValues: {}
         ticks: {}
-        xAxisTickGradient: false
         circleLine: true
         modifiers: ['profile-page']
 
