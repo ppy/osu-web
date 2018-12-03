@@ -73,18 +73,8 @@ class ProfilePage.Links extends React.PureComponent
         @renderPlaystyle()
         @renderPostCount()
       ]
-      [
-        @renderLink 'location'
-        @renderLink 'interests'
-        @renderLink 'occupation'
-      ]
-      [
-        @renderLink 'twitter'
-        @renderLink 'discord'
-        @renderLink 'skype'
-        @renderLink 'lastfm'
-        @renderLink 'website'
-      ]
+      ['location', 'interests', 'occupation'].map @renderLink
+      ['twitter', 'discord', 'skype', 'lastfm', 'website'].map @renderLink
     ]
 
     div className: bn,
