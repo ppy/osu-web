@@ -49,9 +49,13 @@ class ProfilePage.Detail extends React.PureComponent
             el ProfilePage.RankCount, stats: @props.stats
         div className: 'profile-detail__row',
           div className: 'profile-detail__col profile-detail__col--bottom-left',
-            el ProfilePage.RankChart,
-              rankHistory: @props.rankHistory
-              stats: @props.stats
+            if @props.rankHistory?
+              el ProfilePage.RankChart,
+                rankHistory: @props.rankHistory
+                stats: @props.stats
+            else
+              div className: 'profile-detail__empty-chart',
+                osu.trans('users.show.extra.unranked')
 
           div className: 'profile-detail__col profile-detail__col--bottom-right',
             div className: 'profile-detail__bottom-right-item',
