@@ -65,14 +65,41 @@ class ProfilePage.Links extends React.PureComponent
       text: (val) -> val.replace(/^https?:\/\//, '')
 
 
+  textMapping =
+    join_date: (val) ->
+      joinDate = moment(val)
+      joinDateTitle = joinDate.format('LL')
+
+      if joinDate.isBefore moment('2008-01-01')
+        title: joinDateTitle
+        html: osu.trans 'users.show.first_members'
+      else
+        html: osu.trans 'users.show.joined_at',
+          date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')),
+            title: joinDateTitle
+
+    last_visit: (val) ->
+      html: osu.trans 'users.show.lastvisit',
+        date: rowValue osu.timeago(val)
+
+    playstyle: (val) ->
+      playsWith = val.map (s) ->
+        osu.trans "common.device.#{s}"
+      .join ', '
+
+      html: osu.trans 'users.show.plays_with', devices: rowValue(playsWith)
+
+    post_count: (val, user) ->
+      count = osu.transChoice 'users.show.post_count.count', val.toLocaleString()
+      url = laroute.route('users.posts', user: user.id)
+
+      html:
+        osu.trans 'users.show.post_count._', link: rowValue(count, href: url)
+
+
   render: =>
     rows = [
-      [
-        @renderJoinDate()
-        @renderLastVisit()
-        @renderPlaystyle()
-        @renderPostCount()
-      ]
+      ['join_date', 'last_visit', 'playstyle', 'post_count'].map @renderText
       ['location', 'interests', 'occupation'].map @renderLink
       ['twitter', 'discord', 'skype', 'lastfm', 'website'].map @renderLink
     ]
@@ -80,40 +107,6 @@ class ProfilePage.Links extends React.PureComponent
     div className: bn,
       for row, j in rows when _.compact(row).length > 0
         div key: j, className: "#{bn}__row #{bn}__row--#{j}", row
-
-
-  renderJoinDate: =>
-    joinDate = moment(@props.user.join_date)
-    joinDateTitle = joinDate.format('LL')
-
-    if joinDate.isBefore moment('2008-01-01')
-      div
-        className: "#{bn}__item"
-        key: 'join_date'
-        title: joinDateTitle
-        osu.trans 'users.show.first_members'
-    else
-      div
-        className: "#{bn}__item"
-        key: 'join_date'
-        dangerouslySetInnerHTML:
-          __html:
-            osu.trans 'users.show.joined_at',
-              date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')), title: joinDateTitle
-
-
-  renderLastVisit: =>
-    value = @props.user.last_visit
-
-    return unless value?
-
-    div
-      className: "#{bn}__item"
-      key: 'last_visit'
-      dangerouslySetInnerHTML:
-        __html:
-          osu.trans 'users.show.lastvisit',
-            date: rowValue osu.timeago(value)
 
 
   renderLink: (key) =>
@@ -148,32 +141,17 @@ class ProfilePage.Links extends React.PureComponent
         className: componentClass
         text?(value) ? value
 
-  renderPlaystyle: =>
-    value = @props.user.playstyle
+
+  renderText: (key) =>
+    value = @props.user[key]
 
     return unless value?
 
-    playsWith = value.map (s) ->
-      osu.trans "common.device.#{s}"
-    .join ', '
+    {html, title} = textMapping[key](value, @props.user)
 
     div
       className: "#{bn}__item"
-      key: 'playstyle'
+      key: key
+      title: title
       dangerouslySetInnerHTML:
-        __html:
-          osu.trans 'users.show.plays_with',
-            devices: rowValue playsWith
-
-
-  renderPostCount: =>
-    count = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
-    url = laroute.route('users.posts', user: @props.user.id)
-
-    div
-      className: "#{bn}__item"
-      key: 'post_count'
-      dangerouslySetInnerHTML:
-        __html:
-          osu.trans 'users.show.post_count._',
-            link: rowValue count, href: url
+        __html: html
