@@ -19,16 +19,16 @@
 {div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
 el = React.createElement
 
+sections = [
+  'favouriteBeatmapsets'
+  'rankedAndApprovedBeatmapsets'
+  'lovedBeatmapsets'
+  'unrankedBeatmapsets'
+  'graveyardBeatmapsets'
+]
+
 class ProfilePage.Beatmaps extends React.PureComponent
   render: =>
-    sections = [
-      'favouriteBeatmapsets'
-      'rankedAndApprovedBeatmapsets'
-      'lovedBeatmapsets'
-      'unrankedBeatmapsets'
-      'graveyardBeatmapsets'
-    ]
-
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
