@@ -24,7 +24,6 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
-use Carbon\Carbon;
 use Request;
 
 class ForumsController extends Controller
