@@ -23,9 +23,6 @@ import { ReportForm } from 'report-form'
 bn = 'textual-button'
 
 export class ReportUser extends PureComponent
-  @defaultProps = modifiers: []
-
-
   constructor: (props) ->
     super props
 
