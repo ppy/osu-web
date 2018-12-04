@@ -83,8 +83,8 @@ class UsersController extends Controller
 
         $errors = Auth::user()->validateUsernameChangeTo($username);
 
-        $available = count($errors) === 0;
-        $message = $available ? "Username '".e($username)."' is available!" : implode(' ', $errors);
+        $available = $errors->isEmpty();
+        $message = $available ? "Username '".e($username)."' is available!" : $errors->allMessages();
         $cost = $available ? Auth::user()->usernameChangeCost() : 0;
 
         return [

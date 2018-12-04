@@ -298,20 +298,25 @@ class User extends Model implements AuthenticatableContract
 
     public function validateUsernameChangeTo($username)
     {
+        $errors = new \App\Libraries\ValidationErrors('');
         if (!$this->hasSupported()) {
             $link = \Html::link(
                 route('support-the-game'),
                 trans('model_validation.user.change_username.supporter_required.link_text')
             );
 
-            return [trans('model_validation.user.change_username.supporter_required._', ['link' => $link])];
+            $errors->addTranslated('username', trans('model_validation.user.change_username.supporter_required._', ['link' => $link]));
+
+            return $errors;
         }
 
         if ($username === $this->username) {
-            return [trans('model_validation.user.change_username.username_is_same')];
+            $errors->addTranslated('username', trans('model_validation.user.change_username.username_is_same'));
+
+            return $errors;
         }
 
-        return self::validateUsername($username);
+        return (new \App\Libraries\ChangeUsername($this, $username, 'paid'))->validate();
     }
 
     // verify that an api key is correct
