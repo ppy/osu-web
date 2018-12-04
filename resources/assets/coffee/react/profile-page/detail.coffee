@@ -18,6 +18,7 @@
 
 {div} = ReactDOMFactories
 el = React.createElement
+bn = 'profile-detail'
 
 class ProfilePage.Detail extends React.PureComponent
   constructor: (props) ->
@@ -27,8 +28,8 @@ class ProfilePage.Detail extends React.PureComponent
 
 
   render: =>
-    div className: 'profile-detail',
-      div className: 'profile-detail__bar',
+    div className: bn,
+      div className: "#{bn}__bar",
         el ProfilePage.DetailBar,
           stats: @props.stats
           toggleExtend: @toggleExtend
@@ -36,29 +37,29 @@ class ProfilePage.Detail extends React.PureComponent
           user: @props.user
       div
         className: if @state.extended then '' else 'hidden'
-        div className: 'profile-detail__row profile-detail__row--top',
-          div className: 'profile-detail__col profile-detail__col--top-left',
-            div className: 'profile-detail__top-left-item',
+        div className: "#{bn}__row #{bn}__row--top",
+          div className: "#{bn}__col #{bn}__col--top-left",
+            div className: "#{bn}__top-left-item",
               el ProfilePage.PlayTime, stats: @props.stats
-            div className: 'profile-detail__top-left-item',
+            div className: "#{bn}__top-left-item",
               el ProfilePage.MedalsCount, userAchievements: @props.userAchievements
-            div className: 'profile-detail__top-left-item',
+            div className: "#{bn}__top-left-item",
               el ProfilePage.Pp, stats: @props.stats
 
-          div className: 'profile-detail__col',
+          div className: "#{bn}__col",
             el ProfilePage.RankCount, stats: @props.stats
-        div className: 'profile-detail__row',
-          div className: 'profile-detail__col profile-detail__col--bottom-left',
+        div className: "#{bn}__row",
+          div className: "#{bn}__col #{bn}__col--bottom-left",
             if @props.rankHistory?
               el ProfilePage.RankChart,
                 rankHistory: @props.rankHistory
                 stats: @props.stats
             else
-              div className: 'profile-detail__empty-chart',
+              div className: "#{bn}__empty-chart",
                 osu.trans('users.show.extra.unranked')
 
-          div className: 'profile-detail__col profile-detail__col--bottom-right',
-            div className: 'profile-detail__bottom-right-item',
+          div className: "#{bn}__col #{bn}__col--bottom-right",
+            div className: "#{bn}__bottom-right-item",
               div className: 'value-display value-display--large',
                 div className: 'value-display__label',
                   osu.trans('users.show.rank.global_simple')
@@ -68,7 +69,7 @@ class ProfilePage.Detail extends React.PureComponent
                   else
                     '-'
 
-            div className: 'profile-detail__bottom-right-item',
+            div className: "#{bn}__bottom-right-item",
               div className: 'value-display',
                 div className: 'value-display__label',
                   osu.trans('users.show.rank.country_simple')
