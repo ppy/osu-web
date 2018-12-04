@@ -29,7 +29,7 @@
   &__item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     margin-bottom: 5px;
     min-height: @item-height;
 
@@ -78,7 +78,7 @@
     flex: 1;
     min-width: 0;
     display: flex;
-    align-items: center;
+    align-items: baseline;
 
     &--vertical {
       flex-direction: column;
@@ -125,6 +125,7 @@
 
   &__icon {
     .center-content();
+    align-items: baseline;
     flex: none;
     width: @item-height;
     height: @item-height;
