@@ -37,7 +37,7 @@ class ProfilePage.GameModeSwitcher extends React.PureComponent
 
     div className: bn,
       @renderSetDefault()
-      ul className: "#{bn}__items hidden-xs",
+      ul className: "#{bn}__items",
         for mode in BeatmapHelper.modes
           linkClass = 'game-mode-link'
           linkClass += ' game-mode-link--active' if mode == @props.currentMode
@@ -62,7 +62,7 @@ class ProfilePage.GameModeSwitcher extends React.PureComponent
   renderSetDefault: =>
     if @props.withEdit && @props.user.playmode != @props.currentMode
       div
-        className: "#{bn}__set-default"
+        className: "#{bn}__set-default hidden-xs"
         button
           className: 'profile-page-button'
           disabled: @state.settingDefault
