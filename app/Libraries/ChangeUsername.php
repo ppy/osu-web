@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Models\User;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 
 class ChangeUsername
 {
@@ -48,10 +49,32 @@ class ChangeUsername
     public function validate()
     {
         $this->validationErrors()->reset();
-
+        $errors = User::validateUsername($this->newUsername, $this->user->username);
         // FIXME: move username the same validation here.
 
-        $errors = User::validateUsername($this->newUsername, $this->user->username);
+        if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
+            $remaining = Carbon::now()->diff($availableDate, false);
+
+            if ($remaining->days > 365 * 2) {
+                //no need to mention the inactivity period of the account is actively in use.
+                $errors->add('username', '.username_in_use');
+            } elseif ($remaining->days > 0) {
+                $errors->add(
+                    'username',
+                    '.username_available_in',
+                    ['duration' => trans_choice('common.count.days', $remaining->days)]
+                );
+            } elseif ($remaining->h > 0) {
+                $errors->add(
+                    'username',
+                    '.username_available_in',
+                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
+                );
+            } else {
+                $errors->add('username', '.username_available_soon');
+            }
+        }
+
         $this->validationErrors()->merge($errors);
         $this->validatePreviousUsers();
 
@@ -99,6 +122,6 @@ class ChangeUsername
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'change_username';
+        return 'user';
     }
 }

@@ -241,14 +241,9 @@ class User extends Model implements AuthenticatableContract
             ->addDays($playCount * 0.75);  //bonus based on playcount
     }
 
-    public static function validateUsername($username, $previousUsername = null)
+    public static function validateUsername($username)
     {
         $errors = new ValidationErrors('user');
-
-        if (present($previousUsername) && $previousUsername === $username) {
-            // no change
-            return $errors;
-        }
 
         if (($username ?? '') !== trim($username)) {
             $errors->add('username', '.username_no_spaces');
@@ -274,33 +269,6 @@ class User extends Model implements AuthenticatableContract
             if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
                 $errors->add('username', '.username_not_allowed');
                 break;
-            }
-        }
-
-        if ($errors->isAny()) {
-            return $errors;
-        }
-
-        if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remaining = Carbon::now()->diff($availableDate, false);
-
-            if ($remaining->days > 365 * 2) {
-                //no need to mention the inactivity period of the account is actively in use.
-                $errors->add('username', '.username_in_use');
-            } elseif ($remaining->days > 0) {
-                $errors->add(
-                    'username',
-                    '.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days)]
-                );
-            } elseif ($remaining->h > 0) {
-                $errors->add(
-                    'username',
-                    '.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
-                );
-            } else {
-                $errors->add('username', '.username_available_soon');
             }
         }
 
@@ -1517,6 +1485,14 @@ class User extends Model implements AuthenticatableContract
     public function isValid()
     {
         $this->validationErrors()->reset();
+
+        if ($this->isDirty('username')) {
+            $errors = static::validateUsername($this->username);
+
+            if ($errors->isAny()) {
+                $this->validationErrors()->merge($errors);
+            }
+        }
 
         if ($this->validateCurrentPassword) {
             if (!$this->checkPassword($this->currentPassword)) {
