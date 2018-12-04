@@ -38,6 +38,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 use App\Libraries\ValidationErrors;
+use App\Libraries\ChangeUsername;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -137,7 +138,7 @@ class User extends Model implements AuthenticatableContract
             throw new ChangeUsernameException(['user_id is not valid']);
         }
 
-        $errors = static::validateUsername($newUsername, $this->username);
+        $errors = (new ChangeUsername($this, $newUsername, $type))->validate();
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors->allMessages());
         }
@@ -326,7 +327,7 @@ class User extends Model implements AuthenticatableContract
             return $errors;
         }
 
-        return (new \App\Libraries\ChangeUsername($this, $username, 'paid'))->validate();
+        return (new ChangeUsername($this, $username, 'paid'))->validate();
     }
 
     // verify that an api key is correct
