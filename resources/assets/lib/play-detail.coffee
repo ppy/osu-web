@@ -68,6 +68,11 @@ export class PlayDetail extends PureComponent
               dangerouslySetInnerHTML:
                 __html: osu.timeago score.created_at
 
+        button
+          className: "#{bn}__compact-toggle"
+          onClick: @toggleCompact
+          span className: "fas #{if @state.compact then 'fa-chevron-down' else 'fa-chevron-up'}"
+
       div className: "#{bn}__group #{bn}__group--bottom",
         div className: "#{bn}__score-detail #{bn}__score-detail--score",
           div
@@ -106,20 +111,13 @@ export class PlayDetail extends PureComponent
                   osu.trans('users.show.extra.top_ranks.not_ranked')
               '-'
 
-      div
-        className: "#{bn}__more"
-        #if score.replay
-        #  el PlayDetailMenu, onHide: @hide, onShow: @show, score: score
-        if ScoreHelper.hasMenu(score)
-          el PlayDetailMenu,
-            onHide: => @props.onMenuActive?(active: false, index: @props.index)
-            onShow: => @props.onMenuActive?(active: true, index: @props.index)
-            score: score
-
-        button
-          className: "#{bn}__compact-toggle"
-          onClick: @toggleCompact
-          span className: "fas #{if @state.compact then 'fa-chevron-down' else 'fa-chevron-up'}"
+        div
+          className: "#{bn}__more"
+          if ScoreHelper.hasMenu(score)
+            el PlayDetailMenu,
+              onHide: => @props.onMenuActive?(active: false, index: @props.index)
+              onShow: => @props.onMenuActive?(active: true, index: @props.index)
+              score: score
 
 
   hide: =>
