@@ -42,6 +42,10 @@
     margin-bottom: 10px;
   }
 
+  &--recent-activity {
+    height: 100%;
+  }
+
   &__locked-bg {
     .full-size();
     background-size: contain;
@@ -69,6 +73,10 @@
 
     .@{_top}--recent & {
       max-width: @_recent-width;
+    }
+
+    .@{_top}--recent-activity & {
+      height: 100%;
     }
 
     .@{_top}--locked & {
