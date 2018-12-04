@@ -39,30 +39,30 @@ class ProfilePage.Links extends React.PureComponent
 
 
   linkMapping =
-    twitter:
+    twitter: (val) ->
       icon: 'fab fa-twitter'
-      url: (val) -> "https://twitter.com/#{val}"
-      text: (val) -> "@#{val}"
-    discord:
+      url: "https://twitter.com/#{val}"
+      text: "@#{val}"
+    discord: (val) ->
       icon: 'fab fa-discord'
-      text: (val) ->
+      text:
         el ClickToCopy, value: val, modifiers: ['profile-header-extra']
-    interests:
+    interests: ->
       icon: 'far fa-heart'
-    skype:
+    skype: (val) ->
       icon: 'fab fa-skype'
-      url: (val) -> "skype:#{val}?chat"
-    lastfm:
+      url: "skype:#{val}?chat"
+    lastfm: (val) ->
       icon: 'fab fa-lastfm'
-      url: (val) -> "https://last.fm/user/#{val}"
-    location:
+      url: "https://last.fm/user/#{val}"
+    location: ->
       icon: 'fas fa-map-marker-alt'
-    occupation:
+    occupation: ->
       icon: 'fas fa-suitcase'
-    website:
+    website: (val) ->
       icon: 'fas fa-link'
-      url: (val) -> val
-      text: (val) -> val.replace(/^https?:\/\//, '')
+      url: val
+      text: val.replace(/^https?:\/\//, '')
 
 
   textMapping =
@@ -114,18 +114,18 @@ class ProfilePage.Links extends React.PureComponent
 
     return unless value?
 
-    {url, icon, text, title} = linkMapping[key]
+    {url, icon, text, title} = linkMapping[key](value)
+
+    title ?= osu.trans "users.show.info.#{key}"
+    text ?= value
 
     componentClass = "u-ellipsis-overflow #{bn}__value"
 
     if url?
       component = a
       componentClass += " #{bn}__value--link"
-      href = url(value)
     else
       component = span
-
-    title ?= osu.trans "users.show.info.#{key}"
 
     div
       className: "#{bn}__item"
@@ -137,9 +137,9 @@ class ProfilePage.Links extends React.PureComponent
         span className: "fa-fw #{icon}"
 
       component
-        href: href
+        href: url
         className: componentClass
-        text?(value) ? value
+        text
 
 
   renderText: (key) =>
