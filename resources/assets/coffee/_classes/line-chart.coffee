@@ -24,7 +24,7 @@ class @LineChart
       top: 20
       right: 20
       bottom: 50
-      left: 80
+      left: 60
 
     _.assign @margins, @options.margins
 

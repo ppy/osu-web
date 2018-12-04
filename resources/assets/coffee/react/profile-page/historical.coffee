@@ -157,7 +157,7 @@ class ProfilePage.Historical extends React.PureComponent
         formats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
           y: (d) -> d.toLocaleString()
-        margins: right: 80 # more spacing for x axis label
+        margins: right: 60 # more spacing for x axis label
         infoBoxFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
           y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
