@@ -70,6 +70,7 @@ class ProfilePage.BeatmapPlaycount extends React.PureComponent
 
   renderPlaycountText: =>
     div
+      title: osu.trans('users.show.extra.historical.most_played.count')
       className: "#{bn}__count"
       span
         className: "#{bn}__count-icon"
