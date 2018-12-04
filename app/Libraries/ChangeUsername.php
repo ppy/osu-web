@@ -52,12 +52,7 @@ class ChangeUsername
         // FIXME: move username the same validation here.
 
         $errors = User::validateUsername($this->newUsername, $this->user->username);
-        if (count($errors) > 0) {
-            foreach ($errors as $error) {
-                $this->validationErrors()->addTranslated('username', $error);
-            }
-        }
-
+        $this->validationErrors()->merge($errors);
         $this->validatePreviousUsers();
 
         return $this->validationErrors();

@@ -37,6 +37,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
+use App\Libraries\ValidationErrors;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -137,8 +138,8 @@ class User extends Model implements AuthenticatableContract
         }
 
         $errors = static::validateUsername($newUsername, $this->username);
-        if (count($errors) > 0) {
-            throw new ChangeUsernameException($errors);
+        if ($errors->isAny()) {
+            throw new ChangeUsernameException($errors->allMessages());
         }
 
         return DB::transaction(function () use ($newUsername, $type) {
@@ -241,35 +242,42 @@ class User extends Model implements AuthenticatableContract
 
     public static function validateUsername($username, $previousUsername = null)
     {
+        $errors = new ValidationErrors('user');
+
         if (present($previousUsername) && $previousUsername === $username) {
             // no change
-            return [];
+            return $errors;
         }
 
         if (($username ?? '') !== trim($username)) {
-            return [trans('model_validation.user.username_no_spaces')];
+            $errors->add('username', '.username_no_spaces');
         }
 
         if (strlen($username) < 3) {
-            return [trans('model_validation.user.username_too_short')];
+            $errors->add('username', '.username_too_short');
         }
 
         if (strlen($username) > 15) {
-            return [trans('model_validation.user.username_too_long')];
+            $errors->add('username', '.username_too_long');
         }
 
         if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
-            return [trans('model_validation.user.username_invalid_characters')];
+            $errors->add('username', '.username_invalid_characters');
         }
 
         if (strpos($username, '_') !== false && strpos($username, ' ') !== false) {
-            return [trans('model_validation.user.username_no_space_userscore_mix')];
+            $errors->add('username', '.username_no_space_userscore_mix');
         }
 
         foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
             if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                return [trans('model_validation.user.username_not_allowed')];
+                $errors->add('username', '.username_not_allowed');
+                break;
             }
+        }
+
+        if ($errors->isAny()) {
+            return $errors;
         }
 
         if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
@@ -277,23 +285,25 @@ class User extends Model implements AuthenticatableContract
 
             if ($remaining->days > 365 * 2) {
                 //no need to mention the inactivity period of the account is actively in use.
-                return [trans('model_validation.user.username_in_use')];
+                $errors->add('username', '.username_in_use');
             } elseif ($remaining->days > 0) {
-                return [trans(
-                    'model_validation.user.username_available_in',
+                $errors->add(
+                    'username',
+                    '.username_available_in',
                     ['duration' => trans_choice('common.count.days', $remaining->days)]
-                )];
+                );
             } elseif ($remaining->h > 0) {
-                return [trans(
-                    'model_validation.user.username_available_in',
+                $errors->add(
+                    'username',
+                    '.username_available_in',
                     ['duration' => trans_choice('common.count.hours', $remaining->h)]
-                )];
+                );
             } else {
-                return [trans('model_validation.user.username_available_soon')];
+                $errors->add('username', '.username_available_soon');
             }
         }
 
-        return [];
+        return $errors;
     }
 
     public function validateUsernameChangeTo($username)
@@ -1510,10 +1520,8 @@ class User extends Model implements AuthenticatableContract
         if ($this->isDirty('username')) {
             $errors = static::validateUsername($this->username, $this->getOriginal('username'));
 
-            if (count($errors) > 0) {
-                foreach ($errors as $error) {
-                    $this->validationErrors()->addTranslated('username', $error);
-                }
+            if ($errors->isAny()) {
+                $this->validationErrors()->merge($errors);
             }
         }
 
