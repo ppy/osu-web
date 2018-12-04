@@ -60,24 +60,15 @@ class ProfilePage.Detail extends React.PureComponent
 
           div className: "#{bn}__col #{bn}__col--bottom-right",
             div className: "#{bn}__bottom-right-item",
-              div className: 'value-display value-display--large',
-                div className: 'value-display__label',
-                  osu.trans('users.show.rank.global_simple')
-                div className: 'value-display__value',
-                  if @props.stats.rank.global?
-                    @props.stats.rank.global.toLocaleString()
-                  else
-                    '-'
+              el ProfilePage.Rank,
+                modifiers: ['large']
+                type: 'global'
+                stats: @props.stats
 
             div className: "#{bn}__bottom-right-item",
-              div className: 'value-display',
-                div className: 'value-display__label',
-                  osu.trans('users.show.rank.country_simple')
-                div className: 'value-display__value',
-                  if @props.stats.rank.country?
-                    @props.stats.rank.country.toLocaleString()
-                  else
-                    '-'
+              el ProfilePage.Rank,
+                type: 'country'
+                stats: @props.stats
 
 
   toggleExtend: =>

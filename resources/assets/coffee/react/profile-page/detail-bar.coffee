@@ -83,25 +83,11 @@ class ProfilePage.DetailBar extends React.PureComponent
 
         if !@props.extended
           div className: "#{bn}__entry #{bn}__entry--ranking",
-            div className: 'value-display',
-              div className: 'value-display__label',
-                osu.trans('users.show.rank.global_simple')
-              div className: 'value-display__value',
-                if @props.stats.rank.global?
-                  @props.stats.rank.global.toLocaleString()
-                else
-                  '-'
+            el ProfilePage.Rank, type: 'global', stats: @props.stats
 
         if !@props.extended
           div className: "#{bn}__entry #{bn}__entry--ranking",
-            div className: 'value-display',
-              div className: 'value-display__label',
-                osu.trans('users.show.rank.country_simple')
-              div className: 'value-display__value',
-                if @props.stats.rank.country?
-                  @props.stats.rank.country.toLocaleString()
-                else
-                  '-'
+            el ProfilePage.Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
           div className: "#{bn}__level",

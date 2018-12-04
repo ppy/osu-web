@@ -16,13 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+el = React.createElement
 
 
-class ProfilePage.MedalsCount extends React.PureComponent
-  render: =>
-    div className: 'value-display value-display--medals',
-      div className: 'value-display__label',
-        osu.trans('users.show.stats.medals')
-      div className: 'value-display__value',
-        @props.userAchievements.length
+ProfilePage.MedalsCount = ({userAchievements}) ->
+  el ValueDisplay,
+    modifiers: ['medals']
+    label: osu.trans('users.show.stats.medals')
+    value: userAchievements.length

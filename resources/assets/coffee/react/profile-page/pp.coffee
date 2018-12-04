@@ -16,13 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+el = React.createElement
 
 
-class ProfilePage.Pp extends React.PureComponent
-  render: =>
-    div className: 'value-display value-display--pp',
-      div className: 'value-display__label',
-        'pp'
-      div className: 'value-display__value',
-        Math.round(@props.stats.pp).toLocaleString()
+ProfilePage.Pp = ({stats}) ->
+  el ValueDisplay,
+    modifiers: ['pp']
+    label: 'pp'
+    value: Math.round(stats.pp).toLocaleString()

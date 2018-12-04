@@ -16,24 +16,21 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+el = React.createElement
 
 
-class ProfilePage.PlayTime extends React.PureComponent
-  render: =>
-    playTime = moment.duration @props.stats.play_time, 'seconds'
+ProfilePage.PlayTime = ({stats}) ->
+  playTime = moment.duration stats.play_time, 'seconds'
 
-    daysLeftOver = Math.floor playTime.asDays()
-    hours = playTime.hours()
-    minutes = playTime.minutes()
-    seconds = playTime.seconds()
+  daysLeftOver = Math.floor playTime.asDays()
+  hours = playTime.hours()
+  minutes = playTime.minutes()
+  seconds = playTime.seconds()
 
-    timeString = ''
-    timeString = "#{daysLeftOver.toLocaleString()}d " if daysLeftOver > 0
-    timeString += "#{hours}h #{minutes}m #{seconds}s"
+  timeString = ''
+  timeString = "#{daysLeftOver.toLocaleString()}d " if daysLeftOver > 0
+  timeString += "#{hours}h #{minutes}m #{seconds}s"
 
-    div className: 'value-display',
-      div className: 'value-display__label',
-        osu.trans('users.show.stats.play_time')
-      div className: 'value-display__value',
-        timeString
+  el ValueDisplay,
+    label: osu.trans('users.show.stats.play_time')
+    value: timeString

@@ -25,21 +25,18 @@ class ProfilePage.Kudosu extends React.Component
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div className: 'kudosu-box',
-        div className: 'value-display value-display--kudosu',
-          div className: 'value-display__label',
-            osu.trans('users.show.extra.kudosu.total')
-          div className: 'value-display__value', @props.user.kudosu.total.toLocaleString()
-          div
-            className: 'value-display__description'
-            dangerouslySetInnerHTML:
-              __html: osu.trans('users.show.extra.kudosu.total_info')
-        div className: 'value-display value-display--kudosu',
-          div className: 'value-display__label',
-            osu.trans('users.show.extra.kudosu.available')
-          div className: 'value-display__value', @props.user.kudosu.available.toLocaleString()
-          div
-            className: 'value-display__description'
-            osu.trans('users.show.extra.kudosu.available_info')
+        el ValueDisplay,
+          modifiers: ['kudosu']
+          label: osu.trans('users.show.extra.kudosu.total')
+          value: @props.user.kudosu.total.toLocaleString()
+          description: span dangerouslySetInnerHTML:
+            __html: osu.trans('users.show.extra.kudosu.total_info')
+
+        el ValueDisplay,
+          modifiers: ['kudosu']
+          label: osu.trans('users.show.extra.kudosu.available')
+          value: @props.user.kudosu.available.toLocaleString()
+          description: osu.trans('users.show.extra.kudosu.available_info')
 
       if @props.recentlyReceivedKudosu?.length
         ul className: 'profile-extra-entries profile-extra-entries--kudosu',
