@@ -18,20 +18,26 @@
 
 .profile-tournament-banner {
   .own-layer();
-  position: absolute;
-  bottom: 100%;
-  margin-bottom: 10px;
-  left: 0;
-  width: 60%;
   transition: transform .2s cubic-bezier(.08,.82,.17,1),-webkit-transform .2s cubic-bezier(.08,.82,.17,1);
   will-change: transform;
 
-  &:hover {
-    transform: scale(1.1);
+  @media @desktop {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    left: 0;
+    width: 60%;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   &__image {
-    .default-border-radius();
     width: 100%;
+
+    @media @desktop {
+      .default-border-radius();
+    }
   }
 }
