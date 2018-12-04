@@ -1517,14 +1517,6 @@ class User extends Model implements AuthenticatableContract
     {
         $this->validationErrors()->reset();
 
-        if ($this->isDirty('username')) {
-            $errors = static::validateUsername($this->username, $this->getOriginal('username'));
-
-            if ($errors->isAny()) {
-                $this->validationErrors()->merge($errors);
-            }
-        }
-
         if ($this->validateCurrentPassword) {
             if (!$this->checkPassword($this->currentPassword)) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
