@@ -22,9 +22,6 @@ el = React.createElement
 bn = 'textual-button'
 
 class @BlockButton extends React.PureComponent
-  @defaultProps = modifiers: []
-
-
   constructor: (props) ->
     super props
 
