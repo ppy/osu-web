@@ -57,6 +57,8 @@
 
   &__accuracy {
     color: @yellow;
+    display: inline-block;
+    min-width: 65px;
   }
 
   &__accuracy-and-weighted-pp {
@@ -142,6 +144,7 @@
         border-radius: @_border-radius 0 0 @_border-radius;
         padding-top: @_padding-vertical-desktop;
         padding-bottom: @_padding-vertical-desktop;
+        padding-right: 0;
 
         .@{_top}:hover &, .@{_top}--active & {
           background-color: @_bg-main-hover;
@@ -244,7 +247,7 @@
 
     @media @desktop {
       align-items: center;
-      padding: @_padding-vertical-desktop @_padding-horizontal;
+      padding: @_padding-vertical-desktop 10px;
       background-color: @_bg-main;
 
       .@{_top}:hover &, .@{_top}--active & {
@@ -282,6 +285,8 @@
   }
 
   &__weighted-pp {
+    display: inline-block;
+    min-width: 50px;
     margin-left: 10px;
   }
 
