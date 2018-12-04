@@ -92,8 +92,13 @@
   &--profile-page-bar {
     margin-top: 5px;
     top: 100%;
-    left: 0;
+    right: 0;
     position: absolute;
+
+    @media @desktop {
+      right: auto;
+      left: 0;
+    }
   }
 
   &__content {
