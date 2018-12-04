@@ -49,9 +49,9 @@ return [
     'blocks' => [
         'banner_text' => 'You have blocked this user.',
         'blocked_count' => 'blocked users (:count)',
-        'hide_profile' => 'hide profile',
+        'hide_profile' => 'Hide profile',
         'not_blocked' => 'That user is not blocked.',
-        'show_profile' => 'show profile',
+        'show_profile' => 'Show profile',
         'too_many' => 'Block limit reached.',
         'button' => [
             'block' => 'Block',
