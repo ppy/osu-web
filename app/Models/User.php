@@ -289,12 +289,6 @@ class User extends Model implements AuthenticatableContract
             return $errors;
         }
 
-        if ($username === $this->username) {
-            $errors->addTranslated('username', trans('.change_username.username_is_same'));
-
-            return $errors;
-        }
-
         return (new ChangeUsername($this, $username, 'paid'))->validate();
     }
 

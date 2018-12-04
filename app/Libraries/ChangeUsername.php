@@ -34,7 +34,7 @@ class ChangeUsername
     /** @var User */
     private $user;
 
-    public function __construct(User $user, $newUsername, $type)
+    public function __construct(User $user, string $newUsername, string $type)
     {
         $this->user = $user;
         $this->newUsername = $newUsername;
@@ -49,8 +49,14 @@ class ChangeUsername
     public function validate()
     {
         $this->validationErrors()->reset();
+
+        if ($this->newUsername === $this->user->username) {
+            $this->validationErrors()->add('username', '.change_username.username_is_same');
+
+            return $this->validationErrors();
+        }
+
         $errors = User::validateUsername($this->newUsername, $this->user->username);
-        // FIXME: move username the same validation here.
 
         if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
@@ -114,11 +120,6 @@ class ChangeUsername
     }
 
     // TODO: move User::changeUsername here.
-
-    public function validationErrorsKeyBase()
-    {
-        return 'model_validation/';
-    }
 
     public function validationErrorsTranslationPrefix()
     {
