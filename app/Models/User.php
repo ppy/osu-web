@@ -122,11 +122,11 @@ class User extends Model implements AuthenticatableContract
     public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
         if ($this->user_id <= 1) {
-            throw new ChangeUsernameException(['user_id is not valid']);
+            throw new ChangeUsernameException('user_id is not valid');
         }
 
         if (!presence($this->username_previous)) {
-            throw new ChangeUsernameException(['username_previous is blank.']);
+            throw new ChangeUsernameException('username_previous is blank.');
         }
 
         return $this->updateUsername($this->username_previous, null, $type);
@@ -136,12 +136,12 @@ class User extends Model implements AuthenticatableContract
     {
         // TODO: move?
         if ($this->user_id <= 1) {
-            throw new ChangeUsernameException(['user_id is not valid']);
+            throw new ChangeUsernameException('user_id is not valid');
         }
 
         $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
-            throw new ChangeUsernameException($errors->allMessages());
+            throw new ChangeUsernameException($errors);
         }
 
         return DB::transaction(function () use ($newUsername, $type) {
