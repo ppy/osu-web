@@ -20,6 +20,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
 use App\Models\Comment;
@@ -72,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
+        });
+
+        $this->app->singleton(RequireScopes::class, function () {
+            return new RequireScopes;
         });
 
         // The middleware breaks without this. Not sure why.
