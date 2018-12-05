@@ -78,20 +78,21 @@ class ChangeUsername
         if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
 
-            if ($remaining->days >= User::INACTIVE_DAYS) {
+            // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
+            if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
                 $errors->add('username', '.username_in_use');
             } elseif ($remaining->days > 0) {
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days)]
+                    ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
                 );
             } elseif ($remaining->h > 0) {
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
+                    ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
                 );
             } else {
                 $errors->add('username', '.username_available_soon');
