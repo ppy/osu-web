@@ -25,22 +25,21 @@ use Exception;
 
 class ChangeUsernameException extends Exception
 {
-    private $errors = [];
+    private $errors;
 
     public function __construct($errors, Exception $previous = null)
     {
         if ($errors instanceof ValidationErrors) {
             $message = $errors->toSentence();
-            $this->errors = $errors->allMessages();
+            $this->errors = $errors;
         } else {
             $message = $errors;
-            $this->errors = [$errors];
         }
 
         parent::__construct($message, 0, $previous);
     }
 
-    public function getErrors()
+    public function getErrors() : ValidationErrors
     {
         return $this->errors;
     }
