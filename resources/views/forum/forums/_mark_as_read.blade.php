@@ -25,6 +25,9 @@
     data-params="forum_id={{ optional($forum)->getKey() }}"
     data-remote="1"
     data-url="{{ route('forum.forums.mark-as-read') }}"
+    @if (!auth()->check())
+        disabled
+    @endif
 >
     {{ $forum === null ? trans('forum.mark_as_read.forums') : trans('forum.mark_as_read.forum') }}
 </button>
