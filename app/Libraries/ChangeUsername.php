@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\ValidationErrors;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -51,11 +52,6 @@ class ChangeUsername
         $this->type = $type;
     }
 
-    public function getUser()
-    {
-        return $this->user;
-    }
-
     public function validate()
     {
         $this->validationErrors()->reset();
@@ -73,34 +69,51 @@ class ChangeUsername
             return $this->validationErrors();
         }
 
-        $errors = User::validateUsername($this->newUsername, $this->user->username);
+        if ($this->validateUsername()->isAny()) {
+            return $this->validationErrors();
+        }
 
+        if ($this->validatePreviousUsers()->isAny()) {
+            return $this->validationErrors();
+        }
+
+        $this->validateAvailability();
+
+        return $this->validationErrors();
+    }
+
+    public function validateAvailability() : ValidationErrors
+    {
         if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
 
             // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
             if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
-                $errors->add('username', '.username_in_use');
+                $this->validationErrors()->add('username', '.username_in_use');
             } elseif ($remaining->days > 0) {
-                $errors->add(
+                $this->validationErrors()->add(
                     'username',
                     '.username_available_in',
                     ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
                 );
             } elseif ($remaining->h > 0) {
-                $errors->add(
+                $this->validationErrors()->add(
                     'username',
                     '.username_available_in',
                     ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
                 );
             } else {
-                $errors->add('username', '.username_available_soon');
+                $this->validationErrors()->add('username', '.username_available_soon');
             }
         }
 
-        $this->validationErrors()->merge($errors);
-        $this->validatePreviousUsers();
+        return $this->validationErrors();
+    }
+
+    public function validateUsername()
+    {
+        $this->validationErrors()->merge(User::validateUsername($this->newUsername, $this->user->username));
 
         return $this->validationErrors();
     }
@@ -125,22 +138,15 @@ class ChangeUsername
         return $this->validationErrors();
     }
 
-    public function previousUsers()
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user';
+    }
+
+    private function previousUsers()
     {
         return User::whereHas('usernameChangeHistory', function ($query) {
             $query->where('username_last', $this->newUsername);
         });
-    }
-
-    public function isValid()
-    {
-        return $this->validationErrors()->isEmpty();
-    }
-
-    // TODO: move User::changeUsername here.
-
-    public function validationErrorsTranslationPrefix()
-    {
-        return 'user';
     }
 }
