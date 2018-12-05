@@ -119,7 +119,6 @@ class User extends Model implements AuthenticatableContract
 
     public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
-        // TODO: validation errors instead?
         if ($this->user_id <= 1) {
             throw new ChangeUsernameException(['user_id is not valid']);
         }
@@ -133,7 +132,6 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername($newUsername, $type = 'support') : UsernameChangeHistory
     {
-        // TODO: validation errors instead?
         if ($this->user_id <= 1) {
             throw new ChangeUsernameException(['user_id is not valid']);
         }
@@ -1586,7 +1584,7 @@ class User extends Model implements AuthenticatableContract
      * Check for an exsiting inactive username and renames it if
      * considered inactive.
      *
-     * @return User if renamed; nil otherwise.
+     * @return User the renamed user if renamed; nil otherwise.
      */
     private static function renameUsernameIfInactive($username)
     {
