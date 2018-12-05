@@ -25,11 +25,7 @@ class ChangeUsernameTest extends TestCase
 {
     public function testUserHasNeverSupported()
     {
-        $user = factory(User::class)->create([
-            'username' => 'iamuser',
-            'username_clean' => 'iamuser',
-            'osu_subscriptionexpiry' => null,
-        ]);
+        $user = $this->createUser(['osu_subscriptionexpiry' => null]);
 
         $errors = $user->validateChangeUsername('newusername', 'paid')->all();
         $expected = [ChangeUsername::requireSupportedMessage()];
@@ -40,12 +36,32 @@ class ChangeUsernameTest extends TestCase
 
     public function testUsernameIsSame()
     {
-        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
+        $user = $this->createUser();
 
         $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
         $expected = [trans('model_validation.user.change_username.username_is_same')];
 
         $this->assertArrayHasKey('username', $errors);
         $this->assertArraySubset($expected, $errors['username'], true);
+    }
+
+    public function testUserHasSupportedButExpired()
+    {
+        $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);
+
+        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
+        $expected = [trans('model_validation.user.change_username.username_is_same')];
+
+        $this->assertArrayHasKey('username', $errors);
+        $this->assertArraySubset($expected, $errors['username'], true);
+    }
+
+    private function createUser(array $attribs = []) : User
+    {
+        return factory(User::class)->create(array_merge([
+            'username' => 'iamuser',
+            'username_clean' => 'iamuser',
+            'osu_subscriptionexpiry' => Carbon::now()->addMonth(),
+        ], $attribs));
     }
 }
