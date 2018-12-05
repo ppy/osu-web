@@ -134,11 +134,12 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
+        // TODO: move?
         if ($this->user_id <= 1) {
             throw new ChangeUsernameException(['user_id is not valid']);
         }
 
-        $errors = (new ChangeUsername($this, $newUsername, $type))->validate();
+        $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors->allMessages());
         }
