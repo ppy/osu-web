@@ -276,18 +276,6 @@ class User extends Model implements AuthenticatableContract
 
     public function validateUsernameChangeTo($username)
     {
-        $errors = new ValidationErrors('user');
-        if (!$this->hasSupported()) {
-            $link = \Html::link(
-                route('support-the-game'),
-                trans('.change_username.supporter_required.link_text')
-            );
-
-            $errors->addTranslated('username', trans('.change_username.supporter_required._', ['link' => $link]));
-
-            return $errors;
-        }
-
         return (new ChangeUsername($this, $username, 'paid'))->validate();
     }
 

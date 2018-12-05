@@ -50,6 +50,18 @@ class ChangeUsername
     {
         $this->validationErrors()->reset();
 
+        $errors = new ValidationErrors('user');
+        if (!$this->user->hasSupported()) {
+            $link = link_to(
+                route('support-the-game'),
+                trans('.change_username.supporter_required.link_text')
+            );
+
+            $this->validationErrors()->addTranslated('username', trans('.change_username.supporter_required._', ['link' => $link]));
+
+            return $this->validationErrors();
+        }
+
         if ($this->newUsername === $this->user->username) {
             $this->validationErrors()->add('username', '.change_username.username_is_same');
 
