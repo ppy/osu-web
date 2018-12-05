@@ -34,6 +34,16 @@ class ChangeUsername
     /** @var User */
     private $user;
 
+    public static function requireSupportedMessage()
+    {
+        $link = link_to(
+            route('support-the-game'),
+            trans('model_validation.user.change_username.supporter_required.link_text')
+        );
+
+        return trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
+    }
+
     public function __construct(User $user, string $newUsername, string $type)
     {
         $this->user = $user;
@@ -52,12 +62,7 @@ class ChangeUsername
 
         $errors = new ValidationErrors('user');
         if (!$this->user->hasSupported()) {
-            $link = link_to(
-                route('support-the-game'),
-                trans('.change_username.supporter_required.link_text')
-            );
-
-            $this->validationErrors()->addTranslated('username', trans('.change_username.supporter_required._', ['link' => $link]));
+            $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
 
             return $this->validationErrors();
         }

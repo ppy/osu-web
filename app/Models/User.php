@@ -505,7 +505,7 @@ class User extends Model implements AuthenticatableContract
     public function setOsuSubscriptionexpiryAttribute($value)
     {
         // strip time component
-        $this->attributes['osu_subscriptionexpiry'] = $value->startOfDay();
+        $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
     // return a user's API details
