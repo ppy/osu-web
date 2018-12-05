@@ -132,7 +132,7 @@ class User extends Model implements AuthenticatableContract
         return $this->updateUsername($this->username_previous, null, $type);
     }
 
-    public function changeUsername($newUsername, $type = 'support') : UsernameChangeHistory
+    public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
         if ($this->user_id <= 1) {
             throw new ChangeUsernameException(['user_id is not valid']);
@@ -276,9 +276,9 @@ class User extends Model implements AuthenticatableContract
         return $errors;
     }
 
-    public function validateUsernameChangeTo($username)
+    public function validateChangeUsername(string $username, string $type)
     {
-        return (new ChangeUsername($this, $username, 'paid'))->validate();
+        return (new ChangeUsername($this, $username, $type))->validate();
     }
 
     // verify that an api key is correct

@@ -31,7 +31,7 @@ class ChangeUsernameTest extends TestCase
             'osu_subscriptionexpiry' => null,
         ]);
 
-        $errors = $user->validateUsernameChangeTo('newusername')->all();
+        $errors = $user->validateChangeUsername('newusername', 'paid')->all();
         $expected = [ChangeUsername::requireSupportedMessage()];
 
         $this->assertArrayHasKey('username', $errors);
@@ -40,13 +40,9 @@ class ChangeUsernameTest extends TestCase
 
     public function testUsernameIsSame()
     {
-        $user = factory(User::class)->create([
-            'username' => 'iamuser',
-            'username_clean' => 'iamuser',
-            'osu_subscriptionexpiry' => Carbon::now()->addMonth(),
-        ]);
+        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
 
-        $errors = $user->validateUsernameChangeTo('iamuser')->all();
+        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
         $expected = [trans('model_validation.user.change_username.username_is_same')];
 
         $this->assertArrayHasKey('username', $errors);
