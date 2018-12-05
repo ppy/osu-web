@@ -135,18 +135,16 @@ class RoomsController extends Controller
             $room->save();
 
             foreach ($playlist as $item) {
-                $playlistItem = new PlaylistItem();
-                $playlistItem->beatmap_id = $item['beatmapId'];
-                $playlistItem->room()->associate($room);
-
                 try {
+                    $playlistItem = new PlaylistItem();
+                    $playlistItem->beatmap_id = $item['beatmapId'];
+                    $playlistItem->room()->associate($room);
                     $playlistItem->allowed_mods = $item['allowedMods'];
                     $playlistItem->required_mods = $item['requiredMods'];
+                    $playlistItem->save();
                 } catch (\Exception $e) {
                     abort(422, $e->getMessage());
                 }
-
-                $playlistItem->save();
             }
 
             return $room;

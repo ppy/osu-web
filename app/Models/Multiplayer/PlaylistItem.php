@@ -28,6 +28,9 @@ class PlaylistItem extends \App\Models\Model
 {
     protected $table = 'multiplayer_playlist_items';
 
+    const MOD_TYPE_REQUIRED = 'required_mods';
+    const MOD_TYPE_ALLOWED = 'allowed_mods';
+
     public function room()
     {
         return $this->belongsTo(Room::class, 'room_id');
@@ -40,20 +43,12 @@ class PlaylistItem extends \App\Models\Model
 
     public function setAllowedModsAttribute(array $value)
     {
-        try {
-            $this->attributes['allowed_mods'] = json_encode($this->validateMods($value));
-        } catch (\InvalidArgumentException $e) {
-            throw new \InvalidArgumentException('invalid mod array (allowed_mods)');
-        }
+        $this->attributes['allowed_mods'] = json_encode($this->validateModArray($value, self::MOD_TYPE_ALLOWED));
     }
 
     public function setRequiredModsAttribute(array $value)
     {
-        try {
-            $this->attributes['required_mods'] = json_encode($this->validateMods($value));
-        } catch (\InvalidArgumentException $e) {
-            throw new \InvalidArgumentException('invalid mod array (required_mods)');
-        }
+        $this->attributes['required_mods'] = json_encode($this->validateModArray($value, self::MOD_TYPE_REQUIRED));
     }
 
     public function getAllowedModsAttribute(string $value)
@@ -72,25 +67,45 @@ class PlaylistItem extends \App\Models\Model
     //     {"acronym": "DT", "settings": {...}},
     //  ]
     //
-    public function validateMods(array $mods)
+    public function validateModArray(array $mods, $mode)
     {
         $filteredMods = [];
 
         foreach ($mods as $mod) {
             if (isset($mod['acronym'])) {
                 $acronym = strtoupper($mod['acronym']);
-                if (in_array($acronym, ModsHelper::LAZER_SCORABLE_MODS)) {
-                    $filteredMods[] = [
-                        "acronym" => $acronym,
-                        "settings" => [],
-                    ];
-                    continue;
+                if (!in_array($acronym, ModsHelper::LAZER_SCORABLE_MODS)) {
+                    throw new \InvalidArgumentException("invalid mod in '{$mode}': {$acronym}");
                 }
+
+                if (isset($filteredMods[$acronym])) {
+                    throw new \InvalidArgumentException("duplicate mod in '{$mode}': {$acronym}");
+                }
+
+                $filteredMods[$acronym] = [
+                    "acronym" => $acronym,
+                    "settings" => [],
+                ];
+                continue;
             }
 
-            throw new \InvalidArgumentException('invalid mod array');
+            throw new \InvalidArgumentException("invalid mod array ({$mode})");
         }
 
-        return $filteredMods;
+        return array_values($filteredMods);
+    }
+
+    public function save(array $options = [])
+    {
+        $dupeMods = array_intersect(
+            array_column($this->allowed_mods, 'acronym'),
+            array_column($this->required_mods, 'acronym')
+        );
+
+        if (count($dupeMods) > 0) {
+            throw new \InvalidArgumentException("mod cannot be listed as both allowed and required: " . join(', ', $dupeMods));
+        }
+
+        return parent::save($options);
     }
 }
