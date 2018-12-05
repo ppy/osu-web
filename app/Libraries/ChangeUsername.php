@@ -78,7 +78,7 @@ class ChangeUsername
         if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
 
-            if ($remaining->days > 365 * 2) {
+            if ($remaining->days >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
                 $errors->add('username', '.username_in_use');
             } elseif ($remaining->days > 0) {

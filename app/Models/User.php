@@ -75,6 +75,8 @@ class User extends Model implements AuthenticatableContract
         ],
     ];
 
+    const INACTIVE_DAYS = 180;
+
     const MAX_FIELD_LENGTHS = [
         'user_msnm' => 255,
         'user_twitter' => 255,
@@ -223,7 +225,7 @@ class User extends Model implements AuthenticatableContract
                 return Carbon::now();
             }
 
-            return Carbon::parse($lastUsage->timestamp)->addMonths(6);
+            return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
         }
 
         if ($user->group_id !== 2 || $user->user_type === 1) {
@@ -236,8 +238,8 @@ class User extends Model implements AuthenticatableContract
         }, 0);
 
         return $user->user_lastvisit
-            ->addMonths(6)                 //base inactivity period for all accounts
-            ->addDays($playCount * 0.75);  //bonus based on playcount
+            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
+            ->addDays($playCount * 0.75);    //bonus based on playcount
     }
 
     public static function validateUsername($username)
