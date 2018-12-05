@@ -178,13 +178,14 @@ class User extends Model implements AuthenticatableContract
             Forum\Topic::where('topic_last_poster_id', $this->user_id)
                 ->update(['topic_last_poster_name' => $newUsername]);
 
-            $history = new UsernameChangeHistory();
-            $history->username = $newUsername;
-            $history->username_last = $oldUsername;
-            $history->timestamp = Carbon::now();
-            $history->type = $type;
+            $history = $this->usernameChangeHistory()->create([
+                'username' => $newUsername,
+                'username_last' => $oldUsername,
+                'timestamp' =>  Carbon::now(),
+                'type' => $type,
+            ]);
 
-            if (!$this->usernameChangeHistory()->save($history)) {
+            if (!$history->exists) {
                 throw new ModelNotSavedException('failed saving model');
             }
 
