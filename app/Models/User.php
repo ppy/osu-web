@@ -129,7 +129,7 @@ class User extends Model implements AuthenticatableContract
             throw new ChangeUsernameException('username_previous is blank.');
         }
 
-        return $this->updateUsername($this->username_previous, null, $type);
+        return $this->updateUsername($this->username_previous, $type);
     }
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
@@ -148,27 +148,28 @@ class User extends Model implements AuthenticatableContract
             // check for an exsiting inactive username and renames it.
             static::renameUsernameIfInactive($newUsername);
 
-            return $this->updateUsername($newUsername, $this->username, $type);
+            return $this->updateUsername($newUsername, $type);
         });
     }
 
-    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
 
         try {
-            return $this->updateUsername($name, $oldUsername, $type);
+            return $this->updateUsername($name, $type);
         } catch (QueryException $ex) {
             if (!is_sql_unique_exception($ex) || $try > 9) {
                 throw $ex;
             }
 
-            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
+            return $this->tryUpdateUsername($try + 1, $newUsername, $type);
         }
     }
 
-    private function updateUsername($newUsername, $oldUsername, $type) : UsernameChangeHistory
+    private function updateUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
+        $oldUsername = $type === 'revert' ? null : $this->getOriginal('username');
         $this->username_previous = $oldUsername;
         $this->username = $newUsername;
 
@@ -1584,7 +1585,7 @@ class User extends Model implements AuthenticatableContract
         $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
         if ($existing !== null && $available) {
             $newUsername = "{$existing->username}_old";
-            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+            $existing->tryUpdateUsername(0, $newUsername, 'inactive');
 
             return $existing;
         }
