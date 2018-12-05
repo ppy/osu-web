@@ -49,11 +49,9 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);
 
-        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
-        $expected = [trans('model_validation.user.change_username.username_is_same')];
+        $errors = $user->validateChangeUsername('newusername', 'paid');
 
-        $this->assertArrayHasKey('username', $errors);
-        $this->assertArraySubset($expected, $errors['username'], true);
+        $this->assertTrue($errors->isEmpty());
     }
 
     private function createUser(array $attribs = []) : User
