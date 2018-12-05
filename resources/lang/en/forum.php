@@ -47,6 +47,12 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Mark forum as read',
+        'forums' => 'Mark forums as read',
+        'busy' => 'Marking as read...',
+    ],
+
     'poll' => [
         'edit_warning' => 'Editing a poll will remove the current results!',
 

@@ -135,6 +135,7 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
+        Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });

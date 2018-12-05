@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
 
-    protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
+    protected $dates = ['user_regdate', 'user_lastmark', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';
     public $timestamps = false;
 
