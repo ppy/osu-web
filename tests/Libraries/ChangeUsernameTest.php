@@ -19,6 +19,7 @@
  */
 use App\Libraries\ChangeUsername;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 
 class ChangeUsernameTest extends TestCase
@@ -52,6 +53,61 @@ class ChangeUsernameTest extends TestCase
         $errors = $user->validateChangeUsername('newusername', 'paid');
 
         $this->assertTrue($errors->isEmpty());
+    }
+
+    public function testUsernameTakenButInactive()
+    {
+        $user = $this->createUser();
+        $existing = $this->createUser([
+            'username' => 'newusername',
+            'username_clean' => 'newusername',
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $user->changeUsername('newusername', 'paid');
+
+        $user->refresh();
+        $existing->refresh();
+        $historyExists = $existing->usernameChangeHistory()
+            ->where('username_last', 'newusername')
+            ->where('type', 'inactive')
+            ->exists();
+
+        $this->assertSame('newusername', $user->username);
+        $this->assertSame('newusername_old', $existing->username);
+        $this->assertTrue($historyExists);
+    }
+
+    public function testUsernameTakenButInactiveAndNeedsMoreRenames()
+    {
+        $user = $this->createUser();
+        $existing = $this->createUser([
+            'username' => 'newusername',
+            'username_clean' => 'newusername',
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+        $this->createUser([
+            'username' => 'newusername_old',
+            'username_clean' => 'newusername_old',
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+
+        $user->changeUsername('newusername', 'paid');
+
+        $user->refresh();
+        $existing->refresh();
+        $historyExists = $existing->usernameChangeHistory()
+            ->where('username_last', 'newusername')
+            ->where('type', 'inactive')
+            ->exists();
+
+        $this->assertSame('newusername', $user->username);
+        $this->assertSame('newusername_old_1', $existing->username);
+        $this->assertTrue($historyExists);
     }
 
     private function createUser(array $attribs = []) : User
