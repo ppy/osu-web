@@ -82,7 +82,6 @@ class AuthorizationController extends PassportAuthorizationController
         }
 
         sort($scopes);
-        $params['scope'] = implode(' ', $scopes);
 
         return $scopes;
     }
