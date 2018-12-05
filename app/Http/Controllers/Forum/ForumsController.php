@@ -56,13 +56,15 @@ class ForumsController extends Controller
 
     public function markAsRead()
     {
-        $forumId = get_int(request('forum_id'));
-        if ($forumId === null) {
-            Forum::markAllAsRead(Auth::user());
-        } else {
-            $forum = Forum::findOrFail($forumId);
-            priv_check('ForumView', $forum)->ensureCan();
-            $forum->markAsRead(Auth::user());
+        if (Auth::check()) {
+            $forumId = get_int(request('forum_id'));
+            if ($forumId === null) {
+                Forum::markAllAsRead(Auth::user());
+            } else {
+                $forum = Forum::findOrFail($forumId);
+                priv_check('ForumView', $forum)->ensureCan();
+                $forum->markAsRead(Auth::user());
+            }
         }
 
         return js_view('layout.ujs-reload');
