@@ -28,6 +28,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Sentry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -176,7 +177,7 @@ class Handler extends ExceptionHandler
             return 403;
         } elseif ($e instanceof AuthenticationException) {
             return 401;
-        } elseif ($e instanceof AuthorizationException) {
+        } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
         } else {
             return 500;
