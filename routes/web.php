@@ -292,7 +292,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
