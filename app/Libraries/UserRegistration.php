@@ -39,6 +39,7 @@ class UserRegistration
             'user_occ' => '',
             'user_sig' => '',
             'user_regdate' => Carbon::now(),
+            'user_lastvisit' => Carbon::now(),
         ], $params));
     }
 
