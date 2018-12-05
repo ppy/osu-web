@@ -30,6 +30,12 @@
     margin-right: -(@content-spill + @handle);
   }
 
+  &--highlightable {
+    .play-detail-list--menu-active & {
+      pointer-events: none;
+    }
+  }
+
   &__content {
     display: flex;
     align-items: center;
@@ -57,21 +63,12 @@
       .@{passive-row}:hover & {
         opacity: 1;
         transition: all 50ms ease-out;
-
-        // when menu is active, only the active row is highlighted.
-        .play-detail-list--menu-active & {
-          opacity: 0;
-        }
       }
 
       // when menu is active; always highlighted.
       .@{activated-row} & {
         opacity: 1;
         transition: all 50ms ease-out;
-
-        .play-detail-list--menu-active & {
-          opacity: 1;
-        }
       }
     }
   }
@@ -92,20 +89,11 @@
     // normal behaviour; highlights on hover.
     .@{passive-row}:hover & {
       opacity: 1;
-
-      // when menu is active, only the active row is highlighted.
-      .play-detail-list--menu-active & {
-        opacity: 0;
-      }
     }
 
     // when menu is active; always highlighted.
     .@{activated-row} & {
       opacity: 1;
-
-      .play-detail-list--menu-active & {
-        opacity: 1;
-      }
     }
   }
 

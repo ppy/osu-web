@@ -84,6 +84,8 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
+Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -133,6 +135,7 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
+        Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });

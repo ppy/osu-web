@@ -555,7 +555,9 @@ function link_to_user($user_id, $user_name = null, $user_color = null)
     $style = user_color_style($user_color, 'color');
 
     if ($user_id) {
-        $user_url = e(route('users.show', $user_id));
+        // FIXME: remove `rawurlencode` workaround when fixed upstream.
+        // Reference: https://github.com/laravel/framework/issues/26715
+        $user_url = e(route('users.show', rawurlencode($user_id)));
 
         return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
@@ -594,7 +596,9 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($page = 'Welcome', $locale = null)
 {
-    $params = compact('page');
+    // FIXME: remove `rawurlencode` workaround when fixed upstream.
+    // Reference: https://github.com/laravel/framework/issues/26715
+    $params = ['page' => rawurlencode($page)];
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;

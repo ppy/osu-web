@@ -62,6 +62,7 @@ class TopicTrack extends Model
             $forumId = $topic->forum_id;
 
             $result[$topicId] =
+                $topicTime <= $user->user_lastmark ||
                 (isset($readStatus[$topicId]) && $topicTime <= $readStatus[$topicId]->mark_time) ||
                 (isset($forumReadStatus[$forumId]) && $topicTime <= $forumReadStatus[$forumId]->mark_time);
         }

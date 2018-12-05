@@ -23,8 +23,7 @@
 
   @media @mobile {
     // so the pager doesn't get squashed.
-    // some reordering magic will probably be required if a right side button gets added.
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   &--pager {
@@ -34,15 +33,29 @@
   }
 
   &__buttons {
+    display: flex;
     min-width: @forum-topic-new-topic-button--width;
     flex: 1;
 
-    @media @mobile {
-      width: 100%;
+    &--left {
+      @media @mobile {
+        order: 1;
+      }
+    }
+
+    &--right {
+      justify-content: flex-end;
+      @media @mobile {
+        order: 2;
+      }
     }
   }
 
   &__pager {
     flex: none;
+    @media @mobile {
+      width: 100%;
+      order: 3;
+    }
   }
 }

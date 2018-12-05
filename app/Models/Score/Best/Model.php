@@ -283,6 +283,13 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
+    public function scopeReportedBy($query, $user)
+    {
+        return $query->whereHas('reportedIn', function ($q) use ($user) {
+            $q->where('reporter_id', $user->getKey());
+        });
+    }
+
     public function reportedIn()
     {
         return $this->morphMany(UserReport::class, 'score', 'mode');

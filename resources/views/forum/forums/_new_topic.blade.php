@@ -22,7 +22,7 @@
 @endphp
 
 @if ($newTopicEnabled)
-    <a class="btn-osu-big btn-osu-big--forum-new-topic js-login-required--click"
+    <a class="btn-osu-big btn-osu-big--forum-button js-login-required--click"
         href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
         @if (Auth::check())
             <span class="btn-osu-big__content">
@@ -41,7 +41,7 @@
         @endif
     </a>
 @else
-    <span class="btn-osu-big btn-osu-big--forum-new-topic" title="{{ $newTopicAuth->message() }}" disabled>
+    <span class="btn-osu-big btn-osu-big--forum-button" title="{{ $newTopicAuth->message() }}" disabled>
         <span class="btn-osu-big__content">
             <span class="btn-osu-big__left">
                 {{ trans('forum.topic.new_topic') }}

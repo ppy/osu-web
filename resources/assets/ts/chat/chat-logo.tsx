@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,24 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-toc {
-  position: sticky;
-  top: @nav2-height--pinned;
+import * as React from 'react';
 
-  padding-top: 10px;
-  padding-right: 10px;
-
-  // let toc scroll if it's too tall.
-  max-height: calc(100vh ~'-' @nav2-height--pinned);
-  overflow-y: auto;
-
-  &__title {
-    text-transform: uppercase;
-    margin: 0 0 5px;
-    padding: 0;
-    color: #fff;
-    font-size: @font-size--normal;
-    font-style: normal;
-    font-weight: bold;
+export default class ChatLogo extends React.Component<any, any> {
+  render(): React.ReactNode {
+    return (
+      <div className='chat-logo'>
+        <div className='chat-logo__icon'></div>
+        <div className='chat-logo__title'>{osu.trans('chat.title')}</div>
+      </div>
+    );
   }
 }

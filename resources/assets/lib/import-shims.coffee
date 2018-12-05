@@ -20,7 +20,9 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
-import { ReportForm } from 'report-form'
+import { PlayDetailMenu } from 'play-detail-menu'
+import { ReportUser } from 'report-user'
+import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
@@ -34,7 +36,9 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
-  ReportForm
+  PlayDetailMenu
+  ReportUser
+  ScoreHelper
   SelectOptions
   SpotlightSelectOptions
 }

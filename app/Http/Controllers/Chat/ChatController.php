@@ -115,6 +115,11 @@ class ChatController extends Controller
 
                 return $channel;
             });
+        } else {
+            UserChannel::firstOrCreate([
+                'user_id' => Auth::user()->user_id,
+                'channel_id' => $channel->channel_id,
+            ]);
         }
 
         try {
