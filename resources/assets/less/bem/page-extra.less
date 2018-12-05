@@ -52,18 +52,12 @@
 
     position: absolute;
 
-    right: 30px;
+    width: @gutter-profile-page;
+    right: 0;
     top: 20px;
 
     @media @desktop {
-      right: 0;
-      top: 20px;
-      width: 0;
-      opacity: 0;
-    }
-
-    .@{top}:hover & {
-      opacity: 1;
+      width: @gutter-profile-page-desktop;
     }
   }
 
