@@ -124,12 +124,12 @@ class ChangeUsername
         foreach ($previousUsers as $previousUser) {
             // has badges
             if ($previousUser->badges()->exists()) {
-                $this->validationErrors()->add('username', '.has_badge');
+                $this->validationErrors()->add('username', '.username_locked');
             }
 
             // ranked beatmaps
             if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
-                $this->validationErrors()->add('username', '.ranked_beatmapets');
+                $this->validationErrors()->add('username', '.username_locked');
             }
 
             // ranks
