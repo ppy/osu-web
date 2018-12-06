@@ -205,7 +205,7 @@ class User extends Model implements AuthenticatableContract
         return strtolower($username);
     }
 
-    public static function findByUsernameForInactive($username)
+    public static function findByUsernameForInactive($username) : ?User
     {
         return static::whereIn(
             'username',
@@ -213,35 +213,23 @@ class User extends Model implements AuthenticatableContract
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username)
+    public static function checkWhenUsernameAvailable($username) : Carbon
     {
         $user = static::findByUsernameForInactive($username);
-
-        if ($user === null) {
-            $lastUsage = UsernameChangeHistory::where('username_last', $username)
-                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
-                ->orderBy('change_id', 'desc')
-                ->first();
-
-            if ($lastUsage === null) {
-                return Carbon::now();
-            }
-
-            return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
+        if ($user !== null) {
+            return $user->getUsernameAvailableAt();
         }
 
-        if ($user->group_id !== 2 || $user->user_type === 1) {
-            //reserved usernames
-            return Carbon::now()->addYears(10);
+        $lastUsage = UsernameChangeHistory::where('username_last', $username)
+            ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($lastUsage === null) {
+            return Carbon::now();
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
-            return $result + $user->statistics($mode, true)->value('playcount');
-        }, 0);
-
-        return $user->user_lastvisit
-            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
-            ->addDays($playCount * 0.75);    //bonus based on playcount
+        return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
     }
 
     public static function validateUsername($username)
@@ -276,6 +264,22 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $errors;
+    }
+
+    public function getUsernameAvailableAt() : Carbon
+    {
+        if ($this->group_id !== 2 || $this->user_type === 1) {
+            //reserved usernames
+            return Carbon::now()->addYears(10);
+        }
+
+        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
+            return $result + $this->statistics($mode, true)->value('playcount');
+        }, 0);
+
+        return $this->user_lastvisit
+            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
+            ->addDays($playCount * 0.75);    //bonus based on playcount
     }
 
     public function validateChangeUsername(string $username, string $type)
