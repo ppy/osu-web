@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Libraries\ValidationErrors;
+use App\Models\Beatmap;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -133,6 +134,12 @@ class ChangeUsername
             }
 
             // ranks
+            foreach (Beatmap::MODES as $mode => $_modeInt) {
+                $stats = $previousUser->statistics($mode);
+                if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
+                    $this->validationErrors()->add('username', '.username_locked');
+                }
+            }
         }
 
         return $this->validationErrors();
