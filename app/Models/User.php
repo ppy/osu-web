@@ -23,6 +23,8 @@ namespace App\Models;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\ChangeUsername;
+use App\Libraries\ValidationErrors;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -37,8 +39,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
-use App\Libraries\ValidationErrors;
-use App\Libraries\ChangeUsername;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -159,6 +159,7 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->getUsernameAvailableAt() <= Carbon::now()) {
             $newUsername = "{$this->username}_old";
+
             return $this->tryUpdateUsername(0, $newUsername, 'inactive');
         }
     }
@@ -196,7 +197,7 @@ class User extends Model implements AuthenticatableContract
             $history = $this->usernameChangeHistory()->create([
                 'username' => $newUsername,
                 'username_last' => $oldUsername,
-                'timestamp' =>  Carbon::now(),
+                'timestamp' => Carbon::now(),
                 'type' => $type,
             ]);
 
@@ -216,7 +217,7 @@ class User extends Model implements AuthenticatableContract
         return strtolower($username);
     }
 
-    public static function findByUsernameForInactive($username) : ?User
+    public static function findByUsernameForInactive($username) : ?self
     {
         return static::whereIn(
             'username',

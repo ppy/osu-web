@@ -20,7 +20,6 @@
 
 namespace App\Libraries;
 
-use App\Libraries\ValidationErrors;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Traits\Validatable;

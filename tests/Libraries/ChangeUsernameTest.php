@@ -21,7 +21,6 @@ use App\Exceptions\ChangeUsernameException;
 use App\Libraries\ChangeUsername;
 use App\Models\User;
 use App\Models\UserStatistics;
-use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 
 // FIXME: need more tests
@@ -97,7 +96,6 @@ class ChangeUsernameTest extends TestCase
             'osu_subscriptionexpiry' => null,
             'user_lastvisit' => Carbon::now()->subYear(),
         ]);
-
 
         $user->changeUsername('newusername', 'paid');
 
