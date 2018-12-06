@@ -17,8 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\ChangeUsernameException;
 use App\Libraries\ChangeUsername;
 use App\Models\User;
+use App\Models\UserStatistics;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 
@@ -108,6 +110,50 @@ class ChangeUsernameTest extends TestCase
         $this->assertSame('newusername', $user->username);
         $this->assertSame('newusername_old_1', $existing->username);
         $this->assertTrue($historyExists);
+    }
+
+    public function testPreviousUserIsRankedLocked()
+    {
+        config()->set('osu.user.username_lock_rank_limit', 10);
+        $newUsername = 'newusername';
+
+        $user = $this->createUser();
+        $existing = $this->createUser([
+            'username' => $newUsername,
+            'username_clean' => $newUsername,
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $existing->statisticsOsu()->save(
+            factory(UserStatistics\Osu::class)->make(['rank' => 10, 'rank_score_index' => 10, 'playcount' => 0])
+        );
+
+        $this->expectException(ChangeUsernameException::class);
+        $user->changeUsername($newUsername, 'paid');
+    }
+
+    public function testPreviousUserIsNotRankedLocked()
+    {
+        config()->set('osu.user.username_lock_rank_limit', 9);
+        $newUsername = 'newusername';
+
+        $user = $this->createUser();
+        $existing = $this->createUser([
+            'username' => $newUsername,
+            'username_clean' => $newUsername,
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $existing->statisticsOsu()->save(
+            factory(UserStatistics\Osu::class)->make(['rank' => 10, 'rank_score_index' => 10, 'playcount' => 0])
+        );
+
+        $history = $user->changeUsername($newUsername, 'paid');
+        $user->refresh();
+
+        $this->assertSame($newUsername, $user->username);
     }
 
     private function createUser(array $attribs = []) : User
