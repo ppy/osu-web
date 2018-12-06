@@ -1595,8 +1595,7 @@ class User extends Model implements AuthenticatableContract
 
     public function renameIfInactive() : ?UsernameChangeHistory
     {
-        $available = static::checkWhenUsernameAvailable($this->username) <= Carbon::now();
-        if ($available) {
+        if ($this->getUsernameAvailableAt() <= Carbon::now()) {
             $newUsername = "{$this->username}_old";
             return $this->tryUpdateUsername(0, $newUsername, 'inactive');
         }
