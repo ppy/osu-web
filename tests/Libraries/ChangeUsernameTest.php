@@ -24,6 +24,7 @@ use App\Models\UserStatistics;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 
+// FIXME: need more tests
 class ChangeUsernameTest extends TestCase
 {
     public function testUserHasNeverSupported()

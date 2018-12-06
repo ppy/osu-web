@@ -74,11 +74,11 @@ class ChangeUsername
             return $this->validationErrors();
         }
 
-        if ($this->validatePreviousUsers()->isAny()) {
+        if ($this->validateAvailability()->isAny()) {
             return $this->validationErrors();
         }
 
-        $this->validateAvailability();
+        $this->validatePreviousUsers();
 
         return $this->validationErrors();
     }
@@ -126,11 +126,15 @@ class ChangeUsername
             // has badges
             if ($previousUser->badges()->exists()) {
                 $this->validationErrors()->add('username', '.username_locked');
+
+                return $this->validationErrors();
             }
 
             // ranked beatmaps
             if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
                 $this->validationErrors()->add('username', '.username_locked');
+
+                return $this->validationErrors();
             }
 
             // ranks
@@ -138,6 +142,8 @@ class ChangeUsername
                 $stats = $previousUser->statistics($mode);
                 if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
                     $this->validationErrors()->add('username', '.username_locked');
+
+                    return $this->validationErrors();
                 }
             }
         }
