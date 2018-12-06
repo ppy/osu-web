@@ -119,10 +119,16 @@ class ChangeUsernameTest extends TestCase
 
         $user = $this->createUser();
         $existing = $this->createUser([
-            'username' => $newUsername,
-            'username_clean' => $newUsername,
+            'username' => 'existing_now',
+            'username_clean' => 'existing_now',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $existing->usernameChangeHistory()->create([
+            'username' => 'existing_now',
+            'username_last' => $newUsername,
+            'timestamp' => Carbon::now()->subYear(),
+            'type' => 'paid',
         ]);
 
         $existing->statisticsOsu()->save(
@@ -140,10 +146,16 @@ class ChangeUsernameTest extends TestCase
 
         $user = $this->createUser();
         $existing = $this->createUser([
-            'username' => $newUsername,
-            'username_clean' => $newUsername,
+            'username' => 'existing_now',
+            'username_clean' => 'existing_now',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $existing->usernameChangeHistory()->create([
+            'username' => 'existing_now',
+            'username_last' => $newUsername,
+            'timestamp' => Carbon::now()->subYear(),
+            'type' => 'paid',
         ]);
 
         $existing->statisticsOsu()->save(
@@ -161,6 +173,7 @@ class ChangeUsernameTest extends TestCase
         return factory(User::class)->create(array_merge([
             'username' => 'iamuser',
             'username_clean' => 'iamuser',
+            'user_lastvisit' => Carbon::now(),
             'osu_subscriptionexpiry' => Carbon::now()->addMonth(),
         ], $attribs));
     }
