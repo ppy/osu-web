@@ -144,12 +144,23 @@ class User extends Model implements AuthenticatableContract
             throw new ChangeUsernameException($errors);
         }
 
-        return DB::transaction(function () use ($newUsername, $type) {
-            // check for an exsiting inactive username and renames it.
-            static::renameUsernameIfInactive($newUsername);
+        return $this->getConnection()->transaction(function () use ($newUsername, $type) {
+            $existing = static::findByUsernameForInactive($newUsername);
+            if ($existing !== null) {
+                $existing->renameIfInactive();
+                // TODO: throw if expected rename doesn't happen?
+            }
 
             return $this->updateUsername($newUsername, $type);
         });
+    }
+
+    public function renameIfInactive() : ?UsernameChangeHistory
+    {
+        if ($this->getUsernameAvailableAt() <= Carbon::now()) {
+            $newUsername = "{$this->username}_old";
+            return $this->tryUpdateUsername(0, $newUsername, 'inactive');
+        }
     }
 
     private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
@@ -1575,29 +1586,5 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
-    }
-
-    /**
-     * Check for an exsiting inactive username and renames it if
-     * considered inactive.
-     *
-     * @return User the renamed user if renamed; nil otherwise.
-     */
-    private static function renameUsernameIfInactive($username)
-    {
-        $existing = static::findByUsernameForInactive($username);
-        if ($existing !== null) {
-            if ($existing->renameIfInactive()) {
-                return $existing;
-            };
-        }
-    }
-
-    public function renameIfInactive() : ?UsernameChangeHistory
-    {
-        if ($this->getUsernameAvailableAt() <= Carbon::now()) {
-            $newUsername = "{$this->username}_old";
-            return $this->tryUpdateUsername(0, $newUsername, 'inactive');
-        }
     }
 }
