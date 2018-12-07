@@ -58,15 +58,11 @@ class ChangeUsername
 
         $errors = new ValidationErrors('user');
         if (!$this->user->hasSupported()) {
-            $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
-
-            return $this->validationErrors();
+            return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
         if ($this->newUsername === $this->user->username) {
-            $this->validationErrors()->add('username', '.change_username.username_is_same');
-
-            return $this->validationErrors();
+            return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 
         if ($this->validateUsername()->isAny()) {
@@ -77,9 +73,7 @@ class ChangeUsername
             return $this->validationErrors();
         }
 
-        $this->validatePreviousUsers();
-
-        return $this->validationErrors();
+        return $this->validatePreviousUsers();
     }
 
     public function validateAvailability() : ValidationErrors
@@ -124,25 +118,19 @@ class ChangeUsername
         foreach ($previousUsers as $previousUser) {
             // has badges
             if ($previousUser->badges()->exists()) {
-                $this->validationErrors()->add('username', '.username_locked');
-
-                return $this->validationErrors();
+                return $this->validationErrors()->add('username', '.username_locked');
             }
 
             // ranked beatmaps
             if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
-                $this->validationErrors()->add('username', '.username_locked');
-
-                return $this->validationErrors();
+                return $this->validationErrors()->add('username', '.username_locked');
             }
 
             // ranks
             foreach (Beatmap::MODES as $mode => $_modeInt) {
                 $stats = $previousUser->statistics($mode);
                 if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
-                    $this->validationErrors()->add('username', '.username_locked');
-
-                    return $this->validationErrors();
+                    return $this->validationErrors()->add('username', '.username_locked');
                 }
             }
         }

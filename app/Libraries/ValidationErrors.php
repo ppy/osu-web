@@ -44,11 +44,15 @@ class ValidationErrors
         $params['attribute'] = $column;
 
         $this->errors[$column][] = trans($rawMessage, $params);
+
+        return $this;
     }
 
     public function addTranslated($column, $message)
     {
         $this->errors[$column][] = $message;
+
+        return $this;
     }
 
     public function merge(self $validationErrors)
