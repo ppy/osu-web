@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'require-scopes' => Middleware\RequireScopes::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }
