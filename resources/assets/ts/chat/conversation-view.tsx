@@ -31,9 +31,9 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.chat-conversation').length > 0) {
-      $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
-    }
+    // if ($('.chat-conversation').length > 0) {
+    //   $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
+    // }
   }
 
   noCanSendMessage(): React.ReactNode {
@@ -78,6 +78,8 @@ export default class ConversationView extends React.Component<any, any> {
       return(<div className='conversation' />);
     }
 
+    const lazerLink = 'https://github.com/ppy/osu/releases';
+    const oldPMLink = `https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=${channel.pmTarget}`;
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
     let lastReadIndicatorShown = false;
@@ -130,6 +132,9 @@ export default class ConversationView extends React.Component<any, any> {
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
         </div>
+        {channel.newChannel &&
+          <div className='chat-conversation__limitation-notice' dangerouslySetInnerHTML={{__html: osu.trans('chat.limitation_notice', {lazer_link: lazerLink, oldpm_link: oldPMLink})}} />
+        }
         {channel.description &&
           <div className='chat-conversation__chat-label'>
             {channel.description}
