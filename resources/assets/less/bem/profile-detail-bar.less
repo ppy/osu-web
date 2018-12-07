@@ -17,12 +17,13 @@
  */
 
 .profile-detail-bar {
+  @_column-padding: 10px;
   width: 100%;
   display: none;
   display: flex;
   flex-wrap: wrap;
   flex: none;
-  padding: @padding-profile-page @gutter-profile-page;
+  padding: (@padding-profile-page - @_column-padding) (@gutter-profile-page - @_column-padding);
   justify-content: space-between;
   align-items: center;
   background-color: @community-user-graygreen-dark;
@@ -36,6 +37,7 @@
   &__column {
     display: flex;
     width: 100%;
+    padding: @_column-padding;
 
     @media @desktop {
       width: auto;
@@ -47,8 +49,11 @@
     }
 
     &--right {
-      min-width: @profile-stats-box-width-desktop;
       align-items: center;
+
+      @media @desktop {
+        min-width: @profile-stats-box-width-desktop;
+      }
     }
   }
 
