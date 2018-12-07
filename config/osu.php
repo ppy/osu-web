@@ -170,6 +170,7 @@ return [
         ],
     ],
     'user' => [
+        'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
