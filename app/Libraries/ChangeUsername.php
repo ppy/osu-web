@@ -55,6 +55,9 @@ class ChangeUsername
     public function validate()
     {
         $this->validationErrors()->reset();
+        if ($this->user->user_id <= 1) {
+            return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
+        }
 
         $errors = new ValidationErrors('user');
         if (!$this->user->hasSupported()) {

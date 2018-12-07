@@ -121,6 +121,7 @@ class User extends Model implements AuthenticatableContract
 
     public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
+        // TODO: normalize validation with changeUsername.
         if ($this->user_id <= 1) {
             throw new ChangeUsernameException('user_id is not valid');
         }
@@ -134,11 +135,6 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
-        // TODO: move?
-        if ($this->user_id <= 1) {
-            throw new ChangeUsernameException('user_id is not valid');
-        }
-
         $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors);

@@ -26,6 +26,19 @@ use Carbon\Carbon;
 // FIXME: need more tests
 class ChangeUsernameTest extends TestCase
 {
+    public function testUserCannotBeRenamed()
+    {
+        $user = $this->createUser(['user_id' => 1]);
+
+        $this->expectException(ChangeUsernameException::class);
+        try {
+            $user->changeUsername('newusername', 'paid');
+        } catch (ChangeUsernameException $ex) {
+            $this->assertArrayHasKey('user_id', $ex->getErrors()->all());
+            throw $ex;
+        }
+    }
+
     public function testUserHasNeverSupported()
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => null]);
