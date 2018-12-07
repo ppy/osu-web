@@ -57,7 +57,9 @@ class ProfilePage.HeaderInfo extends React.PureComponent
         div className: "#{bn}__icon-group",
           div className: "#{bn}__icons",
             if @props.user.is_supporter
-              span className: "#{bn}__icon #{bn}__icon--supporter",
+              span
+                className: "#{bn}__icon #{bn}__icon--supporter"
+                title: osu.trans('users.show.is_supporter')
                 _(@props.user.support_level).times (i) =>
                   span
                     key: i
