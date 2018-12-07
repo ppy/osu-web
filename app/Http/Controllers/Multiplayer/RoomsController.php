@@ -18,9 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Multiplayer;
 
 use App\Models\Beatmap;
+use App\Http\Controllers\Controller as BaseController;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\PlaylistItem;
 use Carbon\Carbon;
@@ -28,8 +29,13 @@ use Request;
 use Auth;
 use DB;
 
-class RoomsController extends Controller
+class RoomsController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $rooms = Room::active()

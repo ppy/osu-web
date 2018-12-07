@@ -307,7 +307,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
-        Route::apiResource('rooms', 'RoomsController', ['only' => ['index', 'show', 'store']]);
+        Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['index', 'show', 'store']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
