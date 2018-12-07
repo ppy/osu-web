@@ -63,7 +63,7 @@ class Mod
     const CINEMA = 'CN';
     const NOMOD = 'NM';
 
-    const COMMON_SCORABLE = [
+    const SCORABLE_COMMON = [
         // common
         self::DAYCORE,
         self::DOUBLETIME,
@@ -79,12 +79,13 @@ class Mod
         self::SUDDENDEATH,
     ];
 
-    // Defines mutual-exclusion for groups of mods, i.e. only one mod per group can be active at a time
-    const EXCLUSIVITY_GROUPS = [
+    // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
+    const EXCLUSIVITY_COMMON = [
         [
             self::RELAX,
             self::SUDDENDEATH,
             self::NOFAIL,
+            self::PERFECT,
             self::OSU_AUTOPILOT,
             self::OSU_SPUNOUT,
         ],
@@ -110,11 +111,6 @@ class Mod
             self::MANIA_KEY9,
         ],
         [
-            self::FLASHLIGHT,
-            self::HIDDEN,
-            self::MANIA_FADEIN,
-        ],
-        [
             self::OSU_TRANSFORM,
             self::OSU_WIGGLE,
         ]
@@ -125,7 +121,7 @@ class Mod
     {
         return [
             Ruleset::OSU => array_merge(
-                self::COMMON_SCORABLE,
+                self::SCORABLE_COMMON,
                 [
                     self::OSU_AUTOPILOT,
                     self::OSU_SPUNOUT,
@@ -136,21 +132,21 @@ class Mod
             ),
 
             Ruleset::TAIKO => array_merge(
-                self::COMMON_SCORABLE,
+                self::SCORABLE_COMMON,
                 [
                     // taiko-specific mods go here
                 ]
             ),
 
             Ruleset::CATCH => array_merge(
-                self::COMMON_SCORABLE,
+                self::SCORABLE_COMMON,
                 [
                     // catch-specific mods go here
                 ]
             ),
 
             Ruleset::MANIA => array_merge(
-                self::COMMON_SCORABLE,
+                self::SCORABLE_COMMON,
                 [
                     self::MANIA_KEY1,
                     self::MANIA_KEY2,
@@ -165,6 +161,25 @@ class Mod
                     self::MANIA_FADEIN,
                     self::MANIA_MIRROR,
                     self::MANIA_RANDOM,
+                ]
+            ),
+        ];
+    }
+
+    public static function exclusivityByRuleset()
+    {
+        return [
+            Ruleset::OSU => self::EXCLUSIVITY_COMMON,
+            Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
+            Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
+            Ruleset::MANIA => array_merge(
+                self::EXCLUSIVITY_COMMON,
+                [
+                    [
+                        self::FLASHLIGHT,
+                        self::HIDDEN,
+                        self::MANIA_FADEIN,
+                    ],
                 ]
             ),
         ];

@@ -105,7 +105,7 @@ class PlaylistItem extends \App\Models\Model
 
     private function validateModExclusivityGroups()
     {
-        foreach (Mod::EXCLUSIVITY_GROUPS as $group) {
+        foreach (Mod::exclusivityByRuleset()[$this->ruleset_id] as $group) {
             $intersection = array_intersect(array_column($this->required_mods, 'acronym'), $group);
             if (count($intersection) > 1) {
                 throw new \InvalidArgumentException('incompatible mods: '.join(', ', $intersection));
