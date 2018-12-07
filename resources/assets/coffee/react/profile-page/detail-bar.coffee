@@ -90,7 +90,9 @@ class ProfilePage.DetailBar extends React.PureComponent
             el ProfilePage.Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
-          div className: "#{bn}__level",
+          div
+            className: "#{bn}__level"
+            title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
             @props.stats.level.current
 
   renderExtraMenu: =>
