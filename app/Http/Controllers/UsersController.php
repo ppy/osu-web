@@ -49,6 +49,10 @@ class UsersController extends Controller
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
 
+        if (is_api_request()) {
+            $this->middleware('require-scopes:identify', ['only' => ['me']]);
+        }
+
         $this->middleware(function ($request, $next) {
             $this->parsePaginationParams();
 
@@ -110,6 +114,10 @@ class UsersController extends Controller
 
     public function store()
     {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
@@ -273,7 +281,7 @@ class UsersController extends Controller
             'user_achievements',
         ];
 
-        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
         }
 

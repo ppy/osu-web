@@ -54,8 +54,8 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelIndex()
     {
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.index'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.index'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id])
             ->assertJsonMissing(['channel_id' => $this->privateChannel->channel_id])
@@ -76,8 +76,8 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinPublicWhenDifferentUser() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->anotherUser->user_id,
             ]))
@@ -86,8 +86,8 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinNonPublic() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->privateChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
@@ -97,22 +97,22 @@ class ChannelsControllerTest extends TestCase
     public function testChannelJoinPublic() // succeed
     {
         // ensure not in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
 
         // join channel
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
         // ensure now in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
@@ -120,36 +120,36 @@ class ChannelsControllerTest extends TestCase
     public function testChannelJoinPublicWhenAlreadyJoined() // succeed
     {
         // ensure not in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
 
         // join channel
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
         // ensure now in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // attempt to join channel again
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
         // ensure still in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
@@ -171,8 +171,8 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelMarkAsReadWhenUnjoined() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
                     'channel_id' => $this->publicChannel->channel_id,
@@ -184,14 +184,14 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelMarkAsReadWhenJoined() // success
     {
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]));
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
                     'channel_id' => $this->publicChannel->channel_id,
@@ -200,8 +200,8 @@ class ChannelsControllerTest extends TestCase
             )
             ->assertStatus(204);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
@@ -213,15 +213,15 @@ class ChannelsControllerTest extends TestCase
     {
         $newerPublicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
 
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]));
 
         // mark as read to $newerPublicMessage->message_id
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
                     'channel_id' => $this->publicChannel->channel_id,
@@ -230,8 +230,8 @@ class ChannelsControllerTest extends TestCase
             )
             ->assertStatus(204);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
@@ -239,8 +239,8 @@ class ChannelsControllerTest extends TestCase
             ]);
 
         // attempt to mark as read to the older $this->publicMessage->message_id
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
                     'channel_id' => $this->publicChannel->channel_id,
@@ -249,8 +249,8 @@ class ChannelsControllerTest extends TestCase
             )
             ->assertStatus(204);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
@@ -272,8 +272,8 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelLeaveWhenNotPublic() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('DELETE', route('api.chat.channels.part', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('DELETE', route('api.chat.channels.part', [
                 'channel_id' => $this->privateChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
@@ -282,20 +282,20 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelLeaveWhenNotJoined() // success ?
     {
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
 
-        $this->actingAs($this->user, 'api')
-            ->json('DELETE', route('api.chat.channels.part', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('DELETE', route('api.chat.channels.part', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
@@ -303,36 +303,36 @@ class ChannelsControllerTest extends TestCase
     public function testChannelLeaveWhenJoined() // success
     {
         // ensure not in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
 
         // join channel
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
         // ensure now in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // leave channel
-        $this->actingAs($this->user, 'api')
-            ->json('DELETE', route('api.chat.channels.part', [
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('DELETE', route('api.chat.channels.part', [
                 'channel_id' => $this->publicChannel->channel_id,
                 'user_id' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
         // ensure no longer in channel
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.presence'))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }

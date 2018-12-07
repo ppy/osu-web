@@ -267,16 +267,6 @@ class Post extends Model implements AfterCommit
         return 'forum.post';
     }
 
-    public function getBodyHTMLAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true]);
-    }
-
-    public function getBodyHTMLWithoutImageDimensionsAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true, 'withoutImageDimensions' => true]);
-    }
-
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
@@ -292,6 +282,11 @@ class Post extends Model implements AfterCommit
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
+    }
+
+    public function bodyHTML($options = [])
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, array_merge(['withGallery' => true], $options));
     }
 
     public function markRead($user)

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,21 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.kudosu-entries {
-  margin-top: 20px;
+.game-mode {
+  line-height: normal;
 
-  &__title {
-    font-size: 16px;
-    margin: 0 0 10px;
+  @media @desktop {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
-  &__link {
-    font-style: italic;
+  &__items {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    @media @desktop {
+      margin: -10px -20px;
+      justify-content: flex-end;
+    }
   }
 
-  &__amount {
-    font-weight: inherit;
-    font-style: italic;
-    color: @pink-text;
+  &__item {
+    margin: 10px;
+    flex: none;
+  }
+
+  &__set-default {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
   }
 }

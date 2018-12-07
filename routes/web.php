@@ -135,6 +135,7 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
+        Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });
@@ -231,7 +232,7 @@ Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'nam
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-// Route::resource('users', 'UsersController', ['only' => 'store']);
+Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
@@ -291,7 +292,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');

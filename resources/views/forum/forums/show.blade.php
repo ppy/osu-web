@@ -78,8 +78,12 @@
         <div id="topics">
             @if (count($topics) > 0 || $forum->isOpen())
                 <div class="forum-topics-spacer">
-                    <div class="forum-topics-spacer__buttons">
+                    <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--left">
                         @include('forum.forums._new_topic', compact('forum'))
+                    </div>
+
+                    <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                        @include('forum.forums._mark_as_read', compact('forum'))
                     </div>
                 </div>
 
@@ -89,7 +93,7 @@
                 ])
 
                 <div class="forum-topics-spacer forum-topics-spacer--pager">
-                    <div class="forum-topics-spacer__buttons">
+                    <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--left">
                         @include('forum.forums._new_topic', compact('forum'))
                     </div>
 
@@ -103,7 +107,9 @@
                         ])
                     </div>
 
-                    <div class="forum-topics-spacer__buttons">{{-- keeps pager centred --}}</div>
+                    <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                        @include('forum.forums._mark_as_read', compact('forum'))
+                    </div>
                 </div>
             @endif
         </div>

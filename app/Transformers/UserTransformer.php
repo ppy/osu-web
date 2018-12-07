@@ -102,7 +102,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
             $histories->default();
         } else {
             $histories->with('actor');
@@ -204,7 +204,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTMLWithoutImageDimensions,
+                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {

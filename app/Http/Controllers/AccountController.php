@@ -192,7 +192,7 @@ class AccountController extends Controller
 
         $user = $user->updatePage(Request::input('body'));
 
-        return ['html' => $user->userPage->bodyHTML];
+        return ['html' => $user->userPage->bodyHTML()];
     }
 
     public function updatePassword()

@@ -25,13 +25,13 @@
   border-radius: @border-radius-large;
   display: flex;
   align-items: baseline;
-  margin: 5px;
   transition: all 200ms cubic-bezier(.22,.61,.36,1);
   font-style: italic;
 
   @media @desktop {
     width: 300px;
     pointer-events: none;
+    margin: 5px;
   }
 
   &:hover {
@@ -44,7 +44,6 @@
   }
 
   &__content {
-    padding: @_spacing;
     padding-left: 0;
     opacity: 0;
     will-change: opacity;
@@ -53,6 +52,7 @@
 
     @media @desktop {
       display: block;
+      padding: @_spacing;
     }
 
     .@{_top}:hover & {
@@ -78,11 +78,7 @@
     }
 
     &--with-title {
-      margin: @_spacing; // better tooltip positioning
-
-      &:hover {
-        margin-bottom: 20px;
-      }
+      margin-left: @_spacing; // better tooltip positioning
 
       @media @desktop {
         display: none;
