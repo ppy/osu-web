@@ -23,6 +23,7 @@ namespace App\Transformers\Multiplayer;
 use App\Models\Multiplayer\Room;
 use App\Transformers\UserCompactTransformer;
 use League\Fractal;
+use Carbon\Carbon;
 
 class RoomTransformer extends Fractal\TransformerAbstract
 {
@@ -40,6 +41,7 @@ class RoomTransformer extends Fractal\TransformerAbstract
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
             'max_attempts' => $room->max_attempts,
+            'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
         ];
     }
 

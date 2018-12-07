@@ -20,14 +20,14 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
-use App\Models\Beatmap;
 use App\Http\Controllers\Controller as BaseController;
-use App\Models\Multiplayer\Room;
+use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
-use Carbon\Carbon;
-use Request;
+use App\Models\Multiplayer\Room;
 use Auth;
+use Carbon\Carbon;
 use DB;
+use Request;
 
 class RoomsController extends BaseController
 {
@@ -42,7 +42,7 @@ class RoomsController extends BaseController
             ->orderBy('id', 'DESC');
 
         if (Request::has('owned')) {
-            $rooms->forUser(Auth::user());
+            $rooms->startedBy(Auth::user());
         }
 
         if (Request::has('participated')) {
@@ -62,19 +62,25 @@ class RoomsController extends BaseController
         );
     }
 
-    public function show($id)
+    public function show($room_id)
     {
         return json_item(
-            Room::findOrFail($id),
+            Room::where('id', $room_id)
+                ->with('host')
+                ->with('playlist.beatmap.beatmapset')
+                ->firstOrFail(),
             'Multiplayer\Room',
-            'playlist'
+            [
+                'host',
+                'playlist.beatmap.beatmapset',
+            ]
         );
     }
 
     public function store()
     {
         $currentUser = Auth::user();
-        $hasActiveRooms = Room::active()->forUser($currentUser)->exists();
+        $hasActiveRooms = Room::active()->startedBy($currentUser)->exists();
         if ($hasActiveRooms) {
             abort(403, 'number of simultaneously active rooms reached');
         }
@@ -91,19 +97,30 @@ class RoomsController extends BaseController
             abort(422, "field 'playlist_items' cannot be empty");
         } else {
             $playlistBeatmaps = array_map(function ($item) {
-                return $item['beatmap_id'];
+                if (isset($item['beatmap_id'])) {
+                    return $item['beatmap_id'];
+                } else {
+                    abort(422, "playlist item missing field 'beatmap_id'");
+                }
             }, $playlist_items);
 
             $beatmaps = Beatmap::whereIn('beatmap_id', $playlistBeatmaps)->get();
 
             $playlist = [];
             foreach ($playlist_items as $item) {
+                foreach (['beatmap_id', 'ruleset_id'] as $field) {
+                    if (!isset($item[$field]) || !present($item[$field])) {
+                        abort(422, "playlist item missing field '{$field}'");
+                    }
+                }
+
                 if (!$beatmaps->where('beatmap_id', $item['beatmap_id'])->first()) {
                     abort(422, "beatmap not found: {$item['beatmap_id']}");
                 }
 
                 $playlist[] = [
                     'beatmapId' => $item['beatmap_id'],
+                    'rulesetId' => $item['ruleset_id'],
                     'allowedMods' => isset($item['allowed_mods']) ? $item['allowed_mods'] : [],
                     'requiredMods' => isset($item['required_mods']) ? $item['required_mods'] : [],
                 ];
@@ -144,6 +161,7 @@ class RoomsController extends BaseController
                 try {
                     $playlistItem = new PlaylistItem();
                     $playlistItem->beatmap_id = $item['beatmapId'];
+                    $playlistItem->ruleset_id = $item['rulesetId'];
                     $playlistItem->room()->associate($room);
                     $playlistItem->allowed_mods = $item['allowedMods'];
                     $playlistItem->required_mods = $item['requiredMods'];

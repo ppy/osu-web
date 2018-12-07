@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,34 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\Multiplayer;
+namespace App\Libraries\Multiplayer;
 
-use App\Models\Beatmap;
-use App\Models\Multiplayer\PlaylistItem;
-use App\Transformers\BeatmapCompactTransformer;
-use League\Fractal;
-
-class PlaylistItemTransformer extends Fractal\TransformerAbstract
+class Ruleset
 {
-    protected $availableIncludes = [
-        'beatmap',
+    const OSU = 0;
+    const TAIKO = 1;
+    const CATCH = 2;
+    const MANIA = 3;
+
+    const ALL = [
+        self::OSU,
+        self::TAIKO,
+        self::CATCH,
+        self::MANIA,
     ];
-
-    public function transform(PlaylistItem $item)
-    {
-        return [
-            'beatmap_id' => $item->beatmap_id,
-            'ruleset_id' => $item->ruleset_id,
-            'allowed_mods' => $item->allowed_mods,
-            'required_mods' => $item->required_mods,
-        ];
-    }
-
-    public function includeBeatmap(PlaylistItem $item)
-    {
-        return $this->item(
-            $item->beatmap,
-            new BeatmapCompactTransformer
-        );
-    }
 }

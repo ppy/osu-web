@@ -20,9 +20,9 @@
 
 namespace App\Models\Multiplayer;
 
-use Validator;
+use App\Libraries\Multiplayer\Mod;
+use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
-use App\Libraries\ModsHelper;
 
 class PlaylistItem extends \App\Models\Model
 {
@@ -74,7 +74,7 @@ class PlaylistItem extends \App\Models\Model
         foreach ($mods as $mod) {
             if (isset($mod['acronym'])) {
                 $acronym = strtoupper($mod['acronym']);
-                if (!in_array($acronym, ModsHelper::LAZER_SCORABLE_MODS)) {
+                if (!in_array($acronym, Mod::validModsForRuleset($this->ruleset_id))) {
                     throw new \InvalidArgumentException("invalid mod in '{$mode}': {$acronym}");
                 }
 
@@ -95,7 +95,20 @@ class PlaylistItem extends \App\Models\Model
         return array_values($filteredMods);
     }
 
-    public function save(array $options = [])
+    private function validateRuleset()
+    {
+        // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
+        if ($this->beatmap->playmode !== Ruleset::OSU && $this->beatmap->playmode !== $this->ruleset_id) {
+            throw new \InvalidArgumentException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
+        }
+    }
+
+    private function validateModExclusivityGroups()
+    {
+        // TODO
+    }
+
+    private function validateModOverlaps()
     {
         $dupeMods = array_intersect(
             array_column($this->allowed_mods, 'acronym'),
@@ -105,6 +118,13 @@ class PlaylistItem extends \App\Models\Model
         if (count($dupeMods) > 0) {
             throw new \InvalidArgumentException("mod cannot be listed as both allowed and required: " . join(', ', $dupeMods));
         }
+    }
+
+    public function save(array $options = [])
+    {
+        $this->validateRuleset();
+        $this->validateModExclusivityGroups();
+        $this->validateModOverlaps();
 
         return parent::save($options);
     }
