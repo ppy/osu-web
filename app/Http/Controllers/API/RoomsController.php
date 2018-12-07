@@ -20,22 +20,142 @@
 
 namespace App\Http\Controllers\API;
 
-use LaravelRedis as Redis;
+use App\Models\Beatmap;
+use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\PlaylistItem;
+use Carbon\Carbon;
+use Request;
+use Auth;
+use DB;
 
 class RoomsController extends Controller
 {
+    public function index()
+    {
+        $rooms = Room::active()
+            ->orderBy('id', 'DESC');
+
+        if (Request::has('owned')) {
+            $rooms->forUser(Auth::user());
+        }
+
+        if (Request::has('participated')) {
+            // TODO: this
+        }
+
+        return json_collection(
+            $rooms
+                ->with('host')
+                ->with('playlist.beatmap.beatmapset')
+                ->get(),
+            'Multiplayer\Room',
+            [
+                'host',
+                'playlist.beatmap.beatmapset'
+            ]
+        );
+    }
+
     public function show($id)
     {
-        $roomId = get_int($id);
+        return json_item(
+            Room::findOrFail($id),
+            'Multiplayer\Room',
+            'playlist'
+        );
+    }
 
-        if (!is_null($roomId)) {
-            $meta = Redis::get("room:$roomId");
+    public function store()
+    {
+        $currentUser = Auth::user();
+        $hasActiveRooms = Room::active()->forUser($currentUser)->exists();
+        if ($hasActiveRooms) {
+            abort(403, 'number of simultaneously active rooms reached');
         }
 
-        if (!isset($meta)) {
-            abort(404);
+        foreach (['name', 'max_attempts', 'playlist_items'] as $field) {
+            if (!Request::has($field) || !present(Request::input($field))) {
+                abort(422, "field '{$field}' required");
+            }
+
+            $$field = Request::input($field);
         }
 
-        return response($meta)->header('Content-Type', 'application/json');
+        if (!is_array($playlist_items) || empty($playlist_items)) {
+            abort(422, "field 'playlist_items' cannot be empty");
+        } else {
+            $playlistBeatmaps = array_map(function ($item) {
+                return $item['beatmap_id'];
+            }, $playlist_items);
+
+            $beatmaps = Beatmap::whereIn('beatmap_id', $playlistBeatmaps)->get();
+
+            $playlist = [];
+            foreach ($playlist_items as $item) {
+                if (!$beatmaps->where('beatmap_id', $item['beatmap_id'])->first()) {
+                    abort(422, "beatmap not found: {$item['beatmap_id']}");
+                }
+
+                $playlist[] = [
+                    'beatmapId' => $item['beatmap_id'],
+                    'allowedMods' => isset($item['allowed_mods']) ? $item['allowed_mods'] : [],
+                    'requiredMods' => isset($item['required_mods']) ? $item['required_mods'] : [],
+                ];
+            }
+        }
+
+        if (Request::has('starts_at')) {
+            $startTime = Carbon::parse(Request::input('starts_at'));
+        } else {
+            $startTime = Carbon::now();
+        }
+
+        if (Request::has('ends_at')) {
+            $endTime = Carbon::parse(Request::input('ends_at'));
+
+            if ($endTime->isBefore($startTime)) {
+                abort(422, "'ends_at' cannot be before 'starts_at'");
+            }
+        } elseif (Request::has('duration')) {
+            $endTime = $startTime->copy()->addMinutes(Request::input('duration'));
+        } else {
+            abort(422, "field 'duration' or 'ends_at' required");
+        }
+
+        $roomOptions = [
+            'name' => Request::input('name'),
+            'user_id' => $currentUser->user_id,
+            'starts_at' => $startTime,
+            'ends_at' => $endTime,
+            'max_attempts' => Request::input('max_attempts'),
+        ];
+
+        $room = DB::transaction(function () use ($roomOptions, $playlist) {
+            $room = new Room($roomOptions);
+            $room->save();
+
+            foreach ($playlist as $item) {
+                $playlistItem = new PlaylistItem();
+                $playlistItem->beatmap_id = $item['beatmapId'];
+                $playlistItem->room()->associate($room);
+
+                try {
+                    $playlistItem->allowed_mods = $item['allowedMods'];
+                    $playlistItem->required_mods = $item['requiredMods'];
+                } catch (\Exception $e) {
+                    abort(422, $e->getMessage());
+                }
+
+                $playlistItem->save();
+            }
+
+            return $room;
+        });
+
+        return json_item(
+            $room,
+            'Multiplayer\Room',
+            'playlist'
+        );
     }
 }

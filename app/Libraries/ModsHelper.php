@@ -22,6 +22,45 @@ namespace App\Libraries;
 
 class ModsHelper
 {
+    // This is list of mods that scores can be set for, as according to osu!lazer.
+    const LAZER_SCORABLE_MODS = [
+        // 'AT', // Autoplay, not scorable
+        // 'CN', // Cinema, not scorable
+        'DC', // Daycore
+        'DT', // DoubleTime
+        'EZ', // Easy
+        'FL', // Flashlight
+        'HD', // Hidden
+        'HR', // HardRock
+        'HT', // HalfTime
+        'NC', // Nightcore
+        'NF', // NoFail
+        // 'NM', // NoMod, not scorable
+        'PF', // Perfect
+        'RX', // Relax
+        'SD', // SuddenDeath
+
+        'AP', // OsuModAutopilot
+        'SO', // OsuModSpunOut
+        'TP', // OsuModTarget
+        'TR', // OsuModTransform
+        'WG', // OsuModWiggle
+
+        '1K', // ManiaModKey1
+        '2K', // ManiaModKey2
+        '3K', // ManiaModKey3
+        '4K', // ManiaModKey4
+        '5K', // ManiaModKey5
+        '6K', // ManiaModKey6
+        '7K', // ManiaModKey7
+        '8K', // ManiaModKey8
+        '9K', // ManiaModKey9
+        'DS', // ManiaModDualStages
+        'FI', // ManiaModFadeIn
+        'MR', // ManiaModMirror
+        'RD', // ManiaModRandom
+    ];
+
     const AVAILABLE_MODS = [
         [0, 'NF'],
         [1, 'EZ'],
