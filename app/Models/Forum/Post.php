@@ -223,7 +223,7 @@ class Post extends Model implements AfterCommit
             $this->validationErrors()->add('post_text', 'required');
         }
 
-        if ($this->isDirty('post_text') && mb_strlen($this->post_text) > config('osu.forum.max_post_length')) {
+        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
             $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
         }
 
