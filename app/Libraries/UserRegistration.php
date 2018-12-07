@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\ChangeUsername;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
@@ -59,9 +60,25 @@ class UserRegistration
             return $isValid;
         }
 
+        $changeUsername = new ChangeUsername($this->user, $this->user->username, '');
+        $changeUsername->validateUsername();
+        $changeUsername->validateAvailability();
+        $changeUsername->validatePreviousUsers();
+
+        if ($changeUsername->validationErrors()->isAny()) {
+            $this->user->validationErrors()->merge($changeUsername->validationErrors());
+
+            return false;
+        }
+
         try {
             $ok = DB::transaction(function () {
-                User::renameUsernameIfInactive($this->user->username);
+                $existing = User::findByUsernameForInactive($this->user->username);
+                if ($existing !== null) {
+                    $existing->renameIfInactive();
+                    // TODO: throw if expected rename doesn't happen?
+                }
+
                 $this->user->saveOrExplode();
 
                 $ok = $this->user->userGroups()->create([
