@@ -25,10 +25,12 @@ class ProfilePage.BeatmapPlaycount extends React.PureComponent
   render: =>
     beatmap = @props.playcount.beatmap
     beatmapset = @props.playcount.beatmapset
+    beatmapsetUrl = laroute.route 'beatmaps.show', beatmap: beatmap.id
 
     div
       className: bn
-      div
+      a
+        href: beatmapsetUrl
         className: "#{bn}__cover"
         style:
           backgroundImage: osu.urlPresence(beatmapset.covers.list)
@@ -42,7 +44,7 @@ class ProfilePage.BeatmapPlaycount extends React.PureComponent
             className: "#{bn}__info-row u-ellipsis-overflow"
             a
               className: "#{bn}__title"
-              href: laroute.route 'beatmaps.show', beatmap: beatmap.id
+              href: beatmapsetUrl
               "#{beatmapset.title} [#{beatmap.version}] "
               span
                 className: "#{bn}__title-artist"

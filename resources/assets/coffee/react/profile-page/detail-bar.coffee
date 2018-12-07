@@ -72,7 +72,9 @@ class ProfilePage.DetailBar extends React.PureComponent
 
       div className: "#{bn}__column #{bn}__column--right",
         if @props.extended
-          div className: "#{bn}__entry #{bn}__entry--level-progress",
+          div
+            title: osu.trans('users.show.stats.level_progress')
+            className: "#{bn}__entry #{bn}__entry--level-progress"
             div className: 'bar bar--user-profile',
               div
                 className: 'bar__fill'
@@ -90,7 +92,9 @@ class ProfilePage.DetailBar extends React.PureComponent
             el ProfilePage.Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
-          div className: "#{bn}__level",
+          div
+            className: "#{bn}__level"
+            title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
             @props.stats.level.current
 
   renderExtraMenu: =>

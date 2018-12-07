@@ -50,12 +50,20 @@ class ProfilePage.HeaderInfo extends React.PureComponent
           span className: 'u-ellipsis-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
         # hard space if no title
-        span className: "#{bn}__title", @props.user.title ? '\u00A0'
+        span
+          className: "#{bn}__title"
+          style: color: @props.user.profile_colour
+          @props.user.title ? '\u00A0'
         div className: "#{bn}__icon-group",
           div className: "#{bn}__icons",
             if @props.user.is_supporter
-              span className: "#{bn}__icon #{bn}__icon--supporter",
-                span className: 'fas fa-heart'
+              span
+                className: "#{bn}__icon #{bn}__icon--supporter"
+                title: osu.trans('users.show.is_supporter')
+                _(@props.user.support_level).times (i) =>
+                  span
+                    key: i
+                    className: 'fas fa-heart'
           div className: "#{bn}__icons #{bn}__icons--flag",
             if @props.user.country?
               a

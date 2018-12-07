@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "This user hasn't gotten any yet. ;_;",
-                'recent' => 'Latest Achievements',
+                'recent' => 'Latest',
                 'title' => 'Medals',
             ],
             'recent_activity' => [
@@ -348,6 +348,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
+            'level_progress' => 'Progress to next level',
             'maximum_combo' => 'Maximum Combo',
             'medals' => 'Medals',
             'play_count' => 'Play Count',

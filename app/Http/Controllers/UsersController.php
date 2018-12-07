@@ -277,6 +277,7 @@ class UsersController extends Controller
             'replays_watched_counts',
             'statistics.rank',
             'statistics.scoreRanks',
+            'support_level',
             'unranked_beatmapset_count',
             'user_achievements',
         ];
