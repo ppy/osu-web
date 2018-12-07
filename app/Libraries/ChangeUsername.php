@@ -20,20 +20,14 @@
 
 namespace App\Libraries;
 
-use App\Models\Beatmap;
 use App\Models\User;
-use App\Traits\Validatable;
-use Carbon\Carbon;
 
-class ChangeUsername
+class ChangeUsername extends UsernameValidation
 {
-    use Validatable;
-
-    private $newUsername;
-    private $type;
+    protected $type;
 
     /** @var User */
-    private $user;
+    protected $user;
 
     public static function requireSupportedMessage()
     {
@@ -47,8 +41,8 @@ class ChangeUsername
 
     public function __construct(User $user, string $newUsername, string $type)
     {
+        parent::__construct($newUsername);
         $this->user = $user;
-        $this->newUsername = $newUsername;
         $this->type = $type;
     }
 
@@ -63,7 +57,7 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
-        if ($this->newUsername === $this->user->username) {
+        if ($this->username === $this->user->username) {
             return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 
@@ -76,77 +70,5 @@ class ChangeUsername
         }
 
         return $this->validatePreviousUsers();
-    }
-
-    public function validateAvailability() : ValidationErrors
-    {
-        if (($availableDate = User::checkWhenUsernameAvailable($this->newUsername)) > Carbon::now()) {
-            $remaining = Carbon::now()->diff($availableDate, false);
-
-            // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
-            if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
-                //no need to mention the inactivity period of the account is actively in use.
-                $this->validationErrors()->add('username', '.username_in_use');
-            } elseif ($remaining->days > 0) {
-                $this->validationErrors()->add(
-                    'username',
-                    '.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
-                );
-            } elseif ($remaining->h > 0) {
-                $this->validationErrors()->add(
-                    'username',
-                    '.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
-                );
-            } else {
-                $this->validationErrors()->add('username', '.username_available_soon');
-            }
-        }
-
-        return $this->validationErrors();
-    }
-
-    public function validateUsername() : ValidationErrors
-    {
-        return $this->validationErrors()->merge(User::validateUsername($this->newUsername, $this->user->username));
-    }
-
-    public function validatePreviousUsers() : ValidationErrors
-    {
-        $previousUsers = $this->previousUsers()->get();
-        foreach ($previousUsers as $previousUser) {
-            // has badges
-            if ($previousUser->badges()->exists()) {
-                return $this->validationErrors()->add('username', '.username_locked');
-            }
-
-            // ranked beatmaps
-            if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
-                return $this->validationErrors()->add('username', '.username_locked');
-            }
-
-            // ranks
-            foreach (Beatmap::MODES as $mode => $_modeInt) {
-                $stats = $previousUser->statistics($mode);
-                if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
-                    return $this->validationErrors()->add('username', '.username_locked');
-                }
-            }
-        }
-
-        return $this->validationErrors();
-    }
-
-    public function validationErrorsTranslationPrefix()
-    {
-        return 'user';
-    }
-
-    private function previousUsers()
-    {
-        return User::whereHas('usernameChangeHistory', function ($query) {
-            $query->where('username_last', $this->newUsername);
-        });
     }
 }

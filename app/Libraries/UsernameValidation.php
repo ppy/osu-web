@@ -1,0 +1,110 @@
+<?php
+
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace App\Libraries;
+
+use App\Models\Beatmap;
+use App\Models\User;
+use App\Traits\Validatable;
+use Carbon\Carbon;
+
+class UsernameValidation
+{
+    use Validatable;
+
+    protected $username;
+
+    public function __construct(string $username)
+    {
+        $this->username = $username;
+    }
+
+    public function validateAvailability() : ValidationErrors
+    {
+        if (($availableDate = User::checkWhenUsernameAvailable($this->username)) > Carbon::now()) {
+            $remaining = Carbon::now()->diff($availableDate, false);
+
+            // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
+            if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
+                //no need to mention the inactivity period of the account is actively in use.
+                $this->validationErrors()->add('username', '.username_in_use');
+            } elseif ($remaining->days > 0) {
+                $this->validationErrors()->add(
+                    'username',
+                    '.username_available_in',
+                    ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
+                );
+            } elseif ($remaining->h > 0) {
+                $this->validationErrors()->add(
+                    'username',
+                    '.username_available_in',
+                    ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
+                );
+            } else {
+                $this->validationErrors()->add('username', '.username_available_soon');
+            }
+        }
+
+        return $this->validationErrors();
+    }
+
+    public function validateUsername() : ValidationErrors
+    {
+        return $this->validationErrors()->merge(User::validateUsername($this->username));
+    }
+
+    public function validatePreviousUsers() : ValidationErrors
+    {
+        $previousUsers = $this->previousUsers()->get();
+        foreach ($previousUsers as $previousUser) {
+            // has badges
+            if ($previousUser->badges()->exists()) {
+                return $this->validationErrors()->add('username', '.username_locked');
+            }
+
+            // ranked beatmaps
+            if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
+                return $this->validationErrors()->add('username', '.username_locked');
+            }
+
+            // ranks
+            foreach (Beatmap::MODES as $mode => $_modeInt) {
+                $stats = $previousUser->statistics($mode);
+                if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
+                    return $this->validationErrors()->add('username', '.username_locked');
+                }
+            }
+        }
+
+        return $this->validationErrors();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user';
+    }
+
+    private function previousUsers()
+    {
+        return User::whereHas('usernameChangeHistory', function ($query) {
+            $query->where('username_last', $this->username);
+        });
+    }
+}

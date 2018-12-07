@@ -21,7 +21,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\ChangeUsername;
+use App\Libraries\UsernameValidation;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
@@ -60,12 +60,12 @@ class UserRegistration
             return $isValid;
         }
 
-        $changeUsername = new ChangeUsername($this->user, $this->user->username, '');
-        $changeUsername->validateUsername();
-        $changeUsername->validateAvailability();
-        $changeUsername->validatePreviousUsers();
+        $validation = new UsernameValidation($this->user->username);
+        $validation->validateUsername();
+        $validation->validateAvailability();
+        $validation->validatePreviousUsers();
 
-        if ($changeUsername->validationErrors()->isAny()) {
+        if ($validation->validationErrors()->isAny()) {
             $this->user->validationErrors()->merge($changeUsername->validationErrors());
 
             return false;
