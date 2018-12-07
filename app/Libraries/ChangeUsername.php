@@ -110,9 +110,7 @@ class ChangeUsername
 
     public function validateUsername()
     {
-        $this->validationErrors()->merge(User::validateUsername($this->newUsername, $this->user->username));
-
-        return $this->validationErrors();
+        return $this->validationErrors()->merge(User::validateUsername($this->newUsername, $this->user->username));
     }
 
     public function validatePreviousUsers()
