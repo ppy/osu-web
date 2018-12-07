@@ -59,7 +59,6 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
         }
 
-        $errors = new ValidationErrors('user');
         if (!$this->user->hasSupported()) {
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
