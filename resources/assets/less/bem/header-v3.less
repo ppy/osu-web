@@ -44,7 +44,11 @@
     background-size: (@container-sm + @_background-side-overflow * 2) auto;
     background-repeat: no-repeat;
     z-index: @z-index--header-bg;
+    display: none;
 
+    @media @desktop {
+      display: block;
+    }
     .@{_top}--changelog & {
       .at2x-simple('/images/headers/changelog.jpg');
     }
@@ -69,12 +73,31 @@
       fade(@_background-color, 25%) (@container-sm + @_background-side-overflow + @_background-side-overflow / 2),
       fade(@_background-color, 50%) (@container-sm + @_background-side-overflow + @_background-side-overflow * 3 / 4),
       @_background-color);
+    display: none;
 
     // top to bottom overlay
     &::before {
       content: '';
       .full-size();
       background-image: linear-gradient(to bottom, @_background-color, transparent);
+    }
+
+    @media @desktop {
+      display: block;
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    font-size: 60px; // icon size
+    background-color: fade(#000, 50%);
+    color: #fff;
+    padding-top: @nav2-height--pinned;
+    display: none;
+
+    @media @desktop {
+      display: flex;
     }
   }
 }

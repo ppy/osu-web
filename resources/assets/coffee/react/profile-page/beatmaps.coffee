@@ -19,45 +19,58 @@
 {div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
 el = React.createElement
 
+sections = [
+  'favouriteBeatmapsets'
+  'rankedAndApprovedBeatmapsets'
+  'lovedBeatmapsets'
+  'unrankedBeatmapsets'
+  'graveyardBeatmapsets'
+]
+
 class ProfilePage.Beatmaps extends React.PureComponent
   render: =>
-    allBeatmapsets =
-      favouriteBeatmapsets: @props.favouriteBeatmapsets
-      rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
-      lovedBeatmapsets: @props.lovedBeatmapsets
-      unrankedBeatmapsets: @props.unrankedBeatmapsets
-      graveyardBeatmapsets: @props.graveyardBeatmapsets
-
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      for own section, beatmapsets of allBeatmapsets
-        sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
-        div
-          key: section
-          h3
-            className: 'page-extra__title page-extra__title--small'
-            osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title", count: @props.counts[section])
+      sections.map @renderBeatmapsets
 
-          if beatmapsets.length > 0
-            div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
-              for beatmapset in beatmapsets
-                div
-                  key: beatmapset.id
-                  className: 'osu-layout__col osu-layout__col--sm-6'
-                  el BeatmapsetPanel, beatmap: beatmapset
 
-              div
-                className: 'osu-layout__col',
-                el ShowMoreLink,
-                  event: 'profile:showMore'
-                  hasMore: @props.pagination[section].hasMore
-                  loading: @props.pagination[section].loading
-                  data:
-                    name: section
-                    url: laroute.route 'users.beatmapsets',
-                      user: @props.user.id
-                      type: sectionSnaked
+  renderBeatmapsets: (section) =>
+    sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
+    count = @props.counts[section]
+    beatmapsets = @props[section]
 
-          else
-            p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
+    div
+      key: section
+      h3
+        className: 'page-extra__title page-extra__title--small'
+        osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
+        ' '
+        if count > 0
+          span
+            className: 'page-extra__title-count'
+            count.toLocaleString()
+
+      if beatmapsets.length > 0
+        div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
+          for beatmapset in beatmapsets
+            div
+              key: beatmapset.id
+              className: 'osu-layout__col osu-layout__col--sm-6'
+              el BeatmapsetPanel, beatmap: beatmapset
+
+          div
+            className: 'osu-layout__col',
+            el ShowMoreLink,
+              modifiers: ['profile-page']
+              event: 'profile:showMore'
+              hasMore: @props.pagination[section].hasMore
+              loading: @props.pagination[section].loading
+              data:
+                name: section
+                url: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
+                  type: sectionSnaked
+
+      else
+        p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
