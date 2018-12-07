@@ -1265,6 +1265,10 @@ class User extends Model implements AuthenticatableContract
                     'post_text' => $text,
                     'post_edit_user' => $this->getKey(),
                 ]);
+
+            if ($this->userPage->validationErrors()->isAny()) {
+                throw new ModelNotSavedException($this->userPage->validationErrors()->toSentence());
+            }
         }
 
         return $this->fresh();
