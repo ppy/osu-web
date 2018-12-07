@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{span} = ReactDOMFactories
 el = React.createElement
 
 
@@ -24,13 +25,26 @@ ProfilePage.PlayTime = ({stats}) ->
 
   daysLeftOver = Math.floor playTime.asDays()
   hours = playTime.hours()
-  minutes = playTime.minutes()
-  seconds = playTime.seconds()
+  totalMinutes = Math.round(playTime.asMinutes())
+  minutes = totalMinutes % 60 # account for seconds rounding
+
+  titleValue = Math.round(playTime.asHours())
+  titleUnit = 'hours'
+
+  if titleValue < 2
+    titleValue = totalMinutes
+    titleUnit = 'minutes'
+
+  title = osu.transChoice("common.count.#{titleUnit}", titleValue)
 
   timeString = ''
   timeString = "#{daysLeftOver.toLocaleString()}d " if daysLeftOver > 0
-  timeString += "#{hours}h #{minutes}m #{seconds}s"
+  timeString += "#{hours}h #{minutes}m"
 
   el ValueDisplay,
     label: osu.trans('users.show.stats.play_time')
-    value: timeString
+    value:
+      span
+        title: title
+        'data-tooltip-position': 'bottom center'
+        timeString
