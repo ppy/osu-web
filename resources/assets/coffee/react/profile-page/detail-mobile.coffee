@@ -23,6 +23,11 @@ el = React.createElement
 class ProfilePage.DetailMobile extends React.PureComponent
   render: =>
     div className: 'profile-detail-mobile',
+      if @props.rankHistory?
+        div className: 'profile-detail-mobile__item profile-detail-mobile__item--rank-chart',
+          el ProfilePage.RankChart,
+            rankHistory: @props.rankHistory
+            stats: @props.stats
       div className: 'profile-detail-mobile__item',
         el ProfilePage.Rank, type: 'global', stats: @props.stats
       div className: 'profile-detail-mobile__item',

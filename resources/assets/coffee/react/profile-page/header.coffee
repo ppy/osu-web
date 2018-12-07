@@ -86,6 +86,7 @@ class ProfilePage.Header extends React.Component
             el ProfilePage.DetailMobile,
               stats: @props.stats
               userAchievements: @props.userAchievements
+              rankHistory: @props.rankHistory
 
             if !@props.user.is_bot
               el ProfilePage.Stats, stats: @props.stats
