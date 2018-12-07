@@ -10,6 +10,8 @@ class UsersControllerTest extends TestCase
      */
     public function testStore()
     {
+        config()->set('osu.user.allow_registration', true);
+
         $this
             ->json('POST', route('users.store'), [
                 'user' => [
@@ -26,6 +28,8 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
+        config()->set('osu.user.allow_registration', true);
+
         $country = factory(Country::class)->create();
 
         $this
