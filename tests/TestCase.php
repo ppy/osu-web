@@ -18,6 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Laravel\Passport\Token;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -63,6 +64,22 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
                 $connection->disconnect();
             }
         });
+    }
+
+    protected function actAsScopedUser($user, array $scopes = ['*'], $guard = 'api')
+    {
+        app('auth')->guard($guard)->setUser($user);
+
+        app('auth')->shouldUse($guard);
+
+        $token = Token::unguarded(function () use ($scopes, $user) {
+            return new Token([
+                'scopes' => $scopes,
+                'user_id' => $user->user_id,
+            ]);
+        });
+
+        $user->withAccessToken($token);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

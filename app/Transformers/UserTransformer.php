@@ -102,7 +102,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
             $histories->default();
         } else {
             $histories->with('actor');

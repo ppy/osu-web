@@ -495,7 +495,7 @@ function i18n_view($view)
 
 function is_api_request()
 {
-    return Request::is('api/*');
+    return request()->is('api/*');
 }
 
 function is_sql_unique_exception($ex)
@@ -1048,16 +1048,18 @@ function get_params($input, $namespace, $keys)
 
     $params = [];
 
-    foreach ($keys as $keyAndType) {
-        $keyAndType = explode(':', $keyAndType);
+    if (is_array($input)) {
+        foreach ($keys as $keyAndType) {
+            $keyAndType = explode(':', $keyAndType);
 
-        $key = $keyAndType[0];
-        $type = $keyAndType[1] ?? null;
+            $key = $keyAndType[0];
+            $type = $keyAndType[1] ?? null;
 
-        if (array_has($input, $key)) {
-            $value = get_param_value(array_get($input, $key), $type);
+            if (array_has($input, $key)) {
+                $value = get_param_value(array_get($input, $key), $type);
 
-            array_set($params, $key, $value);
+                array_set($params, $key, $value);
+            }
         }
     }
 

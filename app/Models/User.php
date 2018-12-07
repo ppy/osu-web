@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
 
-    protected $dates = ['user_regdate', 'user_lastvisit', 'user_lastpost_time'];
+    protected $dates = ['user_regdate', 'user_lastmark', 'user_lastvisit', 'user_lastpost_time'];
     protected $dateFormat = 'U';
     public $timestamps = false;
 
@@ -237,6 +237,24 @@ class User extends Model implements AuthenticatableContract
         return $user->user_lastvisit
             ->addMonths(6)                 //base inactivity period for all accounts
             ->addDays($playCount * 0.75);  //bonus based on playcount
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    public static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 
     public static function validateUsername($username, $previousUsername = null)
@@ -1604,23 +1622,5 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
-    }
-
-    /**
-     * Check for an exsiting inactive username and renames it if
-     * considered inactive.
-     *
-     * @return User if renamed; nil otherwise.
-     */
-    private static function renameUsernameIfInactive($username)
-    {
-        $existing = static::findByUsernameForInactive($username);
-        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
-        if ($existing !== null && $available) {
-            $newUsername = "{$existing->username}_old";
-            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
-
-            return $existing;
-        }
     }
 }
