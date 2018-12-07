@@ -61,6 +61,7 @@ class UserRegistration
 
         try {
             $ok = DB::transaction(function () {
+                static::renameUsernameIfInactive($this->user->username);
                 $this->user->saveOrExplode();
 
                 $ok = $this->user->userGroups()->create([

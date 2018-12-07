@@ -1603,17 +1603,7 @@ class User extends Model implements AuthenticatableContract
             return parent::save($options);
         }
 
-        if (!$this->isValid()) {
-            return false;
-        }
-
-        return $this->getConnection()->transaction(function () use ($options) {
-            if (!$this->exists) {
-                static::renameUsernameIfInactive($this->username);
-            }
-
-            return parent::save($options);
-        });
+        return $this->isValid() && parent::save($options);
     }
 
     /**
