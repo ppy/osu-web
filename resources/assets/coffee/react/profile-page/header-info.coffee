@@ -50,7 +50,10 @@ class ProfilePage.HeaderInfo extends React.PureComponent
           span className: 'u-ellipsis-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
         # hard space if no title
-        span className: "#{bn}__title", @props.user.title ? '\u00A0'
+        span
+          className: "#{bn}__title"
+          style: color: @props.user.profile_colour
+          @props.user.title ? '\u00A0'
         div className: "#{bn}__icon-group",
           div className: "#{bn}__icons",
             if @props.user.is_supporter
