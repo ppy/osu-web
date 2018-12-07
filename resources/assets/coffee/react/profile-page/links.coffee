@@ -119,7 +119,7 @@ class ProfilePage.Links extends React.PureComponent
     title ?= osu.trans "users.show.info.#{key}"
     text ?= value
 
-    componentClass = "u-ellipsis-overflow #{bn}__value"
+    componentClass = "#{bn}__value"
 
     if url?
       component = a
