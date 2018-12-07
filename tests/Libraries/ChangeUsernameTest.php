@@ -30,13 +30,8 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser(['user_id' => 1]);
 
-        $this->expectException(ChangeUsernameException::class);
-        try {
-            $user->changeUsername('newusername', 'paid');
-        } catch (ChangeUsernameException $ex) {
-            $this->assertArrayHasKey('user_id', $ex->getErrors()->all());
-            throw $ex;
-        }
+        $errors = $user->validateChangeUsername('newusername', 'paid')->all();
+        $this->assertArrayHasKey('user_id', $errors);
     }
 
     public function testUserHasNeverSupported()
