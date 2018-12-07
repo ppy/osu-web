@@ -52,7 +52,7 @@ class ChangeUsername
         $this->type = $type;
     }
 
-    public function validate()
+    public function validate() : ValidationErrors
     {
         $this->validationErrors()->reset();
         if ($this->user->user_id <= 1) {
@@ -108,12 +108,12 @@ class ChangeUsername
         return $this->validationErrors();
     }
 
-    public function validateUsername()
+    public function validateUsername() : ValidationErrors
     {
         return $this->validationErrors()->merge(User::validateUsername($this->newUsername, $this->user->username));
     }
 
-    public function validatePreviousUsers()
+    public function validatePreviousUsers() : ValidationErrors
     {
         $previousUsers = $this->previousUsers()->get();
         foreach ($previousUsers as $previousUser) {
