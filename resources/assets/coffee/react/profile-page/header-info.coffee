@@ -58,7 +58,10 @@ class ProfilePage.HeaderInfo extends React.PureComponent
           div className: "#{bn}__icons",
             if @props.user.is_supporter
               span className: "#{bn}__icon #{bn}__icon--supporter",
-                span className: 'fas fa-heart'
+                _(@props.user.support_level).times (i) =>
+                  span
+                    key: i
+                    className: 'fas fa-heart'
           div className: "#{bn}__icons #{bn}__icons--flag",
             if @props.user.country?
               a

@@ -44,6 +44,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'replays_watched_counts',
         'scores_first_count',
         'statistics',
+        'support_level',
         'unranked_beatmapset_count',
         'user_achievements',
     ];
@@ -261,6 +262,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($params->get('mode')[0]);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel(), function ($level) {
+            return $level;
+        });
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)
