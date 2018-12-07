@@ -18,6 +18,7 @@
 
 .osu-page-header-v3 {
   @_top: osu-page-header-v3;
+  @_icon-margin-right: 20px;
 
   padding: @gutter @gutter 0;
 
@@ -33,7 +34,7 @@
     width: 100%;
     padding-bottom: 100%;
     border-radius: 50%;
-    background-size: (@gutter-desktop - 30px);
+    background-size: (@gutter-desktop - @_icon-margin-right - 10px);
     background-position: center;
     background-repeat: no-repeat;
 
@@ -46,6 +47,12 @@
       box-shadow: inset 0 0 0 2px @community-blue;
       background-image: url('/images/icons/chat.svg');
     }
+
+    .@{_top}--users & {
+      box-shadow: inset 0 0 0 2px @community-user-green;
+      background-image: url('/images/icons/profile.svg');
+      background-size: (@gutter-desktop - @_icon-margin-right - 20px);
+    }
   }
 
   &__title {
@@ -55,7 +62,7 @@
 
   &__title-icon {
     width: @gutter-desktop;
-    padding-right: 20px;
+    padding-right: @_icon-margin-right;
     flex: none;
   }
 
@@ -70,6 +77,10 @@
 
     .@{_top}--comments & {
       color: @blue;
+    }
+
+    .@{_top}--users & {
+      color: @community-user-green;
     }
   }
 

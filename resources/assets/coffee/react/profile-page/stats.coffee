@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,84 +16,37 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{br, dd, div, dl, dt, span} = ReactDOMFactories
+{div, dd, dl, dt} = ReactDOMFactories
 el = React.createElement
 
 
-simpleEntry = ({key, value}) ->
-  dl className: 'profile-stats__entry',
-    dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
-    dd className: 'profile-stats__value', value
+class ProfilePage.Stats extends React.PureComponent
+  entries = [
+    'ranked_score'
+    'hit_accuracy'
+    'play_count'
+    'total_score'
+    'total_hits'
+    'maximum_combo'
+    'replays_watched_by_others'
+  ]
 
 
-ProfilePage.Stats = ({stats}) ->
-  elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'max_combo', 'replays-watched']
+  render: =>
+    div className: 'profile-stats', entries.map(@renderEntry)
 
-  rankCountEntry = (name) ->
-    rankCount = stats.scoreRanks[name]
 
-    div
-      className: 'profile-stats__rank'
-      div
-        className: "badge-rank badge-rank--small badge-rank--#{name}"
-      div null, rankCount.toLocaleString()
+  renderEntry: (key) =>
+    dl
+      className: 'profile-stats__entry'
+      key: key
+      dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
+      dd className: 'profile-stats__value', @formatValue(key)
 
-  playtime = moment.duration stats.play_time, 'seconds'
 
-  div className: 'profile-stats',
-    div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playtime',
-      div className: 'profile-badge profile-badge--level',
-        span className: 'profile-badge__number', stats.level.current
-      div className: 'profile-stats__stat-box profile-stats__stat-box--playtime',
-        div className: 'profile-stats__key', osu.trans 'users.show.stats.play_time'
-        div className: 'profile-stats__playtime',
-          span className: 'profile-stats__playtime-main',
-            Math.floor playtime.asHours()
-            span className: 'profile-stats__playtime-unit',
-              osu.transChoice 'common.count.hour_short_unit', Math.floor playtime.asHours()
+  formatValue: (key) =>
+    val = @props.stats[key]
 
-          playtime.minutes()
-          span className: 'profile-stats__playtime-unit',
-            osu.transChoice 'common.count.minute_short_unit', playtime.minutes()
-
-          playtime.seconds()
-          span className: 'profile-stats__playtime-unit',
-            osu.transChoice 'common.count.second_short_unit', playtime.seconds()
-      div className: 'profile-stats__stat-box profile-stats__stat-box--experience-bar',
-        div className: 'bar bar--user-profile',
-          div
-            className: 'bar__fill'
-            style:
-              width: "#{stats.level.progress}%"
-        div className: 'profile-stats__value profile-stats__value--level-progress', "#{stats.level.progress}%"
-
-    div className: 'profile-stats__row',
-      simpleEntry
-        key: 'ranked_score'
-        value: stats.ranked_score.toLocaleString()
-      simpleEntry
-        key: 'hit_accuracy'
-        value: "#{stats.hit_accuracy.toFixed(2)}%"
-      simpleEntry
-        key: 'play_count'
-        value: stats.play_count.toLocaleString()
-      simpleEntry
-        key: 'total_score'
-        value: stats.total_score.toLocaleString()
-      simpleEntry
-        key: 'total_hits'
-        value: stats.total_hits.toLocaleString()
-      simpleEntry
-        key: 'maximum_combo'
-        value: stats.maximum_combo.toLocaleString()
-      simpleEntry
-        key: 'replays_watched_by_others'
-        value: stats.replays_watched_by_others.toLocaleString()
-
-      div className: 'profile-stats__value profile-stats__value--score-ranks',
-        rankCountEntry('XH')
-        rankCountEntry('X')
-        br()
-        rankCountEntry('SH')
-        rankCountEntry('S')
-        rankCountEntry('A')
+    switch key
+      when 'hit_accuracy' then "#{val.toFixed(2)}%"
+      else val.toLocaleString()

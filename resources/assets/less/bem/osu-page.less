@@ -126,20 +126,25 @@
 
   &--header-v3 {
     align-self: auto;
-    z-index: @z-index--page-header;
   }
 
   &--header-v3-compact {
     @media @desktop {
       align-self: flex-start;
       margin-top: 90px;
-      z-index: @z-index--page-header;
       width: 100%;
     }
   }
 
   &--landing-buttons {
     flex: 1 0 auto;
+  }
+
+  &--notification-banners {
+    @media @desktop {
+      height: 0;
+      top: (@nav2-height + 10px);
+    }
   }
 
   &--password-reset {
@@ -185,15 +190,15 @@
     }
   }
 
-  &--users-show-header {
+  &--users {
     .default-box-shadow();
+    background-color: @community-user-graygreen-darker;
+    color: #fff;
+    margin-bottom: 10px;
   }
 
-  &--users-show-header-extra {
+  &--users-show-header {
     .default-box-shadow();
-    .inner-shadow-top();
-    margin-bottom: 10px;
-    background-color: #333;
   }
 
   &--wiki {

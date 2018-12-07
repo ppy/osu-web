@@ -71,9 +71,9 @@
   }
 
   &--user-profile {
-    height: 5px;
+    border-radius: 10000px;
+    height: 6px;
     background-color: #111;
-    margin-bottom: 5px;
   }
 
   &__fill {
@@ -107,7 +107,15 @@
     }
 
     .@{_top}--user-profile & {
+      border-radius: 10000px;
       background-color: @yellow;
     }
+  }
+
+  &__text {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 2px;
   }
 }

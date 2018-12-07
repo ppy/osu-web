@@ -232,7 +232,7 @@ Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'nam
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-// Route::resource('users', 'UsersController', ['only' => 'store']);
+Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section

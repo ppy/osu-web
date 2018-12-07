@@ -21,11 +21,10 @@ el = React.createElement
 
 bn = 'flag-country'
 
-@FlagCountry = ({country, classModifiers = []}) ->
-  return span() if !country.code?
+@FlagCountry = ({country, modifiers}) ->
+  return null if !country.code?
 
-  blockClass = bn
-  blockClass += " #{bn}--#{m}" for m in classModifiers
+  blockClass = osu.classWithModifiers(bn, modifiers)
 
   span
     className: blockClass

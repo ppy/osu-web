@@ -18,86 +18,115 @@
 
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
-import { a, div, i, img, small, span } from 'react-dom-factories'
+import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { ScoreHelper } from 'score-helper'
 
 osu = window.osu
+bn = 'play-detail'
 
-export PlayDetail = (props) ->
-  score = props.score
-  pp = score.best?.pp ? score.pp
+export class PlayDetail extends PureComponent
+  constructor: (props) ->
+    super props
 
-  modsText =
-    if score.mods.length
-      " +#{(mod.shortName for mod in score.mods).join(',')} "
+    @state = compact: true
+
+
+  render: =>
+    score = @props.score
+    pp = score.best?.pp ? score.pp
+
+    blockClass = bn
+    if @props.activated
+      blockClass += " #{bn}--active"
     else
-      ' '
+      blockClass += " #{bn}--highlightable"
+    blockClass += " #{bn}--compact" if @state.compact
 
-  classMods = if props.activated then ['menu-active'] else ['highlightable']
-
-  div
-    className: osu.classWithModifiers('detail-row', classMods)
     div
-      className: 'detail-row__content'
-      div
-        className: 'detail-row__icon'
-        div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"
-
-      div className: 'detail-row__detail',
+      className: blockClass
+      div className: "#{bn}__group #{bn}__group--top",
         div
-          className: 'detail-row__detail-column detail-row__detail-column--full'
+          className: "#{bn}__icon #{bn}__icon--main"
+          div className: "score-rank-v2 score-rank-v2--full score-rank-v2--#{score.rank}"
+
+        div className: "#{bn}__detail",
+          a
+            href: score.beatmap.url
+            className: "#{bn}__title u-ellipsis-overflow"
+            score.beatmapset.title
+            ' '
+            small
+              className: "#{bn}__artist"
+              osu.trans('users.show.extra.beatmaps.by_artist', artist: score.beatmapset.artist)
           div
-            className: 'detail-row__detail-row detail-row__detail-row--main'
-            a
-              href: score.beatmap.url
-              className: 'detail-row__text-score detail-row__text-score--title'
-              title: "#{score.beatmapset.artist} - #{score.beatmapset.title} "
-              "#{score.beatmapset.title} [#{score.beatmap.version}]"
-              ' '
-              small
-                className: 'detail-row__text-score detail-row__text-score--artist'
-                score.beatmapset.artist
-          div
-            className: 'detail-row__detail-row detail-row__detail-row--bottom'
+            className: "#{bn}__beatmap-and-time"
             span
-              className: 'detail-row__text-score detail-row__text-score--time'
+              className: "#{bn}__beatmap"
+              score.beatmap.version
+            span
+              className: "#{bn}__time"
               dangerouslySetInnerHTML:
                 __html: osu.timeago score.created_at
-        div
-          className: 'detail-row__detail-column detail-row__detail-column--score-data'
-          div
-            className: 'detail-row__score-data detail-row__score-data--mods'
-            el Mods, mods: score.mods
-          div
-            className: 'detail-row__score-data detail-row__score-data--main'
-            div
-              className: 'detail-row__detail-row detail-row__detail-row--main'
-              span
-                className: 'detail-row__text-score detail-row__text-score--pp'
-                title:
-                  if score.weight
-                    osu.trans 'users.show.extra.top_ranks.weighted_pp',
-                      percentage: "#{Math.round(score.weight.percentage)}%"
-                      pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp)).toLocaleString()
-                if pp > 0
-                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(pp).toLocaleString())
-                else
-                  span
-                    title:
-                      if score.beatmapset.status not in ['ranked', 'approved']
-                        osu.trans('users.show.extra.top_ranks.not_ranked')
-                    '-'
-            div
-              className: 'detail-row__score-details'
-              div
-                className: 'detail-row__text-score'
-                osu.trans 'users.show.extra.historical.recent_plays.accuracy',
-                  percentage: "#{(score.accuracy * 100).toFixed(2)}%"
 
-    div
-      className: 'detail-row__more'
-      if ScoreHelper.hasMenu(score)
-        el PlayDetailMenu,
-          onHide: () -> props.onMenuActive?(active: false, index: props.index)
-          onShow: () -> props.onMenuActive?(active: true, index: props.index)
-          score: score
+        button
+          className: "#{bn}__compact-toggle"
+          onClick: @toggleCompact
+          span className: "fas #{if @state.compact then 'fa-chevron-down' else 'fa-chevron-up'}"
+
+      div className: "#{bn}__group #{bn}__group--bottom",
+        div className: "#{bn}__score-detail #{bn}__score-detail--score",
+          div
+            className: "#{bn}__icon #{bn}__icon--extra"
+            div className: "score-rank-v2 score-rank-v2--full score-rank-v2--#{score.rank}"
+          div className: "#{bn}__score-detail-top-right",
+            div
+              className: "#{bn}__accuracy-and-weighted-pp"
+              span
+                className: "#{bn}__accuracy"
+                "#{(score.accuracy * 100).toFixed(2)}%"
+              if score.weight?
+                span
+                  className: "#{bn}__weighted-pp"
+                  Math.round(score.weight.pp).toLocaleString()
+                  'pp'
+            if score.weight?
+              div
+                className: "#{bn}__pp-weight"
+                osu.trans 'users.show.extra.top_ranks.pp_weight',
+                  percentage: "#{Math.round(score.weight.percentage)}%"
+        div
+          className: "#{bn}__score-detail #{bn}__score-detail--mods"
+          el Mods, mods: score.mods, modifiers: ['profile-page']
+
+        div
+          className: "#{bn}__pp"
+          if pp > 0
+            span null,
+              Math.round(pp).toLocaleString()
+              span className: "#{bn}__pp-unit", 'pp'
+          else
+            span
+              title:
+                if score.beatmapset.status not in ['ranked', 'approved']
+                  osu.trans('users.show.extra.top_ranks.not_ranked')
+              '-'
+
+        div
+          className: "#{bn}__more"
+          if ScoreHelper.hasMenu(score)
+            el PlayDetailMenu,
+              onHide: @hide
+              onShow: @show
+              score: score
+
+
+  hide: =>
+    @props.onMenuActive?(active: false, index: @props.index)
+
+
+  show: =>
+    @props.onMenuActive?(active: true, index: @props.index)
+
+
+  toggleCompact: =>
+    @setState compact: !@state.compact

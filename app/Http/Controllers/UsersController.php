@@ -114,6 +114,10 @@ class UsersController extends Controller
 
     public function store()
     {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {

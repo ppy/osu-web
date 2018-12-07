@@ -91,6 +91,14 @@
     }
   }
 
+  &--body-222-plain {
+    background-color: #222;
+
+    &::before {
+      display: none;
+    }
+  }
+
   &--body-community {
     background-color: @community-blue-bg;
 
@@ -331,6 +339,12 @@
     &--landing-footer {
       flex: none;
       .at2x("/images/backgrounds/page-000.png", 500px, 500px);
+    }
+
+    &--users-extra {
+      flex: 1 0 auto;
+      background-color: #000;
+      padding: 10px 0;
     }
   }
 

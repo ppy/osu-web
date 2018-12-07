@@ -39,6 +39,7 @@ class UserRegistration
             'user_occ' => '',
             'user_sig' => '',
             'user_regdate' => Carbon::now(),
+            'user_lastvisit' => Carbon::now(),
         ], $params));
     }
 
@@ -60,6 +61,7 @@ class UserRegistration
 
         try {
             $ok = DB::transaction(function () {
+                User::renameUsernameIfInactive($this->user->username);
                 $this->user->saveOrExplode();
 
                 $ok = $this->user->userGroups()->create([
