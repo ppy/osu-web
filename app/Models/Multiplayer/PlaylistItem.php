@@ -105,7 +105,12 @@ class PlaylistItem extends \App\Models\Model
 
     private function validateModExclusivityGroups()
     {
-        // TODO
+        foreach (Mod::EXCLUSIVITY_GROUPS as $group) {
+            $intersection = array_intersect(array_column($this->required_mods, 'acronym'), $group);
+            if (count($intersection) > 1) {
+                throw new \InvalidArgumentException('incompatible mods: '.join(', ', $intersection));
+            }
+        }
     }
 
     private function validateModOverlaps()
@@ -116,7 +121,7 @@ class PlaylistItem extends \App\Models\Model
         );
 
         if (count($dupeMods) > 0) {
-            throw new \InvalidArgumentException("mod cannot be listed as both allowed and required: " . join(', ', $dupeMods));
+            throw new \InvalidArgumentException('mod cannot be listed as both allowed and required: '.join(', ', $dupeMods));
         }
     }
 
