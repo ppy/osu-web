@@ -31,9 +31,9 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate() {
-    if ($('.chat-conversation').length > 0) {
-      $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
-    }
+    // if ($('.chat-conversation').length > 0) {
+    //   $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
+    // }
   }
 
   noCanSendMessage(): React.ReactNode {
