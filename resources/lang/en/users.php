@@ -348,6 +348,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
+            'level_progress' => 'Progress to next level',
             'maximum_combo' => 'Maximum Combo',
             'medals' => 'Medals',
             'play_count' => 'Play Count',
