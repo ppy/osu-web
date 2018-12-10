@@ -83,10 +83,11 @@ class ProfilePage.Header extends React.Component
           div className: 'profile-header__top',
             el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
 
-            el ProfilePage.DetailMobile,
-              stats: @props.stats
-              userAchievements: @props.userAchievements
-              rankHistory: @props.rankHistory
+            if !@props.user.is_bot
+              el ProfilePage.DetailMobile,
+                stats: @props.stats
+                userAchievements: @props.userAchievements
+                rankHistory: @props.rankHistory
 
             if !@props.user.is_bot
               el ProfilePage.Stats, stats: @props.stats
