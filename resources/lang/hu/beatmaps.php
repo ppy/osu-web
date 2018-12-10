@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
+            'disqualify' => '',
         ],
     ],
 

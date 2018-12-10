@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Histórico de modding de :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Solte aqui pare enviar',
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
                     'restriction_info' => "Envio disponível apenas para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'O tamanho da capa deve ser 2000x700',
+                    'size_info' => 'O tamanho da capa deve ser 2800x620',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Nada jogado recentemente',
 
             'achievements' => [
-                'title' => 'Conquistas',
                 'achieved-on' => 'Conquistado em :date',
+                'locked' => '',
+                'title' => 'Conquistas',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
+                    'title' => 'Beatmaps favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no cemitério (:count)',
+                    'title' => 'Beatmaps no cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Loved (:count)',
+                    'title' => 'Beatmaps Loved',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados (:count)',
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes (:count)',
+                    'title' => 'Beatmaps Pendentes',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Histórico de Jogo',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogadas',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Histórico de Replays Assistidos',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
+                'recent' => '',
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Baixar Replay',
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Classificações',
-                'weighted_pp' => 'ponderado: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Melhor Performance',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interesses',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Ranking nacional de :mode',
+            'country_simple' => '',
             'global' => 'Ranking global de :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
             'level' => 'Nível :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo Máximo',
+            'medals' => '',
             'play_count' => 'Vezes Jogadas',
             'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',

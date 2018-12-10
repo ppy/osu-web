@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding Historik",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Nyligen startade diskussioner',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
                     'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
-                    'size_info' => 'Omslagets storlek bör vara 2000x700',
+                    'size_info' => 'Omslagets storlek bör vara 2800x620',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Inga senaste spel',
 
             'achievements' => [
-                'title' => 'Prestationer',
                 'achieved-on' => 'Uppnått :date',
+                'locked' => '',
+                'title' => 'Prestationer',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Inga... än.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoriserade Beatmaps (:count)',
+                    'title' => 'Favoriserade Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Begravda Beatmaps (:count)',
+                    'title' => 'Begravda Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Älskade Beatmaps (:count)',
+                    'title' => 'Älskade Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankade & Godkända Beatmaps (:count)',
+                    'title' => 'Rankade & Godkända Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Väntade Beatmaps (:count)',
+                    'title' => 'Väntade Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Spelhistorik',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'gånger spelade',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Repriser kollade',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Denna användare har inte fått några än. ;_;",
+                'recent' => '',
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => '',
                 'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranker',
-                'weighted_pp' => 'vägd: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Bästa Prestation',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Intressen',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landsrank för :mode',
+            'country_simple' => '',
             'global' => 'Global rank för :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximal Kombo',
+            'medals' => '',
             'play_count' => 'Antal Gånger Spelat',
             'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',

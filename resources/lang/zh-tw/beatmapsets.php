@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => '該圖譜現在無法下載。',
+        'disabled' => '該譜面現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多訊息。',
     ],
@@ -53,22 +53,21 @@ return [
             'unfavourite' => '取消收藏',
             'favourited_count' => '還有很多人...',
         ],
-        'stats' => [
-            'cs' => '縮圈大小',
-            'cs-mania' => '鍵位數量',
-            'drain' => '扣血速度',
-            'accuracy' => '準確率',
-            'ar' => '縮圈速度',
-            'stars' => '難度星級',
-            'total_length' => '長度',
-            'bpm' => 'BPM',
-            'count_circles' => '圓圈總數',
-            'count_sliders' => '滑條總數',
-            'user-rating' => '玩家評價',
-            'rating-spread' => '評分情況',
-            'nominations' => '提名',
-            'playcount' => '遊玩次数',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => '詳情',
             'genre' => '曲風',
@@ -80,6 +79,7 @@ return [
             'tags' => '標籤',
             'unranked' => '未進榜圖譜',
         ],
+
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排行榜',
@@ -112,6 +112,23 @@ return [
                 'first' => '領先者',
                 'own' => '您的最佳成績',
             ],
+        ],
+
+        'stats' => [
+            'cs' => '縮圈大小',
+            'cs-mania' => '鍵位數量',
+            'drain' => '扣血速度',
+            'accuracy' => '準確率',
+            'ar' => '縮圈速度',
+            'stars' => '難度星級',
+            'total_length' => '長度',
+            'bpm' => 'BPM',
+            'count_circles' => '圓圈總數',
+            'count_sliders' => '滑條總數',
+            'user-rating' => '玩家評價',
+            'rating-spread' => '評分情況',
+            'nominations' => '提名',
+            'playcount' => '遊玩次数',
         ],
     ],
 ];

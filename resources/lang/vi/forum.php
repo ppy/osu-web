@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Bạn muốn xóa bài viết?',
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Chưa đánh dấu',
             'to_watching' => 'Đánh dấu',
             'to_watching_mail' => 'Đánh dấu với thông báo',
-            'mail_disable' => 'Tắt thông báo',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

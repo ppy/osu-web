@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
+            'disqualify' => '',
         ],
     ],
 

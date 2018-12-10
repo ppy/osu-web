@@ -30,14 +30,14 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => '',
-        'back_to_previous' => '',
+        'back_to_top' => 'Zpátky nahoru',
+        'back_to_previous' => 'Zpátky na předchozí pozici',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
         'delete' => 'Smazat',
-        'edit' => '',
+        'edit' => 'Upravit',
         'hide' => 'skrýt',
         'permalink' => 'trvalý odkaz',
         'permalink_copied' => 'odkaz zkopírován',
@@ -46,7 +46,7 @@ return [
         'reply_reopen' => 'Odpovědět a znovu otevřít',
         'reply_resolve' => 'Odpovědět a archivovat',
         'reset' => 'Resetovat',
-        'restore' => '',
+        'restore' => 'Obnovit',
         'save' => 'Uložit',
         'saving' => 'Ukládání...',
         'search' => 'Hledat',
@@ -63,16 +63,17 @@ return [
         'hours' => ':count hodina|:count hodin',
         'item' => ':count jednotka|:count jednotek',
         'minute_short_unit' => 'min',
+        'minutes' => '',
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
         'years' => ':count rok|:count let',
     ],
 
     'countdown' => [
-        'days' => '',
-        'hours' => '',
-        'minutes' => '',
-        'seconds' => '',
+        'days' => 'dnů',
+        'hours' => 'hodin',
+        'minutes' => 'minut',
+        'seconds' => 'sekund',
     ],
 
     'datetime' => [

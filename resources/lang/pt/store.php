@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Ordem colocada em :date',
 
         'invoice' => 'Ver Factura',
+        'no_orders' => 'Sem pedidos para ver.',
 
         'item' => [
             'display_name' => [

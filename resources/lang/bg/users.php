@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "История на редактираните карти на :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Наскоро започнати дискусии',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Пуснете файла тук, за да го качите',
                     'dropzone_info' => 'Можете също да пуснете вашето изображение тук за качване',
                     'restriction_info' => "Качване налично за <a href='".route('store.products.show', 'supporter-tag')."само за ' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'Размерът на корицата трябва да е 2000x700 пиксела',
+                    'size_info' => 'Размерът на корицата трябва да е 2800x620 пиксела',
                     'too_large' => 'Каченият файл е прекалено голям.',
                     'unsupported_format' => 'Неподдържан формат.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Няма скорошни данни',
 
             'achievements' => [
-                'title' => 'Постижения',
                 'achieved-on' => 'Постигнато на :date',
+                'locked' => '',
+                'title' => 'Постижения',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Няма... все още.',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
-                    'title' => 'Любими бийтмапове (:count)',
+                    'title' => 'Любими бийтмапове',
                 ],
                 'graveyard' => [
-                    'title' => 'Изоставени бийтмапове (:count)',
+                    'title' => 'Изоставени бийтмапове',
                 ],
                 'loved' => [
-                    'title' => 'Обичани бийтмапове (:count)',
+                    'title' => 'Обичани бийтмапове',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Класирани и одобрени бийтмапове (:count)',
+                    'title' => 'Класирани и одобрени бийтмапове',
                 ],
                 'unranked' => [
-                    'title' => 'Предстоящи класиране бийтмапове (:count)',
+                    'title' => 'Предстоящи класиране бийтмапове',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Историята на игра',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'пъти изиграно',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История на гледани повторения',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Този потребител все още няма никакви! Т - Т",
+                'recent' => '',
                 'title' => 'Медали',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Изтегли повторението',
                 'empty' => 'Все още няма страхотни изпълнения. :(',
                 'not_ranked' => 'Само класираните бийтмапове дават pp точки.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Класации',
-                'weighted_pp' => 'претеглено: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Най-добри резултати',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Интереси',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Класация на държавата за :mode',
+            'country_simple' => '',
             'global' => 'Световна класация за :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',
             'level' => 'Ниво :level',
+            'level_progress' => '',
             'maximum_combo' => 'Максимално комбо',
+            'medals' => '',
             'play_count' => 'Брой игри',
             'play_time' => 'Общо играно време',
             'ranked_score' => 'Общ класиран резултат',

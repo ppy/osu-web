@@ -54,7 +54,7 @@ return [
 
         'has_pending' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'aquí',
         ],
 
         'pending_checkout' => [
@@ -69,7 +69,7 @@ return [
         'echeck_delay' => '',
         'status' => [
             'processing' => [
-                'title' => '',
+                'title' => '¡Aún no se ha confirmado tu pago!',
                 'line_1' => '',
                 'line_2' => [
                     '_' => '',
@@ -89,6 +89,7 @@ return [
         'paid_on' => '',
 
         'invoice' => '',
+        'no_orders' => 'No hay ordenes para ver.',
 
         'item' => [
             'display_name' => [
@@ -108,11 +109,11 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
+            'cancelled' => 'Cancelado',
             'checkout' => '',
             'delivered' => '',
             'paid' => '',
-            'processing' => '',
+            'processing' => 'Confirmación pendiente',
             'shipped' => '',
         ],
     ],
