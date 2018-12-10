@@ -39,7 +39,7 @@ class RankHistory extends Model
             $data[] = intval($this->$column);
         }
 
-        if (count($data) > 0) {
+        if (count($data) > 2) {
             $diffHead = $data[0] - $data[1];
             $diffTail = $data[0] - array_last($data);
 
