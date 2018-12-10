@@ -24,7 +24,6 @@ use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
-use App\Libraries\ValidationErrors;
 use App\Libraries\UsernameValidation;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;

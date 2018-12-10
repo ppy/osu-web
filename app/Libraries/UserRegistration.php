@@ -22,7 +22,6 @@ namespace App\Libraries;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Libraries\UsernameValidation;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
@@ -49,7 +48,7 @@ class UserRegistration
         $this->assertValid();
 
         try {
-             $this->user->getConnection()->transaction(function () {
+            $this->user->getConnection()->transaction(function () {
                 User::findAndRenameUserForInactive($this->user->username);
                 $this->user->saveOrExplode();
 
