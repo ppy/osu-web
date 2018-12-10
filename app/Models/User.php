@@ -142,11 +142,7 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->getConnection()->transaction(function () use ($newUsername, $type) {
-            $existing = static::findByUsernameForInactive($newUsername);
-            if ($existing !== null) {
-                $existing->renameIfInactive();
-                // TODO: throw if expected rename doesn't happen?
-            }
+            static::findAndRenameUserForInactive($newUsername);
 
             return $this->updateUsername($newUsername, $type);
         });
@@ -212,6 +208,17 @@ class User extends Model implements AuthenticatableContract
     public static function cleanUsername($username)
     {
         return strtolower($username);
+    }
+
+    public static function findAndRenameUserForInactive($username) : ?self
+    {
+        $existing = static::findByUsernameForInactive($username);
+        if ($existing !== null) {
+            $existing->renameIfInactive();
+            // TODO: throw if expected rename doesn't happen?
+        }
+
+        return $existing;
     }
 
     public static function findByUsernameForInactive($username) : ?self

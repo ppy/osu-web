@@ -50,12 +50,7 @@ class UserRegistration
 
         try {
              $this->user->getConnection()->transaction(function () {
-                $existing = User::findByUsernameForInactive($this->user->username);
-                if ($existing !== null) {
-                    $existing->renameIfInactive();
-                    // TODO: throw if expected rename doesn't happen?
-                }
-
+                User::findAndRenameUserForInactive($this->user->username);
                 $this->user->saveOrExplode();
 
                 $groupAttrs = ['group_id' => UserGroup::GROUPS['default']];
