@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -137,9 +138,11 @@ class UsersController extends Controller
 
         $registration = new UserRegistration($params);
 
-        if ($registration->save()) {
+        try {
+            $registration->save();
+
             return $registration->user()->fresh()->defaultJson();
-        } else {
+        } catch (ValidationException $e) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),
             ]], 422);

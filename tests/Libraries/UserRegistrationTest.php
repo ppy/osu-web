@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\ValidationException;
 use App\Libraries\UserRegistration;
 use App\Models\User;
 
@@ -40,15 +41,20 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $reg->save();
+        $thrown = false;
+        try {
+            $reg->save();
+        } catch (ValidationException $e) {
+            $thrown = true;
+            $this->assertArraySubset(
+                $reg->user()->validationErrors()->all(),
+                [
+                    'username' => [trans('model_validation.required', ['attribute' => 'username'])],
+                ]
+            );
+        }
 
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'username' => [trans('model_validation.required', ['attribute' => 'username'])],
-            ]
-        );
-
+        $this->assertTrue($thrown);
         $this->assertEquals($origCount, User::count());
     }
 
@@ -59,15 +65,20 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $reg->save();
+        $thrown = false;
+        try {
+            $reg->save();
+        } catch (ValidationException $e) {
+            $thrown = true;
+            $this->assertArraySubset(
+                $reg->user()->validationErrors()->all(),
+                [
+                    'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
+                ]
+            );
+        }
 
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
-            ]
-        );
-
+        $this->assertTrue($thrown);
         $this->assertEquals($origCount, User::count());
     }
 
@@ -78,15 +89,20 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $reg->save();
+        $thrown = false;
+        try {
+            $reg->save();
+        } catch (ValidationException $e) {
+            $thrown = true;
+            $this->assertArraySubset(
+                $reg->user()->validationErrors()->all(),
+                [
+                    'password' => [trans('model_validation.required', ['attribute' => 'password'])],
+                ]
+            );
+        }
 
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'password' => [trans('model_validation.required', ['attribute' => 'password'])],
-            ]
-        );
-
+        $this->assertTrue($thrown);
         $this->assertEquals($origCount, User::count());
     }
 

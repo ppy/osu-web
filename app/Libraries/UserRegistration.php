@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\UsernameValidation;
 use App\Models\User;
 use App\Models\UserGroup;
@@ -46,18 +47,45 @@ class UserRegistration
 
     public function save()
     {
-        $isValid = true;
+        if (!$this->validate()) {
+            throw new ValidationException($this->user->validationErrors());
+        };
 
-        // basic validation
-        foreach (['username', 'user_email', 'password'] as $attribute) {
-            if (!present($this->user->$attribute)) {
-                $this->user->validationErrors()->add($attribute, 'required');
-                $isValid = false;
+        try {
+             DB::transaction(function () {
+                $existing = User::findByUsernameForInactive($this->user->username);
+                if ($existing !== null) {
+                    $existing->renameIfInactive();
+                    // TODO: throw if expected rename doesn't happen?
+                }
+
+                $this->user->saveOrExplode();
+
+                $groupAttrs = ['group_id' => UserGroup::GROUPS['default']];
+                if (!$this->user->userGroups()->create($groupAttrs)) {
+                    throw new ModelNotSavedException('failed saving model');
+                }
+            });
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                $this->user->validationErrors()->add('username', '.unknown_duplicate');
+                throw new ValidationException($this->users->validationException(), $e);
             }
-        }
 
-        if (!$isValid) {
-            return $isValid;
+            throw $e;
+        }
+    }
+
+    public function user()
+    {
+        return $this->user;
+    }
+
+    private function validate()
+    {
+        $this->validateAttributes();
+        if ($this->user()->validationErrors()->isAny()) {
+            return false;
         }
 
         $this->user->validationErrors()
@@ -70,42 +98,20 @@ class UserRegistration
             return false;
         }
 
-        try {
-            $ok = DB::transaction(function () {
-                $existing = User::findByUsernameForInactive($this->user->username);
-                if ($existing !== null) {
-                    $existing->renameIfInactive();
-                    // TODO: throw if expected rename doesn't happen?
-                }
+        return true;
+    }
 
-                $this->user->saveOrExplode();
+    private function validateAttributes()
+    {
+        $isValid = true;
 
-                $ok = $this->user->userGroups()->create([
-                    'group_id' => UserGroup::GROUPS['default'],
-                ]);
-
-                if ($ok === false) {
-                    throw new ModelNotSavedException('failed saving model');
-                }
-
-                return true;
-            });
-        } catch (ModelNotSavedException $_e) {
-            $ok = false;
-        } catch (Exception $e) {
-            if (is_sql_unique_exception($e)) {
-                $this->user->validationErrors()->add('username', '.unknown_duplicate');
-                $ok = false;
-            } else {
-                throw $e;
+        foreach (['username', 'user_email', 'password'] as $attribute) {
+            if (!present($this->user->$attribute)) {
+                $this->user->validationErrors()->add($attribute, 'required');
+                $isValid = false;
             }
         }
 
-        return $ok;
-    }
-
-    public function user()
-    {
-        return $this->user;
+        return $isValid;
     }
 }
