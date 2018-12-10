@@ -26,7 +26,6 @@ use App\Libraries\UsernameValidation;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
-use DB;
 use Exception;
 
 class UserRegistration
@@ -47,12 +46,10 @@ class UserRegistration
 
     public function save()
     {
-        if (!$this->validate()) {
-            throw new ValidationException($this->user->validationErrors());
-        };
+        $this->assertValid();
 
         try {
-             DB::transaction(function () {
+             $this->user->getConnection()->transaction(function () {
                 $existing = User::findByUsernameForInactive($this->user->username);
                 if ($existing !== null) {
                     $existing->renameIfInactive();
@@ -69,7 +66,7 @@ class UserRegistration
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');
-                throw new ValidationException($this->users->validationException(), $e);
+                throw new ValidationException($this->user->validationErrors(), $e);
             }
 
             throw $e;
@@ -81,24 +78,24 @@ class UserRegistration
         return $this->user;
     }
 
-    private function validate()
+    private function assertValid()
     {
-        $this->validateAttributes();
+        if (!$this->validateAttributes()) {
+            throw new ValidationException($this->user()->validationErrors());
+        }
+
+        $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
+        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
+        $this->assertValidation(UsernameValidation::validatePreviousUsers($this->user->username));
+    }
+
+    private function assertValidation($errors)
+    {
+        $this->user()->validationErrors()->merge($errors);
+
         if ($this->user()->validationErrors()->isAny()) {
-            return false;
+            throw new ValidationException($this->user->validationErrors());
         }
-
-        $this->user->validationErrors()
-            ->merge(UsernameValidation::validateUsername($this->user->username))
-            ->merge(UsernameValidation::validateAvailability($this->user->username))
-            ->merge(UsernameValidation::validatePreviousUsers($this->user->username));
-
-
-        if ($this->user->validationErrors()->isAny()) {
-            return false;
-        }
-
-        return true;
     }
 
     private function validateAttributes()
