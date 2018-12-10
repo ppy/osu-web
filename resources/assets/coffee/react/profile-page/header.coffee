@@ -84,13 +84,13 @@ class ProfilePage.Header extends React.Component
             el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
 
             if !@props.user.is_bot
-              el ProfilePage.DetailMobile,
-                stats: @props.stats
-                userAchievements: @props.userAchievements
-                rankHistory: @props.rankHistory
+              el React.Fragment,
+                el ProfilePage.DetailMobile,
+                  stats: @props.stats
+                  userAchievements: @props.userAchievements
+                  rankHistory: @props.rankHistory
 
-            if !@props.user.is_bot
-              el ProfilePage.Stats, stats: @props.stats
+                el ProfilePage.Stats, stats: @props.stats
 
           if !@props.user.is_bot
             el ProfilePage.Detail,
