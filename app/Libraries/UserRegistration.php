@@ -59,6 +59,10 @@ class UserRegistration
                 }
             });
         } catch (Exception $e) {
+            if ($e instanceof ModelNotSavedException) {
+                throw new ValidationException($this->user->validationErrors(), $e);
+            }
+
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');
                 throw new ValidationException($this->user->validationErrors(), $e);
