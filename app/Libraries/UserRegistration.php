@@ -60,14 +60,13 @@ class UserRegistration
             return $isValid;
         }
 
-        $validation = new UsernameValidation($this->user->username);
-        $validation->validateUsername();
-        $validation->validateAvailability();
-        $validation->validatePreviousUsers();
+        $this->user->validationErrors()
+            ->merge(UsernameValidation::validateUsername($this->user->username))
+            ->merge(UsernameValidation::validateAvailability($this->user->username))
+            ->merge(UsernameValidation::validatePreviousUsers($this->user->username));
 
-        if ($validation->validationErrors()->isAny()) {
-            $this->user->validationErrors()->merge($changeUsername->validationErrors());
 
+        if ($this->user->validationErrors()->isAny()) {
             return false;
         }
 

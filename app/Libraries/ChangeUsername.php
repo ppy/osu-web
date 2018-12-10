@@ -21,13 +21,18 @@
 namespace App\Libraries;
 
 use App\Models\User;
+use App\Traits\Validatable;
 
-class ChangeUsername extends UsernameValidation
+class ChangeUsername
 {
+    use Validatable;
+
     protected $type;
 
     /** @var User */
     protected $user;
+
+    protected $username;
 
     public static function requireSupportedMessage()
     {
@@ -41,7 +46,7 @@ class ChangeUsername extends UsernameValidation
 
     public function __construct(User $user, string $newUsername, string $type)
     {
-        parent::__construct($newUsername);
+        $this->username = $newUsername;
         $this->user = $user;
         $this->type = $type;
     }
@@ -61,14 +66,19 @@ class ChangeUsername extends UsernameValidation
             return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 
-        if ($this->validateUsername()->isAny()) {
+        if ($this->validationErrors()->merge(UsernameValidation::validateUsername($this->username))->isAny()) {
             return $this->validationErrors();
         }
 
-        if ($this->validateAvailability()->isAny()) {
+        if ($this->validationErrors()->merge(UsernameValidation::validateAvailability($this->username))->isAny()) {
             return $this->validationErrors();
         }
 
-        return $this->validatePreviousUsers();
+        return $this->validationErrors()->merge(UsernameValidation::validatePreviousUsers($this->username));
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user';
     }
 }

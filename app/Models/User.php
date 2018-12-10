@@ -25,6 +25,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\ValidationErrors;
+use App\Libraries\UsernameValidation;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -238,40 +239,6 @@ class User extends Model implements AuthenticatableContract
         }
 
         return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
-    }
-
-    public static function validateUsername($username)
-    {
-        $errors = new ValidationErrors('user');
-
-        if (($username ?? '') !== trim($username)) {
-            $errors->add('username', '.username_no_spaces');
-        }
-
-        if (strlen($username) < 3) {
-            $errors->add('username', '.username_too_short');
-        }
-
-        if (strlen($username) > 15) {
-            $errors->add('username', '.username_too_long');
-        }
-
-        if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
-            $errors->add('username', '.username_invalid_characters');
-        }
-
-        if (strpos($username, '_') !== false && strpos($username, ' ') !== false) {
-            $errors->add('username', '.username_no_space_userscore_mix');
-        }
-
-        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
-            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                $errors->add('username', '.username_not_allowed');
-                break;
-            }
-        }
-
-        return $errors;
     }
 
     public function getUsernameAvailableAt() : Carbon
@@ -1484,7 +1451,7 @@ class User extends Model implements AuthenticatableContract
         $this->validationErrors()->reset();
 
         if ($this->isDirty('username')) {
-            $errors = static::validateUsername($this->username);
+            $errors = UsernameValidation::validateUsername($this->username);
 
             if ($errors->isAny()) {
                 $this->validationErrors()->merge($errors);

@@ -22,89 +22,108 @@ namespace App\Libraries;
 
 use App\Models\Beatmap;
 use App\Models\User;
-use App\Traits\Validatable;
 use Carbon\Carbon;
+use DB;
 
 class UsernameValidation
 {
-    use Validatable;
-
-    protected $username;
-
-    public function __construct(string $username)
+    public static function validateAvailability(string $username) : ValidationErrors
     {
-        $this->username = $username;
-    }
+        $errors = new ValidationErrors('user');
 
-    public function validateAvailability() : ValidationErrors
-    {
-        if (($availableDate = User::checkWhenUsernameAvailable($this->username)) > Carbon::now()) {
+        if (($availableDate = User::checkWhenUsernameAvailable($username)) > Carbon::now()) {
             $remaining = Carbon::now()->diff($availableDate, false);
 
             // the times are +1 to round up the interval; e.g. 5 days, 2 hours will show 6 days
             if ($remaining->days + 1 >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
-                $this->validationErrors()->add('username', '.username_in_use');
+                $errors->add('username', '.username_in_use');
             } elseif ($remaining->days > 0) {
-                $this->validationErrors()->add(
+                $errors->add(
                     'username',
                     '.username_available_in',
                     ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
                 );
             } elseif ($remaining->h > 0) {
-                $this->validationErrors()->add(
+                $errors->add(
                     'username',
                     '.username_available_in',
                     ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
                 );
             } else {
-                $this->validationErrors()->add('username', '.username_available_soon');
+                $errors->add('username', '.username_available_soon');
             }
         }
 
-        return $this->validationErrors();
+        return $errors;
     }
 
-    public function validateUsername() : ValidationErrors
+    public static function validateUsername($username)
     {
-        return $this->validationErrors()->merge(User::validateUsername($this->username));
+        $errors = new ValidationErrors('user');
+
+        if (($username ?? '') !== trim($username)) {
+            $errors->add('username', '.username_no_spaces');
+        }
+
+        if (strlen($username) < 3) {
+            $errors->add('username', '.username_too_short');
+        }
+
+        if (strlen($username) > 15) {
+            $errors->add('username', '.username_too_long');
+        }
+
+        if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
+            $errors->add('username', '.username_invalid_characters');
+        }
+
+        if (strpos($username, '_') !== false && strpos($username, ' ') !== false) {
+            $errors->add('username', '.username_no_space_userscore_mix');
+        }
+
+        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
+            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
+                $errors->add('username', '.username_not_allowed');
+                break;
+            }
+        }
+
+        return $errors;
     }
 
-    public function validatePreviousUsers() : ValidationErrors
+    public static function validatePreviousUsers($username) : ValidationErrors
     {
-        $previousUsers = $this->previousUsers()->get();
+        $errors = new ValidationErrors('user');
+
+        $previousUsers = static::previousUsers($username)->get();
         foreach ($previousUsers as $previousUser) {
             // has badges
             if ($previousUser->badges()->exists()) {
-                return $this->validationErrors()->add('username', '.username_locked');
+                return $errors->add('username', '.username_locked');
             }
 
             // ranked beatmaps
             if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
-                return $this->validationErrors()->add('username', '.username_locked');
+                return $errors->add('username', '.username_locked');
             }
 
             // ranks
             foreach (Beatmap::MODES as $mode => $_modeInt) {
                 $stats = $previousUser->statistics($mode);
                 if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
-                    return $this->validationErrors()->add('username', '.username_locked');
+                    return $errors->add('username', '.username_locked');
                 }
             }
         }
 
-        return $this->validationErrors();
+        return $errors;
     }
 
-    public function validationErrorsTranslationPrefix()
+    private static function previousUsers($username)
     {
-        return 'user';
-    }
-
-    private function previousUsers()
-    {
-        return User::whereHas('usernameChangeHistory', function ($query) {
-            $query->where('username_last', $this->username);
+        return User::whereHas('usernameChangeHistory', function ($query) use ($username) {
+            $query->where('username_last', $username);
         });
     }
 }
