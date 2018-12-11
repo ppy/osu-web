@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Excluir',
+        'delete_own_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil.',
+        'delete_other_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil de usuário.',
         'disqualification_prompt' => 'Motivo da desqualificação?',
         'disqualified_at' => 'Desqualificado :time_ago (:reason).',
         'disqualified_no_reason' => 'sem motivo específico',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+            'disqualify' => '',
         ],
     ],
 

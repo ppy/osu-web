@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Vous ne suivez pas ce sujet',
             'to_watching' => 'Suivre',
             'to_watching_mail' => 'Suivre avec notifications',
-            'mail_disable' => 'Désactiver les notifications',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

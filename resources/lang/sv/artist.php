@@ -46,4 +46,11 @@ return [
         'count' => ':count låt|:count låtar',
         'exclusive' => 'osu! exklusiva',
     ],
+
+    'tracklist' => [
+        'title' => 'titel',
+        'length' => 'längd',
+        'bpm' => '',
+        'genre' => 'genre',
+    ],
 ];

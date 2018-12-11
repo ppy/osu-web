@@ -29,9 +29,16 @@
     color: @changelog-fg;
   }
 
+  &__content {
+    background-color: #eee;
+
+    .@{_top}--changelog & {
+      background-color: @changelog-bg;
+    }
+  }
+
   &__items {
     padding-top: 10px;
-    background-color: #eee;
 
     &--empty {
       .default-gutter();
@@ -39,8 +46,8 @@
       padding-bottom: 40px;
     }
 
-    .@{_top}--changelog & {
-      background-color: @changelog-bg;
+    &--loading {
+      opacity: 0.5;
     }
   }
 

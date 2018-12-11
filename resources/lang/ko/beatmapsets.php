@@ -53,22 +53,21 @@ return [
             'unfavourite' => '즐겨찾기 해제',
             'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => '키 개수',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => '길이',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => '유저 평점',
-            'rating-spread' => '평점 분포도',
-            'nominations' => '지명',
-            'playcount' => '플레이 횟수',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => '설명',
             'genre' => '장르',
@@ -80,6 +79,7 @@ return [
             'tags' => '태그',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => ':when에 달성함',
             'country' => '국가 순위',
@@ -112,6 +112,23 @@ return [
                 'first' => '순위권',
                 'own' => '내 최고 점수',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => '키 개수',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => '길이',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => '유저 평점',
+            'rating-spread' => '평점 분포도',
+            'nominations' => '지명',
+            'playcount' => '플레이 횟수',
         ],
     ],
 ];

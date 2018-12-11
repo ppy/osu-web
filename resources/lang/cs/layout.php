@@ -35,6 +35,7 @@ return [
             'groups-show' => 'skupiny',
             'index' => 'nástěnka',
             'legal-show' => 'informace',
+            'messages-index' => '',
             'news-index' => 'novinky',
             'news-show' => 'novinky',
             'password-reset-index' => 'obnovit heslo',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'komunita',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'vývoj',
             'getForum' => 'Fórum',
-            'getChat' => 'chat',
             'getLive' => 'živě',
+            'comments-index' => 'komentáře',
+            'comments-show' => 'komentář',
             'contests' => 'soutěže',
             'profile' => 'profil',
             'tournaments' => 'turnaje',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'zaplatit',
             'getInvoice' => 'faktura',
+            'orders-index' => 'historie objednávek',
             'products-show' => 'produkt',
 
             'new' => 'nový',

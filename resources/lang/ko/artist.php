@@ -46,4 +46,11 @@ return [
         'count' => ':count 곡',
         'exclusive' => 'osu! 고유 곡',
     ],
+
+    'tracklist' => [
+        'title' => '제목',
+        'length' => '길이',
+        'bpm' => 'bpm',
+        'genre' => '장르',
+    ],
 ];

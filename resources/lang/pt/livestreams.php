@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Transmissões em Directo',
         'description' => 'A informação é obtida através da twitch.tv a cada cinco minutos baseado na listagem de directórios. Fica à vontade em começares a transmitir e torna-te listado! Para mais informações em como configurar, por favor consulta a página wiki em relação à transmissão em directo.',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => 'Actualmente a Transmitir',

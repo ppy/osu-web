@@ -30,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => '',
+        'back_to_previous' => '',
         'cancel' => 'Avbryt',
         'change' => 'ändra',
         'click_to_copy' => 'klicka för att kopiera till urklipp',
         'click_to_copy_copied' => 'kopierad till urklipp!',
         'delete' => 'Radera',
+        'edit' => '',
         'hide' => 'dölj',
         'permalink' => 'permalänk',
         'permalink_copied' => 'länk kopierad',
@@ -43,6 +46,7 @@ return [
         'reply_reopen' => 'Svara och Öppna Igen',
         'reply_resolve' => 'Svara och Lös',
         'reset' => 'Återställ',
+        'restore' => '',
         'save' => 'Spara',
         'saving' => 'Sparar...',
         'search' => 'Sök',
@@ -59,9 +63,17 @@ return [
         'hours' => ':count timme|:count timmar',
         'item' => ':count enhet|:count enheter',
         'minute_short_unit' => 'm|m',
+        'minutes' => '',
         'months' => ':count månad|:count månader',
         'second_short_unit' => 's|s',
         'years' => ':count år|:count år',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

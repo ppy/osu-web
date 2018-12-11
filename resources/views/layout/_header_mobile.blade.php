@@ -16,12 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="visible-xs no-print js-header--main">
+    <div class="navbar-mobile-before"></div>
+
     <div
         class="
             navbar-mobile
-            navbar
-            navbar-default
-            navbar-static-top
             u-section--bg
         "
         role="navigation"
@@ -75,7 +74,7 @@
         </div>
     </div>
 
-    <div class="collapse navbar-collapse navbar-mobile__menu js-navbar-mobile--menu" id="xs-navbar">
+    <div class="collapse navbar-mobile__menu js-navbar-mobile--menu" id="xs-navbar">
         <ul class="nav navbar-nav navbar-mobile__menu-items">
             @include('layout.header_mobile.user')
             @include('layout.header_mobile.nav')

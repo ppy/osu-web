@@ -60,7 +60,9 @@
     }
 
     .u-section--gradient-down {
-      background-image: linear-gradient(fade(@_bg, 90%) 0%, @_bg 75%, @_bg 100%) !important;
+      // the parts after 50% are for the header size transition.
+      background-image: linear-gradient(fade(@_bg, 90%) 0%, @_bg 37.5%, @_bg 50%, #222 50%, #222 100%);
+      background-size: 200% 200%;
     }
   }
 

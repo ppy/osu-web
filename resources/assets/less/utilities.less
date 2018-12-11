@@ -32,6 +32,12 @@
   }
 }
 
+// so elements with anchors as subelements don't create stacking contexts
+// that block each other.
+.u-has-anchor {
+  position: static;
+}
+
 .u-hidden {
   display: none !important;
 }
@@ -44,4 +50,8 @@
 
 .u-nav-float {
   z-index: @z-index--nav-float !important;
+}
+
+.u-full-size {
+  .full-size();
 }

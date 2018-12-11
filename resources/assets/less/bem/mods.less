@@ -33,6 +33,13 @@
   display: flex;
   justify-content: space-around;
 
+  &--profile-page {
+    width: auto;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
   &--scoreboard {
     width: auto;
     height: @mod-height-small;
@@ -68,6 +75,11 @@
     width: 0;
     display: flex;
     justify-content: center;
+
+    .@{top}--profile-page & {
+      width: auto;
+      margin-right: 1px;
+    }
 
     .@{top}--scoreboard & {
       width: auto;

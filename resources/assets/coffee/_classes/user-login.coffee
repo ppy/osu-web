@@ -30,6 +30,7 @@ class @UserLogin
 
     $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
+    $(document).on 'ajax:before', '.js-login-required--click', -> currentUser.id?
 
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad

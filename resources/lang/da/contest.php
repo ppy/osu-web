@@ -38,6 +38,7 @@ return [
         'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
         'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
         'drop_here' => 'Aflever dit bidrag her',
+        'download' => '',
         'wrong_type' => [
             'art' => 'Kun .jpg og .png filer er accepteret i denne konkurrence.',
             'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmer',
-        'count' => '1 stemme|:count stemmer',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'Sluttede den :date',

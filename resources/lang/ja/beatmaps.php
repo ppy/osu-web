@@ -144,13 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '削除',
+        'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
+        'delete_other_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
         'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
         'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
         'disqualified_no_reason' => '理由が明示されていません',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
-        'love' => 'お気に入り',
-        'love_confirm' => 'このBeatmapは好きですか？',
+        'love' => 'Lovedに追加',
+        'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'この譜面をノミネートしますか？',
         'nominated_by' => ':usersがノミネート',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'よろしいですか？新しい問題点を投稿すると審査中ではなくなります。',
+            'disqualify' => '',
         ],
     ],
 

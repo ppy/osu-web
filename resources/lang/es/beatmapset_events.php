@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Eventos del Beatmapset',
+
+        'form' => [
+            'period' => 'Período',
+            'types' => 'Tipos',
+        ],
     ],
 
     'item' => [
         'content' => 'Contenido',
         'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => 'Ganancia de Kudosu',
+        'kudosu_lost' => 'Kudosu perdidos',
+        'kudosu_recalculate' => 'Recalculación de Kudosu',
+        'love' => '',
+        'nominate' => 'Nominación',
+        'nomination_reset' => '',
+        'qualify' => 'Calificación',
+        'rank' => 'Clasificación',
     ],
 ];

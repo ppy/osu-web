@@ -30,6 +30,7 @@ abstract class OrderFulfiller implements Fulfillable
 
     const TAGGED_NAME = 'order-fulfiller';
 
+    /** @var Order */
     protected $order;
 
     public function __construct(Order $order)

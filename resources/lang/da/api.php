@@ -22,6 +22,11 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Du sender beskeder for hurtigt, vent venligst lidt med at fortsætte.',
+            'too_long' => '',
         ],
+    ],
+
+    'scopes' => [
+        'identify' => '',
     ],
 ];

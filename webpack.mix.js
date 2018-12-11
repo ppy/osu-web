@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 require('dotenv').config();
 
 // .js doesn't support globbing by itself, so we need to glob
@@ -103,7 +104,8 @@ let webpackConfig = {
       path.resolve(__dirname, 'resources/assets/lib'),
       path.resolve(__dirname, 'node_modules'),
     ],
-    extensions: ['*', '.js', '.coffee']
+    extensions: ['*', '.js', '.coffee', '.ts'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   module: {
     rules: [
@@ -192,6 +194,7 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
   'resources/assets/coffee/react/contest-voting.coffee',
 ], 'js/react/contest-voting.js')
+.ts('resources/assets/ts/chat.ts', 'js/react/chat.js')
 .copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')

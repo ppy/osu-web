@@ -20,7 +20,9 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
-import { ReportForm } from 'report-form'
+import { PlayDetailMenu } from 'play-detail-menu'
+import { ReportUser } from 'report-user'
+import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
@@ -34,10 +36,19 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
-  ReportForm
+  PlayDetailMenu
+  ReportUser
+  ScoreHelper
   SelectOptions
   SpotlightSelectOptions
 }
+
+# refer to variables.less
+window._styles =
+  header:
+    height: 90 # @nav2-height
+    heightSticky: 50 # @nav2-height--pinned
+    heightMobile: 60 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize

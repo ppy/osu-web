@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -47,6 +48,10 @@ class UsersController extends Controller
         ]]);
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
+
+        if (is_api_request()) {
+            $this->middleware('require-scopes:identify', ['only' => ['me']]);
+        }
 
         $this->middleware(function ($request, $next) {
             $this->parsePaginationParams();
@@ -109,6 +114,10 @@ class UsersController extends Controller
 
     public function store()
     {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
@@ -150,7 +159,10 @@ class UsersController extends Controller
 
         $page = $mapping[$type] ?? abort(404);
 
-        return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+        // Override per page restriction in parsePaginationParams to allow infinite paging
+        $perPage = $this->sanitizedLimitParam();
+
+        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
     public function posts($id)
@@ -185,14 +197,16 @@ class UsersController extends Controller
 
         priv_check('UserReport', Auth::user())->ensureCan();
 
-        $report = Auth::user()->reportsMade()->make([
-            'user_id' => $user->getKey(),
-            'comments' => trim(request('comments')),
-            'reason' => trim(request('reason')),
-        ]);
-
         try {
-            $report->saveOrExplode();
+            $report = Auth::user()->reportsMade()->create([
+                'user_id' => $user->getKey(),
+                'comments' => trim(request('comments')),
+                'reason' => trim(request('reason')),
+            ]);
+
+            if (!$report->exists) {
+                throw new ModelNotSavedException($report->validationErrors()->toSentence());
+            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {
@@ -216,7 +230,7 @@ class UsersController extends Controller
         $perPage = $this->perPage;
 
         if ($type === 'firsts') {
-            // Override per page restriction in parsePageParams to allow infinite paging
+            // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
 
@@ -263,11 +277,12 @@ class UsersController extends Controller
             'replays_watched_counts',
             'statistics.rank',
             'statistics.scoreRanks',
+            'support_level',
             'unranked_beatmapset_count',
             'user_achievements',
         ];
 
-        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
         }
 
@@ -426,21 +441,21 @@ class UsersController extends Controller
             // Score
             case 'scoresBest':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
+                $includes = ['beatmap', 'beatmapset', 'user'];
                 $query = $user->scoresFirst($options['mode'], true)
                     ->orderBy('score_id', 'desc')
-                    ->with('beatmap', 'beatmap.beatmapset');
+                    ->with('beatmap', 'beatmap.beatmapset', 'user');
                 break;
             case 'scoresRecent':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'best'];
+                $includes = ['beatmap', 'beatmapset', 'best', 'user'];
                 $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset', 'best');
+                    ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                 break;
         }
 

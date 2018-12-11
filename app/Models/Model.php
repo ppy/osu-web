@@ -25,6 +25,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -139,6 +140,22 @@ abstract class Model extends BaseModel
     public function tableName(bool $includeDbPrefix = false)
     {
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
+    }
+
+    // Allows save/update/delete to work with composite primary keys.
+    // Note this doesn't fix 'find' method and a bunch of other laravel things
+    // which rely on getKeyName and getKey (and they themselves are broken as well).
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        if (isset($this->primaryKeys)) {
+            foreach ($this->primaryKeys as $key) {
+                $query->where([$key => $this->original[$key] ?? null]);
+            }
+
+            return $query;
+        } else {
+            return parent::setKeysForSaveQuery($query);
+        }
     }
 
     private function enlistCallbacks($model, $connection)

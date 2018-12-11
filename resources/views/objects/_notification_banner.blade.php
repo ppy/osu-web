@@ -18,4 +18,6 @@
 @php
     $template = ($legacyNav ?? true) ? 'objects._notification_banner_v1' : 'objects._notification_banner_v2';
 @endphp
-@include($template, compact('type', 'title', 'message'))
+@push('notification_banners')
+    @include($template, compact('type', 'title', 'message'))
+@endpush

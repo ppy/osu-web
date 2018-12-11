@@ -46,4 +46,11 @@ return [
         'count' => ':count şarkı|:count şarkı',
         'exclusive' => 'osu!\'ya özel',
     ],
+
+    'tracklist' => [
+        'title' => 'şarkının adı',
+        'length' => 'uzunluk',
+        'bpm' => 'bpm',
+        'genre' => 'tür',
+    ],
 ];

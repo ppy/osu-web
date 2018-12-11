@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => '该谱面现在无法下载。',
-        'parts-removed' => '应作者/第三方版权持有者的要求，这张谱面已经下架。',
+        'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
     ],
 
@@ -53,22 +53,21 @@ return [
             'unfavourite' => '取消收藏',
             'favourited_count' => '还有很多人...',
         ],
-        'stats' => [
-            'cs' => '圆圈大小',
-            'cs-mania' => '键位数量',
-            'drain' => '掉血速度',
-            'accuracy' => '准确率',
-            'ar' => '缩圈速度',
-            'stars' => '难度星级',
-            'total_length' => '长度',
-            'bpm' => 'BPM',
-            'count_circles' => '圆圈总数',
-            'count_sliders' => '滑条总数',
-            'user-rating' => '玩家评价',
-            'rating-spread' => '评分情况',
-            'nominations' => '提名状态',
-            'playcount' => '游玩次数',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => '介绍',
             'genre' => '流派',
@@ -80,6 +79,7 @@ return [
             'tags' => '标签',
             'unranked' => 'Unranked 谱面',
         ],
+
         'scoreboard' => [
             'achieved' => '在 :when 达成',
             'country' => '国内排名',
@@ -112,6 +112,23 @@ return [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
             ],
+        ],
+
+        'stats' => [
+            'cs' => '圆圈大小',
+            'cs-mania' => '键位数量',
+            'drain' => '掉血速度',
+            'accuracy' => '准确率',
+            'ar' => '缩圈速度',
+            'stars' => '难度星级',
+            'total_length' => '长度',
+            'bpm' => 'BPM',
+            'count_circles' => '圆圈总数',
+            'count_sliders' => '滑条总数',
+            'user-rating' => '玩家评价',
+            'rating-spread' => '评分情况',
+            'nominations' => '提名状态',
+            'playcount' => '游玩次数',
         ],
     ],
 ];

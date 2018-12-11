@@ -30,24 +30,24 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
             ],
             'note' => [
                 '_' => 'Valamint vedd figyelembe, hogy erősen javasolt a :scary, mivel a régebbi pályák minősége jóval alacsonyabb az újakéhoz képest.',
-                'scary' => 'a legújabb pályák letöltése',
+                'scary' => 'legújabb csomagok letöltése',
             ],
         ],
         'title' => 'Beatmap Csomagok',
-        'description' => 'Előre csomagolt közös témájú beatmap kollekciók.',
+        'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
     ],
 
     'show' => [
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',
-            'not_cleared' => 'kijátszatlan',
+            'not_cleared' => 'nem játszott',
         ],
     ],
 
     'mode' => [
         'artist' => 'Előadó/Album',
-        'chart' => 'Kiemeltek',
+        'chart' => 'Reflektorfény',
         'standard' => 'Standard',
         'theme' => 'Téma',
     ],

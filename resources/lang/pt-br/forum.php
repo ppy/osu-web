@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Excluir mesmo a publicação?',
         'confirm_restore' => 'Restaurar mesmo a publicação?',
@@ -71,7 +85,7 @@ return [
         'go_to_latest' => 'ver a ultima publicação',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Publicar um novo tópico',
+        'new_topic' => 'Criar novo tópico',
         'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Não marcada',
             'to_watching' => 'Marcar',
             'to_watching_mail' => 'Marcar com notificação',
-            'mail_disable' => 'Desabilitar notificação',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

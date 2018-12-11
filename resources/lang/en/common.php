@@ -63,6 +63,7 @@ return [
         'hours' => ':count_delimited hour|:count_delimited hours',
         'item' => ':count_delimited unit|:count_delimited units',
         'minute_short_unit' => 'min|mins',
+        'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
         'second_short_unit' => 'sec|secs',
         'years' => ':count_delimited year|:count_delimited years',

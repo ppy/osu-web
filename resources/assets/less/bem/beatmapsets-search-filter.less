@@ -72,5 +72,9 @@
     flex-wrap: wrap;
     align-items: baseline;
     margin: 0 (-@gutter-mobile);
+
+    .beatmapsets-search--sticky & {
+      margin: 0 -4px; // should be -5px but the A character seems to leak out 1px on the left.
+    }
   }
 }

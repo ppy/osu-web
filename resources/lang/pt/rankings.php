@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Classificação',
+
     'type' => [
         'performance' => 'Desempenho',
         'charts' => 'Em Destaque',
         'score' => 'Pontuação',
         'country' => 'País',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data Final',
+        'map_count' => 'Contador de Mapas',
+        'participants' => 'Participantes',
+        'start_date' => 'Data de Início',
+    ],
+
     'stat' => [
         'accuracy' => 'Precisão',
         'active_users' => 'Utilizadores Activos',

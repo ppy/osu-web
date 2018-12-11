@@ -89,7 +89,7 @@ class @Status.Page extends React.Component
         y: (d) =>
           osu.formatNumber(d)
 
-      tooltipFormats =
+      infoBoxFormats =
         x: (d) =>
           "#{formats.x(d)}"
 
@@ -99,7 +99,7 @@ class @Status.Page extends React.Component
 
       options =
         formats: formats
-        tooltipFormats: tooltipFormats
+        infoBoxFormats: infoBoxFormats
         scales: scales
         tickValues: tickValues
         domains: domains

@@ -118,7 +118,7 @@ class OsuAuthorize
                     return $prefix.'has_reply';
                 }
             }
-        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutTrashed()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
@@ -151,7 +151,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id) {
+        if ($user->user_id === $discussion->beatmapset->user_id && $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
             return 'ok';
         }
 
@@ -540,36 +540,43 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        switch ($channel->type) {
-            case Channel::TYPES['public']:
-                return 'ok';
+        if ($channel->type === Channel::TYPES['public']) {
+            return 'ok';
+        }
 
-            case Channel::TYPES['private']:
-                $commonGroupIds = array_intersect(
-                    $user->groupIds(),
-                    $channel->allowed_groups
-                );
-
-                if (count($commonGroupIds) > 0) {
+        // FIXME: needs further check before allowing other types.
+        if (false) {
+            switch ($channel->type) {
+                case Channel::TYPES['public']:
                     return 'ok';
-                }
-                break;
 
-            case Channel::TYPES['spectator']:
-            case Channel::TYPES['multiplayer']:
-            case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
-                if (starts_with($channel->name, '#spect_')) {
-                    return 'ok';
-                }
+                case Channel::TYPES['private']:
+                    $commonGroupIds = array_intersect(
+                        $user->groupIds(),
+                        $channel->allowed_groups
+                    );
 
-                if (starts_with($channel->name, '#mp_')) {
-                    $matchId = intval(str_replace('#mp_', '', $channel->name));
-
-                    if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                    if (count($commonGroupIds) > 0) {
                         return 'ok';
                     }
-                }
-                break;
+                    break;
+
+                case Channel::TYPES['spectator']:
+                case Channel::TYPES['multiplayer']:
+                case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
+                    if (starts_with($channel->name, '#spect_')) {
+                        return 'ok';
+                    }
+
+                    if (starts_with($channel->name, '#mp_')) {
+                        $matchId = intval(str_replace('#mp_', '', $channel->name));
+
+                        if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                            return 'ok';
+                        }
+                    }
+                    break;
+            }
         }
 
         return $prefix.'no_access';
@@ -612,7 +619,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$comment->isDeleted()) {
+        if (!$comment->trashed()) {
             return 'ok';
         }
     }
@@ -635,12 +642,24 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($comment->user_id === $user->getKey()) {
-            if ($comment->isDeleted()) {
+            if ($comment->trashed()) {
                 return 'comment.update.deleted';
             }
 
             return 'ok';
         }
+    }
+
+    public function checkCommentVote($user, $comment)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->user_id === $user->getKey()) {
+            return;
+        }
+
+        return 'ok';
     }
 
     public function checkContestEntryStore($user, $contest)
@@ -921,6 +940,22 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicPollEdit($user, $topic)
+    {
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        $forumTopicStorePermission = $this->doCheckUser($user, 'ForumTopicStore', $topic->forum);
+        if (!$forumTopicStorePermission->can()) {
+            return $forumTopicStorePermission->rawMessage();
+        }
+
+        if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicVote($user, $topic)
     {
         $prefix = 'forum.topic.vote.';
@@ -962,6 +997,13 @@ class OsuAuthorize
         if ($user !== null && $user->isGMT()) {
             return 'ok';
         }
+    }
+
+    public function checkScoreReport($user, $score)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
     }
 
     public function checkUserPageEdit($user, $pageOwner)

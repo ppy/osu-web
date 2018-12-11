@@ -210,7 +210,7 @@ class BeatmapsetPage.Header extends React.Component
                   href: @props.beatmapset.legacy_thread_url
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-header__status', @props.beatmapset.status
+          div className: 'beatmapset-status beatmapset-status--show', @props.beatmapset.status
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap

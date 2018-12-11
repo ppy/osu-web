@@ -20,8 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Builder;
-
 class TopicTrack extends Model
 {
     protected $table = 'phpbb_topics_track';
@@ -29,6 +27,8 @@ class TopicTrack extends Model
     public $timestamps = false;
     protected $dates = ['mark_time'];
     protected $dateFormat = 'U';
+
+    protected $primaryKeys = ['topic_id', 'user_id'];
 
     public static function readStatus($user, ...$topicsArrays)
     {
@@ -62,19 +62,11 @@ class TopicTrack extends Model
             $forumId = $topic->forum_id;
 
             $result[$topicId] =
+                $topicTime <= $user->user_lastmark ||
                 (isset($readStatus[$topicId]) && $topicTime <= $readStatus[$topicId]->mark_time) ||
                 (isset($forumReadStatus[$forumId]) && $topicTime <= $forumReadStatus[$forumId]->mark_time);
         }
 
         return $result;
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'topic_id' => $this->topic_id,
-            'user_id' => $this->user_id,
-        ]);
     }
 }

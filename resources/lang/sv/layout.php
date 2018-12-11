@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grupper',
             'index' => 'kontrollpanel',
             'legal-show' => 'information',
+            'messages-index' => '',
             'news-index' => 'nyheter',
             'news-show' => 'nyheter',
             'password-reset-index' => 'återställ lösenord',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'gemenskap',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'utveckling',
             'getForum' => 'forum',
-            'getChat' => 'chatt',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'tävlingar',
             'profile' => 'profil',
             'tournaments' => 'turneringar',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'checka ut',
             'getInvoice' => 'faktura',
+            'orders-index' => '',
             'products-show' => 'produkt',
 
             'new' => 'ny',
