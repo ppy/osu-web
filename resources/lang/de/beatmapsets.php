@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
             'favourited_count' => '+ 1 anderer!|+ :count andere!',
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Tastenanzahl',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Genauigkeit',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Länge',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle-Anzahl',
-            'count_sliders' => 'Slider-Anzahl',
-            'user-rating' => 'Benutzerbewertungen',
-            'rating-spread' => 'Bewertungsverteilung',
-            'nominations' => 'Nominierungen',
-            'playcount' => 'Playcount',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Beschreibung',
             'genre' => 'Genre',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'erreicht am :when',
             'country' => 'Länder-Rangliste',
@@ -112,6 +112,23 @@ return [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Tastenanzahl',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Genauigkeit',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Länge',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle-Anzahl',
+            'count_sliders' => 'Slider-Anzahl',
+            'user-rating' => 'Benutzerbewertungen',
+            'rating-spread' => 'Bewertungsverteilung',
+            'nominations' => 'Nominierungen',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

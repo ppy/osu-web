@@ -25,4 +25,8 @@ return [
             'too_long' => 'Meddelandet du försöker skicka är för långt.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

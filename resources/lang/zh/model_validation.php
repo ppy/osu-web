@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '不允许重复的选项。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '每人可选的选项不能超出总选项数。',
             'minimum_one_selection' => '每人至少可选一项。',
             'minimum_two_options' => '需要至少两个选项。',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '这就是你的用户名，Baka！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

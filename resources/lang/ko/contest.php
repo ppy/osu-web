@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => '투표',
-        'count' => '',
-        'points' => '',
+        'count' => ':count표',
+        'points' => ':count포인트',
     ],
     'dates' => [
         'ended' => ':date 에 끝났습니다',

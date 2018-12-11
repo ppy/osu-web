@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Наистина ли искате да изтриете публикацията?',
         'confirm_restore' => 'Наистина ли искате да възстановите публикацията?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Не е отметнато',
             'to_watching' => 'Отметка',
             'to_watching_mail' => 'Отметка с известяване',
-            'mail_disable' => 'Изключи известията',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

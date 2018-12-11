@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => '즐겨찾기 등록 안됨',
             'to_watching' => '즐겨찾기',
             'to_watching_mail' => '알림과 함께 즐겨찾기',
-            'mail_disable' => '알림 사용 안 함',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

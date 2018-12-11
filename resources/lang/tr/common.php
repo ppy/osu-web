@@ -63,6 +63,7 @@ return [
         'hours' => ':count saat|:count saat',
         'item' => ':count birim|:count birim',
         'minute_short_unit' => 'dk|dk',
+        'minutes' => '',
         'months' => ':count ay|:count ay',
         'second_short_unit' => 'sn|sn',
         'years' => ':count yıl|:count yıl',

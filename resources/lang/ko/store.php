@@ -20,7 +20,7 @@
 
 return [
     'admin' => [
-        'warehouse' => '보급 창고',
+        'warehouse' => '웨어하우스',
     ],
 
     'cart' => [
@@ -53,7 +53,7 @@ return [
         'pay' => 'Paypal로 결제',
 
         'has_pending' => [
-            '_' => '',
+            '_' => '미완료한 결재가 있습니다. :link를 눌러 확인하세요.',
             'link_text' => '여기',
         ],
 
@@ -66,14 +66,14 @@ return [
     'discount' => ':percent% 절약 가능',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'eCheck로 결제하셧다면 10일까지 PayPal을 통해 결재할 수 있도록 허용해주세요.',
         'status' => [
             'processing' => [
                 'title' => '당신의 결제가 아직 확인되지 않았습니다!',
                 'line_1' => '당신이 이미 결제하셨다면, 저희는 아직 당신의 결제의 확인을 받는것을 기다리고 있을 수 있습니다. 1~2분 후 이 페이지를 새로고침 해주세요!',
                 'line_2' => [
                     '_' => '결제 도중 문제가 발생하셨다면, :link',
-                    'link_text' => '',
+                    'link_text' => '여기를 눌러 결재를 계속하세요',
                 ],
             ],
         ],
@@ -89,6 +89,7 @@ return [
         'paid_on' => ':date에 주문함',
 
         'invoice' => '청구서 보기',
+        'no_orders' => '주문 내역이 없습니다.',
 
         'item' => [
             'display_name' => [

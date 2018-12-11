@@ -30,20 +30,20 @@ return [
 
         'email' => [
             'current' => '現在のEメール',
-            'new' => '新しいEメール',
-            'new_confirmation' => 'Eメールの確認',
-            'title' => 'Eメール',
+            'new' => '新しいメールアドレス',
+            'new_confirmation' => '新しいメールアドレス（再入力）',
+            'title' => 'メールアドレス',
         ],
 
         'password' => [
             'current' => '現在のパスワード',
             'new' => '新しいパスワード',
-            'new_confirmation' => 'パスワードの確認',
+            'new_confirmation' => '新しいパスワード（再入力）',
             'title' => 'パスワード',
         ],
 
         'profile' => [
-            'title' => 'プロフィールの編集',
+            'title' => 'プロフィール',
 
             'user' => [
                 'user_from' => '現在地',
@@ -63,7 +63,7 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu!Eメール変更の確認',
+        'email_subject' => 'osu! メールアドレス変更の確認',
         'update' => '適用',
     ],
 
@@ -83,15 +83,15 @@ return [
     'privacy' => [
         'title' => 'プライバシー',
         'friends_only' => '友達リストにいない人からプライベートメッセージをブロックする',
-        'hide_online' => '',
+        'hide_online' => 'オンライン状態を隠す',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => '直近',
+        'end_session' => '最終セッション',
+        'end_session_confirmation' => 'すぐにこのセッションを終了してよろしいですか？',
+        'last_active' => '最終ログイン:',
+        'title' => 'セキュリティ',
+        'web_sessions' => 'webでのセッション',
     ],
 ];

@@ -45,8 +45,8 @@ return [
         'title' => 'Eventos del Beatmapset',
 
         'form' => [
-            'period' => '',
-            'types' => '',
+            'period' => 'Período',
+            'types' => 'Tipos',
         ],
     ],
 
@@ -67,13 +67,13 @@ return [
         'issue_resolve' => '',
         'kudosu_allow' => '',
         'kudosu_deny' => '',
-        'kudosu_gain' => '',
-        'kudosu_lost' => '',
-        'kudosu_recalculate' => '',
+        'kudosu_gain' => 'Ganancia de Kudosu',
+        'kudosu_lost' => 'Kudosu perdidos',
+        'kudosu_recalculate' => 'Recalculación de Kudosu',
         'love' => '',
-        'nominate' => '',
+        'nominate' => 'Nominación',
         'nomination_reset' => '',
-        'qualify' => '',
-        'rank' => '',
+        'qualify' => 'Calificación',
+        'rank' => 'Clasificación',
     ],
 ];

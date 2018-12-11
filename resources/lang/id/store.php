@@ -86,9 +86,10 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Pemesanan dilangsukan pada :date',
 
         'invoice' => 'Lihat Invoice',
+        'no_orders' => 'Tidak ada pesanan yang tercatat.',
 
         'item' => [
             'display_name' => [

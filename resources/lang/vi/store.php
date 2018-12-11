@@ -53,27 +53,27 @@ return [
         'pay' => 'Thanh toán với Paypal',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Bạn có thanh toán chưa hoàn thành, nhấp vào :link để xem.',
+            'link_text' => 'đây',
         ],
 
         'pending_checkout' => [
             'line_1' => 'Lần thanh toán trước đã bắt đầu nhưng chưa kết thúc.',
-            'line_2' => '',
+            'line_2' => 'Tiếp tục thanh toán bằng cách chọn một cách thanh toán.',
         ],
     ],
 
     'discount' => 'tiết kiệm :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
         'status' => [
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'Thanh toán của bạn chưa được xác nhận!',
+                'line_1' => 'Nếu bạn đã thanh toán, chúng tôi có thể vẫn đang đợi xác nhận của thanh toán của bạn. Hãy tải lại trang này trong khoảng một đến hai phút!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Nếu bạn gặp sự cố trong quá trình thanh toán, :link',
+                    'link_text' => 'nhấp vào đây để tiếp tục quá trình thanh toán',
                 ],
             ],
         ],
@@ -86,9 +86,10 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Đã đặt hàng :date',
 
-        'invoice' => '',
+        'invoice' => 'Xem Hóa Đơn',
+        'no_orders' => 'Không có đơn đặt hàng.',
 
         'item' => [
             'display_name' => [
@@ -108,12 +109,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Đã Hủy',
+            'checkout' => 'Đang Chuẩn Bị',
+            'delivered' => 'Đã Giao Hàng',
+            'paid' => 'Đã Thanh Toán',
+            'processing' => 'Đang chờ xác nhận',
+            'shipped' => 'Đang Vận Chuyển',
         ],
     ],
 

@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
+            'disqualify' => '',
         ],
     ],
 
@@ -179,7 +180,7 @@ return [
             'prompt' => 'anna hakusana...',
             'login_required' => 'Kirjaudu sisään etsiäksesi.',
             'options' => 'Lisää Hakuasetuksia',
-            'supporter_filter' => 'Tunnisteen :filters mukaan rajaaminen vaatii aktiivisen osu!supporter-tagin',
+            'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... Eip, mitään ei löytynyt.',
             'filters' => [
@@ -204,7 +205,7 @@ return [
                 'nominations' => 'suositukset',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Tunnisteen :filters mukaan rajaamiseksi sinulla on oltava aktiivinen :link',
+                '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
                 'link_text' => 'osu!supporter-tagi',
             ],
         ],

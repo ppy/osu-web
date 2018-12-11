@@ -29,14 +29,14 @@ return [
         ],
 
         'email' => [
-            'current' => 'email actual',
+            'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'palavra-passe actual',
+            'current' => 'palavra-passe atual',
             'new' => 'nova palavra-passe',
             'new_confirmation' => 'confirmação da palavra-passe',
             'title' => 'Palavra-passe',
@@ -46,7 +46,7 @@ return [
             'title' => 'Perfil',
 
             'user' => [
-                'user_from' => 'localização actual',
+                'user_from' => 'localização atual',
                 'user_interests' => 'interesses',
                 'user_msnm' => '',
                 'user_occ' => 'ocupação',
@@ -58,18 +58,18 @@ return [
 
         'signature' => [
             'title' => 'Assinatura',
-            'update' => 'actualizar',
+            'update' => 'atualizar',
         ],
     ],
 
     'update_email' => [
         'email_subject' => 'osu! confirmação da alteração de email',
-        'update' => 'actualizar',
+        'update' => 'atualizar',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! confirmação da alteração da palavra-passe',
-        'update' => 'actualizar',
+        'update' => 'atualizar',
     ],
 
     'playstyles' => [
@@ -87,10 +87,10 @@ return [
     ],
 
     'security' => [
-        'current_session' => 'actual',
+        'current_session' => 'atual',
         'end_session' => 'Terminar Sessão',
         'end_session_confirmation' => 'Isto irá imediatamente terminar a tua sessão nesse dispositivo. Tens a certeza?',
-        'last_active' => 'Activo pela última vez:',
+        'last_active' => 'Ativo pela última vez:',
         'title' => 'Segurança',
         'web_sessions' => 'sessões web',
     ],
