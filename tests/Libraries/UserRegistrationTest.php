@@ -29,8 +29,9 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $reg->save();
+        $thrown = $this->runSubject($reg);
 
+        $this->assertFalse($thrown);
         $this->assertEquals($origCount + 1, User::count());
     }
 
@@ -41,20 +42,15 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $thrown = false;
-        try {
-            $reg->save();
-        } catch (ValidationException $e) {
-            $thrown = true;
-            $this->assertArraySubset(
-                $reg->user()->validationErrors()->all(),
-                [
-                    'username' => [trans('model_validation.required', ['attribute' => 'username'])],
-                ]
-            );
-        }
+        $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
+        $this->assertArraySubset(
+            $reg->user()->validationErrors()->all(),
+            [
+                'username' => [trans('model_validation.required', ['attribute' => 'username'])],
+            ]
+        );
         $this->assertEquals($origCount, User::count());
     }
 
@@ -65,20 +61,15 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $thrown = false;
-        try {
-            $reg->save();
-        } catch (ValidationException $e) {
-            $thrown = true;
-            $this->assertArraySubset(
-                $reg->user()->validationErrors()->all(),
-                [
-                    'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
-                ]
-            );
-        }
+        $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
+        $this->assertArraySubset(
+            $reg->user()->validationErrors()->all(),
+            [
+                'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
+            ]
+        );
         $this->assertEquals($origCount, User::count());
     }
 
@@ -89,21 +80,29 @@ class UserRegistrationTest extends TestCase
 
         $origCount = User::count();
         $reg = new UserRegistration($attrs);
-        $thrown = false;
-        try {
-            $reg->save();
-        } catch (ValidationException $e) {
-            $thrown = true;
-            $this->assertArraySubset(
-                $reg->user()->validationErrors()->all(),
-                [
-                    'password' => [trans('model_validation.required', ['attribute' => 'password'])],
-                ]
-            );
-        }
+        $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
+        $this->assertArraySubset(
+            $reg->user()->validationErrors()->all(),
+            [
+                'password' => [trans('model_validation.required', ['attribute' => 'password'])],
+            ]
+        );
         $this->assertEquals($origCount, User::count());
+    }
+
+    // wrapper to catch the exception
+    // so that the contents of validationErrors can be examined.
+    private function runSubject($subject)
+    {
+        try {
+            $subject->save();
+        } catch (ValidationException $e) {
+            return true;
+        }
+
+        return false;
     }
 
     private function basicAttributes()
