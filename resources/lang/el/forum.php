@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Σίγουρα διαγραφή της δημοσίευσης;',
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Χωρίς σελιδοδείκτη',
             'to_watching' => 'Βάλτε Σελιδοδείκτη',
             'to_watching_mail' => 'Βάλτε σελιδοδείκτη με ειδοποίηση',
-            'mail_disable' => 'Απενεργοποίηση ειδοποιήσεων',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

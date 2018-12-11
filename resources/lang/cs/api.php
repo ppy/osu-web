@@ -22,7 +22,11 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Posíláte zprávy moc rychle, prosím vyčkejte chvíli a zkuste to znovu.',
-            'too_long' => '',
+            'too_long' => 'Zpráva, kterou chcete poslat, je moc dlouhá.',
         ],
+    ],
+
+    'scopes' => [
+        'identify' => '',
     ],
 ];

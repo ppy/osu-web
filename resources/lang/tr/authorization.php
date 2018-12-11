@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'Bu forumu yönetme izniniz yok.',
         ],
 
         'post' => [

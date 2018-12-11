@@ -65,7 +65,7 @@ class ProfilePage.HeaderInfo extends React.PureComponent
                     key: i
                     className: 'fas fa-heart'
           div className: "#{bn}__icons #{bn}__icons--flag",
-            if @props.user.country?
+            if @props.user.country?.code?
               a
                 className: "#{bn}__flag #{bn}__flag--country"
                 href: laroute.route 'rankings',

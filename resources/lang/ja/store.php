@@ -53,13 +53,13 @@ return [
         'pay' => 'Paypalで支払う',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => '未完了の支払いがあります。:linkをクリックして詳細を確認してください。',
+            'link_text' => 'ここ',
         ],
 
         'pending_checkout' => [
             'line_1' => '前回の精算が完了していません。',
-            'line_2' => '',
+            'line_2' => 'お支払い方法を選択して購入をする。',
         ],
     ],
 
@@ -69,11 +69,11 @@ return [
         'echeck_delay' => '',
         'status' => [
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'お支払いはまだ完了していません。',
+                'line_1' => 'すでにお支払いが完了している場合は、私たちはあなたのお支払いが確定したことを受け取るのを待っています。このページを1~2分待ってから再読み込みしてください。',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'お支払いに関して問題がある場合: :link',
+                    'link_text' => 'ここをクリックして購入を続ける',
                 ],
             ],
         ],
@@ -88,7 +88,8 @@ return [
     'order' => [
         'paid_on' => '',
 
-        'invoice' => '',
+        'invoice' => '請求書を見る',
+        'no_orders' => '表示できる注文がありません。',
 
         'item' => [
             'display_name' => [
@@ -108,12 +109,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'キャンセル済み',
+            'checkout' => '準備中',
+            'delivered' => '発送済み',
+            'paid' => '支払い済み',
+            'processing' => '承認待ち',
+            'shipped' => '運送中',
         ],
     ],
 

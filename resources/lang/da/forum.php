@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
         'confirm_restore' => 'Gendag opslag?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => '',
             'to_watching' => '',
             'to_watching_mail' => '',
-            'mail_disable' => '',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -38,7 +38,7 @@ return [
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
-            'types' => '消息类型',
+            'types' => '评论类型',
             'username' => '用户名',
 
             'user' => [

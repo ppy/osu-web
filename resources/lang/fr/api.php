@@ -25,4 +25,8 @@ return [
             'too_long' => 'Le message que vous essayez d\'envoyer est trop long.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

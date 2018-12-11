@@ -25,4 +25,8 @@ return [
             'too_long' => 'Tin nhắn bạn đang cố gửi quá dài.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

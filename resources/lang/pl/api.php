@@ -25,4 +25,8 @@ return [
             'too_long' => 'Wiadomość, którą chcesz wysłać, jest zbyt długa.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

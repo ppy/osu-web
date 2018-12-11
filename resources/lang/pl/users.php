@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historia modowania użytkownika :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2000x700',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
-                'title' => 'Osiągnięcia',
                 'achieved-on' => 'Odblokowane dnia :date',
+                'locked' => '',
+                'title' => 'Osiągnięcia',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
+                    'title' => 'Ulubione beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Porzucone beatmapy (:count)',
+                    'title' => 'Porzucone beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Ulubione społeczności (:count)',
+                    'title' => 'Ulubione społeczności',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy',
                 ],
                 'unranked' => [
-                    'title' => 'Oczekujące beatmapy (:count)',
+                    'title' => 'Oczekujące beatmapy',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Wykres zagrań',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'liczba zagrań',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Wykres obejrzanych powtórek',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
+                'recent' => '',
                 'title' => 'Medale',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Pobierz powtórkę',
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Wyniki',
-                'weighted_pp' => 'ważone: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Najlepsze wyniki',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Zainteresowania',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
+            'country_simple' => '',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maksymalne combo',
+            'medals' => '',
             'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
