@@ -74,7 +74,7 @@ class ChangeUsername
             return $this->validationErrors();
         }
 
-        return $this->validationErrors()->merge(UsernameValidation::validatePreviousUsers($this->username));
+        return $this->validationErrors()->merge(UsernameValidation::validateUsersOfUsername($this->username));
     }
 
     public function validationErrorsTranslationPrefix()

@@ -175,6 +175,27 @@ class ChangeUsernameTest extends TestCase
         $this->assertSame($newUsername, $user->username);
     }
 
+    public function testInactiveUserIsRankLocked()
+    {
+        config()->set('osu.user.username_lock_rank_limit', 10);
+        $newUsername = 'newusername';
+
+        $user = $this->createUser();
+        $existing = $this->createUser([
+            'username' => 'newusername',
+            'username_clean' => 'newusername',
+            'osu_subscriptionexpiry' => null,
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
+
+        $existing->statisticsOsu()->save(
+            factory(UserStatistics\Osu::class)->make(['rank' => 10, 'rank_score_index' => 10, 'playcount' => 0])
+        );
+
+        $this->expectException(ChangeUsernameException::class);
+        $user->changeUsername($newUsername, 'paid');
+    }
+
     private function createUser(array $attribs = []) : User
     {
         return factory(User::class)->create(array_merge([

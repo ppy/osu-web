@@ -24,6 +24,7 @@ use App\Models\Beatmap;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Collection;
 
 class UsernameValidation
 {
@@ -92,25 +93,25 @@ class UsernameValidation
         return $errors;
     }
 
-    public static function validatePreviousUsers($username) : ValidationErrors
+    public static function validateUsersOfUsername(string $username) : ValidationErrors
     {
         $errors = new ValidationErrors('user');
 
-        $previousUsers = static::previousUsers($username)->get();
-        foreach ($previousUsers as $previousUser) {
+        $users = static::usersOfUsername($username);
+        foreach ($users as $user) {
             // has badges
-            if ($previousUser->badges()->exists()) {
+            if ($user->badges()->exists()) {
                 return $errors->add('username', '.username_locked');
             }
 
             // ranked beatmaps
-            if ($previousUser->beatmapsets()->rankedOrApproved()->exists()) {
+            if ($user->beatmapsets()->rankedOrApproved()->exists()) {
                 return $errors->add('username', '.username_locked');
             }
 
             // ranks
             foreach (Beatmap::MODES as $mode => $_modeInt) {
-                $stats = $previousUser->statistics($mode);
+                $stats = $user->statistics($mode);
                 if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
                     return $errors->add('username', '.username_locked');
                 }
@@ -120,10 +121,17 @@ class UsernameValidation
         return $errors;
     }
 
-    private static function previousUsers($username)
+    public static function usersOfUsername(string $username) : Collection
     {
-        return User::whereHas('usernameChangeHistory', function ($query) use ($username) {
+        $users = User::whereHas('usernameChangeHistory', function ($query) use ($username) {
             $query->where('username_last', $username);
-        });
+        })->get();
+
+        $existing = User::findByUsernameForInactive($username);
+        if ($existing !== null) {
+            $users->push($existing);
+        }
+
+        return $users;
     }
 }

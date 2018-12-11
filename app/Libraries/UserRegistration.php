@@ -84,7 +84,7 @@ class UserRegistration
 
         $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
         $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
-        $this->assertValidation(UsernameValidation::validatePreviousUsers($this->user->username));
+        $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
     }
 
     private function assertValidation($errors)
