@@ -266,6 +266,12 @@ return [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
 
+                'info' => [
+                    '_' => 'This is a :feature_request. Feature requests can be voted up by :supporters.',
+                    'feature_request' => 'feature request',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
                     'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
                     'current' => 'You have :votes remaining.',
