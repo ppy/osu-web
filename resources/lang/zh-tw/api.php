@@ -25,4 +25,8 @@ return [
             'too_long' => '你要發送的訊息太長。',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

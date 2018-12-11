@@ -34,7 +34,7 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
+            'legal' => 'Terjemahan ini diberikan hanya untuk memudahkan. :default menjadi satu-satunya versi yang mengikat secara hukum dari teks ini.',
             'outdated' => 'Laman ini mengandung terjemahan yang sudah kedaluwarsa dari artikel aslinya. Mohon periksa :default untuk memastikan keakuratan informasi (dan mohon pertimbangkan untuk memperbarui terjemahan bila Anda dapat membantu)!',
 
             'default' => 'Versi Inggris',

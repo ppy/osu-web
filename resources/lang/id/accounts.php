@@ -88,7 +88,7 @@ return [
 
     'security' => [
         'current_session' => 'saat ini',
-        'end_session' => 'Akhisi Sesi',
+        'end_session' => 'Akhiri Sesi',
         'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',

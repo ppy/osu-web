@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Eind Datum',
+        'map_count' => 'Map Aantal',
+        'participants' => 'Deelnemers',
+        'start_date' => 'Start Datum',
     ],
 
     'stat' => [

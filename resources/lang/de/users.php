@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":users Moddingverlauf",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Letztens gestartete Diskussionen',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
                     'restriction_info' => "Nur <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> können hochladen",
-                    'size_info' => 'Banner sollte 2000x700 groß sein',
+                    'size_info' => 'Banner sollte 2800x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
-                'title' => 'Erfolge',
                 'achieved-on' => 'Erreicht am :date',
+                'locked' => '',
+                'title' => 'Erfolge',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => '(Noch) keine.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps (:count)',
+                    'title' => 'Lieblings-Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Begrabene Beatmaps (:count)',
+                    'title' => 'Begrabene Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Play-Verlauf',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'mal gespielt',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Wiederholungen',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
+                'recent' => '',
                 'title' => 'Medaillen',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Replay downloaden',
                 'empty' => 'Noch keine Performance-Rekorde. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ränge',
-                'weighted_pp' => 'gewichtet: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interessen',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
+            'country_simple' => '',
             'global' => 'Globaler Rang im Modus :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Höchste Combo',
+            'medals' => '',
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',

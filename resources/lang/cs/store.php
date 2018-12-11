@@ -53,27 +53,27 @@ return [
         'pay' => 'Zaplatit přes PayPal',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Máte nedokončené platby, klikněte na :link pro zobrazení.',
+            'link_text' => 'zde',
         ],
 
         'pending_checkout' => [
             'line_1' => 'Předchozí nákup nebyl dokončen.',
-            'line_2' => '',
+            'line_2' => 'Pokračujte v platbě vybráním platební metody.',
         ],
     ],
 
     'discount' => 'ušetři :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
         'status' => [
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'Vaše platba nebyla ještě potvrzena!',
+                'line_1' => 'Pokud jste už zaplatil, možná stále čekáme na potvrzení vaší platby. Prosím, dejte nám pár minut a pak zkuste znovu načíst tuto stránku!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Pokud se vyskytl problém při placení, :link',
+                    'link_text' => 'klikněte zde pro pokračování v placení',
                 ],
             ],
         ],
@@ -86,9 +86,10 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Objednávka vystavena dne :date',
 
-        'invoice' => '',
+        'invoice' => 'Zobrazit fakturu',
+        'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
 
         'item' => [
             'display_name' => [
@@ -108,12 +109,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Zrušeno',
+            'checkout' => 'V přípravě',
+            'delivered' => 'Doručeno',
+            'paid' => 'Zaplaceno',
+            'processing' => 'Očekávající potvrzení',
+            'shipped' => 'Na cestě',
         ],
     ],
 

@@ -63,6 +63,7 @@ return [
         'hours' => ':count시간',
         'item' => ':count unit|:count units',
         'minute_short_unit' => '분',
+        'minutes' => '',
         'months' => ':count달',
         'second_short_unit' => '초',
         'years' => ':count년',
