@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Collection;
@@ -123,10 +124,8 @@ class UsernameValidation
 
     public static function usersOfUsername(string $username) : Collection
     {
-        $users = User::whereHas('usernameChangeHistory', function ($query) use ($username) {
-            $query->where('username_last', $username);
-        })->get();
-
+        $user_ids = UsernameChangeHistory::where('username_last', $username)->pluck('user_id');
+        $users = User::whereIn('user_id', $user_ids)->get();
         $existing = User::findByUsernameForInactive($username);
         if ($existing !== null) {
             $users->push($existing);
