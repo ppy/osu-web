@@ -23,6 +23,8 @@ namespace App\Models;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\ChangeUsername;
+use App\Libraries\UsernameValidation;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -73,6 +75,8 @@ class User extends Model implements AuthenticatableContract
         ],
     ];
 
+    const INACTIVE_DAYS = 180;
+
     const MAX_FIELD_LENGTHS = [
         'user_msnm' => 255,
         'user_twitter' => 255,
@@ -117,55 +121,59 @@ class User extends Model implements AuthenticatableContract
 
     public function revertUsername($type = 'revert') : UsernameChangeHistory
     {
-        // TODO: validation errors instead?
+        // TODO: normalize validation with changeUsername.
         if ($this->user_id <= 1) {
-            throw new ChangeUsernameException(['user_id is not valid']);
+            throw new ChangeUsernameException('user_id is not valid');
         }
 
         if (!presence($this->username_previous)) {
-            throw new ChangeUsernameException(['username_previous is blank.']);
+            throw new ChangeUsernameException('username_previous is blank.');
         }
 
-        return $this->updateUsername($this->username_previous, null, $type);
+        return $this->updateUsername($this->username_previous, $type);
     }
 
-    public function changeUsername($newUsername, $type = 'support') : UsernameChangeHistory
+    public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
-        // TODO: validation errors instead?
-        if ($this->user_id <= 1) {
-            throw new ChangeUsernameException(['user_id is not valid']);
-        }
-
-        $errors = static::validateUsername($newUsername, $this->username);
-        if (count($errors) > 0) {
+        $errors = $this->validateChangeUsername($newUsername);
+        if ($errors->isAny()) {
             throw new ChangeUsernameException($errors);
         }
 
-        return DB::transaction(function () use ($newUsername, $type) {
-            // check for an exsiting inactive username and renames it.
-            static::renameUsernameIfInactive($newUsername);
+        return $this->getConnection()->transaction(function () use ($newUsername, $type) {
+            static::findAndRenameUserForInactive($newUsername);
 
-            return $this->updateUsername($newUsername, $this->username, $type);
+            return $this->updateUsername($newUsername, $type);
         });
     }
 
-    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    public function renameIfInactive() : ?UsernameChangeHistory
+    {
+        if ($this->getUsernameAvailableAt() <= Carbon::now()) {
+            $newUsername = "{$this->username}_old";
+
+            return $this->tryUpdateUsername(0, $newUsername, 'inactive');
+        }
+    }
+
+    private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
 
         try {
-            return $this->updateUsername($name, $oldUsername, $type);
+            return $this->updateUsername($name, $type);
         } catch (QueryException $ex) {
             if (!is_sql_unique_exception($ex) || $try > 9) {
                 throw $ex;
             }
 
-            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
+            return $this->tryUpdateUsername($try + 1, $newUsername, $type);
         }
     }
 
-    private function updateUsername($newUsername, $oldUsername, $type) : UsernameChangeHistory
+    private function updateUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
+        $oldUsername = $type === 'revert' ? null : $this->getOriginal('username');
         $this->username_previous = $oldUsername;
         $this->username = $newUsername;
 
@@ -178,13 +186,14 @@ class User extends Model implements AuthenticatableContract
             Forum\Topic::where('topic_last_poster_id', $this->user_id)
                 ->update(['topic_last_poster_name' => $newUsername]);
 
-            $history = new UsernameChangeHistory();
-            $history->username = $newUsername;
-            $history->username_last = $oldUsername;
-            $history->timestamp = Carbon::now();
-            $history->type = $type;
+            $history = $this->usernameChangeHistory()->create([
+                'username' => $newUsername,
+                'username_last' => $oldUsername,
+                'timestamp' => Carbon::now(),
+                'type' => $type,
+            ]);
 
-            if (!$this->usernameChangeHistory()->save($history)) {
+            if (!$history->exists) {
                 throw new ModelNotSavedException('failed saving model');
             }
 
@@ -200,7 +209,18 @@ class User extends Model implements AuthenticatableContract
         return strtolower($username);
     }
 
-    public static function findByUsernameForInactive($username)
+    public static function findAndRenameUserForInactive($username) : ?self
+    {
+        $existing = static::findByUsernameForInactive($username);
+        if ($existing !== null) {
+            $existing->renameIfInactive();
+            // TODO: throw if expected rename doesn't happen?
+        }
+
+        return $existing;
+    }
+
+    public static function findByUsernameForInactive($username) : ?self
     {
         return static::whereIn(
             'username',
@@ -208,128 +228,44 @@ class User extends Model implements AuthenticatableContract
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username)
+    public static function checkWhenUsernameAvailable($username) : Carbon
     {
         $user = static::findByUsernameForInactive($username);
-
-        if ($user === null) {
-            $lastUsage = UsernameChangeHistory::where('username_last', $username)
-                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
-                ->orderBy('change_id', 'desc')
-                ->first();
-
-            if ($lastUsage === null) {
-                return Carbon::now();
-            }
-
-            return Carbon::parse($lastUsage->timestamp)->addMonths(6);
+        if ($user !== null) {
+            return $user->getUsernameAvailableAt();
         }
 
-        if ($user->group_id !== 2 || $user->user_type === 1) {
+        $lastUsage = UsernameChangeHistory::where('username_last', $username)
+            ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($lastUsage === null) {
+            return Carbon::now();
+        }
+
+        return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
+    }
+
+    public function getUsernameAvailableAt() : Carbon
+    {
+        if ($this->group_id !== 2 || $this->user_type === 1) {
             //reserved usernames
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
-            return $result + $user->statistics($mode, true)->value('playcount');
+        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
+            return $result + $this->statistics($mode, true)->value('playcount');
         }, 0);
 
-        return $user->user_lastvisit
-            ->addMonths(6)                 //base inactivity period for all accounts
-            ->addDays($playCount * 0.75);  //bonus based on playcount
+        return $this->user_lastvisit
+            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
+            ->addDays($playCount * 0.75);    //bonus based on playcount
     }
 
-    /**
-     * Check for an exsiting inactive username and renames it if
-     * considered inactive.
-     *
-     * @return User if renamed; nil otherwise.
-     */
-    public static function renameUsernameIfInactive($username)
+    public function validateChangeUsername(string $username)
     {
-        $existing = static::findByUsernameForInactive($username);
-        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
-        if ($existing !== null && $available) {
-            $newUsername = "{$existing->username}_old";
-            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
-
-            return $existing;
-        }
-    }
-
-    public static function validateUsername($username, $previousUsername = null)
-    {
-        if (present($previousUsername) && $previousUsername === $username) {
-            // no change
-            return [];
-        }
-
-        if (($username ?? '') !== trim($username)) {
-            return [trans('model_validation.user.username_no_spaces')];
-        }
-
-        if (strlen($username) < 3) {
-            return [trans('model_validation.user.username_too_short')];
-        }
-
-        if (strlen($username) > 15) {
-            return [trans('model_validation.user.username_too_long')];
-        }
-
-        if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
-            return [trans('model_validation.user.username_invalid_characters')];
-        }
-
-        if (strpos($username, '_') !== false && strpos($username, ' ') !== false) {
-            return [trans('model_validation.user.username_no_space_userscore_mix')];
-        }
-
-        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
-            if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                return [trans('model_validation.user.username_not_allowed')];
-            }
-        }
-
-        if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remaining = Carbon::now()->diff($availableDate, false);
-
-            if ($remaining->days > 365 * 2) {
-                //no need to mention the inactivity period of the account is actively in use.
-                return [trans('model_validation.user.username_in_use')];
-            } elseif ($remaining->days > 0) {
-                return [trans(
-                    'model_validation.user.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days)]
-                )];
-            } elseif ($remaining->h > 0) {
-                return [trans(
-                    'model_validation.user.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
-                )];
-            } else {
-                return [trans('model_validation.user.username_available_soon')];
-            }
-        }
-
-        return [];
-    }
-
-    public function validateUsernameChangeTo($username)
-    {
-        if (!$this->hasSupported()) {
-            $link = \Html::link(
-                route('support-the-game'),
-                trans('model_validation.user.change_username.supporter_required.link_text')
-            );
-
-            return [trans('model_validation.user.change_username.supporter_required._', ['link' => $link])];
-        }
-
-        if ($username === $this->username) {
-            return [trans('model_validation.user.change_username.username_is_same')];
-        }
-
-        return self::validateUsername($username);
+        return (new ChangeUsername($this, $username))->validate();
     }
 
     // verify that an api key is correct
@@ -558,7 +494,7 @@ class User extends Model implements AuthenticatableContract
     public function setOsuSubscriptionexpiryAttribute($value)
     {
         // strip time component
-        $this->attributes['osu_subscriptionexpiry'] = $value->startOfDay();
+        $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
     // return a user's API details
@@ -1525,12 +1461,10 @@ class User extends Model implements AuthenticatableContract
         $this->validationErrors()->reset();
 
         if ($this->isDirty('username')) {
-            $errors = static::validateUsername($this->username, $this->getOriginal('username'));
+            $errors = UsernameValidation::validateUsername($this->username);
 
-            if (count($errors) > 0) {
-                foreach ($errors as $error) {
-                    $this->validationErrors()->addTranslated('username', $error);
-                }
+            if ($errors->isAny()) {
+                $this->validationErrors()->merge($errors);
             }
         }
 

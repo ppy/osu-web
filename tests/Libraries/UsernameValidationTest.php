@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,30 +17,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Libraries\UsernameValidation;
+use App\Models\User;
+use Carbon\Carbon;
 
-namespace App\Exceptions;
-
-use App\Libraries\ValidationErrors;
-use Exception;
-
-class ChangeUsernameException extends Exception
+// FIXME: need more tests
+class UsernameValidationTest extends TestCase
 {
-    private $errors;
-
-    public function __construct($errors, Exception $previous = null)
+    public function testusersOfUsernameIncludesCurrentUsernameOwner()
     {
-        if ($errors instanceof ValidationErrors) {
-            $message = $errors->toSentence();
-            $this->errors = $errors;
-        } else {
-            $message = $errors;
-        }
+        $existing = factory(User::class)->create([
+            'username' => 'user1',
+            'username_clean' => 'user1',
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
 
-        parent::__construct($message, 0, $previous);
-    }
-
-    public function getErrors() : ValidationErrors
-    {
-        return $this->errors;
+        $users = UsernameValidation::usersOfUsername('user1');
+        $this->assertCount(1, $users);
+        $this->assertTrue($existing->is($users->first()));
     }
 }

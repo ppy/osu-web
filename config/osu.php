@@ -178,6 +178,7 @@ return [
         'max_friends' => 250,
         'max_friends_supporter' => 500,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
+        'username_lock_rank_limit' => get_int(env('USER_USERNAME_LOCK_RANK_LIMIT')) ?? 100000,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
