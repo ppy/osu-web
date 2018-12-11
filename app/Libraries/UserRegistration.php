@@ -50,18 +50,18 @@ class UserRegistration
         try {
             $this->user->getConnection()->transaction(function () {
                 User::findAndRenameUserForInactive($this->user->username);
-                $this->user->saveOrExplode();
+                if (!$this->user->save()) {
+                    // probably failed because of validation
+                    throw new ValidationException($this->user->validationErrors());
+                }
 
                 $groupAttrs = ['group_id' => UserGroup::GROUPS['default']];
                 if (!$this->user->userGroups()->create($groupAttrs)) {
+                    // mystery failure
                     throw new ModelNotSavedException('failed saving model');
                 }
             });
         } catch (Exception $e) {
-            if ($e instanceof ModelNotSavedException) {
-                throw new ValidationException($this->user->validationErrors(), $e);
-            }
-
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');
                 throw new ValidationException($this->user->validationErrors(), $e);
