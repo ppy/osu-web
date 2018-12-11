@@ -23,28 +23,28 @@ return [
 
     'type' => [
         'performance' => 'パフォーマンス',
-        'charts' => 'チャート',
+        'charts' => 'スポットライト',
         'score' => 'スコア',
         'country' => '国別',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => '終了日',
+        'map_count' => 'マップ数',
+        'participants' => '参加人数',
+        'start_date' => '開始日',
     ],
 
     'stat' => [
         'accuracy' => '精度(Accuracy)',
         'active_users' => 'アクティブユーザー数',
         'country' => '所在国',
-        'play_count' => 'プレイカウント',
+        'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
         'total_score' => '累計スコア',
-        'ranked_score' => 'ランクドスコア',
+        'ranked_score' => 'Rankedスコア',
         'average_score' => '平均スコア',
-        'average_performance' => '平均Perf.',
+        'average_performance' => '平均パフォーマンス',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

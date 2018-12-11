@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+            'disqualify' => '',
         ],
     ],
 

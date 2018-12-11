@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'mail_disable' => 'Vypnout oznámení',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

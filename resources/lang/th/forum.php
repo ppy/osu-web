@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'ลบโพสต์จริงๆ หรือ',
         'confirm_restore' => 'Really restore post?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'ไม่ได้บุ๊กมาร์คไว้',
             'to_watching' => 'บุ๊กมาร์ค',
             'to_watching_mail' => 'บุ๊กมาร์คและรับการแจ้งเตือน',
-            'mail_disable' => 'ปิดการแจ้งเตือน',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations processen.',
+            'disqualify' => '',
         ],
     ],
 

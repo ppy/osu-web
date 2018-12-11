@@ -25,4 +25,8 @@ return [
             'too_long' => 'Pesan yang Anda coba kirim terlalu panjang.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

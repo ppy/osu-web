@@ -76,6 +76,7 @@ return [
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
+        'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
 
         'necropost_months' => 6,

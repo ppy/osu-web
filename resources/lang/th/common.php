@@ -63,6 +63,7 @@ return [
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
         'minute_short_unit' => 'นาที|นาที',
+        'minutes' => '',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',

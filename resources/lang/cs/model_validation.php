@@ -52,7 +52,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
     ],
 
     'forum' => [
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Tohle je tvoje uživatelské jméno, hlupáku!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

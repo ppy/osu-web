@@ -108,7 +108,7 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '影音教學',
+        'video-guide' => '影片教學',
     ],
 
     'user' => [
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'New！圖譜',
+            'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
             'by' => '作者：',
             'plays' => ':count 次遊玩',

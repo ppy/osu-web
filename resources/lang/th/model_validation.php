@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'ตัวเลือกซ้ำกันไม่อนุญาต',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'คัวเลือกต่อคนต้องไม่เกินจำนวนตัวเลือกที่ใช้ได้',
             'minimum_one_selection' => 'ต้องการขั้นต่ำหนึ่งตัวเลือกต่อผู้เล่น',
             'minimum_two_options' => 'ต้องการอย่างน้อยสองตัวเลือก',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'นี่คือชื่อผู้ใช้ของคุณอยู่แล้ว โง่',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

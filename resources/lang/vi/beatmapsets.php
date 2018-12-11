@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
             'favourited_count' => '+ :count nữa!',
         ],
-        'stats' => [
-            'cs' => 'Kích Cỡ Nốt',
-            'cs-mania' => 'Số Phím',
-            'drain' => 'Độ Giảm HP',
-            'accuracy' => 'Độ Chính Xác',
-            'ar' => 'Tốc Độ Tiếp Cận',
-            'stars' => 'Độ Khó',
-            'total_length' => 'Độ Dài',
-            'bpm' => 'BPM',
-            'count_circles' => 'Số Nốt Bấm',
-            'count_sliders' => 'Số Nốt Trượt',
-            'user-rating' => 'Đánh Giá',
-            'rating-spread' => 'Phân Loại Đánh Giá',
-            'nominations' => 'Đề cử',
-            'playcount' => 'Đã chơi',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Mô Tả',
             'genre' => 'Thể Loại',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Beatmap chưa được xếp hạng',
         ],
+
         'scoreboard' => [
             'achieved' => 'đạt được :when',
             'country' => 'Hạng Quốc Gia',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Dẫn Đầu',
                 'own' => 'Tốt Nhất Của Bạn',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Kích Cỡ Nốt',
+            'cs-mania' => 'Số Phím',
+            'drain' => 'Độ Giảm HP',
+            'accuracy' => 'Độ Chính Xác',
+            'ar' => 'Tốc Độ Tiếp Cận',
+            'stars' => 'Độ Khó',
+            'total_length' => 'Độ Dài',
+            'bpm' => 'BPM',
+            'count_circles' => 'Số Nốt Bấm',
+            'count_sliders' => 'Số Nốt Trượt',
+            'user-rating' => 'Đánh Giá',
+            'rating-spread' => 'Phân Loại Đánh Giá',
+            'nominations' => 'Đề cử',
+            'playcount' => 'Đã chơi',
         ],
     ],
 ];

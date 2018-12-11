@@ -63,6 +63,7 @@ return [
         'hours' => ':count 小时',
         'item' => ':count 个',
         'minute_short_unit' => '分钟',
+        'minutes' => '',
         'months' => ':count 个月',
         'second_short_unit' => '秒',
         'years' => ':count 年',

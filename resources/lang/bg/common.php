@@ -63,6 +63,7 @@ return [
         'hours' => ':count ч|:count ч',
         'item' => ':count брой|:count броя',
         'minute_short_unit' => 'мин|мин',
+        'minutes' => '',
         'months' => ':count месец|:count месеца',
         'second_short_unit' => 'сек|сек',
         'years' => ':count година|:count години',

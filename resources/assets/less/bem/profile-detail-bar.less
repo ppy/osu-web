@@ -17,37 +17,41 @@
  */
 
 .profile-detail-bar {
+  @_column-padding: 10px;
   width: 100%;
-  height: 60px;
   display: none;
   display: flex;
+  flex-wrap: wrap;
   flex: none;
-  padding: @padding-profile-page @gutter-profile-page;
+  padding: (@padding-profile-page - @_column-padding) (@gutter-profile-page - @_column-padding);
   justify-content: space-between;
   align-items: center;
   background-color: @community-user-graygreen-dark;
 
   @media @desktop {
+    height: 60px;
     padding-left: @gutter-profile-page-desktop;
     padding-right: @gutter-profile-page-desktop;
   }
 
   &__column {
-    display: none;
+    display: flex;
+    width: 100%;
+    padding: @_column-padding;
 
     @media @desktop {
-      display: flex;
+      width: auto;
     }
 
     &--left {
-      display: flex;
       align-self: stretch;
       margin: -5px;
     }
 
     &--right {
-      min-width: @profile-stats-box-width-desktop;
-      align-items: center;
+      @media @desktop {
+        min-width: @profile-stats-box-width-desktop;
+      }
     }
   }
 
