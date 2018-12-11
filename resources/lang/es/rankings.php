@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
+        'end_date' => 'Fecha de fin',
         'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'participants' => 'Participantes',
+        'start_date' => 'Fecha de Inicio',
     ],
 
     'stat' => [

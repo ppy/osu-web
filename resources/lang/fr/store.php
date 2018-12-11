@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Commande passée le :date',
 
         'invoice' => 'Afficher la facture',
+        'no_orders' => 'Aucune commande à voir.',
 
         'item' => [
             'display_name' => [

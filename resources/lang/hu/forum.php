@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Biztosan törlöd a posztot?',
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Nincs könyvjelzőnek állítva',
             'to_watching' => 'Könyvjelző',
             'to_watching_mail' => 'Könyvjelző értesítéssel',
-            'mail_disable' => 'Értesítések kikapcsolása',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

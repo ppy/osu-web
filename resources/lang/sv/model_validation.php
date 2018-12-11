@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicerade val är ej tillåtet.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Val per användare får inte överskrida antalet tillgängliga val.',
             'minimum_one_selection' => 'Minst ett val per användare krävs.',
             'minimum_two_options' => 'Behöver åtminstone två val.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Detta är redan ditt användarnamn, dumbom!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

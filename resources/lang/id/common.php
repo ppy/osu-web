@@ -63,6 +63,7 @@ return [
         'hours' => ':count jam',
         'item' => ':count unit',
         'minute_short_unit' => 'menit|menit',
+        'minutes' => '',
         'months' => ':count bulan',
         'second_short_unit' => 'detik|detik',
         'years' => ':count tahun',

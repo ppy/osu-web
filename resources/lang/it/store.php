@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Ordine effettuato :date',
 
         'invoice' => 'Mostra Ricevuta',
+        'no_orders' => 'Nessun ordine da visualizzare.',
 
         'item' => [
             'display_name' => [

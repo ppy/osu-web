@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Senest startede diskussioner',
@@ -53,8 +54,8 @@ return [
         'show_profile' => 'vis profil',
         'too_many' => '',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'bloker',
+            'unblock' => 'fjern blokering',
         ],
     ],
 
@@ -101,7 +102,7 @@ return [
         'button_text' => '',
         'comments' => '',
         'placeholder' => '',
-        'reason' => '',
+        'reason' => 'Begrundelse',
         'thanks' => '',
         'title' => '',
 
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
                     'restriction_info' => "Upload er kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Coverbilledet burde være 2000x700',
+                    'size_info' => 'Coverbilledet burde være 2800x620',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Ingen seneste spil',
 
             'achievements' => [
-                'title' => 'Præstationer',
                 'achieved-on' => 'Opnået den :date',
+                'locked' => '',
+                'title' => 'Præstationer',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ingen... endnu.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favorit Beatmaps (:count)',
+                    'title' => 'Favorit Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps på kirkegården (:count)',
+                    'title' => 'Beatmaps på kirkegården',
                 ],
                 'loved' => [
-                    'title' => 'Elskede beatmaps (:count)',
+                    'title' => 'Elskede beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Godkendte Beatmaps (:count)',
+                    'title' => 'Ranked & Godkendte Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Afventende Beatmaps (:count)',
+                    'title' => 'Afventende Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Spille Historik',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'gange spillet',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Set Historik',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
+                'recent' => '',
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => '',
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => '',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranks',
-                'weighted_pp' => 'vejede: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Bedste Præstationer',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesser',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landerangering for :mode',
+            'country_simple' => '',
             'global' => 'Global rangering for :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Præcision',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Højeste Combo',
+            'medals' => '',
             'play_count' => 'Antal Spilforsøg',
             'play_time' => '',
             'ranked_score' => 'Ranked Score',
