@@ -86,7 +86,7 @@ class UsersController extends Controller
     {
         $username = Request::input('username');
 
-        $errors = Auth::user()->validateChangeUsername($username, 'paid');
+        $errors = Auth::user()->validateChangeUsername($username);
 
         $available = $errors->isEmpty();
         $message = $available ? "Username '".e($username)."' is available!" : $errors->toSentence();

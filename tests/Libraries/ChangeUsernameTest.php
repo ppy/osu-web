@@ -30,7 +30,7 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser(['user_id' => 1]);
 
-        $errors = $user->validateChangeUsername('newusername', 'paid')->all();
+        $errors = $user->validateChangeUsername('newusername')->all();
         $this->assertArrayHasKey('user_id', $errors);
     }
 
@@ -38,7 +38,7 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => null]);
 
-        $errors = $user->validateChangeUsername('newusername', 'paid')->all();
+        $errors = $user->validateChangeUsername('newusername')->all();
         $expected = [ChangeUsername::requireSupportedMessage()];
 
         $this->assertArrayHasKey('username', $errors);
@@ -49,7 +49,7 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser();
 
-        $errors = $user->validateChangeUsername('iamuser', 'paid')->all();
+        $errors = $user->validateChangeUsername('iamuser')->all();
         $expected = [trans('model_validation.user.change_username.username_is_same')];
 
         $this->assertArrayHasKey('username', $errors);
@@ -60,7 +60,7 @@ class ChangeUsernameTest extends TestCase
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);
 
-        $errors = $user->validateChangeUsername('newusername', 'paid');
+        $errors = $user->validateChangeUsername('newusername');
 
         $this->assertTrue($errors->isEmpty());
     }
