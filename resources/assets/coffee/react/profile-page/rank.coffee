@@ -23,4 +23,4 @@ ProfilePage.Rank = ({type, stats, modifiers}) ->
   el ValueDisplay,
     modifiers: modifiers
     label: osu.trans("users.show.rank.#{type}_simple")
-    value: stats.rank[type]?.toLocaleString() ? '-'
+    value: osu.formatNumber(stats.rank[type]) ? '-'

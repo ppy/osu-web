@@ -102,7 +102,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__pp"
           if pp > 0
             span null,
-              Math.round(pp).toLocaleString()
+              osu.formatNumber(Math.round(pp))
               span className: "#{bn}__pp-unit", 'pp'
           else
             span

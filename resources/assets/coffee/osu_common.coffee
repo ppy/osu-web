@@ -193,6 +193,8 @@
 
 
   formatNumber: (number, precision, options, locale) ->
+    return null unless number?
+
     options ?= {}
 
     if precision?

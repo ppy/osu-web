@@ -160,7 +160,7 @@ class ProfilePage.Historical extends React.PureComponent
         margins: right: 60 # more spacing for x axis label
         infoBoxFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
-          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
+          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(osu.formatNumber(d))}"
         tickValues: {}
         ticks: {}
         circleLine: true

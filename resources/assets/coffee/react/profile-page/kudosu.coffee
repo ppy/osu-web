@@ -28,14 +28,14 @@ class ProfilePage.Kudosu extends React.Component
         el ValueDisplay,
           modifiers: ['kudosu']
           label: osu.trans('users.show.extra.kudosu.total')
-          value: @props.user.kudosu.total.toLocaleString()
+          value: osu.formatNumber(@props.user.kudosu.total)
           description: span dangerouslySetInnerHTML:
             __html: osu.trans('users.show.extra.kudosu.total_info')
 
         el ValueDisplay,
           modifiers: ['kudosu']
           label: osu.trans('users.show.extra.kudosu.available')
-          value: @props.user.kudosu.available.toLocaleString()
+          value: osu.formatNumber(@props.user.kudosu.available)
           description: osu.trans('users.show.extra.kudosu.available_info')
 
       if @props.recentlyReceivedKudosu?.length
