@@ -63,7 +63,7 @@
                     <div class="forum-topic-feature-vote__button">
                         @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
                             <button
-                                class="btn-osu-big btn-osu-big--feature-vote"
+                                class="btn-osu-big btn-osu-big--rounded"
                                 data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
                                 data-method="POST"
                                 data-remote=1
