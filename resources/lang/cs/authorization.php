@@ -52,16 +52,16 @@ return [
     ],
 
     'chat' => [
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'restricted' => '',
+        'blocked' => 'Nemůžete napsat uživateli, kterého máte buď zablokovaného nebo vás má v zablokovaných.',
+        'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho přátelích.',
+        'moderated' => 'Ten kanál je právě moderován.',
+        'no_access' => 'Nemáte přístup k tomu kanálu.',
+        'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
 
     'comment' => [
         'update' => [
-            'deleted' => "",
+            'deleted' => "Nemůžete editovat již odstraněný příspěvek.",
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'Nemáte povolení k moderování tohoto fóra.',
         ],
 
         'post' => [

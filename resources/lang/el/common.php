@@ -63,6 +63,7 @@ return [
         'hours' => ':count ώρα|:count ώρες',
         'item' => ':count μονάδα|:count μονάδες',
         'minute_short_unit' => 'λεπτό|λεπτά',
+        'minutes' => '',
         'months' => ':count μήνας|:count μήνες',
         'second_short_unit' => 'δευτ.|δευτ.',
         'years' => ':count χρόνος|:count χρόνια',

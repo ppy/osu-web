@@ -26,7 +26,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmaplista',
+        'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
     ],
 
@@ -45,7 +45,7 @@ return [
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'download' => [
                 '_' => 'Lataa',
-                'video' => 'Videon kanssa',
+                'video' => 'videon kanssa',
                 'no-video' => 'ilman videota',
                 'direct' => '',
             ],
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
             'favourited_count' => '+ 1 muu!|+ :count muuta!',
         ],
-        'stats' => [
-            'cs' => 'Ympyräkoko',
-            'cs-mania' => 'Koskettimien määrä',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Tarkkuus',
-            'ar' => 'Lähestymisnopeus',
-            'stars' => 'Vaikeustaso',
-            'total_length' => 'Pituus',
-            'bpm' => 'BPM',
-            'count_circles' => 'Ympyröiden määrä',
-            'count_sliders' => 'Slidereiden määrä',
-            'user-rating' => 'Käyttäjien arvio',
-            'rating-spread' => 'Arvioiden jakauma',
-            'nominations' => 'Suositukset',
-            'playcount' => 'Pelikertojen määrä',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Kuvaus',
             'genre' => 'Tyylilaji',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tunnisteet',
             'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
         ],
+
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Ympyräkoko',
+            'cs-mania' => 'Koskettimien määrä',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Tarkkuus',
+            'ar' => 'Lähestymisnopeus',
+            'stars' => 'Vaikeustaso',
+            'total_length' => 'Pituus',
+            'bpm' => 'BPM',
+            'count_circles' => 'Ympyröiden määrä',
+            'count_sliders' => 'Slidereiden määrä',
+            'user-rating' => 'Käyttäjien arvio',
+            'rating-spread' => 'Arvioiden jakauma',
+            'nominations' => 'Suositukset',
+            'playcount' => 'Pelikertojen määrä',
         ],
     ],
 ];

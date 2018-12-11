@@ -52,7 +52,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
     ],
 
     'forum' => [
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Een optie dupliceren is niet toegestaan.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Opties per gebruiker mag niet groter zijn dan het aantal opties.',
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Dit is je gebruikersnaam al, dommerik!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

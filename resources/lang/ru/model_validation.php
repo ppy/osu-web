@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Повторение вариантов недопустимо.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.',
             'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
             'minimum_two_options' => 'Нужно как минимум два варианта.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Это имя уже используется!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

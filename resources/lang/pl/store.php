@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Zamówienie złożone :date',
 
         'invoice' => 'Pokaż fakturę',
+        'no_orders' => 'Brak zamówień do wyświetlenia.',
 
         'item' => [
             'display_name' => [

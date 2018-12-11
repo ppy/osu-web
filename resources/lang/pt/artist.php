@@ -23,7 +23,7 @@ return [
     'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => 'O ARTISTA ESTÁ ACTUALMENTE OCULTO',
+        'hidden' => 'O ARTISTA ESTÁ ATUALMENTE OCULTO',
     ],
 
     'beatmaps' => [
@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured artists são artistas dos quais estamos a trabalhar em colaboração com o objectivo de trazer musicas novas e originais para o osu!. Estes artistas e uma selecção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes featured artists também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
+        'description' => 'Featured artists são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer musicas novas e originais para o osu!. Estes artistas e uma seleção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes featured artists também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
     ],
 
     'links' => [
@@ -43,7 +43,7 @@ return [
 
     'songs' => [
         '_' => 'Canções',
-        'count' => ':count canções|:count canções',
+        'count' => ':count canção|:count canções',
         'exclusive' => 'exclusivo osu!',
     ],
 

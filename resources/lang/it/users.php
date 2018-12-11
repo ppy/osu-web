@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Cronologia Modding di :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discussioni aperte di recente',
@@ -84,7 +85,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':post dell\'utente',
+        'title' => 'Post di :username',
     ],
 
     'signup' => [
@@ -149,7 +150,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
                     'restriction_info' => "Caricamento disponibile solo per gli <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2000x700',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2800x620',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
                 ],
@@ -166,35 +167,38 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'unranked' => 'Nessuna partita recente',
 
             'achievements' => [
-                'title' => 'Obiettivi',
                 'achieved-on' => 'Raggiunto il :date',
+                'locked' => '',
+                'title' => 'Obiettivi',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nessuna... per ora.',
                 'title' => 'Beatmap',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Preferite (:count)',
+                    'title' => 'Beatmap Preferite',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmap abbandonate (:count)',
+                    'title' => 'Beatmap Abbandonate',
                 ],
                 'loved' => [
-                    'title' => 'Beatmap Amate (:count)',
+                    'title' => 'Beatmap Amate',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmap Classificate e Approvate (:count)',
+                    'title' => 'Beatmap Classificate e Approvate',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps In Attesa (:count)',
+                    'title' => 'Beatmap In Attesa',
                 ],
             ],
             'historical' => [
-                'empty' => 'Nessuna registrazione della performance. :(',
+                'empty' => 'Nessuna performance recente :(',
                 'title' => 'Cronologia',
 
                 'monthly_playcounts' => [
                     'title' => 'Cronologia Partite',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
@@ -206,6 +210,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Cronologia Replay Guardati',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -260,6 +265,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             ],
             'medals' => [
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
+                'recent' => '',
                 'title' => 'Medaglie',
             ],
             'recent_activity' => [
@@ -269,9 +275,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'download_replay' => 'Scarica Replay',
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Rank',
-                'weighted_pp' => 'valutata: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Migliore Performance',
@@ -302,6 +307,12 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
@@ -331,12 +342,16 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
+            'country_simple' => '',
             'global' => 'Rank globale :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei colpi',
             'level' => 'Livello :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo Massima',
+            'medals' => '',
             'play_count' => 'Partite giocate',
             'play_time' => 'Tempo totale di gioco',
             'ranked_score' => 'Punteggio Rankato',

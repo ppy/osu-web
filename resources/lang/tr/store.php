@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Sipariş verme tarihi :date',
 
         'invoice' => 'Faturayı Görüntüle',
+        'no_orders' => 'Görüntülenecek sipariş yok.',
 
         'item' => [
             'display_name' => [

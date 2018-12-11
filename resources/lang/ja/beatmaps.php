@@ -144,9 +144,9 @@ return [
     ],
 
     'nominations' => [
-        'delete' => '',
-        'delete_own_confirm' => '',
-        'delete_other_confirm' => '',
+        'delete' => '削除',
+        'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
+        'delete_other_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
         'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
         'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
         'disqualified_no_reason' => '理由が明示されていません',
@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'よろしいですか？新しい問題点を投稿すると審査中ではなくなります。',
+            'disqualify' => '',
         ],
     ],
 

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":userのModding履歴",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => '最近のディスカッション',
@@ -98,25 +99,25 @@ return [
     ],
     'logout_confirm' => 'ログアウトしてもよろしいですか？',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
+        'button_text' => '報告',
+        'comments' => '追加のコメント',
         'placeholder' => '',
-        'reason' => '',
-        'thanks' => '',
-        'title' => '',
+        'reason' => '理由',
+        'thanks' => 'ご報告ありがとうございます！',
+        'title' => ':usernameを報告しますか？',
 
         'actions' => [
-            'send' => '',
-            'cancel' => '',
+            'send' => 'レポートの送信',
+            'cancel' => 'キャンセル',
         ],
 
         'options' => [
-            'cheating' => '',
-            'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'cheating' => '不正行為・チート',
+            'insults' => 'あなた、もしくは第三者への罵倒',
+            'spam' => 'スパム行為',
+            'unwanted_content' => '不適切なコンテンツ',
+            'nonsense' => 'ナンセンスな行為',
+            'other' => 'その他 (下に入力してください)',
         ],
     ],
     'restricted_banner' => [
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'ここにドロップでアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
                     'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
-                    'size_info' => '推奨の画像サイズは2000x700です',
+                    'size_info' => '推奨の画像サイズは2800x620です',
                     'too_large' => '画像ファイルの容量が大きすぎます。',
                     'unsupported_format' => '対応している画像形式ではありません。',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => '最近のスコアはありません',
 
             'achievements' => [
-                'title' => '実績',
                 'achieved-on' => '取得日時 :date',
+                'locked' => '',
+                'title' => '実績',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'まだ、空っぽ。',
                 'title' => '譜面',
 
                 'favourite' => [
-                    'title' => 'お気に入りの譜面 (:count)',
+                    'title' => 'お気に入りの譜面',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyardの譜面 (:count)',
+                    'title' => 'Graveyardの譜面',
                 ],
                 'loved' => [
-                    'title' => 'Lovedされた譜面 (:count)',
+                    'title' => 'Lovedされた譜面',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'RankedかApprovedの譜面 (:count)',
+                    'title' => 'RankedかApprovedの譜面',
                 ],
                 'unranked' => [
-                    'title' => 'Pendingの譜面 (:count)',
+                    'title' => 'Pendingの譜面',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'プレイ回数の履歴',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'times played',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'リプレイの再生回数',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,18 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "このユーザーはまだメダルを取得していません。",
+                'recent' => '',
                 'title' => 'メダル',
             ],
             'recent_activity' => [
                 'title' => '最近の活動',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => 'リプレイの保存',
                 'empty' => 'まだ記録を作ってません！',
                 'not_ranked' => 'Ranked譜面のみがppを授与します。',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'ランク',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'ベストパフォーマンス',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => '趣味',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => ':modeの国内ランク',
+            'country_simple' => '',
             'global' => ':modeの世界ランク',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => '精度（Accuracy）',
             'level' => 'レベル :level',
+            'level_progress' => '',
             'maximum_combo' => '最大コンボ',
+            'medals' => '',
             'play_count' => 'プレイ回数',
             'play_time' => 'プレイ時間',
             'ranked_score' => '合計Rankedスコア',

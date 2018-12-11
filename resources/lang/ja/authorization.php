@@ -52,16 +52,16 @@ return [
     ],
 
     'chat' => [
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'restricted' => '',
+        'blocked' => 'あなたをブロックしているユーザーまたは、あなたがブロックしているユーザーとはメッセージはやり取りできません。',
+        'friends_only' => 'ユーザーは友達リストにいないユーザーからブロックされています。',
+        'moderated' => 'そのチャンネルは現在管理されています。',
+        'no_access' => 'あなたはそのチャンネルにアクセスするための権限を持っていません。',
+        'restricted' => 'あなたがbanされている間はメッセージを送信できません。',
     ],
 
     'comment' => [
         'update' => [
-            'deleted' => "",
+            'deleted' => "削除済みの投稿は編集できません。",
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'このフォーラムを管理する権限がありません。',
         ],
 
         'post' => [

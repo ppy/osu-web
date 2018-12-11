@@ -38,7 +38,7 @@ return [
         'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
         'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
         'drop_here' => 'Tvůj vstup přetáhni sem',
-        'download' => '',
+        'download' => 'Stáhnout .osz',
         'wrong_type' => [
             'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'hlasy',
-        'count' => '',
-        'points' => '',
+        'count' => ':count hlas|:count hlasů',
+        'points' => ':count bod|:count bodů',
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',

@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Haluatko varmasti poistaa viestin?',
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
-            'mail_disable' => 'Poista ilmoitukset käytöstä',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

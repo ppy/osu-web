@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'ライブ配信',
         'description' => '五分毎にtwitch.tvからデータを受信してリストを表示しています。osu!をプレイ中に設定して配信を始めるとリストに表示される様になります。配信方法についてはwikiを参照してください。',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => '配信中',

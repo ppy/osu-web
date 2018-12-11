@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Megrendelés feladva :date',
 
         'invoice' => 'Számla megtekintése',
+        'no_orders' => 'Nincs megtekinthető megrendelés.',
 
         'item' => [
             'display_name' => [

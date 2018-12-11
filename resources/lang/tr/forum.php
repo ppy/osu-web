@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Gerçekten gönderiyi silmek istiyor musun?',
         'confirm_restore' => 'Gönderiyi geri yükle?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Kayıtlı değil',
             'to_watching' => 'Kaydet',
             'to_watching_mail' => 'Bildirimlerle beraber kaydet',
-            'mail_disable' => 'Bildirimleri devre dışı bırak',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];
