@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '投稿を本当に削除しますか？',
         'confirm_restore' => '投稿を本当に復元しますか？',
@@ -87,11 +101,11 @@ return [
             'submit' => '投稿',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'このトピックはしばらくの間アクティブではありません。そのため、特別な理由がある場合のみここに投稿されます。',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "このトピックはしばらくアクティブになっていません。特別な理由がある場合、:createをしてください。",
+                    'create' => '新規トピックを作成',
                 ],
             ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'ブックマーク無し',
             'to_watching' => 'ブックマーク',
             'to_watching_mail' => 'ブックマーク（通知あり）',
-            'mail_disable' => '通知を無効にする',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "История редактирования карт пользователя :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Недавно начатые дискуссии',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Брось изображение сюда для загрузки',
                     'dropzone_info' => 'Вы также можете перетащить изображение сюда для загрузки',
                     'restriction_info' => "Загрузка своих обложек доступна только для владельцев <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'Размер обложки должен быть равен 2000x700',
+                    'size_info' => 'Размер обложки должен быть равен 2800x620',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Нет недавних игр',
 
             'achievements' => [
-                'title' => 'Достижения',
                 'achieved-on' => 'Получено :date',
+                'locked' => '',
+                'title' => 'Достижения',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ничего… пока что.',
                 'title' => 'Карты',
 
                 'favourite' => [
-                    'title' => 'Любимые карты (:count)',
+                    'title' => 'Любимые карты',
                 ],
                 'graveyard' => [
-                    'title' => 'Заброшенные карты (:count)',
+                    'title' => 'Заброшенные карты',
                 ],
                 'loved' => [
-                    'title' => 'Любимые карты (:count)',
+                    'title' => 'Любимые карты',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ранкнутые и одобренные карты (:count)',
+                    'title' => 'Ранкнутые и одобренные карты',
                 ],
                 'unranked' => [
-                    'title' => 'Ожидающие проверки (:count)',
+                    'title' => 'Ожидающие проверки',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'История игр',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'количество игр',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История просмотров реплеев',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Этот пользователь ещё ничего не получил. ;_;",
+                'recent' => '',
                 'title' => 'Медали',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Скачать повтор',
                 'empty' => 'Никаких записей об удивительной производительности пока нет. :(',
                 'not_ranked' => 'Очки производительности выдаются только за ранкнутые карты.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Рейтинги',
-                'weighted_pp' => 'взвешено: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Лучшая производительность',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Интересы',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',
+            'country_simple' => '',
             'global' => 'Глобальный рейтинг для :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',
             'level' => 'Уровень :level',
+            'level_progress' => '',
             'maximum_combo' => 'Максимальное комбо',
+            'medals' => '',
             'play_count' => 'Количество игр',
             'play_time' => 'Всего времени в игре',
             'ranked_score' => 'Рейтинговые очки',

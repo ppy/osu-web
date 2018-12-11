@@ -25,4 +25,8 @@ return [
             'too_long' => '',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

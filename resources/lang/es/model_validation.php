@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '¡Este ya es tu nombre de usuario, tonto!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

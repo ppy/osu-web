@@ -52,7 +52,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => '削除されたコメントに返信することはできません。',
     ],
 
     'forum' => [
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '選択肢の重複があります。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '既に使用しているユーザーネームです！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

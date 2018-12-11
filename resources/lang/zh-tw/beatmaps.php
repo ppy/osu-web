@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
+            'disqualify' => '',
         ],
     ],
 

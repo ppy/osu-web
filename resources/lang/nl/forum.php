@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Will je deze post echt verwijderen?',
         'confirm_restore' => 'Will je deze post echt terugzetten?',
@@ -87,11 +101,11 @@ return [
             'submit' => 'Post',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Dit onderwerp is al een tijdje inactief. Maak alleen een post hier als je een specifieke reden daarvoor hebt.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Dit onderwerp is al een tijdje inactief. Als je geen specifieke reden om hier te posten hebt, :create in plaats daarvan.",
+                    'create' => 'maak een onderwerp aan',
                 ],
             ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Heeft geen bladwijzer',
             'to_watching' => 'Voeg bladwijzer toe',
             'to_watching_mail' => 'Voeg bladwijzer met notificaties toe',
-            'mail_disable' => 'Melding uitschakelen',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

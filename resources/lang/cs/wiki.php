@@ -34,10 +34,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Tento překlad je poskytnutý jen pro vaše pohodlí. Původní :default by měla být jedinou právně závazní verzí tohoto textu.',
+            'outdated' => 'Tato stránka obsahuje zastaralý překlad původního obsahu. Prosím, koukněte na :default pro co nejvíc přesné informace (a zvažujte aktualizaci překladu, pokud je to možné pomoci)!',
 
-            'default' => '',
+            'default' => 'Anglická verze',
         ],
     ],
 ];

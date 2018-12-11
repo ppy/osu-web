@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 지명 상태를 초기화시킵니다.',
+            'disqualify' => '',
         ],
     ],
 

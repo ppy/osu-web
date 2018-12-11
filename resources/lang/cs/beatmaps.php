@@ -144,9 +144,9 @@ return [
     ],
 
     'nominations' => [
-        'delete' => '',
-        'delete_own_confirm' => '',
-        'delete_other_confirm' => '',
+        'delete' => 'Vymazat',
+        'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',
+        'delete_other_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na profil uživatele.',
         'disqualification_prompt' => 'Důvod pro diskvalifikaci?',
         'disqualified_at' => 'Diskvalifikována před :time_ago (:reason).',
         'disqualified_no_reason' => 'žádný důvod nebyl určen',
@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
+            'disqualify' => '',
         ],
     ],
 

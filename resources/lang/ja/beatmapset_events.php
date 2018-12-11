@@ -45,8 +45,8 @@ return [
         'title' => 'ビートマップセットイベント',
 
         'form' => [
-            'period' => '',
-            'types' => '',
+            'period' => '期間',
+            'types' => '種類',
         ],
     ],
 
@@ -57,8 +57,8 @@ return [
     ],
 
     'type' => [
-        'approve' => '',
-        'discussion_delete' => '',
+        'approve' => '承認',
+        'discussion_delete' => 'ディスカッション上の質問',
         'discussion_post_delete' => '',
         'discussion_post_restore' => '',
         'discussion_restore' => '',
@@ -67,13 +67,13 @@ return [
         'issue_resolve' => '',
         'kudosu_allow' => '',
         'kudosu_deny' => '',
-        'kudosu_gain' => '',
-        'kudosu_lost' => '',
-        'kudosu_recalculate' => '',
-        'love' => '',
-        'nominate' => '',
-        'nomination_reset' => '',
+        'kudosu_gain' => 'Kudosuを獲得する',
+        'kudosu_lost' => 'Kudosuを失う',
+        'kudosu_recalculate' => 'Kudosuを計算し直す',
+        'love' => 'Love',
+        'nominate' => 'ノミネーション',
+        'nomination_reset' => 'ノミネーションを取り消し',
         'qualify' => '',
-        'rank' => '',
+        'rank' => 'Ranked中',
     ],
 ];

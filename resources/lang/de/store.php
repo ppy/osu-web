@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Bestellung aufgegeben am :date',
 
         'invoice' => 'Rechnung anzeigen',
+        'no_orders' => 'Keine Bestellungen zum anzeigen.',
 
         'item' => [
             'display_name' => [
