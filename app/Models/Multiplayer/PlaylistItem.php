@@ -74,7 +74,7 @@ class PlaylistItem extends \App\Models\Model
         foreach ($mods as $mod) {
             if (isset($mod['acronym'])) {
                 $acronym = strtoupper($mod['acronym']);
-                if (!in_array($acronym, Mod::validModsForRuleset($this->ruleset_id))) {
+                if (!Mod::validForRuleset($acronym, $this->ruleset_id)) {
                     throw new \InvalidArgumentException("invalid mod in '{$mode}': {$acronym}");
                 }
 

@@ -58,7 +58,7 @@ class Mod
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
 
-    // not scorable
+    // non-scorable
     const AUTOPLAY = 'AT';
     const CINEMA = 'CN';
     const NOMOD = 'NM';
@@ -193,5 +193,10 @@ class Mod
         }
 
         return self::validityByRuleset()[$rulesetId];
+    }
+
+    public static function validForRuleset($acronym, $ruleset)
+    {
+        return in_array($acronym, self::validModsForRuleset($ruleset));
     }
 }
