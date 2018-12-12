@@ -85,7 +85,7 @@ class RoomsController extends BaseController
             abort(403, 'number of simultaneously active rooms reached');
         }
 
-        foreach (['name', 'max_attempts', 'playlist'] as $field) {
+        foreach (['name', 'playlist'] as $field) {
             if (!Request::has($field) || !present(Request::input($field))) {
                 abort(422, "field '{$field}' required");
             }
@@ -145,12 +145,19 @@ class RoomsController extends BaseController
             abort(422, "field 'duration' or 'ends_at' required");
         }
 
+        if (Request::has('max_attempts')) {
+            $maxAttempts = get_int(Request::input('max_attempts'));
+            if ($maxAttempts < 1 || $maxAttempts > 32) {
+                abort(422, "field 'max_attempts' must be between 1 and 32");
+            }
+        }
+
         $roomOptions = [
-            'name' => Request::input('name'),
+            'name' => $name,
             'user_id' => $currentUser->user_id,
             'starts_at' => $startTime,
             'ends_at' => $endTime,
-            'max_attempts' => Request::input('max_attempts'),
+            'max_attempts' => presence($maxAttempts),
         ];
 
         $room = DB::transaction(function () use ($roomOptions, $playlistItems) {

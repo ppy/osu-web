@@ -22,7 +22,7 @@ class CreateRooms extends Migration
             $table->timestampTz('starts_at')->useCurrent();
             $table->timestampTz('ends_at')->useCurrent();
 
-            $table->unsignedSmallInteger('max_attempts');
+            $table->unsignedTinyInteger('max_attempts')->nullable();
 
             $table->timestampsTz();
             $table->softDeletes();
