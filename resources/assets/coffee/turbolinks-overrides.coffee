@@ -26,7 +26,8 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
   return if !target?
 
   e.preventDefault()
-  history.pushState null, document.title, href if location.href != href
+  # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
+  Turbolinks.controller.advanceHistory href if location.href != href
   target.scrollIntoView()
 
 
