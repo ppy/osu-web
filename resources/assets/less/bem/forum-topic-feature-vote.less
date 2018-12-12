@@ -36,20 +36,18 @@
   &__star {
     color: @yellow-light;
     opacity: 0.6;
-
-    & + & {
-      margin-left: -0.9em;
-    }
+    margin-right: -0.9em;
 
     &:last-child {
       color: @yellow;
       opacity: 1;
+      margin-right: 0;
     }
   }
 
   &__votes {
     text-align: center;
-    margin: 5px;
+    margin: 5px 0.9em 5px 0;
 
     &--small {
       font-size: 0.8em;
