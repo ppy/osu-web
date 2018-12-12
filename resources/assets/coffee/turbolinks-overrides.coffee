@@ -26,6 +26,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
   return if !target?
 
   e.preventDefault()
+  history.pushState null, document.title, href if location.href != href
   target.scrollIntoView()
 
 
