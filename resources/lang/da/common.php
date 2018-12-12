@@ -63,6 +63,7 @@ return [
         'hours' => ':count time|:count timer',
         'item' => ':count unit|:count units',
         'minute_short_unit' => '',
+        'minutes' => '',
         'months' => ':count måned|:count måneder',
         'second_short_unit' => '',
         'years' => ':count år|:count år',

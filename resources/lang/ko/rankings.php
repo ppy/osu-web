@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
+        'end_date' => '마감일',
+        'map_count' => '맵 개수',
         'participants' => '참가자',
-        'start_date' => '',
+        'start_date' => '시작일',
     ],
 
     'stat' => [

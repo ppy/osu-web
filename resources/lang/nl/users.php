@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding geschiedenis",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Recent gestarte discussies',
@@ -98,7 +99,7 @@ return [
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'report' => [
-        'button_text' => '',
+        'button_text' => 'rapporteer',
         'comments' => 'Aanvullende opmerkingen',
         'placeholder' => '',
         'reason' => 'Reden',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
                     'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Cover grootte moet 2000x700 zijn',
+                    'size_info' => 'Cover grootte moet 2800x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
-                'title' => 'Prestaties',
                 'achieved-on' => 'Behaald op :date',
+                'locked' => '',
+                'title' => 'Prestaties',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
+                    'title' => 'Favoriete Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps in het kerkhof (:count)',
+                    'title' => 'Beatmaps in het kerkhof',
                 ],
                 'loved' => [
-                    'title' => 'Geliefde Beatmappen (:count)',
+                    'title' => 'Geliefde Beatmappen',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                    'title' => 'Gerankte & Goedgekeurde Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Afwachtende Beatmaps (:count)',
+                    'title' => 'Afwachtende Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Speelgeschiedenis',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'keer gespeeld',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Gekeken Geschiedenis',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
+                'recent' => '',
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => '',
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranks',
-                'weighted_pp' => 'gewogen: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Beste Prestatie',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
+            'country_simple' => '',
             'global' => 'Globale rank voor :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximum Combo',
+            'medals' => '',
             'play_count' => 'Play Count',
             'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',

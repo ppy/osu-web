@@ -35,9 +35,9 @@ return [
 
         'translation' => [
             'legal' => '',
-            'outdated' => '',
+            'outdated' => 'Esta página contiene una traducción desactualizada del contenido original. !Por favor revisa la :default para información más precisa (y considera actualizar la traducción si puedes ayudar)!',
 
-            'default' => '',
+            'default' => 'Versión en inglés',
         ],
     ],
 ];

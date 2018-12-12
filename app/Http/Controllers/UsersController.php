@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -85,10 +86,10 @@ class UsersController extends Controller
     {
         $username = Request::input('username');
 
-        $errors = Auth::user()->validateUsernameChangeTo($username);
+        $errors = Auth::user()->validateChangeUsername($username);
 
-        $available = count($errors) === 0;
-        $message = $available ? "Username '".e($username)."' is available!" : implode(' ', $errors);
+        $available = $errors->isEmpty();
+        $message = $available ? "Username '".e($username)."' is available!" : $errors->toSentence();
         $cost = $available ? Auth::user()->usernameChangeCost() : 0;
 
         return [
@@ -137,9 +138,11 @@ class UsersController extends Controller
 
         $registration = new UserRegistration($params);
 
-        if ($registration->save()) {
+        try {
+            $registration->save();
+
             return $registration->user()->fresh()->defaultJson();
-        } else {
+        } catch (ValidationException $e) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),
             ]], 422);

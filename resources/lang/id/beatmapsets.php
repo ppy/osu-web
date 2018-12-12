@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
             'favourited_count' => '+ :count lagi!',
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
-            'bpm' => 'BPM',
-            'count_circles' => 'Jumlah Circle',
-            'count_sliders' => 'Jumlah Slider',
-            'user-rating' => 'Nilai Pengguna',
-            'rating-spread' => 'Persebaran Nilai Pengguna',
-            'nominations' => 'Nominasi',
-            'playcount' => 'Jumlah Dimainkan',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Deskripsi',
             'genre' => 'Aliran',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tag',
             'unranked' => 'Beatmap ini tidak berstatus Ranked.',
         ],
+
         'scoreboard' => [
             'achieved' => 'dicapai pada :when',
             'country' => 'Peringkat Negara',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Di Posisi Pertama',
                 'own' => 'Rekor Anda',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Durasi',
+            'bpm' => 'BPM',
+            'count_circles' => 'Jumlah Circle',
+            'count_sliders' => 'Jumlah Slider',
+            'user-rating' => 'Nilai Pengguna',
+            'rating-spread' => 'Persebaran Nilai Pengguna',
+            'nominations' => 'Nominasi',
+            'playcount' => 'Jumlah Dimainkan',
         ],
     ],
 ];

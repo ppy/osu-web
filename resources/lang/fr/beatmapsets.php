@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Retirer ce beatmapset des favoris',
             'favourited_count' => '+ 1 autre!|+ :count autres!',
         ],
-        'stats' => [
-            'cs' => 'Taille des Cercles',
-            'cs-mania' => 'Nombre de touches',
-            'drain' => 'Drainage PV',
-            'accuracy' => 'Précision',
-            'ar' => 'Niveau d\'approche',
-            'stars' => 'Difficulté en étoiles',
-            'total_length' => 'Longueur',
-            'bpm' => 'BPM',
-            'count_circles' => 'Nombre de Cercles',
-            'count_sliders' => 'Nombre de Sliders',
-            'user-rating' => 'Évaluation des joueurs',
-            'rating-spread' => 'Propagation note',
-            'nominations' => 'Nominations',
-            'playcount' => 'Nombre de joueurs',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Description',
             'genre' => 'Genre',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Beatmap non classée',
         ],
+
         'scoreboard' => [
             'achieved' => 'atteint :when',
             'country' => 'Classement national',
@@ -112,6 +112,23 @@ return [
                 'first' => 'En Tête',
                 'own' => 'Votre meilleur',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Taille des Cercles',
+            'cs-mania' => 'Nombre de touches',
+            'drain' => 'Drainage PV',
+            'accuracy' => 'Précision',
+            'ar' => 'Niveau d\'approche',
+            'stars' => 'Difficulté en étoiles',
+            'total_length' => 'Longueur',
+            'bpm' => 'BPM',
+            'count_circles' => 'Nombre de Cercles',
+            'count_sliders' => 'Nombre de Sliders',
+            'user-rating' => 'Évaluation des joueurs',
+            'rating-spread' => 'Propagation note',
+            'nominations' => 'Nominations',
+            'playcount' => 'Nombre de joueurs',
         ],
     ],
 ];

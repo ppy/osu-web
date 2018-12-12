@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Заказ размещён :date',
 
         'invoice' => 'Просмотр счёта',
+        'no_orders' => 'Вы ничего не заказывали.',
 
         'item' => [
             'display_name' => [

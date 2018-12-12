@@ -63,6 +63,7 @@ return [
         'hours' => ':count stunde|:count stunden',
         'item' => ':count Artikel',
         'minute_short_unit' => 'min.|min.',
+        'minutes' => '',
         'months' => ':count monat|:count monate',
         'second_short_unit' => 'sek.|sek.',
         'years' => ':count jahr|:count jahre',

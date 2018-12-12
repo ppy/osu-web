@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Remover dos favoritos',
             'favourited_count' => '+ 1 favorito!|+ :count outros favoritos!',
         ],
-        'stats' => [
-            'cs' => 'Tamanho do Círculo',
-            'cs-mania' => 'Número de Teclas',
-            'drain' => 'Dreno de HP',
-            'accuracy' => 'Precisão',
-            'ar' => 'Velocidade de Aproximação',
-            'stars' => 'Dificuldade',
-            'total_length' => 'Duração',
-            'bpm' => 'BPM',
-            'count_circles' => 'Quantidade de Círculos',
-            'count_sliders' => 'Quantidade de Sliders',
-            'user-rating' => 'Avaliação',
-            'rating-spread' => 'Gráfico de Avaliações',
-            'nominations' => 'Nomeações',
-            'playcount' => 'Vezes Jogadas',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Descrição',
             'genre' => 'Gênero',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Beatmap não ranqueado',
         ],
+
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Na Liderança',
                 'own' => 'Seu Melhor',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Tamanho do Círculo',
+            'cs-mania' => 'Número de Teclas',
+            'drain' => 'Dreno de HP',
+            'accuracy' => 'Precisão',
+            'ar' => 'Velocidade de Aproximação',
+            'stars' => 'Dificuldade',
+            'total_length' => 'Duração',
+            'bpm' => 'BPM',
+            'count_circles' => 'Quantidade de Círculos',
+            'count_sliders' => 'Quantidade de Sliders',
+            'user-rating' => 'Avaliação',
+            'rating-spread' => 'Gráfico de Avaliações',
+            'nominations' => 'Nomeações',
+            'playcount' => 'Vezes Jogadas',
         ],
     ],
 ];

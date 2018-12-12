@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
         ],
-        'stats' => [
-            'cs' => 'Tamaño del Círculo',
-            'cs-mania' => 'Cantidad de Teclas',
-            'drain' => 'Drenado de HP',
-            'accuracy' => 'Precisión',
-            'ar' => 'Velocidad de aproximación',
-            'stars' => 'Estrellas de Dificultad',
-            'total_length' => 'Duración',
-            'bpm' => 'BPM',
-            'count_circles' => 'Número de Círculos',
-            'count_sliders' => 'Número de Deslizadores',
-            'user-rating' => 'Valoración de los Usuarios',
-            'rating-spread' => 'Desglose de valoraciones',
-            'nominations' => 'Nominaciones',
-            'playcount' => 'Veces jugado',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Descripción',
             'genre' => 'Género',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap no rankeado',
         ],
+
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Ranking Nacional',
@@ -112,6 +112,23 @@ return [
                 'first' => 'A la cabeza',
                 'own' => 'Tu mejor puntuación',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Tamaño del Círculo',
+            'cs-mania' => 'Cantidad de Teclas',
+            'drain' => 'Drenado de HP',
+            'accuracy' => 'Precisión',
+            'ar' => 'Velocidad de aproximación',
+            'stars' => 'Estrellas de Dificultad',
+            'total_length' => 'Duración',
+            'bpm' => 'BPM',
+            'count_circles' => 'Número de Círculos',
+            'count_sliders' => 'Número de Deslizadores',
+            'user-rating' => 'Valoración de los Usuarios',
+            'rating-spread' => 'Desglose de valoraciones',
+            'nominations' => 'Nominaciones',
+            'playcount' => 'Veces jugado',
         ],
     ],
 ];
