@@ -57,7 +57,7 @@ On your server, a virtual machine, whatever.
 ### Run automated configuration
 Note these script are intended to be run in a *sandboxed environment*; do not run on a shared development system without first understanding what is being done.
 ```bash
-$ sudo bootstrap.sh
+$ sudo ./bootstrap.sh
 $ ./build.sh
 ```
 
