@@ -220,6 +220,7 @@ class User extends Model implements AuthenticatableContract
         return $existing;
     }
 
+    // TODO: be able to change which connection this runs on?
     public static function findByUsernameForInactive($username) : ?self
     {
         return static::whereIn(
