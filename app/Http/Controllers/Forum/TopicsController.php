@@ -463,6 +463,8 @@ class TopicsController extends Controller
             $ret[$username] += $vote->voteIncrement();
         }
 
+        arsort($ret);
+
         return $ret;
     }
 }
