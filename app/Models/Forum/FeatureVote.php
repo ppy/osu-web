@@ -48,11 +48,12 @@ class FeatureVote extends Model
 
     public function voteIncrement()
     {
-        if ($this->user && $this->user->osu_subscriber) {
-            return 2;
+        switch ($this->type) {
+            case 'supporter':
+                return 2;
+            case 'user':
+                return 1;
         }
-
-        return 1;
     }
 
     public function setType()
