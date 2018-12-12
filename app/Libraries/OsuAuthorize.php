@@ -1016,7 +1016,7 @@ class OsuAuthorize
         $page = $pageOwner->userPage;
 
         if ($page === null) {
-            if (!$user->osu_subscriber) {
+            if (!$user->hasSupported()) {
                 return $prefix.'require_supporter_tag';
             }
         } else {
