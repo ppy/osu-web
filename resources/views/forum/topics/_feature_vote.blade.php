@@ -47,19 +47,18 @@
 
         @if (Auth::check())
             <div class="forum-topic-feature-vote__button">
-                @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
-                    <button
-                        class="btn-osu-big btn-osu-big--rounded"
-                        data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
-                        data-method="POST"
-                        data-remote=1
-                        data-disable-with="{{ trans('common.buttons.saving') }}"
-                    >
-                        {{ trans('forum.topics.show.feature_vote.do') }}
-                    </button>
-                @else
-                        {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
-                @endif
+                <button
+                    class="btn-osu-big btn-osu-big--rounded"
+                    data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
+                    data-method="POST"
+                    data-remote=1
+                    data-disable-with="{{ trans('common.buttons.saving') }}"
+                    @if (Auth::user()->osu_featurevotes < App\Models\Forum\FeatureVote::COST)
+                        disabled
+                    @endif
+                >
+                    {{ trans('forum.topics.show.feature_vote.do') }}
+                </button>
             </div>
 
             <div class="forum-topic-feature-vote__remaining">
