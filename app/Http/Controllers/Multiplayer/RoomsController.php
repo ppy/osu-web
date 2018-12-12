@@ -85,7 +85,7 @@ class RoomsController extends BaseController
             abort(403, 'number of simultaneously active rooms reached');
         }
 
-        foreach (['name', 'max_attempts', 'playlist_items'] as $field) {
+        foreach (['name', 'max_attempts', 'playlist'] as $field) {
             if (!Request::has($field) || !present(Request::input($field))) {
                 abort(422, "field '{$field}' required");
             }
@@ -93,8 +93,8 @@ class RoomsController extends BaseController
             $$field = Request::input($field);
         }
 
-        if (!is_array($playlist_items) || empty($playlist_items)) {
-            abort(422, "field 'playlist_items' cannot be empty");
+        if (!is_array($playlist) || empty($playlist)) {
+            abort(422, "field 'playlist' cannot be empty");
         } else {
             $playlistBeatmaps = array_map(function ($item) {
                 if (isset($item['beatmap_id'])) {
@@ -102,12 +102,12 @@ class RoomsController extends BaseController
                 } else {
                     abort(422, "playlist item missing field 'beatmap_id'");
                 }
-            }, $playlist_items);
+            }, $playlist);
 
             $beatmaps = Beatmap::whereIn('beatmap_id', $playlistBeatmaps)->get();
 
-            $playlist = [];
-            foreach ($playlist_items as $item) {
+            $playlistItems = [];
+            foreach ($playlist as $item) {
                 foreach (['beatmap_id', 'ruleset_id'] as $field) {
                     if (!isset($item[$field]) || !present($item[$field])) {
                         abort(422, "playlist item missing field '{$field}'");
@@ -118,7 +118,7 @@ class RoomsController extends BaseController
                     abort(422, "beatmap not found: {$item['beatmap_id']}");
                 }
 
-                $playlist[] = [
+                $playlistItems[] = [
                     'beatmapId' => $item['beatmap_id'],
                     'rulesetId' => $item['ruleset_id'],
                     'allowedMods' => isset($item['allowed_mods']) ? $item['allowed_mods'] : [],
@@ -153,11 +153,11 @@ class RoomsController extends BaseController
             'max_attempts' => Request::input('max_attempts'),
         ];
 
-        $room = DB::transaction(function () use ($roomOptions, $playlist) {
+        $room = DB::transaction(function () use ($roomOptions, $playlistItems) {
             $room = new Room($roomOptions);
             $room->save();
 
-            foreach ($playlist as $item) {
+            foreach ($playlistItems as $item) {
                 try {
                     $playlistItem = new PlaylistItem();
                     $playlistItem->beatmap_id = $item['beatmapId'];
