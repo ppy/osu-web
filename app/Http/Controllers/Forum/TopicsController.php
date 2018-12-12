@@ -228,6 +228,7 @@ class TopicsController extends Controller
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
+                'featureVotes.user',
             ])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
@@ -329,6 +330,8 @@ class TopicsController extends Controller
         $poll->setTopic($topic);
         $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
 
+        $featureVotes = $this->groupFeatureVotes($topic);
+
         return view(
             "forum.topics.{$template}",
             compact(
@@ -338,6 +341,7 @@ class TopicsController extends Controller
                 'jumpTo',
                 'pollSummary',
                 'posts',
+                'featureVotes',
                 'firstPostPosition',
                 'firstPostId',
                 'topic',
@@ -447,5 +451,18 @@ class TopicsController extends Controller
             'title',
             'vote_change:bool',
         ]);
+    }
+
+    private function groupFeatureVotes($topic)
+    {
+        $ret = [];
+
+        foreach ($topic->featureVotes as $vote) {
+            $username = optional($vote->user)->username;
+            $ret[$username] ?? ($ret[$username] = 0);
+            $ret[$username] += $vote->voteIncrement();
+        }
+
+        return $ret;
     }
 }

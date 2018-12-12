@@ -32,4 +32,27 @@
   &__remaining {
     font-size: @font-size--title-small;
   }
+
+  &__star {
+    color: @yellow-light;
+    opacity: 0.6;
+
+    & + & {
+      margin-left: -0.9em;
+    }
+
+    &:last-child {
+      color: @yellow;
+      opacity: 1;
+    }
+  }
+
+  &__votes {
+    text-align: center;
+    margin: 5px;
+
+    &--small {
+      font-size: 0.8em;
+    }
+  }
 }

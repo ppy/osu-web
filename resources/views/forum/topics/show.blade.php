@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -44,46 +44,7 @@
     @endif
 
     @if ($topic->isFeatureTopic())
-        <div class="osu-page osu-page--forum-topic-feature-vote">
-            <div class="forum-topic-feature-vote">
-                <div class="forum-topic-feature-vote__info">
-                    {!! trans('forum.topics.show.feature_vote.info._', [
-                        'feature_request' => '<strong>'.trans('forum.topics.show.feature_vote.info.feature_request').'</strong>',
-                        'supporters' => link_to(route('support-the-game'), trans('forum.topics.show.feature_vote.info.supporters')),
-                    ]) !!}
-                </div>
-
-                <div>
-                    {{ trans('forum.topics.show.feature_vote.current', [
-                        'count' => number_format($topic->osu_starpriority),
-                    ]) }}
-                </div>
-
-                @if (Auth::check())
-                    <div class="forum-topic-feature-vote__button">
-                        @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
-                            <button
-                                class="btn-osu-big btn-osu-big--rounded"
-                                data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
-                                data-method="POST"
-                                data-remote=1
-                                data-disable-with="{{ trans('common.buttons.saving') }}"
-                            >
-                                {{ trans('forum.topics.show.feature_vote.do') }}
-                            </button>
-                        @else
-                                {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
-                        @endif
-                    </div>
-
-                    <div class="forum-topic-feature-vote__remaining">
-                        {!! trans('forum.topics.show.feature_vote.user.current', [
-                            'votes' => '<strong>'.trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes).'</strong>',
-                        ]) !!}
-                    </div>
-                @endif
-            </div>
-        </div>
+        @include ('forum.topics._feature_vote')
     @endif
 
     <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
