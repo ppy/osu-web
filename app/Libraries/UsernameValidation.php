@@ -124,8 +124,8 @@ class UsernameValidation
 
     public static function usersOfUsername(string $username) : Collection
     {
-        $user_ids = UsernameChangeHistory::on('mysql-readonly')->where('username_last', $username)->pluck('user_id');
-        $users = User::on('mysql-readonly')->whereIn('user_id', $user_ids)->get();
+        $userIds = UsernameChangeHistory::on('mysql-readonly')->where('username_last', $username)->pluck('user_id');
+        $users = User::on('mysql-readonly')->whereIn('user_id', $userIds)->get();
         $existing = User::findByUsernameForInactive($username);
         if ($existing !== null) {
             $users->push($existing);
