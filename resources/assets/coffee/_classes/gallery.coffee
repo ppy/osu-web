@@ -25,11 +25,11 @@ class @Gallery
 
 
   initiateOpen: (e) =>
-      $target = $(e.currentTarget)
-      return if $target.parents('a').length
+    $target = $(e.currentTarget)
+    return if $target.parents('a').length
 
-      e.preventDefault()
-      @open $target
+    e.preventDefault()
+    @open $target
 
 
   open: ($target) =>
