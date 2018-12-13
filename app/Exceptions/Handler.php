@@ -101,11 +101,7 @@ class Handler extends ExceptionHandler
         }
 
         if (config('app.debug')) {
-            if ($this->isHttpException($e)) {
-                $response = $this->renderHttpException($e);
-            } else {
-                $response = parent::render($request, $e);
-            }
+            $response = parent::render($request, $e);
         } else {
             $message = $this->exceptionMessage($e);
 
