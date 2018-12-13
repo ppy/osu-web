@@ -28,5 +28,9 @@ return [
 
     'scopes' => [
         'identify' => 'Identify you and read your public profile.',
+
+        'friends' => [
+            'read' => 'See who you are following.',
+        ],
     ],
 ];
