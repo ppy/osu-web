@@ -30,13 +30,23 @@ class RankHistory extends Model
     {
         $data = [];
 
-        $startOffset = Count::currentRankStart() + 1;
-        $end = $startOffset + 89;
+        $startOffset = Count::currentRankStart();
+        $end = $startOffset + 90;
 
         for ($i = $startOffset; $i < $end; $i++) {
             $column = 'r'.strval($i % 90);
 
             $data[] = intval($this->$column);
+        }
+
+        if (count($data) > 2) {
+            $diffHead = $data[0] - $data[1];
+            $diffTail = $data[0] - array_last($data);
+
+            if (abs($diffTail) < abs($diffHead)) {
+                $lastRank = array_shift($data);
+                $data[] = $lastRank;
+            }
         }
 
         return $data;

@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -15,39 +17,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Libraries\UsernameValidation;
+use App\Models\User;
+use Carbon\Carbon;
 
-.flag-country {
-  .default-box-shadow();
-  .default-border-radius();
+// FIXME: need more tests
+class UsernameValidationTest extends TestCase
+{
+    public function testusersOfUsernameIncludesCurrentUsernameOwner()
+    {
+        $existing = factory(User::class)->create([
+            'username' => 'user1',
+            'username_clean' => 'user1',
+            'user_lastvisit' => Carbon::now()->subYear(),
+        ]);
 
-  height: 20px;
-  width: 30px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-
-  &--full {
-    width: 100%;
-    height: 100%;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-  &--small-box {
-    width: 19px;
-    height: 13px;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  &--userinfo-small {
-    margin: 0 0 0 8px;
-    box-shadow: none;
-  }
-
-  &--scoreboard {
-    box-shadow: none;
-  }
+        $users = UsernameValidation::usersOfUsername('user1');
+        $this->assertCount(1, $users);
+        $this->assertTrue($existing->is($users->first()));
+    }
 }

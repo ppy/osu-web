@@ -68,14 +68,16 @@ class ProfilePage.Links extends React.PureComponent
   textMapping =
     join_date: (val) ->
       joinDate = moment(val)
-      joinDateTitle = joinDate.format('LL')
+      joinDateTitle = joinDate.toISOString()
 
       if joinDate.isBefore moment.utc([2008])
         title: joinDateTitle
+        extraClasses: 'js-tooltip-time'
         html: osu.trans 'users.show.first_members'
       else
         html: osu.trans 'users.show.joined_at',
           date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')),
+            className: 'js-tooltip-time'
             title: joinDateTitle
 
     last_visit: (val) ->
@@ -147,10 +149,10 @@ class ProfilePage.Links extends React.PureComponent
 
     return unless value?
 
-    {html, title} = textMapping[key](value, @props.user)
+    {extraClasses, html, title} = textMapping[key](value, @props.user)
 
     div
-      className: "#{bn}__item"
+      className: "#{bn}__item #{extraClasses ? ''}"
       key: key
       title: title
       dangerouslySetInnerHTML:

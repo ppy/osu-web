@@ -386,38 +386,26 @@ class BBCodeFromDB
 
     public static function removeBlockQuotes($text)
     {
-        $level = 0;
-        $marker = 0;
+        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
 
-        while ($marker >= 0 && $marker < mb_strlen($text) && $level >= 0) {
-            $match = static::scanForNextQuoteTag($text, $marker);
-            if ($match === null) {
-                return $text;
-            }
+        $matchCount = preg_match_all($pattern, $text);
+        $quotePositions = [];
+
+        for ($_ = 0; $_ < $matchCount; $_++) {
+            $offset = $quotePositions[count($quotePositions) - 1][1] ?? 0;
+            preg_match($pattern, $text, $match, PREG_OFFSET_CAPTURE, $offset);
 
             if (present($match['start'][0])) {
-                $marker = $match['start'][1] + mb_strlen($match['start'][0]);
-                $level++;
-            } elseif (present($match['end'][0])) {
-                $level--;
-                $marker = $match['end'][1] + mb_strlen($match['end'][0]);
-                if ($level === 0) {
-                    $text = mb_substr($text, $marker, mb_strlen($text) - $marker);
-                }
-            } else {
-                $marker = -1;
+                $quotePositions[] = [
+                    $match['start'][1],
+                    $match['start'][1] + strlen($match['start'][0]),
+                ];
+            } elseif (!empty($quotePositions)) {
+                $quoteEnd = $match['end'][1] + strlen($match['end'][0]);
+                $text = substr($text, 0, array_pop($quotePositions)[0]).substr($text, $quoteEnd);
             }
         }
 
         return $text;
-    }
-
-    private static function scanForNextQuoteTag(string $text, $from = 0)
-    {
-        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
-
-        if (preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $from) === 1) {
-            return $matches;
-        }
     }
 }
