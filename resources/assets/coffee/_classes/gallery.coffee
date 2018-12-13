@@ -44,24 +44,21 @@ class @Gallery
       index: index
       history: false
 
-
     gallery.init()
 
 
   data: (galleryId) ->
-    $(".js-gallery[data-gallery-id='#{galleryId}']").map (_i, el) ->
-      src = el.getAttribute('data-src') || el.getAttribute('href')
-      {
-        msrc: src
-        src: src
-        w: parseInt el.getAttribute('data-width'), 10
-        h: parseInt el.getAttribute('data-height'), 10
-      }
-    .get()
+    for el in document.querySelectorAll(".js-gallery[data-gallery-id='#{galleryId}']")
+      src = el.getAttribute('data-src') ? el.getAttribute('href')
+
+      msrc: src
+      src: src
+      w: parseInt el.getAttribute('data-width'), 10
+      h: parseInt el.getAttribute('data-height'), 10
 
 
   thumbBoundsFn: (galleryId) =>
-    return (i) =>
+    (i) =>
       $thumb = $(".js-gallery[data-gallery-id='#{galleryId}'][data-index='#{i}']")
       thumbPos = $thumb.offset()
 
@@ -83,11 +80,9 @@ class @Gallery
       scale = Math.max thumbDim[0] / imageDim[0], thumbDim[1] / imageDim[1]
       scaledImageDim = imageDim.map (s) -> s * scale
 
-      {
-        x: center[0] - scaledImageDim[0] / 2
-        y: center[1] - scaledImageDim[1] / 2
-        w: scaledImageDim[0]
-      }
+      x: center[0] - scaledImageDim[0] / 2
+      y: center[1] - scaledImageDim[1] / 2
+      w: scaledImageDim[0]
 
 
   switchPreview: (e) =>
