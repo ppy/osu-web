@@ -146,6 +146,9 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
+            el _exported.ReportComment,
+              comment: @props.comment
+
             if @canModerate()
               div className: 'comment__row-item',
                 a

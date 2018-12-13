@@ -18,3 +18,6 @@ declare var Img2x: any;
 declare var Spinner: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
+
+// importable coffeescript modules
+declare module 'report-form';
