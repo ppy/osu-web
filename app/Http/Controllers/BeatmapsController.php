@@ -68,7 +68,7 @@ class BeatmapsController extends Controller
         $query->withType($type, compact('user'));
 
         $results = [
-            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
+            'scores' => json_collection($query->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
         ];
 
         if ($user !== null) {

@@ -98,6 +98,7 @@ return [
         'username_available_soon' => 'This username will be available for use any minute now!',
         'username_invalid_characters' => 'The requested username contains invalid characters.',
         'username_in_use' => 'Username is already in use!',
+        'username_locked' => 'Username is already in use!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Please use either underscores or spaces, not both!',
         'username_no_spaces' => "Username can't start or end with spaces!",
         'username_not_allowed' => 'This username choice is not allowed.',
@@ -116,5 +117,9 @@ return [
             ],
             'username_is_same' => 'This is already your username, silly!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "You can't report yourself!",
     ],
 ];

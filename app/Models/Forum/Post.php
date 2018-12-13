@@ -223,6 +223,10 @@ class Post extends Model implements AfterCommit
             $this->validationErrors()->add('post_text', 'required');
         }
 
+        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
+            $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
+        }
+
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts
             if ($this->isBeatmapsetPost()) {
@@ -271,16 +275,6 @@ class Post extends Model implements AfterCommit
         return 'forum.post';
     }
 
-    public function getBodyHTMLAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true]);
-    }
-
-    public function getBodyHTMLWithoutImageDimensionsAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true, 'withoutImageDimensions' => true]);
-    }
-
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
@@ -296,6 +290,11 @@ class Post extends Model implements AfterCommit
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
+    }
+
+    public function bodyHTML($options = [])
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, array_merge(['withGallery' => true], $options));
     }
 
     public function markRead($user)

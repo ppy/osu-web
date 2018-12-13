@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding historie",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Nedávno zahájená diskuze',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Přetáhni sem pro nahrání',
                     'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
                     'restriction_info' => "Nahrání k dispozici pro <a href='".route('store.products.show', 'supporter-tag')."pouze ' target='_blank'>osu!supporteři</a>",
-                    'size_info' => 'Velikost záhlaví by měla být 2000x700',
+                    'size_info' => 'Velikost záhlaví by měla být 2800x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
-                'title' => 'Úspěchy',
                 'achieved-on' => 'Dosaženo :date',
+                'locked' => '',
+                'title' => 'Úspěchy',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Oblíbené Beatmapy (:count)',
+                    'title' => 'Oblíbené Beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Pohřbené Beatmapy (:count)',
+                    'title' => 'Pohřbené Beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Oblíbené Beatmapy (:count)',
+                    'title' => 'Oblíbené Beatmapy',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy (:count)',
+                    'title' => 'Hodnocené & Schválené Beatmapy',
                 ],
                 'unranked' => [
-                    'title' => 'Čekající Beatmapy (:count)',
+                    'title' => 'Čekající Beatmapy',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Herní historie',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'odehraný čas',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historie zhlédnutí replayů',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,18 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
+                'recent' => '',
                 'title' => 'Medaile',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => 'Stáhnout záznam',
                 'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Umístění',
-                'weighted_pp' => 'stržil: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Nejlepší výkon',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Zájmy',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',
+            'country_simple' => '',
             'global' => 'Globální pozice pro :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'level' => 'Úroveň :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximální Combo',
+            'medals' => '',
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',
             'ranked_score' => 'Hodnocené skóre',

@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Datum ukončení',
+        'map_count' => 'Počet map',
+        'participants' => 'Účastníci',
+        'start_date' => 'Datum začátku',
     ],
 
     'stat' => [

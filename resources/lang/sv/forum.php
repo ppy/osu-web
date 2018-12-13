@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Verkligen radera inlägg?',
         'confirm_restore' => 'Verkligen återställa inlägg?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Inte bokmärkt',
             'to_watching' => 'Bokmärk',
             'to_watching_mail' => 'Bokmärke med notifikation',
-            'mail_disable' => 'Stäng av notifikationer',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

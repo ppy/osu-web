@@ -84,6 +84,8 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
+Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -133,9 +135,24 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
+        Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });
+
+    Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+        Route::post('new', 'ChatController@newConversation')->name('new');
+        Route::get('updates', 'ChatController@updates')->name('updates');
+        Route::get('presence', 'ChatController@presence')->name('presence');
+        Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
+            Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
+            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
+            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
+        });
+        Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
+    });
+    Route::resource('chat', 'ChatController', ['only' => ['index']]);
 });
 
 Route::resource('groups', 'GroupsController', ['only' => ['show']]);
@@ -215,7 +232,7 @@ Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'nam
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-// Route::resource('users', 'UsersController', ['only' => 'store']);
+Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
@@ -275,7 +292,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');

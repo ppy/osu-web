@@ -71,8 +71,8 @@ class ChangelogBuild.Main extends React.PureComponent
             className: 'builds__group builds__group--discussions'
             el CommentsManager,
               component: Comments
-              commentableId: @props.build.id
               commentableType: 'build'
+              commentableId: @props.build.id
               componentProps:
                 modifiers: ['changelog']
 
@@ -96,7 +96,7 @@ class ChangelogBuild.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
+      div className: 'osu-page-header-v3__title',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1

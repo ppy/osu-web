@@ -21,9 +21,12 @@
 namespace App\Models;
 
 use App\Models\Score\Best\Model as BestModel;
+use App\Traits\Validatable;
 
 class UserReport extends Model
 {
+    use Validatable;
+
     const CREATED_AT = 'timestamp';
 
     protected $table = 'osu_user_reports';
@@ -43,13 +46,41 @@ class UserReport extends Model
         return $this->morphTo();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function getScoreTypeAttribute()
     {
         return BestModel::getClass($this->mode);
     }
 
-    public function user()
+    public function isValid()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        $this->validationErrors()->reset();
+
+        if ($this->user_id === $this->reporter_id) {
+            $this->validationErrors()->add(
+                'user_id',
+                '.self'
+            );
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user_report';
     }
 }

@@ -63,6 +63,7 @@ return [
         'hours' => ':count óra|:count óra',
         'item' => ':count egység|:count egység',
         'minute_short_unit' => 'p|p',
+        'minutes' => '',
         'months' => ':count hónap|:count hónap',
         'second_short_unit' => 'mp|mp',
         'years' => ':count év|:count év',

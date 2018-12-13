@@ -45,7 +45,7 @@ return [
         'title' => 'Beatmap Seti Etkinlikleri',
 
         'form' => [
-            'period' => '',
+            'period' => 'Zaman Periyodu',
             'types' => 'Türler',
         ],
     ],
@@ -63,8 +63,8 @@ return [
         'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
         'discussion_restore' => 'Tartışma geri getirme',
         'disqualify' => 'Diskalifiye',
-        'issue_reopen' => '',
-        'issue_resolve' => '',
+        'issue_reopen' => 'Tekrar açılan tartışmalar',
+        'issue_resolve' => 'Tartışma çözümü',
         'kudosu_allow' => '',
         'kudosu_deny' => 'Kudosu reddi',
         'kudosu_gain' => 'Kudosu kazancı',

@@ -226,7 +226,7 @@ class Page
 
                     if (present($body)) {
                         $page = OsuMarkdownProcessor::process($body, [
-                            'path' => route('wiki.show', $this->path),
+                            'path' => wiki_url($this->path),
                         ]);
                     }
                 }

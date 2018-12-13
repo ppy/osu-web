@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'disqualify' => '',
         ],
     ],
 

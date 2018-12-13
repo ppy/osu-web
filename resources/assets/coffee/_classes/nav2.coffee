@@ -18,11 +18,10 @@
 
 class @Nav2
   constructor: ->
-    @hiddenOnMenuAccess = document.getElementsByClassName('js-nav2--hidden-on-menu-access')
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
-    $.subscribe 'menu:current', @adjustElementsVisibility
+    $.subscribe 'menu:current', @showMenuBg
 
 
   autoCenterPopup: (_e, currentMenu) =>
@@ -80,12 +79,11 @@ class @Nav2
     popup.style.transform = "translateX(#{finalLeft}px)"
 
 
-  adjustElementsVisibility: (_e, currentMenu) =>
-    shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
-
-    Fade.toggle(item, !shown) for item in @hiddenOnMenuAccess
-    Fade.toggle @menuBg[0], shown
-
-
   loginBoxVisible: =>
     @currentMenu == 'nav2-login-box'
+
+
+  showMenuBg: (_e, currentMenu) =>
+    shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
+
+    Fade.toggle @menuBg[0], shown

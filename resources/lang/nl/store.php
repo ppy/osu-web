@@ -89,6 +89,7 @@ return [
         'paid_on' => '',
 
         'invoice' => '',
+        'no_orders' => 'Geen bestellingen om te bekijken.',
 
         'item' => [
             'display_name' => [

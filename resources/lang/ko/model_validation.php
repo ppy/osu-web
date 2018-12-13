@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '지정하려는 항목이 이미 존재합니다.',
+            'grace_period_expired' => '',
             'invalid_max_options' => '지정된 항목보다 많이 투표하도록 설정할 수 없습니다.',
             'minimum_one_selection' => '투표자들이 최소 한 개 이상은 선택할 수 있도록 해야합니다.',
             'minimum_two_options' => '투표 항목이 적어도 두 개는 필요합니다.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '이미 당신이 사용 중인 이름입니다, 혹시.. 건망증?',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

@@ -17,21 +17,19 @@
  */
 
 .show-more-link {
+  @_top: show-more-link;
+
   .reset-input();
   display: block;
   width: 100%;
   padding-top: 10px;
   text-align: center;
+  color: @link-color;
 
-  // Declared early so color and other styles can be overridden by other modifiers.
-  &--link {
-    color: @link-color;
-
-    .link-hover({
-      color: @link-hover-color;
-      text-decoration: underline;
-    });
-  }
+  .link-hover({
+    color: @link-hover-color;
+    text-decoration: underline;
+  });
 
   &--changelog-index {
     padding: 40px 0;
@@ -40,5 +38,52 @@
     .link-hover({
       color: #fff;
     });
+  }
+
+  &--profile-page {
+    .reset-input();
+    .link-plain();
+    width: auto;
+    margin: 10px auto 0;
+    font-size: @font-size--normal;
+    border-radius: 10000px;
+    background-color: @community-user-graygreen-darker;
+    color: #fff;
+    padding: 5px 20px;
+
+    .link-hover({
+      color: #fff;
+      background-color: @community-user-graygreen-dark;
+      text-decoration: none;
+    });
+  }
+
+  &[disabled] {
+    .link-plain();
+    color: inherit;
+
+    .@{_top}--profile-page & {
+      color: #ccc;
+      background-color: @community-user-graygreen-darker;
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    position: absolute;
+    display: none;
+
+    .@{_top}[disabled] & {
+      display: flex;
+    }
+  }
+
+  &__label {
+    opacity: 1;
+
+    .@{_top}[disabled] & {
+      opacity: 0;
+    }
   }
 }

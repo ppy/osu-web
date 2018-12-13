@@ -35,7 +35,6 @@ body.community {
 
   background: fade(#000, 80%);
   margin-bottom: 10px;
-
 }
 
 .forums {
@@ -124,6 +123,12 @@ body.community {
 
     &:hover::after {
       opacity: 1;
+    }
+
+    &--mark-as-read {
+      &::before, &::after {
+        box-shadow: none;
+      }
     }
 
     .left, .right {

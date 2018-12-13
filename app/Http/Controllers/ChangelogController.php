@@ -127,7 +127,7 @@ class ChangelogController extends Controller
         $buildJson = json_item($build, 'Build', [
             'changelog_entries', 'changelog_entries.github_user', 'versions',
         ]);
-        $commentBundle = new CommentBundle($build);
+        $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
             "chart_config:v2:{$build->updateStream->getKey()}",

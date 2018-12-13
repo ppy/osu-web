@@ -89,6 +89,7 @@ return [
         'paid_on' => '',
 
         'invoice' => '',
+        'no_orders' => '',
 
         'item' => [
             'display_name' => [
@@ -111,7 +112,7 @@ return [
             'cancelled' => '',
             'checkout' => '',
             'delivered' => '',
-            'paid' => '',
+            'paid' => 'Betalt',
             'processing' => '',
             'shipped' => '',
         ],

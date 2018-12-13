@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historique des modifications de :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discussions commencées récemment',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> uniquement",
-                    'size_info' => 'La taille de la bannière devrait être de 2000x700',
+                    'size_info' => 'La taille de la bannière devrait être de 2800x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
-                'title' => 'Succès',
                 'achieved-on' => 'Acquis le :date',
+                'locked' => '',
+                'title' => 'Succès',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Aucune... pour le moment.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favorites (:count)',
+                    'title' => 'Beatmaps favorites',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps dans le cimetière (:count)',
+                    'title' => 'Beatmaps dans le cimetière',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps loved (:count)',
+                    'title' => 'Beatmaps loved',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps classées et approuvées (:count)',
+                    'title' => 'Beatmaps classées et approuvées',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps en attente (:count)',
+                    'title' => 'Beatmaps en attente',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Historique des parties',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'Nombre de fois jouée',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historique des replays regardées',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
+                'recent' => '',
                 'title' => 'Médailles',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Télécharger le replay',
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Classements',
-                'weighted_pp' => 'pondéré: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Meilleures performances',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Centres d\'intérêt',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Classement national en :mode',
+            'country_simple' => '',
             'global' => 'Classement global en :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',
             'level' => 'Niveau :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo maximum',
+            'medals' => '',
             'play_count' => 'Nombres de parties',
             'play_time' => 'Temps de jeu total',
             'ranked_score' => 'Score classé',
