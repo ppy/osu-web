@@ -19,10 +19,20 @@
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
-export class ReportComment extends React.PureComponent<any, any> {
+export interface ReportCommentProps {
+  comment: any;
+}
+
+export interface ReportCommentState {
+  completed: boolean;
+  disabled: boolean;
+  showingForm: boolean;
+}
+
+export class ReportComment extends React.PureComponent<ReportCommentProps, ReportCommentState> {
   private timeout?: number;
 
-  constructor(props: any) {
+  constructor(props: ReportCommentProps) {
     super(props);
 
     this.state = {
@@ -65,7 +75,7 @@ export class ReportComment extends React.PureComponent<any, any> {
     this.setState({disabled: false, showingForm: true });
   }
 
-  onSubmit = ({ comments }) => {
+  onSubmit = ({comments}: {comments: string}) => {
     this.setState({ disabled: true });
     const params = {
       data: { comments },
