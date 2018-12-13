@@ -157,7 +157,7 @@ class RoomsController extends BaseController
             'user_id' => $currentUser->user_id,
             'starts_at' => $startTime,
             'ends_at' => $endTime,
-            'max_attempts' => presence($maxAttempts),
+            'max_attempts' => isset($maxAttempts) ? presence($maxAttempts) : null,
         ];
 
         $room = DB::transaction(function () use ($roomOptions, $playlistItems) {
