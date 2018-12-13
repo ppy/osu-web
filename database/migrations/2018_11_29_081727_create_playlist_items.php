@@ -14,8 +14,9 @@ class CreatePlaylistItems extends Migration
     public function up()
     {
         Schema::create('multiplayer_playlist_items', function (Blueprint $table) {
-            $table->bigInteger('room_id')->unsigned();
+            $table->bigIncrements('id');
 
+            $table->bigInteger('room_id')->unsigned();
             $table->mediumInteger('beatmap_id')->unsigned();
             $table->smallInteger('playlist_order')->unsigned()->nullable();
 

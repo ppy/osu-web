@@ -33,6 +33,8 @@ class PlaylistItemTransformer extends Fractal\TransformerAbstract
     public function transform(PlaylistItem $item)
     {
         return [
+            'id' => $item->id,
+            'room_id' => $item->room_id,
             'beatmap_id' => $item->beatmap_id,
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
