@@ -186,17 +186,44 @@ class Mod
     }
 
     // Mapping of valid mods per ruleset
-    public static function validModsForRuleset($rulesetId)
+    public static function validModsForRuleset($ruleset)
     {
-        if (!in_array($rulesetId, Ruleset::ALL)) {
-            return [];
+        if (!in_array($ruleset, Ruleset::ALL)) {
+            throw new \InvalidArgumentException('invalid ruleset');
         }
 
-        return self::validityByRuleset()[$rulesetId];
+        return self::validityByRuleset()[$ruleset];
     }
 
     public static function validForRuleset($acronym, $ruleset)
     {
         return in_array($acronym, self::validModsForRuleset($ruleset));
+    }
+
+    public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
+    {
+        $checkedMods = [];
+        foreach ($mods as $mod) {
+            if (!self::validForRuleset($mod, $ruleset)) {
+                throw new \InvalidArgumentException("invalid mod for ruleset: {$mod}");
+            }
+
+            if (isset($checkedMods[$mod])) {
+                throw new \InvalidArgumentException("duplicate mod for ruleset: {$mod}");
+            }
+
+            $checkedMods[$mod] = true;
+        }
+
+        if (!$skipExclusivityCheck) {
+            foreach (self::exclusivityByRuleset()[$ruleset] as $group) {
+                $intersection = array_intersect($mods, $group);
+                if (count($intersection) > 1) {
+                    throw new \InvalidArgumentException('incompatible mods: '.join(', ', $intersection));
+                }
+            }
+        }
+
+        return true;
     }
 }

@@ -103,16 +103,6 @@ class PlaylistItem extends \App\Models\Model
         }
     }
 
-    private function validateModExclusivityGroups()
-    {
-        foreach (Mod::exclusivityByRuleset()[$this->ruleset_id] as $group) {
-            $intersection = array_intersect(array_column($this->required_mods, 'acronym'), $group);
-            if (count($intersection) > 1) {
-                throw new \InvalidArgumentException('incompatible mods: '.join(', ', $intersection));
-            }
-        }
-    }
-
     private function validateModOverlaps()
     {
         $dupeMods = array_intersect(
@@ -128,8 +118,9 @@ class PlaylistItem extends \App\Models\Model
     public function save(array $options = [])
     {
         $this->validateRuleset();
-        $this->validateModExclusivityGroups();
         $this->validateModOverlaps();
+        Mod::validateSelection(array_column($this->allowed_mods, 'acronym'), $this->ruleset_id, true);
+        Mod::validateSelection(array_column($this->required_mods, 'acronym'), $this->ruleset_id);
 
         return parent::save($options);
     }
