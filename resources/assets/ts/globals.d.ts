@@ -8,8 +8,16 @@ interface JQueryStatic {
   unsubscribe: any,
   publish: any
 }
+
 // our helpers
-declare var osu: any;
+interface OsuCommon {
+  ajaxError: (xhr: JQueryXHR) => void;
+  trans: (...args: any[]) => string;
+  uuid: () => string;
+  parseJson: (id: string) => any;
+}
+
+declare var osu: OsuCommon;
 declare var currentUser: any;
 declare var reactTurbolinks: any;
 // external (to typescript) react components
