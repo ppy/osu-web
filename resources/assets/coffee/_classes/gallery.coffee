@@ -18,7 +18,7 @@
 
 class @Gallery
   constructor: ->
-    @pswp = document.getElementsByClassName('pswp')
+    @container = document.getElementsByClassName('pswp')
 
     $(document).on 'click', '.js-gallery', @initiateOpen
     $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
@@ -29,30 +29,36 @@ class @Gallery
     return if $target.parents('a').length
 
     e.preventDefault()
-    @open $target
-
-
-  open: ($target) =>
-    galleryId = $target.attr('data-gallery-id')
     index = parseInt $target.attr('data-index'), 10
+    galleryId = $target.attr('data-gallery-id')
+    @open {galleryId, index}
 
-    gallery = new PhotoSwipe @pswp[0],
+
+  open: ({galleryId, index}) =>
+    pswp = new PhotoSwipe @container[0],
       PhotoSwipeUI_Default
       @data galleryId
       showHideOpacity: true
       getThumbBoundsFn: @thumbBoundsFn(galleryId)
       index: index
       history: false
+      timeToIdle: null
 
-    gallery.init()
+    if _.startsWith(galleryId, 'contest-')
+      new _exported.GalleryContest(@container[0], pswp)
 
-    $(document).one 'turbolinks:before-cache', -> gallery?.destroy()
+    pswp.init()
+
+    $(document).one 'turbolinks:before-cache', ->
+      # ignore any failures (in case already destroyed)
+      try pswp?.destroy()
 
 
   data: (galleryId) ->
     for el in document.querySelectorAll(".js-gallery[data-gallery-id='#{galleryId}']")
       src = el.getAttribute('data-src') ? el.getAttribute('href')
 
+      element: el
       msrc: src
       src: src
       w: parseInt el.getAttribute('data-width'), 10

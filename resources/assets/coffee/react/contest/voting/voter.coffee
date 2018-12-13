@@ -24,6 +24,8 @@ class Contest.Voting.Voter extends React.Component
     super props
 
   sendVote: =>
+    $.publish 'contest:vote:start'
+
     params =
       method: 'PUT'
       dataType: 'json'
@@ -34,6 +36,9 @@ class Contest.Voting.Voter extends React.Component
       $.publish 'contest:vote:done', response: response
 
     .fail osu.ajaxError
+
+    .always =>
+      $.publish 'contest:vote:end'
 
   handleClick: (e) =>
     e.preventDefault()
@@ -50,17 +55,27 @@ class Contest.Voting.Voter extends React.Component
 
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
+    isSelected = @isSelected()
+    isLoading = @props.waitingForResponse
+    isVisible = isSelected || (@props.selected.length < @props.contest.max_votes && !votingOver)
 
     classes = [
+      'js-contest-vote-button'
       'contest__voting-star',
       'contest__voting-star--float-right',
       if @props.theme then "contest__voting-star--#{@props.theme}",
     ]
 
-    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
-      div className: classes.join(' '), null
+    component = div
+    props =
+      'data-button-id': @props.buttonId
+      'data-contest-vote-meta': JSON.stringify({isSelected, isLoading, isVisible})
+    icon = null
+
+    if !isVisible
+      props.className = classes.join(' ')
     else
-      if @isSelected()
+      if isSelected
         selected_class =  [
           if @props.theme then "contest__voting-star--selected-#{@props.theme}" else 'contest__voting-star--selected'
         ]
@@ -68,12 +83,18 @@ class Contest.Voting.Voter extends React.Component
         selected_class = []
 
       if votingOver
-        div className: classes.concat(selected_class).join(' '),
-          i className: "fas fa-fw fa-star"
+        props.className = classes.concat(selected_class).join(' ')
+        icon = i className: 'fas fa-fw fa-star'
       else
-        if @props.waitingForResponse && !@isSelected()
-          div className: classes.join(' '),
-            i className: "fas fa-fw fa-sync contest__voting-star--spin"
+        if isLoading && !isSelected
+          props.className = classes.join(' ')
+          icon = i className: 'fas fa-fw fa-sync contest__voting-star--spin'
         else
-          a className: classes.concat(selected_class).join(' '), href: '#', onClick: @handleClick,
-            i className: "fas fa-fw fa-star"
+          component = a
+          props.className = classes.concat(selected_class).join(' ')
+          props.href = '#'
+          props.onClick = @handleClick
+          icon = i className: 'fas fa-fw fa-star'
+
+
+    component props, icon
