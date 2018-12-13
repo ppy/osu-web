@@ -30,6 +30,7 @@ class RoomTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'host',
         'playlist',
+        'scores',
     ];
 
     public function transform(Room $room)
@@ -45,6 +46,14 @@ class RoomTransformer extends Fractal\TransformerAbstract
         ];
     }
 
+    public function includeHost(Room $room)
+    {
+        return $this->item(
+            $room->host,
+            new UserCompactTransformer
+        );
+    }
+
     public function includePlaylist(Room $room)
     {
         return $this->collection(
@@ -53,11 +62,11 @@ class RoomTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeHost(Room $room)
+    public function includeScores(Room $room)
     {
-        return $this->item(
-            $room->host,
-            new UserCompactTransformer
+        return $this->collection(
+            $room->scores()->completed()->get(),
+            new RoomScoreTransformer
         );
     }
 }

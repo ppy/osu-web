@@ -20,42 +20,26 @@
 
 namespace App\Models\Multiplayer;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
-use Validator;
 
-class Room extends \App\Models\Model
+class RoomScore extends \App\Models\Model
 {
     use SoftDeletes;
 
-    protected $table = 'multiplayer_rooms';
-    protected $dates = ['starts_at', 'ends_at'];
+    protected $table = 'multiplayer_scores';
+    protected $dates = ['started_at', 'ended_at'];
+    protected $casts = [
+        'passed' => 'boolean',
+        'statistics' => 'array',
+    ];
 
-    public function host()
+    public function room()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Room::class, 'room_id');
     }
 
-    public function playlist()
+    public function scopeCompleted($query)
     {
-        return $this->hasMany(PlaylistItem::class, 'room_id');
-    }
-
-    public function scores()
-    {
-        return $this->hasMany(RoomScore::class, 'room_id');
-    }
-
-    public function scopeActive($query)
-    {
-        return $query
-            ->where('starts_at', '<', Carbon::now())
-            ->where('ends_at', '>', Carbon::now());
-    }
-
-    public function scopeStartedBy($query, \App\Models\User $user)
-    {
-        return $query->where('user_id', $user->user_id);
+        return $query->whereNotNull('ended_at');
     }
 }

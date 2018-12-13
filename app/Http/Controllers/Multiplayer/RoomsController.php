@@ -73,6 +73,7 @@ class RoomsController extends BaseController
             [
                 'host',
                 'playlist.beatmap.beatmapset',
+                'scores'
             ]
         );
     }
