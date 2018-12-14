@@ -40,6 +40,8 @@ class ScoresController extends Controller
                 'mode' => Beatmap::modeInt($mode),
                 'comments' => trim(request('comments')),
                 'reason' => 'Cheating',
+                'reportable_type' => 'score',
+                'reportable_id' => $score->score_id,
             ]);
 
             if (!$report->exists) {

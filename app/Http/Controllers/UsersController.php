@@ -205,6 +205,8 @@ class UsersController extends Controller
                 'user_id' => $user->getKey(),
                 'comments' => trim(request('comments')),
                 'reason' => trim(request('reason')),
+                'reportable_type' => 'user',
+                'reportable_id' => $user->getKey(),
             ]);
 
             if (!$report->exists) {
