@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beatmap;
+use App\Libraries\ReportScore;
 use App\Models\Score\Best\Model as ScoreBest;
 use Auth;
 use PDOException;
@@ -33,26 +33,9 @@ class ScoresController extends Controller
 
         priv_check('ScoreReport', $score)->ensureCan();
 
-        try {
-            $report = $score->reportedIn()->create([
-                'user_id' => $score->user_id,
-                'reporter_id' => Auth::user()->getKey(),
-                'mode' => Beatmap::modeInt($mode),
-                'comments' => trim(request('comments')),
-                'reason' => 'Cheating',
-                'reportable_type' => 'score',
-                'reportable_id' => $score->score_id,
-            ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
-        }
+        (new ReportScore(auth()->user(), $score, $mode, [
+            'comments' => trim(request('comments'))
+        ]))->report();
 
         return response(null, 204);
     }

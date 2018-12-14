@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
+use App\Libraries\ReportUser;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -200,24 +201,10 @@ class UsersController extends Controller
 
         priv_check('UserReport', Auth::user())->ensureCan();
 
-        try {
-            $report = Auth::user()->reportsMade()->create([
-                'user_id' => $user->getKey(),
-                'comments' => trim(request('comments')),
-                'reason' => trim(request('reason')),
-                'reportable_type' => 'user',
-                'reportable_id' => $user->getKey(),
-            ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
-        }
+        (new ReportUser(auth()->user(), $user, [
+            'comments' => trim(request('comments')),
+            'reason' => trim(request('reason')),
+        ]))->report();
 
         return response(null, 204);
     }
