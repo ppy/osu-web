@@ -562,7 +562,6 @@ class OsuAuthorize
                     break;
 
                 case Channel::TYPES['spectator']:
-                case Channel::TYPES['multiplayer']:
                 case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
                     if (starts_with($channel->name, '#spect_')) {
                         return 'ok';
@@ -576,6 +575,10 @@ class OsuAuthorize
                         }
                     }
                     break;
+
+                case Channel::TYPES['multiplayer']:
+                    return 'ok';
+                break;
             }
         }
 

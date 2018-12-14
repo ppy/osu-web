@@ -20,9 +20,10 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\Chat\Channel;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
 use Validator;
 
 class Room extends \App\Models\Model
@@ -31,6 +32,11 @@ class Room extends \App\Models\Model
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
+
+    public function channel()
+    {
+        return $this->hasOne(Channel::class, 'channel_id', 'channel_id');
+    }
 
     public function host()
     {

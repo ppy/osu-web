@@ -42,6 +42,7 @@ class RoomTransformer extends Fractal\TransformerAbstract
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
             'max_attempts' => $room->max_attempts,
+            'channel_id' => $room->channel_id,
             'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
         ];
     }

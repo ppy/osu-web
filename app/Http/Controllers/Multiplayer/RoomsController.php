@@ -23,6 +23,7 @@ namespace App\Http\Controllers\Multiplayer;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
+use App\Models\Chat\Channel;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use Auth;
@@ -81,6 +82,38 @@ class RoomsController extends BaseController
                 'playlist.beatmap.beatmapset',
             ]
         );
+    }
+
+    public function join($roomId, $userId)
+    {
+        // this allows admins/whatever to add users to games in the future
+        if (get_int($userId) !== Auth::user()->user_id) {
+            abort(403);
+        }
+
+        $channel = Room::findOrFail($roomId)->channel;
+
+        if (!$channel->hasUser(Auth::user())) {
+            $channel->addUser(Auth::user());
+        }
+
+        return response([], 204);
+    }
+
+    public function part($roomId, $userId)
+    {
+        // this allows admins/host/whoever to remove users from games in the future
+        if (get_int($userId) !== Auth::user()->user_id) {
+            abort(403);
+        }
+
+        $channel = Room::findOrFail($roomId)->channel;
+
+        if ($channel->hasUser(Auth::user())) {
+            $channel->removeUser(Auth::user());
+        }
+
+        return response([], 204);
     }
 
     public function store()
@@ -175,7 +208,7 @@ class RoomsController extends BaseController
             'max_attempts' => isset($maxAttempts) ? presence($maxAttempts) : null,
         ];
 
-        $room = DB::transaction(function () use ($roomOptions, $playlistItems) {
+        $room = DB::transaction(function () use ($currentUser, $roomOptions, $playlistItems) {
             $room = new Room($roomOptions);
             $room->save();
 
@@ -192,6 +225,16 @@ class RoomsController extends BaseController
                     abort(422, $e->getMessage());
                 }
             }
+
+            // create the chat channel for the room
+            $channel = new Channel();
+            $channel->name = "#lazermp_{$room->id}";
+            $channel->type = Channel::TYPES['multiplayer'];
+            $channel->description = $roomOptions['name'];
+            $channel->save();
+
+            $room->update(['channel_id' => $channel->channel_id]);
+            $channel->addUser($currentUser);
 
             return $room;
         });
