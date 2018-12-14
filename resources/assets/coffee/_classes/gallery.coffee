@@ -46,6 +46,8 @@ class @Gallery
 
     gallery.init()
 
+    $(document).one 'turbolinks:before-cache', -> gallery?.destroy()
+
 
   data: (galleryId) ->
     for el in document.querySelectorAll(".js-gallery[data-gallery-id='#{galleryId}']")
