@@ -201,10 +201,14 @@ class UsersController extends Controller
 
         priv_check('UserReport', Auth::user())->ensureCan();
 
-        (new ReportUser(auth()->user(), $user, [
-            'comments' => trim(request('comments')),
-            'reason' => trim(request('reason')),
-        ]))->report();
+        try {
+            (new ReportUser(auth()->user(), $user, [
+                'comments' => trim(request('comments')),
+                'reason' => trim(request('reason')),
+            ]))->report();
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
+        }
 
         return response(null, 204);
     }

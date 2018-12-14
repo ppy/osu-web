@@ -52,10 +52,6 @@ class ReportScore
                 'reportable_type' => 'score',
                 'reportable_id' => $this->score->score_id,
             ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {

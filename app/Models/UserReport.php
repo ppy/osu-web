@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\ValidationException;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 
@@ -98,7 +99,7 @@ class UserReport extends Model
     public function save(array $options = [])
     {
         if (!$this->isValid()) {
-            return false;
+            throw new ValidationException($this->validationErrors());
         }
 
         return parent::save();

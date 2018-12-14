@@ -48,10 +48,6 @@ class ReportUser
                 'reportable_type' => 'user',
                 'reportable_id' => $this->user->getKey(),
             ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {
