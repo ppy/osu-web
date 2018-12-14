@@ -28,6 +28,11 @@ class UserReport extends Model
     use Validatable;
 
     const CREATED_AT = 'timestamp';
+    const REPORTABLES = [
+        'comment' => Comment::class,
+        'score' => Score::class,
+        'user' => User::class,
+    ];
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
@@ -35,6 +40,11 @@ class UserReport extends Model
     protected $dates = ['timestamp'];
 
     public $timestamps = false;
+
+    public function reportable()
+    {
+        return $this->morphTo();
+    }
 
     public function reporter()
     {
