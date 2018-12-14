@@ -205,11 +205,11 @@ class Mod
         $checkedMods = [];
         foreach ($mods as $mod) {
             if (!self::validForRuleset($mod, $ruleset)) {
-                throw new \InvalidArgumentException("invalid mod for ruleset: {$mod}");
+                throw new \InvalidArgumentException("invalid mod for ruleset: ".json_encode($mod));
             }
 
             if (isset($checkedMods[$mod])) {
-                throw new \InvalidArgumentException("duplicate mod for ruleset: {$mod}");
+                throw new \InvalidArgumentException("duplicate mod for ruleset: ".json_encode($mod));
             }
 
             $checkedMods[$mod] = true;
@@ -225,5 +225,30 @@ class Mod
         }
 
         return true;
+    }
+
+    public static function parseInputArray($mods, $ruleset)
+    {
+        $filteredMods = [];
+
+        foreach ($mods as $mod) {
+            if (isset($mod['acronym']) && present($mod['acronym'])) {
+                $acronym = strtoupper($mod['acronym']);
+
+                $filteredMods[$acronym] = [
+                    "acronym" => $acronym,
+                    "settings" => [],
+                ];
+                continue;
+            }
+
+            throw new \InvalidArgumentException("invalid mod array");
+        }
+
+        $cleanMods = array_values($filteredMods);
+
+        self::validateSelection(array_column($cleanMods, 'acronym'), $ruleset, true);
+
+        return $cleanMods;
     }
 }

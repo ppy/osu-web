@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Multiplayer;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
@@ -62,6 +63,11 @@ class RoomsController extends BaseController
         );
     }
 
+    public function leaderboard($roomId)
+    {
+        return Room::findOrFail($roomId)->topScores();
+    }
+
     public function show($room_id)
     {
         return json_item(
@@ -73,7 +79,6 @@ class RoomsController extends BaseController
             [
                 'host',
                 'playlist.beatmap.beatmapset',
-                'scores'
             ]
         );
     }
@@ -119,11 +124,20 @@ class RoomsController extends BaseController
                     abort(422, "beatmap not found: {$item['beatmap_id']}");
                 }
 
+                $allowedMods = Mod::parseInputArray(
+                    isset($item['allowed_mods']) ? $item['allowed_mods'] : [],
+                    $item['ruleset_id']
+                );
+                $requiredMods = Mod::parseInputArray(
+                    isset($item['required_mods']) ? $item['required_mods'] : [],
+                    $item['ruleset_id']
+                );
+
                 $playlistItems[] = [
                     'beatmapId' => $item['beatmap_id'],
                     'rulesetId' => $item['ruleset_id'],
-                    'allowedMods' => isset($item['allowed_mods']) ? $item['allowed_mods'] : [],
-                    'requiredMods' => isset($item['required_mods']) ? $item['required_mods'] : [],
+                    'allowedMods' => $allowedMods,
+                    'requiredMods' => $requiredMods,
                 ];
             }
         }

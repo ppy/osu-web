@@ -308,7 +308,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         });
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
-            Route::apiResource('{room_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\ScoresController', ['only' => ['index']]);
+            Route::get('{room_id}/leaderboard', '\App\Http\Controllers\Multiplayer\RoomsController@leaderboard');
+            Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
+                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['index', 'store', 'update']]);
+            });
         });
         Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['index', 'show', 'store']]);
 

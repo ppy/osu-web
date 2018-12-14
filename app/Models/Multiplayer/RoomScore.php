@@ -20,6 +20,7 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoomScore extends \App\Models\Model
@@ -30,6 +31,7 @@ class RoomScore extends \App\Models\Model
     protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
         'passed' => 'boolean',
+        'mods' => 'array',
         'statistics' => 'array',
     ];
 
@@ -38,8 +40,23 @@ class RoomScore extends \App\Models\Model
         return $this->belongsTo(Room::class, 'room_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function scopeCompleted($query)
     {
         return $query->whereNotNull('ended_at');
+    }
+
+    public function scopeForPlaylistItem($query, $playlistItemId)
+    {
+        return $query->where('playlist_item_id', $playlistItemId);
+    }
+
+    public function isCompleted()
+    {
+        return present($this->ended_at);
     }
 }

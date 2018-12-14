@@ -27,6 +27,10 @@ use App\Models\Beatmap;
 class PlaylistItem extends \App\Models\Model
 {
     protected $table = 'multiplayer_playlist_items';
+    protected $casts = [
+        'allowed_mods' => 'json',
+        'required_mods' => 'json',
+    ];
 
     const MOD_TYPE_REQUIRED = 'required_mods';
     const MOD_TYPE_ALLOWED = 'allowed_mods';
@@ -41,58 +45,46 @@ class PlaylistItem extends \App\Models\Model
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
-    public function setAllowedModsAttribute(array $value)
+    public function scores()
     {
-        $this->attributes['allowed_mods'] = json_encode($this->validateModArray($value, self::MOD_TYPE_ALLOWED));
+        return $this->hasMany(RoomScore::class);
     }
 
-    public function setRequiredModsAttribute(array $value)
+    public function topScores()
     {
-        $this->attributes['required_mods'] = json_encode($this->validateModArray($value, self::MOD_TYPE_REQUIRED));
-    }
+        $scores = $this->scores()->completed()->get();
 
-    public function getAllowedModsAttribute(string $value)
-    {
-        return json_decode($value);
-    }
-
-    public function getRequiredModsAttribute(string $value)
-    {
-        return json_decode($value);
-    }
-
-    // Example of expected structure for mods:
-    //  [
-    //     {"acronym": "HD"},
-    //     {"acronym": "DT", "settings": {...}},
-    //  ]
-    //
-    public function validateModArray(array $mods, $mode)
-    {
-        $filteredMods = [];
-
-        foreach ($mods as $mod) {
-            if (isset($mod['acronym'])) {
-                $acronym = strtoupper($mod['acronym']);
-                if (!Mod::validForRuleset($acronym, $this->ruleset_id)) {
-                    throw new \InvalidArgumentException("invalid mod in '{$mode}': {$acronym}");
+        // sort by total_score desc and then date asc if scores are equal
+        $baseResult = $scores->sort(function ($a, $b) {
+            if ($a->total_score === $b->total_score) {
+                if ($a->ended_at->timestamp === $b->ended_at->timestamp) {
+                    // On the rare chance that both were submitted in the same second, default to submission order
+                    return ($a->id < $b->id) ? -1 : 1;
                 }
 
-                if (isset($filteredMods[$acronym])) {
-                    throw new \InvalidArgumentException("duplicate mod in '{$mode}': {$acronym}");
-                }
+                return ($a->ended_at->timestamp < $b->ended_at->timestamp) ? -1 : 1;
+            }
 
-                $filteredMods[$acronym] = [
-                    "acronym" => $acronym,
-                    "settings" => [],
-                ];
+            return ($a->total_score > $b->total_score) ? -1 : 1;
+        });
+
+        $result = [];
+        $users = [];
+
+        foreach ($baseResult as $entry) {
+            if (isset($users[$entry->user_id])) {
                 continue;
             }
 
-            throw new \InvalidArgumentException("invalid mod array ({$mode})");
+            // if (count($result) >= $limit) {
+            //     break;
+            // }
+
+            $users[$entry->user_id] = true;
+            $result[] = $entry;
         }
 
-        return array_values($filteredMods);
+        return $result;
     }
 
     private function validateRuleset()

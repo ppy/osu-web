@@ -58,4 +58,58 @@ class Room extends \App\Models\Model
     {
         return $query->where('user_id', $user->user_id);
     }
+
+    public function topScores()
+    {
+        $scores = $this->scores()
+            ->with('user.country')
+            ->get();
+
+        $processed = [];
+        $stats = [];
+
+        foreach ($scores as $score) {
+            if (!isset($stats[$score->user_id]['attempts'])) {
+                $stats[$score->user_id]['attempts'] = 0;
+            }
+
+            $stats[$score->user_id]['attempts']++;
+
+            if (!$score->isCompleted() || $score->passed == 0 || isset($processed[$score->user_id][$score->playlist_item_id])) {
+                continue;
+            }
+
+            $processed[$score->user_id][$score->playlist_item_id] = true;
+            foreach (['total_score', 'accuracy', 'pp'] as $key) {
+                $stats[$score->user_id][$key] = isset($stats[$score->user_id][$key]) ? $stats[$score->user_id][$key] + $score->$key : $score->$key;
+            }
+
+            $stats[$score->user_id]['completed'] = count($processed[$score->user_id]);
+            $stats[$score->user_id]['room_id'] = $score->room_id;
+            $stats[$score->user_id]['user_id'] = $score->user_id;
+            $stats[$score->user_id]['user'] = json_item($score->user, 'UserCompact', ['country']);
+        }
+
+        foreach ($stats as $userId => $stat) {
+            $stats[$userId]['accuracy'] = $stat['accuracy'] / $stat['completed'];
+        }
+
+        // todo: add priority for scores set first in case of a tie (this requires quite a bit more effort/restructure)
+        usort($stats, function ($a, $b) {
+            // if ($a['total_score'] === $b['total_score']) {
+            //     if ($a['ended_at']['timestamp'] === $b['ended_at']['timestamp']) {
+            //         // On the rare chance that both were submitted in the same second, default to submission order
+            //         return ($a->id < $b->id) ? -1 : 1;
+            //     }
+
+            //     return ($a['ended_at']['timestamp'] < $b['ended_at']['timestamp']) ? -1 : 1;
+            // }
+
+            return ($a['total_score'] > $b['total_score']) ? -1 : 1;
+        });
+
+        // return array_values(array_slice($stats, 0, $limit));
+
+        return array_values($stats);
+    }
 }
