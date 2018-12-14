@@ -43,7 +43,8 @@ class UserReport extends Model
 
     public function reportable()
     {
-        if ($this->reportable_type === 'score') {
+        $type = $this->attributes['reportable_type'] ?? null;
+        if ($type === 'score') {
             return $this->score();
         }
 
@@ -63,6 +64,16 @@ class UserReport extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getReportableTypeAttribute()
+    {
+        $type = $this->attributes['reportable_type'] ?? null;
+        if ($type === 'score') {
+            return $this->getScoreTypeAttribute();
+        }
+
+        return $type;
     }
 
     public function getScoreTypeAttribute()
