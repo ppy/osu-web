@@ -37,8 +37,9 @@ class CreateMultiplayerScores extends Migration
             $table->timestampsTz();
             $table->softDeletes();
 
-            $table->index(['room_id', 'playlist_item_id']);
-            $table->index(['user_id']);
+            $table->index('room_id');
+            $table->index('playlist_item_id');
+            $table->index('user_id');
         });
     }
 
