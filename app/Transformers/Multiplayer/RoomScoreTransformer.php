@@ -42,7 +42,6 @@ class RoomScoreTransformer extends Fractal\TransformerAbstract
             'rank' => $score->rank,
             'total_score' => $score->total_score,
             'accuracy' => $score->accuracy,
-            'pp' => $score->pp,
             'max_combo' => $score->max_combo,
             'mods' => $score->mods,
             'statistics' => $score->statistics,

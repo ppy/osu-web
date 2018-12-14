@@ -66,7 +66,10 @@ class ScoresController extends BaseController
 
         $score->saveOrExplode();
 
-        return $score;
+        return json_item(
+            $score,
+            'Multiplayer\RoomScore'
+        );
     }
 
     public function update($roomId, $playlistId, $scoreId)
