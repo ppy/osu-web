@@ -21,7 +21,7 @@ class CreateMultiplayerScores extends Migration
             $table->bigInteger('playlist_item_id')->unsigned();
             $table->unsignedMediumInteger('beatmap_id')->unsigned(); // ???
 
-            $table->char('rank')->nullable();
+            $table->char('rank', 2)->nullable();
             $table->unsignedMediumInteger('total_score')->nullable();
             $table->double('accuracy', 5, 4)->nullable();
             $table->float('pp')->nullable();
