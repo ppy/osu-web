@@ -113,7 +113,9 @@ class UsernameValidation
             // ranks
             foreach (Beatmap::MODES as $mode => $_modeInt) {
                 $stats = $user->statistics($mode);
-                if ($stats !== null && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
+                if ($stats !== null
+                    && $stats->rank_score_index > 0
+                    && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
                     return $errors->add('username', '.username_locked');
                 }
             }
