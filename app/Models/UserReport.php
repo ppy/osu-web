@@ -43,6 +43,10 @@ class UserReport extends Model
 
     public function reportable()
     {
+        if ($this->reportable_type === 'score') {
+            return $this->score();
+        }
+
         return $this->morphTo();
     }
 
