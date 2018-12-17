@@ -24,8 +24,6 @@ class Contest.Voting.Voter extends React.Component
     super props
 
   sendVote: =>
-    $.publish 'contest:vote:start'
-
     params =
       method: 'PUT'
       dataType: 'json'
