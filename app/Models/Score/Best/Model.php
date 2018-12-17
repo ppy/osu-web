@@ -24,12 +24,13 @@ use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
+use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use App\Models\UserReport;
 use DB;
 
-abstract class Model extends BaseModel
+abstract class Model extends BaseModel implements Reportable
 {
     public $position = null;
     public $weight = null;
@@ -310,6 +311,16 @@ abstract class Model extends BaseModel
     public function getMorphClass()
     {
         return Beatmap::modeInt(snake_case(get_class_basename(static::class)));
+    }
+
+    public function getReportableType()
+    {
+        return 'score';
+    }
+
+    public function getReportableUserId()
+    {
+        return $this->user_id;
     }
 
     public function delete()

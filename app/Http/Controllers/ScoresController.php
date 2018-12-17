@@ -34,7 +34,7 @@ class ScoresController extends Controller
         priv_check('ScoreReport', $score)->ensureCan();
 
         try {
-            (new ReportScore(auth()->user(), $score, $mode, [
+            (new ReportScore(auth()->user(), $score, [
                 'comments' => trim(request('comments'))
             ]))->report();
         } catch (ValidationException $e) {

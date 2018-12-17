@@ -40,7 +40,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, Reportable
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
@@ -101,6 +101,16 @@ class User extends Model implements AuthenticatableContract
     public function getAuthPassword()
     {
         return $this->user_password;
+    }
+
+    public function getReportableType()
+    {
+        return 'user';
+    }
+
+    public function getReportableUserId()
+    {
+        return $this->getKey();
     }
 
     public function usernameChangeCost()

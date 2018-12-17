@@ -20,10 +20,11 @@
 
 namespace App\Models;
 
+use App\Models\Reportable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 
-class Comment extends Model
+class Comment extends Model implements Reportable
 {
     use Validatable;
 
@@ -92,6 +93,16 @@ class Comment extends Model
         }
 
         $this->attributes['commentable_type'] = $value;
+    }
+
+    public function getReportableType()
+    {
+        return 'comment';
+    }
+
+    public function getReportableUserId()
+    {
+        return $this->user_id;
     }
 
     public function isValid()

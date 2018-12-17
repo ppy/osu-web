@@ -23,36 +23,13 @@ namespace App\Libraries;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\User;
 
-class ReportUser
+class ReportUser extends ReportBase
 {
-    protected $reporter;
-    protected $user;
-    protected $comments;
-    protected $reason;
-
     public function __construct(User $reporter, User $user, array $params)
     {
-        $this->reporter = $reporter;
-        $this->user = $user;
-        $this->comments = presence($params['comments'] ?? null);
-        $this->reason = presence($params['reason'] ?? null);
-    }
+        parent::__construct($user, $reporter);
 
-    public function report()
-    {
-        try {
-            $report = $this->reporter->reportsMade()->create([
-                'user_id' => $this->user->getKey(),
-                'comments' => $this->comments,
-                'reason' => $this->reason,
-                'reportable_type' => 'user',
-                'reportable_id' => $this->user->getKey(),
-            ]);
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
-        }
+        $this->comments = presence($params['comments'] ?? null);
+        $this->reason = $params['reason'];
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,19 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Models;
 
-use App\Models\Comment;
-use App\Models\User;
-
-class ReportComment extends ReportBase
+interface Reportable
 {
-    protected $reason = 'Spam';
-
-    public function __construct(User $reporter, Comment $comment, array $params)
-    {
-        parent::__construct($reporter, $comment);
-
-        $this->comments = presence($params['comments'] ?? null);
-    }
+    public function getKey();
+    public function getReportableType();
+    public function getReportableUserId();
 }

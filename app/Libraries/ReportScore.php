@@ -22,40 +22,17 @@ namespace App\Libraries;
 
 use App\Models\Beatmap;
 use App\Models\User;
-use App\Models\Score\Model as Score;
+use App\Models\Score\Best\Model as Score;
 
-class ReportScore
+class ReportScore extends ReportBase
 {
-    protected $reporter;
-    protected $score;
-    protected $mode;
-    protected $comments;
     protected $reason = 'Cheating';
 
-    public function __construct(User $reporter, Score $score, $mode, array $params)
+    public function __construct(User $reporter, Score $score, array $params)
     {
-        $this->reporter = $reporter;
-        $this->score = $score;
-        $this->mode = Beatmap::modeInt($mode);
-        $this->comments = presence($params['comments'] ?? null);
-    }
+        parent::__construct($reporter, $score);
 
-    public function report()
-    {
-        try {
-            $report = $this->reporter->reportsMade()->create([
-                'user_id' => $this->score->user_id,
-                'mode' => $this->mode,
-                'comments' => $this->comments,
-                'reason' => $this->reason,
-                'reportable_type' => 'score',
-                'reportable_id' => $this->score->score_id,
-            ]);
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
-        }
+        $this->modeInt = $score->getMorphClass();
+        $this->comments = presence($params['comments'] ?? null);
     }
 }
