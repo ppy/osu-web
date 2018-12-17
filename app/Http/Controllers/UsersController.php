@@ -199,7 +199,7 @@ class UsersController extends Controller
             return response()->json([], 404);
         }
 
-        priv_check('UserReport', Auth::user())->ensureCan();
+        priv_check('MakeReport')->ensureCan();
 
         try {
             (new ReportUser(auth()->user(), $user, [

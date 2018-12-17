@@ -999,7 +999,7 @@ class OsuAuthorize
         }
     }
 
-    public function checkScoreReport($user, $score)
+    public function checkMakeReport($user)
     {
         $this->ensureLoggedIn($user);
 
@@ -1047,13 +1047,6 @@ class OsuAuthorize
     }
 
     public function checkUserFavouriteRemove($user)
-    {
-        $this->ensureLoggedIn($user);
-
-        return 'ok';
-    }
-
-    public function checkUserReport($user)
     {
         $this->ensureLoggedIn($user);
 

@@ -81,7 +81,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
       data: { comments },
       dataType: 'json',
       type: 'POST',
-      url: laroute.route('comment.report', { comment: this.props.comment.id }),
+      url: laroute.route('comments.report', { comment: this.props.comment.id }),
     };
 
     $.ajax(params).done(() => {

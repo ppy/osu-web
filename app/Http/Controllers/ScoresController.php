@@ -31,7 +31,7 @@ class ScoresController extends Controller
     {
         $score = ScoreBest::getClassByString($mode)::findOrFail($id);
 
-        priv_check('ScoreReport', $score)->ensureCan();
+        priv_check('MakeReport')->ensureCan();
 
         try {
             (new ReportScore(auth()->user(), $score, [
