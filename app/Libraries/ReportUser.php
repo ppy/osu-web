@@ -27,7 +27,7 @@ class ReportUser extends ReportBase
 {
     public function __construct(User $reporter, User $user, array $params)
     {
-        parent::__construct($user, $reporter);
+        parent::__construct($reporter, $user);
 
         $this->comments = presence($params['comments'] ?? null);
         $this->reason = $params['reason'];
