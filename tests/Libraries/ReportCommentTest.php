@@ -63,7 +63,7 @@ class ReportCommentTest extends TestCase
         $this->assertSame('Spam', $report->reason);
     }
 
-    public function testReportSucceeds()
+    public function testReportableInstance()
     {
         $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
 
@@ -71,8 +71,10 @@ class ReportCommentTest extends TestCase
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $comment->reportBy($this->reporter);
+        $report = $comment->reportBy($this->reporter);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
+        $this->assertSame($report->user_id, $report->user_id);
+        $this->assertTrue($report->reportable->is($comment));
     }
 }

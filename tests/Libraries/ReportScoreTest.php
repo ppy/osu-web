@@ -60,16 +60,19 @@ class ReportScoreTest extends TestCase
         $this->assertSame('Cheating', $report->reason);
     }
 
-    public function testReportSucceeds()
+    public function testReportableInstance()
     {
-        $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $score = Best\Mania::create(['user_id' => factory(User::class)->create()->getKey()]);
 
         $query = UserReport::where('reportable_type', 'score')->where('reportable_id', $score->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $score->reportBy($this->reporter, []);
+        $report = $score->reportBy($this->reporter, []);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
+        $this->assertSame($score->getKey(), $report->score_id);
+        $this->assertSame($score->user_id, $report->user_id);
+        $this->assertTrue($report->reportable->is($score));
     }
 }

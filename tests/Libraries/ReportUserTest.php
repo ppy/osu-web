@@ -56,14 +56,16 @@ class ReportUserTest extends TestCase
         ]);
     }
 
-    public function testReportSucceeds()
+    public function testReportableInstance()
     {
         $user = factory(User::class)->create();
         $reportedCount = $user->reportedIn()->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $user->reportBy($this->reporter);
+        $report = $user->reportBy($this->reporter);
         $this->assertSame($reportedCount + 1, $user->reportedIn()->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
+        $this->assertSame($report->user_id, $report->user_id);
+        $this->assertTrue($report->reportable->is($user));
     }
 }
