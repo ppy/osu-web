@@ -40,7 +40,7 @@ abstract class ReportBase
 
     public function __construct(User $reporter, Reportable $reportable)
     {
-        priv_check('MakeReport')->ensureCan();
+        priv_check_user($reporter, 'MakeReport')->ensureCan();
 
         $this->reporter = $reporter;
         $this->reportable = $reportable;
