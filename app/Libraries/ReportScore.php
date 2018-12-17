@@ -32,7 +32,7 @@ class ReportScore extends ReportBase
     {
         parent::__construct($reporter, $score);
 
+        $this->comments = $params['comments'] ?? '';
         $this->modeInt = $score->getMorphClass();
-        $this->comments = presence($params['comments'] ?? null);
     }
 }

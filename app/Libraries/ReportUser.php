@@ -29,7 +29,7 @@ class ReportUser extends ReportBase
     {
         parent::__construct($reporter, $user);
 
-        $this->comments = presence($params['comments'] ?? null);
-        $this->reason = $params['reason'];
+        $this->comments = $params['comments'] ?? '';
+        $this->reason = $params['reason'] ?? 'Cheating';
     }
 }

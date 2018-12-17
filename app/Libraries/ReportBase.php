@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Models\User;
+use App\Models\UserReport;
 use App\Models\Reportable;
 use PDOException;
 
@@ -39,11 +40,13 @@ abstract class ReportBase
 
     public function __construct(User $reporter, Reportable $reportable)
     {
+        priv_check('MakeReport')->ensureCan();
+
         $this->reporter = $reporter;
         $this->reportable = $reportable;
     }
 
-    public function report()
+    public function report() : UserReport
     {
         try {
             $report = $this->reporter->reportsMade()->create([
@@ -54,6 +57,8 @@ abstract class ReportBase
                 'reportable_id' => $this->reportable->getKey(),
                 'user_id' => $this->reportable->getReportableUserId(),
             ]);
+
+            return $report;
         } catch (PDOException $ex) {
             // ignore duplicate reports;
             if (!is_sql_unique_exception($ex)) {

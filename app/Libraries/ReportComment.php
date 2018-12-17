@@ -31,6 +31,6 @@ class ReportComment extends ReportBase
     {
         parent::__construct($reporter, $comment);
 
-        $this->comments = presence($params['comments'] ?? null);
+        $this->comments = $params['comments'] ?? '';
     }
 }
