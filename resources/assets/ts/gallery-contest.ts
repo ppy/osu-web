@@ -33,7 +33,6 @@ export default class GalleryContest {
         pswp.listen('destroy', this.destroy);
     }
 
-
     destroy = () => {
          unmountComponentAtNode(this.root);
          $(document).off(`.${this.eventId}`)
