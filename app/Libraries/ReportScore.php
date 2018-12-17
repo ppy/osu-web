@@ -43,9 +43,8 @@ class ReportScore
     public function report()
     {
         try {
-            $report = $this->score->reportedIn()->create([
+            $report = $this->reporter->reportsMade()->create([
                 'user_id' => $this->score->user_id,
-                'reporter_id' => $this->reporter->getKey(),
                 'mode' => $this->mode,
                 'comments' => $this->comments,
                 'reason' => $this->reason,
