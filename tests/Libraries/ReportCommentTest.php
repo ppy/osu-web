@@ -18,6 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Exceptions\ValidationException;
+use App\Models\Build;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\UserReport;
@@ -35,7 +36,7 @@ class ReportCommentTest extends TestCase
 
     public function testReporterIsNotLoggedIn()
     {
-        $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $comment = $this->createComment(factory(User::class)->create());
 
         $this->expectException(AuthenticationException::class);
 
@@ -44,9 +45,7 @@ class ReportCommentTest extends TestCase
 
     public function testCannotReportOwnComment()
     {
-        $comment = Comment::create([
-            'user_id' => $this->reporter->getKey(),
-        ]);
+        $comment = $this->createComment($this->reporter);
 
         $this->expectException(ValidationException::class);
         $comment->reportBy($this->reporter);
@@ -54,7 +53,7 @@ class ReportCommentTest extends TestCase
 
     public function testReasonIsIgnored()
     {
-        $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $comment = $this->createComment(factory(User::class)->create());
 
         $report = $comment->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
@@ -65,7 +64,7 @@ class ReportCommentTest extends TestCase
 
     public function testReportableInstance()
     {
-        $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $comment = $this->createComment(factory(User::class)->create());
 
         $query = UserReport::where('reportable_type', 'comment')->where('reportable_id', $comment->getKey());
         $reportedCount = $query->count();
@@ -76,5 +75,15 @@ class ReportCommentTest extends TestCase
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($comment));
+    }
+
+    private function createComment($user)
+    {
+        $commentable = factory(Build::class)->create();
+
+        return $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+        ]);
     }
 }

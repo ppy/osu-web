@@ -38,7 +38,7 @@ class ReportScoreTest extends TestCase
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
 
         $this->expectException(AuthenticationException::class);
-        $score->reportBy(null, []);
+        $score->reportBy(null);
     }
 
     public function testCannotReportOwnScore()
@@ -46,7 +46,7 @@ class ReportScoreTest extends TestCase
         $score = Best\Osu::create(['user_id' => $this->reporter->getKey()]);
 
         $this->expectException(ValidationException::class);
-        $score->reportBy($this->reporter, []);
+        $score->reportBy($this->reporter);
     }
 
     public function testReasonIsIgnored()
@@ -68,7 +68,7 @@ class ReportScoreTest extends TestCase
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $report = $score->reportBy($this->reporter, []);
+        $report = $score->reportBy($this->reporter);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($score->getKey(), $report->score_id);
