@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\ReportScore;
 use App\Models\Score\Best\Model as ScoreBest;
 use Auth;
 use PDOException;
@@ -31,12 +30,10 @@ class ScoresController extends Controller
     {
         $score = ScoreBest::getClassByString($mode)::findOrFail($id);
 
-        priv_check('MakeReport')->ensureCan();
-
         try {
-            (new ReportScore(auth()->user(), $score, [
-                'comments' => trim(request('comments'))
-            ]))->report();
+            $score->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+            ]);
         } catch (ValidationException $e) {
             return error_popup($e->getMessage());
         }

@@ -20,11 +20,10 @@
 
 namespace App\Models;
 
-use App\Models\Reportable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 
-class Comment extends Model implements Reportable
+class Comment extends Model
 {
     use Validatable;
 
@@ -95,16 +94,6 @@ class Comment extends Model implements Reportable
         $this->attributes['commentable_type'] = $value;
     }
 
-    public function getReportableType()
-    {
-        return 'comment';
-    }
-
-    public function getReportableUserId()
-    {
-        return $this->user_id;
-    }
-
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -141,6 +130,19 @@ class Comment extends Model implements Reportable
     public function validationErrorsTranslationPrefix()
     {
         return 'comment';
+    }
+
+    public function reportBy(?User $reporter, array $params = []) : UserReport
+    {
+        priv_check_user($reporter, 'MakeReport')->ensureCan();
+
+        return $reporter->reportsMade()->create([
+            'comments' => $params['comments'] ?? '',
+            'reason' => 'Spam', // TODO: probably want more options
+            'reportable_type' => 'comment',
+            'reportable_id' => $this->getKey(),
+            'user_id' => $this->user_id,
+        ]);
     }
 
     public function save(array $options = [])

@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Libraries\ReportUser;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -32,7 +31,6 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
 use App\Models\UserNotFound;
-use App\Models\UserReport;
 use Auth;
 use PDOException;
 use Request;
@@ -200,10 +198,10 @@ class UsersController extends Controller
         }
 
         try {
-            (new ReportUser(auth()->user(), $user, [
+            $user->reportBy(auth()->user(), [
                 'comments' => trim(request('comments')),
                 'reason' => trim(request('reason')),
-            ]))->report();
+            ]);
         } catch (ValidationException $e) {
             return error_popup($e->getMessage());
         }

@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Exceptions\ValidationException;
-use App\Libraries\ReportComment;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\UserReport;
@@ -39,7 +38,8 @@ class ReportCommentTest extends TestCase
         $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
 
         $this->expectException(AuthenticationException::class);
-        (new ReportComment($this->reporter, $comment, []))->report();
+
+        $comment->reportBy(null);
     }
 
     public function testCannotReportOwnComment()
@@ -48,35 +48,30 @@ class ReportCommentTest extends TestCase
             'user_id' => $this->reporter->getKey(),
         ]);
 
-        auth()->login($this->reporter);
-
         $this->expectException(ValidationException::class);
-        (new ReportComment($this->reporter, $comment, [
-            'reason' => 'Spam',
-        ]))->report();
+        $comment->reportBy($this->reporter);
     }
 
     public function testReasonIsIgnored()
     {
         $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
-        auth()->login($this->reporter);
 
-        $report = (new ReportComment($this->reporter, $comment, [
+        $report = $comment->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
-        ]))->report();
+        ]);
 
         $this->assertSame('Spam', $report->reason);
     }
 
-    public function testReportIsLoggedIn()
+    public function testReportSucceeds()
     {
         $comment = Comment::create(['user_id' => factory(User::class)->create()->getKey()]);
-        auth()->login($this->reporter);
+
         $query = UserReport::where('reportable_type', 'comment')->where('reportable_id', $comment->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        (new ReportComment($this->reporter, $comment, []))->report();
+        $comment->reportBy($this->reporter);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
     }

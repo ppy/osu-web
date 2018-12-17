@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Exceptions\ValidationException;
-use App\Libraries\ReportUser;
 use App\Models\User;
 use App\Models\UserReport;
 use Illuminate\Auth\AuthenticationException;
@@ -38,40 +37,32 @@ class ReportUserTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->expectException(AuthenticationException::class);
-        (new ReportUser($this->reporter, $user, []))->report();
+        $user->reportBy(null);
     }
 
     public function testCannotReportSelf()
     {
-        auth()->login($this->reporter);
-
         $this->expectException(ValidationException::class);
-        (new ReportUser($this->reporter, $this->reporter, [
-            'reason' => 'Cheating',
-        ]))->report();
+        $this->reporter->reportBy($this->reporter);
     }
 
     public function testReasonIsNotValid()
     {
         $user = factory(User::class)->create();
-        auth()->login($this->reporter);
 
         $this->expectException(Illuminate\Database\QueryException::class);
-        (new ReportUser($this->reporter, $user, [
+        $user->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
-        ]))->report();
+        ]);
     }
 
-    public function testReportIsLoggedIn()
+    public function testReportSucceeds()
     {
         $user = factory(User::class)->create();
-        auth()->login($this->reporter);
         $reportedCount = $user->reportedIn()->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        (new ReportUser($this->reporter, $user, [
-            'reason' => 'Cheating',
-        ]))->report();
+        $user->reportBy($this->reporter);
         $this->assertSame($reportedCount + 1, $user->reportedIn()->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
     }

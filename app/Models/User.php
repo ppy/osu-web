@@ -40,7 +40,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Reportable
+class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
@@ -101,16 +101,6 @@ class User extends Model implements AuthenticatableContract, Reportable
     public function getAuthPassword()
     {
         return $this->user_password;
-    }
-
-    public function getReportableType()
-    {
-        return 'user';
-    }
-
-    public function getReportableUserId()
-    {
-        return $this->getKey();
     }
 
     public function usernameChangeCost()
@@ -1309,6 +1299,20 @@ class User extends Model implements AuthenticatableContract, Reportable
             'user_lastpost_time' => $lastPostTime,
         ]);
     }
+
+    public function reportBy(?User $reporter, array $params = []) : UserReport
+    {
+        priv_check_user($reporter, 'MakeReport')->ensureCan();
+
+        return $reporter->reportsMade()->create([
+            'comments' => $params['comments'] ?? '',
+            'reason' => $params['reason'] ?? 'Cheating',
+            'reportable_type' => 'user',
+            'reportable_id' => $this->getKey(),
+            'user_id' => $this->getKey(),
+        ]);
+    }
+
 
     public function scopeDefault($query)
     {

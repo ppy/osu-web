@@ -24,13 +24,12 @@ use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
-use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use App\Models\UserReport;
 use DB;
 
-abstract class Model extends BaseModel implements Reportable
+abstract class Model extends BaseModel
 {
     public $position = null;
     public $weight = null;
@@ -313,16 +312,6 @@ abstract class Model extends BaseModel implements Reportable
         return Beatmap::modeInt(snake_case(get_class_basename(static::class)));
     }
 
-    public function getReportableType()
-    {
-        return 'score';
-    }
-
-    public function getReportableUserId()
-    {
-        return $this->user_id;
-    }
-
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
@@ -344,5 +333,20 @@ abstract class Model extends BaseModel implements Reportable
         optional($this->replayFile())->delete();
 
         return $result;
+    }
+
+    public function reportBy(?User $reporter, array $params = []) : UserReport
+    {
+        priv_check_user($reporter, 'MakeReport')->ensureCan();
+
+        return $reporter->reportsMade()->create([
+            'comments' => $params['comments'] ?? '',
+            'mode' => $this->getMorphClass(),
+            'reason' => 'Cheating', // TODO: probably want more options
+            'reportable_type' => 'score',
+            'reportable_id' => $this->getKey(),
+            'score_id' => $this->getKey(),
+            'user_id' => $this->user_id,
+        ]);
     }
 }

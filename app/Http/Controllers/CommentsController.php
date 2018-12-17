@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
-use App\Libraries\ReportComment;
 use App\Models\Comment;
 use App\Models\Log;
 use Carbon\Carbon;
@@ -99,11 +98,9 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        priv_check('MakeReport')->ensureCan();
-
-        (new ReportComment(auth()->user(), $comment, [
+        $comment->reportBy(auth()->user(), [
             'comments' => trim(request('comments')),
-        ]))->report();
+        ]);
 
         return response(null, 204);
     }

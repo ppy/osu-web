@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Exceptions\ValidationException;
-use App\Libraries\ReportScore;
 use App\Models\User;
 use App\Models\Score\Best;
 use App\Models\UserReport;
@@ -39,40 +38,37 @@ class ReportScoreTest extends TestCase
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
 
         $this->expectException(AuthenticationException::class);
-        (new ReportScore($this->reporter, $score, []))->report();
+        $score->reportBy(null, []);
     }
 
     public function testCannotReportOwnScore()
     {
         $score = Best\Osu::create(['user_id' => $this->reporter->getKey()]);
-        auth()->login($this->reporter);
 
         $this->expectException(ValidationException::class);
-        (new ReportScore($this->reporter, $score, []))->report();
+        $score->reportBy($this->reporter, []);
     }
 
     public function testReasonIsIgnored()
     {
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
-        auth()->login($this->reporter);
 
-        $report = (new ReportScore($this->reporter, $score, [
+        $report = $score->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
-        ]))->report();
+        ]);
 
         $this->assertSame('Cheating', $report->reason);
     }
 
-    public function testReportIsLoggedIn()
+    public function testReportSucceeds()
     {
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
-        auth()->login($this->reporter);
 
         $query = UserReport::where('reportable_type', 'score')->where('reportable_id', $score->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        (new ReportScore($this->reporter, $score, []))->report();
+        $score->reportBy($this->reporter, []);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
     }
