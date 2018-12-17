@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;

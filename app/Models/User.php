@@ -1300,7 +1300,7 @@ class User extends Model implements AuthenticatableContract
         ]);
     }
 
-    public function reportBy(?User $reporter, array $params = []) : UserReport
+    public function reportBy(?self $reporter, array $params = []) : UserReport
     {
         priv_check_user($reporter, 'MakeReport')->ensureCan();
 
@@ -1312,7 +1312,6 @@ class User extends Model implements AuthenticatableContract
             'user_id' => $this->getKey(),
         ]);
     }
-
 
     public function scopeDefault($query)
     {

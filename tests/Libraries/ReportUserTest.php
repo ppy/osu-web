@@ -19,7 +19,6 @@
  */
 use App\Exceptions\ValidationException;
 use App\Models\User;
-use App\Models\UserReport;
 use Illuminate\Auth\AuthenticationException;
 
 class ReportUserTest extends TestCase

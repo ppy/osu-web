@@ -19,8 +19,8 @@
  */
 use App\Exceptions\ValidationException;
 use App\Models\Build;
-use App\Models\User;
 use App\Models\Comment;
+use App\Models\User;
 use App\Models\UserReport;
 use Illuminate\Auth\AuthenticationException;
 

@@ -18,8 +18,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Exceptions\ValidationException;
-use App\Models\User;
 use App\Models\Score\Best;
+use App\Models\User;
 use App\Models\UserReport;
 use Illuminate\Auth\AuthenticationException;
 
