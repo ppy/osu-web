@@ -20,12 +20,6 @@
 el = React.createElement
 
 class Contest.Voting.ArtEntry extends React.Component
-  constructor: (props) ->
-    super props
-
-    @voter = React.createRef
-
-
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     isSelected = _.includes @props.selected, @props.entry.id
@@ -40,7 +34,6 @@ class Contest.Voting.ArtEntry extends React.Component
       top3 = place <= 3
 
     divClasses = [
-      'js-contest-vote-entry'
       'contest-art-entry',
       'contest-art-entry--result' if showVotes,
       "contest-art-entry--placed contest-art-entry--placed-#{place}" if showVotes && top3,
