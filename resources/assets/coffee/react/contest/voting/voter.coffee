@@ -94,5 +94,4 @@ class Contest.Voting.Voter extends React.Component
           props.onClick = @handleClick
           icon = i className: 'fas fa-fw fa-star'
 
-
     component props, icon
