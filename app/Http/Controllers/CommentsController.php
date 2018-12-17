@@ -21,12 +21,14 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use App\Models\Log;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PDOException;
 
 class CommentsController extends Controller
 {
@@ -98,9 +100,18 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        $comment->reportBy(auth()->user(), [
-            'comments' => trim(request('comments')),
-        ]);
+        try {
+            $comment->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+            ]);
+        } catch (PDOException $e) {
+            // ignore duplicate reports
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
+        }
 
         return response(null, 204);
     }

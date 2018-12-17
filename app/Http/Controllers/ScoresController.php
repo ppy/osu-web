@@ -34,6 +34,11 @@ class ScoresController extends Controller
             $score->reportBy(auth()->user(), [
                 'comments' => trim(request('comments')),
             ]);
+        } catch (PDOException $e) {
+            // ignore duplicate reports
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
         } catch (ValidationException $e) {
             return error_popup($e->getMessage());
         }

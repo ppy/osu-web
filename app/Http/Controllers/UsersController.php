@@ -202,6 +202,11 @@ class UsersController extends Controller
                 'comments' => trim(request('comments')),
                 'reason' => trim(request('reason')),
             ]);
+        } catch (PDOException $e) {
+            // ignore duplicate reports
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
         } catch (ValidationException $e) {
             return error_popup($e->getMessage());
         }
