@@ -21,12 +21,13 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Chat\Channel;
+use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Validator;
 
-class Room extends \App\Models\Model
+class Room extends Model
 {
     use SoftDeletes;
 
@@ -60,7 +61,7 @@ class Room extends \App\Models\Model
             ->where('ends_at', '>', Carbon::now());
     }
 
-    public function scopeStartedBy($query, \App\Models\User $user)
+    public function scopeStartedBy($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
     }

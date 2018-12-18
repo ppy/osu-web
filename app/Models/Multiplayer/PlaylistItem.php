@@ -23,8 +23,9 @@ namespace App\Models\Multiplayer;
 use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
+use App\Models\Model;
 
-class PlaylistItem extends \App\Models\Model
+class PlaylistItem extends Model
 {
     protected $table = 'multiplayer_playlist_items';
     protected $casts = [

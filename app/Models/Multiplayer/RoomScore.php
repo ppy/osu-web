@@ -20,10 +20,11 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\Model;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RoomScore extends \App\Models\Model
+class RoomScore extends Model
 {
     use SoftDeletes;
 
