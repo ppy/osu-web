@@ -28,8 +28,8 @@
     "js-cookie": "^2.1.2",
     "layzr.js": "^2.0.0",
     "lodash": "^4.0.0",
-    "mobx": "^5.0.3",
-    "mobx-react": "^5.2.3",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
     "moment": "^2.11.1",
     "photoswipe": "^4.1.1",
     "promise-polyfill": "^8.1.0",
@@ -58,7 +58,7 @@
     "laravel-mix": "^1.6.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
-    "mobx-react-devtools": "^5.0.1",
+    "mobx-react-devtools": "^6.0.3",
     "ts-loader": "3.5",
     "tslint": "^5.11.0"
   }
