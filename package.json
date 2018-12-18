@@ -47,7 +47,7 @@
     "turbolinks": "^5.1.1",
     "typescript": "^2.9.1",
     "url-polyfill": "^1.0.10",
-    "webpack-sentry-plugin": "^1.9.2"
+    "webpack-sentry-plugin": "^1.16.0"
   },
   "devDependencies": {
     "coffee-loader": "^0.7.3",
