@@ -73,15 +73,16 @@ class Room extends \App\Models\Model
 
         $processed = [];
         $stats = [];
+        $attempts = [];
 
         foreach ($scores as $score) {
-            if (!isset($stats[$score->user_id]['attempts'])) {
-                $stats[$score->user_id]['attempts'] = 0;
+            if (!isset($attempts[$score->user_id])) {
+                $attempts[$score->user_id] = 0;
             }
 
-            $stats[$score->user_id]['attempts']++;
+            $attempts[$score->user_id]++;
 
-            if (!$score->isCompleted() || $score->passed === 0 ) {
+            if (!$score->isCompleted() || $score->passed === 0) {
                 continue;
             }
 
@@ -106,6 +107,7 @@ class Room extends \App\Models\Model
 
         foreach ($stats as $userId => $stat) {
             $stats[$userId]['accuracy'] = $stat['accuracy'] / $stat['completed'];
+            $stats[$userId]['attempts'] = $attempts[$userId];
         }
 
         // todo: add priority for scores set first in case of a tie (this requires quite a bit more effort/restructure)
