@@ -17,6 +17,8 @@ class AddReportableTypeToUserReports extends Migration
             $table->enum('reportable_type', ['user', 'score', 'comment'])->nullable()->after('user_id');
             $table->unsignedInteger('reportable_id')->nullable()->after('mode');
             $table->unique(['reporter_id', 'user_id', 'reportable_type', 'mode', 'reportable_id'], 'unique-reportable');
+            $table->index(['reportable_type', 'reportable_id'], 'reportable');
+            $table->index(['score_id', 'mode'], 'score');
         });
 
         DB::statement("UPDATE osu_user_reports SET reportable_type = 'user', reportable_id = user_id WHERE score_id = 0");
@@ -35,10 +37,12 @@ class AddReportableTypeToUserReports extends Migration
     public function down()
     {
         Schema::table('osu_user_reports', function (Blueprint $table) {
+            $table->unique(['reporter_id', 'user_id', 'mode', 'score_id'], 'unique-new');
             $table->dropIndex('unique-reportable');
+            $table->dropIndex('reportable');
+            $table->dropIndex('score');
             $table->dropColumn('reportable_type');
             $table->dropColumn('reportable_id');
-            $table->unique(['reporter_id', 'user_id', 'mode', 'score_id'], 'unique-new');
         });
     }
 }

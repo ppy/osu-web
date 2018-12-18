@@ -80,6 +80,11 @@ class Comment extends Model
         return $this->hasMany(static::class, 'parent_id');
     }
 
+    public function reportedIn()
+    {
+        return $this->morphMany(UserReport::class, 'reportable');
+    }
+
     public function votes()
     {
         return $this->hasMany(CommentVote::class);

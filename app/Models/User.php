@@ -694,7 +694,7 @@ class User extends Model implements AuthenticatableContract
 
     public function reportedIn()
     {
-        return $this->hasMany(UserReport::class, 'user_id');
+        return $this->morphMany(UserReport::class, 'reportable');
     }
 
     public function reportsMade()
