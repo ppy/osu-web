@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=webpack.config.js",
+    "watch": "yarn run development -- --watch",
     "watch-poll": "yarn run watch -- --watch-poll",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=webpack.config.js",
     "prod": "yarn run production",
@@ -55,7 +55,7 @@
     "cross-env": "^5.2.0",
     "import-glob-loader": "^1.1.0",
     "imports-loader": "^0.7.1",
-    "laravel-mix": "^1.6.0",
+    "laravel-mix": "^4.0.12",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "mobx-react-devtools": "^6.0.3",
