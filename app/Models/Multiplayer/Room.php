@@ -83,7 +83,7 @@ class Room extends Model
 
             $attempts[$score->user_id]++;
 
-            if (!$score->isCompleted() || $score->passed === 0) {
+            if (!$score->isCompleted() || !$score->passed) {
                 continue;
             }
 
