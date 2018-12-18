@@ -4115,14 +4115,7 @@ imagemin@^6.0.0:
     pify "^3.0.0"
     replace-ext "^1.0.0"
 
-imagesloaded@>=3.0.0:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.3.tgz#94b82a069e532c9da112a4ea3960e58424a42be4"
-  integrity sha512-cjwkbOXFgDAuh1kpAwIvWfcUkQF9NXLlzS38L4szgiYeNCFFyNetblG5/OFzo4JweNxuDOk+5AIPlqFVIBIInA==
-  dependencies:
-    ev-emitter "^1.0.0"
-
-imagesloaded@^4.1.3:
+imagesloaded@>=3.0.0, imagesloaded@^4.1.3:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.4.tgz#1376efcd162bb768c34c3727ac89cc04051f3cc7"
   integrity sha512-ltiBVcYpc/TYTF5nolkMNsnREHW+ICvfQ3Yla2Sgr71YFwQ86bDwV9hgpFhFtrGPuwEx5+LqOHIrdXBdoWwwsA==
@@ -4551,20 +4544,15 @@ jquery.scrollto@^2.1.2:
   dependencies:
     jquery ">=1.8"
 
-jquery@>=1.2.3:
+jquery@>=1.2.3, jquery@>=1.6.0, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
-jquery@>=1.6.0, jquery@>=1.8, jquery@>=1.8.0:
+jquery@>=1.8, jquery@>=1.8.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
   integrity sha1-XE2d5lKvbNCncBVKYxu6ErAVx4c=
-
-jquery@^2.2.0:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
-  integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
 js-cookie@^2.1.2:
   version "2.2.0"
@@ -6273,9 +6261,9 @@ qs@6.5.2, qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-qtip2@notbakaneko/qTip2#e3278ba:
-  version "3.0.3"
-  resolved "https://codeload.github.com/notbakaneko/qTip2/tar.gz/e3278ba"
+qtip2@nanaya/qTip2#72cdf096c73deb3f74b830feec4dcbfa2b0c492f:
+  version "3.0.3-jquery3"
+  resolved "https://codeload.github.com/nanaya/qTip2/tar.gz/72cdf096c73deb3f74b830feec4dcbfa2b0c492f"
   dependencies:
     imagesloaded ">=3.0.0"
     jquery ">=1.6.0"
