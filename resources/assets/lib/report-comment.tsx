@@ -19,12 +19,12 @@
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
-export interface ReportCommentProps {
+interface ReportCommentProps {
   comment: Comment;
   user: User;
 }
 
-export interface ReportCommentState {
+interface ReportCommentState {
   completed: boolean;
   disabled: boolean;
   showingForm: boolean;
@@ -68,14 +68,6 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
     this.setState({ disabled: false, showingForm: false });
   }
 
-  showForm = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.button !== 0) { return; }
-    e.preventDefault();
-
-    Timeout.clear(this.timeout);
-    this.setState({disabled: false, showingForm: true });
-  }
-
   onSubmit = ({comments}: {comments: string}) => {
     this.setState({ disabled: true });
     const params = {
@@ -92,5 +84,13 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
       osu.ajaxError(xhr);
       this.setState({ disabled : false });
     });
+  }
+
+  showForm = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.button !== 0) { return; }
+    e.preventDefault();
+
+    Timeout.clear(this.timeout);
+    this.setState({ disabled: false, showingForm: true });
   }
 }
