@@ -21,6 +21,7 @@ import { ReportForm } from 'report-form';
 
 export interface ReportCommentProps {
   comment: any;
+  user: any;
 }
 
 export interface ReportCommentState {
@@ -55,7 +56,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
           key='form'
           onClose={this.onFormClose}
           onSubmit={this.onSubmit}
-          title={osu.trans('report.comment.title', { username: `<strong>${this.props.comment.user_id}</strong>` })}
+          title={osu.trans('report.comment.title', { username: `<strong>${this.props.user.username}</strong>` })}
           visible={this.state.showingForm}
         >
         </ReportForm>

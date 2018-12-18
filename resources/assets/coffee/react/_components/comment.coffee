@@ -148,6 +148,7 @@ class @Comment extends React.PureComponent
 
             el _exported.ReportComment,
               comment: @props.comment
+              user: @userFor(@props.comment)
 
             if @canModerate()
               div className: 'comment__row-item',

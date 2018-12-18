@@ -23,4 +23,9 @@ return [
         'button' => 'Report Score',
         'title' => 'Report :username\'s score?',
     ],
+
+    'comment' => [
+        'button' => 'Report Comment',
+        'title' => 'Report :username\'s comment?',
+    ],
 ];
