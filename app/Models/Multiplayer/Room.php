@@ -81,14 +81,22 @@ class Room extends \App\Models\Model
 
             $stats[$score->user_id]['attempts']++;
 
-            if (!$score->isCompleted() || $score->passed == 0 || isset($processed[$score->user_id][$score->playlist_item_id])) {
+            if (!$score->isCompleted() || $score->passed === 0 ) {
+                continue;
+            }
+
+            // use user's highest score
+            if ($score->total_score > ($stats[$score->user_id]['total_score'] ?? 0)) {
+                $stats[$score->user_id]['total_score'] = $score->total_score;
+                $stats[$score->user_id]['accuracy'] = $score->accuracy;
+                $stats[$score->user_id]['pp'] = $score->pp;
+            }
+
+            if (isset($processed[$score->user_id][$score->playlist_item_id])) {
                 continue;
             }
 
             $processed[$score->user_id][$score->playlist_item_id] = true;
-            foreach (['total_score', 'accuracy', 'pp'] as $key) {
-                $stats[$score->user_id][$key] = isset($stats[$score->user_id][$key]) ? $stats[$score->user_id][$key] + $score->$key : $score->$key;
-            }
 
             $stats[$score->user_id]['completed'] = count($processed[$score->user_id]);
             $stats[$score->user_id]['room_id'] = $score->room_id;
