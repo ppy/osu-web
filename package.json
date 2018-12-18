@@ -45,7 +45,7 @@
     "timeago": "^1.5.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
-    "typescript": "^2.9.1",
+    "typescript": "^3.2.2",
     "url-polyfill": "^1.0.10",
     "webpack-sentry-plugin": "^1.16.0"
   },
@@ -54,12 +54,12 @@
     "coffee-script": "^1.12.6",
     "cross-env": "^5.2.0",
     "import-glob-loader": "^1.1.0",
-    "imports-loader": "^0.7.1",
+    "imports-loader": "^0.8.0",
     "laravel-mix": "^4.0.12",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "mobx-react-devtools": "^6.0.3",
-    "ts-loader": "3.5",
+    "ts-loader": "5.3.1",
     "tslint": "^5.11.0"
   }
 }
