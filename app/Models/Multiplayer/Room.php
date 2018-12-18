@@ -72,43 +72,35 @@ class Room extends Model
             ->with('user.country')
             ->get();
 
-        $processed = [];
         $stats = [];
-        $attempts = [];
 
-        foreach ($scores as $score) {
-            if (!isset($attempts[$score->user_id])) {
-                $attempts[$score->user_id] = 0;
+        $scoresByUsers = $scores->groupBy('user_id');
+        foreach ($scoresByUsers as $userId => $scoresByUser) {
+            $userStats = [];
+            // only consider completed and passed scores.
+            $passed = $scoresByUser->filter(function ($score) {
+                return $score->isCompleted() && $score->passed;
+            });
+
+            // only want user's highest score.
+            $scoresByBeatmaps = $passed->sortByDesc('total_score')->groupBy('beatmap_id');
+            $completedCount = $scoresByBeatmaps->count();
+            foreach ($scoresByBeatmaps as $scoresByBeatmap) {
+                $topScore = $scoresByBeatmap->first();
+                $userStats['total_score'] = ($userStats['total_score'] ?? 0) + $topScore->total_score;
+                $userStats['accuracy'] = ($userStats['accuracy'] ?? 0) + $topScore->accuracy;
+                $userStats['pp'] = ($userStats['pp'] ?? 0) + $topScore->pp;
             }
 
-            $attempts[$score->user_id]++;
+            $userStats['attempts'] = $scoresByUser->count();
+            $userStats['accuracy'] = $userStats['accuracy'] / $completedCount;
+            $userStats['pp'] = $userStats['pp'] / $completedCount;
+            $userStats['completed'] = $completedCount;
+            $userStats['room_id'] = $this->getKey();
+            $userStats['user_id'] = $userId;
+            $userStats['user'] = json_item($scoresByUser->first()->user, 'UserCompact', ['country']);
 
-            if (!$score->isCompleted() || !$score->passed) {
-                continue;
-            }
-
-            // use user's highest score
-            if ($score->total_score > ($stats[$score->user_id]['total_score'] ?? 0)) {
-                $stats[$score->user_id]['total_score'] = $score->total_score;
-                $stats[$score->user_id]['accuracy'] = $score->accuracy;
-                $stats[$score->user_id]['pp'] = $score->pp;
-            }
-
-            if (isset($processed[$score->user_id][$score->playlist_item_id])) {
-                continue;
-            }
-
-            $processed[$score->user_id][$score->playlist_item_id] = true;
-
-            $stats[$score->user_id]['completed'] = count($processed[$score->user_id]);
-            $stats[$score->user_id]['room_id'] = $score->room_id;
-            $stats[$score->user_id]['user_id'] = $score->user_id;
-            $stats[$score->user_id]['user'] = json_item($score->user, 'UserCompact', ['country']);
-        }
-
-        foreach ($stats as $userId => $stat) {
-            $stats[$userId]['accuracy'] = $stat['accuracy'] / $stat['completed'];
-            $stats[$userId]['attempts'] = $attempts[$userId];
+            $stats[$userId] = $userStats;
         }
 
         // todo: add priority for scores set first in case of a tie (this requires quite a bit more effort/restructure)
