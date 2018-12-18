@@ -38,7 +38,7 @@
     "react-autosize-textarea": "*",
     "react-dom": "^16.4.1",
     "react-dom-factories": "^1.0.0",
-    "react-virtual-list": "^2.2.4",
+    "react-virtual-list": "^2.3.0",
     "require-dir": "^0.3.2",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",

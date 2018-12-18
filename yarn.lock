@@ -6928,10 +6928,10 @@ react-lifecycles-compat@^3.0.2:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-virtual-list@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/react-virtual-list/-/react-virtual-list-2.2.4.tgz#bbeb4938436f80ddbff4f8724f43de2117085691"
-  integrity sha1-u+tJOENvgN2/9PhyT0PeIRcIVpE=
+react-virtual-list@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-virtual-list/-/react-virtual-list-2.3.0.tgz#84ebba7f954bafc4de435e4b29d69fdd371b9cda"
+  integrity sha1-hOu6f5VLr8TeQ15LKdaf3TcbnNo=
   dependencies:
     prop-types "^15.5.10"
 
