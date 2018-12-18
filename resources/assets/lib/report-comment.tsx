@@ -46,7 +46,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
   render(): React.ReactNode {
     return (
       <React.Fragment>
-        <button className='simple-menu__item' key='button' onClick={this.showForm}>
+        <button className='comment__action' key='button' onClick={this.showForm}>
           { osu.trans('report.comment.button') }
         </button>
         <ReportForm

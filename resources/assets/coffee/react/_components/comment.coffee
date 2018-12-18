@@ -146,11 +146,6 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if @canReport()
-              el _exported.ReportComment,
-                comment: @props.comment
-                user: @userFor(@props.comment)
-
             if @canModerate()
               div className: 'comment__row-item',
                 a
@@ -189,6 +184,12 @@ class @Comment extends React.PureComponent
                   className: 'comment__action'
                   onClick: @delete
                   osu.trans('common.buttons.delete')
+
+            if @canReport()
+              div className: 'comment__row-item',
+                el _exported.ReportComment,
+                  comment: @props.comment
+                  user: @userFor(@props.comment)
 
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
