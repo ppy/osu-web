@@ -4,9 +4,9 @@ declare var _: any;
 declare var laroute: any;
 declare var moment: any;
 interface JQueryStatic {
-  subscribe: any,
-  unsubscribe: any,
-  publish: any
+  subscribe: any;
+  unsubscribe: any;
+  publish: any;
 }
 
 // our helpers
@@ -26,3 +26,13 @@ declare var Img2x: any;
 declare var Spinner: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
+
+// Global object types
+interface Comment {
+  id: number;
+}
+
+interface User {
+  id: number;
+  username: string;
+}

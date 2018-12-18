@@ -20,8 +20,8 @@ import * as React from 'react';
 import { ReportForm } from 'report-form';
 
 export interface ReportCommentProps {
-  comment: any;
-  user: any;
+  comment: Comment;
+  user: User;
 }
 
 export interface ReportCommentState {
