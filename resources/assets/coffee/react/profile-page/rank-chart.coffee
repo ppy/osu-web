@@ -90,4 +90,6 @@ class ProfilePage.RankChart extends React.Component
         x: data[0].x - 1
         y: data[0].y
 
+    _.last(data).y = -@props.stats.rank.global
+
     @rankChart.loadData data

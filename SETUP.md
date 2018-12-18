@@ -7,7 +7,7 @@ There are a few different options to get started:
 - MySQL 5.7
 - PHP 7.1+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - nginx (or other webserver)
-- a modern version of nodejs (and npm)
+- Node.js 8 or 9 (and a modern version of npm)
 - elasticsearch 5+
 - redis (not required, but you may want to use for caching and laravel's job-queue)
 
