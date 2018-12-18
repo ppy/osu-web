@@ -28,19 +28,19 @@
     box-shadow: 0 @border-size darken(@color, 10%), 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
 
     &:focus {
-      background-position: calc(50% ~'-' 10px) 50%;
+      background-position: calc(50% - 10px) 50%;
       background-color: lighten(@color, 5%);
     }
 
     &:hover {
-      background-position: calc(50% ~'-' 20px) 50%;
+      background-position: calc(50% - 20px) 50%;
       background-color: lighten(@color, 10%);
     }
 
     &:active {
       @move: 2px;
       transform: translate(0, @move);
-      background-position: calc(50% ~'-' 20px) 50%;
+      background-position: calc(50% - 20px) 50%;
       box-shadow: 0 (@border-size - @move) darken(@color, 10%), 0 (@border-size - @move + @box-shadow-y) @box-shadow-radius @box-shadow-color;
     }
   }

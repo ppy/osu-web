@@ -18,12 +18,12 @@
 
 .osu-page {
   .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
+    width: calc(100% - (@extra-margin * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
   .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+    width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
@@ -226,11 +226,11 @@
 
     flex: 1 0 auto;
     display: flex;
-    height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 150px); // viewport height - compact header+footer
+    height: calc((var(--vh, 1vh) * 100) - 150px); // viewport height - compact header+footer
     width: 100vw;
 
     @media @mobile {
-      height: calc(var(--vh, 1vh) ~'*' 100 ~'-' 110px);
+      height: calc((var(--vh, 1vh) * 100) - 110px);
     }
   }
 }
