@@ -3,20 +3,8 @@ declare var window: Window;
 declare var _: any;
 declare var laroute: any;
 declare var moment: any;
-interface JQueryStatic {
-  subscribe: any;
-  unsubscribe: any;
-  publish: any;
-}
 
 // our helpers
-interface OsuCommon {
-  ajaxError: (xhr: JQueryXHR) => void;
-  trans: (...args: any[]) => string;
-  uuid: () => string;
-  parseJson: (id: string) => any;
-}
-
 declare var osu: OsuCommon;
 declare var currentUser: any;
 declare var reactTurbolinks: any;
@@ -30,6 +18,19 @@ declare var UserAvatar: any;
 // Global object types
 interface Comment {
   id: number;
+}
+
+interface JQueryStatic {
+  subscribe: any;
+  unsubscribe: any;
+  publish: any;
+}
+
+interface OsuCommon {
+  ajaxError: (xhr: JQueryXHR) => void;
+  trans: (...args: any[]) => string;
+  uuid: () => string;
+  parseJson: (id: string) => any;
 }
 
 interface User {
