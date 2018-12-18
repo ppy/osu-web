@@ -146,9 +146,10 @@ class @Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            el _exported.ReportComment,
-              comment: @props.comment
-              user: @userFor(@props.comment)
+            if @canReport()
+              el _exported.ReportComment,
+                comment: @props.comment
+                user: @userFor(@props.comment)
 
             if @canModerate()
               div className: 'comment__row-item',
@@ -301,6 +302,10 @@ class @Comment extends React.PureComponent
 
   canModerate: =>
     currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
+
+
+  canReport: =>
+    currentUser.id? && @props.comment.user_id != currentUser.id
 
 
   canRestore: =>
