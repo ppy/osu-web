@@ -86,7 +86,9 @@ class Room extends Model
             $agg->addScores($scoresByUser);
             $userStats = $agg->toArray();
 
-            $stats[$userId] = $userStats;
+            if ($userStats !== null) {
+                $stats[$userId] = $userStats;
+            }
         }
 
         // todo: add priority for scores set first in case of a tie (this requires quite a bit more effort/restructure)
