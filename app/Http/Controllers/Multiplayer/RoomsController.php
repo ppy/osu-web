@@ -44,12 +44,18 @@ class RoomsController extends BaseController
         if ($mode === 'ended') {
             $rooms->ended()->orderBy('ends_at', 'desc');
         } else {
-            $rooms->active()->orderBy('id', 'desc');
-            if ($mode === 'owned') {
+            if ($mode === 'participated') {
+                $rooms->whereHas('scores', function ($scoresQuery) {
+                    // FIXME: needs load testing
+                    $scoresQuery->where('user_id', auth()->user()->getKey());
+                });
+            } else if ($mode === 'owned') {
                 $rooms->startedBy(auth()->user());
-            } else if ($mode === 'participated') {
-
+            } else {
+                $rooms->active();
             }
+
+            $rooms->orderBy('id', 'desc');
         }
 
         return json_collection(
