@@ -26,10 +26,8 @@ use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use Auth;
 use Carbon\Carbon;
 use DB;
-use Request;
 
 class RoomsController extends BaseController
 {
@@ -43,11 +41,11 @@ class RoomsController extends BaseController
         $rooms = Room::active()
             ->orderBy('id', 'DESC');
 
-        if (Request::has('owned')) {
-            $rooms->startedBy(Auth::user());
+        if (request()->has('owned')) {
+            $rooms->startedBy(auth()->user());
         }
 
-        if (Request::has('participated')) {
+        if (request()->has('participated')) {
             // TODO: this
         }
 
@@ -87,14 +85,14 @@ class RoomsController extends BaseController
     public function join($roomId, $userId)
     {
         // this allows admins/whatever to add users to games in the future
-        if (get_int($userId) !== Auth::user()->user_id) {
+        if (get_int($userId) !== auth()->user()->user_id) {
             abort(403);
         }
 
         $channel = Room::findOrFail($roomId)->channel;
 
-        if (!$channel->hasUser(Auth::user())) {
-            $channel->addUser(Auth::user());
+        if (!$channel->hasUser(auth()->user())) {
+            $channel->addUser(auth()->user());
         }
 
         return response([], 204);
@@ -103,14 +101,14 @@ class RoomsController extends BaseController
     public function part($roomId, $userId)
     {
         // this allows admins/host/whoever to remove users from games in the future
-        if (get_int($userId) !== Auth::user()->user_id) {
+        if (get_int($userId) !== auth()->user()->user_id) {
             abort(403);
         }
 
         $channel = Room::findOrFail($roomId)->channel;
 
-        if ($channel->hasUser(Auth::user())) {
-            $channel->removeUser(Auth::user());
+        if ($channel->hasUser(auth()->user())) {
+            $channel->removeUser(auth()->user());
         }
 
         return response([], 204);
@@ -118,18 +116,18 @@ class RoomsController extends BaseController
 
     public function store()
     {
-        $currentUser = Auth::user();
+        $currentUser = auth()->user();
         $hasActiveRooms = Room::active()->startedBy($currentUser)->exists();
         if ($hasActiveRooms) {
             abort(403, 'number of simultaneously active rooms reached');
         }
 
         foreach (['name', 'playlist'] as $field) {
-            if (!Request::has($field) || !present(Request::input($field))) {
+            if (!request()->has($field) || !present(request()->input($field))) {
                 abort(422, "field '{$field}' required");
             }
 
-            $$field = Request::input($field);
+            $$field = request()->input($field);
         }
 
         if (!is_array($playlist) || empty($playlist)) {
@@ -175,26 +173,26 @@ class RoomsController extends BaseController
             }
         }
 
-        if (Request::has('starts_at')) {
-            $startTime = Carbon::parse(Request::input('starts_at'));
+        if (request()->has('starts_at')) {
+            $startTime = Carbon::parse(request()->input('starts_at'));
         } else {
             $startTime = Carbon::now();
         }
 
-        if (Request::has('ends_at')) {
-            $endTime = Carbon::parse(Request::input('ends_at'));
+        if (request()->has('ends_at')) {
+            $endTime = Carbon::parse(request()->input('ends_at'));
 
             if ($endTime->isBefore($startTime)) {
                 abort(422, "'ends_at' cannot be before 'starts_at'");
             }
-        } elseif (Request::has('duration')) {
-            $endTime = $startTime->copy()->addMinutes(Request::input('duration'));
+        } elseif (request()->has('duration')) {
+            $endTime = $startTime->copy()->addMinutes(request()->input('duration'));
         } else {
             abort(422, "field 'duration' or 'ends_at' required");
         }
 
-        if (Request::has('max_attempts')) {
-            $maxAttempts = get_int(Request::input('max_attempts'));
+        if (request()->has('max_attempts')) {
+            $maxAttempts = get_int(request()->input('max_attempts'));
             if ($maxAttempts < 1 || $maxAttempts > 32) {
                 abort(422, "field 'max_attempts' must be between 1 and 32");
             }
