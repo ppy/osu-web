@@ -37,19 +37,19 @@ class UserScoreAggregateTest extends TestCase
     {
         parent::setUp();
 
-        $this->room = Room::create([
-            'user_id' => factory(User::class)->create()->getKey(),
-            'name' => 'a room',
-            'starts_at' => Carbon::now(),
-            'ends_at' => Carbon::now()->addMinutes(60),
-        ]);
+        $this->room = factory(Room::class)->create();
     }
 
     public function testInCompleteScoresAreNotCounted()
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
-        $score = $this->createScore($playlistItem, $user);
+        $score = factory(RoomScore::class)
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+            ]);
 
         $agg = new UserScoreAggregate($user);
         $agg->addScore($score);
@@ -63,8 +63,14 @@ class UserScoreAggregateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
-        $score = $this->createScore($playlistItem, $user);
-        $score->ended_at = Carbon::now();
+        $score = factory(RoomScore::class)
+            ->states('completed', 'failed')
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+            ]);
+
 
         $agg = new UserScoreAggregate($user);
         $agg->addScore($score);
@@ -74,28 +80,91 @@ class UserScoreAggregateTest extends TestCase
         $this->assertSame(0, $agg->getTotalScore());
     }
 
-    private function createScore($playlistItem, $user)
+    public function testPassedScoresIncrementsCompletedCount()
     {
-        return RoomScore::create([
-            'beatmap_id' => $playlistItem->beatmap_id,
-            'playlist_item_id' => $playlistItem->getKey(),
-            'room_id' => $this->room->getKey(),
-            'user_id' => $user->getKey(),
-            'started_at' => Carbon::now(),
-            'total_score' => 1,
-        ]);
+        $user = factory(User::class)->create();
+        $playlistItem = $this->playlistItem();
+        $score = factory(RoomScore::class)
+            ->states('completed', 'passed')
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+            ]);
+
+        $agg = new UserScoreAggregate($user);
+        $agg->addScore($score);
+
+        $this->assertSame(1, $agg->getAttempts());
+        $this->assertSame(1, $agg->getCompletedCount());
+        $this->assertSame(1, $agg->getTotalScore());
+    }
+
+    public function testPassedScoresAreAveraged()
+    {
+        $user = factory(User::class)->create();
+        $playlistItem = $this->playlistItem();
+
+        $agg = new UserScoreAggregate($user);
+        $agg->addScore(
+            factory(RoomScore::class)
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+                'total_score' => 1,
+                'pp' => 0.2,
+                'pp' => 0.2,
+            ])
+        );
+
+        $agg->addScore(
+            factory(RoomScore::class)
+            ->states('completed', 'failed')
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+                'total_score' => 1,
+                'accuracy' => 0.3,
+                'pp' => 0.3,
+            ])
+        );
+
+        $agg->addScore(
+            factory(RoomScore::class)
+            ->states('completed', 'passed')
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+                'total_score' => 1,
+                'accuracy' => 0.5,
+                'pp' => 0.5,
+            ])
+        );
+
+        $agg->addScore(
+            factory(RoomScore::class)
+            ->states('completed', 'passed')
+            ->create([
+                'room_id' => $this->room->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'user_id' => $user->getKey(),
+                'total_score' => 1,
+                'accuracy' => 0.8,
+                'pp' => 0.8,
+            ])
+        );
+
+        $this->assertSame((0.5 + 0.8) / 2, $agg->getPpAverage());
+        $this->assertSame((0.5 + 0.8) / 2, $agg->getAccuracyAverage());
     }
 
     private function playlistItem()
     {
-        return PlaylistItem::create([
-            'allowed_mods' => [], // TODO: should look at being able to initialize as default value.
-            'beatmap_id' => factory(Beatmap::class)->create([
-                'playmode' => 0,
-            ])->getKey(),
-            'required_mods' => [],
+        return factory(PlaylistItem::class)->create([
             'room_id' => $this->room->getKey(),
-            'ruleset_id' => 0,
         ]);
     }
 }

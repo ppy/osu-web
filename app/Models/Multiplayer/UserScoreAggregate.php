@@ -102,7 +102,7 @@ class UserScoreAggregate
 
     public function getPpAverage() : float
     {
-        $this->pp / $this->completedCount;
+        return $this->pp / $this->completedCount;
     }
 
     public function getTotalScore() : int
