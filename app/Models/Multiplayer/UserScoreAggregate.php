@@ -85,6 +85,31 @@ class UserScoreAggregate
         ];
     }
 
+    public function getAccuracyAverage() : float
+    {
+        return $this->accuracy / $this->completedCount;
+    }
+
+    public function getAttempts() : int
+    {
+        return $this->attempts;
+    }
+
+    public function getCompletedCount() : int
+    {
+        return $this->completedCount;
+    }
+
+    public function getPpAverage() : float
+    {
+        $this->pp / $this->completedCount;
+    }
+
+    public function getTotalScore() : int
+    {
+        return $this->totalScore;
+    }
+
     private function addPlaylistItemScore(RoomScore $score)
     {
         $itemId = $score->playlist_item_id;
