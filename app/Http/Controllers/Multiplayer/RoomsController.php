@@ -38,15 +38,18 @@ class RoomsController extends BaseController
 
     public function index()
     {
-        $rooms = Room::active()
-            ->orderBy('id', 'DESC');
+        $rooms = Room::query();
 
-        if (request()->has('owned')) {
-            $rooms->startedBy(auth()->user());
-        }
+        $mode = request('mode');
+        if ($mode === 'ended') {
+            $rooms->ended()->orderBy('ends_at', 'desc');
+        } else {
+            $rooms->active()->orderBy('id', 'desc');
+            if ($mode === 'owned') {
+                $rooms->startedBy(auth()->user());
+            } else if ($mode === 'participated') {
 
-        if (request()->has('participated')) {
-            // TODO: this
+            }
         }
 
         return json_collection(

@@ -61,6 +61,11 @@ class Room extends Model
             ->where('ends_at', '>', Carbon::now());
     }
 
+    public function scopeEnded($query)
+    {
+        return $query->where('ends_at', '<', Carbon::now());
+    }
+
     public function scopeStartedBy($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
