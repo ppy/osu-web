@@ -82,6 +82,11 @@ class Room extends Model
         $scoresByUsers = $scores->groupBy('user_id');
         foreach ($scoresByUsers as $userId => $scoresByUser) {
             $user = $scoresByUser->first()->user;
+
+            if ($user === null || $user->isRestricted()) {
+                continue;
+            }
+
             $agg = new UserScoreAggregate($user);
             $agg->addScores($scoresByUser);
             $userStats = $agg->toArray();
