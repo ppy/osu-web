@@ -76,29 +76,10 @@ class Room extends Model
 
         $scoresByUsers = $scores->groupBy('user_id');
         foreach ($scoresByUsers as $userId => $scoresByUser) {
-            $userStats = [];
-            // only consider completed and passed scores.
-            $passed = $scoresByUser->filter(function ($score) {
-                return $score->isCompleted() && $score->passed;
-            });
-
-            // only want user's highest score.
-            $scoresByBeatmaps = $passed->sortByDesc('total_score')->groupBy('beatmap_id');
-            $completedCount = $scoresByBeatmaps->count();
-            foreach ($scoresByBeatmaps as $scoresByBeatmap) {
-                $topScore = $scoresByBeatmap->first();
-                $userStats['total_score'] = ($userStats['total_score'] ?? 0) + $topScore->total_score;
-                $userStats['accuracy'] = ($userStats['accuracy'] ?? 0) + $topScore->accuracy;
-                $userStats['pp'] = ($userStats['pp'] ?? 0) + $topScore->pp;
-            }
-
-            $userStats['attempts'] = $scoresByUser->count();
-            $userStats['accuracy'] = $userStats['accuracy'] / $completedCount;
-            $userStats['pp'] = $userStats['pp'] / $completedCount;
-            $userStats['completed'] = $completedCount;
-            $userStats['room_id'] = $this->getKey();
-            $userStats['user_id'] = $userId;
-            $userStats['user'] = json_item($scoresByUser->first()->user, 'UserCompact', ['country']);
+            $user = $scoresByUser->first()->user;
+            $agg = new UserScoreAggregate($user);
+            $agg->addScores($scoresByUser);
+            $userStats = $agg->toArray();
 
             $stats[$userId] = $userStats;
         }
