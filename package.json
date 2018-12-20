@@ -10,7 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free-webfonts": "^1.0.6",
+    "@fortawesome/fontawesome-free": "^5.6.1",
     "@types/es6-promise": "^3.3.0",
     "@types/jquery": "^3.3.28",
     "@types/react": "16.7.17",
