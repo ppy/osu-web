@@ -137,10 +137,8 @@ class Comment extends Model
         return 'comment';
     }
 
-    public function reportBy(?User $reporter, array $params = []) : UserReport
+    public function reportBy(User $reporter, array $params = []) : UserReport
     {
-        priv_check_user($reporter, 'MakeReport')->ensureCan();
-
         return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
             'reason' => 'Spam', // TODO: probably want more options

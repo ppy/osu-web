@@ -26,6 +26,13 @@ use PDOException;
 
 class ScoresController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
+
     public function report($mode, $id)
     {
         $score = ScoreBest::getClassByString($mode)::findOrFail($id);

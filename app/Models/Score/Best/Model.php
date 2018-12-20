@@ -323,10 +323,8 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    public function reportBy(?User $reporter, array $params = []) : UserReport
+    public function reportBy(User $reporter, array $params = []) : UserReport
     {
-        priv_check_user($reporter, 'MakeReport')->ensureCan();
-
         return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
             'mode' => Beatmap::modeInt($this->getMode()),

@@ -1300,10 +1300,8 @@ class User extends Model implements AuthenticatableContract
         ]);
     }
 
-    public function reportBy(?self $reporter, array $params = []) : UserReport
+    public function reportBy(self $reporter, array $params = []) : UserReport
     {
-        priv_check_user($reporter, 'MakeReport')->ensureCan();
-
         return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
             'reason' => $params['reason'] ?? 'Cheating',

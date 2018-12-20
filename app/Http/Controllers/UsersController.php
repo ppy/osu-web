@@ -44,6 +44,7 @@ class UsersController extends Controller
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
+            'report',
         ]]);
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);

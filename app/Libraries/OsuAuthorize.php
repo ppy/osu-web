@@ -999,13 +999,6 @@ class OsuAuthorize
         }
     }
 
-    public function checkMakeReport($user)
-    {
-        $this->ensureLoggedIn($user);
-
-        return 'ok';
-    }
-
     public function checkUserPageEdit($user, $pageOwner)
     {
         $prefix = 'user.page.edit.';

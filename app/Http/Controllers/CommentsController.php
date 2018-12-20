@@ -35,6 +35,13 @@ class CommentsController extends Controller
     protected $section = 'community';
     protected $actionPrefix = 'comments-';
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
+
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
