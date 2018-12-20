@@ -25,10 +25,8 @@ use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Request;
 
 class ScoresController extends BaseController
 {
@@ -57,7 +55,7 @@ class ScoresController extends BaseController
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
 
         $score = new RoomScore([
-            'user_id' => Auth::user()->user_id,
+            'user_id' => auth()->user()->user_id,
             'room_id' => $playlist->room_id,
             'playlist_item_id' => $playlist->id,
             'beatmap_id' => $playlist->beatmap_id,
@@ -87,23 +85,23 @@ class ScoresController extends BaseController
         }
 
         foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (!Request::has($field) || !present(Request::input($field))) {
+            if (!request()->has($field) || !present(request()->input($field))) {
                 abort(422, "field missing: '{$field}'");
             }
         }
 
         foreach (['mods', 'statistics'] as $field) {
-            if (!Request::has($field) || !is_array(Request::input($field))) {
+            if (!request()->has($field) || !is_array(request()->input($field))) {
                 abort(422, "field cannot be empty: '{$field}'");
             }
         }
 
-        if (empty(Request::input('statistics'))) {
+        if (empty(request()->input('statistics'))) {
             abort(422, "field cannot be empty: 'statistics'");
         }
 
         $mods = Mod::parseInputArray(
-            Request::input('mods'),
+            request()->input('mods'),
             $playlist->ruleset_id
         );
 
@@ -114,14 +112,14 @@ class ScoresController extends BaseController
         // - check mods are within required_mods or allowed_mods
         // - validate statistics json format
 
-        $score->rank = Request::input('rank');
-        $score->total_score = get_int(Request::input('total_score'));
-        $score->accuracy = get_float(Request::input('accuracy'));
-        $score->max_combo = get_int(Request::input('max_combo'));
+        $score->rank = request()->input('rank');
+        $score->total_score = get_int(request()->input('total_score'));
+        $score->accuracy = get_float(request()->input('accuracy'));
+        $score->max_combo = get_int(request()->input('max_combo'));
         $score->ended_at = Carbon::now();
-        $score->passed = get_bool(Request::input('passed'));
+        $score->passed = get_bool(request()->input('passed'));
         $score->mods = $mods;
-        $score->statistics = Request::input('statistics');
+        $score->statistics = request()->input('statistics');
 
         $score->saveOrExplode();
 
