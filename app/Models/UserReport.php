@@ -33,10 +33,10 @@ class UserReport extends Model
     const REPORTABLES = [
         'comment' => Comment::class,
         'user' => User::class,
-        'score_osu' => Best\Osu::class,
-        'score_taiko' => Best\Taiko::class,
-        'score_fruits' => Best\Fruits::class,
-        'score_mania' => Best\Mania::class,
+        'score_best_osu' => Best\Osu::class,
+        'score_best_taiko' => Best\Taiko::class,
+        'score_best_fruits' => Best\Fruits::class,
+        'score_best_mania' => Best\Mania::class,
     ];
 
     protected $table = 'osu_user_reports';

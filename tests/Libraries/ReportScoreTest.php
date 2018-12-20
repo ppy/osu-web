@@ -55,7 +55,7 @@ class ReportScoreTest extends TestCase
     {
         $score = Best\Mania::create(['user_id' => factory(User::class)->create()->getKey()]);
 
-        $query = UserReport::where('reportable_type', 'score_mania')->where('reportable_id', $score->getKey());
+        $query = UserReport::where('reportable_type', 'score_best_mania')->where('reportable_id', $score->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
