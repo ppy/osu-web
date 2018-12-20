@@ -22,7 +22,6 @@ use App\Models\Build;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\UserReport;
-use Illuminate\Auth\AuthenticationException;
 
 class ReportCommentTest extends TestCase
 {
@@ -32,15 +31,6 @@ class ReportCommentTest extends TestCase
     {
         parent::setUp();
         $this->reporter = factory(User::class)->create();
-    }
-
-    public function testReporterIsNotLoggedIn()
-    {
-        $comment = $this->createComment(factory(User::class)->create());
-
-        $this->expectException(AuthenticationException::class);
-
-        $comment->reportBy(null);
     }
 
     public function testCannotReportOwnComment()

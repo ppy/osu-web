@@ -21,7 +21,6 @@ use App\Exceptions\ValidationException;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserReport;
-use Illuminate\Auth\AuthenticationException;
 
 class ReportScoreTest extends TestCase
 {
@@ -31,14 +30,6 @@ class ReportScoreTest extends TestCase
     {
         parent::setUp();
         $this->reporter = factory(User::class)->create();
-    }
-
-    public function testReporterIsNotLoggedIn()
-    {
-        $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
-
-        $this->expectException(AuthenticationException::class);
-        $score->reportBy(null);
     }
 
     public function testCannotReportOwnScore()
@@ -64,7 +55,7 @@ class ReportScoreTest extends TestCase
     {
         $score = Best\Mania::create(['user_id' => factory(User::class)->create()->getKey()]);
 
-        $query = UserReport::where('reportable_type', 'score')->where('reportable_id', $score->getKey());
+        $query = UserReport::where('reportable_type', 'score_mania')->where('reportable_id', $score->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 

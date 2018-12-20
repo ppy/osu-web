@@ -19,7 +19,6 @@
  */
 use App\Exceptions\ValidationException;
 use App\Models\User;
-use Illuminate\Auth\AuthenticationException;
 
 class ReportUserTest extends TestCase
 {
@@ -29,14 +28,6 @@ class ReportUserTest extends TestCase
     {
         parent::setUp();
         $this->reporter = factory(User::class)->create();
-    }
-
-    public function testReporterIsNotLoggedIn()
-    {
-        $user = factory(User::class)->create();
-
-        $this->expectException(AuthenticationException::class);
-        $user->reportBy(null);
     }
 
     public function testCannotReportSelf()
