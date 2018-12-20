@@ -285,7 +285,7 @@ abstract class Model extends BaseModel
 
     public function reportedIn()
     {
-        return $this->morphMany(UserReport::class, 'score', 'mode');
+        return $this->morphMany(UserReport::class, 'reportable');
     }
 
     public function replayViewCount()
@@ -298,11 +298,6 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getMorphClass()
-    {
-        return Beatmap::modeInt(snake_case(get_class_basename(static::class)));
     }
 
     public function delete()
@@ -332,12 +327,11 @@ abstract class Model extends BaseModel
     {
         priv_check_user($reporter, 'MakeReport')->ensureCan();
 
-        return $reporter->reportsMade()->create([
+        return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
-            'mode' => $this->getMorphClass(),
+            'mode' => Beatmap::modeInt($this->getMode()),
             'reason' => 'Cheating', // TODO: probably want more options
-            'reportable_type' => 'score',
-            'reportable_id' => $this->getKey(),
+            'reporter_id' => $reporter->getKey(),
             'score_id' => $this->getKey(),
             'user_id' => $this->user_id,
         ]);

@@ -141,11 +141,10 @@ class Comment extends Model
     {
         priv_check_user($reporter, 'MakeReport')->ensureCan();
 
-        return $reporter->reportsMade()->create([
+        return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
             'reason' => 'Spam', // TODO: probably want more options
-            'reportable_type' => 'comment',
-            'reportable_id' => $this->getKey(),
+            'reporter_id' => $reporter->getKey(),
             'user_id' => $this->user_id,
         ]);
     }

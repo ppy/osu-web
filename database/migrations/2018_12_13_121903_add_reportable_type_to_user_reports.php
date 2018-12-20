@@ -14,7 +14,7 @@ class AddReportableTypeToUserReports extends Migration
     public function up()
     {
         Schema::table('osu_user_reports', function (Blueprint $table) {
-            $table->enum('reportable_type', ['user', 'score', 'comment'])->nullable()->after('user_id');
+            $table->enum('reportable_type', ['user', 'comment', 'score_osu', 'score_taiko', 'score_fruits', 'score_mania'])->nullable()->after('user_id');
             $table->unsignedBigInteger('reportable_id')->nullable()->after('mode');
             $table->unique(['reporter_id', 'user_id', 'reportable_type', 'mode', 'reportable_id'], 'unique-reportable');
             $table->index(['reportable_type', 'reportable_id'], 'reportable');
@@ -22,7 +22,15 @@ class AddReportableTypeToUserReports extends Migration
         });
 
         DB::statement("UPDATE osu_user_reports SET reportable_type = 'user', reportable_id = user_id WHERE score_id = 0");
-        DB::statement("UPDATE osu_user_reports SET reportable_type = 'score', reportable_id = score_id WHERE score_id <> 0");
+        DB::statement("
+            UPDATE osu_user_reports SET reportable_id = score_id, reportable_type =
+            CASE
+                WHEN mode = 0 THEN 'score_osu'
+                WHEN mode = 1 THEN 'score_taiko'
+                WHEN mode = 2 THEN 'score_fruits'
+                WHEN mode = 3 THEN 'score_mania'
+            END WHERE score_id <> 0"
+        );
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->dropIndex('unique-new');

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\ValidationException;
+use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 
@@ -31,8 +32,11 @@ class UserReport extends Model
     const CREATED_AT = 'timestamp';
     const REPORTABLES = [
         'comment' => Comment::class,
-        'score' => Score::class,
         'user' => User::class,
+        'score_osu' => Best\Osu::class,
+        'score_taiko' => Best\Taiko::class,
+        'score_fruits' => Best\Fruits::class,
+        'score_mania' => Best\Mania::class,
     ];
 
     protected $table = 'osu_user_reports';
@@ -44,11 +48,6 @@ class UserReport extends Model
 
     public function reportable()
     {
-        $type = $this->attributes['reportable_type'] ?? null;
-        if ($type === 'score') {
-            return $this->score();
-        }
-
         return $this->morphTo();
     }
 
@@ -65,16 +64,6 @@ class UserReport extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getReportableTypeAttribute()
-    {
-        $type = $this->attributes['reportable_type'] ?? null;
-        if ($type === 'score') {
-            return $this->getScoreTypeAttribute();
-        }
-
-        return $type;
     }
 
     public function getScoreTypeAttribute()

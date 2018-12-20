@@ -1304,11 +1304,10 @@ class User extends Model implements AuthenticatableContract
     {
         priv_check_user($reporter, 'MakeReport')->ensureCan();
 
-        return $reporter->reportsMade()->create([
+        return $this->reportedIn()->create([
             'comments' => $params['comments'] ?? '',
             'reason' => $params['reason'] ?? 'Cheating',
-            'reportable_type' => 'user',
-            'reportable_id' => $this->getKey(),
+            'reporter_id' => $reporter->getKey(),
             'user_id' => $this->getKey(),
         ]);
     }
