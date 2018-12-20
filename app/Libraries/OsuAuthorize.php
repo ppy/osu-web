@@ -535,6 +535,7 @@ class OsuAuthorize
 
     public function checkChatChannelJoin(User $user, Channel $channel)
     {
+        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
@@ -583,6 +584,17 @@ class OsuAuthorize
         }
 
         return $prefix.'no_access';
+    }
+
+    public function checkChatChannelPart(User $user, Channel $channel)
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($channel->type !== Channel::TYPES['private']) {
+            return 'ok';
+        }
     }
 
     public function checkCommentDestroy($user, $comment)
