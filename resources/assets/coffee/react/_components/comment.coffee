@@ -188,6 +188,7 @@ class @Comment extends React.PureComponent
             if @canReport()
               div className: 'comment__row-item',
                 el _exported.ReportComment,
+                  className: 'comment__action'
                   comment: @props.comment
                   user: @userFor(@props.comment)
 

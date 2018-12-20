@@ -44,9 +44,10 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
   }
 
   render(): React.ReactNode {
+    const { user, comment, ...attribs } = this.props;
     return (
       <React.Fragment>
-        <button className='comment__action' key='button' onClick={this.showForm}>
+        <button key='button' onClick={this.showForm} {...attribs}>
           { osu.trans('report.comment.button') }
         </button>
         <ReportForm
@@ -56,7 +57,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
           key='form'
           onClose={this.onFormClose}
           onSubmit={this.onSubmit}
-          title={osu.trans('report.comment.title', { username: `<strong>${this.props.user.username}</strong>` })}
+          title={osu.trans('report.comment.title', { username: `<strong>${user.username}</strong>` })}
           visible={this.state.showingForm}
         >
         </ReportForm>
