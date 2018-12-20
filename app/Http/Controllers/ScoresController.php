@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ValidationException;
 use App\Models\Score\Best\Model as ScoreBest;
 use Auth;
 use PDOException;
