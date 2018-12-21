@@ -101,7 +101,6 @@ class Room extends Model
             }
 
             $agg = new UserScoreAggregate($user, $this);
-            $agg->recalculate();
             $userStats = $agg->toArray();
 
             if ($userStats !== null) {

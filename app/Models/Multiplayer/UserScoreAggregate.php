@@ -164,6 +164,11 @@ class UserScoreAggregate
     public function toArray() : ?array
     {
         $total = $this->readUserTotal();
+        if (!$total->exists) {
+            $this->recalculate();
+            $total = $this->readUserTotal();
+        }
+
         $completedCount = $total->completed;
         if ($completedCount === 0) {
             return null;
