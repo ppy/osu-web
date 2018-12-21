@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
@@ -31,9 +30,7 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
 use App\Models\UserNotFound;
-use App\Models\UserReport;
 use Auth;
-use PDOException;
 use Request;
 
 class UsersController extends Controller
@@ -46,6 +43,7 @@ class UsersController extends Controller
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
+            'report',
         ]]);
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
@@ -198,23 +196,13 @@ class UsersController extends Controller
             return response()->json([], 404);
         }
 
-        priv_check('UserReport', Auth::user())->ensureCan();
-
         try {
-            $report = Auth::user()->reportsMade()->create([
-                'user_id' => $user->getKey(),
+            $user->reportBy(auth()->user(), [
                 'comments' => trim(request('comments')),
                 'reason' => trim(request('reason')),
             ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
         }
 
         return response(null, 204);

@@ -43,7 +43,7 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
+    use HasApiTokens, Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -694,7 +694,7 @@ class User extends Model implements AuthenticatableContract
 
     public function reportedIn()
     {
-        return $this->hasMany(UserReport::class, 'user_id');
+        return $this->morphMany(UserReport::class, 'reportable');
     }
 
     public function reportsMade()
@@ -1561,5 +1561,12 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'user_id' => $this->getKey(),
+        ];
     }
 }

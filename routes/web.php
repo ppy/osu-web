@@ -87,6 +87,7 @@ Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', '
 Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
 
 Route::resource('comments', 'CommentsController');
+Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');

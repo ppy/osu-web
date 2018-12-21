@@ -25,7 +25,7 @@ use Carbon\Carbon;
 
 class Comment extends Model
 {
-    use Validatable;
+    use Reportable, Validatable;
 
     const COMMENTABLES = [
         'beatmapset' => Beatmapset::class,
@@ -182,5 +182,13 @@ class Comment extends Model
     public function restore()
     {
         return $this->update(['deleted_at' => null]);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'reason' => 'Spam', // TODO: probably want more options
+            'user_id' => $this->user_id,
+        ];
     }
 }
