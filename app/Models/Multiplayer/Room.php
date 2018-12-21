@@ -68,10 +68,12 @@ class Room extends Model
 
     public function scopeHasParticipated($query, User $user)
     {
-        $query->whereHas('scores', function ($scoresQuery) use ($user) {
-            // FIXME: needs load testing
-            $scoresQuery->where('user_id', $user->getKey());
-        });
+        return $query->whereIn(
+            'id',
+            // SoftDelete scope is ignored, fixed in 5.8:
+            // https://github.com/laravel/framework/pull/26198
+            RoomScore::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
+        );
     }
 
     public function scopeStartedBy($query, User $user)
