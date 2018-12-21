@@ -24,7 +24,7 @@ use PDOException;
 
 trait Reportable
 {
-    abstract function newReportableExtraParams() : array;
+    abstract protected function newReportableExtraParams() : array;
 
     public function reportedIn()
     {

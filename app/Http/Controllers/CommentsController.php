@@ -28,7 +28,6 @@ use App\Models\Log;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
-use PDOException;
 
 class CommentsController extends Controller
 {

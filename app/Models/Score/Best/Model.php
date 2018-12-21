@@ -27,7 +27,6 @@ use App\Models\ReplayViewCount;
 use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
-use App\Models\UserReport;
 use DB;
 
 abstract class Model extends BaseModel
