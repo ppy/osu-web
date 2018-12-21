@@ -25,7 +25,7 @@ use Carbon\Carbon;
 
 class Comment extends Model
 {
-    use Validatable;
+    use Reportable, Validatable;
 
     const COMMENTABLES = [
         'beatmapset' => Beatmapset::class,
@@ -80,11 +80,6 @@ class Comment extends Model
         return $this->hasMany(static::class, 'parent_id');
     }
 
-    public function reportedIn()
-    {
-        return $this->morphMany(UserReport::class, 'reportable');
-    }
-
     public function votes()
     {
         return $this->hasMany(CommentVote::class);
@@ -137,16 +132,6 @@ class Comment extends Model
         return 'comment';
     }
 
-    public function reportBy(User $reporter, array $params = []) : UserReport
-    {
-        return $this->reportedIn()->create([
-            'comments' => $params['comments'] ?? '',
-            'reason' => 'Spam', // TODO: probably want more options
-            'reporter_id' => $reporter->getKey(),
-            'user_id' => $this->user_id,
-        ]);
-    }
-
     public function save(array $options = [])
     {
         if ($this->parent_id !== null && $this->parent !== null) {
@@ -197,5 +182,13 @@ class Comment extends Model
     public function restore()
     {
         return $this->update(['deleted_at' => null]);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'reason' => 'Spam', // TODO: probably want more options
+            'user_id' => $this->user_id,
+        ];
     }
 }

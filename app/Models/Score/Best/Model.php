@@ -24,6 +24,7 @@ use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
+use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use App\Models\UserReport;
@@ -31,6 +32,8 @@ use DB;
 
 abstract class Model extends BaseModel
 {
+    use Reportable;
+
     public $position = null;
     public $weight = null;
     public $macros = [
@@ -283,11 +286,6 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
-    public function reportedIn()
-    {
-        return $this->morphMany(UserReport::class, 'reportable');
-    }
-
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -323,15 +321,13 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    public function reportBy(User $reporter, array $params = []) : UserReport
+    protected function newReportableExtraParams() : array
     {
-        return $this->reportedIn()->create([
-            'comments' => $params['comments'] ?? '',
+        return [
             'mode' => Beatmap::modeInt($this->getMode()),
             'reason' => 'Cheating', // TODO: probably want more options
-            'reporter_id' => $reporter->getKey(),
             'score_id' => $this->getKey(),
             'user_id' => $this->user_id,
-        ]);
+        ];
     }
 }
