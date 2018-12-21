@@ -67,6 +67,37 @@ class UserScoreAggregate
         return true;
     }
 
+    public function _addScore(RoomScore $score)
+    {
+        $redis = app('redis');
+
+    }
+
+    public function save()
+    {
+
+    }
+
+    // lazy function for testing
+    public static function read($score)
+    {
+        return new RoomScore(
+            json_decode(
+                app('redis')->get("mp_high_score:{$score->playlist_item_id}:{$score->user_id}"),
+                true
+            )
+        );
+    }
+
+    // lazy function for testing
+    public static function write($score)
+    {
+        app('redis')->set(
+            "mp_high_score:{$score->playlist_item_id}:{$score->user_id}",
+            json_encode($score->toArray())
+        );
+    }
+
     public function toArray() : ?array
     {
         if ($this->completedCount === 0) {
