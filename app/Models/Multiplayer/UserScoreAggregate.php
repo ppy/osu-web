@@ -76,6 +76,31 @@ class UserScoreAggregate
         }
     }
 
+    public function recalculate()
+    {
+        $scores = $this->getScores();
+
+        $this->removeKeys($scores);
+        $this->addScores($scores);
+    }
+
+    public function getScores()
+    {
+        return RoomScore
+            ::where('room_id', $this->roomId)
+            ->where('user_id', $this->user->getKey())
+            ->get();
+    }
+
+    public function removeKeys($scores)
+    {
+        foreach ($scores as $score) {
+            app('redis')->del("mp_high_score:{$score->playlist_item_id}:{$score->user_id}");
+        }
+
+        app('redis')->del("mp_high_score_total:{$this->roomId}:{$this->user->getKey()}");
+    }
+
     // lazy function for testing
     public static function read($score)
     {
@@ -168,6 +193,8 @@ class UserScoreAggregate
         ];
     }
 
+
+    // TODO: all needs fixing
     public function getAccuracyAverage() : float
     {
         return $this->accuracy / $this->completedCount;
@@ -191,28 +218,5 @@ class UserScoreAggregate
     public function getTotalScore() : int
     {
         return $this->totalScore;
-    }
-
-    private function addPlaylistItemScore(RoomScore $score)
-    {
-        // FIXME: this wasn't removing old scores!
-        $itemId = $score->playlist_item_id;
-        if (!isset($this->stats[$itemId])) {
-            $this->stats[$itemId] = [];
-        }
-
-        if (!isset($this->topScores[$itemId])) {
-            $this->topScores[$itemId] = 0;
-        }
-
-        if ($this->topScores[$itemId] > $score->total_score) {
-            return;
-        }
-
-        $this->completedCount++;
-        $this->topScores[$itemId] = $score->total_score;
-        $this->totalScore += $score->total_score;
-        $this->accuracy += $score->accuracy;
-        $this->pp += $score->pp;
     }
 }

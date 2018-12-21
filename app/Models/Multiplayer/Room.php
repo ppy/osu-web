@@ -89,26 +89,23 @@ class Room extends Model
 
     public function topScores()
     {
-        $scores = $this->scores()
-            ->with('user.country')
+        $users = User::whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
+            ->with('country')
             ->get();
 
         $stats = [];
 
-        $scoresByUsers = $scores->groupBy('user_id');
-        foreach ($scoresByUsers as $userId => $scoresByUser) {
-            $user = $scoresByUser->first()->user;
-
+        foreach ($users as $user) {
             if ($user === null || $user->isRestricted()) {
                 continue;
             }
 
             $agg = new UserScoreAggregate($user, $this);
-            $agg->addScores($scoresByUser);
+            $agg->recalculate();
             $userStats = $agg->toArray();
 
             if ($userStats !== null) {
-                $stats[$userId] = $userStats;
+                $stats[$user->getKey()] = $userStats;
             }
         }
 
