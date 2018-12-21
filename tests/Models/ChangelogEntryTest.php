@@ -69,4 +69,13 @@ class ChangelogEntryTest extends TestCase
         $this->assertSame($title, $converted->title);
         $this->assertSame("<p>{$message}</p>\n", $converted->messageHTML());
     }
+
+    public function testConvertLegacyChangelogWithMessage()
+    {
+        $message = 'Some message';
+        $legacy = new Changelog(['message' => "---\n{$message}"]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($message, $converted->title);
+        $this->assertNull($converted->messageHTML());
+    }
 }

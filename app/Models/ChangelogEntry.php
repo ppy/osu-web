@@ -34,10 +34,11 @@ class ChangelogEntry extends Model
     public static function convertLegacy($changelog)
     {
         $message = $changelog->message;
-        $title = static::splitMessage($message)[0];
+        $splitMessage = static::splitMessage($message);
+        $title = $splitMessage[0];
 
         if ($title === null) {
-            $title = $message;
+            $title = $splitMessage[1];
             $message = null;
         }
 
