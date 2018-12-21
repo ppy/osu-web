@@ -18,6 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\ChangelogEntry;
+use App\Models\Changelog;
 
 class ChangelogEntryTest extends TestCase
 {
@@ -48,5 +49,24 @@ class ChangelogEntryTest extends TestCase
 
         $entry->message = "Hidden\n\n---\nVisible";
         $this->assertSame("<p>Visible</p>\n", $entry->messageHTML());
+    }
+
+    public function testConvertLegacyChangelogWithTitle()
+    {
+        $title = 'Some title';
+        $legacy = new Changelog(['message' => $title]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($title, $converted->title);
+        $this->assertNull($converted->messageHTML());
+    }
+
+    public function testConvertLegacyChangelogWithTitleAndMessage()
+    {
+        $title = 'Some title';
+        $message = 'Some message';
+        $legacy = new Changelog(['message' => "{$title}\n\n---\n{$message}"]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($title, $converted->title);
+        $this->assertSame("<p>{$message}</p>\n", $converted->messageHTML());
     }
 }
