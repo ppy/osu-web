@@ -16,7 +16,7 @@ class AddReportableTypeToUserReports extends Migration
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->enum('reportable_type', ['user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania'])->nullable()->after('user_id');
             $table->unsignedBigInteger('reportable_id')->nullable()->after('reportable_type');
-            $table->unique(['reporter_id', 'user_id', 'reportable_type', 'mode', 'reportable_id'], 'unique_reportable');
+            $table->unique(['reporter_id', 'user_id', 'reportable_type', 'reportable_id'], 'unique_reportable');
             $table->index(['reportable_type', 'reportable_id'], 'reportable');
             $table->index(['score_id', 'mode'], 'score');
         });
