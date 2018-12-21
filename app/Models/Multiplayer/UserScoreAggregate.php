@@ -39,9 +39,10 @@ class UserScoreAggregate
 
     private $userStats = [];
 
-    public function __construct(User $user)
+    public function __construct(User $user, Room $room)
     {
         $this->user = $user;
+        $this->roomId = $room->getKey();
     }
 
     public function addScores(Collection $scores)
@@ -50,43 +51,92 @@ class UserScoreAggregate
             $this->addScore($score);
         }
     }
+
     public function addScore(RoomScore $score)
     {
         if (!$score->isCompleted()) {
             return false; // throw instead?
         }
 
-        $this->attempts++;
-        if (!$score->passed) {
-            return true;
-        }
-
-        $this->roomId = $score->room_id;
-        $this->addPlaylistItemScore($score);
+        $this->_addScore($score);
+        // $this->addPlaylistItemScore($score);
 
         return true;
     }
 
     public function _addScore(RoomScore $score)
     {
-        $redis = app('redis');
+        $highestScore = static::read($score);
 
-    }
-
-    public function save()
-    {
-
+        if ($highestScore === null || $score->total_score > $highestScore->total_score) {
+            static::write($score);
+            $this->updateUserTotal($score, $highestScore);
+        } else {
+            $this->updateUserAttempts();
+        }
     }
 
     // lazy function for testing
     public static function read($score)
     {
-        return new RoomScore(
-            json_decode(
-                app('redis')->get("mp_high_score:{$score->playlist_item_id}:{$score->user_id}"),
-                true
-            )
+        $json = json_decode(
+            app('redis')->get("mp_high_score:{$score->playlist_item_id}:{$score->user_id}"),
+            true
         );
+
+        if ($json !== null) {
+            return new RoomScore($json);
+        }
+    }
+
+    public function updateUserAttempts()
+    {
+        $total = $this->readUserTotal();
+        $total['attempts']++;
+
+        app('redis')->set(
+            "mp_high_score_total:{$this->roomId}:{$this->user->getKey()}",
+            json_encode($total)
+        );
+
+        return $total;
+    }
+
+    public function updateUserTotal(RoomScore $current, ?RoomScore $prev)
+    {
+        $total = $this->readUserTotal();
+
+        $total['attempts']++;
+
+        if ($prev) {
+            $total['total_score'] -= $prev->total_score;
+            $total['accuracy'] -= $prev->accuracy;
+            $total['pp'] -= $prev->pp;
+            $total['passed']--;
+        }
+
+        $total['total_score'] += $current->total_score;
+        $total['accuracy'] += $current->accuracy;
+        $total['pp'] += $current->pp;
+        $total['passed']++;
+
+        app('redis')->set(
+            "mp_high_score_total:{$this->roomId}:{$this->user->getKey()}",
+            json_encode($total)
+        );
+
+        return $total;
+    }
+
+    public function readUserTotal()
+    {
+        $total = json_decode(app('redis')->get("mp_high_score_total:{$this->roomId}:{$this->user->getKey()}"), true);
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'passed'] as $key) {
+            // init if required
+            $total[$key] = $total[$key] ?? 0;
+        }
+
+        return $total;
     }
 
     // lazy function for testing
@@ -100,17 +150,19 @@ class UserScoreAggregate
 
     public function toArray() : ?array
     {
-        if ($this->completedCount === 0) {
+        $total = $this->readUserTotal();
+        $completedCount = get_int($total['passed']);
+        if ($completedCount === 0) {
             return null;
         }
 
         return [
-            'accuracy' => $this->accuracy / $this->completedCount,
-            'attempts' => $this->attempts,
-            'completed' => $this->completedCount,
-            'pp' => $this->pp / $this->completedCount,
+            'accuracy' => $total['accuracy'] / $completedCount,
+            'attempts' => $total['attempts'],
+            'completed' => $completedCount,
+            'pp' => $total['pp'] / $completedCount,
             'room_id' => $this->roomId,
-            'total_score' => $this->totalScore,
+            'total_score' => $total['total_score'],
             'user' => json_item($this->user, 'UserCompact', ['country']),
             'user_id' => $this->user->user_id,
         ];
@@ -143,6 +195,7 @@ class UserScoreAggregate
 
     private function addPlaylistItemScore(RoomScore $score)
     {
+        // FIXME: this wasn't removing old scores!
         $itemId = $score->playlist_item_id;
         if (!isset($this->stats[$itemId])) {
             $this->stats[$itemId] = [];

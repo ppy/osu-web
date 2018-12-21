@@ -81,6 +81,12 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
+    public function addScore(RoomScore $score)
+    {
+        $agg = new UserScoreAggregate($score->user, $this);
+        $agg->addScore($score);
+    }
+
     public function topScores()
     {
         $scores = $this->scores()
@@ -97,7 +103,7 @@ class Room extends Model
                 continue;
             }
 
-            $agg = new UserScoreAggregate($user);
+            $agg = new UserScoreAggregate($user, $this);
             $agg->addScores($scoresByUser);
             $userStats = $agg->toArray();
 
