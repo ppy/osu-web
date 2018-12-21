@@ -46,7 +46,7 @@ class UserScoreAggregate
 
     public function addScores(Collection $scores)
     {
-        foreach ($scores->sortByDesc('total_score') as $score) {
+        foreach ($scores as $score) {
             $this->addScore($score);
         }
     }
