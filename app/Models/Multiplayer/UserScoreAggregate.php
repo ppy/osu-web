@@ -59,7 +59,6 @@ class UserScoreAggregate
         }
 
         $this->_addScore($score);
-        // $this->addPlaylistItemScore($score);
 
         return true;
     }
@@ -68,9 +67,9 @@ class UserScoreAggregate
     {
         $highestScore = static::read($score);
 
-        if ($highestScore === null || $score->total_score > $highestScore->total_score) {
-            static::write($score);
+        if ($score->total_score > $highestScore->total_score) {
             $this->updateUserTotal($score, $highestScore);
+            static::updatePlaylistItemUserHighScore($highestScore, $score);
         } else {
             $this->updateUserAttempts();
         }
@@ -80,7 +79,7 @@ class UserScoreAggregate
     {
         $scores = $this->getScores();
 
-        $this->removeKeys($scores);
+        $this->removeRunningTotals();
         $this->addScores($scores);
     }
 
@@ -92,91 +91,80 @@ class UserScoreAggregate
             ->get();
     }
 
-    public function removeKeys($scores)
+    public function removeRunningTotals()
     {
-        foreach ($scores as $score) {
-            app('redis')->del("mp_high_score:{$score->playlist_item_id}:{$score->user_id}");
-        }
-
-        app('redis')->del("mp_high_score_total:{$this->roomId}:{$this->user->getKey()}");
+        RoomUserHighScore::where('room_id', $this->roomId)->where('user_id', $this->user->getKey())->delete();
+        PlaylistItemUserHighScore::whereIn(
+            'playlist_item_id',
+            PlaylistItem::where('room_id', $this->roomId)->select('id')
+        )->where('user_id', $this->user->getKey())->delete();
     }
 
     // lazy function for testing
     public static function read($score)
     {
-        $json = json_decode(
-            app('redis')->get("mp_high_score:{$score->playlist_item_id}:{$score->user_id}"),
-            true
-        );
-
-        if ($json !== null) {
-            return new RoomScore($json);
-        }
+        return PlaylistItemUserHighScore::firstOrNew([
+            'playlist_item_id' => $score->playlist_item_id,
+            'user_id' => $score->user_id,
+        ]);
     }
 
     public function updateUserAttempts()
     {
         $total = $this->readUserTotal();
-        $total['attempts']++;
-
-        app('redis')->set(
-            "mp_high_score_total:{$this->roomId}:{$this->user->getKey()}",
-            json_encode($total)
-        );
+        $total->increment('attempts');
 
         return $total;
     }
 
-    public function updateUserTotal(RoomScore $current, ?RoomScore $prev)
+    public function updateUserTotal(RoomScore $current, ?PlaylistItemUserHighScore $prev)
     {
         $total = $this->readUserTotal();
+        $total->attempts++;
 
-        $total['attempts']++;
-
-        if ($prev) {
-            $total['total_score'] -= $prev->total_score;
-            $total['accuracy'] -= $prev->accuracy;
-            $total['pp'] -= $prev->pp;
-            $total['passed']--;
+        if ($prev->exists) {
+            $total->total_score -= $prev->total_score;
+            $total->accuracy -= $prev->accuracy;
+            $total->pp -= $prev->pp;
+            $total->completed--;
         }
 
-        $total['total_score'] += $current->total_score;
-        $total['accuracy'] += $current->accuracy;
-        $total['pp'] += $current->pp;
-        $total['passed']++;
+        $total->total_score += $current->total_score;
+        $total->accuracy += $current->accuracy;
+        $total->pp += $current->pp;
+        $total->completed++;
 
-        app('redis')->set(
-            "mp_high_score_total:{$this->roomId}:{$this->user->getKey()}",
-            json_encode($total)
-        );
+        $total->save();
 
         return $total;
     }
 
     public function readUserTotal()
     {
-        $total = json_decode(app('redis')->get("mp_high_score_total:{$this->roomId}:{$this->user->getKey()}"), true);
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'passed'] as $key) {
+        $total = RoomUserHighScore::firstOrNew(['room_id' => $this->roomId, 'user_id' => $this->user->getKey()]);
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
             // init if required
-            $total[$key] = $total[$key] ?? 0;
+            $total->$key = $total->$key ?? 0;
         }
 
         return $total;
     }
 
     // lazy function for testing
-    public static function write($score)
+    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
     {
-        app('redis')->set(
-            "mp_high_score:{$score->playlist_item_id}:{$score->user_id}",
-            json_encode($score->toArray())
-        );
+        $highScore->total_score = $score->total_score;
+        $highScore->accuracy = $score->accuracy;
+        $highScore->pp = $score->pp;
+        $highScore->score_id = $score->getKey();
+
+        $highScore->save();
     }
 
     public function toArray() : ?array
     {
         $total = $this->readUserTotal();
-        $completedCount = get_int($total['passed']);
+        $completedCount = $total->completed;
         if ($completedCount === 0) {
             return null;
         }
