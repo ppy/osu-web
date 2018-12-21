@@ -45,10 +45,7 @@ class RoomsController extends BaseController
             $rooms->ended()->orderBy('ends_at', 'desc');
         } else {
             if ($mode === 'participated') {
-                $rooms->whereHas('scores', function ($scoresQuery) {
-                    // FIXME: needs load testing
-                    $scoresQuery->where('user_id', auth()->user()->getKey());
-                });
+                $rooms->hasParticipated(auth()->user());
             } else if ($mode === 'owned') {
                 $rooms->startedBy(auth()->user());
             } else {

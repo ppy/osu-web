@@ -66,6 +66,14 @@ class Room extends Model
         return $query->where('ends_at', '<', Carbon::now());
     }
 
+    public function scopeHasParticipated($query, User $user)
+    {
+        $query->whereHas('scores', function ($scoresQuery) use ($user) {
+            // FIXME: needs load testing
+            $scoresQuery->where('user_id', $user->getKey());
+        });
+    }
+
     public function scopeStartedBy($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
