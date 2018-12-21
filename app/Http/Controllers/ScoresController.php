@@ -23,7 +23,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ValidationException;
 use App\Models\Score\Best\Model as ScoreBest;
 use Auth;
-use PDOException;
 
 class ScoresController extends Controller
 {
@@ -42,11 +41,6 @@ class ScoresController extends Controller
             $score->reportBy(auth()->user(), [
                 'comments' => trim(request('comments')),
             ]);
-        } catch (PDOException $e) {
-            // ignore duplicate reports
-            if (!is_sql_unique_exception($e)) {
-                throw $e;
-            }
         } catch (ValidationException $e) {
             return error_popup($e->getMessage());
         }

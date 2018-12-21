@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use PDOException;
+
 trait Reportable
 {
     abstract function newReportableExtraParams() : array;
@@ -29,14 +31,30 @@ trait Reportable
         return $this->morphMany(UserReport::class, 'reportable');
     }
 
-    public function reportBy(User $reporter, array $params = []) : UserReport
+    /**
+     * Creates and saves a new UserReport.
+     *
+     * @param User $reporter
+     * @param array $params
+     * @return UserReport|null The instance of UserReport saved, null if it is a duplicate.
+     */
+    public function reportBy(User $reporter, array $params = []) : ?UserReport
     {
-        return $this->reportedIn()->create(
-            array_merge([
-                'comments' => $params['comments'] ?? '',
-                'reason' => $params['reason'] ?? 'Cheating',
-                'reporter_id' => $reporter->getKey(),
-            ], $this->newReportableExtraParams())
-        );
+        try {
+            return $this->reportedIn()->create(
+                array_merge([
+                    'comments' => $params['comments'] ?? '',
+                    'reason' => $params['reason'] ?? 'Cheating',
+                    'reporter_id' => $reporter->getKey(),
+                ], $this->newReportableExtraParams())
+            );
+        } catch (PDOException $e) {
+            // ignore duplicate reports
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
+
+            return null;
+        }
     }
 }
