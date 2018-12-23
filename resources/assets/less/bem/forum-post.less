@@ -98,6 +98,13 @@
     padding: 20px 30px;
     overflow: hidden;
 
+    .@{_top}__preview & {
+      @media @mobile {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
@@ -260,7 +267,13 @@
   }
 
   &__preview {
-    background-color: #cccccc;
+    background-color: #ccc;
+
+    @media @mobile {
+      padding: 10px;
+      margin: 0 20px;
+      .default-border-radius;
+    }
   }
 
   &__reply-body {
