@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Удалить',
+        'delete_own_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены обратно в свой профиль.',
+        'delete_other_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены в профиль пользователя.',
         'disqualification_prompt' => 'Причина для дисквалификации?',
         'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
         'disqualified_no_reason' => 'причина не указана',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
+            'disqualify' => '',
         ],
     ],
 
@@ -176,7 +180,7 @@ return [
             'prompt' => 'начните вводить ключевые слова ...',
             'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
-            'supporter_filter' => 'Фильтрация по :filters требует наличия активной подписки osu!supporter',
+            'supporter_filter' => 'Фильтрация по :filters требует наличия osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [

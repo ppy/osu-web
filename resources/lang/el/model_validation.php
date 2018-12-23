@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Μπορείτε να ψηφίσετε μόνο ένα αίτημα χαρακτηριστικών.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Η επιλογή για διπλασιασμό δεν είναι επιτρεπτή.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Η επιλογή ανά χρήστη ίσως υπερβαίνει τον αριθμό των διαθέσιμων επιλογών.',
             'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Αυτό είναι ήδη το όνομα χρήστη σου, χαζούλη!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

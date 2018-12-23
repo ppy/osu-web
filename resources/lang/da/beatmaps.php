@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Årsag for diskvalifikation?',
         'disqualified_at' => 'Diskvalificeret :time_ago (:reason).',
         'disqualified_no_reason' => 'ingen årsag specificeret',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations processen.',
+            'disqualify' => '',
         ],
     ],
 

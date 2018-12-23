@@ -67,10 +67,6 @@ class MiscSeeder extends Seeder
             $any_language->save();
             //END LANGUAGES
 
-            //COUNTRIES
-            factory(App\Models\Country::class, 50)->create();
-            //END COUNTRIES
-
             //ACHIEVEMENTS
             $beatmapSlugs = ['all-packs-anime-1', 'all-packs-anime-2', 'all-packs-gamer-1', 'all-packs-gamer-2', 'all-packs-rhythm-1', 'all-packs-rhythm-2'];
             factory(App\Models\Achievement::class, 5)->create([

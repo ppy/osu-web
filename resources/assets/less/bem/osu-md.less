@@ -56,12 +56,18 @@
 
   &__header {
     .default-font();
+    .fragment-target-fn();
+
     font-weight: bold;
     font-style: normal;
     color: @pink-light;
 
     &:first-child {
       margin-top: 0;
+    }
+
+    > a {
+      .fragment-target-fn();
     }
 
     &--2 {

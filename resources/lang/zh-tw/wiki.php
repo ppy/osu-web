@@ -33,8 +33,10 @@ return [
             'refresh' => '刷新',
         ],
 
-        'outdated' => [
-            '_' => '本文的內容與原文不同步，請查閱 :default 以獲得最準確最新的信息！',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
             'default' => '英文版本',
         ],
     ],

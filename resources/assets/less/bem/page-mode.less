@@ -32,6 +32,12 @@
   font-size: 15px;
   overflow: hidden;
 
+  @media @mobile {
+    font-size: 12px;
+    padding: 0px;
+    padding-top: 5px;
+  }
+
   &--page-extra-tabs {
     background-color: transparent;
     padding-top: 5px;
@@ -43,6 +49,12 @@
     padding-left: 0;
     padding-right: 0;
     margin: 0 (-@_gutter);
+  }
+
+  &--profile-page-extra {
+    background-color: transparent;
+    padding: 0;
+    overflow: visible;
   }
 
   &--ranking-page-mode-tabs {

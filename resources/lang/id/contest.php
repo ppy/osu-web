@@ -38,6 +38,7 @@ return [
         'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
         'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
         'drop_here' => 'Letakkan entri Anda di sini',
+        'download' => 'Unduh .osz',
         'wrong_type' => [
             'art' => 'Hanya file-file dengan format .jpg dan .png yang diterima di kontes ini',
             'beatmap' => 'Hanya file-file dengan format .osu yang diterima di kontes ini',
@@ -51,6 +52,7 @@ return [
     'vote' => [
         'list' => 'suara',
         'count' => ':count suara',
+        'points' => ':count poin',
     ],
     'dates' => [
         'ended' => 'Selesai :date',

@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Du kannst nur auf Featurewünsche abstimmen.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Die gleiche Antwort kann nicht doppelt enthalten sein.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Die Zahl an Antworten pro Benutzer kann die Anzahl an Antworten nicht überschreiten.',
             'minimum_one_selection' => 'Mindestens eine Antwort wird pro Benutzer benötigt.',
             'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Das ist doch schon dein Name, Dummerchen!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

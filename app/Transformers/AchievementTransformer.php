@@ -35,6 +35,7 @@ class AchievementTransformer extends Fractal\TransformerAbstract
             'slug' => $achievement->slug,
             'description' => $achievement->description,
             'mode' => $achievement->mode,
+            'instructions' => $achievement->quest_instructions,
         ];
     }
 }

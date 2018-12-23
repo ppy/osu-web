@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Elimina',
+        'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
+        'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
         'disqualification_prompt' => 'Ragioni della squalifica?',
         'disqualified_at' => 'squalificata :time_ago',
         'disqualified_no_reason' => 'nessuna motivazione specificata',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
+            'disqualify' => '',
         ],
     ],
 
@@ -222,7 +226,7 @@ return [
         'ranked-approved' => 'Classificate e Approvate',
         'approved' => 'Approvate',
         'qualified' => 'Qualificate',
-        'loved' => 'Amata',
+        'loved' => 'Amate',
         'faves' => 'Preferite',
         'pending' => 'In Attesa & In Lavorazione',
         'graveyard' => 'Cimitero',

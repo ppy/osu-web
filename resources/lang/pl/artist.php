@@ -46,4 +46,11 @@ return [
         'count' => ':count utwór|:count utwory|:count utworów',
         'exclusive' => 'wyłączny dla osu!',
     ],
+
+    'tracklist' => [
+        'title' => 'tytuł',
+        'length' => 'długość',
+        'bpm' => 'bpm',
+        'genre' => 'gatunek',
+    ],
 ];

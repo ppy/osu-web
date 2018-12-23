@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Queres mesmo apagar a publicação?',
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Não marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado com notificação',
-            'mail_disable' => 'Desactivar notificação',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

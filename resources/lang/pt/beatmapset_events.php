@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Eventos de Conjunto de Beatmaps',
+
+        'form' => [
+            'period' => 'Período',
+            'types' => 'Tipos',
+        ],
     ],
 
     'item' => [
         'content' => 'Conteúdo',
         'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
+    ],
+
+    'type' => [
+        'approve' => 'Aprovação',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => 'Desqualificação',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => 'Ganho de Kudosu',
+        'kudosu_lost' => 'Perda de Kudosu',
+        'kudosu_recalculate' => 'Recalculação de Kudosu',
+        'love' => '',
+        'nominate' => 'Nomeação',
+        'nomination_reset' => '',
+        'qualify' => 'Qualificação',
+        'rank' => 'Classificação',
     ],
 ];

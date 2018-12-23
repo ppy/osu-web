@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => 'Competi in più modi oltre che a cliccare cerchi.',
+        'small' => 'Competi in altri modi oltre che a cliccare cerchi.',
         'large' => 'Contest della Comunità',
     ],
     'voting' => [
@@ -38,19 +38,21 @@ return [
         'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverrano presto.',
         'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
         'drop_here' => 'Trascina la tua iscrizione qui',
+        'download' => 'Scarica .osz',
         'wrong_type' => [
             'art' => 'Solo file .jpg e .png sono accettati per questo contest.',
             'beatmap' => 'Solo file .osu sono accettati per questo contest.',
             'music' => 'Solo file .mp3 sono accettati per questo contest.',
         ],
-        'too_big' => 'Le iscrizioni per questo contest possono solo essere fino a :limit.',
+        'too_big' => 'Le iscrizioni per questo contest non possono essere più grandi di :limit.',
     ],
     'beatmaps' => [
         'download' => 'Scarica iscrizione',
     ],
     'vote' => [
         'list' => 'voti',
-        'count' => '1 voto|:count voti',
+        'count' => ':count voto|:count voti',
+        'points' => ':count punto|:count punti',
     ],
     'dates' => [
         'ended' => 'Terminato :date',

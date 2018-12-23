@@ -185,6 +185,13 @@ class @Comment extends React.PureComponent
                   onClick: @delete
                   osu.trans('common.buttons.delete')
 
+            if @canReport()
+              div className: 'comment__row-item',
+                el _exported.ReportComment,
+                  className: 'comment__action'
+                  comment: @props.comment
+                  user: @userFor(@props.comment)
+
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
                 if @props.showReplies
@@ -235,19 +242,21 @@ class @Comment extends React.PureComponent
               depth: @props.depth + 1
               parent: @props.comment
               modifiers: @props.modifiers
+              currentSort: @props.currentSort
+              moreComments: @props.moreComments
 
-          if children.length < @props.comment.replies_count
-            lastCommentId = _.last(children)?.id
-            el CommentShowMore,
-              key: "show-more:#{lastCommentId}"
-              parent: @props.comment
-              after: lastCommentId
-              modifiers: @props.modifiers
-              label: osu.trans('comments.show_replies') if children.length == 0
+          el CommentShowMore,
+            parent: @props.comment
+            sort: @props.currentSort
+            comments: children
+            moreComments: @props.moreComments
+            total: @props.comment.replies_count
+            modifiers: @props.modifiers
+            label: osu.trans('comments.show_replies') if children.length == 0
 
 
   renderVoteButton: =>
-    className = 'comment-vote'
+    className = osu.classWithModifiers('comment-vote', @props.modifiers)
     className += ' comment-vote--posting' if @state.postingVote
 
     if @hasVoted()
@@ -294,7 +303,11 @@ class @Comment extends React.PureComponent
 
 
   canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt
+    currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
+
+
+  canReport: =>
+    currentUser.id? && @props.comment.user_id != currentUser.id
 
 
   canRestore: =>

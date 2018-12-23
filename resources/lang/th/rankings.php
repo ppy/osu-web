@@ -20,12 +20,21 @@
 
 return [
     'header' => 'อันดับ:type',
+
     'type' => [
         'performance' => 'ประสิทธิภาพ',
         'charts' => 'สปอร์ตไลท์',
         'score' => 'คะแนน',
         'country' => 'ประเทศ',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
         'accuracy' => 'ความแม่นยำ',
         'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',

@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Chỉ có thể bầu chọn một feature request.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Đây là tên người dùng của bạn mà, đồ ngốc!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Verwijder',
+        'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
+        'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',
         'disqualification_prompt' => 'Reden voor diskwalificatie?',
         'disqualified_at' => 'Gediskwalificeerd :time_ago (:reason).',
         'disqualified_no_reason' => 'geen reden opgegeven',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
+            'disqualify' => '',
         ],
     ],
 

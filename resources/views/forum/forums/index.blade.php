@@ -56,5 +56,13 @@
                 @include("forum.forums._forums", ["forums" => $category->subforums])
             </div>
         @endforeach
+
+        <div class="forum-category col-sm-12">
+            <div class="forums">
+                <div class="forums__forum forums__forum--mark-as-read">
+                    @include('forum.forums._mark_as_read')
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

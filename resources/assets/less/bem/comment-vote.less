@@ -28,9 +28,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ddd;
 
   &:not([disabled]):hover {
     border-color: @_bg;
+  }
+
+  &--changelog {
+    background-color: @changelog-border-bg;
   }
 
   &--on {

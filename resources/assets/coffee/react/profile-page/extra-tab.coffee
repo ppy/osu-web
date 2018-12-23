@@ -21,7 +21,7 @@ el = React.createElement
 
 class ProfilePage.ExtraTab extends React.PureComponent
   render: =>
-    className = 'page-mode-link'
+    className = 'page-mode-link page-mode-link--profile-page'
 
     if @props.page == @props.currentPage
       className += ' page-mode-link--is-active'

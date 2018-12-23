@@ -46,4 +46,11 @@ return [
         'count' => ':count เพลง|:count เพลง',
         'exclusive' => 'เฉพาะ osu!',
     ],
+
+    'tracklist' => [
+        'title' => '',
+        'length' => '',
+        'bpm' => '',
+        'genre' => '',
+    ],
 ];

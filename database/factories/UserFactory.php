@@ -25,7 +25,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     // Generate a random unique ID
     $userid = null;
     while ($userid === null) {
-        if (!in_array($uid = rand(1, 600000), $existing_ids, true)) {
+        if (!in_array($uid = rand(2, 600000), $existing_ids, true)) {
             $userid = $uid;
         }
     }

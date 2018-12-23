@@ -35,6 +35,7 @@ return [
             'groups-show' => 'グループ',
             'index' => 'ダッシュボード',
             'legal-show' => 'インフォメーション',
+            'messages-index' => '',
             'news-index' => 'お知らせ',
             'news-show' => 'お知らせ',
             'password-reset-index' => 'パスワードのリセット',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'コミュニティ',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => '開発',
             'getForum' => 'フォーラム',
-            'getChat' => 'チャット',
             'getLive' => '配信',
+            'comments-index' => 'コメント',
+            'comments-show' => 'コメント',
             'contests' => 'コンテスト',
             'profile' => 'プロフィール',
             'tournaments' => 'トーナメント',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => '精算',
             'getInvoice' => '送り状',
+            'orders-index' => '',
             'products-show' => '製品',
 
             'new' => 'new',

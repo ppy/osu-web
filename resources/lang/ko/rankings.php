@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type 순위',
+
     'type' => [
         'performance' => '퍼포먼스',
         'charts' => '스포트라이트',
         'score' => '점수',
         'country' => '국가별',
     ],
+
+    'spotlight' => [
+        'end_date' => '마감일',
+        'map_count' => '맵 개수',
+        'participants' => '참가자',
+        'start_date' => '시작일',
+    ],
+
     'stat' => [
         'accuracy' => '정확도',
         'active_users' => '유저 수',

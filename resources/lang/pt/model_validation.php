@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Responder a comentários eliminados não é permitido.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só se pode votar numa característica solicitada.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Uma opção duplicada não é permitida.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'As opções por cada utilizador não podem exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'Um mínimo de uma opção é necessária por utilizador.',
             'minimum_two_options' => 'São necessárias pelo menos duas opções.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Este já é o teu nome de utilizador, tontinho!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

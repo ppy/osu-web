@@ -91,7 +91,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => 'Konto tego użytkownika jest obecnie zablokowane.',
-            'message' => '(tylko administracja widzi tę wiadomość)',
+            'message' => '(tylko administratorzy widzą tę wiadomość)',
         ],
     ],
 
