@@ -167,7 +167,7 @@ return [
         'create' => [
             'create_poll' => 'Poll Creation',
 
-            'preview' => 'post preview',
+            'preview' => 'Post Preview',
 
             'create_poll_button' => [
                 'add' => 'Create a poll',
