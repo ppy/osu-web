@@ -85,7 +85,7 @@ class RequireScopes
     private function containsScoped(Request $request)
     {
         foreach ($request->route()->gatherMiddleware() as $middleware) {
-            if (starts_with($middleware, 'require-scopes:')) {
+            if (is_string($middleware) && starts_with($middleware, 'require-scopes:')) {
                 return true;
             }
         }

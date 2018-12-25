@@ -22,6 +22,7 @@ class RouteScopesTest extends TestCase
     public function testApiRoutesRequireScope()
     {
         $expected = [
+            'api/v2/friends' => ['friends.read'],
             'api/v2/me' => ['identify'],
         ];
 

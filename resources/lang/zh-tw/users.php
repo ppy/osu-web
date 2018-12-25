@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user 的摸圖紀錄",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => '最近討論的主題',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => '拖動到此處以上傳',
                     'dropzone_info' => '您也可以將圖片拉到此處上傳',
                     'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 可用",
-                    'size_info' => '圖片尺寸應為2000x500',
+                    'size_info' => '圖片尺寸應為2800x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
-                'title' => '成就',
                 'achieved-on' => '達成於 :date',
+                'locked' => '',
+                'title' => '成就',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => '暫時沒有...',
                 'title' => '圖譜',
 
                 'favourite' => [
-                    'title' => '收藏的譜面 (:count)',
+                    'title' => '收藏的譜面',
                 ],
                 'graveyard' => [
-                    'title' => '墳場裡的譜面 (:count)',
+                    'title' => '墳場裡的譜面',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => '',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 和 Approved 的譜面 (:count)',
+                    'title' => 'Ranked 和 Approved 的譜面',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '遊玩紀錄',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => '遊玩次數',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '重播觀看的歷史記錄',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,18 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "該使用者尚未獲得成就。;_;",
+                'recent' => '',
                 'title' => '成就',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => '下載重播',
                 'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => '排名',
-                'weighted_pp' => '權重：:pp (:percentage)',
 
                 'best' => [
                     'title' => '最佳成績',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => '興趣愛好',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的國內排名',
+            'country_simple' => '',
             'global' => ':mode 模式的全球排名',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
             'level' => '等級 :level',
+            'level_progress' => '',
             'maximum_combo' => '最大連擊',
+            'medals' => '',
             'play_count' => '遊玩次數',
             'play_time' => '總遊玩時間',
             'ranked_score' => 'Ranked 圖譜總分',

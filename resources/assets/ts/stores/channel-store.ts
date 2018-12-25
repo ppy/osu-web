@@ -86,7 +86,7 @@ export default class ChannelStore implements DispatchListener {
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type === 'PM' && channel.metaLoaded) {
+      if (channel.newChannel || (channel.type === 'PM' && channel.metaLoaded)) {
         sortedChannels.push(channel);
       }
     });
@@ -151,8 +151,12 @@ export default class ChannelStore implements DispatchListener {
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (!presence.find((json) => json.channel_id === channel.channelId && !channel.newChannel)) {
-        this.channels.delete(channel.channelId);
+      if (channel.newChannel) {
+        return;
+      }
+
+      if (!presence.find((json) => json.channel_id === channel.channelId)) {
+          this.channels.delete(channel.channelId);
       }
     });
 

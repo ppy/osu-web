@@ -83,15 +83,15 @@ return [
     'privacy' => [
         'title' => 'ความเป็นส่วนตัว',
         'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
-        'hide_online' => '',
+        'hide_online' => 'ซ่อนสถานะออนไลน์ของคุณ',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'ปัจจุบัน',
+        'end_session' => 'เซสชันสิ้นสุด',
+        'end_session_confirmation' => 'ขั้นตอนนี้จะสิ้นสุดเซสชันของคุณในอุปกรณ์นั้นทันที คุณแน่ใจไหม?',
+        'last_active' => 'ใช้งานล่าสุด:',
+        'title' => 'ความปลอดภัย',
+        'web_sessions' => 'เซสชันของเว็บ',
     ],
 ];

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Käyttäjän :user modaushistoria",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Uusimmat keskustelut',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
                     'restriction_info' => "Kuvien lähetys käytössä vain <a href='".route('store.products.show', 'supporter-tag')."'target='_blank'>vain Tukijoille</a>",
-                    'size_info' => 'Kansikuvan kuuluisi olla 2000x700 pikseliä',
+                    'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
-                'title' => 'Saavutukset',
                 'achieved-on' => 'Saavutuspäivä :date',
+                'locked' => '',
+                'title' => 'Saavutukset',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
                 'favourite' => [
-                    'title' => 'Suosikit (:count)',
+                    'title' => 'Suosikit',
                 ],
                 'graveyard' => [
-                    'title' => 'Kuopatut (:count)',
+                    'title' => 'Kuopatut',
                 ],
                 'loved' => [
-                    'title' => 'Rakastetut beatmapit (:count)',
+                    'title' => 'Rakastetut beatmapit',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit (:count)',
+                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
                 ],
                 'unranked' => [
-                    'title' => 'Vireillä olevat Beatmapit (:count)',
+                    'title' => 'Vireillä olevat Beatmapit',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Pelaushistoria',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'pelikertoja: ',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Katsotut Uusinnat',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Tämä käyttäjä ei ole saanut vielä yhtäkään. ;_;",
+                'recent' => '',
                 'title' => 'Mitalit',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Lataa Replay',
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Suoritukset',
-                'weighted_pp' => 'painotettu: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Parhaat Suoritukset',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
+            'country_simple' => '',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',
             'level' => 'Taso :level',
+            'level_progress' => '',
             'maximum_combo' => 'Korkein Combo',
+            'medals' => '',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelaamisaika yhteensä',
             'ranked_score' => 'Tilastopisteet',

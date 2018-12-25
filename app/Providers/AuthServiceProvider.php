@@ -36,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         Route::get('oauth/authorize', AuthorizationController::class.'@authorize')->middleware(['web', 'auth']);
 
         Passport::tokensCan([
+            'friends.read' => trans('api.scopes.friends.read'),
             'identify' => trans('api.scopes.identify'),
         ]);
     }

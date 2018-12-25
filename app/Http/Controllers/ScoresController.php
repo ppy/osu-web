@@ -20,36 +20,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beatmap;
+use App\Exceptions\ValidationException;
 use App\Models\Score\Best\Model as ScoreBest;
-use Auth;
-use PDOException;
 
 class ScoresController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
+
     public function report($mode, $id)
     {
         $score = ScoreBest::getClassByString($mode)::findOrFail($id);
 
-        priv_check('ScoreReport', $score)->ensureCan();
-
         try {
-            $report = $score->reportedIn()->create([
-                'user_id' => $score->user_id,
-                'reporter_id' => Auth::user()->getKey(),
-                'mode' => Beatmap::modeInt($mode),
+            $score->reportBy(auth()->user(), [
                 'comments' => trim(request('comments')),
-                'reason' => 'Cheating',
             ]);
-
-            if (!$report->exists) {
-                throw new ModelNotSavedException($report->validationErrors()->toSentence());
-            }
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
         }
 
         return response(null, 204);

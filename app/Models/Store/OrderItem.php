@@ -121,7 +121,7 @@ class OrderItem extends Model
     {
         // only one for now
         if ($this->product->custom_class === 'username-change') {
-            return new ChangeUsername($this->order->user, $this->extra_info, 'paid');
+            return new ChangeUsername($this->order->user, $this->extra_info);
         }
     }
 

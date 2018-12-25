@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => '直播中心',
         'description' => '每 5 分钟从 twitch.tv 更新一次列表，想要出现在列表中？快来直播吧！更多相关信息，请查阅我们的 Wiki 界面。',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => '正在直播',

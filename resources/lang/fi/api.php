@@ -25,4 +25,8 @@ return [
             'too_long' => 'Viesti jota yrität lähettää on liian pitkä.',
         ],
     ],
+
+    'scopes' => [
+        'identify' => '',
+    ],
 ];

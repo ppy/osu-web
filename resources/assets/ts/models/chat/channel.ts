@@ -74,6 +74,15 @@ export default class Channel {
   }
 
   @computed
+  get pmTarget(): number | undefined {
+    if (this.type !== 'PM') {
+      return;
+    }
+
+    return this.users.find((userId: number) => userId !== currentUser.id);
+  }
+
+  @computed
   get isUnread(): boolean {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;

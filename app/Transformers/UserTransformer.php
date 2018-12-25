@@ -44,6 +44,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'replays_watched_counts',
         'scores_first_count',
         'statistics',
+        'support_level',
         'unranked_beatmapset_count',
         'user_achievements',
     ];
@@ -55,7 +56,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'join_date' => json_date($user->user_regdate),
+            'join_date' => json_time($user->user_regdate),
             'country' => [
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
@@ -204,7 +205,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTMLWithoutImageDimensions,
+                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {
@@ -261,6 +262,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($params->get('mode')[0]);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel(), function ($level) {
+            return $level;
+        });
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)

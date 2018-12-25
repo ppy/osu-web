@@ -19,11 +19,15 @@
 {a, div, h2, h3, img, p, small, span} = ReactDOMFactories
 el = React.createElement
 
+
 class ProfilePage.Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
     @id = "users-show-historical-#{osu.uuid()}"
+    @monthlyPlaycountsChartArea = React.createRef()
+    @replaysWatchedCountsChartArea = React.createRef()
+
     @charts = {}
 
 
@@ -56,7 +60,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           div
             className: 'page-extra__chart'
-            ref: @setMonthlyPlaycountsChartArea
+            ref: @monthlyPlaycountsChartArea
 
 
       h3
@@ -65,31 +69,21 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.beatmapPlaycounts?.length
         [
-          @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap, pc.beatmapset, i, [
-              [
-                span
-                  key: 'name'
-                  className: 'beatmapset-row__info'
-                  osu.trans('users.show.extra.historical.most_played.count')
-                span
-                  key: 'value'
-                  className: 'beatmapset-row__info beatmapset-row__info--large'
-                  " #{pc.count.toLocaleString()}"
-              ]
-            ]
-          span
+          for playcount in @props.beatmapPlaycounts
+            el ProfilePage.BeatmapPlaycount,
+              key: playcount.beatmap.id
+              playcount: playcount
+          el ShowMoreLink,
             key: 'show-more-row'
-            className: 'beatmapset-row beatmapset-row--more'
-            el ShowMoreLink,
-              event: 'profile:showMore'
-              hasMore: @props.pagination.beatmapPlaycounts.hasMore
-              loading: @props.pagination.beatmapPlaycounts.loading
-              data:
-                name: 'beatmapPlaycounts'
-                url: laroute.route 'users.beatmapsets',
-                    user: @props.user.id
-                    type: 'most_played'
+            modifiers: ['profile-page']
+            event: 'profile:showMore'
+            hasMore: @props.pagination.beatmapPlaycounts.hasMore
+            loading: @props.pagination.beatmapPlaycounts.loading
+            data:
+              name: 'beatmapPlaycounts'
+              url: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
+                  type: 'most_played'
         ]
 
       else
@@ -103,19 +97,18 @@ class ProfilePage.Historical extends React.PureComponent
         [
           el window._exported.PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
-          span
+          el ShowMoreLink,
             key: 'show-more-row'
-            className: 'beatmapset-row beatmapset-row--more'
-            el ShowMoreLink,
-              event: 'profile:showMore'
-              hasMore: @props.pagination.scoresRecent.hasMore
-              loading: @props.pagination.scoresRecent.loading
-              data:
-                name: 'scoresRecent'
-                url: laroute.route 'users.scores',
-                    user: @props.user.id
-                    type: 'recent'
-                    mode: @props.currentMode
+            modifiers: ['profile-page']
+            event: 'profile:showMore'
+            hasMore: @props.pagination.scoresRecent.hasMore
+            loading: @props.pagination.scoresRecent.loading
+            data:
+              name: 'scoresRecent'
+              url: laroute.route 'users.scores',
+                  user: @props.user.id
+                  type: 'recent'
+                  mode: @props.currentMode
         ]
 
       else
@@ -129,48 +122,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           div
             className: 'page-extra__chart'
-            ref: @setReplaysWatchedCountsChartArea
-
-
-  _beatmapRow: (bm, bmset, key, details = []) =>
-    div
-      key: key
-      className: 'beatmapset-row'
-      div
-        className: 'beatmapset-row__cover'
-        style:
-          backgroundImage: osu.urlPresence(bmset.covers.list)
-      div
-        className: 'beatmapset-row__detail'
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            a
-              className: 'beatmapset-row__title'
-              href: laroute.route 'beatmaps.show', beatmap: bm.id
-              title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
-              "#{bmset.title} [#{bm.version}] "
-              span
-                className: 'beatmapset-row__title-small'
-                bmset.artist
-          div
-            className: 'beatmapset-row__detail-column'
-            details[0]
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            span dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.details.mapped_by',
-                  mapper: laroute.link_to_route 'users.show',
-                    bmset.creator
-                    { user: bmset.user_id }
-                    class: 'beatmapset-row__title-small js-usercard'
-                    'data-user-id': bmset.user_id
-          div
-            className: 'beatmapset-row__detail-column'
-            details[1]
+            ref: @replaysWatchedCountsChartArea
 
 
   chartUpdate: (attribute, area) =>
@@ -205,11 +157,14 @@ class ProfilePage.Historical extends React.PureComponent
         formats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
           y: (d) -> d.toLocaleString()
-        margins: right: 80 # more spacing for x axis label
-        tooltipFormats:
+        margins: right: 60 # more spacing for x axis label
+        infoBoxFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
+          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
         tickValues: {}
         ticks: {}
+        circleLine: true
+        modifiers: ['profile-page']
 
       @charts[attribute] = new LineChart(area, options)
 
@@ -228,13 +183,13 @@ class ProfilePage.Historical extends React.PureComponent
   monthlyPlaycountsChartUpdate: =>
     return if !@hasMonthlyPlaycounts()
 
-    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea
+    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea.current
 
 
   replaysWatchedCountsChartUpdate: =>
     return if !@hasReplaysWatchedCounts()
 
-    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea
+    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea.current
 
 
   updateTicks: (chart, data) =>
@@ -256,11 +211,3 @@ class ProfilePage.Historical extends React.PureComponent
     for own _name, chart of @charts
       @updateTicks chart
       chart.resize()
-
-
-  setMonthlyPlaycountsChartArea: (ref) =>
-    @monthlyPlaycountsChartArea = ref
-
-
-  setReplaysWatchedCountsChartArea: (ref) =>
-    @replaysWatchedCountsChartArea = ref

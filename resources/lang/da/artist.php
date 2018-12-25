@@ -48,7 +48,7 @@ return [
     ],
 
     'tracklist' => [
-        'title' => '',
+        'title' => 'titel',
         'length' => '',
         'bpm' => '',
         'genre' => '',

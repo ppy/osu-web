@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Odebrat z mých oblíbených',
             'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
         ],
-        'stats' => [
-            'cs' => 'Velikost koleček',
-            'cs-mania' => 'Počet kláves',
-            'drain' => 'Vysávání životů',
-            'accuracy' => 'Přesnost',
-            'ar' => 'Rychlost zjevování koleček',
-            'stars' => 'Počet hvězd',
-            'total_length' => 'Délka',
-            'bpm' => 'BPM',
-            'count_circles' => 'Počet koleček',
-            'count_sliders' => 'Počet sliderů',
-            'user-rating' => 'Uživatelské hodnocení',
-            'rating-spread' => 'Graf hodnocení',
-            'nominations' => 'Nominace',
-            'playcount' => 'Počet zahrání',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Popis',
             'genre' => 'Žánr',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tagy',
             'unranked' => 'Nehodnocená beatmapa',
         ],
+
         'scoreboard' => [
             'achieved' => 'dosaženo :when',
             'country' => 'Státní žebříčky',
@@ -112,6 +112,23 @@ return [
                 'first' => 'V čele',
                 'own' => 'Vaše nejlepší',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Velikost koleček',
+            'cs-mania' => 'Počet kláves',
+            'drain' => 'Vysávání životů',
+            'accuracy' => 'Přesnost',
+            'ar' => 'Rychlost zjevování koleček',
+            'stars' => 'Počet hvězd',
+            'total_length' => 'Délka',
+            'bpm' => 'BPM',
+            'count_circles' => 'Počet koleček',
+            'count_sliders' => 'Počet sliderů',
+            'user-rating' => 'Uživatelské hodnocení',
+            'rating-spread' => 'Graf hodnocení',
+            'nominations' => 'Nominace',
+            'playcount' => 'Počet zahrání',
         ],
     ],
 ];

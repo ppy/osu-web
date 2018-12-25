@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
             'minimum_one_selection' => 'Et minimum af en valgmulighed pr. bruger er nødvendig.',
             'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];
