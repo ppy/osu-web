@@ -73,14 +73,14 @@ class ScoresController extends BaseController
                 $playlistItem->scores()->where('id', $scoreId)->firstOrFail(),
                 request()->all()
             );
-        } catch (InvalidArgumentException $e) {
-            abort(422, $e->getMessage());
-        }
 
-        return json_item(
-            $score,
-            'Multiplayer\RoomScore',
-            ['user.country']
-        );
+            return json_item(
+                $score,
+                'Multiplayer\RoomScore',
+                ['user.country']
+            );
+        } catch (InvalidArgumentException $e) {
+            return error_popup($e->getMessage(), 422);
+        }
     }
 }

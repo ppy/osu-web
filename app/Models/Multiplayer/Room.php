@@ -25,6 +25,7 @@ use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InvalidArgumentException;
 
 class Room extends Model
 {
@@ -93,14 +94,14 @@ class Room extends Model
     public function startGame(User $owner, array $params)
     {
         if (static::active()->startedBy($owner)->exists()) {
-            abort(403, 'number of simultaneously active rooms reached');
+            throw new InvalidArgumentException('number of simultaneously active rooms reached');
         }
 
         [$startTime, $endTime] = static::parseTimeParams($params);
 
         $playlistParams = $params['playlist'] ?? [];
         if (!is_array($playlistParams)) {
-            abort(422, "field 'playlist' must an an array");
+            throw new InvalidArgumentException("field 'playlist' must an an array");
         }
 
         $playlistItems = [];
@@ -122,12 +123,6 @@ class Room extends Model
         $this->getConnection()->transaction(function () use ($owner, $roomOptions, $playlistItems) {
             $this->fill($roomOptions);
             $this->assertValidStartGame();
-            $this->save();
-
-            foreach ($playlistItems as $playlistItem) {
-                $playlistItem->room()->associate($this);
-                $playlistItem->save();
-            }
 
             // create the chat channel for the room
             $channel = new Channel();
@@ -136,8 +131,15 @@ class Room extends Model
             $channel->description = $this->name;
             $channel->save();
 
-            $room->update(['channel_id' => $channel->channel_id]);
             $channel->addUser($owner);
+
+            $this->channel_id = $channel->channel_id;
+            $this->save();
+
+            foreach ($playlistItems as $playlistItem) {
+                $playlistItem->room()->associate($this);
+                $playlistItem->save();
+            }
         });
 
         return $this;
@@ -147,13 +149,13 @@ class Room extends Model
     {
         foreach (['name', 'starts_at', 'ends_at'] as $field) {
             if (empty($this->$field)) {
-                abort(422, "'{$field}' is required");
+                throw new InvalidArgumentException("'{$field}' is required");
             }
         }
 
         if ($this->max_attempts !== null) {
             if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                abort(422, "field 'max_attempts' must be between 1 and 32");
+                throw new InvalidArgumentException("field 'max_attempts' must be between 1 and 32");
             }
         }
     }
@@ -220,12 +222,12 @@ class Room extends Model
             $endTime = Carbon::parse($params['ends_at']);
 
             if ($endTime->isBefore($startTime)) {
-                abort(422, "'ends_at' cannot be before 'starts_at'");
+                throw new InvalidArgumentException("'ends_at' cannot be before 'starts_at'");
             }
         } elseif (array_key_exists('duration', $params)) {
             $endTime = $startTime->copy()->addMinutes($params['duration']);
         } else {
-            abort(422, "field 'duration' or 'ends_at' required");
+            throw new InvalidArgumentException("field 'duration' or 'ends_at' required");
         }
 
         return [$startTime, $endTime];

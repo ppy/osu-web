@@ -123,13 +123,16 @@ class RoomsController extends BaseController
 
     public function store()
     {
-        $currentUser = auth()->user();
-        $room = (new Room)->startGame($currentUser, request()->all());
+        try {
+            $room = (new Room)->startGame(auth()->user(), request()->all());
 
-        return json_item(
-            $room,
-            'Multiplayer\Room',
-            'playlist'
-        );
+            return json_item(
+                $room,
+                'Multiplayer\Room',
+                'playlist'
+            );
+        } catch (\InvalidArgumentException $e) {
+            return error_popup($e->getMessage(), 422);
+        }
     }
 }

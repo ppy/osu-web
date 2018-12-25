@@ -47,7 +47,7 @@ class PlaylistItem extends Model
 
         if ($missing !== []) {
             $missingText = implode(', ', $missing);
-            abort(422, "beatmaps not found: {$missingText}");
+            throw new \InvalidArgumentException("beatmaps not found: {$missingText}");
         }
     }
 
