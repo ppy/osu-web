@@ -82,7 +82,6 @@ class ModTest extends TestCase
         );
     }
 
-
     public function testValidateSelectionWithValid()
     {
         $validModCombos = [

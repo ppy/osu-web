@@ -23,8 +23,6 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\RoomScore;
-use Carbon\Carbon;
 use InvalidArgumentException;
 
 class ScoresController extends BaseController

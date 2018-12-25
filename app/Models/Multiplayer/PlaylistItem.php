@@ -53,7 +53,7 @@ class PlaylistItem extends Model
 
     public static function fromJsonParams($json)
     {
-        $obj = new PlaylistItem;
+        $obj = new self;
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
             $obj->$field = array_get($json, $field);
             if (!present($obj->$field)) {
@@ -142,7 +142,7 @@ class PlaylistItem extends Model
         );
 
         if (count($dupeMods) > 0) {
-            throw new \InvalidArgumentException('mod cannot be listed as both allowed and required: '.join(', ', $dupeMods));
+            throw new \InvalidArgumentException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
     }
 

@@ -22,8 +22,8 @@ namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\Room;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 use Carbon\Carbon;
+use League\Fractal;
 
 class RoomTransformer extends Fractal\TransformerAbstract
 {

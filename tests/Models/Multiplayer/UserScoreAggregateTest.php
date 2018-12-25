@@ -20,14 +20,12 @@
 
 namespace Tests\Multiplayer;
 
+use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
 use App\Models\Multiplayer\UserScoreAggregate;
-use App\Models\Beatmap;
 use App\Models\User;
-use Carbon\Carbon;
 use TestCase;
-use App\Models\Multiplayer\PlaylistItem;
 
 class UserScoreAggregateTest extends TestCase
 {
@@ -70,7 +68,6 @@ class UserScoreAggregateTest extends TestCase
                 'playlist_item_id' => $playlistItem->getKey(),
                 'user_id' => $user->getKey(),
             ]);
-
 
         $agg = new UserScoreAggregate($user);
         $agg->addScore($score);

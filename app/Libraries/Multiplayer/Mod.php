@@ -115,7 +115,7 @@ class Mod
         [
             self::OSU_TRANSFORM,
             self::OSU_WIGGLE,
-        ]
+        ],
     ];
 
     // Mapping of valid mods per ruleset
@@ -190,7 +190,7 @@ class Mod
     // Mapping of valid mods per ruleset
     public static function validModsForRuleset($ruleset)
     {
-        if (!in_array($ruleset, Ruleset::ALL)) {
+        if (!in_array($ruleset, Ruleset::ALL, true)) {
             throw new InvalidArgumentException('invalid ruleset');
         }
 
@@ -199,7 +199,7 @@ class Mod
 
     public static function validForRuleset($acronym, $ruleset)
     {
-        return in_array($acronym, static::validModsForRuleset($ruleset));
+        return in_array($acronym, static::validModsForRuleset($ruleset), true);
     }
 
     public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
@@ -207,11 +207,11 @@ class Mod
         $checkedMods = [];
         foreach ($mods as $mod) {
             if (!static::validForRuleset($mod, $ruleset)) {
-                throw new InvalidArgumentException("invalid mod for ruleset: ".json_encode($mod));
+                throw new InvalidArgumentException('invalid mod for ruleset: '.json_encode($mod));
             }
 
             if (isset($checkedMods[$mod])) {
-                throw new InvalidArgumentException("duplicate mod for ruleset: ".json_encode($mod));
+                throw new InvalidArgumentException('duplicate mod for ruleset: '.json_encode($mod));
             }
 
             $checkedMods[$mod] = true;
@@ -221,7 +221,7 @@ class Mod
             foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
                 $intersection = array_intersect($mods, $group);
                 if (count($intersection) > 1) {
-                    throw new InvalidArgumentException('incompatible mods: '.join(', ', $intersection));
+                    throw new InvalidArgumentException('incompatible mods: '.implode(', ', $intersection));
                 }
             }
         }
@@ -238,13 +238,13 @@ class Mod
                 $acronym = strtoupper($mod['acronym']);
 
                 $filteredMods[$acronym] = [
-                    "acronym" => $acronym,
-                    "settings" => [],
+                    'acronym' => $acronym,
+                    'settings' => [],
                 ];
                 continue;
             }
 
-            throw new InvalidArgumentException("invalid mod array");
+            throw new InvalidArgumentException('invalid mod array');
         }
 
         $cleanMods = array_values($filteredMods);

@@ -21,13 +21,8 @@
 namespace App\Http\Controllers\Multiplayer;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
-use App\Models\Chat\Channel;
-use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use Carbon\Carbon;
-use DB;
 
 class RoomsController extends BaseController
 {
@@ -47,7 +42,7 @@ class RoomsController extends BaseController
             if ($mode === 'participated') {
                 // TODO: should probably do some kind of caching on this.
                 $rooms->hasParticipated(auth()->user());
-            } else if ($mode === 'owned') {
+            } elseif ($mode === 'owned') {
                 $rooms->startedBy(auth()->user());
             } else {
                 $rooms->active();
@@ -64,7 +59,7 @@ class RoomsController extends BaseController
             'Multiplayer\Room',
             [
                 'host',
-                'playlist.beatmap.beatmapset'
+                'playlist.beatmap.beatmapset',
             ]
         );
     }

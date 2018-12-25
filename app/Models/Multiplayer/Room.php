@@ -119,7 +119,6 @@ class Room extends Model
             'max_attempts' => get_int($params['max_attempts'] ?? null),
         ];
 
-
         $this->getConnection()->transaction(function () use ($owner, $roomOptions, $playlistItems) {
             $this->fill($roomOptions);
             $this->assertValidStartGame();

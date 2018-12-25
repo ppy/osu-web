@@ -186,7 +186,6 @@ class UserScoreAggregate
         ];
     }
 
-
     // TODO: all needs fixing
     public function getAccuracyAverage() : float
     {

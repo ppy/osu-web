@@ -23,7 +23,7 @@ namespace App\Models\Multiplayer;
 use App\Models\Model;
 
 /**
- * Dumb persistence model for UserScoreAggregate
+ * Dumb persistence model for UserScoreAggregate.
  */
 class RoomUserHighScore extends Model
 {
