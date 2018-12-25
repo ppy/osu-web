@@ -121,70 +121,82 @@ class Mod
     // Mapping of valid mods per ruleset
     public static function validityByRuleset()
     {
-        return [
-            Ruleset::OSU => array_merge(
-                self::SCORABLE_COMMON,
-                [
-                    self::OSU_AUTOPILOT,
-                    self::OSU_SPUNOUT,
-                    self::OSU_TARGET,
-                    self::OSU_TRANSFORM,
-                    self::OSU_WIGGLE,
-                ]
-            ),
+        static $value;
 
-            Ruleset::TAIKO => array_merge(
-                self::SCORABLE_COMMON,
-                [
-                    // taiko-specific mods go here
-                ]
-            ),
+        if (!$value) {
+            $value = [
+                Ruleset::OSU => array_merge(
+                    self::SCORABLE_COMMON,
+                    [
+                        self::OSU_AUTOPILOT,
+                        self::OSU_SPUNOUT,
+                        self::OSU_TARGET,
+                        self::OSU_TRANSFORM,
+                        self::OSU_WIGGLE,
+                    ]
+                ),
 
-            Ruleset::CATCH => array_merge(
-                self::SCORABLE_COMMON,
-                [
-                    // catch-specific mods go here
-                ]
-            ),
+                Ruleset::TAIKO => array_merge(
+                    self::SCORABLE_COMMON,
+                    [
+                        // taiko-specific mods go here
+                    ]
+                ),
 
-            Ruleset::MANIA => array_merge(
-                self::SCORABLE_COMMON,
-                [
-                    self::MANIA_KEY1,
-                    self::MANIA_KEY2,
-                    self::MANIA_KEY3,
-                    self::MANIA_KEY4,
-                    self::MANIA_KEY5,
-                    self::MANIA_KEY6,
-                    self::MANIA_KEY7,
-                    self::MANIA_KEY8,
-                    self::MANIA_KEY9,
-                    self::MANIA_DUALSTAGES,
-                    self::MANIA_FADEIN,
-                    self::MANIA_MIRROR,
-                    self::MANIA_RANDOM,
-                ]
-            ),
-        ];
+                Ruleset::CATCH => array_merge(
+                    self::SCORABLE_COMMON,
+                    [
+                        // catch-specific mods go here
+                    ]
+                ),
+
+                Ruleset::MANIA => array_merge(
+                    self::SCORABLE_COMMON,
+                    [
+                        self::MANIA_KEY1,
+                        self::MANIA_KEY2,
+                        self::MANIA_KEY3,
+                        self::MANIA_KEY4,
+                        self::MANIA_KEY5,
+                        self::MANIA_KEY6,
+                        self::MANIA_KEY7,
+                        self::MANIA_KEY8,
+                        self::MANIA_KEY9,
+                        self::MANIA_DUALSTAGES,
+                        self::MANIA_FADEIN,
+                        self::MANIA_MIRROR,
+                        self::MANIA_RANDOM,
+                    ]
+                ),
+            ];
+        }
+
+        return $value;
     }
 
     public static function exclusivityByRuleset()
     {
-        return [
-            Ruleset::OSU => self::EXCLUSIVITY_COMMON,
-            Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
-            Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
-            Ruleset::MANIA => array_merge(
-                self::EXCLUSIVITY_COMMON,
-                [
+        static $value;
+
+        if (!$value) {
+            $value = [
+                Ruleset::OSU => self::EXCLUSIVITY_COMMON,
+                Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
+                Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
+                Ruleset::MANIA => array_merge(
+                    self::EXCLUSIVITY_COMMON,
                     [
-                        self::FLASHLIGHT,
-                        self::HIDDEN,
-                        self::MANIA_FADEIN,
-                    ],
-                ]
-            ),
-        ];
+                        [
+                            self::FLASHLIGHT,
+                            self::HIDDEN,
+                            self::MANIA_FADEIN,
+                        ],
+                    ]
+                ),
+            ];
+        }
+
+        return $value;
     }
 
     // Mapping of valid mods per ruleset
