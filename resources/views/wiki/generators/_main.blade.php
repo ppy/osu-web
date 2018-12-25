@@ -20,11 +20,12 @@
     <div class="wiki-main-page-panel">
         <div class="wiki-main-page-panel__title">{!! $title !!}</div>
         <div class="wiki-main-page-panel__links">
+            @spaceless
             @foreach($section as $key => $link)
                 <span class="wiki-main-page-panel__link">
                     @if (is_array($link))
                         {!! $key !!}
-                            <span class="wiki-main-page-panel__links wiki-main-page-panel__links--sublinks">
+                            <span class="wiki-main-page-panel__sublinks">
                                 @foreach ($link as $sublink)
                                     <span class="wiki-main-page-panel__link">{!! $sublink !!}</span>
                                 @endforeach
@@ -35,6 +36,7 @@
                     @endif
                 </span>
             @endforeach
+            @endspaceless
         </div>
     </div>
 @endforeach

@@ -46,7 +46,7 @@
 
   &__link {
     &::after {
-      content: "\2022";
+      content: "\00a0\2022\00a0";
     }
 
     &:last-child {
@@ -61,15 +61,17 @@
     font-size: 13px;
     font-style: italic;
     font-weight: 700;
+  }
 
-    &--sublinks {
-      &::before {
-        content: '(';
-      }
+  &__sublinks {
+    &::before {
+      font-style: normal;
+      content: '\00a0(';
+    }
 
-      &::after {
-        content: ')';
-      }
+    &::after {
+      font-style: normal;
+      content: ')\00a0';
     }
   }
 

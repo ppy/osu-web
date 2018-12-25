@@ -234,6 +234,11 @@ return [
 
         /* Datadog Metrics */
         ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
+
+        /*
+         * Blade Providers
+         */
+        hedronium\SpacelessBlade\SpacelessBladeProvider::class,
     ],
 
     /*

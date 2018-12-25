@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87e018a388fb6d03fe85fdafe3a83c4c",
+    "content-hash": "fa8c366425305988fe5948bd7406b477",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1496,6 +1496,49 @@
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
+            "name": "hedronium/spaceless-blade",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Hedronium/SpacelessBlade.git",
+                "reference": "bcf36bcc046dffc18d8ef161356933069bf2cdc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Hedronium/SpacelessBlade/zipball/bcf36bcc046dffc18d8ef161356933069bf2cdc1",
+                "reference": "bcf36bcc046dffc18d8ef161356933069bf2cdc1",
+                "shasum": ""
+            },
+            "replace": {
+                "solidew/spaceless-blade": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "hedronium\\SpacelessBlade\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Omran Jamal",
+                    "email": "o.jamal97@gmail.com",
+                    "homepage": "http://about.me/omran.jamal"
+                }
+            ],
+            "description": "Adds the @spaceless tag to Blade. (works like in Twig)",
+            "keywords": [
+                "blade",
+                "laravel",
+                "spaceless",
+                "twig"
+            ],
+            "time": "2016-01-25T17:22:00+00:00"
+        },
+        {
             "name": "itsgoingd/clockwork",
             "version": "v3.1.1",
             "source": {
@@ -2805,7 +2848,7 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
+                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
             },
             "time": "2017-02-16T06:27:23+00:00"
         },

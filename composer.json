@@ -23,6 +23,7 @@
     "graham-campbell/github": "*",
     "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
+    "hedronium/spaceless-blade": "~2.0",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
     "jonnybarnes/commonmark-linkify": "*",
