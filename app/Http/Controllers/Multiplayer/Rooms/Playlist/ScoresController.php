@@ -25,6 +25,7 @@ use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
+use App\Models\Multiplayer\UserScoreAggregate;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -72,9 +73,10 @@ class ScoresController extends BaseController
 
     public function update($roomId, $playlistId, $scoreId)
     {
+        $room = Room::findOrFail($roomId);
         // todo: check against room's end time, check within window of start_time + beatmap_length + x
 
-        $playlist = PlaylistItem::where('room_id', $roomId)
+        $playlist = $room->playlist()
             ->where('id', $playlistId)
             ->firstOrFail();
 
@@ -112,16 +114,22 @@ class ScoresController extends BaseController
         // - check mods are within required_mods or allowed_mods
         // - validate statistics json format
 
-        $score->rank = request()->input('rank');
-        $score->total_score = get_int(request()->input('total_score'));
-        $score->accuracy = get_float(request()->input('accuracy'));
-        $score->max_combo = get_int(request()->input('max_combo'));
-        $score->ended_at = Carbon::now();
-        $score->passed = get_bool(request()->input('passed'));
-        $score->mods = $mods;
-        $score->statistics = request()->input('statistics');
+        $score->getConnection()->transaction(function () use ($mods, $room, $score) {
+            $score->rank = request()->input('rank');
+            $score->total_score = get_int(request()->input('total_score'));
+            $score->accuracy = get_float(request()->input('accuracy'));
+            $score->max_combo = get_int(request()->input('max_combo'));
+            $score->ended_at = Carbon::now();
+            $score->passed = get_bool(request()->input('passed'));
+            $score->mods = $mods;
+            $score->statistics = request()->input('statistics');
 
-        $score->saveOrExplode();
+            $score->saveOrExplode();
+
+            if ($score->isCompleted()) {
+                $room->addScore($score);
+            }
+        });
 
         return json_item(
             $score,
