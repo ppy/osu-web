@@ -97,7 +97,18 @@ class Room extends Model
             throw new InvalidArgumentException('number of simultaneously active rooms reached');
         }
 
-        [$startTime, $endTime] = static::parseTimeParams($params);
+        $this->name = $params['name'] ?? null;
+        $this->user_id = $owner->getKey();
+        $this->max_attempts = get_int($params['max_attempts'] ?? null);
+        $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
+
+        if ($params['ends_at'] ?? null !== null) {
+            $this->ends_at = Carbon::parse($params['ends_at']);
+        } else if ($params['duration'] ?? null !== null) {
+            $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+        }
+
+        $this->assertValidStartGame();
 
         $playlistParams = $params['playlist'] ?? [];
         if (!is_array($playlistParams)) {
@@ -111,17 +122,8 @@ class Room extends Model
 
         PlaylistItem::assertBeatmapsExist($playlistItems);
 
-        $roomOptions = [
-            'name' => $params['name'] ?? null,
-            'user_id' => $owner->getKey(),
-            'starts_at' => $startTime,
-            'ends_at' => $endTime,
-            'max_attempts' => get_int($params['max_attempts'] ?? null),
-        ];
-
-        $this->getConnection()->transaction(function () use ($owner, $roomOptions, $playlistItems) {
-            $this->fill($roomOptions);
-            $this->assertValidStartGame();
+        $this->getConnection()->transaction(function () use ($owner, $playlistItems) {
+            $this->save(); // need to persist to get primary key for channel name.
 
             // create the chat channel for the room
             $channel = new Channel();
@@ -132,8 +134,7 @@ class Room extends Model
 
             $channel->addUser($owner);
 
-            $this->channel_id = $channel->channel_id;
-            $this->save();
+            $this->update(['channel_id' => $channel->channel_id]);
 
             foreach ($playlistItems as $playlistItem) {
                 $playlistItem->room()->associate($this);
@@ -142,21 +143,6 @@ class Room extends Model
         });
 
         return $this;
-    }
-
-    private function assertValidStartGame()
-    {
-        foreach (['name', 'starts_at', 'ends_at'] as $field) {
-            if (empty($this->$field)) {
-                throw new InvalidArgumentException("'{$field}' is required");
-            }
-        }
-
-        if ($this->max_attempts !== null) {
-            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvalidArgumentException("field 'max_attempts' must be between 1 and 32");
-            }
-        }
     }
 
     public function startPlay(User $user, PlaylistItem $playlistItem, array $params)
@@ -209,26 +195,22 @@ class Room extends Model
         return array_values($stats);
     }
 
-    private function parseTimeParams(array $params)
+    private function assertValidStartGame()
     {
-        if (array_key_exists('starts_at', $params)) {
-            $startTime = Carbon::parse($params['starts_at']);
-        } else {
-            $startTime = Carbon::now();
-        }
-
-        if (array_key_exists('ends_at', $params)) {
-            $endTime = Carbon::parse($params['ends_at']);
-
-            if ($endTime->isBefore($startTime)) {
-                throw new InvalidArgumentException("'ends_at' cannot be before 'starts_at'");
+        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+            if (!present($this->$field)) {
+                throw new InvalidArgumentException("'{$field}' is required");
             }
-        } elseif (array_key_exists('duration', $params)) {
-            $endTime = $startTime->copy()->addMinutes($params['duration']);
-        } else {
-            throw new InvalidArgumentException("field 'duration' or 'ends_at' required");
         }
 
-        return [$startTime, $endTime];
+        if ($this->starts_at->gte($this->ends_at)) {
+            throw new InvalidArgumentException("'ends_at' cannot be before 'starts_at'");
+        }
+
+        if ($this->max_attempts !== null) {
+            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
+                throw new InvalidArgumentException("field 'max_attempts' must be between 1 and 32");
+            }
+        }
     }
 }
