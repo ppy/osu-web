@@ -70,6 +70,17 @@ class RoomScore extends Model
         return present($this->ended_at);
     }
 
+    public static function start(array $params)
+    {
+        // TODO: move existence checks here?
+        $score = new static($params);
+        $score->started_at = Carbon::now();
+
+        $score->save();
+
+        return $score;
+    }
+
     public function complete(array $params)
     {
         if ($this->isCompleted()) {

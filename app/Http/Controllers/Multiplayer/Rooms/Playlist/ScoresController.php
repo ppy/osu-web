@@ -47,19 +47,11 @@ class ScoresController extends BaseController
 
     public function store($roomId, $playlistId)
     {
-        $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
+        $room = Room::findOrFail($roomId);
+        $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+        $score = $room->startGame(auth()->user(), $playlistItem, request()->all());
 
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
-
-        $score = new RoomScore([
-            'user_id' => auth()->user()->user_id,
-            'room_id' => $playlist->room_id,
-            'playlist_item_id' => $playlist->id,
-            'beatmap_id' => $playlist->beatmap_id,
-            'started_at' => Carbon::now(),
-        ]);
-
-        $score->saveOrExplode();
 
         return json_item(
             $score,
@@ -72,13 +64,13 @@ class ScoresController extends BaseController
         $room = Room::findOrFail($roomId);
         // todo: check against room's end time, check within window of start_time + beatmap_length + x
 
-        $playlist = $room->playlist()
+        $playlistItem = $room->playlist()
             ->where('id', $playlistId)
             ->firstOrFail();
 
         try {
             $score = $room->completeGame(
-                $playlist->scores()->where('id', $scoreId)->firstOrFail(),
+                $playlistItem->scores()->where('id', $scoreId)->firstOrFail(),
                 request()->all()
             );
         } catch (InvalidArgumentException $e) {
