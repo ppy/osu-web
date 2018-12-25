@@ -49,32 +49,45 @@ class UserScoreAggregateTest extends TestCase
                 'user_id' => $user->getKey(),
             ]);
 
-        $agg = new UserScoreAggregate($user);
+        $agg = new UserScoreAggregate($user, $this->room);
         $agg->addScore($score);
+        $result = $agg->toArray();
 
-        $this->assertSame(0, $agg->getAttempts());
-        $this->assertSame(0, $agg->getCompletedCount());
-        $this->assertSame(0, $agg->getTotalScore());
+        $this->assertNull($result['attempts']);
+        $this->assertNull($result['completed']);
+        $this->assertNull($result['total_score']);
     }
 
     public function testFailedScoresAreAttemptsOnly()
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
-        $score = factory(RoomScore::class)
-            ->states('completed', 'failed')
-            ->create([
-                'room_id' => $this->room->getKey(),
-                'playlist_item_id' => $playlistItem->getKey(),
-                'user_id' => $user->getKey(),
-            ]);
+        $agg = new UserScoreAggregate($user, $this->room);
+        $agg->addScore(
+            factory(RoomScore::class)
+                ->states('completed', 'failed')
+                ->create([
+                    'room_id' => $this->room->getKey(),
+                    'playlist_item_id' => $playlistItem->getKey(),
+                    'user_id' => $user->getKey(),
+                ])
+        );
 
-        $agg = new UserScoreAggregate($user);
-        $agg->addScore($score);
+        $agg->addScore(
+            factory(RoomScore::class)
+                ->states('completed', 'passed')
+                ->create([
+                    'room_id' => $this->room->getKey(),
+                    'playlist_item_id' => $playlistItem->getKey(),
+                    'user_id' => $user->getKey(),
+                ])
+        );
 
-        $this->assertSame(1, $agg->getAttempts());
-        $this->assertSame(0, $agg->getCompletedCount());
-        $this->assertSame(0, $agg->getTotalScore());
+        $result = $agg->toArray();
+
+        $this->assertSame(2, $result['attempts']);
+        $this->assertSame(1, $result['completed']);
+        $this->assertSame(1, $result['total_score']);
     }
 
     public function testPassedScoresIncrementsCompletedCount()
@@ -89,20 +102,22 @@ class UserScoreAggregateTest extends TestCase
                 'user_id' => $user->getKey(),
             ]);
 
-        $agg = new UserScoreAggregate($user);
+        $agg = new UserScoreAggregate($user, $this->room);
         $agg->addScore($score);
+        $result = $agg->toArray();
 
-        $this->assertSame(1, $agg->getAttempts());
-        $this->assertSame(1, $agg->getCompletedCount());
-        $this->assertSame(1, $agg->getTotalScore());
+        $this->assertSame(1, $result['attempts']);
+        $this->assertSame(1, $result['completed']);
+        $this->assertSame(1, $result['total_score']);
     }
 
     public function testPassedScoresAreAveraged()
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
+        $playlistItem2 = $this->playlistItem();
 
-        $agg = new UserScoreAggregate($user);
+        $agg = new UserScoreAggregate($user, $this->room);
         $agg->addScore(
             factory(RoomScore::class)
             ->create([
@@ -146,7 +161,7 @@ class UserScoreAggregateTest extends TestCase
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),
-                'playlist_item_id' => $playlistItem->getKey(),
+                'playlist_item_id' => $playlistItem2->getKey(),
                 'user_id' => $user->getKey(),
                 'total_score' => 1,
                 'accuracy' => 0.8,
@@ -154,8 +169,10 @@ class UserScoreAggregateTest extends TestCase
             ])
         );
 
-        $this->assertSame((0.5 + 0.8) / 2, $agg->getPpAverage());
-        $this->assertSame((0.5 + 0.8) / 2, $agg->getAccuracyAverage());
+        $result = $agg->toArray();
+
+        $this->assertSame(0.65, $result['pp']);
+        $this->assertSame(0.65, $result['accuracy']);
     }
 
     private function playlistItem()

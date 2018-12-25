@@ -25,15 +25,6 @@ use Illuminate\Support\Collection;
 
 class UserScoreAggregate
 {
-    private $accuracy = 0;
-    private $attempts = 0;
-    private $completedCount = 0;
-    private $pp = 0;
-    private $roomId;
-    private $stats = [];
-    private $topScores = [];
-    private $totalScore = 0;
-
     /** @var User */
     private $user;
 
@@ -58,13 +49,6 @@ class UserScoreAggregate
             return false; // throw instead?
         }
 
-        $this->_addScore($score);
-
-        return true;
-    }
-
-    public function _addScore(RoomScore $score)
-    {
         $highestScore = static::read($score);
 
         if ($score->total_score > $highestScore->total_score) {
@@ -73,6 +57,8 @@ class UserScoreAggregate
         } else {
             $this->updateUserAttempts();
         }
+
+        return true;
     }
 
     public function recalculate()
@@ -122,17 +108,19 @@ class UserScoreAggregate
         $total = $this->readUserTotal();
         $total->attempts++;
 
-        if ($prev->exists) {
-            $total->total_score -= $prev->total_score;
-            $total->accuracy -= $prev->accuracy;
-            $total->pp -= $prev->pp;
-            $total->completed--;
-        }
+        if ($current->passed) {
+            if ($prev->exists) {
+                $total->total_score -= $prev->total_score;
+                $total->accuracy -= $prev->accuracy;
+                $total->pp -= $prev->pp;
+                $total->completed--;
+            }
 
-        $total->total_score += $current->total_score;
-        $total->accuracy += $current->accuracy;
-        $total->pp += $current->pp;
-        $total->completed++;
+            $total->total_score += $current->total_score;
+            $total->accuracy += $current->accuracy;
+            $total->pp += $current->pp;
+            $total->completed++;
+        }
 
         $total->save();
 
@@ -153,6 +141,10 @@ class UserScoreAggregate
     // lazy function for testing
     public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
     {
+        if (!$score->passed) {
+            return;
+        }
+
         $highScore->total_score = $score->total_score;
         $highScore->accuracy = $score->accuracy;
         $highScore->pp = $score->pp;
@@ -184,31 +176,5 @@ class UserScoreAggregate
             'user' => json_item($this->user, 'UserCompact', ['country']),
             'user_id' => $this->user->user_id,
         ];
-    }
-
-    // TODO: all needs fixing
-    public function getAccuracyAverage() : float
-    {
-        return $this->accuracy / $this->completedCount;
-    }
-
-    public function getAttempts() : int
-    {
-        return $this->attempts;
-    }
-
-    public function getCompletedCount() : int
-    {
-        return $this->completedCount;
-    }
-
-    public function getPpAverage() : float
-    {
-        return $this->pp / $this->completedCount;
-    }
-
-    public function getTotalScore() : int
-    {
-        return $this->totalScore;
     }
 }
