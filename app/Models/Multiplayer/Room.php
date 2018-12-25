@@ -104,7 +104,7 @@ class Room extends Model
 
         if ($params['ends_at'] ?? null !== null) {
             $this->ends_at = Carbon::parse($params['ends_at']);
-        } else if ($params['duration'] ?? null !== null) {
+        } elseif ($params['duration'] ?? null !== null) {
             $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
         }
 
