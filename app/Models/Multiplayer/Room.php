@@ -22,6 +22,7 @@ namespace App\Models\Multiplayer;
 
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Chat\Channel;
+use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
@@ -90,6 +91,124 @@ class Room extends Model
 
             return $score;
         });
+    }
+
+    public function startGame(User $owner, array $params)
+    {
+        if (static::active()->startedBy($owner)->exists()) {
+            abort(403, 'number of simultaneously active rooms reached');
+        }
+
+        if (array_key_exists('starts_at', $params)) {
+            $startTime = Carbon::parse($params['starts_at']);
+        } else {
+            $startTime = Carbon::now();
+        }
+
+        if (array_key_exists('ends_at', $params)) {
+            $endTime = Carbon::parse($params['ends_at']);
+
+            if ($endTime->isBefore($startTime)) {
+                abort(422, "'ends_at' cannot be before 'starts_at'");
+            }
+        } elseif (array_key_exists('duration', $params)) {
+            $endTime = $startTime->copy()->addMinutes($params['duration']);
+        } else {
+            abort(422, "field 'duration' or 'ends_at' required");
+        }
+
+        $maxAttempts = get_int($params['max_attempts'] ?? null);
+        if ($maxAttempts !== null) {
+            if ($maxAttempts < 1 || $maxAttempts > 32) {
+                abort(422, "field 'max_attempts' must be between 1 and 32");
+            }
+        }
+
+        $playlistParams = $params['playlist'] ?? [];
+        if (!is_array($playlistParams)) {
+            abort(422, "field 'playlist' must an an array");
+        }
+
+        $playlistBeatmaps = array_map(function ($item) {
+            if (isset($item['beatmap_id'])) {
+                return $item['beatmap_id'];
+            } else {
+                abort(422, "playlist item missing field 'beatmap_id'");
+            }
+        }, $playlistParams);
+
+        $beatmaps = Beatmap::whereIn('beatmap_id', $playlistBeatmaps)->get();
+
+        $playlistItems = [];
+        foreach ($playlistParams as $item) {
+            foreach (['beatmap_id', 'ruleset_id'] as $field) {
+                if (!present($item[$field] ?? null)) {
+                    abort(422, "playlist item missing field '{$field}'");
+                }
+            }
+
+            if (!$beatmaps->where('beatmap_id', $item['beatmap_id'])->first()) {
+                abort(422, "beatmap not found: {$item['beatmap_id']}");
+            }
+
+            $allowedMods = Mod::parseInputArray(
+                $item['allowed_mods'] ?? [],
+                $item['ruleset_id']
+            );
+
+            $requiredMods = Mod::parseInputArray(
+                $item['required_mods'] ?? [],
+                $item['ruleset_id']
+            );
+
+            $playlistItems[] = new PlaylistItem([
+                'beatmap_id' => $item['beatmap_id'],
+                'ruleset_id' => $item['ruleset_id'],
+                'allowed_mods' => $allowedMods,
+                'required_mods' => $requiredMods,
+            ]);
+        }
+
+        $roomOptions = [
+            'name' => $params['name'],
+            'user_id' => $owner->getKey(),
+            'starts_at' => $startTime,
+            'ends_at' => $endTime,
+            'max_attempts' => presence($maxAttempts),
+        ];
+
+
+        $this->getConnection()->transaction(function () use ($owner, $roomOptions, $playlistItems) {
+            $this->fill($roomOptions);
+            $this->assertValidStartGame();
+            $this->save();
+
+            foreach ($playlistItems as $playlistItem) {
+                $playlistItem->room()->associate($this);
+                $playlistItem->save();
+            }
+
+            // create the chat channel for the room
+            // $channel = new Channel();
+            // $channel->name = "#lazermp_{$room->id}";
+            // $channel->type = Channel::TYPES['multiplayer'];
+            // $channel->description = $roomOptions['name'];
+            // $channel->save();
+
+            // $room->update(['channel_id' => $channel->channel_id]);
+            // $channel->addUser($owner);
+        });
+
+        return $this;
+    }
+
+    private function assertValidStartGame()
+    {
+        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+            if (empty($this->$field)) {
+                abort(422, "'{$field}' is required");
+            }
+        }
     }
 
     public function startPlay(User $user, PlaylistItem $playlistItem, array $params)
