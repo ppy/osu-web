@@ -25,22 +25,36 @@ use Illuminate\Support\Collection;
 
 class UserScoreAggregate
 {
+    private $roomId;
     /** @var User */
     private $user;
 
-    private $userStats = [];
+    public static function read($score)
+    {
+        return PlaylistItemUserHighScore::firstOrNew([
+            'playlist_item_id' => $score->playlist_item_id,
+            'user_id' => $score->user_id,
+        ]);
+    }
+
+    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
+    {
+        if (!$score->passed) {
+            return;
+        }
+
+        $highScore->total_score = $score->total_score;
+        $highScore->accuracy = $score->accuracy;
+        $highScore->pp = $score->pp;
+        $highScore->score_id = $score->getKey();
+
+        $highScore->save();
+    }
 
     public function __construct(User $user, Room $room)
     {
         $this->user = $user;
         $this->roomId = $room->getKey();
-    }
-
-    public function addScores(Collection $scores)
-    {
-        foreach ($scores as $score) {
-            $this->addScore($score);
-        }
     }
 
     public function addScore(RoomScore $score)
@@ -61,12 +75,11 @@ class UserScoreAggregate
         return true;
     }
 
-    public function recalculate()
+    public function addScores(Collection $scores)
     {
-        $scores = $this->getScores();
-
-        $this->removeRunningTotals();
-        $this->addScores($scores);
+        foreach ($scores as $score) {
+            $this->addScore($score);
+        }
     }
 
     public function getScores()
@@ -75,6 +88,25 @@ class UserScoreAggregate
             ::where('room_id', $this->roomId)
             ->where('user_id', $this->user->getKey())
             ->get();
+    }
+
+    public function readUserTotal()
+    {
+        $total = RoomUserHighScore::firstOrNew(['room_id' => $this->roomId, 'user_id' => $this->user->getKey()]);
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+            // init if required
+            $total->$key = $total->$key ?? 0;
+        }
+
+        return $total;
+    }
+
+    public function recalculate()
+    {
+        $scores = $this->getScores();
+
+        $this->removeRunningTotals();
+        $this->addScores($scores);
     }
 
     public function removeRunningTotals()
@@ -86,13 +118,29 @@ class UserScoreAggregate
         )->where('user_id', $this->user->getKey())->delete();
     }
 
-    // lazy function for testing
-    public static function read($score)
+    public function toArray() : ?array
     {
-        return PlaylistItemUserHighScore::firstOrNew([
-            'playlist_item_id' => $score->playlist_item_id,
-            'user_id' => $score->user_id,
-        ]);
+        $total = $this->readUserTotal();
+        if (!$total->exists) {
+            $this->recalculate();
+            $total = $this->readUserTotal();
+        }
+
+        $completedCount = $total->completed;
+        if ($completedCount === 0) {
+            return null;
+        }
+
+        return [
+            'accuracy' => $total['accuracy'] / $completedCount,
+            'attempts' => $total['attempts'],
+            'completed' => $completedCount,
+            'pp' => $total['pp'] / $completedCount,
+            'room_id' => $this->roomId,
+            'total_score' => $total['total_score'],
+            'user' => json_item($this->user, 'UserCompact', ['country']),
+            'user_id' => $this->user->user_id,
+        ];
     }
 
     public function updateUserAttempts()
@@ -125,56 +173,5 @@ class UserScoreAggregate
         $total->save();
 
         return $total;
-    }
-
-    public function readUserTotal()
-    {
-        $total = RoomUserHighScore::firstOrNew(['room_id' => $this->roomId, 'user_id' => $this->user->getKey()]);
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $total->$key = $total->$key ?? 0;
-        }
-
-        return $total;
-    }
-
-    // lazy function for testing
-    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
-    {
-        if (!$score->passed) {
-            return;
-        }
-
-        $highScore->total_score = $score->total_score;
-        $highScore->accuracy = $score->accuracy;
-        $highScore->pp = $score->pp;
-        $highScore->score_id = $score->getKey();
-
-        $highScore->save();
-    }
-
-    public function toArray() : ?array
-    {
-        $total = $this->readUserTotal();
-        if (!$total->exists) {
-            $this->recalculate();
-            $total = $this->readUserTotal();
-        }
-
-        $completedCount = $total->completed;
-        if ($completedCount === 0) {
-            return null;
-        }
-
-        return [
-            'accuracy' => $total['accuracy'] / $completedCount,
-            'attempts' => $total['attempts'],
-            'completed' => $completedCount,
-            'pp' => $total['pp'] / $completedCount,
-            'room_id' => $this->roomId,
-            'total_score' => $total['total_score'],
-            'user' => json_item($this->user, 'UserCompact', ['country']),
-            'user_id' => $this->user->user_id,
-        ];
     }
 }
