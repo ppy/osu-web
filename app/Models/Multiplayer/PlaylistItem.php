@@ -36,6 +36,44 @@ class PlaylistItem extends Model
     const MOD_TYPE_REQUIRED = 'required_mods';
     const MOD_TYPE_ALLOWED = 'allowed_mods';
 
+    public static function assertBeatmapsExist(array $playlistItems)
+    {
+        $requestedBeatmapIds = array_map(function ($item) {
+            return $item->beatmap_id;
+        }, $playlistItems);
+
+        $beatmapIds = Beatmap::whereIn('beatmap_id', $requestedBeatmapIds)->pluck('beatmap_id')->all();
+        $missing = array_diff($requestedBeatmapIds, $beatmapIds);
+
+        if ($missing !== []) {
+            $missingText = implode(', ', $missing);
+            abort(422, "beatmaps not found: {$missingText}");
+        }
+    }
+
+    public static function fromJsonParams($json)
+    {
+        $obj = new PlaylistItem;
+        foreach (['beatmap_id', 'ruleset_id'] as $field) {
+            $obj->$field = array_get($json, $field);
+            if (!present($obj->$field)) {
+                throw new \InvalidArgumentException("{$field} is required.");
+            }
+        }
+
+        $obj->allowed_mods = Mod::parseInputArray(
+            array_get($json, 'allowed_mods') ?? [],
+            $obj->ruleset_id
+        );
+
+        $obj->required_mods = Mod::parseInputArray(
+            array_get($json, 'required_mods') ?? [],
+            $obj->ruleset_id
+        );
+
+        return $obj;
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class, 'room_id');

@@ -20,14 +20,11 @@
 
 namespace App\Models\Multiplayer;
 
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Chat\Channel;
-use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Validator;
 
 class Room extends Model
 {
@@ -99,82 +96,26 @@ class Room extends Model
             abort(403, 'number of simultaneously active rooms reached');
         }
 
-        if (array_key_exists('starts_at', $params)) {
-            $startTime = Carbon::parse($params['starts_at']);
-        } else {
-            $startTime = Carbon::now();
-        }
-
-        if (array_key_exists('ends_at', $params)) {
-            $endTime = Carbon::parse($params['ends_at']);
-
-            if ($endTime->isBefore($startTime)) {
-                abort(422, "'ends_at' cannot be before 'starts_at'");
-            }
-        } elseif (array_key_exists('duration', $params)) {
-            $endTime = $startTime->copy()->addMinutes($params['duration']);
-        } else {
-            abort(422, "field 'duration' or 'ends_at' required");
-        }
-
-        $maxAttempts = get_int($params['max_attempts'] ?? null);
-        if ($maxAttempts !== null) {
-            if ($maxAttempts < 1 || $maxAttempts > 32) {
-                abort(422, "field 'max_attempts' must be between 1 and 32");
-            }
-        }
+        [$startTime, $endTime] = static::parseTimeParams($params);
 
         $playlistParams = $params['playlist'] ?? [];
         if (!is_array($playlistParams)) {
             abort(422, "field 'playlist' must an an array");
         }
 
-        $playlistBeatmaps = array_map(function ($item) {
-            if (isset($item['beatmap_id'])) {
-                return $item['beatmap_id'];
-            } else {
-                abort(422, "playlist item missing field 'beatmap_id'");
-            }
-        }, $playlistParams);
-
-        $beatmaps = Beatmap::whereIn('beatmap_id', $playlistBeatmaps)->get();
-
         $playlistItems = [];
         foreach ($playlistParams as $item) {
-            foreach (['beatmap_id', 'ruleset_id'] as $field) {
-                if (!present($item[$field] ?? null)) {
-                    abort(422, "playlist item missing field '{$field}'");
-                }
-            }
-
-            if (!$beatmaps->where('beatmap_id', $item['beatmap_id'])->first()) {
-                abort(422, "beatmap not found: {$item['beatmap_id']}");
-            }
-
-            $allowedMods = Mod::parseInputArray(
-                $item['allowed_mods'] ?? [],
-                $item['ruleset_id']
-            );
-
-            $requiredMods = Mod::parseInputArray(
-                $item['required_mods'] ?? [],
-                $item['ruleset_id']
-            );
-
-            $playlistItems[] = new PlaylistItem([
-                'beatmap_id' => $item['beatmap_id'],
-                'ruleset_id' => $item['ruleset_id'],
-                'allowed_mods' => $allowedMods,
-                'required_mods' => $requiredMods,
-            ]);
+            $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
+        PlaylistItem::assertBeatmapsExist($playlistItems);
+
         $roomOptions = [
-            'name' => $params['name'],
+            'name' => $params['name'] ?? null,
             'user_id' => $owner->getKey(),
             'starts_at' => $startTime,
             'ends_at' => $endTime,
-            'max_attempts' => presence($maxAttempts),
+            'max_attempts' => get_int($params['max_attempts'] ?? null),
         ];
 
 
@@ -189,14 +130,14 @@ class Room extends Model
             }
 
             // create the chat channel for the room
-            // $channel = new Channel();
-            // $channel->name = "#lazermp_{$room->id}";
-            // $channel->type = Channel::TYPES['multiplayer'];
-            // $channel->description = $roomOptions['name'];
-            // $channel->save();
+            $channel = new Channel();
+            $channel->name = "#lazermp_{$this->getKey()}";
+            $channel->type = Channel::TYPES['multiplayer'];
+            $channel->description = $this->name;
+            $channel->save();
 
-            // $room->update(['channel_id' => $channel->channel_id]);
-            // $channel->addUser($owner);
+            $room->update(['channel_id' => $channel->channel_id]);
+            $channel->addUser($owner);
         });
 
         return $this;
@@ -207,6 +148,12 @@ class Room extends Model
         foreach (['name', 'starts_at', 'ends_at'] as $field) {
             if (empty($this->$field)) {
                 abort(422, "'{$field}' is required");
+            }
+        }
+
+        if ($this->max_attempts !== null) {
+            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
+                abort(422, "field 'max_attempts' must be between 1 and 32");
             }
         }
     }
@@ -259,5 +206,28 @@ class Room extends Model
         // return array_values(array_slice($stats, 0, $limit));
 
         return array_values($stats);
+    }
+
+    private function parseTimeParams(array $params)
+    {
+        if (array_key_exists('starts_at', $params)) {
+            $startTime = Carbon::parse($params['starts_at']);
+        } else {
+            $startTime = Carbon::now();
+        }
+
+        if (array_key_exists('ends_at', $params)) {
+            $endTime = Carbon::parse($params['ends_at']);
+
+            if ($endTime->isBefore($startTime)) {
+                abort(422, "'ends_at' cannot be before 'starts_at'");
+            }
+        } elseif (array_key_exists('duration', $params)) {
+            $endTime = $startTime->copy()->addMinutes($params['duration']);
+        } else {
+            abort(422, "field 'duration' or 'ends_at' required");
+        }
+
+        return [$startTime, $endTime];
     }
 }

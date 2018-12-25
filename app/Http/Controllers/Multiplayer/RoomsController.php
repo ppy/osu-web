@@ -45,6 +45,7 @@ class RoomsController extends BaseController
             $rooms->ended()->orderBy('ends_at', 'desc');
         } else {
             if ($mode === 'participated') {
+                // TODO: should probably do some kind of caching on this.
                 $rooms->hasParticipated(auth()->user());
             } else if ($mode === 'owned') {
                 $rooms->startedBy(auth()->user());
