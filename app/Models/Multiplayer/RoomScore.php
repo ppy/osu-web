@@ -20,9 +20,13 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Exceptions\GameCompletedException;
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Model;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InvalidArgumentException;
 
 class RoomScore extends Model
 {
@@ -35,6 +39,11 @@ class RoomScore extends Model
         'mods' => 'array',
         'statistics' => 'array',
     ];
+
+    public function playlistItem()
+    {
+        return $this->belongsTo(PlaylistItem::class, 'playlist_item_id');
+    }
 
     public function room()
     {
@@ -59,5 +68,51 @@ class RoomScore extends Model
     public function isCompleted()
     {
         return present($this->ended_at);
+    }
+
+    public function complete(array $params)
+    {
+        if ($this->isCompleted()) {
+            throw new GameCompletedException('cannot modify score after submission');
+        }
+
+        $rulesetId = $this->playlistItem->ruleset_id;
+
+        $mods = Mod::parseInputArray(
+            $params['mods'] ?? [],
+            $rulesetId
+        );
+
+        $this->rank = $params['rank'] ?? null;
+        $this->total_score = get_int($params['total_score'] ?? null);
+        $this->accuracy = get_float($params['accuracy'] ?? null);
+        $this->max_combo = get_int($params['max_combo'] ?? null);
+        $this->ended_at = Carbon::now();
+        $this->passed = get_bool($params['passed'] ?? null);
+        $this->mods = $mods;
+        $this->statistics = $params['statistics'] ?? null;
+
+        foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
+            if (!present($this->$field)) {
+                throw new InvalidArgumentException("field missing: '{$field}'");
+            }
+        }
+
+        foreach (['mods', 'statistics'] as $field) {
+            if (!is_array($this->$field)) {
+                throw new InvalidArgumentException("field must be an array: '{$field}'");
+            }
+        }
+
+        if (empty($this->statistics)) {
+            throw new InvalidArgumentException("field cannot be empty: 'statistics'");
+        }
+
+        // todo: also, all the validationsz:
+        // - check required_mods are present
+        // - check mods are within required_mods or allowed_mods
+        // - validate statistics json format
+
+        $this->save();
     }
 }

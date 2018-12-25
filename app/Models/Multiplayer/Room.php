@@ -20,6 +20,7 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
@@ -81,10 +82,19 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
-    public function addScore(RoomScore $score)
+    public function completeGame($score, array $params)
     {
-        $agg = new UserScoreAggregate($score->user, $this);
-        $agg->addScore($score);
+        return $score->getConnection()->transaction(function () use ($params, $score) {
+            $score->complete($params);
+            (new UserScoreAggregate($score->user, $this))->addScore($score);
+
+            return $score;
+        });
+    }
+
+    public function startScoring(RoomScore $score)
+    {
+
     }
 
     public function topScores()

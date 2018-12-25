@@ -21,18 +21,14 @@
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
-use App\Models\Multiplayer\UserScoreAggregate;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use InvalidArgumentException;
 
 class ScoresController extends BaseController
 {
-    use SoftDeletes;
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -80,58 +76,14 @@ class ScoresController extends BaseController
             ->where('id', $playlistId)
             ->firstOrFail();
 
-        $params = request()->all();
-
-        $score = $playlist->scores()->where('id', $scoreId)->firstOrFail();
-
-        if ($score->isCompleted()) {
-            abort(403, "cannot modify score after submission");
+        try {
+            $score = $room->completeGame(
+                $playlist->scores()->where('id', $scoreId)->firstOrFail(),
+                request()->all()
+            );
+        } catch (InvalidArgumentException $e) {
+            abort(422, $e->getMessage());
         }
-
-        foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (present($params[$field] ?? '')) {
-                abort(422, "field missing: '{$field}'");
-            }
-        }
-
-        foreach (['mods', 'statistics'] as $field) {
-            if (($params[$field] ?? null) === null || !is_array($params[$field])) {
-                abort(422, "field cannot be empty: '{$field}'");
-            }
-        }
-
-        if (empty($params['statistics'])) {
-            abort(422, "field cannot be empty: 'statistics'");
-        }
-
-        $mods = Mod::parseInputArray(
-            $params['mods'],
-            $playlist->ruleset_id
-        );
-
-        Mod::validateSelection(array_column($mods, 'acronym'), $playlist->ruleset_id);
-
-        // todo: also, all the validationsz:
-        // - check required_mods are present
-        // - check mods are within required_mods or allowed_mods
-        // - validate statistics json format
-
-        $score->getConnection()->transaction(function () use ($mods, $params, $room, $score) {
-            $score->rank = $params['rank'];
-            $score->total_score = get_int($params['total_score']);
-            $score->accuracy = get_float($params['accuracy']);
-            $score->max_combo = get_int($params['max_combo']);
-            $score->ended_at = Carbon::now();
-            $score->passed = get_bool($params['passed']);
-            $score->mods = $mods;
-            $score->statistics = $params['statistics'];
-
-            $score->saveOrExplode();
-
-            if ($score->isCompleted()) {
-                $room->addScore($score);
-            }
-        });
 
         return json_item(
             $score,
