@@ -75,7 +75,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
-        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+        el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div
         className: "#{bn}__footer"
@@ -151,6 +151,10 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         @throttledPost(event)
 
 
+  isTimeline: =>
+    @props.discussion.timestamp?
+
+
   post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
@@ -193,4 +197,4 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

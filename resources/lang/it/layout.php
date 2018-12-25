@@ -35,6 +35,7 @@ return [
             'groups-show' => 'gruppi',
             'index' => 'dashboard',
             'legal-show' => 'informazioni',
+            'messages-index' => '',
             'news-index' => 'notizie',
             'news-show' => 'notizie',
             'password-reset-index' => 'reimposta password',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'comunità',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'sviluppo',
             'getForum' => 'forum',
-            'getChat' => 'chat',
-            'getLive' => 'dirette',
+            'getLive' => 'live',
+            'comments-index' => 'commenti',
+            'comments-show' => 'commenta',
             'contests' => 'concorsi',
             'profile' => 'profilo',
             'tournaments' => 'tornei',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
+            'orders-index' => 'ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',

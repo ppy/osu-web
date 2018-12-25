@@ -152,11 +152,6 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        // TODO: Remove this when join restriction is lifted
-        if ($this->type !== self::TYPES['public']) {
-            return;
-        }
-
         $userChannel = new UserChannel();
         $userChannel->user()->associate($user);
         $userChannel->channel()->associate($this);
@@ -165,11 +160,6 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        // TODO: Remove this when join restriction is lifted
-        if ($this->type !== self::TYPES['public']) {
-            return;
-        }
-
         UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,

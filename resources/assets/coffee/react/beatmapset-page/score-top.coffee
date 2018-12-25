@@ -58,7 +58,7 @@ BeatmapsetPage.ScoreTop = (props) ->
               type: 'performance'
             el FlagCountry,
               country: props.countries[props.score.user.country_code]
-              classModifiers: ['scoreboard', 'small-box']
+              modifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",

@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Yalnızca bir özellik isteğine oy verebilirsiniz.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Bu zaten senin kullanıcı adın, şapşal!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

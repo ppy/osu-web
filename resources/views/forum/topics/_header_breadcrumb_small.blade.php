@@ -16,35 +16,34 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <ol class="
-    forum-header-breadcrumb-small
-    u-forum--bg-link
+    sticky-header-breadcrumbs
 ">
-    <li class="forum-header-breadcrumb-small__item">
-        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb-small__link">
+    <li class="sticky-header-breadcrumbs__item">
+        <a href="{{ route('forum.forums.index') }}" class="sticky-header-breadcrumbs__link">
             {{ trans('forum.title') }}
         </a>
     </li>
 
     @foreach ($forum->forum_parents as $forumId => $forumData)
-        <li class="forum-header-breadcrumb-small__item">
+        <li class="sticky-header-breadcrumbs__item">
             <a
                 href="{{ $forumData[1] === 0 ?
                     route('forum.forums.index')."#forum-{$forumId}"
                     : route('forum.forums.show', $forumId)
                 }}"
-                class="forum-header-breadcrumb-small__link"
+                class="sticky-header-breadcrumbs__link"
             >
                 {{ $forumData[0] }}
             </a>
         </li>
     @endforeach
 
-    <li class="forum-header-breadcrumb-small__item">
+    <li class="sticky-header-breadcrumbs__item">
         <a
             href="{{ route("forum.forums.show", $forum->forum_id) }}"
             class="
-                forum-header-breadcrumb-small__link
-                forum-header-breadcrumb-small__link--is-active
+                sticky-header-breadcrumbs__link
+                sticky-header-breadcrumbs__link--is-active
             "
         >
             {{ $forum->forum_name }}

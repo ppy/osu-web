@@ -23,7 +23,7 @@ return [
     'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => 'UMĚLEC JE ZATÍM SKRYTÝ',
+        'hidden' => 'UMĚLEC JE MOMENTÁLNĚ SKRYTÝ',
     ],
 
     'beatmaps' => [
@@ -45,5 +45,12 @@ return [
         '_' => 'Skladby',
         'count' => ':count skladba|:count skladeb',
         'exclusive' => 'osu! exkluzivní',
+    ],
+
+    'tracklist' => [
+        'title' => 'název',
+        'length' => 'délka',
+        'bpm' => 'bpm',
+        'genre' => 'žánr',
     ],
 ];

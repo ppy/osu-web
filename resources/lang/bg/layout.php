@@ -35,6 +35,7 @@ return [
             'groups-show' => 'групи',
             'index' => 'главно табло',
             'legal-show' => 'информация',
+            'messages-index' => '',
             'news-index' => 'новини',
             'news-show' => 'новини',
             'password-reset-index' => 'задаване на нова парола',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'колектив',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'разработка',
             'getForum' => 'форуми',
-            'getChat' => 'чат',
             'getLive' => 'на живо',
+            'comments-index' => 'коментари',
+            'comments-show' => 'коментар',
             'contests' => 'конкурси',
             'profile' => 'профил',
             'tournaments' => 'турнири',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'разплащане',
             'getInvoice' => 'фактура',
+            'orders-index' => 'история на поръчките',
             'products-show' => 'продукт',
 
             'new' => 'ново',

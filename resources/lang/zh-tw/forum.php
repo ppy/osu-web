@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '刪除此回覆？',
         'confirm_restore' => '恢復此回覆？',
@@ -75,9 +89,9 @@ return [
         'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'Re',
         'started_by' => '發表人： :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => '由 :user 發起',
 
         'create' => [
             'preview' => '預覽',
@@ -90,8 +104,8 @@ return [
                 'default' => '',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "此主題不被討論一段時間了。如果你沒有在這裡發文的具體理由, 請用 :create 代替。",
+                    'create' => '建立一個新的主題',
                 ],
             ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => '未訂閱',
             'to_watching' => '訂閱',
             'to_watching_mail' => '訂閱並開啟電子郵件通知',
-            'mail_disable' => '關閉電子郵件通知',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

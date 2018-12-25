@@ -46,4 +46,11 @@ return [
         'count' => ':count brano |:count brani',
         'exclusive' => 'osu! esclusiva',
     ],
+
+    'tracklist' => [
+        'title' => 'titolo',
+        'length' => 'durata',
+        'bpm' => 'bpm',
+        'genre' => 'genere',
+    ],
 ];

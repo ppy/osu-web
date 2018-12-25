@@ -33,8 +33,10 @@ return [
             'refresh' => 'Tải lại',
         ],
 
-        'outdated' => [
-            '_' => 'Trang này chứa bản dịch cũ của nội dung gốc. Hãy kiểm tra :default để có thông tin chính xác nhất (và xem xét việc cập nhật bản dịch nếu bạn có thể giúp đỡ)!',
+        'translation' => [
+            'legal' => 'Bản dịch này chỉ được cung cấp vì lí do thuận tiện. Bản gốc :default là phiên bản ràng buộc duy nhất của bài viết này.',
+            'outdated' => 'Trang này chứa bản dịch cũ của nội dung gốc. Hãy xem :default để có thông tin chính xác nhất (và hãy xem xét việc cập nhật bản dịch nếu bạn có thể)!',
+
             'default' => 'Phiên bản tiếng Anh',
         ],
     ],

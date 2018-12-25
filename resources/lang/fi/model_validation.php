@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Poistettuun kommenttiin ei voi vastata.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Voi äänestää vain ominaisuutta.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Tämä on jo käyttäjänimesi, höpsö!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

@@ -35,6 +35,7 @@ return [
             'groups-show' => '用户组',
             'index' => '看板',
             'legal-show' => '信息',
+            'messages-index' => '',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => '社区',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => '开发',
             'getForum' => '论坛',
-            'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '评论',
+            'comments-show' => '评论',
             'contests' => '评选',
             'profile' => '个人资料',
             'tournaments' => '官方比赛',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
+            'orders-index' => '历史订单',
             'products-show' => '商品',
 
             'new' => '新增',

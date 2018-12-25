@@ -35,6 +35,7 @@ return [
             'groups-show' => '群組',
             'index' => '看板',
             'legal-show' => '資訊',
+            'messages-index' => '',
             'news-index' => '新聞',
             'news-show' => '新聞',
             'password-reset-index' => '重設密碼',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => '社群',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => '開發',
             'getForum' => '論壇',
-            'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => '評選',
             'profile' => '個人簡介',
             'tournaments' => '官方比賽',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
+            'orders-index' => '',
             'products-show' => '商品',
 
             'new' => '最新消息',

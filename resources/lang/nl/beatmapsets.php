@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Verwijder markering als favoriet',
             'favourited_count' => '+1 andere!|+ :count anderen!',
         ],
-        'stats' => [
-            'cs' => 'Cirkelgrootte',
-            'cs-mania' => 'Aantal Lanen',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Precisie',
-            'ar' => 'Benaderingssnelheid',
-            'stars' => 'Sterrenmoeilijkheid',
-            'total_length' => 'Lengte',
-            'bpm' => 'BPM',
-            'count_circles' => 'Aantal Cirkels',
-            'count_sliders' => 'Aantal Sliders',
-            'user-rating' => 'Gebruikersbeoordelingen',
-            'rating-spread' => 'Rating Verspreiding',
-            'nominations' => 'Nominaties',
-            'playcount' => 'Playcount',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Beschrijving',
             'genre' => 'Genre',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Labels',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'bereikt op :when',
             'country' => 'Landranking',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Aan de Leiding',
                 'own' => 'Jouw beste Rang',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Cirkelgrootte',
+            'cs-mania' => 'Aantal Lanen',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Precisie',
+            'ar' => 'Benaderingssnelheid',
+            'stars' => 'Sterrenmoeilijkheid',
+            'total_length' => 'Lengte',
+            'bpm' => 'BPM',
+            'count_circles' => 'Aantal Cirkels',
+            'count_sliders' => 'Aantal Sliders',
+            'user-rating' => 'Gebruikersbeoordelingen',
+            'rating-spread' => 'Rating Verspreiding',
+            'nominations' => 'Nominaties',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

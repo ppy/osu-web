@@ -1,0 +1,7 @@
+[quote=&quot;test&quot;:1]
+  test
+  [quote=&quot;test&quot;:1]
+    test
+  [/quote]
+[/quote]
+[/quote]

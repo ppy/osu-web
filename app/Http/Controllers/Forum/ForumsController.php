@@ -54,6 +54,22 @@ class ForumsController extends Controller
         return view('forum.forums.index', compact('forums', 'lastTopics'));
     }
 
+    public function markAsRead()
+    {
+        if (Auth::check()) {
+            $forumId = get_int(request('forum_id'));
+            if ($forumId === null) {
+                Forum::markAllAsRead(Auth::user());
+            } else {
+                $forum = Forum::findOrFail($forumId);
+                priv_check('ForumView', $forum)->ensureCan();
+                $forum->markAsRead(Auth::user());
+            }
+        }
+
+        return js_view('layout.ujs-reload');
+    }
+
     public function search()
     {
         $topicId = Request::input('topic_id');

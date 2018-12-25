@@ -30,7 +30,14 @@ class @CommentShowMore extends React.PureComponent
       loading: false
 
 
+  componentWillUnmount: =>
+    @xhr?.abort()
+
+
   render: =>
+    return null if @props.comments.length >= @props.total
+    return null unless (@props.moreComments[@props.parent?.id ? null] ? true)
+
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
     div className: blockClass,
@@ -49,12 +56,20 @@ class @CommentShowMore extends React.PureComponent
     params =
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
-      parent_id: @props.parent?.id ? ''
-      last_loaded_id: @props.after ? ''
+      parent_id: @props.parent?.id ? 0
+      sort: @props.sort
 
-    $.ajax laroute.route('comments.index', params),
+    lastComment = _.last(@props.comments)
+    if lastComment?
+      params.cursor =
+        id: lastComment.id
+        created_at: lastComment.created_at
+        votes_count: lastComment.votes_count
+
+    @xhr = $.ajax laroute.route('comments.index'),
+      data: params
       dataType: 'json'
     .done (data) =>
-      $.publish 'comments:added', comments: data
-    .fail =>
+      $.publish 'comments:added', commentBundle: data
+    .always =>
       @setState loading: false

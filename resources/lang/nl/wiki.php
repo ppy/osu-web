@@ -33,9 +33,11 @@ return [
             'refresh' => 'Vernieuwen',
         ],
 
-        'outdated' => [
-            '_' => 'Deze pagina bevat een oude vertaling van de originele inhoud. Check de :default voor de meest accurate informatie (en overweeg de vertaling bij te werken als je wilt helpen)!',
-            'default' => 'Engelse versie',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
+            'default' => '',
         ],
     ],
 ];

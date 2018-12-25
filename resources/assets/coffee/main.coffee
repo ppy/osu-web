@@ -38,6 +38,9 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 @currentUserObserver ?= new CurrentUserObserver
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@syncHeight ?= new SyncHeight
+@stickyHeader ?= new StickyHeader
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
@@ -71,9 +74,6 @@ $(document).on 'turbolinks:load', ->
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@syncHeight ?= new SyncHeight
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
@@ -81,7 +81,6 @@ $(document).on 'turbolinks:load', ->
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
-@wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
@@ -105,12 +104,12 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
   container: target
-  user_id: parseInt(target.dataset.target)
+  userId: parseInt(target.dataset.target)
 
 # Globally init block buttons
 reactTurbolinks.register 'blockButton', BlockButton, (target) ->
   container: target
-  user_id: parseInt(target.dataset.target)
+  userId: parseInt(target.dataset.target)
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
@@ -118,8 +117,11 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
 
-reactTurbolinks.register 'comments', Comments, (el) ->
-  JSON.parse(el.dataset.comments)
+reactTurbolinks.register 'comments', CommentsManager, (el) ->
+  props = JSON.parse(el.dataset.props)
+  props.component = Comments
+
+  props
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

@@ -15,6 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $legacyNav ?? ($legacyNav = true);
+@endphp
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,8 +54,20 @@
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
+        @if (Auth::user() && Auth::user()->isRestricted())
+            @include('objects._notification_banner', [
+                'type' => 'alert',
+                'title' => trans('users.restricted_banner.title'),
+                'message' => trans('users.restricted_banner.message'),
+            ])
+        @endif
+
         @if (!isset($blank))
             @include("layout.header")
+
+            <div class="osu-page {{ $legacyNav ? '' : 'osu-page--notification-banners' }} js-notification-banners">
+                @stack('notification_banners')
+            </div>
         @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")

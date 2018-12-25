@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
@@ -77,7 +91,7 @@ return [
         'reply_box_placeholder' => '输入回复',
         'reply_title_prefix' => '回复',
         'started_by' => '发帖人： :user',
-        'started_by_verbose' => '启动者： :user',
+        'started_by_verbose' => '由 :user 发起',
 
         'create' => [
             'preview' => '预览',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => '未订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
-            'mail_disable' => '禁用邮件通知',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

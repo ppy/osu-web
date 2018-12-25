@@ -21,16 +21,25 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use App\Models\Log;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommentsController extends Controller
 {
     protected $section = 'community';
     protected $actionPrefix = 'comments-';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
 
     public function destroy($id)
     {
@@ -77,21 +86,35 @@ class CommentsController extends Controller
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includeParent = true;
-            $commentBundle->filterByParentId = false;
 
             $commentPagination = new LengthAwarePaginator(
                 [],
                 Comment::count(),
-                $commentBundle->params['limit'],
-                $commentBundle->params['page'],
+                $commentBundle->params->limit,
+                $commentBundle->params->page,
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => $commentBundle->getParams(),
+                    'query' => $commentBundle->params->forUrl(),
                 ]
             );
 
             return view('comments.index', compact('commentBundle', 'commentPagination'));
         }
+    }
+
+    public function report($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        try {
+            $comment->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+            ]);
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return response(null, 204);
     }
 
     public function restore($id)
@@ -115,6 +138,8 @@ class CommentsController extends Controller
 
         $commentBundle = new CommentBundle($comment->commentable, [
             'params' => ['parent_id' => $comment->getKey()],
+            'additionalComments' => [$comment],
+            'includeCommentableMeta' => true,
         ]);
 
         $commentJson = json_item($comment, 'Comment', [
@@ -174,6 +199,40 @@ class CommentsController extends Controller
         }
 
         return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+    }
+
+    public function voteDestroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        priv_check('CommentVote', $comment)->ensureCan();
+
+        $vote = $comment->votes()->where([
+            'user_id' => auth()->user()->getKey(),
+        ])->first();
+
+        optional($vote)->delete();
+
+        return json_item($comment->fresh(), 'Comment', ['editor', 'user', 'commentable_meta']);
+    }
+
+    public function voteStore($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        priv_check('CommentVote', $comment)->ensureCan();
+
+        try {
+            $comment->votes()->create([
+                'user_id' => auth()->user()->getKey(),
+            ]);
+        } catch (Exception $e) {
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
+        }
+
+        return json_item($comment->fresh(), 'Comment', ['editor', 'user', 'commentable_meta']);
     }
 
     private function logModerate($operation, $comment)
