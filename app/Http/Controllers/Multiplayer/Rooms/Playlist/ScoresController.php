@@ -80,6 +80,8 @@ class ScoresController extends BaseController
             ->where('id', $playlistId)
             ->firstOrFail();
 
+        $params = request()->all();
+
         $score = $playlist->scores()->where('id', $scoreId)->firstOrFail();
 
         if ($score->isCompleted()) {
@@ -87,23 +89,23 @@ class ScoresController extends BaseController
         }
 
         foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (!request()->has($field) || !present(request()->input($field))) {
+            if (present($params[$field] ?? '')) {
                 abort(422, "field missing: '{$field}'");
             }
         }
 
         foreach (['mods', 'statistics'] as $field) {
-            if (!request()->has($field) || !is_array(request()->input($field))) {
+            if (($params[$field] ?? null) === null || !is_array($params[$field])) {
                 abort(422, "field cannot be empty: '{$field}'");
             }
         }
 
-        if (empty(request()->input('statistics'))) {
+        if (empty($params['statistics'])) {
             abort(422, "field cannot be empty: 'statistics'");
         }
 
         $mods = Mod::parseInputArray(
-            request()->input('mods'),
+            $params['mods'],
             $playlist->ruleset_id
         );
 
@@ -114,15 +116,15 @@ class ScoresController extends BaseController
         // - check mods are within required_mods or allowed_mods
         // - validate statistics json format
 
-        $score->getConnection()->transaction(function () use ($mods, $room, $score) {
-            $score->rank = request()->input('rank');
-            $score->total_score = get_int(request()->input('total_score'));
-            $score->accuracy = get_float(request()->input('accuracy'));
-            $score->max_combo = get_int(request()->input('max_combo'));
+        $score->getConnection()->transaction(function () use ($mods, $params, $room, $score) {
+            $score->rank = $params['rank'];
+            $score->total_score = get_int($params['total_score']);
+            $score->accuracy = get_float($params['accuracy']);
+            $score->max_combo = get_int($params['max_combo']);
             $score->ended_at = Carbon::now();
-            $score->passed = get_bool(request()->input('passed'));
+            $score->passed = get_bool($params['passed']);
             $score->mods = $mods;
-            $score->statistics = request()->input('statistics');
+            $score->statistics = $params['statistics'];
 
             $score->saveOrExplode();
 
