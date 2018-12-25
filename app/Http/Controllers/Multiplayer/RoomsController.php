@@ -69,26 +69,6 @@ class RoomsController extends BaseController
         );
     }
 
-    public function leaderboard($roomId)
-    {
-        return Room::findOrFail($roomId)->topScores();
-    }
-
-    public function show($room_id)
-    {
-        return json_item(
-            Room::where('id', $room_id)
-                ->with('host')
-                ->with('playlist.beatmap.beatmapset')
-                ->firstOrFail(),
-            'Multiplayer\Room',
-            [
-                'host',
-                'playlist.beatmap.beatmapset',
-            ]
-        );
-    }
-
     public function join($roomId, $userId)
     {
         // this allows admins/whatever to add users to games in the future
@@ -105,6 +85,11 @@ class RoomsController extends BaseController
         return response([], 204);
     }
 
+    public function leaderboard($roomId)
+    {
+        return Room::findOrFail($roomId)->topScores();
+    }
+
     public function part($roomId, $userId)
     {
         // this allows admins/host/whoever to remove users from games in the future
@@ -119,6 +104,21 @@ class RoomsController extends BaseController
         }
 
         return response([], 204);
+    }
+
+    public function show($roomId)
+    {
+        return json_item(
+            Room::where('id', $roomId)
+                ->with('host')
+                ->with('playlist.beatmap.beatmapset')
+                ->firstOrFail(),
+            'Multiplayer\Room',
+            [
+                'host',
+                'playlist.beatmap.beatmapset',
+            ]
+        );
     }
 
     public function store()
