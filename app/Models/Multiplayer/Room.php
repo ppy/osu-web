@@ -82,7 +82,7 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
-    public function completeGame(RoomScore $score, array $params)
+    public function completePlay(RoomScore $score, array $params)
     {
         return $score->getConnection()->transaction(function () use ($params, $score) {
             $score->complete($params);
@@ -92,7 +92,7 @@ class Room extends Model
         });
     }
 
-    public function startGame(User $user, PlaylistItem $playlistItem, array $params)
+    public function startPlay(User $user, PlaylistItem $playlistItem, array $params)
     {
         return RoomScore::start([
             'user_id' => $user->getKey(),

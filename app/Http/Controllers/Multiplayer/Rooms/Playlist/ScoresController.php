@@ -49,7 +49,7 @@ class ScoresController extends BaseController
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
-        $score = $room->startGame(auth()->user(), $playlistItem, request()->all());
+        $score = $room->startPlay(auth()->user(), $playlistItem, request()->all());
 
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
 
@@ -69,7 +69,7 @@ class ScoresController extends BaseController
             ->firstOrFail();
 
         try {
-            $score = $room->completeGame(
+            $score = $room->completePlay(
                 $playlistItem->scores()->where('id', $scoreId)->firstOrFail(),
                 request()->all()
             );
