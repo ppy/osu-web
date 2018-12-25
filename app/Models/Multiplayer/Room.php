@@ -145,7 +145,7 @@ class Room extends Model
         return $this;
     }
 
-    public function startPlay(User $user, PlaylistItem $playlistItem, array $params)
+    public function startPlay(User $user, PlaylistItem $playlistItem)
     {
         return RoomScore::start([
             'user_id' => $user->getKey(),
