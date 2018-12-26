@@ -13,7 +13,7 @@ $factory->define(App\Models\Multiplayer\Room::class, function (Faker\Generator $
     ];
 });
 
-$factory->state(App\Models\Multiplayer\RoomScore::class, 'ended', function (Faker\Generator $faker) {
+$factory->state(App\Models\Multiplayer\Room::class, 'ended', function (Faker\Generator $faker) {
     return [
         'ends_at' => Carbon\Carbon::now()->subMinute(1),
     ];
