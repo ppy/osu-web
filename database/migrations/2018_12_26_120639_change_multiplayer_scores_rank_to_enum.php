@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class ChangeMultiplayerScoresRankToEnum extends Migration
 {
@@ -23,6 +21,6 @@ class ChangeMultiplayerScoresRankToEnum extends Migration
      */
     public function down()
     {
-        DB::statement("ALTER TABLE `multiplayer_scores` MODIFY `rank` char(2) NULL");
+        DB::statement('ALTER TABLE `multiplayer_scores` MODIFY `rank` char(2) NULL');
     }
 }

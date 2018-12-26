@@ -23,7 +23,6 @@ namespace Tests\Multiplayer;
 use App\Exceptions\InvariantException;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\RoomScore;
 use App\Models\User;
 use TestCase;
 

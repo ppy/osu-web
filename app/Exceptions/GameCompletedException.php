@@ -20,8 +20,6 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
 class GameCompletedException extends InvariantException
 {
 }

@@ -63,7 +63,6 @@ class UserScoreAggregateTest extends TestCase
                 'user_id' => $user->getKey(),
             ]);
 
-
         $agg->addScore($score);
         $result = $agg->toArray();
 

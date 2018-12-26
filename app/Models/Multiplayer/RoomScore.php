@@ -116,8 +116,8 @@ class RoomScore extends Model
             );
 
             if (!empty($missingMods)) {
-                throw new InvariantException("This play does not include the mods required.");
-            };
+                throw new InvariantException('This play does not include the mods required.');
+            }
         }
 
         if (!empty($this->playlistItem->allowed_mods)) {
@@ -127,8 +127,8 @@ class RoomScore extends Model
             );
 
             if (!empty($missingMods)) {
-                throw new InvariantException("This play includes mods that are not allowed.");
-            };
+                throw new InvariantException('This play includes mods that are not allowed.');
+            }
         }
 
         // todo: also, all the validationsz:
