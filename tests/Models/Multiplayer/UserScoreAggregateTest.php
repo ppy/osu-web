@@ -38,6 +38,18 @@ class UserScoreAggregateTest extends TestCase
         $this->room = factory(Room::class)->create();
     }
 
+    public function testStartingPlayIncreasesAttempts()
+    {
+        $user = factory(User::class)->create();
+        $playlistItem = $this->playlistItem();
+
+        $this->room->startPlay($user, $playlistItem);
+        $agg = UserScoreAggregate::new($user, $this->room);
+
+        $this->assertSame(1, $agg->attempts);
+        $this->assertSame(0, $agg->completed);
+    }
+
     public function testInCompleteScoresAreNotCounted()
     {
         $user = factory(User::class)->create();
@@ -55,7 +67,6 @@ class UserScoreAggregateTest extends TestCase
         $agg->addScore($score);
         $result = $agg->toArray();
 
-        // $this->assertNull($result['attempts']);
         $this->assertNull($result['completed']);
         $this->assertNull($result['total_score']);
     }
@@ -88,7 +99,6 @@ class UserScoreAggregateTest extends TestCase
 
         $result = $agg->toArray();
 
-        // $this->assertSame(2, $result['attempts']);
         $this->assertSame(1, $result['completed']);
         $this->assertSame(1, $result['total_score']);
     }
@@ -110,7 +120,6 @@ class UserScoreAggregateTest extends TestCase
 
         $result = $agg->toArray();
 
-        // $this->assertSame(1, $result['attempts']);
         $this->assertSame(1, $result['completed']);
         $this->assertSame(1, $result['total_score']);
     }

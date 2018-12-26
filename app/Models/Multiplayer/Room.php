@@ -186,7 +186,7 @@ class Room extends Model
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
             $agg = UserScoreAggregate::new($user, $this);
             if ($agg->isNew) {
-                // sanity
+                // sanity; if the object isn't saved, laravel will increment the entire table.
                 if (!$this->exists) {
                     $this->save();
                 }
