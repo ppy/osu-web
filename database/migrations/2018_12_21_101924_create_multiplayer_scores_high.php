@@ -17,7 +17,7 @@ class CreateMultiplayerScoresHigh extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('score_id');
             $table->unsignedMediumInteger('user_id');
-            $table->bigInteger('playlist_item_id')->unsigned();
+            $table->unsignedBigInteger('playlist_item_id');
             $table->unsignedMediumInteger('total_score')->default(0);
             $table->double('accuracy', 5, 4)->default(0);
             $table->float('pp')->nullable()->default(0);

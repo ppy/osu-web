@@ -17,9 +17,9 @@ class CreateMultiplayerScores extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedMediumInteger('user_id');
-            $table->bigInteger('room_id')->unsigned();
-            $table->bigInteger('playlist_item_id')->unsigned();
-            $table->unsignedMediumInteger('beatmap_id')->unsigned(); // ???
+            $table->unsignedBigInteger('room_id');
+            $table->unsignedBgInteger('playlist_item_id');
+            $table->unsignedMediumInteger('beatmap_id');
 
             $table->char('rank', 2)->nullable();
             $table->unsignedMediumInteger('total_score')->nullable();
