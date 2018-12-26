@@ -81,6 +81,17 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
+    public function hasEnded()
+    {
+        return Carbon::now()->gte($this->ended_at);
+    }
+
+    public function isScoreSubmissionStillAllowed()
+    {
+        // TODO: move grace period to config.
+        return Carbon::now()->subMinutes(5)->gte($this->ended_at);
+    }
+
     /**
      * Convenience method to generate missing top scores of the room.
      *
@@ -97,6 +108,8 @@ class Room extends Model
 
     public function completePlay(RoomScore $score, array $params)
     {
+        $this->assertValidCompletePlay();
+
         return $score->getConnection()->transaction(function () use ($params, $score) {
             $score->complete($params);
             UserScoreAggregate::new($score->user, $this)->addScore($score);
@@ -161,6 +174,8 @@ class Room extends Model
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
     {
+        $this->assertValidStartPlay();
+
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
             UserScoreAggregate::new($user, $this)->updateUserAttempts();
 
@@ -193,6 +208,13 @@ class Room extends Model
         });
     }
 
+    private function assertValidCompletePlay()
+    {
+        if ($this->isScoreSubmissionStillAllowed()) {
+            throw new InvalidArgumentException('Room is no longer accepting scores.');
+        }
+    }
+
     private function assertValidStartGame()
     {
         foreach (['name', 'starts_at', 'ends_at'] as $field) {
@@ -209,6 +231,13 @@ class Room extends Model
             if ($this->max_attempts < 1 || $this->max_attempts > 32) {
                 throw new InvalidArgumentException("field 'max_attempts' must be between 1 and 32");
             }
+        }
+    }
+
+    private function assertValidStartPlay()
+    {
+        if ($this->hasEnded()) {
+            throw new InvalidArgumentException('Room has already ended.');
         }
     }
 }
