@@ -66,9 +66,14 @@ class ScoresController extends BaseController
             ->where('id', $playlistId)
             ->firstOrFail();
 
+        $roomScore = $playlistItem->scores()
+            ->where('user_id', auth()->user()->getKey())
+            ->where('id', $scoreId)
+            ->firstOrFail();
+
         try {
             $score = $room->completePlay(
-                $playlistItem->scores()->where('id', $scoreId)->firstOrFail(),
+                $roomScore,
                 request()->all()
             );
 
