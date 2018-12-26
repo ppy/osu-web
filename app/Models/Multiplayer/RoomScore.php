@@ -119,9 +119,29 @@ class RoomScore extends Model
             throw new InvalidArgumentException("field cannot be empty: 'statistics'");
         }
 
+        if (!empty($this->playlistItem->required_mods)) {
+            $missingMods = array_diff(
+                array_column($this->playlistItem->required_mods, 'acronym'),
+                array_column($mods, 'acronym')
+            );
+
+            if (!empty($missingMods)) {
+                throw new InvalidArgumentException("This play does not include the mods required.");
+            };
+        }
+
+        if (!empty($this->playlistItem->allowed_mods)) {
+            $missingMods = array_diff(
+                array_column($mods, 'acronym'),
+                array_column($this->playlistItem->allowed_mods, 'acronym')
+            );
+
+            if (!empty($missingMods)) {
+                throw new InvalidArgumentException("This play includes mods that are not allowed.");
+            };
+        }
+
         // todo: also, all the validationsz:
-        // - check required_mods are present
-        // - check mods are within required_mods or allowed_mods
         // - validate statistics json format
 
         $this->save();
