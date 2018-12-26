@@ -22,6 +22,7 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
+use App\Libraries\ScoreRank;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
@@ -88,7 +89,11 @@ class RoomScore extends Model
 
         $this->fill($params);
 
-        foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
+        if (!ScoreRank::isValid($this->rank)) {
+            throw new InvariantException("'{$this->rank}' is not a valid rank.");
+        }
+
+        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
