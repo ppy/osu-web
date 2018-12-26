@@ -42,6 +42,8 @@ class UserScoreAggregateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
+        $agg = UserScoreAggregate::new($user, $this->room);
+
         $score = factory(RoomScore::class)
             ->create([
                 'room_id' => $this->room->getKey(),
@@ -49,7 +51,7 @@ class UserScoreAggregateTest extends TestCase
                 'user_id' => $user->getKey(),
             ]);
 
-        $agg = new UserScoreAggregate($user, $this->room);
+
         $agg->addScore($score);
         $result = $agg->toArray();
 
@@ -62,7 +64,8 @@ class UserScoreAggregateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
-        $agg = new UserScoreAggregate($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $this->room);
+
         $agg->addScore(
             factory(RoomScore::class)
                 ->states('completed', 'failed')
@@ -94,16 +97,17 @@ class UserScoreAggregateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = $this->playlistItem();
-        $score = factory(RoomScore::class)
+        $agg = UserScoreAggregate::new($user, $this->room);
+
+        $agg->addScore(factory(RoomScore::class)
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),
                 'playlist_item_id' => $playlistItem->getKey(),
                 'user_id' => $user->getKey(),
-            ]);
+            ])
+        );
 
-        $agg = new UserScoreAggregate($user, $this->room);
-        $agg->addScore($score);
         $result = $agg->toArray();
 
         $this->assertSame(1, $result['attempts']);
@@ -117,7 +121,7 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $playlistItem2 = $this->playlistItem();
 
-        $agg = new UserScoreAggregate($user, $this->room);
+        $agg = UserScoreAggregate::new($user, $this->room);
         $agg->addScore(
             factory(RoomScore::class)
             ->create([

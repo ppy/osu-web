@@ -81,11 +81,25 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
+    /**
+     * Convenience method to generate missing top scores of the room.
+     *
+     * @return void
+     */
+    public function calculateMissingTopScores()
+    {
+        // just run through all the users, UserScoreAggregate::new will calculate and persist if necessary.
+        $users = User::whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'));
+        $users->each(function ($user) {
+            UserScoreAggregate::new($user, $this);
+        });
+    }
+
     public function completePlay(RoomScore $score, array $params)
     {
         return $score->getConnection()->transaction(function () use ($params, $score) {
             $score->complete($params);
-            (new UserScoreAggregate($score->user, $this))->addScore($score);
+            UserScoreAggregate::new($score->user, $this)->addScore($score);
 
             return $score;
         });
@@ -157,42 +171,22 @@ class Room extends Model
 
     public function topScores()
     {
-        $users = User::whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
-            ->with('country')
+        $userIdsQuery = User::default()
+            ->whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
+            ->select('user_id');
+
+        $aggs = UserScoreAggregate::where('room_id', $this->getKey())
+            ->where('completed', '>', 0)
+            ->whereIn('user_id', $userIdsQuery)
+            ->orderBy('total_score', 'desc')
+            ->orderBy('updated_at', 'asc')
+            ->orderBy('id', 'asc')
+            ->with('user.country')
             ->get();
 
-        $stats = [];
-
-        foreach ($users as $user) {
-            if ($user === null || $user->isRestricted()) {
-                continue;
-            }
-
-            $agg = new UserScoreAggregate($user, $this);
-            $userStats = $agg->toArray();
-
-            if ($userStats !== null) {
-                $stats[$user->getKey()] = $userStats;
-            }
-        }
-
-        // todo: add priority for scores set first in case of a tie (this requires quite a bit more effort/restructure)
-        usort($stats, function ($a, $b) {
-            // if ($a['total_score'] === $b['total_score']) {
-            //     if ($a['ended_at']['timestamp'] === $b['ended_at']['timestamp']) {
-            //         // On the rare chance that both were submitted in the same second, default to submission order
-            //         return ($a->id < $b->id) ? -1 : 1;
-            //     }
-
-            //     return ($a['ended_at']['timestamp'] < $b['ended_at']['timestamp']) ? -1 : 1;
-            // }
-
-            return ($a['total_score'] > $b['total_score']) ? -1 : 1;
+        return $aggs->map(function (UserScoreAggregate $agg) {
+            return $agg->toArray();
         });
-
-        // return array_values(array_slice($stats, 0, $limit));
-
-        return array_values($stats);
     }
 
     private function assertValidStartGame()

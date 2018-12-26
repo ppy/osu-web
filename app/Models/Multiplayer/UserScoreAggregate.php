@@ -23,13 +23,9 @@ namespace App\Models\Multiplayer;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
-class UserScoreAggregate
+class UserScoreAggregate extends RoomUserHighScore
 {
-    private $roomId;
-    /** @var User */
-    private $user;
-
-    public static function read($score)
+    public static function getPlaylistItemUserHighScore(RoomScore $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
             'playlist_item_id' => $score->playlist_item_id,
@@ -51,10 +47,23 @@ class UserScoreAggregate
         $highScore->save();
     }
 
-    public function __construct(User $user, Room $room)
+    public static function new(User $user, Room $room)
     {
-        $this->user = $user;
-        $this->roomId = $room->getKey();
+        $obj = static::firstOrNew([
+            'user_id' => $user->getKey(),
+            'room_id' => $room->getKey(),
+        ]);
+
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+            // init if required
+            $obj->$key = $obj->$key ?? 0;
+        }
+
+        if (!$obj->exists) {
+            $obj->recalculate();
+        }
+
+        return $obj;
     }
 
     public function addScore(RoomScore $score)
@@ -63,14 +72,16 @@ class UserScoreAggregate
             return false; // throw instead?
         }
 
-        $highestScore = static::read($score);
+        $this->getConnection()->transaction(function () use ($score) {
+            $highestScore = static::getPlaylistItemUserHighScore($score);
 
-        if ($score->total_score > $highestScore->total_score) {
-            $this->updateUserTotal($score, $highestScore);
-            static::updatePlaylistItemUserHighScore($highestScore, $score);
-        } else {
-            $this->updateUserAttempts();
-        }
+            if ($score->total_score > $highestScore->total_score) {
+                $this->updateUserTotal($score, $highestScore);
+                static::updatePlaylistItemUserHighScore($highestScore, $score);
+            } else {
+                $this->updateUserAttempts();
+            }
+        });
 
         return true;
     }
@@ -85,93 +96,74 @@ class UserScoreAggregate
     public function getScores()
     {
         return RoomScore
-            ::where('room_id', $this->roomId)
-            ->where('user_id', $this->user->getKey())
+            ::where('room_id', $this->room_id)
+            ->where('user_id', $this->user_id)
             ->get();
-    }
-
-    public function readUserTotal()
-    {
-        $total = RoomUserHighScore::firstOrNew(['room_id' => $this->roomId, 'user_id' => $this->user->getKey()]);
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $total->$key = $total->$key ?? 0;
-        }
-
-        return $total;
     }
 
     public function recalculate()
     {
-        $scores = $this->getScores();
-
-        $this->removeRunningTotals();
-        $this->addScores($scores);
+        $this->getConnection()->transaction(function () {
+            $this->removeRunningTotals();
+            $this->addScores($this->getScores());
+        });
     }
 
     public function removeRunningTotals()
     {
-        RoomUserHighScore::where('room_id', $this->roomId)->where('user_id', $this->user->getKey())->delete();
         PlaylistItemUserHighScore::whereIn(
             'playlist_item_id',
-            PlaylistItem::where('room_id', $this->roomId)->select('id')
-        )->where('user_id', $this->user->getKey())->delete();
+            PlaylistItem::where('room_id', $this->room_id)->select('id')
+        )->where('user_id', $this->user_id)->delete();
+
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+            // init if required
+            $this->$key = 0;
+        }
     }
 
     public function toArray() : ?array
     {
-        $total = $this->readUserTotal();
-        if (!$total->exists) {
-            $this->recalculate();
-            $total = $this->readUserTotal();
-        }
-
-        $completedCount = $total->completed;
+        $completedCount = $this->completed;
         if ($completedCount === 0) {
             return null;
         }
 
         return [
-            'accuracy' => $total['accuracy'] / $completedCount,
-            'attempts' => $total['attempts'],
+            'accuracy' => $this->accuracy / $completedCount,
+            'attempts' => $this->attempts,
             'completed' => $completedCount,
-            'pp' => $total['pp'] / $completedCount,
-            'room_id' => $this->roomId,
-            'total_score' => $total['total_score'],
+            'pp' => $this->pp / $completedCount,
+            'room_id' => $this->room_id,
+            'total_score' => $this->total_score,
             'user' => json_item($this->user, 'UserCompact', ['country']),
-            'user_id' => $this->user->user_id,
+            'user_id' => $this->user_id,
         ];
     }
 
-    public function updateUserAttempts()
+    private function updateUserAttempts()
     {
-        $total = $this->readUserTotal();
-        $total->increment('attempts');
-
-        return $total;
+        $this->increment('attempts');
     }
 
-    public function updateUserTotal(RoomScore $current, ?PlaylistItemUserHighScore $prev)
+    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev)
     {
-        $total = $this->readUserTotal();
-        $total->attempts++;
+        $this->attempts++;
 
         if ($current->passed) {
             if ($prev->exists) {
-                $total->total_score -= $prev->total_score;
-                $total->accuracy -= $prev->accuracy;
-                $total->pp -= $prev->pp;
-                $total->completed--;
+                $this->total_score -= $prev->total_score;
+                $this->accuracy -= $prev->accuracy;
+                $this->pp -= $prev->pp;
+                $this->completed--;
             }
 
-            $total->total_score += $current->total_score;
-            $total->accuracy += $current->accuracy;
-            $total->pp += $current->pp;
-            $total->completed++;
+            $this->total_score += $current->total_score;
+            $this->accuracy += $current->accuracy;
+            $this->pp += $current->pp;
+            $this->completed++;
         }
 
-        $total->save();
-
-        return $total;
+        $this->save();
     }
 }
