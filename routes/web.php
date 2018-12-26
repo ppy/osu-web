@@ -308,7 +308,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
-        Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
+        Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
+            Route::get('{mode?}', '\App\Http\Controllers\Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
+            Route::put('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@join')->name('join');
+            Route::delete('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@part')->name('part');
+            Route::get('{room_id}/leaderboard', '\App\Http\Controllers\Multiplayer\RoomsController@leaderboard');
+            Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
+                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
+            });
+        });
+        Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
