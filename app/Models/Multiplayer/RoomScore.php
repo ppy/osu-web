@@ -21,7 +21,6 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
@@ -87,21 +86,7 @@ class RoomScore extends Model
             throw new GameCompletedException('cannot modify score after submission');
         }
 
-        $rulesetId = $this->playlistItem->ruleset_id;
-
-        $mods = Mod::parseInputArray(
-            $params['mods'] ?? [],
-            $rulesetId
-        );
-
-        $this->rank = $params['rank'] ?? null;
-        $this->total_score = get_int($params['total_score'] ?? null);
-        $this->accuracy = get_float($params['accuracy'] ?? null);
-        $this->max_combo = get_int($params['max_combo'] ?? null);
-        $this->ended_at = Carbon::now();
-        $this->passed = get_bool($params['passed'] ?? null);
-        $this->mods = $mods;
-        $this->statistics = $params['statistics'] ?? null;
+        $this->fill($params);
 
         foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
@@ -122,7 +107,7 @@ class RoomScore extends Model
         if (!empty($this->playlistItem->required_mods)) {
             $missingMods = array_diff(
                 array_column($this->playlistItem->required_mods, 'acronym'),
-                array_column($mods, 'acronym')
+                array_column($this->mods, 'acronym')
             );
 
             if (!empty($missingMods)) {
@@ -132,7 +117,7 @@ class RoomScore extends Model
 
         if (!empty($this->playlistItem->allowed_mods)) {
             $missingMods = array_diff(
-                array_column($mods, 'acronym'),
+                array_column($this->mods, 'acronym'),
                 array_column($this->playlistItem->allowed_mods, 'acronym')
             );
 

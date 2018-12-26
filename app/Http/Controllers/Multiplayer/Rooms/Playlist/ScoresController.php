@@ -21,8 +21,10 @@
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
+use Carbon\Carbon;
 use InvalidArgumentException;
 
 class ScoresController extends BaseController
@@ -72,7 +74,7 @@ class ScoresController extends BaseController
         try {
             $score = $room->completePlay(
                 $roomScore,
-                request()->all()
+                $this->extractRoomScoreParams(request()->all(), $playlistItem)
             );
 
             return json_item(
@@ -83,5 +85,24 @@ class ScoresController extends BaseController
         } catch (InvalidArgumentException $e) {
             return error_popup($e->getMessage(), 422);
         }
+    }
+
+    private function extractRoomScoreParams(array $params, PlaylistItem $playlistItem)
+    {
+        $mods = Mod::parseInputArray(
+            $params['mods'] ?? [],
+            $playlistItem->ruleset_id
+        );
+
+        return [
+            'rank' => $params['rank'] ?? null,
+            'total_score' => get_int($params['total_score'] ?? null),
+            'accuracy' => get_float($params['accuracy'] ?? null),
+            'max_combo' => get_int($params['max_combo'] ?? null),
+            'ended_at' => Carbon::now(),
+            'passed' => get_bool($params['passed'] ?? null),
+            'mods' => $mods,
+            'statistics' => $params['statistics'] ?? null,
+        ];
     }
 }
