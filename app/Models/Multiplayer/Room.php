@@ -118,6 +118,13 @@ class Room extends Model
         });
     }
 
+    public function join(User $user)
+    {
+        if (!$this->channel->hasUser($user)) {
+            $this->channel->addUser($user);
+        }
+    }
+
     public function startGame(User $owner, array $params)
     {
         if (static::active()->startedBy($owner)->exists()) {

@@ -72,11 +72,7 @@ class RoomsController extends BaseController
             abort(403);
         }
 
-        $channel = Room::findOrFail($roomId)->channel;
-
-        if (!$channel->hasUser(auth()->user())) {
-            $channel->addUser(auth()->user());
-        }
+        Room::findOrFail($roomId)->join(auth()->user());
 
         return response([], 204);
     }
