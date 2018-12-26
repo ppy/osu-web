@@ -89,7 +89,7 @@ class Room extends Model
     public function isScoreSubmissionStillAllowed()
     {
         // TODO: move grace period to config.
-        return Carbon::now()->subMinutes(5)->gte($this->ends_at);
+        return Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
     /**
@@ -210,7 +210,7 @@ class Room extends Model
 
     private function assertValidCompletePlay()
     {
-        if ($this->isScoreSubmissionStillAllowed()) {
+        if (!$this->isScoreSubmissionStillAllowed()) {
             throw new InvalidArgumentException('Room is no longer accepting scores.');
         }
     }
