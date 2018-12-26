@@ -47,7 +47,7 @@ class UserScoreAggregate extends RoomUserHighScore
         $highScore->save();
     }
 
-    public static function new(User $user, Room $room)
+    public static function new(User $user, Room $room) : self
     {
         $obj = static::firstOrNew([
             'user_id' => $user->getKey(),
@@ -66,31 +66,24 @@ class UserScoreAggregate extends RoomUserHighScore
         return $obj;
     }
 
-    public function addScore(RoomScore $score)
+    public function addScore(RoomScore $score, bool $isRecalculation = false)
     {
         if (!$score->isCompleted()) {
             return false; // throw instead?
         }
 
-        $this->getConnection()->transaction(function () use ($score) {
+        $this->getConnection()->transaction(function () use ($score, $isRecalculation) {
             $highestScore = static::getPlaylistItemUserHighScore($score);
 
             if ($score->total_score > $highestScore->total_score) {
-                $this->updateUserTotal($score, $highestScore);
+                $this->updateUserTotal($score, $highestScore, $isRecalculation);
                 static::updatePlaylistItemUserHighScore($highestScore, $score);
-            } else {
+            } elseif ($isRecalculation) {
                 $this->updateUserAttempts();
             }
         });
 
         return true;
-    }
-
-    public function addScores(Collection $scores)
-    {
-        foreach ($scores as $score) {
-            $this->addScore($score);
-        }
     }
 
     public function getScores()
@@ -105,7 +98,9 @@ class UserScoreAggregate extends RoomUserHighScore
     {
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
-            $this->addScores($this->getScores());
+            foreach ($scores as $score) {
+                $this->addScore($score, true);
+            }
         });
     }
 
@@ -141,14 +136,16 @@ class UserScoreAggregate extends RoomUserHighScore
         ];
     }
 
-    private function updateUserAttempts()
+    public function updateUserAttempts()
     {
         $this->increment('attempts');
     }
 
-    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev)
+    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev, bool $isRecalculation = false)
     {
-        $this->attempts++;
+        if ($isRecalculation) {
+            $this->attempts++;
+        }
 
         if ($current->passed) {
             if ($prev->exists) {

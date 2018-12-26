@@ -161,12 +161,16 @@ class Room extends Model
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
     {
-        return RoomScore::start([
-            'user_id' => $user->getKey(),
-            'room_id' => $this->getKey(),
-            'playlist_item_id' => $playlistItem->getKey(),
-            'beatmap_id' => $playlistItem->beatmap_id,
-        ]);
+        return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
+            UserScoreAggregate::new($user, $this)->updateUserAttempts();
+
+            return RoomScore::start([
+                'user_id' => $user->getKey(),
+                'room_id' => $this->getKey(),
+                'playlist_item_id' => $playlistItem->getKey(),
+                'beatmap_id' => $playlistItem->beatmap_id,
+            ]);
+        });
     }
 
     public function topScores()
