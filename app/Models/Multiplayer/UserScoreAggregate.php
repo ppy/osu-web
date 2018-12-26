@@ -24,6 +24,8 @@ use App\Models\User;
 
 class UserScoreAggregate extends RoomUserHighScore
 {
+    public $isNew = false;
+
     public static function getPlaylistItemUserHighScore(RoomScore $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
@@ -59,6 +61,7 @@ class UserScoreAggregate extends RoomUserHighScore
         }
 
         if (!$obj->exists) {
+            $obj->isNew = true;
             $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }

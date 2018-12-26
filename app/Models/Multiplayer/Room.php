@@ -184,7 +184,17 @@ class Room extends Model
         $this->assertValidStartPlay($user, $playlistItem);
 
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
-            UserScoreAggregate::new($user, $this)->updateUserAttempts();
+            $agg = UserScoreAggregate::new($user, $this);
+            if ($agg->isNew) {
+                // sanity
+                if (!$this->exists) {
+                    $this->save();
+                }
+
+                $this->increment('participant_count');
+            }
+
+            $agg->updateUserAttempts();
 
             return RoomScore::start([
                 'user_id' => $user->getKey(),
