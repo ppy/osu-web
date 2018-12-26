@@ -314,7 +314,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::delete('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@part')->name('part');
             Route::get('{room_id}/leaderboard', '\App\Http\Controllers\Multiplayer\RoomsController@leaderboard');
             Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
-                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['index', 'store', 'update']]);
+                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
         Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['show', 'store']]);
