@@ -83,13 +83,13 @@ class Room extends Model
 
     public function hasEnded()
     {
-        return Carbon::now()->gte($this->ended_at);
+        return Carbon::now()->gte($this->ends_at);
     }
 
     public function isScoreSubmissionStillAllowed()
     {
         // TODO: move grace period to config.
-        return Carbon::now()->subMinutes(5)->gte($this->ended_at);
+        return Carbon::now()->subMinutes(5)->gte($this->ends_at);
     }
 
     /**
@@ -247,7 +247,5 @@ class Room extends Model
         ) {
             throw new InvalidArgumentException('You have reached the maximum number of tries allowed.');
         }
-
-
     }
 }
