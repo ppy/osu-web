@@ -60,6 +60,7 @@ class UserScoreAggregate extends RoomUserHighScore
         }
 
         if (!$obj->exists) {
+            $obj->save(); // force a save now to avoid being trolled later.
             $obj->recalculate();
         }
 
@@ -68,22 +69,24 @@ class UserScoreAggregate extends RoomUserHighScore
 
     public function addScore(RoomScore $score, bool $isRecalculation = false)
     {
-        if (!$score->isCompleted()) {
-            return false; // throw instead?
-        }
+        return $this->getConnection()->transaction(function () use ($score, $isRecalculation) {
+            if ($isRecalculation) {
+                $this->updateUserAttempts();
+            }
 
-        $this->getConnection()->transaction(function () use ($score, $isRecalculation) {
+            if (!$score->isCompleted()) {
+                return false;
+            }
+
             $highestScore = static::getPlaylistItemUserHighScore($score);
 
             if ($score->total_score > $highestScore->total_score) {
                 $this->updateUserTotal($score, $highestScore, $isRecalculation);
                 static::updatePlaylistItemUserHighScore($highestScore, $score);
-            } elseif ($isRecalculation) {
-                $this->updateUserAttempts();
             }
-        });
 
-        return true;
+            return true;
+        });
     }
 
     public function getScores()
@@ -98,9 +101,9 @@ class UserScoreAggregate extends RoomUserHighScore
     {
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
-            foreach ($scores as $score) {
+            $this->getScores()->each(function ($score) {
                 $this->addScore($score, true);
-            }
+            });
         });
     }
 
@@ -141,12 +144,8 @@ class UserScoreAggregate extends RoomUserHighScore
         $this->increment('attempts');
     }
 
-    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev, bool $isRecalculation = false)
+    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev)
     {
-        if ($isRecalculation) {
-            $this->attempts++;
-        }
-
         if ($current->passed) {
             if ($prev->exists) {
                 $this->total_score -= $prev->total_score;
