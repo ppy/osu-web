@@ -21,7 +21,6 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\User;
-use Illuminate\Support\Collection;
 
 class UserScoreAggregate extends RoomUserHighScore
 {
