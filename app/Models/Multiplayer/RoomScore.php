@@ -21,11 +21,11 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
+use App\Exceptions\InvariantException;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use InvalidArgumentException;
 
 class RoomScore extends Model
 {
@@ -90,18 +90,18 @@ class RoomScore extends Model
 
         foreach (['rank', 'total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
             if (!present($this->$field)) {
-                throw new InvalidArgumentException("field missing: '{$field}'");
+                throw new InvariantException("field missing: '{$field}'");
             }
         }
 
         foreach (['mods', 'statistics'] as $field) {
             if (!is_array($this->$field)) {
-                throw new InvalidArgumentException("field must be an array: '{$field}'");
+                throw new InvariantException("field must be an array: '{$field}'");
             }
         }
 
         if (empty($this->statistics)) {
-            throw new InvalidArgumentException("field cannot be empty: 'statistics'");
+            throw new InvariantException("field cannot be empty: 'statistics'");
         }
 
         if (!empty($this->playlistItem->required_mods)) {
@@ -111,7 +111,7 @@ class RoomScore extends Model
             );
 
             if (!empty($missingMods)) {
-                throw new InvalidArgumentException("This play does not include the mods required.");
+                throw new InvariantException("This play does not include the mods required.");
             };
         }
 
@@ -122,7 +122,7 @@ class RoomScore extends Model
             );
 
             if (!empty($missingMods)) {
-                throw new InvalidArgumentException("This play includes mods that are not allowed.");
+                throw new InvariantException("This play includes mods that are not allowed.");
             };
         }
 

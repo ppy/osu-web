@@ -20,12 +20,12 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use InvalidArgumentException;
 
 class Room extends Model
 {
@@ -121,7 +121,7 @@ class Room extends Model
     public function startGame(User $owner, array $params)
     {
         if (static::active()->startedBy($owner)->exists()) {
-            throw new InvalidArgumentException('number of simultaneously active rooms reached');
+            throw new InvariantException('number of simultaneously active rooms reached');
         }
 
         $this->name = $params['name'] ?? null;
@@ -139,7 +139,7 @@ class Room extends Model
 
         $playlistParams = $params['playlist'] ?? [];
         if (!is_array($playlistParams)) {
-            throw new InvalidArgumentException("field 'playlist' must an an array");
+            throw new InvariantException("field 'playlist' must an an array");
         }
 
         $playlistItems = [];
@@ -211,7 +211,7 @@ class Room extends Model
     private function assertValidCompletePlay()
     {
         if (!$this->isScoreSubmissionStillAllowed()) {
-            throw new InvalidArgumentException('Room is no longer accepting scores.');
+            throw new InvariantException('Room is no longer accepting scores.');
         }
     }
 
@@ -219,17 +219,17 @@ class Room extends Model
     {
         foreach (['name', 'starts_at', 'ends_at'] as $field) {
             if (!present($this->$field)) {
-                throw new InvalidArgumentException("'{$field}' is required");
+                throw new InvariantException("'{$field}' is required");
             }
         }
 
         if ($this->starts_at->gte($this->ends_at)) {
-            throw new InvalidArgumentException("'ends_at' cannot be before 'starts_at'");
+            throw new InvariantException("'ends_at' cannot be before 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {
             if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvalidArgumentException("field 'max_attempts' must be between 1 and 32");
+                throw new InvariantException("field 'max_attempts' must be between 1 and 32");
             }
         }
     }
@@ -239,13 +239,13 @@ class Room extends Model
         // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
 
         if ($this->hasEnded()) {
-            throw new InvalidArgumentException('Room has already ended.');
+            throw new InvariantException('Room has already ended.');
         }
 
         if ($this->max_attempts !== null
             && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
         ) {
-            throw new InvalidArgumentException('You have reached the maximum number of tries allowed.');
+            throw new InvariantException('You have reached the maximum number of tries allowed.');
         }
     }
 }

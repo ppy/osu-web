@@ -20,12 +20,12 @@
 
 namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use Carbon\Carbon;
-use InvalidArgumentException;
 
 class ScoresController extends BaseController
 {
@@ -82,8 +82,8 @@ class ScoresController extends BaseController
                 'Multiplayer\RoomScore',
                 ['user.country']
             );
-        } catch (InvalidArgumentException $e) {
-            return error_popup($e->getMessage(), 422);
+        } catch (InvariantException $e) {
+            return error_popup($e->getMessage(), $e->getStatusCode());
         }
     }
 

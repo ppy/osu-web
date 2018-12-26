@@ -20,6 +20,7 @@
 
 namespace Tests;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use TestCase;
@@ -125,9 +126,6 @@ class ModTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testValidateSelectionWithInvalid()
     {
         $invalidModCombos = [
@@ -157,6 +155,7 @@ class ModTest extends TestCase
             ],
         ];
 
+        $this->expectException(InvariantException::class);
         foreach ($invalidModCombos as $ruleset => $modCombos) {
             foreach ($modCombos as $modCombo) {
                 $this->assertSame(

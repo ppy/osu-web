@@ -20,11 +20,11 @@
 
 namespace Tests\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
 use App\Models\User;
-use InvalidArgumentException;
 use TestCase;
 
 class RoomTest extends TestCase
@@ -37,7 +37,7 @@ class RoomTest extends TestCase
             'room_id' => $room->getKey(),
         ]);
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvariantException::class);
         $room->startPlay($user, $playlistItem);
     }
 
@@ -55,7 +55,7 @@ class RoomTest extends TestCase
         $room->startPlay($user, $playlistItem);
         $this->assertTrue(true);
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvariantException::class);
         $room->startPlay($user, $playlistItem);
     }
 }

@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Beatmap;
 use App\Models\Multiplayer\Room;
@@ -126,8 +127,8 @@ class RoomsController extends BaseController
                 'Multiplayer\Room',
                 'playlist'
             );
-        } catch (\InvalidArgumentException $e) {
-            return error_popup($e->getMessage(), 422);
+        } catch (InvariantException $e) {
+            return error_popup($e->getMessage(), $e->getStatusCode());
         }
     }
 }

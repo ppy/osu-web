@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Multiplayer;
 
-use InvalidArgumentException;
+use App\Exceptions\InvariantException;
 
 class Mod
 {
@@ -203,7 +203,7 @@ class Mod
     public static function validModsForRuleset($ruleset)
     {
         if (!in_array($ruleset, Ruleset::ALL, true)) {
-            throw new InvalidArgumentException('invalid ruleset');
+            throw new InvariantException('invalid ruleset');
         }
 
         return static::validityByRuleset()[$ruleset];
@@ -219,11 +219,11 @@ class Mod
         $checkedMods = [];
         foreach ($mods as $mod) {
             if (!static::validForRuleset($mod, $ruleset)) {
-                throw new InvalidArgumentException('invalid mod for ruleset: '.json_encode($mod));
+                throw new InvariantException('invalid mod for ruleset: '.json_encode($mod));
             }
 
             if (isset($checkedMods[$mod])) {
-                throw new InvalidArgumentException('duplicate mod for ruleset: '.json_encode($mod));
+                throw new InvariantException('duplicate mod for ruleset: '.json_encode($mod));
             }
 
             $checkedMods[$mod] = true;
@@ -233,7 +233,7 @@ class Mod
             foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
                 $intersection = array_intersect($mods, $group);
                 if (count($intersection) > 1) {
-                    throw new InvalidArgumentException('incompatible mods: '.implode(', ', $intersection));
+                    throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
                 }
             }
         }
@@ -256,7 +256,7 @@ class Mod
                 continue;
             }
 
-            throw new InvalidArgumentException('invalid mod array');
+            throw new InvariantException('invalid mod array');
         }
 
         $cleanMods = array_values($filteredMods);

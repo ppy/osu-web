@@ -20,11 +20,11 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
-use InvalidArgumentException;
 
 class PlaylistItem extends Model
 {
@@ -45,7 +45,7 @@ class PlaylistItem extends Model
 
         if ($missing !== []) {
             $missingText = implode(', ', $missing);
-            throw new InvalidArgumentException("beatmaps not found: {$missingText}");
+            throw new InvariantException("beatmaps not found: {$missingText}");
         }
     }
 
@@ -55,7 +55,7 @@ class PlaylistItem extends Model
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
             $obj->$field = array_get($json, $field);
             if (!present($obj->$field)) {
-                throw new InvalidArgumentException("{$field} is required.");
+                throw new InvariantException("{$field} is required.");
             }
         }
 
@@ -128,7 +128,7 @@ class PlaylistItem extends Model
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
         if ($this->beatmap->playmode !== Ruleset::OSU && $this->beatmap->playmode !== $this->ruleset_id) {
-            throw new InvalidArgumentException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
+            throw new InvariantException("invalid ruleset_id for beatmap {$this->beatmap->beatmap_id}");
         }
     }
 
@@ -140,7 +140,7 @@ class PlaylistItem extends Model
         );
 
         if (count($dupeMods) > 0) {
-            throw new InvalidArgumentException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
+            throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
     }
 

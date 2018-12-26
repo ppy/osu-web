@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,16 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class GameCompletedException extends InvariantException
+/**
+ * Exception thrown when a domain method fails an invariant constraint check.
+ * InvariantException::getMessage() should always be considered as safe for public.
+ *
+ * TODO: migrate more exceptions to this
+ */
+class InvariantException extends SilencedException
 {
+    public function getStatusCode()
+    {
+        return 422;
+    }
 }
