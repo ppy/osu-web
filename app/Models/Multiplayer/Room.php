@@ -174,7 +174,7 @@ class Room extends Model
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
     {
-        $this->assertValidStartPlay();
+        $this->assertValidStartPlay($user, $playlistItem);
 
         return $this->getConnection()->transaction(function () use ($user, $playlistItem) {
             UserScoreAggregate::new($user, $this)->updateUserAttempts();
@@ -234,10 +234,20 @@ class Room extends Model
         }
     }
 
-    private function assertValidStartPlay()
+    private function assertValidStartPlay(User $user, PlaylistItem $playlistItem)
     {
+        // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
+
         if ($this->hasEnded()) {
             throw new InvalidArgumentException('Room has already ended.');
         }
+
+        if ($this->max_attempts !== null
+            && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
+        ) {
+            throw new InvalidArgumentException('You have reached the maximum number of tries allowed.');
+        }
+
+
     }
 }

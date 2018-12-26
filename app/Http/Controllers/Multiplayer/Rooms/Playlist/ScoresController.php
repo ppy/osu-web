@@ -49,8 +49,6 @@ class ScoresController extends BaseController
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
         $score = $room->startPlay(auth()->user(), $playlistItem);
 
-        // todo: check against room's end time (to see if player has enough time to play this beatmap) and is under the room's max attempts limit
-
         return json_item(
             $score,
             'Multiplayer\RoomScore'
