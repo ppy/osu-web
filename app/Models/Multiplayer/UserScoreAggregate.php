@@ -67,13 +67,9 @@ class UserScoreAggregate extends RoomUserHighScore
         return $obj;
     }
 
-    public function addScore(RoomScore $score, bool $isRecalculation = false)
+    public function addScore(RoomScore $score)
     {
-        return $this->getConnection()->transaction(function () use ($score, $isRecalculation) {
-            if ($isRecalculation) {
-                $this->updateUserAttempts();
-            }
-
+        return $this->getConnection()->transaction(function () use ($score) {
             if (!$score->isCompleted()) {
                 return false;
             }
@@ -81,7 +77,7 @@ class UserScoreAggregate extends RoomUserHighScore
             $highestScore = static::getPlaylistItemUserHighScore($score);
 
             if ($score->total_score > $highestScore->total_score) {
-                $this->updateUserTotal($score, $highestScore, $isRecalculation);
+                $this->updateUserTotal($score, $highestScore);
                 static::updatePlaylistItemUserHighScore($highestScore, $score);
             }
 
@@ -102,8 +98,11 @@ class UserScoreAggregate extends RoomUserHighScore
         $this->getConnection()->transaction(function () {
             $this->removeRunningTotals();
             $this->getScores()->each(function ($score) {
-                $this->addScore($score, true);
+                $this->attempts++;
+                $this->addScore($score);
             });
+
+            $this->save();
         });
     }
 
