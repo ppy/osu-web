@@ -35,6 +35,7 @@ class RoomsController extends BaseController
     public function index()
     {
         $rooms = Room::query();
+        $limit = clamp(get_int(request('limit')) ?? 250, 1, 250);
 
         $mode = request('mode');
         if ($mode === 'ended') {
@@ -56,7 +57,7 @@ class RoomsController extends BaseController
             $rooms
                 ->with('host')
                 ->with('playlist.beatmap.beatmapset')
-                ->get(),
+                ->paginate($limit),
             'Multiplayer\Room',
             [
                 'host',
