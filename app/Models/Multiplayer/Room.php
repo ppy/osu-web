@@ -243,8 +243,8 @@ class Room extends Model
             }
         }
 
-        if ($this->starts_at->gte($this->ends_at)) {
-            throw new InvariantException("'ends_at' cannot be before 'starts_at'");
+        if ($this->starts_at->addMinutes(30)->gte($this->ends_at)) {
+            throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {
