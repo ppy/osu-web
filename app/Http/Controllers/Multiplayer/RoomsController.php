@@ -55,12 +55,12 @@ class RoomsController extends BaseController
 
         return json_collection(
             $rooms
-                ->with('host')
+                ->with('host.country')
                 ->with('playlist.beatmap.beatmapset')
                 ->paginate($limit),
             'Multiplayer\Room',
             [
-                'host',
+                'host.country',
                 'playlist.beatmap.beatmapset',
             ]
         );
@@ -111,12 +111,12 @@ class RoomsController extends BaseController
     {
         return json_item(
             Room::where('id', $roomId)
-                ->with('host')
+                ->with('host.country')
                 ->with('playlist.beatmap.beatmapset')
                 ->firstOrFail(),
             'Multiplayer\Room',
             [
-                'host',
+                'host.country',
                 'playlist.beatmap.beatmapset',
             ]
         );
