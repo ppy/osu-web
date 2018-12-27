@@ -216,18 +216,13 @@ class Room extends Model
             ->whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
             ->select('user_id');
 
-        $aggs = UserScoreAggregate::where('room_id', $this->getKey())
+        return UserScoreAggregate::where('room_id', $this->getKey())
             ->where('completed', '>', 0)
             ->whereIn('user_id', $userIdsQuery)
             ->orderBy('total_score', 'desc')
             ->orderBy('updated_at', 'asc')
             ->orderBy('id', 'asc')
-            ->with('user.country')
-            ->get();
-
-        return $aggs->map(function (UserScoreAggregate $agg) {
-            return $agg->toArray();
-        });
+            ->with('user.country');
     }
 
     private function assertValidCompletePlay()

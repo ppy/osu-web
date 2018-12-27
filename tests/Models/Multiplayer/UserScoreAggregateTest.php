@@ -64,10 +64,10 @@ class UserScoreAggregateTest extends TestCase
             ]);
 
         $agg->addScore($score);
-        $result = $agg->toArray();
+        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
-        $this->assertNull($result['completed']);
-        $this->assertNull($result['total_score']);
+        $this->assertSame(0, $result['completed']);
+        $this->assertSame(0, $result['total_score']);
     }
 
     public function testFailedScoresAreAttemptsOnly()
@@ -96,7 +96,7 @@ class UserScoreAggregateTest extends TestCase
                 ])
         );
 
-        $result = $agg->toArray();
+        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
         $this->assertSame(1, $result['completed']);
         $this->assertSame(1, $result['total_score']);
@@ -117,7 +117,7 @@ class UserScoreAggregateTest extends TestCase
             ])
         );
 
-        $result = $agg->toArray();
+        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
         $this->assertSame(1, $result['completed']);
         $this->assertSame(1, $result['total_score']);
@@ -181,7 +181,7 @@ class UserScoreAggregateTest extends TestCase
             ])
         );
 
-        $result = $agg->toArray();
+        $result = json_item($agg, 'Multiplayer\UserScoreAggregate');
 
         $this->assertSame(0.65, $result['pp']);
         $this->assertSame(0.65, $result['accuracy']);
