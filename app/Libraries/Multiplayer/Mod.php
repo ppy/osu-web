@@ -40,6 +40,7 @@ class Mod
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
+    const OSU_BLIND = 'BL';
     const OSU_SPUNOUT = 'SO';
     const OSU_TARGET = 'TP';
     const OSU_TRANSFORM = 'TR';
@@ -129,6 +130,7 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::OSU_AUTOPILOT,
+                        self::OSU_BLIND,
                         self::OSU_SPUNOUT,
                         self::OSU_TARGET,
                         self::OSU_TRANSFORM,
