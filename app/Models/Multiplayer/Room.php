@@ -33,6 +33,9 @@ class Room extends Model
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
+    protected $attributes = [
+        'participant_count' => 0,
+    ];
 
     public function channel()
     {
