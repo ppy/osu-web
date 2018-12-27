@@ -38,7 +38,7 @@ class CommentsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     public function destroy($id)
@@ -69,7 +69,7 @@ class CommentsController extends Controller
             $class = Comment::COMMENTABLES[$type] ?? null;
 
             if ($class === null) {
-                abort(404);
+                abort(422);
             }
 
             $commentable = $class::findOrFail($id);
