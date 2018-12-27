@@ -69,7 +69,7 @@ class CommentsController extends Controller
             $class = Comment::COMMENTABLES[$type] ?? null;
 
             if ($class === null) {
-                abort(404);
+                abort(422);
             }
 
             $commentable = $class::findOrFail($id);
