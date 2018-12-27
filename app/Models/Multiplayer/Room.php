@@ -127,7 +127,9 @@ class Room extends Model
 
     public function startGame(User $owner, array $params)
     {
-        if (static::active()->startedBy($owner)->exists()) {
+        $userRoomCount = static::active()->startedBy($owner)->count();
+
+        if ($userRoomCount >= $owner->maxMultiplayerRooms()) {
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 

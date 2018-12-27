@@ -1010,6 +1010,11 @@ class User extends Model implements AuthenticatableContract
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function maxMultiplayerRooms()
+    {
+        return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
     public function beatmapsetDownloadAllowance()
     {
         return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
