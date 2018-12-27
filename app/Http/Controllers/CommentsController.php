@@ -38,7 +38,7 @@ class CommentsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     public function destroy($id)
