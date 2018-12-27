@@ -87,6 +87,16 @@ class UserScoreAggregate extends RoomUserHighScore
         });
     }
 
+    public function averageAccuracy()
+    {
+        return $this->completed > 0 ? $this->accuracy / $this->completed : 0;
+    }
+
+    public function averagePp()
+    {
+        return $this->completed > 0 ? $this->pp / $this->completed : 0;
+    }
+
     public function getScores()
     {
         return RoomScore
@@ -119,25 +129,6 @@ class UserScoreAggregate extends RoomUserHighScore
             // init if required
             $this->$key = 0;
         }
-    }
-
-    public function toArray() : ?array
-    {
-        $completedCount = $this->completed;
-        if ($completedCount === 0) {
-            return null;
-        }
-
-        return [
-            'accuracy' => $this->accuracy / $completedCount,
-            'attempts' => $this->attempts,
-            'completed' => $completedCount,
-            'pp' => $this->pp / $completedCount,
-            'room_id' => $this->room_id,
-            'total_score' => $this->total_score,
-            'user' => json_item($this->user, 'UserCompact', ['country']),
-            'user_id' => $this->user_id,
-        ];
     }
 
     public function updateUserAttempts()

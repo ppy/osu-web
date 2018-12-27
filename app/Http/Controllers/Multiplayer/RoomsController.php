@@ -79,7 +79,11 @@ class RoomsController extends BaseController
 
     public function leaderboard($roomId)
     {
-        return Room::findOrFail($roomId)->topScores();
+        return json_collection(
+            Room::findOrFail($roomId)->topScores()->get(),
+            'Multiplayer\UserScoreAggregate',
+            ['user.country']
+        );
     }
 
     public function part($roomId, $userId)
