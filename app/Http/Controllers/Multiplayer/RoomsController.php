@@ -79,8 +79,12 @@ class RoomsController extends BaseController
 
     public function leaderboard($roomId)
     {
+        $limit = clamp(get_int(request('limit')) ?? 50, 1, 50);
+
         return json_collection(
-            Room::findOrFail($roomId)->topScores()->get(),
+            Room::findOrFail($roomId)
+                ->topScores()
+                ->paginate($limit),
             'Multiplayer\UserScoreAggregate',
             ['user.country']
         );
