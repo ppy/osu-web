@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Tidak dimarkahi',
             'to_watching' => 'Markah',
             'to_watching_mail' => 'Markah dengan notifikasi',
-            'mail_disable' => 'Nonaktifkan notifikasi',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -9,3 +9,11 @@ mkdir -p "$outdir"
 cp -pr ./ "$outdir"
 
 ln -snf "$outdir" "/deploy/current"
+
+cd "$outdir"
+
+if [ ! "${APP_DEBUG:-false}" = "true" ]
+then
+  php artisan config:cache
+  php artisan route:cache
+fi

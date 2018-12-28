@@ -18,39 +18,51 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
+  @activated-row: ~'@{_top}__body-row--menu-active';
+  @friend-row: ~'@{_top}__body-row--friend';
+  @passive-row: ~'@{_top}__body-row--highlightable';
+  @self-row: ~'@{_top}__body-row--self';
+
+  @handle: 16px;
   @row-height: 1.8em;
 
-  width: 100%;
-  overflow-x: auto;
+  .cell-color(@color, @highlight) {
+    color: @color;
 
-  .row-colour(@colour) {
-    > td {
-      background-color: lighten(@colour, 20%);
-    }
-
-    &:nth-child(odd) {
-      > td {
-        background-color: lighten(@colour, 20%);
+    && {
+      .@{activated-row} & {
+        color: @highlight;
       }
-    }
 
-    &:hover {
-      > td {
-        background-color: @colour;
+      .@{passive-row}:hover & {
+        color: @highlight;
       }
     }
   }
+
+  .row-color(@name, @color) {
+    .@{activated-row}.@{name} & {
+      color: #fff;
+      background-color: @color;
+    }
+
+    .@{passive-row}.@{name} & {
+      background-color: lighten(@color, 20%);
+    }
+
+    .@{passive-row}.@{name}:hover & {
+      color: #fff;
+      background-color: @color;
+    }
+  }
+
+  margin-right: -@handle;
+  overflow-x: auto;
 
   &__table {
     width: 100%;
     min-width: 800px;
     font-size: 12px;
-  }
-
-  &__grade {
-    width: 100%;
-    height: @row-height;
-    .center-content();
   }
 
   &__header {
@@ -106,87 +118,119 @@
       min-width: 50px;
       padding-left: 5px;
     }
+
+    &--play-detail-menu {
+      width: @handle;
+    }
   }
 
   &__body-row {
     height: @row-height;
 
-    > td:first-child {
+    // @passive-row
+    &--highlightable {
+      .@{_top}--menu-active & {
+        pointer-events: none;
+      }
+    }
+  }
+
+  // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
+  &__cell {
+    &:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
-    > td:last-child {
+
+    &:nth-last-child(2) {
       // ...and right side
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       padding-right: 10px;
     }
 
-    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
-    &:nth-child(odd) {
-      > td {
-        background-color: #eee;
-      }
+    &--grade {
+      width: 100%;
+      height: @row-height;
+      .center-content();
     }
 
-    &:hover {
-      color: #fff;
-
-      > td {
-        background-color: #555;
-      }
+    &--mods {
+      width: 1%; // don't let the column expand unless required
     }
 
-    &--friend {
-      .row-colour(@yellow-light);
+    &--perfect {
+      .cell-color(@green, @green-lighter);
     }
 
-    &--self {
-      .row-colour(@green-light);
-    }
-  }
-
-  &__mods {
-    width: 1%; // don't let the column expand unless required
-  }
-
-  &__perfect {
-    color: @green;
-
-    .@{_top}__body-row:hover & {
-      color: @green-lighter;
-    }
-  }
-
-  &__rank {
-    font-weight: 700;
-    text-align: right;
-  }
-
-  &__score {
-    padding-right: 10px;
-
-    .@{_top}__body-row--first & {
+    &--rank {
       font-weight: 700;
+      text-align: right;
+    }
+
+    &--score {
+      padding-right: 10px;
+
+      .@{_top}__body-row--first & {
+        font-weight: 700;
+      }
+    }
+
+    &--zero {
+      .cell-color(#aaa, #aaa);
+    }
+
+    // when row is selected
+    .@{activated-row} & {
+      color: #fff;
+      background-color: #555;
+    }
+
+    // when row is not selected
+    .@{passive-row} & {
+      background-color: #fff;
+    }
+
+    .@{passive-row}:nth-child(odd) & {
+      background-color: #eee;
+    }
+
+    // hovering over an unselected row
+    .@{passive-row}:hover & {
+      color: #fff;
+      background-color: #555;
+    }
+
+    .@{passive-row}:hover:nth-child(odd) & {
+      background-color: #555;
+    }
+
+    .row-color(@friend-row, @yellow-light);
+    .row-color(@self-row, @green-light);
+  }
+
+  &__play-detail-menu {
+    .@{activated-row} & {
+      opacity: 1;
+    }
+
+    .@{passive-row} & {
+      opacity: 0;
+    }
+
+    .@{passive-row}:hover & {
+      opacity: 1;
     }
   }
 
   &__user-link {
-    color: #555;
+    .cell-color(#555, #fff);
     transition: none;
 
     &:hover {
       font-weight: bold;
       text-decoration: none;
     }
-
-    .@{_top}__body-row:hover & {
-      color: #fff;
-    }
-  }
-  
-  &__zero {
-    color: #aaa;
   }
 }

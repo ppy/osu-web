@@ -59,12 +59,19 @@ export default class HeaderV3 extends React.Component<any, any> {
       classNames += ` header-v3--${this.props.theme}`;
     }
 
+    let osuPageClasses = 'osu-page osu-page--header-v3';
+    if (this.props.compact) {
+      osuPageClasses += '-compact';
+    }
+
     return (
       <div className={classNames}>
         <div className='header-v3__bg'></div>
         <div className='header-v3__overlay'></div>
-        <div className='osu-page osu-page--header-v3'>
-          { this.renderHeaderTitle() }
+        <div className={osuPageClasses}>
+          { !this.props.compact &&
+            this.renderHeaderTitle()
+          }
           { this.renderHeaderTabs() }
         </div>
       </div>

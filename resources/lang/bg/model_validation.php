@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Дублираната опция не е позволена.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Изборите на потребителя не трябва да надвишават броя на налични опции.',
             'minimum_one_selection' => 'Изисква се минимум една опция от потребителя.',
             'minimum_two_options' => 'Необходими са поне две опции.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Това е потребителското ти име, глупчо!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

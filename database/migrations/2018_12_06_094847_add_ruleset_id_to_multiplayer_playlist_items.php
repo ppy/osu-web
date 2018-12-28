@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddRulesetIdToMultiplayerPlaylistItems extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
+            $table->unsignedSmallInteger('ruleset_id')->nullable()->after('beatmap_id');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
+            $table->dropColumn('ruleset_id');
+        });
+    }
+}

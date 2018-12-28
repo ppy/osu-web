@@ -535,6 +535,7 @@ class OsuAuthorize
 
     public function checkChatChannelJoin(User $user, Channel $channel)
     {
+        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
@@ -562,7 +563,6 @@ class OsuAuthorize
                     break;
 
                 case Channel::TYPES['spectator']:
-                case Channel::TYPES['multiplayer']:
                 case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
                     if (starts_with($channel->name, '#spect_')) {
                         return 'ok';
@@ -576,10 +576,25 @@ class OsuAuthorize
                         }
                     }
                     break;
+
+                case Channel::TYPES['multiplayer']:
+                    return 'ok';
+                break;
             }
         }
 
         return $prefix.'no_access';
+    }
+
+    public function checkChatChannelPart(User $user, Channel $channel)
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($channel->type !== Channel::TYPES['private']) {
+            return 'ok';
+        }
     }
 
     public function checkCommentDestroy($user, $comment)
@@ -1040,13 +1055,6 @@ class OsuAuthorize
     }
 
     public function checkUserFavouriteRemove($user)
-    {
-        $this->ensureLoggedIn($user);
-
-        return 'ok';
-    }
-
-    public function checkUserReport($user)
     {
         $this->ensureLoggedIn($user);
 

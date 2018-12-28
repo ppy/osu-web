@@ -37,6 +37,7 @@ export default class Channel {
 
   @observable users: number[] = [];
 
+  @observable metaLoaded: boolean = false;
   @observable loading: boolean = false;
   @observable loaded: boolean = false;
   @observable moderated: boolean = false;
@@ -73,6 +74,15 @@ export default class Channel {
   }
 
   @computed
+  get pmTarget(): number | undefined {
+    if (this.type !== 'PM') {
+      return;
+    }
+
+    return this.users.find((userId: number) => userId !== currentUser.id);
+  }
+
+  @computed
   get isUnread(): boolean {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
@@ -92,6 +102,11 @@ export default class Channel {
 
       if (this.messages.length > this.backlogSize) {
         this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
+      }
+
+      const lastMessageId = _.maxBy(([] as Message[]).concat(messages), 'messageId').messageId;
+      if (lastMessageId > this.lastMessageId) {
+        this.lastMessageId = lastMessageId;
       }
     });
   }
@@ -131,6 +146,7 @@ export default class Channel {
     this.lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
 
     this.users = presence.users;
+    this.metaLoaded = true;
   }
 
   @action

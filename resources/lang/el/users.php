@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Ιστορικό Modding του χρήστη :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Πρόσφατα δημιουργημένες συζητήσεις',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
                     'restriction_info' => "Διαθέσιμη μεταφόρτωση για <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> μόνο",
-                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2000x700',
+                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
-                'title' => 'Επιτεύγματα',
                 'achieved-on' => 'Επιτεύχθηκε στις :date',
+                'locked' => '',
+                'title' => 'Επιτεύγματα',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Αγαπημένα Beatmaps (:count)',
+                    'title' => 'Αγαπημένα Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Παρατημένα Beatmaps (:count)',
+                    'title' => 'Παρατημένα Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Εκκρεμή Beatmaps (:count)',
+                    'title' => 'Εκκρεμή Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Ιστορικό Δραστηριότητας',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'φορές που παίχτηκε',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Ιστορικό Παρακολούθησης Replay',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
+                'recent' => '',
                 'title' => 'Μετάλλια',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => '',
                 'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Σκορ',
-                'weighted_pp' => 'σταθμισμένα: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Καλύτερες Eπιδόσεις',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Ενδιαφέροντα',
@@ -330,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Κατάταξη στη χώρα για το :mode',
+            'country_simple' => '',
             'global' => 'Παγκόσμια κατάταξη για το :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
             'level' => 'Επίπεδο :level',
+            'level_progress' => '',
             'maximum_combo' => 'Μέγιστο Combo',
+            'medals' => '',
             'play_count' => 'Αριθμός Προσπαθειών',
             'play_time' => 'Συνολικός Χρόνος Παιχνιδιού',
             'ranked_score' => 'Ranked Σκορ',

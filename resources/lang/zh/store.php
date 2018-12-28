@@ -89,6 +89,7 @@ return [
         'paid_on' => '订单支付于 :date',
 
         'invoice' => '查看发票',
+        'no_orders' => '没有可显示的订单。',
 
         'item' => [
             'display_name' => [

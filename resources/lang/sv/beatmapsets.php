@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
             'favourited_count' => '+ 1 annan!|+ :count andra!',
         ],
-        'stats' => [
-            'cs' => 'Cirkel Storlek',
-            'cs-mania' => 'Antal Tangenter',
-            'drain' => 'HP Tömning',
-            'accuracy' => 'Precision',
-            'ar' => 'Approach Hastighet',
-            'stars' => 'Stjärn Svårighetsgrad',
-            'total_length' => 'Längd',
-            'bpm' => 'BPM',
-            'count_circles' => 'Antal Cirklar',
-            'count_sliders' => 'Antal Sliders',
-            'user-rating' => 'Användar Betyg',
-            'rating-spread' => 'Betyg Spridning',
-            'nominations' => 'Nomineringar',
-            'playcount' => 'Speltid',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Beskrivning',
             'genre' => 'Genre',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Taggar',
             'unranked' => 'Ej rankad beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Leder',
                 'own' => 'Ditt Bästa',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Cirkel Storlek',
+            'cs-mania' => 'Antal Tangenter',
+            'drain' => 'HP Tömning',
+            'accuracy' => 'Precision',
+            'ar' => 'Approach Hastighet',
+            'stars' => 'Stjärn Svårighetsgrad',
+            'total_length' => 'Längd',
+            'bpm' => 'BPM',
+            'count_circles' => 'Antal Cirklar',
+            'count_sliders' => 'Antal Sliders',
+            'user-rating' => 'Användar Betyg',
+            'rating-spread' => 'Betyg Spridning',
+            'nominations' => 'Nomineringar',
+            'playcount' => 'Speltid',
         ],
     ],
 ];

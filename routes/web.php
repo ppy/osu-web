@@ -84,7 +84,10 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
+Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+
 Route::resource('comments', 'CommentsController');
+Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -133,6 +136,7 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
+        Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
         Route::resource('forums', 'ForumsController', ['only' => ['index', 'show']]);
     });
@@ -229,7 +233,7 @@ Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'nam
 });
 
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-// Route::resource('users', 'UsersController', ['only' => 'store']);
+Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
@@ -289,7 +293,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
@@ -304,7 +308,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
             Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
         });
 
-        Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
+        Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
+            Route::get('{mode?}', '\App\Http\Controllers\Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
+            Route::put('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@join')->name('join');
+            Route::delete('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@part')->name('part');
+            Route::get('{room_id}/leaderboard', '\App\Http\Controllers\Multiplayer\RoomsController@leaderboard');
+            Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
+                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
+            });
+        });
+        Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites

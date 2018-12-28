@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Compite de más formas que solo presionando círculos.',
-        'large' => '',
+        'large' => 'Concursos de la comunidad',
     ],
     'voting' => [
         'over' => 'Las votaciones para este concurso ya han terminado',
@@ -38,7 +38,7 @@ return [
         'over' => '¡Gracias por tu participación! Los envios se han cerrado para este concurso y la votación se abrirá pronto.',
         'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
         'drop_here' => 'Suelta tu entrada aquí',
-        'download' => '',
+        'download' => 'Descargar archivo .osz',
         'wrong_type' => [
             'art' => 'Solo se aceptan archivos .jpg y .png en este concurso.',
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',

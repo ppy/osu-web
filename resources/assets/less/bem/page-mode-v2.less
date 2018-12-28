@@ -25,22 +25,24 @@
   .default-text-shadow();
   display: flex;
   list-style: none;
-  padding: 0 (@gutter-desktop + @gutter - 10px);
+  padding: 0;
   margin: 0;
   width: 100%;
-  min-height: @_bar-active-height;
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
+    min-height: @_bar-active-height;
   }
 
   &::after {
     content: '';
     width: 100%;
     height: @_bar-height;
-    position: absolute;
     bottom: 0;
     left: 0;
+    @media @desktop {
+      position: absolute;
+    }
   }
 
   &--changelog {
@@ -58,6 +60,12 @@
   &--comments {
     &::after {
       background-color: @blue;
+    }
+  }
+
+  &--users {
+    &::after {
+      background-color: @community-user-green;
     }
   }
 
@@ -83,6 +91,10 @@
 
       .@{_top}--comments & {
         color: @blue;
+      }
+
+      .@{_top}--users & {
+        color: @community-user-green;
       }
     }
   }
@@ -110,6 +122,7 @@
       will-change: transform;
       pointer-events: none;
       transform: scaleY(0);
+      z-index: @z-index--page-header; // prevent page content from covering the bottom poart
     }
 
     &:hover::before {
@@ -137,6 +150,14 @@
 
       &::before {
         background-color: @blue;
+      }
+    }
+
+    .@{_top}--users & {
+      color: @community-user-green;
+
+      &::before {
+        background-color: @community-user-green;
       }
     }
 

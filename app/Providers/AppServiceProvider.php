@@ -20,9 +20,11 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
 use App\Models\Comment;
+use App\Models\UserReport;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -40,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap(Comment::COMMENTABLES);
+        Relation::morphMap(UserReport::REPORTABLES);
 
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
@@ -72,6 +75,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
+        });
+
+        $this->app->singleton(RequireScopes::class, function () {
+            return new RequireScopes;
         });
 
         // The middleware breaks without this. Not sure why.

@@ -38,4 +38,16 @@ class BBCodeFromDBTest extends TestCase
             $this->assertSame($referenceOutput, $output);
         }
     }
+
+    public function testRemoveBlockQuotes()
+    {
+        $path = __DIR__.'/bbcode_examples/remove_quotes';
+
+        foreach (glob("$path/*.db.txt") as $dbFilePath) {
+            $expectedFilePath = preg_replace('/\.db\.txt$/', '.expected.txt', $dbFilePath);
+            $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
+
+            $this->assertStringEqualsFile($expectedFilePath, $text);
+        }
+    }
 }

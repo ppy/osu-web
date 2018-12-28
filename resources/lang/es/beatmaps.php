@@ -145,15 +145,15 @@ return [
 
     'nominations' => [
         'delete' => 'Borrar',
-        'delete_own_confirm' => '',
-        'delete_other_confirm' => '',
+        'delete_own_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta a tu perfil.',
+        'delete_other_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta al perfil de usuario.',
         'disqualification_prompt' => '¿Motivo de la descalificación?',
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
-        'love' => '',
-        'love_confirm' => '',
+        'love' => 'Amor',
+        'love_confirm' => '¿Te encanta este beatmap?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
+            'disqualify' => '',
         ],
     ],
 
@@ -227,7 +228,7 @@ return [
         'qualified' => 'Calificados',
         'loved' => 'Amados',
         'faves' => 'Favoritos',
-        'pending' => '',
+        'pending' => 'Pendiente y trabajo en progreso',
         'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],

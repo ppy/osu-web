@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'favourited_count' => '+ 1 másik!|+ :count másik!',
         ],
-        'stats' => [
-            'cs' => 'Kör nagyság',
-            'cs-mania' => 'Billentyűk száma',
-            'drain' => 'HP Vesztés',
-            'accuracy' => 'Pontosság',
-            'ar' => 'Közelítési sebesség',
-            'stars' => 'Nehézség',
-            'total_length' => 'Hossz',
-            'bpm' => 'BPM',
-            'count_circles' => 'Körök Száma',
-            'count_sliders' => 'Sliderek Száma',
-            'user-rating' => 'Felhasználói Értékelés',
-            'rating-spread' => 'Értékelési Szórás',
-            'nominations' => 'Nominálások',
-            'playcount' => 'Játékszám',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Címkék',
             'unranked' => 'Rangsorolatlan beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Az élen',
                 'own' => 'A legjobbad',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Kör nagyság',
+            'cs-mania' => 'Billentyűk száma',
+            'drain' => 'HP Vesztés',
+            'accuracy' => 'Pontosság',
+            'ar' => 'Közelítési sebesség',
+            'stars' => 'Nehézség',
+            'total_length' => 'Hossz',
+            'bpm' => 'BPM',
+            'count_circles' => 'Körök Száma',
+            'count_sliders' => 'Sliderek Száma',
+            'user-rating' => 'Felhasználói Értékelés',
+            'rating-spread' => 'Értékelési Szórás',
+            'nominations' => 'Nominálások',
+            'playcount' => 'Játékszám',
         ],
     ],
 ];
