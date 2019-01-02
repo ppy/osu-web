@@ -83,6 +83,7 @@
                     </div>
 
                     <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                        @include('forum.forums._topics_sort', compact('forum'))
                         @include('forum.forums._mark_as_read', compact('forum'))
                     </div>
                 </div>
@@ -108,6 +109,7 @@
                     </div>
 
                     <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                        @include('forum.forums._topics_sort', compact('forum'))
                         @include('forum.forums._mark_as_read', compact('forum'))
                     </div>
                 </div>

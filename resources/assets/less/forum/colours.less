@@ -24,6 +24,12 @@
 
 .fn-forum(@category, @bg, @text, @text-hover) {
   .t-forum-@{category} {
+    .u-forum--before-bg {
+      &::before {
+        background-color: @bg !important;
+      }
+    }
+
     .u-forum--bg {
       background-color: @bg !important;
     }
@@ -31,7 +37,6 @@
     .u-forum--bg-link {
       background-color: @text !important;
     }
-
 
     .u-forum--hover-area:hover .u-forum--hover-target {
       color: @text-hover !important;
