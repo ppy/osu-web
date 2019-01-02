@@ -78,7 +78,9 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    Timeout.set 0, -> $('.js-user-login--menu')[0].click()
+    Timeout.set 0, ->
+      $(document).trigger 'gallery:close'
+      $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>

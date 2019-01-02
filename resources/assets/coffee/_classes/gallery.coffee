@@ -23,6 +23,9 @@ class @Gallery
     $(document).on 'click', '.js-gallery', @initiateOpen
     $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
 
+    $(document).on 'turbolinks:before-cache', ->
+      $('.pswp--open').remove()
+
 
   initiateOpen: (e) =>
     $target = $(e.currentTarget)
@@ -49,9 +52,9 @@ class @Gallery
 
     pswp.init()
 
-    $(document).one 'turbolinks:before-cache', ->
+    $(document).one 'gallery:close', ->
       # ignore any failures (in case already destroyed)
-      try pswp?.destroy()
+      try pswp.close()
 
 
   data: (galleryId) ->
