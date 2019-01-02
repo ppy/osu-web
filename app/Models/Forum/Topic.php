@@ -491,27 +491,15 @@ class Topic extends Model implements AfterCommit
 
     public function scopePresetSort($query, $sort)
     {
-        switch ($sort[0] ?? null) {
+        $tieBreakerOrder = 'desc';
+
+        switch ($sort) {
             case 'feature-votes':
-                $sortField = 'osu_starpriority';
+                $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
-
-        switch ($sort[1] ?? null) {
-            case 'asc':
-                $sortOrder = $sort[1];
-                break;
-        }
-
-        $sortOrder ?? ($sortOrder = 'desc');
-
-        $query->orderBy($sortField, $sortOrder);
-
-        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
-            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
-        }
+        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)

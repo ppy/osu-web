@@ -90,7 +90,7 @@ class ForumsController extends Controller
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
         $lastTopics = Forum::lastTopics($forum);
 
-        $sort = explode('_', Request::input('sort'));
+        $sort = Request::input('sort');
         $withReplies = Request::input('with_replies', '');
 
         priv_check('ForumView', $forum)->ensureCan();
