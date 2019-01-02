@@ -24,7 +24,7 @@ class @Gallery
     $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
 
     $(document).on 'turbolinks:before-cache', ->
-      $('.pswp--open').remove()
+      $('.js-gallery--container').remove()
 
 
   initiateOpen: (e) =>
@@ -38,7 +38,11 @@ class @Gallery
 
 
   open: ({galleryId, index}) =>
-    pswp = new PhotoSwipe @container[0],
+    container = @container[0].cloneNode(true)
+    container.classList.add 'js-gallery--container'
+    document.body.appendChild container
+
+    pswp = new PhotoSwipe container,
       PhotoSwipeUI_Default
       @data galleryId
       showHideOpacity: true
@@ -48,7 +52,7 @@ class @Gallery
       timeToIdle: null
 
     if _.startsWith(galleryId, 'contest-')
-      new _exported.GalleryContest(@container[0], pswp)
+      new _exported.GalleryContest(container, pswp)
 
     pswp.init()
 
