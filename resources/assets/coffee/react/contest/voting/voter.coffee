@@ -55,7 +55,8 @@ class Contest.Voting.Voter extends React.Component
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     isSelected = @isSelected()
     isLoading = @props.waitingForResponse
-    isVisible = isSelected || (@props.selected.length < @props.contest.max_votes && !votingOver)
+    hasVote = @props.selected.length < @props.contest.max_votes
+    isVisible = isSelected || (!votingOver && hasVote)
 
     classes = [
       'js-contest-vote-button'
@@ -67,7 +68,7 @@ class Contest.Voting.Voter extends React.Component
     component = div
     props =
       'data-button-id': @props.buttonId
-      'data-contest-vote-meta': JSON.stringify({isSelected, isLoading, isVisible})
+      'data-contest-vote-meta': JSON.stringify({hasVote, isSelected, isLoading, votingOver})
     icon = null
 
     if !isVisible

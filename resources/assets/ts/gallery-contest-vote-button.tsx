@@ -47,11 +47,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
     }
 
     render() {
-        if (!this.state.button.isVisible) {
-            return null;
-        }
-
-        return <button className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()} disabled={this.state.isLoading}>
+        return <button className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
             <span className={this.iconClass()} />
         </button>;
     }
@@ -77,11 +73,20 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
     }
 
     private buttonTitle = () => {
+        if (this.state.isLoading || this.state.button.votingOver) {
+            return;
+        }
+
         if (this.state.button.isSelected) {
             return osu.trans('contest.voting.button.remove');
-        } else {
-            return osu.trans('contest.voting.button.add');
         }
+
+        if (!this.state.button.hasVote) {
+            return osu.trans('contest.voting.button.used_up');
+        }
+
+        return osu.trans('contest.voting.button.add');
+
     }
 
     private iconClass() {
@@ -90,6 +95,12 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
         } else {
             return 'fas fa-star';
         }
+    }
+
+    private isDisabled = () => {
+        return this.state.isLoading ||
+            this.state.button.votingOver ||
+            (!this.state.button.isSelected && !this.state.button.hasVote);
     }
 
     private loadingEnd = () => {
@@ -101,11 +112,15 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
         this.setState({ isLoading: true });
     }
 
-    private mainClass() {
+    private mainClass = () => {
         let ret = 'pswp__button pswp__button--contest-vote js-gallery-extra';
 
         if (this.state.button.isSelected) {
             ret += ' pswp__button--contest-vote-active';
+        }
+
+        if (this.isDisabled()) {
+            ret += ' pswp__button--disabled';
         }
 
         return ret;
@@ -116,6 +131,10 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
     }
 
     private vote = () => {
+        if (this.isDisabled()) {
+            return;
+        }
+
         const button = this.button();
 
         if (button != null) {

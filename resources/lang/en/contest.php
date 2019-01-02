@@ -34,6 +34,7 @@ return [
         'button' => [
             'add' => 'Vote',
             'remove' => 'Remove vote',
+            'used_up' => 'You have used up all your votes',
         ],
     ],
     'entry' => [
