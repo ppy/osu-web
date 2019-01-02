@@ -767,7 +767,7 @@ class Topic extends Model implements AfterCommit
 
     public function isFeatureTopic()
     {
-        return $this->forum->isFeatureForum();
+        return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
     public function poll($poll = null)
