@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\ValidationException;
+use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 
@@ -28,6 +30,14 @@ class UserReport extends Model
     use Validatable;
 
     const CREATED_AT = 'timestamp';
+    const REPORTABLES = [
+        'comment' => Comment::class,
+        'user' => User::class,
+        'score_best_osu' => Best\Osu::class,
+        'score_best_taiko' => Best\Taiko::class,
+        'score_best_fruits' => Best\Fruits::class,
+        'score_best_mania' => Best\Mania::class,
+    ];
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
@@ -35,6 +45,11 @@ class UserReport extends Model
     protected $dates = ['timestamp'];
 
     public $timestamps = false;
+
+    public function reportable()
+    {
+        return $this->morphTo();
+    }
 
     public function reporter()
     {
@@ -73,7 +88,7 @@ class UserReport extends Model
     public function save(array $options = [])
     {
         if (!$this->isValid()) {
-            return false;
+            throw new ValidationException($this->validationErrors());
         }
 
         return parent::save();

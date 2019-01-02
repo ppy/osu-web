@@ -185,6 +185,13 @@ class @Comment extends React.PureComponent
                   onClick: @delete
                   osu.trans('common.buttons.delete')
 
+            if @canReport()
+              div className: 'comment__row-item',
+                el _exported.ReportComment,
+                  className: 'comment__action'
+                  comment: @props.comment
+                  user: @userFor(@props.comment)
+
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
                 if @props.showReplies
@@ -297,6 +304,10 @@ class @Comment extends React.PureComponent
 
   canModerate: =>
     currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
+
+
+  canReport: =>
+    currentUser.id? && @props.comment.user_id != currentUser.id
 
 
   canRestore: =>
