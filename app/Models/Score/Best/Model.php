@@ -24,13 +24,15 @@ use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
+use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
-use App\Models\UserReport;
 use DB;
 
 abstract class Model extends BaseModel
 {
+    use Reportable;
+
     public $position = null;
     public $weight = null;
     public $macros = [
@@ -283,18 +285,6 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
-    public function scopeReportedBy($query, $user)
-    {
-        return $query->whereHas('reportedIn', function ($q) use ($user) {
-            $q->where('reporter_id', $user->getKey());
-        });
-    }
-
-    public function reportedIn()
-    {
-        return $this->morphMany(UserReport::class, 'score', 'mode');
-    }
-
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -305,11 +295,6 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getMorphClass()
-    {
-        return Beatmap::modeInt(snake_case(get_class_basename(static::class)));
     }
 
     public function delete()
@@ -333,5 +318,15 @@ abstract class Model extends BaseModel
         optional($this->replayFile())->delete();
 
         return $result;
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'mode' => Beatmap::modeInt($this->getMode()),
+            'reason' => 'Cheating', // TODO: probably want more options
+            'score_id' => $this->getKey(),
+            'user_id' => $this->user_id,
+        ];
     }
 }
