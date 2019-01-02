@@ -108,6 +108,16 @@
                 {{ number_format($topic->topic_replies) }}
                 <i class="far fa-comment"></i>
             </div>
+
+            @if ($topic->isFeatureTopic())
+                <div
+                    title="{{ trans('forum.topics.index.feature_votes') }}"
+                    data-tooltip-position="right center"
+                >
+                    {{ number_format($topic->osu_starpriority) }}
+                    <i class="far fa-star"></i>
+                </div>
+            @endif
         </div>
 
         <div class="forum-topic-entry__content forum-topic-entry__content--right">

@@ -191,8 +191,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'views',
+            'feature_votes' => 'star priority',
             'replies' => 'replies',
+            'views' => 'views',
         ],
 
         'issue_tag_added' => [
