@@ -18,14 +18,14 @@
 
 {div, span} = ReactDOMFactories
 
-baseClass = osu.classWithModifiers('contest__voting-star', ['smaller', 'float-right'])
+baseClass = osu.classWithModifiers('contest__voting-star', ['smaller'])
 selectedClass = 'contest__voting-star--selected'
 
 Contest.Voting.VoteSummary = ({voteCount, maxVotes}) ->
   div null,
     for i in [0...maxVotes]
       className = baseClass
-      className += " #{selectedClass}" if i >= voteCount
+      className += " #{selectedClass}" if i < voteCount
 
       div
         key: "vote-#{i}"
