@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
@@ -90,7 +91,7 @@ class ForumsController extends Controller
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
         $lastTopics = Forum::lastTopics($forum);
 
-        $sort = Request::input('sort');
+        $sort = Request::input('sort') ?? Topic::DEFAULT_SORT;
         $withReplies = Request::input('with_replies', '');
 
         priv_check('ForumView', $forum)->ensureCan();
@@ -107,6 +108,14 @@ class ForumsController extends Controller
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover', 'lastTopics'));
+        return view('forum.forums.show', compact(
+            'cover',
+            'forum',
+            'lastTopics',
+            'pinnedTopics',
+            'sort',
+            'topicReadStatus',
+            'topics'
+        ));
     }
 }

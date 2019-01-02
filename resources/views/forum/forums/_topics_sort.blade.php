@@ -19,7 +19,7 @@
     $menu = [];
 
     if (optional($forum ?? null)->isFeatureForum()) {
-        $menu[] = [
+        $menu['feature-votes'] = [
             'url' => route('forum.forums.show', ['forums' => $forum, 'sort' => 'feature-votes']),
             'title' => trans('forum.topics.index.sort.feature_votes'),
         ];
@@ -28,7 +28,7 @@
 @if (count($menu) > 0)
     @php
         $menuId = 'topics-sort-'.rand();
-        $menu[] = [
+        $menu['new'] = [
             'url' => route('forum.forums.show', ['forums' => $forum]),
             'title' => trans('forum.topics.index.sort.new'),
         ];
@@ -45,9 +45,13 @@
             data-click-menu-id="{{ $menuId }}"
             data-visibility="hidden"
         >
-            @foreach ($menu as $menuItem)
+            @foreach ($menu as $menuSort => $menuItem)
                 <a
-                    class="simple-menu__item u-forum--before-bg"
+                    class="
+                        simple-menu__item
+                        {{ ($sort ?? null) === $menuSort ? 'simple-menu__item--active' : '' }}
+                        u-forum--before-bg
+                    "
                     href="{{ $menuItem['url'] }}"
                 >{{ $menuItem['title'] }}
                 </a>

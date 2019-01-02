@@ -39,7 +39,7 @@ class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+    const DEFAULT_SORT = 'new';
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
