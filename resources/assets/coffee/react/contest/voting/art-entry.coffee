@@ -27,6 +27,7 @@ class Contest.Voting.ArtEntry extends React.Component
     shape = @props.contest.shape
     galleryId = "contest-#{@props.contest.id}"
     buttonId = "#{galleryId}:#{@props.displayIndex}"
+    hideVoteButton = (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
 
     if showVotes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
@@ -55,23 +56,22 @@ class Contest.Voting.ArtEntry extends React.Component
         'data-button-id': buttonId
       }
 
-      if (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
-        null
-      else
-        div className: _.compact([
-          'contest__vote-link-banner',
-          'contest__vote-link-banner--selected' if isSelected,
+      div
+        className: _([
+          'contest__vote-link-banner'
+          'contest__vote-link-banner--selected' if isSelected
           'contest__vote-link-banner--smaller' if showVotes && place > 2
-        ]).join(' '),
-          el Contest.Voting.Voter,
-            key: @props.entry.id,
-            entry: @props.entry,
-            waitingForResponse: @props.waitingForResponse,
-            voteCount: @props.selected.length,
-            contest: @props.contest,
-            selected: @props.selected,
-            theme: if showVotes && place > 2 then 'art-smaller' else 'art'
-            buttonId: buttonId
+          'hidden' if hideVoteButton
+        ]).compact().join(' ')
+        el Contest.Voting.Voter,
+          key: @props.entry.id,
+          entry: @props.entry,
+          waitingForResponse: @props.waitingForResponse,
+          voteCount: @props.selected.length,
+          contest: @props.contest,
+          selected: @props.selected,
+          theme: if showVotes && place > 2 then 'art-smaller' else 'art'
+          buttonId: buttonId
 
       if showVotes
         div className: 'contest-art-entry__result',
