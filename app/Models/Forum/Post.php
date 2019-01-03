@@ -236,6 +236,10 @@ class Post extends Model implements AfterCommit
             }
         }
 
+        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
+            $this->validationErrors()->add('base', '.only_quote');
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 

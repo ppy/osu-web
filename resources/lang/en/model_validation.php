@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
             'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'only_quote' => 'Your reply contains only a quote.',
         ],
 
         'topic_poll' => [

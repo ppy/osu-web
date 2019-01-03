@@ -59,7 +59,7 @@ class @UserVerification
       $.post laroute.route('account.verify'),
         verification_key: inputKey
       .done @success
-      .error @error
+      .fail @error
 
 
   error: (xhr) =>
@@ -89,7 +89,7 @@ class @UserVerification
       $.post laroute.route('account.reissue-code')
       .done (data) =>
         @setMessage data.message
-      .error @error
+      .fail @error
 
 
   reposition: =>

@@ -59,13 +59,15 @@ class UserChannel extends Model
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
         $userRelationTableName = (new UserRelation)->tableName(true);
-        $userChannelMembers = self::whereIn('channel_id', $userChannels->pluck('channel_id'))
+        $userChannelMembers = self::whereIn('user_channels.channel_id', $userChannels->pluck('channel_id'))
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
                 $join->on("{$userRelationTableName}.zebra_id", 'user_channels.user_id')
                     ->where("{$userRelationTableName}.user_id", $userId);
             })
+            ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
+            ->where('channels.type', '=', 'PM')
             ->with('userScoped')
             ->get();
 
