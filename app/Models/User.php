@@ -1099,7 +1099,7 @@ class User extends Model implements AuthenticatableContract
             $this->memoized['blocks'] = $this->blocks;
         }
 
-        return $this->memoized['blocks']->where('zebra_id', $user->user_id)->count() > 0;
+        return $this->memoized['blocks']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFriended(self $user)
@@ -1108,7 +1108,7 @@ class User extends Model implements AuthenticatableContract
             $this->memoized['friends'] = $this->friends;
         }
 
-        return $this->memoized['friends']->where('zebra_id', $user->user_id)->count() > 0;
+        return $this->memoized['friends']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFavourited($beatmapset)
