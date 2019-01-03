@@ -8,7 +8,11 @@ interface JQueryStatic {
   unsubscribe: any,
   publish: any
 }
+interface TooltipDefault {
+  remove: (HTMLElement) => void,
+}
 // our helpers
+declare var tooltipDefault: TooltipDefault;
 declare var osu: any;
 declare var currentUser: any;
 declare var reactTurbolinks: any;

@@ -23,12 +23,11 @@ interface PropsInterface {
 }
 
 export default class GalleryContestVoteButton extends React.PureComponent<PropsInterface, any> {
-    private eventId: string;
+    private eventId = `gallery-contest-${osu.uuid()}`;
+    private mainRef = React.createRef<HTMLButtonElement>();
 
     constructor(props: PropsInterface) {
         super(props);
-
-        this.eventId = `gallery-contest-${osu.uuid()}`;
 
         this.state = {
             isLoading: false,
@@ -42,12 +41,16 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
         this.props.pswp.listen('afterChange', this.syncState);
     }
 
+    componentDidUpdate() {
+        this.resetTooltip();
+    }
+
     componentWillUnmount() {
         $.unsubscribe(`.${this.eventId}`);
     }
 
     render() {
-        return <button className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
+        return <button ref={this.mainRef} className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
             <span className={this.iconClass()} />
         </button>;
     }
@@ -124,6 +127,14 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
         }
 
         return ret;
+    }
+
+    private resetTooltip = () => {
+        let main = this.mainRef.current;
+
+        if (main != null) {
+            tooltipDefault.remove(main);
+        }
     }
 
     private syncState = () => {
