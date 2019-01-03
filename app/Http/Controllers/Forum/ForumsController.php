@@ -103,8 +103,19 @@ class ForumsController extends Controller
 
         $showDeleted = priv_check('ForumModerate', $forum)->can();
 
-        $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(30);
+        $pinnedTopics = $forum->topics()
+            ->with('forum')
+            ->pinned()
+            ->showDeleted($showDeleted)
+            ->orderBy('topic_type', 'desc')
+            ->recent()
+            ->get();
+        $topics = $forum->topics()
+            ->with('forum')
+            ->normal()
+            ->showDeleted($showDeleted)
+            ->recent(compact('sort', 'withReplies'))
+            ->paginate(30);
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
