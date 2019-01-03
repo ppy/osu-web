@@ -21,20 +21,20 @@ import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 export default class GalleryContest {
-    private eventId: string;
-    private root: HTMLElement;
+  private eventId: string;
+  private root: HTMLElement;
 
-    constructor(container: HTMLElement, pswp: any) {
-        this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;
-        render(createElement(GalleryContestVoteButton, {pswp}), this.root);
-        this.eventId = `gallery-contest-${osu.uuid()}`;
+  constructor(container: HTMLElement, pswp: any) {
+    this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;
+    render(createElement(GalleryContestVoteButton, {pswp}), this.root);
+    this.eventId = `gallery-contest-${osu.uuid()}`;
 
-        $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
-        pswp.listen('destroy', this.destroy);
-    }
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
+    pswp.listen('destroy', this.destroy);
+  }
 
-    destroy = () => {
-         unmountComponentAtNode(this.root);
-         $(document).off(`.${this.eventId}`)
-    }
+  destroy = () => {
+    unmountComponentAtNode(this.root);
+    $(document).off(`.${this.eventId}`)
+  }
 }

@@ -19,137 +19,137 @@
 import * as React from 'react';
 
 interface PropsInterface {
-    pswp: any;
+  pswp: any;
 }
 
 export default class GalleryContestVoteButton extends React.PureComponent<PropsInterface, any> {
-    private eventId = `gallery-contest-${osu.uuid()}`;
-    private mainRef = React.createRef<HTMLButtonElement>();
+  private eventId = `gallery-contest-${osu.uuid()}`;
+  private mainRef = React.createRef<HTMLButtonElement>();
 
-    constructor(props: PropsInterface) {
-        super(props);
+  constructor(props: PropsInterface) {
+    super(props);
 
-        this.state = {
-            isLoading: false,
-            button: this.buttonState(),
-        };
+    this.state = {
+      isLoading: false,
+      button: this.buttonState(),
+    };
+  }
+
+  componentDidMount() {
+    $.subscribe(`contest:vote:click.${this.eventId}`, this.loadingStart)
+    $.subscribe(`contest:vote:end.${this.eventId}`, this.loadingEnd)
+    this.props.pswp.listen('afterChange', this.syncState);
+  }
+
+  componentDidUpdate() {
+    this.resetTooltip();
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
+  }
+
+  render() {
+    return <button ref={this.mainRef} className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
+      <span className={this.iconClass()} />
+    </button>;
+  }
+
+  private button() {
+    if (this.props.pswp.currItem == null) {
+      return;
     }
 
-    componentDidMount() {
-        $.subscribe(`contest:vote:click.${this.eventId}`, this.loadingStart)
-        $.subscribe(`contest:vote:end.${this.eventId}`, this.loadingEnd)
-        this.props.pswp.listen('afterChange', this.syncState);
+    const id = this.props.pswp.currItem.element.dataset.buttonId;
+
+    return document.querySelector(`.js-contest-vote-button[data-button-id='${id}']`) as HTMLElement;
+  }
+
+  private buttonState = () => {
+    const button = this.button();
+
+    if (button != null && button.dataset.contestVoteMeta != null) {
+      return JSON.parse(button.dataset.contestVoteMeta);
     }
 
-    componentDidUpdate() {
-        this.resetTooltip();
+    return {};
+  }
+
+  private buttonTitle = () => {
+    if (this.state.isLoading || this.state.button.votingOver) {
+      return;
     }
 
-    componentWillUnmount() {
-        $.unsubscribe(`.${this.eventId}`);
+    if (this.state.button.isSelected) {
+      return osu.trans('contest.voting.button.remove');
     }
 
-    render() {
-        return <button ref={this.mainRef} className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
-            <span className={this.iconClass()} />
-        </button>;
+    if (!this.state.button.hasVote) {
+      return osu.trans('contest.voting.button.used_up');
     }
 
-    private button() {
-        if (this.props.pswp.currItem == null) {
-            return;
-        }
+    return osu.trans('contest.voting.button.add');
 
-        const id = this.props.pswp.currItem.element.dataset.buttonId;
+  }
 
-        return document.querySelector(`.js-contest-vote-button[data-button-id='${id}']`) as HTMLElement;
+  private iconClass() {
+    if (this.state.isLoading) {
+      return 'fas fa-sync fa-spin';
+    } else {
+      return 'fas fa-star';
+    }
+  }
+
+  private isDisabled = () => {
+    return this.state.isLoading ||
+      this.state.button.votingOver ||
+      (!this.state.button.isSelected && !this.state.button.hasVote);
+  }
+
+  private loadingEnd = () => {
+    this.setState({ isLoading: false });
+    this.syncState();
+  }
+
+  private loadingStart = () => {
+    this.setState({ isLoading: true });
+  }
+
+  private mainClass = () => {
+    let ret = 'pswp__button pswp__button--contest-vote js-gallery-extra';
+
+    if (this.state.button.isSelected) {
+      ret += ' pswp__button--contest-vote-active';
     }
 
-    private buttonState = () => {
-        const button = this.button();
-
-        if (button != null && button.dataset.contestVoteMeta != null) {
-            return JSON.parse(button.dataset.contestVoteMeta);
-        }
-
-        return {};
+    if (this.isDisabled()) {
+      ret += ' pswp__button--disabled';
     }
 
-    private buttonTitle = () => {
-        if (this.state.isLoading || this.state.button.votingOver) {
-            return;
-        }
+    return ret;
+  }
 
-        if (this.state.button.isSelected) {
-            return osu.trans('contest.voting.button.remove');
-        }
+  private resetTooltip = () => {
+    let main = this.mainRef.current;
 
-        if (!this.state.button.hasVote) {
-            return osu.trans('contest.voting.button.used_up');
-        }
+    if (main != null) {
+      tooltipDefault.remove(main);
+    }
+  }
 
-        return osu.trans('contest.voting.button.add');
+  private syncState = () => {
+    this.setState({ button: this.buttonState() });
+  }
 
+  private vote = () => {
+    if (this.isDisabled()) {
+      return;
     }
 
-    private iconClass() {
-        if (this.state.isLoading) {
-            return 'fas fa-sync fa-spin';
-        } else {
-            return 'fas fa-star';
-        }
+    const button = this.button();
+
+    if (button != null) {
+      button.click();
     }
-
-    private isDisabled = () => {
-        return this.state.isLoading ||
-            this.state.button.votingOver ||
-            (!this.state.button.isSelected && !this.state.button.hasVote);
-    }
-
-    private loadingEnd = () => {
-        this.setState({ isLoading: false });
-        this.syncState();
-    }
-
-    private loadingStart = () => {
-        this.setState({ isLoading: true });
-    }
-
-    private mainClass = () => {
-        let ret = 'pswp__button pswp__button--contest-vote js-gallery-extra';
-
-        if (this.state.button.isSelected) {
-            ret += ' pswp__button--contest-vote-active';
-        }
-
-        if (this.isDisabled()) {
-            ret += ' pswp__button--disabled';
-        }
-
-        return ret;
-    }
-
-    private resetTooltip = () => {
-        let main = this.mainRef.current;
-
-        if (main != null) {
-            tooltipDefault.remove(main);
-        }
-    }
-
-    private syncState = () => {
-        this.setState({ button: this.buttonState() });
-    }
-
-    private vote = () => {
-        if (this.isDisabled()) {
-            return;
-        }
-
-        const button = this.button();
-
-        if (button != null) {
-            button.click();
-        }
-    }
+  }
 }
