@@ -56,8 +56,9 @@ class ChannelsController extends Controller
     {
         $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
 
+        // TODO: the order of these check seems wrong?
         // FIXME: doesn't seem right authorizing leaving channel
-        priv_check('ChatChannelJoin', $channel)->ensureCan();
+        priv_check('ChatChannelPart', $channel)->ensureCan();
 
         if (Auth::user()->user_id !== get_int($user_id)) {
             abort(403);

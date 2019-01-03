@@ -21,6 +21,7 @@
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
 import { PlayDetailMenu } from 'play-detail-menu'
+import { ReportComment } from 'report-comment'
 import { ReportUser } from 'report-user'
 import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
@@ -37,6 +38,7 @@ window._exported = {
   BackToTop
   PlayDetailList
   PlayDetailMenu
+  ReportComment
   ReportUser
   ScoreHelper
   SelectOptions
