@@ -101,6 +101,7 @@ class ProfilePage.AchievementBadge extends React.PureComponent
 
 
   onMouseOver: (event) =>
+    event.persist()
     elem = event.currentTarget
 
     return if elem._loadedTooltipId == @tooltipId
