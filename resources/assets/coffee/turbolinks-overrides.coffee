@@ -21,6 +21,9 @@
 $(document).on 'click', 'a[href^="#"]', (e) ->
   href = e.currentTarget.href
   targetId = decodeURIComponent href[href.indexOf('#') + 1..]
+
+  return if targetId == ''
+
   target = document.getElementById targetId
 
   return if !target?

@@ -109,7 +109,7 @@
 
     .@{_top}--nav2 & {
       min-height: 100px;
-      max-height: calc(100vh ~'-' (@nav2-height + @_padding-vertical * 2));
+      max-height: calc(100vh - (@nav2-height + @_padding-vertical * 2));
       overflow-y: auto;
     }
 
@@ -162,7 +162,7 @@
         top: (@_item-padding-vertical + 2px);
         left: 10px;
         width: 3px;
-        height: calc(100% ~'-' (@_item-padding-vertical * 2 + 4px));
+        height: calc(100% - (@_item-padding-vertical * 2 + 4px));
         background-color: @yellow;
       }
     }

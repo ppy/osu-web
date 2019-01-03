@@ -40,10 +40,10 @@
   &__item {
     margin: (@item-gutter / 2);
     flex: none;
-    width: calc(100% ~'-' @item-gutter);
+    width: calc(100% - @item-gutter);
 
     @media @desktop {
-      width: calc(50% ~'-' @item-gutter);
+      width: calc(50% - @item-gutter);
     }
   }
 
