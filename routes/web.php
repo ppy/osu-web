@@ -295,17 +295,17 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
-        Route::group(['as' => 'chat.', 'prefix' => 'chat'], function () {
-            Route::post('new', 'Chat\ChatController@newConversation')->name('new');
-            Route::get('updates', 'Chat\ChatController@updates')->name('updates');
-            Route::get('presence', 'Chat\ChatController@presence')->name('presence');
+        Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('new', 'ChatController@newConversation')->name('new');
+            Route::get('updates', 'ChatController@updates')->name('updates');
+            Route::get('presence', 'ChatController@presence')->name('presence');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-                Route::apiResource('{channel_id}/messages', 'Chat\Channels\MessagesController', ['only' => ['index', 'store']]);
-                Route::put('{channel_id}/users/{user_id}', 'Chat\ChannelsController@join')->name('join');
-                Route::delete('{channel_id}/users/{user_id}', 'Chat\ChannelsController@part')->name('part');
-                Route::put('{channel_id}/mark-as-read/{message_id}', 'Chat\ChannelsController@markAsRead')->name('mark-as-read');
+                Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
+                Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
+                Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'Chat\ChannelsController', ['only' => ['index']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
         });
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
