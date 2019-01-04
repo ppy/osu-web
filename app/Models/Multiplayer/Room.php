@@ -111,7 +111,7 @@ class Room extends Model
 
     public function completePlay(RoomScore $score, array $params)
     {
-        priv_check('MultiplayerScoreSubmit', $score->user)->ensureCan();
+        priv_check_user($score->user, 'MultiplayerScoreSubmit')->ensureCan();
 
         $this->assertValidCompletePlay();
 
@@ -132,7 +132,7 @@ class Room extends Model
 
     public function startGame(User $owner, array $params)
     {
-        priv_check('MultiplayerRoomCreate', $owner)->ensureCan();
+        priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
 
         $userRoomCount = static::active()->startedBy($owner)->count();
 
@@ -194,7 +194,7 @@ class Room extends Model
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
     {
-        priv_check('MultiplayerScoreSubmit', $user)->ensureCan();
+        priv_check_user($user, 'MultiplayerScoreSubmit')->ensureCan();
 
         $this->assertValidStartPlay($user, $playlistItem);
 
