@@ -1014,6 +1014,22 @@ class OsuAuthorize
         }
     }
 
+    public function checkMultiplayerRoomCreate($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkMultiplayerScoreSubmit($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkUserPageEdit($user, $pageOwner)
     {
         $prefix = 'user.page.edit.';
