@@ -30,6 +30,7 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
+import GalleryContest from 'gallery-contest'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -43,6 +44,7 @@ window._exported = {
   ScoreHelper
   SelectOptions
   SpotlightSelectOptions
+  GalleryContest
 }
 
 # refer to variables.less

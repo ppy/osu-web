@@ -1095,16 +1095,20 @@ class User extends Model implements AuthenticatableContract
 
     public function hasBlocked(self $user)
     {
-        return $this->blocks()
-            ->where('zebra_id', $user->user_id)
-            ->exists();
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFriended(self $user)
     {
-        return $this->friends()
-            ->where('zebra_id', $user->user_id)
-            ->exists();
+        if (!array_key_exists('friends', $this->memoized)) {
+            $this->memoized['friends'] = $this->friends;
+        }
+
+        return $this->memoized['friends']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFavourited($beatmapset)
@@ -1162,9 +1166,15 @@ class User extends Model implements AuthenticatableContract
 
     public function title()
     {
-        if ($this->user_rank !== 0 && $this->user_rank !== null) {
-            return $this->rank->rank_title ?? null;
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            if ($this->user_rank !== 0 && $this->user_rank !== null) {
+                $title = $this->rank->rank_title;
+            }
+
+            $this->memoized[__FUNCTION__] = $title ?? null;
         }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function hasProfile()

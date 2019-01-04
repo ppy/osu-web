@@ -293,78 +293,78 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => ['auth:api', 'require-scopes']], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
-            Route::post('new', '\App\Http\Controllers\Chat\ChatController@newConversation')->name('new');
-            Route::get('updates', '\App\Http\Controllers\Chat\ChatController@updates')->name('updates');
-            Route::get('presence', '\App\Http\Controllers\Chat\ChatController@presence')->name('presence');
+            Route::post('new', 'ChatController@newConversation')->name('new');
+            Route::get('updates', 'ChatController@updates')->name('updates');
+            Route::get('presence', 'ChatController@presence')->name('presence');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-                Route::apiResource('{channel_id}/messages', '\App\Http\Controllers\Chat\Channels\MessagesController', ['only' => ['index', 'store']]);
-                Route::put('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@join')->name('join');
-                Route::delete('{channel_id}/users/{user_id}', '\App\Http\Controllers\Chat\ChannelsController@part')->name('part');
-                Route::put('{channel_id}/mark-as-read/{message_id}', '\App\Http\Controllers\Chat\ChannelsController@markAsRead')->name('mark-as-read');
+                Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
+                Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
+                Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', '\App\Http\Controllers\Chat\ChannelsController', ['only' => ['index']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
         });
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
-            Route::get('{mode?}', '\App\Http\Controllers\Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
-            Route::put('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@join')->name('join');
-            Route::delete('{room_id}/users/{user_id}', '\App\Http\Controllers\Multiplayer\RoomsController@part')->name('part');
-            Route::get('{room_id}/leaderboard', '\App\Http\Controllers\Multiplayer\RoomsController@leaderboard');
+            Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
+            Route::put('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@join')->name('join');
+            Route::delete('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@part')->name('part');
+            Route::get('{room_id}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
             Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
-                Route::apiResource('{playlist_id}/scores', '\App\Http\Controllers\Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
+                Route::apiResource('{playlist_id}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
-        Route::apiResource('rooms', '\App\Http\Controllers\Multiplayer\RoomsController', ['only' => ['show', 'store']]);
+        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
-            Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
+            Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
         });
 
         // Beatmaps
         //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', '\App\Http\Controllers\BeatmapsController@scores');
+        Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores');
         //   GET /api/v2/beatmaps/lookup
-        Route::get('beatmaps/lookup', 'BeatmapsController@lookup');
+        Route::get('beatmaps/lookup', 'API\BeatmapsController@lookup');
         //   GET /api/v2/beatmaps/:beatmap_id
-        Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+        Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
+        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
-        Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
+        Route::get('beatmapsets/lookup', 'API\BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset/download
-        Route::get('beatmapsets/{beatmapset}/download', '\App\Http\Controllers\BeatmapsetsController@download');
+        Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download');
         //   GET /api/v2/beatmapsets/:beatmapset_id
-        Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
+        Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 
         // Friends
         //  GET /api/v2/friends
-        Route::resource('friends', '\App\Http\Controllers\FriendsController', ['only' => ['index']]);
+        Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me', '\App\Http\Controllers\UsersController@me');
+        Route::get('me', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
-        Route::get('me/download-quota-check', '\App\Http\Controllers\HomeController@downloadQuotaCheck');
+        Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
         //  GET /api/v2/rankings/:mode/:type
-        Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
+        Route::get('rankings/{mode}/{type}', 'RankingController@index');
 
         //  GET /api/v2/users/:user_id/kudosu
-        Route::get('users/{user}/kudosu', '\App\Http\Controllers\UsersController@kudosu');
+        Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
-        Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
+        Route::get('users/{user}/scores/{type}', 'UsersController@scores');
         //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
-        Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
+        Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets');
         // GET /api/v2/users/:user_id/recent_activity
-        Route::get('users/{user}/recent_activity', '\App\Http\Controllers\UsersController@recentActivity');
+        Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
-        Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
+        Route::get('users/{user}/{mode?}', 'UsersController@show');
     });
     // legacy api routes
-    Route::group(['prefix' => 'v1'], function () {
+    Route::group(['prefix' => 'v1', 'namespace' => 'API'], function () {
         Route::get('get_match', 'LegacyController@getMatch');
         Route::get('get_packs', 'LegacyController@getPacks');
         Route::get('get_user', 'LegacyController@getUser');
