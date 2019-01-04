@@ -36,16 +36,16 @@
             $sort = 'new';
         }
     @endphp
-    <div class="comments-sort comments-sort--forum-topics">
-        <span class="comments-sort__item">
+    <div class="sort sort--forum-topics">
+        <span class="sort__item">
             {{ trans('sort._') }}
         </span>
         @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
             <a
                 class="
-                    comments-sort__item
-                    comments-sort__item--button
-                    {{ ($sort ?? null) === $menuSort ? 'comments-sort__item--active u-forum--link' : '' }}
+                    sort__item
+                    sort__item--button
+                    {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link' : '' }}
                 "
                 href="{{ $menuItem['url'] }}#topics"
             >{{ $menuItem['title'] }}

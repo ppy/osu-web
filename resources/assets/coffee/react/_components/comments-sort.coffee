@@ -20,8 +20,8 @@
 
 class @CommentsSort extends React.PureComponent
   render: =>
-    div className: osu.classWithModifiers('comments-sort', @props.modifiers),
-      div className: 'comments-sort__item',
+    div className: osu.classWithModifiers('sort', @props.modifiers),
+      div className: 'sort__item',
         osu.trans('comments.sort._')
       @renderButton('new')
       @renderButton('old')
@@ -29,8 +29,8 @@ class @CommentsSort extends React.PureComponent
 
 
   renderButton: (sort) =>
-    className = 'comments-sort__item comments-sort__item--button'
-    className += ' comments-sort__item--active' if sort == (@props.loadingSort ? @props.currentSort)
+    className = 'sort__item sort__item--button'
+    className += ' sort__item--active' if sort == (@props.loadingSort ? @props.currentSort)
 
     button
       className: className
