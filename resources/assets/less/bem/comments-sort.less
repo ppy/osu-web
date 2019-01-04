@@ -22,7 +22,14 @@
   .default-gutter();
   display: flex;
   margin: -5px -10px;
-  font-size: @font-size--title-small;
+  font-size: @font-size--normal;
+
+  &--forum-topics {
+    margin: 0;
+    padding: 10px 30px;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+  }
 
   &__item {
     .reset-input();
@@ -35,6 +42,7 @@
     }
 
     &--button {
+      .link-plain();
       color: #555;
 
       .@{_top}--changelog & {

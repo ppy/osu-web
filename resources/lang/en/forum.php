@@ -194,11 +194,6 @@ return [
             'feature_votes' => 'star priority',
             'replies' => 'replies',
             'views' => 'views',
-
-            'sort' => [
-                'feature_votes' => 'Sort by star priority',
-                'new' => 'Sort by last replied',
-            ],
         ],
 
         'issue_tag_added' => [

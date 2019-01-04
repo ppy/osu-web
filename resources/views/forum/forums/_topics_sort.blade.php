@@ -21,41 +21,35 @@
     if (optional($forum ?? null)->isFeatureForum()) {
         $menu['feature-votes'] = [
             'url' => route('forum.forums.show', ['forums' => $forum, 'sort' => 'feature-votes']),
-            'title' => trans('forum.topics.index.sort.feature_votes'),
+            'title' => trans('sort.forum_topics.feature_votes'),
         ];
     }
 @endphp
 @if (count($menu) > 0)
     @php
-        $menuId = 'topics-sort-'.rand();
-        $menu['new'] = [
+        $defaultMenu = ['new' => [
             'url' => route('forum.forums.show', ['forums' => $forum]),
-            'title' => trans('forum.topics.index.sort.new'),
-        ];
-    @endphp
-    <div>
-        <button class="js-click-menu btn-osu-big btn-osu-big--forum-button-circle"
-            data-click-menu-target="{{ $menuId }}"
-        >
-            <span class="fas fa-sort-amount-up"></span>
-        </button>
+            'title' => trans('sort.forum_topics.new'),
+        ]];
 
-        <div
-            class="js-click-menu simple-menu simple-menu--forum-button"
-            data-click-menu-id="{{ $menuId }}"
-            data-visibility="hidden"
-        >
-            @foreach ($menu as $menuSort => $menuItem)
-                <a
-                    class="
-                        simple-menu__item
-                        {{ ($sort ?? null) === $menuSort ? 'simple-menu__item--active' : '' }}
-                        u-forum--before-bg
-                    "
-                    href="{{ $menuItem['url'] }}"
-                >{{ $menuItem['title'] }}
-                </a>
-            @endforeach
-        </div>
+        if (!isset($sort) || !isset($menu[$sort])) {
+            $sort = 'new';
+        }
+    @endphp
+    <div class="comments-sort comments-sort--forum-topics">
+        <span class="comments-sort__item">
+            {{ trans('sort._') }}
+        </span>
+        @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
+            <a
+                class="
+                    comments-sort__item
+                    comments-sort__item--button
+                    {{ ($sort ?? null) === $menuSort ? 'comments-sort__item--active u-forum--link' : '' }}
+                "
+                href="{{ $menuItem['url'] }}#topics"
+            >{{ $menuItem['title'] }}
+            </a>
+        @endforeach
     </div>
 @endif

@@ -18,7 +18,6 @@
 
 .btn-osu-big {
   @top: btn-osu-big;
-  @forum-button-height: 36px;
 
   .reset-input();
   .link-plain();
@@ -156,7 +155,7 @@
   &--forum-button {
     border-radius: 18px;
     padding: 0 10px;
-    height: @forum-button-height;
+    height: 36px;
     min-width: @forum-topic-new-topic-button--width;
     // remove line descenders on <a>; should probably go on the block if
     // the existing doesn't magically break.
@@ -165,11 +164,6 @@
     .@{top}__icon {
       font-size: 120%;
     }
-  }
-
-  &--forum-button-circle {
-    .circle(@forum-button-height);
-    margin: 0 10px;
   }
 
   &--forum-reply {
