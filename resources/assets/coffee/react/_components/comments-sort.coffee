@@ -21,8 +21,7 @@
 class @CommentsSort extends React.PureComponent
   render: =>
     div className: osu.classWithModifiers('sort', @props.modifiers),
-      div className: 'sort__item',
-        osu.trans('comments.sort._')
+      div className: 'sort__item sort__item--title', osu.trans('sort._')
       @renderButton('new')
       @renderButton('old')
       @renderButton('top')
@@ -36,7 +35,7 @@ class @CommentsSort extends React.PureComponent
       className: className
       'data-sort': sort
       onClick: @setSort
-      osu.trans("comments.sort.#{sort}")
+      osu.trans("sort.#{sort}")
 
 
   setSort: (e) =>

@@ -21,6 +21,10 @@
 return [
     '_' => 'Sort by',
 
+    'new' => 'Recent',
+    'old' => 'Old',
+    'top' => 'Top',
+
     'forum_topics' => [
         'new' => 'Last replied',
         'feature_votes' => 'Star priority',
