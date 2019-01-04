@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,16 +16,44 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
-
 .pswp {
   z-index: 9000;
-}
 
-.pswp__ui {
-  position: static;
-}
+  &__ui {
+    position: static;
+  }
 
-.pswp__bg {
-  background: rgba(0, 0, 0, 0.8);
+  &__bg {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &__button {
+    opacity: 0.75;
+    color: #fff;
+
+    &--contest-vote {
+      /*
+       * Overrides original sytle.
+       * The second selector is needed to override retina version that is slightly
+       * different than what we use.
+       */
+      && {
+        background-image: none;
+      }
+    }
+
+    &--contest-vote-active {
+      opacity: 0.9;
+      color: @yellow;
+    }
+
+    // last so it overrides everything else
+    &--disabled {
+      cursor: default;
+
+      .link-hover({
+        opacity: 0.75;
+      });
+    }
+  }
 }

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2018 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,27 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,i} = ReactDOMFactories
-el = React.createElement
+{div, span} = ReactDOMFactories
 
-class Contest.Voting.VoteSummary extends React.Component
-  render: ->
-    classes = [
-      'contest__voting-star',
-      'contest__voting-star--smaller',
-      'contest__voting-star--float-right',
-    ]
-    selectedClass = [
-      'contest__voting-star--selected',
-    ]
+baseClass = osu.classWithModifiers('contest__voting-star', ['smaller'])
+selectedClass = 'contest__voting-star--selected'
 
-    voteSummary = []
-    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
-      div className: classes.join(' '),
-        i className: 'fas fa-fw fa-star'
-    voteSummary.push _.times @props.voteCount, ->
-      div className: classes.concat(selectedClass).join(' '),
-        i className: 'fas fa-fw fa-star'
+Contest.Voting.VoteSummary = ({voteCount, maxVotes}) ->
+  div null,
+    for i in [0...maxVotes]
+      className = baseClass
+      className += " #{selectedClass}" if i < voteCount
 
-    div {},
-      voteSummary
+      div
+        key: "vote-#{i}"
+        className: className
+        span className: 'fas fa-fw fa-star'

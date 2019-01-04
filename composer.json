@@ -44,6 +44,7 @@
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
+    "beyondcode/laravel-query-detector": "^1.0",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "~1.0",

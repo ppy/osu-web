@@ -1,13 +1,16 @@
 declare var window: Window;
+
 // libraries
 declare var _: any;
 declare var laroute: any;
 declare var moment: any;
 
 // our helpers
+declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
 declare var currentUser: any;
 declare var reactTurbolinks: any;
+
 // external (to typescript) react components
 declare var BigButton: any;
 declare var Img2x: any;
@@ -36,4 +39,8 @@ interface OsuCommon {
 interface User {
   id: number;
   username: string;
+}
+
+interface TooltipDefault {
+  remove: (HTMLElement) => void,
 }
