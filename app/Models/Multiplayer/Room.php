@@ -159,6 +159,10 @@ class Room extends Model
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
+        if (count($playlistItems) < 1) {
+            throw new InvariantException('room must have at least one playlist item');
+        }
+
         PlaylistItem::assertBeatmapsExist($playlistItems);
 
         $this->getConnection()->transaction(function () use ($owner, $playlistItems) {

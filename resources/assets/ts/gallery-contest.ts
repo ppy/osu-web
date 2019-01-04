@@ -16,22 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import Dispatcher from './dispatcher';
+import GalleryContestVoteButton from './gallery-contest-vote-button';
+import { createElement } from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 
-export default class WindowFocusObserver {
-  private dispatcher: Dispatcher;
+export default class GalleryContest {
+  private eventId: string;
+  private root: HTMLElement;
 
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
-    $(window).on('blur focus', this.focusChange);
+  constructor(container: HTMLElement, pswp: any) {
+    this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;
+    render(createElement(GalleryContestVoteButton, {pswp}), this.root);
+    this.eventId = `gallery-contest-${osu.uuid()}`;
+
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
+    pswp.listen('destroy', this.destroy);
   }
 
-  focusChange = (e: JQuery.TriggeredEvent<EventTarget>) => {
-    if (e.type === 'focus') {
-      this.dispatcher.dispatch(new WindowFocusAction());
-    } else {
-      this.dispatcher.dispatch(new WindowBlurAction());
-    }
+  destroy = () => {
+    unmountComponentAtNode(this.root);
+    $(document).off(`.${this.eventId}`)
   }
 }

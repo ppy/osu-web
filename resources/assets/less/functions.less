@@ -211,6 +211,11 @@
   align-items: center;
 }
 
+.at2x(@url, @w: auto, @h: auto) {
+  .at2x-simple(@url);
+  background-size: @w @h;
+}
+
 .at2x-simple(@url) {
   @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
   background-image: url(@url);
