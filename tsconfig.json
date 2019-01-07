@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./resources/assets/ts",
+    "baseUrl": "./resources/assets/lib",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
