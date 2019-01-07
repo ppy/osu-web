@@ -1057,26 +1057,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkUserFavourite($user)
-    {
-        $prefix = 'errors.beatmapsets.';
-
-        $this->ensureLoggedIn($user);
-
-        if ($user->favouriteBeatmapsets()->count() > 99) {
-            return $prefix.'too-many-favourites';
-        }
-
-        return 'ok';
-    }
-
-    public function checkUserFavouriteRemove($user)
-    {
-        $this->ensureLoggedIn($user);
-
-        return 'ok';
-    }
-
     public function checkUserShow($user, $owner)
     {
         $prefix = 'user.show.';
