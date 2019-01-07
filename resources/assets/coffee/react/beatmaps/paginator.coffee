@@ -25,6 +25,7 @@ class Beatmaps.Paginator extends React.PureComponent
 
     @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
     @autoPagerTriggerDistance = 3000
+    @autoPagerTarget = React.createRef()
 
 
   componentDidMount: =>
@@ -40,33 +41,26 @@ class Beatmaps.Paginator extends React.PureComponent
 
 
   render: =>
-    return div() if !@props.loading && !@props.more
-
-    div
-      className: 'beatmapsets-show-more'
-      if @props.loading
-        el Spinner
-      else if @props.more
-        a
-          href: @props.url
-          className: 'beatmapsets-show-more__link'
-          ref: (el) => @autoPagerTarget = el
-          onClick: @showMore
-          osu.trans('common.buttons.show_more')
+    el ShowMoreLink,
+      loading: @props.loading
+      callback: @showMore
+      hasMore: @props.more
+      ref: @autoPagerTarget
+      modifiers: ['beatmapsets', 't-ddd']
 
 
   autoPagerOnScroll: =>
-    return if !@props.more || @props.loading
+    return if @auto == false
+    return if !@props.more || @props.loading || !@autoPagerTarget.current?
 
-    currentTarget = @autoPagerTarget.getBoundingClientRect().top
+    currentTarget = @autoPagerTarget.current.getBoundingClientRect().top
     target = document.documentElement.clientHeight + @autoPagerTriggerDistance
 
-    if !@autoPagerTarget? || currentTarget > target
-      return
+    return if currentTarget > target
 
-    $(document).trigger 'beatmap:load_more'
+    @showMore()
 
 
   showMore: (e) =>
-    e.preventDefault()
+    e?.preventDefault()
     $(document).trigger 'beatmap:load_more'
