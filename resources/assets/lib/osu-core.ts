@@ -37,13 +37,14 @@ export default class OsuCore {
 
   constructor(window: Window) {
     this.window = window;
+    // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     this.dispatcher = new Dispatcher();
     this.dataStore = new RootDataStore(this.dispatcher);
     this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
     this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
     this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
-    this.windowVHPatcher = new WindowVHPatcher(this.window);
+    this.windowVHPatcher = WindowVHPatcher.init(this.window);
 
     if (currentUser !== null) {
       this.dataStore.userStore.getOrCreate(currentUser.id, currentUser);
