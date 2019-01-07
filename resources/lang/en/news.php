@@ -25,20 +25,31 @@ return [
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!news',
 
         'nav' => [
             'newer' => 'Newer posts',
             'older' => 'Older posts',
         ],
+
+        'title' => [
+            '_' => 'News :info',
+            'info' => 'Frontpage',
+        ],
     ],
 
     'show' => [
+        'by' => 'by :user',
         'posted' => 'posted :time',
 
         'nav' => [
             'newer' => 'Newer post',
             'older' => 'Older post',
+        ],
+
+        'title' => [
+            '_' => 'News :info',
+            'info' => 'Entry',
         ],
     ],
 

@@ -13,7 +13,10 @@ declare var reactTurbolinks: any;
 
 // external (to typescript) react components
 declare var BigButton: any;
+declare var Comments: any;
+declare var CommentsManager: any;
 declare var Img2x: any;
+declare var ShowMoreLink: any;
 declare var Spinner: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
@@ -34,6 +37,9 @@ interface OsuCommon {
   trans: (...args: any[]) => string;
   uuid: () => string;
   parseJson: (id: string) => any;
+  urlPresence: (string) => string;
+  timeago: (string) => string;
+  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
 }
 
 interface User {

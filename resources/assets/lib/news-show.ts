@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,26 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  margin: -5px;
-  display: flex;
-  flex-wrap: wrap;
+import Main from 'news-show/main';
 
-  &__item {
-    width: 50%;
-    height: 240px;
-    padding: 5px;
+reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElement) => {
+  const data = osu.parseJson('json-show');
 
-    &--first {
-      width: 100%;
-      height: 300px;
-    }
-
-    &--more {
-      width: 100%;
-      height: auto;
-      display: flex;
-      justify-content: center;
-    }
-  }
-}
+  return {
+    container: container,
+    post: data.post,
+    commentBundle: data.comment_bundle,
+  };
+});

@@ -18,11 +18,36 @@
 
 import * as React from 'react';
 
-export default class HeaderV3 extends React.Component<any, any> {
+interface TitleTrans {
+  key: string;
+  info: string;
+}
+
+interface PropsInterface {
+  compact?: boolean;
+  theme?: string;
+  title?: string;
+  titleTrans?: TitleTrans;
+}
+
+export default class HeaderV3 extends React.Component<PropsInterface, {}> {
   renderHeaderTitle(): React.ReactNode {
     let classNames = 'osu-page-header-v3';
     if (this.props.theme) {
       classNames += ` osu-page-header-v3--${this.props.theme}`;
+    }
+
+    let title;
+
+    if (this.props.titleTrans != null) {
+      title = <h1
+        className='osu-page-header-v3__title-text'
+        dangerouslySetInnerHTML={{
+          __html: osu.trans(this.props.titleTrans.key, {
+            info: `<span class='osu-page-header-v3__title-highlight'>${this.props.titleTrans.info}</span>`,
+        })}} />;
+    } else {
+      title = <h1 className='osu-page-header-v3__title-text'>{title}</h1>;
     }
 
     return (
@@ -31,11 +56,7 @@ export default class HeaderV3 extends React.Component<any, any> {
           <div className='osu-page-header-v3__title-icon'>
             <div className='osu-page-header-v3__icon' />
           </div>
-          <h1
-            className='osu-page-header-v3__title-text'
-            dangerouslySetInnerHTML={{
-              __html: this.props.title,
-            }} />
+          {title}
         </div>
       </div>
     );

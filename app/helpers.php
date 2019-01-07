@@ -255,7 +255,7 @@ function locale_name($locale)
 function locale_for_moment($locale)
 {
     if ($locale === 'en') {
-        return;
+        return 'en-gb';
     }
 
     if ($locale === 'zh') {
@@ -1126,7 +1126,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_string($value)) {
-        return Carbon\Carbon::parse($value);
+        try {
+            return Carbon\Carbon::parse($value);
+        } catch (Exception $_e) {
+            return;
+        }
     }
 
     if ($value instanceof Carbon\Carbon) {

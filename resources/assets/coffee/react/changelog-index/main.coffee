@@ -85,10 +85,10 @@ class ChangelogIndex.Main extends React.PureComponent
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1
-          className: 'osu-page-header-v3__title-text'
+          className: 'header-title'
           dangerouslySetInnerHTML:
             __html: osu.trans 'changelog.index.title._',
-              info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('changelog.index.title.info')}</span>"
+              info: "<span class='header-title__highlight'>#{osu.trans('changelog.index.title.info')}</span>"
 
 
   showMore: =>

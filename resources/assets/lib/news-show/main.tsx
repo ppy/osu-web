@@ -1,0 +1,172 @@
+/**
+ *    Copyright 2015-2019 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import * as React from 'react';
+import HeaderV3 from 'header-v3';
+import NewsPostJson from 'interfaces/news-post-json';
+
+interface CommentBundleJson { }
+
+interface PropsInterface {
+  container: HTMLElement;
+  post: NewsPostJson;
+  commentBundle: CommentBundleJson;
+}
+
+interface StateInterface {}
+
+export default class Main extends React.Component<PropsInterface, StateInterface> {
+  render() {
+    const {content, author} = this.processContent();
+    const titleTrans = {
+      key: 'news.show.title._',
+      info: osu.trans('news.show.title.info'),
+    };
+
+    return <>
+      <HeaderV3 theme='news' titleTrans={titleTrans} />
+      <div className='osu-page osu-page--news'>
+        <div className='news-show'>
+          {this.renderHeader({author})}
+
+          <div
+            dangerouslySetInnerHTML={{
+              __html: content,
+            }}
+          />
+
+          <div className='news-show__nav'>
+            {this.renderNav()}
+          </div>
+        </div>
+      </div>
+      <div className='osu-page osu-page---compact'>
+        <CommentsManager
+          commentableType='news_post'
+          commentableId={this.props.post.id}
+          commentBundle={this.props.commentBundle}
+          component={Comments}
+          componentProps={{
+            modifiers: ['changelog'],
+          }}
+        />
+      </div>
+    </>;
+  }
+
+  private renderHeader = ({author}: {author: string}) => {
+    let authorDiv;
+
+    if (author != null) {
+      authorDiv = <div className='news-card__author'>{osu.trans('news.show.by', {user: author})}</div>;
+    }
+
+    return <div className='news-card news-card--show'>
+      <img className='news-card__cover' src={this.props.post.first_image} />
+      <div className='news-card__overlay' />
+
+      <div className='news-card__content'>
+        <div
+          className='news-card__time js-tooltip-time'
+          title={this.props.post.published_at}
+        >
+          {moment(this.props.post.published_at).format('ll')}
+        </div>
+
+        <div className='news-card__main'>
+          <div className='news-card__title'>{this.props.post.title}</div>
+          {authorDiv}
+        </div>
+      </div>
+    </div>;
+  }
+
+  private renderNav = () => {
+    if (this.props.post.navigation == null) {
+      return;
+    }
+
+    let newerLink;
+    let olderLink;
+
+    const newerPost = this.props.post.navigation.newer;
+    const olderPost = this.props.post.navigation.older;
+
+    if (newerPost != null) {
+      newerLink = <a
+        className='page-nav__link'
+        href={laroute.route('news.show', {news: newerPost.slug})}
+        title={newerPost.title}
+      >
+        <span className='page-nav__label'>
+          {osu.trans('news.show.nav.newer')}
+        </span>
+        <span className='fas fa-chevron-right' />
+      </a>;
+    }
+
+    if (olderPost != null) {
+      olderLink = <a
+        className='page-nav__link'
+        href={laroute.route('news.show', {news: olderPost.slug})}
+        title={olderPost.title}
+      >
+        <span className='fas fa-chevron-left' />
+        <span className='page-nav__label'>
+          {osu.trans('news.show.nav.older')}
+        </span>
+      </a>;
+    }
+
+    return <div className='page-nav'>
+      <div className='page-nav__item page-nav__item--left'>
+        {olderLink}
+      </div>
+      <div className='page-nav__item page-nav__item--right'>
+        {newerLink}
+      </div>
+    </div>
+  }
+
+  private processContent = () => {
+    let content = this.props.post.content;
+
+    if (content == null) {
+      content = '';
+    }
+
+    let contentHTML = document.createElement('div');
+    contentHTML.innerHTML = content;
+
+    let firstImage = contentHTML.querySelector('img');
+    if (firstImage != null && firstImage.parentElement != null) {
+      firstImage.parentElement.remove();
+    }
+
+    let author;
+    let authorEl = _.last(contentHTML.querySelectorAll('p'));
+    if (authorEl != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
+      author = authorEl.textContent.slice(1);
+      authorEl.remove();
+    }
+
+    content = contentHTML.innerHTML;
+
+    return {content, author}
+  }
+}
