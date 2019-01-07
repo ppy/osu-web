@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,24 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Libraries;
 
-use LaravelRedis as Redis;
-
-class RoomsController extends Controller
+class ScoreRank
 {
-    public function show($id)
+    const RANKS = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH', 'F'];
+
+    public static function isValid($value)
     {
-        $roomId = get_int($id);
-
-        if (!is_null($roomId)) {
-            $meta = Redis::get("room:$roomId");
-        }
-
-        if (!isset($meta)) {
-            abort(404);
-        }
-
-        return response($meta)->header('Content-Type', 'application/json');
+        return in_array($value, static::RANKS, true);
     }
 }

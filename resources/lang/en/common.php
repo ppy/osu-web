@@ -30,6 +30,7 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
         'back_to_top' => 'Back to top',
         'back_to_previous' => 'Return to previous position',
         'cancel' => 'Cancel',

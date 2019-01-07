@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -16,22 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import Dispatcher from './dispatcher';
+namespace App\Models\Multiplayer;
 
-export default class WindowFocusObserver {
-  private dispatcher: Dispatcher;
+use App\Models\Model;
 
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
-    $(window).on('blur focus', this.focusChange);
-  }
-
-  focusChange = (e: JQuery.Event<EventTarget>) => {
-    if (e.type === 'focus') {
-      this.dispatcher.dispatch(new WindowFocusAction());
-    } else {
-      this.dispatcher.dispatch(new WindowBlurAction());
-    }
-  }
+/**
+ * Dumb persistence model for UserScoreAggregate.
+ */
+class PlaylistItemUserHighScore extends Model
+{
+    protected $table = 'multiplayer_scores_high';
 }
