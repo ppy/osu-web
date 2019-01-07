@@ -50,16 +50,11 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
-    userGroup = @userGroup(item)
-    cssClasses += " beatmap-discussions-user-filter__item--#{userGroup}" if userGroup?
-
     a
       className: cssClasses
       href: BeatmapDiscussionHelper.url user: item?.id, true
       key: item?.id
       onClick: onClick
-      style:
-        color: item.colour if !@isOwner(item)
       children
 
 

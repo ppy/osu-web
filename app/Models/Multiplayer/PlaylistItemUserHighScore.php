@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,16 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
+namespace App\Models\Multiplayer;
 
-.pswp {
-  z-index: 9000;
-}
+use App\Models\Model;
 
-.pswp__ui {
-  position: static;
-}
-
-.pswp__bg {
-  background: rgba(0, 0, 0, 0.8);
+/**
+ * Dumb persistence model for UserScoreAggregate.
+ */
+class PlaylistItemUserHighScore extends Model
+{
+    protected $table = 'multiplayer_scores_high';
 }

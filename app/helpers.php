@@ -598,7 +598,7 @@ function wiki_url($page = 'Welcome', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => rawurlencode($page)];
+    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;

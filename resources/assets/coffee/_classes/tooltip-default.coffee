@@ -106,6 +106,17 @@ class @TooltipDefault
       api?.disable()
 
 
+  remove: (el) ->
+    return unless el._tooltip
+
+    $(el).qtip('destroy', true)
+    el._tooltip = false
+    if (!el.getAttribute('title')?)
+      el.setAttribute 'title', el.dataset.origTitle
+
+    delete el.dataset.origTitle
+
+
   rollback: =>
     $('.qtip').remove()
 

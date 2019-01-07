@@ -68,7 +68,7 @@ class BeatmapsetArchive
             return false;
         }
 
-        return $this->zip->locateName($filename, \ZipArchive::FL_NOCASE | \ZipArchive::FL_NODIR) !== false;
+        return $this->zip->locateName($filename, \ZipArchive::FL_NOCASE) !== false;
     }
 
     // Parses given list (of .osu files) and finds background images referenced.

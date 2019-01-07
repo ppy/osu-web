@@ -47,7 +47,7 @@ class ProfilePage.CoverSelection extends React.PureComponent
       $.publish 'user:cover:upload:state', [false]
     .done (userData) ->
       $.publish 'user:update', userData
-    .error osu.emitAjaxError(e.target)
+    .fail osu.emitAjaxError(e.target)
 
 
   onMouseEnter: =>
