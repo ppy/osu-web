@@ -21,8 +21,11 @@
 namespace Tests;
 
 use App\Exceptions\InsufficientStockException;
+use App\Models\Country;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
+use App\Models\Tournament;
+use Carbon\Carbon;
 use TestCase;
 
 class OrderItemTest extends TestCase
@@ -128,5 +131,63 @@ class OrderItemTest extends TestCase
 
         $this->assertFalse($orderItem->reserved);
         $this->assertSame($product->stock, 0);
+    }
+
+    public function testTournamentBannerForPendingTournament()
+    {
+        $tournament = factory(Tournament::class)->create();
+        $product = $this->createTournamentProduct($tournament);
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->product_id,
+            'extra_data' => [
+                'tournament_id' => $tournament->getKey(),
+            ],
+        ]);
+
+        $this->assertTrue($orderItem->isValid());
+    }
+
+    public function testTournamentBannerForEndedTournament()
+    {
+        // FIXME: switch to states('ended')
+        $tournament = factory(Tournament::class)->create();
+        $product = $this->createTournamentProduct($tournament);
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->product_id,
+            'extra_data' => [
+                'tournament_id' => $tournament->getKey(),
+            ],
+        ]);
+
+        // end the tournament after factorying.
+        $tournament->update([
+            'signup_open' => Carbon::now()->subMonths(4),
+            'signup_close' => Carbon::now()->subMonths(3),
+            'start_date' => Carbon::now()->subMonths(2),
+            'end_date' => Carbon::now()->subMonths(1),
+        ]);
+
+        $this->assertFalse($orderItem->isValid());
+    }
+
+    private function createTournamentProduct(Tournament $tournament)
+    {
+        $country = factory(Country::class)->create();
+
+        $product = factory(Product::class, 'child_banners')->create([
+            'name' => "{$tournament->name} Support Banner ({$country->name})",
+        ]);
+
+        $type_mappings_json = [
+            $product->product_id => [
+                'country' => $country->acronym,
+                'tournament_id' => $tournament->tournament_id,
+            ],
+        ];
+
+        $product->type_mappings_json = json_encode($type_mappings_json, JSON_PRETTY_PRINT);
+        $product->saveOrExplode();
+
+        return $product;
     }
 }

@@ -65,6 +65,14 @@ class OrderItem extends Model
             $this->validationErrors()->add('cost', 'not_negative');
         }
 
+        $tournament = $this->getTournament();
+        if ($tournament !== null) {
+            // can't factory class if can't save.
+            if (!optional($tournament->end_date)->isFuture() ?? true) {
+                $this->validationErrors()->add('tournament', 'not_available');
+            }
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 

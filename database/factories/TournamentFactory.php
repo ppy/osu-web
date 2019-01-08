@@ -21,3 +21,20 @@ $factory->define(App\Models\Tournament::class, function (Faker\Generator $faker)
         },
     ];
 });
+
+$factory->state(App\Models\Tournament::class, 'ended', function (Faker\Generator $faker) {
+    return [
+        'signup_open' => function () {
+            return Carbon\Carbon::now()->subMonths(4);
+        },
+        'signup_close' => function () {
+            return Carbon\Carbon::now()->subMonths(3);
+        },
+        'start_date' => function () {
+            return Carbon\Carbon::now()->subMonths(2);
+        },
+        'end_date' => function () {
+            return Carbon\Carbon::now()->subMonths(1);
+        },
+    ];
+});
