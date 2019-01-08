@@ -23,6 +23,7 @@ namespace App\Models\Store;
 use App\Exceptions\ValidationException;
 use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
+use App\Models\Tournament;
 use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -142,6 +143,13 @@ class OrderItem extends Model
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }
+    }
+
+    public function getTournament() : ?Tournament
+    {
+        $id = get_int($this->extra_data['tournament_id'] ?? null);
+
+        return $id !== null ? Tournament::find($id) : null;
     }
 
     public function releaseProduct()
