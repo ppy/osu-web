@@ -46,6 +46,10 @@
     margin: 10px auto;
   }
 
+  &--forum-topic {
+    margin: 5px auto 10px;
+  }
+
   &--profile-page {
     margin: 10px auto 0;
   }
@@ -74,7 +78,7 @@
     });
   }
 
-  &[disabled] {
+  &[disabled], &.js-disabled {
     color: #ccc;
 
     &.@{_top}--t-community-user-graygreen-darker {
@@ -97,7 +101,7 @@
     position: absolute;
     display: none;
 
-    .@{_top}[disabled] & {
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
       display: flex;
     }
   }
@@ -105,7 +109,7 @@
   &__label {
     opacity: 1;
 
-    .@{_top}[disabled] & {
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
       opacity: 0;
     }
   }

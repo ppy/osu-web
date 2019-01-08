@@ -28,9 +28,9 @@ class @StickyHeader
     @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
-    $(window).on 'throttled-scroll', @pin
-    $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
-    $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+    $(window).on 'throttled-scroll', @onScroll
+    $(document).on 'turbolinks:load osu:page:change', => Timeout.set 0, @onScroll
+    $(window).on 'throttled-resize', @stickOrUnstick
 
 
   breadcrumbsElement: ->
@@ -47,6 +47,11 @@ class @StickyHeader
       styles.heightMobile
     else
       styles.heightSticky
+
+
+  onScroll: =>
+    @pin()
+    @stickOrUnstick()
 
 
   pin: =>

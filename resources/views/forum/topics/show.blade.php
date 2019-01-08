@@ -35,7 +35,7 @@
     @include('forum.topics._floating_header')
     @include('forum.topics._header')
 
-    <div class="js-header--alt js-sync-height--target" data-sync-height-id="sticky-header"></div>
+    <div class="forum-topic-header-padding js-header--alt js-sync-height--target" data-sync-height-id="sticky-header"></div>
 
     @if ($topic->poll()->exists())
         <div class="osu-layout__row js-header--main">
@@ -76,17 +76,23 @@
         </div>
     @endif
 
-    <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
-        <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
-        <span>{!! spinner() !!}</span>
-    </div>
+    @include('objects._show_more_link', [
+        'additionalClasses' => 'js-header--alt js-forum-posts-show-more js-forum__posts-show-more--previous',
+        'attributes' => ['data-mode' => 'previous'],
+        'hidden' => $posts->first()->post_id === $firstPostId,
+        'modifiers' => ['forum-topic', 't-ddd'],
+        'url' => route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]),
+    ])
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
-        <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
-        <span>{!! spinner() !!}</span>
-    </div>
+    @include('objects._show_more_link', [
+        'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
+        'attributes' => ['data-mode' => 'next'],
+        'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount(),
+        'modifiers' => ['forum-topic', 't-ddd'],
+        'url' => post_url($topic->topic_id, $posts->last()->post_id + 1, false),
+    ])
 
     <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
         {!! Form::open([
