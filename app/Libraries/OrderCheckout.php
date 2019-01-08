@@ -194,6 +194,13 @@ class OrderCheckout
                 $messages[] = $customClass->validate()->allMessages();
             }
 
+            $tournament = $item->getTournament();
+            if ($tournament !== null) {
+                if (!optional($tournament->end_date)->isFuture() ?? true) {
+                    $messages[] = trans('model_validation/store/product.tournament.not_available');
+                }
+            }
+
             $flattened = array_flatten($messages);
             if (!empty($flattened)) {
                 $itemErrors[$item->id] = $flattened;

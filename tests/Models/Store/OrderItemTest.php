@@ -21,6 +21,7 @@
 namespace Tests;
 
 use App\Exceptions\InsufficientStockException;
+use App\Libraries\OrderCheckout;
 use App\Models\Country;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
@@ -144,13 +145,14 @@ class OrderItemTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue($orderItem->isValid());
+        $checkout = new OrderCheckout($orderItem->order);
+
+        $this->assertEmpty($checkout->validate());
     }
 
     public function testTournamentBannerForEndedTournament()
     {
-        // FIXME: switch to states('ended')
-        $tournament = factory(Tournament::class)->create();
+        $tournament = factory(Tournament::class)->states('ended')->create();
         $product = $this->createTournamentProduct($tournament);
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
@@ -159,15 +161,9 @@ class OrderItemTest extends TestCase
             ],
         ]);
 
-        // end the tournament after factorying.
-        $tournament->update([
-            'signup_open' => Carbon::now()->subMonths(4),
-            'signup_close' => Carbon::now()->subMonths(3),
-            'start_date' => Carbon::now()->subMonths(2),
-            'end_date' => Carbon::now()->subMonths(1),
-        ]);
+        $checkout = new OrderCheckout($orderItem->order);
 
-        $this->assertFalse($orderItem->isValid());
+        $this->assertNotEmpty($checkout->validate());
     }
 
     private function createTournamentProduct(Tournament $tournament)
