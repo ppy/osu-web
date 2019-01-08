@@ -20,6 +20,7 @@
 
 namespace App\Models\Store;
 
+use App\Libraries\Fulfillments\BannerFulfillment;
 use App\Models\Tournament;
 
 use App\Exceptions\InsufficientStockException;
@@ -104,9 +105,23 @@ class Product extends Model
 
     public function getTournament() : ?Tournament
     {
+        if (!in_array($this->custom_class, BannerFulfillment::ALLOWED_TAGGED_NAMES, true)) {
+            return null;
+        }
+
         $product = $this->masterProduct ?? $this;
 
         return Tournament::where('tournament_banner_product_id', $product->getKey())->first();
+    }
+
+    public function isTournamentBannerAvailable() : bool
+    {
+        $tournament = $this->getTournament();
+        if ($tournament !== null) {
+            return $tournament->isStoreBannerAvailable();
+        }
+
+        return false;
     }
 
     public function typeMappings()

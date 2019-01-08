@@ -144,6 +144,7 @@ class OrderItemTest extends TestCase
                 'tournament_id' => $tournament->getKey(),
             ],
         ]);
+        $tournament->update(['tournament_banner_product_id' => $product->getKey()]);
 
         $checkout = new OrderCheckout($orderItem->order);
 
@@ -160,6 +161,7 @@ class OrderItemTest extends TestCase
                 'tournament_id' => $tournament->getKey(),
             ],
         ]);
+        $tournament->update(['tournament_banner_product_id' => $product->getKey()]);
 
         $checkout = new OrderCheckout($orderItem->order);
 

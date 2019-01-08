@@ -194,9 +194,9 @@ class OrderCheckout
                 $messages[] = $customClass->validate()->allMessages();
             }
 
-            $tournament = $item->getTournament();
+            $tournament = $item->product->getTournament();
             if ($tournament !== null) {
-                if (!optional($tournament->end_date)->isFuture() ?? true) {
+                if (!$item->product->isTournamentBannerAvailable()) {
                     $messages[] = trans('model_validation/store/product.tournament.not_available');
                 }
             }
