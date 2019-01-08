@@ -20,6 +20,8 @@
 
 namespace App\Models\Store;
 
+use App\Models\Tournament;
+
 use App\Exceptions\InsufficientStockException;
 
 class Product extends Model
@@ -98,6 +100,13 @@ class Product extends Model
         } else {
             return $value;
         }
+    }
+
+    public function getTournament() : ?Tournament
+    {
+        $product = $this->masterProduct ?? $this;
+
+        return Tournament::where('tournament_banner_product_id', $product->getKey())->first();
     }
 
     public function typeMappings()
