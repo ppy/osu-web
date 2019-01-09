@@ -21,9 +21,7 @@ class AddTournamentIdToProducts extends Migration
         });
 
         // migrate existing data
-        $products = Product::where('master_product_id', null)
-            ->whereIn('custom_class', BannerFulfillment::ALLOWED_TAGGED_NAMES)
-            ->get();
+        $products = Product::whereIn('custom_class', BannerFulfillment::ALLOWED_TAGGED_NAMES)->get();
 
         foreach ($products as $product) {
             $values = array_values($product->typeMappings());

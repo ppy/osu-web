@@ -53,6 +53,11 @@ class Tournament extends Model
         return $this->hasMany(TournamentRegistration::class, 'tournament_id');
     }
 
+    public function scopeNotEnded($query)
+    {
+        return $query->where('end_date', '>', Carbon::now());
+    }
+
     public function isRegistrationOpen()
     {
         $now = Carbon::now();

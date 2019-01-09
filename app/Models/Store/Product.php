@@ -156,6 +156,14 @@ class Product extends Model
         return $query
             ->where('master_product_id', null)
             ->where('enabled', true)
+            ->where(function ($tournamentsQuery) {
+                $instance = new Tournament;
+                $qualifiedTable = "{$instance->dbName()}.{$instance->getTable()}";
+
+                $tournamentsQuery
+                    ->whereIn('tournament_id', Tournament::from($qualifiedTable)->notEnded()->select('tournament_id'))
+                    ->orWhere('tournament_id', null);
+            })
             ->with('masterProduct')
             ->with('variations')
             ->orderBy('promoted', 'desc')
