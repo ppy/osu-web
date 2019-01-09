@@ -126,43 +126,34 @@ class ModTest extends TestCase
         }
     }
 
-    public function testValidateSelectionWithInvalid()
+    /**
+     * @dataProvider invalidModCombos
+     */
+    public function testValidateSelectionWithInvalid($ruleset, $modCombo)
     {
-        $invalidModCombos = [
-            Ruleset::OSU => [
-                ['5K'],
-                ['DS'],
-                ['HD', 'HD'],
-                ['RX', 'PF'],
-            ],
-
-            Ruleset::TAIKO => [
-                ['AP'],
-                ['RD', 'SD'],
-                ['RX', 'PF'],
-            ],
-
-            Ruleset::CATCH => [
-                ['4K'],
-                ['AP'],
-                ['RX', 'PF'],
-            ],
-
-            Ruleset::MANIA => [
-                ['AP'],
-                ['RD', 'SD'],
-                ['RX', 'PF'],
-            ],
-        ];
-
         $this->expectException(InvariantException::class);
-        foreach ($invalidModCombos as $ruleset => $modCombos) {
-            foreach ($modCombos as $modCombo) {
-                $this->assertSame(
-                    Mod::validateSelection($modCombo, $ruleset),
-                    false
-                );
-            }
-        }
+        Mod::validateSelection($modCombo, $ruleset);
+    }
+
+    public function invalidModCombos()
+    {
+        return [
+            [Ruleset::OSU, ['5K']],
+            [Ruleset::OSU, ['DS']],
+            [Ruleset::OSU, ['HD', 'HD']],
+            [Ruleset::OSU, ['RX', 'PF']],
+
+            [Ruleset::TAIKO, ['AP']],
+            [Ruleset::TAIKO, ['RD', 'SD']],
+            [Ruleset::TAIKO, ['RX', 'PF']],
+
+            [Ruleset::CATCH, ['4K']],
+            [Ruleset::CATCH, ['AP']],
+            [Ruleset::CATCH, ['RX', 'PF']],
+
+            [Ruleset::MANIA, ['AP']],
+            [Ruleset::MANIA, ['FI', 'HD']],
+            [Ruleset::MANIA, ['RX', 'PF']],
+        ];
     }
 }
