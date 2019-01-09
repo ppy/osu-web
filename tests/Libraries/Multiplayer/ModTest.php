@@ -83,77 +83,64 @@ class ModTest extends TestCase
         );
     }
 
-    public function testValidateSelectionWithValid()
+    /**
+     * @dataProvider modCombos
+     */
+    public function testValidateSelection($ruleset, $modCombo, $isValid)
     {
-        $validModCombos = [
-            Ruleset::OSU => [
-                ['HD', 'DT'],
-                ['HD', 'HR'],
-                ['HD', 'HR'],
-                ['HD', 'NC'],
-            ],
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        }
 
-            Ruleset::TAIKO => [
-                ['HD', 'NC'],
-                ['HD', 'DT'],
-                ['HD', 'HR'],
-                ['HR', 'PF'],
-            ],
+        $result = Mod::validateSelection($modCombo, $ruleset);
 
-            Ruleset::CATCH => [
-                ['HD', 'HR'],
-                ['HD', 'PF'],
-                ['HD', 'SD'],
-                ['HD'],
-                ['EZ'],
-            ],
-
-            Ruleset::MANIA => [
-                ['DT', 'PF'],
-                ['NC', 'SD'],
-                ['6K', 'HD'],
-                ['4K', 'HT'],
-            ],
-        ];
-
-        foreach ($validModCombos as $ruleset => $modCombos) {
-            foreach ($modCombos as $modCombo) {
-                $this->assertSame(
-                    Mod::validateSelection($modCombo, $ruleset),
-                    true
-                );
-            }
+        if ($isValid) {
+            $this->assertTrue($result);
         }
     }
 
-    /**
-     * @dataProvider invalidModCombos
-     */
-    public function testValidateSelectionWithInvalid($ruleset, $modCombo)
-    {
-        $this->expectException(InvariantException::class);
-        Mod::validateSelection($modCombo, $ruleset);
-    }
-
-    public function invalidModCombos()
+    public function modCombos()
     {
         return [
-            [Ruleset::OSU, ['5K']],
-            [Ruleset::OSU, ['DS']],
-            [Ruleset::OSU, ['HD', 'HD']],
-            [Ruleset::OSU, ['RX', 'PF']],
+            // valid
+            [Ruleset::OSU, ['HD', 'DT'], true],
+            [Ruleset::OSU, ['HD', 'HR'], true],
+            [Ruleset::OSU, ['HD', 'HR'], true],
+            [Ruleset::OSU, ['HD', 'NC'], true],
 
-            [Ruleset::TAIKO, ['AP']],
-            [Ruleset::TAIKO, ['RD', 'SD']],
-            [Ruleset::TAIKO, ['RX', 'PF']],
+            [Ruleset::TAIKO, ['HD', 'NC'], true],
+            [Ruleset::TAIKO, ['HD', 'DT'], true],
+            [Ruleset::TAIKO, ['HD', 'HR'], true],
+            [Ruleset::TAIKO, ['HR', 'PF'], true],
 
-            [Ruleset::CATCH, ['4K']],
-            [Ruleset::CATCH, ['AP']],
-            [Ruleset::CATCH, ['RX', 'PF']],
+            [Ruleset::CATCH, ['HD', 'HR'], true],
+            [Ruleset::CATCH, ['HD', 'PF'], true],
+            [Ruleset::CATCH, ['HD', 'SD'], true],
+            [Ruleset::CATCH, ['HD'], true],
+            [Ruleset::CATCH, ['EZ'], true],
 
-            [Ruleset::MANIA, ['AP']],
-            [Ruleset::MANIA, ['FI', 'HD']],
-            [Ruleset::MANIA, ['RX', 'PF']],
+            [Ruleset::MANIA, ['DT', 'PF'], true],
+            [Ruleset::MANIA, ['NC', 'SD'], true],
+            [Ruleset::MANIA, ['6K', 'HD'], true],
+            [Ruleset::MANIA, ['4K', 'HT'], true],
+
+            // invalid
+            [Ruleset::OSU, ['5K'], false],
+            [Ruleset::OSU, ['DS'], false],
+            [Ruleset::OSU, ['HD', 'HD'], false],
+            [Ruleset::OSU, ['RX', 'PF'], false],
+
+            [Ruleset::TAIKO, ['AP'], false],
+            [Ruleset::TAIKO, ['RD', 'SD'], false],
+            [Ruleset::TAIKO, ['RX', 'PF'], false],
+
+            [Ruleset::CATCH, ['4K'], false],
+            [Ruleset::CATCH, ['AP'], false],
+            [Ruleset::CATCH, ['RX', 'PF'], false],
+
+            [Ruleset::MANIA, ['AP'], false],
+            [Ruleset::MANIA, ['FI', 'HD'], false],
+            [Ruleset::MANIA, ['RX', 'PF'], false],
         ];
     }
 }
