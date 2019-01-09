@@ -26,7 +26,7 @@ return [
     'top' => 'Top',
 
     'forum_topics' => [
-        'new' => 'Last replied',
+        'new' => 'Last reply',
         'feature_votes' => 'Star priority',
     ],
 ];

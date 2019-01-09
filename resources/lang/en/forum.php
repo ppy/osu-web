@@ -84,7 +84,7 @@ return [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
+        'latest_reply_by' => 'last reply by :user',
         'new_topic' => 'New topic',
         'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
