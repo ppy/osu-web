@@ -151,10 +151,9 @@ class Product extends Model
         return $this->weight !== null;
     }
 
-    public function scopeLatest($query)
+    public function scopeActive($query)
     {
         return $query
-            ->where('master_product_id', null)
             ->where('enabled', true)
             ->where(function ($tournamentsQuery) {
                 $instance = new Tournament;
@@ -163,7 +162,14 @@ class Product extends Model
                 $tournamentsQuery
                     ->whereIn('tournament_id', Tournament::from($qualifiedTable)->notEnded()->select('tournament_id'))
                     ->orWhere('tournament_id', null);
-            })
+            });
+    }
+
+    public function scopeLatest($query)
+    {
+        return $query
+            ->active()
+            ->where('master_product_id', null)
             ->with('masterProduct')
             ->with('variations')
             ->orderBy('promoted', 'desc')
