@@ -21,12 +21,8 @@
 namespace Tests;
 
 use App\Exceptions\InsufficientStockException;
-use App\Libraries\OrderCheckout;
-use App\Models\Country;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use App\Models\Tournament;
-use Carbon\Carbon;
 use TestCase;
 
 class OrderItemTest extends TestCase
@@ -132,60 +128,5 @@ class OrderItemTest extends TestCase
 
         $this->assertFalse($orderItem->reserved);
         $this->assertSame($product->stock, 0);
-    }
-
-    public function testTournamentBannerForPendingTournament()
-    {
-        $tournament = factory(Tournament::class)->create();
-        $product = $this->createTournamentProduct($tournament);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'extra_data' => [
-                'tournament_id' => $tournament->getKey(),
-            ],
-        ]);
-        $tournament->update(['tournament_banner_product_id' => $product->getKey()]);
-
-        $checkout = new OrderCheckout($orderItem->order);
-
-        $this->assertEmpty($checkout->validate());
-    }
-
-    public function testTournamentBannerForEndedTournament()
-    {
-        $tournament = factory(Tournament::class)->states('ended')->create();
-        $product = $this->createTournamentProduct($tournament);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'extra_data' => [
-                'tournament_id' => $tournament->getKey(),
-            ],
-        ]);
-        $tournament->update(['tournament_banner_product_id' => $product->getKey()]);
-
-        $checkout = new OrderCheckout($orderItem->order);
-
-        $this->assertNotEmpty($checkout->validate());
-    }
-
-    private function createTournamentProduct(Tournament $tournament)
-    {
-        $country = factory(Country::class)->create();
-
-        $product = factory(Product::class, 'child_banners')->create([
-            'name' => "{$tournament->name} Support Banner ({$country->name})",
-        ]);
-
-        $type_mappings_json = [
-            $product->product_id => [
-                'country' => $country->acronym,
-                'tournament_id' => $tournament->tournament_id,
-            ],
-        ];
-
-        $product->type_mappings_json = json_encode($type_mappings_json, JSON_PRETTY_PRINT);
-        $product->saveOrExplode();
-
-        return $product;
     }
 }
