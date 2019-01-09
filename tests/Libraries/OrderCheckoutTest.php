@@ -17,13 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+use App\Libraries\OrderCheckout;
 use App\Models\Country;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use App\Libraries\OrderCheckout;
 use App\Models\Tournament;
-use Carbon\Carbon;
 
 class OrderCheckoutTest extends TestCase
 {
@@ -67,6 +65,7 @@ class OrderCheckoutTest extends TestCase
 
         $product = factory(Product::class, 'child_banners')->create([
             'name' => "{$tournament->name} Support Banner ({$country->name})",
+            'tournament_id' => $tournament->getKey(),
         ]);
 
         $type_mappings_json = [
