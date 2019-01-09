@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import GalleryContestVoteButton from './gallery-contest-vote-button';
 import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
+import GalleryContestVoteButton from './gallery-contest-vote-button';
 
 export default class GalleryContest {
   private eventId: string;
@@ -35,6 +35,6 @@ export default class GalleryContest {
 
   destroy = () => {
     unmountComponentAtNode(this.root);
-    $(document).off(`.${this.eventId}`)
+    $(document).off(`.${this.eventId}`);
   }
 }

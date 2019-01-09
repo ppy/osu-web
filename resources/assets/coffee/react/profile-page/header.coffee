@@ -130,6 +130,8 @@ class ProfilePage.Header extends React.Component
           href: laroute.route('users.show', user: @props.user.id)
           className: 'page-mode-v2__link page-mode-v2__link--active'
           osu.trans 'users.show.header_title.info'
+      li
+        className: 'page-mode-v2__item'
         a
           href: laroute.route('users.modding.index', user: @props.user.id)
           className: 'page-mode-v2__link'

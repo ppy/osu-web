@@ -98,6 +98,13 @@
     padding: 20px 30px;
     overflow: hidden;
 
+    .@{_top}__preview & {
+      @media @mobile {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
@@ -133,6 +140,10 @@
       order: 1;
 
       padding-top: 0;
+
+      .@{_top}__preview & {
+        text-transform: uppercase;
+      }
 
       @media @desktop {
         order: 0;
@@ -252,6 +263,16 @@
 
     &--user-title {
       color: #333;
+    }
+  }
+
+  &__preview {
+    background-color: #ccc;
+
+    @media @mobile {
+      padding: 10px;
+      margin: 0 20px;
+      .default-border-radius;
     }
   }
 

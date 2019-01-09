@@ -314,15 +314,24 @@ class BeatmapsetsController extends Controller
 
     public function updateFavourite($id)
     {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if (Request::input('action') === 'favourite') {
-            priv_check('UserFavourite')->ensureCan();
-            $beatmapset->favourite($user);
-        } elseif (Request::input('action') === 'unfavourite') {
-            priv_check('UserFavouriteRemove')->ensureCan();
-            $beatmapset->unfavourite($user);
+        switch (Request::input('action')) {
+            case 'favourite':
+                if ($user->favouriteBeatmapsets()->count() >= $user->beatmapsetFavouriteAllowance()) {
+                    return error_popup(trans('beatmapsets.show.favourites.limit_reached'));
+                }
+                $beatmapset->favourite($user);
+                break;
+
+            case 'unfavourite':
+                $beatmapset->unfavourite($user);
+                break;
         }
 
         // reload models to get the correct favourite status

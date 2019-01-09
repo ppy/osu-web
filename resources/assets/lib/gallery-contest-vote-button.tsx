@@ -30,14 +30,14 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
     super(props);
 
     this.state = {
-      isLoading: false,
       button: this.buttonState(),
+      isLoading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`contest:vote:click.${this.eventId}`, this.loadingStart)
-    $.subscribe(`contest:vote:end.${this.eventId}`, this.loadingEnd)
+    $.subscribe(`contest:vote:click.${this.eventId}`, this.loadingStart);
+    $.subscribe(`contest:vote:end.${this.eventId}`, this.loadingEnd);
     this.props.pswp.listen('afterChange', this.syncState);
   }
 
@@ -130,7 +130,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
   }
 
   private resetTooltip = () => {
-    let main = this.mainRef.current;
+    const main = this.mainRef.current;
 
     if (main != null) {
       tooltipDefault.remove(main);
