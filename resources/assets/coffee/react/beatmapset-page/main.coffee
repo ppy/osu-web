@@ -156,6 +156,12 @@ class BeatmapsetPage.Main extends React.Component
         favcount: data.favcount
         hasFavourited: data.favourited
 
+    .fail (xhr, status) =>
+      if status == 'abort'
+        return
+
+      osu.ajaxError xhr
+
   componentDidMount: ->
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
     $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode

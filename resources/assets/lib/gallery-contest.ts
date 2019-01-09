@@ -16,42 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-links {
-  .inner-shadow-top();
-  padding: @padding-profile-page @gutter-profile-page;
-  font-size: @font-size--normal;
+import { createElement } from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
+import GalleryContestVoteButton from './gallery-contest-vote-button';
 
-  @media @desktop {
-    padding-left: @gutter-profile-page-desktop;
-    padding-right: @gutter-profile-page-desktop;
+export default class GalleryContest {
+  private eventId: string;
+  private root: HTMLElement;
+
+  constructor(container: HTMLElement, pswp: any) {
+    this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;
+    render(createElement(GalleryContestVoteButton, {pswp}), this.root);
+    this.eventId = `gallery-contest-${osu.uuid()}`;
+
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
+    pswp.listen('destroy', this.destroy);
   }
 
-  &__icon {
-    color: @community-user-graygreen-lighter;
-    margin-right: 2px;
-  }
-
-  &__item {
-    margin: 2px 5px;
-    min-width: 0;
-  }
-
-  &__row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -2px -5px;
-
-    &--0 + & {
-      margin-top: 10px;
-    }
-  }
-
-  &__value {
-    font-weight: 600;
-    word-wrap: break-word;
-
-    &--link {
-      .link-blue-light();
-    }
+  destroy = () => {
+    unmountComponentAtNode(this.root);
+    $(document).off(`.${this.eventId}`);
   }
 }

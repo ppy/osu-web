@@ -54,6 +54,10 @@ return [
             'favourited_count' => '+ 1 other!|+ :count others!',
         ],
 
+        'favourites' => [
+            'limit_reached' => 'You have too many favourited beatmaps! Please unfavourite some before trying again.',
+        ],
+
         'hype' => [
             'action' => 'Hype this map if you enjoyed playing it to help it progress to <strong>Ranked</strong> status.',
 

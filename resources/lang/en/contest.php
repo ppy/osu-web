@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Voting for this contest has ended',
         'login_required' => 'Please sign in to vote.',
+
         'best_of' => [
             'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+        ],
+
+        'button' => [
+            'add' => 'Vote',
+            'remove' => 'Remove vote',
+            'used_up' => 'You have used up all your votes',
         ],
     ],
     'entry' => [

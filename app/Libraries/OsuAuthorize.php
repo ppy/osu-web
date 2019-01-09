@@ -1014,6 +1014,22 @@ class OsuAuthorize
         }
     }
 
+    public function checkMultiplayerRoomCreate($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkMultiplayerScoreSubmit($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkUserPageEdit($user, $pageOwner)
     {
         $prefix = 'user.page.edit.';
@@ -1037,26 +1053,6 @@ class OsuAuthorize
                 return $prefix.'locked';
             }
         }
-
-        return 'ok';
-    }
-
-    public function checkUserFavourite($user)
-    {
-        $prefix = 'errors.beatmapsets.';
-
-        $this->ensureLoggedIn($user);
-
-        if ($user->favouriteBeatmapsets()->count() > 99) {
-            return $prefix.'too-many-favourites';
-        }
-
-        return 'ok';
-    }
-
-    public function checkUserFavouriteRemove($user)
-    {
-        $this->ensureLoggedIn($user);
 
         return 'ok';
     }
