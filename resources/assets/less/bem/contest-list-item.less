@@ -34,6 +34,21 @@
     height: 90px;
   }
 
+  &:active, &:focus, &:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    @media @desktop {
+      .@{_top}__image {
+        width: 160px;
+      }
+    }
+    background-color: lighten(@community-grayblue-tile-background, 5%);
+    border-color: lighten(@community-grayblue-tile-background, 5%);
+  }
+
   &--entry {
     border-color: @pink;
     &:hover {
@@ -57,21 +72,6 @@
     &:hover {
       border-color: lighten(@blue, 5%);
     }
-  }
-
-  &:active, &:focus, &:hover {
-    color: white;
-    text-decoration: none;
-  }
-
-  &:hover {
-    @media @desktop {
-      .@{_top}__image {
-        width: 160px;
-      }
-    }
-    background-color: lighten(@community-grayblue-tile-background, 5%);
-    border-color: lighten(@community-grayblue-tile-background, 5%);
   }
 
   &__container {
