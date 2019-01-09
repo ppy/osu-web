@@ -34,10 +34,7 @@ class ModTest extends TestCase
 
         foreach (Ruleset::ALL as $ruleset) {
             foreach (Mod::validityByRuleset()[$ruleset] as $mod) {
-                $this->assertSame(
-                    Mod::validForRuleset($mod, $ruleset),
-                    true
-                );
+                $this->assertTrue(Mod::validForRuleset($mod, $ruleset));
             }
         }
     }
@@ -46,41 +43,25 @@ class ModTest extends TestCase
     {
         // osu standard
         // enabling a mania-only mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::OSU),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::OSU));
 
         // taiko
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::TAIKO),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::TAIKO));
+
         // enabling a mania specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::TAIKO),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::TAIKO));
 
         // catch
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::CATCH),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::CATCH));
+
         // enabling a mania specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::CATCH),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::CATCH));
 
         // mania
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::MANIA),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::MANIA));
     }
 
     /**
