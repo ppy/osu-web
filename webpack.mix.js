@@ -185,15 +185,8 @@ mix
 .js(...reactComponentSet('profile-page'))
 .js(...reactComponentSet('status-page'))
 .js(...reactComponentSet('admin/contest'))
-.js([
-  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
-  'resources/assets/coffee/react/contest-entry.coffee',
-], 'js/react/contest-entry.js')
-.js([
-  // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
-  ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
-  'resources/assets/coffee/react/contest-voting.coffee',
-], 'js/react/contest-voting.js')
+.js(...reactComponentSet('contest-entry'))
+.js(...reactComponentSet('contest-voting'))
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
