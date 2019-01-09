@@ -19,6 +19,10 @@
  */
 
 return [
+    'tournament' => [
+        'not_available' => 'The time for getting supporter banners for this tournament is over!',
+    ],
+
     'insufficient_stock' => 'There is not enough of this item left!',
     'not_available' => 'This item is not available.',
     'too_many' => 'You can only order :count of this item per order.',
