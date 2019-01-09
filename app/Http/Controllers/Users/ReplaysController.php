@@ -23,7 +23,6 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Score\Best;
 use App\Models\User;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ReplaysController extends Controller
 {
@@ -49,30 +48,8 @@ class ReplaysController extends Controller
             ->orderBy('score_id', 'desc')
             ->firstOrFail();
 
-        $replayFile = $score->replayFile();
-        if ($replayFile === null) {
-            abort(404);
-        }
-
-        try {
-            $disposition = "attachment; filename=replay-{$mode}_{$beatmapId}_{$score->getKey()}.osr";
-
-            $content = $replayFile->get();
-            // TODO: switch to streamDownload in Laravel 5.6+?
-            $stream = response()->stream(function () use ($replayFile, $content) {
-                echo $replayFile->headerChunk();
-                echo pack('i', strlen($content));
-                echo $content;
-                echo $replayFile->endChunk();
-            });
-            $stream->headers->set('Content-Disposition', $disposition);
-            $stream->headers->set('Content-Type', 'application/octet-stream');
-
-            return $stream;
-        } catch (FileNotFoundException $e) {
-            // missing from storage.
-            log_error($e);
-            abort(404);
-        }
+        // redirect any requests from outdated client versions.
+        // TODO: remove
+        return ujs_redirect(route('scores.download', ['mode' => $mode, 'score' => $score->getKey()]));
     }
 }

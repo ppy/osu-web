@@ -85,6 +85,7 @@ Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+Route::get('scores/{mode}/{score}/download', 'ScoresController@download')->name('scores.download');
 
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
