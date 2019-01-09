@@ -34,10 +34,7 @@ class ModTest extends TestCase
 
         foreach (Ruleset::ALL as $ruleset) {
             foreach (Mod::validityByRuleset()[$ruleset] as $mod) {
-                $this->assertSame(
-                    Mod::validForRuleset($mod, $ruleset),
-                    true
-                );
+                $this->assertTrue(Mod::validForRuleset($mod, $ruleset));
             }
         }
     }
@@ -46,123 +43,85 @@ class ModTest extends TestCase
     {
         // osu standard
         // enabling a mania-only mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::OSU),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::OSU));
 
         // taiko
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::TAIKO),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::TAIKO));
+
         // enabling a mania specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::TAIKO),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::TAIKO));
 
         // catch
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::CATCH),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::CATCH));
+
         // enabling a mania specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('9K', Ruleset::CATCH),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('9K', Ruleset::CATCH));
 
         // mania
         // enabling a osu standard specific mod should fail
-        $this->assertSame(
-            Mod::validForRuleset('AP', Ruleset::MANIA),
-            false
-        );
+        $this->assertFalse(Mod::validForRuleset('AP', Ruleset::MANIA));
     }
 
-    public function testValidateSelectionWithValid()
+    /**
+     * @dataProvider modCombos
+     */
+    public function testValidateSelection($ruleset, $modCombo, $isValid)
     {
-        $validModCombos = [
-            Ruleset::OSU => [
-                ['HD', 'DT'],
-                ['HD', 'HR'],
-                ['HD', 'HR'],
-                ['HD', 'NC'],
-            ],
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        }
 
-            Ruleset::TAIKO => [
-                ['HD', 'NC'],
-                ['HD', 'DT'],
-                ['HD', 'HR'],
-                ['HR', 'PF'],
-            ],
+        $result = Mod::validateSelection($modCombo, $ruleset);
 
-            Ruleset::CATCH => [
-                ['HD', 'HR'],
-                ['HD', 'PF'],
-                ['HD', 'SD'],
-                ['HD'],
-                ['EZ'],
-            ],
-
-            Ruleset::MANIA => [
-                ['DT', 'PF'],
-                ['NC', 'SD'],
-                ['6K', 'HD'],
-                ['4K', 'HT'],
-            ],
-        ];
-
-        foreach ($validModCombos as $ruleset => $modCombos) {
-            foreach ($modCombos as $modCombo) {
-                $this->assertSame(
-                    Mod::validateSelection($modCombo, $ruleset),
-                    true
-                );
-            }
+        if ($isValid) {
+            $this->assertTrue($result);
         }
     }
 
-    public function testValidateSelectionWithInvalid()
+    public function modCombos()
     {
-        $invalidModCombos = [
-            Ruleset::OSU => [
-                ['5K'],
-                ['DS'],
-                ['HD', 'HD'],
-                ['RX', 'PF'],
-            ],
+        return [
+            // valid
+            [Ruleset::OSU, ['HD', 'DT'], true],
+            [Ruleset::OSU, ['HD', 'HR'], true],
+            [Ruleset::OSU, ['HD', 'HR'], true],
+            [Ruleset::OSU, ['HD', 'NC'], true],
 
-            Ruleset::TAIKO => [
-                ['AP'],
-                ['RD', 'SD'],
-                ['RX', 'PF'],
-            ],
+            [Ruleset::TAIKO, ['HD', 'NC'], true],
+            [Ruleset::TAIKO, ['HD', 'DT'], true],
+            [Ruleset::TAIKO, ['HD', 'HR'], true],
+            [Ruleset::TAIKO, ['HR', 'PF'], true],
 
-            Ruleset::CATCH => [
-                ['4K'],
-                ['AP'],
-                ['RX', 'PF'],
-            ],
+            [Ruleset::CATCH, ['HD', 'HR'], true],
+            [Ruleset::CATCH, ['HD', 'PF'], true],
+            [Ruleset::CATCH, ['HD', 'SD'], true],
+            [Ruleset::CATCH, ['HD'], true],
+            [Ruleset::CATCH, ['EZ'], true],
 
-            Ruleset::MANIA => [
-                ['AP'],
-                ['RD', 'SD'],
-                ['RX', 'PF'],
-            ],
+            [Ruleset::MANIA, ['DT', 'PF'], true],
+            [Ruleset::MANIA, ['NC', 'SD'], true],
+            [Ruleset::MANIA, ['6K', 'HD'], true],
+            [Ruleset::MANIA, ['4K', 'HT'], true],
+
+            // invalid
+            [Ruleset::OSU, ['5K'], false],
+            [Ruleset::OSU, ['DS'], false],
+            [Ruleset::OSU, ['HD', 'HD'], false],
+            [Ruleset::OSU, ['RX', 'PF'], false],
+
+            [Ruleset::TAIKO, ['AP'], false],
+            [Ruleset::TAIKO, ['RD', 'SD'], false],
+            [Ruleset::TAIKO, ['RX', 'PF'], false],
+
+            [Ruleset::CATCH, ['4K'], false],
+            [Ruleset::CATCH, ['AP'], false],
+            [Ruleset::CATCH, ['RX', 'PF'], false],
+
+            [Ruleset::MANIA, ['AP'], false],
+            [Ruleset::MANIA, ['FI', 'HD'], false],
+            [Ruleset::MANIA, ['RX', 'PF'], false],
         ];
-
-        $this->expectException(InvariantException::class);
-        foreach ($invalidModCombos as $ruleset => $modCombos) {
-            foreach ($modCombos as $modCombo) {
-                $this->assertSame(
-                    Mod::validateSelection($modCombo, $ruleset),
-                    false
-                );
-            }
-        }
     }
 }
