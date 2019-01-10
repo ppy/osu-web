@@ -78,6 +78,7 @@
 
     @include('objects._show_more_link', [
         'additionalClasses' => 'js-header--alt js-forum-posts-show-more js-forum__posts-show-more--previous',
+        'arrow' => 'up',
         'attributes' => ['data-mode' => 'previous'],
         'hidden' => $posts->first()->post_id === $firstPostId,
         'modifiers' => ['forum-topic', 't-ddd'],
