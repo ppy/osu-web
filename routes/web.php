@@ -84,7 +84,10 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-Route::post('scores/{mode}/{score}/report', 'ScoresController@report')->name('scores.report');
+Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+    Route::post('{mode}/{score}/report', 'ScoresController@report')->name('report');
+    Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+});
 
 Route::resource('comments', 'CommentsController');
 Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
@@ -220,8 +223,6 @@ Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->na
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
-
-Route::get('users/{user}/replays/{beatmap}/{mode}', 'Users\ReplaysController@show')->name('users.replay');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');

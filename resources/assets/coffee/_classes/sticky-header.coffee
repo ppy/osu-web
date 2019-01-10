@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -28,9 +28,9 @@ class @StickyHeader
     @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
-    $(window).on 'throttled-scroll', @pin
-    $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
-    $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+    $(window).on 'throttled-scroll', @onScroll
+    $(document).on 'turbolinks:load osu:page:change', => Timeout.set 0, @onScroll
+    $(window).on 'throttled-resize', @stickOrUnstick
 
 
   breadcrumbsElement: ->
@@ -47,6 +47,11 @@ class @StickyHeader
       styles.heightMobile
     else
       styles.heightSticky
+
+
+  onScroll: =>
+    @pin()
+    @stickOrUnstick()
 
 
   pin: =>
