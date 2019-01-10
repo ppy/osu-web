@@ -100,7 +100,7 @@
                     @include('forum.forums._new_topic', compact('forum'))
                 </div>
 
-                <div class="forum-topics-spacer__pager">
+                <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--pager">
                     @include('objects._pagination_v0', ['object' => $topics
                         ->fragment('topics')
                         ->appends([

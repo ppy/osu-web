@@ -26,6 +26,10 @@
     flex-wrap: wrap;
   }
 
+  @media @narrow {
+    flex-direction: column;
+  }
+
   &--pager {
     margin-top: 0;
     margin-bottom: 0;
@@ -49,13 +53,23 @@
         order: 2;
       }
     }
-  }
 
-  &__pager {
-    flex: none;
-    @media @mobile {
+    &--pager {
+      flex: none;
+      justify-content: center;
+
+      @media @mobile {
+        width: 100%;
+        order: 3;
+      }
+    }
+
+    @media @narrow {
+      & + & {
+        padding-top: 5px;
+      }
+
       width: 100%;
-      order: 3;
     }
   }
 }
