@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -46,6 +46,7 @@ class Kernel extends ConsoleKernel
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
         Commands\StoreCleanupStaleOrders::class,
+        Commands\StoreDisableEndedTournamentBanners::class,
 
         // builds
         Commands\BuildsCreate::class,
@@ -77,6 +78,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('store:cleanup-stale-orders')
             ->daily();
+
+        $schedule->command('store:disable-ended-tournament-banners')
+            ->hourly();
 
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');

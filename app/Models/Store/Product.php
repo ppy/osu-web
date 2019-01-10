@@ -163,7 +163,7 @@ class Product extends Model
     public function scopeLatest($query)
     {
         return $query
-            ->active()
+            ->where('enabled', true)
             ->where('master_product_id', null)
             ->with('masterProduct')
             ->with('variations')
