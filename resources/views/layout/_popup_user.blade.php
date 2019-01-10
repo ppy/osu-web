@@ -25,7 +25,7 @@
         class="simple-menu__header simple-menu__header--link js-current-user-cover"
         {!! background_image(Auth::user()->cover(), false) !!}
     >
-        <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
+        <img class="simple-menu__header-icon" src="/images/icons/profile-v2.svg" alt="">
         <div>{{ Auth::user()->username }}</div>
     </a>
 
