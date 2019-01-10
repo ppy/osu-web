@@ -32,12 +32,11 @@ class StoreDisableEndedTournamentBanners extends Command
 
     public function handle()
     {
-        $instance = new Tournament;
-        $qualifiedTable = "{$instance->dbName()}.{$instance->getTable()}";
+        $tournamentIds = Tournament::from((new Tournament)->tableName(true))->ended()->select('tournament_id');
 
         $count = Product
             ::where('enabled', true)
-            ->whereIn('tournament_id', Tournament::from($qualifiedTable)->ended()->select('tournament_id'))
+            ->whereIn('tournament_id', $tournamentIds)
             ->update(['enabled' => false]);
 
         $this->line("Disabled {$count} items.");

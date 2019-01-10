@@ -151,11 +151,12 @@ class Product extends Model
         return $query
             ->where('enabled', true)
             ->where(function ($tournamentsQuery) {
-                $instance = new Tournament;
-                $qualifiedTable = "{$instance->dbName()}.{$instance->getTable()}";
+                $tournamentIds = Tournament::from((new Tournament)->tableName(true))
+                    ->notEnded()
+                    ->select('tournament_id');
 
                 $tournamentsQuery
-                    ->whereIn('tournament_id', Tournament::from($qualifiedTable)->notEnded()->select('tournament_id'))
+                    ->whereIn('tournament_id', $tournamentIds)
                     ->orWhere('tournament_id', null);
             });
     }
