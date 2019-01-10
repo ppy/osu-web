@@ -22,7 +22,6 @@ import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import Dispatcher from './dispatcher';
 import WindowFocusObserver from './window-focus-observer';
-import WindowVHPatcher from './window-vh-patcher';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -33,17 +32,16 @@ export default class OsuCore {
   chatOrchestrator: ChatOrchestrator;
   userLoginObserver: UserLoginObserver;
   windowFocusObserver: WindowFocusObserver;
-  windowVHPatcher: WindowVHPatcher;
 
   constructor(window: Window) {
     this.window = window;
+    // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     this.dispatcher = new Dispatcher();
     this.dataStore = new RootDataStore(this.dispatcher);
     this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
     this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
     this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
-    this.windowVHPatcher = new WindowVHPatcher(this.window);
 
     if (currentUser !== null) {
       this.dataStore.userStore.getOrCreate(currentUser.id, currentUser);

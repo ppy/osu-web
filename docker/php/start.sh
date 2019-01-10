@@ -6,7 +6,7 @@ set -e
 cd "$(dirname "${0}")/../.."
 
 test -f .env || cp .env.example .env
-./docker/php/wait-for "${1}" -t 60
+./docker/php/wait-for.sh "${1}" -t 60
 ./build.sh
 
 # undo config and route caching by the script above
