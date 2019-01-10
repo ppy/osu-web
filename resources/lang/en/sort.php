@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,40 +18,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.comments-sort {
-  @_top: comments-sort;
+return [
+    '_' => 'Sort by',
 
-  .default-gutter();
-  display: flex;
-  margin: -5px -10px;
-  font-size: @font-size--title-small;
+    'new' => 'Recent',
+    'old' => 'Old',
+    'top' => 'Top',
 
-  &__item {
-    .reset-input();
-    margin: 5px;
-    padding: 0 5px;
-    color: #333;
-
-    .@{_top}--changelog & {
-      color: inherit;
-    }
-
-    &--button {
-      color: #555;
-
-      .@{_top}--changelog & {
-        color: #ddd;
-      }
-    }
-
-    // overrides --button
-    &--active {
-      color: @pink-darker;
-      font-weight: bold;
-
-      .@{_top}--changelog & {
-        color: @pink;
-      }
-    }
-  }
-}
+    'forum_topics' => [
+        'new' => 'Last reply',
+        'feature_votes' => 'Star priority',
+    ],
+];

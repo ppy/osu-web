@@ -83,14 +83,18 @@
   }
 
   &__toolbar {
-    padding: 0 20px;
+    padding: 0 15px 10px;
     display: flex;
+    flex-direction: column;
     border-bottom: 1px solid #ccc;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__toolbar-content {
     display: flex;
-    margin: -10px -15px 0;
 
     &--right {
       flex: 1;
@@ -98,16 +102,20 @@
     }
   }
 
-  &__toolbar-link {
-    font-size: @font-size--normal;
-    color: #555;
-    padding: 10px 15px;
+  &__toolbar-item {
+    margin: 5px;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: #000;
-      text-decoration: none;
+    &--link {
+      .link-plain();
+      .default-border-radius();
+      font-size: @font-size--normal;
+      color: #555;
+      padding: 5px 10px;
+
+      .link-hover({
+        color: #555;
+        background-color: #eee;
+      });
     }
   }
 

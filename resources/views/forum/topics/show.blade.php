@@ -43,37 +43,8 @@
         </div>
     @endif
 
-    @if (false && $topic->isFeatureTopic())
-        <div class="forum-topic-feature-vote">
-            <p>
-                @foreach ($topic->featureVotes as $vote)
-                    <span>+{{ $vote->voteIncrement() }} by {{ $vote->user->username }}</span>
-                @endforeach
-            </p>
-            <p>
-                {{ trans('forum.topics.show.feature_vote.current', [
-                    'count' => $topic->osu_starpriority,
-                ]) }}
-            </p>
-
-            @if (Auth::check())
-                @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
-                    <a href="{{ route('forum.topics.vote-feature', $topic->getKey()) }}" data-method="POST" data-remote=1>
-                        {{ trans('forum.topics.show.feature_vote.do') }}
-                    </a>
-                @else
-                    <p>
-                        {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
-                    </p>
-                @endif
-
-                <p>
-                    {{ trans('forum.topics.show.feature_vote.user.current', [
-                        'votes' => trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes),
-                    ]) }}
-                </p>
-            @endif
-        </div>
+    @if ($topic->isFeatureTopic())
+        @include ('forum.topics._feature_vote')
     @endif
 
     @include('objects._show_more_link', [
