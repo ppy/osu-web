@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -112,7 +112,6 @@ class @Forum
     lastPostLoaded = @lastPostLoaded()
 
     $('.js-forum__posts-show-more--next')
-      .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
     if !@userCanModerate()
@@ -210,8 +209,10 @@ class @Forum
 
   showMore: (e) =>
     e.preventDefault()
-    $link = $(e.target)
-    $linkDiv = $link.closest('div')
+
+    return if e.currentTarget.classList.contains('js-disabled')
+
+    $link = $(e.currentTarget)
     mode = $link.data('mode')
 
     options =
@@ -226,7 +227,7 @@ class @Forum
       $refPost = $('.js-forum-post').last()
       options['start'] = $refPost.data('post-id') + 1
 
-    $linkDiv.addClass 'loading'
+    $link.addClass 'js-disabled'
 
     $.get(window.canonicalUrl, options)
     .done (data) =>
@@ -234,11 +235,11 @@ class @Forum
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
       if mode == 'previous'
-        $linkDiv.after data
+        $link.after data
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        $linkDiv.before data
+        $link.before data
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -261,7 +262,7 @@ class @Forum
       $link.attr 'data-failed', '0'
 
     .always ->
-      $linkDiv.removeClass 'loading'
+      $link.removeClass 'js-disabled'
     .fail ->
       $link.attr 'data-failed', '1'
 

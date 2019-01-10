@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,9 @@ el = React.createElement
 bn = 'comment-show-more'
 
 class @CommentShowMore extends React.PureComponent
+  @defaultProps = modifiers: []
+
+
   constructor: (props) ->
     super props
 
@@ -40,14 +43,27 @@ class @CommentShowMore extends React.PureComponent
 
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
-    div className: blockClass,
-      if @state.loading
-        el Spinner
+    if 'top' in @props.modifiers
+      modifiers = ['comments']
+      if 'changelog' in @props.modifiers
+        modifiers.push('t-dark-purple-darker')
       else
-        button
-          className: "#{bn}__link"
-          onClick: @load
-          @props.label ? osu.trans('common.buttons.show_more')
+        modifiers.push('t-ddd')
+
+      el ShowMoreLink,
+        loading: @state.loading
+        hasMore: true
+        callback: @load
+        modifiers: modifiers
+    else
+      div className: blockClass,
+        if @state.loading
+          el Spinner
+        else
+          button
+            className: "#{bn}__link"
+            onClick: @load
+            @props.label ? osu.trans('common.buttons.show_more')
 
 
   load: =>
