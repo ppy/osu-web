@@ -29,10 +29,14 @@ class ContestsController extends Controller
 
     public function index()
     {
-        $contests = Contest::where('visible', true)->orderBy('id', 'desc')->get();
+        $contests = Contest::orderBy('id', 'desc');
+
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            $contests->where('visible', true);
+        }
 
         return view('contests.index')
-            ->with('contests', $contests);
+            ->with('contests', $contests->get());
     }
 
     public function show($id)
