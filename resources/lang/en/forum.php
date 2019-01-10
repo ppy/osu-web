@@ -276,7 +276,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} no votes|{1} :count vote|[2,*] :count votes',
                     'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
