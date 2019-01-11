@@ -22,13 +22,20 @@
   flex-wrap: wrap;
 
   &__item {
-    width: 50%;
-    height: 240px;
     padding: 5px;
+    width: 100%;
+    height: 240px;
+
+    @media @desktop {
+      width: 50%;
+    }
 
     &--first {
-      width: 100%;
       height: 300px;
+
+      @media @desktop {
+        width: 100%;
+      }
     }
 
     &--more {
