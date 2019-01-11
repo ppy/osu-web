@@ -52,6 +52,11 @@ return [
             'favourite' => 'Favourite this beatmapset',
             'unfavourite' => 'Unfavourite this beatmapset',
             'favourited_count' => '+ 1 other!|+ :count others!',
+
+            'login_required' => [
+                'top' => 'Sign In',
+                'bottom' => 'to access more features',
+            ],
         ],
 
         'favourites' => [

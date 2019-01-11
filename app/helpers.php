@@ -262,14 +262,6 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    if ($locale === 'zh-hk') {
-        return 'zh-hk';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-tw';
-    }
-
     return $locale;
 }
 

@@ -75,7 +75,7 @@ class @AccountEdit
     if input.type == 'checkbox'
       value = input.checked
     else
-      value = input.value
+      value = input.value.trim()
 
     prevValue = form.dataset.lastValue
 
