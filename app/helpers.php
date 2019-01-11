@@ -255,19 +255,11 @@ function locale_name($locale)
 function locale_for_moment($locale)
 {
     if ($locale === 'en') {
-        return;
+        return 'en-gb';
     }
 
     if ($locale === 'zh') {
         return 'zh-cn';
-    }
-
-    if ($locale === 'zh-hk') {
-        return 'zh-hk';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-tw';
     }
 
     return $locale;
