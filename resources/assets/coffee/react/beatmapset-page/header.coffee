@@ -162,35 +162,7 @@ class BeatmapsetPage.Header extends React.Component
                 modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 icon: favouriteButton.icon
 
-            if currentUser.id? && !@props.beatmapset.availability?.download_disabled
-              [
-                if @props.beatmapset.video
-                  [
-                    @downloadButton
-                      key: 'video'
-                      href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
-                      bottomTextKey: 'video'
-
-                    @downloadButton
-                      key: 'no-video'
-                      href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
-                      bottomTextKey: 'no-video'
-                  ]
-                else
-                  @downloadButton
-                    key: 'default'
-                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
-
-                @downloadButton
-                  key: 'direct'
-                  topTextKey: 'direct'
-                  osuDirect: true
-                  href:
-                    if currentUser.is_supporter
-                      Url.beatmapDownloadDirect @props.beatmapset.id
-                    else
-                      laroute.route 'support-the-game'
-              ]
+            @renderDownloadButtons()
 
             if @props.beatmapset.discussion_enabled
               el BigButton,
@@ -209,12 +181,57 @@ class BeatmapsetPage.Header extends React.Component
                 props:
                   href: @props.beatmapset.legacy_thread_url
 
+            @renderLoginButton()
+
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           div className: 'beatmapset-status beatmapset-status--show', @props.beatmapset.status
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed
+
+
+  renderDownloadButtons: =>
+    if currentUser.id? && !@props.beatmapset.availability?.download_disabled
+      [
+        if @props.beatmapset.video
+          [
+            @downloadButton
+              key: 'video'
+              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+              bottomTextKey: 'video'
+
+            @downloadButton
+              key: 'no-video'
+              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+              bottomTextKey: 'no-video'
+          ]
+        else
+          @downloadButton
+            key: 'default'
+            href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+
+        @downloadButton
+          key: 'direct'
+          topTextKey: 'direct'
+          osuDirect: true
+          href:
+            if currentUser.is_supporter
+              Url.beatmapDownloadDirect @props.beatmapset.id
+            else
+              laroute.route 'support-the-game'
+      ]
+
+
+  renderLoginButton: ->
+    if !currentUser.id?
+      el BigButton,
+        extraClasses: ['js-user-link']
+        modifiers: ['beatmapset-header']
+        text:
+          top: osu.trans 'beatmapsets.show.details.login_required.top'
+          bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
+        icon: 'fas fa-lock'
 
 
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
