@@ -26,6 +26,12 @@ export default function PostItem({post}: {post: PostJson}) {
     cover = <img className='news-card__cover' src={post.first_image} />;
   }
 
+  let preview = post.preview;
+
+  if (preview == null) {
+    preview = '';
+  }
+
   return <a
     href={laroute.route('news.show', {news: post.slug})}
     className='news-card news-card--index'
@@ -42,7 +48,7 @@ export default function PostItem({post}: {post: PostJson}) {
 
       <div className='news-card__main'>
         <div className='news-card__title'>{post.title}</div>
-        <div className='news-card__preview' dangerouslySetInnerHTML={{__html: post.preview}} />
+        <div className='news-card__preview' dangerouslySetInnerHTML={{__html: preview}} />
       </div>
     </div>
   </a>;
