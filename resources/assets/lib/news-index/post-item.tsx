@@ -42,7 +42,7 @@ export default function PostItem({post}: {post: PostJson}) {
 
       <div className='news-card__main'>
         <div className='news-card__title'>{post.title}</div>
-        <div className='news-card__preview'>{post.preview}</div>
+        <div className='news-card__preview' dangerouslySetInnerHTML={{__html: post.preview}} />
       </div>
     </div>
   </a>;
