@@ -56,7 +56,7 @@ class NewsController extends Controller
             'post' => $post,
             'postJson' => [
                 'post' => json_item($post, 'NewsPost', ['content', 'navigation']),
-                'comment_bundle' => CommentBundle::forEmbed($post),
+                'comment_bundle' => CommentBundle::forEmbed($post)->toArray(),
             ],
         ]);
     }
