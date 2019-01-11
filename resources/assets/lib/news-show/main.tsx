@@ -104,8 +104,14 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       authorDiv = <div className='news-card__author'>{osu.trans('news.show.by', {user: author})}</div>;
     }
 
+    let cover;
+
+    if (this.props.post.first_image != null) {
+      cover = <img className='news-card__cover' src={this.props.post.first_image} />;
+    }
+
     return <div className='news-card news-card--show'>
-      <img className='news-card__cover' src={this.props.post.first_image} />
+      {cover}
       <div className='news-card__overlay' />
 
       <div className='news-card__content'>

@@ -24,7 +24,7 @@ interface Navigation {
 export default interface NewsPostJson {
   content?: string;
   edit_url: string;
-  first_image: string;
+  first_image?: string;
   id: number;
   navigation?: Navigation;
   preview?: string;

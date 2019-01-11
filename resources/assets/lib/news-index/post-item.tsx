@@ -20,11 +20,17 @@ import * as React from 'react';
 import PostJson from 'interfaces/news-post-json';
 
 export default function PostItem({post}: {post: PostJson}) {
+  let cover;
+
+  if (post.first_image != null) {
+    cover = <img className='news-card__cover' src={post.first_image} />;
+  }
+
   return <a
     href={laroute.route('news.show', {news: post.slug})}
     className='news-card news-card--index'
   >
-    <img className='news-card__cover' src={post.first_image} />
+    {cover}
     <div className='news-card__overlay' />
     <div className='news-card__content'>
       <div
