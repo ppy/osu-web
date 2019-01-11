@@ -44,7 +44,7 @@ class OrderCheckoutTest extends TestCase
 
     public function testTournamentBannerForEndedTournament()
     {
-        $tournament = factory(Tournament::class)->states('ended')->create();
+        $tournament = factory(Tournament::class)->states('bannerEnded')->create();
         $product = $this->createTournamentProduct($tournament);
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
