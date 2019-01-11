@@ -64,7 +64,7 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
 
   renderHeaderTabs(): React.ReactNode {
     // TODO: handle tabs
-    let classNames = 'page-mode-v2 page-mode-v2--breadcrumbs';
+    let classNames = 'page-mode-v2';
     if (this.props.theme) {
       classNames += ` page-mode-v2--${this.props.theme}`;
     }
