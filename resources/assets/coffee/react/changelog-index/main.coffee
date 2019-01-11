@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -69,7 +69,7 @@ class ChangelogIndex.Main extends React.PureComponent
           callback: @showMore
           hasMore: @state.hasMore
           loading: @state.loading
-          modifiers: ['changelog-index']
+          modifiers: ['t-dark-purple-darker', 'changelog-index']
 
 
   renderHeaderTabs: =>

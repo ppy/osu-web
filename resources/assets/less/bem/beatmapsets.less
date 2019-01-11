@@ -21,9 +21,9 @@
   @top: beatmapsets;
 
   background-color: #eee;
-  padding: 20px;
 
   &__content {
+    padding: 10px 20px;
     .@{top}--dimmed & {
       opacity: 0.2;
     }
@@ -34,7 +34,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 10px 0 -20px;
+    margin: 10px 0 -10px;
   }
 
   &__item {
@@ -56,5 +56,12 @@
   &__items-row {
     display: flex;
     width: 100%;
+  }
+
+  &__sort {
+    background-color: #fff;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
   }
 }

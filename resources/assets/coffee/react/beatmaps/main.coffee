@@ -127,7 +127,9 @@ class Beatmaps.Main extends React.PureComponent
         className: 'osu-layout__row osu-layout__row--page-compact'
         div className: listCssClasses,
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
+            div
+              className: 'beatmapsets__sort'
+              el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'

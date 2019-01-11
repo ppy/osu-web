@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,7 +39,7 @@ class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+    const DEFAULT_SORT = 'new';
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
@@ -491,27 +491,15 @@ class Topic extends Model implements AfterCommit
 
     public function scopePresetSort($query, $sort)
     {
-        switch ($sort[0] ?? null) {
+        $tieBreakerOrder = 'desc';
+
+        switch ($sort) {
             case 'feature-votes':
-                $sortField = 'osu_starpriority';
+                $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
-
-        switch ($sort[1] ?? null) {
-            case 'asc':
-                $sortOrder = $sort[1];
-                break;
-        }
-
-        $sortOrder ?? ($sortOrder = 'desc');
-
-        $query->orderBy($sortField, $sortOrder);
-
-        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
-            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
-        }
+        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -779,7 +767,7 @@ class Topic extends Model implements AfterCommit
 
     public function isFeatureTopic()
     {
-        return $this->forum->isFeatureForum();
+        return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
     public function poll($poll = null)

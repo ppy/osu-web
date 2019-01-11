@@ -74,13 +74,13 @@ return [
     ],
     'forum' => [
         'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
-        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
+        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
+        'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
         'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
         'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
-
         'necropost_months' => 6,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
