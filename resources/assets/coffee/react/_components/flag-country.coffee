@@ -22,7 +22,7 @@ el = React.createElement
 bn = 'flag-country'
 
 @FlagCountry = ({country, modifiers}) ->
-  return null if !country.code?
+  return null if !country?.code?
 
   blockClass = osu.classWithModifiers(bn, modifiers)
 
