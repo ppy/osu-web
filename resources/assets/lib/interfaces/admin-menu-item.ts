@@ -16,19 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-interface Navigation {
-  newer?: NewsPostJson;
-  older?: NewsPostJson;
-}
-
-export default interface NewsPostJson {
-  content?: string;
-  edit_url: string;
-  first_image: string;
-  id: number;
-  navigation?: Navigation;
-  preview?: string;
-  published_at: string;
-  slug: string;
-  title: string;
+export default interface AdminMenuItem {
+  component: string;
+  icon: string;
+  text: string;
+  props: any;
 }

@@ -35,10 +35,12 @@ class NewsPostTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $post->id,
-            'slug' => $post->slug,
-            'title' => $post->title(),
+
+            'edit_url' => $post->editUrl(),
             'first_image' => $post->firstImage(),
             'published_at' => json_time($post->published_at),
+            'slug' => $post->slug,
+            'title' => $post->title(),
         ];
     }
 

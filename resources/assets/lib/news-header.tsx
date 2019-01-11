@@ -19,11 +19,12 @@
 import * as React from 'react';
 import HeaderTitleTrans from 'interfaces/header-title-trans';
 import HeaderV3 from 'header-v3';
+import NewsPostJson from 'interfaces/news-post-json';
 
 interface PropsInterface {
   section: string;
   titleTrans: HeaderTitleTrans;
-  url?: string;
+  post?: NewsPostJson;
 }
 
 export default function NewsHeader(props: PropsInterface) {
@@ -35,11 +36,11 @@ export default function NewsHeader(props: PropsInterface) {
     }
   ];
 
-  if (props.section === 'show' && props.url != null) {
+  if (props.section === 'show' && props.post != null) {
     links.push({
       active: true,
-      title: osu.trans('news.show.title.info'),
-      url: props.url,
+      title: props.post.title,
+      url: laroute.route('news.show', {news: props.post.slug}),
     });
   }
 

@@ -17,6 +17,7 @@
  */
 
 import * as React from 'react';
+import AdminMenu from 'admin-menu';
 import NewsHeader from 'news-header';
 import NewsPostJson from 'interfaces/news-post-json';
 
@@ -41,7 +42,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     return <>
       <NewsHeader
         section='show'
-        url={laroute.route('news.show', {news: this.props.post.slug})}
+        post={this.props.post}
         titleTrans={titleTrans}
       />
       <div className='osu-page osu-page--news'>
@@ -70,6 +71,29 @@ export default class Main extends React.Component<PropsInterface, StateInterface
           }}
         />
       </div>
+
+      <AdminMenu items={[
+        {
+          component: 'a',
+          icon: 'fab fa-github',
+          text: osu.trans('wiki.show.edit.link'),
+          props: {
+            href: this.props.post.edit_url,
+          },
+        },
+        {
+          component: 'button',
+          icon: 'fas fa-sync',
+          text: osu.trans('news.update.button'),
+          props: {
+            type: 'button',
+            'data-remote': true,
+            'data-url': laroute.route('news.update', {news: this.props.post.id}),
+            'data-method': 'put',
+            'data-reload-on-success': 1,
+          },
+        },
+      ]} />
     </>;
   }
 

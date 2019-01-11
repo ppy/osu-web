@@ -19,11 +19,6 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
-    ],
-
     'index' => [
         'title_page' => 'osu!news',
 
@@ -40,7 +35,6 @@ return [
 
     'show' => [
         'by' => 'by :user',
-        'posted' => 'posted :time',
 
         'nav' => [
             'newer' => 'Newer post',
@@ -49,7 +43,7 @@ return [
 
         'title' => [
             '_' => 'News :info',
-            'info' => 'Entry',
+            'info' => 'Post',
         ],
     ],
 

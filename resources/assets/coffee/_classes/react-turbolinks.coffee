@@ -38,9 +38,7 @@ class @ReactTurbolinks
         for target in component.targets
           continue if target.dataset.reactTurbolinksLoaded != '1'
           target.dataset.reactTurbolinksLoaded = null
-          if !component.persistent
-            console.log 'unmounting non-persistent', _name
-            ReactDOM.unmountComponentAtNode target
+          ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>

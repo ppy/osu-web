@@ -16,19 +16,45 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-interface Navigation {
-  newer?: NewsPostJson;
-  older?: NewsPostJson;
-}
+.admin-menu {
+  position: fixed;
+  z-index: @z-index--admin-menu;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  color: #fff;
+  padding: 20px 20px 50px 50px;
 
-export default interface NewsPostJson {
-  content?: string;
-  edit_url: string;
-  first_image: string;
-  id: number;
-  navigation?: Navigation;
-  preview?: string;
-  published_at: string;
-  slug: string;
-  title: string;
+  &:hover {
+    opacity: 1;
+  }
+
+  &__button {
+    .reset-input();
+    border-radius: 10000px;
+    background-color: @blue-darker;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    width: @admin-menu-icon-width;
+  }
+
+  &__button-arrow {
+    font-size: 12px; // icon size
+  }
+
+  &__button-icon {
+    margin-top: 10px;
+    font-size: 24px; // icon size
+  }
+
+  &__menu {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    margin-left: 50px;
+    margin-bottom: -20px;
+    padding-bottom: 10px;
+  }
 }

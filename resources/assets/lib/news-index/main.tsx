@@ -17,9 +17,10 @@
  */
 
 import * as React from 'react';
+import AdminMenu from 'admin-menu';
 import NewsHeader from 'news-header';
-import PostJson from 'interfaces/news-post-json';
 import PostItem from './post-item';
+import PostJson from 'interfaces/news-post-json';
 
 interface PostsJson {
   news_posts: PostJson[];
@@ -100,6 +101,21 @@ export default class Main extends React.Component<PropsInterface, StateInterface
           </div>
         </div>
       </div>
+
+      <AdminMenu items={[
+        {
+          component: 'button',
+          icon: 'fas fa-sync',
+          text: osu.trans('news.store.button'),
+          props: {
+            'data-method': 'post',
+            'data-reload-on-success': '1',
+            'data-remote': true,
+            'data-url': laroute.route('news.store'),
+            type: 'button',
+          },
+        }
+      ]} />
     </>;
   }
 

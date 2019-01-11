@@ -34,12 +34,13 @@ interface JQueryStatic {
 
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
-  trans: (...args: any[]) => string;
-  uuid: () => string;
-  parseJson: (id: string) => any;
-  urlPresence: (string) => string;
-  timeago: (string) => string;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  jsonClone: (any) => any;
+  parseJson: (id: string) => any;
+  timeago: (string) => string;
+  trans: (...args: any[]) => string;
+  urlPresence: (string) => string;
+  uuid: () => string;
 }
 
 interface User {
