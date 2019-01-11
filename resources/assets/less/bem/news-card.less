@@ -64,12 +64,12 @@
   }
 
   &__overlay {
-    .full-size();
+    .full-size-overflow();
     background-image: linear-gradient(to bottom, transparent, fade(@dark-graypurple, 100%));
 
     .@{_top}--index & {
       &::after {
-        .full-size();
+        .full-size-overflow();
         content: '';
         opacity: 0;
         background-image: linear-gradient(to bottom, transparent, fade(@dark-purple-dark, 100%));
