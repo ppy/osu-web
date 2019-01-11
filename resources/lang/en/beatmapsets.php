@@ -55,7 +55,7 @@ return [
 
             'login_required' => [
                 'top' => 'Sign In',
-                'bottom' => 'for more features on this page',
+                'bottom' => 'to access more features',
             ],
         ],
 
