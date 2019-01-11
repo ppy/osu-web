@@ -63,6 +63,18 @@
   &__overlay {
     .full-size();
     background-image: linear-gradient(to bottom, transparent, fade(@dark-graypurple, 100%));
+
+    &::after {
+      .full-size();
+      content: '';
+      opacity: 0;
+      background-image: linear-gradient(to bottom, transparent, fade(@dark-purple-dark, 100%));
+      transition: all 200ms;
+
+      .@{_top}:hover & {
+        opacity: 1;
+      }
+    }
   }
 
   &__time {
