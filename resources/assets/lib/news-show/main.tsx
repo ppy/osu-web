@@ -16,27 +16,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import AdminMenu from 'admin-menu';
-import NewsHeader from 'news-header';
 import NewsPostJson from 'interfaces/news-post-json';
-
-interface CommentBundleJson { }
+import NewsHeader from 'news-header';
+import * as React from 'react';
 
 interface PropsInterface {
   container: HTMLElement;
   post: NewsPostJson;
-  commentBundle: CommentBundleJson;
+  commentBundle: any;
 }
 
-interface StateInterface {}
-
-export default class Main extends React.Component<PropsInterface, StateInterface> {
+export default class Main extends React.Component<PropsInterface, {}> {
   render() {
     const {content, author} = this.processContent();
     const titleTrans = {
-      key: 'news.show.title._',
       info: osu.trans('news.show.title.info'),
+      key: 'news.show.title._',
     };
 
     return <>
@@ -76,22 +72,22 @@ export default class Main extends React.Component<PropsInterface, StateInterface
         {
           component: 'a',
           icon: 'fab fa-github',
-          text: osu.trans('wiki.show.edit.link'),
           props: {
             href: this.props.post.edit_url,
           },
+          text: osu.trans('wiki.show.edit.link'),
         },
         {
           component: 'button',
           icon: 'fas fa-sync',
-          text: osu.trans('news.update.button'),
           props: {
-            type: 'button',
-            'data-remote': true,
-            'data-url': laroute.route('news.update', {news: this.props.post.id}),
             'data-method': 'put',
             'data-reload-on-success': 1,
+            'data-remote': true,
+            'data-url': laroute.route('news.update', {news: this.props.post.id}),
+            'type': 'button',
           },
+          text: osu.trans('news.update.button'),
         },
       ]} />
     </>;
@@ -174,7 +170,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       <div className='page-nav__item page-nav__item--right'>
         {newerLink}
       </div>
-    </div>
+    </div>;
   }
 
   private processContent = () => {
@@ -184,22 +180,22 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       content = '';
     }
 
-    let contentHTML = document.createElement('div');
+    const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
 
-    let firstImage = contentHTML.querySelector('img');
+    const firstImage = contentHTML.querySelector('img');
     if (firstImage != null && firstImage.parentElement != null) {
       firstImage.parentElement.remove();
     }
 
     let author;
-    let authorEl = _.last(contentHTML.querySelectorAll('p'));
+    const authorEl = _.last(contentHTML.querySelectorAll('p'));
     if (authorEl != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
       author = authorEl.textContent.slice(1);
     }
 
     content = contentHTML.innerHTML;
 
-    return {content, author}
+    return {content, author};
   }
 }

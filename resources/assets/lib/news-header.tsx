@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
-import HeaderTitleTrans from 'interfaces/header-title-trans';
 import HeaderV3 from 'header-v3';
+import HeaderTitleTrans from 'interfaces/header-title-trans';
 import NewsPostJson from 'interfaces/news-post-json';
+import * as React from 'react';
 
 interface PropsInterface {
   section: string;
@@ -28,12 +28,12 @@ interface PropsInterface {
 }
 
 export default function NewsHeader(props: PropsInterface) {
-  let links = [
+  const links = [
     {
+      active: props.section === 'index',
       title: osu.trans('news.index.title.info'),
       url: laroute.route('news.index'),
-      active: props.section === 'index',
-    }
+    },
   ];
 
   if (props.section === 'show' && props.post != null) {

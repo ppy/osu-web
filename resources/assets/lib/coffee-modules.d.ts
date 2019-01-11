@@ -14,4 +14,3 @@ declare module 'report-form' {
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
-

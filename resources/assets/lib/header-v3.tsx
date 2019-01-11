@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import HeaderLink from 'interfaces/header-link';
 import HeaderTitleTrans from 'interfaces/header-title-trans';
+import * as React from 'react';
 
 interface PropsInterface {
   compact?: boolean;

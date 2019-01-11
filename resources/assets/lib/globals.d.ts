@@ -35,11 +35,11 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  jsonClone: (any) => any;
+  jsonClone: (obj: any) => any;
   parseJson: (id: string) => any;
-  timeago: (string) => string;
+  timeago: (time: string) => string;
   trans: (...args: any[]) => string;
-  urlPresence: (string) => string;
+  urlPresence: (url: string) => string;
   uuid: () => string;
 }
 
@@ -49,5 +49,5 @@ interface User {
 }
 
 interface TooltipDefault {
-  remove: (HTMLElement) => void,
+  remove: (HTMLElement) => void;
 }

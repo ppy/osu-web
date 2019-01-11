@@ -20,7 +20,7 @@ import Main from 'news-index/main';
 
 reactTurbolinks.registerPersistent('news-index', Main, true, (container: HTMLElement) => {
   return {
-    container: container,
+    container,
     data: osu.parseJson('json-index'),
   };
 });

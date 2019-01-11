@@ -16,11 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import AdminMenu from 'admin-menu';
-import NewsHeader from 'news-header';
-import PostItem from './post-item';
 import PostJson from 'interfaces/news-post-json';
+import NewsHeader from 'news-header';
+import * as React from 'react';
+import PostItem from './post-item';
 
 interface PostsJson {
   news_posts: PostJson[];
@@ -71,8 +71,8 @@ export default class Main extends React.Component<PropsInterface, StateInterface
 
   render() {
     const titleTrans = {
-      key: 'news.index.title._',
       info: osu.trans('news.index.title.info'),
+      key: 'news.index.title._',
     };
 
     return <>
@@ -82,7 +82,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       />
       <div className='osu-page osu-page--news'>
         <div className='news-index'>
-          {this.state.posts.map(function (post, i) {
+          {this.state.posts.map((post, i) => {
             let containerClass = 'news-index__item';
             if (i === 0) {
               containerClass += ' news-index__item--first';
@@ -106,15 +106,15 @@ export default class Main extends React.Component<PropsInterface, StateInterface
         {
           component: 'button',
           icon: 'fas fa-sync',
-          text: osu.trans('news.store.button'),
           props: {
             'data-method': 'post',
             'data-reload-on-success': '1',
             'data-remote': true,
             'data-url': laroute.route('news.store'),
-            type: 'button',
+            'type': 'button',
           },
-        }
+          text: osu.trans('news.store.button'),
+        },
       ]} />
     </>;
   }
@@ -136,7 +136,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
         published_at: lastPost.published_at,
       },
       limit: 21,
-    }
+    };
 
     this.setState({loading: true});
 
@@ -149,7 +149,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
   }
 
   private newStateFromData = (data: PostsJson) => {
-    const hasMore = data.news_posts.length == data.search.limit;
+    const hasMore = data.news_posts.length === data.search.limit;
     let posts: PostJson[];
     let loading: boolean;
 
@@ -164,7 +164,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     posts = posts.concat(data.news_posts);
 
     if (hasMore) {
-      posts.pop()
+      posts.pop();
     }
 
     return {posts, hasMore, loading};

@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import AdminMenuItem from 'interfaces/admin-menu-item';
+import * as React from 'react';
 
 interface PropsInterface {
   items: AdminMenuItem[];
@@ -31,7 +31,7 @@ export default class AdminMenu extends React.PureComponent<PropsInterface, {}> {
       return null;
     }
 
-    const items = this.props.items.map(function (item) {
+    const items = this.props.items.map((item) => {
       const props = osu.jsonClone(item.props);
       props.className = 'admin-menu-item';
       props.key = `${item.icon}-${item.text}`;
@@ -45,7 +45,7 @@ export default class AdminMenu extends React.PureComponent<PropsInterface, {}> {
           <span className='admin-menu-item__label admin-menu-item__label--text'>
             {item.text}
           </span>
-        </span>
+        </span>,
       );
     });
 

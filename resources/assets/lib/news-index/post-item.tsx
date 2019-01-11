@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import PostJson from 'interfaces/news-post-json';
+import * as React from 'react';
 
 export default function PostItem({post}: {post: PostJson}) {
   let cover;
