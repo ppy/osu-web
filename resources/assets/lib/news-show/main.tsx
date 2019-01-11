@@ -17,7 +17,7 @@
  */
 
 import * as React from 'react';
-import HeaderV3 from 'header-v3';
+import NewsHeader from 'news-header';
 import NewsPostJson from 'interfaces/news-post-json';
 
 interface CommentBundleJson { }
@@ -39,7 +39,11 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     };
 
     return <>
-      <HeaderV3 theme='news' titleTrans={titleTrans} />
+      <NewsHeader
+        section='show'
+        url={laroute.route('news.show', {news: this.props.post.slug})}
+        titleTrans={titleTrans}
+      />
       <div className='osu-page osu-page--news'>
         <div className='news-show'>
           {this.renderHeader({author})}

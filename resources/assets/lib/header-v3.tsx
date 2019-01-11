@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,17 +17,15 @@
  */
 
 import * as React from 'react';
-
-interface TitleTrans {
-  key: string;
-  info: string;
-}
+import HeaderLink from 'interfaces/header-link';
+import HeaderTitleTrans from 'interfaces/header-title-trans';
 
 interface PropsInterface {
   compact?: boolean;
+  links?: HeaderLink[];
   theme?: string;
   title?: string;
-  titleTrans?: TitleTrans;
+  titleTrans?: HeaderTitleTrans;
 }
 
 export default class HeaderV3 extends React.Component<PropsInterface, {}> {
@@ -69,8 +67,25 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
       classNames += ` page-mode-v2--${this.props.theme}`;
     }
 
+    let items;
+
+    if (this.props.links != null) {
+      items = this.props.links.map((link) => {
+        let linkClass = 'page-mode-v2__link';
+        if (link.active) {
+          linkClass += ' page-mode-v2__link--active';
+        }
+
+        return <li className='page-mode-v2__item' key={`${link.url}-${link.title}`}>
+          <a className={linkClass} href={link.url}>{link.title}</a>
+        </li>;
+      });
+    }
+
     return (
-      <ol className={classNames} />
+      <ol className={classNames}>
+        {items}
+      </ol>
     );
   }
 
