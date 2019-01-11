@@ -64,11 +64,7 @@
   }
 
   &__overlay {
-    position: absolute;
-    top: -10px;
-    bottom: -10px;
-    left: -10px;
-    right: -10px;
+    .full-size();
     background-image: linear-gradient(to bottom, transparent, fade(@dark-graypurple, 100%));
 
     .@{_top}--index & {
