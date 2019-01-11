@@ -24,9 +24,9 @@ use App\Models\Store\Product;
 use App\Models\Tournament;
 use Illuminate\Console\Command;
 
-class StoreDisableEndedTournamentBanners extends Command
+class StoreExpireTournamentBanners extends Command
 {
-    protected $signature = 'store:disable-ended-tournament-banners';
+    protected $signature = 'store:expire-tournament-banners';
 
     protected $description = 'Disables banner products of tournaments that have ended';
 

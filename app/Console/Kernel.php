@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
         Commands\StoreCleanupStaleOrders::class,
-        Commands\StoreDisableEndedTournamentBanners::class,
+        Commands\StoreExpireTournamentBanners::class,
 
         // builds
         Commands\BuildsCreate::class,
@@ -79,7 +79,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('store:cleanup-stale-orders')
             ->daily();
 
-        $schedule->command('store:disable-ended-tournament-banners')
+        $schedule->command('store:expire-tournament-banners')
             ->hourly();
 
         $schedule->command('store:tracking')
