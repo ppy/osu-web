@@ -95,7 +95,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
               callback={this.showMore}
               hasMore={this.state.hasMore}
               loading={this.state.loading}
-              modifiers={['t-dark-purple-darker']}
+              modifiers={['t-dark-purple-dark']}
             />
           </div>
         </div>
