@@ -32,7 +32,7 @@ class StoreExpireTournamentBanners extends Command
 
     public function handle()
     {
-        $tournamentIds = Tournament::from((new Tournament)->tableName(true))->ended()->select('tournament_id');
+        $tournamentIds = Tournament::from((new Tournament)->tableName(true))->bannerSalesEnded()->select('tournament_id');
 
         $count = Product
             ::where('enabled', true)

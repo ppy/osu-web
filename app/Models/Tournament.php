@@ -26,7 +26,7 @@ class Tournament extends Model
 {
     protected $primaryKey = 'tournament_id';
 
-    protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
+    protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date', 'banner_sales_ends_at'];
 
     public static function getGroupedListing()
     {
@@ -53,14 +53,14 @@ class Tournament extends Model
         return $this->hasMany(TournamentRegistration::class, 'tournament_id');
     }
 
-    public function scopeEnded($query)
+    public function scopeBannerSalesEnded($query)
     {
-        return $query->where('end_date', '<=', Carbon::now());
+        return $query->where('banner_sales_ends_at', '<=', Carbon::now());
     }
 
-    public function scopeNotEnded($query)
+    public function scopeBannerSalesNotNotEnded($query)
     {
-        return $query->where('end_date', '>', Carbon::now());
+        return $query->where('banner_sales_ends_at', '>', Carbon::now());
     }
 
     public function isRegistrationOpen()
@@ -80,7 +80,7 @@ class Tournament extends Model
     public function isStoreBannerAvailable()
     {
         return $this->tournament_banner_product_id !== null &&
-            optional($this->end_date)->isFuture() ?? true;
+            optional($this->banner_sales_ends_at)->isFuture() ?? true;
     }
 
     public function isSignedUp($user)

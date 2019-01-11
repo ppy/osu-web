@@ -152,7 +152,7 @@ class Product extends Model
             ->where('enabled', true)
             ->where(function ($tournamentsQuery) {
                 $tournamentIds = Tournament::from((new Tournament)->tableName(true))
-                    ->notEnded()
+                    ->bannerSalesNotNotEnded()
                     ->select('tournament_id');
 
                 $tournamentsQuery

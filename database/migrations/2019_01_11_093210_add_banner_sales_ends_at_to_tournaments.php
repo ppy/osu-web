@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEndDateIndexToTournaments extends Migration
+class AddBannerSalesEndsAtToTournaments extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,12 @@ class AddEndDateIndexToTournaments extends Migration
     public function up()
     {
         Schema::table('tournaments', function (Blueprint $table) {
-            $table->index(['end_date']);
+            $table->timestamp('banner_sales_ends_at')->nullable()->after('tournament_banner_product_id');
+            $table->index(['banner_sales_ends_at']);
         });
+
+        // give existing stuff a value.
+        DB::statement('UPDATE `tournaments` SET `banner_sales_ends_at` = `end_date`');
     }
 
     /**
@@ -26,7 +30,7 @@ class AddEndDateIndexToTournaments extends Migration
     public function down()
     {
         Schema::table('tournaments', function (Blueprint $table) {
-            $table->dropIndex(['end_date']);
+            $table->dropColumn('banner_sales_ends_at');
         });
     }
 }
