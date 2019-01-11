@@ -190,7 +190,6 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     let authorEl = _.last(contentHTML.querySelectorAll('p'));
     if (authorEl != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
       author = authorEl.textContent.slice(1);
-      authorEl.remove();
     }
 
     content = contentHTML.innerHTML;
